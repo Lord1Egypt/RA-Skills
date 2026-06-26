@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin/get-video-comment/v1 for Douyin (TikTok China) Video Comments through JustOneAPI with awemeId.",
+  "displayName": "Douyin (TikTok China) Video Comments",
+  "endpointPath": "get-video-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) video Comments data, including authors, text, and likes, for sentiment analysis and engagement review.",
+      "method": "GET",
+      "operationId": "getVideoCommentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique video identifier (aweme_id).",
+          "enumValues": [],
+          "location": "query",
+          "name": "awemeId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin/get-video-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Comments",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin_get_video_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-get-video-comment",
+  "sourceTitle": "OpenAPI definition"
+}

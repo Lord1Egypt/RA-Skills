@@ -1,35 +1,42 @@
 ---
-name: "file-compare"
+name: jpeng-file-compare
 description: "Compare two files"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-file-compare"
-sourceUrl: "https://clawhub.ai/skills/jpeng-file-compare"
+version: "1.0.0"
+author: "jpeng"
+tags: ["utility", "compare", "filesystem"]
 ---
 
-# file-compare
+# File Compare
 
-> Compare two files
+Compare two files
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-file-compare`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-file-compare](https://clawhub.ai/skills/jpeng-file-compare)
+## When to Use
 
-## Overview
+- User needs utility related functionality
+- Automating compare tasks
+- Filesystem operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-file-compare
+python3 scripts/file_compare.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export COMPARE_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

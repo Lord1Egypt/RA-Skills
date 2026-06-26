@@ -1,0 +1,95 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "违规事件表ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "违规事件表ID（RID）：与违规事件表（LC_ViolatiEvent）ID关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "AnnID",
+        "columnChiName": "公告ID",
+        "columnType": "bigint",
+        "isNullable": 1,
+        "remark": "公告ID（AnnID）：与违规公告原文非文本（LC_ViolAnnouncement）ID关联",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.97",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "EventCode",
+        "columnChiName": "事件编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EventProcedure",
+        "columnChiName": "事件进程",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "事件进程(EventProcedure)与(CT_SystemConst)表中的DM字段关联，令LB = 1747，得到事件进程的具体描述：1-正常，2-维持，3-立案调查，4-送达公告，5-举行听证，6-提起诉讼，7-审理终结，8-延期回复，9-已回复，98-不予受理，99-撤消。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "ProcessDate",
+        "columnChiName": "事件进程日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

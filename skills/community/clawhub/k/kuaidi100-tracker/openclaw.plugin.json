@@ -1,0 +1,97 @@
+{
+  "id": "package-tracker",
+  "name": "Package Tracker",
+  "version": "1.0.0",
+  "description": "Track Chinese domestic packages via Kuaidi100 push API. Auto-detects today's deliveries and creates Google Calendar reminders so you remember to pick up packages after work.",
+  "contracts": {
+    "tools": ["add_tracking_number", "list_packages", "sync_to_calendar", "remove_tracking_number"]
+  },
+  "configSchema": {
+    "type": "object",
+    "required": ["kuaidi100"],
+    "properties": {
+      "kuaidi100": {
+        "type": "object",
+        "description": "Kuaidi100 API credentials (get from https://api.kuaidi100.com)",
+        "required": ["customer", "key"],
+        "properties": {
+          "customer": {
+            "type": "string",
+            "description": "Kuaidi100 customer ID"
+          },
+          "key": {
+            "type": "string",
+            "description": "Kuaidi100 API key"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "Optional custom endpoint (default: poll/query.do)"
+          }
+        }
+      },
+      "calendar": {
+        "type": "object",
+        "description": "Google Calendar OAuth2 credentials for delivery reminders (optional)",
+        "properties": {
+          "client_id": { "type": "string" },
+          "client_secret": { "type": "string" },
+          "refresh_token": { "type": "string" },
+          "calendar_id": {
+            "type": "string",
+            "description": "Calendar ID (default: primary)"
+          }
+        }
+      },
+      "schedule": {
+        "type": "object",
+        "description": "Reminder schedule settings",
+        "properties": {
+          "off_work_time": {
+            "type": "string",
+            "description": "Off-work time in HH:MM format (default: 18:30)"
+          },
+          "reminder_minutes_before": {
+            "type": "number",
+            "description": "Minutes before off_work_time to set reminder (default: 30)"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "IANA timezone (default: Asia/Shanghai)"
+          }
+        }
+      },
+      "webhook": {
+        "type": "object",
+        "description": "Public webhook for Kuaidi100 push callbacks (requires a publicly accessible URL, e.g. via Cloudflare Tunnel)",
+        "required": ["baseUrl", "token"],
+        "properties": {
+          "baseUrl": {
+            "type": "string",
+            "description": "Public base URL for webhook callbacks"
+          },
+          "token": {
+            "type": "string",
+            "description": "Shared secret embedded in callback path for authentication"
+          },
+          "salt": {
+            "type": "string",
+            "description": "Optional Kuaidi100 callback signature salt (recommended)"
+          },
+          "rateLimitPerMinute": {
+            "type": "number",
+            "description": "Rate limit per client IP per minute (default: 60)"
+          },
+          "signatureMode": {
+            "type": "string",
+            "description": "Signature verification mode: soft (accept all) or strict (reject invalid)",
+            "enum": ["soft", "strict"],
+            "default": "soft"
+          }
+        }
+      }
+    }
+  },
+  "activation": {
+    "onStartup": true
+  }
+}

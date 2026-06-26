@@ -1,0 +1,2692 @@
+{
+  "cases": [
+    {
+      "case_id": "explicit-generate",
+      "total_score": 82,
+      "passed": false,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 15,
+        "efficiency": 17
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "style.rubric_missing",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/html-shell'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/html-shell'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/spec-loading-matrix.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/spec-loading-matrix.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/review-checklist.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/review-checklist.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '241,520p' references/review-checklist.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '241,520p' references/review-checklist.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,520p' references/html-shell/core-structure.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,520p' references/html-shell/core-structure.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/anti-patterns.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/anti-patterns.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/rendering'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/rendering'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/design-quality.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/design-quality.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/table-list.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/table-list.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/media-code-callout.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/media-code-callout.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls templates/themes'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls templates/themes'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate -maxdepth 1 -type f -name '*.html' -print\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate -maxdepth 1 -type f -name '*.html' -print\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python scripts/guard_validate.py /dev/stdin <<'EOF'\n---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\nEOF'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python scripts/guard_validate.py /dev/stdin <<'EOF'\n---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\nEOF'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nimport hashlib\nir = '''---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\n'\"'''\nprint(hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nimport hashlib\nir = '''---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\n'\"'''\nprint(hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\"",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+          "/bin/zsh -lc 'ls references/html-shell'",
+          "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' references/spec-loading-matrix.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/review-checklist.md\"",
+          "/bin/zsh -lc \"sed -n '241,520p' references/review-checklist.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+          "/bin/zsh -lc \"sed -n '261,520p' references/html-shell/core-structure.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/anti-patterns.md\"",
+          "/bin/zsh -lc 'ls references/rendering'",
+          "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/design-quality.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/rendering/table-list.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/rendering/media-code-callout.md\"",
+          "/bin/zsh -lc 'ls templates/themes'",
+          "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+          "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+          "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate -maxdepth 1 -type f -name '*.html' -print\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+          "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+          "/bin/zsh -lc \"python scripts/guard_validate.py /dev/stdin <<'EOF'\n---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\nEOF'",
+          "/bin/zsh -lc \"python - <<'PY'\nimport hashlib\nir = '''---\ntitle: Q1 KPI Decision Brief: Security Review Capacity\ntheme: corporate-blue\ndate: 2026-05-17\nlang: en\nreport_class: data\narchetype: update\naudience: \\\"Executive decision-maker\\\"\ndecision_goal: \\\"Decide whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_include:\n  - \\\"Q1 revenue: ¥2,450万, up 12% quarter over quarter.\\\"\n  - \\\"Enterprise renewals: 88%, down 3 percentage points.\\\"\n  - \\\"New pipeline: ¥7,800万, up 19%.\\\"\n  - \\\"Main risk: two strategic accounts delayed security review.\\\"\n  - \\\"Required decision: whether to add a temporary security review tiger team for the next 30 days.\\\"\nmust_avoid:\n  - \\\"Inventing account value, team cost, conversion probability, or staffing numbers.\\\"\ncharts: none\ntoc: true\nanimations: true\nabstract: \\\"Q1 metrics show revenue and pipeline growth, but renewal pressure and two delayed strategic security reviews put the 30-day tiger-team decision on the critical path.\\\"\n---\n\n## Q1 Signals Show Growth With Renewal Pressure\n\n:::kpi\nitems:\n  - label: Q1 revenue\n    value: ¥2,450万\n    delta: ↑12% QoQ\n  - label: Enterprise renewals\n    value: 88%\n    delta: ↓3pp\n  - label: New pipeline\n    value: ¥7,800万\n    delta: ↑19%\n:::\n\n:::table\n| Metric | Current value | Movement | Source meaning |\n| --- | --- | --- | --- |\n| Q1 revenue | ¥2,450万 | Up 12% QoQ | Revenue expanded versus the prior quarter. |\n| Enterprise renewals | 88% | Down 3 percentage points | Retention pressure increased. |\n| New pipeline | ¥7,800万 | Up 19% | Future opportunity base expanded. |\n:::\n\n## Security Review Delay Is The Decision Constraint\n\n:::callout type=warning icon=\"'!\nTwo strategic accounts are delayed in security review. The notes do not provide account value, review duration, conversion probability, staffing cost, or named owners.\n:::\n\n## The 30-Day Tiger Team Decision Needs Account Value Before ROI\n\n:::table\n| Option | What it addresses | Missing number not provided | Decision implication |\n| --- | --- | --- | --- |\n| Add a temporary security review tiger team | Directly targets the delayed security reviews for two strategic accounts | Tiger-team cost and affected account value | Approve if leadership treats the two-account delay as a near-term revenue or renewal risk worth containing. |\n| Keep current resourcing | Avoids adding temporary capacity for the next 30 days | Expected delay cost and current review throughput | Defer if the delayed accounts are not material or if security review capacity is already sufficient. |\n:::\n'\"'''\nprint(hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\""
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/anti-patterns.md",
+          "references/design-quality.md",
+          "references/generate-flow.md",
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/ir-contract.md",
+          "references/rendering-rules.md",
+          "references/rendering/kpi.md",
+          "references/rendering/media-code-callout.md",
+          "references/rendering/plain-markdown.md",
+          "references/rendering/table-list.md",
+          "references/review-checklist.md",
+          "references/spec-loading-matrix.md",
+          "references/theme-css.md",
+          "references/theme-routing.md",
+          "scripts/guard_validate.py",
+          "scripts/html_quality_gate.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 240005,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": true,
+          "guard_observed": true,
+          "html_quality_gate_observed": true
+        },
+        "runner_warnings": [
+          "codex.timeout:240.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate"
+    },
+    {
+      "case_id": "implicit-weekly-progress",
+      "total_score": 42,
+      "passed": false,
+      "scores": {
+        "outcome": 0,
+        "process": 25,
+        "style": 0,
+        "efficiency": 17
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "outcome.missing_html_artifact",
+        "style.missing_html_artifact",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg --files references/html-shell'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg --files references/html-shell'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/regular-report-content-rules.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/regular-report-content-rules.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,280p' references/theme-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,280p' references/theme-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/regular-lumen.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/regular-lumen.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg --files references/rendering'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg --files references/rendering'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' scripts/guard_validate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' scripts/html_quality_gate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' scripts/guard_validate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' scripts/html_quality_gate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/plain-markdown.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/plain-markdown.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/timeline-diagram.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/media-code-callout.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/kpi.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/table-list.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/table-list.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/media-code-callout.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/timeline-diagram.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/rendering/kpi.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nfrom scripts.guard_validate import validate_ir_text\nimport hashlib, json\nir = '''---\ntitle: 本周项目进展周报\ndate: 2026-05-17\nlang: zh\ntheme: regular-lumen\nreport_class: mixed\narchetype: update\naudience: 老板 / 业务负责人\ndecision_goal: 决定是否将财务 API 纳入 P1 级监控\nabstract: 本周导出效率显著提升，字段校验减少人工回填；当前主要风险集中在财务系统 API 稳定性，需要确认监控优先级。\ntoc: true\nanimations: true\n---\n\n## 结论先行：效率提升已落地，财务 API 需要决策\n本周交付的核心收益是报表导出链路提速：耗时从 42 秒降到 18 秒，异步等待时间下降明显。客户字段校验也新增 5 个，预计会减少人工回填成本。唯一需要管理层决策的是：财务系统 API 已在周三晚间影响两次同步，是否纳入 P1 级监控需要尽快定。\n\n:::kpi\nitems:\n  - label: 导出耗时\n    value: 18秒\n    delta: ↓57%\n    note: 从42秒降至18秒\n  - label: 新增校验字段\n    value: 5个\n    delta: → 已上线\n    note: 减少人工回填\n  - label: 同步受影响\n    value: 2次\n    delta: → 周三晚间\n    note: 财务系统API不稳定\n:::\n\n## 本周进展：两个交付项改善报表链路体验\n<span class=\\\"badge badge--done\\\">已完成</span> 报表导出链路优化已经完成，导出耗时从 42 秒下降到 18 秒。这个变化直接缩短了等待窗口，也降低了批量导出时的阻塞感。\n\n<span class=\\\"badge badge--done\\\">已完成</span> 客户字段校验新增 5 个，用于提前拦截缺失或格式异常字段，减少后续人工回填。\n\n:::timeline\n- Week 1: 完成报表导出链路优化，导出耗时从42秒降到18秒。\n- Week 1: 新增5个客户字段校验，减少人工回填。\n- 2026-05-13: 财务系统API晚间不稳定，影响两次同步。\n:::\n\n:::callout type=tip icon=✓\n本周的主线不是新增功能数量，而是把报表链路里的等待时间和人工修补点往前压缩。\n:::\n\n## 风险与决策：财务 API 稳定性已影响同步\n<span class=\\\"badge badge--warn\\\">风险</span> 财务系统 API 在 2026-05-13 晚间出现不稳定，已经影响两次同步。当前问题还没有形成持续阻塞，但已经足够说明需要补齐失败重试、告警和监控等级判断。\n\n:::callout type=warning icon=\"'!\n需要决策：是否把财务 API 纳入 P1 级监控。如果纳入，后续告警、升级和响应阈值会按核心链路处理；如果不纳入，下周仍先补失败重试和基础告警。\n:::\n\n<hr class=\"week-divider\">\n\n## 下周动作：Alex 补重试和告警，监控等级待确认\n<span class=\"badge badge--wip\">下周执行</span> Alex 负责补充失败重试和告警，优先覆盖财务系统 API 的同步失败场景。管理层需要确认 P1 监控决策，以便同步确定告警等级和响应机制。\n\n:::timeline\n- Week 2: (future) Alex 补充失败重试机制，覆盖财务系统API同步失败。\n- Week 2: (future) Alex 补充告警规则，并根据P1决策确定通知等级。\n:::\n\n:::callout type=note icon=→\n建议在下周动作开始前确认 P1 监控归属，避免先做基础告警后再返工升级策略。\n:::\n'\"'''\nprint(json.dumps(validate_ir_text(ir), ensure_ascii=False, indent=2))\nprint('sha256:' + hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nfrom scripts.guard_validate import validate_ir_text\nimport hashlib, json\nir = '''---\ntitle: 本周项目进展周报\ndate: 2026-05-17\nlang: zh\ntheme: regular-lumen\nreport_class: mixed\narchetype: update\naudience: 老板 / 业务负责人\ndecision_goal: 决定是否将财务 API 纳入 P1 级监控\nabstract: 本周导出效率显著提升，字段校验减少人工回填；当前主要风险集中在财务系统 API 稳定性，需要确认监控优先级。\ntoc: true\nanimations: true\n---\n\n## 结论先行：效率提升已落地，财务 API 需要决策\n本周交付的核心收益是报表导出链路提速：耗时从 42 秒降到 18 秒，异步等待时间下降明显。客户字段校验也新增 5 个，预计会减少人工回填成本。唯一需要管理层决策的是：财务系统 API 已在周三晚间影响两次同步，是否纳入 P1 级监控需要尽快定。\n\n:::kpi\nitems:\n  - label: 导出耗时\n    value: 18秒\n    delta: ↓57%\n    note: 从42秒降至18秒\n  - label: 新增校验字段\n    value: 5个\n    delta: → 已上线\n    note: 减少人工回填\n  - label: 同步受影响\n    value: 2次\n    delta: → 周三晚间\n    note: 财务系统API不稳定\n:::\n\n## 本周进展：两个交付项改善报表链路体验\n<span class=\\\"badge badge--done\\\">已完成</span> 报表导出链路优化已经完成，导出耗时从 42 秒下降到 18 秒。这个变化直接缩短了等待窗口，也降低了批量导出时的阻塞感。\n\n<span class=\\\"badge badge--done\\\">已完成</span> 客户字段校验新增 5 个，用于提前拦截缺失或格式异常字段，减少后续人工回填。\n\n:::timeline\n- Week 1: 完成报表导出链路优化，导出耗时从42秒降到18秒。\n- Week 1: 新增5个客户字段校验，减少人工回填。\n- 2026-05-13: 财务系统API晚间不稳定，影响两次同步。\n:::\n\n:::callout type=tip icon=✓\n本周的主线不是新增功能数量，而是把报表链路里的等待时间和人工修补点往前压缩。\n:::\n\n## 风险与决策：财务 API 稳定性已影响同步\n<span class=\\\"badge badge--warn\\\">风险</span> 财务系统 API 在 2026-05-13 晚间出现不稳定，已经影响两次同步。当前问题还没有形成持续阻塞，但已经足够说明需要补齐失败重试、告警和监控等级判断。\n\n:::callout type=warning icon=\"'!\n需要决策：是否把财务 API 纳入 P1 级监控。如果纳入，后续告警、升级和响应阈值会按核心链路处理；如果不纳入，下周仍先补失败重试和基础告警。\n:::\n\n<hr class=\"week-divider\">\n\n## 下周动作：Alex 补重试和告警，监控等级待确认\n<span class=\"badge badge--wip\">下周执行</span> Alex 负责补充失败重试和告警，优先覆盖财务系统 API 的同步失败场景。管理层需要确认 P1 监控决策，以便同步确定告警等级和响应机制。\n\n:::timeline\n- Week 2: (future) Alex 补充失败重试机制，覆盖财务系统API同步失败。\n- Week 2: (future) Alex 补充告警规则，并根据P1决策确定通知等级。\n:::\n\n:::callout type=note icon=→\n建议在下周动作开始前确认 P1 监控归属，避免先做基础告警后再返工升级策略。\n:::\n'\"'''\nprint(json.dumps(validate_ir_text(ir), ensure_ascii=False, indent=2))\nprint('sha256:' + hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/implicit-weekly-progress'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/implicit-weekly-progress'",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+          "/bin/zsh -lc 'rg --files references/html-shell'",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/toc-edit-summary.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/export.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/regular-report-content-rules.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' references/theme-routing.md\"",
+          "/bin/zsh -lc \"sed -n '1,280p' references/theme-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/regular-lumen.css\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/rendering-rules.md\"",
+          "/bin/zsh -lc 'rg --files references/rendering'",
+          "/bin/zsh -lc \"sed -n '1,220p' scripts/guard_validate.py\"",
+          "/bin/zsh -lc \"sed -n '1,220p' scripts/html_quality_gate.py\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/rendering/plain-markdown.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/rendering/table-list.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/rendering/media-code-callout.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/rendering/timeline-diagram.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/rendering/kpi.md\"",
+          "/bin/zsh -lc \"python - <<'PY'\nfrom scripts.guard_validate import validate_ir_text\nimport hashlib, json\nir = '''---\ntitle: 本周项目进展周报\ndate: 2026-05-17\nlang: zh\ntheme: regular-lumen\nreport_class: mixed\narchetype: update\naudience: 老板 / 业务负责人\ndecision_goal: 决定是否将财务 API 纳入 P1 级监控\nabstract: 本周导出效率显著提升，字段校验减少人工回填；当前主要风险集中在财务系统 API 稳定性，需要确认监控优先级。\ntoc: true\nanimations: true\n---\n\n## 结论先行：效率提升已落地，财务 API 需要决策\n本周交付的核心收益是报表导出链路提速：耗时从 42 秒降到 18 秒，异步等待时间下降明显。客户字段校验也新增 5 个，预计会减少人工回填成本。唯一需要管理层决策的是：财务系统 API 已在周三晚间影响两次同步，是否纳入 P1 级监控需要尽快定。\n\n:::kpi\nitems:\n  - label: 导出耗时\n    value: 18秒\n    delta: ↓57%\n    note: 从42秒降至18秒\n  - label: 新增校验字段\n    value: 5个\n    delta: → 已上线\n    note: 减少人工回填\n  - label: 同步受影响\n    value: 2次\n    delta: → 周三晚间\n    note: 财务系统API不稳定\n:::\n\n## 本周进展：两个交付项改善报表链路体验\n<span class=\\\"badge badge--done\\\">已完成</span> 报表导出链路优化已经完成，导出耗时从 42 秒下降到 18 秒。这个变化直接缩短了等待窗口，也降低了批量导出时的阻塞感。\n\n<span class=\\\"badge badge--done\\\">已完成</span> 客户字段校验新增 5 个，用于提前拦截缺失或格式异常字段，减少后续人工回填。\n\n:::timeline\n- Week 1: 完成报表导出链路优化，导出耗时从42秒降到18秒。\n- Week 1: 新增5个客户字段校验，减少人工回填。\n- 2026-05-13: 财务系统API晚间不稳定，影响两次同步。\n:::\n\n:::callout type=tip icon=✓\n本周的主线不是新增功能数量，而是把报表链路里的等待时间和人工修补点往前压缩。\n:::\n\n## 风险与决策：财务 API 稳定性已影响同步\n<span class=\\\"badge badge--warn\\\">风险</span> 财务系统 API 在 2026-05-13 晚间出现不稳定，已经影响两次同步。当前问题还没有形成持续阻塞，但已经足够说明需要补齐失败重试、告警和监控等级判断。\n\n:::callout type=warning icon=\"'!\n需要决策：是否把财务 API 纳入 P1 级监控。如果纳入，后续告警、升级和响应阈值会按核心链路处理；如果不纳入，下周仍先补失败重试和基础告警。\n:::\n\n<hr class=\"week-divider\">\n\n## 下周动作：Alex 补重试和告警，监控等级待确认\n<span class=\"badge badge--wip\">下周执行</span> Alex 负责补充失败重试和告警，优先覆盖财务系统 API 的同步失败场景。管理层需要确认 P1 监控决策，以便同步确定告警等级和响应机制。\n\n:::timeline\n- Week 2: (future) Alex 补充失败重试机制，覆盖财务系统API同步失败。\n- Week 2: (future) Alex 补充告警规则，并根据P1决策确定通知等级。\n:::\n\n:::callout type=note icon=→\n建议在下周动作开始前确认 P1 监控归属，避免先做基础告警后再返工升级策略。\n:::\n'\"'''\nprint(json.dumps(validate_ir_text(ir), ensure_ascii=False, indent=2))\nprint('sha256:' + hashlib.sha256(ir.encode('utf-8')).hexdigest())\nPY\"",
+          "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/implicit-weekly-progress'"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/anti-patterns.md",
+          "references/generate-flow.md",
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/ir-contract.md",
+          "references/regular-report-content-rules.md",
+          "references/rendering-rules.md",
+          "references/rendering/kpi.md",
+          "references/rendering/media-code-callout.md",
+          "references/rendering/plain-markdown.md",
+          "references/rendering/table-list.md",
+          "references/rendering/timeline-diagram.md",
+          "references/review-checklist.md",
+          "references/spec-loading-matrix.md",
+          "references/theme-css.md",
+          "references/theme-routing.md",
+          "scripts/guard_validate.py",
+          "scripts/html_quality_gate.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 240012,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": true,
+          "guard_observed": true,
+          "html_quality_gate_observed": true
+        },
+        "runner_warnings": [
+          "codex.timeout:240.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/implicit-weekly-progress"
+    },
+    {
+      "case_id": "contextual-research",
+      "total_score": 42,
+      "passed": false,
+      "scores": {
+        "outcome": 0,
+        "process": 25,
+        "style": 0,
+        "efficiency": 17
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "outcome.missing_html_artifact",
+        "style.missing_html_artifact",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/html-shell'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls references/html-shell'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls templates/themes'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls templates/themes'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/export.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/export.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/design-quality.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' references/design-quality.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/minimal.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/minimal.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '220,520p' references/design-quality.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '220,520p' references/design-quality.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -l templates/themes/shared.css templates/themes/minimal.css references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -l templates/themes/shared.css templates/themes/minimal.css references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' scripts/guard_validate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' scripts/guard_validate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nfrom pathlib import Path\nir = '''---\ntitle: 多 Agent 协作失败的上下文边界研究\ntheme: minimal\ndate: 2026-05-17\nlang: zh\nreport_class: narrative\narchetype: research\naudience: 产品和工程负责人\ndecision_goal: 决定先建设小型 trace eval，还是直接投入更复杂的自治调度\nmust_include:\n  - 多 agent 协作失败通常不是模型能力问题，而是上下文边界和交接契约问题。\n  - 没有明确 artifact owner 时，多个 agent 会重复读同一批文件。\n  - 只看最终 diff、不看 trace，会隐藏流程错误。\n  - 稳定团队通常拆成 explorer、worker、reviewer，并要求结构化证据。\n  - 建议先建立小型 trace eval，再考虑复杂自治调度。\nmust_avoid:\n  - 不把没有数字的观点包装成 KPI。\n  - 不使用装饰性图表或伪时间线。\n  - 不输出演示文稿结构。\ntoc: true\nanimations: true\nabstract: \\\"这份研究报告将多 agent 协作失败归因于上下文边界与交接契约，并建议产品与工程负责人先建设小型 trace eval。\\\"\nposter_title: \\\"边界先于调度\\\"\nposter_subtitle: \\\"多 agent 协作的失效点通常藏在 trace 和交接契约里\\\"\nposter_note: \\\"先让协作过程可评估，再让调度系统更自治。\\\"\n---\n\n## 主要判断：协作失效先从边界和契约查起\n\n这份报告面向正在设计多 agent 协作流程的产品和工程负责人。核心判断是：常见失败不应先归因于模型能力不足，而应先检查上下文边界、artifact owner 和交接契约是否可执行、可追踪、可审查。\n\n多 agent 系统一旦缺少清晰的责任面，协作成本会从“并行加速”转化为“重复理解”。因此，下一步不宜直接追求更复杂的自治调度，而应先建立小型 trace eval，让团队能看见每次协作中的阅读、交接、修改和 review 证据。\n\n## 没有 artifact owner 时，阅读成本会被多次支付\n\n观察显示，当任务没有明确 artifact owner 时，多个 agent 会重复读同一批文件。这个问题表面上是效率损耗，实质上是上下文边界没有被产品化：系统没有告诉每个 agent 应该拥有哪个 artifact、应该继承哪些事实、又应该把哪些判断交给下一环节。\n\n对负责人而言，关键不是禁止重复阅读，而是让重复阅读可解释。如果两个 agent 都读同一批文件，是因为职责重叠、证据缺口，还是因为交接缺少摘要？这些差异只有在 trace 中保留下来，才有可能被改进。\n\n## 只看最终 diff 会漏掉流程错误\n\n只看最终 diff 的 review 能发现代码层面的明显问题，却很容易漏掉流程层面的错误：agent 可能改对了文件，但基于错误假设；也可能最终 diff 很小，但过程中重复读取、误解交接、跳过证据验证。最终结果越干净，这些流程问题越容易被隐藏。\n\n因此，多 agent review 需要同时看 artifact 和 trace。artifact 回答“最后产出了什么”，trace 回答“为什么这样产出、谁承担了判断、证据是否足够”。这不是增加审查负担，而是把隐藏成本从事后故障转移到可控评估中。\n\n## 稳定团队会把角色拆成 explorer、worker、reviewer\n\n较稳定的团队通常不会让每个 agent 都承担完整任务链，而是拆成 explorer、worker、reviewer。这个拆法的价值不在称谓，而在于每个角色都有不同的输出契约：explorer 输出结构化证据，worker 输出受边界约束的 artifact 变更，reviewer 输出基于 trace 的判断。\n\n角色拆分后，负责人可以分别评估“发现是否充分”“实现是否尊重边界”“review 是否检查了流程”。这比笼统评估一个 agent 是否完成任务更可调试，也更容易定位协作失败发生在哪一段。\n\n## 小型 trace eval 应先回答边界是否可评估\n\n建议先建立小型 trace eval，再考虑更复杂的自治调度。这个 eval 不需要覆盖所有任务类型，首先应覆盖最容易暴露边界问题的协作链路：谁负责哪个 artifact、交接时传递了哪些证据、review 是否同时检查最终 diff 和 trace。\n\n一个合格的初版 trace eval 应能让负责人回答三个问题：重复阅读是否来自职责不清；交接摘要是否足以支持下一步行动；review 是否能指出流程错误而不只评价最终产物。只有这些问题变得可观察，自治调度的复杂度才有可验证的收益基础。\n'''\npath = Path('/private/tmp/kai-contextual-research.report.md')\npath.write_text(ir, encoding='utf-8')\nprint(path)\nPY\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python - <<'PY'\nfrom pathlib import Path\nir = '''---\ntitle: 多 Agent 协作失败的上下文边界研究\ntheme: minimal\ndate: 2026-05-17\nlang: zh\nreport_class: narrative\narchetype: research\naudience: 产品和工程负责人\ndecision_goal: 决定先建设小型 trace eval，还是直接投入更复杂的自治调度\nmust_include:\n  - 多 agent 协作失败通常不是模型能力问题，而是上下文边界和交接契约问题。\n  - 没有明确 artifact owner 时，多个 agent 会重复读同一批文件。\n  - 只看最终 diff、不看 trace，会隐藏流程错误。\n  - 稳定团队通常拆成 explorer、worker、reviewer，并要求结构化证据。\n  - 建议先建立小型 trace eval，再考虑复杂自治调度。\nmust_avoid:\n  - 不把没有数字的观点包装成 KPI。\n  - 不使用装饰性图表或伪时间线。\n  - 不输出演示文稿结构。\ntoc: true\nanimations: true\nabstract: \\\"这份研究报告将多 agent 协作失败归因于上下文边界与交接契约，并建议产品与工程负责人先建设小型 trace eval。\\\"\nposter_title: \\\"边界先于调度\\\"\nposter_subtitle: \\\"多 agent 协作的失效点通常藏在 trace 和交接契约里\\\"\nposter_note: \\\"先让协作过程可评估，再让调度系统更自治。\\\"\n---\n\n## 主要判断：协作失效先从边界和契约查起\n\n这份报告面向正在设计多 agent 协作流程的产品和工程负责人。核心判断是：常见失败不应先归因于模型能力不足，而应先检查上下文边界、artifact owner 和交接契约是否可执行、可追踪、可审查。\n\n多 agent 系统一旦缺少清晰的责任面，协作成本会从“并行加速”转化为“重复理解”。因此，下一步不宜直接追求更复杂的自治调度，而应先建立小型 trace eval，让团队能看见每次协作中的阅读、交接、修改和 review 证据。\n\n## 没有 artifact owner 时，阅读成本会被多次支付\n\n观察显示，当任务没有明确 artifact owner 时，多个 agent 会重复读同一批文件。这个问题表面上是效率损耗，实质上是上下文边界没有被产品化：系统没有告诉每个 agent 应该拥有哪个 artifact、应该继承哪些事实、又应该把哪些判断交给下一环节。\n\n对负责人而言，关键不是禁止重复阅读，而是让重复阅读可解释。如果两个 agent 都读同一批文件，是因为职责重叠、证据缺口，还是因为交接缺少摘要？这些差异只有在 trace 中保留下来，才有可能被改进。\n\n## 只看最终 diff 会漏掉流程错误\n\n只看最终 diff 的 review 能发现代码层面的明显问题，却很容易漏掉流程层面的错误：agent 可能改对了文件，但基于错误假设；也可能最终 diff 很小，但过程中重复读取、误解交接、跳过证据验证。最终结果越干净，这些流程问题越容易被隐藏。\n\n因此，多 agent review 需要同时看 artifact 和 trace。artifact 回答“最后产出了什么”，trace 回答“为什么这样产出、谁承担了判断、证据是否足够”。这不是增加审查负担，而是把隐藏成本从事后故障转移到可控评估中。\n\n## 稳定团队会把角色拆成 explorer、worker、reviewer\n\n较稳定的团队通常不会让每个 agent 都承担完整任务链，而是拆成 explorer、worker、reviewer。这个拆法的价值不在称谓，而在于每个角色都有不同的输出契约：explorer 输出结构化证据，worker 输出受边界约束的 artifact 变更，reviewer 输出基于 trace 的判断。\n\n角色拆分后，负责人可以分别评估“发现是否充分”“实现是否尊重边界”“review 是否检查了流程”。这比笼统评估一个 agent 是否完成任务更可调试，也更容易定位协作失败发生在哪一段。\n\n## 小型 trace eval 应先回答边界是否可评估\n\n建议先建立小型 trace eval，再考虑更复杂的自治调度。这个 eval 不需要覆盖所有任务类型，首先应覆盖最容易暴露边界问题的协作链路：谁负责哪个 artifact、交接时传递了哪些证据、review 是否同时检查最终 diff 和 trace。\n\n一个合格的初版 trace eval 应能让负责人回答三个问题：重复阅读是否来自职责不清；交接摘要是否足以支持下一步行动；review 是否能指出流程错误而不只评价最终产物。只有这些问题变得可观察，自治调度的复杂度才有可验证的收益基础。\n'''\npath = Path('/private/tmp/kai-contextual-research.report.md')\npath.write_text(ir, encoding='utf-8')\nprint(path)\nPY\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py /private/tmp/kai-contextual-research.report.md'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py /private/tmp/kai-contextual-research.report.md'",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,240p' references/spec-loading-matrix.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/theme-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell-template.md\"",
+          "/bin/zsh -lc 'ls references/html-shell'",
+          "/bin/zsh -lc \"sed -n '1,220p' references/ir-contract.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/review-checklist.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/anti-patterns.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/core-structure.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/shared-component-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/html-shell/toc-edit-summary.md\"",
+          "/bin/zsh -lc 'ls templates/themes'",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/summary-card.md\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/export.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/html-shell/print-responsive.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' references/design-quality.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/minimal.css\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/shared.css\"",
+          "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+          "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+          "/bin/zsh -lc \"sed -n '261,620p' templates/themes/shared.css\"",
+          "/bin/zsh -lc \"sed -n '220,520p' references/design-quality.md\"",
+          "/bin/zsh -lc 'wc -l templates/themes/shared.css templates/themes/minimal.css references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md'",
+          "/bin/zsh -lc \"sed -n '1,260p' scripts/html_quality_gate.py\"",
+          "/bin/zsh -lc \"sed -n '1,320p' scripts/guard_validate.py\"",
+          "/bin/zsh -lc \"python - <<'PY'\nfrom pathlib import Path\nir = '''---\ntitle: 多 Agent 协作失败的上下文边界研究\ntheme: minimal\ndate: 2026-05-17\nlang: zh\nreport_class: narrative\narchetype: research\naudience: 产品和工程负责人\ndecision_goal: 决定先建设小型 trace eval，还是直接投入更复杂的自治调度\nmust_include:\n  - 多 agent 协作失败通常不是模型能力问题，而是上下文边界和交接契约问题。\n  - 没有明确 artifact owner 时，多个 agent 会重复读同一批文件。\n  - 只看最终 diff、不看 trace，会隐藏流程错误。\n  - 稳定团队通常拆成 explorer、worker、reviewer，并要求结构化证据。\n  - 建议先建立小型 trace eval，再考虑复杂自治调度。\nmust_avoid:\n  - 不把没有数字的观点包装成 KPI。\n  - 不使用装饰性图表或伪时间线。\n  - 不输出演示文稿结构。\ntoc: true\nanimations: true\nabstract: \\\"这份研究报告将多 agent 协作失败归因于上下文边界与交接契约，并建议产品与工程负责人先建设小型 trace eval。\\\"\nposter_title: \\\"边界先于调度\\\"\nposter_subtitle: \\\"多 agent 协作的失效点通常藏在 trace 和交接契约里\\\"\nposter_note: \\\"先让协作过程可评估，再让调度系统更自治。\\\"\n---\n\n## 主要判断：协作失效先从边界和契约查起\n\n这份报告面向正在设计多 agent 协作流程的产品和工程负责人。核心判断是：常见失败不应先归因于模型能力不足，而应先检查上下文边界、artifact owner 和交接契约是否可执行、可追踪、可审查。\n\n多 agent 系统一旦缺少清晰的责任面，协作成本会从“并行加速”转化为“重复理解”。因此，下一步不宜直接追求更复杂的自治调度，而应先建立小型 trace eval，让团队能看见每次协作中的阅读、交接、修改和 review 证据。\n\n## 没有 artifact owner 时，阅读成本会被多次支付\n\n观察显示，当任务没有明确 artifact owner 时，多个 agent 会重复读同一批文件。这个问题表面上是效率损耗，实质上是上下文边界没有被产品化：系统没有告诉每个 agent 应该拥有哪个 artifact、应该继承哪些事实、又应该把哪些判断交给下一环节。\n\n对负责人而言，关键不是禁止重复阅读，而是让重复阅读可解释。如果两个 agent 都读同一批文件，是因为职责重叠、证据缺口，还是因为交接缺少摘要？这些差异只有在 trace 中保留下来，才有可能被改进。\n\n## 只看最终 diff 会漏掉流程错误\n\n只看最终 diff 的 review 能发现代码层面的明显问题，却很容易漏掉流程层面的错误：agent 可能改对了文件，但基于错误假设；也可能最终 diff 很小，但过程中重复读取、误解交接、跳过证据验证。最终结果越干净，这些流程问题越容易被隐藏。\n\n因此，多 agent review 需要同时看 artifact 和 trace。artifact 回答“最后产出了什么”，trace 回答“为什么这样产出、谁承担了判断、证据是否足够”。这不是增加审查负担，而是把隐藏成本从事后故障转移到可控评估中。\n\n## 稳定团队会把角色拆成 explorer、worker、reviewer\n\n较稳定的团队通常不会让每个 agent 都承担完整任务链，而是拆成 explorer、worker、reviewer。这个拆法的价值不在称谓，而在于每个角色都有不同的输出契约：explorer 输出结构化证据，worker 输出受边界约束的 artifact 变更，reviewer 输出基于 trace 的判断。\n\n角色拆分后，负责人可以分别评估“发现是否充分”“实现是否尊重边界”“review 是否检查了流程”。这比笼统评估一个 agent 是否完成任务更可调试，也更容易定位协作失败发生在哪一段。\n\n## 小型 trace eval 应先回答边界是否可评估\n\n建议先建立小型 trace eval，再考虑更复杂的自治调度。这个 eval 不需要覆盖所有任务类型，首先应覆盖最容易暴露边界问题的协作链路：谁负责哪个 artifact、交接时传递了哪些证据、review 是否同时检查最终 diff 和 trace。\n\n一个合格的初版 trace eval 应能让负责人回答三个问题：重复阅读是否来自职责不清；交接摘要是否足以支持下一步行动；review 是否能指出流程错误而不只评价最终产物。只有这些问题变得可观察，自治调度的复杂度才有可验证的收益基础。\n'''\npath = Path('/private/tmp/kai-contextual-research.report.md')\npath.write_text(ir, encoding='utf-8')\nprint(path)\nPY\"",
+          "/bin/zsh -lc 'python scripts/guard_validate.py /private/tmp/kai-contextual-research.report.md'"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/anti-patterns.md",
+          "references/design-quality.md",
+          "references/generate-flow.md",
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/ir-contract.md",
+          "references/review-checklist.md",
+          "references/spec-loading-matrix.md",
+          "references/theme-css.md",
+          "scripts/guard_validate.py",
+          "scripts/html_quality_gate.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 240006,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": true,
+          "guard_observed": true,
+          "html_quality_gate_observed": true
+        },
+        "runner_warnings": [
+          "codex.timeout:240.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research"
+    },
+    {
+      "case_id": "boundary-blueprint-report",
+      "total_score": 42,
+      "passed": false,
+      "scores": {
+        "outcome": 0,
+        "process": 25,
+        "style": 0,
+        "efficiency": 17
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "outcome.missing_html_artifact",
+        "style.missing_html_artifact",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/spec-loading-matrix.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/spec-loading-matrix.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find references/html-shell -maxdepth 1 -type f -name '*.md' -print | sort\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find references/html-shell -maxdepth 1 -type f -name '*.md' -print | sort\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell-template.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/review-checklist.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/review-checklist.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell-template.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/anti-patterns.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/anti-patterns.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/theme-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/theme-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/core-structure.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/core-structure.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/shared-component-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/shared-component-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/summary-card.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/summary-card.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/toc-edit-summary.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,420p' references/html-shell/export.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,420p' references/html-shell/export.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/print-responsive.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/print-responsive.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/rendering-rules.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/design-quality.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' references/rendering-rules.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/design-quality.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,340p' references/rendering/table-list.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/media-code-callout.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,340p' references/rendering/table-list.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,300p' references/rendering/media-code-callout.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,320p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"ls scripts | sed -n '1,120p'\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"ls scripts | sed -n '1,120p'\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -l templates/themes/shared.css references/html-shell/core-structure.md references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md references/html-shell/print-responsive.md'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '321,700p' templates/themes/shared.css\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '321,700p' templates/themes/shared.css\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -l templates/themes/shared.css references/html-shell/core-structure.md references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md references/html-shell/print-responsive.md'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python scripts/guard_validate.py evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'shasum -a 256 evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'shasum -a 256 evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,280p' scripts/html_quality_gate.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,280p' scripts/html_quality_gate.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,240p' SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/spec-loading-matrix.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/generate-flow.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/ir-contract.md\"",
+          "/bin/zsh -lc \"find references/html-shell -maxdepth 1 -type f -name '*.md' -print | sort\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/review-checklist.md\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/html-shell-template.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/anti-patterns.md\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/theme-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/core-structure.md\"",
+          "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/shared-component-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/summary-card.md\"",
+          "/bin/zsh -lc \"sed -n '1,360p' references/html-shell/toc-edit-summary.md\"",
+          "/bin/zsh -lc \"sed -n '1,420p' references/html-shell/export.md\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/html-shell/print-responsive.md\"",
+          "/bin/zsh -lc \"sed -n '1,320p' references/rendering-rules.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/design-quality.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' references/rendering/plain-markdown.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/rendering/kpi.md\"",
+          "/bin/zsh -lc \"sed -n '1,340p' references/rendering/table-list.md\"",
+          "/bin/zsh -lc \"sed -n '1,300p' references/rendering/media-code-callout.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' templates/themes/corporate-blue.css\"",
+          "/bin/zsh -lc \"sed -n '1,320p' templates/themes/shared.css\"",
+          "/bin/zsh -lc \"ls scripts | sed -n '1,120p'\"",
+          "/bin/zsh -lc \"sed -n '321,700p' templates/themes/shared.css\"",
+          "/bin/zsh -lc 'wc -l templates/themes/shared.css references/html-shell/core-structure.md references/html-shell/toc-edit-summary.md references/html-shell/summary-card.md references/html-shell/export.md references/html-shell/print-responsive.md'",
+          "/bin/zsh -lc 'python scripts/html_quality_gate.py --help'",
+          "/bin/zsh -lc 'python scripts/guard_validate.py --help'",
+          "/bin/zsh -lc \"sed -n '1,260p' scripts/guard_validate.py\"",
+          "/bin/zsh -lc 'mkdir -p evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report'",
+          "/bin/zsh -lc 'python scripts/guard_validate.py evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+          "/bin/zsh -lc 'shasum -a 256 evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report/boundary-blueprint-report.report.md'",
+          "/bin/zsh -lc \"sed -n '1,280p' scripts/html_quality_gate.py\""
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/anti-patterns.md",
+          "references/design-quality.md",
+          "references/generate-flow.md",
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/ir-contract.md",
+          "references/rendering-rules.md",
+          "references/rendering/kpi.md",
+          "references/rendering/media-code-callout.md",
+          "references/rendering/plain-markdown.md",
+          "references/rendering/table-list.md",
+          "references/review-checklist.md",
+          "references/spec-loading-matrix.md",
+          "references/theme-css.md",
+          "scripts/guard_validate.py",
+          "scripts/html_quality_gate.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 300006,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": true,
+          "guard_observed": true,
+          "html_quality_gate_observed": true
+        },
+        "runner_warnings": [
+          "codex.timeout:300.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/boundary-blueprint-report"
+    },
+    {
+      "case_id": "negative-slide-deck",
+      "total_score": 92,
+      "passed": false,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 17
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/brief-template.json\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/style-index.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/brief-template.json\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/style-index.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator/scripts'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator/scripts'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/slide-creator/main.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/slide-creator/main.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '220,520p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '220,520p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/title-quality.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/main.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/slide-creator/scripts/validate-brief.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/title-quality.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/main.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/slide-creator/scripts/validate-brief.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/references/html-template.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/references/html-template.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/slide-creator/references/impeccable-anti-patterns.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"data-notes|speaker|notes|presenter|speaker_notes|notes\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"data-notes|speaker|notes|presenter|speaker_notes|notes\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/slide-creator/references/impeccable-anti-patterns.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/js-engine.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/base-css.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/base-css.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/js-engine.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '520,720p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '520,720p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1760,1845p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1760,1845p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"def render_from_brief|def build.*spec|speaker_note =|speaker_note\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"def render_from_brief|def build.*spec|speaker_note =|speaker_note\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '5200,5520p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '5200,5520p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"Aurora|aurora|render_.*aurora|compile_style_contract\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"Aurora|aurora|render_.*aurora|compile_style_contract\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1320,1430p' /Users/song/projects/slide-creator/scripts/low_context.py && sed -n '5680,5815p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1320,1430p' /Users/song/projects/slide-creator/scripts/low_context.py && sed -n '5680,5815p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,220p' SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/brief-template.json\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/style-index.md\"",
+          "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator'",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+          "/bin/zsh -lc 'ls -la /Users/song/projects/slide-creator/scripts'",
+          "/bin/zsh -lc 'python3 /Users/song/projects/slide-creator/main.py --help'",
+          "/bin/zsh -lc \"sed -n '220,520p' /Users/song/projects/slide-creator/references/aurora-mesh.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/title-quality.md\"",
+          "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/main.py\"",
+          "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/slide-creator/scripts/validate-brief.py\"",
+          "/bin/zsh -lc \"sed -n '1,260p' /Users/song/projects/slide-creator/references/html-template.md\"",
+          "/bin/zsh -lc 'rg -n \"data-notes|speaker|notes|presenter|speaker_notes|notes\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+          "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/slide-creator/references/impeccable-anti-patterns.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/base-css.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/slide-creator/references/js-engine.md\"",
+          "/bin/zsh -lc \"sed -n '520,720p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+          "/bin/zsh -lc \"sed -n '1760,1845p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+          "/bin/zsh -lc 'rg -n \"def render_from_brief|def build.*spec|speaker_note =|speaker_note\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+          "/bin/zsh -lc \"sed -n '5200,5520p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+          "/bin/zsh -lc 'rg -n \"Aurora|aurora|render_.*aurora|compile_style_contract\" /Users/song/projects/slide-creator/scripts/low_context.py'",
+          "/bin/zsh -lc \"sed -n '1320,1430p' /Users/song/projects/slide-creator/scripts/low_context.py && sed -n '5680,5815p' /Users/song/projects/slide-creator/scripts/low_context.py\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\""
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/aurora-mesh.md",
+          "references/base-css.md",
+          "references/html-template.md",
+          "references/impeccable-anti-patterns.md",
+          "references/js-engine.md",
+          "references/style-index.md",
+          "references/title-quality.md",
+          "scripts/low_context.py",
+          "scripts/validate-brief.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 120008,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": false,
+          "guard_observed": false,
+          "html_quality_gate_observed": false
+        },
+        "runner_warnings": [
+          "codex.timeout:120.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-slide-deck"
+    },
+    {
+      "case_id": "negative-html-export",
+      "total_score": 87,
+      "passed": false,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 12
+      },
+      "failures": [
+        "runner.run_incomplete",
+        "efficiency.shell_command_count_over_budget",
+        "efficiency.failed_shell_command",
+        "efficiency.wall_time_over_budget"
+      ],
+      "metrics": {
+        "runner": "codex",
+        "trace_format_version": "codex-jsonl-v1",
+        "tool_calls": [
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/report-creator/SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/report-creator/SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find . -maxdepth 1 -type f -name '*.html' -print\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find . -maxdepth 1 -type f -name '*.html' -print\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export -maxdepth 2 -type f -print 2>/dev/null | sort'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export -maxdepth 2 -type f -print 2>/dev/null | sort'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find /Users/song/projects/kai-html-export/scripts -maxdepth 1 -type f -print | sort'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find /Users/song/projects/kai-html-export/scripts -maxdepth 1 -type f -print | sort'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq 'keys' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq 'keys' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -c evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'wc -c evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq '.artifact_paths, .read_paths, .write_paths, .runner_warnings' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq '.artifact_paths, .read_paths, .write_paths, .runner_warnings' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq -r '.. | strings | select(test(\\\"\\\\\\\\.html\"'$|'\"\\\\\\\\.html[[:space:]]|html\\\"; \\\"i\\\"))' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl | head -50\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"jq -r '.. | strings | select(test(\\\"\\\\\\\\.html\"'$|'\"\\\\\\\\.html[[:space:]]|html\\\"; \\\"i\\\"))' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl | head -50\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type d -print | sort'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type f -name '*.html' -print | sort\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type d -print | sort'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type f -name '*.html' -print | sort\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"stat -f '%m %Sm %N' -t '%Y-%m-%d %H:%M:%S' evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate/report-2026-05-17-q1-kpi-decision-security.html\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'ls -la evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"stat -f '%m %Sm %N' -t '%Y-%m-%d %H:%M:%S' evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate/report-2026-05-17-q1-kpi-decision-security.html\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py --help'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py --help'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"preview|output|temp|TemporaryDirectory|mkdir|with_suffix|png\" /Users/song/projects/kai-html-export/scripts/export-pptx.py'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"output|mkdir|screenshot|full_page|set_viewport\" /Users/song/projects/kai-html-export/scripts/screenshot.py'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"preview|output|temp|TemporaryDirectory|mkdir|with_suffix|png\" /Users/song/projects/kai-html-export/scripts/export-pptx.py'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'rg -n \"output|mkdir|screenshot|full_page|set_viewport\" /Users/song/projects/kai-html-export/scripts/screenshot.py'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research.pptx --mode image --width 1440 --height 900 --scale 2'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research-mobile-long.png --width 430 --scale 2'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research-mobile-long.png --width 430 --scale 2'",
+            "exit_code": 1,
+            "status": "failed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research.pptx --mode image --width 1440 --height 900 --scale 2'",
+            "exit_code": 1,
+            "status": "failed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'command -v chromium || command -v chromium-browser || command -v google-chrome || command -v google-chrome-stable || command -v chrome || command -v playwright || true'",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'command -v chromium || command -v chromium-browser || command -v google-chrome || command -v google-chrome-stable || command -v chrome || command -v playwright || true'",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"ls -1 /Applications 2>/dev/null | rg -i 'chrome|chromium|edge|brave|safari' || true\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"ls -1 /Applications 2>/dev/null | rg -i 'chrome|chromium|edge|brave|safari' || true\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find \"$HOME/Library/Caches/ms-playwright\" \"$HOME/.cache/ms-playwright\" -maxdepth 3 -type f '\"\\\\( -name 'chromium' -o -name 'chrome' -o -name 'headless_shell' \\\\) -print 2>/dev/null | head -20\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'find \"$HOME/Library/Caches/ms-playwright\" \"$HOME/.cache/ms-playwright\" -maxdepth 3 -type f '\"\\\\( -name 'chromium' -o -name 'chrome' -o -name 'headless_shell' \\\\) -print 2>/dev/null | head -20\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/kai-html-export/scripts/screenshot.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '90,180p' /Users/song/projects/kai-html-export/scripts/export-pptx.py\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/kai-html-export/scripts/screenshot.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"sed -n '90,180p' /Users/song/projects/kai-html-export/scripts/export-pptx.py\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find '/Applications/Google Chrome.app' -maxdepth 4 -type f -name 'Google Chrome' -print 2>/dev/null\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"find '/Applications/Google Chrome.app' -maxdepth 4 -type f -name 'Google Chrome' -print 2>/dev/null\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python3 -c \\\"from pathlib import Path; print(Path('/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell').exists())\\\"\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python3 -c \\\"from playwright.sync_api import sync_playwright; p=sync_playwright().start();\\\\nfor kw in ({'channel':'chrome'},{'executable_path':'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'},{'executable_path':'/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell'}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw); print('OK', kw); b.close()\\\\n    except Exception as e:\\\\n        print('FAIL', kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()\\\"\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python3 -c \\\"from pathlib import Path; print(Path('/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell').exists())\\\"\"",
+            "exit_code": 0,
+            "status": "completed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc \"python3 -c \\\"from playwright.sync_api import sync_playwright; p=sync_playwright().start();\\\\nfor kw in ({'channel':'chrome'},{'executable_path':'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'},{'executable_path':'/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell'}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw); print('OK', kw); b.close()\\\\n    except Exception as e:\\\\n        print('FAIL', kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()\\\"\"",
+            "exit_code": 1,
+            "status": "failed"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 -c $'\"'from playwright.sync_api import sync_playwright\\\\np=sync_playwright().start()\\\\nfor kw in ({\\\"channel\\\":\\\"chrome\\\"},{\\\"executable_path\\\":\\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\"},{\\\"executable_path\\\":\\\"/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell\\\"}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw)\\\\n        print(\\\"OK\\\", kw)\\\\n        b.close()\\\\n    except Exception as e:\\\\n        print(\\\"FAIL\\\", kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()'\"",
+            "exit_code": null,
+            "status": "in_progress"
+          },
+          {
+            "type": "command_execution",
+            "command": "/bin/zsh -lc 'python3 -c $'\"'from playwright.sync_api import sync_playwright\\\\np=sync_playwright().start()\\\\nfor kw in ({\\\"channel\\\":\\\"chrome\\\"},{\\\"executable_path\\\":\\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\"},{\\\"executable_path\\\":\\\"/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell\\\"}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw)\\\\n        print(\\\"OK\\\", kw)\\\\n        b.close()\\\\n    except Exception as e:\\\\n        print(\\\"FAIL\\\", kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()'\"",
+            "exit_code": 0,
+            "status": "completed"
+          }
+        ],
+        "shell_commands": [
+          "/bin/zsh -lc \"sed -n '1,240p' /Users/song/projects/report-creator/SKILL.md\"",
+          "/bin/zsh -lc \"sed -n '1,220p' /Users/song/projects/kai-html-export/SKILL.md\"",
+          "/bin/zsh -lc \"find . -maxdepth 1 -type f -name '*.html' -print\"",
+          "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export -maxdepth 2 -type f -print 2>/dev/null | sort'",
+          "/bin/zsh -lc 'find /Users/song/projects/kai-html-export/scripts -maxdepth 1 -type f -print | sort'",
+          "/bin/zsh -lc \"jq 'keys' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+          "/bin/zsh -lc 'wc -c evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl'",
+          "/bin/zsh -lc \"jq '.artifact_paths, .read_paths, .write_paths, .runner_warnings' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.normalized.json\"",
+          "/bin/zsh -lc \"jq -r '.. | strings | select(test(\\\"\\\\\\\\.html\"'$|'\"\\\\\\\\.html[[:space:]]|html\\\"; \\\"i\\\"))' evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/trace.raw.jsonl | head -50\"",
+          "/bin/zsh -lc 'find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type d -print | sort'",
+          "/bin/zsh -lc \"find evals/artifacts/current/skill-runs-baseline-2026-05-17 -maxdepth 2 -type f -name '*.html' -print | sort\"",
+          "/bin/zsh -lc 'ls -la evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export'",
+          "/bin/zsh -lc \"stat -f '%m %Sm %N' -t '%Y-%m-%d %H:%M:%S' evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/explicit-generate/report-2026-05-17-q1-kpi-decision-security.html\"",
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py --help'",
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py --help'",
+          "/bin/zsh -lc 'rg -n \"preview|output|temp|TemporaryDirectory|mkdir|with_suffix|png\" /Users/song/projects/kai-html-export/scripts/export-pptx.py'",
+          "/bin/zsh -lc 'rg -n \"output|mkdir|screenshot|full_page|set_viewport\" /Users/song/projects/kai-html-export/scripts/screenshot.py'",
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research-mobile-long.png --width 430 --scale 2'",
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research.pptx --mode image --width 1440 --height 900 --scale 2'",
+          "/bin/zsh -lc 'command -v chromium || command -v chromium-browser || command -v google-chrome || command -v google-chrome-stable || command -v chrome || command -v playwright || true'",
+          "/bin/zsh -lc \"ls -1 /Applications 2>/dev/null | rg -i 'chrome|chromium|edge|brave|safari' || true\"",
+          "/bin/zsh -lc 'find \"$HOME/Library/Caches/ms-playwright\" \"$HOME/.cache/ms-playwright\" -maxdepth 3 -type f '\"\\\\( -name 'chromium' -o -name 'chrome' -o -name 'headless_shell' \\\\) -print 2>/dev/null | head -20\"",
+          "/bin/zsh -lc \"sed -n '1,180p' /Users/song/projects/kai-html-export/scripts/screenshot.py\"",
+          "/bin/zsh -lc \"sed -n '90,180p' /Users/song/projects/kai-html-export/scripts/export-pptx.py\"",
+          "/bin/zsh -lc \"find '/Applications/Google Chrome.app' -maxdepth 4 -type f -name 'Google Chrome' -print 2>/dev/null\"",
+          "/bin/zsh -lc \"python3 -c \\\"from pathlib import Path; print(Path('/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell').exists())\\\"\"",
+          "/bin/zsh -lc \"python3 -c \\\"from playwright.sync_api import sync_playwright; p=sync_playwright().start();\\\\nfor kw in ({'channel':'chrome'},{'executable_path':'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'},{'executable_path':'/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell'}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw); print('OK', kw); b.close()\\\\n    except Exception as e:\\\\n        print('FAIL', kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()\\\"\"",
+          "/bin/zsh -lc 'python3 -c $'\"'from playwright.sync_api import sync_playwright\\\\np=sync_playwright().start()\\\\nfor kw in ({\\\"channel\\\":\\\"chrome\\\"},{\\\"executable_path\\\":\\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\"},{\\\"executable_path\\\":\\\"/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell\\\"}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw)\\\\n        print(\\\"OK\\\", kw)\\\\n        b.close()\\\\n    except Exception as e:\\\\n        print(\\\"FAIL\\\", kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()'\""
+        ],
+        "failed_shell_commands": [
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/screenshot.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research-mobile-long.png --width 430 --scale 2'",
+          "/bin/zsh -lc 'python3 /Users/song/projects/kai-html-export/scripts/export-pptx.py evals/artifacts/current/skill-runs-baseline-2026-05-17/contextual-research/report-2026-05-17-contextual-research.html evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export/report-2026-05-17-contextual-research.pptx --mode image --width 1440 --height 900 --scale 2'",
+          "/bin/zsh -lc \"python3 -c \\\"from playwright.sync_api import sync_playwright; p=sync_playwright().start();\\\\nfor kw in ({'channel':'chrome'},{'executable_path':'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'},{'executable_path':'/Users/song/Library/Caches/ms-playwright/chromium_headless_shell-1161/chrome-mac/headless_shell'}):\\\\n    try:\\\\n        b=p.chromium.launch(headless=True, **kw); print('OK', kw); b.close()\\\\n    except Exception as e:\\\\n        print('FAIL', kw, type(e).__name__, str(e).splitlines()[0])\\\\np.stop()\\\"\""
+        ],
+        "read_paths": [
+          "SKILL.md",
+          "scripts/export-pptx.py",
+          "scripts/screenshot.py"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": null,
+        "output_tokens": null,
+        "wall_ms": 120011,
+        "run_completed": false,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "report_flow_observed": false,
+          "guard_observed": false,
+          "html_quality_gate_observed": false
+        },
+        "runner_warnings": [
+          "codex.timeout:120.0s",
+          "codex.event_error:`[features].codex_hooks` is deprecated. Use `[features].hooks` instead. (Enable it with `--enable hooks` or `[features]."
+        ]
+      },
+      "artifact_dir": "/Users/song/projects/report-creator/evals/artifacts/current/skill-runs-baseline-2026-05-17/negative-html-export"
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6,
+    "average_score": 64.5,
+    "average_category_scores": {
+      "outcome": 12.5,
+      "process": 25.0,
+      "style": 10.83,
+      "efficiency": 16.17
+    }
+  }
+}

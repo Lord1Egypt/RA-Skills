@@ -1,0 +1,19 @@
+{
+  "name": "judgment-enhancement-engine",
+  "version": "1.1.0",
+  "description": "AI Agent judgment enhancement engine with lookahead Monte Carlo simulation, risk-adjusted utility, historical reflection, and timeout protection. Zero external dependencies.",
+  "main": "index.js",
+  "dependencies": {},
+  "keywords": [
+    "judgment",
+    "decision-making",
+    "monte-carlo",
+    "lookahead",
+    "risk-management",
+    "ai-agent",
+    "reinforcement-learning",
+    "planning"
+  ],
+  "author": "ZhouYi",
+  "license": "MIT"
+}

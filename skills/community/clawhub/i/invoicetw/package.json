@@ -1,0 +1,16 @@
+{
+  "name": "InvoiceTW",
+  "version": "1.0.0",
+  "description": "台灣統一發票查詢與管理工具",
+  "keywords": ["發票", "InvoiceTW", "統一發票", "查詢", "統計", "中獎"],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "repository": "github:openclaw/skills/InvoiceTW",
+  "main": "InvoiceTW.js",
+  "scripts": {
+    "start": "node InvoiceTW.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

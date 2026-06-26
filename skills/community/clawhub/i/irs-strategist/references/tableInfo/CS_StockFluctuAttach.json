@@ -1,0 +1,162 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "与境内股票交易公开信息表(CS_StockFluctuation)的ID关联，得到对应营业部交易的详细信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "BSDirection",
+        "columnChiName": "买卖方向",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "买卖方向(BSDirection)与(CT_SystemConst)表中的DM字段关联，令LB = 1363，得到买卖方向的具体描述：10-买卖金额，11-买入金额，13-卖出金额。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "FluctuationRank",
+        "columnChiName": "异动排名",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SalesDepartmentName",
+        "columnChiName": "营业部名称",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "BOCode",
+        "columnChiName": "营业部编号",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "营业部编号(BOCode)与“机构基本资料(LC_InstiArchive)”中的企业编号(CompanyCode)关联，得到营业部的具体信息；与“企业数据-名称更改(LC_NameHistorical)”中的企业编号(CompanyCode)关联，得到营业部名称变革信息，不同历史阶段可能存在营业部同名情况，需结合名称更改判断是否为同一营业部。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.82",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SecuCoBelonged",
+        "columnChiName": "营业部所属券商",
+        "columnType": "varchar(80)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.92"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SecuCoBelongedCode",
+        "columnChiName": "营业部所属券商编号",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "营业部所属券商编号(SecuCoBelongedCode)与“机构基本资料(LC_InstiArchive)”中的企业编号(CompanyCode)关联，得到所属券商的具体信息；与“企业数据-名称更改(LC_NameHistorical)”中的企业编号(CompanyCode)关联，得到所属券商名称变革信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.92",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "TotalBuySaleSum",
+        "columnChiName": "买卖合计金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.87"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "BuySum",
+        "columnChiName": "买入金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "81.08"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "SellSum",
+        "columnChiName": "卖出金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "81.24"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

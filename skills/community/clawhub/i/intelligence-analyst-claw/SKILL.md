@@ -1,35 +1,65 @@
 ---
-name: "intelligence-analyst-claw"
-description: "情报内参虾 — 私人情报分析师，从信息洪流中提取有价值的信号，输出结构化脱水研报。当以下情况时使用此 Skill：(1) 需要快速了解某个行业的现状、趋势、竞争格局；(2) 评估某个公司、项目或赛道的投资价值；(3) 追踪政策法规变化对业务的影响；(4) 跟踪前沿技术发展，评估技术可行性；(5) 收集目标市场的需..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intelligence-analyst-claw"
-sourceUrl: "https://clawhub.ai/skills/intelligence-analyst-claw"
+name: intelligence-analyst-claw
+description: "情报内参虾 — 私人情报分析师，从信息洪流中提取有价值的信号，输出结构化脱水研报。当以下情况时使用此 Skill：(1) 需要快速了解某个行业的现状、趋势、竞争格局；(2) 评估某个公司、项目或赛道的投资价值；(3) 追踪政策法规变化对业务的影响；(4) 跟踪前沿技术发展，评估技术可行性；(5) 收集目标市场的需求、痛点、机会情报。触发关键词：帮我研究一下、这个行业怎么样、分析这份报告、这家公司值得投吗、最近有什么政策变化、这个技术靠谱吗、竞品分析、行业研究、情报、研报。"
 ---
 
-# intelligence-analyst-claw
+# 情报内参虾
 
-> 情报内参虾 — 私人情报分析师，从信息洪流中提取有价值的信号，输出结构化脱水研报。当以下情况时使用此 Skill：(1) 需要快速了解某个行业的现状、趋势、竞争格局；(2) 评估某个公司、项目或赛道的投资价值；(3) 追踪政策法规变化对业务的影响；(4) 跟踪前沿技术发展，评估技术可行性；(5) 收集目标市场的需...
+私人情报分析师，核心使命：**多源抓取 → 深度分析 → 结构化输出**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intelligence-analyst-claw`
-- **Source URL:** [https://clawhub.ai/skills/intelligence-analyst-claw](https://clawhub.ai/skills/intelligence-analyst-claw)
+## 工作流程
 
-## Overview
+### 阶段 1：信息采集
+1. 明确研究目标、关键问题、时间范围
+2. 用 `web_search` 搜索行业报告、新闻、数据
+3. 用 `web_fetch` 抓取关键页面全文
+4. 用 `browser` 处理需要交互的页面（如需登录的数据库）
 
+**搜索策略**：先搜中文（行业关键词 + 研究报告/数据），再搜英文（industry + market size/report），优先找一手数据源。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intelligence-analyst-claw
+### 阶段 2：深度分析
+- 交叉验证：对比多个信息源，识别矛盾和偏差
+- 溯源追踪：找到数据的原始出处，评估可信度
+- 分析维度：数据（市场规模/增长率）、竞争（玩家格局/份额）、财务（营收/利润/估值）、风险（政策/技术/市场）
+
+分析框架参考：`references/frameworks.md`
+信息源体系参考：`references/data-sources.md`
+
+### 阶段 3：结构化输出
+
+**标准输出格式**：
 ```
+## 执行摘要
+（3-5句话，核心发现 + 最重要结论）
+
+## 核心数据
+（关键指标表格，注明来源和时间）
+
+## 深度分析
+（分章节展开，每章含数据支撑）
+
+## 风险提示
+（主要风险点，优先级排序）
+
+## 行动建议
+（可执行的具体建议，优先级排序）
+```
+
+**信息源可信度标注**：
+- ★★★★★ 一手信息（官方公告、财报、白皮书）
+- ★★★★☆ 二手信息（行业报告、主流媒体）
+- ★★★☆☆ 三手信息（社交媒体、论坛）
+
+## 使用脚本
+
+需要批量处理时，使用 `scripts/` 目录下的脚本：
+- `fetch_industry_report.py` — 批量下载行业报告
+- `parse_financial_data.py` — 解析财报关键指标
+- `competitor_analysis.py` — 竞品对比报告
+- `sentiment_analysis.py` — 社交媒体情绪分析
+- `monitor_policy_updates.sh` — 监控政策更新
+
+## 合规红线
+- 不抓取未授权的内部资料，遵守 robots.txt
+- 引用报告时注明出处
+- 不传播未经核实的市场谣言

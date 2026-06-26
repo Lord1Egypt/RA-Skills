@@ -1,0 +1,719 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Search Xiaohongshu notes, inspect creator profiles, resolve share links, and drill into note comments, replies, and note detail endpoints through JustOneAPI.",
+  "displayName": "Xiaohongshu (RedNote)",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) note Comments data, including text, authors, and timestamps, for feedback analysis.",
+      "method": "GET",
+      "operationId": "getNoteCommentV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (use the cursor value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "latest",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `normal`: Normal\n- `latest`: Latest",
+          "enumValues": [
+            "normal",
+            "latest"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-comment/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Comments",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Comments data, including comment text, author profiles, and interaction data, for sentiment analysis and community monitoring.",
+      "method": "GET",
+      "operationId": "getNoteCommentV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-comment/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Comments",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getXiaohongshuNoteDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getNoteDetailV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getNoteDetailV7",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v7",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) comment Replies data, including text, authors, and timestamps, for thread analysis and feedback research.",
+      "method": "GET",
+      "operationId": "getNoteSubCommentV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique comment identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "commentId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (use the cursor value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-sub-comment/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Comment Replies",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Published Notes data, including note metadata, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserNoteListV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (the last note's cursor value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user-note-list/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Published Notes data, including note metadata, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserNoteListV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (the last note's cursor value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user-note-list/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Profile data, including follower counts and bio details, for creator research, account analysis, and competitor monitoring.",
+      "method": "GET",
+      "operationId": "getUserV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Profile data, including follower counts and bio details, for creator research, account analysis, and competitor monitoring.",
+      "method": "GET",
+      "operationId": "getUserV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Search data, including snippets, authors, and media, for topic discovery.",
+      "method": "GET",
+      "operationId": "getSearchNoteV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "general",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `general`: General\n- `popularity_descending`: Popularity Descending\n- `time_descending`: Time Descending\n- `comment_descending`: Comment Descending\n- `collect_descending`: Collect Descending",
+          "enumValues": [
+            "general",
+            "popularity_descending",
+            "time_descending",
+            "comment_descending",
+            "collect_descending"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Note type filter.\n\nAvailable Values:\n- `_0`: General\n- `_1`: Video\n- `_2`: Normal",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Note publish time filter. This parameter is for reference only and does not have much effect.\n\nAvailable Values:\n- `一天内`: Within one day\n- `一周内`: Within a week\n- `半年内`: Within half a year",
+          "enumValues": [
+            "一天内",
+            "一周内",
+            "半年内"
+          ],
+          "location": "query",
+          "name": "noteTime",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-note/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Search",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Search data, including snippets, authors, and media, for topic discovery.",
+      "method": "GET",
+      "operationId": "getSearchNoteV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "general",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `general`: General\n- `popularity_descending`: Hot\n- `time_descending`: New",
+          "enumValues": [
+            "general",
+            "popularity_descending",
+            "time_descending"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Note type filter.\n\nAvailable Values:\n- `_0`: General\n- `_1`: Video\n- `_2`: Normal",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-note/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Search",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) keyword Suggestions data, including suggested queries, keyword variants, and query metadata, for expanding keyword sets for content research and seo/pseo workflows and improving search coverage by using platform-recommended terms.",
+      "method": "GET",
+      "operationId": "searchRecommendV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-recommend/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Suggestions",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Search data, including profile metadata and public signals, for creator discovery and account research.",
+      "method": "GET",
+      "operationId": "getSearchUserV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-user/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Search",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) share Link Resolution data, including helping extract note IDs, for downstream note and comment workflows.",
+      "method": "GET",
+      "operationId": "shareXiaohongshuUrlTransferV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "RedNote share link URL to be resolved (short link or shared URL).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shareUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/share-url-transfer/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Share Link Resolution",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu",
+  "slug": "justoneapi-xiaohongshu",
+  "sourceTitle": "OpenAPI definition"
+}

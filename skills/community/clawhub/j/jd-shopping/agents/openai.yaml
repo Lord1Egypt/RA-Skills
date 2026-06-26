@@ -1,0 +1,7 @@
+interface:
+  display_name: "JD Shopping"
+  short_description: "京东搜索、比价、看评论和安全加购"
+  default_prompt: "Use $jd-shopping to compare JD.com options, verify seller trust, choose the right SKU, and prepare a cart while I handle login, checkout, and payment."
+
+policy:
+  allow_implicit_invocation: true

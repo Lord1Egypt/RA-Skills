@@ -1,0 +1,120 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "LB",
+        "columnChiName": "常量分类编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "LBMC",
+        "columnChiName": "常量分类名称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "MS",
+        "columnChiName": "常量描述",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "DM",
+        "columnChiName": "常量代码",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "CVALUE",
+        "columnChiName": "字符值",
+        "columnType": "varchar(2000)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "DVALUE",
+        "columnChiName": "日期值",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "FVALUE",
+        "columnChiName": "浮点值",
+        "columnType": "float",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "IVALUE",
+        "columnChiName": "整型值",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

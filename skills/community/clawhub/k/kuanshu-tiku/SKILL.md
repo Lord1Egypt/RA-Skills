@@ -1,35 +1,115 @@
 ---
-name: "宽数题库"
-description: "宽数题库项目入口，涵盖四套量化题库来源、仓库结构、常用命令与当前公网部署信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kuanshu-tiku"
-sourceUrl: "https://clawhub.ai/skills/kuanshu-tiku"
+name: kuanshu-tiku
+description: 宽数题库项目入口，涵盖四套量化题库来源、仓库结构、常用命令与当前公网部署信息。
 ---
 
 # 宽数题库
 
-> 宽数题库项目入口，涵盖四套量化题库来源、仓库结构、常用命令与当前公网部署信息。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kuanshu-tiku`
-- **Source URL:** [https://clawhub.ai/skills/kuanshu-tiku](https://clawhub.ai/skills/kuanshu-tiku)
+当你需要查看、运行、扩展或部署“宽数题库”这个多来源量化题库项目时，使用这个技能。
 
-## Overview
+适合这些场景：
 
+- 需要快速理解项目是什么、当前公开站点是什么
+- 需要确认仓库中已经接入了哪些题库来源
+- 需要知道原始抓取、标准化数据和页面代码分别放在哪里
+- 需要重新抓取、构建或检查部署前置条件
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 项目资源
+
+- GitHub 仓库：https://github.com/aznikline/kuanshu-tiku
+- 当前公开站点：https://quantics-bank.vercel.app
+
+## 当前接入的题库来源
+
+- OpenQuant：`openquant.co/questions`
+- Brainstellar：`brainstellar.com/puzzles`
+- QuantQuestion：`quantquestion.com`
+- Jane Street：`janestreet.com/puzzles`
+
+当前总题量：1304 道。
+
+## 目录结构
+
+- `data/raw/`
+  说明：四套来源的原始索引与详情数据
+- `data/translations/`
+  说明：中文翻译与分批翻译产物
+- `src/data/questions.json`
+  说明：OpenQuant 标准化数据
+- `src/data/brainstellar-questions.json`
+  说明：Brainstellar 标准化数据
+- `src/data/quantquestion-questions.json`
+  说明：QuantQuestion 标准化数据
+- `src/data/janestreet-questions.json`
+  说明：Jane Street 标准化数据
+- `src/pages/index.astro`
+  说明：首页
+- `src/pages/questions/[slug].astro`
+  说明：统一详情页
+- `scripts/`
+  说明：抓取、构建、翻译和部署检查脚本
+
+## 常用命令
+
+安装依赖：
+
 ```bash
-hermes skills install clawhub/kuanshu-tiku
+npm install
 ```
+
+抓取与构建：
+
+```bash
+npm run data:index
+npm run data:details
+npm run data:brainstellar:index
+npm run data:brainstellar:details
+npm run data:brainstellar:build
+npm run data:quantquestion:fetch
+npm run data:janestreet:index
+npm run data:janestreet:details
+npm run data:janestreet:translate
+npm run data:janestreet:build
+npm run data:validate
+npm run data:build
+```
+
+本地开发与验证：
+
+```bash
+npm run dev
+npm run test
+npm run check
+npm run build
+```
+
+## 托管与发布
+
+- GitHub 仓库保持 private
+- 公网托管走 Vercel
+
+Vercel 常用命令：
+
+```bash
+npx vercel whoami
+npx vercel deploy dist --prod --yes
+```
+
+## 工作建议
+
+如果你是第一次接手这个项目，建议按这个顺序：
+
+1. 读 `README.md`
+2. 跑 `npm run data:validate`
+3. 跑 `npm run build`
+4. 看 `src/pages/index.astro` 与 `src/pages/questions/[slug].astro`
+5. 如果改抓取链，再读 `scripts/`
+
+## 什么时候用这个技能
+
+- 想快速知道这个项目现在有哪些题库来源
+- 想确认某道题属于哪个来源
+- 想重新拉取 Brainstellar / Jane Street 等来源
+- 想把本地最新内容重新部署到 Vercel

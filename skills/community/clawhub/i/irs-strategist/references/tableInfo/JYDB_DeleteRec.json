@@ -1,0 +1,54 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "TABLENAME",
+        "columnChiName": "表名",
+        "columnType": "varchar(100)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RECID",
+        "columnChiName": "被删除表ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

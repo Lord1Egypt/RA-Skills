@@ -1,0 +1,191 @@
+{
+  "expense_category_rules": [
+    {
+      "pattern": "咖啡|奶茶|早餐|午餐|晚餐|吃|牛肉面|面|饭|外卖|便利店|饮料",
+      "category": "饮食",
+      "subcategory": null,
+      "tags": [
+        "饮食"
+      ]
+    },
+    {
+      "pattern": "地铁|公交|打车|滴滴|高铁|火车|机票|加油|停车",
+      "category": "交通",
+      "subcategory": null,
+      "tags": [
+        "交通"
+      ]
+    },
+    {
+      "pattern": "药|医院|看牙|体检|挂号",
+      "category": "医疗",
+      "subcategory": null,
+      "tags": [
+        "医疗"
+      ]
+    },
+    {
+      "pattern": "书|课程|学费|培训",
+      "category": "学习",
+      "subcategory": null,
+      "tags": [
+        "学习"
+      ]
+    },
+    {
+      "pattern": "电影|游戏|KTV|演出",
+      "category": "娱乐",
+      "subcategory": null,
+      "tags": [
+        "娱乐"
+      ]
+    },
+    {
+      "pattern": "房租|水费|电费|燃气|物业|家居",
+      "category": "居家",
+      "subcategory": null,
+      "tags": [
+        "居家"
+      ]
+    },
+    {
+      "pattern": "礼物|聚餐|请客",
+      "category": "社交",
+      "subcategory": null,
+      "tags": [
+        "社交"
+      ]
+    },
+    {
+      "pattern": "衣服|鞋|裤|耳机|手机|电脑|淘宝|京东|买了",
+      "category": "购物",
+      "subcategory": null,
+      "tags": [
+        "购物"
+      ]
+    }
+  ],
+  "expense_subcategory_rules": [
+    {
+      "pattern": "咖啡",
+      "subcategory": "咖啡",
+      "tags": [
+        "咖啡"
+      ]
+    },
+    {
+      "pattern": "牛肉面|面",
+      "subcategory": "面食",
+      "tags": [
+        "面食"
+      ]
+    },
+    {
+      "pattern": "早餐",
+      "subcategory": "早餐",
+      "tags": [
+        "早餐"
+      ]
+    },
+    {
+      "pattern": "午餐|中午",
+      "subcategory": "午饭",
+      "tags": [
+        "午饭"
+      ]
+    },
+    {
+      "pattern": "晚餐|晚上",
+      "subcategory": "晚饭",
+      "tags": [
+        "晚饭"
+      ]
+    }
+  ],
+  "idea_type_rules": [
+    {
+      "pattern": "写|文章|博客|文案",
+      "idea_type": "写作",
+      "tags": [
+        "写作"
+      ]
+    },
+    {
+      "pattern": "系统|数据看板|自动化|模板|流程",
+      "idea_type": "系统",
+      "tags": [
+        "系统"
+      ]
+    },
+    {
+      "pattern": "项目|产品|功能|应用",
+      "idea_type": "产品",
+      "tags": [
+        "产品"
+      ]
+    }
+  ],
+  "task_project_rules": [
+    {
+      "pattern": "合同|报告|文档",
+      "project": "文档",
+      "tags": [
+        "文档"
+      ]
+    },
+    {
+      "pattern": "书桌|阳台|房间|桌面|家务",
+      "project": "家务",
+      "tags": [
+        "家务"
+      ]
+    },
+    {
+      "pattern": "跑步|健身|运动",
+      "project": "健康",
+      "tags": [
+        "健康"
+      ]
+    }
+  ],
+  "schedule_tag_rules": [
+    {
+      "pattern": "会议|开会",
+      "tag": "会议"
+    },
+    {
+      "pattern": "体检|医院|看牙",
+      "tag": "健康"
+    },
+    {
+      "pattern": "银行|报销",
+      "tag": "事务"
+    }
+  ],
+  "default_tags": {
+    "expense": [
+      "开销"
+    ],
+    "task_done": [
+      "任务",
+      "完成"
+    ],
+    "task_todo": [
+      "任务",
+      "待办"
+    ],
+    "schedule": [
+      "日程"
+    ],
+    "idea": [
+      "灵感"
+    ]
+  },
+  "hints": {
+    "idea": "想到|想法|灵感|也许可以|可以做|或许可以|点子|构思|试试",
+    "schedule": "明天|后天|今天|今晚|上午|中午|下午|晚上|点|会议|开会|体检|预约|去|安排|计划",
+    "task_done": "完成|做完|改完|整理好|整理了|收拾好|收拾了|交了|打了|写完|提交了|处理了|跑了",
+    "task_todo": "待办|要做|需要|得|准备|记得|安排",
+    "expense": "花了|花费|消费|买|付款|支付|转账|报销|元|块|¥|￥|人民币"
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Life Capture"
+  short_description: "Capture expenses, tasks, schedules, and ideas into markdown plus sqlite."

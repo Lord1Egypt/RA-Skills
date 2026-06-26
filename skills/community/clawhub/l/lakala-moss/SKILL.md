@@ -1,35 +1,46 @@
 ---
-name: "拉卡拉MOSS接口演示"
-description: "拉卡拉MOSS统一接口功能演示，创建测试订单并生成演示链接，用于流程体验与功能验证"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lakala-moss"
-sourceUrl: "https://clawhub.ai/skills/lakala-moss"
+name: 拉卡拉MOSS接口演示
+description: 拉卡拉MOSS统一接口功能演示，创建测试订单并生成演示链接，用于流程体验与功能验证
+author: mars9043
+version: 1.0.0
+tags: 拉卡拉,MOSS,API,演示,工具
 ---
 
-# 拉卡拉MOSS接口演示
+# 拉卡拉MOSS接口演示技能
 
-> 拉卡拉MOSS统一接口功能演示，创建测试订单并生成演示链接，用于流程体验与功能验证
+⚠️ **重要声明**：本技能仅为拉卡拉MOSS统一接口的**功能演示工具**，所有操作均在测试环境执行，不涉及真实资金交易，生成的链接无实际支付能力，仅用于接口流程验证与体验。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lakala-moss`
-- **Source URL:** [https://clawhub.ai/skills/lakala-moss](https://clawhub.ai/skills/lakala-moss)
+## 功能说明
+本技能通过拉卡拉MOSS统一接口，创建测试订单并生成演示链接，用于体验接口调用流程，包括：
+- 接收测试订单参数
+- 生成测试环境订单
+- 返回演示链接与订单详情（JSON格式）
 
-## Overview
+## 前置准备
+- 安装依赖：`pip install requests`
+- 准备测试用订单号（自定义唯一标识）与测试金额（单位：分）
 
+## 操作步骤
+### 第一步：接收测试订单参数
+**必填参数**：
+- `order_no`：自定义测试订单号（需唯一）
+- `total_amount`：测试订单金额（单位：分，如1表示0.01元）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lakala-moss
-```
+**可选参数**：
+- `subject`：测试订单主题
+- `remark`：测试订单备注
+- `callback_url`：测试回调地址
+
+### 第二步：调用接口创建测试订单
+执行脚本后，将自动调用拉卡拉MOSS测试接口，创建订单并生成演示链接。
+
+### 第三步：获取返回结果
+接口返回JSON格式数据，包含：
+- 演示链接（无实际支付功能）
+- 测试订单详情
+- 接口调用状态信息
+
+## 注意事项
+1.  本技能仅支持测试环境接口，请勿输入真实商户密钥或敏感信息。
+2.  所有订单与链接均为测试数据，无任何实际交易效力。
+3.  如遇接口调用问题，请检查网络连接与测试参数是否正确。

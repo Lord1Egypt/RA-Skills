@@ -1,0 +1,13 @@
+---
+sourceLocationPrefix: /root/devsecops-python-web
+baselineLinesOfCode: 2441
+unicodeNewlines: false
+columnKind: utf32
+primaryLanguage: python
+creationMetadata:
+  sha: 257bde7cda699a9420196a4993df8238d2b61642
+  cliVersion: 2.22.1
+  creationTime: 2026-03-18T23:27:53.426410848Z
+overlayBaseDatabase: false
+overlayDatabase: false
+finalised: true

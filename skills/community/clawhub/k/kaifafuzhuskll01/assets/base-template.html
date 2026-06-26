@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>{{title}}</title>
+<style>
+/* === Reset === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* === Design Tokens — v3 Master System === */
+:root {
+  --color-primary: #004D8C;
+  --color-primary-light: rgba(0,77,140,0.08);
+  --color-primary-soft: rgba(0,77,140,0.12);
+  --color-primary-mid: rgba(0,77,140,0.20);
+  --color-primary-muted: rgba(0,77,140,0.6);
+  --color-accent: #009688;
+  --color-accent-light: rgba(0,150,136,0.08);
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #f5f7fa;          /* 替代背景区 — 表格/代码块 */
+  --color-bg-page: #f8f9fa;         /* 页面外背景 — 浏览器预览时 */
+  --color-text: #1a1a2e;
+  --color-text-secondary: #64748b;  /* 次级文字 — header标题/描述/label */
+  --color-border: rgba(0,77,140,0.12);
+  --font: 'Noto Sans SC', sans-serif;
+  --header-height: 85px;
+  --slide-width: 1280px;
+  --slide-height: 720px;
+}
+
+/* === Base === */
+body {
+  font-family: var(--font);
+  background: var(--color-bg-page);
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* === Slide Container === */
+.ppt-slide {
+  width: var(--slide-width);
+  min-height: var(--slide-height);
+  box-sizing: border-box;
+  position: relative;
+  background: var(--color-bg);
+}
+
+/* === Master Page System ===
+   Master → header(85px) + content-area(flex:1) + footer(40px)         */
+.ppt-master {
+  width: var(--slide-width);
+  min-height: var(--slide-height);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header — 幻灯片标题栏，全PPT统一 */
+.ppt-master-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  border-bottom: 2px solid var(--color-primary-light);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+/* Header icon — 左侧蓝色小方块+内嵌SVG图标 */
+.ppt-master-header .header-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ppt-master-header .header-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+}
+
+/* Header title — 右侧灰色副标题文字 */
+.ppt-master-header .header-title {
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Content area — flex容器，内容区模板注入点 */
+.content-area {
+  flex: 1;
+  display: flex;
+  padding: 0 80px;
+}
+
+/* Footer — 底部栏，显示页码或版权信息 */
+.ppt-master-footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* === Legacy class aliases (backward compat) === */
+.ppt-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  border-bottom: 2px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.ppt-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 40px 80px;
+}
+
+.ppt-footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* === Shared Components === */
+.ppt-card {
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.ppt-card.featured {
+  border: 3px solid var(--color-primary);
+}
+
+.ppt-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ppt-badge.recommended {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.ppt-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ppt-recommend-badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* === Slide Visibility === */
+.slide {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-bg-page);
+}
+
+.slide.active {
+  display: flex;
+}
+
+/* === Navigation === */
+#nav-hint {
+  position: fixed;
+  bottom: 16px;
+  right: 24px;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--color-primary-muted);
+  z-index: 100;
+  pointer-events: none;
+}
+
+#page-indicator {
+  position: fixed;
+  bottom: 16px;
+  left: 24px;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--color-primary-muted);
+  z-index: 100;
+}
+
+/* === Click zones === */
+.click-left, .click-right {
+  position: fixed;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 50;
+  cursor: pointer;
+}
+.click-left { left: 0; }
+.click-right { right: 0; }
+
+/* === Print / Export === */
+@media print {
+  body { overflow: visible; background: #fff; }
+  .slide { display: flex !important; position: relative; width: var(--slide-width); height: var(--slide-height); page-break-after: always; }
+  #nav-hint, #page-indicator, .click-left, .click-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ICONS SPRITE (injected by PM from assets/icons.svg) -->
+{{icons}}
+
+<!-- SLIDES (injected by PM) -->
+{{slides}}
+
+<!-- NAVIGATION -->
+<div id="page-indicator"></div>
+<div id="nav-hint">← → 翻页</div>
+<div class="click-left" onclick="prevSlide()"></div>
+<div class="click-right" onclick="nextSlide()"></div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  const total = slides.length;
+
+  function show(i) {
+    if (i < 0 || i >= total) return;
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    current = i;
+    document.getElementById('page-indicator').textContent = (i+1) + ' / ' + total;
+    // Re-render any canvases in this slide (fixes Chart.js after display:none)
+    const activeSlide = slides[i];
+    const canvases = activeSlide.querySelectorAll('canvas');
+    canvases.forEach(c => { if (c.chart) c.chart.resize(); });
+  }
+
+  window.nextSlide = function() { show(current + 1); };
+  window.prevSlide = function() { show(current - 1); };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      prevSlide();
+    } else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(total-1); }
+  });
+
+  // Touch support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+  });
+
+  show(0);
+})();
+</script>
+</body>
+</html>

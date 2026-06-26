@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu/share-url-transfer/v1 for Xiaohongshu (RedNote) Share Link Resolution through JustOneAPI with shareUrl.",
+  "displayName": "Xiaohongshu (RedNote) Share Link Resolution",
+  "endpointPath": "share-url-transfer",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) share Link Resolution data, including helping extract note IDs, for downstream note and comment workflows.",
+      "method": "GET",
+      "operationId": "shareXiaohongshuUrlTransferV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "RedNote share link URL to be resolved (short link or shared URL).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shareUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/share-url-transfer/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Share Link Resolution",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_share_url_transfer",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-share-url-transfer",
+  "sourceTitle": "OpenAPI definition"
+}

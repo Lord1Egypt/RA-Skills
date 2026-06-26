@@ -1,0 +1,36 @@
+voice_command:
+  name: Voice Command
+  description: Send a text-to-speech command to Kiwi Voice (the device speaks the text).
+  fields:
+    text:
+      name: Text
+      description: The text for Kiwi to speak aloud.
+      required: true
+      selector:
+        text:
+    language:
+      name: Language
+      description: Optional language override (e.g. "en", "ru").
+      required: false
+      selector:
+        text:
+
+ha_command:
+  name: Smart Home Command
+  description: >
+    Send a natural language command through Kiwi Voice's Home Assistant
+    integration. The command is processed by Kiwi's HA Conversation API
+    connector and the response is spoken aloud.
+  fields:
+    text:
+      name: Text
+      description: The smart home command (e.g. "turn on living room lights").
+      required: true
+      selector:
+        text:
+    language:
+      name: Language
+      description: Optional language override for the Conversation API.
+      required: false
+      selector:
+        text:

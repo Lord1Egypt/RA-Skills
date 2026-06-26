@@ -1,0 +1,9 @@
+{
+  "name": "OpenClaw Token Optimizer",
+  "version": "1.0.0",
+  "description": "Scans LLM pricing, benchmarks models, optimizes OpenClaw configs for minimum token spend.",
+  "pricing": {
+    "free": true
+  },
+  "author": "Julia"
+}

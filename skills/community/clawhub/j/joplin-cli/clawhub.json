@@ -1,0 +1,9 @@
+{
+  "slug": "joplin-cli",
+  "name": "Joplin CLI",
+  "version": "0.1.0",
+  "description": "Joplin 命令行操作（Shell 模式）- 通过 CLI 创建、查看、编辑、同步笔记，适合脚本和自动化任务",
+  "author": "Cortana",
+  "changelog": "Initial release",
+  "tags": ["joplin", "cli", "notes", "markdown", "shell"]
+}

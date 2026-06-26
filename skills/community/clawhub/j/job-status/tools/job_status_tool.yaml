@@ -1,0 +1,219 @@
+# Job Status Query Tool Definition
+name: job_status
+description: Query HPC/AI computing job status
+category: monitoring
+
+parameters:
+  jobId:
+    type: string
+    description: Job ID
+    required: true
+    example: "15000"
+    validation:
+      pattern: "^[0-9]+$"
+      min_length: 1
+      max_length: 10
+  
+  timeout:
+    type: number
+    description: Request timeout in seconds
+    required: false
+    default: 30
+    minimum: 1
+    maximum: 120
+  
+  verbose:
+    type: boolean
+    description: Whether to show detailed information
+    required: false
+    default: false
+  
+  format:
+    type: string
+    description: Output format
+    required: false
+    default: "json"
+    enum: ["json", "text", "table"]
+
+examples:
+  - description: Query job status
+    input:
+      jobId: "15000"
+    output:
+      success: true
+      jobId: "15000"
+      status: "COMPLETED"
+      message: "Job completed successfully"
+      details:
+        jobState: "COMPLETED"
+        endTime: "2024-12-09T09:30:10"
+        id: 20452
+  
+  - description: Query non-existent job
+    input:
+      jobId: "99999"
+    output:
+      success: false
+      jobId: "99999"
+      error: "Job not found"
+      message: "Job 99999 query failed: Job not found"
+
+execution:
+  # Execution method: script, api, command
+  type: "script"
+  
+  # Script execution configuration
+  script:
+    # Main script (prefer Python)
+    main: "scripts/get_job_status.py"
+    
+    # Fallback script (Bash version)
+    fallback: "scripts/get_job_status.sh"
+    
+    # Interpreter
+    interpreter: 
+      python: "python3"
+      bash: "bash"
+    
+    # Environment variables
+    env:
+      PYTHONUNBUFFERED: "1"
+      LANG: "en_US.UTF-8"
+    
+    # Timeout settings
+    timeout_seconds: 35
+  
+  # Command execution configuration (fallback)
+  command:
+    pattern: "curl -s -H 'Accept: application/json' {url}"
+    url_template: "http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28/{jobId}"
+  
+  # API execution configuration (fallback)
+  api:
+    endpoint: "http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28/{jobId}"
+    method: "GET"
+    headers:
+      Accept: "application/json"
+      User-Agent: "OpenClaw-JobStatus/1.0.0"
+
+error_handling:
+  # Network errors
+  network_error:
+    retry_count: 3
+    retry_delay: 2
+    
+  # API errors
+  api_error:
+    codes:
+      404: "Job not found"
+      400: "Bad request parameters"
+      500: "Internal server error"
+      502: "Bad gateway"
+      503: "Service unavailable"
+      504: "Gateway timeout"
+    
+  # Data errors
+  data_error:
+    missing_field: "jobState"
+    invalid_json: "Invalid JSON response"
+
+output_schema:
+  type: object
+  properties:
+    success:
+      type: boolean
+      description: Whether the query was successful
+    
+    jobId:
+      type: string
+      description: Queried job ID
+    
+    status:
+      type: string
+      description: Job status
+      enum: ["PENDING", "RUNNING", "COMPLETED", "FAILED", "CANCELLED", "TIMEOUT", "SUSPENDED", "CONFIGURING"]
+    
+    details:
+      type: object
+      description: Detailed job information
+      properties:
+        jobState:
+          type: string
+          description: Job status
+        
+        jobId:
+          type: string
+          description: Job ID
+        
+        jobName:
+          type: string
+          description: Job name
+          nullable: true
+        
+        id:
+          type: integer
+          description: Database ID
+        
+        hpcId:
+          type: string
+          description: HPC ID
+        
+        endTime:
+          type: string
+          description: End time
+          format: date-time
+          nullable: true
+        
+        startTime:
+          type: string
+          description: Start time
+          format: date-time
+          nullable: true
+    
+    message:
+      type: string
+      description: Human-readable message
+    
+    error:
+      type: string
+      description: Error message (only present on failure)
+    
+    timestamp:
+      type: string
+      description: Query timestamp
+      format: date-time
+  
+  required:
+    - success
+    - jobId
+    - status
+    - message
+    - timestamp
+
+documentation:
+  # Usage instructions
+  usage: |
+    Use this tool to query HPC/AI computing job status.
+    
+    Examples:
+    1. Query single job status: {"jobId": "15000"}
+    2. With timeout setting: {"jobId": "15000", "timeout": 10}
+    3. Verbose output: {"jobId": "15000", "verbose": true}
+  
+  # Notes
+  notes: |
+    1. Ensure network can access www.aicnic.cn
+    2. jobId must be numeric string
+    3. Job may not exist, ensure correct jobId is provided
+    4. API may have rate limits
+  
+  # FAQ
+  faq: |
+    Q: What status values are returned?
+    A: Common statuses include: PENDING, RUNNING, COMPLETED, FAILED, CANCELLED, TIMEOUT
+    
+    Q: What if job doesn't exist?
+    A: Will return error message indicating job not found
+    
+    Q: What if network timeout?
+    A: Increase timeout parameter, or check network connection

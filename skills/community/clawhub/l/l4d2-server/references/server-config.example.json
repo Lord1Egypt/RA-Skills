@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "example-server": {
+      "host": "192.168.1.100",
+      "port": 27015,
+      "rcon_password": "your_rcon_password_here",
+      "description": "示例服务器，请修改或删除"
+    }
+  }
+}

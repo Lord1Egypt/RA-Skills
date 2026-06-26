@@ -1,35 +1,157 @@
 ---
-name: "Java Code Reviewer"
-description: "Java 代码审查报告生成器。用于审查 Java 代码变更，生成结构化审查报告。 触发场景： (1) 审查 git diff 或代码变更 (2) 审查 Java 源文件 (3) 代码质量检查 (4) PR/CR 审查 (5) 检查代码是否符合 Google Java Style、阿里 Java 开发手册、Clea..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/java-code-reviewer"
-sourceUrl: "https://clawhub.ai/skills/java-code-reviewer"
+name: java-code-reviewer
+description: |
+  Java 代码审查报告生成器。用于审查 Java 代码变更，生成结构化审查报告。
+  触发场景：
+  (1) 审查 git diff 或代码变更
+  (2) 审查 Java 源文件
+  (3) 代码质量检查
+  (4) PR/CR 审查
+  (5) 检查代码是否符合 Google Java Style、阿里 Java 开发手册、Clean Code 规范
+  支持输入：git diff 输出、Java 源文件、需求/设计文档（可选，用于一致性检查）
+  输出：Markdown 或 HTML 格式的结构化审查报告，包含问题描述、严重程度、修复建议、修复前后代码对比
 ---
 
-# Java Code Reviewer
+# Java 代码审查报告生成器
 
-> Java 代码审查报告生成器。用于审查 Java 代码变更，生成结构化审查报告。 触发场景： (1) 审查 git diff 或代码变更 (2) 审查 Java 源文件 (3) 代码质量检查 (4) PR/CR 审查 (5) 检查代码是否符合 Google Java Style、阿里 Java 开发手册、Clea...
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/java-code-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/java-code-reviewer](https://clawhub.ai/skills/java-code-reviewer)
+1. **用户提供输入**：
+   - 必填：`git diff` 输出或需要审查的 Java 源文件
+   - 可选：需求文档、技术方案设计文档（用于一致性检查）
 
-## Overview
+2. **执行审查**：
+   - 加载审查规则 `references/rules.md`
+   - 按 6 个维度逐项检查
+   - 标记问题及严重程度
 
+3. **生成报告**：
+   - 使用 `assets/report-template.md` 模板
+   - 输出 Markdown 或 HTML 格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/java-code-reviewer
+## 审查维度
+
+| 维度 | 描述 | 常见违规示例 |
+|------|------|-------------|
+| 代码风格与命名 | 命名规范、代码格式、注释 | 变量名 `int d`；类名 `userService`；魔法值 `status = 1`；注释掉的代码 |
+| 异常处理 | 异常捕获、抛出策略、错误处理 | 空 catch 块；捕获 Exception 但不处理；返回 null 而非抛异常 |
+| 安全隐患 | 敏感信息、注入风险、权限控制 | SQL 拼接；硬编码密码/密钥；未校验用户输入；敏感日志 |
+| 性能问题 | 循环优化、资源复用、算法效率 | 循环内字符串拼接；N+1 查询；未复用连接；HashMap 频繁扩容 |
+| 设计合理性 | 单一职责、模块化、扩展性 | 过长的函数（>50行）；过多参数（>3个）；重复代码；违反单一职责 |
+| 资源管理 | 资源释放、连接池、内存管理 | 未关闭 Connection/File/Stream；ThreadLocal 未清理；内存泄漏 |
+
+## 严重程度定义
+
+| 级别 | 说明 | 示例 |
+|------|------|------|
+| **Critical** | 必须修复，可能导致系统崩溃、安全漏洞或数据丢失 | SQL 注入；空指针导致崩溃；未释放关键资源；硬编码密码 |
+| **Major** | 强烈建议修复，影响代码质量、可维护性或性能 | 空 catch 块；N+1 查询；过长的函数；重复代码；内存泄漏风险 |
+| **Minor** | 建议改进，不影响功能但有优化空间 | 魔法值未提取；命名不够清晰；可以简化的逻辑 |
+| **Suggestion** | 可选优化，用于代码美化或最佳实践 | 添加 Javadoc；代码格式微调；提取工具方法 |
+
+## 输出格式
+
+### 格式要求
+
+- **默认输出**：Markdown
+- **可选输出**：HTML（用户指定时）
+
+```markdown
+输出格式: HTML
 ```
+
+### 报告结构
+
+1. 概述（审查文件数、问题统计）
+2. 问题列表（按 Critical → Major → Minor → Suggestion 排序）
+3. 修复建议（含代码对比）
+4. 一致性检查（如果提供了需求/设计文档）
+
+### 修复建议格式（必须包含）
+
+**每个问题必须包含以下结构：**
+
+```
+### N. [严重程度] 问题标题
+文件：`文件名:行号`
+
+**问题描述**：
+[简短描述问题]
+
+**问题代码**：
+```java
+// 完整的修复前代码片段（至少 3 行上下文）
+```
+
+**修复后代码**：
+```java
+// 完整的修复后代码片段（必须可运行）
+```
+
+**参考规则**：[对应规则编号和名称]
+```
+
+> ⚠️ **关键要求**：修复前后的代码片段必须是完整的、可运行的代码，不能只是文字描述。
+
+## 使用示例
+
+**用户输入**：
+```
+审查以下代码变更：
+[git diff 输出]
+```
+
+**系统输出**：
+```
+# Java 代码审查报告
+
+## 概述
+- 审查文件：3 个
+- 问题总数：5 个
+  - Critical: 1
+  - Major: 2
+  - Minor: 2
+
+## 问题详情
+
+### 1. [Critical] 未释放数据库连接
+文件：`UserService.java:45`
+
+**问题描述**：
+在方法中获取了数据库连接但未确保关闭。
+
+**问题代码**：
+```java
+public User findById(Long id) {
+    Connection conn = dataSource.getConnection(); // 未关闭
+    // ...
+}
+```
+
+**修复建议**：
+使用 try-with-resources 确保资源释放。
+
+**修复后代码**：
+```java
+public User findById(Long id) {
+    try (Connection conn = dataSource.getConnection()) {
+        // ...
+    } // 自动关闭
+}
+```
+
+... (更多问题)
+```
+
+## 审查规则
+
+详细规则见 `references/rules.md`，包含：
+- Google Java Style Guide 精简版（10条）
+- 阿里巴巴 Java 开发手册 精简版（10条）
+- Clean Code 原则 精简版（10条）
+
+## 报告模板
+
+默认模板见 `assets/report-template.md`。
+
+如需自定义输出格式或添加额外检查项，修改模板文件。

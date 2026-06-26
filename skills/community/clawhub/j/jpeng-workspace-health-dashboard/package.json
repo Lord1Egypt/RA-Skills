@@ -1,0 +1,11 @@
+{
+  "name": "workspace-health-dashboard",
+  "version": "1.0.0",
+  "description": "Unified health monitoring dashboard for workspace diagnostics",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('./'); console.log('Exports:', Object.keys(s));\""
+  },
+  "keywords": ["health", "dashboard", "monitoring", "diagnostics"],
+  "license": "MIT"
+}

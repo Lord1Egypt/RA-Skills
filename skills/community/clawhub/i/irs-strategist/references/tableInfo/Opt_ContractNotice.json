@@ -1,0 +1,149 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "EffectiveDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IssuanceOrg",
+        "columnChiName": "发布机构",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "remark": "发布机构(IssuanceOrg)：可用该字段筛选交易所，包含\\上海期货交易所\\，\\大连商品交易所\\，\\郑州商品交易所\\，\\中国金融期货交易所\\，\\上海证券交易所\\，\\深圳证券交易所\\，\\上海国际能源交易中心\\，\\广州期货交易所\\。\n",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "NoticeType",
+        "columnChiName": "提示类别",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "remark": "提示类别(NoticeType)：包含“交易提示，交收提示，特别提示”三种提示类别。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InfoTitle",
+        "columnChiName": "标题",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "remark": "标题(InfoTitle)；提示类别为“特别提示”时，包含\\合约调整提示\\，\\合约距到期日还有5个交易日提示\\ 两种标题关键字。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Keyword",
+        "columnChiName": "内容关键词",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "remark": "内容关键词(Keyword)：提示类别为“交易提示”时，包含\\新合约上市\\，\\最后交易日\\ 两种关键字信息；提示类别为“交收提示”时，包含\\交收日\\，\\到期日\\ ，\\摘牌日\\  三种关键字信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.43",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Content",
+        "columnChiName": "内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.58"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "Notes",
+        "columnChiName": "摘要",
+        "columnType": "varchar(4000)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Remark",
+        "columnChiName": "备注",
+        "columnType": "varchar(800)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

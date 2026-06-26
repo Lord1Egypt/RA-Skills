@@ -1,0 +1,34 @@
+/* Warm Editorial — theme.css
+   直接覆盖 CSS 变量，无需 AI 推导。
+   复制此文件到你的主题目录并修改即可。
+*/
+
+:root {
+  /* 主色系 */
+  --primary:        #92400E;   /* 深琥珀棕 */
+  --primary-light:  #FEF3C7;   /* 淡琥珀，KPI 卡片背景 */
+  --accent:         #B45309;   /* 暖橙，高亮数字 */
+
+  /* 背景与表面 */
+  --bg:             #FDFAF6;   /* 暖米白 */
+  --surface:        #FFFFFF;   /* 纯白卡片 */
+
+  /* 文字 */
+  --text:           #1C1917;   /* 暖近黑 */
+  --text-muted:     #78716C;   /* 暖中灰 */
+
+  /* 边框 */
+  --border:         #E7E5E4;
+
+  /* 状态色 */
+  --success:        #065F46;
+  --warning:        #92400E;
+  --danger:         #991B1B;
+
+  /* 字体 */
+  --font-sans:      'Source Sans 3', 'PingFang SC', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  /* 圆角 */
+  --radius:         4px;
+}

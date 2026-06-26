@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: layered-memory-api
+    restart: unless-stopped
+    ports:
+      - "3456:3456"
+      - "3457:3457"
+    volumes:
+      - ./memory:/app/memory
+      - ./memory/config.json:/app/memory/config.json:ro
+    environment:
+      - MEMORY_DIR=/app/memory
+      - NODE_ENV=production
+
+  nginx:
+    image: nginx:alpine
+    container_name: layered-memory-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./static:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+
+  # 定时备份（每天凌晨3点）
+  backup:
+    build: .
+    container_name: layered-memory-backup
+    restart: unless-stopped
+    volumes:
+      - ./memory:/app/memory
+      - ./backups:/app/backups
+    environment:
+      - MEMORY_DIR=/app/memory
+    command: >
+      sh -c "while true; do
+        node scripts/backup.mjs --dir /app/backups --keep 30;
+        sleep 86400;
+      done"
+    depends_on:
+      - api

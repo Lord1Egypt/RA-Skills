@@ -1,0 +1,131 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ActualizationDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.91"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IfActualization",
+        "columnChiName": "失效与否",
+        "columnType": "varchar(4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "63.98"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "IssuanceOrg",
+        "columnChiName": "发布机构",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.98"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "StatuteType",
+        "columnChiName": "法规类别",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Title",
+        "columnChiName": "标题",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Keyword",
+        "columnChiName": "内容关键词",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "44.65"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "Content",
+        "columnChiName": "详细内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "4.69"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Notes",
+        "columnChiName": "备注",
+        "columnType": "varchar(255)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "46.4"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>架构可视化图 - <!--REPO_NAME--></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 20px;
+            min-height: 600px;
+        }
+
+        .level-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .level-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            padding: 40px 20px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            min-height: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .level-label:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-label.level-0 { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+        .level-label.level-1 { background: linear-gradient(135deg, #fb923c, #f97316); }
+        .level-label.level-2 { background: linear-gradient(135deg, #45afac, #2d8c89); }
+        .level-label.level-3 { background: linear-gradient(135deg, #e469a9, #da3189); }
+        .level-label.level-4 { background: linear-gradient(135deg, #ffdf59, #ffd216); }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .level-section {
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .modules-grid {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            height: 100%;
+        }
+
+        .module-group {
+            background: #eaf6fb;
+            border-radius: 12px;
+            padding: 28px 24px 18px 24px;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+            transition: transform 0.2s cubic-bezier(.4,0,.2,1), box-shadow 0.2s cubic-bezier(.4,0,.2,1), opacity 0.2s, filter 0.2s;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* hover scale 放在 wrap 上，marker 跟着一起动 */
+        .modules-grid > .node-wrap:hover {
+            transform: scale(1.03);
+            z-index: 2;
+        }
+        .modules-grid > .node-wrap:hover > .module-group {
+            box-shadow: 0 6px 24px rgba(59,130,246,0.10);
+        }
+        /* 当 wrap 内子 item 被 hover 时，取消 wrap 的 scale（避免双重放大） */
+        .modules-grid > .node-wrap:hover:has(.node-wrap:hover) {
+            transform: none;
+            z-index: 1;
+        }
+        .modules-grid > .node-wrap:hover:has(.node-wrap:hover) > .module-group {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .module-title {
+            font-size: 1.18rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            text-align: center;
+            width: 100%;
+            color: #22223b;
+            background: none;
+            box-shadow: none;
+            padding: 0;
+            border-radius: 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .module-title:hover { color: #3b82f6; }
+
+        .module-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 24px;
+            justify-content: center;
+        }
+
+        .module-item {
+            background: #fff;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px 24px 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            overflow: visible;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            font-size: 1rem;
+            font-weight: 500;
+            color: #374151;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        /* item hover：scale 放在 wrap 上，border 高亮放在 item 上 */
+        .module-items > .node-wrap:hover {
+            transform: scale(1.06);
+            z-index: 2;
+        }
+        .module-items > .node-wrap:hover > .module-item {
+            box-shadow: 0 4px 16px rgba(59,130,246,0.10);
+            border-color: #3b82f6;
+        }
+
+        /* ── 节点包装器：marker 的定位基准，隔离子节点溢出 ── */
+        .node-wrap {
+            position: relative;   /* marker 相对此元素绝对定位 */
+            display: flex;
+            min-width: 0;
+        }
+
+        /* .modules-grid 的直接 wrap（group 类型）：横向撑满 */
+        .modules-grid > .node-wrap {
+            flex: 1 1 0;
+        }
+
+        /* group 作为 wrap 的直接子元素，宽度撑满 wrap；overflow:hidden 裁掉内部子节点标记溢出 */
+        .node-wrap > .module-group {
+            flex: 1 1 0;
+            overflow: hidden;
+        }
+
+        /* .module-items 里的 item wrap：按内容自适应，参与 flex-wrap 换行 */
+        .module-items > .node-wrap {
+            flex: 0 0 auto;
+        }
+
+        /* ── 入度/出度圆角矩形标记 ── */
+        .node-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 6px;
+            border-radius: 999px;
+            background: #c8d0da;
+            pointer-events: none;
+            transition: background 0.2s, width 0.2s;
+            z-index: 4;
+        }
+        /* 中心压在节点上/下边框线：height=6px → center offset = -3px */
+        .node-marker-in  { top: -3px; }
+        .node-marker-out { bottom: -3px; }
+
+        /* hover 高亮 */
+        .node-highlighted .node-marker { background: #3b82f6; width: 32px; }
+
+        /* 变暗效果：作用在 wrap 上，整体（包括 marker）一起变暗/高亮 */
+        .node-dimmed {
+            opacity: 0.22;
+            filter: grayscale(40%);
+            transition: opacity 0.2s, filter 0.2s;
+        }
+        .node-highlighted {
+            opacity: 1 !important;
+            filter: none !important;
+            z-index: 10;
+        }
+
+
+        /* 配色：蓝橙绿红黄 */
+        .level-0 .module-item { background: linear-gradient(135deg, #E5F7FF, #C5E0FE); border-color: #98c8fd; }
+        .level-0 .node-wrap:hover > .module-item { border-color: #3b82f6; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        .level-1 .module-item { background: linear-gradient(135deg, #FEEBD4, #FDCCBD); border-color: #fcaa90; }
+        .level-1 .node-wrap:hover > .module-item { border-color: #f97316; box-shadow: 0 4px 12px rgba(249,115,22,0.3); }
+        .level-2 .module-item { background: linear-gradient(135deg, #E8FDF4, #C9E9DE); border-color: #a8dcca; }
+        .level-2 .node-wrap:hover > .module-item { border-color: #2d8c89; box-shadow: 0 4px 12px rgba(45,140,137,0.3); }
+        .level-3 .module-item { background: linear-gradient(135deg, #F9DBDD, #F9C1CE); border-color: #f597ad; }
+        .level-3 .node-wrap:hover > .module-item { border-color: #da3189; box-shadow: 0 4px 12px rgba(218,49,137,0.3); }
+        .level-4 .module-item { background: linear-gradient(135deg, #FFF9E8, #FEF1C6); border-color: #fde699; }
+        .level-4 .node-wrap:hover > .module-item { border-color: #ffd216; box-shadow: 0 4px 12px rgba(255,210,22,0.3); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .modal-title { font-size: 1.5rem; font-weight: 600; color: #1e293b; }
+
+        .close {
+            color: #6b7280;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .close:hover { color: #ef4444; }
+
+        /* 架构图区域 */
+        #mermaidContainer {
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 16px 12px;
+            border: 1px solid #e2e8f0;
+            min-height: 60px;
+            margin-top: 16px;
+        }
+
+        #mermaidContainer:empty {
+            display: none;
+        }
+
+        #mermaidContainer svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Mermaid 节点圆角 + 样式覆盖 */
+        #mermaidContainer svg .node rect {
+            rx: 10 !important;
+            ry: 10 !important;
+        }
+        /* 菱形判断节点也圆化 */
+        #mermaidContainer svg .node polygon {
+            stroke-linejoin: round;
+        }
+        /* 连线颜色柔化 */
+        #mermaidContainer svg .flowchart-link {
+            stroke: #94a3b8 !important;
+        }
+        #mermaidContainer svg marker path {
+            fill: #94a3b8 !important;
+        }
+        /* 字体统一 */
+        #mermaidContainer svg text,
+        #mermaidContainer svg .label foreignObject {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        }
+        /* edge label 背景胶囊化 */
+        #mermaidContainer svg .edgeLabel .label {
+            background: #ffffff !important;
+            border-radius: 6px !important;
+            padding: 2px 6px !important;
+            font-size: 12px !important;
+            color: #475569 !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+        /* 子图 cluster 圆角 */
+        #mermaidContainer svg .cluster rect {
+            rx: 12 !important;
+            ry: 12 !important;
+            fill: #f8fafc !important;
+            stroke: #cbd5e1 !important;
+        }
+
+        /* 文件列表折叠区 */
+        .files-section {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .files-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #64748b;
+            transition: background 0.15s;
+        }
+
+        .files-toggle:hover { background: #e2e8f0; }
+
+        .files-toggle .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .files-toggle .file-count {
+            margin-left: auto;
+            background: #e2e8f0;
+            border-radius: 20px;
+            padding: 1px 8px;
+            font-size: 0.78rem;
+            color: #475569;
+        }
+
+        .files-list {
+            max-height: 180px;
+            overflow-y: auto;
+            padding: 8px 10px;
+            display: none;
+        }
+
+        .files-list.open { display: block; }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.82rem;
+            color: #475569;
+            transition: background 0.15s;
+        }
+
+        .file-item:hover { background: #f1f5f9; }
+
+        .file-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #94a3b8;
+            flex-shrink: 0;
+        }
+
+        .no-files { text-align: center; color: #6b7280; font-style: italic; padding: 16px; }
+
+        /* ── 顶部标题栏 ── */
+        .repo-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 16px;
+            padding: 28px 36px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 装饰光晕 */
+        .repo-header::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .repo-header-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .repo-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .repo-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .repo-description {
+            font-size: 0.93rem;
+            color: #94a3b8;
+            line-height: 1.55;
+            max-width: 720px;
+            display: none; /* 无简介时隐藏 */
+        }
+
+        .repo-description.visible {
+            display: block;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .stat-badge:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .stat-badge .stat-icon {
+            font-size: 0.88rem;
+            opacity: 0.85;
+        }
+
+        .stat-badge .stat-value {
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 14px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 2px;
+        }
+
+        /* 技术栈 pill 列表 */
+        .tech-stack-list {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(59,130,246,0.18);
+            border: 1px solid rgba(59,130,246,0.30);
+            border-radius: 6px;
+            padding: 3px 9px;
+            font-size: 0.78rem;
+            color: #93c5fd;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .tech-pill .tech-count {
+            color: #64748b;
+            font-size: 0.72rem;
+        }
+
+        @media (max-width: 768px) {
+            .repo-header { padding: 20px 18px; gap: 10px; }
+            .repo-name   { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ── 顶部标题栏 ── -->
+        <div class="repo-header" id="repoHeader">
+            <div class="repo-header-top">
+                <span class="repo-icon">📦</span>
+                <h1 class="repo-name" id="repoNameEl"></h1>
+            </div>
+            <p class="repo-description" id="repoDescEl"></p>
+            <div class="repo-stats" id="repoStatsEl"></div>
+        </div>
+
+        <div class="architecture-grid">
+            <div class="level-sidebar" id="levelSidebar"></div>
+            <div class="content-area" id="contentArea"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="files-section" id="filesSection">
+                <div class="files-toggle" id="filesToggle">
+                    <span class="toggle-icon" id="toggleIcon">▶</span>
+                    <span>关联文件</span>
+                    <span class="file-count" id="fileCount">0</span>
+                </div>
+                <div class="files-list" id="filesList"></div>
+            </div>
+            <div id="mermaidContainer"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         内嵌数据区域（由 build_html.py 自动填充）
+         ═══════════════════════════════════════════════════ -->
+    <script>
+        // 代码仓名称
+        const REPO_NAME = "<!--REPO_NAME-->";
+
+        // 主架构思维导图（plantuml mindmap 文本）
+        const MINDMAP_DATA = <!--MINDMAP_DATA_JSON-->;
+
+        // 预生成的子架构 Mermaid 数据
+        // 格式: { "<nodeKey>": "<mermaid code>", ... }
+        const FLOWCHART_DATA = <!--FLOWCHART_DATA_JSON-->;
+
+        // 节点间调用关系（只允许上层→下层）
+        // 格式: [{"from": "节点名A", "to": "节点名B", "label": "调用"}, ...]
+        const EDGES_DATA = <!--EDGES_DATA_JSON-->;
+
+        // 仓库元信息（由 scan_repo.py --stats-output 生成）
+        // 格式: { "repo_name": "...", "description": "...", "file_count": 42,
+        //         "total_loc": 3800, "tech_stack": [{"lang":"Python","count":20,"loc":1500},...] }
+        const REPO_META = <!--REPO_META_JSON-->;
+    </script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+    <script>
+        // ─── 配色方案 ─────────────────────────────────────────
+        const color_scheme = [
+            [ // 蓝
+                { fill: "#597bd6", stroke: "#ffffff" },
+                { fill: "#E5F7FF", stroke: "#ffffff" },
+                { fill: "#C5E0FE", stroke: "#98c8fd" },
+                { fill: "#B7CBEE", stroke: "#96b3e6" },
+                { fill: "#97ACE5", stroke: "#7692dd" },
+            ],
+            [ // 橙
+                { fill: "#fcc37f", stroke: "#ffffff" },
+                { fill: "#FEEBD4", stroke: "#ffffff" },
+                { fill: "#FDCCBD", stroke: "#fcaa90" },
+                { fill: "#F4AFA7", stroke: "#ef8e83" },
+                { fill: "#ED8180", stroke: "#e96261" },
+            ],
+            [ // 绿
+                { fill: "#45afac", stroke: "#ffffff" },
+                { fill: "#E8FDF4", stroke: "#ffffff" },
+                { fill: "#C9E9DE", stroke: "#a8dcca" },
+                { fill: "#9CDCD1", stroke: "#82d3c5" },
+                { fill: "#68C4C1", stroke: "#52bbb8" },
+            ],
+            [ // 红
+                { fill: "#da3189", stroke: "#ffffff" },
+                { fill: "#F9DBDD", stroke: "#ffffff" },
+                { fill: "#F9C1CE", stroke: "#f597ad" },
+                { fill: "#ED9AC6", stroke: "#e777b2" },
+                { fill: "#E469A9", stroke: "#df4b98" },
+            ],
+            [ // 黄
+                { fill: "#ffd216", stroke: "#ffffff" },
+                { fill: "#FFF9E8", stroke: "#ffffff" },
+                { fill: "#FEF1C6", stroke: "#fde699" },
+                { fill: "#FFE783", stroke: "#ffdf5a" },
+                { fill: "#FFDF59", stroke: "#ffd835" },
+            ],
+        ];
+
+        // ─── 工具函数 ─────────────────────────────────────────
+        function getColor(levelIdx, colorLevel) {
+            const colorArr = color_scheme[levelIdx % color_scheme.length];
+            return colorArr[Math.min(colorLevel, colorArr.length - 1)];
+        }
+
+        function getNodeKey(nodeName, files) {
+            const cleanFiles = [...files].sort().map(f => f.replace(/[^a-zA-Z0-9]/g, '_'));
+            return `${nodeName.replace(/[^a-zA-Z0-9]/g, '_')}_${cleanFiles.join('_')}`;
+        }
+
+        // ─── 解析 mindmap ─────────────────────────────────────
+
+        /**
+         * 将 mindmap 文本中跨行的 JSON 合并回单行。
+         * 模型偶尔会把 {"name":"x","files":[\n  "a"\n]} 拆成多行。
+         */
+        function mergeMultilineJson(text) {
+            const result = [];
+            let buf = '';
+            let depth = 0;
+            for (const line of text.split('\n')) {
+                if (depth === 0) {
+                    const open = line.indexOf('{');
+                    if (open === -1) { result.push(line); continue; }
+                    buf = line;
+                    depth = (buf.match(/\{/g)||[]).length - (buf.match(/\}/g)||[]).length;
+                    if (depth === 0) { result.push(buf); buf = ''; }
+                } else {
+                    buf += ' ' + line.trim();
+                    depth = (buf.match(/\{/g)||[]).length - (buf.match(/\}/g)||[]).length;
+                    if (depth === 0) { result.push(buf); buf = ''; }
+                }
+            }
+            if (buf) result.push(buf);
+            return result.join('\n');
+        }
+
+        function parseMermaidMindmap(mermaidString) {
+            // Step 1: 合并跨行 JSON
+            const merged = mergeMultilineJson(mermaidString.trim());
+            const lines = merged.split('\n');
+            const data = [];
+            const stack = [];
+
+            for (const line of lines) {
+                const trimmedLine = line.trim();
+                if (!trimmedLine || trimmedLine.startsWith('@')) continue;
+
+                // Step 2: 计算星号层级（兼容行首有缩进空格的情况）
+                let currentLine = trimmedLine;
+                let level = 0;
+                while (currentLine.startsWith('*')) {
+                    level++;
+                    currentLine = currentLine.substring(1);
+                }
+                currentLine = currentLine.trim();
+                if (level === 0) continue; // 非节点行，跳过
+
+                // Step 3: 提取 JSON — 取第一个 { 到最后一个 } 之间的内容
+                const jsonStart = currentLine.indexOf('{');
+                const jsonEnd   = currentLine.lastIndexOf('}');
+                if (jsonStart === -1 || jsonEnd === -1 || jsonEnd <= jsonStart) continue;
+
+                let nodeData;
+                try {
+                    nodeData = JSON.parse(currentLine.substring(jsonStart, jsonEnd + 1));
+                } catch (e) {
+                    // Step 4: JSON 解析失败时，尝试直接把整行内容当 name 兜底
+                    console.warn('mindmap parse error, fallback to raw text:', line, e);
+                    nodeData = { name: currentLine.replace(/[{}"]/g, '').trim() || 'Unnamed' };
+                }
+
+                const node = {
+                    name:     (nodeData.name  || 'Unnamed').trim(),
+                    files:    Array.isArray(nodeData.files) ? nodeData.files : [],
+                    children: [],
+                };
+
+                // Step 5: 维护父子关系栈
+                if (level === 1) {
+                    data.push(node);
+                    stack.length = 0;
+                    stack.push(node);
+                } else {
+                    // 确保栈深度与当前层级匹配
+                    if (stack.length >= level) stack.length = level - 1;
+                    const parent = stack[stack.length - 1];
+                    if (parent) parent.children.push(node);
+                    stack.push(node);
+                }
+            }
+            return data;
+        }
+
+        // ─── 高度对齐 ─────────────────────────────────────────
+        function adjustLabelHeights() {
+            const sections = document.querySelectorAll('.level-section');
+            const labels   = document.querySelectorAll('.level-label');
+            sections.forEach((s, i) => {
+                if (labels[i]) { labels[i].style.height = ''; s.style.height = ''; }
+            });
+            sections.forEach((s, i) => {
+                if (!labels[i]) return;
+                const max = Math.max(labels[i].offsetHeight, s.offsetHeight);
+                labels[i].style.height = `${max}px`;
+                s.style.height = `${max}px`;
+                labels[i].style.display = 'flex';
+                labels[i].style.alignItems = 'center';
+                labels[i].style.justifyContent = 'center';
+            });
+        }
+
+        // ─── 边关系索引 ───────────────────────────────────────
+        // nodeEdgeMap[nodeName] = { out: [{to, label}], in: [{from, label}] }
+        let nodeEdgeMap = {};
+        // nodeRegistry[nodeName] = DOM元素（所有渲染后的节点）
+        let nodeRegistry = {};
+        // 当前正在显示的 SVG overlay（用于连线）
+        let edgeOverlay = null;
+
+        function buildEdgeMap(edges) {
+            nodeEdgeMap = {};
+            (edges || []).forEach(e => {
+                if (!nodeEdgeMap[e.from]) nodeEdgeMap[e.from] = { out: [], in: [] };
+                if (!nodeEdgeMap[e.to])   nodeEdgeMap[e.to]   = { out: [], in: [] };
+                nodeEdgeMap[e.from].out.push({ to: e.to, label: e.label || '' });
+                nodeEdgeMap[e.to].in.push({ from: e.from, label: e.label || '' });
+            });
+        }
+
+        // ─── 渲染节点 ─────────────────────────────────────────
+
+        /**
+         * 为节点创建 .node-wrap 包装器：
+         *   - wrap 提供 position:relative 给 marker 定位
+         *   - marker 是 wrap 的直接子节点，不在节点内部，避免被 overflow:hidden 裁切
+         *   - dim/highlight class 加在 wrap 上，整体变暗/高亮（含 marker）
+         * 返回 wrap 元素（已包含节点和 marker）。
+         */
+        function wrapNode(nodeEl, nodeName) {
+            const wrap = document.createElement('div');
+            wrap.className = 'node-wrap';
+            wrap.dataset.nodeName = nodeName || '';
+            wrap.appendChild(nodeEl);
+
+            // 只有在 nodeEdgeMap 里真正有该节点的边时才加 marker
+            const info = nodeEdgeMap[nodeName];
+            if (info) {
+                if (info.in.length > 0) {
+                    const m = document.createElement('div');
+                    m.className = 'node-marker node-marker-in';
+                    wrap.appendChild(m);
+                }
+                if (info.out.length > 0) {
+                    const m = document.createElement('div');
+                    m.className = 'node-marker node-marker-out';
+                    wrap.appendChild(m);
+                }
+            }
+
+            // 注册 wrap（用于 dim/highlight 和 getMarkerPos）
+            if (nodeName) nodeRegistry[nodeName] = wrap;
+
+            // 事件监听通过全局委托处理（见 initEdgeHoverDelegation）
+
+            return wrap;
+        }
+
+        // ─── 拓扑分行：将同层 groups 按内部边排成多个 rank ────
+        /**
+         * 对一组 group 节点按 nodeEdgeMap 中同层内部边做 Kahn BFS 拓扑排序，
+         * 返回 rank 数组：[ [groupA, groupB], [groupC], ... ]
+         * 同 rank 内无依赖关系，上 rank → 下 rank 的方向即 edge 方向。
+         * 无内部边时退化为 [[...所有 groups]]（单行，向下兼容）。
+         */
+        function topoRankGroups(groups) {
+            const nameSet = new Set(groups.map(g => g.name));
+
+            // 只统计 from/to 都在本层内的内部边
+            const inDeg  = {};
+            const adjOut = {};
+            groups.forEach(g => { inDeg[g.name] = 0; adjOut[g.name] = []; });
+
+            groups.forEach(g => {
+                const info = nodeEdgeMap[g.name];
+                if (!info) return;
+                info.out.forEach(e => {
+                    if (nameSet.has(e.to)) {
+                        adjOut[g.name].push(e.to);
+                        inDeg[e.to]++;
+                    }
+                });
+            });
+
+            // 如果没有任何内部边，直接返回单行
+            const hasInternalEdge = groups.some(g => adjOut[g.name].length > 0);
+            if (!hasInternalEdge) return [groups];
+
+            // Kahn BFS 逐层分行
+            const nameToGroup = Object.fromEntries(groups.map(g => [g.name, g]));
+            const ranks = [];
+            let queue = groups.filter(g => inDeg[g.name] === 0);
+
+            while (queue.length > 0) {
+                ranks.push(queue);
+                const next = [];
+                queue.forEach(g => {
+                    adjOut[g.name].forEach(toName => {
+                        if (--inDeg[toName] === 0) next.push(nameToGroup[toName]);
+                    });
+                });
+                queue = next;
+            }
+
+            // 有环降级：未排到的节点追加为最后一行
+            const placed = new Set(ranks.flat().map(g => g.name));
+            const unplaced = groups.filter(g => !placed.has(g.name));
+            if (unplaced.length > 0) ranks.push(unplaced);
+
+            return ranks;
+        }
+
+        function renderNodeList(nodes, levelIdx, colorLevel) {
+            const container = document.createElement('div');
+            container.className = 'module-items';
+            nodes.forEach(child => {
+                if (child.children && child.children.length > 0) {
+                    container.appendChild(renderNode(child, levelIdx, colorLevel, true));
+                } else {
+                    container.appendChild(renderNode(child, levelIdx, colorLevel, false));
+                }
+            });
+            return container;
+        }
+
+        function renderNode(node, levelIdx, colorLevel = 1, isGroup = false) {
+            if (isGroup || (node.children && node.children.length > 0)) {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'module-group';
+                const color = getColor(levelIdx, colorLevel);
+                groupDiv.style.background = color.fill;
+                groupDiv.style.border = `1.5px solid ${color.stroke}`;
+
+                if (node.name) {
+                    const title = document.createElement('h3');
+                    title.className = 'module-title';
+                    title.textContent = node.name;
+                    groupDiv.appendChild(title);
+                }
+
+                groupDiv.addEventListener('click', e => {
+                    e.stopPropagation();
+                    showFiles(node.name, node.files || []);
+                });
+
+                if (node.children && node.children.length > 0) {
+                    groupDiv.appendChild(renderNodeList(node.children, levelIdx, colorLevel + 1));
+                }
+
+                // group 也需要 wrap（处理 group 自身有 edge 的情况，以及 overflow:hidden 隔离子节点）
+                return wrapNode(groupDiv, node.name || '');
+
+            } else {
+                const item = document.createElement('div');
+                item.className = 'module-item';
+                const color = getColor(levelIdx, colorLevel);
+                item.style.background = color.fill;
+                item.style.border = `1.5px solid ${color.stroke}`;
+                item.textContent = node.name || '';
+
+                item.addEventListener('click', e => {
+                    e.stopPropagation();
+                    showFiles(node.name, node.files || []);
+                });
+
+                return wrapNode(item, node.name || '');
+            }
+        }
+
+        // ─── 全局事件委托：hover 边高亮 ──────────────────────
+        /**
+         * 用事件委托替代每个 wrap 单独绑定，解决嵌套 wrap 造成的
+         * mouseleave/mouseenter 乱序触发问题。
+         * 逻辑：mouseover 时找到鼠标下最近的、且在 nodeEdgeMap 里有边的 wrap；
+         *       mouseout 时若新目标不在同一 wrap 树内才 clear。
+         */
+        let _currentHighlightNode = null;
+
+        function initEdgeHoverDelegation() {
+            const contentArea = document.getElementById('contentArea');
+            if (!contentArea) return;
+
+            contentArea.addEventListener('mouseover', e => {
+                // 找鼠标下方最近的、有 edge 的 node-wrap
+                const target = findEdgeWrap(e.target);
+                const name = target ? target.dataset.nodeName : null;
+                if (name === _currentHighlightNode) return; // 同一节点不重复触发
+                _currentHighlightNode = name || null;
+                if (name) {
+                    highlightEdges(name);
+                } else {
+                    clearEdgeHighlight();
+                }
+            });
+
+            contentArea.addEventListener('mouseleave', () => {
+                _currentHighlightNode = null;
+                clearEdgeHighlight();
+            });
+        }
+
+        /** 从 el 向上找第一个 .node-wrap 且其 nodeName 在 nodeEdgeMap 中有边的元素 */
+        function findEdgeWrap(el) {
+            let cur = el;
+            while (cur && cur !== document.body) {
+                if (cur.classList && cur.classList.contains('node-wrap')) {
+                    const name = cur.dataset.nodeName;
+                    if (name && nodeEdgeMap[name] &&
+                        (nodeEdgeMap[name].in.length > 0 || nodeEdgeMap[name].out.length > 0)) {
+                        return cur;
+                    }
+                }
+                cur = cur.parentElement;
+            }
+            return null;
+        }
+
+        // ─── hover 边高亮逻辑 ────────────────────────────────
+        function highlightEdges(nodeName) {
+            clearEdgeHighlight();
+
+            const info = nodeEdgeMap[nodeName];
+            if (!info || (info.in.length === 0 && info.out.length === 0)) return;
+
+            // 收集相关节点名
+            const relatedNames = new Set([nodeName]);
+            info.in.forEach(e  => relatedNames.add(e.from));
+            info.out.forEach(e => relatedNames.add(e.to));
+
+            // 变暗所有不相关节点
+            Object.entries(nodeRegistry).forEach(([name, el]) => {
+                if (relatedNames.has(name)) {
+                    el.classList.add('node-highlighted');
+                } else {
+                    el.classList.add('node-dimmed');
+                }
+            });
+
+            // 绘制连线 SVG overlay
+            drawEdgeLines(nodeName, info);
+        }
+
+        function clearEdgeHighlight() {
+            Object.values(nodeRegistry).forEach(el => {
+                el.classList.remove('node-dimmed', 'node-highlighted');
+            });
+            if (edgeOverlay) {
+                edgeOverlay.remove();
+                edgeOverlay = null;
+            }
+        }
+
+        /**
+         * 获取节点元素内 .node-marker-out（出边标记）的中心坐标（页面绝对坐标）。
+         * 如果没有标记，则回退到节点底部中心。
+         */
+        function getMarkerPos(el, type) {
+            const scrollX = window.scrollX || window.pageXOffset;
+            const scrollY = window.scrollY || window.pageYOffset;
+            const markerEl = el.querySelector(type === 'out' ? '.node-marker-out' : '.node-marker-in');
+            if (markerEl) {
+                const r = markerEl.getBoundingClientRect();
+                return {
+                    x: r.left + r.width  / 2 + scrollX,
+                    y: r.top  + r.height / 2 + scrollY,
+                };
+            }
+            // 回退：节点底部/顶部中心
+            const r = el.getBoundingClientRect();
+            return {
+                x: r.left + r.width / 2 + scrollX,
+                y: (type === 'out' ? r.bottom : r.top) + scrollY,
+            };
+        }
+
+        function drawEdgeLines(nodeName, info) {
+            const fromEl = nodeRegistry[nodeName];
+            if (!fromEl) return;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:' +
+                document.documentElement.scrollHeight + 'px;pointer-events:none;z-index:998;overflow:visible;';
+            document.body.appendChild(svg);
+            edgeOverlay = svg;
+
+            // 出边：从当前节点的 out-marker → 目标节点的 in-marker
+            info.out.forEach(e => {
+                const tEl = nodeRegistry[e.to];
+                if (!tEl) return;
+                const p1 = getMarkerPos(fromEl, 'out');
+                const p2 = getMarkerPos(tEl,    'in');
+                drawArrow(svg, p1, p2, e.label, '#3b82f6');
+            });
+
+            // 入边：从源节点的 out-marker → 当前节点的 in-marker
+            info.in.forEach(e => {
+                const tEl = nodeRegistry[e.from];
+                if (!tEl) return;
+                const p1 = getMarkerPos(tEl,    'out');
+                const p2 = getMarkerPos(fromEl, 'in');
+                drawArrow(svg, p1, p2, e.label, '#f97316');
+            });
+        }
+
+        /**
+         * 在 SVG 上从 p1 画贝塞尔曲线箭头到 p2，带标签。
+         * 连线从 out-marker 中心出发，到 in-marker 中心结束（纵向贝塞尔）。
+         */
+        function drawArrow(svg, p1, p2, label, color) {
+            // ── defs: 箭头 marker ──
+            const markerId = 'arrowhead_' + color.replace('#', '');
+            if (!svg.querySelector('#' + markerId)) {
+                let defs = svg.querySelector('defs');
+                if (!defs) {
+                    defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                    svg.appendChild(defs);
+                }
+                const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+                marker.setAttribute('id', markerId);
+                marker.setAttribute('markerWidth', '7');
+                marker.setAttribute('markerHeight', '7');
+                marker.setAttribute('refX', '5');
+                marker.setAttribute('refY', '3.5');
+                marker.setAttribute('orient', 'auto');
+                const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                poly.setAttribute('points', '0 0, 7 3.5, 0 7');
+                poly.setAttribute('fill', color);
+                marker.appendChild(poly);
+                defs.appendChild(marker);
+            }
+
+            // ── 纵向三次贝塞尔：控制点在各自端点正上下方 1/3 处 ──
+            const x1 = p1.x, y1 = p1.y;
+            const x2 = p2.x, y2 = p2.y;
+            const dy = Math.abs(y2 - y1);
+            const bend = Math.max(dy * 0.5, 40); // 至少弯曲 40px
+            const cy1y = y1 + bend;
+            const cy2y = y2 - bend;
+
+            const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            pathEl.setAttribute('d', `M${x1},${y1} C${x1},${cy1y} ${x2},${cy2y} ${x2},${y2}`);
+            pathEl.setAttribute('stroke', color);
+            pathEl.setAttribute('stroke-width', '1.8');
+            pathEl.setAttribute('fill', 'none');
+            pathEl.setAttribute('marker-end', `url(#${markerId})`);
+            pathEl.setAttribute('opacity', '0.82');
+            svg.appendChild(pathEl);
+
+            // ── 标签：贴在曲线中点 ──
+            if (label) {
+                const midX = (x1 + x2) / 2;
+                const midY = (y1 + y2) / 2;
+
+                // 先加 text 再量 bbox 加背景
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', midX);
+                text.setAttribute('y', midY);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                text.setAttribute('font-size', '11');
+                text.setAttribute('font-family', '-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif');
+                text.setAttribute('fill', color);
+                text.setAttribute('font-weight', '600');
+                text.textContent = label;
+                svg.appendChild(text);
+
+                const bbox = text.getBBox ? text.getBBox()
+                    : { x: midX - 18, y: midY - 7, width: 36, height: 14 };
+                const pad = 4;
+                const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                bg.setAttribute('x',      bbox.x - pad);
+                bg.setAttribute('y',      bbox.y - pad);
+                bg.setAttribute('width',  bbox.width  + pad * 2);
+                bg.setAttribute('height', bbox.height + pad * 2);
+                bg.setAttribute('rx', '4');
+                bg.setAttribute('fill', '#ffffff');
+                bg.setAttribute('opacity', '0.93');
+                bg.setAttribute('stroke', color);
+                bg.setAttribute('stroke-width', '1');
+                svg.insertBefore(bg, text);
+            }
+        }
+
+        // ─── 渲染顶部标题栏 ───────────────────────────────────
+        function formatLoc(n) {
+            if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+            return String(n);
+        }
+
+        function renderRepoHeader(rootName) {
+            const meta = (typeof REPO_META !== 'undefined' && REPO_META) ? REPO_META : {};
+
+            // 仓库名
+            const nameEl = document.getElementById('repoNameEl');
+            nameEl.textContent = meta.repo_name || rootName || REPO_NAME;
+
+            // 简介
+            const descEl = document.getElementById('repoDescEl');
+            if (meta.description) {
+                descEl.textContent = meta.description;
+                descEl.classList.add('visible');
+            }
+
+            // 统计 badges
+            const statsEl = document.getElementById('repoStatsEl');
+            statsEl.innerHTML = '';
+
+            // 文件数
+            if (meta.file_count > 0) {
+                const b = document.createElement('span');
+                b.className = 'stat-badge';
+                b.innerHTML = `<span class="stat-icon">🗂</span><span class="stat-value">${meta.file_count}</span> 个文件`;
+                statsEl.appendChild(b);
+            }
+
+            // LOC
+            if (meta.total_loc > 0) {
+                const b = document.createElement('span');
+                b.className = 'stat-badge';
+                b.innerHTML = `<span class="stat-icon">📝</span><span class="stat-value">${formatLoc(meta.total_loc)}</span> 行代码`;
+                statsEl.appendChild(b);
+            }
+
+            // 分隔线（如果前面有 badge）
+            if ((meta.file_count > 0 || meta.total_loc > 0) && meta.tech_stack && meta.tech_stack.length > 0) {
+                const div = document.createElement('span');
+                div.className = 'stat-divider';
+                statsEl.appendChild(div);
+            }
+
+            // 技术栈 pills
+            if (meta.tech_stack && meta.tech_stack.length > 0) {
+                const list = document.createElement('div');
+                list.className = 'tech-stack-list';
+                meta.tech_stack.forEach(t => {
+                    const pill = document.createElement('span');
+                    pill.className = 'tech-pill';
+                    pill.innerHTML = `${t.lang}<span class="tech-count">${t.count}</span>`;
+                    list.appendChild(pill);
+                });
+                statsEl.appendChild(list);
+            }
+
+            document.title = '架构图 - ' + (meta.repo_name || REPO_NAME);
+        }
+
+        // ─── 主渲染 ────────────────────────────────────────────
+        function renderArchitecture(data) {
+            if (!data || data.length === 0) {
+                document.getElementById('contentArea').innerHTML = '<div style="color:#6b7280;padding:40px;text-align:center;">暂无数据</div>';
+                return;
+            }
+
+            const rootNode = data[0];
+
+            // 初始化 edge 索引（必须在 renderNode 之前）
+            nodeRegistry = {};
+            buildEdgeMap(typeof EDGES_DATA !== 'undefined' ? EDGES_DATA : []);
+
+            // 渲染顶部标题栏
+            renderRepoHeader(rootNode.name);
+
+            // 侧边栏
+            const sidebar = document.getElementById('levelSidebar');
+            sidebar.innerHTML = '';
+            const levels = rootNode.children || [];
+
+            levels.forEach((level, i) => {
+                const label = document.createElement('div');
+                label.className = `level-label level-${i % 5}`;
+                label.textContent = level.name;
+                label.onclick = () => {
+                    const sec = document.querySelector(`.level-section.level-${i}`);
+                    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+                    showFiles(level.name, level.files || []);
+                };
+                sidebar.appendChild(label);
+            });
+
+            // 内容区域
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '';
+            levels.forEach((level, i) => {
+                const section = document.createElement('div');
+                section.className = `level-section level-${i}`;
+                if (level.children && level.children.length > 0) {
+                    // 正常情况：按同层内部 edge 做拓扑分行，每行一个 modules-grid
+                    const ranks = topoRankGroups(level.children);
+                    ranks.forEach(rankGroups => {
+                        const grid = document.createElement('div');
+                        grid.className = 'modules-grid';
+                        rankGroups.forEach(group => {
+                            grid.appendChild(renderNode(group, i, 1, true));
+                        });
+                        section.appendChild(grid);
+                    });
+                } else {
+                    // 降级情况：层级直接作为叶子卡片渲染（mindmap 只有两层时）
+                    const grid = document.createElement('div');
+                    grid.className = 'modules-grid';
+                    grid.appendChild(renderNode(level, i, 1, false));
+                    section.appendChild(grid);
+                }
+                contentArea.appendChild(section);
+            });
+
+            setTimeout(adjustLabelHeights, 0);
+            // 初始化全局 hover 委托（每次重新渲染后重新绑定）
+            initEdgeHoverDelegation();
+        }
+
+        // ─── 弹窗：显示文件 + 子架构图 ────────────────────────
+        function showFiles(nodeName, files) {
+            const modal        = document.getElementById('fileModal');
+            const modalTitle   = document.getElementById('modalTitle');
+            const filesList    = document.getElementById('filesList');
+            const mermaidDiv   = document.getElementById('mermaidContainer');
+            const filesSection = document.getElementById('filesSection');
+            const fileCount    = document.getElementById('fileCount');
+            const filesToggle  = document.getElementById('filesToggle');
+            const toggleIcon   = document.getElementById('toggleIcon');
+
+            modalTitle.textContent = nodeName;
+            filesList.innerHTML = '';
+            filesList.classList.remove('open');
+            toggleIcon.style.transform = '';
+            mermaidDiv.innerHTML = '';
+
+            // 文件列表
+            fileCount.textContent = files.length;
+            if (files.length === 0) {
+                filesList.innerHTML = '<div class="no-files">该节点暂无关联文件</div>';
+                filesSection.style.display = 'none';
+            } else {
+                filesSection.style.display = '';
+                files.forEach(f => {
+                    const item = document.createElement('div');
+                    item.className = 'file-item';
+                    item.textContent = f;
+                    filesList.appendChild(item);
+                });
+            }
+
+            // 折叠/展开绑定（每次重新绑，避免重复）
+            filesToggle.onclick = () => {
+                const isOpen = filesList.classList.toggle('open');
+                toggleIcon.style.transform = isOpen ? 'rotate(90deg)' : '';
+            };
+
+            // 架构图（自动渲染）
+            if (files.length > 0) {
+                const nodeKey = getNodeKey(nodeName, files);
+                const cached  = FLOWCHART_DATA[nodeKey];
+                if (cached) {
+                    renderFlowchart(nodeKey, cached, mermaidDiv);
+                }
+            }
+
+            modal.style.display = 'block';
+        }
+
+        let _renderSeq = 0;
+        function renderFlowchart(nodeKey, mermaidCode, container) {
+            _renderSeq++;
+            const seq = _renderSeq;
+            container.innerHTML = '<div style="text-align:center;padding:20px;color:#666;">正在渲染架构图...</div>';
+            setTimeout(() => {
+                if (seq !== _renderSeq) return;
+                const chartId = 'fc_' + nodeKey.replace(/[^a-zA-Z0-9]/g, '_') + '_' + seq;
+                mermaid.render(chartId, mermaidCode)
+                    .then(({ svg }) => { container.innerHTML = svg; })
+                    .catch(err => {
+                        container.innerHTML = `<div style="color:red;padding:12px;">渲染错误: ${err.message}</div>`;
+                    });
+            }, 80);
+        }
+
+        // ─── 初始化 ────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: 'base',
+                themeVariables: {
+                    // 主色调呼应外部蓝色体系
+                    primaryColor: '#dbeafe',
+                    primaryTextColor: '#1e3a5f',
+                    primaryBorderColor: '#93c5fd',
+                    // 线条
+                    lineColor: '#94a3b8',
+                    // 次级节点（子图背景）
+                    secondaryColor: '#f0fdf4',
+                    secondaryTextColor: '#14532d',
+                    secondaryBorderColor: '#86efac',
+                    // 第三级节点
+                    tertiaryColor: '#fef9c3',
+                    tertiaryTextColor: '#713f12',
+                    tertiaryBorderColor: '#fde047',
+                    // 文字 / 边框全局
+                    edgeLabelBackground: '#ffffff',
+                    clusterBkg: '#f8fafc',
+                    clusterBorder: '#cbd5e1',
+                    titleColor: '#1e293b',
+                    // 字体
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                    fontSize: '14px',
+                    // 圆角
+                    nodeBorder: '#93c5fd',
+                },
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                    curve: 'cardinal',
+                    nodeSpacing: 40,
+                    rankSpacing: 50,
+                    padding: 16,
+                    diagramPadding: 16,
+                },
+            });
+
+            // 解析内嵌数据并渲染
+            try {
+                const data = parseMermaidMindmap(MINDMAP_DATA);
+                renderArchitecture(data);
+            } catch (e) {
+                document.getElementById('contentArea').innerHTML =
+                    `<div style="color:red;padding:20px;">数据解析失败: ${e.message}</div>`;
+            }
+
+            // Modal 关闭
+            document.querySelector('.close').addEventListener('click', closeModal);
+            document.getElementById('fileModal').addEventListener('click', e => {
+                if (e.target === document.getElementById('fileModal')) closeModal();
+            });
+
+            window.addEventListener('resize', () => {
+                adjustLabelHeights();
+                _currentHighlightNode = null;
+                clearEdgeHighlight();
+            });
+
+            // 滚动时清除浮层（避免错位残留）
+            window.addEventListener('scroll', () => {
+                _currentHighlightNode = null;
+                clearEdgeHighlight();
+            }, { passive: true });
+        });
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); clearEdgeHighlight(); } });
+
+        function closeModal() {
+            document.getElementById('fileModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

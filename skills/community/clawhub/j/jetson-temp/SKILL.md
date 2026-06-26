@@ -1,35 +1,26 @@
----
-name: "Jetson Temperature"
-description: "Real-time monitoring of CPU, GPU, and multiple thermal zone temperatures on NVIDIA Jetson devices running Linux."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jetson-temp"
-sourceUrl: "https://clawhub.ai/skills/jetson-temp"
----
+# jetson-temp
 
-# Jetson Temperature
+NVIDIA Jetson 温度监控工具。实时监控系统温度。
 
-> Real-time monitoring of CPU, GPU, and multiple thermal zone temperatures on NVIDIA Jetson devices running Linux.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jetson-temp`
-- **Source URL:** [https://clawhub.ai/skills/jetson-temp](https://clawhub.ai/skills/jetson-temp)
+- CPU 温度监控
+- GPU 温度监控  
+- 多个 thermal zone 温度
+- 实时更新
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jetson-temp
+# 查看当前温度
+jetson-temp
 ```
+
+## 依赖
+
+- Linux thermal subsystem (/sys/class/thermal/)
+
+## 环境要求
+
+- NVIDIA Jetson 设备
+- Linux kernel with thermal support

@@ -1,0 +1,47 @@
+<!-- ca-bullets — 左侧要点列表 + 右侧可选图标/数据卡片 -->
+<div class="content-area" style="align-items:flex-start;padding:40px 80px">
+  <!-- 左侧要点区 -->
+  <div style="flex:1;display:flex;flex-direction:column">
+    {{#if title}}
+    <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 28px 0">{{title}}</h2>
+    {{/if}}
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:20px">
+      {{#each points}}
+      <li style="display:flex;align-items:flex-start;gap:14px">
+        <!-- 蓝色圆点 -->
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--color-primary);margin-top:7px;flex-shrink:0"></div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:var(--font);font-size:18px;font-weight:500;color:var(--color-text);line-height:1.6">{{text}}</span>
+          {{#if sub}}
+          <span style="font-family:var(--font);font-size:14px;color:var(--color-text-secondary);line-height:1.5">{{sub}}</span>
+          {{/if}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+    {{#if highlight}}
+    <!-- 底部高亮数据卡片 -->
+    <div style="margin-top:28px;display:flex;align-items:center;gap:16px;padding:16px 24px;background:var(--color-primary-light);border-radius:12px">
+      <span style="font-family:var(--font);font-size:36px;font-weight:700;color:var(--color-primary)">{{highlight.value}}</span>
+      <span style="font-family:var(--font);font-size:16px;color:var(--color-text-secondary)">{{highlight.label}}</span>
+    </div>
+    {{/if}}
+  </div>
+  <!-- 右侧装饰区 — 图标圆或数据卡片 -->
+  <div style="flex-shrink:0;margin-left:60px;display:flex;flex-direction:column;align-items:center;gap:24px">
+    {{#if icon}}
+    <div style="width:120px;height:120px;border-radius:50%;background:var(--color-primary-light);display:flex;align-items:center;justify-content:center">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <use href="#{{icon}}"/>
+      </svg>
+    </div>
+    {{/if}}
+    {{#if stat_value}}
+    <!-- 数据卡片：大数字+标签 -->
+    <div style="text-align:center;padding:24px 32px;background:var(--color-bg);border:2px solid var(--color-border);border-radius:16px">
+      <div style="font-family:var(--font);font-size:40px;font-weight:700;color:var(--color-primary)">{{stat_value}}</div>
+      <div style="font-family:var(--font);font-size:14px;color:var(--color-text-secondary);margin-top:4px">{{stat_label}}</div>
+    </div>
+    {{/if}}
+  </div>
+</div>

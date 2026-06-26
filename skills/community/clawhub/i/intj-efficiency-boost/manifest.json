@@ -1,0 +1,27 @@
+{
+  "name": "intj-efficiency-boost",
+  "version": "1.0.0",
+  "packaged_at": "2026-03-25T09:55:14.430866",
+  "files": [
+    {
+      "path": "_meta.json",
+      "checksum": "97efcb501d442779bbe05c7a310173b2fa379cf2f7db5985661e1380cf84598a"
+    },
+    {
+      "path": "SKILL.md",
+      "checksum": "c040dc2b2d55303014a026567653b76de9298fc8618cc279b32a6ba7eeb84def"
+    },
+    {
+      "path": "references/intj-personality-guide.md",
+      "checksum": "bf78663d1b0f2226c6a74b858a8b691a26f17fc15a27f4dfbe825a2c5b4a648d"
+    },
+    {
+      "path": "scripts/package_skill.py",
+      "checksum": "320dd22b8cdf715a7322bb1c8affa8891989504e3ed14826c1f6780963aefc4b"
+    },
+    {
+      "path": "scripts/validate_skill.py",
+      "checksum": "c044a33d826f6352014b5c8de409fbe2a2de430138efa7c191140b96317baa65"
+    }
+  ]
+}

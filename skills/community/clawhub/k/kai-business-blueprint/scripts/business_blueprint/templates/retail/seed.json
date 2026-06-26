@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": []
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "零售行业蓝图关注点",
+    "description": "生成零售行业业务蓝图时，请确保覆盖以下关键领域，不要遗漏：",
+    "checklist": [
+      "门店运营：排班、客流、陈列、导购管理",
+      "会员运营：标签分层、个性化营销、流失预警与召回",
+      "POS 与收银：交易处理、异常识别、多渠道对账",
+      "订单履约：拣货路径、配送预测、退换货审核",
+      "供应链：缺货预警、智能补货、供应商协同",
+      "门店管理：店长助手、日报、异常报警、目标预测",
+      "员工体验：培训推荐、排班偏好、绩效分析",
+      "商品管理：品类规划、定价策略、促销管理",
+      "全渠道：线上线下一体化、库存共享、统一会员"
+    ],
+    "knowledgeHints": {
+      "_status": "template-only-not-domain-validated",
+      "_disclaimer": "本 hints 由模板生成，未经领域专家验证。AI 在使用前应向用户披露此状态，并建议根据实际业务场景增删。",
+      "title": "零售行业 know-how 关注点",
+      "checklist": [
+        "痛点：库存积压（周转率 <3）、客流下滑、会员流失（复购率 <30%）、POS 效率低（结账 >3min）",
+        "策略：会员分层（RFM 模型）、智能补货（安全库存预警）、导购赋能、全渠道融合",
+        "规则：食品安全合规、价格欺诈风险、数据隐私法规（GDPR/PIPL）",
+        "指标：坪效、客单价、会员复购率、员工人效",
+        "最佳实践：陈列迭代周期（2 周）、月度促销节奏、会员召回时机",
+        "误区：过度依赖促销（占比 >50%）、忽视会员运营、数据孤岛"
+      ]
+    }
+  }
+}

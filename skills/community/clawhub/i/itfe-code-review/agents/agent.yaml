@@ -1,0 +1,8 @@
+interface:
+  display_name: "ITFE Code Review"
+  short_description: "Senior engineer code review: SOLID, security, performance, error handling"
+  default_prompt: "请用中文审查当前的 git 变更，检查 SOLID 违规、安全风险、竞态条件、错误处理问题、性能问题和边界条件 bug。Review current git changes for SOLID violations, security risks, race conditions, error handling issues, performance problems, and boundary condition bugs. IMPORTANT: Respond in Simplified Chinese (简体中文)."
+
+# Agent-agnostic skill - works with any LLM provider.
+# No provider-specific configuration required.
+# Language: All responses must be in Simplified Chinese (简体中文).

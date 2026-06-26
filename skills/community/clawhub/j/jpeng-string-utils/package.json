@@ -1,0 +1,11 @@
+{
+  "name": "string-utils",
+  "version": "1.0.0",
+  "description": "Provides string manipulation and transformation operations for working with text",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["string", "text", "format", "transform", "case", "trim", "pad"],
+  "license": "MIT"
+}

@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/get-kol-cost-effective/v1 for Xiaohongshu Creator Marketplace (Pugongying) Cost Effectiveness Analysis through JustOneAPI with kolId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Cost Effectiveness Analysis",
+  "endpointPath": "get-kol-cost-effective",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) cost Effectiveness Analysis data, including pricing, reach, and engagement efficiency indicators, for campaign evaluation.",
+      "method": "GET",
+      "operationId": "getKolCostEffectiveV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-cost-effective/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Cost Effectiveness Analysis",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_get_kol_cost_effective",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-get-kol-cost-effective",
+  "sourceTitle": "OpenAPI definition"
+}

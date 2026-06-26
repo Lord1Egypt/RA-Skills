@@ -1,35 +1,103 @@
----
-name: "Lab-to-Market-Co-Creation-Agent"
-description: "面向高校硬科技成果转化，提供共创验证式创业的诊断、路线图、课程、案例与白皮书设计支持。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lab-to-market-co-creation-agent"
-sourceUrl: "https://clawhub.ai/skills/lab-to-market-co-creation-agent"
----
+name  | description | argument-hint | user_invocable
+--- | --- | --- | ---
+lab-to-market-co-creation-method | 面向高校硬科技与科技成果转化场景的创业方法论 skill。将“清华师生共创”与“MIT 有序创业 24 步法”整合为一套可执行的诊断、路线图、课程、路演与白皮书生成框架。 | 可提供：项目简介、技术源头、团队结构、目标客户、当前阶段、主要困难、希望输出形式（诊断/路线图/课程/PPT/案例/白皮书/路演）。 | true
 
-# Lab-to-Market-Co-Creation-Agent
+# 共创验证式创业法（ClawHub 上架版）
 
-> 面向高校硬科技成果转化，提供共创验证式创业的诊断、路线图、课程、案例与白皮书设计支持。
+## Skill 定位
+这是一个面向高校硬科技创业、大学科技成果转化、师生联合创业、创新创业教育设计的通用方法论 Skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lab-to-market-co-creation-agent`
-- **Source URL:** [https://clawhub.ai/skills/lab-to-market-co-creation-agent](https://clawhub.ai/skills/lab-to-market-co-creation-agent)
+它把两类能力整合在一起：
+- 前端共创能力：用“清华师生共创”解释成果从实验室走向创业组织的起点机制
+- 后端验证能力：用“MIT 有序创业 24 步法”解释项目如何完成市场细分、价值主张、客户验证与商业闭环
 
-## Overview
+## 适用场景
+- 高校科研成果转创业项目
+- 实验室成果的创业可行性诊断
+- 师生联合创业项目的路线图设计
+- 创新创业课程、讲义、工作坊设计
+- 挑战杯 / 创新大赛 / 路演材料重构
+- 白皮书、论文方法论、案例框架写作
 
+## 不适用场景
+- 单纯法律合同、税务合规、财务报表、股权协议起草
+- 纯流量型、纯渠道型、与高校成果转化无关的创业咨询
+- 只需要一句宣传文案的请求
+- 只要行业数据库检索、不需要方法论分析的请求
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lab-to-market-co-creation-agent
-```
+## 核心理论框架
+
+### 总定义
+共创验证式创业法：
+以“师生共创”解决高校硬科技创业的技术承接与组织起点问题，
+以“有序创业 24 步法”解决市场发现、价值主张、客户验证与规模化问题，
+形成从“科研共同体”到“价值共同体”的连续创业链条。
+
+### 四个核心变量
+1. 共创强度：师生信任、技术协同、角色清晰度
+2. 转译能力：把技术语言翻译成客户价值语言的能力
+3. 验证质量：市场细分、用户访谈、价值主张与购买流程验证的质量
+4. 生态支撑：课程、平台、PoC、投资、校友、制度与产业资源
+
+### 三层九阶段模型
+#### 第一层：共创生成层
+1. 成果识别
+2. 共创组队
+3. 权责建模
+
+#### 第二层：验证转译层
+4. 切入点市场界定
+5. 用户画像与价值主张转译
+6. 双十验证
+
+#### 第三层：放大闭环层
+7. 最小可行转化产品（MVTP）
+8. 三重闭环建构
+9. 平台化复制
+
+## 工作流
+### Step 1：识别任务类型
+- 项目诊断
+- 路线图设计
+- 课程/讲义设计
+- 白皮书/论文方法论写作
+- 案例分析与复盘
+- 创业比赛/路演重构
+
+### Step 2：抽取最小必要信息
+- 项目名称或主题
+- 技术源头 / 科研成果类型
+- 团队构成
+- 目标客户 / 应用场景
+- 当前阶段
+- 核心困难
+- 期望输出形式
+
+### Step 3：阶段定位
+每次输出都优先给出：
+- 当前所在层
+- 当前阶段
+- 上一阶段是否完成
+- 下一阶段关键门槛
+- 最大断点
+
+### Step 4：五维诊断
+1. 技术可转化性
+2. 共创组织成熟度
+3. 价值转译清晰度
+4. 市场验证充分度
+5. 生态与制度支撑度
+
+### Step 5：按任务类型输出交付件
+- 项目诊断版
+- 路线图版
+- 课程/讲义版
+- 白皮书/论文版
+- 比赛/路演版
+
+## 输出风格要求
+- 优先中文
+- 先结构，后解释
+- 少空话，多判断、多动作
+- 学术化请求用“概念—模型—命题—边界”
+- 实操化请求用“诊断—路线图—行动清单”

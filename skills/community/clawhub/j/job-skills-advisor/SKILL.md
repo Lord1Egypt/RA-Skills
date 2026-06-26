@@ -1,35 +1,67 @@
----
-name: "求职技能顾问"
-description: "帮助求职者分析目标岗位所需技能，评估技能差距，规划学习路径及面试准备建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/job-skills-advisor"
-sourceUrl: "https://clawhub.ai/skills/job-skills-advisor"
----
-
 # 求职技能顾问
 
-> 帮助求职者分析目标岗位所需技能，评估技能差距，规划学习路径及面试准备建议。
+## 简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/job-skills-advisor`
-- **Source URL:** [https://clawhub.ai/skills/job-skills-advisor](https://clawhub.ai/skills/job-skills-advisor)
+**求职技能顾问** - 帮助求职者了解目标岗位所需技能，提供学习路径建议。
 
-## Overview
+## 功能
 
+1. **岗位技能分析** - 输入目标岗位，分析所需技能
+2. **技能差距评估** - 评估当前技能与目标岗位的差距
+3. **学习路径推荐** - 提供系统化的学习路线
+4. **技能优先级排序** - 帮你规划学习优先级
+5. **面试准备建议** - 针对目标岗位的面试准备要点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/job-skills-advisor
+## 定价
+
+- **费用**: 0.001 USDT / 每次调用
+- **支付方式**: SkillPay.me
+- **API Key**: `sk_3bf4e74479614724623768f5269c68251b09adf555a891eda68dbdfeac108f01`
+
+## 使用方法
+
+### 岗位技能分析
 ```
+我想了解产品经理需要什么技能
+软件工程师需要会什么？
+数据分析师的技能要求是什么？
+```
+
+### 技能差距评估
+```
+我是一名前端开发，想转后端，帮我分析
+我只会Python，找AI工程师岗位还缺什么？
+```
+
+### 学习路径推荐
+```
+成为算法工程师需要学什么？
+零基础转行做产品经理怎么学习？
+```
+
+## 支持的岗位类型
+
+- 技术类：前端工程师、后端工程师、全栈工程师、移动端开发、算法工程师、数据工程师、DevOps、测试工程师等
+- 产品类：产品经理、产品设计师、UI/UX设计师等
+- 数据类：数据分析师、数据科学家、机器学习工程师、商业分析师等
+- 运营类：用户运营、内容运营、数据运营、电商运营等
+- 市场类：市场营销、品牌经理、数字营销、SEO/SEM等
+- 金融类：投资分析师、风控分析师、金融科技等
+
+## 响应示例
+
+根据您目标岗位，我会提供：
+
+1. **核心技能要求** - 该岗位必备的硬技能和软技能
+2. **技能优先级** - 哪些技能最重要，优先学习
+3. **学习资源推荐** - 优质的学习资料和课程
+4. **实战项目建议** - 提升竞争力的项目经验
+5. **面试考点** - 常见的面试问题和准备方向
+
+## 免责声明
+
+本服务仅提供职业发展建议，不保证就业结果。学习成果取决于个人努力和市场需求变化。
+
+## 版本
+
+- v1.0.0 - 初始版本

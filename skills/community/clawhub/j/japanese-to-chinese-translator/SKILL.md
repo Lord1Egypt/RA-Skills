@@ -1,35 +1,129 @@
 ---
-name: "日语到中文翻译器"
+name: japanese-to-chinese-translator
 description: "专业日语到中文翻译，专注商业和法律文档。用于：(1) 日语商业文件翻译（合同、意向书、邮件、会议纪要），(2) 日语法律文件翻译（NDA、MOU、SA），(3) 日语报告/分析翻译，(4) 保持原文语气和专业术语。触发：'翻译'、'日文翻译成中文'、'日文材料'、'日语文件'、LOI、 контракт、意向書"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/japanese-to-chinese-translator"
-sourceUrl: "https://clawhub.ai/skills/japanese-to-chinese-translator"
 ---
 
-# 日语到中文翻译器
+# 日语→中文翻译
 
-> 专业日语到中文翻译，专注商业和法律文档。用于：(1) 日语商业文件翻译（合同、意向书、邮件、会议纪要），(2) 日语法律文件翻译（NDA、MOU、SA），(3) 日语报告/分析翻译，(4) 保持原文语气和专业术语。触发：'翻译'、'日文翻译成中文'、'日文材料'、'日语文件'、LOI、 контракт、意向書
+专注商业、法律文档的专业翻译，保留原文语气、专业术语和格式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/japanese-to-chinese-translator`
-- **Source URL:** [https://clawhub.ai/skills/japanese-to-chinese-translator](https://clawhub.ai/skills/japanese-to-chinese-translator)
+## 翻译流程
 
-## Overview
+1. **提取原文** - 从docx/pdf提取日语原文
+2. **预处理** - 分离段落、表格、签名区
+3. **翻译** - 保留术语、尊重原文语气
+4. **校对** - 检查专业术语、数字、日期
+5. **输出** - 中文docx/pdf
 
+## 关键规则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/japanese-to-chinese-translator
+### 术语处理
+
+- **公司名**：不翻译，保持原文
+  -株式会社JIS →株式会社 JIS（不翻译）
+  - Hello Group → Hello Group（不翻译）
+
+- **人名**：不翻译
+  - 小西寛史 → 小西宽史（中文习惯）
+
+- **技术/法律术语**：保留日文+中文注释
+  - デュー・デリジェンス → DD（尽职调查）
+  - ブックビルディング → Book Building（询价圈购）
+
+### 语气转换
+
+| 日语 | 中文 |
+|---|---|
+| お知らせいたします | 兹通知 |
+| ご確認いただけますと幸いです | 烦请确认 |
+| ご検討くださいますよう | 请予审议 |
+| さて | 另 |
+| 上記のように | 如上所述 |
+| したがって | 因此 |
+| あえて言えば | 坦率而言 |
+| 度肝をぬかれた | 大为震撼 |
+
+### 数字和单位
+
+- 日元：直接写"亿日元"不加"JPY"
+- 日期：2025/9期 → 2025年9期
+- 百分号：3.5倍 → 3.5倍（不说350%）
+
+### 日文汉字处理
+
+常见汉字转换：
+- 株式會社 → 株式会社（用繁体或简）
+- 収引 → 取引
+- 意向表明書 → 意向书
+- 対価 → 对价
+- 株式価値 → 股价/股权价值
+- 資金調達 → 融资
+- 事業年度 → 财年
+- 決算 → 决算
+- 有利子負債 → 有息负债
+- 無利子負債 → 无息负债
+
+## 商业文档模板
+
+### 意向书（LOI）
+
+```markdown
+致：XXX公司
+日期：2026年X月X日
+
+关于：收购意向书
+
+敬启者：
+
+本公司特此向贵公司表达收购株式会社XXX 100%股权的意向，具体条款如下：
+- 目标公司：XXX
+- 估值：XXX亿日元（X倍EBITDA）
+- 尽职调查：2026年X月-X月
+- 签约：2026年X月底
+
+如贵公司有意，请于2026年X月X日前回复。
+
+此致
+XXX公司
+代表董事：XXX
 ```
+
+### 保密协议（NDA）
+
+关键条款翻译：
+- 機密情報 → 保密信息
+- 受領者 → 接收方
+- 開示者 → 披露方
+- 存続期間 → 有效期
+- 競業避止 → 竞业禁止
+- 損害賠償 → 损害赔偿
+
+## 格式保留
+
+- 原文段落结构
+- 表格格式
+- 签名区位置
+- 编号列表
+- 引用条款编号（第X条）
+
+## 工作流程
+
+```python
+# 翻译流程
+1. 读取docx → 提取日语原文段落
+2. 逐段翻译 → 保持术语表一致
+3. 检查数字 → 验证金额/日期/百分比
+4. 格式化 → 保持原格式
+5. 输出docx → 中文版本
+```
+
+## 常见错误避免
+
+- ❌ 直译"考えます"为"考虑"
+- ✓ 商业语境应为"我们认为"或"本公司认为"
+- ❌ "御社"直译为"贵社"
+- ✓ 中文用"贵公司"
+- ❌ 漏掉"お忙しい中"等寒暄
+- ✓ 添加"百忙之中"
+- ❌ 日元金额写"$"
+- ✓ "亿日元"

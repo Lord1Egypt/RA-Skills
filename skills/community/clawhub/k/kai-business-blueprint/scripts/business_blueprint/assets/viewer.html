@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Business Blueprint Viewer</title>
+    <style>
+      /* ── Design Tokens ─────────────────────────────────────── */
+      :root {
+        --c-bg: #F7F5F1;
+        --c-canvas: #FFFFFF;
+        --c-border: #E2E0DC;
+        --c-text-main: #18212F;
+        --c-text-sub: #6B7280;
+        --c-accent-primary: #0B6E6E;
+        --c-accent-primary-soft: #E0F2F2;
+        --c-accent-secondary: #D97706;
+        --c-accent-secondary-soft: #FFF3E0;
+        --c-capability: #E8F5F5;
+        --c-capability-stroke: #0B6E6E;
+        --c-system: #E8EEF5;
+        --c-system-stroke: #1C5BD9;
+        --c-actor: #FFF3E0;
+        --c-actor-stroke: #D97706;
+        --c-flow: #F5F0E8;
+        --c-flow-stroke: #8B6914;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 14px;
+        --shadow-card: 0 2px 8px rgba(24, 33, 47, 0.06);
+        --shadow-hover: 0 4px 16px rgba(24, 33, 47, 0.10);
+        --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+        --transition: 150ms ease;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--c-bg);
+        color: var(--c-text-main);
+        min-height: 100vh;
+      }
+
+      /* ── Header ────────────────────────────────────────────── */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        background: #0F2742;
+        color: #fff;
+        gap: 16px;
+      }
+      header .brand { display: flex; align-items: center; gap: 10px; }
+      header .brand .badge {
+        padding: 3px 8px;
+        background: var(--c-accent-secondary-soft);
+        color: var(--c-accent-secondary);
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      header h1 { font-size: 18px; font-weight: 600; margin: 0; }
+      header .meta-info { font-size: 13px; color: #94A3B8; display: flex; gap: 16px; align-items: center; }
+      header .meta-info strong { color: #E2E8F0; }
+      #dirty-state.unsaved { color: #FBBF24; }
+
+      /* ── View Tabs ─────────────────────────────────────────── */
+      .view-tabs {
+        display: flex;
+        gap: 0;
+        padding: 0 24px;
+        background: var(--c-canvas);
+        border-bottom: 1px solid var(--c-border);
+      }
+      .view-tab {
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--c-text-sub);
+        border: none;
+        background: none;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: var(--transition);
+      }
+      .view-tab:hover { color: var(--c-text-main); }
+      .view-tab.active {
+        color: var(--c-accent-primary);
+        border-bottom-color: var(--c-accent-primary);
+      }
+
+      /* ── Layout ────────────────────────────────────────────── */
+      main {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        min-height: calc(100vh - 56px);
+      }
+      aside {
+        background: var(--c-canvas);
+        border-right: 1px solid var(--c-border);
+        padding: 20px;
+        overflow-y: auto;
+        max-height: calc(100vh - 56px);
+      }
+      .canvas-area {
+        padding: 24px;
+        overflow: auto;
+      }
+
+      /* ── Node Cards ────────────────────────────────────────── */
+      .node-card {
+        background: var(--c-canvas);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-lg);
+        padding: 14px 16px;
+        box-shadow: var(--shadow-card);
+        transition: var(--transition);
+        cursor: pointer;
+        position: relative;
+      }
+      .node-card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-1px);
+      }
+      .node-card.selected {
+        border-color: var(--c-accent-primary);
+        box-shadow: 0 0 0 2px var(--c-accent-primary-soft);
+      }
+      .node-card .card-accent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      }
+      .node-card .card-kind {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-bottom: 4px;
+      }
+      .node-card .card-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .node-card .card-desc {
+        font-size: 13px;
+        color: var(--c-text-sub);
+        line-height: 1.5;
+      }
+      .node-card .card-links {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--c-text-sub);
+      }
+      .node-card .card-links span {
+        display: inline-block;
+        padding: 2px 6px;
+        background: var(--c-bg);
+        border-radius: 4px;
+        margin-right: 4px;
+        margin-top: 4px;
+      }
+
+      /* Node kind variants */
+      .node-card.kind-capability .card-accent { background: var(--c-capability-stroke); }
+      .node-card.kind-capability .card-kind { color: var(--c-capability-stroke); }
+      .node-card.kind-system .card-accent { background: var(--c-system-stroke); }
+      .node-card.kind-system .card-kind { color: var(--c-system-stroke); }
+      .node-card.kind-actor .card-accent { background: var(--c-actor-stroke); }
+      .node-card.kind-actor .card-kind { color: var(--c-actor-stroke); }
+      .node-card.kind-flowStep .card-accent { background: var(--c-flow-stroke); }
+      .node-card.kind-flowStep .card-kind { color: var(--c-flow-stroke); }
+
+      /* ── Section Headers ───────────────────────────────────── */
+      .section-header {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--c-text-sub);
+        margin: 20px 0 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--c-border);
+      }
+      .section-header:first-child { margin-top: 0; }
+
+      /* ── Canvas Node Boxes ─────────────────────────────────── */
+      .canvas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .canvas-node {
+        border-radius: var(--radius-md);
+        padding: 16px;
+        border: 2px solid;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .canvas-node.capability {
+        background: var(--c-capability);
+        border-color: var(--c-capability-stroke);
+      }
+      .canvas-node.system {
+        background: var(--c-system);
+        border-color: var(--c-system-stroke);
+      }
+      .canvas-node.actor {
+        background: var(--c-actor);
+        border-color: var(--c-actor-stroke);
+        border-radius: 999px;
+        text-align: center;
+        align-items: center;
+      }
+      .canvas-node.flowStep {
+        background: var(--c-flow);
+        border-color: var(--c-flow-stroke);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        padding: 24px;
+        text-align: center;
+      }
+      .canvas-node .node-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--c-text-main);
+      }
+      .canvas-node .node-sub {
+        font-size: 12px;
+        color: var(--c-text-sub);
+        margin-top: 4px;
+      }
+
+      /* ── Side Panel (selected node detail) ─────────────────── */
+      #detail-panel { display: none; }
+      #detail-panel.visible { display: block; }
+      #detail-panel h3 { font-size: 16px; margin-bottom: 8px; }
+      #detail-panel p { font-size: 13px; color: var(--c-text-sub); line-height: 1.6; margin-bottom: 12px; }
+      #detail-panel .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--c-border);
+        font-size: 13px;
+      }
+      #detail-panel .detail-row .label { color: var(--c-text-sub); }
+      #detail-panel .detail-row .value { font-weight: 500; }
+
+      /* ── Edit Panel ────────────────────────────────────────── */
+      .edit-group { margin-bottom: 16px; }
+      .edit-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: var(--c-text-main);
+      }
+      .edit-group input,
+      .edit-group textarea {
+        width: 100%;
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-sm);
+        padding: 8px 10px;
+        font: inherit;
+        font-size: 13px;
+        background: var(--c-bg);
+        transition: var(--transition);
+      }
+      .edit-group input:focus,
+      .edit-group textarea:focus {
+        outline: none;
+        border-color: var(--c-accent-primary);
+        box-shadow: 0 0 0 2px var(--c-accent-primary-soft);
+      }
+      .edit-group textarea { min-height: 100px; resize: vertical; }
+      button {
+        border: none;
+        border-radius: var(--radius-sm);
+        background: var(--c-accent-primary);
+        color: #fff;
+        padding: 8px 14px;
+        font: inherit;
+        font-size: 13px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      button:hover { opacity: 0.9; }
+      button.secondary {
+        background: var(--c-bg);
+        color: var(--c-text-main);
+        border: 1px solid var(--c-border);
+      }
+      .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+      /* ── Validation Results ────────────────────────────────── */
+      .validation-issue {
+        padding: 10px 12px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .validation-issue.error { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
+      .validation-issue.warning { background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; }
+      .validation-issue.info { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; }
+      .validation-issue .issue-code { font-weight: 600; font-family: var(--font-mono); font-size: 12px; }
+
+      /* ── JSON Viewer ───────────────────────────────────────── */
+      .json-block {
+        background: #1E293B;
+        color: #E2E8F0;
+        border-radius: var(--radius-md);
+        padding: 16px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.6;
+        overflow: auto;
+        max-height: 60vh;
+        white-space: pre-wrap;
+      }
+
+      /* ── Responsive ────────────────────────────────────────── */
+      @media (max-width: 860px) {
+        main { grid-template-columns: 1fr; }
+        aside { border-right: 0; border-bottom: 1px solid var(--c-border); max-height: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const blueprint = JSON.parse(__BLUEPRINT_JSON__);
+      const patchLog = JSON.parse(__PATCH_LOG_JSON__);
+      let savedPatchSnapshot = "";
+      let selectedNodeId = null;
+
+      function downloadText(filename, content, type) {
+        const blob = new Blob([content], { type });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+      }
+
+      function realPatchEntries() {
+        return patchLog.filter((entry) => entry.op !== "seed_patch_log");
+      }
+
+      function refreshSavedSnapshot() {
+        savedPatchSnapshot = JSON.stringify(realPatchEntries());
+      }
+
+      function ensureLocks() {
+        blueprint.editor = blueprint.editor || {};
+        blueprint.editor.fieldLocks = blueprint.editor.fieldLocks || {};
+      }
+
+      function updateSummary() {
+        document.getElementById("revision-id").textContent = blueprint.meta.revisionId || "unknown";
+        const dirty = JSON.stringify(realPatchEntries()) !== savedPatchSnapshot;
+        const el = document.getElementById("dirty-state");
+        el.textContent = dirty ? "Unsaved edits" : "Saved";
+        el.className = dirty ? "unsaved" : "";
+      }
+
+      function getNodeKind(entity) {
+        if (entity.kind) return entity.kind;
+        if ("capabilityIds" in entity && !("actorId" in entity)) return "system";
+        if ("actorId" in entity) return "flowStep";
+        return "capability";
+      }
+
+      function findNodeById(id) {
+        const lib = blueprint.library || {};
+        for (const collection of [lib.capabilities, lib.systems, lib.actors, lib.flowSteps]) {
+          if (!collection) continue;
+          const found = collection.find(n => n.id === id);
+          if (found) return found;
+        }
+        return null;
+      }
+
+      // ── Tab switching ──────────────────────────────────────
+      function switchView(viewId) {
+        document.querySelectorAll(".view-tab").forEach(t => t.classList.remove("active"));
+        document.querySelector(`.view-tab[data-view="${viewId}"]`)?.classList.add("active");
+        document.querySelectorAll(".view-pane").forEach(p => p.style.display = "none");
+        const pane = document.getElementById(`pane-${viewId}`);
+        if (pane) pane.style.display = "";
+      }
+
+      // ── Render nodes in side panel ─────────────────────────
+      function renderSidePanel() {
+        const lib = blueprint.library || {};
+        let html = "";
+
+        // Entity lists
+        if (lib.capabilities?.length) {
+          html += '<div class="section-header">Capabilities</div>';
+          for (const c of lib.capabilities) html += nodeCardHtml(c, "capability");
+        }
+        if (lib.systems?.length) {
+          html += '<div class="section-header">Systems</div>';
+          for (const s of lib.systems) html += nodeCardHtml(s, "system");
+        }
+        if (lib.actors?.length) {
+          html += '<div class="section-header">Actors</div>';
+          for (const a of lib.actors) html += nodeCardHtml(a, "actor");
+        }
+        if (lib.flowSteps?.length) {
+          html += '<div class="section-header">Flow Steps</div>';
+          for (const f of lib.flowSteps) html += nodeCardHtml(f, "flowStep");
+        }
+
+        document.getElementById("entity-list").innerHTML = html;
+
+        // Bind click events
+        document.querySelectorAll(".node-card").forEach(card => {
+          card.addEventListener("click", () => selectNode(card.dataset.id));
+        });
+      }
+
+      function nodeCardHtml(entity, kind) {
+        const desc = entity.description || "";
+        const links = buildLinksHtml(entity, kind);
+        return `
+          <div class="node-card kind-${kind}" data-id="${entity.id}">
+            <div class="card-accent"></div>
+            <div class="card-kind">${kindLabel(kind)}</div>
+            <div class="card-title">${esc(entity.name || entity.id)}</div>
+            ${desc ? `<div class="card-desc">${esc(desc.substring(0, 80))}</div>` : ""}
+            ${links ? `<div class="card-links">${links}</div>` : ""}
+          </div>`;
+      }
+
+      function kindLabel(kind) {
+        const labels = { capability: "Capability", system: "System", actor: "Actor", flowStep: "Flow Step" };
+        return labels[kind] || kind;
+      }
+
+      function buildLinksHtml(entity, kind) {
+        const parts = [];
+        if (entity.capabilityIds?.length) parts.push(...entity.capabilityIds.map(id => `<span>${esc(id)}</span>`));
+        if (entity.supportingSystemIds?.length) parts.push(...entity.supportingSystemIds.map(id => `<span>${esc(id)}</span>`));
+        if (entity.ownerActorIds?.length) parts.push(...entity.ownerActorIds.map(id => `<span>${esc(id)}</span>`));
+        return parts.join("");
+      }
+
+      function esc(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      // ── Node selection → detail panel ──────────────────────
+      function selectNode(id) {
+        selectedNodeId = id;
+        document.querySelectorAll(".node-card").forEach(c => c.classList.remove("selected"));
+        document.querySelector(`.node-card[data-id="${id}"]`)?.classList.add("selected");
+
+        const node = findNodeById(id);
+        if (!node) return;
+        const kind = getNodeKind(node);
+
+        let detailHtml = `<h3>${esc(node.name || id)}</h3>`;
+        detailHtml += `<p>${esc(node.description || "No description")}</p>`;
+        detailHtml += detailRow("ID", node.id);
+        detailHtml += detailRow("Kind", kindLabel(kind));
+        if (node.level != null) detailHtml += detailRow("Level", node.level);
+        if (node.capabilityIds?.length) detailHtml += detailRow("Capabilities", node.capabilityIds.join(", "));
+        if (node.supportingSystemIds?.length) detailHtml += detailRow("Supporting Systems", node.supportingSystemIds.join(", "));
+        if (node.ownerActorIds?.length) detailHtml += detailRow("Owner Actors", node.ownerActorIds.join(", "));
+        if (node.actorId) detailHtml += detailRow("Actor", node.actorId);
+        if (node.stepType) detailHtml += detailRow("Step Type", node.stepType);
+        if (node.category) detailHtml += detailRow("Category", node.category);
+
+        document.getElementById("detail-content").innerHTML = detailHtml;
+        document.getElementById("detail-panel").classList.add("visible");
+
+        // Edit fields
+        document.getElementById("edit-name").value = node.name || "";
+        document.getElementById("edit-desc").value = node.description || "";
+      }
+
+      function detailRow(label, value) {
+        return `<div class="detail-row"><span class="label">${esc(label)}</span><span class="value">${esc(String(value))}</span></div>`;
+      }
+
+      // ── Edit actions ────────────────────────────────────────
+      function applyEdit() {
+        if (!selectedNodeId) return;
+        const node = findNodeById(selectedNodeId);
+        if (!node) return;
+        const newName = document.getElementById("edit-name").value.trim();
+        const newDesc = document.getElementById("edit-desc").value.trim();
+        if (newName && newName !== node.name) {
+          node.name = newName;
+          ensureLocks();
+          blueprint.editor.fieldLocks[`library.${selectedNodeId}.name`] = "human";
+          patchLog.push({ op: "update_node", id: selectedNodeId, fields: { name: newName } });
+        }
+        if (newDesc !== node.description) {
+          node.description = newDesc;
+          ensureLocks();
+          blueprint.editor.fieldLocks[`library.${selectedNodeId}.description`] = "human";
+          patchLog.push({ op: "update_node", id: selectedNodeId, fields: { description: newDesc } });
+        }
+        renderSidePanel();
+        renderCanvas();
+        updateSummary();
+      }
+
+      function exportRevision() {
+        downloadText("solution.blueprint.json", JSON.stringify(blueprint, null, 2), "application/json");
+        downloadText(
+          "solution.patch.jsonl",
+          patchLog.map((entry) => JSON.stringify(entry)).join("\n") + "\n",
+          "application/x-ndjson",
+        );
+        refreshSavedSnapshot();
+        updateSummary();
+      }
+
+      // ── Canvas rendering ────────────────────────────────────
+      function renderCanvas() {
+        const lib = blueprint.library || {};
+        const capPane = document.getElementById("canvas-capability");
+        const swimPane = document.getElementById("canvas-swimlane");
+        const archPane = document.getElementById("canvas-architecture");
+
+        if (capPane) {
+          capPane.innerHTML = (lib.capabilities || []).map(c =>
+            `<div class="canvas-node capability"><div class="node-label">${esc(c.name || c.id)}</div><div class="node-sub">${esc(c.description || "").substring(0, 60)}</div></div>`
+          ).join("");
+        }
+
+        if (swimPane) {
+          let html = "";
+          for (const actor of lib.actors || []) {
+            html += `<div class="section-header">${esc(actor.name)}</div><div class="canvas-grid">`;
+            const actorFlows = (lib.flowSteps || []).filter(f => f.actorId === actor.id);
+            for (const f of actorFlows) {
+              html += `<div class="canvas-node flowStep"><div class="node-label">${esc(f.name || f.id)}</div></div>`;
+            }
+            html += `</div>`;
+          }
+          if (!lib.actors?.length) {
+            html = (lib.flowSteps || []).map(f =>
+              `<div class="canvas-node flowStep"><div class="node-label">${esc(f.name || f.id)}</div></div>`
+            ).join("");
+          }
+          swimPane.innerHTML = html;
+        }
+
+        if (archPane) {
+          let html = "";
+          for (const sys of lib.systems || []) {
+            html += `<div class="canvas-node system"><div class="node-label">${esc(sys.name || sys.id)}</div><div class="node-sub">${esc(sys.description || "").substring(0, 60)}</div>`;
+            if (sys.capabilityIds?.length) {
+              html += `<div class="card-links" style="margin-top:8px">${sys.capabilityIds.map(id => `<span>${esc(id)}</span>`).join("")}</div>`;
+            }
+            html += `</div>`;
+          }
+          archPane.innerHTML = html;
+        }
+      }
+
+      // ── Validation ──────────────────────────────────────────
+      function runValidation() {
+        // Simple client-side validation
+        const lib = blueprint.library || {};
+        const issues = [];
+        const allIds = new Set();
+
+        for (const collection of [lib.capabilities, lib.systems, lib.actors, lib.flowSteps]) {
+          if (!collection) continue;
+          for (const item of collection) {
+            if (allIds.has(item.id)) {
+              issues.push({ severity: "error", code: "DUPLICATE_ID", message: `Duplicate ID: ${item.id}` });
+            }
+            allIds.add(item.id);
+          }
+        }
+
+        const capIds = new Set((lib.capabilities || []).map(c => c.id));
+        for (const step of lib.flowSteps || []) {
+          if (!step.actorId) issues.push({ severity: "warning", code: "FLOW_STEP_MISSING_ACTOR", message: `Flow step '${step.name}' missing actor` });
+          for (const cid of step.capabilityIds || []) {
+            if (!capIds.has(cid)) issues.push({ severity: "error", code: "MISSING_CAPABILITY_REFERENCE", message: `Flow step '${step.name}' references missing capability ${cid}` });
+          }
+        }
+        for (const sys of lib.systems || []) {
+          if (!sys.supportOnly && sys.category !== "external" && !sys.capabilityIds?.length) {
+            issues.push({ severity: "warning", code: "UNMAPPED_SYSTEM", message: `System '${sys.name}' not linked to any capability` });
+          }
+        }
+
+        let html = "";
+        if (issues.length === 0) {
+          html = '<div style="color:var(--c-accent-primary);font-weight:600;padding:12px;">All checks passed</div>';
+        } else {
+          for (const issue of issues) {
+            html += `<div class="validation-issue ${issue.severity}"><span class="issue-code">${issue.code}</span> ${esc(issue.message)}</div>`;
+          }
+        }
+        document.getElementById("validation-results").innerHTML = html;
+      }
+
+      // ── Init ────────────────────────────────────────────────
+      window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("blueprint-title").textContent = blueprint.meta.title || "Business Blueprint";
+        refreshSavedSnapshot();
+        updateSummary();
+        renderSidePanel();
+        renderCanvas();
+        runValidation();
+
+        // Bind buttons
+        document.getElementById("apply-edit-btn").addEventListener("click", applyEdit);
+        document.getElementById("export-btn").addEventListener("click", exportRevision);
+        document.getElementById("validate-btn").addEventListener("click", runValidation);
+
+        // Init tabs
+        switchView("capability");
+      });
+    </script>
+
+    <header>
+      <div class="brand">
+        <span class="badge">IR First</span>
+        <h1 id="blueprint-title">Business Blueprint Workbench</h1>
+      </div>
+      <div class="meta-info">
+        <span>Rev: <strong id="revision-id">unknown</strong></span>
+        <span id="dirty-state">Saved</span>
+      </div>
+    </header>
+
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="capability" onclick="switchView('capability')">Capability Map</button>
+      <button class="view-tab" data-view="swimlane" onclick="switchView('swimlane')">Swimlane Flow</button>
+      <button class="view-tab" data-view="architecture" onclick="switchView('architecture')">Architecture</button>
+      <button class="view-tab" data-view="edit" onclick="switchView('edit')">Edit & Validate</button>
+      <button class="view-tab" data-view="json" onclick="switchView('json')">JSON</button>
+    </div>
+
+    <main>
+      <aside>
+        <div id="entity-list"></div>
+        <div id="detail-panel">
+          <div class="section-header">Selected Node</div>
+          <div id="detail-content"></div>
+          <div class="section-header">Quick Edit</div>
+          <div class="edit-group">
+            <label for="edit-name">Name</label>
+            <input id="edit-name" />
+          </div>
+          <div class="edit-group">
+            <label for="edit-desc">Description</label>
+            <textarea id="edit-desc"></textarea>
+          </div>
+          <div class="actions">
+            <button id="apply-edit-btn">Apply Edit</button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="canvas-area">
+        <div id="pane-capability" class="view-pane">
+          <div class="canvas-grid" id="canvas-capability"></div>
+        </div>
+        <div id="pane-swimlane" class="view-pane" style="display:none">
+          <div id="canvas-swimlane"></div>
+        </div>
+        <div id="pane-architecture" class="view-pane" style="display:none">
+          <div class="canvas-grid" id="canvas-architecture"></div>
+        </div>
+        <div id="pane-edit" class="view-pane" style="display:none">
+          <div style="display:flex;gap:8px;margin-bottom:16px">
+            <button id="validate-btn">Run Validation</button>
+            <button id="export-btn" class="secondary">Export Revision</button>
+          </div>
+          <div id="validation-results"></div>
+        </div>
+        <div id="pane-json" class="view-pane" style="display:none">
+          <div class="json-block" id="json-view"></div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Populate JSON view after DOM ready
+      const origReady = window.onload;
+      const _origDOMContentLoaded = window.onDOMContentLoaded;
+      setTimeout(() => {
+        const jsonEl = document.getElementById("json-view");
+        if (jsonEl) jsonEl.textContent = JSON.stringify(blueprint, null, 2);
+      }, 100);
+    </script>
+  </body>
+</html>

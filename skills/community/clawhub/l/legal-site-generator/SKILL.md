@@ -1,35 +1,29 @@
----
-name: "Legal Site Generator"
-description: "Generate a compliant legal website with Privacy Policy, Terms, support, and data deletion pages, ready for Cloudflare Pages deployment."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/legal-site-generator"
-sourceUrl: "https://clawhub.ai/skills/legal-site-generator"
----
-
 # Legal Site Generator
 
-> Generate a compliant legal website with Privacy Policy, Terms, support, and data deletion pages, ready for Cloudflare Pages deployment.
+Generate an App Store compliant legal website suitable for Cloudflare Pages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/legal-site-generator`
-- **Source URL:** [https://clawhub.ai/skills/legal-site-generator](https://clawhub.ai/skills/legal-site-generator)
+## Features
 
-## Overview
+- Privacy Policy
+- Terms of Service
+- Support Page
+- Data Deletion Page
+- GDPR & CCPA compliant
+- No ads
+- No location collection
+- No tracking scripts
 
+## Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/legal-site-generator
-```
+Generates a `dist/` folder ready for upload to Cloudflare Pages.
+
+## Parameters
+
+- appName
+- companyName
+- contactEmail
+
+## Security
+
+This skill does not execute external programs.
+It only generates static HTML files.

@@ -1,0 +1,157 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "PubTitle",
+        "columnChiName": "公告标题",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "信息来源(InfoSource)与(CT_SystemConst)表中的DM字段关联，令LB = 1183 AND DM IN (71,72,99)，得到信息来源的具体描述：71-中国货币网，72-中国债券信息网，99-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "PubOrgName",
+        "columnChiName": "发布机构",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "PubOrgCode",
+        "columnChiName": "发布机构编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "StatBeginDate",
+        "columnChiName": "统计起始日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "StatEndDate",
+        "columnChiName": "统计截止日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "NB",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InstitutionName",
+        "columnChiName": "机构名称",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InstitutionCode",
+        "columnChiName": "机构编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "Remark",
+        "columnChiName": "备注",
+        "columnType": "varchar(1000)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

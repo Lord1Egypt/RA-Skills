@@ -1,0 +1,101 @@
+{
+  "name": "Knowfun.io Integration",
+  "version": "1.0.0",
+  "description": "Integration with Knowfun.io API for generating educational content",
+  "type": "cli-tool",
+  "commands": {
+    "create": {
+      "description": "Create educational content",
+      "usage": "knowfun create <type> <content>",
+      "types": ["course", "poster", "game", "film"],
+      "examples": [
+        "knowfun create course \"Introduction to Python\"",
+        "knowfun create poster \"Climate Change Facts\"",
+        "knowfun create game \"Learn JavaScript Basics\"",
+        "knowfun create film \"History of the Internet\""
+      ]
+    },
+    "status": {
+      "description": "Check task status",
+      "usage": "knowfun status <taskId>",
+      "examples": [
+        "knowfun status c3199fb3-350b-4981-858d-09b949bfae88"
+      ]
+    },
+    "detail": {
+      "description": "Get detailed task results",
+      "usage": "knowfun detail <taskId>",
+      "examples": [
+        "knowfun detail c3199fb3-350b-4981-858d-09b949bfae88"
+      ]
+    },
+    "list": {
+      "description": "List recent tasks",
+      "usage": "knowfun list [limit]",
+      "examples": [
+        "knowfun list",
+        "knowfun list 10"
+      ]
+    },
+    "credits": {
+      "description": "Check credit balance",
+      "usage": "knowfun credits",
+      "examples": [
+        "knowfun credits"
+      ]
+    },
+    "schema": {
+      "description": "Get configuration options",
+      "usage": "knowfun schema",
+      "examples": [
+        "knowfun schema"
+      ]
+    }
+  },
+  "environment": {
+    "required": [
+      "KNOWFUN_API_KEY"
+    ],
+    "setup": "export KNOWFUN_API_KEY=\"kf_your_api_key_here\""
+  },
+  "installation": {
+    "steps": [
+      "sudo ln -s /path/to/knowfun-skills/scripts/knowfun-cli.sh /usr/local/bin/knowfun",
+      "export KNOWFUN_API_KEY=\"kf_your_api_key_here\""
+    ],
+    "verify": "knowfun credits"
+  },
+  "usage": {
+    "workflow": [
+      "User requests content creation",
+      "Execute: knowfun create <type> \"<content>\"",
+      "Note the taskId from response",
+      "Wait 2-5 minutes (depending on type)",
+      "Check status: knowfun status <taskId>",
+      "Get results: knowfun detail <taskId>",
+      "Share result URL with user"
+    ],
+    "processing_times": {
+      "course": "2-5 minutes",
+      "poster": "1-3 minutes",
+      "game": "3-7 minutes",
+      "film": "5-10 minutes"
+    },
+    "credits": {
+      "cost_per_task": 100,
+      "check_balance": "knowfun credits"
+    }
+  },
+  "error_codes": {
+    "401": "Invalid or missing API key",
+    "402": "Insufficient credits",
+    "429": "Rate limit exceeded - wait 60 seconds",
+    "404": "Task not found"
+  },
+  "links": {
+    "website": "https://www.knowfun.io",
+    "api_platform": "https://www.knowfun.io/api-platform",
+    "credits": "https://www.knowfun.io/credits",
+    "documentation": "https://github.com/MindStarAI/KnowFun-Skills"
+  }
+}

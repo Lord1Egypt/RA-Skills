@@ -1,0 +1,154 @@
+{
+  "skill_id": "investment_gurus",
+  "name": "投资大师",
+  "slug": "investment-gurus",
+  "version": "2.0.0",
+  "description": "基于20位中外顶级投资大师（7位中国+13位国际）的智能股票分析Skill，支持实时行情、多维度分析和综合建议",
+  "short_description": "20位大师多维度股票分析",
+  "author": {
+    "name": "Investment Gurus Team",
+    "email": "contact@example.com",
+    "url": "https://example.com"
+  },
+  "license": "MIT",
+  "homepage": "https://example.com",
+  "repository": "https://example.com",
+  "documentation": "https://example.com#readme",
+  "keywords": [
+    "investment",
+    "value-investing",
+    "china-stocks",
+    "stock-analysis",
+    "guru",
+    "duan-yongping",
+    "zhang-lei",
+    "lin-yuan",
+    "dan-bing",
+    "finance",
+    "stock"
+  ],
+  "python_version": ">=3.8",
+  "platforms": ["OpenClaw", "ClawHub", "Tencent SkillHub"],
+  "categories": ["finance", "investment", "stock-analysis"],
+  "tags": ["投资", "价值投资", "股票", "A股", "大师", "分析", "理财"],
+  "dependencies": {
+    "required": [
+      "yfinance>=0.2.0",
+      "pandas>=1.5.0",
+      "numpy>=1.21.0"
+    ],
+    "optional": [
+      "click>=8.0.0",
+      "rich>=12.0.0",
+      "typer>=0.9.0"
+    ]
+  },
+  "features": {
+    "stock_data_fetch": true,
+    "realtime_quote": true,
+    "kline_data": true,
+    "ma_indicators": true,
+    "trend_analysis": true,
+    "sector_info": true,
+    "guru_analysis": true,
+    "smart_analyze": true,
+    "compare_methods": true,
+    "agent_integration": true,
+    "cli_support": true
+  },
+  "configuration": {
+    "auto_trigger_keywords": ["股票", "买", "卖", "投资", "分析", "走势", "行情", "估值", "怎么样", "能买吗"],
+    "supported_stocks": ["茅台", "五粮液", "片仔癀", "宁德时代", "比亚迪", "腾讯", "阿里", "苹果", "美团", "京东"],
+    "default_guru": "auto"
+  },
+  "gurus": [
+    {
+      "id": "duan",
+      "name": "段永平",
+      "alias": "中国巴菲特",
+      "method": "能力圈+商业模式",
+      "best_sectors": ["消费", "白酒", "互联网", "高端制造"],
+      "key_principles": ["买股票就是买公司", "不懂不做", "长期持有", "安全边际"],
+      "representative_cases": ["网易", "苹果", "茅台"]
+    },
+    {
+      "id": "zhanglei",
+      "name": "张磊",
+      "alias": "高瓴资本创始人",
+      "method": "超长期主义+动态护城河",
+      "best_sectors": ["科技", "新能源", "医疗", "互联网"],
+      "key_principles": ["超长期主义", "重仓中国", "价值创造", "企业家精神"],
+      "representative_cases": ["腾讯", "京东", "格力"]
+    },
+    {
+      "id": "lilu",
+      "name": "李录",
+      "alias": "芒格家族资产管理人",
+      "method": "文明视角+极度安全边际",
+      "best_sectors": ["消费", "科技", "金融"],
+      "key_principles": ["跨市场投资", "安全边际", "长期价值", "能力圈"],
+      "representative_cases": ["比亚迪", "茅台"]
+    },
+    {
+      "id": "qiuguoluo",
+      "name": "邱国鹭",
+      "alias": "高毅资产董事长",
+      "method": "三好原则+逆向投资",
+      "best_sectors": ["金融", "地产", "周期股", "消费"],
+      "key_principles": ["好行业", "好公司", "好价格", "逆向思维"],
+      "representative_cases": ["银行", "地产"]
+    },
+    {
+      "id": "wangguobin",
+      "name": "王国斌",
+      "alias": "泉果基金创始人",
+      "method": "幸运的行业+能干的企业+合理价格",
+      "best_sectors": ["消费", "科技", "先进制造"],
+      "key_principles": ["幸运的行业", "能干的企业", "合理价格", "长期持有"],
+      "representative_cases": ["茅台", "腾讯", "美的"]
+    },
+    {
+      "id": "linyuan",
+      "name": "林园",
+      "alias": "民间股神",
+      "method": "嘴巴经济+垄断成瘾",
+      "best_sectors": ["白酒", "医药", "食品饮料", "消费"],
+      "key_principles": ["嘴巴经济", "垄断成瘾", "集中投资", "长期持有"],
+      "representative_cases": ["茅台", "片仔癀", "五粮液"]
+    },
+    {
+      "id": "danbing",
+      "name": "但斌",
+      "alias": "东方港湾创始人",
+      "method": "长期持有伟大企业+时间的玫瑰",
+      "best_sectors": ["消费", "互联网", "科技", "高端制造"],
+      "key_principles": ["长期持有", "伟大企业", "世界改变不了", "时间玫瑰"],
+      "representative_cases": ["茅台", "腾讯", "苹果"]
+    }
+  ],
+  "entry_points": {
+    "python_api": {
+      "smart_analyze": "investment_gurus.smart_analyze",
+      "compare_all_methods": "investment_gurus.compare_all_methods",
+      "handle_user_message": "investment_gurus.handle_user_message",
+      "quick_quote": "investment_gurus.quick_quote"
+    },
+    "cli": [
+      "invest-guru=investment_gurus.cli:main"
+    ]
+  },
+  "classifiers": [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+  ],
+  "readme": "README.md",
+  "skill_md": "SKILL.md",
+  "license_file": "LICENSE.txt"
+}

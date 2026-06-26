@@ -1,0 +1,73 @@
+[
+  {
+    "id": "辊床_01",
+    "rename": "输送线",
+    "position": [0, 0, 0],
+    "eulerAngle": [0, 0, 0],
+    "parameterizationCfg": [
+      {"type": 0, "value": 7940},
+      {"type": 1, "value": 4340},
+      {"type": 2, "value": 708}
+    ]
+  },
+  {
+    "id": "方形底座_02",
+    "rename": "底座_右",
+    "position": [0, 2500, 0],
+    "parameterizationCfg": [
+      {"type": 0, "value": 1000},
+      {"type": 1, "value": 1000},
+      {"type": 2, "value": 515}
+    ]
+  },
+  {
+    "id": "方形底座_02",
+    "rename": "底座_左",
+    "position": [0, -2500, 0],
+    "parameterizationCfg": [
+      {"type": 0, "value": 1000},
+      {"type": 1, "value": 1000},
+      {"type": 2, "value": 515}
+    ]
+  },
+  {
+    "id": "M900iB_280L",
+    "rename": "机器人_右",
+    "position": [0, 2500, 515]
+  },
+  {
+    "id": "M900iB_280L",
+    "rename": "机器人_左",
+    "position": [0, -2500, 515]
+  },
+  {
+    "id": "吸盘_10",
+    "rename": "吸盘_右",
+    "position": [0, 2500, 2000]
+  },
+  {
+    "id": "吸盘_10",
+    "rename": "吸盘_左",
+    "position": [0, -2500, 2000]
+  },
+  {
+    "id": "托盘_07",
+    "rename": "托盘_右前",
+    "position": [3000, 4500, 0]
+  },
+  {
+    "id": "托盘_07",
+    "rename": "托盘_右后",
+    "position": [3000, 500, 0]
+  },
+  {
+    "id": "托盘_07",
+    "rename": "托盘_左前",
+    "position": [3000, -500, 0]
+  },
+  {
+    "id": "托盘_07",
+    "rename": "托盘_左后",
+    "position": [3000, -4500, 0]
+  }
+]

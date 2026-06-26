@@ -1,0 +1,165 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "ConceptCode",
+        "columnChiName": "概念代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "概念代码（ConceptCode）：与“\n概念板块常量表（LC_ConceptList）”中的“概念代码（ConceptCode）”关联，得到概念的名称、生成日期、备注等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ConceptName",
+        "columnChiName": "概念名称",
+        "columnType": "varchar(100)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "HSSecuMarket",
+        "columnChiName": "恒生行情编码",
+        "columnType": "varchar(100)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "OpenPrice",
+        "columnChiName": "开盘价",
+        "columnType": "decimal(19,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "HighPrice",
+        "columnChiName": "最高价",
+        "columnType": "decimal(19,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "LowPrice",
+        "columnChiName": "最低价",
+        "columnType": "decimal(19,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "ClosePrice",
+        "columnChiName": "收盘价",
+        "columnType": "decimal(19,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量",
+        "columnType": "decimal(19,2)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "ChangePCT",
+        "columnChiName": "涨跌幅(%)",
+        "columnType": "decimal(19,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,0 +1,14 @@
+{
+  "name": "learn-anything-in-one-hour",
+  "version": "1.0.0",
+  "description": "Teach users any new skill/knowledge in ~1 hour using a 4-step workflow optimized for absolute beginners, focusing on the 80/20 rule for maximum practical value in minimum time.",
+  "main": "SKILL.md",
+  "keywords": ["learning", "education", "crash-course", "beginner", "80/20"],
+  "author": "Your Name <your@email.com>",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "skillVersion": "1.0.0",
+    "minOpenclawVersion": "2026.3.0"
+  }
+}

@@ -1,0 +1,140 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "SecuCode",
+        "columnChiName": "证券代码",
+        "columnType": "varchar(20)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SecuAbbr",
+        "columnChiName": "证券简称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "remark": "仅当代码定义(CodeDefine)   in   “16-上交所质押式回购申报代码、1-交易所”时有数据",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.94",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "SecuMarket",
+        "columnChiName": "证券市场",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "证券市场(SecuMarket)与(CT_SystemConst)表中的DM字段关联，令LB = 201，得到证券市场的具体描述：10-上海期货交易所，11-上海国际能源交易中心，12-中国银行间外汇市场，13-大连商品交易所，14-上海黄金交易所，15-郑州商品交易所，16-上海票据交易所，17-广州期货交易所，18-北京证券交易所，19-全国期货市场，20-中国金融期货交易所，31-台湾期货交易所，32-香港期货交易所，37-伦敦金属交易所，38-纽约商业交易所，39-芝加哥期货交易所，40-芝加哥商业交易所，41-纽约期货交易所，42-东京工业品交易所，43-纽约商品交易所，44-伦敦洲际交易所，45-巴西期货交易所，47-欧洲期货交易所，48-悉尼期货交易所，49-澳大利亚证券交易所，50-新西兰证券交易所，51-中国金融期货交易所，52-埃及开罗及亚历山大证券交易所，53-芝加哥国际货币市场，54-阿根廷布宜诺斯艾利斯证券交易所，55-巴西圣保罗证券交易所，56-墨西哥证券交易所，57-马来西亚吉隆坡证券交易所，58-日本大阪证券交易所，64-新加坡商品交易所，65-印度尼西亚证券交易所，66-泰国证券交易所，67-韩国首尔证券交易所，68-东京证券交易所，69-新加坡证券交易所，70-台湾证券交易所，71-柜台交易市场，72-香港联交所，73-一级市场，74-聚源指数市场，75-亚洲其他交易所，76-美国证券交易所，77-美国纳斯达克证券交易所，78-纽约证券交易所，79-美国其他交易市场，80-加拿大多伦多证券交易所，81-三板市场，83-上海证券交易所，84-其他市场，85-伦敦证券交易所，86-法国巴黎证券交易所，87-德国法兰克福证券交易所，88-欧洲其他交易所，89-银行间债券市场，90-深圳证券交易所，91-美国OTCBB市场，92-美国OtherOTC市场，93-上海银行间同业拆借市场，94-瑞士证券交易所，95-荷兰阿姆斯特丹证券交易所，96-约翰内斯堡证券交易所，97-伦敦国际金融期货期权交易所，98-纽约泛欧证券交易所，99-东京同业拆借市场，100-美国国债回购市场，101-伦敦银行同业拆借市场，102-香港银行同业拆借市场，103-新加坡银行同业拆借市场，104-中国银行同业拆借市场，105-欧元银行同业拆借市场，106-布鲁塞尔证券交易所，107-雅加达证券交易所，109-日本佳斯达克交易市场，110-以色列特拉维夫证券交易所，111-保加利亚索菲亚证券交易所，112-科威特证券交易所，113-斯图加特证券交易所，114-德国证券交易所，120-卢森堡证券交易所，130-百慕大证券交易所，140-布拉格证券交易所，160-芬兰赫尔辛基证券交易所，161-意大利证券交易所，162-哥本哈根证券交易所，180-挪威奥斯陆证券交易所，190-韩国科斯达克交易所，200-斯德哥尔摩证券交易所，201-华沙证券交易所，202-伊斯坦布尔证券交易所，210-印度国家证券交易所，220-圣地亚哥证券交易所，230-奥地利维也纳证券交易所，240-西班牙马德里证券交易所，250-希腊雅典证券交易所，260-爱尔兰证券交易所，270-台湾证券柜台买卖市场，280-菲律宾证券交易所，290-印度孟买证券交易所，300-澳大利亚亚太证券交易所，310-机构间私募产品报价与服务系统，320-俄罗斯莫斯科证券交易所，330-沪港通联合市场，340-深港通联合市场，350-港股通联合市场，360-纽交所群岛交易所(NYSE Arca)，370-巴兹全球市场(BATS)，380-上海自贸区市场，390-里斯本证券交易所，400-芝加哥期权交易所，410-韩国证券期货交易所，420-纽约芝加哥证券交易所(NYSE Chicago)，430-纽约国家交易所(NYSE National)，440-纳斯达克波士顿交易所(NASDAQ OMX BX)，450-纳斯达克Basic交易所，460-美国OTC(OTCBB和OtherOTC)，470-美国OTC Markets(其他)，480-投资者交易所(IEX)，490-FINRA Alternate Display Facility，500-Cboe BZX US Equities Exchange，510-Cboe BYX US Equities Exchange，520-Cboe EDGA US Equities Exchange，530-Cboe EDGX US Equities Exchange，540-Midwest Stock Exchange，550-Aquis Exchange，560-Cboe UK Europe Equities BXE，570-Blink MTF，580-Blockmatch，590-Cboe UK Europe Equities CXE，600-Knight Capital Europe Ltd，610-Euronext London，620-胡志明市证券交易所，630-沪市代理深市市场，631-沪市代理港交所市场，640-深市代理沪市市场，641-深市代理港交所市场，650-国际外汇市场(晨星)，651-ICE欧洲，652-IC美国，653-上海环境能源交易所，654-北京绿色交易所，655-天津碳排放权交易中心，657-湖北碳排放权交易中心，658-重庆碳排放权交易中心，659-四川联合环境交易所，660-广州碳排放权交易所，661-海峡股权交易中心，662-深圳排放权交易所，663-欧洲能源交易所，664-全国碳排放权交易，665-河内证券交易所，666-布达佩斯证券交易所，667-全国温室气体自愿减排交易市场，670-Turquoise交易所，680-Chi-X交易所，690-澳门金融资产交易所，691-香港债务工具中央结算系统，700-迪拜金融市场，710-萨拉热窝证券交易所，720-班雅卢卡证券交易所，730-达卡证券交易所，740-巴林证券交易所，750-博茨瓦纳证券交易所，760-NEO交易所，770-西非证券交易所，780-哥伦比亚证券交易所，790-塔林证券交易所，800-萨格勒布证券交易所，810-冰岛证券交易所，820-牙买加证券交易所，830-安曼证券交易所，840-名古屋证券交易所，850-内罗毕证券交易所，860-贝鲁特证券交易所，870-科伦坡证券交易所，880-立陶宛维尔纽斯证券交易所，890-卡萨布兰卡证券交易所，900-马耳他证券交易所，910-毛里求斯证券交易所，920-尼日利亚证券交易所，930-马斯喀特证券交易所，940-利马证券交易所，950-巴基斯坦证券交易所，960-巴勒斯坦证券交易所，970-卡塔尔证券交易所，980-布加勒斯特证券交易所，990-贝尔格莱德证券交易所，1000-沙特证券交易所，1010-卢布尔雅那证券交易所，1020-突尼斯证券交易所，1030-特立尼达和多巴哥证券交易所，1040-加拉加斯证券交易所，1050-津巴布韦证券交易所，1060-阿布扎比证券交易所，1070-拉脱维亚里加证券交易所，66301-瑞士ETS，66302-韩国ETS，66303-加拿大魁北克Cap-and-Trade(CaT)，66304-美国加利福尼亚Cap-and-Trade(CaT)，66305-美国区域温室气体倡议（RGGI），66306-加拿大新斯科舍省Cap-and-Trade(CaT)，66307-加拿大不列颠哥伦比亚省碳交易，66308-德国ETS，66309-日本东京Cap-and-Trade(CaT)，66310-日本埼玉县排放权交易，66311-英国ETS，66312-哈萨克斯坦ETS，66313-墨西哥试点ETS，66314-美国马萨诸塞州碳交易，66315-新西兰ETS，66316-马来西亚衍生品交易所。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "94.98",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "CodeDefine",
+        "columnChiName": "代码定义",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "代码定义(CodeDefine)与(CT_SystemConst)表中的DM字段关联，令LB = 1006，得到代码定义的具体描述：1-交易所，2-托管银行，3-聚源数据，5-开放式基金场内申购代码，6-开放式基金二级交易代码，7-深交所揭示净值代码，8-基金披露净值代码，9-其他，10-开放式基金其他媒体代码，11-债券托管代码，12-上交所固定收益平台，13-沪市申购代码，14-沪市交易代码，15-固定收益平台唯一交易场所，16-上交所质押式回购申报代码，17-深交所唯一交易场所综合协议平台，18-深交所综合收益平台，19-上交所特定债券平台，20-深交所特定债券平台，21-上交所大宗交易，22-上交所综合业务平台定转交易。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "BeginDate",
+        "columnChiName": "启用日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "76.32"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "StopDate",
+        "columnChiName": "停用日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "75.21"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

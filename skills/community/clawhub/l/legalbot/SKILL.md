@@ -1,35 +1,27 @@
 ---
-name: "LegalBot法律助手"
-description: "LegalBot - AI法律小助手，日常法律咨询、合同风险扫描、诉讼成本评估、法律文书生成、时效提醒。"
-category: "domain"
-source: "ClawHub"
-tags: [legal]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/legalbot"
-sourceUrl: "https://clawhub.ai/skills/legalbot"
+name: LegalBot
+description: LegalBot - AI法律小助手，日常法律咨询、合同风险扫描、诉讼成本评估、法律文书生成、时效提醒。
 ---
 
-# LegalBot法律助手
+# LegalBot - 法律小助手
 
-> LegalBot - AI法律小助手，日常法律咨询、合同风险扫描、诉讼成本评估、法律文书生成、时效提醒。
+面向普通用户的日常法律咨询助手，帮你判断：这事该不该找律师、需要准备什么。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/legalbot`
-- **Source URL:** [https://clawhub.ai/skills/legalbot](https://clawhub.ai/skills/legalbot)
+## 功能
 
-## Overview
+- 法律问答：判断纠纷类型、引用法条、给出维权步骤
+- 合同扫描：识别高风险条款、缺失条款、风险评分
+- 诉讼成本：自动计算受理费、律师费参考
+- 时效提醒：判断时效规则、计算剩余天数
+- 文书生成：起诉状、答辩状、仲裁申请、合同等10种模板
 
+## 数据文件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/legalbot
-```
+- data/litigation_fees.json - 诉讼费费率
+- data/contract_risk_keywords.json - 合同风险关键词
+- data/statute_of_limitations.json - 时效规则
+- data/law_index.json - 200+核心法条
+
+## 免责声明
+
+⚠️ 本工具仅供参考，不替代专业律师服务。

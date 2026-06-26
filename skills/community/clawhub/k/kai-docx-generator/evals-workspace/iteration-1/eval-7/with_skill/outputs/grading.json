@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval7.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "All template placeholders replaced",
+      "passed": true,
+      "evidence": "All placeholders replaced"
+    },
+    {
+      "text": "No unreplaced {{placeholders}} remain",
+      "passed": true,
+      "evidence": "All placeholders replaced"
+    },
+    {
+      "text": "Data values appear in document text",
+      "passed": true,
+      "evidence": "Found 3/3 values: ['年度维保', '城市物业', '设备维护']"
+    }
+  ]
+}

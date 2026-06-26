@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lead Finder Outreach"
+  short_description: "Build a 50-company outbound prospect pack"
+  default_prompt: "Use $lead-finder-outreach to build a niche-specific outbound prospect pack with public contact paths and cold outreach variants."

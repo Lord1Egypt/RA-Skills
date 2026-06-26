@@ -1,0 +1,7 @@
+interface:
+  display_name: "KMind Markdown 转导图（中文）"
+  short_description: "将 Markdown 标题大纲转换为 KMind PNG/SVG 导图，并支持主题、布局、连线、深浅色和彩虹分支配置。"
+  default_prompt: "使用 $kmind-markdown-to-mindmap-cn 将这份 Markdown 标题大纲转换为 KMind 导图图片，默认优先导出 PNG，并根据内容选择合适的主题、布局、连线、外观和彩虹分支配置。"
+
+policy:
+  allow_implicit_invocation: true

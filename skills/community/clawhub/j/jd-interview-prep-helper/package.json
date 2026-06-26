@@ -1,0 +1,21 @@
+{
+  "name": "jd-interview-prep",
+  "version": "1.0.0",
+  "description": "Help users prepare for job interviews by analyzing job descriptions and company information",
+  "author": "Zero",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "jd-interview-prep",
+      "description": "Help users prepare for job interviews by analyzing job descriptions and company information. Use this skill when the user wants to prepare for an interview, provides a job description (JD) and company name, or mentions interview preparation. Make sure to use this skill whenever the user asks about interview prep, mentions a specific company and JD, or wants to prepare for a technical interview.",
+      "compatibility": {
+        "tools": [
+          "web-search",
+          "tavily",
+          "read",
+          "write"
+        ]
+      }
+    }
+  ]
+}

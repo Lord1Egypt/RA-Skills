@@ -1,0 +1,30 @@
+{
+  "name": "kiri-engine",
+  "version": "1.0.0",
+  "description": "KIRI Engine 3D Scan API Skill - Generate 3D models and Gaussian Splatting assets from photos/videos",
+  "main": "scripts/kiri-engine.ps1",
+  "scripts": {
+    "balance": "powershell -ExecutionPolicy Bypass -File scripts/kiri-engine.ps1 balance"
+  },
+  "keywords": [
+    "3d",
+    "scan",
+    "photogrammetry",
+    "gaussian-splatting",
+    "3dgs",
+    "kiri-engine",
+    "openclaw",
+    "skill"
+  ],
+  "author": "taosiuman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taosiuman/kiri-engine-skill.git"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/"
+  ]
+}

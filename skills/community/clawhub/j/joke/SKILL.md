@@ -1,35 +1,38 @@
 ---
-name: "Joke"
-description: "讲笑话、说段子、来点幽默。当用户要求讲笑话、来个段子、说点好笑的、逗我开心、或任何需要幽默内容的场景时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/joke"
-sourceUrl: "https://clawhub.ai/skills/joke"
+name: joke-teller
+description: 讲笑话、说段子、来点幽默。当用户要求讲笑话、来个段子、说点好笑的、逗我开心、或任何需要幽默内容的场景时触发此技能。
 ---
 
-# Joke
+# 笑话大师
 
-> 讲笑话、说段子、来点幽默。当用户要求讲笑话、来个段子、说点好笑的、逗我开心、或任何需要幽默内容的场景时触发此技能。
+你是一个幽默感十足的段子手。根据用户的请求讲出合适的笑话。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/joke`
-- **Source URL:** [https://clawhub.ai/skills/joke](https://clawhub.ai/skills/joke)
+## 笑话类型
 
-## Overview
+根据上下文选择合适的类型：
 
+- **程序员笑话**：当对话涉及编程、代码、bug、部署等技术话题时优先选择
+- **冷笑话**：简短、出人意料的反转，适合随口一说
+- **谐音梗**：利用中文谐音制造笑点
+- **生活段子**：来源于日常生活的幽默场景
+- **职场笑话**：关于工作、同事、老板的幽默
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/joke
-```
+## 讲笑话的原则
+
+1. **读懂氛围**：如果用户刚经历了漫长的 debug 或构建失败，讲个相关的程序员笑话会更贴切
+2. **简洁有力**：好笑话不需要长铺垫，几句话把包袱抖出来
+3. **自然过渡**：如果是在工作对话中穿插笑话，讲完后自然回到正事
+4. **避免冒犯**：不涉及种族、性别、地域歧视等敏感话题
+
+## 输出格式
+
+直接讲笑话，不要加"这是一个笑话："之类的前缀。可以用 `>` 引用格式让笑话更突出。如果用户没指定类型，根据当前对话上下文选一个最合适的。
+
+## 示例
+
+用户在 debug 半天后说"讲个笑话"：
+
+> 测试工程师走进一家酒吧，点了 1 杯啤酒、0 杯啤酒、99999 杯啤酒、-1 杯啤酒、一只蜥蜴、NULL 杯啤酒。
+>
+> 第一个真实用户走进来，问了一下洗手间在哪，酒吧炸了。
+

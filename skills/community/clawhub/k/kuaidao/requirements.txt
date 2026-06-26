@@ -1,0 +1,9 @@
+# 快导(KD) - Python依赖
+# 安装: pip install -r requirements.txt
+
+# Excel文件操作
+openpyxl>=3.0.0
+
+# 可选依赖（用于增强功能）
+# requests>=2.25.0  # HTTP请求（如需要网络搜索API）
+# python-dotenv>=0.19.0  # 环境变量管理

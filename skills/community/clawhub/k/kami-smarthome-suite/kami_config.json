@@ -1,0 +1,61 @@
+{
+  "_comment": "Kami SmartHome Suite - Centralized Configuration",
+  "_doc": "One config to rule them all. Edit this file, then run: bash configure.sh to distribute settings to all skills.",
+  "_cameras_doc": "Camera name = the dict key. It is used as the canonical identifier (logs, alarm messages, snapshot dirs). Add as many cameras as needed; each skill's 'cameras' field selects which to use ([] = all).",
+  "kamiclaw_api_key": "",
+  "cameras": {
+    "yuanqu": {
+      "stream_url": "rtsp://admin:xxx@192.168.XXX/stream1"
+    },
+    "bangongshi": {
+      "stream_url": "rtsp://admin:xxx@192.168.xxx/stream1"
+    }
+  },
+  "notifications": {
+    "feishu_webhook_url": "",
+    "feishu_webhook_secret": "",
+    "feishu_app_id": "",
+    "feishu_app_secret": "",
+    "telegram_bot_token": "",
+    "telegram_chat_id": "",
+    "discord_webhook_url": "",
+    "discord_bot_token": "",
+    "discord_channel_id": ""
+  },
+  "skills": {
+    "kami-image-search": {
+      "cameras": [],
+      "capture_interval": 10,
+      "retention_days": 30
+    },
+    "kami-video-search": {
+      "cameras": [],
+      "segment_duration": 10,
+      "retention_days": 3
+    },
+    "kami-fall-detection": {
+      "cameras": [],
+      "pre_seconds": 3.0,
+      "post_seconds": 3.0,
+      "save_alarm_clips": true
+    },
+    "kami-conflict-detection": {
+      "cameras": [],
+      "sample_interval": 1.0,
+      "min_persons": 2,
+      "run_time": 0
+    },
+    "kami-suspicious-person": {
+      "cameras": [],
+      "loiter_threshold": 300,
+      "sample_interval": 2.0,
+      "run_time": 0
+    },
+    "kami-package-detection": {
+      "cameras": [],
+      "run_time": 0,
+      "conf_threshold": 0.25,
+      "alarm_cooldown": 60
+    }
+  }
+}

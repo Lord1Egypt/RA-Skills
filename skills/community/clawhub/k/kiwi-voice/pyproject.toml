@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "kiwi-voice"
+version = "0.5.0"
+description = "Real-time Russian voice assistant with OpenClaw integration"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+keywords = ["voice-assistant", "speech-recognition", "tts", "russian", "wake-word"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Natural Language :: Russian",
+]
+
+[project.scripts]
+kiwi = "kiwi.service:main"

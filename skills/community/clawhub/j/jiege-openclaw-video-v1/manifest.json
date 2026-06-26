@@ -1,0 +1,11 @@
+{
+  "name": "jiege-video-skill",
+  "version": "1.0.0",
+  "author": "何振杰",
+  "description": "基于 Veo 模型的视频生成技能，支持通过“生成视频：[提示词]”唤起。",
+  "dependencies": ["requests"],
+  "main": "veo_worker.py",
+  "hooks": {
+    "onMessage": "hooks.js"
+  }
+}

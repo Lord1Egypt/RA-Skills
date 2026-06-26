@@ -1,0 +1,74 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/get-kol-fans-distribution/v1 for Douyin Creator Marketplace (Xingtu) Follower Distribution through JustOneAPI with kolId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Follower Distribution",
+  "endpointPath": "get-kol-fans-distribution",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) follower distribution data, including audience demographics, interests, and distribution metrics, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "getKolFansDistributionV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Fans type.\n\nAvailable Values:\n- `_1`: Fans Portrait\n- `_2`: Fans Group Portrait\n- `_5`: Iron Fans Portrait",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_5"
+          ],
+          "location": "query",
+          "name": "fansType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/douyin-xingtu/get-kol-fans-distribution/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Distribution",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_get_kol_fans_distribution",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-get-kol-fans-distribution",
+  "sourceTitle": "OpenAPI definition"
+}

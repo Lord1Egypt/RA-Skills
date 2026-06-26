@@ -1,35 +1,152 @@
 ---
 name: "knowledge-digest"
 description: "将学习资料（PDF/教材/话题）转换为个性化、多模态的学习材料：手写笔记PDF、极简交互测验HTML、幻灯片PDF+PPTX、思维导图、音频课程。触发词：知识消化、学习材料、笔记生成、测验、幻灯片、思维导图、音频课程、课件、教材转换"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-digest"
-sourceUrl: "https://clawhub.ai/skills/knowledge-digest"
 ---
 
-# knowledge-digest
-
-> 将学习资料（PDF/教材/话题）转换为个性化、多模态的学习材料：手写笔记PDF、极简交互测验HTML、幻灯片PDF+PPTX、思维导图、音频课程。触发词：知识消化、学习材料、笔记生成、测验、幻灯片、思维导图、音频课程、课件、教材转换
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-digest`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-digest](https://clawhub.ai/skills/knowledge-digest)
+# 知识消化助手
 
 ## Overview
 
+将教材、PDF 或话题转换为个性化、多模态的学习材料。根据年级水平（小学/初中/高中/大学/专业）自动调整内容深度和表达方式。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-digest
+## 支持的输出格式
+
+| 格式 | 关键词 | 说明 |
+|------|--------|------|
+| notes | 笔记/手写笔记 | 手写风格笔记 PDF |
+| quiz | 测验/测试 | 极简 HTML 交互测验 |
+| slides | 幻灯片/PPT | PDF + PPTX 双版本 |
+| mindmap | 思维导图 | PNG + Mermaid 文本 |
+| audio | 音频课程 | 师生对话 mp3，约15分钟 |
+| all | 全部 | 生成所有格式 |
+
+**默认**：mindmap + slides(PDF) + quiz
+
+## Workflow
+
+### 阶段1：获取用户输入
+
+- 用户上传 PDF/教材（可选）
+- 或指定话题/方向
+- 年级水平（小学/初中/高中/大学/专业）
+- 期望输出格式
+
+**无资料时**：询问用户选择"上传资料"或"帮我搜索并生成"。
+
+### 阶段2：内容解析
+
+提取章节结构、核心概念、关键术语、学习目标、知识点依赖关系，输出 JSON 结构供后续生成使用。
+
+### 阶段3：按格式生成（见各格式指南）
+
+### 阶段4：统一交付
+
 ```
+<deliver_assets>
+<item><path>文件路径</path></item>
+</deliver_assets>
+```
+
+**规则**：只返回文件路径，禁止在对话中内嵌展示任何文件。
+
+---
+
+## 年级适配
+
+| 年级 | 语言风格 | 内容深度 |
+|------|----------|----------|
+| 小学 | 活泼、故事化、鼓励性 | 生活化、简单 |
+| 初中 | 引导式提问、基础术语 | 日常场景、适中难度 |
+| 高中 | 逻辑推理、学术性 | 专业术语、高难度 |
+| 大学/专业 | 研讨式、批判性思维 | 学术语言、专业深度 |
+
+---
+
+## 格式1：手写风格笔记（notes）
+
+**类型A**（原文PDF → 叠加手写标注）：
+1. 逐页分析 PDF 内容，识别章节/概念/公式/问题
+2. 规划每页3-8处标注（蓝色：结构标注/概念解释；粉色：重点提问/解决方案）
+3. 生成带手写标注的页面图像
+4. 编译为 PDF（150 DPI，90%质量）
+
+**类型B**（从零生成手写笔记）：
+1. 整理内容为层级结构（标题→章节→核心概念→要点→示例）
+2. 设计手写风格版式（标题大、正文手写要点、有图解和标注）
+3. 逐页生成手写风格图像
+4. 编译为 PDF
+
+**颜色规则**：全 PDF 统一不超过2种颜色（默认蓝+粉）
+
+---
+
+## 格式2：交互测验（quiz）
+
+- 每节至少5道题：选择题2-3道、判断题1-2道、填空题1-2道
+- 难度：40%简单、40%中等、20%困难
+- 每题含正确答案+有教学价值的解析
+- 生成单个 HTML 文件，视觉极简（纯白背景、无装饰）
+- 交互：点击选项→选中→提交→即时反馈对错+解析→显示总分
+
+---
+
+## 格式3：幻灯片（slides）
+
+1. **创建 content_script.md**：每张幻灯片用50-80字描述信息内容，专注信息架构，不描述视觉细节
+2. **逐张生成图像**：第一张用 gen_images，后续用 edit_images 以上一张为 base
+3. **编译**：生成 PDF（150 DPI）+ PPTX
+
+**视觉原则**：
+- 图表/插图是信息的主要载体，不是装饰背景
+- 拒绝"大面积留白+居中文字"的低效模式
+- 信息密度匹配专业信息图
+
+---
+
+## 格式4：思维导图（mindmap）
+
+- 层级不超过4层，根节点=主题，一级=核心概念，二级=细节要点
+- 每节点不超过10字
+- 输出 PNG + Mermaid 文本
+
+---
+
+## 格式5：音频课程（audio）
+
+- 师生对话形式，约15分钟，约150-180字/分钟
+- 所有例子从用户兴趣领域取材
+- 老师声音温和专业，学生声音好奇活泼
+- 输出 mp3
+
+---
+
+## 通用约束
+
+- 内容必须基于原教材，不添加未经验证的信息
+- 测验HTML保持极简：不使用 UI 框架、渐变、阴影
+- 笔记全 PDF 严格限制不超过2种颜色
+- 禁止在对话中预览/内嵌展示任何生成文件
+- 音频文件禁止自动播放
+
+## Common Mistakes
+
+1. 内容偏离原教材，自行发挥
+2. 忽略年级适配，语言深度不当
+3. 笔记颜色过多
+4. 测验HTML过度设计
+5. 幻灯片文字主导、视觉无信息价值
+6. 幻灯片使用蓝色/紫色作为主题色（除非用户指定）
+7. 预览/内嵌展示生成文件
+8. 思维导图层级过深
+
+## 文件命名与交付
+
+| 格式 | 文件名 |
+|------|--------|
+| 笔记 | `{topic}_notes.pdf` |
+| 测验 | `{topic}_quiz.html` |
+| 幻灯片 | `{topic}_slides.pdf` + `{topic}_slides.pptx` |
+| 思维导图 | `{topic}_mindmap.png` |
+| 音频 | `{topic}_audio.mp3` |
+
+交付统一用 `<deliver_assets>` 标签。

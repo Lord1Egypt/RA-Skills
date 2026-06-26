@@ -1,0 +1,212 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/aurora-mesh",
+  "preset": "Aurora Mesh",
+  "family": "premium-saas-aurora",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/aurora-mesh.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/aurora-mesh-zh.html",
+    "demos/aurora-mesh-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/aurora-mesh.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/aurora-mesh-zh.html",
+    "source_snapshot/demos/aurora-mesh-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [
+    {
+      "selector": "body",
+      "kind": "aurora-mesh",
+      "export_strategy": "background-layer"
+    }
+  ],
+  "component_selectors": {
+    "stat_card": [
+      ".stat-col"
+    ],
+    "install_row": [
+      ".install-item"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false,
+      "metric_vertical_align": "center_remaining",
+      "metric_max_height_ratio": 0.62,
+      "gaps": {
+        "after_metric": 0.08,
+        "after_label": 0.06
+      }
+    },
+    "install_row": {
+      "layout": "vertical_card",
+      "slots": [
+        "label",
+        "command"
+      ],
+      "minimum_height_in": 0.92,
+      "gaps": {
+        "after_metric": 0.08,
+        "after_label": 0.08
+      },
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [
+    "hero-stats",
+    "feature-card",
+    "centered-stat-row",
+    "install-rows",
+    "closing-cta"
+  ],
+  "text_expectations": {
+    "tabular_numbers": false,
+    "gradient_metrics": true
+  },
+  "typography": {
+    "display_font_stack": [
+      "Space Grotesk",
+      "Noto Sans SC",
+      "PingFang SC",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
+    "body_font_stack": [
+      "DM Sans",
+      "Noto Sans SC",
+      "PingFang SC",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
+    "role_selectors": {
+      "title": [
+        ".aurora-title"
+      ],
+      "body": [
+        ".aurora-subtitle",
+        ".cta-sub",
+        ".feat-card-desc",
+        ".style-desc",
+        ".step-text",
+        ".code-block"
+      ],
+      "label": [
+        ".aurora-badge",
+        ".hero-stat-label",
+        ".stat-sub",
+        ".install-label",
+        ".feat-card-title",
+        ".step-title"
+      ],
+      "metric": [
+        ".aurora-stat",
+        ".hero-stat"
+      ]
+    },
+    "title": {
+      "family_mode": "display_sans",
+      "weight": 700,
+      "line_height": 1.05,
+      "letter_spacing": "-0.03em"
+    },
+    "body": {
+      "family_mode": "body_sans",
+      "weight": 400,
+      "line_height": 1.6
+    },
+    "label": {
+      "family_mode": "body_sans",
+      "weight": 600,
+      "line_height": 1.2,
+      "letter_spacing": "0.08em"
+    },
+    "metric": {
+      "family_mode": "display_sans",
+      "weight": 700,
+      "line_height": 1.0,
+      "letter_spacing": "-0.03em"
+    }
+  },
+  "line_break_contract": {
+    "break_policy": {
+      ".aurora-title": "prefer_preserve",
+      ".aurora-subtitle": "preserve",
+      ".cta-sub": "preserve",
+      ".code-block": "preserve"
+    },
+    "shrink_forbidden_for": [
+      ".aurora-title",
+      ".aurora-stat",
+      ".hero-stat"
+    ],
+    "overflow_strategy": "expand_container_first"
+  },
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Aurora Mesh",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "a-body",
+    "a-label",
+    "a-subtitle",
+    "a-title",
+    "aurora-badge",
+    "aurora-card",
+    "aurora-stat",
+    "aurora-subtitle",
+    "aurora-title",
+    "cmd",
+    "cta-pill",
+    "cta-sub",
+    "feat-card-desc",
+    "feat-card-title",
+    "feat-grid",
+    "h2-title",
+    "hero-stat",
+    "hero-stat-label",
+    "install-item",
+    "install-label",
+    "install-row",
+    "label",
+    "pill",
+    "slide-num-label",
+    "stat",
+    "stat-col",
+    "stat-divider",
+    "stat-row",
+    "stat-sub",
+    "step-title"
+  ]
+}

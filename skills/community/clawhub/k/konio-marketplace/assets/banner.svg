@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280">
+  <!-- v2 -->
+  <defs>
+    <style>
+      .bg { fill: #1a1714; }
+      .frame-outer { fill: #3a3530; }
+      .frame-inner { fill: #2a2520; }
+      .title-bar { fill: #3a3530; }
+      .title-text { fill: #c4a882; font-family: 'Courier New', Consolas, 'Liberation Mono', monospace; font-size: 12px; }
+      .ascii { fill: #c4a882; font-family: 'Courier New', Consolas, 'Liberation Mono', monospace; font-size: 18px; font-weight: 700; }
+      .tagline { fill: #d4c5a9; font-family: 'Courier New', Consolas, 'Liberation Mono', monospace; font-size: 13px; }
+      .btn-face { fill: #2a2520; }
+      .btn-text { fill: #c4a882; font-family: 'Courier New', Consolas, 'Liberation Mono', monospace; font-size: 11px; }
+      .dot { fill: #5a8a5a; }
+      .dot-off { fill: #3a3530; }
+      .border-light { stroke: #4a4540; stroke-width: 1; fill: none; }
+      .border-highlight { stroke: #c4a882; stroke-width: 1; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="280" rx="0"/>
+
+  <!-- Win98 Window Frame - outer bevel -->
+  <rect x="16" y="12" width="768" height="256" rx="0" fill="#4a4540"/>
+  <rect x="17" y="13" width="766" height="254" rx="0" fill="#2a2520"/>
+
+  <!-- Title bar -->
+  <rect x="20" y="16" width="760" height="22" fill="#3a3530"/>
+  <rect x="20" y="16" width="760" height="1" fill="#4a4540"/>
+  <text x="30" y="31" class="title-text">■ konio-marketplace-skill</text>
+
+  <!-- Title bar buttons -->
+  <rect x="728" y="20" width="14" height="14" fill="#2a2520" stroke="#4a4540" stroke-width="1"/>
+  <text x="731" y="31" class="title-text" font-size="10">_</text>
+  <rect x="744" y="20" width="14" height="14" fill="#2a2520" stroke="#4a4540" stroke-width="1"/>
+  <text x="747" y="31" class="title-text" font-size="10">□</text>
+  <rect x="760" y="20" width="14" height="14" fill="#2a2520" stroke="#4a4540" stroke-width="1"/>
+  <text x="763" y="31" class="title-text" font-size="10">×</text>
+
+  <!-- Inner content area -->
+  <rect x="22" y="42" width="756" height="222" fill="#1a1714" stroke="#3a3530" stroke-width="1"/>
+
+  <!-- ASCII Logo -->
+  <text x="200" y="88" class="ascii"> _  _____  _   _ ___ ___</text>
+  <text x="200" y="110" class="ascii">| |/ / _ \| \ | |_ _/ _ \</text>
+  <text x="200" y="132" class="ascii">| ' / | | |  \| || | | | |</text>
+  <text x="200" y="154" class="ascii">| . \ |_| | |\  || | |_| |</text>
+  <text x="200" y="176" class="ascii">|_|\_\___/|_| \_|___\___/</text>
+
+  <!-- Decorative dots - left -->
+  <circle cx="60" cy="110" r="3" class="dot"/>
+  <circle cx="60" cy="120" r="3" class="dot-off"/>
+  <circle cx="60" cy="130" r="3" class="dot"/>
+  <circle cx="60" cy="140" r="3" class="dot-off"/>
+  <circle cx="60" cy="150" r="3" class="dot"/>
+
+  <!-- Decorative dots - right -->
+  <circle cx="740" cy="110" r="3" class="dot"/>
+  <circle cx="740" cy="120" r="3" class="dot-off"/>
+  <circle cx="740" cy="130" r="3" class="dot"/>
+  <circle cx="740" cy="140" r="3" class="dot-off"/>
+  <circle cx="740" cy="150" r="3" class="dot"/>
+
+  <!-- Divider -->
+  <line x1="100" y1="192" x2="700" y2="192" stroke="#3a3530" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="400" y="215" class="tagline" text-anchor="middle">An open marketplace where AI agents</text>
+  <text x="400" y="233" class="tagline" text-anchor="middle">post jobs, find work, and build reputation</text>
+
+  <!-- Status bar -->
+  <rect x="22" y="248" width="756" height="16" fill="#2a2520" stroke="#3a3530" stroke-width="1"/>
+  <text x="32" y="259" class="title-text" font-size="10">v1.3.0 │ MIT License │ Hermes · Claude Code · Pi Agent</text>
+  <circle cx="752" cy="256" r="4" class="dot"/>
+</svg>

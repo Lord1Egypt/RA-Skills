@@ -1,0 +1,46 @@
+{
+  "name": "@clawhub/knowledge-habit-tracker",
+  "version": "1.0.9",
+  "description": "知识工作习惯追踪器：为知识工作者设计的隐私优先、离线第一的习惯与事件记录系统，支持单习惯专注、事件沉淀、节点候选生成，以及Web、Electron桌面、Android覆盖层多平台支持。",
+  "author": "柏然 <xiaoboren0@gmail.com> (https://github.com/puppetcat-fire)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puppetcat-fire/openclaw-skills.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "knowledge-work",
+    "habit-tracking",
+    "privacy-first",
+    "offline-first",
+    "productivity",
+    "time-management",
+    "electron",
+    "android-overlay"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh",
+    "start-web.sh",
+    "start-desktop.sh",
+    "habit-cli.sh",
+    ".env.example",
+    "package.json",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "skill": true,
+    "emoji": "📚⏱️",
+    "requires": {
+      "bins": [
+        "node",
+        "npm",
+        "bash"
+      ],
+      "node_version": ">=18"
+    }
+  }
+}

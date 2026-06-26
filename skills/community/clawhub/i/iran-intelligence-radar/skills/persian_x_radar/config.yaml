@@ -1,0 +1,94 @@
+﻿metadata:
+  name: Persian X Radar + Farsi Translator Agent
+  version: "1.0"
+  author: OpenClaw Skills
+  category: OSINT / Geopolitical Intelligence / Social Monitoring
+  description: >
+    OSINT Intelligence Radar for Persian-language X content related to Iran.
+    Detects trends, scores escalation, translates content, and sends alerts.
+
+monitoring:
+  default_since_hours: 6
+  heartbeat_minutes: 30
+  keywords:
+    - "حمله"
+    - "موشک"
+    - "اعتراض"
+    - "انفجار"
+    - "پدافند"
+    - "حمله موشکی"
+    - "تحریم"
+    - "غنی سازی"
+    - "زن زندگی آزادی"
+    - "هسته ای"
+  accounts:
+    - "@khamenei_ir"
+    - "@IRNAEnglish"
+    - "@Tasnimnews_Fa"
+    - "@farsna"
+    - "@ISNA"
+    - "@MehrnewsCom"
+
+thresholds:
+  min_faves: 50
+  min_retweets: 10
+
+translation:
+  provider: "translate_text"
+  source_language: "fa"
+  languages:
+    - "en"
+    - "ar"
+    - "zh"
+
+trending:
+  enabled: true
+  spike_threshold: 3.0
+  min_volume: 3
+  keywords:
+    - "حمله"
+    - "موشک"
+    - "اعتراض"
+    - "انفجار"
+    - "پدافند"
+    - "حمله موشکی"
+
+alerts:
+  enabled: true
+  high_engagement: 500
+  medium_engagement: 150
+  channels:
+    - "telegram"
+    - "slack"
+    - "webhook"
+
+telegram:
+  enabled: true
+  bot_token: "YOUR_TELEGRAM_BOT_TOKEN"
+  chat_id: "YOUR_CHAT_ID"
+
+billing:
+  skill_id: "3092da48-a837-4288-94d6-458c6ef0b3e0"
+  price_per_call: 0.02
+  charge_cooldown_minutes: 15
+
+plans:
+  pro:
+    monitoring_window_hours: 12
+    translation_languages:
+      - "en"
+      - "ar"
+      - "zh"
+    scheduled_mode: true
+    alerts: true
+    historical_tracking: true
+    export_reports: true
+    custom_dashboards: true
+
+tools:
+  primary_search: "x_keyword_search"
+  fallback_search:
+    - "x_semantic_search"
+    - "web_search"
+  translator: "translate_text"
+  notifier: "send_alert"

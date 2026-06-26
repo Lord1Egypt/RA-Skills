@@ -1,35 +1,73 @@
 ---
-name: "intimate-ch04-social-cognition"
-description: "在对话中辅助学习"亲密关系/Intimate Relationships"第 4 章"社会认知"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章社会认知概念（social cognition 社会认知、primacy e..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intimate-ch04-social-cognition"
-sourceUrl: "https://clawhub.ai/skills/intimate-ch04-social-cognition"
+name: intimate-ch04-social-cognition
+description: 在对话中辅助学习"亲密关系/Intimate Relationships"第 4 章"社会认知"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章社会认知概念（social cognition 社会认知、primacy effect 首因效应、confirmation bias 验证性偏差、overconfidence 过度自信、positive illusion 积极错觉、attribution 归因、actor/observer effect 行动者/观察者效应、self-serving bias 自我服务偏差、reconstructive memory 重构性记忆、self-fulfilling prophecy 自我实现的预言、impression management 印象管理、self-verification 自我证实）时使用。使用渐进式披露，按需读取 references/ 下的细节，把课本知识自然引入学习对话
 ---
 
-# intimate-ch04-social-cognition
+# 《亲密关系》第 4 章社会认知学习助手
 
-> 在对话中辅助学习"亲密关系/Intimate Relationships"第 4 章"社会认知"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章社会认知概念（social cognition 社会认知、primacy e...
+## 何时启用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intimate-ch04-social-cognition`
-- **Source URL:** [https://clawhub.ai/skills/intimate-ch04-social-cognition](https://clawhub.ai/skills/intimate-ch04-social-cognition)
+当用户出现以下信号时使用本 skill：
 
-## Overview
+- 询问社会认知、第一印象、刻板印象、首因效应或为什么第一印象难改变
+- 讨论验证性偏差、过度自信、为什么伴侣越熟越不一定越了解
+- 询问积极错觉、理想化伴侣、归因方式、行动者/观察者效应或自我服务偏差
+- 提到重构性记忆、关系信念、浪漫主义、宿命信念、成长信念
+- 想理解自我实现的预言、拒绝敏感、乐观预期如何改变互动
+- 讨论自我概念、自我提升、自我证实、婚姻转变或低自尊伴侣反应
+- 询问印象管理、逢迎讨好、自我推销、恐吓、恳求、自我监控
+- 复习 Miller《Intimate Relationships》第 4 章、做读书笔记或准备考试
 
+不要一启动就把整章认知偏差全部展开。先判断用户是在问"第一印象"、"伴侣解释"、"关系信念/期望"、"自我与印象管理"还是"了解伴侣的准确性"。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intimate-ch04-social-cognition
-```
+## 渐进式披露总原则
+
+1. **先问后讲**。除非用户明确要求总览，先用 1-2 句话确认 Ta 想要定义、研究例子、理论框架、案例分析，还是考试辨析。
+2. **最小必要信息**。每轮先给 3-6 句可独立理解的回答；用户追问时再展开研究、数字或复杂机制。
+3. **用课本例子锚定**。优先调用 Hannah 社会阶层录像、外向/内向面试、Snyder 电话实验、Curtis & Miller 期待实验、宿命/成长信念、自我监控、危险知觉、Matthew 与 Geri 思考题等课本例子。
+4. **层层下钻不反向展开**。用户只问首因效应时，不主动铺开归因、记忆和印象管理；用户问具体研究时再读取对应 reference。
+5. **中文回答，术语首次给英文**。首次出现写作"验证性偏差（confirmation bias）"这类形式；之后可只用中文。
+
+## 核心骨架
+
+一句话主旨：社会认知决定我们如何解释伴侣和关系；这些解释不一定准确，却会强烈影响亲密关系中的情绪、行为和后续互动。
+
+三块核心框架：
+1. **输入会被先入之见过滤**：第一印象、刻板印象、首因效应和验证性偏差会影响我们看到什么、问什么、记住什么。
+2. **解释会塑造关系质量**：积极错觉、归因方式、重构性记忆和关系信念可以改善关系，也可能维持痛苦。
+3. **期待和自我会制造现实**：自我实现的预言、拒绝敏感、自我证实和印象管理会把认知转化成行为，从而改变伴侣反应。
+
+关键对比：
+- **准确不等于有益**：有些危险知觉越准确越令人不安，适度善意解释反而保护关系。
+- **理想化不等于自欺**：了解现实缺点但宽容解释有益；凭空捏造品质会导致失望。
+- **熟悉不等于理解**：亲密伴侣比陌生人更了解彼此，但常高估相似、理解和判断准确性。
+
+## 引入细节时去读哪个文件
+
+按需读取，不要预先全部加载：
+
+| 用户问题 / 场景 | 读取 |
+|---|---|
+| 术语定义、英文原词、易混概念 | `references/key-terms.md` |
+| 图式、宿命/成长信念、自我实现预言、自我提升/自我证实、印象管理模型 | `references/models.md` |
+| 第一印象、刻板印象、首因效应、验证性偏差、过度自信 | `references/first-impressions.md` |
+| 积极错觉、归因、记忆、关系信念、期待如何影响关系 | `references/partner-perception.md` |
+| 自我概念、婚姻转变、印象管理策略、自我监控 | `references/self-and-impression-management.md` |
+| 伴侣了解准确性、动机、易理解性、情绪智力、危险知觉 | `references/knowing-partners.md` |
+| 经典研究、研究者姓名、年份、课本数字 | `references/research.md` |
+| 想用课本原例解释抽象概念 | `references/examples.md` |
+| 判断题、常见误读、应用边界 | `references/common-misconceptions.md` |
+
+## 教学风格建议
+
+- **苏格拉底式**：用户给关系场景时，先问"你在解释事实、推断动机、回忆过去，还是预期未来？"再定位概念。
+- **易混概念辨析**：重点区分 primacy effect/confirmation bias、positive illusion/self-deception、destiny belief/growth belief、self-enhancement/self-verification、accuracy/usefulness。
+- **例子锚点**：解释抽象概念时优先落到一个课本研究；不要编造新的实验、年份或数字。
+- **温和限定**：本章不是教人盲目乐观，而是说明认知解释如何影响关系；要区分善意解释与否认现实。
+- **应用要回到证据**：如果用户要关系建议，只把第 4 章概念作为分析框架，不替代心理咨询或后续章节内容。
+
+## 范围边界
+
+- 本 skill 仅覆盖第 4 章"社会认知"：第一印象、知觉力量、归因、记忆、关系信念、期望、自我知觉、印象管理和伴侣了解。
+- 如果用户问第 1 章依恋类型、第 3 章吸引力、第 5 章沟通、第 6 章相互依赖或第 11 章冲突，只在第 4 章认知框架内给出钩子，不展开后续章节理论。
+- 不虚构研究引用、研究年份、实验名称或数据。reference 中只使用 `text00011.html` 明确给出的姓名、年份、研究项目和数字；不确定时直接说明需要查看原书或后续章节。

@@ -1,0 +1,9 @@
+{
+  "name": "knowledge-distillation",
+  "version": "1.1.0",
+  "description": "Distill OpenClaw memory, session logs, and generated reports into evidence-backed knowledge points and knowledge leads.",
+  "keywords": ["knowledge", "distillation", "memory", "openclaw", "second-brain"],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/knowledge-distillation"
+}

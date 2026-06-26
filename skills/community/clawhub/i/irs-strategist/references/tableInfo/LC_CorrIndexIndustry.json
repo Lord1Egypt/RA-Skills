@@ -1,0 +1,97 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "IndexCode",
+        "columnChiName": "指数内码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指数内码（IndexCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "IndustryStandard",
+        "columnChiName": "行业分类标准",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "行业分类标准(IndustryStandard)与(CT_SystemConst)表中的DM字段关联，令LB = 1081 AND DM IN (1,3,5,6,7,9,12,14,20,22,23,24,28,30,37,38,40,44,49,100)，得到行业分类标准的具体描述：1-CSRC行业分类，3-中信行业分类，5-SSE行业分类，6-聚源行业分类(旧)，7-SSE-GICS行业分类，9-申万行业分类，12-中证指数行业分类，14-新华ICB行业分类，20-国证行业分类，22-证监会行业分类2012版，23-证监会行业分类2012版(中证披露)，24-申万行业分类2014版，28-中证指数行业分类(2016版)，30-聚源行业分类2016，37-中信行业2019分类，38-申万行业分类(新)，40-中证指数行业分类(2021版)，44-中国上市公司协会上市公司行业统计分类指引，49-长江行业分类，100-恒生行业分类。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IndustryCode",
+        "columnChiName": "所属行业",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "所属行业(IndustryCode)：当IndustryStandard in (1,3,5,6,7,9,12,20,22,24,28,30,33,37,44,46) 时,\"IndustryCode\"与\"CT_IndustryType\"的\"IndustryNum\"关联,同时令CT_IndustryType.Standard=IndustryStandard;当IndustryStandard=23时,\"IndustryCode\"与\"CT_IndustryType\"的\"IndustryNum\"关联,同时令CT_IndustryType.Standard=22;当IndustryStandard=13时,\"IndustryCode\"与\"CT_IndustryType\"的\"IndustryNum\"关联,同时令CT_IndustryType.Standard=6;当IndustryStandard in (38,40) 时,\"IndustryCode\"与\"CT_IndustryType\"的\"IndustryCode\"关联,同时令CT_IndustryType.Standard=IndustryStandard;当IndustryStandard=14时,\"IndustryCode\"与\"CT_SystemConst\"的\"DM\"关联,\"LB=1529\";当IndustryStandard=100时,\"IndustryCode\"与\"HK_IndustryCategory\"的\"IndustryNum\"关联,Standard=100",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EndDate",
+        "columnChiName": "行业停用日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "16.84"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "IndexState",
+        "columnChiName": "指数状态",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "指数状态（IndexState），该字段定为固定常量：1-新增；2-延用；3-停用",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

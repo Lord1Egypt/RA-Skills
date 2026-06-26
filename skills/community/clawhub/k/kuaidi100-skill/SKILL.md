@@ -1,35 +1,156 @@
 ---
-name: "kuaidi100-skill-快递100物流查询"
-description: "快递100 API 技能，用于查询快递物流相关信息。当用户提到快递单号、物流轨迹、查快递、运费估算、预计到达时间、识别快递公司等需求时，必须使用此技能。支持：查询物流轨迹（query_trace）、识别快递公司（auto_number）、估算运费（estimate_price）、预估寄件送达时间（estimate..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kuaidi100-skill"
-sourceUrl: "https://clawhub.ai/skills/kuaidi100-skill"
+name: kuaidi100-skill
+description: 快递100 API 技能，用于查询快递物流相关信息。当用户提到快递单号、物流轨迹、查快递、运费估算、预计到达时间、识别快递公司等需求时，必须使用此技能。支持：查询物流轨迹（query_trace）、识别快递公司（auto_number）、估算运费（estimate_price）、预估寄件送达时间（estimate_time）、预估在途快递送达时间（estimate_time_with_logistic）。即使用户只是随口提到"我的快递到哪了"、"这个单号是什么快递"等，也要主动触发此技能。
 ---
 
-# kuaidi100-skill-快递100物流查询
+# 快递100 API 技能
 
-> 快递100 API 技能，用于查询快递物流相关信息。当用户提到快递单号、物流轨迹、查快递、运费估算、预计到达时间、识别快递公司等需求时，必须使用此技能。支持：查询物流轨迹（query_trace）、识别快递公司（auto_number）、估算运费（estimate_price）、预估寄件送达时间（estimate...
+通过 Node.js 脚本调用快递100 API 接口，实现快递物流查询相关功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kuaidi100-skill`
-- **Source URL:** [https://clawhub.ai/skills/kuaidi100-skill](https://clawhub.ai/skills/kuaidi100-skill)
+## 配置文件
 
-## Overview
+- `config.json`：配置文件，用于存储 API Key
+  ```json
+  {
+      "apiKey": "your_api_key_here"
+  }
+  ```
 
+## 环境变量
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `KUAIDI100_API_KEY`：快递100 API Key（可选，作为备用配置方式）
+
+## 脚本路径
+
+```
+script/kuaidi100.js
+```
+
+## Key 处理规则
+
+优先级从高到低：
+1. 配置文件 `config.json` 中的 `apiKey` 字段（若已设置且不为空）
+2. 环境变量 `KUAIDI100_API_KEY`（若已设置且不为空）
+3. 使用默认值 `null`（使用免费额度）
+
+## 额度耗尽处理
+
+若接口返回内容包含"免费调用额度已耗尽"、"今日免费"、"额度不足"等字样，需告知用户：
+
+> 今日免费调用额度已耗尽。您可前往 [快递100 API 开放平台](https://api.kuaidi100.com) 注册账号并获取专属 API Key，然后将 Key 更新到配置文件 `config.json` 的 `apiKey` 字段中，或设置环境变量 `KUAIDI100_API_KEY` 即可继续使用。
+
+---
+
+## 工具列表
+
+### 1. query_trace — 查询快递物流轨迹
+
+**触发场景**：用户询问某快递单号的物流状态、快递到哪了、轨迹查询等。
+
+**参数**：
+- `kuaidiNum`（必填）：快递单号
+- `phone`（可选）：手机号，顺丰速运、顺丰快运、中通快递必填
+
+**Node.js 调用**：
 ```bash
-hermes skills install clawhub/kuaidi100-skill
+node script/kuaidi100.js queryTrace <快递单号> [手机号]
+```
+
+> 若手机号为空则省略手机号参数：
+> ```bash
+> node script/kuaidi100.js queryTrace <快递单号>
+> ```
+
+---
+
+### 2. auto_number — 识别快递公司
+
+**触发场景**：用户想知道某快递单号属于哪家快递公司，或需要在调用其他接口前识别快递公司编码。
+
+**参数**：
+- `kuaidiNum`（必填）：快递单号
+
+**Node.js 调用**：
+```bash
+node script/kuaidi100.js autoNumber <快递单号>
+```
+
+---
+
+### 3. estimate_price — 估算运费
+
+**触发场景**：用户询问从某地寄快递到某地的费用、运费是多少等。
+
+**参数**：
+- `kuaidicom`（必填）：快递公司编码（小写），支持：
+  - 顺丰：`shunfeng`
+  - 京东：`jd`
+  - 德邦快递：`debangkuaidi`
+  - 圆通：`yuantong`
+  - 中通：`zhongtong`
+  - 申通：`shentong`
+  - 韵达：`yunda`
+  - EMS：`ems`
+- `recAddr`（必填）：收件地址，如 `广东深圳南山区`
+- `sendAddr`（必填）：寄件地址，如 `北京海淀区`
+- `weight`（必填）：重量（kg，不带单位），默认 `1`
+
+**Node.js 调用**：
+```bash
+node script/kuaidi100.js estimatePrice <快递公司编码> <收件地址> <寄件地址> [重量]
+```
+
+---
+
+### 4. estimate_time — 预估寄件送达时间
+
+**触发场景**：用户寄件前询问预计几天到、送达时间等（尚未寄出，无物流轨迹）。
+
+**参数**：
+- `kuaidicom`（必填）：快递公司编码（小写），支持：
+  圆通`yuantong`、中通`zhongtong`、顺丰`shunfeng`、顺丰快运`shunfengkuaiyun`、京东`jd`、极兔速递`jtexpress`、申通`shentong`、韵达`yunda`、EMS`ems`、跨越`kuayue`、德邦快递`debangkuaidi`、EMS-国际件`emsguoji`、邮政国内`youzhengguonei`、国际包裹`youzhengguoji`、宅急送`zhaijisong`、芝麻开门`zhimakaimen`、联邦快递`lianbangkuaidi`、天地华宇`tiandihuayu`、安能快运`annengwuliu`、京广速递`jinguangsudikuaijian`、加运美`jiayunmeiwuliu`
+- `from`（必填）：出发地，如 `广东省深圳市南山区`
+- `to`（必填）：目的地，如 `北京市海淀区`
+- `orderTime`（可选）：下单时间，格式 `yyyy-MM-dd HH:mm:ss`，默认当前时间
+- `expType`（可选）：业务/产品类型，如 `标准快递`
+
+**Node.js 调用**：
+```bash
+node script/kuaidi100.js estimateTime <快递公司编码> <出发地> <目的地> [下单时间] [业务类型]
+```
+
+---
+
+### 5. estimate_time_with_logistic — 预估在途快递送达时间
+
+**触发场景**：用户查询了物流轨迹（query_trace）后，询问还需多久到达、预计几号能到等，通常在 `query_trace` 之后调用。
+
+**参数**：
+- `kuaidicom`（必填）：快递公司编码（同 estimate_time，见上方支持列表）
+- `from`（必填）：出发地，如 `广东省深圳市南山区`
+- `to`（必填）：目的地，如 `北京市海淀区`
+- `orderTime`（必填）：取 query_trace 返回的**最早**物流轨迹时间，格式 `yyyy-MM-dd HH:mm:ss`
+- `logistic`（必填）：历史物流轨迹 JSON 数组，取自 query_trace 返回数据，格式：
+  ```json
+  [{"time":"2025-12-29 12:43:35","context":"您的快件已到达快递驿站，请及时取件","status":"投柜或驿站"},{"time":"2025-12-29 08:48:27","context":"【河北省承德市隆化县】的郭工正在派件","status":"派件"}]
+  ```
+
+**Node.js 调用**：
+```bash
+node script/kuaidi100.js estimateTimeWithLogistic <快递公司编码> <出发地> <目的地> <下单时间> <物流轨迹JSON>
+```
+
+---
+
+## 结果处理
+
+所有接口均直接返回 Markdown 格式内容，**无需额外处理，直接将结果返回给用户即可**。
+
+## 典型调用流程
+
+```
+用户询问快递还需多久到
+  → 1. query_trace 查询物流轨迹（获取快递公司、轨迹数据）
+  → 2. estimate_time_with_logistic 预估剩余时间（携带轨迹数据）
+  → 返回结果给用户
 ```

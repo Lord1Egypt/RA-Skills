@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/get-kol-rec-videos/v1 for Douyin Creator Marketplace (Xingtu) Recommended Videos through JustOneAPI with kolId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Recommended Videos",
+  "endpointPath": "get-kol-rec-videos",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) recommended videos data, including video performance metrics, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "getKolRecVideosV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/douyin-xingtu/get-kol-rec-videos/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Recommended Videos",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_get_kol_rec_videos",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-get-kol-rec-videos",
+  "sourceTitle": "OpenAPI definition"
+}

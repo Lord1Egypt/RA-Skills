@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080,height=1440">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1440px;
+    background: #FFF8F0;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  .top-bar {
+    width: 1080px;
+    height: 10px;
+    background: linear-gradient(90deg, #FF6B6B, #FFE66D, #4ECDC4, #A29BFE, #FF6B9D);
+  }
+  .bottom-bar {
+    position: absolute;
+    bottom: 0;
+    width: 1080px;
+    height: 10px;
+    background: linear-gradient(90deg, #A29BFE, #4ECDC4, #FFE66D, #FF6B6B);
+  }
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.10;
+  }
+  .c1 { width: 700px; height: 700px; background: #FF6B9D; top: -280px; right: -200px; }
+  .c2 { width: 500px; height: 500px; background: #4ECDC4; bottom: 250px; left: -180px; }
+  .c3 { width: 350px; height: 350px; background: #FFE66D; bottom: -80px; right: 80px; }
+  .c4 { width: 220px; height: 220px; background: #A29BFE; top: 380px; left: 30px; opacity: 0.07; }
+  .main-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 920px;
+    text-align: center;
+  }
+  .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B9D, #FF6B6B);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px 32px;
+    border-radius: 50px;
+    margin-bottom: 48px;
+    letter-spacing: 5px;
+    box-shadow: 0 4px 20px rgba(255, 107, 157, 0.35);
+  }
+  .title {
+    font-size: 96px;
+    font-weight: 950;
+    color: #1a1a2e;
+    line-height: 1.15;
+    margin-bottom: 48px;
+    letter-spacing: -3px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+  .subtitle {
+    font-size: 40px;
+    color: #4a4a6a;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B9D, #FFE66D);
+    margin: 40px auto;
+    border-radius: 2px;
+  }
+  .source {
+    position: absolute;
+    bottom: 55px;
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    color: #B8B8D0;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="bg-circle c1"></div>
+  <div class="bg-circle c2"></div>
+  <div class="bg-circle c3"></div>
+  <div class="bg-circle c4"></div>
+  <div class="main-text">
+    <div class="tag">✨ 分享</div>
+    <div class="title">[主标题<br>换行部分]</div>
+    <div class="divider"></div>
+    <div class="subtitle">[副标题·金句一行]</div>
+  </div>
+  <div class="bottom-bar"></div>
+  <div class="source">📕 小红书</div>
+</body>
+</html>

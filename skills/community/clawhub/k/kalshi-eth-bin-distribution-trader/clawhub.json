@@ -1,0 +1,76 @@
+{
+  "emoji": "\ud83d\udcca",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY",
+      "SOLANA_PRIVATE_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_ETH_BINDIST_ENTRY_EDGE",
+      "type": "number",
+      "default": 0.08,
+      "range": [0.01, 0.50],
+      "step": 0.01,
+      "label": "Entry edge threshold (per-bin)"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_EXIT_THRESHOLD",
+      "type": "number",
+      "default": 0.45,
+      "range": [0.10, 0.99],
+      "step": 0.01,
+      "label": "Exit probability threshold"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_MAX_POSITION_USD",
+      "type": "number",
+      "default": 5.00,
+      "range": [1, 200],
+      "step": 1,
+      "label": "Max position size (USD)"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_MAX_TRADES_PER_RUN",
+      "type": "number",
+      "default": 3,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Max trades per run"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_SLIPPAGE_MAX",
+      "type": "number",
+      "default": 0.15,
+      "range": [0.05, 1.0],
+      "step": 0.05,
+      "label": "Max slippage before skipping trade"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_MIN_LIQUIDITY",
+      "type": "number",
+      "default": 0,
+      "range": [0, 10000],
+      "step": 100,
+      "label": "Min market liquidity USD (0 = disabled)"
+    },
+    {
+      "env": "SIMMER_ETH_BINDIST_SUM_TOLERANCE",
+      "type": "number",
+      "default": 0.05,
+      "range": [0.01, 0.20],
+      "step": 0.01,
+      "label": "Min bin sum deviation to trigger analysis"
+    }
+  ]
+}

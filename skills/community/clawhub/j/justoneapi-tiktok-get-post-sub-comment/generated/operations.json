@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/get-post-sub-comment/v1 for TikTok Comment Replies through JustOneAPI with awemeId and commentId.",
+  "displayName": "TikTok Comment Replies",
+  "endpointPath": "get-post-sub-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok comment Replies data, including reply ID, user information, and text content, for understanding detailed user interactions and threaded discussions and identifying influencers or active participants within a comment section.",
+      "method": "GET",
+      "operationId": "getPostSubCommentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the TikTok post.",
+          "enumValues": [],
+          "location": "query",
+          "name": "awemeId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the comment to retrieve replies for.",
+          "enumValues": [],
+          "location": "query",
+          "name": "commentId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "0",
+          "description": "Pagination cursor. Start with '0'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/get-post-sub-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Comment Replies",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_get_post_sub_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-get-post-sub-comment",
+  "sourceTitle": "OpenAPI definition"
+}

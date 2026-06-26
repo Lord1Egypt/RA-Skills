@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/reddit/get-post-detail/v1 for Reddit Post Details through JustOneAPI with postId.",
+  "displayName": "Reddit Post Details",
+  "endpointPath": "get-post-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Reddit post Details data, including author details, subreddit info, and engagement counts, for content analysis, moderation research, and monitoring.",
+      "method": "GET",
+      "operationId": "getRedditPostDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the Reddit post (e.g., 't3_1q4aqti').",
+          "enumValues": [],
+          "location": "query",
+          "name": "postId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/reddit/get-post-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Details",
+      "tags": [
+        "Reddit"
+      ]
+    }
+  ],
+  "platformKey": "reddit",
+  "primaryTag": "Reddit",
+  "skillName": "justoneapi_reddit_get_post_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-reddit-get-post-detail",
+  "sourceTitle": "OpenAPI definition"
+}

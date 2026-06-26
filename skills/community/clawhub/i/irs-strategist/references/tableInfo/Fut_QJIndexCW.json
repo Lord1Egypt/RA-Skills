@@ -1,0 +1,127 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "IndexCode",
+        "columnChiName": "指数内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指数内部编码（IndexCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ContractInnerCode",
+        "columnChiName": "品种合约内码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "品种合约内码（ContractInnerCode）：与“期货合约（Fut_FuturesContract）”中的“合约内部编码（ContractInnerCode）”关联，得到构成指数成份为商品对应的上市品种合约具体描述。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ProductCode",
+        "columnChiName": "成份品种代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "成份品种代码（ProductCode）：当品种上市交易所(ExchangeCode) in(10,13,15)时，成份品种代码（ProductCode）与产品表（CT_Product）”中的“产品代码（ProductCode）”关联，“产品类别(ProductCategory )=326”，得到指数成份的具体描述。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "ExchangeCode",
+        "columnChiName": "品种上市交易所",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "品种上市交易所(ExchangeCode)：与“系统常量表 (CT_SystemConst)”中的DM字段关联，令LB=201，得到交易所代码的具体描述：10-上海期货交易所，13-大连商品交易所，15-郑州商品交易所",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "EffectiveDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "ExpiryDate",
+        "columnChiName": "失效日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "WeightedRatio",
+        "columnChiName": "权重(%)",
+        "columnType": "decimal(18,15)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

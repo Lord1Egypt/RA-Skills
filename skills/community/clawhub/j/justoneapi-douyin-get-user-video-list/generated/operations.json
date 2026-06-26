@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin/get-user-video-list/v3 for Douyin (TikTok China) User Published Videos through JustOneAPI with secUid.",
+  "displayName": "Douyin (TikTok China) User Published Videos",
+  "endpointPath": "get-user-video-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) user Published Videos data, including captions, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserVideoListV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique user ID (sec_uid) on Douyin.",
+          "enumValues": [],
+          "location": "query",
+          "name": "secUid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination cursor; use 0 for the first page, and the `max_cursor` from the previous response for subsequent pages.",
+          "enumValues": [],
+          "location": "query",
+          "name": "maxCursor",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin/get-user-video-list/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Videos",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin_get_user_video_list",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-get-user-video-list",
+  "sourceTitle": "OpenAPI definition"
+}

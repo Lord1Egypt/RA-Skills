@@ -1,0 +1,22 @@
+name: kokonna-frame
+version: "1.2.0"
+author: KoKonna
+license: MIT
+runtime: python
+entry: kokonna.py
+min_openclaw_version: "2026.1.0"
+description: Control KoKonna AI e-ink art frames. Upload images, query device info, and manage multiple frames.
+categories:
+  - smart-home
+  - media
+  - utilities
+config:
+  - key: api_base_url
+    type: string
+    required: true
+    default: "https://api.galaxyguide.cn/openapi"
+    description: KoKonna API base URL
+  - key: devices
+    type: object
+    required: true
+    description: Device configuration with device_name as key and api_key as value

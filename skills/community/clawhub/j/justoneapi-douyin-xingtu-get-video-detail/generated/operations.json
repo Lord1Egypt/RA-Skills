@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/get-video-detail/v1 for Douyin Creator Marketplace (Xingtu) Video Details through JustOneAPI with detailId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) video Details data, including performance fields from the legacy Douyin Xingtu endpoint, for content review and integration compatibility.",
+      "method": "GET",
+      "operationId": "getDouyinXingtuVideoDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Video detail ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "detailId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/douyin-xingtu/get-video-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

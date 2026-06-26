@@ -1,0 +1,100 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 1,
+        "remark": "RID：与“员工持股计划（LC_ESOP）”表的ID字段关联",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SerialNumber",
+        "columnChiName": "员工持股计划持有人序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Holder",
+        "columnChiName": "持有人",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "Position",
+        "columnChiName": "职位",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "79.12"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Shares",
+        "columnChiName": "认购份额(份)",
+        "columnType": "decimal(19,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "85.38"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Proportion",
+        "columnChiName": "比例",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.13"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

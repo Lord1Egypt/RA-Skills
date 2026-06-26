@@ -1,35 +1,40 @@
 ---
-name: "Web Summarizer"
-description: "Fetch and summarize web pages for AI agents. Extract key information from URLs and return structured markdown summaries. No API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jimmy-web-summarizer"
-sourceUrl: "https://clawhub.ai/skills/jimmy-web-summarizer"
+name: web-summarizer
+version: 1.0.0
+description: Fetch and summarize web pages for AI agents. Extract key information from URLs and return structured markdown summaries. No API key required.
 ---
 
-# Web Summarizer
+# Web Content Summarizer
 
-> Fetch and summarize web pages for AI agents. Extract key information from URLs and return structured markdown summaries. No API key required.
+Fetch and summarize web pages for AI agents. Extract key information from URLs and return structured summaries.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jimmy-web-summarizer`
-- **Source URL:** [https://clawhub.ai/skills/jimmy-web-summarizer](https://clawhub.ai/skills/jimmy-web-summarizer)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jimmy-web-summarizer
+# Summarize a URL
+bash scripts/summarize.sh https://example.com
+
+# Summarize with specific focus
+bash scripts/summarize.sh https://example.com "key findings"
+
+# List output format
+bash scripts/summarize.sh --help
 ```
+
+## Features
+
+- Fetches web page content
+- Extracts title, main content, key points
+- Returns structured markdown summary
+- Handles errors gracefully
+- Respects robots.txt
+
+## How It Works
+
+Uses `web_fetch` tool or curl to get page content, then extracts key information using text processing.
+
+## Use Cases
+
+- Research: quickly get summary of article before deep dive
+- Agent memory: store summarized facts instead of full pages  
+- Fact checking: verify claims by checking source content

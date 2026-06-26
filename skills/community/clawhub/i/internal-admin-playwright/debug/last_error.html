@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小蓝视频 - 登录</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/admin/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="/static/admin/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <script>if (window.top !== window.self) {
+            window.top.location = window.location;
+        }</script>
+</head>
+
+<body style="background-color:#d3e9ff">
+
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+
+            <h6 class="logo-name" style="color: blue">蓝</h6>
+
+        </div>
+        <h3>小蓝视频后台管理</h3>
+
+        <form class="m-t" method="post" role="form" action="d.php?mod=login&amp;code=dologin">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="用户名" name="username" required="" style="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="密码" name="password" required="" style="">
+            </div>
+
+           <!-- <div class="form-group">
+                <input name="code" type="text" placeholder="验证码" class="form-control" autocomplete="off" required=""/>
+
+                <img class="login-captcha" src="/_captcha.php?t=" onclick="this.src='/_captcha.php?t=' + (new Date()).getTime()">
+
+            </div>-->
+            <div class="form-group">
+                <input name="card_num" type="text" class="form-control" placeholder="标识码" autocomplete="off" required="" style="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+        </form>
+    </div>
+</div>
+<script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;f4bcbaa6a99b4a54a83a91f76c652a2b&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+
+</body></html>

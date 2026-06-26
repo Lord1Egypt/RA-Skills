@@ -1,0 +1,44 @@
+{
+  "case_id": "boundary-blueprint-report",
+  "overall_pass": true,
+  "score": 95,
+  "checks": [
+    {
+      "id": "async_readability",
+      "pass": true,
+      "score": 5,
+      "notes": "The report surfaces capability areas, risk, and decision content in a scannable sequence."
+    },
+    {
+      "id": "visual_rhythm",
+      "pass": true,
+      "score": 5,
+      "notes": "Corporate blue supports the operational business-process subject without visual noise."
+    },
+    {
+      "id": "evidence_fidelity",
+      "pass": true,
+      "score": 5,
+      "notes": "The shared task-state and review-cycle details are preserved from the source request."
+    },
+    {
+      "id": "no_ai_slop",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture does not leak raw blueprint syntax or generic placeholder language."
+    },
+    {
+      "id": "theme_appropriateness",
+      "pass": true,
+      "score": 5,
+      "notes": "Corporate blue fits a business capability and contract review improvement report."
+    },
+    {
+      "id": "decision_support",
+      "pass": true,
+      "score": 4,
+      "notes": "The flow-orchestration decision is explicit and measurable against the three-day target."
+    }
+  ],
+  "summary": "Strong boundary fixture that correctly stays in report mode while preserving decision content."
+}

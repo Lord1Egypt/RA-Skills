@@ -1,35 +1,168 @@
 ---
-name: "knowledge-workflow"
-description: "知识管理工作流 - 完整的知识管理工作流：收集→打标→存储→发芽→产出。支持飞书/微信读书/URL，5 种发芽类型（灵光/心智模型/跨界/微习惯/潜意识）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-workflow"
-sourceUrl: "https://clawhub.ai/skills/knowledge-workflow"
+name: knowledge-workflow
+version: 2.0.0
+description: 知识管理工作流 - 完整的知识管理工作流：收集→打标→存储→发芽→产出。支持飞书/微信读书/URL，5 种发芽类型（灵光/心智模型/跨界/微习惯/潜意识）。
+author: 燃冰 & ant
+created: 2026-04-14
+updated: 2026-04-26
+skill_type: 通用
+tags: [知识管理，工作流，发芽，灵光闪现，心智模型，跨界，微习惯，潜意识]
 ---
 
-# knowledge-workflow
+# knowledge-workflow: 知识管理工作流 🌱
 
-> 知识管理工作流 - 完整的知识管理工作流：收集→打标→存储→发芽→产出。支持飞书/微信读书/URL，5 种发芽类型（灵光/心智模型/跨界/微习惯/潜意识）。
+**完整的知识管理工作流 - 收集→打标→存储→发芽→产出**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-workflow`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-workflow](https://clawhub.ai/skills/knowledge-workflow)
+**版本：** v2.0.0  
+**最后更新：** 2026-04-26
 
-## Overview
+---
 
+## 📋 功能描述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-workflow
+帮助用户**系统化执行知识管理工作流**。从各种来源收集知识，自动打标、存储、发芽，最终产出可发布的内容。
+
+**适用场景：**
+- 个人知识管理（飞书/微信读书/网页/文本）
+- 团队知识沉淀（会议记录/项目文档）
+- 自媒体内容生产（公众号文章/周报/月报）
+- 知识发芽（灵光闪现/心智模型/跨界视角/微习惯/潜意识调整）
+
+**边界条件：**
+- 不替代深度思考（明确 AI 辅助边界）
+- 发芽必须是高质量信息，用户可选择是否触发
+- 需配合人工标注意义标签
+
+---
+
+## 🔄 核心工作流
+
+| 步骤 | 功能 | 说明 | 输出 |
+|------|------|------|------|
+| 1 | collect（收集） | 从飞书/微信读书/URL/文本收集知识 | Markdown 笔记 |
+| 2 | tag（打标） | 自动打标（主题 + 场景 + 行动） | 带标签笔记 |
+| 3 | store（存储） | 存储到知识库，自动建立双链连接 | 存储路径 + 双链 |
+| 4 | evolve（发芽） | 5 种发芽类型（用户选择触发） | 发芽内容 |
+| 5 | output（产出） | 生成公众号文章/周报/月报 | 可发布内容 |
+
+---
+
+## 🌱 发芽功能（5 种类型）
+
+| 发芽类型 | 说明 | 触发方式 | 输出 |
+|---------|------|---------|------|
+| spark | 灵光闪现 | 用户选择 | 核心洞察/洞察链条/跨界联想/问题启发/概念提炼 |
+| model | 心智模型解读 | 用户选择 | 对应心智模型/模型对比/启发 |
+| cross | 跨界视角 | 用户选择 | 跨领域视角/跨时空视角/跨界洞察 |
+| habit | 微习惯 | 用户选择 | 可执行微习惯/习惯追踪/习惯养成建议 |
+| subconscious | 潜意识调整 | 用户选择 | 潜意识模式/调整策略/自我反思问题 |
+
+**质量要求：**
+- 发芽必须是高质量信息
+- 如果发芽质量不高，宁可不发芽
+- 用户可选择是否保留发芽内容
+- 发芽后标注质量等级（高/中/低）
+
+---
+
+## 📁 文件结构
+
 ```
+knowledge-workflow/
+├── SKILL.md                 # 技能文档（本文档）
+├── main.py                  # 主程序
+├── config.yaml              # 配置文件
+├── clawhub.yaml             # ClawHub 发布配置
+├── requirements.txt         # Python 依赖
+└── subfunctions/            # 子功能模块
+    ├── collect.py           # 收集功能
+    ├── tag.py               # 打标功能
+    ├── store.py             # 存储功能
+    ├── evolve.py            # 知识发芽（5 种类型）
+    └── output.py            # 产出功能
+```
+
+---
+
+## 🔧 使用示例
+
+### 方式 1：一键调用（完整工作流）
+
+```bash
+# 处理飞书文档
+python main.py run feishu PFAvdKEILouK29xCgNuc5b1bnnK
+
+# 处理微信读书导出
+python main.py run wechat "[微信读书导出文本]"
+
+# 处理 URL
+python main.py run url https://example.com/article
+```
+
+### 方式 2：分步调用
+
+```bash
+# 步骤 1: 收集
+python main.py collect feishu PFAvdKEILouK29xCgNuc5b1bnnK
+
+# 步骤 2: 打标
+python main.py tag note-20260414160000
+
+# 步骤 3: 知识发芽（用户选择触发）
+python main.py evolve note-20260414160000 spark
+
+# 步骤 4: 产出文章
+python main.py output spark-20260414160000 article
+```
+
+---
+
+## ⚠️ 注意事项
+
+**必须遵守：**
+- ✅ 发芽必须是高质量信息
+- ✅ 用户选择触发发芽（不是自动）
+- ✅ 发芽后标注质量等级（高/中/低）
+- ❌ 不要自动发芽（必须用户选择）
+- ❌ 不要低质量发芽（宁可不发芽）
+- ❌ 不要只收集，不发芽
+
+**模糊请求处理：**
+```
+如果用户请求模糊（如"帮我管理一下知识"）:
+→ 列出 5 个核心步骤供选择
+→ 示例："我可以帮你：1.收集 2.打标 3.存储 4.发芽 5.产出。你想做哪个？"
+```
+
+---
+
+## 📊 成功指标
+
+| 指标 | 目标值 | 说明 |
+|------|--------|------|
+| 每日收集 | 3 件/天 | 飞书/微信读书/网页/文本 |
+| 发芽率 | >50% | 收集后触发发芽的比例 |
+| 产出率 | >30% | 发芽后产出文章的比例 |
+| 质量等级 | 高 | 发芽内容质量等级为高 |
+
+---
+
+## 🔗 相关技能
+
+- `context-manager` - 个人上下文管理（前置技能）
+- `note-tagger` - 笔记打标
+- `experience-memory-tracker` - 体验记忆追踪
+
+**推荐组合**：
+```
+context-manager → knowledge-workflow
+（上下文管理）    （知识生产）
+```
+
+---
+
+**维护者**：燃冰 & ant  
+**版本**：v2.0.0  
+**创建日期**：2026-04-14  
+**最后更新**：2026-04-26  
+**发布状态**：待发布

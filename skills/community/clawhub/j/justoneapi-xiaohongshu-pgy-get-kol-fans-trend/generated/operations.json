@@ -1,0 +1,85 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/get-kol-fans-trend/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Growth History through JustOneAPI with dateType, increaseType, and kolId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Follower Growth History",
+  "endpointPath": "get-kol-fans-trend",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower growth history data, including historical audience changes over time, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolFansTrendV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Date type.\n\nAvailable Values:\n- `_1`: Last 30 days\n- `_2`: Last 60 days",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Increase type.\n\nAvailable Values:\n- `_1`: Total fans\n- `_2`: New fans increase",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "increaseType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-fans-trend/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Growth History",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_get_kol_fans_trend",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-get-kol-fans-trend",
+  "sourceTitle": "OpenAPI definition"
+}

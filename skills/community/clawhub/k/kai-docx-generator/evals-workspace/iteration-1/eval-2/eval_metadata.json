@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "style-recommendation-contract",
+  "prompt": "Convert contract markdown to .docx using contract style",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "contract_font_used", "description": "Contract style uses FangSong (仿宋) for body text"},
+    {"name": "bold_text_preserved", "description": "Bold formatting preserved in output"},
+    {"name": "headings_present", "description": "Headings rendered correctly"}
+  ]
+}

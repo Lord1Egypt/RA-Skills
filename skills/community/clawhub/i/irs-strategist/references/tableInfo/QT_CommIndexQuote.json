@@ -1,0 +1,191 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部代码（InnerCode）：与“证券主表（SecuMain）”中的“内部编码（InnerCode）”关联，得到指数的证券代码、证券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "PrevClosePrice",
+        "columnChiName": "昨收盘(元/点)",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.95"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "OpenPrice",
+        "columnChiName": "今开盘(元/点)",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "92.11"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "HighPrice",
+        "columnChiName": "最高价(元/点)",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "84.45"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "LowPrice",
+        "columnChiName": "最低价(元/点)",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "84.45"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ClosePrice",
+        "columnChiName": "收盘价(元/点)",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "PrevSettlePrice",
+        "columnChiName": "前结算",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "70.41"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "SettlePrice",
+        "columnChiName": "结算价",
+        "columnType": "decimal(19,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "70.43"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量(手)",
+        "columnType": "decimal(19,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "44.2"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额(元)",
+        "columnType": "decimal(19,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "17.36"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "ChangePCTI",
+        "columnChiName": "涨跌幅1(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "remark": "涨跌幅1(%)（ChangePCTI）：（收盘价-昨收盘）/昨收盘*100%",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.13",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "ChangePCTII",
+        "columnChiName": "涨跌幅2(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "remark": "涨跌幅2(%)（ChangePCTII）：未维护",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 17,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

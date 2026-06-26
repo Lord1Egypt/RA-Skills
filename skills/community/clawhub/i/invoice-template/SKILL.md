@@ -1,35 +1,57 @@
 ---
-name: "Invoice Template"
-description: "Free simple invoice generator. Creates clean, professional invoices with your branding. Use when you need to bill a client quickly without complex tracking o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/invoice-template"
-sourceUrl: "https://clawhub.ai/skills/invoice-template"
+name: invoice-template
+description: Free simple invoice generator. Creates clean, professional invoices with your branding. Use when you need to bill a client quickly without complex tracking or automation.
 ---
 
-# Invoice Template
+# Invoice Template (Free)
 
-> Free simple invoice generator. Creates clean, professional invoices with your branding. Use when you need to bill a client quickly without complex tracking o...
+Create professional invoices in seconds. No complex features — just clean, simple billing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/invoice-template`
-- **Source URL:** [https://clawhub.ai/skills/invoice-template](https://clawhub.ai/skills/invoice-template)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/invoice-template
 ```
+"Create an invoice for:
+
+Client: [Company Name]
+Service: [What you did]
+Amount: $[Amount]
+Due date: [Date]"
+```
+
+## Template Includes
+
+- Your business info
+- Client details
+- Line items
+- Payment instructions
+- Professional formatting
+
+## Example
+
+```
+INVOICE #001
+
+FROM:
+[Your Business]
+[Your Email]
+
+TO:
+[Client Company]
+[Client Email]
+
+SERVICES:
+Website Design .................... $2,500.00
+
+Total Due: $2,500.00
+Due Date: [Date]
+
+Payment: [Your preferred method]
+```
+
+## Upgrade
+
+For automated payment tracking, reminders, and financial reporting, check out the **Invoice Tracker** skill.
+
+---
+
+*This is a free skill. Upgrade to the full Freelancer Revenue Engine for complete billing automation.*

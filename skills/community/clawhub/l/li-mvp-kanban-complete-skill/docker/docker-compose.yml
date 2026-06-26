@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  kanban:
+    build: .
+    image: li-mvp-kanban:latest
+    container_name: li-mvp-kanban
+    ports:
+      - "127.0.0.1:9999:5000"  # 仅本地访问（安全加固）
+    volumes:
+      - kanban-data:/app/data
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+      - PYTHONPATH=/app
+    # 资源限制（安全加固）
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    # 安全配置
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "app.name=LI-MVP-Kanban"
+      - "app.version=1.0.0"
+      - "app.author=北京老李"
+
+volumes:
+  kanban-data:

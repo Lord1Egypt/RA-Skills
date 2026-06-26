@@ -1,35 +1,132 @@
 ---
-name: "学习日志系统"
-description: "牢大AI学习日志系统。自动记录、分类、沉淀AI在任务执行过程中的学习心得、踩坑记录和经验教训。当AI完成重要任务、遇到错误失败、发现新工具或方法、做出重要决策时，应该将关键信息记录到学习日志。触发场景：任务完成后的复盘、错误/失败后的总结、新工具/新技能的发现和评估、重要配置决策的记录。"
-category: "productivity"
-source: "ClawHub"
-tags: [memory, notes, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learn-journal"
-sourceUrl: "https://clawhub.ai/skills/learn-journal"
+name: learn-journal
+description: 牢大AI学习日志系统。自动记录、分类、沉淀AI在任务执行过程中的学习心得、踩坑记录和经验教训。当AI完成重要任务、遇到错误失败、发现新工具或方法、做出重要决策时，应该将关键信息记录到学习日志。触发场景：任务完成后的复盘、错误/失败后的总结、新工具/新技能的发现和评估、重要配置决策的记录。
 ---
 
-# 学习日志系统
+# 学习日志系统 (Learn Journal)
 
-> 牢大AI学习日志系统。自动记录、分类、沉淀AI在任务执行过程中的学习心得、踩坑记录和经验教训。当AI完成重要任务、遇到错误失败、发现新工具或方法、做出重要决策时，应该将关键信息记录到学习日志。触发场景：任务完成后的复盘、错误/失败后的总结、新工具/新技能的发现和评估、重要配置决策的记录。
+## 核心理念
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learn-journal`
-- **Source URL:** [https://clawhub.ai/skills/learn-journal](https://clawhub.ai/skills/learn-journal)
+> "Mental notes don't survive session restarts. Files do."
+> 学习不靠记忆，靠文档。
 
-## Overview
+## 日志文件位置
 
+- **长周期学习**: `{workspace}/MEMORY.md`
+- **日/周记录**: `{workspace}/memory/YYYY-MM-DD.md`
+- **专项学习**: `{workspace}/.learnings/LEARNINGS.md`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learn-journal
+## 日志类型
+
+### 1. LRN (Learning) - 新知识/新发现
+```markdown
+## LRN-YYYYMMDD-NNN: <简短标题>
+
+**来源**: <任务/对话/探索>
+**日期**: YYYY-MM-DD
+
+### 核心发现
+<1-3句话描述>
+
+### 关键细节
+- <具体信息>
+
+### 适用场景
+<何时使用这个知识>
+
+### 关联
+- 关联: <相关技能/文档>
+```
+
+### 2. ERR (Error) - 踩坑/错误记录
+```markdown
+## ERR-YYYYMMDD-NNN: <错误描述>
+
+**错误类型**: <分类>
+**发生频率**: 偶尔/经常/首次
+
+### 问题
+<具体描述>
+
+### 原因
+<根本原因>
+
+### 解决
+<解决方案>
+
+### 预防
+<如何避免再次踩坑>
+```
+
+### 3. FEAT (Feature) - 技能/工具亮点
+```markdown
+## FEAT-YYYYMMDD-NNN: <技能名>
+
+**评分**: ⭐⭐⭐⭐⭐ (1-5星)
+**类型**: skill/tool/integration/method
+**来源**: <来源>
+
+### 亮点
+<核心价值>
+
+### 使用方法
+<如何使用>
+
+### 注意事项
+<踩坑点>
+```
+
+### 4. DEC (Decision) - 重要决策
+```markdown
+## DEC-YYYYMMDD-NNN: <决策标题>
+
+**问题**: <要解决的问题>
+**选项**: <可选方案>
+**决策**: <最终选择>
+**理由**: <为什么选这个>
+
+### 后果
+<正面/负面>
+```
+
+## 写入时机
+
+✅ **必须写入**:
+- 重要任务完成后的复盘
+- 错误/失败后的总结
+- 发现新工具或新方法
+- 重要配置决策
+- 反复犯的同类错误
+
+✅ **应该写入**:
+- 意外发现的有用技巧
+- 配置变更的记录
+- 工作流程优化
+
+❌ **不需要写入**:
+- 临时的一次性探索
+- 明显且容易记住的信息
+- 完全失败的无效尝试
+
+## 格式规范
+
+- 每条日志必须有唯一ID: `TYPE-YYYYMMDD-NNN`
+- 优先使用列表格式，便于扫描
+- 包含足够的上下文，但避免冗余
+- 定期回顾，更新高价值内容到 MEMORY.md
+
+## 快速写入
+
+```markdown
+## LRN-20260405-001: <标题>
+**日期**: 2026-04-05
+
+### 核心
+<一句话>
+
+### 详情
+<补充>
+
+### 适用
+<场景>
 ```

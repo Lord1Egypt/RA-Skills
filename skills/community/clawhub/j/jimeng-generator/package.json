@@ -1,0 +1,25 @@
+{
+  "name": "jimeng-generator",
+  "version": "0.2.0",
+  "description": "即梦 4.0 图片生成器 — 基于火山引擎即梦 AI 4.0 的文生图与图片编辑工具",
+  "scripts": {
+    "generate": "ts-node scripts/generate.ts",
+    "build": "tsc"
+  },
+  "keywords": [
+    "jimeng",
+    "volcengine",
+    "image-generation",
+    "ai",
+    "text-to-image"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,35 +1,49 @@
 ---
-name: "build-personal-brand-faq-page"
+name: "Build Personal Brand FAQ Page"
 description: "Generate customer-facing answers for common personal brand questions. Use when working on FAQ content for thought leaders, coaches, personal brand..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kirk-build-personal-brand-faq-page"
-sourceUrl: "https://clawhub.ai/skills/kirk-build-personal-brand-faq-page"
+homepage: "https://www.skillboss.co/skills/build-personal-brand-faq-page"
+metadata: {"category":"personal-branding","subcategory":"automation","skill_id":"build-personal-brand-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","personal brand FAQ writer","personal brand AI","creator workflow automation"]}
 ---
 
-# build-personal-brand-faq-page
+# Build Personal Brand FAQ Page
 
-> Generate customer-facing answers for common personal brand questions. Use when working on FAQ content for thought leaders, coaches, personal brand...
+Generate customer-facing answers for common personal brand questions. Use when working on FAQ content for thought leaders, coaches, personal brand...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kirk-build-personal-brand-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/kirk-build-personal-brand-faq-page](https://clawhub.ai/skills/kirk-build-personal-brand-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for thought leaders, coaches, personal brand builders.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kirk-build-personal-brand-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, personal brand FAQ writer, personal brand AI, creator workflow automation
+- Search intent: FAQ content
+- Canonical slug: `build-personal-brand-faq-page`
+- Install query: Install Build Personal Brand FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Personal Brand FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common personal brand questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- personal brand FAQ writer
+- personal brand AI
+- creator workflow automation

@@ -1,0 +1,7 @@
+interface:
+  display_name: "JT Meeting Summary"
+  short_description: "Faithful meeting summary guidance"
+  default_prompt: "Use $jt-meeting-summary to summarize this meeting transcript."
+
+policy:
+  allow_implicit_invocation: true

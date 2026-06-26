@@ -1,0 +1,102 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "Type",
+        "columnChiName": "类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "类别(Type)与(CT_SystemConst)表中的DM字段关联，令LB = 2，得到类别的具体描述：10-内部编码，11-公司代码，205-证券信托公司，206-省市表，301-行业表，311-临时公告关键词，312-非公告关键词，313-法律法规关键词，314-研究报告关键词，315-数据解读关键词，316-专题关键词，320-常规产品分类，321-HS协调商品编码制度，322-SITC标准国际贸易分类，323-国民经济行业分类，324-产业结构分类，325-工业结构分类，326-期货交易品种，327-海关产品编码，328-现货交易品种。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "Content",
+        "columnChiName": "内容词组",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Keyword",
+        "columnChiName": "关键词组",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "Code",
+        "columnChiName": "代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "ChiSpelling",
+        "columnChiName": "关键词拼音简称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InfoLevel",
+        "columnChiName": "级别",
+        "columnType": "tinyint",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

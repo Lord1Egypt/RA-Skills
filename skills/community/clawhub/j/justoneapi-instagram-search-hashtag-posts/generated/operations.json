@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/instagram/search-hashtag-posts/v1 for Instagram Hashtag Posts Search through JustOneAPI with hashtag.",
+  "displayName": "Instagram Hashtag Posts Search",
+  "endpointPath": "search-hashtag-posts",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Instagram hashtag Posts Search data, including caption, author profile, and publish time, for competitive analysis of trending topics and hashtags and monitoring community discussions and public opinion on specific tags.",
+      "method": "GET",
+      "operationId": "searchHashtagPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The hashtag or keyword to search for.",
+          "enumValues": [],
+          "location": "query",
+          "name": "hashtag",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Cursor used for retrieving the next page of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "endCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/instagram/search-hashtag-posts/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Hashtag Posts Search",
+      "tags": [
+        "Instagram"
+      ]
+    }
+  ],
+  "platformKey": "instagram",
+  "primaryTag": "Instagram",
+  "skillName": "justoneapi_instagram_search_hashtag_posts",
+  "skillType": "interface",
+  "slug": "justoneapi-instagram-search-hashtag-posts",
+  "sourceTitle": "OpenAPI definition"
+}

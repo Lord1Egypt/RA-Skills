@@ -1,0 +1,20 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "pdf",
+                 "document",
+                 "extraction",
+                 "merge",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "pdf-processor",
+    "pricing":  {
+                    "price":  2900,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "PDF Processor Pro"
+}

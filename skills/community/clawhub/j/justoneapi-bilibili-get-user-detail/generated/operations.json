@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-user-detail/v2 for Bilibili User Profile through JustOneAPI with uid.",
+  "displayName": "Bilibili User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili user Profile data, including account metadata, audience metrics, and verification-related fields, for analyzing creator's profile, level, and verification status and verifying user identity and social presence on bilibili.",
+      "method": "GET",
+      "operationId": "getUserDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-user-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

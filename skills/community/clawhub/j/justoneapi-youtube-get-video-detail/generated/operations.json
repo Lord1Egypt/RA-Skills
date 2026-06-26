@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/youtube/get-video-detail/v1 for YouTube Video Details through JustOneAPI with videoId.",
+  "displayName": "YouTube Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get YouTube video Details data, including its title, description, and view counts, for tracking video engagement and statistics, extracting video metadata for content analysis, and verifying video availability and status.",
+      "method": "GET",
+      "operationId": "getYoutubeVideoDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for a YouTube video.",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youtube/get-video-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "YouTube"
+      ]
+    }
+  ],
+  "platformKey": "youtube",
+  "primaryTag": "YouTube",
+  "skillName": "justoneapi_youtube_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-youtube-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

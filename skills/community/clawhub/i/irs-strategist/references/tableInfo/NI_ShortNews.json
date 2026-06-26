@@ -1,0 +1,136 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "NoticeDate",
+        "columnChiName": "提示日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "MediaCode",
+        "columnChiName": "媒体出处代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "媒体出处代码(MediaCode)与(NI_NewsConst)表中的DM字段关联，令LB = 4，得到媒体出处代码的具体描述。\n",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "CategoryLevel1",
+        "columnChiName": "信息一级分类",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "信息一级分类（CategoryLevel1）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联， 令“LB=2044”，得到新闻资讯的详细分类。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "CategoryLevel2",
+        "columnChiName": "信息二级分类",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "信息二级分类（CategoryLevel2）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联， 令“LB=2044”，得到新闻资讯的详细分类。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InfoTitle",
+        "columnChiName": "信息标题",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Content",
+        "columnChiName": "信息内容",
+        "columnType": "text",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.36"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 1,
+        "fieldExplain": "对应SecuMain表中的InnerCode字段",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

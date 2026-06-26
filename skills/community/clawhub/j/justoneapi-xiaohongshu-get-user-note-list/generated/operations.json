@@ -1,0 +1,107 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 2 get-user-note-list versions for Xiaohongshu (RedNote) User Published Notes through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu (RedNote) User Published Notes",
+  "endpointPath": "get-user-note-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) user Published Notes data, including note metadata, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserNoteListV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (the last note's cursor value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user-note-list/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) user Published Notes data, including note metadata, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserNoteListV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique user identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (the last note's cursor value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-user-note-list/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_get_user_note_list",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-get-user-note-list",
+  "sourceTitle": "OpenAPI definition"
+}

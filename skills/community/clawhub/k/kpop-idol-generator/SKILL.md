@@ -1,35 +1,34 @@
 ---
-name: "Kpop Idol Generator"
-description: "Generate k-pop idol style portraits and kpop photocard aesthetic images — perfect for kpop fan edits, korean beauty looks, idol photoshoot vibes, korean fash..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kpop-idol-generator"
-sourceUrl: "https://clawhub.ai/skills/kpop-idol-generator"
+name: kpop-idol-generator
+description: Generate k-pop idol style portraits and kpop photocard aesthetic images — perfect for kpop fan edits, korean beauty looks, idol photoshoot vibes, korean fashion portraits, stan twitter profile pics, kpop bias card art, and hallyu-inspired glamour photography. Turn any description into a polished k-pop idol debut photo via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Kpop Idol Generator
+# K-Pop Idol Generator
 
-> Generate k-pop idol style portraits and kpop photocard aesthetic images — perfect for kpop fan edits, korean beauty looks, idol photoshoot vibes, korean fash...
+Generate k-pop idol style portraits and kpop photocard aesthetic images — perfect for kpop fan edits, korean beauty looks, idol photoshoot vibes, korean fashion portraits, stan twitter profile pics, kpop bias card art, and hallyu-inspired glamour photography. Turn any description into a polished k-pop idol debut photo.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kpop-idol-generator`
-- **Source URL:** [https://clawhub.ai/skills/kpop-idol-generator](https://clawhub.ai/skills/kpop-idol-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/kpop-idol-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create kpop idol style portrait images.
+
+## Quick start
+```bash
+node kpopidolgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/kpop-idol-generator
 ```

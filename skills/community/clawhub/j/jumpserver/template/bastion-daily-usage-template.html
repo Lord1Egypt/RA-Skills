@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JumpServer 使用报告</title>
+  <style>
+    :root {
+      --jms-primary: #1c8c79;
+      --jms-primary-deep: #14685b;
+      --jms-primary-soft: #e7f4f0;
+      --jms-accent: #46b79e;
+      --jms-ink: #173338;
+      --jms-text: #23464b;
+      --jms-muted: #6c8487;
+      --jms-line: #d7e6e2;
+      --jms-line-strong: #a8c9c1;
+      --jms-bg: #f4f8f7;
+      --jms-panel: #ffffff;
+      --jms-panel-soft: #f8fbfa;
+      --jms-success: #2a9a72;
+      --jms-warning: #d7a03a;
+      --jms-danger: #d85b63;
+      --jms-shadow: 0 22px 48px rgba(20, 104, 91, 0.12);
+      --jms-shadow-soft: 0 14px 34px rgba(23, 51, 56, 0.08);
+      --jms-radius-xl: 28px;
+      --jms-radius-lg: 22px;
+      --jms-radius-md: 16px;
+      --jms-radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--jms-text);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(70, 183, 158, 0.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(28, 140, 121, 0.12), transparent 28%),
+        linear-gradient(180deg, #f8fcfb 0%, var(--jms-bg) 44%, #eef6f4 100%);
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(23, 51, 56, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 51, 56, 0.018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    }
+
+    a {
+      color: inherit;
+    }
+
+    code,
+    .mono {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .page {
+      width: min(1360px, calc(100% - 32px));
+      margin: 26px auto 44px;
+    }
+
+    .report-header {
+      display: grid;
+      gap: 14px;
+    }
+
+    .header-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 30px;
+      border-radius: var(--jms-radius-xl);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+      border: 1px solid rgba(215, 230, 226, 0.98);
+      box-shadow: var(--jms-shadow-soft);
+    }
+
+    .header-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: linear-gradient(180deg, var(--jms-primary-deep), var(--jms-accent));
+    }
+
+    .header-top {
+      display: grid;
+      gap: 12px;
+      padding: 22px 24px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 34%),
+        linear-gradient(145deg, var(--jms-primary-deep) 0%, var(--jms-primary) 58%, #289782 100%);
+      box-shadow: 0 18px 36px rgba(20, 104, 91, 0.18);
+      text-align: center;
+      justify-items: center;
+    }
+
+    .header-card h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .header-top .section-kicker {
+      background: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .license-bar,
+    .header-summary {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, var(--jms-primary-soft), rgba(255, 255, 255, 0.92));
+      border: 1px solid rgba(70, 183, 158, 0.2);
+    }
+
+    .license-bar {
+      display: grid;
+      gap: 12px;
+    }
+
+    .license-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .license-item {
+      min-width: 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(70, 183, 158, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    }
+
+    .license-item .label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      color: var(--jms-muted);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .license-item .value {
+      display: block;
+      color: var(--jms-ink);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .license-bar .eyebrow,
+    .header-summary .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--jms-primary-deep);
+    }
+
+    .header-summary p {
+      margin: 0;
+      white-space: pre-wrap;
+      font-size: 15px;
+      color: var(--jms-ink);
+    }
+
+    .header-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .header-meta-card {
+      padding: 14px 15px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--jms-panel-soft) 100%);
+      border: 1px solid var(--jms-line);
+    }
+
+    .header-meta-card .label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: var(--jms-muted);
+    }
+
+    .header-meta-card .value {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.45;
+      word-break: normal;
+      overflow-wrap: anywhere;
+      color: var(--jms-ink);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+      color: var(--jms-ink);
+      box-shadow: var(--jms-shadow-soft);
+      border: 1px solid var(--jms-line);
+      min-height: 124px;
+      animation: lift-in 0.7s ease both;
+    }
+
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--jms-primary-deep), var(--jms-accent));
+      opacity: 0.82;
+    }
+
+    .metric-card:nth-child(2) { animation-delay: 0.06s; }
+    .metric-card:nth-child(3) { animation-delay: 0.12s; }
+    .metric-card:nth-child(4) { animation-delay: 0.18s; }
+    .metric-card:nth-child(5) { animation-delay: 0.24s; }
+    .metric-card:nth-child(6) { animation-delay: 0.3s; }
+
+    .metric-card .label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--jms-muted);
+    }
+
+    .metric-card .value {
+      display: block;
+      font-size: clamp(28px, 3.4vw, 36px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-card .detail {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--jms-muted);
+    }
+
+    .report-grid {
+      display: grid;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .report-section {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--jms-radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.9));
+      border: 1px solid rgba(215, 230, 226, 0.95);
+      box-shadow: var(--jms-shadow-soft);
+      animation: fade-up 0.7s ease both;
+    }
+
+    .report-section::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: linear-gradient(180deg, var(--jms-primary-deep), var(--jms-accent));
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px 24px 0 28px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 28px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: var(--jms-primary-soft);
+      color: var(--jms-primary-deep);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section-index {
+      display: inline-grid;
+      place-items: center;
+      min-width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, var(--jms-primary) 0%, var(--jms-primary-deep) 100%);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(20, 104, 91, 0.2);
+      flex-shrink: 0;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--jms-ink);
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      max-width: 760px;
+      color: var(--jms-muted);
+      font-size: 14px;
+    }
+
+    .section-body {
+      padding: 22px 24px 24px 28px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .overview-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--jms-panel-soft) 100%);
+      border: 1px solid var(--jms-line);
+    }
+
+    .overview-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--jms-primary-deep), var(--jms-accent));
+      opacity: 0.8;
+    }
+
+    .overview-card h3,
+    .compact-card h3,
+    .rank-card h3,
+    .summary-card h3,
+    .table-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: var(--jms-ink);
+    }
+
+    .overview-list,
+    .clean-list,
+    .summary-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .overview-list li,
+    .summary-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(215, 230, 226, 0.84);
+      font-size: 14px;
+    }
+
+    .overview-list li:last-child,
+    .summary-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .overview-list strong,
+    .summary-list strong {
+      color: var(--jms-ink);
+      font-weight: 700;
+    }
+
+    .focus-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    .focus-secondary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .focus-secondary-grid .protocol-table-card {
+      grid-column: 1 / -1;
+    }
+
+    .focus-highlight {
+      position: relative;
+      overflow: hidden;
+      padding: 22px 22px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(70, 183, 158, 0.2);
+      background:
+        linear-gradient(135deg, rgba(70, 183, 158, 0.12), transparent 34%),
+        linear-gradient(180deg, rgba(231, 244, 240, 0.96), rgba(255, 255, 255, 0.98));
+      box-shadow: var(--jms-shadow-soft);
+    }
+
+    .focus-highlight::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--jms-primary-deep), var(--jms-accent));
+      opacity: 0.9;
+    }
+
+    .focus-highlight h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      color: var(--jms-ink);
+      letter-spacing: -0.02em;
+    }
+
+    .focus-highlight .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--jms-primary-deep);
+    }
+
+    .focus-highlight .feature-list li {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .feature-card,
+    .summary-card,
+    .compact-card,
+    .rank-card,
+    .note-card,
+    .table-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--jms-line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+    }
+
+    .feature-list,
+    .clean-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li,
+    .clean-list li {
+      position: relative;
+      padding: 10px 0 10px 20px;
+      border-bottom: 1px solid rgba(215, 230, 226, 0.84);
+      font-size: 14px;
+      color: var(--jms-text);
+    }
+
+    .feature-list li::before,
+    .clean-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--jms-primary);
+      box-shadow: 0 0 0 4px rgba(70, 183, 158, 0.12);
+    }
+
+    .feature-list li:last-child,
+    .clean-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .protocol-card {
+      padding: 12px 12px 14px;
+      border-radius: 16px;
+      background: var(--jms-primary-soft);
+      border: 1px solid rgba(70, 183, 158, 0.22);
+    }
+
+    .protocol-card .protocol-name {
+      display: block;
+      font-size: 12px;
+      color: var(--jms-primary-deep);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .protocol-card .protocol-value {
+      display: block;
+      margin-top: 6px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--jms-ink);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 16px;
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .summary-table-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .table-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .session-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .session-quad-grid > article {
+      height: 100%;
+    }
+
+    .session-quad-grid .summary-card,
+    .session-quad-grid .table-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .session-quad-grid .table-shell {
+      flex: 1;
+    }
+
+    .rank-card ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: rank;
+    }
+
+    .rank-card li {
+      counter-increment: rank;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(215, 230, 226, 0.84);
+    }
+
+    .rank-card li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .rank-card li::before {
+      content: counter(rank, decimal-leading-zero);
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--jms-primary-soft);
+      color: var(--jms-primary-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .rank-card .item-title {
+      display: block;
+      color: var(--jms-ink);
+      font-weight: 700;
+    }
+
+    .rank-card .item-meta {
+      display: block;
+      margin-top: 4px;
+      color: var(--jms-muted);
+      font-size: 13px;
+    }
+
+    .summary-card .lead-metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-end;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(215, 230, 226, 0.84);
+    }
+
+    .summary-card .lead-metric .value {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--jms-ink);
+    }
+
+    .summary-card .lead-metric .label {
+      color: var(--jms-muted);
+      font-size: 13px;
+    }
+
+    .summary-card .headline {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--jms-ink);
+    }
+
+    .summary-card .body-text,
+    .compact-card .body-text,
+    .note-card p {
+      margin: 0;
+      white-space: pre-wrap;
+      color: var(--jms-text);
+      font-size: 14px;
+    }
+
+    .table-card h3 {
+      margin-bottom: 14px;
+    }
+
+    .table-shell {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid rgba(215, 230, 226, 0.92);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.95));
+    }
+
+    .data-table {
+      width: 100%;
+      min-width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      color: var(--jms-text);
+      font-size: 13px;
+    }
+
+    .data-table thead th {
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--jms-primary-deep);
+      background: linear-gradient(180deg, rgba(231, 244, 240, 0.96), rgba(246, 250, 248, 0.98));
+      border-bottom: 1px solid rgba(215, 230, 226, 0.94);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .data-table thead th:first-child {
+      border-top-left-radius: 16px;
+    }
+
+    .data-table thead th:last-child {
+      border-top-right-radius: 16px;
+    }
+
+    .data-table tbody td {
+      padding: 13px 14px;
+      vertical-align: top;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(215, 230, 226, 0.84);
+      background: rgba(255, 255, 255, 0.72);
+      word-break: break-word;
+    }
+
+    .data-table tbody tr:nth-child(even) td {
+      background: rgba(247, 251, 249, 0.96);
+    }
+
+    .data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table code,
+    .data-table .mono-cell {
+      font-size: 12px;
+      color: var(--jms-ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .data-table-command {
+      min-width: 1060px;
+    }
+
+    .data-table-command tbody td:nth-child(4) {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      color: var(--jms-ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .data-table-command tbody td:nth-child(5),
+    .data-table-command tbody td:nth-child(6),
+    .data-table-command tbody td:nth-child(7) {
+      white-space: nowrap;
+    }
+
+    .data-table-login {
+      min-width: 560px;
+    }
+
+    .data-table-login-failed {
+      min-width: 760px;
+    }
+
+    .data-table-ranking {
+      min-width: 320px;
+    }
+
+    .data-table-duration {
+      min-width: 460px;
+    }
+
+    .data-table-protocol {
+      min-width: 100%;
+      table-layout: fixed;
+    }
+
+    .session-dimension-grid .table-shell {
+      overflow-x: hidden;
+    }
+
+    .session-dimension-grid .data-table-protocol thead th {
+      white-space: normal;
+    }
+
+    .table-empty-row td {
+      padding: 18px 14px;
+      text-align: center;
+      color: var(--jms-muted);
+      font-style: italic;
+      background: rgba(248, 251, 250, 0.96) !important;
+    }
+
+    .tip-banner {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(28, 140, 121, 0.08);
+      border: 1px solid rgba(28, 140, 121, 0.14);
+      color: var(--jms-primary-deep);
+      font-size: 13px;
+    }
+
+    .split-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .split-box {
+      padding: 15px;
+      border-radius: 16px;
+      background: var(--jms-primary-soft);
+      border: 1px solid rgba(70, 183, 158, 0.18);
+    }
+
+    .split-box .label {
+      display: block;
+      font-size: 12px;
+      color: var(--jms-primary-deep);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .split-box .value {
+      display: block;
+      margin-top: 8px;
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--jms-ink);
+    }
+
+    .risk-analysis-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .risk-hero {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 16px;
+      padding: 22px;
+      border-radius: 24px;
+      color: #fffaf3;
+      background: linear-gradient(180deg, #244340 0%, #2b4b49 100%);
+      border: 1px solid rgba(255, 247, 235, 0.08);
+      box-shadow: 0 20px 36px rgba(50, 67, 62, 0.18);
+    }
+
+    .risk-hero::after {
+      content: none;
+    }
+
+    .risk-hero-main,
+    .risk-hero-side {
+      position: relative;
+      z-index: 1;
+    }
+
+    .risk-hero-main {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .risk-hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 30px;
+      margin-bottom: 4px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 248, 238, 0.92);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 247, 235, 0.16);
+    }
+
+    .risk-hero h3 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: #fffaf4;
+    }
+
+    .risk-hero p {
+      margin: 0;
+      color: rgba(255, 248, 238, 0.9);
+      font-size: 14px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+
+    .risk-status-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .risk-level-badge,
+    .risk-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .risk-level-badge {
+      color: #5b280f;
+      background: linear-gradient(180deg, rgba(255, 219, 171, 0.96), rgba(255, 236, 210, 0.94));
+      border: 1px solid rgba(255, 228, 190, 0.56);
+      box-shadow: inset 0 1px 0 rgba(255, 250, 240, 0.44);
+    }
+
+    .risk-tag {
+      color: rgba(255, 248, 238, 0.92);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 247, 235, 0.16);
+    }
+
+    .risk-hero-side {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-content: start;
+    }
+
+    .risk-total-card,
+    .risk-signal-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 247, 235, 0.14);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08));
+      backdrop-filter: blur(8px);
+    }
+
+    .risk-total-card {
+      grid-column: 1 / -1;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255, 244, 228, 0.16), rgba(255, 255, 255, 0.08));
+    }
+
+    .risk-total-card .label,
+    .risk-signal-card .label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 234, 0.72);
+    }
+
+    .risk-total-card .value {
+      display: block;
+      margin-top: 10px;
+      font-size: clamp(42px, 5vw, 56px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      color: #fffaf2;
+    }
+
+    .risk-signal-card .value {
+      display: block;
+      margin-top: 8px;
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 800;
+      color: #fff7ed;
+    }
+
+    .risk-analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .risk-analysis-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(215, 230, 226, 0.92);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 250, 248, 0.96));
+      box-shadow: var(--jms-shadow-soft);
+    }
+
+    .risk-analysis-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      opacity: 0.96;
+    }
+
+    .risk-analysis-card.login::before {
+      background: linear-gradient(90deg, #c9842a, #e0b55a);
+    }
+
+    .risk-analysis-card.command::before {
+      background: linear-gradient(90deg, #b54755, #de6f78);
+    }
+
+    .risk-analysis-card.transfer::before {
+      background: linear-gradient(90deg, #8e6640, #d7a03a);
+    }
+
+    .risk-analysis-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .risk-analysis-head h3 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--jms-ink);
+    }
+
+    .risk-metric-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: rgba(248, 251, 250, 0.9);
+      border: 1px solid rgba(215, 230, 226, 0.92);
+      color: var(--jms-ink);
+      white-space: nowrap;
+    }
+
+    .risk-metric-chip .metric-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--jms-muted);
+    }
+
+    .risk-metric-chip .metric-value {
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .risk-analysis-body {
+      margin: 0;
+      color: var(--jms-text);
+      font-size: 14px;
+      line-height: 1.72;
+      white-space: pre-wrap;
+    }
+
+    .risk-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .risk-action-card {
+      position: relative;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(215, 230, 226, 0.92);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+      box-shadow: var(--jms-shadow-soft);
+      color: var(--jms-text);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .risk-action-card h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      color: var(--jms-ink);
+    }
+
+    .risk-action-card p {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .insight-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--jms-line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+      box-shadow: var(--jms-shadow-soft);
+    }
+
+    .insight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      opacity: 0.92;
+    }
+
+    .insight-card.warning::before {
+      background: linear-gradient(90deg, #c88a30, #e1b85d);
+    }
+
+    .insight-card.danger::before {
+      background: linear-gradient(90deg, #bf4d5a, #de727b);
+    }
+
+    .insight-card.neutral::before {
+      background: linear-gradient(90deg, var(--jms-primary-deep), var(--jms-accent));
+    }
+
+    .insight-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .insight-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--jms-muted);
+    }
+
+    .insight-card h3 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--jms-ink);
+    }
+
+    .insight-value {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: var(--jms-ink);
+      white-space: nowrap;
+    }
+
+    .insight-body {
+      margin: 0;
+      white-space: pre-wrap;
+      color: var(--jms-text);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .table-intro {
+      margin: 0 0 12px;
+      color: var(--jms-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .session-brief-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .session-brief-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--jms-line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 250, 0.96));
+      box-shadow: var(--jms-shadow-soft);
+    }
+
+    .session-brief-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--jms-primary-deep), var(--jms-accent));
+      opacity: 0.86;
+    }
+
+    .session-brief-card .label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--jms-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .session-brief-card .value {
+      display: block;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--jms-ink);
+      word-break: break-word;
+    }
+
+    .session-brief-card .detail {
+      margin: 0;
+      color: var(--jms-text);
+      font-size: 14px;
+      line-height: 1.72;
+      white-space: pre-wrap;
+    }
+
+    .session-dimension-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .command-analysis-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 0 6px;
+      color: var(--jms-muted);
+      font-size: 12px;
+    }
+
+    .footer strong {
+      color: var(--jms-primary-deep);
+    }
+
+    .footer-date {
+      color: var(--jms-primary-deep);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .badge.success {
+      color: var(--jms-success);
+      background: rgba(42, 154, 114, 0.1);
+    }
+
+    .badge.warning {
+      color: #9d6d0c;
+      background: rgba(215, 160, 58, 0.16);
+    }
+
+    .badge.danger {
+      color: #b13d4b;
+      background: rgba(216, 91, 99, 0.14);
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes lift-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1160px) {
+      .two-column,
+      .risk-hero,
+      .risk-analysis-grid,
+      .risk-actions-grid,
+      .analysis-grid,
+      .session-dimension-grid,
+      .focus-secondary-grid,
+      .summary-table-grid,
+      .table-pair,
+      .session-quad-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .session-brief-grid,
+      .overview-grid,
+      .header-meta-grid,
+      .license-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .page {
+        width: min(100% - 18px, 100%);
+        margin: 12px auto 28px;
+      }
+
+      .metric-grid,
+      .overview-grid,
+      .focus-layout,
+      .focus-secondary-grid,
+      .summary-table-grid,
+      .table-pair,
+      .session-quad-grid,
+      .analysis-grid,
+      .session-brief-grid,
+      .session-dimension-grid,
+      .risk-hero,
+      .risk-analysis-grid,
+      .risk-actions-grid,
+      .header-meta-grid,
+      .license-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-card {
+        padding: 20px 18px;
+      }
+
+      .section-head,
+      .section-body {
+        padding-left: 20px;
+        padding-right: 18px;
+      }
+
+      .section-head {
+        flex-direction: column;
+      }
+
+      .section-head h2 {
+        font-size: 24px;
+      }
+
+      .header-card h1 {
+        font-size: 32px;
+      }
+
+      .split-metrics,
+      .protocol-grid,
+      .risk-hero-side {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .data-table thead th,
+      .data-table tbody td {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media print {
+      :root {
+        --jms-shadow: none;
+        --jms-shadow-soft: none;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .page {
+        width: 100%;
+        margin: 0;
+      }
+
+      .header-card,
+      .report-section,
+      .metric-card,
+      .license-item,
+      .feature-card,
+      .summary-card,
+      .compact-card,
+      .rank-card,
+      .table-card,
+      .note-card,
+      .risk-hero,
+      .risk-total-card,
+      .risk-signal-card,
+      .risk-analysis-card,
+      .risk-action-card,
+      .insight-card,
+      .session-brief-card,
+      .overview-card {
+        box-shadow: none !important;
+      }
+
+      .table-shell {
+        overflow: visible;
+      }
+
+      .data-table,
+      .data-table-command,
+      .data-table-login,
+      .data-table-login-failed,
+      .data-table-ranking,
+      .data-table-duration {
+        min-width: 0;
+      }
+
+      .metric-card {
+        break-inside: avoid;
+      }
+
+      .report-header,
+      .report-section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="report-header">
+      <article class="header-card">
+        <div class="header-top">
+          <div>
+            <span class="section-kicker">JumpServer Daily Brief</span>
+            <h1>JumpServer 使用报告</h1>
+          </div>
+        </div>
+
+        <div class="header-meta-grid">
+          <div class="header-meta-card">
+            <span class="label">报告日期</span>
+            <span class="value">{{report_date}}</span>
+          </div>
+          <div class="header-meta-card">
+            <span class="label">统计时间范围</span>
+            <span class="value">{{date_from}} ~ {{date_to}}</span>
+          </div>
+          <div class="header-meta-card">
+            <span class="label">生成时间</span>
+            <span class="value">{{generated_at}}</span>
+          </div>
+        </div>
+
+        <div class="license-bar">
+          <span class="eyebrow">License</span>
+          <div class="license-grid">
+            <div class="license-item">
+              <span class="label">公司</span>
+              <span class="value">{{license_company}}</span>
+            </div>
+            <div class="license-item">
+              <span class="label">资产总量</span>
+              <span class="value mono">{{license_asset_total}}</span>
+            </div>
+            <div class="license-item">
+              <span class="label">剩余可用数</span>
+              <span class="value mono">{{license_asset_remaining}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-summary">
+          <span class="eyebrow">今日小结</span>
+          <p>{{daily_summary}}</p>
+        </div>
+
+      </article>
+    </header>
+
+    <main class="report-grid">
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>今日概览</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="overview-grid">
+            <article class="overview-card">
+              <h3>登录概况</h3>
+              <ul class="overview-list">
+                <li><span>登录总数</span><strong class="mono">{{login_total}}</strong></li>
+                <li><span>成功登录</span><strong class="mono">{{login_success}}</strong></li>
+                <li><span>失败登录</span><strong class="mono">{{login_failed}}</strong></li>
+              </ul>
+            </article>
+            <article class="overview-card">
+              <h3>会话概况</h3>
+              <ul class="overview-list">
+                <li><span>会话总数</span><strong class="mono">{{session_total}}</strong></li>
+                <li><span>平均会话时长</span><strong>{{avg_session_duration}}</strong></li>
+                <li><span>最长会话</span><strong>{{longest_session}}</strong></li>
+              </ul>
+            </article>
+            <article class="overview-card">
+              <h3>审计概况</h3>
+              <ul class="overview-list">
+                <li><span>命令记录数</span><strong class="mono">{{command_total}}</strong></li>
+                <li><span>风险/异常事件</span><strong class="mono">{{risk_event_total}}</strong></li>
+              </ul>
+            </article>
+            <article class="overview-card">
+              <h3>文件传输概括</h3>
+              <ul class="overview-list">
+                <li><span>文件传输总数</span><strong class="mono">{{file_transfer_total}}</strong></li>
+                <li><span>上传 / 下载</span><strong class="mono">{{file_upload_total}} / {{file_download_total}}</strong></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>风险分析</h2>
+          </div>
+          <span class="section-index">01</span>
+        </div>
+        <div class="section-body">
+          <div class="risk-analysis-stack">
+            <article class="risk-hero">
+              <div class="risk-hero-main">
+                <span class="eyebrow">Risk Control Center</span>
+                <div class="risk-status-row">
+                  <span class="risk-level-badge">{{risk_level}}</span>
+                  <span class="risk-tag">Risk Analysis</span>
+                </div>
+                <h3>当日风险总览与审计判断</h3>
+                <p>{{risk_summary}}</p>
+              </div>
+
+              <div class="risk-hero-side">
+                <article class="risk-total-card">
+                  <span class="label">风险事件总数</span>
+                  <span class="value mono">{{risk_event_total}}</span>
+                </article>
+                <article class="risk-signal-card">
+                  <span class="label">异常登录</span>
+                  <span class="value mono">{{login_failed}}</span>
+                </article>
+                <article class="risk-signal-card">
+                  <span class="label">高危命令</span>
+                  <span class="value mono">{{high_risk_command_total}}</span>
+                </article>
+                <article class="risk-signal-card">
+                  <span class="label">传输风险</span>
+                  <span class="value mono">{{file_transfer_total}}</span>
+                </article>
+              </div>
+            </article>
+
+            <div class="risk-analysis-grid">
+              <article class="risk-analysis-card login">
+                <div class="risk-analysis-head">
+                  <h3>异常登录分析</h3>
+                </div>
+                <p class="risk-analysis-body">{{risk_login_analysis}}</p>
+              </article>
+
+              <article class="risk-analysis-card command">
+                <div class="risk-analysis-head">
+                  <h3>高危命令分析</h3>
+                </div>
+                <p class="risk-analysis-body">{{risk_command_analysis}}</p>
+              </article>
+
+              <article class="risk-analysis-card transfer">
+                <div class="risk-analysis-head">
+                  <h3>传输风险分析</h3>
+                </div>
+                <p class="risk-analysis-body">{{risk_transfer_analysis}}</p>
+              </article>
+            </div>
+
+            <div class="risk-actions-grid">
+              <article class="risk-action-card">
+                <h3>处置建议</h3>
+                <p>{{risk_action}}</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>登录情况</h2>
+          </div>
+          <span class="section-index">02</span>
+        </div>
+        <div class="section-body">
+          <div class="section-stack">
+            <div class="summary-table-grid">
+              <article class="summary-card">
+                <div class="lead-metric">
+                  <div>
+                    <span class="label">当日登录会话</span>
+                    <div class="value mono">{{login_total}}</div>
+                  </div>
+                  <span class="badge success">Login Audit</span>
+                </div>
+                <ul class="summary-list">
+                  <li><span>成功登录</span><strong class="mono">{{login_success}}</strong></li>
+                  <li><span>失败登录</span><strong class="mono">{{login_failed}}</strong></li>
+                  <li><span>来源城市数</span><strong class="mono">{{unique_login_city_count}}</strong></li>
+                  <li><span>主要来源 IP</span><strong>{{top_login_ip_summary}}</strong></li>
+                </ul>
+              </article>
+
+              <article class="table-card">
+                <h3>当日登录会话明细 Top 10</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-login">
+                    <thead>
+                      <tr>
+                        <th>登录用户名</th>
+                        <th>来源城市</th>
+                        <th>来源 IP</th>
+                        <th>状态</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{login_top10_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <article class="table-card">
+              <h3>失败登录明细</h3>
+              <div class="table-shell">
+                <table class="data-table data-table-login-failed">
+                  <thead>
+                    <tr>
+                      <th>登录用户名</th>
+                      <th>来源城市</th>
+                      <th>来源 IP</th>
+                      <th>是否常用IP</th>
+                      <th>原因描述</th>
+                      <th>状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{login_failed_rows}}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>资产会话分析</h2>
+          </div>
+          <span class="section-index">03</span>
+        </div>
+        <div class="section-body">
+          <div class="section-stack">
+            <div class="session-brief-grid">
+              <article class="session-brief-card">
+                <span class="label">会话总数</span>
+                <span class="value mono">{{session_total}}</span>
+              </article>
+              <article class="session-brief-card">
+                <span class="label">会话总时长</span>
+                <span class="value mono">{{session_total_duration}}</span>
+              </article>
+              <article class="session-brief-card">
+                <span class="label">平均会话时长</span>
+                <span class="value mono">{{avg_session_duration}}</span>
+              </article>
+              <article class="session-brief-card">
+                <span class="label">最长会话</span>
+                <span class="value mono">{{longest_session}}</span>
+              </article>
+            </div>
+
+            <div class="session-dimension-grid">
+              <article class="table-card">
+                <h3>协议维度占比</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-protocol">
+                    <thead>
+                      <tr>
+                        <th>协议</th>
+                        <th>次数</th>
+                        <th>占比</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{protocol_distribution_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="table-card">
+                <h3>组件维度占比</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-protocol">
+                    <thead>
+                      <tr>
+                        <th>组件</th>
+                        <th>次数</th>
+                        <th>占比</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{component_distribution_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="table-card">
+                <h3>用户维度占比 Top 10</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-protocol">
+                    <thead>
+                      <tr>
+                        <th>用户</th>
+                        <th>会话数</th>
+                        <th>占比</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{session_user_top10_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <div class="summary-table-grid">
+              <article class="table-card">
+                <h3>访问最多资产 Top 10</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-ranking">
+                    <thead>
+                      <tr>
+                        <th>资产名</th>
+                        <th>次数</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{session_asset_top10_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="table-card">
+                <h3>会话时长 Top 10</h3>
+                <div class="table-shell">
+                  <table class="data-table data-table-duration">
+                    <thead>
+                      <tr>
+                        <th>用户名</th>
+                        <th>资产名</th>
+                        <th>时长</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{session_duration_top10_rows}}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <article class="table-card">
+              <h3>会话失败明细</h3>
+              <div class="table-shell">
+                <table class="data-table data-table-login-failed">
+                  <thead>
+                    <tr>
+                      <th>用户</th>
+                      <th>资产</th>
+                      <th>协议</th>
+                      <th>失败原因</th>
+                      <th>状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{session_failed_rows}}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>命令审计情况</h2>
+          </div>
+          <span class="section-index">04</span>
+        </div>
+        <div class="section-body">
+          <div class="tip-banner">
+            报告默认汇总所有可访问 <code>命令存储器</code>；如需限定单个存储，可显式指定 <code>命令存储器</code>。
+          </div>
+
+          <div class="section-stack">
+            <article class="summary-card">
+              <div class="lead-metric">
+                <div>
+                  <span class="label">命令记录总数</span>
+                  <div class="value mono">{{command_total}}</div>
+                </div>
+                <span class="badge danger">High Risk {{high_risk_command_total}}</span>
+              </div>
+              <ul class="summary-list">
+                <li><span>命令记录总数</span><strong class="mono">{{command_total}}</strong></li>
+                <li><span>主要操作用户</span><strong>{{top_command_users}}</strong></li>
+                <li><span>主要操作资产</span><strong>{{top_command_assets}}</strong></li>
+                <li><span>高风险命令数</span><strong class="mono">{{high_risk_command_total}}</strong></li>
+              </ul>
+            </article>
+
+            <article class="table-card">
+              <h3>高危命令执行明细</h3>
+              <div class="table-shell">
+                <table class="data-table data-table-command">
+                  <thead>
+                    <tr>
+                      <th>用户</th>
+                      <th>资产</th>
+                      <th>账号</th>
+                      <th>操作命令</th>
+                      <th>开始时间</th>
+                      <th>结束时间</th>
+                      <th>风险等级</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{command_risk_rows}}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <div class="command-analysis-stack">
+              <article class="compact-card">
+                <h3>高危命令分析</h3>
+                <p class="body-text">{{command_summary}}</p>
+              </article>
+
+              <article class="insight-card danger">
+                <div class="insight-head">
+                  <div>
+                    <h3>运维规范判断</h3>
+                  </div>
+                </div>
+                <p class="insight-body">{{command_compliance_analysis}}</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-head">
+          <div>
+            <h2>文件传输情况</h2>
+          </div>
+          <span class="section-index">05</span>
+        </div>
+        <div class="section-body">
+          <div class="two-column">
+            <article class="summary-card">
+              <div class="lead-metric">
+                <div>
+                  <span class="label">文件传输总数</span>
+                  <div class="value mono">{{file_transfer_total}}</div>
+                </div>
+                <span class="badge warning">Transfer Audit</span>
+              </div>
+              <div class="split-metrics">
+                <div class="split-box">
+                  <span class="label">Upload</span>
+                  <span class="value mono">{{file_upload_total}}</span>
+                </div>
+                <div class="split-box">
+                  <span class="label">Download</span>
+                  <span class="value mono">{{file_download_total}}</span>
+                </div>
+              </div>
+              <ul class="summary-list">
+                <li><span>主要涉及用户</span><strong>{{file_transfer_users}}</strong></li>
+                <li><span>主要涉及资产</span><strong>{{file_transfer_assets}}</strong></li>
+              </ul>
+            </article>
+
+            <article class="compact-card">
+              <h3>文件传输结论</h3>
+              <p class="body-text">{{file_transfer_summary}}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div><strong>JumpServer</strong> 使用报告</div>
+      <div class="footer-date">{{current_date}}</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,35 +1,92 @@
 ---
-name: "karpathy-coding-rules"
-description: "Karpathy 编程四原则｜解决 AI 写代码常犯的 4 类错误：不过脑子假设、过度工程化、乱改无关代码、只管写不管对。基于 Andrej Karpathy 观察，触发于写脚本/自动化/修复 bug 等编码任务，让 AI 输出更可靠。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/karpathy-coding-rules-dami"
-sourceUrl: "https://clawhub.ai/skills/karpathy-coding-rules-dami"
+name: karpathy-coding-rules
+description: Karpathy 编程四原则｜解决 AI 写代码常犯的 4 类错误：不过脑子假设、过度工程化、乱改无关代码、只管写不管对。基于 Andrej Karpathy 观察，触发于写脚本/自动化/修复 bug 等编码任务，让 AI 输出更可靠。
 ---
 
-# karpathy-coding-rules
+# Karpathy Coding Rules
 
-> Karpathy 编程四原则｜解决 AI 写代码常犯的 4 类错误：不过脑子假设、过度工程化、乱改无关代码、只管写不管对。基于 Andrej Karpathy 观察，触发于写脚本/自动化/修复 bug 等编码任务，让 AI 输出更可靠。
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/karpathy-coding-rules-dami`
-- **Source URL:** [https://clawhub.ai/skills/karpathy-coding-rules-dami](https://clawhub.ai/skills/karpathy-coding-rules-dami)
+> "Models make wrong assumptions on your behalf and just run along with them without checking." — Andrej Karpathy
 
-## Overview
+大模型常犯的错误：过度自信、不质疑假设、代码过度工程化、只管写不管对不对。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/karpathy-coding-rules-dami
-```
+## 四大原则
+
+### 1. Think Before Coding（动手前先想）
+
+**不要假设。不要隐藏confusion。直面tradoffs。**
+
+执行任务前先理清：
+- 我的假设是什么？这个假设成立吗？
+- 如果假设错了会怎样？
+- 有哪些不确定性还没确认？
+
+**触发信号**：当你想"应该没问题"的时候 → 停下来，列出假设
+
+### 2. Simplicity First（简洁至上）
+
+**最少代码解决问题，不要过度工程化。**
+
+警惕信号：
+- 写了一个通用框架来处理"以后可能的需求"
+- 200行能解决写了1000行
+- 加了一堆"灵活性配置"但从未用过
+- 异常处理覆盖了永远不会发生的场景
+
+**测试**：问自己"一个更简单的引擎会说这过度复杂吗？"
+
+### 3. Surgical Changes（精准改动）
+
+**只改必须改的，不动无关代码。**
+
+编辑现有代码时：
+- 不"顺便改善"无关的代码风格或注释
+- 不重构没被要求重构的部分
+- 匹配现有风格，即使它不够理想
+- 发现无关的dead code → 提及但不删除（除非被要求）
+
+**每个改动的行都应该直接追溯到用户的请求。**
+
+### 4. Goal-Driven Execution（目标驱动）
+
+**定义成功标准，循环验证直到达成。**
+
+对于复杂任务：
+1. 把模糊指令转化为可验证的目标
+2. 把大任务分解成小步骤
+3. 每步完成后验证，再进入下一步
+4. 最终验证：成功标准都满足了吗？
+
+**转换示例**：
+| 而不是... | 转化为... |
+|-----------|-----------|
+| "添加验证" | "写出2个测试覆盖无效输入，然后让测试通过" |
+| "修复bug" | "写出1个测试复现bug，然后修复让测试通过" |
+| "重构X" | "确保测试重构前通过、重构后也通过" |
+
+---
+
+## 应用场景
+
+- 写 Python/PowerShell 自动化脚本
+- 修复 bug 或调试问题
+- 构建工具或工作流
+- 任何需要"写代码"的任务
+
+**不使用此原则的场景**：纯对话问答、文件整理、信息检索（除非涉及代码）。
+
+---
+
+## 决策检查清单
+
+每当你准备输出代码前，快速自检：
+
+- [ ] 我列出了哪些假设？这些假设都验证过了吗？
+- [ ] 有没有更简单的方案被我一上来就跳过了？
+- [ ] 我改动的代码里，有没有"顺手改的"无关内容？
+- [ ] 这个任务的成功标准是什么？我怎么验证？
+
+如果有任何一项不确定 → 先搞清楚再继续。

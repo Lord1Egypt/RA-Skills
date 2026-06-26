@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval6.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "Headings rendered correctly",
+      "passed": true,
+      "evidence": "Heading count: 3"
+    },
+    {
+      "text": "Bullet lists rendered",
+      "passed": true,
+      "evidence": "List paragraphs: 4"
+    }
+  ]
+}

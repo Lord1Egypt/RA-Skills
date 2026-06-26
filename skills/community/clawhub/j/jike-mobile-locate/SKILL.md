@@ -1,35 +1,175 @@
 ---
-name: "手机号码归属地查询 - 即刻数据"
-description: "手机号码归属地查询。输入中国大陆 11 位手机号，实时查询归属地省份/城市、运营商、运营商类型、区号、邮编和行政区划编码。适用场景：用户说“查一下 17611491111 是哪里的号码”“这个手机号是什么运营商”“帮我查下这个号码的归属地”“176 开头的号码是哪家运营商”等。数据由即刻数据（jikeapi.cn..."
-category: "other"
-source: "ClawHub"
-tags: [jikeapi, mobile]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jike-mobile-locate"
-sourceUrl: "https://clawhub.ai/skills/jike-mobile-locate"
+name: jike-mobile-locate
+description: 手机号码归属地查询。输入中国大陆 11 位手机号，实时查询归属地省份/城市、运营商、运营商类型、区号、邮编和行政区划编码。适用场景：用户说“查一下 17611491111 是哪里的号码”“这个手机号是什么运营商”“帮我查下这个号码的归属地”“176 开头的号码是哪家运营商”等。数据由即刻数据（jikeapi.cn）开放接口提供，支持三网手机号查询。
+homepage: https://www.jikeapi.cn/
+metadata: {"openclaw":{"emoji":"📱","requires":{"bins":["python3"],"env":["JIKE_MOBILE_KEY"]},"primaryEnv":"JIKE_MOBILE_KEY"}}
 ---
 
 # 手机号码归属地查询 - 即刻数据
 
-> 手机号码归属地查询。输入中国大陆 11 位手机号，实时查询归属地省份/城市、运营商、运营商类型、区号、邮编和行政区划编码。适用场景：用户说“查一下 17611491111 是哪里的号码”“这个手机号是什么运营商”“帮我查下这个号码的归属地”“176 开头的号码是哪家运营商”等。数据由即刻数据（jikeapi.cn...
+> 数据由 **[即刻数据](https://www.jikeapi.cn/)** 提供。即刻数据专注稳定易用的数据 API、MCP 与 AI Skill 能力，帮助开发者和 AI 客户端快速接入可靠数据服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jike-mobile-locate`
-- **Source URL:** [https://clawhub.ai/skills/jike-mobile-locate](https://clawhub.ai/skills/jike-mobile-locate)
+输入中国大陆手机号，查询：**归属地省份/城市、运营商、运营商类型、区号、邮编、行政区划编码**。
 
-## Overview
+---
 
+## 前置配置：获取 AppKey
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 登录即刻数据官网。
+2. 申请「手机号码归属地查询」接口。
+3. 在「个人中心 -> 我的 API 应用」中获取接口 `AppKey`。
+4. 配置 Key（推荐使用环境变量）：
+
 ```bash
-hermes skills install clawhub/jike-mobile-locate
+# 方式一：环境变量（推荐）
+export JIKE_MOBILE_KEY=你的AppKey
+
+# 方式二：脚本目录 .env 文件（本地测试使用）
+echo "JIKE_MOBILE_KEY=你的AppKey" > scripts/.env
+
+# 方式三：命令行临时传入
+python3 scripts/mobile_lookup.py --key 你的AppKey 17611491111
 ```
+
+Windows 用户可在系统环境变量中新增：
+
+```text
+变量名：JIKE_MOBILE_KEY
+变量值：你的AppKey
+```
+
+> 不要把真实 AppKey 写进公开仓库或上传到 Skill 包中。
+
+---
+
+## 使用方法
+
+### 基本查询
+
+示例号码参考即刻数据接口文档，最后 4 位可用 `1111` 代替：
+
+```bash
+python3 scripts/mobile_lookup.py 17611491111
+```
+
+输出示例：
+
+```text
+📱 手机号码归属地查询结果
+
+  号码:     176****1111
+  省份:     北京
+  城市:     北京
+  运营商:   中国联通
+  类型:     联通
+  邮编:     100000
+  区号:     010
+  行政区划: 110100
+```
+
+### 批量查询多个号码
+
+```bash
+python3 scripts/mobile_lookup.py 17611491111 17611492222
+```
+
+输出示例：
+
+```text
+📱 手机号码归属地批量查询  共 2 条
+
++-------------+------+------+------+--------+----------+------+
+| 号码        | 省份 | 城市 | 区号 | 邮编   | 运营商   | 类型 |
++-------------+------+------+------+--------+----------+------+
+| 176****1111 | 北京 | 北京 | 010  | 100000 | 中国联通 | 联通 |
+| 176****2222 | 北京 | 北京 | 010  | 100000 | 中国联通 | 联通 |
++-------------+------+------+------+--------+----------+------+
+```
+
+### 显示完整号码（不脱敏）
+
+```bash
+python3 scripts/mobile_lookup.py 17611491111 --no-mask
+```
+
+### 输出 JSON
+
+```bash
+python3 scripts/mobile_lookup.py 17611491111 --json
+```
+
+### 直接传入 AppKey
+
+```bash
+python3 scripts/mobile_lookup.py --key 你的AppKey 17611491111
+```
+
+### 直接调用 API
+
+```text
+GET https://api.jikeapi.cn/v1/mobile/query?mobile=17611491111&appkey=YOUR_APPKEY
+```
+
+---
+
+## AI 使用步骤
+
+当用户询问手机号归属地、运营商、区号、邮编等信息时，按以下步骤处理：
+
+1. **提取号码**：从用户消息中识别 `1` 开头的 11 位中国大陆手机号。
+2. **校验格式**：号码必须为 11 位数字；如果用户给出 12 位或非数字内容，应先提示修正。
+3. **调用脚本**：执行 `python3 scripts/mobile_lookup.py <手机号>`，多个号码可一次传入。
+4. **展示结果**：优先返回省份、城市、运营商、区号、邮编；涉及隐私时默认使用脱敏号码。
+
+### 参数说明
+
+| 参数 | 必填 | 说明 | 示例 |
+| --- | --- | --- | --- |
+| 手机号 | 是 | `1` 开头的 11 位中国大陆手机号，支持多个 | `17611491111` |
+| `--no-mask` | 否 | 展示完整号码；默认对中间 4 位脱敏 | `--no-mask` |
+| `--json` | 否 | 输出 JSON，便于其他程序读取 | `--json` |
+| `--key` | 否 | 临时传入 AppKey；日常建议使用环境变量 | `--key 你的AppKey` |
+
+## 返回字段
+
+| 字段 | 含义 | 示例 |
+| --- | --- | --- |
+| `province` | 省份 | 北京 |
+| `city` | 城市 | 北京 |
+| `isp` | 运营商名称 | 中国联通 |
+| `isp_type` | 运营商类型 | 联通 |
+| `post_code` | 邮编 | 100000 |
+| `city_code` | 区号 | 010 |
+| `area_code` | 行政区划编码 | 110100 |
+
+## 错误处理
+
+| 情况 | 处理方式 |
+| --- | --- |
+| 未配置 `JIKE_MOBILE_KEY` | 提醒用户先在即刻数据申请接口，并配置环境变量 |
+| 手机号格式错误 | 提示用户提供 `1` 开头的 11 位手机号 |
+| AppKey 无效或无权限 | 提醒用户检查个人中心中的 AppKey 和接口授权状态 |
+| 接口次数不足 | 提醒用户查看套餐、余额或调用次数 |
+| 查询无结果 | 告知该号码暂未查询到归属地信息 |
+| 网络超时 | 建议稍后重试，或检查本地网络和代理设置 |
+
+---
+
+## 脚本位置
+
+`scripts/mobile_lookup.py`：封装了参数解析、AppKey 读取、接口请求、号码脱敏、文本/JSON 输出和错误处理。
+
+---
+
+## 关于即刻数据
+
+[即刻数据（jikeapi.cn）](https://www.jikeapi.cn/) 是面向开发者和 AI 应用的数据服务平台，提供稳定易用的 API、MCP 与 AI Skill 能力。
+
+典型能力包括：
+
+- **生活服务**：天气、号码归属地、万年历、行政区划等。
+- **企业数据**：工商信息、企业风险、统一社会信用代码等。
+- **网络工具**：IP 查询、域名解析、二维码、短链接等。
+- **AI 接入**：MCP Server、AI Skill、本地客户端能力包。
+
+适合个人开发者、企业系统、自动化工具和 AI 客户端快速接入。

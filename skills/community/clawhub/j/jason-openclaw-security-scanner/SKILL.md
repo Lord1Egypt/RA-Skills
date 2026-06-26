@@ -1,35 +1,81 @@
 ---
-name: "Jason's OpenClaw Security Scanner"
-description: "扫描 OpenClaw 配置权限和安全隐患。当用户提到"安全扫描"、"权限检查"、"安全检查"、"扫描权限"、"检查配置安全"时使用此技能。输出具体漏洞内容、安全评分和修复建议，支持交互式一键修复。"
-category: "security"
-source: "ClawHub"
-tags: [openclaw, scanner, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jason-openclaw-security-scanner"
-sourceUrl: "https://clawhub.ai/skills/jason-openclaw-security-scanner"
+name: openclaw-security-scanner
+description: 扫描 OpenClaw 配置权限和安全隐患。当用户提到"安全扫描"、"权限检查"、"安全检查"、"扫描权限"、"检查配置安全"时使用此技能。输出具体漏洞内容、安全评分和修复建议，支持交互式一键修复。
 ---
 
-# Jason's OpenClaw Security Scanner
+# OpenClaw 安全扫描器
 
-> 扫描 OpenClaw 配置权限和安全隐患。当用户提到"安全扫描"、"权限检查"、"安全检查"、"扫描权限"、"检查配置安全"时使用此技能。输出具体漏洞内容、安全评分和修复建议，支持交互式一键修复。
+扫描 OpenClaw 的配置、文件权限、敏感信息泄露，生成安全报告并支持交互式修复。
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jason-openclaw-security-scanner`
-- **Source URL:** [https://clawhub.ai/skills/jason-openclaw-security-scanner](https://clawhub.ai/skills/jason-openclaw-security-scanner)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jason-openclaw-security-scanner
+# 扫描并显示报告
+python3 scripts/scan_security.py
+
+# 交互式修复（逐个询问）
+python3 scripts/scan_security.py --interactive
+
+# 自动修复所有问题
+python3 scripts/scan_security.py --fix-all
+
+# 修复指定问题
+python3 scripts/scan_security.py --fix 0
 ```
+
+## 扫描内容
+
+| 类别 | 检查项 | 自动修复 |
+|------|--------|----------|
+| 操作规则 | 删除操作是否需人工确认 | ✅ 添加规则 |
+| 配置权限 | 子代理权限、沙箱状态、公网暴露 | 部分 |
+| 文件权限 | 目录权限 | ✅ chmod |
+| 敏感信息 | API Key、密码、Token、私钥泄露 | ✅ .gitignore |
+| 日志审计 | 错误统计、认证失败 | ❌ 仅提醒 |
+
+## 工作流程
+
+1. **扫描** - 检测所有安全隐患
+2. **报告** - 显示安全评分和详细问题
+3. **修复建议** - 针对每个问题给出具体修复方案
+4. **询问确认** - 用户同意后执行修复
+5. **结果汇总** - 显示修复成功/失败
+
+## 输出示例
+
+```
+🛡️ OpenClaw 安全扫描报告
+📅 扫描时间: 2026-03-15 16:57
+📊 安全评分: 25/100
+
+📋 详细发现:
+
+【1】[操作规则] 🟠 高危
+问题: 未设置删除操作限制
+详情: Agent 可能执行删除操作而不需要人工确认
+🔧 可修复: 是
+
+💡 发现 5 个可修复的问题，运行:
+   python3 scripts/scan_security.py --interactive
+```
+
+## 交互式修复示例
+
+```
+【问题 1】未设置删除操作限制
+风险等级: 🟠 高危
+
+📝 修复方案:
+  在文件中添加规则: 操作红线: 只能执行查询和修改，删除操作必须手动确认
+
+是否执行此修复? (y/n/skip/all): y
+✅ 已在 TOOLS.md 中添加操作红线规则
+```
+
+## 安全评分规则
+
+- 100 分起
+- 🔴 严重: -25 分
+- 🟠 高危: -15 分
+- 🟡 中危: -5 分
+- 🟢 低危: -2 分

@@ -1,35 +1,27 @@
 ---
 name: "网红海岛"
 description: "提供关于网红海岛的推荐清单、打卡路线与指南。用户搜索网红海岛或规划相关出行时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/islands"
-sourceUrl: "https://clawhub.ai/skills/islands"
 ---
 
 # 网红海岛
 
-> 提供关于网红海岛的推荐清单、打卡路线与指南。用户搜索网红海岛或规划相关出行时调用。
+## 筛选项
+- 难度/里程/海拔/路况（铺装/土路）
+- 季节/气候/最佳时段/是否需要预约或许可
+- 安全（补给点/紧急撤退/信号覆盖）/亲子或萌宠友好
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/islands`
-- **Source URL:** [https://clawhub.ai/skills/islands](https://clawhub.ai/skills/islands)
+## 返回字段
+- 路线图/用时/交通方式/补给点与洗手间
+- 风景亮点/拍摄位/人流情况/风险点
+- 天气预警/装备清单/环保与无痕原则
 
-## Overview
+## 示例请求
+- “杭州 网红海岛 雨季友好路线（坡度≤8%）”
+- “深圳 网红海岛 城市步道串联（地铁直达）”
 
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/islands
-```
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行

@@ -1,0 +1,46 @@
+{
+  "pet_id": "huli",
+  "name": "狐狐",
+  "emoji": "🦊",
+  "investment_style": "balanced",
+  "risk_tolerance": "moderate",
+  "communication_style": "witty",
+  "expertise": ["asset_allocation", "rebalancing", "risk_management"],
+  "catchphrase": "别把鸡蛋放在一个篮子里~",
+  
+  "personality_traits": {
+    "proactivity_level": 65,
+    "verbosity_level": 60,
+    "intervention_level": 55,
+    "emotional_bond": 55,
+    "optimism": 65,
+    "patience": 60
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": true,
+    "prefers_direct": false,
+    "hates_jargon": true,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早呀！今天也是机智的一天！🦊",
+    "greeting_night": "晚安~ 今天又聪明地避开了一些坑呢！",
+    "market_up": "涨了{percent}%！我们的分散策略见效啦！",
+    "market_down": "跌了{percent}%。没事，东方不亮西方亮~",
+    "sip_reminder": "定投日！记得分散投资哦~",
+    "achievement": "{achievement}！机智如我！",
+    "comfort_loss": "主人，别难过。狡兔三窟，我们有很多窟窿呢！"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小狐狸", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "谋士", "xp_required": 500, "unlocks": ["资产配置"]},
+    {"level": 3, "name": "策略家", "xp_required": 1500, "unlocks": ["再平衡提醒"]},
+    {"level": 4, "name": "智者", "xp_required": 3000, "unlocks": ["风险评估"]},
+    {"level": 5, "name": "传奇狐仙", "xp_required": 6000, "unlocks": ["全球配置"]}
+  ]
+}

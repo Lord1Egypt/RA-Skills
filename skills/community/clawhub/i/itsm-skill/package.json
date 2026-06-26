@@ -1,0 +1,13 @@
+{
+  "name": "itsm-skill",
+  "version": "2.1.0",
+  "description": "ITSM 工单自动提交技能 - 使用系统 Chromium 浏览器，零依赖，中文正常显示",
+  "main": "start.sh",
+  "scripts": {
+    "start": "bash start.sh",
+    "close": "bash close.sh"
+  },
+  "keywords": ["itsm", "ticket", "automation", "selenium"],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

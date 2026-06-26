@@ -1,0 +1,21 @@
+{
+  "name": "income-tracker",
+  "version": "1.0.0",
+  "description": "自动化每日收入追踪与债务管理系统",
+  "main": "index.js",
+  "scripts": {
+    "init": "echo 'Income Tracker initialized'",
+    "record": "node scripts/record.js",
+    "report": "node scripts/report.js",
+    "debt": "node scripts/debt.js"
+  },
+  "keywords": [
+    "income",
+    "tracking",
+    "finance",
+    "debt",
+    "management"
+  ],
+  "author": "OpenClaw Developer",
+  "license": "MIT"
+}

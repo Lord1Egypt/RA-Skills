@@ -1,0 +1,70 @@
+{
+  "_comment": "JobClaw config template. Copy to ~/Documents/JobClaw/config.json and edit.",
+  "user": {
+    "name": "Your Name",
+    "background": "Brief description of your background (used for job scoring context)",
+    "target_roles": [
+      "ML Engineer",
+      "Data Scientist",
+      "AI Engineer"
+    ],
+    "skill_keywords": [
+      "python", "pytorch", "machine learning", "deep learning", "sql"
+    ],
+    "cv_path": ""
+  },
+  "search": {
+    "coding_keywords": [
+      "machine learning engineer",
+      "deep learning engineer",
+      "AI engineer",
+      "LLM engineer",
+      "MLOps engineer",
+      "ML platform engineer",
+      "computer vision engineer",
+      "NLP engineer",
+      "data scientist",
+      "applied scientist",
+      "research scientist"
+    ],
+    "noncoding_keywords": [
+      "wearable AI",
+      "human activity recognition",
+      "affective computing",
+      "emotion AI",
+      "healthcare AI",
+      "digital health machine learning",
+      "health data scientist",
+      "clinical AI",
+      "fintech data scientist",
+      "fraud detection machine learning",
+      "AI product manager",
+      "research associate machine learning",
+      "postdoctoral machine learning"
+    ],
+    "locations": [
+      "London, UK",
+      "Cambridge, UK"
+    ],
+    "min_score": 70,
+    "hours_old": 48,
+    "results_per_search": 10,
+    "platforms": ["linkedin", "indeed"]
+  },
+  "notifications": {
+    "_comment_openclaw": "Set openclaw_channel + openclaw_account + telegram_chat_id if using OpenClaw",
+    "_comment_telegram": "Set telegram_bot_token + telegram_chat_id for direct Telegram Bot API",
+    "enabled": false,
+    "telegram_bot_token": "",
+    "telegram_chat_id": "",
+    "openclaw_channel": "telegram",
+    "openclaw_account": ""
+  },
+  "schedule": {
+    "daily_time": "07:30",
+    "weekdays_only": true,
+    "timezone": "Europe/London"
+  },
+  "csv_filename": "jobs.csv",
+  "version": "1.0"
+}

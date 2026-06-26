@@ -1,35 +1,61 @@
----
-name: "金十快讯"
-description: "提供金十金融快讯及详情，支持本地秒开快讯浏览和对港股、恒生科技及相关个股的深度影响分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jin10-news"
-sourceUrl: "https://clawhub.ai/skills/jin10-news"
----
+# SKILL.md - 金十快讯技能
 
-# 金十快讯
+## 功能
 
-> 提供金十金融快讯及详情，支持本地秒开快讯浏览和对港股、恒生科技及相关个股的深度影响分析。
+获取金十金融快讯，支持以下命令：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jin10-news`
-- **Source URL:** [https://clawhub.ai/skills/jin10-news](https://clawhub.ai/skills/jin10-news)
+- `jin10` - 获取最近快讯（从本地缓存读取，秒开）
+- `细说N` - 查看第N条详情
+- `展开说说N` - 深度分析（港股/恒生科技/腾讯/阿里影响）
 
-## Overview
+## 架构
 
+### 后台抓取（jin10_fetcher.py）
+- 守护进程模式运行
+- 每2-10分钟随机间隔抓取快讯
+- 数据源：jin10.com 主页 + 详情页
+- 缓存路径：`/tmp/jin10_cache/YYYYMMDD-HH.json`
+- 自动清理超过24小时的旧缓存
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 前端读取（jin10_push.py）
+- 直接从本地缓存读取，无需网络请求
+- 支持 detail/deep 命令做深度分析
+
+### 分析模块（jin10_analysis.py）
+- 深度分析港股、恒生科技、腾讯(00700)、阿里(09988)影响
+- 风险等级评估
+- 相关个股推荐
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/jin10-news
+# 手动抓取一次数据
+python3 /root/.openclaw/workspace/scripts/jin10_fetcher.py once
+
+# 启动后台守护进程
+python3 /root/.openclaw/workspace/scripts/jin10_fetcher.py daemon
+
+# 读取快讯
+python3 /root/.openclaw/workspace/scripts/jin10_push.py recent
+
+# 查看详情
+python3 /root/.openclaw/workspace/scripts/jin10_push.py detail 3
+
+# 深度分析
+python3 /root/.openclaw/workspace/scripts/jin10_push.py deep 3
 ```
+
+## 性能
+
+- 脚本执行：< 0.01秒（本地缓存读取）
+- 响应速度：秒开
+
+## 依赖
+
+- Python 3
+- requests
+- concurrent.futures (标准库)
+
+## x-token
+
+用于金十网站访问：参考 TOOLS.md

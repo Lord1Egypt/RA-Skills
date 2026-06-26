@@ -1,0 +1,17 @@
+{
+  "name": "cycle-history-viewer",
+  "version": "1.0.0",
+  "description": "Views and searches evolution cycle history with filtering capabilities for tracking progress and analyzing patterns",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('./index.js'); console.log(Object.keys(s))\""
+  },
+  "keywords": [
+    "cycle",
+    "history",
+    "viewer",
+    "search",
+    "evolution"
+  ],
+  "license": "MIT"
+}

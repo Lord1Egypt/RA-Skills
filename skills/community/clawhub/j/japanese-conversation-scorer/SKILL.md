@@ -1,35 +1,140 @@
+# 日语会话测试作业批改
 ---
-name: "日语会话测试批改"
-description: "双模式日语会话音频批改工具，支持教师批量作业批阅、学生单人 / 双人语伴自适应自测。兼容师生问答、单人练习、双人情景对练三类音频；按N5～N1 等级智能控制纠错数量，初级重鼓励、中高级适度提点。采用宽松友好评分标准，自动逐题打分、生成评语与 Excel 班级汇总，保护学生口语表达积极性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/japanese-conversation-scorer"
-sourceUrl: "https://clawhub.ai/skills/japanese-conversation-scorer"
----
+name: japanese-conversation-scorer
+description: 教师批量批改学生口语作业。学生提交音频会话作答，AI转写+评分+纠错+录入成绩+生成班级汇总。
+triggers:
+  - 会话作业录音批改
+ 
+## 会话测试形式与录音要求
+1. **对话模式**：分为生生对话与师生对话两种模式
+   （1）**生生对话**
+   教师统一指定对话内容，学生按照要求开展现场双人对话练习，并完整录制全过程音频提交。形式为ABAB 交替对话，共 5 ~6个来回。
 
-# 日语会话测试批改
+   （2）**师生对话**
+   - 教师根据课文内容编写5道固定提问，并提前录制提问音频
+   - 音频每题之间预留固定作答时长
+   - 全班学生跟随音频同步口头回答
+   - 学生独立完整录音并提交音频文件
 
-> 双模式日语会话音频批改工具，支持教师批量作业批阅、学生单人 / 双人语伴自适应自测。兼容师生问答、单人练习、双人情景对练三类音频；按N5～N1 等级智能控制纠错数量，初级重鼓励、中高级适度提点。采用宽松友好评分标准，自动逐题打分、生成评语与 Excel 班级汇总，保护学生口语表达积极性。
+2. **训练目标**
+   师生对话模式侧重在课堂集体环境、背景嘈杂的条件下，锻炼学生即时反应、清晰发音与抗干扰会话能力。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/japanese-conversation-scorer`
-- **Source URL:** [https://clawhub.ai/skills/japanese-conversation-scorer](https://clawhub.ai/skills/japanese-conversation-scorer)
+3. **录音要求**
+   单人完整录制5道题目的全部回答内容，人声清晰可识别即可。
 
-## Overview
+## 工作流程
+Step 1 → 下载学生提交音频
+Step 2 → Whisper medium 转写
+Step 3 → CAF三维框架分级评分 
+Step 4 → 填写每个人的评语及分数
+Step 5 → 生成班级汇总 + 上传
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Step 1：下载音频
 ```bash
-hermes skills install clawhub/japanese-conversation-scorer
+python3 scripts/download_audio_submissions.py COURSE_ID ASSIGNMENT_ID
 ```
+输出：`/tmp/canvas_audio_CID_AID/submission_map.json`
+
+## Step 2：Whisper 转写
+1. 本技能音频转写固定使用 Whisper medium 模型（本地运行），全样本、全批次不可替换 tiny/base/large 等其他 
+2. 模型已固定使用 medium 版本，无需手动切换
+
+```bash
+# MP4视频 → 音频预处理
+ffmpeg -y -i "input.mp4" -vn -acodec pcm_s16le -ar 16000 -ac 1 /tmp/audio.wav
+
+# 固定medium模型日语转写
+whisper /tmp/audio.wav --model medium --language ja --output_format txt
+```
+
+## Step 3：评分规则
+ 基础分：10.0分
+计分公式：总分 = 10.0 - 累计扣分
+约束：6.0 ≤ 总分 ≤ 10.0
+扣分上限：4.0分
+
+ # 分级纠错规则（A1 / A2 / B1 独立执行）
+    JF Can-do / CEFR + JLPT级别参考
+   对应关系
+   A1 ≈ N5级别
+   A2 ≈ N4级别
+   B1 ≈ N3级别
+
+### 评分维度（CAF三维框架，每题满分10分）
+| 维度 | 权重 | 评分要点 |
+|------|------|----------|
+| C 复杂性（Complexity） | 80% | 内容贴合与表达复杂度 |
+| A 准确性（Accuracy） |10% | 语法、词汇、语音规范 |
+|  F 流利度（Fluency） | 10% | 话语输出节奏、连贯性、停顿与沉默控制容 |
+
+### 等级划分
+| 分数区间 | 等级 |
+|---------|------|
+| 8.0～10.0 | 优秀 |
+| 7.0～7.9 | 良好 |
+| 6.0～6.9 | 合格 |
+| 6.0以下 | 需加强 |
+
+---
+
+## A1 （N5）纠错规则
+- 只纠正最关键1个错误
+- 轻微发音、语调、语法瑕疵不纠错
+
+## A2 （N4）纠错规则
+- 最多纠正2个重点问题
+- 不纠结细微错误
+
+## B1 （N3）纠错规则
+- 最多纠正3个重点问题
+- 兼顾准确性与鼓励
+
+### 通用纠错原则
+- 优先纠正影响语义的关键错误
+- 同一错误只纠正一次
+- 先表扬优点，再提出改进建议
+- 转写存疑、不确定的地方不纠错
+- 评语温和简洁，保护表达信心
+
+## Step 5：生成汇总 + 上传
+```bash
+# 生成班级汇总文件
+python3 scripts/generate_class_summary.py COURSE_ID ASSIGNMENT_ID [--class-name NAME]
+---
+
+# 反馈格式模板（无emoji）
+[学生姓名]（[学号]）
+
+【逐题评分】
+问题[序号]：[题目内容]
+学生回答：[转写文本]
+评语：[温和评语]
+纠错：[分级纠错内容]
+得分：[X]/10
+
+【总体评分】
+总分：[X.X]/10
+等级：优秀/良好/合格/需加强
+
+优点：
+- [优点1]
+- [优点2]
+
+巩固建议：
+1. [练习建议1]
+2. [练习建议2]
+
+---
+
+# 注意事项
+- 评分前确认作业为手动发布分数
+- 成绩录入使用 submission[posted_grade]
+- Whisper转写仅作参考，必须执行对齐校验
+- 鼓励为主，微小误差不扣分
+- 同一错误只扣一次
+- 严格按A1/A2/B1分级控制纠错数量
+- 评语简洁友好，不使用特殊符号
+- 所有规则以 references/workflow.md 为准
+```
+
+

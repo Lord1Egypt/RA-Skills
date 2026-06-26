@@ -1,0 +1,21 @@
+{
+  "name": "Knowledge Distillation",
+  "slug": "knowledge-distillation",
+  "version": "1.1.0",
+  "description": "Distill OpenClaw memory, session logs, and generated reports into evidence-backed knowledge points and knowledge leads.",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "en",
+  "tags": ["knowledge", "distillation", "memory", "openclaw", "second-brain"],
+  "trigger_keywords": [
+    "knowledge distillation",
+    "distill memory",
+    "OpenClaw memory",
+    "蒸馏知识",
+    "提炼知识点"
+  ],
+  "requires_api": false,
+  "requires_network": false,
+  "uses_local_storage": true,
+  "readiness": "stable"
+}

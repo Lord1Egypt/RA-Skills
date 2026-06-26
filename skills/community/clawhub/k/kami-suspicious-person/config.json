@@ -1,0 +1,16 @@
+{
+  "cameras": [
+    {
+      "name": "",
+      "rtsp_url": ""
+    }
+  ],
+  "loiter_threshold": "",
+  "feishu_webhook": "",
+  "feishu_secret": "",
+  "feishu_app_id": "",
+  "feishu_app_secret": "",
+  "discord_webhook": "",
+  "telegram_bot_token": "",
+  "telegram_chat_id": ""
+}

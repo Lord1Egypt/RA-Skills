@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/twitter/get-user-detail/v1 for Twitter User Profile through JustOneAPI with restId.",
+  "displayName": "Twitter User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Twitter user Profile data, including account metadata, audience metrics, and verification-related fields, for accessing user profile metadata (e.g., description, location, verification status) and collecting follower and following counts.",
+      "method": "GET",
+      "operationId": "getTwitterUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique numeric identifier (Rest ID) for the X user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "restId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/twitter/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Twitter"
+      ]
+    }
+  ],
+  "platformKey": "twitter",
+  "primaryTag": "Twitter",
+  "skillName": "justoneapi_twitter_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-twitter-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

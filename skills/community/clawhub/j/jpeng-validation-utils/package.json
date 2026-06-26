@@ -1,0 +1,11 @@
+{
+  "name": "validation-utils",
+  "version": "1.0.0",
+  "description": "Provides data validation and type checking utilities for validating inputs and data structures",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["validation", "type", "check", "verify", "assert", "schema"],
+  "license": "MIT"
+}

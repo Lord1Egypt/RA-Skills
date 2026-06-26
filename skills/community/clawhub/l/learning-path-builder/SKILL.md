@@ -1,35 +1,64 @@
 ---
-name: "职业技能个性学习路径生成"
+name: "learning-path-builder"
 description: "根据输入的职业技能标准文档，输出基于知识图谱的三层学习路径规划。适用于职业技能学习、职业资格认证学习。本技能以中国国内职业技能为目标，参考资源为国内官方资源。详细说明见 references/README.md"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learning-path-builder"
-sourceUrl: "https://clawhub.ai/skills/learning-path-builder"
+version: "2.4.1"
+author: "Wang Zhipeng"
+created: "2026-04-16"
+updated: "2026-04-21"
+tags: ["学习路径", "知识图谱", "三层层次结构", "来源标注", "多格式输出", "国家标准", "职业技能", "职业资格", "多方向选择", "交互式"]
 ---
 
-# 职业技能个性学习路径生成
+# 学习路径构建器 v2.4.0
 
-> 根据输入的职业技能标准文档，输出基于知识图谱的三层学习路径规划。适用于职业技能学习、职业资格认证学习。本技能以中国国内职业技能为目标，参考资源为国内官方资源。详细说明见 references/README.md
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learning-path-builder`
-- **Source URL:** [https://clawhub.ai/skills/learning-path-builder](https://clawhub.ai/skills/learning-path-builder)
+输入职业技能标准文档（如PDF）→ 输出三层知识图谱（JSON/CSV/JSON-LD格式）
 
-## Overview
+**核心设计**：L1大领域 → L2模块 → L3叶节点，每节点0.5学时，来源标注（权威/参考/推断）
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learning-path-builder
 ```
+第零步：检测多方向标准（如有人工智能5个方向则推荐默认方向）
+第一步：提取PDF文本 → 写入 /tmp/kg_pdf_text_{job_id}.txt
+第二步：动态提取L1职业功能领域（从原文结构，非固定4个框）
+第三步：逐域构建L2/L3节点 → 增量写入 /tmp/kg_progress_{job_id}.json
+第四步：生成 JSON + CSV(nodes/edges) + JSON-LD
+第五步：生成来源说明文档 + 质量检查
+每步完成后通过当前会话发送进度通知
+```
+
+## 核心原则
+
+1. **权威资源优先**：osta.org.cn、openstd.samr.gov.cn、教育部/工信部/中国大学MOOC
+2. **搜索优先**：先搜索权威来源，找不到再用参考来源，最后才推论
+3. **来源标注**：每个节点标注 ✅权威 / ⚠️参考 / 🤖推断
+4. **动态L1**：L1领域从PDF标准原文的职业功能结构动态提取，非固定框架
+
+## 多方向标准处理
+
+检测到多方向标准时（如人工智能工程技术人员5个方向）：
+1. 分析各方向的学习热度、材料丰富度、应用前景
+2. 生成推荐报告，提供默认推荐
+3. 学习者未选择时使用默认方向
+
+详细示例见 references/README.md
+
+## 输出格式
+
+每次构建同时生成4个文件：
+- `{name}_kg.json` — 主JSON
+- `{name}_kg_nodes.csv` — 节点表（Excel可打开）
+- `{name}_kg_edges.csv` — 关系表
+- `{name}_kg.jsonld` — JSON-LD开放格式
+
+## 超时策略
+
+- 不设硬性超时，任务完整执行
+- 每步结果写文件，失败可从该步骤续接
+- references/ 目录包含详细说明文档，按需加载
+
+---
+
+*详细说明：references/README.md*
+*作者：Wang Zhipeng | 更新：2026-04-21 14:13*

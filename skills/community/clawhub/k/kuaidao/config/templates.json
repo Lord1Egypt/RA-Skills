@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "name": "快导(KD) - 脚本生成模板",
+    "version": "1.0.0",
+    "description": "提示词模板配置，由用户自定义"
+  },
+  "prompt_templates": {
+    "subtask6_generate": {
+      "name": "生成脚本",
+      "template": "【角色设定】(Role)\n你是一位拥有5年经验的资深短视频编导\n\n【任务目标】(Task)\n请为我撰写一份关于[主题]的短视频完整脚本\n\n【输入来源】\n- 主题：[TRENDING_TITLES]\n- 平台规则：[PLATFORM_RULES]\n- 平台配置：[PLATFORM_CONFIG]\n- 分镜数量：[SEGMENTS_COUNT]（根据总时长自动计算）\n- 视频时长：[TOTAL_DURATION]\n- 分镜时长范围：[SEGMENT_DURATION_RANGE]\n- 需避开方向：[AVOID_THEMES]\n\n【核心要素】(Core Elements)\n- 目标平台：[PLATFORM_NAME]\n- 分镜时长范围：[SEGMENT_DURATION_RANGE]\n- 目标受众：[TARGET_AUDIENCE]\n- 风格语气：[CONTENT_STYLE]\n\n【脚本要求】(Requirements)\n- 数量：[SCRIPT_COUNT]条\n- 分镜数量：[SEGMENTS_COUNT]个/条（自动计算）\n- 分镜时长：每个[SEGMENT_DURATION_RANGE]，遵循'开头快、中间稳、结尾慢'\n- 总时长：[TOTAL_DURATION]\n- 关系：[SCRIPT_COUNT]条脚本必须差异化\n\n【分镜时长分配模式】\n- 开场分镜：3-5秒（快速吸引）\n- 主体分镜：6-10秒（内容展开）\n- 结尾分镜：10-12秒（升华收尾）\n\n【详细要求】\n1. A列-视频文案：必须包含完整故事叙述（起承转合），不只是标题+标签\n2. B列-时间段：精确到秒，格式如'0-5秒'，每个分镜按分配模式设置\n3. C列-镜头：详细描述景别、角度、主体\n4. D列-运镜：详细说明运镜方式、速度、轨迹\n5. E列-拍摄技巧：详细说明设备、参数、手法\n6. F列-画面：详细描述光影效果、构图方式、色调风格\n7. G列-台词：包含完整台词+语气/停顿说明\n8. H列-音效：详细说明音效类型、音量、节奏\n9. I列-BGM：推荐音乐名称、风格、卡点位置\n10. J列-标签：#话题标签，附选择理由\n11. K列-状态：待使用\n12. L列-活动：关联活动（如有）\n13. M列-日期：计划发布日期\n14. N列-备注：拍摄注意事项\n\n【故事结构要求】\n- 黄金3秒钩子\n- 痛点引入\n- 核心内容\n- 互动引导\n\n【质量检查】\n- [ ] 每个分镜时长是否符合分配模式\n- [ ] 总时长是否控制在[TOTAL_DURATION]\n- [ ] 台词是否口语化（非书面化）\n- [ ] B-C列时间段与镜头是否设计合理\n- [ ] A列是否包含完整故事叙述\n- [ ] C-H列内容是否详细\n\n【输出格式】\n按JSON格式输出[SCRIPT_COUNT]条脚本，每条包含完整的[SEGMENTS_COUNT]个分镜。",
+      "template_note": "用户可通过编辑prompts/step6_generate_scripts.md自定义提示词模板",
+      "variables": [
+        "TRENDING_TITLES",
+        "EXTERNAL_TITLE",
+        "PLATFORM_RULES",
+        "PLATFORM_CONFIG",
+        "SEGMENTS_COUNT",
+        "TOTAL_DURATION",
+        "SEGMENT_DURATION_RANGE",
+        "AVOID_THEMES",
+        "SCRIPT_COUNT",
+        "PLATFORM_NAME",
+        "TARGET_AUDIENCE",
+        "CONTENT_STYLE"
+      ]
+    },
+    "subtask7_validate": {
+      "name": "合理性检查",
+      "template": "【任务】对生成的[SCRIPT_COUNT]条脚本进行批量检查\n\n【检查维度】\n1. 时间合理性：时间段分配是否合理，总时长是否符合[TOTAL_DURATION]\n2. 内容合理性：内容是否连贯，逻辑是否通顺\n3. 场景合理性：场景是否真实可拍\n4. 台词合理性：台词是否口语化，是否符合人设\n5. 分镜时长限制：每个分镜是否在[SEGMENT_DURATION_RANGE]范围内，是否遵循分配模式\n6. 技术描述合理性：运镜、技巧、画面描述是否足够详细\n7. 标题合理性：标题是否符合平台限制\n8. 格式合理性：14列内容是否完整\n9. 故事叙述：A列是否包含完整的起承转合\n\n【处理方式】\n发现不合理项 → 直接修改脚本 → 记录修改内容\n\n【输出格式】\n表格形式输出检查结果和修改记录。",
+      "template_note": "用户可通过编辑prompts/step7_validate_scripts.md自定义检查标准"
+    }
+  },
+  "script_templates": {
+    "structure": {
+      "note": "脚本结构模板，由用户通过编辑prompts/step6_generate_scripts.md自定义",
+      "columns": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"],
+      "columns_description": "用户可在step6中自定义每列的详细要求",
+      "example": {
+        "A": "视频文案（标题+故事+标签）",
+        "B": "时间段（0-5秒）",
+        "C": "镜头描述",
+        "D": "运镜描述",
+        "E": "拍摄技巧",
+        "F": "画面描述",
+        "G": "台词",
+        "H": "音效",
+        "I": "BGM",
+        "J": "标签",
+        "K": "状态",
+        "L": "活动",
+        "M": "日期",
+        "N": "备注"
+      }
+    }
+  },
+  "duration_distribution": {
+    "note": "分镜时长分配模式由用户在step6中自定义，默认遵循'开头快、中间稳、结尾慢'原则",
+    "calculation_method": "总时长 ÷ 平均分镜时长 = 分镜数量，然后按分配模式分配",
+    "example": {
+      "description": "例如：2分钟视频，16个分镜",
+      "pattern": [3, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8, 9, 10, 10, 12],
+      "note": "以上为示例，实际由用户自行配置"
+    }
+  },
+  "user_customization": {
+    "说明": "本文件所有模板内容均可由用户自定义",
+    "自定义方式": [
+      "1. 直接编辑本文件",
+      "2. 编辑prompts/目录下的对应.md文件",
+      "3. 使用kd config命令设置"
+    ],
+    "首次使用": "首次使用时需要通过以上方式配置模板内容"
+  }
+}

@@ -1,35 +1,225 @@
 ---
-name: "发票识别"
-description: "支持增值税发票、普通发票、区块链发票等多种票据的OCR识别与信息提取；自动完成票据类型分类、关键字段提取、格式校验；当用户需要识别发票内容、提取发票信息、校验发票格式时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/invoice-recognition"
-sourceUrl: "https://clawhub.ai/skills/invoice-recognition"
+name: invoice-recognition
+description: 支持增值税发票、普通发票、区块链发票等多种票据的OCR识别与信息提取；自动完成票据类型分类、关键字段提取、格式校验；当用户需要识别发票内容、提取发票信息、校验发票格式时使用
+dependency:
+  python:
+    - pdf2image==1.16.3
+    - Pillow==10.0.0
 ---
 
-# 发票识别
+# 发票识别技能
 
-> 支持增值税发票、普通发票、区块链发票等多种票据的OCR识别与信息提取；自动完成票据类型分类、关键字段提取、格式校验；当用户需要识别发票内容、提取发票信息、校验发票格式时使用
+## 任务目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/invoice-recognition`
-- **Source URL:** [https://clawhub.ai/skills/invoice-recognition](https://clawhub.ai/skills/invoice-recognition)
+- **本Skill用于**: 对发票图像或文档进行智能识别，提取结构化信息并完成校验
+- **核心能力**:
+  - 发票图像OCR识别与信息提取
+  - 票据类型自动分类与识别
+  - 发票信息格式校验与逻辑验证
+  - 发票真伪查验操作指导（提供官方查验平台信息和使用步骤）
+  - 多格式文件处理支持
+- **触发条件**:
+  - 用户上传发票图片或文档
+  - 用户请求识别发票内容
+  - 用户需要校验发票格式
+  - 用户需要了解发票真伪查验方法
 
-## Overview
+## 前置准备
 
+### 支持的文件格式
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 格式类型 | 处理方式 |
+|---------|---------|
+| 图片文件（JPG/PNG/BMP） | 直接进行图像识别 |
+| PDF文档 | 调用脚本转换为图片后识别 |
+| OFD文档 | 调用脚本转换为图片后识别（需额外安装ofd2pdf库）|
+
+### 环境准备
+
+如需处理PDF文件，确保已安装必要工具：
 ```bash
-hermes skills install clawhub/invoice-recognition
+# 安装PDF处理依赖（脚本执行前需要）
+pip install pdf2image==1.16.3 Pillow==10.0.0
 ```
+
+如需处理OFD文件，需要额外安装：
+```bash
+pip install ofd2pdf
+```
+
+## 操作步骤
+
+### 标准流程
+
+#### 1. 文件接收与预处理
+
+- **接收用户上传的发票文件**（图片、PDF、OFD等）
+- **判断文件格式**：
+  - 图片格式（JPG/PNG）→ 直接进入识别流程
+  - PDF格式 → 调用 `scripts/pdf_to_image.py` 转换为图片
+  - OFD格式 → 调用 `scripts/pdf_to_image.py` 转换为图片（需安装ofd2pdf库）
+
+#### 2. 发票识别（OCR）
+
+- **OCR实现方式**：使用智能体的原生图像识别能力，无需额外依赖OCR库
+- **提取关键字段**：
+  - 发票代码（Invoice Code）
+  - 发票号码（Invoice Number）
+  - 开票日期（Invoice Date）
+  - 购买方信息（Buyer Info）
+  - 销售方信息（Seller Info）
+  - 商品明细（Line Items）
+  - 金额信息（Amounts）
+  - 校验码（Check Code）
+  - 税率与税额（Tax Rate/Amount）
+
+#### 3. 票据类型分类
+
+- **根据发票特征自动识别类型**：
+  - 增值税专用发票（发票代码12位，第1位为0或1）
+  - 增值税普通发票（发票代码12位，第1位为0或1）
+  - 区块链电子发票（发票代码以"1"开头，共20位）
+  - 医疗电子票据（特定编码规则）
+  - 其他类型发票
+
+- **分类标准**：
+  - **增值税发票**（noteType=1）：含税号、具有完整的税额信息
+  - **非增值税发票**（noteType=2）：不包含税号或税额信息
+
+#### 4. 信息校验
+
+- **格式校验**：检查各字段格式是否符合规范
+  - 发票代码：10位或12位数字
+  - 发票号码：8位数字
+  - 校验码：20位或32位
+  - 税号：15/17/18/20位
+  - 开票日期：YYYY-MM-DD格式
+
+- **逻辑校验**：验证金额之间的逻辑关系
+  - **价税合计 = 不含税金额 + 税额**
+  - 税率必须符合规定（如13%、9%、6%、3%等）
+  - 单价与数量的乘积应等于金额
+  - 各行明细汇总应等于总金额
+
+#### 5. 发票查验操作指导（如用户需要）
+
+- **指导方式**：提供官方查验平台信息和操作步骤，由用户自行完成查验
+- **官方查验平台**：
+  - 国家税务总局全国增值税发票查验平台：https://inv-veri.chinatax.gov.cn
+- **操作指导内容**：
+  - 增值税发票查验所需的关键信息提取
+  - 不同发票类型的查验规则说明
+  - 查验结果判定标准
+  - 常见问题及解决方案
+
+**注意**：本技能不提供自动API调用查验，仅提供操作指导。用户需手动访问官方平台进行查验。
+
+#### 6. 结果输出
+
+- **结构化输出发票信息**：
+  ```json
+  {
+    "invoice_type": "增值税普通发票",
+    "invoice_code": "144031900110",
+    "invoice_number": "12345678",
+    "invoice_date": "2024-01-15",
+    "buyer": {
+      "name": "购买方名称",
+      "tax_number": "91440300XXXXXXXXX"
+    },
+    "seller": {
+      "name": "销售方名称",
+      "tax_number": "91440300XXXXXXXXX"
+    },
+    "line_items": [
+      {
+        "description": "商品名称",
+        "quantity": 1,
+        "unit_price": 100.00,
+        "amount": 100.00,
+        "tax_rate": 0.13,
+        "tax_amount": 13.00
+      }
+    ],
+    "subtotal": 100.00,
+    "tax_amount": 13.00,
+    "total_amount": 113.00,
+    "check_code": "12345678901234567890",
+    "validation": {
+      "format_valid": true,
+      "logic_valid": true
+    }
+  }
+  ```
+
+### 可选分支
+
+#### 分支A：二维码/源文件识别
+
+- **二维码识别**：直接解析发票上的二维码获取信息
+
+#### 分支B：信息补全
+
+当OCR识别不完整时：
+
+1. **识别缺失字段**：标记识别失败的字段
+2. **智能补全**：根据已有信息推断缺失内容
+3. **人工确认**：提示用户确认补全信息的准确性
+
+## 资源索引
+
+- 格式规范：见 [references/invoice-formats.md](references/invoice-formats.md)
+  - 何时读取：进行格式校验或需要了解具体格式要求时
+- 票据分类：见 [references/invoice-types.md](references/invoice-types.md)
+  - 何时读取：需要识别票据类型或分类规则时
+- PDF转图片脚本：见 [scripts/pdf_to_image.py](scripts/pdf_to_image.py)
+  - 用途：将PDF/OFD文档转换为图片以便识别
+  - 参数：`input_path`（输入文件路径）、`output_path`（输出图片路径）
+
+## 注意事项
+
+1. **图像质量**：上传发票图片时，建议确保图片清晰、光照均匀、无遮挡
+2. **格式校验**：校验失败的信息需要人工复核确认
+3. **查验时效**：发票查验建议在开票后一定时间内完成，避免查验平台超时
+4. **隐私保护**：处理发票时注意保护敏感信息，识别完成后可提示用户是否需要删除原文件
+5. **OFD文件处理**：处理OFD文件需额外安装ofd2pdf库，安装命令：`pip install ofd2pdf`
+
+## 使用示例
+
+### 示例1：识别发票图片
+
+**场景**：用户上传了一张增值税发票图片，需要提取发票信息
+
+**执行步骤**：
+
+1. 加载用户上传的图片
+2. 使用智能体原生图像识别能力识别发票内容
+3. 提取关键字段：发票代码、号码、日期、金额等
+4. 根据格式规范校验各字段
+5. 校验金额逻辑关系
+6. 输出结构化发票信息
+
+### 示例2：识别PDF发票
+
+**场景**：用户上传了一个PDF格式的电子发票，需要提取发票信息
+
+**执行步骤**：
+
+1. 调用 `scripts/pdf_to_image.py` 将PDF转换为图片
+2. 使用智能体原生图像识别能力识别发票内容
+3. 提取关键字段：发票代码、号码、日期、金额等
+4. 根据格式规范校验各字段
+5. 校验金额逻辑关系
+6. 输出结构化发票信息
+
+### 示例3：校验发票格式
+
+**场景**：用户提供了发票信息文本，需要校验格式是否正确
+
+**执行步骤**：
+
+1. 解析用户提供的发票信息
+2. 参考格式规范校验各字段格式
+3. 校验金额逻辑关系
+4. 输出校验结果（通过/失败详情）
+5. 如有错误，提供修正建议

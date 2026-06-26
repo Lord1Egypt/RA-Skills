@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: MIT-0
+# Copyright 2026 InvestorClaw Contributors
+#
+# Hermes Agent (v0.12+) MCP-server config snippet for InvestorClaw v4.0.
+#
+# MERGE this snippet into your existing ~/.hermes/config.yaml — do NOT
+# overwrite the whole file. If your config already has an `mcp_servers:`
+# block, add the `investorclaw:` and `mnemos:` keys underneath it
+# alongside any existing entries. YAML merging is key-by-key.
+#
+# After editing, restart hermes (or `hermes daemon restart`) so it
+# re-handshakes with the MCP servers at startup.
+#
+# Verify with:   hermes mcp list
+# Expected:      investorclaw  http  http://localhost:18090/mcp  connected
+#                mnemos        http  http://localhost:5002/mcp  connected
+
+mcp_servers:
+  investorclaw:
+    transport: http
+    url: http://localhost:18090/mcp
+  mnemos:
+    transport: http
+    url: http://localhost:5002/mcp

@@ -1,0 +1,33 @@
+# ============================================================
+# li_sentry_check - Target Server Configuration
+# ============================================================
+# Add your target servers here. Each target needs:
+#   - host: Server IP or hostname
+#   - port: SSH port (default: 22)
+#   - user: SSH username (recommend: dedicated inspector account)
+#   - keyPath: Path to SSH private key
+#   - services: List of services to monitor (optional)
+# ============================================================
+
+targets:
+  bogon:
+    host: YOUR_SERVER_IP
+    port: 22
+    user: inspector
+    keyPath: ~/.ssh/li_sentry_check
+    services:
+      - sshd
+      - mongod
+      - docker
+      - firewalld
+
+  # Example: Add more targets
+  # server2:
+  #   host: YOUR_SERVER_IP_2
+  #   port: 22
+  #   user: inspector
+  #   keyPath: ~/.ssh/li_sentry_check
+  #   services:
+  #     - nginx
+  #     - mysql
+  #     - redis

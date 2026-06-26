@@ -1,0 +1,158 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Media",
+        "columnChiName": "媒体出处",
+        "columnType": "varchar(80)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "74.96"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Category",
+        "columnChiName": "内容类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内容类别(Category)与(CT_SystemConst)表中的DM字段关联，令LB = 1032，得到内容类别的具体描述：1-招股说明书，2-招股意向书，3-配股说明书，4-上市公告书，5-年度报告，6-中期报告，7-公司章程，8-增发新股招股说明书，9-增发新股招股意向书，10-增发新股上市公告书，11-可转换债券募集说明书，12-可转换债券上市公告书，13-国家股配售说明书，14-吸收合并预案说明书，15-吸收合并公告书，16-债券发行公告，17-第一季度报告，18-国有股回购公告书，19-基金招募说明书，20-基金上市公告书，21-基金扩募说明书，22-B股配股说明书，23-第三季度报告，24-股份转让公告书，25-招股说明书(申报稿)，26-公开转让说明书，50-基金契约，51-基金经理照片，52-基金契约摘要，61-第二季度报告，63-第四季度报告，65-中期报告摘要，67-年度报告摘要，71-公司治理制度，72-实际控制人结构图，73-发行上市书附录，75-发行上市书摘要，99-临时公告，101-发行公告，104-上市公告，107-回访报告，110-定期报告摘要更正补充公告，113-定期报告更正补充公告，116-公司章程修正公告，118-基金招募说明书更新摘要，119-基金招募说明书更新，121-基金契约修正，123-基金托管协议，130-募集说明书，131-募集说明书摘要，132-季度报告，133-招股意向书摘要，134-增发股招股意向书摘要，135-招股说明书摘要，136-配股说明书摘要，137-基金招募说明书摘要，138-可转换债券募集说明书摘要，139-第三季度报告正文，140-第一季度报告正文，141-基金产品资料概要，142-基金产品资料概要更新，143-月度报告，144-周度报告，150-优先股发行预案，151-优先股分红预案，152-优先股发行预案修正，153-优先股分红预案修正，154-优先股信用评级报告，155-基金合同生效公告，156-资产评估报告。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InfoTitle",
+        "columnChiName": "标题",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "SubTitle",
+        "columnChiName": "小标题",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Content",
+        "columnChiName": "内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.34"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "RecordDate",
+        "columnChiName": "记录录入时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "69.84"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "remark": "发布时间(InsertTime)：指该条记录首次在本表发布的时间。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

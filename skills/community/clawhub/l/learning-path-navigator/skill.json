@@ -1,0 +1,13 @@
+{
+  "name": "learning-path-navigator",
+  "version": "0.1.0",
+  "description": "个性化学习路径导航仪 - 根据学习目标、当前水平和可用资源生成定制化学习计划。支持技能评估、路径规划、资源推荐、里程碑跟踪等功能。",
+  "keywords": ["learning","education","path","planning","skills"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/learning-path-navigator",
+  "language": ["en","zh"],
+  "tags": ["learning","education","path","planning","skills"],
+  "createdAt": "2026-04-06",
+  "updatedAt": "2026-04-06"
+}

@@ -1,35 +1,97 @@
 ---
-name: "Interview Mock Partner"
-description: "Simulates behavioral interview questions for medical professionals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interview-mock-partner"
-sourceUrl: "https://clawhub.ai/skills/interview-mock-partner"
+name: interview-mock-partner
+description: Simulates behavioral interview questions for medical professionals.
+version: 1.0.0
+category: Career
+tags:
+- interview
+- mock
+- behavioral
+- career
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
 # Interview Mock Partner
 
-> Simulates behavioral interview questions for medical professionals.
+Simulates medical job interview scenarios.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interview-mock-partner`
-- **Source URL:** [https://clawhub.ai/skills/interview-mock-partner](https://clawhub.ai/skills/interview-mock-partner)
+## Features
 
-## Overview
+- Behavioral questions
+- Response feedback
+- Common scenarios
+- Improvement tips
 
+## Parameters
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interview-mock-partner
+| Parameter | Type | Default | Required | Description |
+|-----------|------|---------|----------|-------------|
+| `--position` | string | - | Yes | Target position title |
+| `--experience-level` | string | entry | No | Experience level (entry, mid, senior) |
+| `--specialty` | string | - | No | Medical specialty area |
+| `--questions` | int | 5 | No | Number of questions to generate |
+| `--output`, `-o` | string | stdout | No | Output file path |
+
+## Output Format
+
+```json
+{
+  "questions": ["string"],
+  "sample_answers": ["string"],
+  "tips": ["string"]
+}
 ```
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

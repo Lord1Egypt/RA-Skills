@@ -1,35 +1,80 @@
----
-name: "Interview Questions"
-description: "根据岗位要求智能生成多轮面试题，涵盖技术、业务与素质考察，附带评分标准与追问技巧。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interview-questions"
-sourceUrl: "https://clawhub.ai/skills/interview-questions"
----
+# 面试题生成器 (Interview Questions Generator)
 
-# Interview Questions
+## 技能描述
+根据岗位要求自动生成专业的面试问题库。支持多轮面试、多个维度考察，自动包含考察要点和评分标准。
 
-> 根据岗位要求智能生成多轮面试题，涵盖技术、业务与素质考察，附带评分标准与追问技巧。
+## 核心功能
+- 根据JD智能生成面试题
+- 多维度考察（技术/业务/素质）
+- 支持多轮面试题库设计
+- 自动生成评分标准
+- 提供追问技巧
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interview-questions`
-- **Source URL:** [https://clawhub.ai/skills/interview-questions](https://clawhub.ai/skills/interview-questions)
+## 适用场景
+- 技术面试题生成
+- 产品经理面试
+- 销售/运营面试
+- 管培生面试
+- 压力面试设计
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interview-questions
+## 技能结构
 ```
+interview-questions/
+├── SKILL.md              # 主文件
+├── references/
+│   └── question_bank.md  # 题库参考
+└── scripts/
+    └── generate_questions.py # 生成脚本
+```
+
+## 面试维度
+```markdown
+## 通用能力（必问）
+- 自我介绍
+- 职业规划
+- 离职原因
+- 优劣势分析
+
+## 专业能力（岗位相关）
+- 基础知识
+- 实战经验
+- 问题解决
+
+## 素质评估
+- 沟通表达
+- 团队协作
+- 学习能力
+- 应变能力
+```
+
+## 使用方法
+1. 提供岗位名称和职责
+2. 可选：提供候选人简历
+3. 指定面试轮次（初试/复试/HR面）
+4. 选择考察重点
+5. 系统生成完整面试题库
+
+## 触发关键词
+- "生成面试题"
+- "面试问题"
+- "招聘面试"
+- "面试怎么问"
+- "岗位面试"
+
+## 支持的面试类型
+| 类型 | 适用岗位 | 特点 |
+|------|----------|------|
+| 技术面试 | 开发/测试/运维 | 考察编码和系统设计 |
+| 产品面试 | 产品经理 | 考察需求和数据分析 |
+| 运营面试 | 运营/策划 | 考察执行和创意 |
+| 管理面试 | 管理层 | 考察战略和团队管理 |
+| 通用面试 | 所有岗位 | 标准化问题 |
+
+## 依赖要求
+- Python 3.8+
+- 无需外部API
+
+## 版本信息
+- 版本：1.0.0
+- 更新日期：2024年
+- 作者：ClawHub Skills

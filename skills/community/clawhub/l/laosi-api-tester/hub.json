@@ -1,0 +1,20 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "api",
+                 "testing",
+                 "http",
+                 "rest",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "api-tester",
+    "pricing":  {
+                    "price":  1900,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "API Tester Pro"
+}

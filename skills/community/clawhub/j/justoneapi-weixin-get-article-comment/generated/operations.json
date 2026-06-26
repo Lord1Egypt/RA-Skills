@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weixin/get-article-comment/v1 for WeChat Official Accounts Article Comments through JustOneAPI with articleUrl.",
+  "displayName": "WeChat Official Accounts Article Comments",
+  "endpointPath": "get-article-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get WeChat Official Accounts article Comments data, including commenter details, comment text, and timestamps, for feedback analysis.",
+      "method": "GET",
+      "operationId": "getArticleComment",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the Weixin article.",
+          "enumValues": [],
+          "location": "query",
+          "name": "articleUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weixin/get-article-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Article Comments",
+      "tags": [
+        "WeChat Official Accounts"
+      ]
+    }
+  ],
+  "platformKey": "weixin",
+  "primaryTag": "WeChat Official Accounts",
+  "skillName": "justoneapi_weixin_get_article_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-weixin-get-article-comment",
+  "sourceTitle": "OpenAPI definition"
+}

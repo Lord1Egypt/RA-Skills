@@ -1,0 +1,182 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到证券的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "AbnormalType",
+        "columnChiName": "异动类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "异动类型(AbnormalType)与(CT_SystemConst)表中的DM字段关联，令LB = 1099 AND DM IN (216,217,218,219,220,222,224,225,226,227,228,229)，得到异动类型的具体描述：216-日收盘价涨幅达15%，217-日价格振幅达30%，218-日换手率达30%，219-连续3个交易日内日收盘价格涨幅偏离值累计达30%，220-日收盘价跌幅达15%，222-连续3个交易日内日收盘价格跌幅偏离值累计达30%，224-连续10个交易日内3次出现同正向异常波动的证券，225-连续10个交易日内3次出现同负向异常波动的证券，226-连续10个交易日内收盘价格涨幅偏离值累计达到100%的证券，227-连续10个交易日内收盘价格跌幅偏离值累计达到-50%的证券，228-连续30个交易日内收盘价格涨幅偏离值累计达到200%的证券，229-连续30个交易日内收盘价格跌幅偏离值累计达到-70%的证券。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AbnormalTypeDes",
+        "columnChiName": "异动类型描述",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "TradingStartDate",
+        "columnChiName": "交易起始日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "TradingDay",
+        "columnChiName": "交易截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "remark": "股票：单位是股；基金：单位是份。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "AbnormalValue",
+        "columnChiName": "异动值(%)",
+        "columnType": "decimal(9,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.33"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "NetBuySum",
+        "columnChiName": "净买入金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.24"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "TotalBuySum",
+        "columnChiName": "买入金额合计(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.83"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "TotalSaleSum",
+        "columnChiName": "卖出金额合计(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.41"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

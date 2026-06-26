@@ -1,0 +1,11 @@
+{
+  "name": "base64-toolkit",
+  "version": "1.0.0",
+  "description": "Base64 encoding, decoding, and validation utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["base64", "encode", "decode", "data", "transform"],
+  "license": "MIT"
+}

@@ -1,0 +1,99 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/terminal-green",
+  "preset": "Terminal Green",
+  "family": "developer-terminal-mono",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.16.0 <3.0.0",
+  "producer_version_tested": "2.16.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/terminal-green.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/terminal-green-zh.html",
+    "demos/terminal-green-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/terminal-green.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/terminal-green-zh.html",
+    "source_snapshot/demos/terminal-green-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".stat",
+      ".stat-label",
+      ".stat-row",
+      ".stat-val"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Terminal Green",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "a-body",
+    "a-label",
+    "a-subtitle",
+    "a-title",
+    "cmd",
+    "cta-block",
+    "cta-cmd",
+    "cta-sub",
+    "feature-card",
+    "feature-desc",
+    "feature-grid",
+    "feature-title",
+    "label",
+    "main-title",
+    "pill",
+    "preset-grid",
+    "preset-tag",
+    "stat",
+    "stat-label",
+    "stat-row",
+    "stat-val",
+    "t-body",
+    "t-label",
+    "t-subtitle",
+    "t-title"
+  ]
+}

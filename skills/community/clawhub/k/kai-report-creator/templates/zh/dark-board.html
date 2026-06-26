@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系统架构概览报告</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/highlight.min.js"></script>
+  <style>
+    /* ── Theme: dark-board ── */
+    :root {
+      --primary: #58A6FF; --primary-light: #1C2D40; --accent: #79C0FF;
+      --bg: #0D1117; --surface: #161B22; --text: #E6EDF3; --text-muted: #8B949E;
+      --border: #30363D; --success: #3FB950; --warning: #D29922; --danger: #F85149;
+      --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace; --radius: 6px;
+      --accent-1: #58A6FF; --accent-2: #3FB950; --accent-3: #D29922;
+      --accent-4: #BC8CFF; --accent-5: #79C0FF; --accent-6: #F85149;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+    h1 { font-size: 1.9rem; font-weight: 700; color: var(--primary); margin-bottom: 1.25rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.3rem; font-weight: 600; color: var(--text); margin-top: 0; margin-bottom: .75rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin-top: .9rem; }
+    p { margin: .5rem 0; } a { color: var(--primary); }
+    strong { font-weight: 700; color: var(--accent); }
+    blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .4rem .9rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .88rem; }
+
+    /* Board layout: each section rendered as a panel with per-section colored top border */
+    section[data-section] {
+      background: var(--surface); border: 1px solid var(--border);
+      border-top: 3px solid var(--section-accent, var(--primary));
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin: .75rem 0;
+    }
+    section[data-section] h2 {
+      border-left: 3px solid var(--section-accent, var(--primary));
+      padding-left: .6rem; color: var(--section-accent, var(--primary));
+    }
+    section[data-section]:nth-child(6n+1) { --section-accent: var(--accent-1); }
+    section[data-section]:nth-child(6n+2) { --section-accent: var(--accent-2); }
+    section[data-section]:nth-child(6n+3) { --section-accent: var(--accent-3); }
+    section[data-section]:nth-child(6n+4) { --section-accent: var(--accent-4); }
+    section[data-section]:nth-child(6n+5) { --section-accent: var(--accent-5); }
+    section[data-section]:nth-child(6n)   { --section-accent: var(--accent-6); }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI — dense grid for board layout */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .6rem; margin: .75rem 0; }
+    .kpi-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: .75rem .6rem; text-align: center; }
+    .kpi-label { font-size: .72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3rem; }
+    .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--primary); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; font-family: var(--font-mono); }
+    .kpi-trend { font-size: .8rem; margin-top: .2rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .report-table th { background: var(--bg); border-bottom: 2px solid var(--section-accent, var(--primary)); padding: .6rem .9rem; text-align: left; font-weight: 600; font-family: var(--font-mono); font-size: .8rem; color: var(--section-accent, var(--primary)); }
+    .report-table td { padding: .5rem .9rem; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .83rem; }
+    .report-table tr:hover td { background: rgba(255,255,255,.03); }
+
+    /* Badges */
+    .badge { display: inline-block; padding: .12rem .5rem; border-radius: 4px; font-size: .73rem; font-family: var(--font-mono); font-weight: 600; }
+    .badge--ok  { background: rgba(63,185,80,.15); color: var(--success); }
+    .badge--warn { background: rgba(210,153,34,.12); color: var(--warning); }
+    .badge--err  { background: rgba(248,81,73,.12); color: var(--danger); }
+
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .8rem 1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note    { background: rgba(88,166,255,.08); border-color: #58A6FF; }
+    .callout--tip     { background: rgba(63,185,80,.08);  border-color: #3FB950; }
+    .callout--warning { background: rgba(210,153,34,.08); border-color: #D29922; }
+    .callout--danger  { background: rgba(248,81,73,.08);  border-color: #F85149; }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.55; font-size: .9rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .75rem; color: var(--text-muted); margin-bottom: .1rem; font-weight: 600; font-family: var(--font-mono); }
+    .timeline-content { color: var(--text); line-height: 1.55; font-size: .9rem; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--bg); padding: .3rem 1rem; font-size: .75rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; background: #0D1117; }
+
+    /* List */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; font-size: .9rem; }
+    .styled-list li { margin-bottom: .2rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.5); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: var(--bg); border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px var(--surface), 0 2px 8px rgba(0,0,0,.4); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 打印 / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 保存图片（桌面）</button>
+    <button class="export-item" id="export-png-mobile">📱 保存图片（手机）</button>
+    <button class="export-item" id="export-im-share">💬 IM 分享长图</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="导出">↓ 导出</button>
+
+
+  <script type="application/json" id="report-summary">
+  {
+    "title": "系统架构概览报告",
+    "author": "平台工程团队",
+    "date": "2026-03-16",
+    "abstract": "微服务架构全貌概览：6个核心服务、3个数据存储层、SLA 99.95%，当前版本 v4.2.0 运行稳定。",
+    "sections": ["核心指标", "服务架构", "数据存储", "基础设施", "监控与告警", "安全合规"],
+    "kpis": [
+      {"label": "服务可用性", "value": "99.95%", "trend": "↑ 达标"},
+      {"label": "P99 延迟", "value": "68ms", "trend": "↓ 优"},
+      {"label": "活跃服务", "value": "24", "trend": ""},
+      {"label": "日均请求", "value": "1.2亿", "trend": "↑ 8%"}
+    ]
+  }
+  </script>
+
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+    <h4>目录</h4>
+    <a href="#section-he-xin-zhi-biao" data-section="核心指标">核心指标</a>
+    <a href="#section-fu-wu-jia-gou" data-section="服务架构">服务架构</a>
+    <a href="#section-shu-ju-cun-chu" data-section="数据存储">数据存储</a>
+    <a href="#section-ji-chu-she-shi" data-section="基础设施">基础设施</a>
+    <a href="#section-jian-kong-yu-gao-jing" data-section="监控与告警">监控与告警</a>
+    <a href="#section-an-quan-he-gui" data-section="安全合规">安全合规</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <h1>系统架构概览报告</h1>
+      <p class="report-meta">平台工程团队 · 2026-03-16</p>
+
+      <section data-section="核心指标" data-summary="四项核心 SLA 指标：可用性、延迟、服务数、日请求量。">
+        <h2 id="section-he-xin-zhi-biao">核心指标</h2>
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">服务可用性</div>
+            <div class="kpi-value" data-target-value="99.95" data-suffix="%">99.95%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 达标</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">P99 延迟</div>
+            <div class="kpi-value" data-target-value="68" data-suffix="ms">68ms</div>
+            <div class="kpi-trend kpi-trend--up">↓ 优</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">活跃服务</div>
+            <div class="kpi-value" data-target-value="24">24</div>
+            <div class="kpi-trend kpi-trend--neutral">→ 稳定</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">日均请求</div>
+            <div class="kpi-value" data-target-value="1.2" data-suffix="亿">1.2亿</div>
+            <div class="kpi-trend kpi-trend--up">↑ 8%</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">错误率</div>
+            <div class="kpi-value" data-target-value="0.03" data-suffix="%">0.03%</div>
+            <div class="kpi-trend kpi-trend--up">↓ 改善</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">当前版本</div>
+            <div class="kpi-value">v4.2</div>
+            <div class="kpi-trend kpi-trend--up">↑ 新</div>
+          </div>
+        </div>
+      </section>
+
+      <section data-section="服务架构" data-summary="6个核心微服务的状态、语言、负责团队与健康状态。">
+        <h2 id="section-fu-wu-jia-gou">服务架构</h2>
+        <p>系统由 6 个核心微服务组成，通过 gRPC 内部通信，对外统一经 API Gateway 暴露。</p>
+        <div data-component="table" class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr><th>服务名</th><th>语言</th><th>实例数</th><th>负责团队</th><th>状态</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>api-gateway</td><td>Go</td><td>4</td><td>平台组</td><td><span class="badge badge--ok">运行中</span></td></tr>
+              <tr><td>user-service</td><td>Go</td><td>3</td><td>账户组</td><td><span class="badge badge--ok">运行中</span></td></tr>
+              <tr><td>order-service</td><td>Java</td><td>6</td><td>交易组</td><td><span class="badge badge--ok">运行中</span></td></tr>
+              <tr><td>payment-service</td><td>Java</td><td>4</td><td>支付组</td><td><span class="badge badge--ok">运行中</span></td></tr>
+              <tr><td>notify-service</td><td>Node.js</td><td>2</td><td>消息组</td><td><span class="badge badge--warn">降级</span></td></tr>
+              <tr><td>analytics-service</td><td>Python</td><td>2</td><td>数据组</td><td><span class="badge badge--ok">运行中</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div data-component="callout" class="callout callout--warning fade-in-up">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body"><strong>notify-service</strong> 当前处于降级模式，短信渠道切换至备用供应商，预计 2026-03-18 恢复正常。</div>
+        </div>
+      </section>
+
+      <section data-section="数据存储" data-summary="三层数据存储架构：MySQL 主库、Redis 缓存、Elasticsearch 搜索。">
+        <h2 id="section-shu-ju-cun-chu">数据存储</h2>
+        <p>采用三层数据存储策略，按访问频率和一致性需求分层管理。</p>
+        <div data-component="diagram" data-type="flowchart" class="diagram-wrapper fade-in-up">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 310">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#D29922"/>
+              </marker>
+            </defs>
+            <!-- Service layer -->
+            <rect x="220" y="20" width="160" height="38" rx="6" fill="#1C2D40" stroke="#D29922" stroke-width="1.5"/>
+            <text x="300" y="44" text-anchor="middle" font-family="monospace" font-size="13" fill="#D29922">微服务层</text>
+            <!-- Arrow down -->
+            <line x1="300" y1="58" x2="300" y2="90" stroke="#D29922" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- Cache -->
+            <rect x="60" y="100" width="140" height="38" rx="6" fill="#1C2D40" stroke="#BC8CFF" stroke-width="1.5"/>
+            <text x="130" y="124" text-anchor="middle" font-family="monospace" font-size="12" fill="#BC8CFF">Redis 缓存</text>
+            <!-- DB -->
+            <rect x="230" y="100" width="140" height="38" rx="6" fill="#1C2D40" stroke="#3FB950" stroke-width="1.5"/>
+            <text x="300" y="124" text-anchor="middle" font-family="monospace" font-size="12" fill="#3FB950">MySQL 主库</text>
+            <!-- Search -->
+            <rect x="400" y="100" width="140" height="38" rx="6" fill="#1C2D40" stroke="#58A6FF" stroke-width="1.5"/>
+            <text x="470" y="124" text-anchor="middle" font-family="monospace" font-size="12" fill="#58A6FF">Elasticsearch</text>
+            <!-- Arrows from service to stores -->
+            <line x1="260" y1="90" x2="160" y2="100" stroke="#D29922" stroke-width="1" marker-end="url(#arr)"/>
+            <line x1="300" y1="90" x2="300" y2="100" stroke="#D29922" stroke-width="1" marker-end="url(#arr)"/>
+            <line x1="340" y1="90" x2="420" y2="100" stroke="#D29922" stroke-width="1" marker-end="url(#arr)"/>
+            <!-- Replica / Slave -->
+            <rect x="150" y="200" width="140" height="38" rx="6" fill="#161B22" stroke="#3FB950" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="220" y="220" text-anchor="middle" font-family="monospace" font-size="11" fill="#3FB950">MySQL 从库</text>
+            <text x="220" y="232" text-anchor="middle" font-family="monospace" font-size="10" fill="#8B949E">（只读 × 2）</text>
+            <!-- Backup -->
+            <rect x="310" y="200" width="140" height="38" rx="6" fill="#161B22" stroke="#8B949E" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="380" y="220" text-anchor="middle" font-family="monospace" font-size="11" fill="#8B949E">异地备份</text>
+            <text x="380" y="232" text-anchor="middle" font-family="monospace" font-size="10" fill="#8B949E">（每日全量）</text>
+            <!-- Arrows to replica -->
+            <line x1="280" y1="138" x2="240" y2="200" stroke="#3FB950" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+            <line x1="330" y1="138" x2="365" y2="200" stroke="#8B949E" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+            <!-- Labels -->
+            <text x="130" y="158" text-anchor="middle" font-family="monospace" font-size="10" fill="#8B949E">命中率 94%</text>
+            <text x="300" y="158" text-anchor="middle" font-family="monospace" font-size="10" fill="#8B949E">主写</text>
+            <text x="470" y="158" text-anchor="middle" font-family="monospace" font-size="10" fill="#8B949E">全文检索</text>
+            <!-- title -->
+            <text x="300" y="280" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8B949E">数据存储架构图</text>
+          </svg>
+        </div>
+      </section>
+
+      <section data-section="基础设施" data-summary="Kubernetes 集群部署时间线，展示 v4.0 至 v4.2 的演进过程。">
+        <h2 id="section-ji-chu-she-shi">基础设施</h2>
+        <p>部署在私有云 Kubernetes 集群上，跨 3 个可用区实现高可用。</p>
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-09 · v4.0</div>
+            <div class="timeline-content">完成 K8s 集群迁移，所有服务容器化上线，淘汰旧虚拟机方案</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-12 · v4.1</div>
+            <div class="timeline-content">引入 Istio 服务网格，mTLS 加密服务间通信，链路追踪覆盖率 100%</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026-02 · v4.2</div>
+            <div class="timeline-content">HPA 自动扩缩容上线，峰值流量下实例数自动扩展至 3× 基准值</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--warning);"></div>
+            <div class="timeline-date">2026-Q2 · v5.0 计划</div>
+            <div class="timeline-content">规划引入多云容灾，AWS 作为灾备节点，RTO 目标 &lt; 5 分钟</div>
+          </div>
+        </div>
+      </section>
+
+      <section data-section="监控与告警" data-summary="过去 30 天各服务 P99 延迟趋势对比。">
+        <h2 id="section-jian-kong-yu-gao-jing">监控与告警</h2>
+        <p>基于 Prometheus + Grafana 构建可观测性体系，告警通过 PagerDuty 分级分发。</p>
+        <div data-component="chart" data-type="bar" data-raw='{"labels":["api-gateway","user-service","order-service","payment-service","notify-service","analytics-service"],"datasets":[{"label":"P99 延迟 (ms)","data":[42,55,78,68,195,112]}]}' class="fade-in-up">
+          <canvas id="chart-latency" height="120"></canvas>
+          <script>
+            new Chart(document.getElementById('chart-latency'), {
+              type: 'bar',
+              data: {
+                labels: ['api-gateway','user-service','order-service','payment-service','notify-service','analytics-service'],
+                datasets: [{
+                  label: 'P99 延迟 (ms)',
+                  data: [42, 55, 78, 68, 195, 112],
+                  backgroundColor: ['#58A6FF','#3FB950','#3FB950','#3FB950','#F85149','#D29922'],
+                  borderRadius: 4
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: { beginAtZero: true, grid: { color: '#30363D' }, ticks: { color: '#8B949E' } },
+                  x: { grid: { display: false }, ticks: { color: '#8B949E', font: { family: 'monospace', size: 11 } } }
+                }
+              }
+            });
+          </script>
+        </div>
+        <div data-component="callout" class="callout callout--danger fade-in-up">
+          <span class="callout-icon">🚫</span>
+          <div class="callout-body"><strong>notify-service</strong> P99 延迟 195ms，超出 SLA 阈值 150ms。已开启熔断限流，排查供应商侧网络问题。</div>
+        </div>
+      </section>
+
+      <section data-section="安全合规" data-summary="安全扫描、漏洞管理与合规审计现状。">
+        <h2 id="section-an-quan-he-gui">安全合规</h2>
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">高危漏洞</div>
+            <div class="kpi-value" style="color: var(--success);" data-target-value="0">0</div>
+            <div class="kpi-trend kpi-trend--up">↑ 全清</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">中危漏洞</div>
+            <div class="kpi-value" style="color: var(--warning);" data-target-value="3">3</div>
+            <div class="kpi-trend kpi-trend--neutral">处理中</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">MTLS 覆盖</div>
+            <div class="kpi-value" data-target-value="100" data-suffix="%">100%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 全覆盖</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">合规通过率</div>
+            <div class="kpi-value" style="color: var(--success);" data-target-value="100" data-suffix="%">100%</div>
+            <div class="kpi-trend kpi-trend--neutral">ISO 27001</div>
+          </div>
+        </div>
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">3 个中危漏洞（CVE-2025-1234 等）已制定修复计划，预计 2026-03-25 完成补丁升级。下次全面安全扫描：2026-04-01。</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // Auto-reveal in headless/screenshot environments
+    if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+    if (!document.body.classList.contains('no-animations')) {
+      const fadeObserver = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+        }),
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+      const kpiObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.targetValue);
+          if (isNaN(target)) return;
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const isFloat = String(target).includes('.');
+          const decimals = isFloat ? String(target).split('.')[1].length : 0;
+          let startTime = null;
+          const duration = 1200;
+          const animate = ts => {
+            if (!startTime) startTime = ts;
+            const progress = Math.min((ts - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = isFloat ? (ease * target).toFixed(decimals) : Math.floor(ease * target).toLocaleString();
+            el.textContent = prefix + current + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = prefix + (isFloat ? target.toFixed(decimals) : target.toLocaleString()) + suffix;
+          };
+          requestAnimationFrame(animate);
+          kpiObserver.unobserve(el);
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.kpi-value[data-target-value]').forEach(el => kpiObserver.observe(el));
+    }
+
+    const tocBtn = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    if (tocBtn && tocSidebar) {
+      let locked = false, closeTimer;
+      function openToc() { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded', 'true'); }
+      function scheduleClose() {
+        closeTimer = setTimeout(() => {
+          if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); }
+        }, 150);
+      }
+      tocBtn.addEventListener('mouseenter', openToc);
+      tocSidebar.addEventListener('mouseenter', openToc);
+      tocBtn.addEventListener('mouseleave', scheduleClose);
+      tocSidebar.addEventListener('mouseleave', scheduleClose);
+      tocBtn.addEventListener('click', () => {
+        locked = !locked;
+        tocBtn.classList.toggle('locked', locked);
+        if (locked) openToc(); else scheduleClose();
+      });
+      document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+        if (!locked) scheduleClose();
+      }));
+    }
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = e.target.dataset.section;
+        const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+        if (link) link.classList.toggle('active', e.isIntersecting);
+      });
+    }, { rootMargin: '-10% 0px -60% 0px' });
+    document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+  </script>
+
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

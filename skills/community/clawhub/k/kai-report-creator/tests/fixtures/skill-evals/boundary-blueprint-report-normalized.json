@@ -1,0 +1,28 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/guard_validate.py evals/artifacts/current/skill-runs/boundary-blueprint-report/report.report.md",
+    "python3 scripts/html_quality_gate.py evals/artifacts/current/skill-runs/boundary-blueprint-report/report.html"
+  ],
+  "failed_shell_commands": [],
+  "read_paths": [
+    "SKILL.md",
+    "references/spec-loading-matrix.md",
+    "references/generate-flow.md",
+    "references/rendering/table-list.md"
+  ],
+  "write_paths": ["evals/artifacts/current/skill-runs/boundary-blueprint-report/report.html"],
+  "artifact_paths": ["tests/fixtures/skill_eval_boundary_blueprint_report.html"],
+  "input_tokens": 14000,
+  "output_tokens": 3600,
+  "wall_ms": 52000,
+  "skill_evidence": {
+    "skill_contract_read": true,
+    "report_flow_observed": true,
+    "guard_observed": true,
+    "html_quality_gate_observed": true
+  },
+  "runner_warnings": []
+}

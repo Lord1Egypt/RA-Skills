@@ -1,0 +1,12 @@
+{
+  "name": "Interactive Skills Platform MVP (Skills 平台 MVP)",
+  "tagline": "把 CLI skill 网页化：上传 SKILL.md、对话式引导、动态 UI 与执行闭环",
+  "description": "面向 skills 平台建设的设计与实施技能：帮助将 Claude Code/OpenClaw skills 以 Web 方式交付给非技术用户。覆盖上传 SKILL.md、AI 分析参数与 UI、对话式参数收集、动态 UI 渲染（文本/进度/链接）、Agent SDK 执行链路、MVP 分阶段落地与风险边界。",
+  "category": "development",
+  "tags": ["skills", "platform", "mvp", "web", "agent", "fastapi", "react", "product-design"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

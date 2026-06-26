@@ -1,35 +1,39 @@
 ---
-name: "Kai Realtime Voice"
-description: "Real-time voice streaming via MiniMax WebSocket API. Use for low-latency voice conversations and streaming audio generation."
-category: "media"
-source: "ClawHub"
-tags: [audio, kai, realtime, streaming, voice]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kai-realtime-voice"
-sourceUrl: "https://clawhub.ai/skills/kai-realtime-voice"
+name: kai-realtime-voice
+description: Real-time voice streaming via MiniMax WebSocket API. Use for low-latency voice conversations and streaming audio generation.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - MINIMAX_API_KEY
 ---
 
 # Kai Realtime Voice
 
-> Real-time voice streaming via MiniMax WebSocket API. Use for low-latency voice conversations and streaming audio generation.
+Real-time voice streaming using MiniMax WebSocket API.
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kai-realtime-voice`
-- **Source URL:** [https://clawhub.ai/skills/kai-realtime-voice](https://clawhub.ai/skills/kai-realtime-voice)
+## Setup
 
-## Overview
+API key already configured in OpenClaw config. Uses same key as kai-minimax-tts.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Test WebSocket connection:
 ```bash
-hermes skills install clawhub/kai-realtime-voice
+bash {baseDir}/scripts/kai_realtime.sh --test
 ```
+
+Stream text to audio:
+```bash
+bash {baseDir}/scripts/kai_realtime.sh --stream "Hello world"
+```
+
+## Requirements
+
+- Python3 with websockets library
+- WebSocket support
+- MiniMax API key (auto-injected)
+
+## Output
+
+Audio streamed to stdout or saved to file.

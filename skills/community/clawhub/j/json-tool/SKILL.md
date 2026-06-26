@@ -1,35 +1,61 @@
 ---
-name: "Json Tool"
-description: "Validate, format, and transform JSON data. Use when user needs to pretty print JSON, validate JSON syntax, minify JSON, extract JSON paths, or convert JSON t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/json-tool"
-sourceUrl: "https://clawhub.ai/skills/json-tool"
+name: json-tool
+description: Validate, format, and transform JSON data. Use when user needs to pretty print JSON, validate JSON syntax, minify JSON, extract JSON paths, or convert JSON to other formats.
 ---
 
-# Json Tool
+# JSON Tool
 
-> Validate, format, and transform JSON data. Use when user needs to pretty print JSON, validate JSON syntax, minify JSON, extract JSON paths, or convert JSON t...
+Validate, format, and transform JSON data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/json-tool`
-- **Source URL:** [https://clawhub.ai/skills/json-tool](https://clawhub.ai/skills/json-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/json-tool
+# Format JSON
+python scripts/json_tool.py data.json --format
+
+# Validate JSON
+python scripts/json_tool.py data.json --validate
 ```
+
+## Usage
+
+```bash
+python scripts/json_tool.py [FILE] [OPTIONS]
+
+Options:
+  --format         Pretty print JSON
+  --minify         Minify JSON
+  --validate       Validate JSON syntax
+  --query PATH     JSONPath query
+  --convert FORMAT Convert to: yaml, csv, xml
+  --sort-keys      Sort object keys
+  --indent NUM     Indentation size
+```
+
+## Examples
+
+```bash
+# Pretty print
+python scripts/json_tool.py data.json --format
+
+# Minify
+python scripts/json_tool.py data.json --minify
+
+# Extract field
+python scripts/json_tool.py data.json --query "items[0].name"
+
+# Convert to YAML
+python scripts/json_tool.py data.json --convert yaml
+
+# Sort keys
+python scripts/json_tool.py data.json --sort-keys
+```
+
+## Features
+
+- Pretty printing
+- Minification
+- Validation
+- JSONPath queries
+- Format conversion (YAML, CSV, XML)
+- Key sorting

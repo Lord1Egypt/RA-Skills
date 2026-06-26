@@ -1,0 +1,20 @@
+# openclaw_workspace/skills/lobster_ge_assistant/config.yaml
+
+assistant_name: "龙虾哥"
+symbol: "🦞"
+timezone: "Asia/Shanghai"  # 成都使用北京时间 UTC+8
+working_hours:
+  start: "09:00"
+  end: "23:00"
+
+intervals:
+  doing_report_minutes: 10      # 正在做的事：每10分钟汇报
+  paused_report_hours: 1        # 遇卡点的事：每1小时提醒
+  autonomy_check_hours: 1       # 主动性发问：每1小时自检
+  summary_day: "Monday"         # 已完成的事：每周一汇总
+
+focus_areas:
+  - "加密货币 (Crypto)"
+  - "Web3 & 链上交易"
+  - "Meme币交易 & Alpha挖掘"
+  - "AI 技术动态"

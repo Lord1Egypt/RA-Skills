@@ -1,35 +1,176 @@
 ---
-name: "lead-scraper"
-description: "自动抓取潜在客户信息 - 智能线索抓取工具，支持多平台客户信息采集、清洗、去重、分类"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [AI, automation, chinese, pro, productivity, crawl, lead, scraper]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lead-scraper"
-sourceUrl: "https://clawhub.ai/skills/lead-scraper"
+name: lead-scraper
+description: 自动抓取潜在客户信息 - 智能线索抓取工具，支持多平台客户信息采集、清洗、去重、分类
+version: 1.0.0
+license: MIT
 ---
 
-# lead-scraper
+# 线索抓取
 
-> 自动抓取潜在客户信息 - 智能线索抓取工具，支持多平台客户信息采集、清洗、去重、分类
+智能潜在客户信息采集工具，帮助企业快速建立销售线索库。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lead-scraper`
-- **Source URL:** [https://clawhub.ai/skills/lead-scraper](https://clawhub.ai/skills/lead-scraper)
+## 功能特性
 
-## Overview
+- 🎯 **多平台抓取**: 企查查、天眼查、B2B平台、社交平台
+- 🔧 **数据清洗**: 格式标准化、无效数据过滤、重复去重
+- 📊 **智能分类**: 按行业、地区、规模、意向度分类
+- 📤 **多格式导出**: Excel、CSV、JSON、CRM对接
+- ⭐ **线索评分**: 自动评估线索质量和优先级
+- 🔐 **合规安全**: 只抓取公开信息，遵守法律法规
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/lead-scraper
+# 按行业抓取
+抓取 杭州地区 电子商务行业 企业联系方式
+
+# 按关键词抓取
+抓取 包含"智能制造"关键词的企业信息
+
+# 按平台抓取
+从LinkedIn抓取 软件工程师 线索
+
+# 展会线索
+抓取 2026年广交会 参展商信息
+
+# 数据清洗
+清洗这份客户名单 去重补全 contact_list.xlsx
+
+# 线索评分
+评估这份线索质量 leads.csv
 ```
+
+## 配置要求
+
+### 必需配置
+无特殊配置要求。
+
+### 可选配置
+```json
+{
+  "skills": {
+    "entries": {
+      "lead-scraper": {
+        "config": {
+          "platforms": ["qichacha", "tianyancha"],
+          "rate_limit": 100,
+          "output_format": "xlsx"
+        }
+      }
+    }
+  }
+}
+```
+
+## 支持平台
+
+### 企业信息平台
+- 企查查
+- 天眼查
+- 启信宝
+- 国家企业信用信息公示系统
+
+### B2B平台
+- 阿里巴巴1688
+- 慧聪网
+- 中国制造网
+
+### 社交平台
+- LinkedIn
+- 脉脉
+
+### 行业资源
+- 展会参展商名录
+- 行业协会会员
+- 招投标信息平台
+
+## 输出示例
+
+```
+========================================
+           线索抓取报告
+========================================
+
+【抓取概况】
+  关键词: 电子商务 杭州
+  数据来源: 企查查、天眼查
+  抓取数量: 256条
+  有效线索: 243条 (94.9%)
+
+【线索统计】
+  按行业分布:
+    - 电子商务: 45%
+    - 软件服务: 25%
+    - 物流仓储: 15%
+    - 其他: 15%
+
+  按企业规模:
+    - 大型企业: 5%
+    - 中型企业: 25%
+    - 小型企业: 70%
+
+  按地区分布:
+    - 西湖区: 30%
+    - 滨江区: 25%
+    - 余杭区: 20%
+    - 其他: 25%
+
+【优质线索 Top 10】
+  1. 杭州XX科技有限公司
+     评分: 9.5/10 | 行业: 电商服务 | 规模: 中型
+     联系人: 张总 | 电话: 138****1234
+     意向度: 高 | 备注: 近期有采购需求
+
+  2. 浙江YY电子商务有限公司
+     评分: 9.2/10 | 行业: 跨境电商 | 规模: 中型
+     联系人: 李经理 | 电话: 139****5678
+     意向度: 高 | 备注: 扩张期
+
+  ...
+
+【导出文件】
+  格式: Excel (.xlsx)
+  路径: ./output/leads_20260402.xlsx
+  包含字段: 公司名称、联系人、电话、邮箱、地址、行业、规模、评分
+
+【跟进建议】
+  优先联系评分>8.0的线索
+  最佳联系时间: 工作日 10:00-11:30, 14:00-17:00
+  推荐话术: [已生成话术模板]
+
+========================================
+```
+
+## 合规声明
+
+### ✅ 允许
+- 抓取公开信息
+- 遵守robots.txt
+- 尊重隐私设置
+
+### ❌ 禁止
+- 抓取非公开信息
+- 破解验证码
+- 恶意高频请求
+- 倒卖个人信息
+
+## 注意事项
+
+1. 抓取前请确认目标平台的使用条款
+2. 数据质量受源头影响
+3. 遵守《个人信息保护法》和《数据安全法》
+4. 获得数据主体同意后再营销
+
+## 更新日志
+
+### v1.0.0 (2026-04-01)
+- 初始版本发布
+- 支持多平台抓取
+- 实现智能清洗去重
+- 支持多格式导出
+
+---
+
+**开发者**: 盈指量杭州科技有限公司  
+**定价**: ¥99/次 或 ¥299/月订阅  
+**收款**: USDC (Polygon: 0x3DbFf9E97b10a10d4A2079B4273473da7e6F4120) | 微信支付

@@ -1,35 +1,27 @@
 ---
-name: "Isdayoff Checker"
-description: "Определяет, рабочий ли указанный день (по умолчанию — сегодня) с помощью API isdayoff.ru. Использовать, когда нужно быстро ответить «рабочий» или «выходной»..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/isdayoff-checker"
-sourceUrl: "https://clawhub.ai/skills/isdayoff-checker"
+name: isdayoff-checker
+description: "Определяет, рабочий ли указанный день (по умолчанию — сегодня) с помощью API isdayoff.ru. Использовать, когда нужно быстро ответить «рабочий» или «выходной» для даты с учётом часового пояса."
 ---
 
-# Isdayoff Checker
+# isdayoff-checker
 
-> Определяет, рабочий ли указанный день (по умолчанию — сегодня) с помощью API isdayoff.ru. Использовать, когда нужно быстро ответить «рабочий» или «выходной»...
+Коротко: этот навык проверяет, является ли указанная дата рабочим днём или выходным, используя публичный API на https://www.isdayoff.ru/docs/.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/isdayoff-checker`
-- **Source URL:** [https://clawhub.ai/skills/isdayoff-checker](https://clawhub.ai/skills/isdayoff-checker)
+Когда использовать этот навык
+- Когда нужно ответить "рабочий" / "выходной" для заданной даты (если дата не указана — по умолчанию сегодня).
+- Когда нужно принять решение о планировании/напоминании, зависящее от типа дня (например, не ставить будильник на воскресенье).
 
-## Overview
+Что включено
+- scripts/check_day.py — исполняемый Python-скрипт, который по умолчанию обращается к публичному API isdayoff и возвращает удобочитаемый результат и код выхода.
+- references/ISDAYOFF.md — ссылка на документацию и краткие замечания по формату ответа.
 
+Примеры использования
+- Локально: python3 scripts/check_day.py
+- Для конкретной даты: python3 scripts/check_day.py --date 2026-04-13
+- Опция --endpoint позволяет указывать альтернативный URL API (если документация поменялась).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/isdayoff-checker
-```
+Примечания по безопасности и конфигурам
+- Скрипт использует прямой HTTP(S) вызов к стороннему сервису. Убедитесь, что машина имеет выход в интернет.
+- Если формат ответа API изменится, отредактируй scripts/check_day.py и/или references/ISDAYOFF.md.
+
+Автор: Домовенок Кузя (скелет навыка — можно адаптировать под ваши нужды)

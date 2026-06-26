@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习助手 - 让学习更有趣</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 学习助手</h1>
+            <p>集成多个免费API，让学习变得简单有趣</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="dictionary">词典查询</button>
+            <button class="tab-btn" data-tab="translate">翻译工具</button>
+            <button class="tab-btn" data-tab="facts">有趣事实</button>
+            <button class="tab-btn" data-tab="calculator">数学计算</button>
+            <button class="tab-btn" data-tab="history">历史事件</button>
+        </nav>
+
+        <main class="tab-content">
+            <!-- 词典查询 -->
+            <div id="dictionary" class="tab-pane active">
+                <div class="tool-card">
+                    <h2>🔤 词典查询</h2>
+                    <div class="input-group">
+                        <input type="text" id="wordInput" placeholder="输入要查询的单词...">
+                        <button onclick="searchWord()">查询</button>
+                    </div>
+                    <div id="dictionaryResult" class="result-area"></div>
+                </div>
+            </div>
+
+            <!-- 翻译工具 -->
+            <div id="translate" class="tab-pane">
+                <div class="tool-card">
+                    <h2>🌍 翻译工具</h2>
+                    <div class="translation-controls">
+                        <select id="sourceLang">
+                            <option value="en">英语</option>
+                            <option value="zh">中文</option>
+                            <option value="es">西班牙语</option>
+                            <option value="fr">法语</option>
+                            <option value="de">德语</option>
+                        </select>
+                        <span>→</span>
+                        <select id="targetLang">
+                            <option value="zh">中文</option>
+                            <option value="en">英语</option>
+                            <option value="es">西班牙语</option>
+                            <option value="fr">法语</option>
+                            <option value="de">德语</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="translateInput" placeholder="输入要翻译的文本..."></textarea>
+                        <button onclick="translateText()">翻译</button>
+                    </div>
+                    <div id="translationResult" class="result-area"></div>
+                </div>
+            </div>
+
+            <!-- 有趣事实 -->
+            <div id="facts" class="tab-pane">
+                <div class="tool-card">
+                    <h2>💡 有趣事实</h2>
+                    <button onclick="getRandomFact()" class="primary-btn">获取随机事实</button>
+                    <div id="factResult" class="result-area"></div>
+                </div>
+            </div>
+
+            <!-- 数学计算 -->
+            <div id="calculator" class="tab-pane">
+                <div class="tool-card">
+                    <h2>🔢 数学计算</h2>
+                    <div class="input-group">
+                        <input type="text" id="mathInput" placeholder="输入数学表达式 (例: 2+3*4, Math.sqrt(16))">
+                        <button onclick="calculateExpression()">计算</button>
+                    </div>
+                    <div id="calculatorResult" class="result-area"></div>
+                    <div class="examples">
+                        <h4>示例：</h4>
+                        <p>2 + 3 * 4 = 14</p>
+                        <p>Math.sqrt(16) = 4</p>
+                        <p>Math.pow(2, 3) = 8</p>
+                        <p>Math.random() = 随机数</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史事件 -->
+            <div id="history" class="tab-pane">
+                <div class="tool-card">
+                    <h2>📜 历史事件</h2>
+                    <button onclick="getHistoricalEvent()" class="primary-btn">获取历史事件</button>
+                    <div id="historyResult" class="result-area"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 学习助手 - 集成多个免费API</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

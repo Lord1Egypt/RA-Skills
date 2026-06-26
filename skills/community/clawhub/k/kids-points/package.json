@@ -1,0 +1,21 @@
+{
+  "name": "kids-points",
+  "version": "1.3.0",
+  "description": "儿童积分管理助手 - 语意识别，自动记账，跨 Session 数据一致",
+  "main": "agent-handler.js",
+  "scripts": {
+    "test": "echo 'kids-points v2.0 - 简单、灵活的积分管理工具'"
+  },
+  "keywords": [
+    "kids",
+    "points",
+    "积分",
+    "学习管理"
+  ],
+  "author": "老王",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,128 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "96.37"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SMDeciPublDate",
+        "columnChiName": "股东大会决议公告日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "34.42"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "IfPassed",
+        "columnChiName": "是否否决",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "是否否决（IfPassed），该字段固定以下常量：1-是；0-否",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "AgencyType",
+        "columnChiName": "中介机构类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "中介机构类别(AgencyType)与(CT_SystemConst)表中的DM字段关联，令LB = 1115，得到中介机构类别的具体描述：1-发行人法律顾问，2-承销商法律顾问，3-会计师事务所，4-财务顾问，5-收款机构，6-资产评估机构，7-资产评估确认机构，8-土地评估机构，9-股票登记机构，10-担保人，11-土地评估确认机构，12-配股资产审计机构，13-股票托管机构，14-境外财务顾问，15-境外律师事务所，16-财经公关公司，17-境外会计师事务所，18-承销商境外法律顾问，19-持续督导机构，20-信用评估机构，21-验资机构，22-再担保人，23-精算评估机构，24-采矿权评估机构，30-直销机构，31-流动性服务商，33-代销机构，34-定投代销机构，35-场内销售机构，36-配对转换代销机构，37-基金主交易商，38-基金主交易商协调人，39-基金境外托管人，40-境外投资顾问，41-其它增信机构，42-投资顾问，61-QFII托管银行，63-QFII经纪代理商，65-社保基金管理人，66-反担保人，67-债券托管机构，68-RQFII托管银行，69-集中簿记建档系统技术支持机构，70-二级托管人，71-港交所基金受托人，72-港交所基金过户处，73-港交所基金参与证券商，74-港交所基金证券庄家，77-互认基金香港代表人，90-沪伦通中国跨境转换机构，91-沪伦通英国跨境转换机构，92-CDR英国合作证券经营机构。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "AgentCode",
+        "columnChiName": "机构编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "机构编码（AgentCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到中介机构的基本情况。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.51",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "NameChangeD",
+        "columnChiName": "中介机构名称(更改后)",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

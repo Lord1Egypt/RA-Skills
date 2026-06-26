@@ -1,35 +1,34 @@
 ---
-name: "Knowledge Card Generator"
-description: "Automation skill for Knowledge Card Generator."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-card-generator"
-sourceUrl: "https://clawhub.ai/skills/knowledge-card-generator"
----
+name: knowledge-card-generator
+description: >
+  知识卡片/海报生成器。当用户说「做个知识卡片」「生成海报」「做张卡片」
+  「知识卡」「科普卡片」等关键词时激活。
 
-# Knowledge Card Generator
+  **标准工作流程（必须严格执行）：**
 
-> Automation skill for Knowledge Card Generator.
+  Step 1 — 检索信息
+  根据用户给出的主题或关键词，主动搜索/检索准确信息，
+  不确定的内容必须先查证，再整理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-card-generator`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-card-generator](https://clawhub.ai/skills/knowledge-card-generator)
+  Step 2 — 整理草稿（文字版）
+  将检索到的信息整理成「📋 知识卡片内容草稿」标准格式，
+  以文字形式发给用户确认，未经确认不得直接生成图片。
+  草稿格式见：references/draft-template.md
 
-## Overview
+  Step 3 — 生成图片
+  用户确认草稿后，套入当前激活风格的生图 prompt，
+  生成 1080×1920 竖版图片，发送给用户。
 
+  Step 4 — 修审反馈
+  用户提出修改 → 调整后重新生成 → 直至用户满意
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-card-generator
-```
+  **风格管理：**
+  - 当前默认风格：儿童简笔画风
+  - 每次生成前必须询问用户「用哪个风格？新风格还是继续用儿童简笔画风？」
+  - 风格定义库：references/style-guide.md
+  - 以后新增风格 → 写入 style-guide.md
+
+  **图片规格（固定）：**
+  尺寸：1080×1920 竖版
+  比例：9:16
+  分辨率：2K

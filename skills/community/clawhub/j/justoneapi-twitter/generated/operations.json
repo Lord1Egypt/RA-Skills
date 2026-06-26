@@ -1,0 +1,96 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Twitter workflows with JustOneAPI, including user Profile and user Published Posts.",
+  "displayName": "Twitter",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Twitter user Profile data, including account metadata, audience metrics, and verification-related fields, for accessing user profile metadata (e.g., description, location, verification status) and collecting follower and following counts.",
+      "method": "GET",
+      "operationId": "getTwitterUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique numeric identifier (Rest ID) for the X user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "restId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/twitter/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Twitter"
+      ]
+    },
+    {
+      "description": "Get Twitter user Published Posts data, including post content, timestamps, and engagement data, for account monitoring and content analysis.",
+      "method": "GET",
+      "operationId": "getTwitterUserPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique numeric identifier (Rest ID) for the X user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "restId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor for navigating through long timelines.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/twitter/get-user-posts/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Posts",
+      "tags": [
+        "Twitter"
+      ]
+    }
+  ],
+  "platformKey": "twitter",
+  "primaryTag": "Twitter",
+  "skillName": "justoneapi_twitter",
+  "slug": "justoneapi-twitter",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "documentTypes": {
+    "contract": {
+      "name": "商业合同",
+      "keywords": ["contract", "合同", "purchase order", "采购订单", "sale contract"],
+      "requiredFields": ["合同号", "出口国", "进口商", "总金额", "数量"],
+      "optionalFields": ["重量", "报关口岸"],
+      "requireStamp": false
+    },
+    "certificate": {
+      "name": "质量合格证",
+      "keywords": ["quality certificate", "质量合格证书", "certificate of analysis", "检验证书", "合格证"],
+      "requiredFields": ["合格证编号", "生产商", "数量", "重量"],
+      "optionalFields": ["合同号"],
+      "requireStamp": true
+    },
+    "permit": {
+      "name": "进出口许可证",
+      "keywords": ["import license", "export license", "进出口许可证", "permit", "license"],
+      "requiredFields": ["合同号", "出口国", "进口商", "报关口岸"],
+      "optionalFields": ["总金额", "数量", "重量"],
+      "requireStamp": true
+    }
+  },
+  "fieldDefinitions": {
+    "合同号": {
+      "aliases": ["合同号", "合同 号", "Contract No", "Contract Number", "合同编号"],
+      "pattern": "[A-Z0-9]{6,}",
+      "required": true
+    },
+    "出口国": {
+      "aliases": ["出口国", "出口 国", "Country of Origin", "Origin Country", "产国"],
+      "allowedValues": ["俄罗斯", "美国", "日本", "韩国", "Germany", "France", "UK", "Italy", "Spain"],
+      "required": true
+    },
+    "进口商": {
+      "aliases": ["进口商", "进口 商", "Buyer", "Importer", "Consignee"],
+      "pattern": "[A-Za-z\\s]+Company|[A-Za-z\\s]+Co\\.|[\\u4e00-\\u9fa5]+公司",
+      "required": true
+    },
+    "总金额": {
+      "aliases": ["总金额", "合同 总 金额", "Total Amount", "Total Value", "总价"],
+      "pattern": "[0-9,]+",
+      "unit": ["CNY", "RMB", "USD", "EUR"],
+      "required": true
+    },
+    "数量": {
+      "aliases": ["数量", "总数量", "Total Quantity", "Total", "件数", "箱数"],
+      "pattern": "[0-9]+",
+      "unit": ["PCS", "CTNS", "SET"],
+      "required": true
+    },
+    "重量": {
+      "aliases": ["重量", "Total Weight", "Net Weight", "Gross Weight", "毛重", "净重"],
+      "pattern": "[0-9.]+\\s*(kg|KG|kg|g|ton|MT)",
+      "unit": ["KG", "MT", "g", "ton"],
+      "required": false
+    },
+    "合格证编号": {
+      "aliases": ["合格证编号", "证明书序号码", "Certificate No", "CERTIFICATE NO", "证书编号"],
+      "pattern": "[A-Z0-9]{8,}",
+      "required": false
+    },
+    "生产商": {
+      "aliases": ["生产商", "生产 商", "Manufacturer", "Producer", "Maker"],
+      "pattern": "[\\u4e00-\\u9fa5]+[\\u4e00-\\u9fa5a-zA-Z]+公司|[A-Za-z\\s]+Company",
+      "required": false
+    },
+    "报关口岸": {
+      "aliases": ["报关口岸", "报关 口岸", "Customs Port", "Port of Entry", "口岸"],
+      "pattern": "[\\u4e00-\\u9fa5]+关|[A-Z]{2,}\\s*Customs",
+      "required": false
+    }
+  }
+}

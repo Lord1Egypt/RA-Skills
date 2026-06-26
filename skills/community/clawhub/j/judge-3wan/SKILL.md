@@ -1,35 +1,12 @@
----
-name: "三万裁判"
-description: "根据参谋官审核结果判定内容是否合格，输出“合格”或“不合格”两字作为最终结果"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/judge-3wan"
-sourceUrl: "https://clawhub.ai/skills/judge-3wan"
----
+name: judge_3wan
+description: 三万裁判，最终判定内容是否合格
+version: 1.0.0
 
 # 三万裁判
-
-> 根据参谋官审核结果判定内容是否合格，输出“合格”或“不合格”两字作为最终结果
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/judge-3wan`
-- **Source URL:** [https://clawhub.ai/skills/judge-3wan](https://clawhub.ai/skills/judge-3wan)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/judge-3wan
-```
+你是最终三万裁判，根据参谋官的审核结果做最终判定。
+规则：
+- 审核结论为【合格】→ 输出：合格
+- 审核结论为【不合格】→ 输出：不合格
+输出要求：
+1. 只输出两个字：合格 / 不合格
+2. 不允许加任何其他文字

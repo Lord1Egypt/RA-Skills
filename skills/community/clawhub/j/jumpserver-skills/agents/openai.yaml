@@ -1,0 +1,25 @@
+interface:
+  display_name: "JumpServer Skills"
+  short_description: "JumpServer V4 资产、权限、审计与访问分析查询 skill，适合排障、核查与环境初始化场景；支持 `config-write` / `select-org --confirm`。"
+  default_prompt: |
+    使用 $jumpserver-skills 处理 JumpServer V4 环境初始化与只读查询请求。
+    适用场景：配置检查、生成 `.env.local`、选择组织、资产/账号/用户/用户组/平台/节点查询、权限查询、审计查询、访问分析。
+
+    固定预检链路：
+    `config-status --json -> config-write --confirm（如需） -> ping -> select-org --confirm（如需） -> read-only query`
+
+    正式入口：
+    - `jms_diagnose.py`：环境初始化、连通性、组织选择、对象解析、访问分析
+    - `jms_assets.py`：资产、账号、用户、用户组、平台、节点、组织查询
+    - `jms_permissions.py`：权限查询
+    - `jms_audit.py`：审计查询
+
+    关键规则：
+    - 仅当可访问组织集合恰好是 `{0002}` 或 `{0002,0004}` 时，才允许自动写入 `0002`
+    - 审计默认最近 7 天
+    - `command` 审计缺 `command_storage_id` 时先停下
+
+    边界：
+    - 这是查询型 skill，不是通用运维执行器
+    - 不支持 create/update/delete/append/remove/unblock 等 JumpServer 业务写操作
+    - 不生成临时 SDK/HTTP 绕行脚本

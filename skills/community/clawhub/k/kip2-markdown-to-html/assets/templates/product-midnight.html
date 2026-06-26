@@ -1,0 +1,39 @@
+$if(lang)$<!DOCTYPE html>
+<html lang="$lang$">
+$else$<!DOCTYPE html>
+<html lang="zh-CN">
+$endif$
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+  $for(author-meta)$<meta name="author" content="$author-meta$" />$endfor$
+  $if(date-meta)$<meta name="date" content="$date-meta$" />$endif$
+  $if(description-meta)$<meta name="description" content="$description-meta$" />$endif$
+  $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
+</head>
+<body class="theme-product-midnight">
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <main class="midnight-page">
+    <header class="launch-header">
+      $if(title)$<p class="eyebrow">Launch Notes</p><h1>$title$</h1>$endif$
+      <div class="meta-row">
+        $if(author)$<span>$for(author)$$author$$sep$ · $endfor$</span>$endif$
+        $if(date)$<span>$date$</span>$endif$
+      </div>
+    </header>
+    <section class="midnight-layout$if(toc)$ has-toc$else$ no-toc$endif$">
+      $if(toc)$
+      <aside class="toc-panel">
+        <p class="toc-label">Navigate</p>
+        $table-of-contents$
+      </aside>
+      $endif$
+      <article class="content-panel$if(plain_content)$ plain$endif$">
+        $body$
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+Please turn this PDF into a knowledge entry.
+
+Requirements:
+1. Evaluate whether the PDF is worth saving
+2. Classify it by primary purpose, not by the fact that it is a PDF
+3. Choose the most suitable category:
+   - official docs, commands, specs, or durable references -> `01_reference`
+   - tutorials, explanations, or study material -> `02_learning`
+   - project-specific plans, decisions, or notes -> `03_projects`
+   - comparisons, analysis, or investigations -> `04_research`
+   - uncertain classification -> `00_inbox`
+4. Choose the most suitable template:
+   - `templates/project-entry.md` for project-specific content
+   - `templates/research-entry.md` for comparison, evaluation, or investigation content
+   - `templates/reference-entry.md` for stable reference-like material
+   - `templates/default-entry.md` otherwise
+5. If classification confidence is medium, save it to `knowledge/00_inbox/` and note the most likely destination
+6. If classification confidence is low, do not force a permanent category
+7. Use a clean kebab-case filename
+8. Output:
+   - the chosen category
+   - the selected template
+   - the final save path
+   - the filename
+   - the structured Markdown entry

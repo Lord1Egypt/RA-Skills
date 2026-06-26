@@ -1,0 +1,41 @@
+{
+  "skill_name": "kol-roi",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We have 4 creators. Codes A1–A4. Orders last 90d: A1 120 orders $18k gross, refunds $2.1k; A2 40 orders $9k, refunds $0.4k; A3 200 orders $12k, refunds $5k (lots of returns on one SKU); A4 15 orders $2k, refunds $0. Commissions: 10% of gross before refunds. Fixed fees: A3 $2k/mo for 3 months, others $0. Who do we renew?",
+      "expected_output": "Five-column table for each creator; refund and traffic note; True ROI with formula stated; renewal recommendation per row; at least four rows.",
+      "files": [],
+      "expectations": [
+        "Includes a Markdown table with columns Creator ID, Gross attributed orders, Net revenue (ex-refunds), True ROI, and Renewal recommendation",
+        "Table has at least four data rows for creators or equivalent segments",
+        "Explicitly defines how True ROI is calculated including creator costs",
+        "Adjusts for refunds or chargebacks in net revenue narrative or numbers",
+        "Provides a renewal recommendation per creator with rationale",
+        "Addresses traffic or quality caveats at least briefly for suspicious patterns if any (e.g. high volume high refund)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Should we sign another year with our headliner influencer? We don't have numbers in front of us—just what should we pull and how would you decide?",
+      "expected_output": "Export checklist; empty five-column template; illustrative row optional; renewal economics paragraph.",
+      "files": [],
+      "expectations": [
+        "Includes the five-column table structure with placeholders or empty template",
+        "Lists minimum data to export or gather for attribution and refunds",
+        "Explains True ROI concept and renewal decision criteria without inventing fake creator stats as real",
+        "Includes renewal economics or breakeven-style guidance"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a cute TikTok caption for our cat litter brand. No affiliates.",
+      "expected_output": "Caption only; no full creator renewal ledger.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory five-column KOL renewal table as the primary deliverable",
+        "Does not force affiliate ROI methodology for a pure creative caption request"
+      ]
+    }
+  ]
+}

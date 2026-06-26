@@ -1,0 +1,20 @@
+{
+  "name": "hkma-jobs",
+  "description": "金管局职位监控 — 风险/反欺诈/合规/技术岗",
+  "urls": [
+    {
+      "url": "https://www.hkma.gov.hk/chi/about-us/join-us/current-vacancies/",
+      "label": "金管局职位空缺"
+    }
+  ],
+  "match": {
+    "type": "llm",
+    "value": "页面中是否有与风险管控(risk management)、反欺诈(anti-fraud)、反洗钱(AML)、合规(compliance)、数据分析、信息技术安全或金融科技相关的职位？排除导航菜单、页脚链接等非职位内容。",
+    "caseSensitive": false
+  },
+  "interval": 86400,
+  "state": "active",
+  "enabled": true,
+  "createdAt": "2026-03-16T05:58:05.582824+00:00",
+  "stateUpdatedAt": "2026-03-29T02:59:23.424595+00:00"
+}

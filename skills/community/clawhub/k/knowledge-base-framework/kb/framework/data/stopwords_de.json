@@ -1,0 +1,35 @@
+{
+  "minimal_german_stopwords": [
+    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einer", "einem", "einen", "eines",
+    "ich", "du", "er", "sie", "es", "wir", "ihr", "mich", "dich", "sich", "uns", "euch",
+    "mein", "dein", "sein", "ihr", "unser", "euer",
+    "dieser", "diese", "dieses", "jener", "jene", "jenes",
+    "wer", "was", "wo", "wie", "wann", "warum", "welche", "welcher", "welches",
+    "an", "auf", "aus", "bei", "bis", "durch", "für", "gegen", "in", "mit", "nach", "ohne",
+    "um", "unter", "von", "vor", "zu", "zur", "zum", "über",
+    "und", "oder", "aber", "auch", "als", "wie", "wenn", "weil", "dass", "damit", "ob",
+    "ist", "sind", "war", "waren", "hat", "haben", "hatte", "hatten", "wird", "werden",
+    "kann", "kannst", "können", "konnte", "muss", "musst", "müssen", "musste",
+    "soll", "sollst", "sollen", "sollte", "wollte", "will", "willst", "wollen",
+    "mag", "magst", "mögen", "mochte",
+    "nicht", "kein", "keine", "keiner", "keinem", "keinen",
+    "ja", "nein", "doch", "vielleicht", "wahrscheinlich", "ziemlich", "sehr", "mehr",
+    "hier", "da", "dort", "heute", "jetzt", "immer", "noch", "schon", "bald", "wieder",
+    "so", "nur", "denn", "dann", "als", "bis", "ob", "obwohl",
+    "amp", "und", "oder", "aber", "im", "am", "beim", "vom", "zum", "zur", "aus",
+    "nach", "vor", "über", "unter", "mit", "bei", "von", "durch", "ohne", "gegen",
+    "für", "an", "auf", "in", "um", "zu", "bis"
+  ],
+  "custom_stopwords": [
+    "patient", "patienten", "arzt", "ärzte", "mediziner", "therapie", "behandlung",
+    "diagnose", "untersuchung", "labor", "klinik", "krankenhaus", "praxis",
+    "fall", "fälle", "gruppe", "person", "personen", "patientin", "patientinnen",
+    "ergebnis", "ergebnisse", "wert", "werte", "test", "tests", "prüfung",
+    "datei", "dateien", "ordner", "verzeichnis", "pfad", "pfade", "name", "namen",
+    "typ", "typus", "format", "formate", "größe", "länge", "breite", "höhe",
+    "anzahl", "menge", "summe", "teil", "teile", "stück", "stücke",
+    "art", "weise", "weg", "seite", "seiten",
+    "gibt", "gab", "gengen", "finden", "fand", "liegen", "lag", "stehen", "stand",
+    "geht", "ging", "kommt", "kam", "bleibt", "blieb"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "kimi-use",
+  "version": "0.1.0",
+  "description": "Kimi AI tools for Node.js - chat, image understanding, web search",
+  "type": "module",
+  "main": "scripts/index.js",
+  "bin": {
+    "kimi": "./scripts/index.js"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "minimist": "^1.2.8"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

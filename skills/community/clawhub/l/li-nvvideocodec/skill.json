@@ -1,0 +1,120 @@
+{
+  "name": "li_nvvideocodec",
+  "description": "NVIDIA AV1视频批量压缩工具，使用FFmpeg调用NVIDIA NVENC硬件编码",
+  "version": "1.0.1",
+  "entry_point": "scripts/compress_videos.py",
+  "interpreter": "python",
+  "compatible_agents": ["hermes", "openclaw", "qwen-code"],
+  "languages": ["en", "ja", "ko", "zh-CN", "zh-TW", "fr", "de", "es", "ru", "ar"],
+  "requirements": {
+    "system": [
+      "ffmpeg",
+      "nvidia-smi"
+    ],
+    "python": [
+      "tqdm"
+    ],
+    "hardware": [
+      "NVIDIA GPU (GTX 1650+)"
+    ]
+  },
+  "usage": {
+    "command_template": "python scripts/compress_videos.py {args}",
+    "examples": [
+      {
+        "description": "交互式模式",
+        "command": "python scripts/compress_videos.py"
+      },
+      {
+        "description": "指定目录和方案",
+        "command": "python scripts/compress_videos.py -i \"输入目录\" -p B"
+      },
+      {
+        "description": "测试模式",
+        "command": "python scripts/compress_videos.py -i \"输入目录\" -p B --test --test-count 1"
+      },
+      {
+        "description": "非交互模式",
+        "command": "python scripts/compress_videos.py -i \"输入目录\" -p B --no-confirm"
+      }
+    ]
+  },
+  "parameters": {
+    "input": {
+      "flag": "-i",
+      "description": "输入视频目录路径",
+      "required": false
+    },
+    "output": {
+      "flag": "-o",
+      "description": "输出目录路径",
+      "required": false
+    },
+    "profile": {
+      "flag": "-p",
+      "description": "压缩方案 (A/B/C)",
+      "required": false,
+      "choices": ["A", "B", "C"],
+      "default": "B"
+    },
+    "test": {
+      "flag": "--test",
+      "description": "测试模式（只压缩前几个）",
+      "required": false,
+      "type": "boolean"
+    },
+    "test_count": {
+      "flag": "--test-count",
+      "description": "测试模式处理的视频数量",
+      "required": false,
+      "type": "integer",
+      "default": 3
+    },
+    "no_confirm": {
+      "flag": "--no-confirm",
+      "description": "跳过确认提示",
+      "required": false,
+      "type": "boolean"
+    }
+  },
+  "compression_profiles": {
+    "A": {
+      "name": "保守压缩",
+      "resolution": "保持原样",
+      "crf": 23,
+      "fps": "保持原样",
+      "audio_bitrate": "128k",
+      "expected_savings": "40-60%"
+    },
+    "B": {
+      "name": "平衡压缩（推荐）",
+      "resolution": "1280x720",
+      "crf": 24,
+      "fps": 24,
+      "audio_bitrate": "96k",
+      "expected_savings": "65-75%"
+    },
+    "C": {
+      "name": "激进压缩",
+      "resolution": "1280x720",
+      "crf": 28,
+      "fps": 15,
+      "audio_bitrate": "64k",
+      "expected_savings": "78-85%"
+    }
+  },
+  "workflow": [
+    "环境检查（FFmpeg、GPU、编码器）",
+    "选择压缩方案",
+    "验证压缩效果（测试压缩1个视频）",
+    "智能判断（是否继续）",
+    "批量压缩",
+    "生成报告"
+  ],
+  "safety": {
+    "original_files_protected": true,
+    "output_to_separate_dir": true,
+    "auto_validation": true,
+    "validation_threshold": "5% savings"
+  }
+}

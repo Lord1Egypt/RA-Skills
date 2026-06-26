@@ -1,35 +1,24 @@
----
-name: "issuu_downloader"
-description: "Download any public Issuu document as a high-quality PDF with automatic proxy detection and anti-blocking features for reliable access."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/issuu-downloader"
-sourceUrl: "https://clawhub.ai/skills/issuu-downloader"
----
+# Issuu PDF Downloader (Professional Edition)
 
-# issuu_downloader
+A robust and reliable tool to download any publicly available document from **Issuu.com** and convert it into a high-quality PDF. This version includes anti-blocking measures and auto-proxy detection.
+Please use VPN if you located in a restricted region. 
 
-> Download any public Issuu document as a high-quality PDF with automatic proxy detection and anti-blocking features for reliable access.
+## Key Features
+- **Anti-503 Logic**: Enhanced retry mechanism to bypass temporary service blocks.
+- **Auto-Proxy Detection**: Automatically detects local proxies (Clash/V2Ray) on common ports (7890, 1080, 1087).
+- **Smart Probing**: Uses a refined page detection algorithm to ensure all pages are captured.
+- **High-Fidelity PDF**: Direct JPG-to-PDF conversion to maintain original resolution.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/issuu-downloader`
-- **Source URL:** [https://clawhub.ai/skills/issuu-downloader](https://clawhub.ai/skills/issuu-downloader)
+## How to Use
+Simply provide the Issuu URL to the AI:
+> "Download this Issuu link for me: https://issuu.com/example/docs/manual"
 
-## Overview
+## Troubleshooting for Restricted Regions
+If you encounter "Access Denied" or "503 Error":
+1. **Enable Proxy**: Ensure your VPN/Proxy is active.
+2. **Switch Node**: Try a different server location (US or UK recommended).
+3. **Manual Proxy**: You can explicitly provide a proxy: 
+   > "Use proxy http://127.0.0.1:7890 to download this Issuu link..."
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/issuu-downloader
-```
+## Disclaimer
+For educational purposes only. Users are responsible for complying with Issuu's Terms of Service and copyright laws.

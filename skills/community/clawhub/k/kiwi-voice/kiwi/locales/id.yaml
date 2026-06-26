@@ -1,0 +1,535 @@
+# Indonesian locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    Kamu adalah Kiwi, asisten suara. Kamu terhubung ke OpenClaw dan bisa melakukan tugas APA SAJA: operasi file, kode, browser, terminal, pencarian, manajemen sistem — semuanya tersedia.
+
+    Aturan mode suara:
+    1. Jawab singkat tapi LENGKAP. Lebih baik lengkap daripada terpotong.
+    2. Ramah dan ekspresif
+    3. Kalau perlu mengerjakan tugas — langsung kerjakan, jangan pernah bilang tidak bisa. Laporkan hasilnya secara singkat.
+    4. Jangan pernah menolak eksekusi. Kamu bisa melakukan apa saja lewat OpenClaw.
+    5. Kalau kurang yakin soal detailnya — tanyakan
+
+    Konteks: pengguna berbicara lewat suara, jawaban akan diucapkan lewat TTS.
+
+# User-facing spoken responses
+responses:
+  greeting: "Halo! Aku Kiwi. Bilang 'Kiwi' dan perintahmu kalau sudah siap."
+  service_started: "Layanan dimulai!"
+  instruction: "Bilang 'Kiwi, halo!' untuk memulai"
+  error_timeout: "Jawabannya terlalu lama. Coba ulangi ya."
+  error_no_response: "Tidak bisa mendapat jawaban. Coba ulangi ya."
+  error_send_failed: "Maaf, tidak bisa mengirim pesan."
+  error_retry_failed: "Tidak bisa mendapat jawaban. Coba lagi ya."
+  error_stream_stalled: "Jawabannya macet. Coba ulangi ya."
+  shutting_down: "Sedang mati..."
+  context_cleared: "Konteks dihapus. Memulai percakapan baru."
+  calibrating: "Sedang kalibrasi pengenalan suara."
+  approval_accepted: "Diterima. Menjalankan permintaan dari {requester}."
+  approval_denied: "Oke, permintaan dari {requester} ditolak."
+  telegram_approved: "Dikonfirmasi lewat Telegram. Menjalankan permintaan dari {requester}."
+  telegram_denied: "Permintaan dari {requester} ditolak lewat Telegram."
+  heard: "Terdengar: {command}"
+  thinking: "Sedang berpikir..."
+  cancel_received: "Perintah batal diterima!"
+  stopped: "Berhenti."
+  nothing_to_stop: "Tidak ada yang perlu dihentikan."
+  unknown_speaker: "Orang asing"
+  continuing_execution: "melanjutkan eksekusi"
+  owner_registered: "Selesai. Aku sudah mengingat suara pemilik: {name}."
+  owner_register_failed: "Tidak bisa menyimpan profil. Ucapkan kalimat yang lebih panjang dan coba lagi."
+  owner_already_registered: "Pemilik sudah terdaftar. Hanya pemilik yang bisa mengubah profil suara."
+  owner_reregistration_attempt: "Percobaan pendaftaran ulang pemilik dari {speaker}: '{command}'"
+  profiles_unavailable: "Modul profil sedang tidak tersedia."
+  cannot_identify: "Tidak bisa mengidentifikasi pembicara saat ini."
+  voice_list_unavailable: "Daftar suara tidak tersedia."
+  only_owner_can_add: "Hanya pemilik yang bisa menambahkan orang baru."
+  say_name_prompt: "Sebutkan nama setelah frasa: ingat aku sebagai ..."
+  voice_remembered: "Suara diingat: {name}."
+  voice_save_failed: "Tidak bisa menyimpan suara. Butuh kalimat yang lebih jelas."
+  approval_prompt_voice_and_telegram: "Bilang: setuju. Atau konfirmasi di Telegram."
+  approval_prompt_voice: "Bilang: setuju atau tolak."
+  approval_prompt_telegram: "Silakan konfirmasi di Telegram."
+  approval_prompt_register: "Daftarkan suara pemilik: Kiwi, aku pemiliknya."
+  approval_request: "{owner}, {speaker} bertanya: {command}. {hint}"
+  ha_command_sent: "Perintah dikirim ke rumah pintar."
+  ha_response: "{response}"
+  ha_not_configured: "Integrasi rumah pintar belum dikonfigurasi."
+  ha_connection_error: "Tidak bisa terhubung ke rumah pintar."
+  ha_no_response: "Rumah pintar tidak merespons."
+  exec_approval_request: "Agen ingin menjalankan perintah: {command}. Bolehkah saya mengizinkan?"
+  exec_approved: "Disetujui. Menjalankan perintah."
+  exec_denied: "Ditolak. Perintah diblokir."
+  exec_timeout: "Tidak ada respons. Perintah ditolak demi keamanan."
+
+# Status announcer fallback messages
+status:
+  thinking: "Sedang memikirkan jawabannya..."
+  processing: "Sedang memproses permintaan, tunggu sebentar..."
+  working: "Masih bekerja, hasilnya sebentar lagi..."
+  continuing: "Melanjutkan, ini butuh waktu..."
+  almost_done: "Hampir selesai..."
+
+# Voice security messages
+security:
+  safe: "Perintah aman"
+  warning: "Perintah perlu perhatian"
+  dangerous: "Perintah berbahaya!"
+  critical: "Perintah KRITIS!"
+  unknown_level: "Tingkat bahaya tidak diketahui"
+  telegram_confirm: "Konfirmasi eksekusi?"
+  telegram_approved: "Disetujui!"
+  telegram_denied: "Ditolak"
+  approve_button: "Setuju"
+  deny_button: "Tolak"
+  telegram_request_title: "*Kiwi - Permintaan Persetujuan*"
+  telegram_speaker_label: "*Pembicara:*"
+  telegram_command_label: "*Perintah:*"
+  telegram_security_title: "*Kiwi — Keamanan*"
+  awaiting_approval: "Menunggu persetujuan di Telegram..."
+
+# Speaker identification responses
+speakers:
+  self_response: "Itu aku, Kiwi!"
+  owner_response: "Itu kamu, {name}! (keyakinan {confidence})"
+  blocked_response: "Itu suara yang diblokir"
+  known_response: "Itu {name} (keyakinan {confidence})"
+  unknown_response: "Aku tidak mengenali suara ini"
+  blocked_display: "Diblokir"
+  calibration_phrase: "Halo, aku Kiwi. Ini kalimat uji coba untuk kalibrasi."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "Suara tidak dikenal"
+  voice_blocked: "Suara diblokir"
+  voice_blacklisted: "Suara masuk daftar hitam"
+  self_echo: "Itu Kiwi (gema)"
+  allowed: "Diizinkan"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kivi": "kiwi"
+    "kiwi": "kiwi"
+    "kiui": "kiwi"
+    "kiwee": "kiwi"
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+  fuzzy_blacklist:
+    - "ki"
+    - "kin"
+    - "kit"
+    - "kim"
+    - "key"
+    - "kid"
+    - "kick"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "Terima kasih sudah menonton"
+    - "Jangan lupa subscribe"
+    - "Like dan subscribe"
+    - "Subscribe dan like"
+    - "Sampai jumpa di video berikutnya"
+    - "Jangan lupa like"
+    - "Aktifkan loncengnya"
+    - "Tulis di kolom komentar"
+    - "Subtitle"
+    - "Penerjemah"
+    - "Editor"
+    - "Sutradara"
+    - "Penulis skenario"
+    - "Bersambung"
+    - "Thank you for watching"
+    - "Please subscribe"
+    - "amara.org"
+    - "srt subs"
+  phantom_phrases:
+    - "editor subtitle"
+    - "subscribe channel kami"
+    - "ooooooo"
+    - "subtitle"
+    - "panggilan telepon"
+    - "dering"
+  phantom_patterns:
+    - "^um+[mm]*$"
+    - "^mm+[mm]*$"
+    - "^aa+[aa]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "dll.": "dan lain-lain"
+    "dsb.": "dan sebagainya"
+    "yg": "yang"
+    "dg": "dengan"
+    "utk": "untuk"
+    "tdk": "tidak"
+    "dgn": "dengan"
+    "krn": "karena"
+  incomplete_endings:
+    - "dan"
+    - "tapi"
+    - "atau"
+    - "karena"
+    - "jika"
+    - "di"
+    - "ke"
+    - "dari"
+    - "untuk"
+    - "yang"
+    - "dengan"
+    - "pada"
+    - "oleh"
+    - "tentang"
+    - "antara"
+    - "tanpa"
+    - "sebelum"
+    - "sesudah"
+    - "setelah"
+    - "atas"
+    - "bawah"
+    - "meskipun"
+    - "walaupun"
+    - "kalau"
+    - "supaya"
+    - "agar"
+    - "serta"
+    - "maupun"
+    - "bahwa"
+    - "sampai"
+    - "hingga"
+    - "bukan"
+    - "belum"
+    - "sedang"
+    - "seperti"
+  incomplete_patterns:
+    - "saya mau"
+    - "saya ingin"
+    - "tolong"
+    - "beritahu saya"
+    - "tunjukkan"
+    - "jelaskan"
+    - "bantu saya"
+    - "saya akan"
+    - "ayo"
+    - "coba"
+    - "kasih tahu"
+  complete_patterns:
+    - "sesuatu"
+    - "apa saja"
+    - "semuanya"
+    - "tidak ada"
+    - "lelucon"
+    - "cerita"
+    - "dongeng"
+    - "waktu"
+    - "tanggal"
+    - "cuaca"
+    - "tolong"
+  emotion_keywords:
+    urgent:
+      - "cepat"
+      - "segera"
+      - "penting"
+      - "darurat"
+    sad:
+      - "sedih"
+      - "buruk"
+      - "mengerikan"
+      - "parah"
+    happy:
+      - "keren"
+      - "bagus"
+      - "hebat"
+      - "wah"
+      - "mantap"
+    quiet:
+      - "pelan"
+      - "rahasia"
+      - "bisikan"
+    funny:
+      - "lelucon"
+      - "lucu"
+      - "bikin ketawa"
+    curious:
+      - "ceritakan"
+      - "jelaskan"
+      - "apa itu"
+  response_keywords:
+    apologetic:
+      - "maaf"
+      - "sayangnya"
+      - "tidak bisa"
+    enthusiastic:
+      - "!"
+      - "keren"
+      - "bagus"
+      - "mantap"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "hapus\\s+(semua|seluruh)\\s+(file|berkas|folder|direktori)"
+    - "(hapus|buang)\\s+(semua|seluruh)"
+    - "delete\\s+(all|every|files?|folders?|directory|directories)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "(matikan|shutdown)\\s+(komputer|pc|sistem)"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "restart|reboot"
+    - "turn\\s+off\\s+(computer|pc|system)"
+    - "(kirim|tunjukkan|kasih)\\s+(password|kata sandi|kunci|token|rahasia)"
+    - "send\\s+(password|passwords|key|token|secret|secrets)"
+    - "show\\s+(password|key|token)"
+    - "tell\\s+(password|passwords|code|pin)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "install\\s+(unknown|untrusted)"
+    - "download\\s+(executable|virus|trojan)"
+  warning:
+    - "(ubah|ganti)\\s+(pengaturan|konfigurasi|setelan)"
+    - "change\\s+(settings?|config)"
+    - "configure\\s+(system|server|nginx|apache)"
+    - "open\\s+(ports?|port)"
+    - "close\\s+(ports?|port|firewall)"
+    - "ping\\s+-t"
+    - "(pindahkan|pindah)\\s+(file|berkas|folder)"
+    - "move\\s+(file|folder)"
+    - "copy"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "hapus semua file"
+    - "delete all files"
+    - "format c:"
+    - "shutdown now"
+    - "sudo rm -rf"
+    - "kirim password"
+    - "matikan komputer"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "ubah pengaturan"
+    - "change settings"
+    - "buka port"
+    - "pindahkan file"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "daftar hitam"
+    - "blokir"
+    - "ban"
+  unblock_last:
+    - "buka blokir"
+    - "hapus dari daftar hitam"
+    - "unban"
+  add_friend:
+    - "ingat aku sebagai"
+    - "ini teman saya"
+    - "ingat"
+  forget_speaker:
+    - "lupakan suara ini"
+    - "hapus profil"
+  identify:
+    - "siapa yang bicara"
+    - "siapa ini"
+  list_voices:
+    - "suara apa saja"
+    - "daftar suara"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "daftar hitam|blokir.*suara|ban.*suara|blacklist|block.*voice"
+  unblock_last: "buka.*blokir|hapus.*daftar hitam|unban|unblock|remove.*blacklist"
+  add_friend: "ingat.*sebagai|ini.*teman|ingat.*suara|tambah.*teman|remember.*as"
+  forget_speaker: "lupakan.*suara|hapus.*profil|hapus.*teman|forget.*voice"
+  identify: "siapa.*bicara|siapa.*ini|kenali.*suara|who.*speaking"
+  list_voices: "suara.*apa|daftar.*suara|tampilkan.*suara|list.*voices"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "nama saya\\s+(\\w+)"
+    - "panggil saya\\s+(\\w+)"
+    - "sebagai\\s+(\\w+)"
+    - "teman\\s+(\\w+)"
+    - "my name is\\s+(\\w+)"
+    - "call me\\s+(\\w+)"
+  filter_words:
+    - "kamu"
+    - "saya"
+    - "dia"
+    - "aku"
+    - "siapa"
+    - "apa"
+    - "ini"
+    - "itu"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "kalibrasi"
+    - "kalibrasi ulang"
+    - "perbarui profil"
+  reset_context:
+    - "reset konteks"
+    - "percakapan baru"
+    - "lupakan"
+    - "reset system prompt"
+  stop:
+    - "berhenti"
+    - "batal"
+    - "cukup"
+    - "stop"
+    - "diam"
+  register_owner:
+    - "ingat suaraku"
+    - "daftarkan suaraku"
+    - "aku pemiliknya"
+  approval_yes:
+    - "setuju"
+    - "konfirmasi"
+    - "izinkan"
+    - "jalankan"
+    - "ya jalankan"
+    - "silakan"
+  approval_no:
+    - "tolak"
+    - "batalkan"
+    - "jangan jalankan"
+    - "tidak"
+    - "larang"
+    - "batalkan persetujuan"
+  safe_markers:
+    - "lelucon"
+    - "cerita"
+    - "dongeng"
+    - "ngobrol"
+    - "apa kabar"
+    - "nyanyi"
+    - "jam berapa"
+    - "waktu"
+    - "tanggal"
+    - "hari apa"
+    - "cuaca"
+    - "berita"
+    - "ceritakan"
+    - "jelaskan"
+    - "siapa itu"
+    - "apa itu"
+  task_markers:
+    - "lakukan"
+    - "jalankan"
+    - "buka"
+    - "tutup"
+    - "hapus"
+    - "buat"
+    - "atur"
+    - "unduh"
+    - "instal"
+    - "kirim"
+    - "tulis"
+    - "ubah"
+    - "pindahkan"
+    - "cari"
+    - "temukan"
+    - "periksa"
+    - "pergi ke"
+    - "perintah"
+    - "terminal"
+    - "shell"
+  ha_trigger_patterns:
+    - "rumah pintar"
+    - "smart home"
+    - "nyalakan"
+    - "matikan"
+    - "hidupkan"
+    - "padamkan"
+    - "lampu"
+    - "cahaya"
+    - "kecerahan"
+    - "termostat"
+    - "suhu"
+    - "ac"
+    - "pendingin"
+    - "pemanas"
+    - "kipas"
+    - "televisi"
+    - "tv"
+    - "tirai"
+    - "gorden"
+    - "kunci"
+    - "garasi"
+    - "penyedot debu"
+    - "pelembab"
+    - "colokan"
+    - "ruang tamu"
+    - "kamar tidur"
+    - "dapur"
+    - "kamar mandi"
+    - "lorong"
+  ha_strip_prefixes:
+    - "rumah pintar "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "Maaf, tidak mendapat jawaban."
+  processing_error: "Maaf, terjadi kesalahan saat memproses permintaan."
+  timeout: "Maaf, jawabannya terlalu lama."
+  generic_error: "Error: {error}"
+  rate_limit: "Maaf, layanan tidak tersedia sementara (batas rate). Coba lagi nanti."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "Maaf, koneksi ke OpenClaw terputus. Silakan ulangi permintaanmu."
+  send_failed: "Error: tidak bisa mengirim pesan lewat WebSocket"
+  no_response: "Maaf, tidak mendapat jawaban."
+  timeout: "Maaf, jawabannya terlalu lama."
+  request_aborted: "Permintaan dibatalkan. Silakan ulangi."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "Alat mengembalikan error, sedang memeriksa penyebabnya."
+  opening_folder: "Membuka folder proyek."
+  browsing_structure: "Menjelajahi struktur proyek dan mencari file."
+  analyzing_file: "Menganalisis file {path}."
+  reading_code: "Membaca dan menganalisis kode."
+  searching_code: "Mencari kode yang relevan."
+  running_tests: "Memeriksa kode dan menjalankan tes."
+  editing_code: "Melakukan perubahan pada kode."
+  checking_repo: "Memeriksa perubahan repositori."
+  project_steps: "Menjalankan langkah-langkah proyek."
+  running_command: "Menjalankan perintah di terminal."
+  reading_files: "Membaca file proyek."
+  searching_info: "Mencari informasi di kode."
+  continuing_work: "Melanjutkan pekerjaan."
+  planning: "Merencanakan langkah-langkah solusi."
+  error_checking: "Terjadi error, sedang memeriksa apa yang terjadi."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "Ekstensi browser OpenClaw tidak terhubung. Silakan buka ekstensi di tab aktif."
+  tool_unavailable: "Alat {name} sedang tidak tersedia."
+  timeout: "Permintaan terlalu lama. Silakan coba lagi."
+  rate_limit: "Terlalu banyak permintaan. Tunggu sebentar dan coba lagi."
+  auth_error: "Error otorisasi. Periksa pengaturan koneksi."
+  generic_error: "Error: {error}"
+  default_tool_name: "layanan"

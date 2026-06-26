@@ -1,0 +1,23 @@
+{
+  "skill_name": "interview-prep",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我准备字节跳动的后端工程师面试，JD要求Python/Django/Redis/Kafka，我有5年经验",
+      "expected_output": "生成一份详细的面试准备指南，包含技术考点、公司知识、准备计划等",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我需要准备阿里巴巴的数据工程师面试，JD在JD_20260321.txt文件里",
+      "expected_output": "读取JD文件，结合阿里巴巴的业务背景，生成面试准备指南",
+      "files": ["JD_20260321.txt"]
+    },
+    {
+      "id": 3,
+      "prompt": "腾讯的前端开发面试，主要用Vue/React，3年经验，给我一个准备清单",
+      "expected_output": "生成前端技术考点和行为面试题的清单",
+      "files": []
+    }
+  ]
+}

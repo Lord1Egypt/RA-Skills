@@ -1,0 +1,23 @@
+{
+  "workspace": "/Users/a/.openclaw/workspace",
+  "default_repo": "/Users/a/.openclaw/workspace/addin-builder",
+  "repos": {
+    "/Users/a/.openclaw/workspace/addin-builder": {
+      "test_command": ["python", "geotab_agent/_test_e2e.py"],
+      "test_timeout": 180
+    }
+  },
+  "mappings": {
+    "components": {
+      "addin-builder": "/Users/a/.openclaw/workspace/addin-builder",
+      "frontend":      "/Users/a/.openclaw/workspace/addin-builder",
+      "backend":       "/Users/a/.openclaw/workspace/addin-builder",
+      "geotab":        "/Users/a/.openclaw/workspace/addin-builder"
+    },
+    "labels": {
+      "addin":         "/Users/a/.openclaw/workspace/addin-builder",
+      "geotab":        "/Users/a/.openclaw/workspace/addin-builder"
+    }
+  }
+}
+

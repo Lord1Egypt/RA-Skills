@@ -1,0 +1,19 @@
+name: itil-ops
+version: 1.0.0
+description: >
+  ITIL 4 aligned incident, problem, and change management for AI agents.
+  Automated detection of service crashes, cron failures, resource pressure,
+  and data integrity issues with pattern-based escalation.
+author: smilinTux
+license: GPL-3.0-or-later
+tags:
+  - itil
+  - incident
+  - problem
+  - change
+  - ops
+  - monitoring
+  - sre
+  - devops
+  - sovereign
+category: operations

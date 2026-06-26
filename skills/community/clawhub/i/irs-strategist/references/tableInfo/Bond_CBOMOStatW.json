@@ -1,0 +1,155 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "WeekStart",
+        "columnChiName": "周起始日期(星期日)",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "WeekEnd",
+        "columnChiName": "周截止日期(星期六)",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IssueSizeTreasNotes",
+        "columnChiName": "票据发行总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "34.31"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "RepurchaseBuySize",
+        "columnChiName": "正回购总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "27.18"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "RepurchaseSellSize",
+        "columnChiName": "逆回购总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.11"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SpotSellSize",
+        "columnChiName": "现券卖断总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.6"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SpotBuySize",
+        "columnChiName": "现券买断总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.67"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "RedemptionTreasNotes",
+        "columnChiName": "票据到期总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "39.37"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "RepurchaseBuyExpire",
+        "columnChiName": "正回购到期总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "28.05"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "RepurchaseSellExpire",
+        "columnChiName": "逆回购到期总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "39.24"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "NetCurrencyIssue",
+        "columnChiName": "周资金净投放总额(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "remark": "周资金净投放总额＝票据到期总额－票据发行总额＋正回购到期总额－正回购总额＋逆回购总额－逆回购到期总额＋现券买断总额－现券卖断总额",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

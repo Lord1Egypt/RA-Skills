@@ -1,35 +1,39 @@
 ---
-name: "Knowledge Graph"
-description: "Maintain Clawdbot's compounding knowledge graph under life/areas/** by adding/superseding atomic facts (items.json), regenerating entity summaries (summary.md), and keeping IDs consistent. Use when you need deterministic updates to the knowledge graph rather than manual JSON e…"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-graph"
-sourceUrl: "https://clawhub.ai/skills/knowledge-graph"
+name: knowledge-graph
+description: Maintain Clawdbot's compounding knowledge graph under life/areas/** by adding/superseding atomic facts (items.json), regenerating entity summaries (summary.md), and keeping IDs consistent. Use when you need deterministic updates to the knowledge graph rather than manual JSON edits.
 ---
 
-# Knowledge Graph
+# Knowledge Graph (file-based)
 
-> Maintain Clawdbot's compounding knowledge graph under life/areas/** by adding/superseding atomic facts (items.json), regenerating entity summaries (summary.md), and keeping IDs consistent. Use when you need deterministic updates to the knowledge graph rather than manual JSON e…
+Use the bundled Python script to safely update `life/areas/**`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-graph`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-graph](https://clawhub.ai/skills/knowledge-graph)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Add a new fact:
 ```bash
-hermes skills install clawhub/knowledge-graph
+python3 skills/knowledge-graph/scripts/kg.py add \
+  --entity people/safa \
+  --category status \
+  --fact "Runs Clawdbot on a Raspberry Pi" \
+  --source conversation
 ```
+
+Supersede an old fact (mark old as superseded + create new fact):
+```bash
+python3 skills/knowledge-graph/scripts/kg.py supersede \
+  --entity people/safa \
+  --old safa-002 \
+  --category status \
+  --fact "Moved Clawdbot from Pi to a Mac mini"
+```
+
+Regenerate an entity summary from active facts:
+```bash
+python3 skills/knowledge-graph/scripts/kg.py summarize --entity people/safa
+```
+
+## Notes
+- Entities live under: `life/areas/<kind>/<slug>/`
+- Facts live in `items.json` (array). Summaries live in `summary.md`.
+- IDs auto-increment per entity: `<slug>-001`, `<slug>-002`, ...
+- Never delete facts; supersede them.

@@ -1,35 +1,98 @@
 ---
-name: "Jd Price History"
-description: "京东商品价格历史查询，发现真实低价，避开先涨后降套路。适合比价购物、电商卖家。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jd-price-history"
-sourceUrl: "https://clawhub.ai/skills/jd-price-history"
+name: jd-price-history
+version: 1.0.0
+description: 京东商品价格历史查询，发现真实低价，避开先涨后降套路。适合比价购物、电商卖家。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📈",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Jd Price History
+# 京东价格历史技能
 
-> 京东商品价格历史查询，发现真实低价，避开先涨后降套路。适合比价购物、电商卖家。
+查询京东商品价格历史，识别真实低价，避开"先涨后降"促销套路。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jd-price-history`
-- **Source URL:** [https://clawhub.ai/skills/jd-price-history](https://clawhub.ai/skills/jd-price-history)
+## 功能
 
-## Overview
+1. **价格历史**: 查看商品 90 天/180 天/1 年价格走势
+2. **低价提醒**: 设置目标价格，降价时通知
+3. **促销分析**: 识别真实优惠还是先涨后降
+4. **比价推荐**: 推荐同款更低价商品
+5. **涨价预警**: 监控商品涨价趋势
+6. **历史最低价**: 显示商品历史最低价格和日期
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jd-price-history
 ```
+查询这个商品的价格历史 https://item.jd.com/12345678.html
+```
+
+```
+这款商品的历史最低价是多少
+```
+
+```
+设置降价提醒，低于¥500 时通知我
+```
+
+```
+现在是不是入手的好时机
+```
+
+## 输出示例
+
+```
+📈 京东价格历史
+
+📊 商品：Apple iPhone 15 Pro 256G
+├─ 当前价：¥7,999
+├─ 原价：¥8,999
+└─ 折扣：11% OFF
+
+📉 价格走势（180 天）：
+├─ 最高价：¥8,999 (2025-12-01)
+├─ 最低价：¥7,299 (2026-01-15) 🔻
+├─ 平均价：¥8,199
+└─ 当前价：¥7,999 (低于平均价 2.4%)
+
+💰 价格分析：
+├─ 当前是否低价：✅ 是（近 30 天最低）
+├─ 相比最低价：+¥700 (9.6%)
+├─ 建议：可以入手
+└─ 预测：短期内可能继续降价
+
+📅 促销节点：
+├─ 双 11: ¥7,299 (历史最低)
+├─ 双 12: ¥7,499
+├─ 年货节：¥7,599
+└─ 当前：¥7,999
+
+⏰ 最佳入手时机：
+- 预计下次低价：3 月 8 日（女王节）
+- 预计价格：¥7,500-7,700
+- 建议：不急可等，急用可买
+```
+
+## 变现模式
+
+- 免费：每日 5 次查询
+- 付费 (¥39/月)：无限查询 + 降价提醒 + 涨价预警
+- 付费 (¥79/月)：+ 批量监控 + API 访问
+
+---
+
+**声明**: 价格数据仅供参考，以实际页面为准。

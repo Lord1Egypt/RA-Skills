@@ -1,0 +1,42 @@
+{
+  "name": "jarvis-vocal",
+  "version": "1.0.0",
+  "description": "Authentic J.A.R.V.I.S. voice synthesis using Piper TTS with HuggingFace-trained movie-accurate model. Push voice announcements to any OpenClaw Android device via ADB over Tailscale.",
+  "main": "bin/jarvis-tts",
+  "scripts": {
+    "test": "jarvis-tts \"Test\" /tmp/test.wav && echo \"OK\""
+  },
+  "keywords": [
+    "openclaw",
+    "jarvis",
+    "tts",
+    "piper",
+    "voice",
+    "android",
+    "adb"
+  ],
+  "author": "Kishen (OpenClaw User)",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "piper-tts": ">=1.0.0",
+    "ffmpeg": ">=4.0"
+  },
+  "repository": {
+    "type": "local",
+    "url": "file:///home/k15h3n/.openclaw/workspace/skills/jarvis-vocal"
+  },
+  "openclaw": {
+    "skill": true,
+    "emoji": "🎙️",
+    "commands": [
+      "jarvis-speak",
+      "jarvis-tts"
+    ],
+    "capabilities": [
+      "tts",
+      "android-audio",
+      "push-notification"
+    ]
+  }
+}

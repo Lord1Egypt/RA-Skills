@@ -1,0 +1,63 @@
+[
+  {
+    "date": "2026-03-09",
+    "time_range": "19:00 - 19:57",
+    "total_distance": 1050,
+    "session_number": 277,
+    "laps": 50,
+    "pool_length": 50,
+    "strokes": {
+      "freestyle": {
+        "distance": 650
+      },
+      "breaststroke": {
+        "distance": 350
+      },
+      "mixed": {
+        "distance": 50
+      }
+    },
+    "duration": "0:37:05",
+    "duration_seconds": 2225,
+    "avg_pace": "3'32\"/100m",
+    "avg_pace_seconds": 212,
+    "breaststroke_pace": "5'56\"/100m",
+    "stroke_count": 584,
+    "avg_stroke_rate": 55.6,
+    "stroke_distance": 1.8,
+    "avg_heart_rate": 158,
+    "max_heart_rate": 181,
+    "min_heart_rate": 104,
+    "calories": 285,
+    "swolf": 153,
+    "heart_rate_zones": {
+      "zone_5": {
+        "range": "176+ BPM",
+        "duration": "4:01",
+        "percentage": 8
+      },
+      "zone_4": {
+        "range": "164-175 BPM",
+        "duration": "10:16",
+        "percentage": 34
+      },
+      "zone_3": {
+        "range": "152-163 BPM",
+        "duration": "12:48",
+        "percentage": 42
+      },
+      "zone_2": {
+        "range": "140-151 BPM",
+        "duration": "4:58",
+        "percentage": 16
+      },
+      "zone_1": {
+        "range": "<139 BPM",
+        "duration": "0:00",
+        "percentage": 0
+      }
+    },
+    "training_load": 35.23,
+    "metabolic_equivalent": 9.2
+  }
+]

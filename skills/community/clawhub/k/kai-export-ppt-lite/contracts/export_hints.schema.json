@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExportHints",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "producer": { "type": "string" },
+    "producer_confidence": { "type": "string", "enum": ["high", "medium", "low", "none"] },
+    "preset": { "type": "string" },
+    "deck_family": { "type": "string" },
+    "runtime_flags": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "chrome_selectors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "semantic_bias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "layout_family": { "type": "string" },
+        "decorative_layers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "text_expectations": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" }
+        }
+      }
+    },
+    "contract_ref": { "type": "string" }
+  }
+}

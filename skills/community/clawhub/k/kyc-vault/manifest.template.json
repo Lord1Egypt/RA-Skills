@@ -1,0 +1,38 @@
+{
+  "personal_info": {
+    "full_name": "YOUR FULL NAME (English)",
+    "date_of_birth": "YYYY-MM-DD",
+    "nationality": "Chinese",
+    "country_of_residence": "China",
+    "address": "YOUR ADDRESS (English)",
+    "email": "your@email.com",
+    "phone": "+86xxxxxxxxxx"
+  },
+  "documents": [
+    {
+      "filename": "palau_id_holding.jpg",
+      "type": "palau_id_with_selfie",
+      "description": "手持帕劳数字居民ID照片",
+      "issued_by": "Republic of Palau",
+      "expires": "2028-01-01"
+    },
+    {
+      "filename": "passport_front.jpg",
+      "type": "passport",
+      "description": "护照照片页",
+      "issued_by": "China",
+      "expires": "2030-01-01"
+    },
+    {
+      "filename": "selfie.jpg",
+      "type": "selfie",
+      "description": "本人正面照"
+    },
+    {
+      "filename": "address_proof.pdf",
+      "type": "address_proof",
+      "description": "地址证明文件"
+    }
+  ],
+  "trusted_sites": []
+}

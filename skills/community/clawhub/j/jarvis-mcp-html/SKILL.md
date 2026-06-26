@@ -1,35 +1,35 @@
 ---
-name: "Jarvis MCP HTML Extractor"
-description: "MCP сервер для HTML-извлечения и веб-скрапинга через mcporter."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-mcp-html"
-sourceUrl: "https://clawhub.ai/skills/jarvis-mcp-html"
+name: mcp-html-extractor
+description: MCP сервер для HTML-извлечения и веб-скрапинга через mcporter.
+homepage: https://npm.im/html-extractor-mcp
+metadata:
+  openclaw:
+    emoji: 🌐
+    requires:
+      bins:
+        - mcporter
+        - html-extractor-mcp
 ---
 
-# Jarvis MCP HTML Extractor
+# MCP HTML Extractor
 
-> MCP сервер для HTML-извлечения и веб-скрапинга через mcporter.
+MCP сервер для веб-скрапинга. Извлекает текст, ссылки, вызывает JSON API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-mcp-html`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-mcp-html](https://clawhub.ai/skills/jarvis-mcp-html)
+## Установка
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jarvis-mcp-html
+npm install -g html-extractor-mcp
 ```
+
+## Использование
+
+```bash
+mcporter call --stdio "html-extractor-mcp" fetch url="https://example.com"
+mcporter call --stdio "html-extractor-mcp" extract_text url="https://example.com"
+```
+
+## Примечания
+
+- Установлен: 07.05.2026
+- Тестирование: требует уточнения имён инструментов
+- Ресурсы: минимальные (запуск по требованию через stdio)

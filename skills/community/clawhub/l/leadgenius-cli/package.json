@@ -1,0 +1,52 @@
+{
+  "name": "leadgenius-cli-skill",
+  "version": "1.1.0",
+  "description": "AI agent skill for operating the LeadGenius Pro Automation API and lgp CLI. Covers ICP management, FSD pipeline automation, lead generation/enrichment/scoring, user provisioning, territory analysis, webhook management, and email platform integration.",
+  "keywords": [
+    "ai-skill",
+    "agent-skill",
+    "leadgenius",
+    "b2b-leads",
+    "lead-enrichment",
+    "lead-scoring",
+    "automation-api",
+    "cli",
+    "fsd-pipeline",
+    "icp",
+    "sales-intelligence",
+    "sdr-ai",
+    "claude-skill",
+    "ai-agent"
+  ],
+  "homepage": "https://github.com/thierryteisseire/leadgenius-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thierryteisseire/leadgenius-cli.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Thierry Teisseire",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "references/"
+  ],
+  "leadgenius": {
+    "requiredEnvVars": {
+      "LGP_API_KEY": {
+        "description": "LeadGenius Pro API key (lgp_ prefix). Created via POST /api/automation/users/provision. Required for all API and CLI operations.",
+        "required": true
+      },
+      "LGP_URL": {
+        "description": "Base URL of the LeadGenius Pro API.",
+        "required": false,
+        "default": "http://localhost:3000"
+      },
+      "LGP_ADMIN_KEY": {
+        "description": "Admin key to bypass rate limits. Sent as X-Admin-Key header alongside X-API-Key. Use only for admin operations — grants elevated access.",
+        "required": false
+      }
+    },
+    "cliNotIncluded": true,
+    "cliSource": "The lgp CLI (lgp.py) is part of the LeadGenius Pro application repository, not this skill package. This skill provides documentation only — obtain the CLI from your LeadGenius Pro deployment."
+  }
+}

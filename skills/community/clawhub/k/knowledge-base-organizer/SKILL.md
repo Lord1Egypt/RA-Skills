@@ -1,35 +1,272 @@
 ---
-name: "Knowledge Base Organizer"
-description: "整理本地知识库，包括文件合并、重命名、去重、索引更新等。使用当用户需要整理知识库、合并重复内容、统一文件命名格式、更新目录索引时。适用于 Markdown 文档、脚本文件、配置文件等知识库内容的整理。"
-category: "other"
-source: "ClawHub"
-tags: [cleanup, knowledge-base, organizer]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-base-organizer"
-sourceUrl: "https://clawhub.ai/skills/knowledge-base-organizer"
+name: knowledge-base-organizer
+description: 整理本地知识库，包括文件合并、重命名、去重、索引更新等。使用当用户需要整理知识库、合并重复内容、统一文件命名格式、更新目录索引时。适用于 Markdown 文档、脚本文件、配置文件等知识库内容的整理。
 ---
 
 # Knowledge Base Organizer
 
-> 整理本地知识库，包括文件合并、重命名、去重、索引更新等。使用当用户需要整理知识库、合并重复内容、统一文件命名格式、更新目录索引时。适用于 Markdown 文档、脚本文件、配置文件等知识库内容的整理。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-base-organizer`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-base-organizer](https://clawhub.ai/skills/knowledge-base-organizer)
+本技能提供本地知识库整理的完整流程，包括文件合并、重命名、去重、索引更新等操作。适用于 OpenClaw 资料库、技术文档、项目文档等知识库的整理。
 
-## Overview
+## 整理原则
 
+1. **仔细查阅目录索引 README.md** - 在整理前先了解现有结构
+2. **将同类型内容整理到一个文件内** - 合并重复或相关的内容
+3. **其他未做修改的文件不需要更改阅读** - 只处理需要修改的文件
+4. **所有文件名需按"- 01 - *"编号** - 统一命名格式
+5. **添加或修改完文件后，更新索引目录** - 保持 README.md 同步
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 整理流程
+
+### 步骤 1：分析现有结构
+
 ```bash
-hermes skills install clawhub/knowledge-base-organizer
+# 查看知识库目录结构
+ls -la /path/to/knowledge-base/
+
+# 查看现有文件列表
+find /path/to/knowledge-base/ -type f -name "*.md" | sort
 ```
+
+### 步骤 2：识别重复内容
+
+```bash
+# 查看所有 Markdown 文件
+for file in /path/to/knowledge-base/*.md; do
+  echo "=== $file ==="
+  head -20 "$file"
+done
+```
+
+### 步骤 3：合并重复内容
+
+**合并原则：**
+- 将相关主题的内容合并到一个文件
+- 保留所有重要信息，不删减非重复内容
+- 使用清晰的章节标题组织内容
+
+**合并示例：**
+- 原：`02-安装.md` + `07-卸载.md` → 新：`- 02 - 安装与卸载.md`
+- 原：`03-配置.md` + `06-管理.md` + `08-更新.md` → 新：`- 03 - 配置与管理.md`
+
+### 步骤 4：重命名文件
+
+**命名格式：** `- <编号> - <标题>.md`
+
+**重命名命令：**
+```bash
+# 单个文件重命名
+mv "old-name.md" "- 01 - new-name.md"
+
+# 批量重命名（需要手动调整编号）
+for file in *.md; do
+  # 根据内容确定编号和标题
+  mv "$file" "- XX - title.md"
+done
+```
+
+### 步骤 5：删除旧文件
+
+```bash
+# 删除已合并的旧文件
+rm "old-file-1.md"
+rm "old-file-2.md"
+```
+
+### 步骤 6：更新索引目录
+
+**更新 README.md：**
+1. 更新文件结构列表
+2. 更新每个文件的内容说明
+3. 添加整理原则说明
+
+**README.md 模板：**
+```markdown
+# 知识库索引
+
+## 文件结构
+
+### - 01 - 文件名.md
+- 内容说明 1
+- 内容说明 2
+
+### - 02 - 文件名.md
+- 内容说明 1
+- 内容说明 2
+
+## 整理原则
+
+1. 仔细查阅目录索引 README.md
+2. 将同类型内容整理到一个文件内
+3. 其他未做修改的文件不需要更改阅读
+4. 所有文件名需按"- 01 - *"编号
+5. 添加或修改完文件后，更新索引目录
+```
+
+### 步骤 7：验证整理结果
+
+```bash
+# 查看整理后的文件列表
+ls -lh /path/to/knowledge-base/
+
+# 验证文件命名格式
+ls /path/to/knowledge-base/ | grep "^- [0-9][0-9] -"
+
+# 检查 README.md 是否更新
+cat /path/to/knowledge-base/README.md
+```
+
+## 常见场景
+
+### 场景 1：合并安装和卸载文档
+
+**原文件：**
+- `02-安装.md`
+- `07-卸载.md`
+
+**操作：**
+1. 读取两个文件内容
+2. 合并到一个新文件：`- 02 - 安装与卸载.md`
+3. 删除旧文件
+4. 更新 README.md
+
+### 场景 2：合并配置相关文档
+
+**原文件：**
+- `03-配置.md`
+- `06-管理.md`
+- `08-更新.md`
+
+**操作：**
+1. 读取三个文件内容
+2. 合并到一个新文件：`- 03 - 配置与管理.md`
+3. 删除旧文件
+4. 更新 README.md
+
+### 场景 3：统一脚本文件命名
+
+**原文件：**
+- `script1.sh`
+- `script2.sh`
+
+**操作：**
+1. 重命名：`- 01 - script1.sh`
+2. 重命名：`- 02 - script2.sh`
+3. 创建或更新 scripts/README.md
+
+## 注意事项
+
+1. **备份重要文件** - 在删除或合并前先备份
+2. **保留所有信息** - 只删除重复内容，不删减非重复内容
+3. **统一命名格式** - 严格按照"- 01 - *"格式命名
+4. **更新索引** - 每次修改后都要更新 README.md
+5. **验证结果** - 整理完成后验证文件列表和内容
+
+## 资源
+
+### scripts/
+
+#### `organize-knowledge-base.sh`
+知识库整理自动化脚本
+
+**功能：**
+- 自动分析目录结构
+- 识别重复内容
+- 生成整理建议
+- 执行文件重命名
+
+**使用方法：**
+```bash
+bash /path/to/skill/scripts/organize-knowledge-base.sh /path/to/knowledge-base
+```
+
+**参数：**
+- 第一个参数：知识库路径
+- `--dry-run`：只显示建议，不执行操作
+- `--help`：显示帮助信息
+
+## 示例
+
+### 示例 1：整理 OpenClaw 资料库
+
+**输入：**
+```
+knowledge-base/
+├── 01-API密钥管理.md
+├── 02-安装.md
+├── 03-配置.md
+├── 04-飞书配置.md
+├── 05-备份.md
+├── 06-管理.md
+├── 07-卸载.md
+├── 08-更新.md
+└── README.md
+```
+
+**输出：**
+```
+knowledge-base/
+├── - 01 - API密钥管理.md
+├── - 02 - 安装与卸载.md
+├── - 03 - 配置与管理.md
+├── - 04 - 飞书配置.md
+├── - 05 - 备份.md
+└── README.md
+```
+
+### 示例 2：整理脚本目录
+
+**输入：**
+```
+scripts/
+├── script1.sh
+├── script2.sh
+└── README.md
+```
+
+**输出：**
+```
+scripts/
+├── - 01 - script1.sh
+├── - 02 - script2.sh
+└── README.md
+```
+
+## 故障排查
+
+### 问题 1：文件重命名失败
+
+**原因：** 文件名包含特殊字符或空格
+
+**解决：**
+```bash
+# 使用引号包裹文件名
+mv "old name.md" "- 01 - new-name.md"
+```
+
+### 问题 2：合并后内容丢失
+
+**原因：** 合并时遗漏了某些内容
+
+**解决：**
+1. 检查原始文件是否已备份
+2. 重新读取原始文件内容
+3. 重新合并，确保所有内容都包含在内
+
+### 问题 3：README.md 未更新
+
+**原因：** 忘记更新索引目录
+
+**解决：**
+1. 检查文件列表是否正确
+2. 更新 README.md 中的文件结构
+3. 验证每个文件的内容说明
+
+## 最佳实践
+
+1. **先备份再操作** - 在删除或合并前先备份原始文件
+2. **小步快跑** - 每次只处理一个主题，避免一次性修改太多
+3. **及时验证** - 每完成一个步骤就验证结果
+4. **保持同步** - README.md 始终与实际文件结构保持同步
+5. **记录变更** - 在 README.md 中记录整理历史

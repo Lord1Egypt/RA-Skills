@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/beike/ershoufang/detail/v1 for Beike Resale Housing Details through JustOneAPI with cityId and houseCode.",
+  "displayName": "Beike Resale Housing Details",
+  "endpointPath": "ershoufang/detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Beike resale Housing Details data, including - Pricing (total and unit price), Physical attributes (area, and layout, for displaying a full property profile to users and detailed price comparison between specific listings.",
+      "method": "GET",
+      "operationId": "ershoufangDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The ID of the city (e.g., '110000' for Beijing).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cityId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for the property listing.",
+          "enumValues": [],
+          "location": "query",
+          "name": "houseCode",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/beike/ershoufang/detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Resale Housing Details",
+      "tags": [
+        "Beike"
+      ]
+    }
+  ],
+  "platformKey": "beike",
+  "primaryTag": "Beike",
+  "skillName": "justoneapi_beike_ershoufang_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-beike-ershoufang-detail",
+  "sourceTitle": "OpenAPI definition"
+}

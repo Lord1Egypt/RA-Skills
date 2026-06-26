@@ -1,0 +1,28 @@
+{
+  "name": "创意风格翻译",
+  "description": "把抽象感觉翻译成具体的AI描述词（设计/文案/视觉）",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "vibe_description",
+      "text": "用一个词形容你想要的感觉？（比如：高级感、治愈系、电影感、复古风）",
+      "purpose": "捕捉核心感觉"
+    },
+    {
+      "id": "reference_examples",
+      "text": "有没有具体的例子或参考？某个品牌？某部电影？某张图片？",
+      "purpose": "建立参照系"
+    },
+    {
+      "id": "audience_context",
+      "text": "给谁看的？目标受众是谁？他们看到应该有什么感受？",
+      "purpose": "明确受众"
+    },
+    {
+      "id": "must_avoid",
+      "text": "绝对不要什么感觉？（比如：不要冷冰冰的、不要太花哨）",
+      "purpose": "设定排除项"
+    }
+  ],
+  "prompt_template": "【角色】创意风格专家\n\n【风格要求】\n{vibe_description}\n\n【参考方向】\n{reference_examples}\n\n【目标受众】\n{audience_context}\n\n【排除项】\n{must_avoid}\n\n【目标】\n生成符合上述风格的专业方案"
+}

@@ -1,0 +1,48 @@
+<!-- ca-bullets-2col — 左右双列要点，适用于对比/并列 -->
+<div class="content-area" style="align-items:flex-start;padding:40px 80px;flex-direction:column">
+  {{#if title}}
+  <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 28px 0;width:100%">{{title}}</h2>
+  {{/if}}
+  <div style="display:flex;gap:60px;width:100%;flex:1">
+    <!-- 左列 -->
+    <div style="flex:1;display:flex;flex-direction:column">
+      {{#if left_label}}
+      <span style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--color-primary);margin-bottom:16px;">{{left_label}}</span>
+      {{/if}}
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px">
+        {{#each left_points}}
+        <li style="display:flex;align-items:flex-start;gap:12px">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--color-primary);margin-top:7px;flex-shrink:0"></div>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font-family:var(--font);font-size:16px;font-weight:500;color:var(--color-text);line-height:1.6">{{text}}</span>
+            {{#if sub}}
+            <span style="font-family:var(--font);font-size:13px;color:var(--color-text-secondary);line-height:1.5">{{sub}}</span>
+            {{/if}}
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <!-- 分隔线 -->
+    <div style="width:1px;background:var(--color-border);flex-shrink:0"></div>
+    <!-- 右列 -->
+    <div style="flex:1;display:flex;flex-direction:column">
+      {{#if right_label}}
+      <span style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--color-accent);margin-bottom:16px;">{{right_label}}</span>
+      {{/if}}
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px">
+        {{#each right_points}}
+        <li style="display:flex;align-items:flex-start;gap:12px">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--color-accent);margin-top:7px;flex-shrink:0"></div>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font-family:var(--font);font-size:16px;font-weight:500;color:var(--color-text);line-height:1.6">{{text}}</span>
+            {{#if sub}}
+            <span style="font-family:var(--font);font-size:13px;color:var(--color-text-secondary);line-height:1.5">{{sub}}</span>
+            {{/if}}
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

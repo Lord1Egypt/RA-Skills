@@ -1,0 +1,12 @@
+{
+  "name": "interior-budget-generator",
+  "version": "1.0.0",
+  "description": "输入项目名称、面积、类型，一键生成三档预算报价表。适用于家装/办公/餐饮/别墅等室内项目，支持分空间列项，输出Excel可直接交付。",
+  "author": "隐室设计",
+  "license": "MIT",
+  "keywords": ["interior design", "budget", "cost estimation", "chinese"],
+  "tags": ["室内设计", "预算", "工程造价"],
+  "requirements": ["python3", "openpyxl"],
+  "main": "generate_budget.py",
+  "source": "https://github.com/yinshi-space/interior-budget-generator"
+}

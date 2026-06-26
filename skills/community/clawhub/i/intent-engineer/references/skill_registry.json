@@ -1,0 +1,335 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2024-02-25T00:00:00Z",
+  "organization": "Your Organization",
+  "description": "Central registry of all agent skills in the ecosystem",
+  "skills": [
+    {
+      "id": "support-intake",
+      "name": "Support Intake",
+      "version": "1.0.0",
+      "description": "Receives and ingests customer support tickets from various channels",
+      "status": "active",
+      "owner": "Support Team",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-02-25T00:00:00Z",
+      "capabilities": [
+        "Receive tickets from email",
+        "Receive tickets from chat",
+        "Parse ticket metadata",
+        "Validate ticket format"
+      ],
+      "dependencies": [],
+      "outputs": [
+        {
+          "name": "support_ticket",
+          "schema": "references/data_contracts_support_ticket.json",
+          "description": "Structured support ticket ready for processing"
+        }
+      ],
+      "inputs": [],
+      "integration_points": [
+        {
+          "type": "event_source",
+          "description": "Listens for new tickets from helpdesk system"
+        }
+      ],
+      "performance_metrics": {
+        "average_processing_time_ms": 250,
+        "success_rate": 0.99,
+        "last_30_days_tickets_processed": 5000
+      }
+    },
+    {
+      "id": "support-triage",
+      "name": "Support Triage",
+      "version": "1.0.0",
+      "description": "Classifies support tickets by intent and routes to appropriate handler",
+      "status": "active",
+      "owner": "Support Team",
+      "created_at": "2024-01-15T00:00:00Z",
+      "updated_at": "2024-02-25T00:00:00Z",
+      "capabilities": [
+        "Classify ticket intent",
+        "Route to automated handlers",
+        "Escalate to human agents",
+        "Apply decision boundaries"
+      ],
+      "dependencies": [
+        {
+          "skill_id": "support-intake",
+          "required": true,
+          "description": "Consumes support tickets from intake"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "support_ticket",
+          "schema": "references/data_contracts_support_ticket.json",
+          "description": "Ticket to be triaged"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "triage_result",
+          "schema": "references/data_contracts_triage_result.json",
+          "description": "Triage decision with routing information"
+        }
+      ],
+      "integration_points": [
+        {
+          "type": "skill_consumer",
+          "consumes": "support-intake",
+          "description": "Receives tickets from support-intake"
+        },
+        {
+          "type": "skill_producer",
+          "produces_for": ["sentiment-analysis", "response-generator"],
+          "description": "Sends triage results to downstream skills"
+        }
+      ],
+      "performance_metrics": {
+        "average_processing_time_ms": 500,
+        "success_rate": 0.97,
+        "escalation_rate": 0.15
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "name": "Sentiment Analysis",
+      "version": "2.1.0",
+      "description": "Analyzes customer sentiment and emotional tone in support tickets",
+      "status": "active",
+      "owner": "Analytics Team",
+      "created_at": "2024-02-01T00:00:00Z",
+      "updated_at": "2024-02-25T00:00:00Z",
+      "capabilities": [
+        "Classify sentiment (positive/neutral/negative)",
+        "Extract emotion scores",
+        "Identify key phrases",
+        "Detect urgency levels"
+      ],
+      "dependencies": [
+        {
+          "skill_id": "support-intake",
+          "required": true,
+          "description": "Consumes support tickets"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "support_ticket",
+          "schema": "references/data_contracts_support_ticket.json",
+          "description": "Ticket to analyze"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sentiment_response",
+          "schema": "references/data_contracts_sentiment_response.json",
+          "description": "Sentiment analysis results"
+        }
+      ],
+      "integration_points": [
+        {
+          "type": "skill_consumer",
+          "consumes": "support-intake",
+          "description": "Receives tickets for sentiment analysis"
+        },
+        {
+          "type": "skill_producer",
+          "produces_for": ["response-generator", "escalation-manager"],
+          "description": "Sends sentiment data to downstream skills"
+        }
+      ],
+      "performance_metrics": {
+        "average_processing_time_ms": 800,
+        "success_rate": 0.98,
+        "model_accuracy": 0.92
+      }
+    },
+    {
+      "id": "response-generator",
+      "name": "Response Generator",
+      "version": "1.2.0",
+      "description": "Generates appropriate responses to support tickets based on triage and sentiment",
+      "status": "active",
+      "owner": "Support Team",
+      "created_at": "2024-02-10T00:00:00Z",
+      "updated_at": "2024-02-25T00:00:00Z",
+      "capabilities": [
+        "Generate contextual responses",
+        "Adapt tone based on sentiment",
+        "Include relevant knowledge base articles",
+        "Format responses for multiple channels"
+      ],
+      "dependencies": [
+        {
+          "skill_id": "support-triage",
+          "required": true,
+          "description": "Needs triage classification"
+        },
+        {
+          "skill_id": "sentiment-analysis",
+          "required": false,
+          "description": "Uses sentiment for tone adaptation"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "triage_result",
+          "schema": "references/data_contracts_triage_result.json",
+          "description": "Triage decision"
+        },
+        {
+          "name": "sentiment_response",
+          "schema": "references/data_contracts_sentiment_response.json",
+          "description": "Sentiment analysis (optional)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "generated_response",
+          "schema": "references/data_contracts_generated_response.json",
+          "description": "Generated response ready to send"
+        }
+      ],
+      "integration_points": [
+        {
+          "type": "skill_consumer",
+          "consumes": ["support-triage", "sentiment-analysis"],
+          "description": "Receives triage and sentiment data"
+        },
+        {
+          "type": "event_sink",
+          "description": "Sends responses back to helpdesk system"
+        }
+      ],
+      "performance_metrics": {
+        "average_processing_time_ms": 1200,
+        "success_rate": 0.96,
+        "customer_satisfaction": 0.88
+      }
+    },
+    {
+      "id": "escalation-manager",
+      "name": "Escalation Manager",
+      "version": "1.0.0",
+      "description": "Manages escalation of tickets to human agents based on complexity and sentiment",
+      "status": "active",
+      "owner": "Support Team",
+      "created_at": "2024-02-15T00:00:00Z",
+      "updated_at": "2024-02-25T00:00:00Z",
+      "capabilities": [
+        "Determine escalation priority",
+        "Route to appropriate human agent",
+        "Track escalation metrics",
+        "Notify relevant stakeholders"
+      ],
+      "dependencies": [
+        {
+          "skill_id": "support-triage",
+          "required": true,
+          "description": "Needs triage classification"
+        },
+        {
+          "skill_id": "sentiment-analysis",
+          "required": true,
+          "description": "Uses sentiment for priority determination"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "triage_result",
+          "schema": "references/data_contracts_triage_result.json",
+          "description": "Triage decision"
+        },
+        {
+          "name": "sentiment_response",
+          "schema": "references/data_contracts_sentiment_response.json",
+          "description": "Sentiment analysis"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "escalation_ticket",
+          "schema": "references/data_contracts_escalation_ticket.json",
+          "description": "Escalation ticket for human agent"
+        }
+      ],
+      "integration_points": [
+        {
+          "type": "skill_consumer",
+          "consumes": ["support-triage", "sentiment-analysis"],
+          "description": "Receives triage and sentiment data"
+        },
+        {
+          "type": "event_sink",
+          "description": "Creates escalation tickets in helpdesk system"
+        }
+      ],
+      "performance_metrics": {
+        "average_processing_time_ms": 300,
+        "success_rate": 0.99,
+        "escalation_accuracy": 0.94
+      }
+    }
+  ],
+  "data_contracts": [
+    {
+      "id": "support_ticket",
+      "file": "references/data_contracts_support_ticket.json",
+      "version": "1.0.0",
+      "producers": ["support-intake"],
+      "consumers": ["support-triage", "sentiment-analysis"]
+    },
+    {
+      "id": "sentiment_response",
+      "file": "references/data_contracts_sentiment_response.json",
+      "version": "1.0.0",
+      "producers": ["sentiment-analysis"],
+      "consumers": ["response-generator", "escalation-manager"]
+    }
+  ],
+  "integration_patterns": [
+    {
+      "name": "Support Processing Pipeline",
+      "description": "Sequential processing of support tickets through triage, sentiment analysis, and response generation",
+      "pattern_type": "sequential",
+      "steps": [
+        {
+          "step": 1,
+          "skill": "support-intake",
+          "description": "Ingest ticket"
+        },
+        {
+          "step": 2,
+          "skill": "support-triage",
+          "description": "Classify and route",
+          "depends_on": [1]
+        },
+        {
+          "step": 3,
+          "skill": "sentiment-analysis",
+          "description": "Analyze sentiment",
+          "depends_on": [1],
+          "parallel_with": [2]
+        },
+        {
+          "step": 4,
+          "skill": "response-generator",
+          "description": "Generate response",
+          "depends_on": [2, 3],
+          "condition": "triage_result.action == 'auto_respond'"
+        },
+        {
+          "step": 5,
+          "skill": "escalation-manager",
+          "description": "Escalate if needed",
+          "depends_on": [2, 3],
+          "condition": "triage_result.action == 'escalate' OR sentiment_response.sentiment == 'negative'"
+        }
+      ]
+    }
+  ]
+}

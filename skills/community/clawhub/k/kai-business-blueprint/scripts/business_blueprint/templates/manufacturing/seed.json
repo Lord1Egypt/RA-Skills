@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": []
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "制造行业蓝图关注点",
+    "description": "生成制造行业业务蓝图时，请确保覆盖以下关键领域，不要遗漏：",
+    "checklist": [
+      "生产计划：排程、产能规划、生产调度、工单管理",
+      "质量管理：来料检验、过程检验、成品检验、追溯",
+      "仓储管理：入库、出库、库存、库位、盘点",
+      "供应链：供应商协同、采购、物流、交付",
+      "设备管理：维护保养、故障预警、备件管理",
+      "工艺管理：BOM、工艺路线、配方管理",
+      "成本管理：标准成本、实际成本、差异分析",
+      "安全管理：EHS、隐患排查、应急响应",
+      "数字化工厂：MES、IoT、数字孪生、能耗监控"
+    ],
+    "knowledgeHints": {
+      "_status": "template-only-not-domain-validated",
+      "_disclaimer": "本 hints 由模板生成，未经领域专家验证。AI 在使用前应向用户披露此状态，并建议根据实际业务场景增删。",
+      "title": "制造业 know-how 关注点",
+      "checklist": [
+        "痛点：生产计划不准（偏差 >20%）、质量缺陷（不良率 >5%）、库存积压（周转 <4）、供应链断裂（延迟 >10%）",
+        "策略：APS 智能排产、SPC 质量预警、精益库存、SRM 供应商协同",
+        "规则：安全生产合规、环保排放限制、产品质量标准（国标/行标）",
+        "指标：计划达成率（>85%）、不良率（<2%）、库存周转率（>6）、供应商准时率（>95%）",
+        "最佳实践：周度排产优化、PDCA 质量改进、季度供应商评估",
+        "误区：经验排产占比 >70%、不分析质量数据、供应商管理松散"
+      ]
+    }
+  }
+}

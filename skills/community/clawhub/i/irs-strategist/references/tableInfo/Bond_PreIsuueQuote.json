@@ -1,0 +1,143 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "PreInnerCode",
+        "columnChiName": "预发行内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "预发行内部编码（PreInnerCode）：与“债券预发行(Bond_PreIsuue)”中的“预发行内部编码（PreInnerCode）”关联，得到预发行的相关产品代码，简称",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "PrevClosePrice",
+        "columnChiName": "昨收盘",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "OpenPrice",
+        "columnChiName": "今开盘",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.93"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "HighPrice",
+        "columnChiName": "最高价",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.93"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "LowPrice",
+        "columnChiName": "最低价",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.93"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ClosePrice",
+        "columnChiName": "收盘价",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量",
+        "columnType": "decimal(18,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "47.61"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "47.61"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,35 +1,194 @@
 ---
-name: "Openclaw Setup Service"
-description: "OpenClaw安装配置服务 - 帮用户安装、配置、优化OpenClaw AI助手，提供技能安装、个性化定制、企业部署一条龙服务"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-setup-service"
-sourceUrl: "https://clawhub.ai/skills/jarvis-setup-service"
+name: openclaw-setup-service
+description: OpenClaw安装配置服务 - 帮用户安装、配置、优化OpenClaw AI助手，提供技能安装、个性化定制、企业部署一条龙服务
+version: 1.0.0
+author: Jarvis
+tags:
+  - openclaw
+  - 安装服务
+  - 配置
+  - 企业部署
+  - AI助手
+  - 技术服务
 ---
 
-# Openclaw Setup Service
+# 🔧 OpenClaw 安装服务 v1.0
 
-> OpenClaw安装配置服务 - 帮用户安装、配置、优化OpenClaw AI助手，提供技能安装、个性化定制、企业部署一条龙服务
+帮你在服务器或电脑上安装配置OpenClaw AI助手
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-setup-service`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-setup-service](https://clawhub.ai/skills/jarvis-setup-service)
+---
 
-## Overview
+## 💡 服务介绍
 
+### 我们能做什么
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jarvis-setup-service
+| 服务类型 | 内容 | 价格 |
+|----------|------|------|
+| **基础安装** | 服务器环境搭建 + OpenClaw安装 | ¥199 |
+| **标准配置** | 安装 + 基础技能 + 频道对接 | ¥399 |
+| **高级定制** | 全套配置 + 定制技能 + 培训 | ¥999 |
+| **企业版** | 私有部署 + API对接 + 7x24支持 | ¥5000+ |
+
+---
+
+## 📦 服务详情
+
+### 基础安装 ¥199
+- 服务器环境检测
+- OpenClaw安装
+- 基本运行验证
+- 简单使用指导
+
+### 标准配置 ¥399
+- 基础安装全部内容
+- Telegram/微信等频道对接
+- 常用技能安装（10+）
+- 个性化配置
+- 7天售后
+
+### 高级定制 ¥999
+- 标准配置全部内容
+- 行业定制技能开发
+- 工作流自动化
+- 1对1使用培训
+- 30天售后
+
+### 企业版 ¥5000+
+- 私有化部署
+- 多用户管理
+- API接口开发
+- 定制功能开发
+- 专属客服
+- 7x24支持
+
+---
+
+## 🛠️ 服务流程
+
+### 第一步：需求沟通
 ```
+确认：
+- 服务器配置
+- 使用场景
+- 期望功能
+- 预算范围
+```
+
+### 第二步：方案制定
+```
+提供：
+- 服务清单
+- 报价单
+- 交付时间
+- 售后说明
+```
+
+### 第三步：实施交付
+```
+执行：
+- 环境搭建
+- 安装配置
+- 功能测试
+- 交付文档
+```
+
+### 第四步：验收售后
+```
+确认：
+- 功能正常
+- 使用培训
+- 售后对接
+```
+
+---
+
+## 💰 支付方式
+
+| 方式 | 说明 |
+|------|------|
+| 支付宝 | 扫码支付 |
+| 微信 | 扫码支付 |
+| 对公转账 | 企业用户 |
+
+---
+
+## 📋 交付清单
+
+### 基础安装交付
+```
+✓ 安装完成截图
+✓ 使用文档
+✓ 登录信息
+✓ 联系方式
+```
+
+### 高级定制交付
+```
+✓ 全部基础交付内容
+✓ 定制技能包
+✓ 操作视频教程
+✓ 定期巡检服务
+```
+
+---
+
+## 🔒 售后保障
+
+| 服务类型 | 售后周期 |
+|----------|----------|
+| 基础安装 | 3天 |
+| 标准配置 | 7天 |
+| 高级定制 | 30天 |
+| 企业版 | 1年起 |
+
+### 售后内容
+- 远程协助排障
+- 配置调整
+- 问题咨询
+- 优先更新
+
+---
+
+## 📊 常见问题
+
+**Q: 需要提供什么信息？**
+A: 服务器登录信息（root权限）、期望使用的频道
+
+**Q: 安装需要多久？**
+A: 基础安装约30分钟，高级定制1-3天
+
+**Q: 支持退款吗？**
+A: 安装前可退，安装后不可退款
+
+---
+
+## 📞 联系方式
+
+| 方式 | 信息 |
+|------|------|
+| 微信 | 扫码联系 |
+| 备注 | OpenClaw安装服务 |
+
+---
+
+## ⚠️ 服务说明
+
+1. 远程操作需您授权
+2. 服务器数据需自行备份
+3. 部分功能需要API密钥
+4. 价格不含服务器费用
+
+---
+
+## 🎯 适用人群
+
+| 人群 | 需求 |
+|------|------|
+| 创业者 | 快速拥有AI助手 |
+| 企业 | 降本增效 |
+| 技术小白 | 不想折腾 |
+| 开发者 | 快速搭建环境 |
+
+---
+
+*服务即交付，售后有保障*

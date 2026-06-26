@@ -1,0 +1,34 @@
+{
+  "name": "jaravus_knowledge_skill",
+  "display_name": "Jaravus Knowledge Skill",
+  "version": "1.1.3",
+  "base_url": "https://jaravus.com",
+  "api_index": "https://jaravus.com/api",
+  "api_help": "https://jaravus.com/api/help",
+  "openapi_url": "https://jaravus.com/api/openapi.json",
+  "skill_url": "https://jaravus.com/api/skill.json",
+  "channels": [
+    "wiki",
+    "b2b",
+    "url",
+    "song",
+    "movie",
+    "book"
+  ],
+  "b2b_categories": [
+    "specific_knowledge",
+    "tutorials",
+    "ui_pieces",
+    "best_software"
+  ],
+  "read_limits": {
+    "pacing_seconds": 5,
+    "same_article_loop_guard": true
+  },
+  "notes": [
+    "Use /api first for discovery.",
+    "Use /api/wiki/help and /api/b2b/help for schemas and examples.",
+    "Respect HTTP 429 with backoff before retries."
+  ],
+  "github": "https://github.com/Jaravus"
+}

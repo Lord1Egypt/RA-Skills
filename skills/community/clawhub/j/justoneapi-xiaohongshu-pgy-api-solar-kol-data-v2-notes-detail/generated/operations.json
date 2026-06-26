@@ -1,0 +1,112 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV2/notesDetail/v1 for Xiaohongshu Creator Marketplace (Pugongying) User Published Notes through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) User Published Notes",
+  "endpointPath": "api/solar/kol/dataV2/notesDetail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) user Published Notes data, including note metadata and engagement signals, for creator monitoring and campaign research.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2NotesDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Advertisement filter.\n\nAvailable Values:\n- `ALL`: All notes\n- `ORGANIC_ONLY`: Organic notes only",
+          "enumValues": [
+            "ALL",
+            "ORGANIC_ONLY"
+          ],
+          "location": "query",
+          "name": "advertiseSwitch",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "LATEST",
+          "description": "Sorting order.\n\nAvailable Values:\n- `LATEST`: Latest\n- `MOST_READ`: Most read\n- `MOST_INTERACT`: Most interactions",
+          "enumValues": [
+            "LATEST",
+            "MOST_READ",
+            "MOST_INTERACT"
+          ],
+          "location": "query",
+          "name": "orderType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Type of note.\n\nAvailable Values:\n- `ALL`: All types\n- `COOPERATION`: Cooperation notes\n- `PHOTO_TEXT`: Photo and Text\n- `VIDEO`: Video only",
+          "enumValues": [
+            "ALL",
+            "COOPERATION",
+            "PHOTO_TEXT",
+            "VIDEO"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "NO",
+          "description": "Whether from third-party platform.\n\nAvailable Values:\n- `NO`: No\n- `YES`: Yes",
+          "enumValues": [
+            "NO",
+            "YES"
+          ],
+          "location": "query",
+          "name": "isThirdPlatform",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pageNumber",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/notesDetail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_solar_kol_data_v2_notes_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-solar-kol-data-v2-notes-detail",
+  "sourceTitle": "OpenAPI definition"
+}

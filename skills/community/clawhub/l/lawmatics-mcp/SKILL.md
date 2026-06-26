@@ -1,35 +1,20 @@
 ---
-name: "Lawmatics API MCP"
-description: "MCP server for the Lawmatics legal CRM API. Exposes Lawmatics' REST API as read-only MCP tools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lawmatics-mcp"
-sourceUrl: "https://clawhub.ai/skills/lawmatics-mcp"
+name: lawmatics-mcp
+description: MCP server for the Lawmatics legal CRM API. Exposes Lawmatics' REST API as read-only MCP tools.
+metadata: { "openclaw": { "requires": { "bins": ["mcporter", "lawmatics-mcp"], "env": ["NODE_MCP_SECRET_KEY"] } } }
 ---
 
-# Lawmatics API MCP
+# Lawmatics MCP Server
 
-> MCP server for the Lawmatics legal CRM API. Exposes Lawmatics' REST API as read-only MCP tools.
+Read-only MCP server for the Lawmatics legal CRM API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lawmatics-mcp`
-- **Source URL:** [https://clawhub.ai/skills/lawmatics-mcp](https://clawhub.ai/skills/lawmatics-mcp)
+## Usage
 
-## Overview
+Use mcporter to interact with this server via stdio:
 
+- **List available tools:** `mcporter list --stdio lawmatics-mcp`
+- **Call a tool:** `mcporter call --stdio lawmatics-mcp <tool_name> [args]`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lawmatics-mcp
-```
+## Links
+
+- **npm:** https://www.npmjs.com/package/@mjquinlan2000/lawmatics-mcp

@@ -1,0 +1,20 @@
+{
+  "name": "agent-metrics-monitor",
+  "version": "1.0.0",
+  "description": "Monitor and alert agent abnormal behavior metrics with Prometheus and Grafana support, including P99 latency, error rates, and anomaly detection",
+  "main": "index.js",
+  "keywords": [
+    "agent",
+    "metrics",
+    "monitoring",
+    "alerting",
+    "prometheus",
+    "grafana",
+    "p99",
+    "latency",
+    "error-rate",
+    "anomaly-detection"
+  ],
+  "author": "evolver",
+  "license": "MIT"
+}

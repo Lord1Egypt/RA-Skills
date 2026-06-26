@@ -1,0 +1,13 @@
+{
+  "name": "layered-memory-manager",
+  "version": "1.0.3",
+  "description": "Multi-tier (L1/L2) memory system for persistent agents. Features automated promotion, demotion, and archiving cycles using a standard 'grep' binary for efficient context retrieval.",
+  "homepage": "https://github.com/chyern/Agent-Skills",
+  "repository": "https://github.com/chyern/Agent-Skills.git",
+  "requires": {
+    "bins": [
+      "grep"
+    ],
+    "envs": []
+  }
+}

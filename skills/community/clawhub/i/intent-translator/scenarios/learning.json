@@ -1,0 +1,28 @@
+{
+  "name": "学习路径规划",
+  "description": "把学习困惑翻译成可执行的学习计划",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "learning_goal",
+      "text": "你想学会什么？学成之后能做什么？",
+      "purpose": "明确学习目标"
+    },
+    {
+      "id": "current_level",
+      "text": "你现在是什么水平？完全新手？有点基础？",
+      "purpose": "评估起点"
+    },
+    {
+      "id": "time_commitment",
+      "text": "每天/每周能投入多少时间学习？",
+      "purpose": "评估时间资源"
+    },
+    {
+      "id": "biggest_obstacle",
+      "text": "之前尝试过学习吗？遇到什么困难放弃了？",
+      "purpose": "识别障碍"
+    }
+  ],
+  "prompt_template": "【角色】学习路径规划师\n\n【学习目标】\n{learning_goal}\n\n【当前水平】\n{current_level}\n\n【时间投入】\n{time_commitment}\n\n【历史障碍】\n{biggest_obstacle}\n\n【目标】\n设计学习路径 + 资源推荐 + 里程碑设定 + 防放弃策略"
+}

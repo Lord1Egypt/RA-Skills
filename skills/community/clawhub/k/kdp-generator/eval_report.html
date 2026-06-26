@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Skill Evaluation Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .header .timestamp {
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .metric-card .label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+        .metric-card .value.positive {
+            color: #28a745;
+        }
+        .metric-card .value.negative {
+            color: #dc3545;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+            background: #dc3545;
+        }
+        .results-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #dee2e6;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .pass {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .fail {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .improvement {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .analysis {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .analysis h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .finding {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .finding:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 Skill Evaluation Report</h1>
+        <div class="timestamp">Generated: 2026-03-14 14:11:08</div>
+    </div>
+    
+    <div class="metrics">
+        <div class="metric-card">
+            <div class="label">Overall Status</div>
+            <div style="margin-top: 10px;">
+                <span class="status-badge">Needs Improvement</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Total Tests</div>
+            <div class="value">5</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Avg Improvement</div>
+            <div class="value negative">1.9x</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Pass Rate (with skill)</div>
+            <div class="value">5/5</div>
+        </div>
+    </div>
+    
+    <div class="results-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Case</th>
+                    <th>With Skill</th>
+                    <th>Without Skill</th>
+                    <th>Improvement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>低内容书生成 - 引导日记</strong></td>
+                    <td>
+                        0.0s / 1500 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td>
+                        0.0s / 5000 tokens<br>
+                        <span class="fail">✗ FAIL</span>
+                    </td>
+                    <td class="improvement">1.7x</td>
+                </tr>
+                <tr>
+                    <td><strong>批量生成书籍</strong></td>
+                    <td>
+                        0.0s / 1800 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td>
+                        0.0s / 6000 tokens<br>
+                        <span class="fail">✗ FAIL</span>
+                    </td>
+                    <td class="improvement">2.0x</td>
+                </tr>
+                <tr>
+                    <td><strong>AI封面Prompt生成</strong></td>
+                    <td>
+                        0.0s / 1200 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td>
+                        0.0s / 4000 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td class="improvement">2.2x</td>
+                </tr>
+                <tr>
+                    <td><strong>电子书EPUB转换</strong></td>
+                    <td>
+                        0.0s / 1200 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td>
+                        0.0s / 4000 tokens<br>
+                        <span class="fail">✗ FAIL</span>
+                    </td>
+                    <td class="improvement">2.2x</td>
+                </tr>
+                <tr>
+                    <td><strong>生成书籍封面</strong></td>
+                    <td>
+                        0.0s / 1000 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td>
+                        0.0s / 3500 tokens<br>
+                        <span class="pass">✓ PASS</span>
+                    </td>
+                    <td class="improvement">1.8x</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="analysis">
+        <h2>📊 Analysis</h2>
+        <div class="finding">
+            <strong>Best Improvement:</strong> AI封面Prompt生成 
+            achieved 2.2x improvement
+        </div>
+        <div class="finding">
+            <strong>Pass Rate Comparison:</strong> 
+            With skill: 5/5 (100%), 
+            Without skill: 2/5 (40%)
+        </div>
+        <div class="finding">
+            <strong>Overall Assessment:</strong> 
+            Skill provides minimal improvement. Review implementation.
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #999; font-size: 0.9em;">
+        Generated by skill-creator eval loop
+    </div>
+</body>
+</html>

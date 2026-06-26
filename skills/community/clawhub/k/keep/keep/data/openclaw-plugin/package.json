@@ -1,0 +1,32 @@
+{
+  "name": "@keepnotes-ai/keep",
+  "version": "0.109.0",
+  "description": "keep — reflective memory plugin for OpenClaw (context engine + memory tools)",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keepnotes-ai/keep.git",
+    "directory": "keep/data/openclaw-plugin"
+  },
+  "homepage": "https://github.com/keepnotes-ai/keep",
+  "keywords": ["openclaw", "plugin", "memory", "keep", "reflective-memory", "context-engine"],
+  "openclaw": {
+    "extensions": ["./dist/index.js"]
+  },
+  "files": [
+    "dist/index.js",
+    "openclaw.plugin.json",
+    ".mcp.json"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "prepublishOnly": "node build.mjs",
+    "test": "npx tsx --test src/index.test.ts",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "esbuild": "^0.25.0"
+  }
+}

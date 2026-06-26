@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>slide-creator -- Data Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #0f1117;
+    --bg-card: #1a1f2e;
+    --border: #2d3748;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --positive: #00d4aa;
+    --negative: #ff6b6b;
+    --neutral: #e2e8f0;
+    --chart-primary: #3b82f6;
+    --chart-secondary: #8b5cf6;
+    --chart-tertiary: #10b981;
+    --grid-line: #1e293b;
+    --axis-line: #334155;
+    --font-display: 'Inter', 'Noto Sans SC', sans-serif;
+    --font-body: 'Inter', 'Noto Sans SC', sans-serif;
+    --title-size: clamp(2rem, 6vw, 5rem);
+    --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+    --subtitle-size: clamp(0.875rem, 2vw, 1.25rem);
+    --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+    --slide-padding: clamp(1.5rem, 4vw, 4rem);
+    --content-gap: clamp(1rem, 2vw, 2rem);
+    --slide-count: 8;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-snap-type: y mandatory; height: 100%; }
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+}
+
+body[data-export-progress="false"] .progress-bar,
+body[data-export-progress="false"] .nav-dots { display: none !important; }
+
+.slide {
+    width: 100vw; height: 100vh; height: 100dvh;
+    padding: var(--slide-padding);
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    background: var(--bg);
+}
+.slide::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+        linear-gradient(rgba(30,41,59,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,41,59,0.4) 1px, transparent 1px);
+    background-size: clamp(40px, 6vw, 80px) clamp(40px, 6vw, 80px);
+}
+
+.slide-content {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    max-height: 100%; overflow: hidden;
+}
+
+@media (max-height: 700px) {
+    :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2rem);
+        --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+        --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+    }
+}
+@media (max-height: 600px) {
+    :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --title-size: clamp(1.1rem, 4vw, 2rem);
+        --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+    }
+    .nav-dots, .keyboard-hint { display: none; }
+}
+@media (max-height: 500px) {
+    :root {
+        --slide-padding: clamp(0.4rem, 2vw, 1rem);
+        --title-size: clamp(1rem, 3.5vw, 1.5rem);
+    }
+}
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr !important; } }
+
+.reveal {
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1) { transition-delay: 0.05s; }
+.reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal:nth-child(3) { transition-delay: 0.25s; }
+.reveal:nth-child(4) { transition-delay: 0.35s; }
+.reveal:nth-child(5) { transition-delay: 0.45s; }
+
+.ds-kpi {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800; font-variant-numeric: tabular-nums;
+    line-height: 1; letter-spacing: -0.02em;
+}
+.ds-kpi.positive { color: var(--positive); }
+.ds-kpi.negative { color: var(--negative); }
+.ds-kpi.neutral { color: var(--neutral); }
+.ds-kpi.primary { color: var(--chart-primary); }
+
+.ds-kpi-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text-muted); margin-top: 8px;
+}
+
+.ds-kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    display: flex; flex-direction: column;
+}
+
+.ds-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%,160px),1fr));
+    gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.ds-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    height: 100%; align-items: center;
+}
+
+.ds-insight {
+    border-left: 3px solid var(--chart-primary);
+    padding: 0.75rem 1rem;
+    background: rgba(59,130,246,0.08);
+    border-radius: 0 6px 6px 0;
+    font-size: clamp(0.8rem, 1.3vw, 1rem);
+    line-height: 1.5; color: var(--text);
+}
+.ds-insight strong { color: var(--chart-primary); }
+
+.ds-trend {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 600; margin-top: 6px;
+}
+.ds-trend.up { color: var(--positive); }
+.ds-trend.down { color: var(--negative); }
+
+.ds-chart-svg { width: 100%; height: auto; }
+.ds-axis { stroke: var(--axis-line); stroke-width: 1; fill: none; }
+.ds-grid { stroke: var(--grid-line); stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+.ds-bar { fill: var(--chart-primary); rx: 4px; }
+.ds-bar.secondary { fill: var(--chart-secondary); }
+.ds-bar.tertiary { fill: var(--chart-tertiary); }
+.ds-line { stroke: var(--chart-primary); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.ds-area { fill: var(--chart-primary); opacity: 0.10; }
+.ds-dot { fill: var(--chart-primary); r: 4; }
+.ds-axis-label {
+    font-family: inherit; font-size: 10px;
+    fill: var(--text-muted); font-variant-numeric: tabular-nums;
+}
+.chart-grid { stroke: var(--grid-line); stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+.chart-axis { stroke: var(--axis-line); stroke-width: 1; fill: none; }
+.chart-label {
+    font-family: inherit; font-size: 9px;
+    fill: var(--text-muted);
+}
+.chart-val {
+    font-family: inherit; font-size: 9px; font-weight: 600;
+    fill: #00d4aa;
+}
+
+h1 { font-family: var(--font-display); font-size: var(--title-size); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+h2 { font-family: var(--font-display); font-size: var(--h2-size); font-weight: 700; margin-bottom: var(--content-gap); }
+p, li { font-size: var(--body-size); line-height: 1.6; }
+ul { list-style: none; padding: 0; }
+ul li { padding-left: 1.2em; position: relative; margin-bottom: 0.5em; }
+ul li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; background: var(--chart-primary); border-radius: 2px; }
+
+.ds-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: clamp(0.75rem, 1.5vw, 1.2rem);
+}
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.75rem, 2vw, 1.5rem); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.75rem, 2vw, 1.5rem); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.75rem, 2vw, 1.5rem); }
+
+.badge {
+    display: inline-block; padding: 4px 12px; border-radius: 4px;
+    background: rgba(59,130,246,0.15); color: var(--chart-primary);
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+.step-item { display: flex; gap: 1rem; align-items: flex-start; }
+.step-num {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--chart-primary); color: #fff; display: flex;
+    align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+}
+
+kbd {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    font-family: 'Inter', monospace; font-size: 0.85em; color: var(--chart-primary);
+}
+
+.cta-pill {
+    display: inline-block; padding: 12px 32px; border-radius: 8px;
+    background: var(--chart-primary); color: #fff; font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.5rem); text-align: center;
+}
+
+#slide-1 { align-items: center; justify-content: center; text-align: center; }
+#slide-1 .hero-kpi-group { display: flex; flex-direction: column; align-items: center; gap: clamp(0.5rem, 2vw, 1.5rem); }
+
+#slide-2 .left-panel { display: flex; flex-direction: column; gap: 1rem; }
+
+#slide-3 .style-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem; text-align: center;
+}
+#slide-3 .style-swatch {
+    height: 80px; border-radius: 6px; margin-bottom: 0.75rem;
+}
+
+#slide-4 .sol-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+    padding: clamp(0.75rem, 1.5vw, 1.2rem); display: flex; flex-direction: column; gap: 0.5rem;
+}
+#slide-4 .sol-icon { font-size: 1.5rem; }
+
+#slide-5 .steps { display: flex; flex-direction: column; gap: 1.5rem; }
+
+#slide-6 .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+#slide-6 .feat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+#slide-6 .feat-stat { font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--chart-primary); }
+
+#slide-7 .install-row {
+    display: flex; align-items: center; gap: 1rem; padding: 1rem;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+}
+#slide-7 .install-label { font-weight: 600; min-width: 120px; }
+#slide-7 .install-cmd {
+    font-family: 'Inter', monospace; font-size: 0.9rem; color: var(--positive);
+}
+
+#slide-8 { align-items: center; justify-content: center; text-align: center; }
+#slide-8 .cta-group { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+
+#brand-mark {
+    position: fixed; top: 20px; left: 28px;
+    font-weight: 800; font-size: 15px;
+    color: var(--chart-primary); z-index: 1000;
+}
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--chart-primary); width: 0%; z-index: 100;
+    transition: width 0.3s ease;
+}
+.nav-dots {
+    position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px; z-index: 100;
+}
+.slide-num-label {
+    position: absolute; bottom: 28px; right: 36px;
+    font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.18);
+}
+.slide-num-label.light { color: rgba(255,255,255,0.2); }
+
+#present-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9997;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); color: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    font-size: 1rem; cursor: pointer;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}
+body:hover #present-btn { opacity: 1; pointer-events: auto; }
+#present-btn:hover { background: rgba(0,0,0,0.78); }
+#present-counter {
+    display: none; position: fixed; bottom: 1.4rem; left: 50%;
+    transform: translateX(-50%); z-index: 9997;
+    font-size: 0.65rem; letter-spacing: 0.14em; font-family: system-ui, sans-serif;
+    color: rgba(255,255,255,0.28);
+}
+body.presenting { background: #000 !important; overflow: hidden !important; }
+body.presenting .slide {
+    position: fixed !important; inset: 0;
+    width: var(--pdw, 1440px) !important; height: var(--pdh, 900px) !important;
+    transform-origin: top left;
+    transform: translate(var(--pox, 0px), var(--poy, 0px)) scale(var(--ps, 1)) !important;
+    scroll-snap-align: none !important; display: none !important;
+}
+body.presenting .slide.p-on { display: flex !important; }
+body.presenting #present-btn { display: none !important; }
+body.presenting #present-counter { display: block; }
+body.presenting.presenting-black .slide { visibility: hidden !important; }
+body.presenting.presenting-black::after { content: ''; position: fixed; inset: 0; background: #000; z-index: 99999; }
+.slide-credit {
+    position: absolute; bottom: 8px; right: 14px;
+    font-size: 9px; color: var(--text-muted, #999);
+    opacity: 0.35; pointer-events: none; z-index: 1;
+    font-family: system-ui, sans-serif;
+}
+body.presenting .slide-credit { display: none !important; }
+
+.edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+.edit-toggle {
+    position: fixed; top: 16px; left: 16px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease; z-index: 10001;
+    padding: 6px 14px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.6); color: #fff;
+    font-size: 12px; cursor: pointer; font-family: var(--font-body);
+}
+.edit-toggle.show { opacity: 1; pointer-events: auto; }
+.edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--chart-primary); color: #fff; border-color: var(--chart-primary); }
+#notes-panel {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 9998; background: rgba(8,8,18,0.94);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+#notes-panel.active { display: flex; flex-direction: column; }
+#notes-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.45rem 1.4rem; cursor: pointer; user-select: none;
+}
+#notes-panel-header:hover { background: rgba(255,255,255,0.03); }
+#notes-panel-label {
+    flex: 1; font-size: 0.58rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+#notes-drag-hint { flex: 1; display: flex; justify-content: center; }
+#notes-drag-hint::after {
+    content: ''; display: block; width: 36px; height: 3px;
+    border-radius: 2px; background: rgba(255,255,255,0.25);
+}
+#notes-panel-header:hover #notes-drag-hint::after { background: rgba(255,255,255,0.45); }
+#notes-collapse-btn {
+    flex: 1; text-align: right; font-size: 1rem;
+    color: rgba(255,255,255,0.4); background: none; border: none;
+    cursor: pointer; transition: color 0.15s, transform 0.2s;
+}
+#notes-collapse-btn:hover { color: rgba(255,255,255,0.85); }
+#notes-body { padding: 0 1.4rem 0.75rem; }
+#notes-panel.collapsed #notes-body { display: none; }
+#notes-panel.collapsed #notes-collapse-btn { transform: rotate(180deg); }
+#notes-textarea {
+    width: 100%; height: 72px; min-height: 48px; max-height: 200px;
+    resize: vertical; background: transparent; border: none; outline: none;
+    color: rgba(255,255,255,0.75); font-size: 0.88rem; line-height: 1.65;
+    font-family: system-ui, sans-serif;
+}
+#notes-textarea::placeholder { color: rgba(255,255,255,0.18); }
+</style>
+</head>
+<body data-export-progress="true" data-preset="Data Story">
+
+<div class="progress-bar"></div>
+<nav class="nav-dots" aria-label="Slide navigation"></nav>
+<span id="brand-mark">slide-creator</span>
+
+<section class="slide" id="slide-1" data-export-role="hero_number" data-notes="开场。展示核心数据：21 种预设设计，零依赖运行。让观众感受到数据的冲击力。" aria-label="Hero">
+<div class="hero-kpi-group">
+    <span class="badge reveal">slide-creator</span>
+    <h1 class="reveal">用数据讲故事，而非用模板堆内容</h1>
+    <div class="ds-kpi positive reveal">21</div>
+    <div class="ds-kpi-label reveal">种预设设计，零外部依赖</div>
+</div>
+<span class="slide-num-label">01</span>
+</section>
+
+<section class="slide" id="slide-2" data-export-role="kpi_chart" data-notes="三个痛点：复杂工具链、通用 AI 美学缺乏特色、平台锁定。用 SVG 图表展示现状。" aria-label="Problem">
+<h2 class="reveal">现有工具的三个核心痛点</h2>
+<div class="ds-split-layout">
+    <div class="left-panel">
+        <div class="ds-kpi-card reveal">
+            <div class="ds-kpi negative">73%</div>
+            <div class="ds-kpi-label">用户认为 AI 生成内容缺乏独特美学</div>
+        </div>
+        <div class="ds-kpi-card reveal">
+            <div class="ds-kpi" style="color: var(--negative);">12+</div>
+            <div class="ds-kpi-label">平均需要切换的工具链数量</div>
+        </div>
+        <div class="ds-kpi-card reveal">
+            <div class="ds-kpi" style="color: var(--negative);">3</div>
+            <div class="ds-kpi-label">主流平台，导出即锁定</div>
+        </div>
+    </div>
+    <div class="reveal">
+        <svg viewBox="0 0 460 240" class="ds-chart-svg">
+            <defs>
+                <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.55"/>
+                </linearGradient>
+                <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.55"/>
+                </linearGradient>
+            </defs>
+            <line x1="48" y1="20" x2="48" y2="200" class="chart-axis"/>
+            <line x1="48" y1="200" x2="450" y2="200" class="chart-axis"/>
+            <line x1="48" y1="50" x2="450" y2="50" class="chart-grid"/>
+            <line x1="48" y1="80" x2="450" y2="80" class="chart-grid"/>
+            <line x1="48" y1="110" x2="450" y2="110" class="chart-grid"/>
+            <line x1="48" y1="140" x2="450" y2="140" class="chart-grid"/>
+            <line x1="48" y1="170" x2="450" y2="170" class="chart-grid"/>
+            <text x="40" y="54" class="chart-label" text-anchor="end">500</text>
+            <text x="40" y="84" class="chart-label" text-anchor="end">400</text>
+            <text x="40" y="114" class="chart-label" text-anchor="end">300</text>
+            <text x="40" y="144" class="chart-label" text-anchor="end">200</text>
+            <text x="40" y="174" class="chart-label" text-anchor="end">100</text>
+            <rect x="58"  y="168" width="32" height="32"  rx="3" fill="url(#barGrad)"/>
+            <rect x="108" y="156" width="32" height="44"  rx="3" fill="url(#barGrad)"/>
+            <rect x="158" y="144" width="32" height="56"  rx="3" fill="url(#barGrad)"/>
+            <rect x="208" y="134" width="32" height="66"  rx="3" fill="url(#barGrad)"/>
+            <rect x="258" y="116" width="32" height="84"  rx="3" fill="url(#barGrad)"/>
+            <rect x="308" y="96"  width="32" height="104" rx="3" fill="url(#barGrad)"/>
+            <rect x="358" y="64"  width="32" height="136" rx="3" fill="url(#barGrad2)"/>
+            <rect x="408" y="24"  width="32" height="176" rx="3" fill="url(#barGrad2)"/>
+            <text x="74"  y="164" class="chart-val" text-anchor="middle">80</text>
+            <text x="124" y="152" class="chart-val" text-anchor="middle">110</text>
+            <text x="174" y="140" class="chart-val" text-anchor="middle">140</text>
+            <text x="224" y="130" class="chart-val" text-anchor="middle">165</text>
+            <text x="274" y="112" class="chart-val" text-anchor="middle">210</text>
+            <text x="324" y="92"  class="chart-val" text-anchor="middle">260</text>
+            <text x="374" y="60"  class="chart-val" text-anchor="middle">340</text>
+            <text x="424" y="20"  class="chart-val" text-anchor="middle">440</text>
+            <text x="74"  y="216" class="chart-label" text-anchor="middle">一月</text>
+            <text x="124" y="216" class="chart-label" text-anchor="middle">二月</text>
+            <text x="174" y="216" class="chart-label" text-anchor="middle">三月</text>
+            <text x="224" y="216" class="chart-label" text-anchor="middle">四月</text>
+            <text x="274" y="216" class="chart-label" text-anchor="middle">五月</text>
+            <text x="324" y="216" class="chart-label" text-anchor="middle">六月</text>
+            <text x="374" y="216" class="chart-label" text-anchor="middle">七月</text>
+            <text x="424" y="216" class="chart-label" text-anchor="middle">八月</text>
+        </svg>
+        <div class="ds-insight" style="margin-top: 1rem;">
+            <strong>核心问题：</strong>用户需要在多个工具间切换，最终产出却缺乏辨识度
+        </div>
+    </div>
+</div>
+<span class="slide-num-label">02</span>
+</section>
+
+<section class="slide" id="slide-3" data-export-role="comparison_matrix" data-notes="展示三种风格预览，让观众直观感受差异。看图选风格，而非描述风格。" aria-label="Style Discovery">
+<h2 class="reveal">看图选风格 -- 三个预览，反应而非描述</h2>
+<div class="grid-3">
+    <div class="style-card reveal">
+        <div class="style-swatch" style="background: linear-gradient(135deg, #0f1117 0%, #1a1f2e 100%); border: 1px solid #2d3748; border-radius: 6px;"></div>
+        <div style="font-weight: 700; font-size: 14px;">Data Story</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">数字是主角</div>
+        <div class="ds-trend up" style="margin-top: 8px;">&#9650; 数据驱动</div>
+    </div>
+    <div class="style-card reveal">
+        <div class="style-swatch" style="background: linear-gradient(135deg, #0a0a1a 0%, #2a1a3a 100%); border: 1px solid rgba(0,245,196,0.3); border-radius: 6px;"></div>
+        <div style="font-weight: 700; font-size: 14px;">Aurora Mesh</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">极光流体</div>
+        <div class="ds-trend up" style="margin-top: 8px;">&#9650; 视觉冲击</div>
+    </div>
+    <div class="style-card reveal">
+        <div class="style-swatch" style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; font-family: monospace; display: flex; align-items: center; justify-content: center; color: #00d4aa; font-size: 13px;">$ echo hello</div>
+        <div style="font-weight: 700; font-size: 14px;">Terminal Green</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">开发者终端</div>
+        <div class="ds-trend up" style="margin-top: 8px;">&#9650; 极客美学</div>
+    </div>
+</div>
+<span class="slide-num-label">03</span>
+</section>
+
+<section class="slide" id="slide-4" data-export-role="kpi_grid" data-notes="展示 21 种预设的能力，强调没有通用 AI 美学。每个卡片代表一类风格。" aria-label="Solution">
+<h2 class="reveal">21 种预设，覆盖所有演示场景</h2>
+<div class="grid-2">
+    <div class="sol-card reveal">
+        <div class="sol-icon" style="color: var(--chart-primary);">&#9632;</div>
+        <div style="font-weight: 700; font-size: 14px;">数据报告 / KPI 看板</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Data Story, Enterprise Dark, Swiss Modern</div>
+    </div>
+    <div class="sol-card reveal">
+        <div class="sol-icon" style="color: var(--positive);">&#9650;</div>
+        <div style="font-weight: 700; font-size: 14px;">商业路演 / VC Deck</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Bold Signal, Aurora Mesh, Enterprise Dark</div>
+    </div>
+    <div class="sol-card reveal">
+        <div class="sol-icon" style="color: var(--chart-tertiary);">&gt;_</div>
+        <div style="font-weight: 700; font-size: 14px;">开发工具 / API 文档</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Terminal Green, Neon Cyber, Neo-Retro Dev</div>
+    </div>
+    <div class="sol-card reveal">
+        <div class="sol-icon" style="color: var(--chart-secondary);">Aa</div>
+        <div style="font-weight: 700; font-size: 14px;">研究 / 思想领导力</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Modern Newspaper, Paper &amp; Ink, Swiss Modern</div>
+    </div>
+</div>
+<div class="ds-kpi-grid" style="margin-top: 1.5rem;">
+    <div class="ds-kpi-card reveal" style="text-align: center;">
+        <div class="ds-kpi positive" style="font-size: clamp(2rem, 5vw, 3.5rem);">0</div>
+        <div class="ds-kpi-label">外部依赖</div>
+    </div>
+    <div class="ds-kpi-card reveal" style="text-align: center;">
+        <div class="ds-kpi primary" style="font-size: clamp(2rem, 5vw, 3.5rem);">100%</div>
+        <div class="ds-kpi-label">浏览器运行</div>
+    </div>
+    <div class="ds-kpi-card reveal" style="text-align: center;">
+        <div class="ds-kpi" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--neutral);">&lt;1s</div>
+        <div class="ds-kpi-label">生成时间</div>
+    </div>
+</div>
+<span class="slide-num-label">04</span>
+</section>
+
+<section class="slide" id="slide-5" data-export-role="workflow_chart" data-notes="三个核心命令，展示极简工作流。配合 SVG 流程图说明。" aria-label="Workflow">
+<h2 class="reveal">三个命令，完成整个演示</h2>
+<div class="ds-split-layout">
+    <div class="steps">
+        <div class="step-item reveal">
+            <div class="step-num">1</div>
+            <div>
+                <div style="font-weight: 700; font-size: 16px;">告诉 Claude 你的主题</div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">输入主题，自动探索视觉风格</div>
+                <kbd style="margin-top: 6px; display: inline-block;">/slide-creator</kbd>
+            </div>
+        </div>
+        <div class="step-item reveal">
+            <div class="step-num">2</div>
+            <div>
+                <div style="font-weight: 700; font-size: 16px;">看图选风格</div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">3 个预览卡片，点击即选</div>
+            </div>
+        </div>
+        <div class="step-item reveal">
+            <div class="step-num">3</div>
+            <div>
+                <div style="font-weight: 700; font-size: 16px;">打开演示，F5 播放</div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">编辑模式、演讲者模式默认开启</div>
+            </div>
+        </div>
+    </div>
+    <div class="reveal">
+        <svg viewBox="0 0 460 120" class="ds-chart-svg">
+            <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <line x1="48" y1="10" x2="48" y2="100" class="chart-axis"/>
+            <line x1="48" y1="100" x2="450" y2="100" class="chart-axis"/>
+            <line x1="48" y1="30" x2="450" y2="30" class="chart-grid"/>
+            <line x1="48" y1="55" x2="450" y2="55" class="chart-grid"/>
+            <line x1="48" y1="78" x2="450" y2="78" class="chart-grid"/>
+            <polygon points="60,88 117,76 174,64 231,52 288,42 345,28 402,16 450,8 450,100 60,100" fill="url(#areaGrad)"/>
+            <polyline points="60,88 117,76 174,64 231,52 288,42 345,28 402,16 450,8" class="ds-line"/>
+            <circle cx="60" cy="88" r="3.5" class="ds-dot"/>
+            <circle cx="117" cy="76" r="3.5" class="ds-dot"/>
+            <circle cx="174" cy="64" r="3.5" class="ds-dot"/>
+            <circle cx="231" cy="52" r="3.5" class="ds-dot"/>
+            <circle cx="288" cy="42" r="3.5" class="ds-dot"/>
+            <circle cx="345" cy="28" r="3.5" class="ds-dot"/>
+            <circle cx="402" cy="16" r="3.5" class="ds-dot"/>
+            <circle cx="450" cy="8" r="3.5" class="ds-dot"/>
+            <text x="60" y="116" class="chart-label" text-anchor="middle">选风格</text>
+            <text x="174" y="116" class="chart-label" text-anchor="middle">生成</text>
+            <text x="288" y="116" class="chart-label" text-anchor="middle">排练</text>
+            <text x="402" y="116" class="chart-label" text-anchor="middle">演讲</text>
+        </svg>
+        <div class="ds-insight" style="margin-top: 1rem;">
+            <strong>极简工作流：</strong>从主题到演示，无需离开浏览器
+        </div>
+    </div>
+</div>
+<span class="slide-num-label">05</span>
+</section>
+
+<section class="slide" id="slide-6" data-export-role="kpi_grid" data-notes="四个核心功能：视口适配、编辑模式、PPTX 导出、两阶段流程。用统计卡片呈现。" aria-label="Features">
+<h2 class="reveal">四个核心能力，支撑完整演示链路</h2>
+<div class="feat-grid">
+    <div class="feat-card reveal">
+        <div class="feat-stat">100vh</div>
+        <div style="font-weight: 700; margin-top: 4px;">精确视口适配</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">每页 = 一个视口，移动端自动缩放</div>
+    </div>
+    <div class="feat-card reveal">
+        <div class="feat-stat" style="color: var(--positive);">E</div>
+        <div style="font-weight: 700; margin-top: 4px;">浏览器内编辑</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">按 E 键进入编辑，Ctrl+S 保存</div>
+    </div>
+    <div class="feat-card reveal">
+        <div class="feat-stat" style="color: var(--chart-secondary);">PPTX</div>
+        <div style="font-weight: 700; margin-top: 4px;">PPTX 导出</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">像素级或原生模式导出</div>
+    </div>
+    <div class="feat-card reveal">
+        <div class="feat-stat" style="color: var(--negative);">P</div>
+        <div style="font-weight: 700; margin-top: 4px;">演讲者模式</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">备注、计时器、页数、翻页同步</div>
+    </div>
+</div>
+<div class="ds-insight reveal" style="margin-top: 1.5rem;">
+    <strong>零依赖运行：</strong>所有功能在纯 HTML 中实现，无需任何外部 JavaScript 库
+</div>
+<span class="slide-num-label">06</span>
+</section>
+
+<section class="slide" id="slide-7" data-export-role="kpi_grid" data-notes="两行命令，两个平台。安装极其简单。" aria-label="Install">
+<h2 class="reveal">两个平台，一行命令安装</h2>
+<div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: min(90vw, 700px);">
+    <div class="install-row reveal">
+        <div class="install-label">Claude Code</div>
+        <div class="install-cmd">告诉 Claude「安装 https://github.com/kaisersong/slide-creator」</div>
+    </div>
+    <div class="install-row reveal">
+        <div class="install-label">OpenClaw</div>
+        <div class="install-cmd">clawhub install kai-slide-creator</div>
+    </div>
+    <div class="ds-insight reveal">
+        <strong>无需 Node.js / npm / pip</strong> -- 纯 HTML 文件，双击即可在浏览器中运行
+    </div>
+    <div class="ds-kpi-grid reveal" style="margin-top: 0.5rem;">
+        <div class="ds-kpi-card" style="text-align: center;">
+            <div style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--chart-primary);">0</div>
+            <div class="ds-kpi-label">依赖安装</div>
+        </div>
+        <div class="ds-kpi-card" style="text-align: center;">
+            <div style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--positive);">1</div>
+            <div class="ds-kpi-label">条命令</div>
+        </div>
+        <div class="ds-kpi-card" style="text-align: center;">
+            <div style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--neutral);">&lt;30s</div>
+            <div class="ds-kpi-label">安装时间</div>
+        </div>
+    </div>
+</div>
+<span class="slide-num-label">07</span>
+</section>
+
+<section class="slide" id="slide-8" data-export-role="cta_close" data-notes="最终行动号召。让观众立刻尝试。" aria-label="CTA">
+<div class="cta-group">
+    <h1 class="reveal">现在就开始</h1>
+    <div class="cta-pill reveal">/slide-creator</div>
+    <div class="reveal" style="font-size: var(--body-size); color: var(--text-muted);">支持 Claude Code 和 OpenClaw</div>
+    <div class="ds-kpi-grid reveal" style="margin-top: 1rem;">
+        <div class="ds-kpi-card" style="text-align: center;">
+            <div class="ds-kpi positive" style="font-size: clamp(1.5rem, 4vw, 2.5rem);">21</div>
+            <div class="ds-kpi-label">种预设</div>
+        </div>
+        <div class="ds-kpi-card" style="text-align: center;">
+            <div class="ds-kpi primary" style="font-size: clamp(1.5rem, 4vw, 2.5rem);">0</div>
+            <div class="ds-kpi-label">外部依赖</div>
+        </div>
+    </div>
+</div>
+<span class="slide-num-label light">08</span>
+</section>
+
+<div class="edit-hotzone"></div>
+<button class="edit-toggle" id="editToggle" title="Edit mode (E)">Edit</button>
+<div id="notes-panel">
+    <div id="notes-panel-header">
+        <div id="notes-panel-label">SPEAKER NOTES</div>
+        <div id="notes-drag-hint"></div>
+        <button id="notes-collapse-btn" title="Collapse / expand">&#9662;</button>
+    </div>
+    <div id="notes-body">
+        <textarea id="notes-textarea" placeholder="Add speaker notes for this slide..."></textarea>
+    </div>
+</div>
+
+<script>
+class SlidePresentation {
+    constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.currentSlide = 0;
+        this.channel = new BroadcastChannel('slide-creator-presenter');
+        this.slides[0]?.classList.add('visible');
+        this.slides[0]?.querySelectorAll('.reveal').forEach(function(r) { r.classList.add('visible'); });
+        this.setupNavDots();
+        this.setupObserver();
+        this.setupKeyboard();
+        this.setupTouch();
+        this.setupWheel();
+        this.setupPresenter();
+        this.updateProgress();
+        this.setupEditor();
+    }
+
+    setupNavDots() {
+        const nav = document.querySelector('.nav-dots');
+        if (!nav) return;
+        this.slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,0.3);transition:all 0.3s;';
+            dot.addEventListener('click', () => this.goTo(i));
+            nav.appendChild(dot);
+        });
+        nav.style.cssText = 'position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:100;';
+    }
+
+    setupObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    this.currentSlide = [...this.slides].indexOf(entry.target);
+                    this.updateProgress();
+                    this.updateDots();
+                    this.broadcastState();
+                    this.updateNotesPanel();
+                }
+            });
+        }, { threshold: 0.5 });
+        this.slides.forEach(s => observer.observe(s));
+    }
+
+    setupKeyboard() {
+        document.addEventListener('keydown', (e) => {
+            if (e.target.getAttribute('contenteditable') || e.target.tagName === 'TEXTAREA') return;
+            if (['ArrowDown','ArrowRight',' ','PageDown','Enter'].includes(e.key)) { e.preventDefault(); this.next(); }
+            else if (['ArrowUp','ArrowLeft','PageUp','Backspace'].includes(e.key)) { e.preventDefault(); this.prev(); }
+            else if (e.key === 'p' || e.key === 'P') {
+                window.open(location.href.split('?')[0] + '?presenter', 'slide-presenter-' + Date.now(), 'width=1100,menubar=no,toolbar=no,location=no');
+            }
+            else if (e.key === 'e' || e.key === 'E') {
+                if (this.editor && !this.editor.active) this.editor.enter();
+                else if (this.editor && this.editor.active) this.editor.exit();
+            }
+        });
+    }
+
+    setupTouch() {
+        let startY = 0;
+        document.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+        document.addEventListener('touchend', e => {
+            const d = startY - e.changedTouches[0].clientY;
+            if (Math.abs(d) > 50) d > 0 ? this.next() : this.prev();
+        });
+    }
+
+    setupWheel() {}
+
+    setupPresenter() {
+        this.channel.addEventListener('message', e => {
+            if (e.data.type === 'nav-next') this.next();
+            else if (e.data.type === 'nav-prev') this.prev();
+            else if (e.data.type === 'request-state') this.broadcastState();
+        });
+    }
+
+    broadcastState() {
+        const slide = this.slides[this.currentSlide];
+        this.channel.postMessage({ type: 'state', index: this.currentSlide, total: this.slides.length, notes: slide?.dataset.notes || '' });
+    }
+
+    goTo(index) {
+
+
+        this.slides[index]?.scrollIntoView({ behavior: "smooth" });
+
+
+    }
+    next() { this.goTo(Math.min(this.currentSlide + 1, this.slides.length - 1)); }
+    prev() { this.goTo(Math.max(this.currentSlide - 1, 0)); }
+
+    updateProgress() {
+        const pct = (this.currentSlide / (this.slides.length - 1)) * 100;
+        const bar = document.querySelector('.progress-bar');
+        if (bar) bar.style.width = pct + '%';
+    }
+
+    updateDots() {
+        document.querySelectorAll('.nav-dots button').forEach((dot, i) => {
+            dot.style.background = i === this.currentSlide ? 'var(--chart-primary)' : 'rgba(255,255,255,0.3)';
+            dot.style.transform = i === this.currentSlide ? 'scale(1.3)' : 'scale(1)';
+        });
+    }
+
+    setupEditor() {
+        const panel = document.getElementById('notes-panel');
+        const label = document.getElementById('notes-panel-label');
+        const textarea = document.getElementById('notes-textarea');
+        const toggle = document.getElementById('editToggle');
+        const hotzone = document.querySelector('.edit-hotzone');
+        let hideTimeout = null;
+
+        hotzone.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); toggle.classList.add('show'); });
+        hotzone.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (this.editor.active) return; toggle.classList.remove('show'); }, 400); });
+        toggle.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        toggle.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (this.editor.active) return; toggle.classList.remove('show'); }, 400); });
+        hotzone.addEventListener('click', () => this.editor.toggle());
+        toggle.addEventListener('click', () => this.editor.toggle());
+
+        document.getElementById('notes-panel-header').addEventListener('click', () => panel.classList.toggle('collapsed'));
+
+        textarea.addEventListener('input', () => {
+            const slide = this.slides[this.currentSlide];
+            if (slide) { slide.dataset.notes = textarea.value; this.broadcastState(); }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); this.saveFile(); }
+        });
+
+        this.editor = {
+            active: false,
+            toggle: () => this.editor.active ? this.editor.exit() : this.editor.enter(),
+            enter: () => {
+                this.editor.active = true;
+                toggle.classList.add('active');
+                toggle.textContent = 'Done';
+                this.slides.forEach(s => s.querySelectorAll('h1,h2,h3,p,li,span,td,th').forEach(el => {
+                    el.setAttribute('contenteditable', 'true'); el.style.outline = 'none';
+                }));
+                panel.classList.add('active');
+                this.updateNotesPanel();
+            },
+            exit: () => {
+                this.editor.active = false;
+                toggle.classList.remove('active');
+                toggle.textContent = 'Edit';
+                this.slides.forEach(s => s.querySelectorAll('[contenteditable]').forEach(el => {
+                    el.removeAttribute('contenteditable'); el.style.outline = '';
+                }));
+                panel.classList.remove('active');
+            }
+        };
+        this._notesLabel = label;
+        this._notesTextarea = textarea;
+    }
+
+    updateNotesPanel() {
+        if (!this.editor?.active) return;
+        const slide = this.slides[this.currentSlide];
+        this._notesLabel.textContent = 'SPEAKER NOTES \u2014 SLIDE ' + (this.currentSlide + 1) + ' / ' + this.slides.length;
+        this._notesTextarea.value = slide?.dataset.notes || '';
+    }
+
+    saveFile() {
+        const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const bytes = new TextEncoder().encode(html);
+        fetch(location.pathname, { method: 'PUT', body: bytes, headers: { 'Content-Type': 'text/html' } })
+            .catch(() => {
+                const a = Object.assign(document.createElement('a'), {
+                    href: URL.createObjectURL(new Blob([html], { type: 'text/html' })),
+                    download: location.pathname.split('/').pop() || 'presentation.html'
+                }); a.click(); URL.revokeObjectURL(a.href);
+            });
+    }
+}
+
+if (new URLSearchParams(location.search).has('presenter')) {
+    document.title = 'Presenter \u2014 ' + document.title;
+    document.body.innerHTML = '\
+    <style>\
+        * { box-sizing: border-box; margin: 0; }\
+        body { background: #111; color: #fff; font-family: system-ui, sans-serif; }\
+        #pv { display: grid; grid-template-columns: 1fr 220px; gap: 1rem; padding: 1.25rem; align-items: start; }\
+        .pv-panel { background: #1e1e1e; border-radius: 12px; padding: 1.25rem; }\
+        #pv-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 0.6rem; }\
+        #pv-notes { font-size: 1.05rem; line-height: 1.85; color: #d0d0d0; }\
+        #pv-right { display: flex; flex-direction: column; gap: 1rem; }\
+        #pv-nav { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }\
+        .pv-arrow { width: 32px; height: 32px; border-radius: 6px; border: 1px solid #333; background: #2a2a2a; color: #aaa; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }\
+        .pv-arrow:hover { background: #383838; color: #fff; }\
+        #pv-counter { text-align: center; flex: 1; }\
+        #pv-num { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }\
+        #pv-of { color: #555; font-size: 0.75rem; margin-top: 0.2rem; }\
+        #pv-timer { font-size: 1.5rem; font-weight: 700; font-family: monospace; font-variant-numeric: tabular-nums; }\
+        #pv-timer-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; }\
+    </style>\
+    <div id="pv">\
+        <div class="pv-panel"><div id="pv-label">Speaker Notes</div><div id="pv-notes">Waiting for main window...</div></div>\
+        <div id="pv-right">\
+            <div class="pv-panel"><div id="pv-nav"><button class="pv-arrow" id="pv-prev">←</button><div id="pv-counter"><div id="pv-num">—</div><div id="pv-of">/ —</div></div><button class="pv-arrow" id="pv-next">→</button></div></div>\
+            <div class="pv-panel" id="pv-timer-box"><div id="pv-timer-label">Elapsed</div><div id="pv-timer">0:00</div></div>\
+        </div>\
+    </div>';
+
+    const ch = new BroadcastChannel('slide-creator-presenter');
+    let startTime = null;
+
+    const pv = document.getElementById('pv');
+    let lastH = 0, roTimer = null;
+    new ResizeObserver(() => {
+        clearTimeout(roTimer);
+        roTimer = setTimeout(() => {
+            const h = Math.ceil(pv.getBoundingClientRect().height);
+            if (h === lastH) return;
+            lastH = h;
+            const chrome = window.outerHeight - window.innerHeight;
+            window.resizeTo(window.outerWidth, Math.max(260, h + chrome + 4));
+        }, 40);
+    }).observe(pv);
+
+    ch.addEventListener('message', e => {
+        if (e.data.type !== 'state') return;
+        if (!startTime) startTime = Date.now();
+        document.getElementById('pv-notes').textContent = e.data.notes || '(no notes for this slide)';
+        document.getElementById('pv-num').textContent = e.data.index + 1;
+        document.getElementById('pv-of').textContent = '/ ' + e.data.total;
+    });
+    ch.postMessage({ type: 'request-state' });
+
+    setInterval(() => {
+        if (!startTime) return;
+        const s = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById('pv-timer').textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    }, 1000);
+
+    document.getElementById('pv-prev').addEventListener('click', () => ch.postMessage({ type: 'nav-prev' }));
+    document.getElementById('pv-next').addEventListener('click', () => ch.postMessage({ type: 'nav-next' }));
+    document.addEventListener('keydown', e => {
+        if (['ArrowRight','ArrowDown',' ','PageDown','Enter'].includes(e.key)) ch.postMessage({ type: 'nav-next' });
+        else if (['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)) ch.postMessage({ type: 'nav-prev' });
+    });
+
+} else {
+class PresentMode {
+    constructor(ctrl) {
+        this.ctrl = ctrl;
+        this.baseW = 1440; this.baseH = 900;
+        this.active = false;
+        const btn = document.createElement('button');
+        btn.id = 'present-btn';
+        btn.title = 'Present (F5)';
+        btn.setAttribute('aria-label', 'Present');
+        btn.textContent = '\u25B6';
+        document.body.appendChild(btn);
+        const counter = document.createElement('div');
+        counter.id = 'present-counter';
+        document.body.appendChild(counter);
+        btn.addEventListener('click', () => this.enter());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F5') { e.preventDefault(); this.enter(); }
+            if (e.key === 'Escape' && this.active) this.exit();
+            if ((e.key === 'b' || e.key === 'B') && this.active) document.body.classList.toggle('presenting-black');
+        });
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && this.active) this.exit();
+        });
+        window.addEventListener('resize', () => { if (this.active) this._scale(); });
+    }
+    enter() {
+        if (this.active) return;
+        this.active = true;
+        document.body.classList.add('presenting');
+        if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+        this._scale();
+        this._show(this.ctrl.currentSlide);
+        this._origGoTo = this.ctrl.goTo.bind(this.ctrl);
+        this.ctrl.goTo = (i) => {
+            const idx = Math.max(0, Math.min(i, this.ctrl.slides.length - 1));
+            this.ctrl.currentSlide = idx;
+            this.ctrl.slides.forEach((s, j) => s.classList.toggle('visible', j === idx));
+            this._show(idx);
+            this.ctrl.updateProgress?.();
+            this.ctrl.updateDots?.();
+            this.ctrl.broadcastState?.();
+        };
+    }
+    exit() {
+        if (!this.active) return;
+        this.active = false;
+        document.body.classList.remove('presenting', 'presenting-black');
+        this._reset();
+        if (document.fullscreenElement) document.exitFullscreen?.();
+        if (this._origGoTo) { this.ctrl.goTo = this._origGoTo; this._origGoTo = null; }
+        this.ctrl.slides[this.ctrl.currentSlide]?.scrollIntoView({ behavior: 'instant' });
+    }
+    _scale() {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const s = Math.min(vw / this.baseW, vh / this.baseH);
+        const ox = (vw - this.baseW * s) / 2;
+        const oy = (vh - this.baseH * s) / 2;
+        this.ctrl.slides.forEach(slide => {
+            slide.style.transform = 'translate(' + ox + 'px, ' + oy + 'px) scale(' + s + ')';
+        });
+    }
+    _reset() {
+        this.ctrl.slides.forEach(slide => { slide.style.transform = ''; slide.classList.remove('p-on'); });
+    }
+    _show(i) {
+        this.ctrl.slides.forEach((s, idx) => s.classList.toggle('p-on', idx === i));
+    }
+}
+new PresentMode(new SlidePresentation());
+}
+</script>
+
+<script>
+(function() {
+    var slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    var last = slides[slides.length - 1];
+    var credit = document.createElement('div');
+    credit.className = 'slide-credit';
+    credit.textContent = 'By kai-slide-creator v2.14.0 \u00b7 Data Story';
+    last.appendChild(credit);
+})();
+</script>
+</body>
+</html>

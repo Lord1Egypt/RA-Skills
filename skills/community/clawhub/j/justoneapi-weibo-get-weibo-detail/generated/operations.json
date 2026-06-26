@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/get-weibo-detail/v1 for Weibo Post Details through JustOneAPI with id.",
+  "displayName": "Weibo Post Details",
+  "endpointPath": "get-weibo-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo post Details data, including media, author metadata, and engagement counts, for post analysis, archiving, and campaign monitoring.",
+      "method": "GET",
+      "operationId": "getWeiboDetailsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo post ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-weibo-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Details",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_get_weibo_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-get-weibo-detail",
+  "sourceTitle": "OpenAPI definition"
+}

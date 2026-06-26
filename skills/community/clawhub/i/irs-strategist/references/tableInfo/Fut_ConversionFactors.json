@@ -1,0 +1,143 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "IssuanceOrg",
+        "columnChiName": "发布机构",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "发布机构(IssuanceOrg)与(CT_SystemConst)表中的DM字段关联，令LB = 1324 AND DM = 20，得到发布机构的具体描述：20-中国金融期货交易所。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ContractInnerCode",
+        "columnChiName": "合约内部编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "合约内部编码（ContractInnerCode）：与“期货合约主表（Fut_ContractMain）”中的“合约内部编码（ContractInnerCode）”关联，得到该期货合约的基础信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "IBMarketInnerCode",
+        "columnChiName": "银行间债券市场内部编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "银行间债券市场内部编码(IBMarketInnerCode)：与“债券代码对照表（Bond_Code）”中的“债券内部编码（InnerCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SHExchangeInnerCode",
+        "columnChiName": "上海证券交易所内部编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "上海证券交易所内部编码(SHExchangeInnerCode)：与“债券代码对照表（Bond_Code）”中的“债券内部编码（InnerCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SZExchangeInnerCode",
+        "columnChiName": "深圳证券交易所内部编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "深圳证券交易所内部编码(SZExchangeInnerCode)：与“债券代码对照表（Bond_Code）”中的“债券内部编码（InnerCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "CouponRate",
+        "columnChiName": "票面利率(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "ConversionFactors",
+        "columnChiName": "转换因子",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "XGRQ",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

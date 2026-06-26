@@ -1,0 +1,104 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "公告原文非文本ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "公告原文非文本ID(RID)：与“违规公告原文非文本（LC_ViolAnnouncement）”中的“ID”关联，得到公告的详细信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "公告日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "AnnouncementType",
+        "columnChiName": "公告类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "公告类型(AnnouncementType)与(CT_SystemConst)表中的DM字段关联，令LB = 1976，得到公告类型的具体描述：10101-深交所处罚与处分记录，10102-深交所问询函，10103-深交所关注函，10104-深交所监管函，10105-深交所监管函回复，10106-深交所关注函回复，10107-深交所问询函回复，10108-深交所监管函延期回复，10109-深交所关注函延期回复，10110-深交所问询函延期回复，10111-深交所通报批评，10112-深交所公开谴责及公开认定，10201-上交所关注函，10202-上交所通报批评，10203-上交所公开谴责及公开认定，10204-上交所监管函，10205-上交所问询函，10206-上交所处罚与处分记录，10207-上交所监管函回复，10208-上交所关注函回复，10209-上交所问询函回复，10210-上交所监管函延期回复，10211-上交所关注函延期回复，10212-上交所问询函延期回复，10301-证监会处罚与处分记录，10302-证监会市场禁入决定，10303-证监会行政复议决定，10304-证监会上市公司并购重组行政许可审核情况，10305-证监会案情发布，10306-证监会监管函，10307-证监会关注函，10308-证监会问询函，10309-证监会监管函回复，10310-证监会关注函回复，10311-证监会问询函回复，10312-证监会监管函延期回复，10313-证监会关注函延期回复，10314-证监会问询函延期回复，10401-保监会处罚，10402-银保监会处罚，10403-保监会监管函，10404-银保监会监管函，10405-银保监会监管函回复，10406-银保监会监管函延期回复，10501-基金行业协会纪律处分，10601-银行间交易协会自律处分，10701-统计局失信公示，10801-中国人民银行行政处罚公示，10901-外汇管理局违规信息公开，11001-海关、出入境检验检疫行政处罚信息公开，11101-税务局重大税收违法案件信息公布，11201-国家市场监督管理总局通告，11301-北交所自律监管措施，11302-北交所处罚与处分记录，11303-北交所问询函，11304-北交所问询函回复，11305-北交所问询函延期回复，99999-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InfoTitle",
+        "columnChiName": "公告标题",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "AdminNumber",
+        "columnChiName": "行政文号",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "51.07"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InvolvedEvent",
+        "columnChiName": "涉及事件",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 1,
+        "fieldExplain": "与违规事件表（LC_ViolatiEvent）事件编号（EventCode）关联",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

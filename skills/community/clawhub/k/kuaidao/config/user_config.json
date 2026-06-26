@@ -1,0 +1,39 @@
+{
+  "_comment": "快导(KD) 用户配置文件 - 首次使用时请填写以下配置项",
+  "_comment2": "或运行: kd setup 进行交互式配置",
+
+  "copy_libraries": {
+    "xiaohongshu": "",
+    "douyin": "",
+    "shipinhao": "",
+    "pyq": ""
+  },
+  "copy_libraries_note": "各平台文案库Excel文件路径，示例: {\"xiaohongshu\": \"F:\\\\vlog\\\\JT\\\\idea\\\\小红书文案库.xlsx\"}",
+
+  "report_space_id": "",
+  "report_space_id_note": "飞书知识库空间ID，用于保存执行报告",
+
+  "rules_files": {
+    "xiaohongshu": "references/platform_rules/xiaohongshu_rules.md",
+    "douyin": "references/platform_rules/douyin_rules.md",
+    "shipinhao": "references/platform_rules/shipinhao_rules.md",
+    "pyq": "references/platform_rules/pyq_rules.md"
+  },
+  "rules_files_note": "各平台规则文档路径，可按平台自定义",
+
+  "external_keywords": [],
+  "external_keywords_note": "外网搜索关键词池（可选），示例: [\"food\", \"cooking\", \"life\", \"vlog\"]",
+
+  "external_search": {
+    "auto_collect": true,
+    "collect_count": 20,
+    "platforms": ["TikTok", "YouTube"],
+    "default_keywords": []
+  },
+  "external_search_note": "外网搜索配置：auto_collect=true时空关键词自动收集热门视频（default_keywords为空时将自动生成）",
+
+  "user_info": {
+    "name": "",
+    "email": ""
+  }
+}

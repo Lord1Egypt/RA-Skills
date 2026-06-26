@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="-apple-system, SF Pro, Inter, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="glow1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:0.8"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)" rx="16"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" text-anchor="middle" fill="#fff" font-size="28" font-weight="700" letter-spacing="-0.5">🧠 Knowledge Engine</text>
+  <text x="400" y="75" text-anchor="middle" fill="#888" font-size="13">把碎片化的阅读和思考变成结构化的知识系统</text>
+  
+  <!-- L3 -->
+  <g transform="translate(400,120)">
+    <rect x="-120" y="-22" width="240" height="44" rx="22" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="-95" cy="0" r="6" fill="#f59e0b" filter="url(#glow)"/>
+    <text x="-80" y="5" fill="#f59e0b" font-size="13" font-weight="600">L3 元规律</text>
+    <text x="55" y="5" fill="#666" font-size="11">跨维度底层逻辑</text>
+  </g>
+  
+  <!-- Arrow L3→L2 -->
+  <line x1="400" y1="145" x2="400" y2="170" stroke="#f59e0b" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
+  <text x="440" y="162" fill="#555" font-size="9">自动蒸馏</text>
+  
+  <!-- L2 -->
+  <g transform="translate(200,200)">
+    <rect x="-90" y="-20" width="180" height="40" rx="20" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="-70" cy="0" r="5" fill="#a78bfa" filter="url(#glow)"/>
+    <text x="-58" y="4" fill="#a78bfa" font-size="12" font-weight="600">L2 洞察</text>
+    <text x="20" y="4" fill="#666" font-size="10">创业领域模式</text>
+  </g>
+  <g transform="translate(400,200)">
+    <rect x="-90" y="-20" width="180" height="40" rx="20" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="-70" cy="0" r="5" fill="#a78bfa" filter="url(#glow)"/>
+    <text x="-58" y="4" fill="#a78bfa" font-size="12" font-weight="600">L2 洞察</text>
+    <text x="20" y="4" fill="#666" font-size="10">AI 领域模式</text>
+  </g>
+  <g transform="translate(600,200)">
+    <rect x="-90" y="-20" width="180" height="40" rx="20" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="-70" cy="0" r="5" fill="#a78bfa" filter="url(#glow)"/>
+    <text x="-58" y="4" fill="#a78bfa" font-size="12" font-weight="600">L2 洞察</text>
+    <text x="20" y="4" fill="#666" font-size="10">Agent 领域模式</text>
+  </g>
+  
+  <!-- Arrow L2→L1 -->
+  <line x1="200" y1="222" x2="200" y2="250" stroke="#a78bfa" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
+  <line x1="400" y1="222" x2="400" y2="250" stroke="#a78bfa" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
+  <line x1="600" y1="222" x2="600" y2="250" stroke="#a78bfa" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
+  <text x="440" y="240" fill="#555" font-size="9">≥3 个同标签聚合</text>
+  
+  <!-- L1 Concepts -->
+  <g transform="translate(100,280)">
+    <circle r="5" fill="#60a5fa" opacity="0.8"/>
+    <text x="12" y="4" fill="#999" font-size="10">分发能力>制作能力</text>
+  </g>
+  <g transform="translate(100,305)">
+    <circle r="5" fill="#60a5fa" opacity="0.8"/>
+    <text x="12" y="4" fill="#999" font-size="10">品味是最后的差异化</text>
+  </g>
+  <g transform="translate(100,330)">
+    <circle r="4" fill="#60a5fa" opacity="0.5"/>
+    <text x="12" y="4" fill="#999" font-size="10">复利曲线拐点...</text>
+  </g>
+  
+  <g transform="translate(300,280)">
+    <circle r="5" fill="#60a5fa" opacity="0.8"/>
+    <text x="12" y="4" fill="#999" font-size="10">Agent 能思考不能记忆</text>
+  </g>
+  <g transform="translate(300,305)">
+    <circle r="5" fill="#60a5fa" opacity="0.8"/>
+    <text x="12" y="4" fill="#999" font-size="10">Harness 工程是壁垒</text>
+  </g>
+  <g transform="translate(300,330)">
+    <circle r="4" fill="#60a5fa" opacity="0.5"/>
+    <text x="12" y="4" fill="#999" font-size="10">AI Agent界面≠聊天</text>
+  </g>
+  
+  <g transform="translate(520,280)">
+    <circle r="5" fill="#60a5fa" opacity="0.8"/>
+    <text x="12" y="4" fill="#999" font-size="10">无聊生意比chatbot赚钱</text>
+  </g>
+  <g transform="translate(520,305)">
+    <circle r="4" fill="#60a5fa" opacity="0.5"/>
+    <text x="12" y="4" fill="#999" font-size="10">北京开发者亏2200美元</text>
+  </g>
+  
+  <!-- Connections -->
+  <line x1="180" y1="280" x2="120" y2="280" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+  <line x1="180" y1="305" x2="120" y2="305" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+  <line x1="380" y1="280" x2="320" y2="280" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+  <line x1="380" y1="305" x2="320" y2="305" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+  <line x1="580" y1="280" x2="540" y2="280" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+  
+  <!-- Cross connections -->
+  <path d="M105,305 Q200,340 295,305" stroke="#60a5fa" stroke-width="0.5" fill="none" opacity="0.2"/>
+  <path d="M305,305 Q400,340 515,305" stroke="#60a5fa" stroke-width="0.5" fill="none" opacity="0.2"/>
+  
+  <!-- Bottom label -->
+  <text x="400" y="375" text-anchor="middle" fill="#444" font-size="10">概念卡片 · 自动蒸馏 · 信念追踪 · 循环检测 · 知识图谱</text>
+  
+  <!-- Badges -->
+  <g transform="translate(260,390)">
+    <rect x="0" y="-10" width="70" height="18" rx="9" fill="#1e3a5f" stroke="#60a5fa" stroke-width="0.5" opacity="0.5"/>
+    <text x="35" y="2" text-anchor="middle" fill="#60a5fa" font-size="9">OpenClaw</text>
+  </g>
+  <g transform="translate(340,390)">
+    <rect x="0" y="-10" width="50" height="18" rx="9" fill="#1e3a2f" stroke="#4ade80" stroke-width="0.5" opacity="0.5"/>
+    <text x="25" y="2" text-anchor="middle" fill="#4ade80" font-size="9">Python</text>
+  </g>
+  <g transform="translate(400,390)">
+    <rect x="0" y="-10" width="80" height="18" rx="9" fill="#3a1e3f" stroke="#c084fc" stroke-width="0.5" opacity="0.5"/>
+    <text x="40" y="2" text-anchor="middle" fill="#c084fc" font-size="9">零外部依赖</text>
+  </g>
+</svg>

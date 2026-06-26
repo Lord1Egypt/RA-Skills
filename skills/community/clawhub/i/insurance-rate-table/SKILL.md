@@ -1,35 +1,72 @@
----
-name: "保险费率二维表生成工具"
-description: "根据用户参数生成符合行业标准的多级表头保险费率二维Excel表，支持产品名称、类型、缴费方式及年龄性别分组。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insurance-rate-table"
-sourceUrl: "https://clawhub.ai/skills/insurance-rate-table"
----
-
 # 保险费率二维表生成工具
 
-> 根据用户参数生成符合行业标准的多级表头保险费率二维Excel表，支持产品名称、类型、缴费方式及年龄性别分组。
+## Skill 职责
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insurance-rate-table`
-- **Source URL:** [https://clawhub.ai/skills/insurance-rate-table](https://clawhub.ai/skills/insurance-rate-table)
+根据用户提供的保险产品参数，自动生成符合行业标准的 Excel 费率二维表。
 
-## Overview
+## 触发场景
 
+用户请求生成以下内容时触发：
+- "生成费率表"
+- "生成费率二维表"
+- "生成XX产品费率表"
+- "生成XX保险费率"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insurance-rate-table
+## 执行步骤
+
+### 第1步：收集产品参数
+向用户确认以下必填参数：
+1. **产品名称** - 产品全称
+2. **产品类型** - 年金险/重疾险/寿险/医疗险等
+3. **领取时间** - 如：自55周岁、自60周岁
+4. **保障计划** - 如：计划一、计划二
+5. **交费期间** - 如：趸交、10年、20年
+6. **交费方式** - 一次交清/月交/年交/半年交/季交/不定期交
+7. **被保人年龄范围** - 如：0-70岁
+8. **被保人性别** - 男、女
+
+### 第2步：确认交费方式与交费期间约束规则
+根据产品类型确认以下约束：
+- **一次交清** 只能匹配 **趸交**
+- **月交/年交/半年交/季交/不定期交** 不能匹配 **趸交**
+
+### 第3步：生成 Excel 文件
+执行脚本生成符合标准的费率表：
+- 多级表头结构
+- 自动过滤无效组合
+- 填充示例费率数据
+
+### 第4步：输出交付
+- 文件保存至 workspace 目录
+- 告知用户文件位置和表格结构
+
+## 输出标准
+
+### Excel 文件命名规范
 ```
+{产品名称}费率表.xlsx
+```
+
+### 表头结构（5行多级表头）
+| 行号 | 表头内容 | 说明 |
+|------|----------|------|
+| 第1行 | 保障计划 | 计划一、计划二 |
+| 第2行 | 交费期间 | 趸交、10年、20年 |
+| 第3行 | 交费方式 | 一次交清/月交/年交/半年交/季交/不定期交 |
+| 第4行 | 领取时间 | 自55周岁、自60周岁 |
+| 第5行 | 被保人年龄/被保人性别 | 女、男 |
+
+### 数据结构
+- **A列**：被保人年龄（0-70岁）
+- **B列及以后**：对应各方案的保费数据
+- 数据行按年龄递增排列
+
+### 组合过滤规则
+- 一次交清 ↔ 趸交（唯一有效组合）
+- 月交/年交/半年交/季交/不定期交 ↔ 10年/20年
+- 其他组合不生成
+
+### 文件格式
+- 格式：`.xlsx`（Excel 2007+）
+- 编码：`UTF-8`
+- Sheet 名称：`费率表`

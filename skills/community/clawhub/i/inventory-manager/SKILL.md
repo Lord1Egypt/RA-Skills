@@ -1,35 +1,35 @@
 ---
-name: "Inventory Manager"
+name: "inventory-manager"
+version: "5.0.0"
 description: "Inventory management reference — SKU systems, FIFO/LIFO valuation, barcode formats, ABC analysis, EOQ formula, and WMS migration"
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/inventory-manager"
-sourceUrl: "https://clawhub.ai/skills/inventory-manager"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [inventory, sku, warehouse, barcode, wms]
+category: "business"
 ---
 
 # Inventory Manager
 
-> Inventory management reference — SKU systems, FIFO/LIFO valuation, barcode formats, ABC analysis, EOQ formula, and WMS migration
+Inventory management reference — SKU systems, FIFO/LIFO valuation, barcode formats, ABC analysis, EOQ formula, and WMS migration. No API keys or credentials required — outputs reference documentation only.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/inventory-manager`
-- **Source URL:** [https://clawhub.ai/skills/inventory-manager](https://clawhub.ai/skills/inventory-manager)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | Inventory concepts, valuation methods, metrics |
+| `standards` | Barcode formats, GS1 standards, counting methods |
+| `troubleshooting` | Stock discrepancies, phantom inventory, stockouts |
+| `performance` | ABC analysis, EOQ, safety stock, forecasting |
+| `security` | Shrinkage prevention, access control, auditing |
+| `migration` | Spreadsheet to WMS, legacy to cloud migration |
+| `cheatsheet` | Formulas, Z-scores, barcode specs |
+| `faq` | Counting frequency, turnover targets, costs |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/inventory-manager
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

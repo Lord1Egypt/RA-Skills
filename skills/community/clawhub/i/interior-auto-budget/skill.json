@@ -1,0 +1,13 @@
+
+{
+  "id": "interior-auto-budget",
+  "name": "室内设计自动预算生成器(DXF)",
+  "version": "1.0.0",
+  "description": "从DXF提取户型信息，基于设计师历史报价库自动生成完整家装/工装预算Excel，严格匹配模板格式，不漏项，价格贴合本地市场",
+  "author": "温州隐室空间设计",
+  "license": "MIT",
+  "keywords": ["室内设计", "预算", "DXF", "自动生成", "工程造价", "隐室空间"],
+  "requirements": ["python3", "openpyxl", "ezdxf"],
+  "bins": [],
+  "main": "generate_budget.py"
+}

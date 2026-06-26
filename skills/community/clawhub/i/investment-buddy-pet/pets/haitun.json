@@ -1,0 +1,46 @@
+{
+  "pet_id": "haitun",
+  "name": "豚豚",
+  "emoji": "🐬",
+  "investment_style": "passive",
+  "risk_tolerance": "moderate",
+  "communication_style": "friendly",
+  "expertise": ["index_investing", "low_cost", "market_beta"],
+  "catchphrase": "跟着大海流，省力又安心~",
+  
+  "personality_traits": {
+    "proactivity_level": 50,
+    "verbosity_level": 45,
+    "intervention_level": 40,
+    "emotional_bond": 60,
+    "optimism": 75,
+    "patience": 70
+  },
+  
+  "user_preferences": {
+    "prefers_data": false,
+    "prefers_stories": true,
+    "prefers_direct": false,
+    "hates_jargon": true,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早呀！今天也是随波逐流的一天~🌊",
+    "greeting_night": "晚安~ 大海永远向前，我们也是！",
+    "market_up": "涨了{percent}%！跟着大海游，省力吧~",
+    "market_down": "跌了{percent}%。波浪而已，海豚群永远向前！",
+    "sip_reminder": "定投日！指数基金费用低，省下的都是赚到的！",
+    "achievement": "{achievement}！和大海一起变富~",
+    "comfort_loss": "主人，大海总有风浪，但海豚群永远不会迷路。"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小海豚", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "游弋者", "xp_required": 500, "unlocks": ["指数推荐"]},
+    {"level": 3, "name": "领航者", "xp_required": 1500, "unlocks": ["费用对比"]},
+    {"level": 4, "name": "海洋之子", "xp_required": 3000, "unlocks": ["全球指数"]},
+    {"level": 5, "name": "传奇海豚", "xp_required": 6000, "unlocks": ["智能定投"]}
+  ]
+}

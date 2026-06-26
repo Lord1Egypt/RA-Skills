@@ -1,0 +1,73 @@
+# Job Status Query Skill Configuration
+
+# Skill basic information
+skill:
+  name: job-status
+  version: 1.0.0
+  description: Query HPC/AI computing job status
+  author: OpenClaw Assistant
+  category: monitoring
+  
+# API configuration
+api:
+  base_url: "http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28"
+  timeout: 30  # seconds
+  retry_count: 3
+  retry_delay: 2  # seconds
+  
+# Output configuration
+output:
+  # Output format: json, text, table
+  format: "json"
+  
+  # Whether to show detailed information
+  verbose: false
+  
+  # Date format
+  date_format: "YYYY-MM-DD HH:mm:ss"
+  
+# Job status mapping
+status_mapping:
+  PENDING: "Queued"
+  RUNNING: "Running"
+  COMPLETED: "Completed"
+  FAILED: "Failed"
+  CANCELLED: "Cancelled"
+  TIMEOUT: "Timeout"
+  SUSPENDED: "Suspended"
+  CONFIGURING: "Configuring"
+  
+# Notification configuration (optional)
+notifications:
+  # Whether to notify on job completion
+  on_completed: false
+  
+  # Whether to notify on job failure
+  on_failed: false
+  
+  # Notification method: console, email, webhook
+  method: "console"
+  
+# Cache configuration (optional)
+cache:
+  enabled: false
+  ttl: 300  # Cache validity in seconds
+  max_entries: 1000
+  
+# Security configuration
+security:
+  # Allowed jobId pattern (regex)
+  allowed_job_id_pattern: "^[0-9]+$"
+  
+  # Maximum jobId length
+  max_job_id_length: 10
+  
+  # Whether to validate jobId format
+  validate_job_id: true
+  
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/job-status.log"
+  max_size: "10MB"
+  max_files: 5

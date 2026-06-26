@@ -1,35 +1,286 @@
 ---
-name: "Life Memory Logger - 生活记忆记录器"
-description: "生活记忆记录器。帮你记录人际交往中的重要细节（生日、喜好、承诺），自动提醒跟进，让你成为更贴心的人。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/life-memory-logger"
-sourceUrl: "https://clawhub.ai/skills/life-memory-logger"
+name: life-memory-logger
+description: 生活记忆记录器。帮你记录人际交往中的重要细节（生日、喜好、承诺），自动提醒跟进，让你成为更贴心的人。
 ---
 
 # Life Memory Logger - 生活记忆记录器
 
-> 生活记忆记录器。帮你记录人际交往中的重要细节（生日、喜好、承诺），自动提醒跟进，让你成为更贴心的人。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/life-memory-logger`
-- **Source URL:** [https://clawhub.ai/skills/life-memory-logger](https://clawhub.ai/skills/life-memory-logger)
+### 1. 👤 人物记忆
+记录关于人的重要信息：
+- 生日和纪念日
+- 喜好（食物、饮料、爱好、颜色）
+- 过敏和饮食限制
+- 家庭成员和关系
+- 重要生活事件（新工作、搬家、毕业）
+- 目标和愿望
+- 不喜欢的事物
 
-## Overview
+### 2. 📅 日期和事件
+- 提到的未来计划
+- 预约安排
+- 承诺的截止日期
+- 旅行计划
+- 庆祝日期
 
+### 3. 💼 职业背景
+- 客户偏好和历史
+- 项目详情和状态
+- 会议记录和行动项
+- 职业目标和挑战
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/life-memory-logger
+### 4. 🔗 关系和连接
+- 人们如何认识彼此
+- 做的介绍
+- 共同联系人
+- 社交背景
+
+### 5. 🎯 承诺和跟进
+- 做出的承诺
+- 需要回访的事情
+- 要买的礼物
+- 要跟进的推荐
+
+---
+
+## 使用方式
+
+### 添加记忆
+
+**快速记忆：**
 ```
+记住：[人名] 喜欢 [详情]
+例如："记住：Sarah 喜欢黑巧克力，不喜欢牛奶巧克力"
+```
+
+**对话记录：**
+```
+和 [人名] 的对话：[详情]
+例如："和妈妈的对话：她计划 3 月份来 visit，想看市中心的新博物馆"
+```
+
+**事件记忆：**
+```
+[人名] [事件] 在 [日期]
+例如："Alex 3 月 15 日开始新工作"
+```
+
+**跟进提醒：**
+```
+[时间] 内跟进 [人名] 关于 [话题]
+例如："3 天内跟进客户关于提案的事"
+```
+
+---
+
+## 记忆存储格式
+
+每个人物记忆保存到：
+```
+/memory/life-memories/people/[人名].json
+```
+
+**JSON 格式：**
+```json
+{
+  "person": "Sarah Johnson",
+  "last_updated": "2026-03-15",
+  "facts": [
+    {
+      "category": "food_preference",
+      "detail": "对花生严重过敏",
+      "source": "2026 年 2 月对话",
+      "date_added": "2026-02-19"
+    },
+    {
+      "category": "birthday",
+      "detail": "3 月 15 日",
+      "source": "随口提到",
+      "date_added": "2026-01-10"
+    }
+  ],
+  "conversations": [
+    {
+      "date": "2026-02-19",
+      "summary": "讨论了即将到来的日本之旅，对樱花很兴奋",
+      "action_items": ["发送东京餐厅推荐"]
+    }
+  ]
+}
+```
+
+**其他维护文件：**
+- `/memory/life-memories/upcoming-events.json` - 日期事件列表
+- `/memory/life-memories/follow-ups.json` - 待跟进事项
+- `/memory/life-memories/master-index.json` - 快速查找索引
+
+---
+
+## 自动提醒
+
+### 🎂 生日提醒（提前 1 周）
+```
+🎂 [人名] 的生日快到了 [日期]
+已知喜好：[来自记忆的偏好/礼物建议]
+```
+
+### ⏰ 跟进提醒（到期时）
+```
+⏰ 跟进提醒：你答应过 [人名] 要 [行动] 关于 [话题]
+```
+
+### 📅 事件提醒（提前 1 天）
+```
+📅 提醒：明天和 [人名] 有 [事件]
+相关记忆：[可能有帮助的背景信息]
+```
+
+---
+
+## 查询记忆
+
+**"我对 Sarah 了解什么？"**
+→ 返回关于 Sarah 的所有事实，按类别组织
+
+**"Alex 的生日是什么时候？"**
+→ 返回具体日期
+
+**"我有哪些待跟进事项？"**
+→ 返回所有未完成的行动项，按截止日期排序
+
+**"我答应给谁发推荐？"**
+→ 搜索行动项和对话
+
+**"我记录了哪些食物偏好？"**
+→ 搜索所有人的食物相关事实
+
+---
+
+## 隐私和道德规则
+
+1. **同意优先**：只存储我舒服记住的信息
+2. **敏感信息**：标记敏感详情（健康、财务、冲突）并确认后再存储
+3. **删除权**：我说"忘记那个"，你立即删除
+4. **不分享**：绝不把一个人的信息分享给另一个人
+5. **透明**：如果有人问"你怎么知道的？" 应该诚实地说用了记忆系统
+
+**自动标记确认：**
+- 健康信息
+- 财务详情
+- 关系冲突
+- 关于第三方的私人信息
+
+---
+
+## 智能提取
+
+当我分享对话时，提取：
+- 提到的人名和他们是谁
+- 日期和截止日期
+- 偏好和观点
+- 承诺和保证
+- 情绪状态（"似乎工作压力很大"）
+- 可能重要的背景
+
+**示例输入：**
+```
+"今天和 Mike 吃午饭。他对升职很兴奋但第一次管人有点紧张。他老婆怀孕了，6 月预产期。他推荐了 Main Street 新开的泰国餐厅，说 pad thai 超好吃。"
+```
+
+**提取的记忆：**
+- Mike 升职了
+- Mike 对第一次管理岗位感到紧张
+- Mike 的老婆怀孕，2026 年 6 月预产期
+- Mike 推荐 Main Street 的泰国餐厅，特别是 pad thai
+
+---
+
+## 定时任务配置
+
+### 每日记忆处理（22:00）
+```json
+{
+  "schedule": "0 22 * * *",
+  "name": "Daily Memory Processing",
+  "prompt": "处理今天添加的记忆并发送确认摘要"
+}
+```
+
+### 每周回顾（周日 19:00）
+```json
+{
+  "schedule": "0 19 * * 0",
+  "name": "Weekly Memory Review",
+  "prompt": "生成本周记忆回顾，包含即将发生的事件和洞察"
+}
+```
+
+### 每月整理（月末）
+```json
+{
+  "schedule": "0 20 28-31 * *",
+  "name": "Monthly Memory Consolidation",
+  "prompt": "如果是月末，整理和清理记忆文件"
+}
+```
+
+### 生日检查（每天 9:00）
+```json
+{
+  "schedule": "0 9 * * *",
+  "name": "Birthday Reminder Check",
+  "prompt": "检查未来 7 天内的生日并发送提醒"
+}
+```
+
+---
+
+## 成功指标
+
+这个技能工作良好的标志：
+- ✅ 可以问"我对 [人名] 了解什么？"并得到有用的摘要
+- ✅ 不需要 Facebook 提醒就能记住生日和重要日期
+- ✅ 因为助手提醒而履行承诺
+- ✅ 在对话中引用细节，显示你很用心
+- ✅ 人们注意到并欣赏你记得关于他们的事情
+
+---
+
+## 故障排除
+
+| 问题 | 解决方案 |
+|------|----------|
+| 记忆没保存？ | 检查存储权限和文件夹路径 |
+| 找不到信息？ | 使用主索引或问更具体的问题 |
+| 通知太多？ | 减少提醒频率 |
+| 担心隐私？ | 检查自动标记规则并调整敏感度 |
+
+---
+
+## 道德使用
+
+- 如果有人问你怎么记得的，要诚实
+- 不要存储如果暴露会伤害某人的信息
+- 尊重要求删除关于某人信息的请求
+- 用这个变得更贴心，不是操纵
+
+---
+
+## 你会看到的好处
+
+- 通过记住小细节建立更强的关系
+- 因为信守承诺而获得更好的职业声誉
+- 减少忘记重要事情的焦虑
+- 有背景信息时对话更有意义
+- 个人知识库随时间推移变得更有价值
+
+---
+
+## 相关资源
+
+- `scripts/extract_memory.py` - 记忆提取脚本
+- `scripts/search_memory.py` - 记忆搜索脚本
+- `scripts/generate_reminder.py` - 提醒生成脚本
+- `references/memory-categories.md` - 记忆分类参考
+- `references/privacy-guidelines.md` - 隐私指南

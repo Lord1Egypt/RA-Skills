@@ -1,0 +1,20 @@
+name: lifequery
+version: 1.0.1
+description: "Allows the agent to search and query your entire Telegram chat history using a local or remote LifeQuery instance."
+tools:
+ - name: query_telegram_history
+   description: "Search the user's Telegram history for information, old conversations, or specific details. LifeQuery will provide a semantically relevant answer with citations from the chat history."
+   command:
+     - "python"
+     - "scripts/query_telegram.py"
+     - "{{query}}"
+   parameters:
+     - name: query
+       description: "The search query or question to ask about the user's Telegram history."
+       type: string
+       required: true
+env:
+ - name: LIFEQUERY_BASE_URL
+   default: "http://localhost:3134/v1"
+ - name: LIFEQUERY_API_KEY
+   default: ""

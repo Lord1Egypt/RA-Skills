@@ -1,35 +1,25 @@
----
-name: "Json2csv"
-description: "Converts JSON files to CSV by flattening nested objects and arrays for easy use in spreadsheets and data analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/json2csv"
-sourceUrl: "https://clawhub.ai/skills/json2csv"
----
+# JSON to CSV Converter
 
-# Json2csv
+Converts JSON files to CSV format with intelligent flattening of nested objects and arrays, making data usable in spreadsheets and analytics platforms.
 
-> Converts JSON files to CSV by flattening nested objects and arrays for easy use in spreadsheets and data analysis.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/json2csv`
-- **Source URL:** [https://clawhub.ai/skills/json2csv](https://clawhub.ai/skills/json2csv)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/json2csv
+# Convert a JSON file to CSV
+python json2csv.py data.json output.csv
+
+# Example input (data.json):
+# [
+#   {"name": "Alice", "info": {"age": 30, "tags": ["engineer", "admin"]}},
+#   {"name": "Bob", "info": {"age": 25, "tags": ["analyst", "user"]}}
+# ]
+
+# Output (output.csv):
+# info.age,info.tags.0,info.tags.1,name
+# 30,engineer,admin,Alice
+# 25,analyst,user,Bob
 ```
+
+## Price
+
+$2.00

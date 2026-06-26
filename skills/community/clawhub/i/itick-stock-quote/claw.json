@@ -1,0 +1,11 @@
+{
+  "name": "stock-quote",
+  "version": "1.0.0",
+  "config": {
+    "ITICK_API_TOKEN": {
+      "type": "string",
+      "required": true,
+      "description": "ITICK Token。由itick服务商提供。"
+    }
+  }
+}

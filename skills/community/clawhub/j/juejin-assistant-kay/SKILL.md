@@ -1,35 +1,139 @@
----
-name: "Juejin"
-description: "Assist with Juejin article creation, including login methods, writing, editing with Markdown, previewing, publishing, and managing drafts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juejin-assistant-kay"
-sourceUrl: "https://clawhub.ai/skills/juejin-assistant-kay"
+# 掘金发布技能
+
+## 1. 平台简介
+
+掘金是一个面向程序员的技术社区平台，专注于分享技术文章、教程、实战经验。用户可以通过写文章积累粉丝、建立个人品牌，优质内容有机会获得官方推荐和流量扶持。
+
+**网址**: https://juejin.cn
+
 ---
 
-# Juejin
+## 2. 注册/登录方式
 
-> Assist with Juejin article creation, including login methods, writing, editing with Markdown, previewing, publishing, and managing drafts.
+### 注册方式
+- **手机号注册**：输入手机号 + 验证码
+- **邮箱注册**：掘金暂不支持纯邮箱注册，建议用手机号
+- **第三方登录**：支持 Github / 微信 / 微博 登录
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juejin-assistant-kay`
-- **Source URL:** [https://clawhub.ai/skills/juejin-assistant-kay](https://clawhub.ai/skills/juejin-assistant-kay)
+### 登录入口
+- 首页右上角「登录/注册」
+- 推荐使用 Github 登录（技术身份更匹配）
 
-## Overview
+---
 
+## 3. 写文章/发布文章流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juejin-assistant-kay
+### 步骤一：进入创作页面
+1. 登录后，点击右上角「写文章」或头像下拉菜单 → 「写文章」
+2. 进入在线编辑器页面
+
+### 步骤二：编辑文章
+1. **标题**：输入文章标题（建议20-40字，包含核心关键词）
+2. **正文**：使用 Markdown 编辑器编写
+3. **封面图**：上传封面图（可选，不上传会使用默认封面）
+4. **分类**：选择文章分类（如：前端 / 后端 / Android / iOS / 人工智能 等）
+5. **标签**：添加1-5个标签（如：Python、Vue、Redis等），方便被搜索到
+6. **专栏**：可选择加入专栏（需先创建专栏）
+
+### 步骤三：预览与发布
+1. 点击「预览」查看效果
+2. 确认无误后，点击「发布」
+3. 文章审核通过后公开可见（通常几分钟内）
+
+### 草稿保存
+- 文章会自动保存为草稿
+- 可在「创作中心」→「我的文章」中找到
+
+---
+
+## 4. 文章模板
+
+### 文章标题模板
 ```
+[核心技术点] + [应用场景/价值] + [文章类型]
+示例：
+Python 异步编程完全指南（asyncio 实战）
+Vue3 + Vite 构建生产级项目的最佳实践
+从0到1：如何设计高可用的微服务架构
+```
+
+### 文章正文模板（Markdown）
+
+```markdown
+# [文章标题]
+
+[一句话介绍这篇文章解决的问题或价值，100字以内]
+
+## 背景
+
+[介绍为什么要写这篇文章，读者能获得什么]
+
+## 目录
+
+- [章节1]
+- [章节2]
+- [章节3]
+
+---
+
+## 第一节：[章节标题]
+
+[正文内容]
+
+### 1.1 [小节标题]
+
+[代码块/示例]
+
+```python
+# 示例代码
+def hello():
+    print("Hello, World!")
+```
+
+## 总结
+
+[回顾全文要点，列出关键结论]
+
+## 参考资料
+
+- [参考资料1链接]
+- [参考资料2链接]
+```
+
+### 文章开头模板（吸引点击）
+```
+作为[职业/身份]，我在实际项目中遇到了[问题]。
+这篇文章会手把手教你[解决什么]，通过[方法/工具]，实现[效果]。
+读完本文，你将掌握：[技能点1]、[技能点2]、[技能点3]。
+```
+
+---
+
+## 5. 注意事项
+
+1. **标题决定点击率**：避免标题党，但要足够吸引，用数字/对比/疑问更有效果
+2. **代码要规范**：代码块标明语言，注释清晰，避免截图代码
+3. **图片要规范**：图片建议使用图床链接，避免使用本地图片导致无法显示
+4. **内容原创性**：掘金重视原创，搬运内容会被下架
+5. **首发有优势**：首发文章更容易获得推荐
+6. **排版要美观**：善用 Markdown（标题层级、列表、引用、代码块）
+7. **标签要精准**：选对标签能带来精准流量
+
+---
+
+## 6. 常见问题
+
+**Q: 文章有收益吗？**
+A：掘金有「掘金人气榜」等活动，优质文章可获得奖金。创作激励计划需申请加入。
+
+**Q: 如何获得更多阅读量？**
+A：积极互动（评论、点赞）、选好标签和分类、发布时间选晚8-10点、标题优化。
+
+**Q: 可以转载文章吗？**
+A：可以，但需注明原文出处，且需获得原作者授权。
+
+**Q: 文章被删了怎么办？**
+A：查看站内信中的违规原因，根据原因修改后重新发布。
+
+**Q: 如何创建专栏？**
+A：在「创作中心」→「我的专栏」中创建，专栏需要至少3篇文章才能申请。

@@ -1,35 +1,67 @@
 ---
-name: "Item manager"
-description: "自动识别物品存放位置，支持保质期、过期提醒、自动分类、LLM名称校验，不自动修改名称，确认后才更正，简洁好用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/item-manager"
-sourceUrl: "https://clawhub.ai/skills/item-manager"
+name: item-manager
+title: 在哪儿
+author: adderwar
+version: 1.0.0
+description: 自动识别物品存放位置，支持保质期、过期提醒、自动分类、LLM名称校验，不自动修改名称，确认后才更正，简洁好用
+tags:
+  - item
+  - item-manager
+  - 在哪儿
+  - 物品管理
+  - 物品定位
+  - 存放位置
+  - 保质期
+  - 药品
+  - 食品
+  - 记忆
+trigger:
+  - 在
+  - 放在
+  - 放
+  - 在哪
+  - 哪里
+  - 列出
+  - 快过期
+  - 有效期
+  - 保质期
+usage: >
+  直接自然语句使用：
+  1. 记录：芬必得在客厅药箱，保质期2026-09-10
+  2. 查询：芬必得在哪？
+  3. 查看：列出药品
+  4. 提醒：快过期物品
+dependencies:
+  - filesystem
+  - memory
+  - llm
 ---
 
-# Item manager
+# 在哪儿（item-manager）
+极简实用物品管理 Skill，只需正常说话即可记录、查询物品位置。
 
-> 自动识别物品存放位置，支持保质期、过期提醒、自动分类、LLM名称校验，不自动修改名称，确认后才更正，简洁好用
+## 核心功能
+- 自动识别 **物品 在 位置** 句式，无需前缀指令
+- 支持食品、药品保质期记录与过期提醒
+- 自动分类：药品、食品、电子产品、工具、随身物品、其他
+- LLM 智能校验物品名称，**不自动更正**
+- 名称疑似错误：询问用户是否更正
+- 无法判断：保留原名并标注疑似名称
+- 支持查询、分类查看、快过期物品提醒
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/item-manager`
-- **Source URL:** [https://clawhub.ai/skills/item-manager](https://clawhub.ai/skills/item-manager)
+## 使用示例
+### 记录
+芬必得在客厅药箱，保质期2026-09-10
+牛奶放在冰箱
+钥匙放玄关鞋柜
+粉笔得在抽屉
 
-## Overview
+### 查询
+芬必得在哪？
+牛奶在哪里？
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/item-manager
-```
+### 管理
+列出药品
+列出食品
+快过期的物品
+查看所有物品

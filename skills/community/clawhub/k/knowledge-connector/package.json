@@ -1,0 +1,44 @@
+{
+  "name": "knowledge-connector",
+  "version": "1.4.0",
+  "description": "Knowledge workbench connector. Input notes, documents, or a local knowledge folder; output import guidance, relationship maps, cross-document answers, and concrete next actions. Privacy boundary: do not upload sensitive notes unless the user explicitly chooses an external tool.",
+  "main": "src/index.js",
+  "bin": {
+    "knowledge-connector": "./bin/cli.js",
+    "kc": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "knowledge",
+    "graph",
+    "knowledge-graph",
+    "cross-document-search",
+    "import-wizard",
+    "visualization",
+    "nlp",
+    "concept",
+    "extraction",
+    "recommendation"
+  ],
+  "author": "Pearl Agent",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/knowledge-connector"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabsj/knowledge-connector/issues"
+  },
+  "homepage": "https://github.com/harrylabsj/knowledge-connector#readme"
+}

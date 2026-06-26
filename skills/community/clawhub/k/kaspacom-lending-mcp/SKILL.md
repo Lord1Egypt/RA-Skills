@@ -1,35 +1,33 @@
 ---
-name: "KaspaCom Lending MCP"
-description: "Use KaspaCom Lending through the KaspaCom DeFi MCP/CLI for market discovery, position checks, and lending actions like supply, borrow, and repay on IGRA and..."
-category: "mcp"
-source: "ClawHub"
-tags: [kaspa, lending, mcp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kaspacom-lending-mcp"
-sourceUrl: "https://clawhub.ai/skills/kaspacom-lending-mcp"
+name: kaspacom-lending-mcp
+description: Use KaspaCom Lending through the KaspaCom DeFi MCP/CLI for market discovery, position checks, and lending actions like supply, borrow, and repay on IGRA and Kasplex environments. Trigger on lending market, health factor, collateral, borrow, repay, or Aave-style KaspaCom requests through MCP.
 ---
 
 # KaspaCom Lending MCP
 
-> Use KaspaCom Lending through the KaspaCom DeFi MCP/CLI for market discovery, position checks, and lending actions like supply, borrow, and repay on IGRA and...
+Focused skill for KaspaCom lending via MCP/CLI.
 
-- **Category:** MCP
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kaspacom-lending-mcp`
-- **Source URL:** [https://clawhub.ai/skills/kaspacom-lending-mcp](https://clawhub.ai/skills/kaspacom-lending-mcp)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Install
 ```bash
-hermes skills install clawhub/kaspacom-lending-mcp
+npm i -g @kaspacom/defi-mcp
 ```
+
+## Read-only examples
+```bash
+kaspacom-defi getMarkets --network igra
+kaspacom-defi getPosition --address 0xYOUR_WALLET --network igra
+```
+
+## Transaction examples
+```bash
+kaspacom-defi supply --token USDC --amount 500 --network igra
+kaspacom-defi borrow --token WKAS --amount 50 --network igra
+kaspacom-defi repay --token WKAS --amount max --network igra
+```
+
+## Best for
+- Market snapshots
+- Wallet lending positions
+- Health factor checks
+- Collateral and borrowing flows
+- AI-agent access to KaspaCom lending

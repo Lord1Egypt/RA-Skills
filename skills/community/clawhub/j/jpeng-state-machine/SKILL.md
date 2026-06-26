@@ -1,35 +1,42 @@
 ---
-name: "state-machine"
+name: jpeng-state-machine
 description: "Manage state machines"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-state-machine"
-sourceUrl: "https://clawhub.ai/skills/jpeng-state-machine"
+version: "1.0.0"
+author: "jpeng"
+tags: ["state", "machine", "automation"]
 ---
 
-# state-machine
+# State Machine
 
-> Manage state machines
+Manage state machines
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-state-machine`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-state-machine](https://clawhub.ai/skills/jpeng-state-machine)
+## When to Use
 
-## Overview
+- User needs state related functionality
+- Automating machine tasks
+- Automation operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-state-machine
+python3 scripts/state_machine.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export MACHINE_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

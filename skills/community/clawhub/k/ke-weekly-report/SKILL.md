@@ -1,35 +1,303 @@
 ---
-name: "Weekly Report Generator"
-description: "科特船长 - 自动生成周报/月报/工作总结，支持 Word/PPT 格式输出"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ke-weekly-report"
-sourceUrl: "https://clawhub.ai/skills/ke-weekly-report"
+name: ke-weekly-report
+description: 科特船长 - 自动生成周报/月报/工作总结，支持 Word/PPT 格式输出
+version: 1.0.0
+metadata: {"openclaw": {"emoji": "📊", "requires": {"bins": ["pandoc"]}, "install": [{"id": "pandoc-brew", "kind": "brew", "formula": "pandoc", "bins": ["pandoc"], "label": "Install Pandoc (brew)"}, {"id": "pandoc-apt", "kind": "apt", "package": "pandoc", "bins": ["pandoc"], "label": "Install Pandoc (apt)"}]}}
 ---
 
-# Weekly Report Generator
+# Weekly Report Generator - 周报生成器
 
-> 科特船长 - 自动生成周报/月报/工作总结，支持 Word/PPT 格式输出
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ke-weekly-report`
-- **Source URL:** [https://clawhub.ai/skills/ke-weekly-report](https://clawhub.ai/skills/ke-weekly-report)
+本技能帮助用户自动生成周报、月报、工作总结等职场文档。用户只需提供工作内容要点，技能会自动整理成结构化的专业报告。
 
-## Overview
+## 使用场景
 
+- 每周五下班前写周报
+- 月底写月度工作总结
+- 季度/年度述职报告
+- 项目结项报告
+- 晋升答辩材料
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 基础用法
+
 ```bash
-hermes skills install clawhub/ke-weekly-report
+# 生成周报
+clawhub run weekly-report-generator --type weekly --input "本周工作内容..."
+
+# 生成月报
+clawhub run weekly-report-generator --type monthly --input "本月工作内容..."
+
+# 生成述职报告
+clawhub run weekly-report-generator --type review --input "工作成果..."
 ```
+
+### 参数说明
+
+| 参数 | 必填 | 说明 | 默认值 |
+|------|------|------|--------|
+| `--type` | 否 | 报告类型：weekly/monthly/review/project | weekly |
+| `--input` | 是 | 工作内容要点（可用文件路径或文字） | - |
+| `--format` | 否 | 输出格式：markdown/word/ppt | markdown |
+| `--output` | 否 | 输出文件路径 | ./report.md |
+| `--style` | 否 | 报告风格：formal/casual/detailed | formal |
+| `--add-charts` | 否 | 是否添加数据可视化建议 | false |
+
+### 示例
+
+```bash
+# 简单周报
+clawhub run weekly-report-generator --input "1.完成了用户模块开发 2.修复了 3 个 bug 3.参加了产品评审会"
+
+# 详细月报，输出 Word
+clawhub run weekly-report-generator --type monthly --input-file ./work-log.md --format word --output ./monthly-report.docx --style detailed --add-charts
+
+# 述职报告
+clawhub run weekly-report-generator --type review --input "主导了 XX 项目，提升了 30% 效率..." --format ppt
+```
+
+## 输入格式
+
+### 文字输入
+直接提供工作内容，用数字或换行分隔：
+```
+1. 完成了用户登录模块开发
+2. 修复了支付流程的 3 个 bug
+3. 参加了产品需求评审会
+4. 协助新人熟悉项目
+```
+
+### 文件输入
+创建一个工作记录文件（如 `work-log.md`）：
+```markdown
+# 本周工作记录
+
+## 周一
+- 上午：需求评审会议
+- 下午：开始用户模块开发
+
+## 周二
+- 全天：用户模块开发，完成 80%
+
+## 周三
+- 上午：完成用户模块，提交代码
+- 下午：修复支付 bug
+
+## 周四
+- 上午：修复剩余 bug
+- 下午：代码 review
+
+## 周五
+- 上午：项目文档整理
+- 下午：周会汇报
+```
+
+## 输出模板
+
+### 周报模板（formal 风格）
+
+```markdown
+# 周工作报告
+
+**汇报人**: [姓名]
+**部门**: [部门]
+**汇报周期**: 2026 年 第 X 周（MM.DD - MM.DD）
+
+---
+
+## 一、本周工作完成情况
+
+### 1. 重点工作
+- ✅ 完成了用户登录模块开发
+- ✅ 修复了支付流程的 3 个 bug
+
+### 2. 常规工作
+- 参加了产品需求评审会
+- 协助新人熟悉项目
+
+---
+
+## 二、工作成果与数据
+
+| 任务 | 状态 | 完成度 |
+|------|------|--------|
+| 用户模块开发 | 已完成 | 100% |
+| Bug 修复 | 已完成 | 100% |
+
+---
+
+## 三、问题与风险
+
+- 无重大风险
+
+---
+
+## 四、下周工作计划
+
+1. 开始订单模块开发
+2. 参与技术方案评审
+3. 完成技术文档编写
+
+---
+
+## 五、需要支持
+
+- 无
+```
+
+### 月报模板（detailed 风格）
+
+```markdown
+# 月度工作报告
+
+**汇报人**: [姓名]
+**部门**: [部门]
+**汇报月份**: 2026 年 X 月
+
+---
+
+## 一、本月工作概述
+
+本月主要完成了 XX 项目的核心模块开发，包括用户管理、订单处理等功能。整体进度符合预期，代码质量良好。
+
+### 关键成果
+- 🎯 完成用户模块开发，提前 2 天交付
+- 🎯 修复历史遗留 bug 15 个
+- 🎯 输出技术文档 5 篇
+
+---
+
+## 二、详细工作内容
+
+### 项目 A：用户管理系统
+
+#### 工作内容
+1. 设计用户数据库结构
+2. 实现用户注册、登录、信息管理功能
+3. 集成第三方登录（微信、GitHub）
+4. 编写单元测试，覆盖率 85%
+
+#### 成果数据
+- 开发时长：5 人天
+- 代码行数：1200+
+- Bug 数：3 个（已全部修复）
+- 测试覆盖率：85%
+
+### 项目 B：支付流程优化
+
+#### 工作内容
+1. 分析现有支付流程问题
+2. 优化支付接口响应速度
+3. 增加支付失败重试机制
+
+#### 成果数据
+- 响应时间从 2s 降低到 500ms
+- 支付成功率提升 15%
+
+---
+
+## 三、数据可视化
+
+#### 工作量分布
+```
+项目开发 ████████████ 60%
+Bug 修复   ████ 20%
+会议沟通   ██ 10%
+文档编写   ██ 10%
+```
+
+#### Bug 趋势
+```
+Week 1: ████ 4 个
+Week 2: ███ 3 个
+Week 3: ██ 2 个
+Week 4: █ 1 个
+```
+
+---
+
+## 四、问题与改进
+
+### 遇到的问题
+1. 第三方登录接口文档不完善
+   - 解决方案：联系技术支持，获取最新文档
+
+2. 测试环境不稳定
+   - 解决方案：推动运维搭建稳定测试环境
+
+### 改进建议
+1. 建议增加代码 review 环节
+2. 建议完善项目文档
+
+---
+
+## 五、下月工作计划
+
+### 重点工作
+1. 完成订单模块开发（预计 10 人天）
+2. 参与技术方案评审
+3. 输出技术分享 1 次
+
+### 学习计划
+1. 学习微服务架构
+2. 研究性能优化方案
+
+---
+
+## 六、需要支持
+
+- 需要产品提供订单模块详细需求
+- 需要设计提供 UI 设计稿
+```
+
+## 实现逻辑
+
+1. **解析输入**: 提取工作内容要点
+2. **分类整理**: 将内容分为重点工作、常规工作、成果数据等
+3. **选择模板**: 根据 type 和 style 选择合适模板
+4. **填充内容**: 将整理后的内容填入模板
+5. **格式输出**: 生成 markdown/word/ppt 文件
+6. **质量检查**: 确保格式正确、内容完整
+
+## 依赖说明
+
+- **pandoc**: 用于格式转换（markdown → word/ppt）
+- 如未安装，技能会提示安装命令
+
+## 定价建议（商业化）
+
+| 版本 | 功能 | 价格 |
+|------|------|------|
+| 免费版 | 基础周报生成，markdown 格式 | 免费 |
+| 高级版 | 详细月报、Word/PPT 输出、数据可视化 | ¥19.9/月 |
+| 企业版 | 定制模板、批量生成、API 接入 | ¥199/月 |
+
+## 打赏引导
+
+```
+💡 觉得这个技能有用？
+☕ 请我喝杯咖啡：微信/支付宝 XXX
+💬 定制需求：私聊获取报价
+⭐ 给个好评：https://clawhub.ai/xxx
+```
+
+## 更新日志
+
+### v1.0.0 (2026-03-20)
+- 初始版本
+- 支持周报/月报/述职报告生成
+- 支持 markdown 输出
+- 支持基础模板
+
+### v1.1.0 (计划)
+- 增加 Word/PPT 输出
+- 增加数据可视化
+- 增加更多模板风格
+
+## 作者信息
+
+- **作者**: 科特船长
+- **联系**: 私信获取定制服务
+- **更多技能**: https://clawhub.ai/@作者

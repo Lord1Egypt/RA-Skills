@@ -1,35 +1,66 @@
 ---
-name: "Interview Assistant"
-description: "结构化面试助手 - 基于 JD 和简历生成 STAR 面试题库"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interview-assistant"
-sourceUrl: "https://clawhub.ai/skills/interview-assistant"
+name: interview-assistant
+description: 结构化面试助手 - 基于 JD 和简历生成 STAR 面试题库
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - interview-assistant
 ---
 
-# Interview Assistant
+# 结构化面试助手技能
 
-> 结构化面试助手 - 基于 JD 和简历生成 STAR 面试题库
+## 技能概述
+结构化面试助手是一个专业的 HR 工具，融合行为面试法和 STAR 原则，支持 JD+简历对比分析，生成针对性的面试问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interview-assistant`
-- **Source URL:** [https://clawhub.ai/skills/interview-assistant](https://clawhub.ai/skills/interview-assistant)
+## 触发条件
+当用户需要：
+- 根据岗位描述生成面试题库
+- 结合候选人简历生成针对性问题
+- 准备结构化面试流程
+- 获取面试评分维度和标准
 
-## Overview
+## 功能特性
+- ✅ JD 解析 - 提取岗位核心能力要求
+- ✅ 简历解析 - 提取候选人经历亮点
+- ✅ 差距分析 - JD 要求 vs 简历匹配度
+- ✅ STAR 问题生成 - 基于行为面试法
+- ✅ 评分卡 - 5 分制 STAR 评分标准
+- ✅ 简洁输出 - 核心信息一目了然
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 方式 1：只有 JD（生成通用面试题库）
 ```bash
-hermes skills install clawhub/interview-assistant
+interview-assistant --jd "招聘高级产品经理，负责 B 端 SaaS 产品，5 年以上经验" --questions 5
 ```
+
+### 方式 2：JD + 简历（生成针对性问题）
+```bash
+interview-assistant --jd "招聘高级前端工程师，5 年以上经验，精通 React/Vue" --resume "张三，8 年前端经验，本科，曾在腾讯负责 React 项目" --questions 3
+```
+
+## 参数说明
+- `--jd` / `-j`: 必需参数，岗位描述
+- `--resume` / `-r`: 可选参数，候选人简历内容
+- `--questions` / `-q`: 生成问题数量（默认 5 个）
+- `--output` / `-o`: 输出格式（markdown/json/text）
+
+## 输出内容
+- 岗位信息 + 候选人信息 + 匹配度
+- 能力匹配分析表（✅/⚠️/❌ 标记优先级）
+- STAR 原则面试问题（S/T/A/R 引导 + 评分标准）
+- 分析总结
+
+## STAR 原则
+- **S**ituation（情境）：当时的背景是什么？
+- **T**ask（任务）：你面临的任务/目标是什么？
+- **A**ction（行动）：你具体做了什么？
+- **R**esult（结果）：最终结果如何？有什么收获？
+
+## 技术实现
+- 基于 Node.js 的 CLI 应用
+- JD 解析模块提取业务领域和专业技能
+- 简历解析模块提取候选人经历
+- 差距分析模块计算匹配度
+- STAR 问题生成模块生成场景化问题

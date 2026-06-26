@@ -1,0 +1,61 @@
+请执行 KeplerJAI 日常简讯的第二阶段任务：批量通过 API / curl 创建 7 条简讯。
+
+当前任务只做第二阶段，不要重新采集新闻。
+
+你的输入应当是第一阶段已经确认好的 7 条候选稿，每条至少包含：
+- `english_title`
+- `chinese_title`
+- `source_url`
+- `english_body_raw`
+
+目标：
+1. 依次发布这 7 条候选稿
+2. 为每条读取真实接口响应
+3. 提取 `bulletin.id`
+4. 汇总 7 条发布结果
+
+接口地址：
+`https://www.keplerjai.com/api/content/bulletin`
+
+发布规则：
+1. `title` 使用 `english_title`
+2. `url` 使用 `source_url`
+3. `content` 只使用纯文本正文，不要使用 HTML，不要插图
+4. 使用 `curl` 实际执行 `POST`
+5. 成功判定规则固定为：
+   - `resultCode = "OK"`
+   - `bulletin.id` 为有效整数
+6. 前台链接固定为：
+   - `https://www.keplerjai.com/bulletin?id=<bulletin.id>`
+
+执行约束：
+1. 不要要求人工确认
+2. 不要停在中间步骤
+3. 如果某一条发布失败，不要伪装成功
+4. 不要输出过程日志、思考过程或工具日志
+5. 只在全部 7 条都处理完成后再统一输出
+
+最终输出要求：
+如果 7 条都发布成功，只输出一个结构化结果块，格式如下：
+
+```yaml
+published_count: 7
+items:
+  - rank: 1
+    english_title: ""
+    chinese_title: ""
+    bulletin_id: 0
+    frontend_url: ""
+```
+
+要求：
+1. `items` 中必须正好 7 条
+2. `rank` 必须从 1 连续到 7
+3. 不要额外加解释文字
+
+失败输出要求：
+如果未能完成 7 条发布，只输出：
+
+FAILED
+原因：..
+已成功发布条数：N

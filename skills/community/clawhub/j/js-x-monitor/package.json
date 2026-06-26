@@ -1,0 +1,11 @@
+{
+  "name": "js-x-monitor-skill",
+  "version": "1.0.0",
+  "description": "X.com 账号监控 Skill for OpenClaw",
+  "author": "imjszhang",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

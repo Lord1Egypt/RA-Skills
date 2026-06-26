@@ -1,35 +1,119 @@
 ---
-name: "运营商三要素核验 - 聚合数据"
-description: "三网手机实名认证。验证手机号、姓名、身份证三要素是否一致，支持移动、联通、电信三网。使用场景：用户说"实名认证"、"手机号实名验证"、"验证三要素"、"手机号和姓名是否匹配"、"身份证和手机号一致性"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-telecom-verify"
-sourceUrl: "https://clawhub.ai/skills/juhe-telecom-verify"
+name: juhe-telecom-verify
+description: 三网手机实名认证。验证手机号、姓名、身份证三要素是否一致，支持移动、联通、电信三网。使用场景：用户说"实名认证"、"手机号实名验证"、"验证三要素"、"手机号和姓名是否匹配"、"身份证和手机号一致性"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。
+homepage: https://www.juhe.cn/docs/api/id/208
+metadata: {"openclaw":{"emoji":"📱","requires":{"bins":["python3"],"env":["JUHE_TELECOM_KEY"]},"primaryEnv":"JUHE_TELECOM_KEY"}}
 ---
 
-# 运营商三要素核验 - 聚合数据
+# 三网手机实名认证
 
-> 三网手机实名认证。验证手机号、姓名、身份证三要素是否一致，支持移动、联通、电信三网。使用场景：用户说"实名认证"、"手机号实名验证"、"验证三要素"、"手机号和姓名是否匹配"、"身份证和手机号一致性"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP 查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-telecom-verify`
-- **Source URL:** [https://clawhub.ai/skills/juhe-telecom-verify](https://clawhub.ai/skills/juhe-telecom-verify)
+验证手机号、姓名、身份证三要素一致性：**中国移动、中国联通、中国电信**全网支持。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [三网手机实名认证 API](https://www.juhe.cn/docs/api/id/208) 页面，点击「申请使用」
+3. 审核通过后在「我的 API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-telecom-verify
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_TELECOM_KEY=你的 AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_TELECOM_KEY=你的 AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/telecom_verify.py --key 你的 AppKey --name 张三 --idcard 110101199001011234 --mobile 13800138000
 ```
+
+> 免费额度：每天免费调用，具体次数以官网为准。
+
+---
+
+## 使用方法
+
+### 三要素核验（手机号 + 姓名 + 身份证）
+
+```bash
+python scripts/telecom_verify.py --name 张三 --idcard 110101199001011234 --mobile 13800138000
+```
+
+输出示例：
+
+```
+📱 三网手机实名认证结果
+
+验证结果：✅ 一致
+手机号：138****8000
+姓名：张*
+身份证：110101********1234
+运营商：中国移动
+省份：北京
+```
+
+
+### 直接调用 API（无需脚本）
+
+```
+GET https://v.juhe.cn/telecom/query?key=YOUR_KEY&realname=张三&idcard=110101199001011234&mobile=13800138000
+```
+
+---
+
+## AI 使用指南
+
+当用户需要进行手机实名认证时，按以下步骤操作：
+
+1. **收集信息** — 从用户消息中获取手机号、姓名、身份证号
+2. **验证格式** — 检查手机号是否为 11 位、身份证是否符合格式
+3. **调用脚本或 API** — 执行验证，获取结果
+4. **展示结果** — 清晰展示验证结果，敏感信息脱敏处理
+
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `res` | 验证结果 | 1=一致，0=不一致 |
+| `resmsg` | 验证说明 | "一致" / "不一致" |
+| `orderid` | 订单号 | J2023120516063890969J |
+| `type` | 运营商类型 | 移动/联通/电信 |
+| `province` | 省份 | 北京 |
+| `city` | 城市 | 北京市 |
+| `rescode` | 结果代码 | 11=一致，21=不一致等 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/208) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| 手机号格式错误 | 告知手机号格式错误，建议用户重新输入 |
+| 身份证号格式错误| 告知身份证号格式错误，建议用户重新输入 |
+| 验证不一致 | 告知用户姓名、手机号、身份证不匹配 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/telecom_verify.py` — 封装了 API 调用、参数验证、结果格式化和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **网络工具**：IP 查询、DNS 解析、端口检测
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：手机号实名认证、身份证实名验证、银行卡认证
+- **物流快递**：100+ 快递公司实时追踪
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

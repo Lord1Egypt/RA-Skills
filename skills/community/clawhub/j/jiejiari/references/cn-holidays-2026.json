@@ -1,0 +1,51 @@
+[
+  {
+    "festival": "元旦",
+    "start_date": "2026-01-01",
+    "end_date": "2026-01-03",
+    "holiday_days": 3,
+    "work_days": ["2026-01-04"]
+  },
+  {
+    "festival": "春节",
+    "start_date": "2026-02-15",
+    "end_date": "2026-02-23",
+    "holiday_days": 9,
+    "work_days": ["2026-02-14", "2026-02-28"]
+  },
+  {
+    "festival": "清明节",
+    "start_date": "2026-04-04",
+    "end_date": "2026-04-06",
+    "holiday_days": 3,
+    "work_days": []
+  },
+  {
+    "festival": "劳动节",
+    "start_date": "2026-05-01",
+    "end_date": "2026-05-05",
+    "holiday_days": 5,
+    "work_days": ["2026-05-09"]
+  },
+  {
+    "festival": "端午节",
+    "start_date": "2026-06-19",
+    "end_date": "2026-06-21",
+    "holiday_days": 3,
+    "work_days": []
+  },
+  {
+    "festival": "中秋节",
+    "start_date": "2026-09-25",
+    "end_date": "2026-09-27",
+    "holiday_days": 3,
+    "work_days": []
+  },
+  {
+    "festival": "国庆节",
+    "start_date": "2026-10-01",
+    "end_date": "2026-10-07",
+    "holiday_days": 7,
+    "work_days": ["2026-09-20", "2026-10-10"]
+  }
+]

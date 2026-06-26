@@ -1,0 +1,10 @@
+interface:
+  display_name: "Lark Work Report"
+  short_description: "Preflight-check Lark channel and send completion reports"
+  default_prompt: "Use $lark-work-report to verify Codex工作群 as reporting channel, then send my task completion report there."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "lark-mcp"
+      description: "Feishu/Lark MCP server for chat, messaging, and lookup APIs"

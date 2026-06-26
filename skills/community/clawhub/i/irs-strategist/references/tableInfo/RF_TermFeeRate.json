@@ -1,0 +1,95 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EffectiveDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TermFee",
+        "columnChiName": "期限费率",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "期限费率(TermFee)与(CT_SystemConst)表中的DM字段关联，令LB = 1849，得到期限费率的具体描述：1-转融资期限费率，2-转融券期限费率，3-特殊转融券期限费率。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "TermCategory",
+        "columnChiName": "期限类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "期限类别(TermCategory)与(CT_SystemConst)表中的DM字段关联，令LB = 1157，得到期限类别的具体描述：1-1天，2-7天，3-14天，4-20天，5-21天，6-30天，7-60天，8-90天，9-120天，10-1个月，11-2个月，12-3个月，13-4个月，14-6个月，15-9个月，16-1年，17-合计，18-隔夜，19-2天，20-3天，21-1周，22-8天，31-2周，51-3周，61-1.5年，62-2年，63-3年，64-4年，65-5年，66-6年，67-7年，68-8年，69-9年，70-10年，71-4天，72-28天，73-63天，74-91天，75-182天，76-273天，77-364天，78-29天，80-28天以上，90-35天，91-42天，92-119天，93-154天，94-210天，95-245天，96-301天，97-357天，98-30年，99-20年，131-5个月，141-7个月，143-8个月，151-10个月，153-11个月，160-5天，161-6天，162-9天，163-10天，164-11天，165-12天，166-13天，167-15天，168-16天，169-17天，170-18天，171-19天，172-22天，173-23天，174-24天，175-25天，176-26天，177-27天，178-31天，179-32天，180-33天，181-34天，182-36天，183-37天，184-38天，185-39天，186-40天，187-41天，188-43天，189-44天，190-45天，191-46天，192-47天，193-48天，194-49天，195-50天，196-51天，197-52天，198-53天，199-54天，200-55天，201-56天，202-57天，203-58天，204-59天，205-171天，206-87天，207-153天，208-180天。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "CallAnnualRate",
+        "columnChiName": "转融入年利率",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "58.95"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "PutAnnualRate",
+        "columnChiName": "转融出年利率",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "94.92"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,35 +1,49 @@
 ---
-name: "Liepin"
-description: "检索并摘要猎聘公开职位与公司信息，提供薪资、要求、行业等核心内容，不支持投递和登录自动化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liepin"
-sourceUrl: "https://clawhub.ai/skills/liepin"
+name: liepin-hot-trend
+description: 注册“猎聘”热门技能；当需要访问或自动化猎聘相关内容时调用。
+homepage: `https://www.liepin.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Liepin
+# 猎聘
 
-> 检索并摘要猎聘公开职位与公司信息，提供薪资、要求、行业等核心内容，不支持投递和登录自动化。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liepin`
-- **Source URL:** [https://clawhub.ai/skills/liepin](https://clawhub.ai/skills/liepin)
+- 面向公开职位与公司页的检索与信息摘要
+- 不提供投递、登录自动化或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.liepin.com/
+- 职位搜索：https://www.liepin.com/zhaopin/
+- 公司页：通过职位详情进入公司主页
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liepin
-```
+常见任务
+
+- 指定关键词/城市的职位列表摘要（薪资、经验、学历、类型）
+- 职位详情核心字段整理（职责、要求、技能标签）
+- 公司信息摘要（行业、规模、融资阶段）
+
+数据字段
+
+- 职位名称、薪资范围、城市、经验要求、学历、职位类型、发布时间、链接
+- 职责与要求、技能标签、福利亮点
+- 公司名称、行业、规模、融资阶段、公司链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 频率控制，避免批量抓取；标注采集时间
+- 不进行账号登录或投递操作
+
+示例流程
+
+- 关键词清单：输入关键词/城市 → 搜索 → 抽取列表 → 输出职位摘要
+- 职位摘要：访问详情页 → 提取职责/要求/薪资 → 生成对比卡片
+- 公司速览：进入公司页 → 抽取行业/规模/融资 → 输出摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

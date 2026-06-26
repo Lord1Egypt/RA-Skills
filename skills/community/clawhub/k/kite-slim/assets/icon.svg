@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <!-- 背景圆形 -->
+  <circle cx="100" cy="100" r="95" fill="url(#bg)"/>
+  <!-- 苹果轮廓 -->
+  <path d="M100 45 C85 45 75 55 75 70 C75 85 82 95 90 100 L90 120 C90 145 80 165 100 175 C120 165 110 145 110 120 L110 100 C118 95 125 85 125 70 C125 55 115 45 100 45" fill="#fff" opacity="0.95"/>
+  <!-- 叶子 -->
+  <ellipse cx="105" cy="42" rx="12" ry="8" fill="#4ade80" transform="rotate(30 105 42)"/>
+  <path d="M100 50 Q100 35 108 38" stroke="#8b5a2b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- 健身图标 - 步数 -->
+  <path d="M65 130 L85 130 M75 120 L75 140 M60 135 L90 135" stroke="#667eea" stroke-width="4" stroke-linecap="round"/>
+  <path d="M115 130 L135 130 M125 120 L125 140 M110 135 L140 135" stroke="#667eea" stroke-width="4" stroke-linecap="round"/>
+  <!-- 火焰消耗 -->
+  <path d="M100 115 C95 120 92 130 100 145 C108 130 105 120 100 115" fill="#f97316"/>
+  <path d="M100 125 C97 128 95 135 100 145 C105 135 103 128 100 125" fill="#fbbf24"/>
+  <!-- 文字 -->
+  <text x="100" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff" font-family="Arial">KITE SLIM</text>
+</svg>

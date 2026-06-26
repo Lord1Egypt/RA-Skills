@@ -1,35 +1,49 @@
 ---
-name: "Juejin"
-description: "检索与摘要掘金公开技术文章和话题，提取标题、互动数据及技术要点，支持趋势统计，遵守采集限制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juejin-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/juejin-hot-trend"
+name: juejin-hot-trend
+description: 注册“掘金”热门技能；当需要访问或自动化掘金相关内容时调用。
+homepage: `https://juejin.cn/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Juejin
+# 掘金
 
-> 检索与摘要掘金公开技术文章和话题，提取标题、互动数据及技术要点，支持趋势统计，遵守采集限制。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juejin-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/juejin-hot-trend](https://clawhub.ai/skills/juejin-hot-trend)
+- 面向公开文章/专栏/话题页的检索与技术要点摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://juejin.cn/
+- 文章/话题频道：站点入口
+- 搜索入口：https://juejin.cn/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juejin-hot-trend
-```
+常见任务
+
+- 指定关键词的技术文章摘要（标题、标签、点赞/收藏/评论）
+- 代码示例的技术栈与关键点提取
+- 话题分布与趋势统计
+
+数据字段
+
+- 标题、作者、发布时间、标签、点赞/收藏/评论数、链接
+- 技术栈、问题与解决方案摘要
+- 采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行接口调用
+
+示例流程
+
+- 文章摘要：输入关键词 → 搜索 → 抽取条目 → 输出互动指标
+- 示例要点：访问文章页 → 抽取技术栈/关键点 → 输出摘要
+- 趋势统计：收集条目 → 基于标签分类 → 生成趋势分布
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-video-detail/v2 for Bilibili Video Details through JustOneAPI with bvid.",
+  "displayName": "Bilibili Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili video Details data, including metadata (title, tags, and publishing time), for tracking video performance and engagement metrics and analyzing content metadata and uploader information.",
+      "method": "GET",
+      "operationId": "getBilibiliVideoDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili Video ID (BVID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "bvid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-video-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,557 @@
+# English locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    You are Kiwi, a voice assistant. You are connected to OpenClaw and can perform ANY task: file operations, code, browser, terminal, search, system management — everything is available.
+
+    Rules for voice mode:
+    1. Answer concisely but COMPLETELY. Better complete than incomplete.
+    2. Be friendly and emotional
+    3. If you need to perform a task — just do it, never say you can't. Report the result briefly.
+    4. Never refuse to execute. You can do anything via OpenClaw.
+    5. If unsure about details — ask for clarification
+
+    Context: the user is speaking by voice, the response will be voiced via TTS.
+
+# User-facing spoken responses
+responses:
+  greeting: "Hello! I'm Kiwi. Say 'Kiwi' and a command when you're ready."
+  service_started: "Service started!"
+  instruction: "Say 'Kiwi, hello!' to get started"
+  error_timeout: "The response took too long. Please repeat."
+  error_no_response: "Could not get a response. Please repeat."
+  error_send_failed: "Sorry, could not send the message."
+  error_retry_failed: "Could not get a response. Please try again."
+  error_stream_stalled: "The response stalled. Please repeat."
+  shutting_down: "Shutting down..."
+  context_cleared: "Context cleared. Starting a new conversation."
+  calibrating: "Calibrating voice recognition."
+  approval_accepted: "Accepted. Executing request from {requester}."
+  approval_denied: "Okay, request from {requester} denied."
+  telegram_approved: "Telegram confirmed. Executing request from {requester}."
+  telegram_denied: "Request from {requester} denied via Telegram."
+  heard: "Heard: {command}"
+  thinking: "Thinking..."
+  cancel_received: "Cancel command received!"
+  stopped: "Stopped."
+  nothing_to_stop: "Nothing to stop."
+  unknown_speaker: "Stranger"
+  continuing_execution: "continuing execution"
+  owner_registered: "Done. I remembered the owner's voice: {name}."
+  owner_register_failed: "Could not save the profile. Say a longer phrase and try again."
+  owner_already_registered: "The owner is already registered. Only they can change the voice profile."
+  owner_reregistration_attempt: "Owner re-registration attempt from {speaker}: '{command}'"
+  profiles_unavailable: "Profile module is currently unavailable."
+  cannot_identify: "Cannot identify the speaker right now."
+  voice_list_unavailable: "Voice list is unavailable."
+  only_owner_can_add: "Only the owner can add new people."
+  say_name_prompt: "Say a name after the phrase: remember me as ..."
+  voice_remembered: "Remembered voice: {name}."
+  voice_save_failed: "Could not save the voice. A clearer phrase is needed."
+  approval_prompt_voice_and_telegram: "Say: approve. Or confirm in Telegram."
+  approval_prompt_voice: "Say: approve or deny."
+  approval_prompt_telegram: "Please confirm in Telegram."
+  approval_prompt_register: "Register the owner's voice: Kiwi, I'm the owner."
+  approval_request: "{owner}, {speaker} asks: {command}. {hint}"
+  soul_switched: "Switched to {name} mode!"
+  soul_not_found: "That mode doesn't exist. Ask me what's available."
+  nsfw_enabled: "NSFW mode enabled. Model switched."
+  soul_reset: "Back to default mode!"
+  soul_list: "Available modes: {names}. Currently active: {active}."
+  ha_command_sent: "Sent command to smart home."
+  ha_response: "{response}"
+  ha_not_configured: "Smart home integration is not configured."
+  ha_connection_error: "Cannot connect to smart home."
+  ha_no_response: "Smart home did not respond."
+  exec_approval_request: "The agent wants to run a command: {command}. Should I allow it?"
+  exec_approved: "Approved. Running the command."
+  exec_denied: "Denied. Command blocked."
+  exec_timeout: "No response received. Command denied for safety."
+
+# Status announcer fallback messages
+status:
+  thinking: "Thinking about the answer..."
+  processing: "Processing the request, please wait..."
+  working: "Still working, the result will be ready soon..."
+  continuing: "Continuing, this is taking some time..."
+  almost_done: "Almost done..."
+
+# Voice security messages
+security:
+  safe: "Safe command"
+  warning: "Command requires attention"
+  dangerous: "Dangerous command!"
+  critical: "CRITICAL command!"
+  unknown_level: "Unknown danger level"
+  telegram_confirm: "Confirm execution?"
+  telegram_approved: "Accepted!"
+  telegram_denied: "Denied"
+  approve_button: "Approve"
+  deny_button: "Deny"
+  telegram_request_title: "*Kiwi - Approval Request*"
+  telegram_speaker_label: "*Speaker:*"
+  telegram_command_label: "*Command:*"
+  telegram_security_title: "*Kiwi — Security*"
+  awaiting_approval: "Awaiting approval in Telegram..."
+
+# Speaker identification responses
+speakers:
+  self_response: "That's me, Kiwi!"
+  owner_response: "That's you, {name}! ({confidence} confidence)"
+  blocked_response: "That's a blocked voice"
+  known_response: "That's {name} ({confidence} confidence)"
+  unknown_response: "I don't recognize this voice"
+  blocked_display: "Blocked"
+  calibration_phrase: "Hello, I'm Kiwi. This is a test phrase for calibration."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "Unknown voice"
+  voice_blocked: "Voice is blocked"
+  voice_blacklisted: "Voice is blacklisted"
+  self_echo: "That's Kiwi (echo)"
+  allowed: "Allowed"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kivi": "kiwi"
+    "kiwee": "kiwi"
+    "keewi": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+  fuzzy_blacklist:
+    - "key"
+    - "kid"
+    - "kit"
+    - "kin"
+    - "kim"
+    - "kiss"
+    - "kick"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "Thank you for watching"
+    - "Please subscribe"
+    - "Like and subscribe"
+    - "Thanks for watching"
+    - "See you next time"
+    - "Subtitles by"
+    - "Editor"
+    - "Translator"
+    - "Please like and subscribe"
+    - "Don't forget to subscribe"
+    - "Hit the bell icon"
+    - "Leave a comment"
+    - "srt subs"
+    - "amara.org"
+    - "Subtitles made by"
+    - "Sound engineer"
+    - "Director"
+    - "Screenplay by"
+    - "To be continued"
+  phantom_phrases:
+    - "subtitle editor"
+    - "subscribe to our channel"
+    - "ooooooo"
+    - "subtitles"
+    - "phone call"
+    - "ring"
+    - "subtitles created by"
+  phantom_patterns:
+    - "^um+[mm]*$"
+    - "^mm+[mm]*$"
+    - "^aa+[aa]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "etc.": "et cetera"
+    "e.g.": "for example"
+    "i.e.": "that is"
+    "vs.": "versus"
+    "approx.": "approximately"
+  incomplete_endings:
+    - "and"
+    - "but"
+    - "or"
+    - "the"
+    - "a"
+    - "an"
+    - "to"
+    - "for"
+    - "with"
+    - "in"
+    - "on"
+    - "at"
+    - "by"
+    - "of"
+    - "from"
+    - "that"
+    - "which"
+    - "who"
+    - "whom"
+    - "whose"
+    - "where"
+    - "when"
+    - "if"
+    - "although"
+    - "because"
+    - "so"
+    - "also"
+    - "either"
+    - "neither"
+    - "both"
+    - "not"
+    - "nor"
+    - "yet"
+    - "about"
+    - "into"
+    - "over"
+    - "under"
+    - "before"
+    - "after"
+    - "without"
+  incomplete_patterns:
+    - "I want"
+    - "I will"
+    - "I need"
+    - "I'm going to"
+    - "I should"
+    - "let's"
+    - "tell me"
+    - "show me"
+    - "explain"
+    - "help me"
+    - "please"
+  complete_patterns:
+    - "something"
+    - "anything"
+    - "everything"
+    - "nothing"
+    - "please"
+    - "joke"
+    - "story"
+    - "tale"
+    - "time"
+    - "date"
+    - "weather"
+  emotion_keywords:
+    urgent:
+      - "urgent"
+      - "quickly"
+      - "important"
+    sad:
+      - "sad"
+      - "bad"
+      - "terrible"
+      - "awful"
+    happy:
+      - "cool"
+      - "great"
+      - "super"
+      - "yay"
+      - "awesome"
+    quiet:
+      - "quietly"
+      - "secret"
+      - "whisper"
+    funny:
+      - "joke"
+      - "funny"
+      - "make me laugh"
+    curious:
+      - "tell me"
+      - "explain"
+      - "what is"
+  response_keywords:
+    apologetic:
+      - "sorry"
+      - "unfortunately"
+      - "I can't"
+    enthusiastic:
+      - "!"
+      - "great"
+      - "awesome"
+      - "super"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "delete\\s+(all|every|files?|folders?|directory|directories)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "restart|reboot"
+    - "turn\\s+off\\s+(computer|pc|system)"
+    - "send\\s+(password|passwords|key|token|secret|secrets)"
+    - "show\\s+(password|key|token)"
+    - "tell\\s+(password|passwords|code|pin)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "install\\s+(unknown|untrusted)"
+    - "download\\s+(executable|virus|trojan)"
+  warning:
+    - "change\\s+(settings?|config)"
+    - "configure\\s+(system|server|nginx|apache)"
+    - "open\\s+(ports?|port)"
+    - "close\\s+(ports?|port|firewall)"
+    - "ping\\s+-t"
+    - "move\\s+(file|folder)"
+    - "copy"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "delete all files"
+    - "format c:"
+    - "shutdown now"
+    - "sudo rm -rf"
+    - "send password"
+    - "turn off computer"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "change settings"
+    - "open ports"
+    - "move file"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "blacklist"
+    - "block"
+    - "ban"
+  unblock_last:
+    - "unblock"
+    - "remove from blacklist"
+    - "unban"
+  add_friend:
+    - "remember me as"
+    - "this is my friend"
+    - "remember"
+  forget_speaker:
+    - "forget this voice"
+    - "delete profile"
+  identify:
+    - "who is speaking"
+    - "who is this"
+  list_voices:
+    - "what voices"
+    - "list voices"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "blacklist|block.*voice|ban.*voice|add.*blacklist"
+  unblock_last: "unblock|remove.*blacklist|unban.*voice"
+  add_friend: "remember.*as|this is my friend|remember.*voice|add.*friend"
+  forget_speaker: "forget.*voice|delete.*profile|remove.*friend"
+  identify: "who.*speaking|who.*is.*this|identify.*voice"
+  list_voices: "what.*voices|list.*voices|show.*voices"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "as\\s+(\\w+)"
+    - "friend\\s+(\\w+)"
+    - "my name is\\s+(\\w+)"
+    - "call me\\s+(\\w+)"
+  filter_words:
+    - "you"
+    - "me"
+    - "him"
+    - "her"
+    - "who"
+    - "what"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "calibrate"
+    - "recalibrate"
+    - "update profile"
+  reset_context:
+    - "reset context"
+    - "new conversation"
+    - "forget"
+    - "reset system prompt"
+  stop:
+    - "stop"
+    - "cancel"
+    - "enough"
+    - "halt"
+    - "quit"
+  register_owner:
+    - "remember my voice"
+    - "register my voice"
+    - "I'm the owner"
+  approval_yes:
+    - "approve"
+    - "confirm"
+    - "allow"
+    - "execute"
+    - "yes, execute"
+    - "go ahead"
+  approval_no:
+    - "deny"
+    - "reject"
+    - "don't execute"
+    - "no"
+    - "forbid"
+    - "cancel approval"
+  safe_markers:
+    - "joke"
+    - "story"
+    - "tale"
+    - "chat"
+    - "how are you"
+    - "sing"
+    - "what time"
+    - "time"
+    - "date"
+    - "day of week"
+    - "weather"
+    - "news"
+    - "tell me"
+    - "explain"
+    - "who is"
+    - "what is"
+  task_markers:
+    - "do"
+    - "execute"
+    - "run"
+    - "open"
+    - "close"
+    - "delete"
+    - "create"
+    - "set"
+    - "download"
+    - "install"
+    - "send"
+    - "write"
+    - "change"
+    - "move"
+    - "find"
+    - "search"
+    - "check"
+    - "go to"
+    - "command"
+    - "terminal"
+    - "shell"
+  # Soul switching
+  soul_switch_patterns:
+    - "switch to"
+    - "change mode to"
+    - "enable mode"
+    - "change soul to"
+  nsfw_enable_patterns:
+    - "nsfw mode"
+    - "adult mode"
+    - "18 plus"
+    - "eighteen plus"
+  default_mode_patterns:
+    - "default mode"
+    - "normal mode"
+    - "standard mode"
+    - "disable nsfw"
+    - "turn off nsfw"
+    - "turn off adult"
+  soul_list_patterns:
+    - "what modes"
+    - "what souls"
+    - "list modes"
+    - "list souls"
+    - "available modes"
+  # Home Assistant voice command routing
+  ha_trigger_patterns:
+    - "smart home"
+    - "home assistant"
+    - "turn on"
+    - "turn off"
+    - "switch on"
+    - "switch off"
+    - "lights"
+    - "light"
+    - "lamp"
+    - "brightness"
+    - "thermostat"
+    - "temperature"
+    - "air conditioner"
+    - "heater"
+    - "fan"
+    - "television"
+    - "tv"
+    - "curtains"
+    - "blinds"
+    - "lock"
+    - "garage"
+    - "vacuum"
+    - "humidifier"
+    - "plug"
+    - "outlet"
+    - "living room"
+    - "bedroom"
+    - "kitchen"
+    - "bathroom"
+    - "hallway"
+  ha_strip_prefixes:
+    - "smart home "
+    - "home assistant "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "Sorry, I didn't get a response."
+  processing_error: "Sorry, an error occurred while processing the request."
+  timeout: "Sorry, the response took too long."
+  generic_error: "Error: {error}"
+  rate_limit: "Sorry, the service is temporarily unavailable (rate limit). Try again later."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "Sorry, the connection to OpenClaw was lost. Please repeat your request."
+  send_failed: "Error: could not send the message via WebSocket"
+  no_response: "Sorry, I didn't get a response."
+  timeout: "Sorry, the response took too long."
+  request_aborted: "The request was aborted. Please repeat."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "The tool returned an error, checking the cause."
+  opening_folder: "Opening the project folder."
+  browsing_structure: "Browsing the project structure and looking for files."
+  analyzing_file: "Analyzing file {path}."
+  reading_code: "Reading and analyzing the code."
+  searching_code: "Searching for the relevant code."
+  running_tests: "Checking the code and running tests."
+  editing_code: "Making changes to the code."
+  checking_repo: "Checking repository changes."
+  project_steps: "Executing project steps."
+  running_command: "Running a command in the terminal."
+  reading_files: "Reading project files."
+  searching_info: "Searching for information in the code."
+  continuing_work: "Continuing work on the task."
+  planning: "Planning the solution steps."
+  error_checking: "An error occurred, checking what happened."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "The OpenClaw browser extension is not connected. Please open the extension on the active tab."
+  tool_unavailable: "Tool {name} is currently unavailable."
+  timeout: "The request took too long. Please try again."
+  rate_limit: "Too many requests. Wait a moment and try again."
+  auth_error: "Authorization error. Check your connection settings."
+  generic_error: "Error: {error}"
+  default_tool_name: "service"

@@ -1,0 +1,85 @@
+# life-mirror 技能配置文件
+# 所有可变参数都在此文件中配置，相关文件读取此配置后执行
+
+## 存储配置
+storage:
+  # 存储目录路径
+  directory: "D:\storage\life-mirror"
+  # 核心文件名
+  files:
+    profile: "profile.json"  # 用户基本信息、授权平台、偏好设置、能量地图
+    facts: "memory_facts.jsonl"  # 客观事实记录，每行一条 JSON
+    inferences: "memory_inferences.jsonl"  # 推断记录，必须引用证据
+    todos: "todos.jsonl"  # 待办事项记录
+    sync_state: "platform_sync_state.json"  # 平台同步状态，记录 last_sync_at 和游标
+
+## 定时任务配置
+scheduling:
+  # 每小时同步任务（cron 表达式）
+  hourly_task: "0 * * * *"
+  # 每周一报告任务（cron 表达式）
+  weekly_report_task: "0 8 * * 1"
+  # 月度报告任务（cron 表达式）
+  monthly_report_task: "0 8 1 * *"
+  # 每天更新用户画像任务（cron 表达式）
+  daily_profile_update: "0 1 * * *"  # 每天凌晨1:00
+  # 时区
+  timezone: "Asia/Shanghai"
+  
+## 推送配置
+push:
+  # 单日主动推送上限
+  daily_limit: 10
+  # 每日有效主动触达下限（约）
+  daily_minimum: 4
+  # 深夜时段（不主动推送）
+  quiet_hours:
+    start: "23:00"
+    end: "07:00"
+  # 偏好时段示例
+  preferred_hours:
+    morning: "07:30-09:00"
+    noon: "12:00-13:30"
+    evening: "21:00-23:00"
+
+## 隐私配置
+privacy:
+  # 敏感数据类型列表
+  sensitive_data_types:
+    - "身份证"
+    - "姓名"
+    - "手机号"
+    - "地址"
+    - "银行卡号"
+    - "密码"
+  # 是否允许本地存储敏感数据
+  allow_local_storage: true
+  # 是否允许上传到模型
+  allow_upload_to_model: false
+
+## 冷启动配置
+cold_start:
+  # 冷启动触发条件
+  trigger_conditions:
+    - "几乎无画像"
+    - "authorized_platforms 缺失/为空/很少"
+    - "无法推断处境与偏好"
+  # 必须询问的平台列表示例
+  platform_examples:
+    - "抖音"
+    - "快手"    
+    - "小红书"
+    - "微博"
+    - "知乎"
+    - "B站"
+    - "脉脉"
+    - "支付宝"
+
+## 前缀配置
+prefix:
+  # 回复前缀
+  text: "[life-mirror] "
+  # 是否要求前缀
+  required: true
+  # 例外情况
+  exception: "用户明确要求关闭时，本会话可省略"

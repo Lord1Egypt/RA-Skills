@@ -1,35 +1,116 @@
 ---
-name: "Knowledge Graph - Kg Schema From Text"
-description: "Generate a structured knowledge graph ontology or schema from unstructured or semi-structured text sources."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kg-schema-from-text"
-sourceUrl: "https://clawhub.ai/skills/kg-schema-from-text"
+name: kg_schema_from_text
+title: Knowledge Graph Ontology & Schema Generation from Text
+description: Generate a structured knowledge graph ontology or schema from unstructured or semi-structured text sources.
+category: graph-modeling
+tags:
+  - knowledge-graph
+  - ontology
+  - schema
+  - rdf
+  - owl
+  - graph-modeling
+  - entity-extraction
+  - developer-tools
+version: 1.0.0
+author: community
+license: MIT
 ---
 
-# Knowledge Graph - Kg Schema From Text
+# Knowledge Graph Schema Generation from Text
 
-> Generate a structured knowledge graph ontology or schema from unstructured or semi-structured text sources.
+**Automatically derive structured graph schemas from natural language documentation and domain descriptions.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kg-schema-from-text`
-- **Source URL:** [https://clawhub.ai/skills/kg-schema-from-text](https://clawhub.ai/skills/kg-schema-from-text)
+This skill converts textual descriptions into machine-readable graph models with entities, relationships, properties, and constraints.
 
-## Overview
+## Quick Start
 
+### Use When
+- Converting domain documentation → ontology
+- Bootstrapping a knowledge graph schema
+- Designing initial RDF/OWL or Neo4j schemas
+- Extracting schema from requirements or API docs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kg-schema-from-text
+### Inputs
+- Natural language domain descriptions
+- Technical documentation
+- Example records or datasets
+- JSON/CSV structures
+
+### Outputs
+- Entity types (nodes/classes)
+- Relationship types (edges/predicates)
+- Properties & attributes
+- Graph schema representation (Property Graph or RDF)
+
+## Example
+
+**Input:**
 ```
+A university contains students, professors, courses, and departments.
+Students enroll in courses. Professors teach courses.
+Departments manage both courses and professors.
+```
+
+**Output:**
+```
+Entities: Student, Professor, Course, Department
+
+Relationships:
+- Student -> ENROLLED_IN -> Course
+- Professor -> TEACHES -> Course
+- Department -> MANAGES -> Course
+- Department -> MANAGES -> Professor
+
+Properties:
+- Student: id, name, email, enrollment_date
+- Course: id, title, credits, department
+- Professor: id, name, department, specialization
+- Department: id, name, budget
+```
+
+## Execution Steps
+
+1. **Extract Entities** – Identify nouns/concepts from text
+2. **Extract Relationships** – Identify verbs/connections
+3. **Extract Properties** – Identify attributes and constraints
+4. **Infer Structure** – Build graph patterns
+5. **Generate Schema** – Output in target format (Property Graph or RDF)
+
+## Schema Formats
+
+### Property Graph (Neo4j, TigerGraph)
+```
+Nodes: Student, Professor, Course, Department
+Relationships: ENROLLED_IN, TEACHES, MANAGES
+Properties: Names, IDs, dates, descriptions
+```
+
+### RDF/OWL (Semantic Web)
+```
+Classes: Student, Professor, Course, Department
+Properties: enrolledIn, teaches, manages
+Attributes: name, id, description
+```
+
+## Recommended Libraries
+
+- **NLP**: spaCy, transformers, nltk
+- **Graph**: networkx, rdflib, pyvis, owlready2
+- **Schema**: pydantic, dataclasses, jsonschema
+
+## Best Practices
+
+✓ Use clear, consistent entity names (PascalCase)  
+✓ Normalize relationship directions  
+✓ Extract domain-specific constraints  
+✓ Separate schema from instance data  
+✓ Follow knowledge graph modeling standards  
+
+## References
+
+See [extraction-patterns.md](references/extraction-patterns.md) for entity/relationship extraction guidelines and [example-schemas.md](examples/example-schemas.md) for domain examples.
+
+---
+
+**Version:** 1.0.0

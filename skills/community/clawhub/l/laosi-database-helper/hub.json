@@ -1,0 +1,20 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "database",
+                 "sql",
+                 "query",
+                 "schema",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "database-helper",
+    "pricing":  {
+                    "price":  2900,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "Database Helper Pro"
+}

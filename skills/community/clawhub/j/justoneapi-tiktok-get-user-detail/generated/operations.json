@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/get-user-detail/v1 for TikTok User Profile through JustOneAPI.",
+  "displayName": "TikTok User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok user Profile data, including nickname, unique ID, and avatar, for influencer profiling and audience analysis, account performance tracking and growth monitoring, and identifying verified status and official accounts.",
+      "method": "GET",
+      "operationId": "getTiktokUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "The unique handle/username of the user (e.g., 'tiktok').",
+          "enumValues": [],
+          "location": "query",
+          "name": "uniqueId",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "The unique security ID of the user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "secUid",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

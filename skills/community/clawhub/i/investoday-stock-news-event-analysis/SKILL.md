@@ -1,35 +1,267 @@
 ---
-name: "investoday-stock-news-event-analysis"
-description: "面向A股个股新闻与事件面分析，聚焦近期新闻、事件情绪、机构验证与市场反馈。基于今日投资金融数据接口，自动识别股票代码并输出结构化新闻事件分析报告。触发词：最近新闻、消息面、事件驱动、利好利空、催化、风险消息。"
-category: "other"
-source: "ClawHub"
-tags: [bullish-bearish, catalysts, event-driven, institutional-validation, market-reaction, news-event-analysis, news-sentiment, risk-alerts]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-news-event-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-news-event-analysis"
+name: investoday-stock-news-event-analysis
+title: "股票新闻事件分析"
+version: 1.0.0
+description: 面向A股个股新闻与事件面分析，聚焦近期新闻、事件情绪、机构验证与市场反馈。基于今日投资金融数据接口，自动识别股票代码并输出结构化新闻事件分析报告。触发词：最近新闻、消息面、事件驱动、利好利空、催化、风险消息。
+tags:
+  - news-event-analysis
+  - news-sentiment
+  - event-driven
+  - bullish-bearish
+  - catalysts
+  - risk-alerts
+  - institutional-validation
+  - market-reaction
+metadata:
+  clawdbot:
+    emoji: "📰"
+    category: "finance"
+    requires:
+      env: ["INVESTODAY_API_KEY"]
+      skills: ["investoday-finance-data"]
+    primaryEnv: "INVESTODAY_API_KEY"
 ---
 
-# investoday-stock-news-event-analysis
+# 📰 股票新闻事件分析
 
-> 面向A股个股新闻与事件面分析，聚焦近期新闻、事件情绪、机构验证与市场反馈。基于今日投资金融数据接口，自动识别股票代码并输出结构化新闻事件分析报告。触发词：最近新闻、消息面、事件驱动、利好利空、催化、风险消息。
+面向 A 股个股新闻与事件面分析，聚焦近期新闻、事件情绪、机构验证与市场反馈。基于今日投资金融数据接口，自动识别股票代码并输出结构化新闻事件分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-news-event-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-news-event-analysis](https://clawhub.ai/skills/investoday-stock-news-event-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只股票最近有哪些新闻、消息、催化或风险事件
+- 用户想判断近期事件偏利多还是利空，是否已被机构或市场验证
+- 用户希望知道“最近发生了什么”“事件影响还在不在”“消息面偏空还是偏多”
+- 关键词：最近新闻、消息面、事件驱动、利好利空、催化、风险消息、事件面、资讯解读
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-news-event-analysis
+**示例 1：新闻梳理**
 ```
+浪潮信息最近有什么重要消息？
+```
+
+**示例 2：利好利空判断**
+```
+帮我分析一下宁德时代最近的新闻是偏利多还是偏利空。
+```
+
+**示例 3：事件验证**
+```
+中际旭创最近有没有什么催化，市场买账了吗？
+```
+
+> 💡 本 Skill 偏“近阶段新闻与事件面全景梳理”。若用户重点询问“今天为什么涨跌”，优先使用 `个股异动分析`；若重点询问“某一条消息怎么解读”，优先使用 `个股消息解读`；若重点询问“机构近期怎么看”，优先使用 `个股研报解读`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 的 `call_api.py` 脚本获取实时金融数据。
+
+```
+skills/investoday-finance-data/scripts/call_api.py   # API 调用脚本
+skills/investoday-finance-data/references/            # 接口文档
+```
+
+确保 `INVESTODAY_API_KEY` 已配置（环境变量或 `.env` 文件）。
+
+## 工具说明
+
+以下为本 Skill 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 基础工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 综合标的搜索 | `search` | GET | 通过关键字搜索股票代码 |
+| 股票基本信息 | `stock/basic-info` | GET | 获取股票名称、行业、主营业务等基础信息 |
+
+### 新闻与事件工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 实体相关新闻 | `news/entity-related` | GET | 获取公司、行业、宏观、行情四类相关新闻 |
+| 研报舆情 | `research/sentiment` | POST | 获取研报观点、情绪与关键逻辑 |
+| 研报预测评级 | `report/stock-forecast-ratings` | GET | 获取机构评级、目标价与预测变化 |
+| 上市公司公告 | `announcements` | GET | 获取公司公告与正式事件披露 |
+| 沪深京实时行情 | `stock-quote/realtime-merge` | GET | 获取个股行情与板块反馈，用于验证事件是否被市场响应 |
+
+## 数据获取流程
+
+用户提供股票名称或代码后，Agent 按以下流程获取数据：
+
+```bash
+# Step 0：标的识别（如用户输入名称而非代码）
+python skills/scripts/call_api.py search key=<股票名称> type=11
+
+# Step 1：股票基本信息 — 工具ID: stock/basic-info
+python skills/scripts/call_api.py stock/basic-info stockCode=<code>
+
+# Step 2：公司维度新闻（近30天） — 工具ID: news/entity-related
+python skills/scripts/call_api.py news/entity-related stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=3 pageNum=1 pageSize=3
+
+# Step 3：行业维度新闻（近30天） — 工具ID: news/entity-related
+python skills/scripts/call_api.py news/entity-related stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=2 pageNum=1 pageSize=3
+
+# Step 4：宏观维度新闻（近30天） — 工具ID: news/entity-related
+python skills/scripts/call_api.py news/entity-related stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=1 pageNum=1 pageSize=3
+
+# Step 5：行情维度新闻（近30天） — 工具ID: news/entity-related
+python skills/scripts/call_api.py news/entity-related stockCode=<code> beginTime=<30天前> endTime=<当前时间> newsType=4 pageNum=1 pageSize=3
+
+# Step 6：研报舆情（近90天） — 工具ID: research/sentiment
+python skills/scripts/call_api.py research/sentiment --method POST stockCode=<code> beginTime=<90天前> endTime=<当前时间> pageNum=1 pageSize=5
+
+# Step 7：研报预测评级（近90天） — 工具ID: report/stock-forecast-ratings
+python skills/scripts/call_api.py report/stock-forecast-ratings stockCode=<code> beginDate=<90天前> endDate=<今天> pageNum=1 pageSize=10
+
+# Step 8：上市公司公告（近30天） — 工具ID: announcements
+python skills/scripts/call_api.py announcements stockCode=<code> beginDate=<30天前> endDate=<今天> pageNum=1 pageSize=10
+
+# Step 9：实时行情 — 工具ID: stock-quote/realtime-merge
+python skills/scripts/call_api.py stock-quote/realtime-merge stockCode=<code>
+```
+
+> **并行优化**：完成 Step 0 的代码识别后，Step 1-9 可并行调用；写报告时优先保留高相关、时间更近、信息量更高的 2-4 个核心事件，不要罗列全部新闻。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：识别近期核心事件
+
+**目标**：从公司、行业、宏观、行情四类新闻及公告中，提炼近阶段最重要的事件主线。
+
+**数据来源**：`news/entity-related` + `announcements`
+
+分析要点：
+- 公司维度优先级最高，其次行业、宏观、行情
+- 优先保留正式公告、时间更近、信息量更高、与个股相关性更强的事件
+- 若事件重复出现，应合并同类项而非简单堆叠
+
+**输出**：核心事件列表与主线判断。
+
+### Step 2：判断事件情绪与影响层级
+
+**目标**：判断当前事件更偏利多、利空还是中性，并区分情绪层面与基本面层面的影响。
+
+**数据来源**：`news/entity-related` + `announcements`
+
+分析要点：
+- 事件情绪是短期情绪扰动还是中期基本面变化
+- 影响层级是交易情绪、业绩预期还是经营逻辑变化
+- 若同一阶段存在利多与利空并存，必须明确主次关系
+
+**输出**：事件情绪结论与影响路径。
+
+### Step 3：判断机构是否验证
+
+**目标**：判断近期研报观点是否支持当前事件逻辑。
+
+**数据来源**：`research/sentiment` + `report/stock-forecast-ratings`
+
+分析要点：
+- 研报观点与新闻事件是否同向
+- 机构评级是否上调、维持还是下修
+- 若机构分歧明显，应提示逻辑仍未形成共识
+
+**输出**：机构验证强弱与主要分歧点。
+
+### Step 4：判断市场是否响应
+
+**目标**：通过实时行情与板块反馈验证市场是否为事件“买账”。
+
+**数据来源**：`stock-quote/realtime-merge`
+
+分析要点：
+- 个股近期表现是否与事件方向一致
+- 板块联动强弱如何
+- 若新闻偏正面但股价无响应，应提示“市场验证偏弱”
+
+**输出**：市场反馈结论与验证状态。
+
+### Step 5：形成综合事件判断
+
+**目标**：把“发生了什么、偏利好还是利空、是否被验证、能否持续”串成完整结论。
+
+**数据来源**：前 4 步分析结果汇总
+
+分析要点：
+- 当前事件面状态偏正面、偏负面还是中性观察
+- 驱动类型是基本面催化、政策/行业催化、情绪交易还是风险扰动
+- 后续需重点跟踪事件发酵、机构观点变化或市场持续性
+
+**输出**：综合事件判断、可信度与跟踪重点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 正式公告 + 公司新闻同向 | 事件可信度较高 | ✅ 积极 |
+| 公司新闻偏利多且近 30 天内多次重复强化 | 事件仍在发酵 | 🟡 关注 |
+| 新闻偏利多但研报未验证 | 机构支持偏弱 | ⚠️ 警惕 |
+| 研报观点与评级同步改善 | 机构验证增强 | ✅ 积极 |
+| 新闻与机构观点明显相反 | 事件理解存在分歧 | 🟡 关注 |
+| 事件偏正面但股价无明显响应 | 市场暂未充分买账 | 📊 中性 |
+| 事件偏负面且股价同步走弱 | 风险正在被市场定价 | 🔴 高风险 |
+| 行业、宏观消息为主，公司层面无增量信息 | 影响更偏外部环境 | 📊 中性 |
+| 公告或新闻时间明显滞后于当前行情 | 事件解释力下降 | ⚠️ 警惕 |
+| 多条新闻重复但信息增量有限 | 需防止把噪音当催化 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# 📰 [股票名称] 新闻事件分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、事件结论
+
+（先写当前事件面偏正面/偏负面/中性观察，以及核心结论）
+
+## 二、核心事件梳理
+
+（列出最关键的 2-4 条事件，按时间倒序整理）
+
+## 三、事件情绪与影响判断
+
+（说明这些事件偏情绪扰动还是基本面影响）
+
+## 四、机构观点与市场验证
+
+（研报、评级和市场反馈是否支持事件主线）
+
+## 五、综合结论
+
+- 3-5 条核心发现
+- 明确最核心的催化或风险点
+- 给出后续需继续跟踪的验证信号
+```
+
+## 证据约束（必须遵守）
+
+1. 每个事件判断至少对应 2 个证据来源，优先采用“新闻/公告 + 研报/行情”组合
+2. 不允许把单条低相关、旧闻或重复新闻直接写成核心催化
+3. 时间口径必须写清楚，如“近30天新闻”“近90天研报”“最新实时行情”
+4. 不展示内部打分、情绪分值或排序分值，只输出自然语言结论
+5. 若某个维度数据为空，只能写“暂无相关数据”或“暂不足以判断”
+6. 不给买卖建议、目标价空间测算、仓位建议或短线操作建议
+7. 若机构观点、新闻与市场表现三者不一致，必须明确指出背离，不得强行给单边结论
+
+## 执行示例
+
+用户说：“宁德时代最近有哪些重要消息，市场怎么看？”
+
+1. 通过 `search` 获取股票代码
+2. 并行调用 `stock/basic-info`、四类 `news/entity-related`、`research/sentiment`、`report/stock-forecast-ratings`、`announcements` 与 `stock-quote/realtime-merge`
+3. 提炼最核心的事件主线，并评估机构验证与市场反馈
+4. 输出 Markdown 格式新闻事件分析报告
+5. 在结尾写出综合判断与后续跟踪重点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议
+
+## Keywords
+
+股票新闻事件分析, 最近新闻, 消息面, 事件驱动, 利好利空, 催化, 风险消息, 市场反馈, stock news event analysis, catalysts

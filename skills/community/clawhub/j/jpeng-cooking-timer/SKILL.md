@@ -1,35 +1,42 @@
 ---
-name: "cooking-timer"
+name: jpeng-cooking-timer
 description: "Kitchen cooking timer"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-cooking-timer"
-sourceUrl: "https://clawhub.ai/skills/jpeng-cooking-timer"
+version: "1.0.0"
+author: "jpeng"
+tags: ["cooking", "timer", "food"]
 ---
 
-# cooking-timer
+# Cooking Timer
 
-> Kitchen cooking timer
+Kitchen cooking timer
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-cooking-timer`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-cooking-timer](https://clawhub.ai/skills/jpeng-cooking-timer)
+## When to Use
 
-## Overview
+- User needs cooking related functionality
+- Automating timer tasks
+- Food operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-cooking-timer
+python3 scripts/cooking_timer.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export TIMER_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

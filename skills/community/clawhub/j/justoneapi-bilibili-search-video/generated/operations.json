@@ -1,0 +1,76 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/search-video/v2 for Bilibili Video Search through JustOneAPI with keyword.",
+  "displayName": "Bilibili Video Search",
+  "endpointPath": "search-video",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili video Search data, including matched videos, creators, and engagement metrics, for topic research and content discovery.",
+      "method": "GET",
+      "operationId": "searchBilibiliVideoV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "general",
+          "description": "Sorting criteria for search results.\n\nAvailable Values:\n- `general`: General\n- `click`: Most Played\n- `pubdate`: Latest\n- `dm`: Most Danmaku\n- `stow`: Most Favorite",
+          "enumValues": [
+            "general",
+            "click",
+            "pubdate",
+            "dm",
+            "stow"
+          ],
+          "location": "query",
+          "name": "order",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/search-video/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Search",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_search_video",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-search-video",
+  "sourceTitle": "OpenAPI definition"
+}

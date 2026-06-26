@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Snap Slides</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;  /* ← Key: causes window.scrollTo() misalignment */
+    height: 100%;
+  }
+  body {
+    font-family: system-ui, sans-serif;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    scroll-snap-align: start;  /* ← Key: snap points at each slide */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide:nth-child(1) { background: #1a1a2e; color: #00ffcc; }
+  .slide:nth-child(2) { background: #16213e; color: #ff6b6b; }
+  .slide:nth-child(3) { background: #0f3460; color: #ffd93d; }
+  .slide:nth-child(4) { background: #533483; color: #6bcb77; }
+  .slide:nth-child(5) { background: #e94560; color: #4ecdc4; }
+
+  h1, h2 { margin-bottom: 1rem; }
+  p { opacity: 0.8; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <h1>Alpha</h1>
+  <p>First slide</p>
+</section>
+<section class="slide">
+  <h2>Bravo</h2>
+  <p>Second slide</p>
+</section>
+<section class="slide">
+  <h2>Charlie</h2>
+  <p>Third slide</p>
+</section>
+<section class="slide">
+  <h2>Delta</h2>
+  <p>Fourth slide</p>
+</section>
+<section class="slide">
+  <h2>Echo</h2>
+  <p>Fifth slide</p>
+</section>
+</body>
+</html>

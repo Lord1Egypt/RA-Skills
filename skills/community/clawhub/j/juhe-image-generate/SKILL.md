@@ -1,35 +1,173 @@
 ---
-name: "AI图像创作"
-description: "AI图像生成。根据文本描述（prompt）生成具有特定风格、场景和氛围的图像，并自动下载保存。使用场景：用户说"帮我生成一张猫咪在草地上玩耍的图片"、"画一幅水墨风格的山水画"、"生成一张16:9的科技感壁纸"、"创作一张新年祝福海报"、"用AI画一张小狗钓鱼的图"等。通过聚合数据（juhe.cn）API调用文生..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-image-generate"
-sourceUrl: "https://clawhub.ai/skills/juhe-image-generate"
+name: juhe-image-generate
+description: AI图像生成。根据文本描述（prompt）生成具有特定风格、场景和氛围的图像，并自动下载保存。使用场景：用户说"帮我生成一张猫咪在草地上玩耍的图片"、"画一幅水墨风格的山水画"、"生成一张16:9的科技感壁纸"、"创作一张新年祝福海报"、"用AI画一张小狗钓鱼的图"等。通过聚合数据（juhe.cn）API调用文生图能力，支持多种宽高比，生成的图片链接有效期24小时，脚本会自动下载到本地保存。
+homepage: https://www.juhe.cn/docs/api/id/824
+metadata: {"openclaw":{"emoji":"🎨","requires":{"bins":["python3"],"env":["JUHE_IMAGE_KEY"]},"primaryEnv":"JUHE_IMAGE_KEY"}}
 ---
 
-# AI图像创作
+# AI图像生成
 
-> AI图像生成。根据文本描述（prompt）生成具有特定风格、场景和氛围的图像，并自动下载保存。使用场景：用户说"帮我生成一张猫咪在草地上玩耍的图片"、"画一幅水墨风格的山水画"、"生成一张16:9的科技感壁纸"、"创作一张新年祝福海报"、"用AI画一张小狗钓鱼的图"等。通过聚合数据（juhe.cn）API调用文生...
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-image-generate`
-- **Source URL:** [https://clawhub.ai/skills/juhe-image-generate](https://clawhub.ai/skills/juhe-image-generate)
+根据文本描述自动生成图像，支持多种宽高比，生成后**自动下载保存到本地**，同时返回图片的在线访问链接。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [AI图像生成 API](https://www.juhe.cn/docs/api/id/824) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-image-generate
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_IMAGE_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_IMAGE_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/image_generate.py --key 你的AppKey "一只猫咪在草地上玩耍"
 ```
+
+> 注意：由于文生图任务耗时较长，建议请求超时时长设置在 60s 左右，脚本已内置处理。
+
+---
+
+## 使用方法
+
+### 基本生成
+
+```bash
+python scripts/image_generate.py "一只白色比熊犬在阳光下玩耍，写实风格"
+```
+
+输出示例：
+
+```
+🎨 开始生成图像...
+   提示词: 一只白色比熊犬在阳光下玩耍，写实风格
+   尺寸比例: 1:1
+
+✅ 图像生成成功！
+   在线链接: https://...（24小时内有效）
+   本地文件: output/image_20260324_153022.png
+```
+
+### 指定宽高比
+
+```bash
+# 1:1 正方形（默认）
+python scripts/image_generate.py "科技感渐变背景" --size 1
+
+# 16:9 横屏（适合壁纸、Banner）
+python scripts/image_generate.py "璀璨星空下的城市夜景" --size 2
+
+# 4:3 横屏（适合PPT、展示图）
+python scripts/image_generate.py "会议室商务场景" --size 3
+
+# 3:4 竖屏（适合海报）
+python scripts/image_generate.py "新年快乐春节海报，红色喜庆风格" --size 4
+
+# 9:16 竖屏（适合手机壁纸、短视频封面）
+python scripts/image_generate.py "梦幻樱花林小径" --size 5
+```
+
+可用尺寸比例：
+
+| 代码 | 比例 | 适用场景 |
+|------|------|----------|
+| 1 | 1:1（默认） | 头像、社交媒体方图 |
+| 2 | 16:9 | 横屏壁纸、Banner、视频封面 |
+| 3 | 4:3 | PPT配图、展示图 |
+| 4 | 3:4 | 海报、宣传图 |
+| 5 | 9:16 | 手机壁纸、短视频封面 |
+
+### 指定输出目录
+
+```bash
+# 保存到指定目录
+python scripts/image_generate.py "水墨山水画，中国风" --output ~/Desktop/my_images
+```
+
+### 仅获取链接（不下载）
+
+```bash
+python scripts/image_generate.py "元气少女插画风格" --no-download
+```
+
+### 直接调用 API（无需脚本）
+
+```
+POST https://gpt.juhe.cn/text2image/generate
+Content-Type: application/x-www-form-urlencoded
+
+key=YOUR_KEY&prompt=一只猫咪钓鱼&size=1&model=auto
+```
+
+---
+
+## AI 使用指南
+
+当用户要求生成/创作/绘制图片时，按以下步骤操作：
+
+1. **提取生成信息** — 从用户消息中识别图片描述内容、风格偏好、尺寸需求
+2. **优化提示词** — 将用户描述扩充为清晰的提示词（包含主体、风格、构图、色彩等要素），最多800字符
+3. **选择尺寸** — 根据用途判断合适的宽高比（海报选4，壁纸选2或5，默认用1）
+4. **调用脚本** — 执行生成命令，等待完成（最长约60秒）
+5. **展示结果** — 告知用户本地保存路径和在线链接，提示链接24小时内有效
+
+### 参数说明
+
+| 参数 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| prompt | 是 | 图片描述，中英文均可，最多800字符 | "一只猫咪在草地上玩耍" |
+| `--size` | 否 | 宽高比，1-5，默认1（1:1） | 2 |
+| `--output` | 否 | 图片保存目录，默认为 `output/` | ~/Desktop |
+| `--no-download` | 否 | 只返回链接，不下载图片 | — |
+| `--key` | 否 | 临时传入 API Key | your_key |
+
+### 提示词优化建议
+
+好的提示词应包含以下要素（越详细效果越好）：
+
+| 要素 | 示例 |
+|------|------|
+| 主体描述 | 一只白色比熊犬、一位穿汉服的少女、现代城市天际线 |
+| 风格 | 写实照片风、水彩插画风、赛博朋克风、中国水墨风 |
+| 构图 | 正面特写、俯视视角、全景构图、九宫格排版 |
+| 色彩/氛围 | 暖色调、冷蓝色调、金色阳光、夜间霓虹灯光 |
+| 质量修饰 | 高清、超细节、4K、电影级画质 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/824) 重新申请 |
+| `error_code` 10012 | 今日调用次数已用尽，建议升级套餐 |
+| `error_code` 282401 | 提示词不可为空，请补充图片描述 |
+| `error_code` 282403 | 包含敏感内容，请修改提示词后重试 |
+| `error_code` 282404 | 生成失败，建议稍后重试或修改提示词 |
+| 请求超时 | 文生图耗时较长（最长60秒），超时后重试一次 |
+| 下载失败 | 图片链接24小时内有效，提示用户手动访问链接保存 |
+
+---
+
+## 脚本位置
+
+`scripts/image_generate.py` — 封装了 API 调用、参数校验、图片下载和错误处理，生成的图片默认保存至脚本同目录的 `output/` 文件夹。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **AI 能力**：图像生成、图像编辑、图像理解、语音合成、视频创作
+- **交通出行**：火车时刻查询、航班动态、快递追踪
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

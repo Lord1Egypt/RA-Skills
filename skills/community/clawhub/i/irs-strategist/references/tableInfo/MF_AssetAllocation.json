@@ -1,0 +1,160 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "基金内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "基金内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到基金的交易代码、简称等。当基金交易代码非主代码时，与“公募基金代码关联(新)（MF_CodeRelationshipNew）”中的“关联代码内部编码（RelatedInnerCode）”关联，令CodeDefine=21，得到基金主代码“内部编码（InnerCode）”，利用主代码进行查询。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TransCode",
+        "columnChiName": "基金转型统一编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "基金转型统一编码(TransCode)是转型后的基金内码(InnerCode)，若发生多次转型，则为最新的基金内码。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "ReportDate",
+        "columnChiName": "报告期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "AssetTypeCode",
+        "columnChiName": "资产种类代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "资产种类代码(AssetTypeCode)与(CT_SystemConst)表中的DM字段关联，令LB = 302，得到资产种类代码的具体描述：10-权益类投资，30-固定收益类投资，40-金融衍生品投资，50-买入返售金融资产，10001-行业投资合计，10002-国债及货币资金，10003-非国债债券，10004-指数投资，10005-积极投资，10006-境内投资，10007-港股通投资，10010-债券投资合计，10015-基金投资合计，10020-股票投资合计，10025-贵金属投资合计，10030-权证，10031-其中：远期，10032-其中：期货，10033-其中：期权，10034-其中：掉期，10035-存托凭证，10036-优先股，10037-长期股权投资，10040-资产支持证券，10050-买断式回购的买入返售金融资产，10070-国债融券回购，10075-货币市场工具，10078---，10079-房地产信托，10080-其他配置，10089-银行存款和清算备付金合计，10090-其他资产，10099-资产总计，11001-资产净值，1000201-国债，1000202-货币资金，1000301-企业债券，1000302-金融债券，1000303-短期融资券，1000304-中期票据，1000305-可转换债券，1000306-中小企业私募债，1000307-央行票据，1000308-同业存单，1000309-其他债券，1000310-地方政府债券，1000311-公司债，1000312-转融通证券，1000701-其他应收应付款贷方，1000702-其他应收应付款借方，1000705-——，1000706-期内债券回购融资余额，1000707-期末债券回购融资余额(卖出回购证券)，1009001-交易保证金，1009003-应收股利，1009005-应收利息，1009007-应收帐款，1009009-应收申购款，1009011-应收证券清算款，1009013-其他应收款，1009014-配股权证，1009015-待摊费用，1009017-买入返售证券，1009019-其他资产-其他，100030201-政策性金融债券，100030903-剩余存续期超过397天的浮动利率债券，100070601-期内买断式回购融资余额，100070701-期末买断式回购融资余额，100901701-买断式回购买入返售证券。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "AssetType",
+        "columnChiName": "资产种类",
+        "columnType": "varchar(50)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "MarketValue",
+        "columnChiName": "资产市值(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "RatioInTotalAsset",
+        "columnChiName": "占资产总值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.82"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "RatioInNV",
+        "columnChiName": "占资产净值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.97"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

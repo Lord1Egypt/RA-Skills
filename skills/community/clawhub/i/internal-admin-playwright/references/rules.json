@@ -1,0 +1,157 @@
+{
+  "_说明": "审核规则配置。每条规则包含：enabled（是否启用）、patterns（正则列表）、reason（拒绝原因）。其他组可根据自身站点需求启用/禁用/修改规则。",
+  "rules": [
+    {
+      "id": "contact_keywords",
+      "name": "联系方式关键词",
+      "description": "检测微信、QQ、TG、手机号等联系方式引导",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(?i)(vx|VX|微信|wx|Wx|weixin|WeChat)\\s*[:：]?\\s*[a-zA-Z0-9_-]{4,}",
+        "(?i)(qq|QQ|Qq)\\s*[:：]?\\s*\\d{5,}",
+        "(?i)(tg|TG|telegram|Telegram|电报)\\s*[:：]?\\s*[@a-zA-Z0-9_]{3,}",
+        "(电话|手机|手机号|phone|Phone|Tel|TEL)\\s*[:：]?\\s*1\\d{10}",
+        "(?<!\\d)1[3-9]\\d{9}(?!\\d)",
+        "\\d{7,}"
+      ],
+      "reason": "含联系方式或疑似导流信息，审核失败"
+    },
+    {
+      "id": "url_detection",
+      "name": "网址/链接检测",
+      "description": "检测 URL、域名、网址引导",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "https?://\\S+",
+        "www\\.\\S+",
+        "\\S+\\.(com|cn|net|cc|me|org|io|xyz|top|vip)(/\\S*)?"
+      ],
+      "reason": "含网址或链接，审核失败"
+    },
+    {
+      "id": "ad_diversion",
+      "name": "广告导流话术",
+      "description": "检测明显的广告、引流、推广话术",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(加我|私我|私聊|滴滴我|戳我|点我主页|看我简介|看主页)",
+        "(免费领取|扫码|扫一扫|二维码|红包|福利群|粉丝群)"
+      ],
+      "reason": "含广告导流内容，审核失败"
+    },
+    {
+      "id": "underage_content",
+      "name": "未成年人相关内容",
+      "description": "检测涉及未成年人的违规内容",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(未成年|学生妹|初中|高中|18岁以下|幼女|幼童|萝莉|小学生)"
+      ],
+      "reason": "平台禁止发布未成年人相关信息，审核失败"
+    },
+    {
+      "id": "service_description",
+      "name": "违规服务描述",
+      "description": "检测色情服务描述关键词",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(口爆|毒龙|一条龙|包夜|过夜|胸推|鸳鸯浴|69式)",
+        "(约炮|裸聊|上门服务|空降|全套|半套|打飞机|手冲)"
+      ],
+      "reason": "含违规服务描述，审核失败"
+    },
+    {
+      "id": "fraud_gambling",
+      "name": "诈骗/赌博/黑产",
+      "description": "检测赌博、彩票、诈骗、黑产相关内容",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(赌博|博彩|彩票|六合彩|时时彩|北京赛车|棋牌|捕鱼)",
+        "(刷单|兼职日结|高额回报|稳赚不赔|代理|返利|贷款)"
+      ],
+      "reason": "含诈骗、赌博或黑产内容，审核失败"
+    },
+    {
+      "id": "multi_region",
+      "name": "多地区发布限制",
+      "description": "禁止声称覆盖全国或多地区的内容",
+      "enabled": false,
+      "field": "title",
+      "patterns": [
+        "(全国|可空降多地|全国各地|多城市)"
+      ],
+      "reason": "禁止发布多地区资源，审核失败",
+      "_note": "适用于本地化服务类站点，评论类站点可关闭"
+    },
+    {
+      "id": "contact_format",
+      "name": "联系方式格式校验",
+      "description": "联系方式字段不能包含符号，手机号必须11位纯数字",
+      "enabled": false,
+      "field": "phone",
+      "patterns": [
+        "[^a-zA-Z0-9]",
+        "^(?!\\d{11}$).+"
+      ],
+      "reason": "联系方式格式不符，审核失败",
+      "_note": "适用于有独立 phone 字段的站点"
+    },
+    {
+      "id": "address_quality",
+      "name": "地址详细度检查",
+      "description": "地址需至少包含省市区级别信息",
+      "enabled": false,
+      "field": "address",
+      "patterns": [
+        "^.{0,5}$",
+        "(加|联系|联络|预约|详询|私聊|咨询|到店前|先联|提前联系|先预约)"
+      ],
+      "reason": "地址信息不够详细或包含引导话术，审核失败",
+      "_note": "适用于有地址字段的本地服务类站点"
+    },
+    {
+      "id": "price_range",
+      "name": "价格范围校验",
+      "description": "价格必须在合理范围内且为整百",
+      "enabled": false,
+      "field": "price",
+      "type": "price_check",
+      "min_price": 1500,
+      "max_price": 5000,
+      "must_be_multiple_of": 100,
+      "reason": "价格不符合标准，审核失败",
+      "_note": "适用于有价格字段的站点，min/max 按业务调整"
+    },
+    {
+      "id": "title_format",
+      "name": "标题格式校验",
+      "description": "标题需符合 名称+分隔符+描述 的格式",
+      "enabled": false,
+      "field": "title",
+      "type": "title_format",
+      "pattern": "^[^\\s]{1,20}(?:\\s*[-—~～·•|｜:：,，、/_.。]\\s*|\\s+).+$",
+      "reason": "标题格式不符，审核失败",
+      "_note": "适用于对标题格式有要求的站点（如 VIP 资源类）"
+    },
+    {
+      "id": "custom_keywords",
+      "name": "自定义拒绝关键词",
+      "description": "平台自定义的违规词汇",
+      "enabled": true,
+      "field": "_text",
+      "patterns": [
+        "(竹叶|头像|tg|TG|扣|抠|企|主业|主叶|扣扣|抠抠|推特|电报|飞机|twitter|Twitter|TWITTER|sb|SB|鹅|企鹅)",
+        "(https?://|www\\.|[a-zA-Z0-9-]+\\.com)",
+        "(QQ|qq|Qq|微信|WX|wx|Wx)",
+        "(名字|软件|卡)"
+      ],
+      "reason": "含平台禁止词汇（联系方式/导流/违规词），审核失败"
+    }
+  ]
+}

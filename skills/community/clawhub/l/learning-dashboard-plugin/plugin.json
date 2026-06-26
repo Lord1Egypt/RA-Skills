@@ -1,0 +1,11 @@
+{
+  "name": "learning-dashboard-update",
+  "version": "1.0.0",
+  "description": "学完一节课后自动更新错题集和进度看板",
+  "author": "yizhan",
+  "skills": ["learning-dashboard-update"],
+  "dependencies": {
+    "mcpServers": []
+  },
+  "tags": ["learning", "productivity", "automation", "chinese"]
+}

@@ -1,0 +1,251 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Generated Blueprint",
+    "industry": "manufacturing",
+    "revisionId": "rev-20260413040842",
+    "parentRevisionId": null,
+    "lastModifiedAt": "2026-04-13T04:08:42Z",
+    "lastModifiedBy": "ai"
+  },
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [
+      {
+        "type": "inline-text",
+        "excerpt": "制造业数字化转型方案，需要生产计划管理、质检管理、仓储物流、供应链协同。涉及ERP系统、MES制造执行系统、WMS仓储系统。角色包括生产经理、质检员、仓库管理员、采购专员。"
+      }
+    ],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [
+      {
+        "id": "cap-production-plan",
+        "name": "生产计划管理",
+        "level": 1,
+        "description": "管理生产排程、产能规划和生产调度。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp",
+          "sys-mes"
+        ]
+      },
+      {
+        "id": "cap-quality-control",
+        "name": "质量管理",
+        "level": 1,
+        "description": "管理来料检验、过程检验和成品检验。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-mes"
+        ]
+      },
+      {
+        "id": "cap-warehouse",
+        "name": "仓储管理",
+        "level": 1,
+        "description": "管理入库、出库、库存和库位。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp",
+          "sys-wms"
+        ]
+      },
+      {
+        "id": "cap-supply-chain",
+        "name": "供应链协同",
+        "level": 1,
+        "description": "管理供应商协同、采购计划和物流。",
+        "ownerActorIds": [],
+        "supportingSystemIds": []
+      }
+    ],
+    "actors": [
+      {
+        "id": "actor-production-mgr",
+        "name": "生产经理"
+      },
+      {
+        "id": "actor-quality-inspector",
+        "name": "质检员"
+      },
+      {
+        "id": "actor-warehouse-mgr",
+        "name": "仓库管理员"
+      },
+      {
+        "id": "actor-purchasing",
+        "name": "采购专员"
+      }
+    ],
+    "flowSteps": [
+      {
+        "id": "flow-production-scheduling",
+        "name": "生产排程",
+        "actorId": "actor-production-mgr",
+        "capabilityIds": [
+          "cap-production-plan"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-incoming-inspection",
+        "name": "来料检验",
+        "actorId": "actor-quality-inspector",
+        "capabilityIds": [
+          "cap-quality-control"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-warehouse-inbound",
+        "name": "入库作业",
+        "actorId": "actor-warehouse-mgr",
+        "capabilityIds": [
+          "cap-warehouse"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-purchase-request",
+        "name": "采购申请",
+        "actorId": "actor-purchasing",
+        "capabilityIds": [
+          "cap-supply-chain"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      }
+    ],
+    "systems": [
+      {
+        "id": "sys-erp",
+        "kind": "system",
+        "name": "ERP",
+        "aliases": [],
+        "description": "企业资源计划系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "ERP"
+        },
+        "capabilityIds": [
+          "cap-production-plan",
+          "cap-warehouse"
+        ]
+      },
+      {
+        "id": "sys-mes",
+        "kind": "system",
+        "name": "MES",
+        "aliases": [],
+        "description": "制造执行系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "MES"
+        },
+        "capabilityIds": [
+          "cap-production-plan",
+          "cap-quality-control"
+        ]
+      },
+      {
+        "id": "sys-wms",
+        "kind": "system",
+        "name": "WMS",
+        "aliases": [],
+        "description": "仓储管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "WMS"
+        },
+        "capabilityIds": [
+          "cap-warehouse"
+        ]
+      }
+    ]
+  },
+  "relations": [],
+  "views": [
+    {
+      "id": "view-capability",
+      "type": "business-capability-map",
+      "title": "业务能力蓝图",
+      "includedNodeIds": [
+        "cap-production-plan",
+        "cap-quality-control",
+        "cap-warehouse",
+        "cap-supply-chain"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-swimlane",
+      "type": "swimlane-flow",
+      "title": "泳道流程图",
+      "includedNodeIds": [
+        "actor-production-mgr",
+        "actor-quality-inspector",
+        "actor-warehouse-mgr",
+        "actor-purchasing",
+        "flow-production-scheduling",
+        "flow-incoming-inspection",
+        "flow-warehouse-inbound",
+        "flow-purchase-request"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "lanes": [
+          "actor-production-mgr",
+          "actor-quality-inspector",
+          "actor-warehouse-mgr",
+          "actor-purchasing"
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-architecture",
+      "type": "application-architecture",
+      "title": "应用架构图",
+      "includedNodeIds": [
+        "sys-erp",
+        "sys-mes",
+        "sys-wms",
+        "cap-production-plan",
+        "cap-quality-control",
+        "cap-warehouse",
+        "cap-supply-chain"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    }
+  ],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {}
+}

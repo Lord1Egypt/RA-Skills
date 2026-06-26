@@ -1,35 +1,49 @@
 ---
-name: "Kugou"
-description: "访问和摘要酷狗音乐公开歌单、排行榜及歌手作品的播放和收藏数据，支持趋势与风格分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kugou"
-sourceUrl: "https://clawhub.ai/skills/kugou"
+name: kugou-hot-trend
+description: 注册“酷狗音乐”热门技能；当需要访问或自动化酷狗相关内容时调用。
+homepage: `https://www.kugou.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Kugou
+# 酷狗音乐
 
-> 访问和摘要酷狗音乐公开歌单、排行榜及歌手作品的播放和收藏数据，支持趋势与风格分析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kugou`
-- **Source URL:** [https://clawhub.ai/skills/kugou](https://clawhub.ai/skills/kugou)
+- 面向公开歌单与歌曲页的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.kugou.com/
+- 排行榜：https://www.kugou.com/yy/rank/home/1-8888.html
+- 搜索入口：https://www.kugou.com/yy/html/search.html
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kugou
-```
+常见任务
+
+- 指定歌单/榜单的曲目摘要（播放、收藏）
+- 歌手主页作品的时序表现对比（近7/30天）
+- 风格与语种分布统计
+
+数据字段
+
+- 歌曲名称、歌手、专辑、时长、播放量/收藏量、链接
+- 歌单名称、创建者、曲目数、播放/收藏量、链接
+- 歌手主页链接、作品交互指标摘要
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 登录态仅用于个人页信息整理，不自动执行交互
+
+示例流程
+
+- 榜单摘要：访问榜单页 → 抽取曲目 → 统计播放/收藏
+- 歌手对比：访问主页 → 抽取近期作品 → 输出表现摘要
+- 分类统计：访问歌单 → 依据标签与元数据统计风格/语种
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

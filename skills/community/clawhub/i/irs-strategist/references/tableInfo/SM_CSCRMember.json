@@ -1,0 +1,137 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "MemberType",
+        "columnChiName": "成员资格",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "成员资格(MemberType)与(CT_SystemConst)表中的DM字段关联，令LB = 1437 AND DM IN(1001,1002,1003,1101,1102,1103,1201,1202,1301)，得到成员资格的具体描述：1001-证监会发审委委员，1002-证监会并购重组委委员，1003-证监会创业板发审委委员，1101-科创板股票上市委员会委员，1102-科技创新咨询委员会委员，1103-科创板公开发行自律委员会委员，1201-创业板股票上市委员会委员，1202-深交所行业咨询专家库专家，1301-全国中小企业股份转让系统挂牌委员会委员。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "MemberTypeDesc",
+        "columnChiName": "成员资格名称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "MeetingNumber",
+        "columnChiName": "任职届次",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "IfFullTime",
+        "columnChiName": "是否专职",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "MemberName",
+        "columnChiName": "姓名",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "MemberNum",
+        "columnChiName": "人员编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "人员编号（MemberNum）：与“系统常量表（CT_Personal）”中的“代码（PersonalNum）”关联，取得该人员的相关信息",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Remark",
+        "columnChiName": "备注说明",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "79.16"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

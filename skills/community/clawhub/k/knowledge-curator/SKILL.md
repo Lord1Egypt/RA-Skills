@@ -1,35 +1,152 @@
----
-name: "Knowledge Curator"
-description: "自动抓取用户指定链接内容，整理分类为结构化知识库，支持增量更新和多条件内容检索。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-curator"
-sourceUrl: "https://clawhub.ai/skills/knowledge-curator"
----
+# knowledge-curator - 知识库管理技能
 
-# Knowledge Curator
+## 描述
+自动抓取用户发送的链接内容（小红书、B 站、知乎、YouTube 等），整理成结构化知识库，支持按主题分类、增量更新和内容检索。
 
-> 自动抓取用户指定链接内容，整理分类为结构化知识库，支持增量更新和多条件内容检索。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-curator`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-curator](https://clawhub.ai/skills/knowledge-curator)
+### 收藏内容（必须满足以下条件之一）
+- 用户明确请求保存内容到知识库（"收藏"、"保存到知识库"、"记下来"、"kb save"等）
+- 消息中包含"收藏"、"收藏到知识库"、"kb"等关键词 + URL
 
-## Overview
+**注意**：单纯发送链接不会触发收藏，必须有明确的收藏意图！
 
+### 查询内容
+- 用户查询知识库内容（"/kb search"、"/kb list"、"搜索..."、"查找..."等）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-curator
+## 功能
+
+### 1. 内容抓取
+- **小红书**: 提取标题、正文、图片描述、标签
+- **B 站**: 提取视频标题、简介、字幕（如有）、标签、UP 主信息
+- **知乎**: 提取问题、回答、作者、赞同数
+- **YouTube**: 提取视频标题、描述、字幕/转录、标签
+- **通用网页**: 提取标题、正文、元描述
+
+### 2. 自动分类
+按内容主题自动分类到以下类别：
+- **科技**: AI、编程、数码、互联网、科学
+- **生活**: 美食、旅行、家居、日常、情感
+- **学习**: 教育、课程、教程、知识、技能
+- **娱乐**: 影视、音乐、游戏、综艺、明星
+- **工作**: 职场、管理、效率、工具、商业
+- **健康**: 运动、饮食、医疗、心理、养生
+
+### 3. 输出格式
+每个知识库条目为 Markdown 文件，包含：
+```markdown
+# [标题]
+
+**原始链接**: [URL]
+**来源平台**: [平台名称]
+**收藏日期**: YYYY-MM-DD HH:mm
+**分类**: [主题分类]
+**标签**: #标签 1 #标签 2 #标签 3
+
+## 摘要
+[200-500 字内容摘要]
+
+## 关键知识点
+- 知识点 1
+- 知识点 2
+- 知识点 3
+
+## 原文内容
+[完整或精简的原文内容]
+
+## 备注
+[用户添加的备注或 AI 的补充说明]
 ```
+
+### 4. 增量更新
+- 检测重复链接，避免重复保存
+- 支持同一主题下追加新内容
+- 维护知识库索引文件 `index.json`
+
+### 5. 查询检索
+- 关键词搜索（标题、标签、内容）
+- 按分类筛选
+- 按时间范围筛选
+- 语义相似度检索（可选）
+
+## 使用方法
+
+### 保存内容（需要明确指令）
+
+**正确示例**：
+```
+用户：收藏 https://www.bilibili.com/video/BV1xx411c7mD
+AI: 📚 已保存到知识库【学习/编程】类别
+   标题：Python 入门教程
+   标签：#Python #编程 #教程
+   查看：`/kb search Python`
+```
+
+```
+用户：保存到知识库：https://zhuanlan.zhihu.com/p/123456
+AI: ✅ 已收藏到知识库
+```
+
+```
+用户：kb save https://youtube.com/watch?v=xxx
+AI: ✅ 已保存到知识库
+```
+
+**错误示例**（不会触发收藏）：
+```
+用户：https://www.bilibili.com/video/BV1xx411c7mD
+AI: （仅正常回复链接内容，不收藏）
+```
+
+### 查询内容
+```
+用户：/kb search Python
+AI: 🔍 找到 3 条相关内容：
+   1. [学习/编程] Python 入门教程 (2026-03-15)
+   2. [学习/编程] Python 数据分析实战 (2026-03-10)
+   3. [工作/效率] 用 Python 自动化办公 (2026-03-08)
+```
+
+### 管理命令
+- `/kb list [category]` - 列出知识库内容
+- `/kb search <keywords>` - 搜索内容
+- `/kb delete <id>` - 删除条目
+- `/kb export` - 导出知识库
+- `/kb stats` - 查看统计信息
+
+## 文件结构
+```
+knowledge-curator/
+├── SKILL.md              # 本文件
+├── README.md             # 详细文档
+├── scripts/
+│   ├── fetch.js          # 内容抓取
+│   ├── summarize.js      # 内容总结
+│   ├── categorize.js     # 自动分类
+│   ├── store.js          # 存储管理
+│   └── query.js          # 查询检索
+├── references/
+│   └── examples.md       # 使用示例
+└── knowledge-base/       # 知识库存储
+    ├── 科技/
+    ├── 生活/
+    ├── 学习/
+    ├── 娱乐/
+    ├── 工作/
+    ├── 健康/
+    └── index.json        # 索引文件
+```
+
+## 依赖
+- `web_fetch` 工具：抓取网页内容
+- `exec` 工具：运行 Node.js 脚本
+- 文件系统：存储知识库
+
+## 注意事项
+- 部分平台可能有反爬限制，需适当延迟请求
+- 视频字幕提取依赖平台 API 或第三方服务
+- 建议定期备份知识库目录
+- 敏感内容需用户确认后再保存
+
+## 版本
+v1.0.0 - 初始版本

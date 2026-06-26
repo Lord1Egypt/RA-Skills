@@ -1,0 +1,541 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Taobao and Tmall workflows with JustOneAPI, including product Details, product Reviews, and shop Product List across 10 operations.",
+  "displayName": "Taobao and Tmall",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Taobao and Tmall product Reviews data, including ratings, timestamps, and reviewer signals, for feedback analysis and product research.",
+      "method": "GET",
+      "operationId": "getItemCommentV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "feedbackdate",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `feedbackdate`: Sort by feedback date\n- `general`: General sorting",
+          "enumValues": [
+            "feedbackdate",
+            "general"
+          ],
+          "location": "query",
+          "name": "orderType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/get-item-comment/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Reviews",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getTaobaoItemDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data through the task-backed v2 flow. If data is not ready within a short wait, the response returns a pending task status.",
+      "method": "GET",
+      "operationId": "getItemDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV5",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v5",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Details data, including pricing, images, and shop details, for product research, catalog monitoring, and ecommerce analysis.",
+      "method": "GET",
+      "operationId": "getItemDetailV9",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "AUnique product identifier on Taobao/Tmall (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/taobao/get-item-detail/v9",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall shop Product List data, including item titles, prices, and images, for seller research and catalog tracking.",
+      "method": "GET",
+      "operationId": "getTaobaoShopItemListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Shop identifier. Also known as Seller ID or User ID (they refer to the same value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_sale",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `_sale`: Sales\n- `_default`: Default",
+          "enumValues": [
+            "_sale",
+            "_default"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/get-shop-item-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Shop Product List",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall shop Product List data, including item titles, prices, and images, for seller research and catalog tracking.",
+      "method": "GET",
+      "operationId": "getShopItemListV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Shop identifier. Also known as Seller ID or User ID (they refer to the same value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique shop identifier on Taobao/Tmall (shop ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shopId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "coefp",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `coefp`: Comprehensive sorting\n- `hotsell`: Hot selling / Sales volume\n- `oldstarts`: New arrivals / Old starts\n- `bid`: Price: Low to High\n- `_bid`: Price: High to Low",
+          "enumValues": [
+            "coefp",
+            "hotsell",
+            "oldstarts",
+            "bid",
+            "_bid"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/get-shop-item-list/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Shop Product List",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall shop Product List data, including item titles, prices, and images, for seller research and catalog tracking.",
+      "method": "GET",
+      "operationId": "getShopItemListV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Shop identifier. Also known as Seller ID or User ID (they refer to the same value).",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique shop identifier on Taobao/Tmall (shop ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shopId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "coefp",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `coefp`: Comprehensive sorting\n- `hotsell`: Hot selling / Sales volume\n- `oldstarts`: New arrivals / Old starts\n- `bid`: Price: Low to High\n- `_bid`: Price: High to Low",
+          "enumValues": [
+            "coefp",
+            "hotsell",
+            "oldstarts",
+            "bid",
+            "_bid"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/get-shop-item-list/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Shop Product List",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    },
+    {
+      "description": "Get Taobao and Tmall product Search data, including titles, prices, and images, for product discovery.",
+      "method": "GET",
+      "operationId": "searchItemListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_sale",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `_sale`: Sales\n- `_bid`: Price: High to Low\n- `bid`: Price: Low to High\n- `_coefp`: General",
+          "enumValues": [
+            "_sale",
+            "_bid",
+            "bid",
+            "_coefp"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Whether to filter results to Tmall only.",
+          "enumValues": [],
+          "location": "query",
+          "name": "tmall",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Minimum price filter (inclusive).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startPrice",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Maximum price filter (inclusive).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endPrice",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/taobao/search-item-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Search",
+      "tags": [
+        "Taobao and Tmall"
+      ]
+    }
+  ],
+  "platformKey": "taobao",
+  "primaryTag": "Taobao and Tmall",
+  "skillName": "justoneapi_taobao",
+  "slug": "justoneapi-taobao",
+  "sourceTitle": "OpenAPI definition"
+}

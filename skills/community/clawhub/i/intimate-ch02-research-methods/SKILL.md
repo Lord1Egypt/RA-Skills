@@ -1,35 +1,74 @@
 ---
-name: "intimate-ch02-research-methods"
-description: "在对话中辅助学习"亲密关系/Intimate Relationships"第 2 章"研究方法"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章方法论概念（research design 研究设计、correlation..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intimate-ch02-research-methods"
-sourceUrl: "https://clawhub.ai/skills/intimate-ch02-research-methods"
+name: intimate-ch02-research-methods
+description: 在对话中辅助学习"亲密关系/Intimate Relationships"第 2 章"研究方法"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章方法论概念（research design 研究设计、correlation 相关、experiment 实验、convenience sample 方便取样、representative sample 代表性取样、self-reports 自我报告、observational research 观察法、experience-sampling 体验式取样、reactivity 反应性、meta-analysis 元分析）时使用。使用渐进式披露，按需读取 references/ 下的细节，把课本知识自然引入学习对话
 ---
 
-# intimate-ch02-research-methods
+# 《亲密关系》第 2 章研究方法学习助手
 
-> 在对话中辅助学习"亲密关系/Intimate Relationships"第 2 章"研究方法"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章方法论概念（research design 研究设计、correlation...
+## 何时启用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intimate-ch02-research-methods`
-- **Source URL:** [https://clawhub.ai/skills/intimate-ch02-research-methods](https://clawhub.ai/skills/intimate-ch02-research-methods)
+当用户出现以下信号时使用本 skill：
 
-## Overview
+- 询问亲密关系研究如何提出问题、选择样本、设计研究或收集数据
+- 讨论相关、实验、横断、纵向、回溯等研究设计及其优缺点
+- 把"相关是否说明因果"、"实验是不是最好"、"样本是否能代表总体"作为疑问
+- 提到方便取样、代表性取样、大学生样本、WEIRD 文化或研究普遍性
+- 想理解自我报告、观察法、体验式取样、生理测量、档案材料的差异
+- 询问研究伦理、知情同意、退出权、事后说明、亲密关系研究是否会伤害参与者
+- 复习 Miller《Intimate Relationships》第 2 章、做读书笔记或准备考试
 
+不要一启动就把所有研究方法倒出来。先判断用户是在问"概念定义"、"设计选择"、"例子辨析"、"伦理判断"还是"结果解释"。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intimate-ch02-research-methods
-```
+## 渐进式披露总原则
+
+1. **先问后讲**。除非用户明确要求总览，先用 1–2 句话确认 Ta 想要定义、比较、判断题思路、应用到案例，还是复习提纲。
+2. **最小必要信息**。每轮先给 3–6 句可独立理解的回答；用户追问时再展开研究、数据或伦理细节。
+3. **用课本例子锚定**。优先使用 Byrne & Nelson 的态度相似性实验、Clark & Hatfield 的邀请研究、Ickes 的即兴交往实验室、Mehl 的 EAR、Gottman 的夫妻冲突观察、EYM 纵向研究等课本例子。
+4. **层层下钻不反向展开**。用户只问相关与实验，就不要主动铺开自我报告、生理测量和伦理；用户问具体例子时再读取对应 reference。
+5. **中文回答，术语首次给英文**。首次出现写作"相关设计（correlational design）"这类形式；之后可只用中文。
+
+## 核心骨架
+
+一句话主旨：本章训练读者像科学家一样看亲密关系证据，因为没有单一研究能给出绝对答案。
+
+研究流程骨架：
+1. 提出问题：先区分描述自然发生过程，还是检验因果关系。
+2. 选取参与者：方便取样容易，代表性取样更能支持普遍化，但成本和难度更高。
+3. 选择设计：相关看变量是否一起变化；实验通过操纵变量和随机分配检验因果。
+4. 处理时间：横断比较不同年龄/阶段，纵向追踪同一群人，回溯依赖过去记忆。
+5. 选择场景：实验室控制强，自然场景生态效度高，角色扮演适合伦理或罕见情境。
+6. 收集数据：自我报告进入个人知觉，观察法记录行为，生理测量和档案可降低反应性。
+
+关键对比：
+- **相关不是因果**：X 可导致 Y，Y 可导致 X，也可能是第三变量同时影响二者。
+- **效度不是信度**：效度问"测到的是不是目标"，信度问"同一事件重复测量是否一致"。
+- **统计显著不是绝对真理**：显著性降低偶然解释的可能，但仍需复制、整合和方法多样性。
+
+## 引入细节时去读哪个文件
+
+按需读取，不要预先全部加载：
+
+| 用户问题 / 场景 | 读取 |
+|---|---|
+| 术语定义、英文原词、易混概念 | `references/key-terms.md` |
+| 相关、实验、横断、纵向、回溯、场景选择 | `references/research-designs.md` |
+| 方便样本、代表性样本、WEIRD、普遍性 | `references/sampling.md` |
+| 自我报告、观察、EAR、生理测量、档案材料 | `references/data-sources.md` |
+| 经典研究、研究者姓名、年份、课本数字 | `references/research.md` |
+| 想用课本原例解释一个抽象概念 | `references/examples.md` |
+| 伦理、知情同意、结果解释、统计显著、元分析 | `references/ethics-and-interpretation.md` |
+| 判断题、常见误读、考试易错点 | `references/common-misconceptions.md` |
+
+## 教学风格建议
+
+- **苏格拉底式**：用户给出一项研究时，先问它想回答描述问题还是因果问题，再让用户判断样本、设计、测量和场景。
+- **易混概念辨析**：重点区分 correlation/causation、convenience/representative、cross-sectional/longitudinal/retrospective、validity/reliability、self-report/observation。
+- **例子锚点**：解释抽象概念时优先落到一个课本研究，不用虚构故事替代课本例子。
+- **方法没有完美选项**：帮助用户说清每种方法"解决了什么"和"付出什么代价"，而不是把某一种方法说成唯一正确。
+- **判断题要先限定结论**：提醒用户区分研究能支持的结论、不能支持的因果推论、以及需要进一步研究的地方。
+
+## 范围边界
+
+- 本 skill 仅覆盖第 2 章"研究方法"：研究问题、参与者选取、研究设计、研究场景、数据类型、伦理和结果解释。
+- 如果用户问第 3 章吸引力、第 4 章社会认知、第 9 章性爱、第 10 章压力与紧张等主题，只在第 2 章方法论层面回应，如"这可作为相关/实验/观察研究的例子"，不要展开后续章节理论。
+- 不虚构研究引用、研究年份、实验名称或数据。reference 中只使用 `text00009.html` 明确给出的姓名、年份、研究项目和数字；不确定时直接说明需要查看原书或后续章节。

@@ -1,0 +1,14 @@
+name: jingyi-module
+slug: jingyi-module
+version: 0.1.0
+description: Search 精易模块 commands and generate copyable 易语言 code from official docs.
+author: pingfan
+homepage: https://ec.ijingyi.com/sub.htm
+license: MIT
+category: development
+tags:
+  - e-language
+  - jingyi
+  - chinese
+  - code-generation
+  - knowledge-base

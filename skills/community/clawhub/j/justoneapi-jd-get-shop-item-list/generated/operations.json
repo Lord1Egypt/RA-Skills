@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/jd/get-shop-item-list/v1 for JD.com Shop Product List through JustOneAPI with shopId.",
+  "displayName": "JD.com Shop Product List",
+  "endpointPath": "get-shop-item-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get JD.com shop Product List data, including item titles, prices, and images, for catalog tracking and seller research.",
+      "method": "GET",
+      "operationId": "getJdShopItemListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "A unique shop identifier on JD.com (Shop ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shopId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for paginated comments.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/jd/get-shop-item-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Shop Product List",
+      "tags": [
+        "JD.com"
+      ]
+    }
+  ],
+  "platformKey": "jd",
+  "primaryTag": "JD.com",
+  "skillName": "justoneapi_jd_get_shop_item_list",
+  "skillType": "interface",
+  "slug": "justoneapi-jd-get-shop-item-list",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,84 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "基金内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "基金内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到基金的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "公司代码（CompanyCode）：与“证券主表（SecuMain）”中的“公司代码（CompanyCode）”关联，得到基金公司的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "UmbrellaFund",
+        "columnChiName": "伞形系列名称",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "UmbrellaFundCode",
+        "columnChiName": "伞形代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "伞形代码(UmbrellaFundCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1418，得到伞形代码的具体描述：1101-招商安泰系列，1201-国泰金龙系列，1301-鹏华普天系列，1401-嘉实理财通系列，1501-银河银联系列，1601-融通通利系列，1701-泰达宏利系列，1801-华宝宝康系列，1901-景顺长城景系列。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

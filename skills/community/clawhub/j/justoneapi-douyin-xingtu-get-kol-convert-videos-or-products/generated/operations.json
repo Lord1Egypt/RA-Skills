@@ -1,0 +1,82 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/get-kol-convert-videos-or-products/v1 for Douyin Creator Marketplace (Xingtu) Conversion Resources through JustOneAPI with detailType, kolId, and page.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Conversion Resources",
+  "endpointPath": "get-kol-convert-videos-or-products",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) conversion Resources data, including products tied to a Douyin Xingtu creator's conversion activity, for commerce analysis and campaign optimization.",
+      "method": "GET",
+      "operationId": "getKolConvertVideosOrProductsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Resource type.\n\nAvailable Values:\n- `_1`: Video Data\n- `_2`: Product Data",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "detailType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": true,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/douyin-xingtu/get-kol-convert-videos-or-products/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Conversion Resources",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_get_kol_convert_videos_or_products",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-get-kol-convert-videos-or-products",
+  "sourceTitle": "OpenAPI definition"
+}

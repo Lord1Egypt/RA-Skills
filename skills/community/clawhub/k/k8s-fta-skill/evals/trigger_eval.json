@@ -1,0 +1,290 @@
+[
+  {
+    "query": "我的Pod一直处于CrashLoopBackOff状态，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "My Pod keeps restarting with CrashLoopBackOff status, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "我的Service创建成功但无法访问，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Service is created but cannot be accessed, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "我的Pod处于Pending状态，一直无法调度，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod is stuck in Pending status and cannot be scheduled, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "k8s集群中的Pod一直重启，怎么解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pods keep restarting in k8s cluster, how to fix?",
+    "should_trigger": true
+  },
+  {
+    "query": "Ingress无法访问后端服务，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Ingress cannot access backend services, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "k8s节点处于NotReady状态，怎么处理？",
+    "should_trigger": true
+  },
+  {
+    "query": "k8s node is in NotReady status, how to handle?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod拉取镜像失败，如何解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod image pull failed, how to resolve?",
+    "should_trigger": true
+  },
+  {
+    "query": "Service的端口映射不正确，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Service port mapping is incorrect, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "k8s集群网络通信问题，如何诊断？",
+    "should_trigger": true
+  },
+  {
+    "query": "k8s cluster network communication issues, how to diagnose?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod的资源限制导致运行异常，如何调整？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod resource limits causing runtime issues, how to adjust?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod被OOMKilled，如何解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod is OOMKilled, how to resolve?",
+    "should_trigger": true
+  },
+  {
+    "query": "健康检查失败导致Pod重启，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Health check failures causing Pod restarts, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "RBAC权限拒绝错误，如何解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "RBAC permission denied errors, how to resolve?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod无法解析域名，DNS问题如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod cannot resolve domain names, how to troubleshoot DNS issues?",
+    "should_trigger": true
+  },
+  {
+    "query": "网络策略阻止了Pod访问，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Network policies blocking Pod access, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod无法挂载存储卷，如何解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod cannot mount storage volumes, how to resolve?",
+    "should_trigger": true
+  },
+  {
+    "query": "容器启动超时，如何解决？",
+    "should_trigger": true
+  },
+  {
+    "query": "Container startup timeout, how to resolve?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod无法调度到特定节点，污点容忍度问题如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod cannot be scheduled to specific nodes, how to troubleshoot taint and toleration issues?",
+    "should_trigger": true
+  },
+  {
+    "query": "HPA自动扩展不工作，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "HPA auto-scaling not working, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod中断预算问题，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Pod disruption budget issues, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "容器运行时问题，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Container runtime issues, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "集群证书过期，如何更新？",
+    "should_trigger": true
+  },
+  {
+    "query": "Cluster certificates expired, how to update?",
+    "should_trigger": true
+  },
+  {
+    "query": "无法连接到API Server，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "Cannot connect to API Server, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "etcd集群问题，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "etcd cluster issues, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "k3s集群Pod处于CrashLoopBackOff状态，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "k3s cluster Pod in CrashLoopBackOff status, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "k3s服务无法访问，如何排查？",
+    "should_trigger": true
+  },
+  {
+    "query": "k3s service cannot be accessed, how to troubleshoot?",
+    "should_trigger": true
+  },
+  {
+    "query": "如何在k8s中部署应用？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to deploy applications in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "k8s集群如何扩容？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to scale k8s cluster?",
+    "should_trigger": false
+  },
+  {
+    "query": "如何编写k8s的Deployment配置文件？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to write k8s Deployment configuration files?",
+    "should_trigger": false
+  },
+  {
+    "query": "k8s的StatefulSet和Deployment有什么区别？",
+    "should_trigger": false
+  },
+  {
+    "query": "What's the difference between StatefulSet and Deployment in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "如何在k8s中设置资源配额？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to set resource quotas in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "k8s的Service类型有哪些？",
+    "should_trigger": false
+  },
+  {
+    "query": "What are the Service types in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "如何在k8s中使用ConfigMap？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to use ConfigMap in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "k8s的持久化存储方案有哪些？",
+    "should_trigger": false
+  },
+  {
+    "query": "What are the persistent storage solutions in k8s?",
+    "should_trigger": false
+  },
+  {
+    "query": "如何监控k8s集群？",
+    "should_trigger": false
+  },
+  {
+    "query": "How to monitor k8s cluster?",
+    "should_trigger": false
+  },
+  {
+    "query": "k8s的Pod生命周期有哪些阶段？",
+    "should_trigger": false
+  },
+  {
+    "query": "What are the stages of Pod lifecycle in k8s?",
+    "should_trigger": false
+  }
+]

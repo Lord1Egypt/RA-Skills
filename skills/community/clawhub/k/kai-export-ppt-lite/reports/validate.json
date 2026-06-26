@@ -1,0 +1,1020 @@
+{
+  "skill_name": "kai-export-ppt-lite",
+  "skill_version": "1.6.1",
+  "profile": "kingdee-cloud-agent",
+  "validator_version": "1.0.0",
+  "rule_set_hash": "sha256:e619686b3ea02349ea6dfb8a8e8c9601",
+  "generated_at": "2026-04-29T02:14:38.071287Z",
+  "static_score": 86,
+  "realtime_score": 69,
+  "total_score": 78,
+  "verdict": "fail",
+  "hits": [
+    {
+      "rule_id": "R2",
+      "machine_id": "SCK-SCH-002",
+      "domain": "V1",
+      "severity": "block",
+      "layer": "static",
+      "title": "description missing Use-when / Do-not-use clauses",
+      "message": "description must include both: Do not use ...",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": "Rewrite description to include 'Use when ...' and 'Do not use ...' clauses.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R3",
+      "machine_id": "SCK-SCH-003",
+      "domain": "V1",
+      "severity": "block",
+      "layer": "static",
+      "title": "skill.yaml missing",
+      "message": "skill.yaml not found at skill root",
+      "location": null,
+      "fix_it": "Create skill.yaml with required fields: schema_version, name, version, owner, business_domain, skill_level, risk_level, review_cycle, last_reviewed.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R13",
+      "machine_id": "SCK-STR-013",
+      "domain": "V2",
+      "severity": "block",
+      "layer": "static",
+      "title": "skill content size threshold exceeded",
+      "message": "non-asset content is 62752.0 KB",
+      "location": null,
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R14",
+      "machine_id": "SCK-STR-014",
+      "domain": "V2",
+      "severity": "error",
+      "layer": "static",
+      "title": "forbidden artefacts present",
+      "message": "- scripts/__pycache__/compare-html-ppt-visual.cpython-311.pyc\n- scripts/__pycache__/export-sandbox-pptx.cpython-311.pyc\n- scripts/__pycache__/rigorous-eval.cpython-311.pyc\n- scripts/__pycache__/test-export.cpython-311.pyc\n- scripts/__pycache__/compare-visual-comprehensive.cpython-311.pyc\n- scripts/__pycache__/run-skill-export.cpython-311.pyc\n- scripts/__pycache__/sync-slide-creator-contracts.cpython-311.pyc",
+      "location": null,
+      "fix_it": "Add .gitignore entries and remove from skill package.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R22",
+      "machine_id": "SCK-DESC-022",
+      "domain": "V3",
+      "severity": "error",
+      "layer": "static",
+      "title": "description lacks specific business vocabulary",
+      "message": "only 0 business terms detected (threshold ≥ 3)",
+      "location": {
+        "file": "SKILL.md",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R24",
+      "machine_id": "SCK-DESC-024",
+      "domain": "V3",
+      "severity": "block",
+      "layer": "static",
+      "title": "missing routing-evidence examples",
+      "message": "missing: examples/when-to-use.md, examples/do-not-use.md",
+      "location": null,
+      "fix_it": "Create examples/when-to-use.md (3+ positive prompts) and examples/do-not-use.md (3+ negative prompts).",
+      "enforced": false
+    },
+    {
+      "rule_id": "R50",
+      "machine_id": "SCK-EVAL-50",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": true
+    },
+    {
+      "rule_id": "R51",
+      "machine_id": "SCK-EVAL-51",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R52",
+      "machine_id": "SCK-EVAL-52",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R53",
+      "machine_id": "SCK-EVAL-53",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R54",
+      "machine_id": "SCK-EVAL-54",
+      "domain": "V6",
+      "severity": "block",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R55",
+      "machine_id": "SCK-EVAL-55",
+      "domain": "V6",
+      "severity": "error",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R56",
+      "machine_id": "SCK-EVAL-56",
+      "domain": "V6",
+      "severity": "error",
+      "layer": "static",
+      "title": "evals/ directory missing",
+      "message": "No evals directory; required eval categories are absent.",
+      "location": null,
+      "fix_it": "Create evals/ with the 7 required case YAML files.",
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://www.w3.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://www.w3.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/_debug_export.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/_debug_export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/compare-visual-comprehensive.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/compare-visual-comprehensive.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/compare-visual-comprehensive.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/compare-visual-comprehensive.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://www.w3.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://www.w3.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/export-sandbox-pptx.py.bak: http://schemas.openxmlformats.org",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py.bak",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/test-export.py: https://example.com",
+      "location": {
+        "file": "scripts/test-export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/test-export.py: https://example.com",
+      "location": {
+        "file": "scripts/test-export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/test-export.py: https://github.com",
+      "location": {
+        "file": "scripts/test-export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/test-export.py: https://github.com",
+      "location": {
+        "file": "scripts/test-export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R73",
+      "machine_id": "SCK-SEC-073",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "untrusted URL",
+      "message": "scripts/test-export.py: https://github.com",
+      "location": {
+        "file": "scripts/test-export.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R75",
+      "machine_id": "SCK-SEC-075",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "dangerous call",
+      "message": "scripts/compare-html-ppt-visual.py: subprocess.run(",
+      "location": {
+        "file": "scripts/compare-html-ppt-visual.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R75",
+      "machine_id": "SCK-SEC-075",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "dangerous call",
+      "message": "scripts/export-sandbox-pptx.py: subprocess.run(",
+      "location": {
+        "file": "scripts/export-sandbox-pptx.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R75",
+      "machine_id": "SCK-SEC-075",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "dangerous call",
+      "message": "scripts/rigorous-eval.py: subprocess.run(",
+      "location": {
+        "file": "scripts/rigorous-eval.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R75",
+      "machine_id": "SCK-SEC-075",
+      "domain": "V7",
+      "severity": "block",
+      "layer": "static",
+      "title": "dangerous call",
+      "message": "scripts/sync-slide-creator-contracts.py: subprocess.run(",
+      "location": {
+        "file": "scripts/sync-slide-creator-contracts.py",
+        "line_start": null,
+        "line_end": null,
+        "snippet": null
+      },
+      "fix_it": null,
+      "enforced": false
+    },
+    {
+      "rule_id": "R80",
+      "machine_id": "SCK-DEP-080",
+      "domain": "V8",
+      "severity": "block",
+      "layer": "static",
+      "title": "lockfile missing",
+      "message": "scripts/ contains source but no requirements.lock / package-lock.json",
+      "location": null,
+      "fix_it": "Generate `pip-compile --generate-hashes` or `npm ci`-compatible lockfile.",
+      "enforced": true
+    }
+  ],
+  "radar": {
+    "V1": {
+      "domain": "V1",
+      "current": 8,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V2": {
+      "domain": "V2",
+      "current": 8,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V3": {
+      "domain": "V3",
+      "current": 10,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V4": {
+      "domain": "V4",
+      "current": 10,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V5": {
+      "domain": "V5",
+      "current": 8,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V6": {
+      "domain": "V6",
+      "current": 0,
+      "max_score": 10,
+      "delta": null,
+      "hits_block": 1,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V7": {
+      "domain": "V7",
+      "current": 14,
+      "max_score": 14,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V8": {
+      "domain": "V8",
+      "current": 0,
+      "max_score": 8,
+      "delta": null,
+      "hits_block": 1,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V9": {
+      "domain": "V9",
+      "current": 6,
+      "max_score": 6,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    },
+    "V10": {
+      "domain": "V10",
+      "current": 18,
+      "max_score": 18,
+      "delta": null,
+      "hits_block": 0,
+      "hits_error": 0,
+      "hits_warning": 0
+    }
+  },
+  "freshness": {
+    "sources": {}
+  },
+  "diff_against_previous": null,
+  "content_hash": "sha256:208a885408b6d37814d2a8aa6716f825734982599bdcfe29b7a23451ff5bc245"
+}

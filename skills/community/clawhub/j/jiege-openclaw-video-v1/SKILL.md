@@ -1,35 +1,29 @@
----
-name: "jiege-openclaw-video"
-description: "高性能视频生成技能包，集成 Sora 和 VEO 模型接口，提供全自动的视频生成、轮询和下载管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jiege-openclaw-video-v1"
-sourceUrl: "https://clawhub.ai/skills/jiege-openclaw-video-v1"
----
+# Skill: jiege-video-skill
+### 作者: 何振杰
 
-# jiege-openclaw-video
+## 功能描述
+一个高性能 Veo 视频生成技能，支持通过自然语言一键生成。
 
-> 高性能视频生成技能包，集成 Sora 和 VEO 模型接口，提供全自动的视频生成、轮询和下载管理。
+## 适用场景
+- 自动化视频创作。
+- 无需命令行参数，通过自然语言对话生成视频。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jiege-openclaw-video-v1`
-- **Source URL:** [https://clawhub.ai/skills/jiege-openclaw-video-v1](https://clawhub.ai/skills/jiege-openclaw-video-v1)
+## 安装说明
+1. 使用 `openclaw install jiege-video-skill` 安装。
+2. 确保在 `~/.openclaw/openclaw.json` 中配置了有效的 API Key。
 
-## Overview
+## 使用方法
+安装后，直接在聊天窗口输入：
+> 生成视频：[您的提示词]
 
+例如：
+> 生成视频：一只在雨中奔跑的黑豹，电影质感
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jiege-openclaw-video-v1
-```
+## 运行机制
+- 拦截指令后，自动调用后台进程生成。
+- 任务完成时，会自动在浏览器中弹出结果页面。
+- 内置锁机制，防止并发重复任务。
+
+## 注意事项
+- 请确保系统环境已安装 Python。
+- 若提示任务阻塞，请确认无残留的 `.lock` 文件。

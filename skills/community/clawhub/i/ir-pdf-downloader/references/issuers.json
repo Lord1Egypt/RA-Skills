@@ -1,0 +1,114 @@
+[
+  {
+    "name": "JD.com",
+    "aliases": ["jd", "jd.com"],
+    "ticker": "JD",
+    "exchange": "NASDAQ",
+    "cik": "0001549802",
+    "ir_domain": "ir.jd.com"
+  },
+  {
+    "name": "Alibaba",
+    "aliases": ["alibaba", "alibabagroup", "baba"],
+    "ticker": "BABA",
+    "exchange": "NYSE",
+    "cik": "0001577552",
+    "ir_domain": "ir.alibabagroup.com"
+  },
+  {
+    "name": "Baidu",
+    "aliases": ["baidu", "bidu"],
+    "ticker": "BIDU",
+    "exchange": "NASDAQ",
+    "cik": "0001329099",
+    "ir_domain": "ir.baidu.com"
+  },
+  {
+    "name": "PDD Holdings",
+    "aliases": ["pdd", "pddgroup", "pinduoduo"],
+    "ticker": "PDD",
+    "exchange": "NASDAQ",
+    "cik": "0001738036",
+    "ir_domain": "ir.pddgroup.com"
+  },
+  {
+    "name": "NetEase",
+    "aliases": ["netease", "163", "ntes"],
+    "ticker": "NTES",
+    "exchange": "NASDAQ",
+    "cik": null,
+    "ir_domain": "ir.163.com"
+  },
+  {
+    "name": "Tencent (TCEHY)",
+    "aliases": ["tencent", "tcehy"],
+    "ticker": "TCEHY",
+    "exchange": "OTC",
+    "cik": null,
+    "ir_domain": "ir.tencent.com"
+  },
+  {
+    "name": "NIO",
+    "aliases": ["nio"],
+    "ticker": "NIO",
+    "exchange": "NYSE",
+    "cik": null,
+    "ir_domain": "ir.nio.cn"
+  },
+  {
+    "name": "Li Auto",
+    "aliases": ["li auto", "li", "lixiang"],
+    "ticker": "LI",
+    "exchange": "NASDAQ",
+    "cik": null,
+    "ir_domain": "ir.lixiang.com"
+  },
+  {
+    "name": "XPeng",
+    "aliases": ["xpeng", "xpev"],
+    "ticker": "XPEV",
+    "exchange": "NYSE",
+    "cik": null,
+    "ir_domain": "ir.xpeng.com"
+  },
+  {
+    "name": "Bilibili",
+    "aliases": ["bilibili", "bili"],
+    "ticker": "BILI",
+    "exchange": "NASDAQ",
+    "cik": "0001723690",
+    "ir_domain": "ir.bilibili.com"
+  },
+  {
+    "name": "Trip.com",
+    "aliases": ["trip.com", "trip", "tcom", "ctrip"],
+    "ticker": "TCOM",
+    "exchange": "NASDAQ",
+    "cik": null,
+    "ir_domain": "investors.trip.com"
+  },
+  {
+    "name": "Weibo",
+    "aliases": ["weibo", "wb"],
+    "ticker": "WB",
+    "exchange": "NASDAQ",
+    "cik": "0001595761",
+    "ir_domain": "ir.weibo.com"
+  },
+  {
+    "name": "Full Truck Alliance",
+    "aliases": ["full truck alliance", "fta", "ymm"],
+    "ticker": "YMM",
+    "exchange": "NYSE",
+    "cik": "0001829794",
+    "ir_domain": "ir.fulltruckalliance.com"
+  },
+  {
+    "name": "KE Holdings",
+    "aliases": ["ke holdings", "ke", "beke"],
+    "ticker": "BEKE",
+    "exchange": "NYSE",
+    "cik": "0001809587",
+    "ir_domain": "investors.ke.com"
+  }
+]

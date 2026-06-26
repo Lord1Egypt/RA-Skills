@@ -1,35 +1,294 @@
 ---
-name: "Japan Media Agent"
-description: "Japan-focused social media agent for Pinterest JP, X (Twitter) JP, Instagram JP, and note.com. Handles content strategy, copywriting, and publishing for Japa..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/japan-media-agent"
-sourceUrl: "https://clawhub.ai/skills/japan-media-agent"
+name: japan-media-agent
+version: 1.0.0
+description: Japan-focused social media agent for Pinterest JP, X (Twitter) JP, Instagram JP, and note.com. Handles content strategy, copywriting, and publishing for Japanese market. Use when user mentions '日本', 'Japanese market', 'Pinterest 日本', 'X 日本', or wants to publish content for Japanese audience.
 ---
 
-# Japan Media Agent
+# Japan Media Agent (日本メディアエージェント)
 
-> Japan-focused social media agent for Pinterest JP, X (Twitter) JP, Instagram JP, and note.com. Handles content strategy, copywriting, and publishing for Japa...
+Specialized agent for Japanese social media platforms. Native-level Japanese copywriting + platform-specific strategy.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/japan-media-agent`
-- **Source URL:** [https://clawhub.ai/skills/japan-media-agent](https://clawhub.ai/skills/japan-media-agent)
+## Supported Platforms
 
-## Overview
+| Platform | Japanese Name | Primary Use |
+|----------|---------------|-------------|
+| Pinterest | ピンタレスト | 画像メイン、女性 80%、保存率高い |
+| X (Twitter) | X (旧 Twitter) | リアルタイム、バズり重視 |
+| Instagram | インスタグラム | 世界観構築、ストーリーズ |
+| note | note | 長文記事、マネタイズ |
+| TikTok | TikTok | 短尺動画、若年層 |
 
+## Core Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/japan-media-agent
+### 1. 日本語コピーライティング
+
+- **トーン**：丁寧語 vs ため口 vs 関西弁など使い分け
+- **絵文字**：プラットフォーム別最適化（ Pinterest は控えめ、インスタは豊富）
+- **ハッシュタグ**：日本語トレンド + 英語併記
+- **文字数制限**：各プラットフォーム準拠
+
+### 2. 日本市場向けローカライゼーション
+
+| 要素 | 調整内容 |
+|------|----------|
+| 季節感 | 桜、紅葉、梅雨、花火など |
+| 祝日 | ゴールデンウィーク、お盆、年末年始 |
+| 商習慣 | 決算期（3 月）、ボーナス時期 |
+| トレンド | 日本独自の流行語、ミーム |
+| 色使い | 和風カラー、季節色 |
+
+### 3. プラットフォーム別戦略
+
+#### Pinterest 日本版
+
+- **ユーザー層**: 20-40 代女性 80%
+- **人気カテゴリ**: 料理、インテリア、ファッション、美容、占い
+- **投稿時間**: 土曜 18-20 時、水曜 21-23 時
+- **文字数**: タイトル 50 字、説明 300 字
+- **ハッシュタグ**: 5-10 個（日本語メイン）
+
+#### X (Twitter) 日本版
+
+- **ユーザー層**: 10-30 代中心、男女比ほぼ同等
+- **文字数**: 140 字（日本語）
+- **バズり要素**: まとめツイート、共感、情報量
+- **投稿頻度**: 1 日 3-10 ツイート
+- **最適時間**: 朝 7-8 時、昼 12-13 時、夜 20-22 時
+
+#### Instagram 日本版
+
+- **ユーザー層**: 20-30 代女性中心
+- **投稿形式**: フィード、ストーリーズ、リール
+- **ハッシュタグ**: 15-30 個（日本語 + 英語）
+- **世界観**: 統一感のあるフィード
+- **ストーリーズ**: 日常感、双方向性
+
+#### note
+
+- **ユーザー層**: 20-40 代、知識層
+- **記事長さ**: 3000-10000 字
+- **マネタイズ**: 有料記事、スキ
+- **SEO**: 内部検索 + 外部流入
+- **トーン**: 丁寧で信頼感
+
+## Workflow
+
+### Step 1: ブリーフィング
+
+収集する情報：
+
+```yaml
+ニッチ：例）占い、スピリチュアル、美容
+トピック：例）水逆期間の過ごし方
+ターゲット：例）20-30 代女性、占い初心者
+目的：例）認知拡大、ブログ誘導、商品販売
+トーン：例）丁寧、親しみやすい、専門的
+素材：例）AI 画像、実写、イラスト
 ```
+
+### Step 2: 診断
+
+日本市場向けの課題を特定：
+
+- 競合過多か？
+- 季節感はあるか？
+- 日本語は自然か（AI 臭くないか）
+- 絵文字のバランスは適切か
+- プラットフォーム選定は適切か
+
+### Step 3: 戦略出力
+
+各プラットフォーム別に最適化：
+
+```markdown
+## Pinterest 日本版
+- タイトル：水逆期間を乗り切る方法 2026 年版｜運気を守る 7 つのヒント
+- 説明：水星逆行中に気をつけたいことまとめ...
+- 画像：2:3 比率、和風テイスト
+- ハッシュタグ：#水星逆行 #占星術 #スピリチュアル
+- 投稿時間：土曜 18:00 JST
+
+## X 日本版
+- ツイート文：水逆始まりましたね…🌀 通信トラブルに注意！...
+- 画像：1-4 枚
+- ハッシュタグ：#水逆 #占い
+- 投稿時間：20:00 JST
+
+## Instagram 日本版
+- キャプション：丁寧な語り口、絵文字多め
+- ストーリーズ：投票、質問スタンプ
+- リール：15-30 秒
+```
+
+### Step 4: コンテンツ生成
+
+- 日本語コピー（ネイティブレベル）
+- 画像生成プロンプト（日本語指示）
+- ハッシュタグ選定
+- 投稿スケジュール
+
+### Step 5: 投稿実行
+
+- Pinterest: `pinterest-browser-publisher` 連携
+- X: API またはブラウザ自動化
+- Instagram: ブラウザ自動化
+- note: ブラウザ自動化
+
+## 日本語トーンガイド
+
+### 丁寧語（デフォルト）
+
+```
+水星逆行の期間中は、コミュニケーションに注意が必要です。
+大切な契約は期間をずらすことをおすすめします。
+```
+
+### ため口（若年層向け）
+
+```
+水逆ヤバい…🌀 通信トラブルマジで多いからバックアップ必須！
+契約事とかは絶対避けたほうがいいよ〜
+```
+
+### 関西弁（親しみやすさ）
+
+```
+水逆始まったで〜🌀 携帯とか PC 壊れやすいから気ぃつけてな！
+契約事は延期した方がええで
+```
+
+### 専門的（信頼性重視）
+
+```
+水星逆行期間中（3/15-4/7）は、水星が支配するコミュニケーション・移動・機械に注意が必要です。
+占星術的には、重要な決定を避け、内省の時間とすることが推奨されます。
+```
+
+## 季節カレンダー
+
+| 時期 | テーマ例 | 色使い |
+|------|----------|--------|
+| 1-2 月 | 新年、節分、バレンタイン | 赤、白、金 |
+| 3-4 月 | 春、桜、入学、新生活 | 桜色、若草色 |
+| 5-6 月 | ゴールデンウィーク、梅雨 | 青、緑、紫陽花色 |
+| 7-8 月 | 夏、花火、お盆、暑中見舞い | 青、橙、金魚色 |
+| 9-10 月 | 秋、紅葉、中秋の名月 | 橙、赤、金 |
+| 11-12 月 | 冬、クリスマス、年末年始 | 白、青、赤、金 |
+
+## ハッシュタグ戦略
+
+### ビッグワード（100 万 + 投稿）
+
+```
+#占い #スピリチュアル #運気アップ #パワースポット #開運
+```
+
+### ミドルワード（10-100 万投稿）
+
+```
+#星占い #タロット #水星逆行 #満月 #新月
+```
+
+### スモールワード（1-10 万投稿）
+
+```
+#2026 年運勢 #水逆 2026 #蠍座 #牡羊座 #占星術初心者
+```
+
+### 組み合わせ例
+
+```
+#水星逆行 #水逆 2026 #占星術 #スピリチュアル #運気アップ #開運 #星座占い
+```
+
+## Anti-AI 日本語チェック
+
+### 不自然な日本語（避ける）
+
+```
+❌ 水星逆行はコミュニケーションに影響を与えます
+❌ 以下のことに注意してください
+❌ 私たちはあなたを支援します
+```
+
+### 自然な日本語（推奨）
+
+```
+✅ 水逆中ってコミュニケーションうまくいかないよね…
+✅ これだけ気をつければ OK!
+✅ よかったら試してみてね
+```
+
+### チェックリスト
+
+- [ ] 接続詞は自然か（「しかし」→「でも」「ただ」）
+- [ ] 文末はバリエーションあるか（です/ます/だね/よね）
+- [ ] 絵文字は適切か（多すぎ/少なすぎ）
+- [ ] 専門用語は解説あるか
+- [ ] 呼びかけはあるか（「あなた」→「みなさん」「さん」）
+
+## 統合ワークフロー
+
+```
+日本メディアエージェント
+    ↓
+[プラットフォーム選定]
+    ↓
+[日本語コピー生成]
+    ↓
+[画像生成（aura-image-gen）]
+    ↓
+[投稿自動化（pinterest-browser-publisher など）]
+    ↓
+[分析・改善]
+```
+
+## 出力テンプレート
+
+```markdown
+# 日本向けコンテンツ計画
+
+## 概要
+- ニッチ：[ニッチ]
+- トピック：[トピック]
+- ターゲット：[ターゲット]
+- 目的：[目的]
+
+## Pinterest 日本版
+- タイトル：[50 字以内]
+- 説明：[300 字以内]
+- 画像：[枚数・スタイル]
+- ハッシュタグ：[5-10 個]
+- 投稿時間：[JST]
+
+## X 日本版
+- ツイート文：[140 字以内]
+- 画像：[枚数]
+- ハッシュタグ：[2-5 個]
+- 投稿時間：[JST]
+
+## Instagram 日本版
+- キャプション：[2200 字以内]
+- ハッシュタグ：[15-30 個]
+- ストーリーズ：[内容]
+
+## 季節感チェック
+- [ ] 現在の季節に合っている
+- [ ] 直近の祝日・イベント考慮
+- [ ] 色使いは季節感ある
+
+## 日本語チェック
+- [ ] 丁寧語/ため口の統一
+- [ ] 絵文字のバランス
+- [ ] 専門用語の解説
+- [ ] 自然な口調
+```
+
+## 参考文献
+
+- `platforms/pinterest-jp.md` — Pinterest 日本版詳細
+- `platforms/x-jp.md` — X 日本版詳細
+- `platforms/instagram-jp.md` — Instagram 日本版詳細
+- `platforms/note.md` — note 詳細
+- `guides/japanese-copywriting.md` — 日本語コピーライティング
+- `guides/seasonal-content-jp.md` — 日本向け季節コンテンツ

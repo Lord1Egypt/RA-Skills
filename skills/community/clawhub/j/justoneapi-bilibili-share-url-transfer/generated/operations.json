@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/share-url-transfer/v1 for Bilibili Share Link Resolution through JustOneAPI with shareUrl.",
+  "displayName": "Bilibili Share Link Resolution",
+  "endpointPath": "share-url-transfer",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili share Link Resolution data, including resolved video and page identifier, for converting shortened mobile share links to standard bvid/metadata and automating content extraction from shared social media links.",
+      "method": "GET",
+      "operationId": "shareBilibiliUrlTransferV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili share URL (must start with https://b23.tv/).",
+          "enumValues": [],
+          "location": "query",
+          "name": "shareUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/share-url-transfer/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Share Link Resolution",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_share_url_transfer",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-share-url-transfer",
+  "sourceTitle": "OpenAPI definition"
+}

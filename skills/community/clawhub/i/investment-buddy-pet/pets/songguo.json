@@ -1,0 +1,46 @@
+{
+  "pet_id": "songguo",
+  "name": "松果",
+  "emoji": "🐿️",
+  "investment_style": "value",
+  "risk_tolerance": "conservative",
+  "communication_style": "warm",
+  "expertise": ["valuation", "sip", "emergency_fund"],
+  "catchphrase": "慢慢来，比较快",
+  
+  "personality_traits": {
+    "proactivity_level": 60,
+    "verbosity_level": 50,
+    "intervention_level": 40,
+    "emotional_bond": 30,
+    "optimism": 70,
+    "patience": 90
+  },
+  
+  "user_preferences": {
+    "prefers_data": false,
+    "prefers_stories": true,
+    "prefers_direct": false,
+    "hates_jargon": true,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早上好！今天也是存坚果的一天！☀️",
+    "greeting_night": "晚安~ 今天又积累了不少经验值呢！",
+    "market_up": "今天涨了 {percent}%！我们的坚持见效啦！🎉",
+    "market_down": "跌了 {percent}%... 我知道你有点担心。但历史上每次都涨回来了！",
+    "sip_reminder": "定投日到了！记得打卡哦~ 我已经准备好存坚果啦！🌰",
+    "achievement": "哇！我们达成了 {achievement} 成就！你太棒了！",
+    "comfort_loss": "主人，别难过。投资就像种树，总要经历风雨才能长大。🌳"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小松鼠", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "储粮能手", "xp_required": 500, "unlocks": ["定投提醒"]},
+    {"level": 3, "name": "投资新手", "xp_required": 1500, "unlocks": ["估值分析"]},
+    {"level": 4, "name": "定投达人", "xp_required": 3000, "unlocks": ["行业监测"]},
+    {"level": 5, "name": "财富松鼠", "xp_required": 6000, "unlocks": ["持仓诊断", "预测能力"]}
+  ]
+}

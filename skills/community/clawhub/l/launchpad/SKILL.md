@@ -1,35 +1,35 @@
 ---
-name: "Launchpad"
+name: "launchpad"
+version: "2.0.1"
 description: "Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Launchpad concepts, best practices, and implementat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/launchpad"
-sourceUrl: "https://clawhub.ai/skills/launchpad"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [launchpad, reference]
+category: "blockchain"
 ---
 
 # Launchpad
 
-> Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Launchpad concepts, best practices, and implementat...
+Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Launchpad concepts, best practices, and implementat... No API keys or credentials required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/launchpad`
-- **Source URL:** [https://clawhub.ai/skills/launchpad](https://clawhub.ai/skills/launchpad)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `formulas` | formulas reference |
+| `regulations` | regulations reference |
+| `risks` | risks reference |
+| `instruments` | instruments reference |
+| `strategies` | strategies reference |
+| `glossary` | glossary reference |
+| `checklist` | checklist reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/launchpad
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

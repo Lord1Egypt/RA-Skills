@@ -1,35 +1,35 @@
 ---
 name: "MeshMorize"
 description: "🧠 Multi-layer memory system: fresh + mesh edges + fuzzy search + auto-summarize + compliance"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/josh-learns"
-sourceUrl: "https://clawhub.ai/skills/josh-learns"
 ---
 
-# MeshMorize
+# MeshMorize 🧠
 
-> 🧠 Multi-layer memory system: fresh + mesh edges + fuzzy search + auto-summarize + compliance
+Multi-layer memory system for LLM agents. Fresh daily layer, mesh graph with edges, auto-logging, fuzzy cross-layer search, auto-summarize, and compliance checks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/josh-learns`
-- **Source URL:** [https://clawhub.ai/skills/josh-learns](https://clawhub.ai/skills/josh-learns)
+## Tools
 
-## Overview
+| Tool | Source |
+|------|--------|
+| `mem-bridge` | `memory/bridge.py` — rotation, nodes, edges, summarize |
+| `auto_log` | `scripts/auto_log` — timestamped logger |
+| `memory_search` | `scripts/memory_search` — multi-layer + fuzzy + edges |
+| `memcheck` | `scripts/memory_check` — 10-point compliance |
 
+## Edge Types
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/josh-learns
-```
+| Relation | Meaning |
+|----------|---------|
+| `triggers` | Source causes target to execute |
+| `depends_on` | Source requires target |
+| `related_to` | Generic connection |
+| `part_of` | Source is a component of target |
+| `precedes` | Source happens before target |
+
+## Latest Fixes (v3.2.2)
+
+- bridge.py now respects `$OPENCLAW_WORKSPACE` env var
+- Edge types documented in help + SKILL.md
+- All 12 compliance checks passing
+
+https://github.com/mozz0/MeshMorize

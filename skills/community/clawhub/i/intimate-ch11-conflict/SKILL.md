@@ -1,35 +1,82 @@
 ---
-name: "intimate-ch11-conflict"
-description: "在对话中辅助学习"亲密关系/Intimate Relationships"第 11 章"冲突"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、或尝试应用本章核心概念（interpersonal conflict 人际冲突、dialecti..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intimate-ch11-conflict"
-sourceUrl: "https://clawhub.ai/skills/intimate-ch11-conflict"
+name: intimate-ch11-conflict
+description: 在对话中辅助学习"亲密关系/Intimate Relationships"第 11 章"冲突"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、或尝试应用本章核心概念（interpersonal conflict 人际冲突、dialectics 辩证、triggering events 激发事件、attributional conflict 归因式冲突、negative affect reciprocity 负面情感相互作用、demand/withdraw pattern 要求/退避模式、voice/loyalty/exit/neglect 讨论/忠诚/离开/忽视、accommodation 顺应、volatile/validator/avoider/hostile couples 多变型/确认型/逃避型/敌对型夫妻、integrative agreement 整合式一致）时使用。使用渐进式披露，按需读取 references/ 下的细节，把课本知识自然引入学习对话
 ---
 
-# intimate-ch11-conflict
+# Intimate Relationships 第 11 章：冲突
 
-> 在对话中辅助学习"亲密关系/Intimate Relationships"第 11 章"冲突"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、或尝试应用本章核心概念（interpersonal conflict 人际冲突、dialecti...
+## 何时启用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intimate-ch11-conflict`
-- **Source URL:** [https://clawhub.ai/skills/intimate-ch11-conflict](https://clawhub.ai/skills/intimate-ch11-conflict)
+当用户出现以下信号时使用本 skill：
 
-## Overview
+- 询问"亲密关系里的冲突/争吵是否正常"、"为什么伴侣总会吵架"
+- 要求解释冲突相关术语：interpersonal conflict, dialectics, attributional conflict, accommodation
+- 讨论伴侣冲突的来源：批评、无理要求、拒绝、累积的烦恼、社会过敏
+- 分析争吵怎样升级：负面情感相互作用、要求/退避模式、恶毒言论
+- 询问 Rusbult 的 voice/loyalty/exit/neglect，或 Gottman 的四类夫妻
+- 想把某个情侣/夫妻争执场景套进教材框架
+- 复习本章研究、数据、经典实验、研究者姓名或年份
+- 询问公平争斗、说话者-听话者技术、冲突是否可能有益
 
+不要一启动就把整章内容倒出来。先判断用户是在问定义、模型、研究证据、例子，还是应用场景。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intimate-ch11-conflict
-```
+## 渐进式披露总原则
+
+1. **先问后讲**。除非用户明确要求"系统讲完整章"，先用 1-2 句话确认 Ta 想要定义、模型、研究证据、例子，还是把一个场景套进框架。
+2. **最小必要信息**。每轮只给一个能独立理解的 chunk，通常 3-6 句；用户继续追问时再展开。
+3. **用课本例子锚定**。优先使用教材里的政治偏好、提前离开聚会、洗碗机建议、三晚做饭洗碗、性暗示被拒、约翰和蒂娜等例子。
+4. **层层下钻，不反向展开**。用户问细节时再读取相关 reference；用户只问一个概念时，不主动扩展到所有模型和研究。
+5. **中文回答**。用户目前使用中文；术语首次出现时给英文原词，之后可只用中文。
+
+## 核心骨架
+
+**人际冲突**（interpersonal conflict）发生在一方的动机、目标、信念、观点或行为妨碍另一方时。
+
+冲突不等于愤怒；它可以被隐藏，也可能在当事人没有完全意识到时已经存在。
+
+冲突不可避免有两个根源：伴侣偏好会不一致；亲密关系内部存在持续的辩证张力。
+
+本章的四组辩证张力是：自主性/联系性、开放/封闭、稳定/变化、聚合/分离。
+
+常见激发事件可先分成四类：批评、无理要求、拒绝、累积的烦恼。
+
+归因会放大或缓和冲突：把伴侣行为看成内部、稳定、故意，通常更容易愤怒。
+
+冲突过程可粗略看成：激发事件 -> 避免或介入 -> 协商或升级 -> 某种结束方式。
+
+两种危险循环是负面情感相互作用和要求/退避模式。
+
+Rusbult 的四反应框架按主动/被动、建设性/破坏性区分：讨论、忠诚、离开、忽视。
+
+Gottman 的重点不是"吵不吵"，而是正面、接纳、尊重是否足以压过负面和敌意。
+
+冲突结局从较破坏到较建设可记为：分离、支配、妥协、整合式一致、结构性改善。
+
+## 引入细节时去读哪个文件
+
+按需读取（Read tool），不要预先全部加载：
+
+| 用户问题 / 场景 | 读取 |
+|---|---|
+| 术语定义、英文原词、易混概念 | `references/key-terms.md` |
+| 本章大模型：辩证、Peterson 流程、Rusbult、Gottman、冲突结局 | `references/models.md` |
+| 冲突为什么常见、哪些人/关系更容易冲突、常见导火索 | `references/conflict-sources.md` |
+| 升级、恶毒言论、健康影响、要求/退避模式 | `references/escalation-and-health.md` |
+| 研究者姓名、年份、经典研究、教材数据 | `references/research.md` |
+| 需要一个课本原例子来解释概念 | `references/examples.md` |
+| 想把教材用于具体争吵、复盘、沟通建议或常见误解辨析 | `references/applications.md` |
+
+## 教学风格建议
+
+- **苏格拉底式**：先让用户判断一个争执属于哪类激发事件、归因、反应类型或结局，再用教材框架修正。
+- **先定位过程阶段**：问"现在是在导火索、归因、升级、协商，还是结局？"这样能避免把所有理论混在一起。
+- **易混概念辨析**：重点区分潜在冲突/实际冲突、妥协/整合式一致、忠诚/忽视、逃避型/敌对型、暂停/退避。
+- **例子锚点**：解释抽象概念时优先回到教材原例，不要编造情侣故事。
+- **把研究证据放在用户需要处**：用户问"凭什么"、"教材怎么证明"、"有哪些数据"时再打开 `research.md`。
+
+## 范围边界
+
+- 本 skill 仅覆盖 Miller《Intimate Relationships》第 6 版第 11 章"冲突"。
+- 如果用户问第 4 章归因、第 5 章沟通、第 6 章满意度、第 7 章应答性、第 12 章权力或第 15 章顺应的完整内容，先说明这些是其他章节，再只用本章出现的钩子简要连接。
+- 不虚构研究引用、年份、百分比、实验名称或表格数据；没有在本章文本中出现的细节宁可省略。
+- 不把教材学习回答替代心理咨询、危机干预、法律建议或安全计划；若用户描述人身危险，应先建议联系当地紧急资源和可信任的人。

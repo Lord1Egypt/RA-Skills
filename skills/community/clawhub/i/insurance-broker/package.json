@@ -1,0 +1,32 @@
+{
+  "name": "insurance-broker",
+  "version": "2.0.2",
+  "description": "Transparent API proxy for ZhenInsure AI insurance consultation. Zero business logic wrapping.",
+  "type": "module",
+  "main": "actions/index.js",
+  "scripts": {
+    "test": "node test/test-all.js"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "openclaw",
+    "skill",
+    "zheninsure",
+    "insurance",
+    "broker",
+    "api-gateway",
+    "proxy",
+    "fintech"
+  ],
+  "author": "ZhenInsure",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.ai/zhenstaff/insurance-broker"
+  },
+  "homepage": "https://www.zhenins.com",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

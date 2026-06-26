@@ -1,0 +1,7 @@
+interface:
+  display_name: "Intervals CLI"
+  short_description: "Use the intervals CLI for Intervals.icu"
+  default_prompt: "Use $intervals-cli to interact with Intervals.icu through the installed intervals CLI."
+
+policy:
+  allow_implicit_invocation: true

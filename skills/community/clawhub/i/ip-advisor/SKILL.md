@@ -1,35 +1,57 @@
 ---
-name: "Ip Advisor"
+name: "ip-advisor"
+version: "3.0.0"
 description: "Analyze IP addresses with subnet calculation and CIDR notation. Use when planning network addressing."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ip-advisor"
-sourceUrl: "https://clawhub.ai/skills/ip-advisor"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Ip Advisor
+# ip-advisor
 
-> Analyze IP addresses with subnet calculation and CIDR notation. Use when planning network addressing.
+Analyze IP addresses with subnet calculation and CIDR notation. Use when planning network addressing.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ip-advisor`
-- **Source URL:** [https://clawhub.ai/skills/ip-advisor](https://clawhub.ai/skills/ip-advisor)
+## Commands
 
-## Overview
+### `info`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ip-advisor
+scripts/script.sh info <ip>
 ```
+
+### `subnet`
+
+```bash
+scripts/script.sh subnet <cidr>
+```
+
+### `validate`
+
+```bash
+scripts/script.sh validate <ip>
+```
+
+### `local`
+
+```bash
+scripts/script.sh local
+```
+
+### `public`
+
+```bash
+scripts/script.sh public
+```
+
+### `range`
+
+```bash
+scripts/script.sh range <start end>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/ip-advisor/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

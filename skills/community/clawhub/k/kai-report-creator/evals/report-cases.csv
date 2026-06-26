@@ -1,0 +1,4 @@
+case_id,lang,report_class,source_path,ir_path,html_path,context_path,notes
+zh-ai-collaboration,zh,narrative,evals/cases/zh-ai-collaboration/source.md,evals/cases/zh-ai-collaboration/report.report.md,tests/fixtures/minimal_report.html,evals/cases/zh-ai-collaboration/noise-context.md,Narrative async-reading case with timeline and diagram instead of placeholder KPIs.
+en-ops-weekly,en,mixed,evals/cases/en-ops-weekly/source.md,evals/cases/en-ops-weekly/report.report.md,tests/fixtures/color_system_report.html,evals/cases/en-ops-weekly/noise-context.md,Mixed status update with real numbers and one timeline.
+zh-quarterly-growth,zh,data,evals/cases/zh-quarterly-growth/source.md,evals/cases/zh-quarterly-growth/report.report.md,tests/fixtures/minimal_report.html,evals/cases/zh-quarterly-growth/noise-context.md,Data-heavy business case with KPI chart and table.

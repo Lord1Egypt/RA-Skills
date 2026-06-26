@@ -1,0 +1,12 @@
+{
+  "description": "JB's Catalyst Edge stock watchlist — update this as watchlist changes",
+  "tickers": [
+    "VT",
+    "VTI",
+    "QYLD",
+    "JEPI",
+    "SCHD",
+    "VYM",
+    "AMD"
+  ]
+}

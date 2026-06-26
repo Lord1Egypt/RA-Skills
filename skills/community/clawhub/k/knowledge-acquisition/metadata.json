@@ -1,0 +1,11 @@
+{
+  "name": "knowledge-acquisition",
+  "version": "2.0.0",
+  "primaryEnv": "node",
+  "install": ["axios", "cheerio", "fluent-ffmpeg", "@larksuiteoapi/node-sdk", "puppeteer"],
+  "requires": {
+    "system": ["node", "ffmpeg"],
+    "tools": ["filesystem", "network"]
+  },
+  "entry": "index.js"
+}

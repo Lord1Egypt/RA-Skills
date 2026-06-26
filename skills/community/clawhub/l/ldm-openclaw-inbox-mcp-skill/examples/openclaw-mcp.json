@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "inbox-check": {
+      "command": "npx",
+      "args": ["-y", "ldm-inbox-check-mcp"],
+      "env": {
+        "INBOX_CHECK_API_KEY": "icp_live_xxxxxxxxxxxxxxxxxxxxxxxx",
+        "INBOX_CHECK_BASE_URL": "https://check.live-direct-marketing.online"
+      }
+    }
+  }
+}

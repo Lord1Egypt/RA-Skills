@@ -1,35 +1,78 @@
 ---
-name: "Kiro Creator Monitor Daily Brief"
-description: "Monitor creator topics across X, RSS, GitHub, and Reddit; deduplicate and score results; produce a daily top-5 brief plus one publish-ready X/LinkedIn draft;..."
-category: "social-media"
-source: "ClawHub"
-tags: [creator, daily-brief, kiro, monitoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kiro-creator-monitor-daily-brief"
-sourceUrl: "https://clawhub.ai/skills/kiro-creator-monitor-daily-brief"
+name: kiro-creator-monitor-daily-brief
+description: Monitor creator topics across X, RSS, GitHub, and Reddit; deduplicate and score results; produce a daily top-5 brief plus one publish-ready X/LinkedIn draft; optional scheduled delivery to Telegram, Slack, or email.
+homepage: https://kiroai.io
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧭",
+        "primaryEnv": "X_BEARER_TOKEN",
+        "requires":
+          {
+            "bins": ["python3"],
+            "env":
+              [
+                "X_BEARER_TOKEN",
+                "TELEGRAM_BOT_TOKEN",
+                "TELEGRAM_CHAT_ID",
+                "SLACK_WEBHOOK_URL",
+                "SMTP_HOST",
+                "SMTP_PORT",
+                "SMTP_USER",
+                "SMTP_PASS",
+                "EMAIL_TO"
+              ],
+          },
+      },
+  }
 ---
 
 # Kiro Creator Monitor Daily Brief
 
-> Monitor creator topics across X, RSS, GitHub, and Reddit; deduplicate and score results; produce a daily top-5 brief plus one publish-ready X/LinkedIn draft;...
+Plugin producer: `kiroai.io`
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kiro-creator-monitor-daily-brief`
-- **Source URL:** [https://clawhub.ai/skills/kiro-creator-monitor-daily-brief](https://clawhub.ai/skills/kiro-creator-monitor-daily-brief)
+This skill builds a creator-focused monitoring loop:
 
-## Overview
+1. Pull signals from configured sources (`x`, `rss`, `github`, `reddit`)
+2. Deduplicate and score by relevance + freshness
+3. Output a concise brief: top 5 items + one social draft
+4. Optionally deliver to Telegram/Slack/email
 
+## Files
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `scripts/daily_brief.py`
+- `examples/config.json`
+- `examples/cron_command.txt`
+
+## Quick start
+
 ```bash
-hermes skills install clawhub/kiro-creator-monitor-daily-brief
+python3 skills/kiro-creator-monitor-daily-brief/scripts/install_and_init.py
+
+python3 skills/kiro-creator-monitor-daily-brief/scripts/daily_brief.py \
+  --config skills/kiro-creator-monitor-daily-brief/examples/config.json \
+  --out-dir outputs/creator-brief
 ```
+
+## Config
+
+Use JSON config with:
+
+- `topics`: keyword groups and exclusions
+- `sources`: source-level settings
+- `delivery`: optional delivery channels
+
+See `examples/config.json`.
+
+## Schedule
+
+For OpenClaw cron, use the command in `examples/cron_command.txt` and set your schedule to:
+
+- `0 9 * * *` with timezone `America/New_York`
+
+## Notes
+
+- X search needs `X_BEARER_TOKEN`.
+- RSS and public GitHub endpoints can run without keys.
+- Reddit public JSON may be rate-limited; set a user-agent in script args if needed.

@@ -1,0 +1,86 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/amazon/get-product-detail/v1 for Amazon Product Details through JustOneAPI with asin.",
+  "displayName": "Amazon Product Details",
+  "endpointPath": "get-product-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Amazon product Details data, including title, brand, and price, for building product catalogs and enriching item content (e.g., images), price monitoring and availability tracking, and e-commerce analytics and competitor tracking.",
+      "method": "GET",
+      "operationId": "getAmazonProductDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "ASIN (Amazon Standard Identification Number).",
+          "enumValues": [],
+          "location": "query",
+          "name": "asin",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "US",
+          "description": "Country code for the Amazon product.\n\nAvailable Values:\n- `US`: United States\n- `AU`: Australia\n- `BR`: Brazil\n- `CA`: Canada\n- `CN`: China\n- `FR`: France\n- `DE`: Germany\n- `IN`: India\n- `IT`: Italy\n- `MX`: Mexico\n- `NL`: Netherlands\n- `SG`: Singapore\n- `ES`: Spain\n- `TR`: Turkey\n- `AE`: United Arab Emirates\n- `GB`: United Kingdom\n- `JP`: Japan\n- `SA`: Saudi Arabia\n- `PL`: Poland\n- `SE`: Sweden\n- `BE`: Belgium\n- `EG`: Egypt\n- `ZA`: South Africa\n- `IE`: Ireland",
+          "enumValues": [
+            "US",
+            "AU",
+            "BR",
+            "CA",
+            "CN",
+            "FR",
+            "DE",
+            "IN",
+            "IT",
+            "MX",
+            "NL",
+            "SG",
+            "ES",
+            "TR",
+            "AE",
+            "GB",
+            "JP",
+            "SA",
+            "PL",
+            "SE",
+            "BE",
+            "EG",
+            "ZA",
+            "IE"
+          ],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/amazon/get-product-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "Amazon"
+      ]
+    }
+  ],
+  "platformKey": "amazon",
+  "primaryTag": "Amazon",
+  "skillName": "justoneapi_amazon_get_product_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-amazon-get-product-detail",
+  "sourceTitle": "OpenAPI definition"
+}

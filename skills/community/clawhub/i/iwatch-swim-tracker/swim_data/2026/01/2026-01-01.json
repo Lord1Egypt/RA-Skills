@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2026-01-01",
+    "time_range": "09:00-10:25",
+    "pool_length": 50,
+    "total_distance": 2500,
+    "laps": 50,
+    "strokes": {
+      "kickboard": {
+        "distance": 500
+      },
+      "breaststroke": {
+        "distance": 500
+      },
+      "freestyle": {
+        "distance": 1500
+      }
+    },
+    "duration": "1:25:22",
+    "duration_seconds": 5122,
+    "avg_pace": "3:24/100m",
+    "avg_pace_seconds": 204,
+    "avg_heart_rate": 148,
+    "active_calories": 607,
+    "total_calories": 739,
+    "effort_score": 6,
+    "effort_level": "适中"
+  }
+]

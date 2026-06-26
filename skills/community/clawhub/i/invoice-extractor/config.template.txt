@@ -1,0 +1,6 @@
+# Invoice Extractor Configuration
+# Get your API credentials from https://cloud.baidu.com/product/ocr
+
+BAIDU_API_KEY=your_api_key_here
+BAIDU_SECRET_KEY=your_secret_key_here
+OCR_ENGINE=baidu

@@ -1,0 +1,159 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.34"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SMDeciPublDate",
+        "columnChiName": "股东大会决议公告日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.25"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "IfPassed",
+        "columnChiName": "是否否决",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "是否否决(IfPassed)，该字段固定以下常量：1-是；0-否",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "ChangeDate",
+        "columnChiName": "简称更改日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "3.6"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SecurityAbbr",
+        "columnChiName": "证券简称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "ChiSpelling",
+        "columnChiName": "拼音证券简称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.98"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "ExtendedAbbr",
+        "columnChiName": "扩位简称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.02"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "ExtendedSpelling",
+        "columnChiName": "拼音扩位简称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.02"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "ChangeReason",
+        "columnChiName": "简称变更原因",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "简称变更原因(ChangeReason)与(CT_SystemConst)表中的DM字段关联，令LB = 1185，得到简称变更原因的具体描述：1-ST，2-撤销ST，3-PT，4-撤销PT，5-*ST，6-撤销*ST，7-撤消*ST并实行ST，8-从ST变为*ST，9-退市整理期，10-高风险警示，11-撤销高风险警示，12-叠加ST，13-撤销叠加ST，14-叠加*ST，15-撤销叠加*ST。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.63",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

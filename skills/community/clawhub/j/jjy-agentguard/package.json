@@ -1,0 +1,28 @@
+{
+  "name": "agentguard",
+  "version": "1.8.2",
+  "description": "AgentGuard security engine for OpenClaw — intercept dangerous operations, audit all actions, protect sensitive data. AgentGuard 安全引擎 — 拦截危险操作、审计所有行为、保护敏感数据",
+  "main": "index.js",
+  "keywords": ["openclaw", "openclaw-plugin", "security", "agentguard", "audit", "mcp", "agent-safety"],
+  "license": "MIT",
+  "homepage": "https://www.agentguard.site",
+  "repository": {
+    "type": "git",
+    "url": "https://www.agentguard.site"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "plugin": true,
+    "manifest": "openclaw.plugin.json",
+    "extensions": ["./index.js"]
+  },
+  "files": [
+    "index.js",
+    "SKILL.md",
+    "openclaw.plugin.json",
+    "setup.sh",
+    "bin/"
+  ]
+}

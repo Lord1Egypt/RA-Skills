@@ -1,0 +1,27 @@
+// OpenClaw skill configuration for joyin-robot-control
+// Copy the "joyin-robot-control" block into your ~/.openclaw/openclaw.json
+//
+// Full path: ~/.openclaw/openclaw.json → skills.entries.joyin-robot-control
+{
+  "skills": {
+    "entries": {
+      "joyin-robot-control": {
+        "enabled": true,
+
+        // Option 1: plaintext key (simple, for dev/test)
+        "apiKey": "YOUR_AUTHORIZATION_KEY_HERE",
+
+        // Option 2: reference system env var (more secure, for production)
+        // "apiKey": { "source": "env", "provider": "default", "id": "JOYIN_AUTH_KEY" },
+
+        "env": {
+          "JOYIN_API_BASE": "https://api-open-test.joyin-ai.com",
+          "JOYIN_AUTH_KEY": "YOUR_AUTHORIZATION_KEY_HERE",
+          "JOYIN_DEVICE_SN": "YOUR_DEVICE_SERIAL_NUMBER",
+          "JOYIN_DEVICE_TYPE_ID": "3"
+          // 3 = Walle (W-1), 2 = Mini (M-1)
+        }
+      }
+    }
+  }
+}

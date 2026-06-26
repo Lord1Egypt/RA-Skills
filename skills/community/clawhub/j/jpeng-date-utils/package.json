@@ -1,0 +1,11 @@
+{
+  "name": "date-utils",
+  "version": "1.0.0",
+  "description": "Provides date and time manipulation operations for working with dates",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["date", "time", "format", "parse", "timezone", "calendar"],
+  "license": "MIT"
+}

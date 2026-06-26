@@ -1,0 +1,4 @@
+# Photo Search Skill 独立版本依赖
+
+# HTTP 请求
+requests>=2.31.0

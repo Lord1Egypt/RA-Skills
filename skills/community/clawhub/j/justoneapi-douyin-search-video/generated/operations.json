@@ -1,0 +1,111 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin/search-video/v4 for Douyin (TikTok China) Video Search through JustOneAPI with keyword.",
+  "displayName": "Douyin (TikTok China) Video Search",
+  "endpointPath": "search-video",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) video Search data, including metadata and engagement signals, for content discovery, trend research, and competitive monitoring.",
+      "method": "GET",
+      "operationId": "searchVideoV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Sorting criteria for search results.\n\nAvailable Values:\n- `_0`: General\n- `_1`: More likes\n- `_2`: Newest",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "sortType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Filter by video publish time range.\n\nAvailable Values:\n- `_0`: No Limit\n- `_1`: Last 24 Hours\n- `_7`: Last 7 Days\n- `_180`: Last 6 Months",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_7",
+            "_180"
+          ],
+          "location": "query",
+          "name": "publishTime",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Filter by video duration.\n\nAvailable Values:\n- `_0`: No Limit\n- `_1`: Under 1 Minute\n- `_2`: 1-5 Minutes\n- `_3`: Over 5 Minutes",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "duration",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search ID; required for pages > 1 (use the search_id value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/search-video/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Search",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin_search_video",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-search-video",
+  "sourceTitle": "OpenAPI definition"
+}

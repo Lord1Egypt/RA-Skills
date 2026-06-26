@@ -1,0 +1,65 @@
+{
+  "skill": {
+    "name": "li_nvvideocodec",
+    "version": "1.0.0",
+    "author": "北京老李 (beijingLL)",
+    "description": "NVIDIA AV1视频批量压缩工具",
+    "entry_point": "agent_interface.py",
+    "interpreter": "python3",
+    "actions": {
+      "check": {
+        "description": "检查运行环境（FFmpeg、GPU、编码器）",
+        "command": "python agent_interface.py --action check",
+        "output": "json",
+        "returns": {
+          "ffmpeg": "FFmpeg信息",
+          "gpu": "GPU信息",
+          "can_proceed": "是否可以继续"
+        }
+      },
+      "analyze": {
+        "description": "分析目录下的视频文件",
+        "command": "python agent_interface.py --action analyze -i {input_dir}",
+        "parameters": {
+          "input_dir": "视频目录路径"
+        },
+        "output": "json",
+        "returns": {
+          "count": "视频数量",
+          "videos": "视频列表",
+          "total_size_gb": "总大小(GB)"
+        }
+      },
+      "compress": {
+        "description": "批量压缩视频",
+        "command": "python agent_interface.py --action compress -i {input_dir} -p {profile} --test={test_mode}",
+        "parameters": {
+          "input_dir": "输入目录",
+          "profile": "压缩方案 (A/B/C)",
+          "test_mode": "是否测试模式",
+          "test_count": "测试文件数",
+          "output_dir": "输出目录（可选）"
+        },
+        "output": "text",
+        "timeout": 3600
+      }
+    },
+    "compression_profiles": {
+      "A": {"name": "保守", "savings": "40-60%"},
+      "B": {"name": "平衡", "savings": "65-75%", "recommended": true},
+      "C": {"name": "激进", "savings": "78-85%"}
+    },
+    "workflow": [
+      "check → 环境检查",
+      "analyze → 分析视频",
+      "compress (--test) → 测试压缩",
+      "用户确认",
+      "compress → 完整压缩"
+    ],
+    "safety": {
+      "protects_original": true,
+      "separate_output": true,
+      "auto_validation": true
+    }
+  }
+}

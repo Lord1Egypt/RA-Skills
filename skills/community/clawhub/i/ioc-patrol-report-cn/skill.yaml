@@ -1,0 +1,53 @@
+name: ioc-patrol-report
+version: 1.0.0
+description: IOC智能运维报告生成器 - 为智能建筑/园区自动生成专业巡检报告。分析设备状态、报警记录、能耗数据、工单进度，生成日报/周报。
+author: clawd
+homepage: https://clawhub.com/skills/ioc-patrol-report
+
+triggers:
+  - 巡检报告
+  - 运维报告
+  - IOC报告
+  - 设备巡检
+  - 能源报告
+  - 物业报告
+  - 智能运维
+  - 运维日报
+  - patrol report
+
+config:
+  DB_HOST:
+    type: string
+    required: true
+    description: PostgreSQL数据库主机
+  DB_PORT:
+    type: number
+    default: 5432
+    description: 数据库端口
+  DB_NAME:
+    type: string
+    required: true
+    description: 数据库名称
+  DB_USER:
+    type: string
+    required: true
+    description: 数据库用户名
+  DB_PASSWORD:
+    type: string
+    required: true
+    secret: true
+    description: 数据库密码
+
+features:
+  - 设备状态巡检分析
+  - 报警处理情况统计
+  - 能耗数据对比分析
+  - 工单进度追踪
+  - 智能运维建议生成
+  - 支持日报/周报
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot
+  python: ">=3.10"

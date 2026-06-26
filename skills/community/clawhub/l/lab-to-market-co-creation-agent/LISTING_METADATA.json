@@ -1,0 +1,38 @@
+{
+  "name": "lab-to-market-co-creation-method",
+  "display_name_cn": "共创验证式创业法",
+  "display_name_en": "Co-Creation & Validation Venture Method",
+  "version": "1.1.1",
+  "release_channel": "clawhub-store",
+  "category": [
+    "Entrepreneurship",
+    "Education",
+    "Strategy",
+    "Research & Writing"
+  ],
+  "tags": [
+    "entrepreneurship",
+    "hard-tech",
+    "technology-transfer",
+    "university-innovation",
+    "startup-diagnosis",
+    "course-design",
+    "pitch-deck",
+    "methodology",
+    "teacher-student-co-creation",
+    "disciplined-entrepreneurship"
+  ],
+  "audience": [
+    "university teachers",
+    "student founders",
+    "lab-based venture teams",
+    "technology transfer platforms",
+    "entrepreneurship educators",
+    "incubators and innovation centers"
+  ],
+  "pricing_suggestion": {
+    "mode": "free-internal-or-pilot",
+    "note": "Suitable for pilot release, internal teaching distribution, or free methodology listing before premium consulting variants."
+  },
+  "status": "draft-store-ready"
+}

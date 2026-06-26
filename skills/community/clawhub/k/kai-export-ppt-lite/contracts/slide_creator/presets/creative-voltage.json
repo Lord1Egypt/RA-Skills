@@ -1,0 +1,118 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/creative-voltage",
+  "preset": "Creative Voltage",
+  "family": "energetic-retro-modern",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/creative-voltage.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/creative-voltage-zh.html",
+    "demos/creative-voltage-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/creative-voltage.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/creative-voltage-zh.html",
+    "source_snapshot/demos/creative-voltage-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".stat"
+    ],
+    "split_layout": [
+      ".voltage-split"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    },
+    "split_layout": {
+      "layout": "grid_two_column",
+      "slots": [
+        "left_rail",
+        "right_rail"
+      ],
+      "track_template": "1fr 1fr"
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Creative Voltage",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "a-body",
+    "a-label",
+    "a-subtitle",
+    "a-title",
+    "blue-panel",
+    "body-muted",
+    "body-text",
+    "cmd",
+    "cta-command",
+    "cta-inner",
+    "cta-link",
+    "cta-sub",
+    "dark-panel",
+    "feat-grid",
+    "grid-wrap",
+    "how-card",
+    "install-blocks",
+    "install-label",
+    "label",
+    "main-title",
+    "panel-content",
+    "pill",
+    "slide-num-label",
+    "stat",
+    "step-card",
+    "step-label",
+    "tag",
+    "title-accent",
+    "voltage-blue-panel",
+    "voltage-body",
+    "voltage-card",
+    "voltage-dark-panel",
+    "voltage-grid",
+    "voltage-neon-badge",
+    "voltage-split",
+    "voltage-title"
+  ]
+}

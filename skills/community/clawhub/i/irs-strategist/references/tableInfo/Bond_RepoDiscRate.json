@@ -1,0 +1,118 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部编码(InnerCode)：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得债券，债券ETF或货币ETF的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "RepurchaseNature",
+        "columnChiName": "回购类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "回购类型(RepurchaseNature)：该字段固定以下常量：1-上交所三方回购，2-深交所三方回购，3-上交所报价回购，4-银行间通用质押式回购",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "BasketCode",
+        "columnChiName": "所属篮子编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "所属篮子编码(BasketCode)与(CT_SystemConst)表中的DM字段关联，令LB = 2133，得到所属篮子编码的具体描述：1-B001，2-B002，3-B003，4-B004，5-B005，6-B006，7-B007，8-B008，201-篮子1，202-篮子2，203-篮子3，204-篮子4，205-篮子5，206-篮子6，207-篮子7，208-篮子8。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "58.33",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "BasketAbbr",
+        "columnChiName": "所属篮子简称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "58.33"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "DiscountRate",
+        "columnChiName": "折扣率(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "remark": "折扣率(DiscountRate)：三方回购的折扣率，报价回购的折算率（质押券为债券），报价回购的折算值（质押券为债券ETF或货币ETF）",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,0 +1,95 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "IndexInnerCode",
+        "columnChiName": "指数内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指数内部编码(IndexInnerCode)与(SecuMain)表中的InnerCode字段关联，令IndexInnerCode = InnerCode，得到指数内部编码的具体描述：",
+        "enumerationValue": "IndexInnerCode",
+        "correlationColumn": "InnerCode",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SecuInnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（SecuInnerCode）：关联不同主表，查询证券代码、证券简称等基本信息。当0<SecuInnerCode<=1000000时，与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联；当1000000<SecuInnerCode<=2000000时，与“港股证券主表（HK_SecuMain）”中的“证券内部编码（InnerCode）”关联；当7000000<SecuInnerCode<=10000000时，与“ 美股证券主表（US_SecuMain）”中的“证券内部编码（InnerCode）”关联",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InDate",
+        "columnChiName": "入选日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "OutDate",
+        "columnChiName": "剔除日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "42.21"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Flag",
+        "columnChiName": "成份标志",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "成份标志(Flag)，该字段固定以下常量：1-是；0-否",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

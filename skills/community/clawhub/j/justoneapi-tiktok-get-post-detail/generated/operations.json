@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/get-post-detail/v1 for TikTok Post Details through JustOneAPI with postId.",
+  "displayName": "TikTok Post Details",
+  "endpointPath": "get-post-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok post Details data, including video ID, author information, and description text, for content performance analysis and metadata extraction and influencer evaluation via specific post metrics.",
+      "method": "GET",
+      "operationId": "getTiktokPostDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the TikTok post.",
+          "enumValues": [],
+          "location": "query",
+          "name": "postId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/get-post-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Details",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_get_post_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-get-post-detail",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,141 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze TikTok Shop workflows with JustOneAPI, including product Search and product Details.",
+  "displayName": "TikTok Shop",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok Shop product Details data, including title, description, and price, for building product catalogs, price and stock monitoring, and in-depth product analysis.",
+      "method": "GET",
+      "operationId": "getTiktokShopProductDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "TikTok Shop Product ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "productId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "US",
+          "description": "Target region for product detail.\n\nAvailable Values:\n- `US`: United States\n- `GB`: United Kingdom\n- `SG`: Singapore\n- `MY`: Malaysia\n- `PH`: Philippines\n- `TH`: Thailand\n- `VN`: Vietnam\n- `ID`: Indonesia",
+          "enumValues": [
+            "US",
+            "GB",
+            "SG",
+            "MY",
+            "PH",
+            "TH",
+            "VN",
+            "ID"
+          ],
+          "location": "query",
+          "name": "region",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok-shop/get-product-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Details",
+      "tags": [
+        "TikTok Shop"
+      ]
+    },
+    {
+      "description": "Get TikTok Shop product Search data, including title, price, and sales, for market research and trend analysis, competitor product discovery, and monitoring product popularity in specific regions.",
+      "method": "GET",
+      "operationId": "searchProductsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "US",
+          "description": "Target region for product search.\n\nAvailable Values:\n- `US`: United States\n- `GB`: United Kingdom\n- `SG`: Singapore\n- `MY`: Malaysia\n- `PH`: Philippines\n- `TH`: Thailand\n- `VN`: Vietnam\n- `ID`: Indonesia",
+          "enumValues": [
+            "US",
+            "GB",
+            "SG",
+            "MY",
+            "PH",
+            "TH",
+            "VN",
+            "ID"
+          ],
+          "location": "query",
+          "name": "region",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Search result offset.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination token for the next page.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pageToken",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok-shop/search-products/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Search",
+      "tags": [
+        "TikTok Shop"
+      ]
+    }
+  ],
+  "platformKey": "tiktok-shop",
+  "primaryTag": "TikTok Shop",
+  "skillName": "justoneapi_tiktok_shop",
+  "slug": "justoneapi-tiktok-shop",
+  "sourceTitle": "OpenAPI definition"
+}

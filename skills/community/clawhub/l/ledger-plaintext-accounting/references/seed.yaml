@@ -1,0 +1,3687 @@
+meta:
+  id: finance-bp-073-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-073
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:26.836559+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  upgraded_from: finance-bp-073-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:15.969288+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-073--ledger/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-073--ledger/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-ACCOUNTING-001
+  title: Using floating-point arithmetic for monetary amounts
+  description: Representing currency values with float64 or similar floating-point types causes precision loss during arithmetic
+    operations. Rounding errors accumulate over multiple transactions, leading to incorrect balance calculations and potential
+    financial losses. This violates the fundamental requirement that monetary calculations must be exact.
+  project_source: finance-bp-073--ledger, finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-002
+  title: Skipping initialization calls before VM/script execution
+  description: Executing Numscript VM without first calling ResolveResources() and ResolveBalances() causes panics with ErrResourcesNotInitialized
+    or ErrBalancesNotInitialized. This prevents any script execution and leaves transactions in an unrunnable state, blocking
+    financial operations entirely.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-003
+  title: Mixing different asset types in monetary operations
+  description: Performing addition, subtraction, or take operations on amounts with different asset types produces invalid
+    financial calculations. This violates the fundamental accounting principle that amounts in different currencies cannot
+    be combined, leading to corrupted account balances and failed reconciliations.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-004
+  title: Missing insufficient funds validation
+  description: Failing to detect when account balance cannot cover a requested withdrawal or transfer allows overdrafts beyond
+    permitted limits. This causes real monetary losses, account balance violations, and potential regulatory compliance issues
+    in global markets.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-005
+  title: Non-atomic transaction commit/rollback
+  description: Processing database operations without atomic commit/rollback leaves partial state when failures occur. This
+    corrupts account balances and volumes, violating double-entry bookkeeping integrity and making audit trails unreliable
+    for global regulatory compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-006
+  title: On-demand posting generation causing double-spending
+  description: Computing postings on-demand rather than accumulating them during transaction execution fails to track already-spent
+    funds within the same transaction. This creates double-spending vulnerabilities that violate atomic transaction semantics
+    and can result in significant financial losses.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-007
+  title: Log insertion after transaction commit breaking event sourcing
+  description: Committing the transaction before inserting the audit log breaks the event sourcing pattern fundamental to
+    accounting integrity. This makes it impossible to rebuild state from logs and violates audit requirements necessary for
+    global financial compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-008
+  title: Incomplete transaction log hash chaining
+  description: Computing log hashes without including the previous log hash breaks the immutable audit trail chain. This allows
+    undetected tampering with historical transaction records, compromising financial integrity and regulatory audit compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-009
+  title: Incorrect row data access patterns on query results
+  description: Using dictionary notation (row['column_name']) on namedtuple query results raises TypeError since namedtuples
+    only support attribute access. This breaks all module queries expecting attribute-style access, causing asset allocation,
+    tax loss harvesting, and other critical financial computations to fail.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-010
+  title: Missing bidirectional inference for fund relationship declarations
+  description: When relationship A→B is declared but B→A is not inferred, the TLH partner list becomes incomplete. This leads
+    to suboptimal tax-loss harvesting decisions where only some funds show all valid swap options, reducing potential tax
+    savings for investors.
+  project_source: finance-bp-078--fava_investor
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-011
+  title: Wash sale comparison within substantially identical groups
+  description: Comparing a ticker to itself in its own substantially identical group falsely triggers wash sale warnings.
+    This incorrectly blocks valid tax-loss harvesting transactions, causing investors to miss opportunities to realize tax
+    losses and offset capital gains.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-012
+  title: Missing substantially identical tickers in wash sale queries
+  description: Omitting substantially identical fund tickers from the wash sale comparison set allows purchases of similar
+    funds within the 30-day window. This triggers unintended wash sales that disallow tax loss claims on subsequent sales
+    of the original position.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-013
+  title: Using parsed entries with MISSING sentinel values for calculations
+  description: Using parsed entries directly that contain MISSING sentinel values for balance or cost computations causes
+    runtime errors or silent zero-value calculations. This results in incorrect portfolio valuations and reconciliation failures,
+    compromising financial reporting accuracy.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-014
+  title: Underspecified interpolation with multiple missing values per currency
+  description: Having more than one missing value per currency group creates an underdetermined system with no unique solution
+    during interpolation. This causes InterpolationError and transaction failure, blocking balance calculations for affected
+    accounts.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-015
+  title: Violating accounting identity in opening balance transactions
+  description: Creating opening balance transactions where the total balance of summarized entries does not equal exactly
+    zero violates the fundamental accounting identity (Assets = Liabilities + Equity). This causes the balance sheet to be
+    fundamentally incorrect with non-zero total assets and liabilities.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+cross_project_wisdom:
+- wisdom_id: CW-ACCOUNTING-001
+  source_project: finance-bp-073--ledger, finance-bp-129--beancount
+  pattern_name: Use exact-precision integer types for monetary representation
+  description: Both the Numscript ledger and Beancount parser mandates using Decimal (beancount) or MonetaryInt based on big.Int
+    (ledger) instead of floating-point. This pattern ensures no rounding errors accumulate in financial calculations, critical
+    for audit compliance in global markets.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-002
+  source_project: finance-bp-073--ledger
+  pattern_name: Mandatory initialization sequence before execution
+  description: 'The Numscript VM requires a strict initialization sequence: ResolveResources() then ResolveBalances() must
+    both be called before Execute(). Skipping any step causes panics. This teaches that VM/script execution requires careful
+    state setup—always verify prerequisites before running financial logic.'
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-003
+  source_project: finance-bp-073--ledger
+  pattern_name: Dual idempotency key strategy
+  description: 'Using both IdempotencyKey and IdempotencyHash together ensures robust duplicate detection: IdempotencyKey
+    prevents exact retries while IdempotencyHash catches retries with different input parameters that would otherwise incorrectly
+    succeed. Single-key approaches leave gaps in financial transaction safety.'
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-004
+  source_project: finance-bp-073--ledger
+  pattern_name: Log-before-commit event sourcing pattern
+  description: In the transaction processing pipeline, the log must be inserted before committing the transaction to maintain
+    event sourcing integrity. This ensures the audit trail can always reconstruct state and supports rollback scenarios, critical
+    for regulatory compliance in global accounting.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-005
+  source_project: finance-bp-073--ledger
+  pattern_name: Read Committed isolation with FOR UPDATE locks
+  description: When implementing balance operations, use Read Committed isolation level combined with FOR UPDATE row locks.
+    This prevents concurrent transactions from creating inconsistent balances (e.g., both succeeding when they should fail
+    due to insufficient funds), ensuring data integrity under concurrent load.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-006
+  source_project: finance-bp-078--fava_investor
+  pattern_name: Transitive closure for equivalence relationships
+  description: When building commodity groups or substantially identical fund relationships, apply transitive closure to infer
+    complete equivalence. If A equals B and B equals C, then A, B, and C form one group. This ensures wash sale detection
+    and TLH calculations are complete and accurate across all declared relationships.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-007
+  source_project: finance-bp-078--fava_investor
+  pattern_name: Canonical representative selection for relationship groups
+  description: When selecting a representative for a substantially identical fund group, always return the same representative
+    ticker for any member of that group. Inconsistent representative selection causes non-deterministic calculations where
+    the same ticker gets different partners depending on which group member is queried.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-008
+  source_project: finance-bp-129--beancount
+  pattern_name: Immutable monetary objects with __slots__
+  description: Constructing Amount or Position objects using immutable Decimal values with __slots__ = () pattern prevents
+    accidental mutation of monetary values after creation. This immutability ensures financial calculations remain consistent
+    throughout transaction processing and audit trails.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-009
+  source_project: finance-bp-129--beancount
+  pattern_name: Eliminate all MISSING values before presenting parsed data as complete
+  description: Parsed entries with MISSING sentinel values are incomplete and cannot be used for financial reporting. All
+    MISSING values must be resolved through booking and interpolation before claiming parsed entries are ready for balance
+    calculations or realized/unrealized gains computation.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-010
+  source_project: finance-bp-078--fava_investor, finance-bp-129--beancount
+  pattern_name: Strict schema compatibility across class hierarchies
+  description: When extending base classes with additional functionality (like ScaledNAV extending RelateTickers), maintain
+    compatibility with existing metadata schemas. Schema divergence causes extended classes to miss relationships declared
+    for the base class, breaking wash sale detection and TLH recommendations.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+domain_constraints_injected: []
+resources_injected: {}
+component_capability_map:
+  project: finance-bp-073--ledger
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 10
+    total_classes: 24
+    total_functions: 0
+    total_stages: 10
+  modules:
+    numscript_script_execution:
+      class_count: 3
+      stage_id: numscript_execution
+      stage_order: 1
+      responsibility: Compiles and executes Numscript DSL programs to generate double-entry postings with balance tracking.
+        This stage is the entry point for financial logic, converting human-readable scripts into executable postings that
+        move funds between accounts.
+      classes:
+      - name: Machine.Run
+        file: numscript_script_execution/machine-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Machine.Execute
+        file: numscript_script_execution/machine-execute.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Store implementation
+        file: numscript_script_execution/store-implementation.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    transaction_processing:
+      class_count: 3
+      stage_id: transaction_processing
+      stage_order: 2
+      responsibility: Validates, persists, and tracks transactions with idempotency and schema enforcement. This stage ensures
+        each financial operations are recorded atomically with full audit support.
+      classes:
+      - name: logProcessor.runTx
+        file: transaction_processing/logprocessor-runtx.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: logProcessor.fetchLogWithIK
+        file: transaction_processing/logprocessor-fetchlogwithik.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Schema enforcement mode
+        file: transaction_processing/schema-enforcement-mode.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    volume_accounting:
+      class_count: 1
+      stage_id: volume_accounting
+      stage_order: 3
+      responsibility: Tracks Input/Output volumes per account/asset for balance calculation. Provides the foundation for each
+        balance queries and ensures financial integrity through double-entry bookkeeping.
+      classes:
+      - name: N/A
+        file: volume_accounting/n-a.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 4
+    log_chain_creation:
+      class_count: 1
+      stage_id: log_creation
+      stage_order: 4
+      responsibility: Creates immutable, cryptographically chained logs for audit trail. Ensures tamper-evidence through hash
+        chaining where each log includes the previous log's hash.
+      classes:
+      - name: N/A
+        file: log_chain_creation/n-a.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 4
+    chart/schema_enforcement:
+      class_count: 3
+      stage_id: schema_enforcement
+      stage_order: 5
+      responsibility: Validates account addresses and postings against hierarchical chart of accounts. Enables controlled
+        account structure with parameterized patterns and default metadata inheritance.
+      classes:
+      - name: ChartOfAccounts.ValidatePosting
+        file: chart/schema_enforcement/chartofaccounts-validateposting.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ChartOfAccounts.FindAccountSchema
+        file: chart/schema_enforcement/chartofaccounts-findaccountschema.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Chart pattern engine
+        file: chart/schema_enforcement/chart-pattern-engine.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    controller_store:
+      class_count: 2
+      stage_id: controller_store
+      stage_order: 6
+      responsibility: DB-backed store implementing Controller interface with transactions and locking. Provides data access
+        layer with PostgreSQL transactions, advisory locks, and pagination.
+      classes:
+      - name: Store.GetBalances
+        file: controller_store/store-getbalances.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Store.LockLedger
+        file: controller_store/store-lockledger.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 4
+    async_block_hashing:
+      class_count: 3
+      stage_id: async_block_hashing
+      stage_order: 7
+      responsibility: Periodic background job that groups logs into blocks and computes cumulative hashes. Provides batched
+        block creation for efficient querying and additional integrity verification.
+      classes:
+      - name: AsyncBlockRunner.Run
+        file: async_block_hashing/asyncblockrunner-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Block size
+        file: async_block_hashing/block-size.py
+        line: 0
+        kind: replaceable_point
+      - name: Schedule
+        file: async_block_hashing/schedule.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    pipeline_replication:
+      class_count: 4
+      stage_id: pipeline_replication
+      stage_order: 8
+      responsibility: Continuous log streaming to external systems (Kafka, HTTP, OTLP) via driver plugins. Enables horizontal
+        scaling by allowing replicas to consume logs at their own pace.
+      classes:
+      - name: Manager.Run
+        file: pipeline_replication/manager-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PipelineHandler.Run
+        file: pipeline_replication/pipelinehandler-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Driver type
+        file: pipeline_replication/driver-type.py
+        line: 0
+        kind: replaceable_point
+      - name: Pull interval
+        file: pipeline_replication/pull-interval.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    bucket_cleanup:
+      class_count: 2
+      stage_id: bucket_cleanup
+      stage_order: 9
+      responsibility: Periodic cleanup of soft-deleted buckets after retention period expires. Provides recovery window for
+        accidentally deleted ledgers while ensuring eventual cleanup.
+      classes:
+      - name: BucketCleanupRunner.Run
+        file: bucket_cleanup/bucketcleanuprunner-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Retention period
+        file: bucket_cleanup/retention-period.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    worker_fx_module:
+      class_count: 2
+      stage_id: worker_fx_module
+      stage_order: 10
+      responsibility: Wires together each worker components via Uber FX dependency injection. Provides cohesive worker binary
+        combining async block hashing, replication, and cleanup workers.
+      classes:
+      - name: NewFXModule
+        file: worker_fx_module/newfxmodule.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Feature toggles
+        file: worker_fx_module/feature-toggles.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.8586956521739131
+    evidence_invalid: 13
+    evidence_verified: 79
+    evidence_auto_fixed: 0
+    audit_coverage: 22/22 (100%)
+    audit_pass_rate: 12/22 (54%)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 8
+      warn: 6
+      fail: 0
+    audit_subdomain_totals:
+      pass: 4
+      warn: 4
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-073. Evidence verify ratio
+    = 85.9% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-073-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries: []
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 99
+    fatal_constraints_count: 82
+    non_fatal_constraints_count: 149
+    use_cases_count: 0
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 16 source groups: async_block_hashing(3),
+        bucket_cleanup(2), configuration(9), controller_store(5), data_model(13), data_retention(1), and 10 more.'
+      key_decisions: 99 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-020
+      type: BA
+      summary: Block hashing runs asynchronously via PostgreSQL stored procedure in CRON-scheduled worker
+    - id: BD-021
+      type: M
+      summary: CRON-based scheduling with configurable interval controls block creation frequency
+    - id: BD-022
+      type: BA
+      summary: Feature flag controls per-ledger opt-in for block hashing feature
+    - id: BD-026
+      type: B/BA
+      summary: Soft delete + 30-day delayed hard delete pattern for bucket cleanup
+    - id: BD-027
+      type: T
+      summary: Bucket cleanup continues on individual failure to avoid blocking other cleanups
+    - id: BD-039
+      type: T
+      summary: Ledger names must match pattern '^[0-9a-zA-Z_-]{1,63}$' - alphanumeric with hyphens/underscores, max 63 characters
+    - id: BD-040
+      type: B/DK
+      summary: 'Reserved ledger names: ''_'', ''_info'', ''_healthcheck'' cannot be created by users'
+    - id: BD-041
+      type: B/BA
+      summary: Default bucket name is '_default' when not explicitly specified
+    - id: BD-046
+      type: B/BA
+      summary: MOVES_HISTORY feature defaults to ON - funds movements are tracked per account/asset
+    - id: BD-047
+      type: B/BA
+      summary: HASH_LOGS feature defaults to SYNC - logs are hashed synchronously on write
+    - id: BD-051
+      type: B/RC
+      summary: 'Schema enforcement has two modes: Strict (fail) and Audit (warn)'
+    - id: BD-055
+      type: T
+      summary: Bulk parallel execution capped at 10 workers
+    - id: BD-057
+      type: T
+      summary: Async block hasher runs on cron schedule with configurable MaxBlockSize
+    - id: BD-059
+      type: T
+      summary: Parallel bucket migrations default to 10 workers with 5-second retry
+    - id: BD-018
+      type: B
+      summary: Advisory lock on ledger ID using hashtext prevents concurrent modifications
+    - id: BD-019
+      type: B
+      summary: GetBalances returns locked balances for transaction duration to prevent double-spend
+    - id: BD-035
+      type: B/RC
+      summary: Controller upserts accounts after log is created; log exists but accounts may be missing on failure
+    - id: BD-95
+      type: B/BA
+      summary: 'INTERACTION: [BD-035] × [BD-005] → Account upsert after log creation can leave orphaned logs with missing
+        account metadata in log-first architecture'
+    - id: BD-99
+      type: B/BA
+      summary: 'INTERACTION: [BD-018] × [BD-019] × [BD-007] → Advisory lock serialization combined with deadlock retry creates
+        performance bottleneck under contention; high contention amplifies retry delays exponenti'
+    - id: BD-042
+      type: B
+      summary: 'Transactions have dual volume tracking: PostCommitVolumes (immutable) and PostCommitEffectiveVolumes (updated
+        on past-dated inserts)'
+    - id: BD-043
+      type: M
+      summary: Balance is calculated as Input minus Output (not cumulative sum)
+    - id: BD-044
+      type: T
+      summary: Account addresses use ':' separator for chart segment hierarchy
+    - id: BD-062
+      type: T
+      summary: Reversion metadata uses 'com.formance.spec/state/reverts' key
+    - id: BD-064
+      type: B/RC
+      summary: Chart segment validation regex allows '$' prefix for variable segments
+    - id: BD-071
+      type: M/BA
+      summary: Monetary amounts use big.Int for arbitrary precision
+    - id: BD-073
+      type: M
+      summary: Balance calculation uses Input - Output formula via big.Int subtraction
+    - id: BD-075
+      type: M
+      summary: SHA256 hashing for log chain integrity and idempotency signatures
+    - id: BD-076
+      type: M/BA
+      summary: Arbitrary precision integers (big.Int) for each financial amounts
+    - id: BD-078
+      type: M
+      summary: PostCommitVolumes tracks cumulative account/asset volumes after transaction
+    - id: BD-079
+      type: M
+      summary: ComputePostCommitEffectiveVolumes finds most recent move per account/asset
+    - id: BD-080
+      type: M
+      summary: JSON encoder feeds canonical data to hash function for reproducible signatures
+    - id: BD-089
+      type: M/BA
+      summary: 'Log ID chaining: next ID = previous.ID + 1'
+    - id: BD-058
+      type: B/BA
+      summary: Bucket cleanup uses retention period - hard delete after cutoff time
+    - id: BD-93
+      type: B/B
+      summary: 'INTERACTION: [BD-047] × [BD-020] → SYNC hashing default contradicts async block hasher worker - SYNC means
+        immediate hashing but async CRON worker performs batch hashing separately'
+    - id: BD-012
+      type: B/RC
+      summary: SHA256 hash chain includes previous log hash for tamper-evident log chain
+    - id: BD-013
+      type: BA
+      summary: Memento pattern excludes computed postCommitVolumes from hash computation
+    - id: BD-014
+      type: T
+      summary: Log types are Go integer constants, not strings, for type safety
+    - id: BD-001
+      type: T
+      summary: VM uses opcode-based instruction set (bytecode) instead of direct AST interpretation
+    - id: BD-002
+      type: BA
+      summary: Store interface abstracts balance queries, allowing multiple implementations
+    - id: BD-003
+      type: B/BA
+      summary: Funding model tracks source parts with FIFO allocation for partial credit/debit
+    - id: BD-004
+      type: M
+      summary: Postings accumulate during execution in single pass, preventing double-spending
+    - id: BD-031
+      type: B/BA
+      summary: 'VM execution requires strict phase ordering: SetVarsFromJSON → ResolveResources → ResolveBalances → Execute'
+    - id: BD-034
+      type: B
+      summary: Funding concatenation merges adjacent funding parts with same account into single part
+    - id: BD-036
+      type: B
+      summary: TAKE opcode rejects mismatched assets but not negative amounts; TAKE_MAX rejects both
+    - id: BD-037
+      type: T
+      summary: StaticStore enables in-memory VM testing without database dependency
+    - id: BD-050
+      type: B
+      summary: Transactions support DryRun mode - execute without committing
+    - id: BD-052
+      type: B
+      summary: RevertTransaction supports Force flag - allow negative balances after revert
+    - id: BD-053
+      type: B/RC
+      summary: RevertTransaction supports AtEffectiveDate flag - use original timestamp
+    - id: BD-054
+      type: B/BA
+      summary: Bulk operations default to atomic mode - each succeed or each fail
+    - id: BD-067
+      type: B/RC
+      summary: Funding.Take processes parts in order and merges consecutive same-account parts
+    - id: BD-072
+      type: B
+      summary: Transaction reversal creates new transaction with swapped source/destination and negated amounts
+    - id: BD-083
+      type: B/M
+      summary: Transaction reversal swaps source/destination and negates via reverse postings
+    - id: BD-085
+      type: M
+      summary: SQL ON CONFLICT upsert for volume accumulation on duplicate accounts
+    - id: BD-090
+      type: M
+      summary: Volume updates per posting add amounts using big.Int.Add()
+    - id: BD-091
+      type: M
+      summary: SubtractPostings negates posting amounts for pre-commit volume calculation
+    - id: BD-94
+      type: B/B
+      summary: 'INTERACTION: [BD-036] × [BD-045] → TAKE opcode allows negative amounts silently but posting validation rejects
+        them, creating inconsistent enforcement boundaries'
+    - id: BD-97
+      type: B/BA
+      summary: 'INTERACTION: [BD-003] × [BD-067] → Funding FIFO ordering assumption breaks when concat merges same-account
+        parts, potentially corrupting fund allocation semantics'
+    - id: BD-023
+      type: B
+      summary: Pipeline replication uses pull-based polling with cursor stored as lastLogID
+    - id: BD-024
+      type: M
+      summary: Push retry with exponential backoff prevents thundering herd on downstream failures
+    - id: BD-025
+      type: T
+      summary: Driver factory pattern enables plugin architecture for new exporter types
+    - id: BD-038
+      type: M
+      summary: Pagination with configurable page size prevents unbounded queries in replication
+    - id: BD-068
+      type: T
+      summary: Replication pipeline pulls logs every 10s with 100 log page size
+    - id: BD-069
+      type: T
+      summary: Exporters are lazily stopped when no pipelines use them
+    - id: BD-070
+      type: B
+      summary: Pipeline reset re-enables pipeline with lastLogID set to nil
+    - id: BD-065
+      type: T
+      summary: Variable placeholders use '${variable}' syntax in filter templates
+    - id: BD-066
+      type: B/BA
+      summary: 'Default query pagination: sort desc by ID, max page size enforced'
+    - id: BD-074
+      type: M
+      summary: SQL SUM aggregation for volume totals across accounts/assets
+    - id: BD-081
+      type: T
+      summary: Template variable extraction uses regex pattern ^${([a-z_]+)}$
+    - id: BD-082
+      type: M
+      summary: SQL first_value window function for point-in-time volume queries
+    - id: BD-087
+      type: M
+      summary: SQL DISTINCT ON for deduplicating account/asset volume queries
+    - id: BD-088
+      type: T
+      summary: Variable substitution falls back from json.Number to float64 then big.Float to big.Int
+    - id: BD-092
+      type: T
+      summary: 'Variable name parsing: lowercase letter start, alphanum or underscore tail'
+    - id: BD-015
+      type: B
+      summary: Account addresses use hierarchical colon-separated format (e.g., bank:checking:alice)
+    - id: BD-016
+      type: BA
+      summary: Variable account segments use regex patterns for dynamic validation
+    - id: BD-017
+      type: BA
+      summary: Schema versioning allows multiple schema versions to coexist during migration
+    - id: BD-005
+      type: B
+      summary: 'Log-first architecture: each state changes produce immutable logs as source of truth'
+    - id: BD-006
+      type: B/BA
+      summary: Idempotency enforced via IdempotencyKey + IdempotencyHash validation
+    - id: BD-007
+      type: DK
+      summary: Deadlock retry with exponential backoff handles PostgreSQL deadlock errors
+    - id: BD-008
+      type: B/BA
+      summary: 'Schema validation has three enforcement modes: strict, warn, and audit'
+    - id: BD-032
+      type: B
+      summary: Postings.Reverse() swaps source/destination AND reverses array order for transaction reversal
+    - id: BD-98
+      type: B/B
+      summary: 'INTERACTION: [BD-006] × [BD-049] → Idempotency hash depends on idempotency key''s uniqueness guarantee, creating
+        circular dependency where hash collision detection requires hash to already exist'
+    - id: BD-045
+      type: B
+      summary: Posting amounts must be non-negative (zero allowed)
+    - id: BD-048
+      type: B
+      summary: Transaction references must be unique per ledger
+    - id: BD-049
+      type: B
+      summary: Idempotency keys include hash of input to detect conflicting parameters
+    - id: BD-056
+      type: B
+      summary: Atomic and Parallel bulk options are mutually exclusive
+    - id: BD-060
+      type: B
+      summary: Importer rejects logs if ledger is not empty or logs are out of order
+    - id: BD-061
+      type: B/BA
+      summary: World account is the system root - not subject to insufficient funds check
+    - id: BD-063
+      type: B
+      summary: Reverted transactions cannot be reverted again (ErrAlreadyReverted)
+    - id: BD-077
+      type: B/BA
+      summary: Numeric variables must be integers only - no decimal values allowed
+    - id: BD-084
+      type: B
+      summary: Posting amounts must be non-negative (>= 0)
+    - id: BD-086
+      type: T
+      summary: 'Decimal validation: math.Floor(v) == v for float64 variable values'
+    - id: BD-009
+      type: B
+      summary: Balance = Input - Output computed field, never stored separately
+    - id: BD-010
+      type: BA
+      summary: PostCommitVolumes computed in-flight from logs, never persisted
+    - id: BD-011
+      type: B
+      summary: WORLD account is special sink/source for external asset flows
+    - id: BD-033
+      type: B/RC
+      summary: PostCommitEffectiveVolumes computed by transaction timestamp, not insertion order
+    - id: BD-96
+      type: B/BA
+      summary: 'INTERACTION: [BD-042] × [BD-033] × [BD-010] → Dual volume tracking with timestamp-based ordering causes effective
+        volumes to retroactively change on backdated inserts, cascading to each historical bal'
+    - id: BD-028
+      type: T
+      summary: FX dependency injection modules compose each worker components
+    - id: BD-029
+      type: T
+      summary: FX lifecycle hooks ensure proper startup/shutdown ordering for each workers
+    - id: BD-030
+      type: T
+      summary: Graceful shutdown via stop channels for clean goroutine termination
+resources:
+  packages:
+  - name: github.com/jackc/pgx/v5
+    version_pin: latest
+  - name: github.com/uptrace/bun
+    version_pin: latest
+  - name: github.com/formancehq/go-libs/v4
+    version_pin: latest
+  - name: github.com/nats-io/nats.go
+    version_pin: latest
+  - name: github.com/formancehq/numscript
+    version_pin: latest
+  - name: go.opentelemetry.io/otel
+    version_pin: latest
+  - name: github.com/ThreeDotsLabs/watermill
+    version_pin: latest
+  - name: github.com/ClickHouse/clickhouse-go/v2
+    version_pin: latest
+  - name: github.com/olivere/elastic/v7
+    version_pin: latest
+  - name: github.com/spf13/viper
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install github.com/jackc/pgx/v5
+    - python3 -m pip install github.com/uptrace/bun
+    - python3 -m pip install github.com/formancehq/go-libs/v4
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When implementing Numscript monetary calculations
+    action: use MonetaryInt based on *big.Int to represent monetary amounts
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using float64 for monetary amounts causes rounding errors, leading to incorrect balance calculations and
+      potential financial losses due to precision loss in currency computations
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-002
+    when: When executing Numscript VM
+    action: call ResolveResources() before Execute() to initialize variables and constants
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Execute panics with ErrResourcesNotInitialized when called before resource resolution, preventing any script
+      execution
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-003
+    when: When executing Numscript VM
+    action: call ResolveBalances() before Execute() to populate account balances
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Execute panics with ErrBalancesNotInitialized when called before balance resolution, causing script execution
+      to fail
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-004
+    when: When performing monetary arithmetic operations
+    action: mix different asset types in addition, subtraction, or take operations
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Cross-asset monetary operations produce invalid financial calculations, violating the fundamental principle
+      that amounts in different currencies cannot be combined
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-005
+    when: When parsing portion values in Numscript
+    action: validate portions are within 0% to 100% range inclusive
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid portion values outside 0-100% range cause incorrect allocation calculations, distributing more or
+      less than 100% of funds
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-009
+    when: When implementing balance tracking during execution
+    action: request negative balance values from the Store
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Negative balance values returned from Store indicate data corruption, causing the VM to reject the transaction
+      and fail
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-011
+    when: When handling insufficient funds scenario
+    action: return ErrInsufficientFund when account balance cannot cover the requested amount
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Failing to detect insufficient funds allows overdraft beyond permitted limits, causing real monetary losses
+      and account balance violations
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-013
+    when: When processing send operations in Numscript
+    action: accumulate postings during execution rather than computing on-demand
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: On-demand posting generation risks double-spending by not tracking already-spent funds within the same transaction,
+      violating atomic transaction semantics
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-020
+    when: When assembling multiple fundings
+    action: verify each fundings have matching asset types
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Assembling fundings with different assets produces invalid Funding structures that corrupt subsequent monetary
+      operations
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-022
+    when: When implementing idempotency for transaction processing
+    action: use both IdempotencyKey and IdempotencyHash for duplicate detection
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without IdempotencyHash validation, retries with different input parameters will incorrectly succeed, causing
+      duplicate or inconsistent financial transactions to be recorded in the ledger
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-023
+    when: When implementing transaction processing
+    action: perform atomic commit/rollback for database operations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Failed transactions will leave partial state in the database, causing inconsistent account balances and volumes
+      that violate double-entry bookkeeping integrity
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-025
+    when: When implementing log hash computation
+    action: chain hashes by including previous log hash in current log hash computation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without hash chaining, the immutable audit trail can be compromised, allowing undetected tampering with historical
+      transaction records
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-033
+    when: When implementing transaction processing pipeline
+    action: insert log before committing transaction to maintain event sourcing integrity
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Committing before log insertion breaks the event sourcing pattern, making it impossible to rebuild state
+      from logs and violating audit requirements
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-035
+    when: When implementing transaction log processing
+    action: use Read Committed isolation level and FOR UPDATE locks for balance operations
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper locking, concurrent transactions can create inconsistent balances (e.g., -400 USD when two
+      200 USD transactions both succeed with -200 limit)
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-041
+    when: When implementing balance calculation for an account/asset pair
+    action: calculate balance as Input minus Output using big.Int subtraction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Storing Balance as a separate field creates synchronization risk where Input, Output, and Balance can diverge,
+      causing incorrect account balances and financial integrity violations
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-042
+    when: When reading PostCommitVolumes from a committed transaction
+    action: modify or store PostCommitVolumes as it is computed in-flight
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Storing PostCommitVolumes introduces stale data risk where query-time values differ from committed state,
+      breaking the single source of truth principle
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-043
+    when: When creating a posting with a monetary amount
+    action: allow negative amounts in postings
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Negative amounts allow reversal transactions without proper double-entry bookkeeping, potentially creating
+      invalid financial states where money is created from nothing
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-044
+    when: When tracking Input and Output volumes for an account
+    action: use big.Int type for each volume calculations to maintain integer precision
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using floating-point types for monetary calculations introduces rounding errors that compound across transactions,
+      leading to penny-wise discrepancies in final balances
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-045
+    when: When executing concurrent transactions on the same bounded source accounts
+    action: acquire database row locks using FOR UPDATE before reading balances
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without FOR UPDATE locking, concurrent transactions can both read the same balance and overdraw an account
+      beyond its overdraft limit, violating business rules and causing financial losses
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-048
+    when: When the accounts_volumes table has no rows for a newly queried account
+    action: insert a placeholder row with zero volumes before acquiring locks to prevent lock-free reads
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without placeholder insertion, concurrent transactions can both pass overdraft checks on never-used accounts,
+      creating balances that violate overdraft limits
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-052
+    when: When computing log hash for tamper-evident chain
+    action: include the previous log's hash in the SHA256 digest before the current log's data
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without including previous hash, the chain is broken and any log modification won't be detectable through
+      hash comparison, eliminating the tamper-evident property of the audit trail
+    stage_ids:
+    - log_creation
+  - id: finance-C-054
+    when: When creating new log IDs
+    action: use database sequence (nextval) for log ID generation to verify strictly increasing IDs with no gaps
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Generating IDs at the application layer creates race conditions and potential gaps in the sequence, breaking
+      the audit trail's completeness requirement
+    stage_ids:
+    - log_creation
+  - id: finance-C-059
+    when: When implementing concurrent log insertion
+    action: acquire advisory lock on the ledger before reading previous log to prevent race conditions
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper locking, concurrent transactions may read the same 'previous log', compute identical hashes,
+      and create divergent chains that cannot be merged
+    stage_ids:
+    - log_creation
+  - id: finance-C-060
+    when: When inserting logs with HASH_LOGS in SYNC mode
+    action: verify that the returned hash matches the computed hash before considering insertion successful
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: If hash mismatch occurs after insert, the audit trail is compromised without immediate detection, potentially
+      allowing tampered logs to be committed
+    stage_ids:
+    - log_creation
+  - id: finance-C-064
+    when: When defining chart of accounts segment names
+    action: use only alphanumeric characters with optional $ or . prefix matching the regex ^(\ $|\.)?[a-zA-Z0-9_-]+$
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid segment names cause chart parsing to fail, preventing the chart of accounts from being loaded and
+      blocking all account validations
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-066
+    when: When defining variable segment patterns in chart
+    action: provide valid regex patterns that compile successfully via regexp.Compile
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid regex patterns cause chart loading to fail with 'invalid pattern regex' error, preventing schema
+      enforcement from functioning
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-068
+    when: When defining chart structure at root level
+    action: define variable segments or .self (account) at the root level of chart
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Root-level accounts or variable segments cause chart parsing errors, preventing the ledger schema from loading
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-069
+    when: When placing patterns on chart segments
+    action: attach .pattern property to fixed (non-variable) segments
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Fixed segments with patterns cause chart loading to fail with 'cannot have a pattern on a fixed segment'
+      error
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-070
+    when: When using chart pattern engine backend
+    action: provide account validation logic that implements the FindAccountSchema and ValidatePosting interface contracts
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-conforming pattern engines break ValidateWithSchema calls, causing schema enforcement to fail silently
+      or throw exceptions
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-071
+    when: When processing postings against schema
+    action: call Chart.ValidatePosting for each posting before committing transactions
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping ValidatePosting allows invalid account addresses to pass through, corrupting the ledger with accounts
+      outside the defined chart
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-073
+    when: When running in strict schema enforcement mode
+    action: block log insertion when schema validation fails instead of logging warnings
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Schema violations slip through in strict mode if not blocked, defeating compliance requirements and allowing
+      invalid data
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-074
+    when: When inserting new schemas
+    action: verify chart of accounts is present in schema definition
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing chart causes NewSchema to return 'missing chart of accounts' error, blocking schema registration
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-075
+    when: When validating postings against chart
+    action: check both source and destination accounts match defined chart patterns
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Only validating one side allows invalid accounts on the unchecked side, enabling transactions from/to undefined
+      accounts
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-083
+    when: When defining two variable segments with same prefix
+    action: define multiple variable segments under the same parent segment (e.g., $userID and $otherID)
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Chart loading fails with 'cannot have two variable segments with the same prefix' error
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-086
+    when: When using variable segment labels
+    action: prefix variable segment keys with $ character in chart JSON definition
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing $ prefix causes variable segment to be parsed as fixed segment, breaking dynamic account matching
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-087
+    when: When implementing balance queries with multiple account-asset pairs
+    action: sort accountsVolumes by account and asset in stable order before locking
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without consistent ordering, concurrent transactions can deadlock when each acquires locks in different orders,
+      causing PostgreSQL to abort one transaction with ErrDeadlockDetected and potential data inconsistency
+    stage_ids:
+    - controller_store
+  - id: finance-C-088
+    when: When implementing balance queries within a SQL transaction
+    action: use SELECT FOR UPDATE to acquire row-level locks on balance rows
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without FOR UPDATE locks, concurrent transactions can read uncommitted balances and cause double-spend vulnerabilities
+      where the same funds are credited to multiple accounts
+    stage_ids:
+    - controller_store
+  - id: finance-C-090
+    when: When using the Store for concurrent write transactions
+    action: verify LockLedger is called before any GetBalances operation
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper ledger-level advisory locking, concurrent transactions modifying the same ledger can cause
+      race conditions in balance updates and lead to inconsistent account states
+    stage_ids:
+    - controller_store
+  - id: finance-C-095
+    when: When using Store operations with PostgreSQL
+    action: expect Store to work with databases that lack pg_advisory_lock support
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Store implementation relies on PostgreSQL-specific advisory lock functions that do not exist in MySQL, SQLite,
+      or other databases, causing runtime panics
+    stage_ids:
+    - controller_store
+  - id: finance-C-100
+    when: When implementing async block creation logic
+    action: chain block hashes with the previous block hash using the PostgreSQL digest function
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Block hash chain integrity is broken, allowing undetected tampering with log sequences in the ledger's audit
+      trail
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-101
+    when: When implementing async block creation logic
+    action: only include logs with ID greater than the previous block's max_log_id
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate logs are included in multiple blocks, causing incorrect hash chains and violating the immutability
+      of the audit trail
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-109
+    when: When computing block hashes in the PostgreSQL procedure
+    action: use SHA256 cryptographic hash via public.digest function for log aggregation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using a non-cryptographic or weak hash algorithm compromises the integrity verification properties of the
+      block chain
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-112
+    when: When implementing the replication pipeline log fetching logic
+    action: use ascending order (OrderAsc) when querying logs for export
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Logs delivered to external systems out of chronological order will cause data inconsistency in downstream
+      consumers, leading to incorrect financial state reconstruction
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-113
+    when: When implementing log export cursor management
+    action: update lastLogID only after successful export (exporter.Accept returns without error)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Updating cursor before successful export causes log duplication if export fails; downstream systems may miss
+      critical financial events
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-116
+    when: When configuring batcher driver settings
+    action: set FlushInterval when MaxItems is 0 to verify logs are flushed even with low traffic
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Logs will never be delivered when MaxItems=0 and FlushInterval=0, causing permanent data loss in downstream
+      systems
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-120
+    when: When handling export failures in the pipeline
+    action: retry failed exports with configured PushRetryPeriod delay
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: Dropping logs on export failure causes permanent data loss; downstream systems miss critical financial events
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-122
+    when: When implementing pipeline crash recovery
+    action: resume from lastLogID stored in pipeline state
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Starting from beginning after crash causes duplicate log delivery, corrupting downstream financial data
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-128
+    when: When soft-deleting a bucket via DeleteBucket
+    action: Set deleted_at timestamp on each ledgers in that bucket
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Soft-deleted buckets will not be tracked for retention, causing immediate hard deletion instead of the intended
+      30-day recovery window
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-129
+    when: When determining which buckets to hard delete
+    action: Only select buckets where deleted_at is older than the configured retention period
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Buckets deleted within the retention period will be permanently destroyed, preventing accidental deletion
+      recovery
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-131
+    when: When configuring the bucket cleanup retention period
+    action: Set retention period to a value greater than zero
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Retention period of zero or negative causes immediate hard deletion, eliminating the recovery window for
+      accidentally deleted buckets
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-134
+    when: When configuring the bucket cleanup schedule
+    action: Verify a valid cron schedule is configured
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Missing or nil schedule causes worker validation to fail, preventing bucket cleanup from running
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-140
+    when: When implementing WorkerConfiguration validation
+    action: enforce bucket cleanup retention period to be greater than zero
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid retention period configuration leads to unpredictable bucket cleanup behavior, potentially causing
+      premature deletion of buckets before data is safely retained
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-141
+    when: When implementing WorkerConfiguration validation
+    action: enforce bucket cleanup schedule to be configured (non-nil CRON spec)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing bucket cleanup schedule causes the cleanup runner to fail on startup, leaving orphaned buckets in
+      the database indefinitely
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-142
+    when: When implementing worker goroutine lifecycle
+    action: use context.WithoutCancel to detach worker context from parent lifecycle
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Worker goroutines terminate unexpectedly when parent context is cancelled during startup or normal operation,
+      causing incomplete block hashing, replication failures, or bucket cleanup gaps
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-143
+    when: When implementing worker graceful shutdown
+    action: implement stop channel mechanism that confirms goroutine termination before returning
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without confirmation, the stop call returns immediately while the goroutine continues running, causing resource
+      leaks, duplicate work during restart, and potential data corruption in concurrent operations
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-144
+    when: When registering worker lifecycle hooks via fx
+    action: attach OnStop hook to worker.Stop method for proper shutdown sequencing
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Workers continue running after FX signals shutdown, leading to orphaned goroutines, database connection leaks,
+      and inability to cleanly restart or redeploy the service
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-146
+    when: When implementing replication manager shutdown
+    action: wait for each pipeline goroutines to complete before returning from Stop
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stop returns before pipelines finish processing, causing data loss, incomplete replication to external systems,
+      and goroutine leaks during shutdown
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-150
+    when: When wiring worker modules via Uber FX
+    action: compose storage.NewFXModule before worker.NewFXModule to verify database readiness
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Workers attempt database operations before connection is ready, causing startup failures and inability to
+      hash blocks, replicate logs, or cleanup buckets
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-156
+    when: When implementing double-entry bookkeeping transactions in Formance Ledger
+    action: 'Verify postings balance: sum of each source amounts must equal sum of each destination amounts per transaction'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: An unbalanced transaction creates money from nothing or destroys money, violating fundamental accounting
+      principles and causing financial ledger inconsistency
+  - id: finance-C-157
+    when: When storing monetary amounts in the ledger
+    action: Use non-negative big integers (github.com/formancehq/go-libs/pkg/monetary) for each amounts
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Negative amounts would violate the ledger's non-negative invariant, potentially allowing overdraft exploitation
+      or invalid financial state
+  - id: finance-C-158
+    when: When chaining logs in the immutable audit trail
+    action: Compute each log's hash including the previous log's hash to create a cryptographically linked chain
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Breaking the log chain invalidates the audit trail integrity, allowing tampering with historical transactions
+      without detection
+  - id: finance-C-160
+    when: When computing account balances
+    action: Calculate balance as Input minus Output (computed dynamically, never stored)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Storing balances would create consistency drift between the computed balance and the transaction history,
+      causing incorrect financial reporting
+  - id: finance-C-163
+    when: When creating or modifying transactions via the VM
+    action: 'Execute VM instructions in strict order: SetVarsFromJSON → ResolveResources → ResolveBalances → Execute'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping or reordering execution phases causes undefined VM state, leading to incorrect postings or runtime
+      errors
+  - id: finance-C-164
+    when: When processing ledger logs through the log processor
+    action: 'Follow strict transaction order: BeginTX → runLog (validateSchema) → InsertLog → Commit'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Deviating from this order breaks the idempotency and audit trail consistency, potentially duplicating or
+      losing transactions
+  - id: finance-C-165
+    when: When handling idempotency in transaction processing
+    action: Use idempotency key combined with computed hash to uniquely identify and deduplicate requests
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing idempotency validation causes duplicate transactions, double-spending, and inconsistent ledger state
+  - id: finance-C-172
+    when: When deploying Formance Ledger in environments without PostgreSQL support
+    action: Claim Formance Ledger can run without PostgreSQL as its storage backend
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: PostgreSQL is the only supported storage layer; claiming otherwise leads to deployment failures and data
+      loss
+  - id: finance-C-174
+    when: When importing ledger data via the import functionality
+    action: Verify the target ledger is empty before import (no existing transactions)
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: Importing into a non-empty ledger causes transaction ID conflicts and inconsistent state, corrupting the
+      ledger's audit trail
+  - id: finance-C-175
+    when: When using concurrent transactions affecting the same bounded source accounts
+    action: Rely on PostgreSQL FOR UPDATE locks and the INSERT...ON CONFLICT pattern to prevent overdraft race conditions
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: Without proper locking, concurrent transactions can both pass overdraft checks and result in balance violations
+      (e.g., two transactions each for 200 USD when limit is -200 USD)
+  - id: finance-C-182
+    when: When implementing log creation and hash chain maintenance
+    action: Include the previous log hash in SHA256 computation to maintain a tamper-evident hash chain — each log must reference
+      its predecessor's hash
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without previous log hash chaining, modifications to historical logs go undetected; this violates audit compliance
+      requirements and allows unauthorized changes to slip through without detection
+    derived_from_bd_id: BD-012
+  - id: finance-C-185
+    when: When implementing posting accumulation logic in transaction execution
+    action: Accumulate postings in a single pass during execution and validate that sum of postings equals zero before committing
+      — this prevents double-spending by ensuring balance invariant holds throughout
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Multi-pass execution or delayed balance validation allows double-spending scenarios where the same funds
+      are committed multiple times before detection; single-pass accumulation with immediate validation is required for correctness
+    derived_from_bd_id: BD-004
+  - id: finance-C-186
+    when: When implementing or modifying monetary amount handling in the data model
+    action: Use float64 or any fixed-precision decimal type for monetary amounts — each monetary calculations must use big.Int
+      for arbitrary precision integer arithmetic
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: float64 introduces rounding errors in financial calculations that accumulate over time; strategies that appear
+      profitable may be losing money due to precision loss, particularly in high-frequency or high-volume scenarios
+    derived_from_bd_id: BD-071
+  - id: finance-C-195
+    when: When implementing financial amount calculations or choosing data types in the data model
+    action: Use arbitrary precision integers (big.Int) for each financial amounts; do not use float64 or fixed-point decimal
+      types which introduce precision loss affecting financial accuracy
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using float64 for financial amounts causes precision loss where calculations like 0.1 + 0.2 produce 0.30000000000000004,
+      leading to incorrect transaction amounts and irreconcilable balance discrepancies
+    derived_from_bd_id: BD-076
+  - id: finance-C-201
+    when: When configuring schema enforcement mode in controllers
+    action: Verify the actual number of schema enforcement modes implemented matches the documented modes — evidence shows
+      discrepancy between stated three modes (strict, warn, audit) and code showing two modes (Strict, Audit)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Configuration relying on a third mode (warn) that doesn't exist in implementation will silently fail or behave
+      unexpectedly, allowing invalid schema entries to pass validation unnoticed
+    derived_from_bd_id: BD-051
+  - id: finance-C-202
+    when: When implementing or modifying Memento hash computation for transaction history
+    action: Include postCommitVolumes in Memento hash computation — these fields are computed post-commit and including them
+      in hash causes any volume formula change to invalidate each historical memento verification
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Including postCommitVolumes in hash breaks historical integrity verification — all mementos created before
+      the formula change become unverifiable, causing audit failures and loss of tamper-evident history
+    derived_from_bd_id: BD-013
+  - id: finance-C-204
+    when: When implementing or modifying balance calculation logic
+    action: Calculate balance as Input minus Output using big.Int.Sub — changing to Output minus Input negates every account
+      balance, breaking each account queries and causing complete ledger data inversion
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Reversing the balance formula (Output - Input instead of Input - Output) produces negated balances for every
+      account, making all balance queries return incorrect negative values and corrupting entire ledger state
+    derived_from_bd_id: BD-043
+  - id: finance-C-212
+    when: When calculating account balances in the ledger data model
+    action: Use Input - Output formula via big.Int subtraction for balance calculation — do not use Output - Input (which
+      negates balances) or absolute value (which loses direction information)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect balance formula negates all balances or loses direction information, causing every account
+      balance to be calculated wrong and transactions to fail validation
+    derived_from_bd_id: BD-073
+  - id: finance-C-220
+    when: When implementing fund allocation logic in Funding.Take
+    action: Process funding parts in deterministic order and merge consecutive parts with the same account — ordering must
+      be reproducible for auditability
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Random ordering or separate handling of same-account parts would cause non-deterministic fund allocation,
+      making audit trails impossible to verify and breaking regulatory compliance requirements
+    derived_from_bd_id: BD-067
+  - id: finance-C-222
+    when: When implementing log chain integrity or idempotency signature hashing
+    action: Use SHA-256 for hash computation — changing hash algorithm would invalidate existing chain data and break idempotency
+      guarantees
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Switching to SHA-512, BLAKE3, or Merkle trees would change hash outputs, breaking compatibility with existing
+      chains and causing all historical log verifications to fail
+    derived_from_bd_id: BD-075
+  - id: finance-C-224
+    when: When implementing signature generation for reproducible transaction signatures
+    action: Use canonical JSON serialization to feed deterministic data to hash function - this named technique ensures reproducible
+      signatures across implementations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using Protocol Buffers, msgpack, or custom binary encoding breaks signature reproducibility because non-canonical
+      serialization produces different byte streams for identical logical data
+    derived_from_bd_id: BD-080
+  - id: finance-C-226
+    when: When implementing bulk operation configuration in backtesting
+    action: Enable both atomic and parallel bulk options simultaneously — these are mutually exclusive options that cannot
+      coexist
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Enabling both atomic and parallel bulk operations breaks ACID consistency guarantees; parallel execution
+      cannot provide all-or-nothing behavior, leading to partial state changes that corrupt backtest data integrity
+    derived_from_bd_id: BD-056
+  - id: finance-C-227
+    when: When implementing log import logic for ledger data
+    action: Allow importing logs into a non-empty ledger or import logs that are out of order — the importer must reject such
+      operations to preserve append-only audit trail integrity
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Allowing non-empty imports or out-of-order log ingestion corrupts the audit trail; backtest results become
+      non-reproducible and transaction history loses its chronological integrity, making regulatory audits impossible
+    derived_from_bd_id: BD-060
+  - id: finance-C-228
+    when: When implementing transaction revert logic in backtesting
+    action: Allow a transaction to be reverted more than once — reverted transactions must be rejected with ErrAlreadyReverted
+      error on subsequent revert attempts
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Double-revert operations create ambiguous transaction history where the same transaction is reversed multiple
+      times, breaking audit trail integrity and making it impossible to trace the true state of funds at any point in time
+    derived_from_bd_id: BD-063
+  regular:
+  - id: finance-C-006
+    when: When executing Numscript VM
+    action: verify stack is empty after execution completes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-empty stack after execution indicates unconsumed values, signaling a logic error in the compiled program
+      that could lead to incorrect results
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-007
+    when: When taking funds from a funding source
+    action: process funding parts in FIFO order to maintain deterministic execution
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-FIFO processing of funding parts causes non-deterministic results and may violate the expected distribution
+      of funds across multiple source accounts
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-008
+    when: When using Store interface for balance queries
+    action: implement GetBalances and GetAccount methods for custom storage backends
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing Store interface implementation causes runtime errors during VM balance resolution, halting all transaction
+      processing
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-010
+    when: When testing Numscript VM behavior
+    action: use StaticStore to enable testing without database dependency
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Tests requiring live database connections are slow, flaky, and cannot run in isolated CI environments, reducing
+      test coverage and reliability
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-012
+    when: When handling WORLD account in Numscript
+    action: treat WORLD as unbounded source/sink that never requires balance checks
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: WORLD represents external flows (money entering/leaving the system), requiring special handling as an unlimited
+      source or destination without balance constraints
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-014
+    when: When compiling and executing Numscript programs
+    action: 'follow the mandated execution sequence: NewMachine -> SetVars -> ResolveResources -> ResolveBalances -> Execute'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping or reordering execution phases leads to uninitialized state panics, missing resources, or stale
+      balance data
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-015
+    when: When defining account addresses in Numscript
+    action: validate addresses match the defined account pattern
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid account addresses cause transaction failures and potential data corruption when attempting to post
+      to malformed account identifiers
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-016
+    when: When running Numscript VM tests
+    action: call ResolveResources before ResolveBalances to verify dependency order
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Reversing the resolution order causes resource dependencies to be unresolved when balance queries attempt
+      to use them, leading to test failures
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-017
+    when: When using multi-source allocations with portions
+    action: verify total portions sum to exactly 100% for complete allocation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Portions not summing to 100% cause funds to be undistributed or over-distributed, breaking the invariant
+      that all sent amounts must be fully accounted for
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-018
+    when: When handling metadata in Numscript execution
+    action: allow metadata key overrides between script and request parameters
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Allowing metadata key overrides causes silent data loss where user-provided metadata is discarded without
+      warning, breaking audit trails
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-019
+    when: When implementing OP_TAKE_MAX opcode
+    action: allow partial takes when requested amount exceeds available funds
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: OP_TAKE_MAX is designed to take maximum available without error, unlike OP_TAKE which fails on insufficient
+      funds; failing on partial availability violates this semantic contract
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-021
+    when: When using overdraft limits in Numscript
+    action: track cumulative balance including overdraft across multiple sends to same account
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Not tracking cumulative balance causes overdraft limits to be violated across multiple sends, allowing accounts
+      to go further negative than permitted
+    stage_ids:
+    - numscript_execution
+  - id: finance-C-024
+    when: When implementing transaction schema validation
+    action: respect schema enforcement mode (strict vs audit) for posting validation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: In strict mode, schema violations will block transactions; in audit mode, violations will only be logged
+      but transactions will proceed, potentially violating business rules
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-026
+    when: When implementing transaction reference handling
+    action: enforce unique transaction references per ledger via database constraint
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate references will create ambiguous transaction identification, making audit trails unreliable and
+      causing reconciliation failures
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-027
+    when: When implementing transaction processing
+    action: implement deadlock retry with exponential backoff for PostgreSQL operations
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without deadlock retry, concurrent transactions will fail immediately on deadlock, causing transaction failures
+      and degraded service availability during high contention periods
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-028
+    when: When implementing idempotency key storage
+    action: limit idempotency key length to 256 characters as enforced by database schema
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Idempotency keys exceeding 256 characters will cause database constraint violations, resulting in failed
+      transactions
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-029
+    when: When implementing transaction processing with schema
+    action: require schema version specification when ledger has schemas in strict enforcement mode
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without schema version specification, transactions may execute against unintended schema versions, violating
+      business rules enforced by specific schema versions
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-030
+    when: When implementing idempotency retry logic
+    action: fetch existing log from database when IdempotencyKeyConflict error occurs
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without fetching the existing log on conflict, the system will lose track of the previously created transaction,
+      causing duplicate processing attempts
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-031
+    when: When implementing transaction processing
+    action: return identical response for duplicate idempotency key submissions
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Different responses for same idempotency key will confuse clients, causing them to retry or take incorrect
+      actions based on perceived failures
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-032
+    when: When implementing bulk transaction processing
+    action: allow atomic and parallel options simultaneously
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Atomic parallel execution creates undefined ordering semantics, potentially causing inconsistent state when
+      some transactions in the batch fail
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-034
+    when: When implementing transaction processing
+    action: compute idempotency hash from request inputs only, excluding computed fields
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Including computed fields (like transaction ID, timestamps) in idempotency hash will cause valid retries
+      to fail with hash mismatch errors
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-036
+    when: When implementing transaction reversal
+    action: check balance sufficiency after reversal calculation before committing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without balance checks after reversal, accounts can go below zero unexpectedly, causing overdrafts and potential
+      financial losses
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-037
+    when: When implementing transaction API endpoints
+    action: set Idempotency-Hit header to true on successful idempotent request reuse
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper header indication, clients cannot distinguish between new transactions and cached responses,
+      causing duplicate transaction attempts
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-038
+    when: When documenting transaction processing capabilities
+    action: claim real-time trading support or zero-latency execution guarantees
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Performance claims without latency bounds will mislead users about execution guarantees, causing inappropriate
+      use cases and SLA violations
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-039
+    when: When presenting transaction processing results
+    action: present simulated or backtest results as equivalent to live execution
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Simulated results do not account for slippage, network latency, partial fills, and market impact, causing
+      unrealistic expectations and potential financial losses
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-040
+    when: When implementing schema validation for transactions
+    action: block transactions in audit enforcement mode for schema violations
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Blocking in audit mode will break existing workflows that rely on gradual schema adoption, causing unexpected
+      transaction failures
+    stage_ids:
+    - transaction_processing
+  - id: finance-C-046
+    when: When handling the WORLD account in transaction postings
+    action: treat WORLD as an unbounded overdraft source that completes double-entry for external asset flows
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: WORLD account is the ledger boundary representing external systems. Treating it as bounded or tracking its
+      balance creates incorrect external flow accounting
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-047
+    when: When processing transactions involving the WORLD account
+    action: apply overdraft restrictions to the WORLD account source
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: WORLD represents external asset sources with unlimited supply. Restricting it would block valid external-to-internal
+      asset flows
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-049
+    when: When querying balances from multiple accounts concurrently
+    action: sort accounts by address before acquiring locks to prevent deadlocks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without consistent lock ordering, concurrent transactions acquiring locks in different orders can deadlock,
+      blocking all transactions on affected accounts
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-050
+    when: When handling PostCommitEffectiveVolumes for transactions with past timestamps
+    action: allow PostCommitEffectiveVolumes to be updated when inserting transactions in the past
+    severity: medium
+    kind: architecture_guardrail
+    modality: should
+    consequence: PostCommitEffectiveVolumes reflect the state at TransactionData.Timestamp. When inserting past-dated transactions,
+      previously committed volumes must be recalculated to maintain temporal accuracy
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-051
+    when: When calculating balance for WORLD account reporting
+    action: track or report WORLD account balance as it represents external systems with unlimited supply
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: WORLD is a virtual account representing the ledger boundary to external systems. Reporting its balance implies
+      the ledger controls infinite external resources
+    stage_ids:
+    - volume_accounting
+  - id: finance-C-053
+    when: When implementing log payload hashing
+    action: include postCommitVolumes or postCommitEffectiveVolumes fields in the hash computation
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Including computed postCommitVolumes fields in the hash breaks event sourcing principles because these are
+      derived values, not causal decisions. Any state rebuild would produce different hashes for identical causal inputs
+    stage_ids:
+    - log_creation
+  - id: finance-C-055
+    when: When defining log type handling
+    action: use typed constants (iota) rather than string comparisons to prevent typos and type errors
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using string literals for log types risks silent typos that pass compilation but cause incorrect log type
+      handling at runtime, panicking the application
+    stage_ids:
+    - log_creation
+  - id: finance-C-056
+    when: When enabling HASH_LOGS feature with SYNC mode for high throughput
+    action: expect linear scalability because the advisory lock creates a serialization bottleneck
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: The pg_advisory_xact_lock on ledger ID serializes all log insertions, causing throughput to plateau or degrade
+      under concurrent write load
+    stage_ids:
+    - log_creation
+  - id: finance-C-057
+    when: When requiring maximum write throughput
+    action: configure HASH_LOGS feature to ASYNC mode so background worker computes hashes without blocking writes
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: SYNC hashing blocks every transaction waiting for advisory lock, limiting throughput to sequential writes
+      per ledger
+    stage_ids:
+    - log_creation
+  - id: finance-C-058
+    when: When computing log hash for deterministic results
+    action: maintain consistent field ordering in the hash struct because JSON encoder includes field order in output
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Inconsistent field ordering produces different hashes for structurally identical logs, breaking hash chain
+      verification and audit integrity
+    stage_ids:
+    - log_creation
+  - id: finance-C-061
+    when: When handling idempotency in log creation
+    action: verify IdempotencyHash matches computed hash to verify duplicate requests produce identical results
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without IdempotencyHash verification, duplicate requests with different inputs could be incorrectly treated
+      as idempotent, leading to incorrect ledger state
+    stage_ids:
+    - log_creation
+  - id: finance-C-062
+    when: When claiming log chain provides real-time tamper detection
+    action: claim that HASH_LOGS SYNC mode provides immediate integrity verification because hash computation is done at insert
+      time only
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: The hash chain provides tamper evidence but does not include active monitoring. Tampering would only be detected
+      during explicit verification, not at the moment of modification
+    stage_ids:
+    - log_creation
+  - id: finance-C-063
+    when: When presenting log chain results in ASYNC hashing mode
+    action: present logs as having verified integrity before the background hasher has processed them
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: In ASYNC mode, recent logs may have empty or stale hashes until the background worker processes them, misleading
+      users about actual audit trail integrity
+    stage_ids:
+    - log_creation
+  - id: finance-C-065
+    when: When creating hierarchical account addresses
+    action: use colon (:) as the segment separator for address path construction
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Addresses split on wrong separator cause FindAccountSchema to fail matching, rejecting valid accounts or
+      accepting invalid ones
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-067
+    when: When assigning metadata or rules to chart segments
+    action: place .metadata or .rules properties on non-account intermediate segments
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Invalid chart structure passes validation but creates accounts with unreachable metadata definitions, causing
+      metadata inheritance failures
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-072
+    when: When creating new accounts via postings
+    action: inherit default metadata from chart account schema through AccountsWithDefaultMetadata
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Accounts created without default metadata miss required fields, breaking compliance requirements and audit
+      trails
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-076
+    when: When specifying schema version in transaction parameters
+    action: request a non-existent schema version that will trigger ErrSchemaNotFound
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Non-existent schema version causes transaction to fail with error including latest available version hint
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-077
+    when: When operating in audit schema enforcement mode
+    action: emit telemetry traces and logs for schema validation failures instead of blocking transactions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Audit mode without logging fails to capture compliance evidence of schema violations, reducing audit trail
+      effectiveness
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-078
+    when: When requiring schema specification
+    action: provide schema version when ledger has schemas and input payload needs schema
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing schema version when ledger has schemas causes strict mode to error with ErrSchemaNotSpecified
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-079
+    when: When multiple schema versions coexist
+    action: use FindSchema to lookup specific version or FindLatestSchemaVersion for newest
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Incorrect schema version lookup returns wrong chart, causing valid accounts to be rejected or invalid ones
+      accepted
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-080
+    when: When claiming real-time schema enforcement
+    action: present audit mode compliance logs as guaranteed blocking enforcement
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Audit mode only logs warnings, allowing schema violations through and misrepresenting compliance posture
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-081
+    when: When enforcing schemas on new ledgers
+    action: require schema validation when no schema has been inserted yet
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Ledger without schema cannot validate against non-existent chart, breaking transaction creation
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-082
+    when: When inserting duplicate schema versions
+    action: attempt to insert a schema with version that already exists
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Duplicate schema version insertion fails with ErrSchemaAlreadyExists, leaving no schema for subsequent operations
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-084
+    when: When storing patterns for variable segments
+    action: save pattern as string pointer (nil allowed for unconstrained variables)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-pointer pattern storage prevents optional pattern semantics, forcing all variable segments to be constrained
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-085
+    when: When using patternless variable segments
+    action: match any alphanumeric segment value without regex constraint
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Patternless variable segments matching invalid characters allow unexpected account addresses through validation
+    stage_ids:
+    - schema_enforcement
+  - id: finance-C-089
+    when: When executing multiple ledger operations within a single transaction
+    action: follow the established operation ordering sequence used in CommitTransaction
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Deviating from the established operation order (volumes first, then transactions, then logs) can cause deadlocks
+      when concurrent transactions execute operations in conflicting orders
+    stage_ids:
+    - controller_store
+  - id: finance-C-091
+    when: When adapting the Store interface for different consumers
+    action: use vmStoreAdapter or numscriptRewriteAdapter to translate between Store and consumer-specific interfaces
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct Store access without proper adapter translation can cause type mismatches in balance queries and lead
+      to incorrect financial calculations
+    stage_ids:
+    - controller_store
+  - id: finance-C-092
+    when: When handling deadlocks in transaction processing
+    action: retry the entire transaction when ErrDeadlockDetected is returned
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without retry logic, failed transactions due to deadlocks can result in lost operations and require manual
+      intervention to reconcile account states
+    stage_ids:
+    - controller_store
+  - id: finance-C-093
+    when: When adding a second ledger to an existing bucket
+    action: update the aloneInBucket atomic flag to false for each stores in the bucket
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without updating the shared aloneInBucket flag, query optimization decisions will be incorrect, causing unnecessary
+      WHERE clause filtering and degraded sequential scan plans
+    stage_ids:
+    - controller_store
+  - id: finance-C-094
+    when: When implementing pagination for large result sets
+    action: enforce PageSize bounds by defaulting to bunpaginate.QueryDefaultPageSize when PageSize is 0
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without default bounds, queries with no PageSize specified can return excessive results, causing memory exhaustion
+      and network degradation
+    stage_ids:
+    - controller_store
+  - id: finance-C-096
+    when: When calling LockLedger outside of an active transaction
+    action: verify the connection is returned to the pool only after explicit release function is called
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without proper connection management, holding a dedicated connection during advisory lock can exhaust the
+      connection pool, blocking new requests
+    stage_ids:
+    - controller_store
+  - id: finance-C-097
+    when: When presenting transaction results from the store
+    action: claim atomicity guarantees across multiple ledgers in different buckets
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Store operations are scoped to single ledger; cross-ledger consistency must be managed at application layer,
+      not within Store transactions
+    stage_ids:
+    - controller_store
+  - id: finance-C-098
+    when: When performing transaction validation before commit
+    action: validate idempotency key hashes match when logs are re-read after ErrIdempotencyKeyConflict
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without idempotency hash validation, retrying after conflict can execute different operations than the original
+      request, causing inconsistent account states
+    stage_ids:
+    - controller_store
+  - id: finance-C-099
+    when: When implementing GetBalances within a transaction
+    action: insert zero-value balance rows for missing accounts before acquiring locks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without pre-inserting zero balances, accounts that don't exist yet cannot be locked, allowing concurrent
+      transactions to create duplicate or inconsistent balance entries
+    stage_ids:
+    - controller_store
+  - id: finance-C-102
+    when: When configuring async block hashing
+    action: set HASH_LOGS feature to 'ASYNC' for ledgers to be processed by the async block hasher
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Ledgers with HASH_LOGS = 'SYNC' or 'DISABLED' are silently skipped, creating gaps in the block chain for
+      those ledgers
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-103
+    when: When setting up the async block hasher CRON schedule
+    action: use a valid CRON expression that aligns with the business requirement for block creation frequency
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Blocks are created too infrequently, causing delayed integrity verification, or too frequently, causing unnecessary
+      database load
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-104
+    when: When setting the async block hasher max block size
+    action: configure MaxBlockSize to a positive integer value for batch processing
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Invalid block size causes the procedure to fail or process all remaining logs in a single potentially unbounded
+      block
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-105
+    when: When implementing graceful shutdown for the async block hasher
+    action: drain the stopChannel to verify the current block processing completes before stopping
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Incomplete block processing leaves logs unprocessed, creating gaps in the hash chain that compromise audit
+      integrity
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-106
+    when: When the async block hasher is enabled
+    action: claim real-time integrity verification equivalent to SYNC mode
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: ASYNC mode creates blocks on CRON schedule, introducing a delay between log creation and hash verification
+      that does not provide the same immediate integrity guarantees as SYNC mode
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-107
+    when: When running async block hasher alongside SYNC log hashing
+    action: not enable both SYNC and ASYNC modes simultaneously for the same ledger
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate hash computations occur with different mechanisms, potentially producing inconsistent results and
+      confusing the audit trail
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-108
+    when: When the ASYNC mode ledger receives new transactions
+    action: handle logs inserted after block creation without blocking the transaction commit
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Blocking transaction commits causes high-throughput clients to experience increased latency and reduced throughput
+      due to serialization on hash computation
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-110
+    when: When executing the async block hasher Run loop
+    action: recalculate next CRON execution time after each run completes
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Fixed interval scheduling causes drift from the intended CRON schedule, leading to inconsistent block creation
+      timing
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-111
+    when: When migrating ledgers between buckets
+    action: preserve the logs_blocks table with correct block chaining to maintain audit continuity
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Breaking the block chain during migration creates gaps that invalidate the cumulative hash integrity verification
+    stage_ids:
+    - async_block_hashing
+  - id: finance-C-114
+    when: When implementing the pagination logic
+    action: set next poll interval to 0 when HasMore is true to drain each pending logs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Waiting for full PullInterval when more logs exist causes unnecessary delay in log delivery, potentially
+      impacting real-time financial processing
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-115
+    when: When configuring pipeline export retry behavior
+    action: implement exponential backoff for failed export retries to prevent thundering herd
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without backoff, repeated retry attempts during downstream outages can overwhelm external systems, causing
+      cascading failures
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-117
+    when: When configuring batcher MaxItems parameter
+    action: verify MaxItems is non-negative (>= 0)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Negative MaxItems causes undefined batching behavior and potential memory leaks in log buffering
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-118
+    when: When implementing driver acceptance logic
+    action: block Accept calls until driver reports ready state
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Accepting logs before driver is ready causes undefined export behavior and potential log loss
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-119
+    when: When implementing driver initialization
+    action: retry driver start indefinitely on failure (unless context is canceled)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without retry, transient driver initialization failures cause permanent pipeline failure and stop log replication
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-121
+    when: When implementing pipeline state persistence
+    action: persist pipeline state asynchronously to avoid blocking the export loop
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Synchronous state persistence during export causes latency spikes and potential thundering herd on crash
+      recovery
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-123
+    when: When implementing pipeline synchronization with storage
+    action: periodically sync enabled pipelines from storage to handle configuration changes
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing periodic sync causes pipelines to remain running after being disabled or fail to start newly enabled
+      pipelines
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-124
+    when: When implementing driver factory for pipeline exporters
+    action: wrap factory with batching layer to buffer logs before export
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without batching, each log triggers a separate network call, causing high latency and potential network saturation
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-125
+    when: When describing the replication pipeline capabilities
+    action: claim real-time log delivery when using pull-based polling architecture
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Pull-based polling has inherent delay of up to PullInterval + processing time; claiming real-time delivery
+      sets false expectations for financial use cases requiring immediate notification
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-126
+    when: When describing export delivery guarantees
+    action: claim exactly-once delivery without idempotency handling in downstream systems
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: At-least-once delivery with cursor-based deduplication still risks duplicates on crash during state persistence;
+      claiming exactly-once misleads users about reliability
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-127
+    when: When describing batcher behavior
+    action: claim bounded delivery latency when MaxItems is configured without FlushInterval
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: With MaxItems > 0 and no FlushInterval, logs wait indefinitely if traffic is low, causing unbounded latency
+      for low-volume ledgers
+    stage_ids:
+    - pipeline_replication
+  - id: finance-C-130
+    when: When hard deleting a bucket
+    action: Drop the PostgreSQL schema with CASCADE and delete each ledger records from _system.ledgers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Orphaned data will remain in PostgreSQL, consuming storage and potentially causing confusion about bucket
+      state
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-132
+    when: When processing multiple buckets for cleanup
+    action: Continue processing remaining buckets even if one bucket fails
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: One corrupted or locked bucket will block cleanup of all other expired buckets, causing storage accumulation
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-133
+    when: When running the bucket cleanup worker
+    action: Execute cleanup according to a configured cron schedule
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without a schedule, cleanup only runs once at startup, allowing storage to accumulate indefinitely
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-135
+    when: When implementing bucket cleanup
+    action: Use the system store interface for each bucket operations
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct database access bypasses transactional guarantees and consistency checks, leading to data corruption
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-136
+    when: When a bucket fails to hard delete
+    action: Log the failure and record the bucket name for later investigation
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Failed deletions go unnoticed, accumulating unrecoverable data and potentially causing system storage exhaustion
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-137
+    when: When restoring a soft-deleted bucket
+    action: Set deleted_at back to NULL on each ledgers in the bucket
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect restore operation will cause the bucket to be immediately hard-deleted upon next cleanup cycle
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-138
+    when: When fetching ledgers without the includeDeleted flag
+    action: Filter out ledgers where deleted_at IS NOT NULL
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Soft-deleted ledgers appear in normal queries, causing confusion and potential data integrity issues
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-139
+    when: When setting the default retention period
+    action: Use 30 days as the default retention period to provide adequate recovery window
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Shorter retention periods increase risk of accidental data loss; users need time to discover and recover
+      from mistakes
+    stage_ids:
+    - bucket_cleanup
+  - id: finance-C-145
+    when: When implementing worker goroutine error handling
+    action: panic when worker Run method returns an error (unrecoverable failure)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Silent error swallowing allows the worker to continue running in a failed state, producing incorrect hashes,
+      missing replications, or orphaned buckets without operator awareness
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-147
+    when: When configuring replication pipeline defaults
+    action: set pull interval to at least 5 seconds to avoid excessive database load
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Default pull interval of 10 seconds is specified; setting too low causes excessive polling, database CPU
+      saturation, and degraded transaction processing performance
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-148
+    when: When configuring replication pipeline defaults
+    action: set push retry period to at least 10 seconds to avoid overwhelming external systems
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Default push retry period of 10 seconds is specified; aggressive retries overwhelm downstream systems during
+      outages and cause cascading failures
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-149
+    when: When configuring replication pipeline defaults
+    action: set logs page size to at least 100 for efficient batch processing
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Default logs page size of 100 is specified; very small page sizes cause excessive round trips and network
+      overhead
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-151
+    when: When implementing bucket cleanup retention
+    action: set default retention period to at least 30 days for data safety
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Shorter retention periods risk permanent data loss before users can recover from accidental deletions or
+      perform compliance audits
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-152
+    when: When implementing worker stop cancellation
+    action: handle context cancellation in stop channel operations to avoid hanging shutdown
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Shutdown hangs indefinitely when context deadline is exceeded during stop, preventing clean service restart
+      and causing deployment timeouts
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-153
+    when: When implementing replication pipeline error handling
+    action: continue processing other buckets when one bucket cleanup fails
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single bucket cleanup failure causes entire cleanup batch to abort, leaving other expired buckets undeleted
+      and accumulating storage bloat
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-154
+    when: When implementing worker configuration via command-line flags
+    action: provide sensible defaults for each worker configuration parameters
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing defaults cause worker to fail startup without explicit configuration, preventing automated deployment
+      and requiring manual intervention per environment
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-155
+    when: When managing pipelines dynamically based on feature flags
+    action: stop pipelines that are disabled or deleted during periodic synchronization
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Disabled pipelines continue consuming resources and producing stale data, causing confusion and potential
+      data inconsistency in downstream systems
+    stage_ids:
+    - worker_fx_module
+  - id: finance-C-159
+    when: When validating account addresses in postings
+    action: Validate account addresses match the patterns defined in the ledger's chart of accounts schema
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Postings to invalid accounts violate the chart of accounts contract, breaking balance tracking and audit
+      trail integrity
+  - id: finance-C-161
+    when: When handling external monetary flows with the WORLD account
+    action: Treat WORLD account credits as no-ops and do not track WORLD balances
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Tracking WORLD balances would incorrectly include external funding sources in balance calculations, breaking
+      accounting correctness
+  - id: finance-C-162
+    when: When computing effective volumes for time-sensitive queries
+    action: Use transaction timestamp ordering, not insertion order, for effective volume calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using insertion order would cause incorrect balance calculations when transactions are backdated, violating
+      temporal accuracy requirements
+  - id: finance-C-166
+    when: When storing computed fields in transaction logs for hashing
+    action: Include postCommitVolumes or postCommitEffectiveVolumes in the log hash computation
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Including computed volumes in hash would create inconsistent hashes when volumes are recalculated, breaking
+      audit trail integrity
+  - id: finance-C-167
+    when: When executing funding allocations via Funding.Take()
+    action: Process funding parts in FIFO order, with remainder going to later parts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-FIFO processing changes the allocation semantics, potentially overallocating from early funders and underallocating
+      from late funders
+  - id: finance-C-168
+    when: When resuming pipeline replication after failure
+    action: Store and use lastLogID as the cursor for resumable recovery
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without persistent lastLogID, pipeline restart loses position in the log stream, potentially missing or duplicating
+      replicated transactions
+  - id: finance-C-169
+    when: When using Formance Ledger as a data storage solution
+    action: Claim Formance Ledger supports simple key-value storage use cases
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expecting simple key-value storage will encounter complexity overhead (PostgreSQL dependency, schema
+      validation, immutable logs) without benefit
+  - id: finance-C-170
+    when: When considering non-financial applications of Formance Ledger
+    action: Claim Formance Ledger is suitable for non-financial data tracking
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Non-financial use cases impose unnecessary overhead (double-entry bookkeeping, monetary precision, audit
+      trails) without appropriate domain fit
+  - id: finance-C-171
+    when: When evaluating Formance Ledger for applications without audit requirements
+    action: Claim Formance Ledger is suitable for applications without need for audit trails
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Applications not requiring immutable audit trails pay unnecessary complexity cost (log chaining, hash verification,
+      PostgreSQL dependency) for unused features
+  - id: finance-C-173
+    when: When presenting or reporting Formance Ledger's transaction history
+    action: Claim that the ledger provides real-time data consistency guarantees across each read replicas
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The pipeline replication uses polling (10-second default interval) with eventual consistency; users expecting
+      real-time consistency will observe stale reads
+  - id: finance-C-176
+    when: When processing ledger features
+    action: Assume feature flags are stable across versions — some can be added or removed
+    severity: medium
+    kind: operational_lesson
+    modality: should_not
+    consequence: Using features that may be removed in future versions creates upgrade fragility; best practice is to explicitly
+      configure required features
+  - id: finance-C-177
+    when: When working with bucket isolation for multi-tenant deployments
+    action: Understand that buckets use PostgreSQL schemas and enable horizontal scaling isolation
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Improper bucket configuration can lead to schema conflicts or reduced horizontal scaling effectiveness
+  - id: finance-C-178
+    when: When implementing the log-first architecture for transaction processing
+    action: Produce immutable logs as the source of truth for every state change; derive each balance and volume state from
+      log recomputation, never update in-place
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: State-first updates with in-place modifications break the audit trail and temporal queries; historical balances
+      cannot be reconstructed, making compliance audits and error investigation impossible
+    derived_from_bd_id: BD-005
+  - id: finance-C-179
+    when: When implementing or refactoring the hashing mechanism for logs and blocks
+    action: Assume a unified synchronous hashing mode applies to both log hashing and block hashing — these are different
+      operations at different stages with different timing requirements; BD-047 SYNC applies to log hashing while BD-020 ASYNC
+      applies to block hashing via CRON worker
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Treating block hashing as synchronous causes the hasher to block on each block, defeating the purpose of
+      batch background processing; or forcing all hashing to async breaks the immediate tamper-evident guarantees for individual
+      logs
+    derived_from_bd_id: BD-93
+  - id: finance-C-180
+    when: When configuring or validating ledger naming in the system
+    action: Allow users to create ledgers with reserved names '_', '_info', '_healthcheck' — these names are reserved for
+      system endpoints and health checks
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Creating ledgers with reserved names causes routing conflicts with system endpoints; health checks fail for
+      affected ledgers, breaking monitoring and observability
+    derived_from_bd_id: BD-040
+  - id: finance-C-181
+    when: When implementing or modifying transaction reversal logic
+    action: Reverse a transaction by swapping source/destination and negating amounts via reverse postings — do not use a
+      separate reversal transaction type or compensation log
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a separate reversal type or compensation log breaks bilateral swap semantics; the transaction history
+      no longer reflects proper reversals, causing incorrect balance calculations and audit trail inconsistencies
+    derived_from_bd_id: BD-083
+  - id: finance-C-183
+    when: When implementing funding allocation logic for partial credit or debit operations
+    action: Allocate funds using FIFO (First-In-First-Out) ordering across multiple sources — consume sources in the order
+      they were added, not by random or priority-based selection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-FIFO allocation violates business intent for fund consumption ordering; strategies relying on predictable
+      source depletion ordering produce incorrect results, potentially exhausting wrong funding sources first
+    derived_from_bd_id: BD-003
+  - id: finance-C-184
+    when: When implementing or substituting the Store interface for balance queries in numscript execution
+    action: Verify that the Store implementation is deterministic and read-only during VM execution — verify any custom Store
+      implementation maintains these properties or document deviations clearly
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Non-deterministic or write-capable Store implementations cause inconsistent execution results; strategies
+      that pass with StaticStore may fail with live storage, making backtest-to-production transitions unreliable
+    derived_from_bd_id: BD-002
+  - id: finance-C-187
+    when: When implementing or refactoring balance tracking logic in volume accounting
+    action: Maintain Balance as a computed field derived from Input minus Output, never stored as a separate persisted field;
+      any refactoring must preserve this computed relationship where negative balance (overdraft) is allowed by the formula
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing Balance to a stored field creates synchronization risk between balance and volume fields, potentially
+      causing double-entry bookkeeping violations and incorrect account states
+    derived_from_bd_id: BD-009
+  - id: finance-C-188
+    when: When handling external asset flows in double-entry bookkeeping
+    action: Route each external asset movements through the WORLD account as sink/source; the WORLD account must never persist
+      received value, and when used as a source, must require each funds to be available
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without WORLD account routing, external transactions break double-entry bookkeeping and create untraceable
+      asset flows that cannot be reconciled against external records
+    derived_from_bd_id: BD-011
+  - id: finance-C-189
+    when: When implementing or validating NumScript TAKE opcode operations
+    action: Validate negative amounts in TAKE opcode like TAKE_MAX does; enforce validation at a single layer to prevent the
+      enforcement gap where TAKE silently accepts negative amounts but posting validation later rejects them
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: The split enforcement between VM execution and posting validation causes silent failures where negative TAKE
+      amounts execute in the VM potentially accumulating incorrect balances before failing at persistence, corrupting intermediate
+      VM state
+    derived_from_bd_id: BD-94
+  - id: finance-C-190
+    when: When implementing transaction processing that requires idempotency protection
+    action: Use IdempotencyKey combined with IdempotencyHash validation to uniquely identify transaction intent; verify that
+      hash of inputs correctly represents transaction identity and handles collision scenarios
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using only idempotency key without hash validation increases collision risk, allowing duplicate transactions
+      to slip through and causing double credit/debit operations
+    derived_from_bd_id: BD-006
+  - id: finance-C-191
+    when: When computing or querying PostCommitEffectiveVolumes that depend on transaction ordering
+    action: Order PostCommitEffectiveVolumes by transaction timestamp, not insertion order; handle backdated transactions
+      that retroactively affect effective volumes by recomputing affected periods
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using insertion order instead of transaction timestamp violates business time semantics, causing backdated
+      transactions to have incorrect effective volume impacts and breaking audit trail integrity
+    derived_from_bd_id: BD-033
+  - id: finance-C-192
+    when: When implementing volume querying or caching logic in volume accounting
+    action: Compute PostCommitVolumes in-flight from logs rather than persisting them; if caching, implement invalidation
+      to prevent stale data from queries returning outdated volume values
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Persisting volumes creates stale data risk where queries return outdated values after recent transactions,
+      leading to incorrect balance reporting and potential financial reconciliation failures
+    derived_from_bd_id: BD-010
+  - id: finance-C-193
+    when: When configuring block creation scheduling in async block hashing
+    action: Use CRON-based scheduling with configurable interval to control block creation frequency; the interval must be
+      explicitly configured and non-zero to balance block availability latency against compute overhead
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using event-driven scheduling on every log insert causes higher compute overhead and potential thundering
+      herd; using CRON with explicit intervals ensures controlled block creation rate
+    derived_from_bd_id: BD-021
+  - id: finance-C-194
+    when: When implementing retry logic for downstream push operations in pipeline replication
+    action: Use exponential backoff for retries to prevent thundering herd on downstream failures; the retry period must increase
+      exponentially rather than using fixed intervals that can cause resonance
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using fixed retry intervals causes resonance with downstream recovery times, creating thundering herd scenarios
+      where all retries arrive simultaneously and overwhelm recovering services
+    derived_from_bd_id: BD-024
+  - id: finance-C-196
+    when: When implementing log ID generation or changing ID assignment logic in the data model
+    action: Generate log IDs sequentially using next = previous.ID + 1 to maintain ID ordering assumptions throughout the
+      system; do not switch to UUID or distributed ID generation methods
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using UUID or distributed ID generation breaks ID ordering assumptions throughout the system, causing chain
+      verification failures and invalidating dependent ordering logic that relies on sequential ID progression
+    derived_from_bd_id: BD-089
+  - id: finance-C-197
+    when: When implementing idempotency validation with hash-based conflict detection
+    action: Use a separate conflict detection mechanism (not idempotency hash) or log input hash in log ID computation instead
+      of idempotency key — the circular dependency where hash collision detection requires hash to already exist creates a
+      vulnerability where different inputs producing the same hash cause one transaction to be rejected as duplicate of another
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Two different transactions with different parameters but colliding idempotency hashes will cause one to be
+      incorrectly rejected as a duplicate, leading to silent transaction loss and data inconsistency in replicated ledgers
+    derived_from_bd_id: BD-98
+  - id: finance-C-198
+    when: When configuring schema validation mode in ledger controllers
+    action: Explicitly specify schema enforcement mode (strict/warn/audit) in configuration rather than relying on defaults
+      — verify that the framework exposes each three modes in its public API, as warn mode validates without failing and audit
+      mode logs without blocking
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Running with incorrect enforcement mode allows invalid schema entries to enter the ledger — strict mode silently
+      downgrades to warn, causing data quality issues that corrupt ledger integrity over time
+    derived_from_bd_id: BD-008
+  - id: finance-C-199
+    when: When implementing bucket cleanup with soft delete + 30-day delayed hard delete pattern
+    action: Verify that the 30-day recovery window matches actual business requirements — document whether deletions are expected
+      to be mostly accidental before relying on this assumption
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: If deletions are intentional rather than accidental (e.g., user-initiated account closures), the 30-day window
+      creates unnecessary storage overhead and potential GDPR/compliance issues with retaining data longer than needed
+    derived_from_bd_id: BD-026
+  - id: finance-C-200
+    when: When processing transactions where log creation succeeds but account upsert fails
+    action: Implement reconciliation logic to detect orphaned logs (log exists but accounts missing) and trigger account recovery
+      — validate account existence before any operation requiring account consistency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Logs exist without corresponding accounts, causing ledger queries to return incomplete or inconsistent state
+      — operations depending on account existence will fail unpredictably
+    derived_from_bd_id: BD-035
+  - id: finance-C-203
+    when: When deploying regex patterns for variable account segment validation
+    action: Validate regex patterns against known valid and invalid account examples before deploying to production — verify
+      patterns correctly encode business rules and test edge cases including empty strings, special characters, and maximum
+      length boundaries
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Invalid regex patterns silently allow malformed accounts to pass validation, corrupting ledger data with
+      accounts that don't follow business rules and may cause downstream processing errors
+    derived_from_bd_id: BD-016
+  - id: finance-C-205
+    when: When implementing ledger balance update operations that modify account state
+    action: Acquire advisory lock on ledger ID using hashtext before modifying balances to serialize concurrent writes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Concurrent modifications without proper locking cause race conditions where balance updates are lost or corrupted,
+      leading to incorrect account states and potential financial loss in live transactions
+    derived_from_bd_id: BD-018
+  - id: finance-C-206
+    when: When querying account balances within a transaction context for sufficient funds validation
+    action: Return locked balances for transaction duration to prevent double-spend — do not use stale, unlocked, or inconsistent
+      balance values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using unlocked balances causes double-spend vulnerabilities where the same funds are committed multiple times,
+      resulting in financial loss and account reconciliation failures
+    derived_from_bd_id: BD-019
+  - id: finance-C-207
+    when: When executing NumScript VM instructions
+    action: 'Execute phases in strict order: SetVarsFromJSON → ResolveResources → ResolveBalances → Execute. Do not skip,
+      reorder, or parallelize phases'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Phase ordering violations cause initialization errors or silent state corruption, leading to incorrect execution
+      results and potentially executing transactions with uninitialized variables
+    derived_from_bd_id: BD-031
+  - id: finance-C-208
+    when: When reverting a transaction in the ledger for corrections
+    action: Use AtEffectiveDate flag to preserve original timestamp during RevertTransaction — do not use current time for
+      reverted transaction timestamps
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using current time instead of original timestamp corrupts temporal audit trail integrity, making regulatory
+      audits and historical corrections unreliable and potentially non-compliant
+    derived_from_bd_id: BD-053
+  - id: finance-C-209
+    when: When implementing chart segment validation for parameterized chart definitions
+    action: Use '$' prefix to mark variable segments in chart definitions — validate using ChartSegmentRegexp which expects
+      dollar-prefixed variable markers
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using different variable markers breaks existing chart definitions that depend on '$' syntax for parameterized
+      matching, causing validation failures for all affected charts
+    derived_from_bd_id: BD-064
+  - id: finance-C-210
+    when: When running schema migration with multiple ledger schema versions coexisting
+    action: Verify that version conflict resolution is deterministic — verify migration logic handles concurrent schema versions
+      predictably without race conditions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Non-deterministic version conflict resolution causes inconsistent schema states, potentially corrupting ledger
+      data during migration and leading to query failures
+    derived_from_bd_id: BD-017
+  - id: finance-C-211
+    when: When implementing block hashing workflow using async PostgreSQL CRON worker
+    action: Verify that async block hashing handles failures gracefully — check retry logic, CRON scheduling consistency,
+      and hash chain integrity after worker restarts
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Async block hashing failures cause block gaps or inconsistent hash chains, compromising data integrity and
+      making historical verification impossible
+    derived_from_bd_id: BD-020
+  - id: finance-C-213
+    when: When calculating volume totals across accounts or assets in queries
+    action: Use SQL SUM aggregation for volume totals to maintain consistency guarantees — do not substitute with application-level
+      aggregation or map-reduce that may alter precision or consistency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-SQL aggregation methods alters consistency guarantees and precision, causing volume totals to differ
+      from on-chain records and breaking reconciliation
+    derived_from_bd_id: BD-074
+  - id: finance-C-214
+    when: When implementing pipeline replication logic
+    action: Use pull-based polling with cursor stored as lastLogID — each exporter tracks its own cursor, not the ledger tracking
+      consumers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Switching to push-based replication would require the ledger to track consumer state, breaking crash recovery
+      guarantees and potentially causing data loss or duplication during leader failover
+    derived_from_bd_id: BD-023
+  - id: finance-C-215
+    when: When implementing transaction reversal logic via Postings.Reverse()
+    action: Swap source/destination fields AND reverse the array order — both operations are required for correct multi-posting
+      transaction reversal
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Implementing only a simple swap would fail to correctly reverse transactions containing multiple postings,
+      causing mismatched source-destination pairs and corrupted ledger state
+    derived_from_bd_id: BD-032
+  - id: finance-C-216
+    when: When implementing funding allocation in numscript execution
+    action: Merge adjacent funding parts with the same account into a single part — allocation semantics depend on consolidated
+      parts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Keeping separate parts for multiple sends to the same account would change allocation semantics, potentially
+      causing incorrect fund distribution and audit mismatches
+    derived_from_bd_id: BD-034
+  - id: finance-C-217
+    when: When enabling or configuring MOVES_HISTORY feature for account tracking
+    action: Verify that the default ON setting (tracking funds movements per account/asset) matches deployment compliance
+      requirements — if audit trails are not needed, explicitly disable MOVES_HISTORY
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Running with MOVES_HISTORY ON by default incurs storage costs without explicit review; deployments that don't
+      need audit trails pay unnecessary storage overhead, while those needing audit trails may not verify data completeness
+    derived_from_bd_id: BD-046
+  - id: finance-C-218
+    when: When configuring HASH_LOGS feature for log chain integrity
+    action: Verify that the default SYNC setting (synchronous hashing on write) matches throughput requirements — if higher
+      throughput is acceptable at reduced integrity guarantees, explicitly switch to ASYNC
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Running with HASH_LOGS SYNC by default may limit throughput; deployments with relaxed integrity requirements
+      during import batch processing may unnecessarily sacrifice performance
+    derived_from_bd_id: BD-047
+  - id: finance-C-219
+    when: When executing bulk operations in numscript
+    action: Verify that atomic mode default (each succeed or each fail) matches operational requirements — if partial success
+      is acceptable, explicitly choose parallel mode with understanding of consistency tradeoffs
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Bulk operations default to atomic mode for data integrity; choosing parallel mode without understanding consistency
+      tradeoffs may lead to partial state in multi-step operations
+    derived_from_bd_id: BD-054
+  - id: finance-C-221
+    when: When evaluating feature flag checks for block hashing
+    action: Verify feature flag evaluation is consistent across each code paths — HASH_LOGS feature flag checks must be evaluated
+      identically in every execution context (sync, async, worker)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent feature flag evaluation between code paths could cause some blocks to be hashed while others
+      are not, breaking the log chain integrity and causing verification failures
+    derived_from_bd_id: BD-022
+  - id: finance-C-223
+    when: When tracking account and asset volumes via PostCommitVolumes
+    action: Use cumulative sum with incremental updates — volume queries depend on cumulative state, not point-in-time snapshots
+      or event sourcing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Switching to point-in-time snapshots or event sourcing would alter volume tracking semantics, breaking existing
+      volume queries and causing incorrect balance calculations
+    derived_from_bd_id: BD-078
+  - id: finance-C-225
+    when: When processing monetary values in ledger calculations
+    action: Verify that each numeric variables represent whole units only — confirm integer-only arithmetic matches business
+      requirements before deployment
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Decimal values in integer-only system cause precision loss, truncation errors accumulate in high-frequency
+      transactions, leading to balance discrepancies of fractional units
+    derived_from_bd_id: BD-077
+  - id: finance-C-229
+    when: When implementing transaction reversal in double-entry accounting
+    action: Create a new reversal transaction with source and destination fields swapped and each amounts negated — do not
+      merely mark the original transaction as reversed or create only an offset entry
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simplifying reversal to just marking original as reversed breaks the double-entry accounting invariant where
+      debits must equal credits; this causes accounting imbalances that manifest as phantom funds or missing money in backtest
+      results
+    derived_from_bd_id: BD-072
+  - id: finance-C-230
+    when: When implementing posting validation in backtesting
+    action: Validate that posting amounts are non-negative (>= 0) — reject any attempt to create postings with negative amounts
+      or use a separate sign field
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Allowing negative posting amounts fundamentally changes transaction semantics; financial calculations that
+      rely on non-negative amounts will produce incorrect equity curves and return estimates in backtesting
+    derived_from_bd_id: BD-084
+  - id: finance-C-231
+    when: When implementing multi-source funding allocation with Concat() operations
+    action: Verify that FIFO ordering semantics are preserved when Concat() merges consecutive same-account parts — trace
+      original part indices and verify fund allocation follows the documented FIFO sequence even after concatenation
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: When Concat merges non-adjacent same-account segments, FIFO fund allocation semantics break silently; funds
+      are allocated in the wrong order causing backtested strategy returns to diverge from live trading results without any
+      obvious error
+    derived_from_bd_id: BD-97
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-073 / UC-101
+    version: v5.3
+    intent_keywords: []
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 0
+        ucs: []
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    - uc_id: UC-101
+      beginner_prompt: Try capability UC-101
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try capability UC-102
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 0 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+    - Custom Transformer + Accumulator factor with per-entity rolling state
+    - Bollinger Band mean-reversion factor with BollTransformer (window=20, window_dev=2)
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

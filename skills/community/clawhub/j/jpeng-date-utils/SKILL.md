@@ -1,35 +1,38 @@
 ---
-name: "date-utils"
-description: "Provides date and time manipulation operations for working with dates. Use when you need to format, parse, compare, or manipulate dates and times."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-date-utils"
-sourceUrl: "https://clawhub.ai/skills/jpeng-date-utils"
+name: date-utils
+description: Provides date and time manipulation operations for working with dates. Use when you need to format, parse, compare, or manipulate dates and times.
 ---
 
-# date-utils
+# Date Utils
 
-> Provides date and time manipulation operations for working with dates. Use when you need to format, parse, compare, or manipulate dates and times.
+Provides date and time manipulation operations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-date-utils`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-date-utils](https://clawhub.ai/skills/jpeng-date-utils)
+## Usage
 
-## Overview
+```javascript
+const date = require('./skills/date-utils');
 
+// Formatting
+const formatted = date.formatDate(new Date(), 'YYYY-MM-DD HH:mm:ss');
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jpeng-date-utils
+// Parsing
+const parsed = date.parseDate('2024-03-15', 'YYYY-MM-DD');
+
+// Differences
+const diff = date.diffDays(date1, date2);
+
+// Add/Subtract
+const tomorrow = date.addDays(new Date(), 1);
+const lastWeek = date.subtractDays(new Date(), 7);
 ```
+
+## Features
+
+- Date formatting with patterns
+- Date parsing from strings
+- Date arithmetic (add/subtract)
+- Date comparisons
+- Timezone handling
+- Calendar generation
+- Relative time (ago, fromNow)
+- Duration calculations

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud情报简报 · YYYY-MM-DD HH:MM</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.7;padding:0;max-width:800px;margin:0 auto}
+/* 吸顶导航 */
+.sticky-nav{position:sticky;top:0;z-index:100;background:#161b22;border-bottom:1px solid #21262d;padding:10px 16px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sticky-nav::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:5px 14px;border-radius:20px;font-size:.78em;border:1px solid #30363d;background:transparent;color:#8b949e;cursor:pointer;transition:all .2s}
+.nav-btn:hover,.nav-btn.active{background:#1f6feb;color:#fff;border-color:#1f6feb}
+/* 日期栏 */
+.date-bar{text-align:center;padding:20px 16px 12px;border-bottom:1px solid #21262d}
+.date-bar h1{font-size:1.4em;color:#58a6ff;margin-bottom:2px}
+.date-bar .meta{font-size:.78em;color:#8b949e}
+/* 统计卡片 */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:16px}
+.stat-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:12px 8px;text-align:center}
+.stat-num{font-size:1.5em;font-weight:700;margin-bottom:2px}
+.stat-label{font-size:.7em;color:#8b949e}
+.stat-intl .stat-num{color:#f85149}
+.stat-ai .stat-num{color:#58a6ff}
+.stat-soc .stat-num{color:#3fb950}
+.stat-hot .stat-num{color:#f0883e}
+/* 分类区块 */
+.category{padding:0 16px 24px}
+.cat-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-top:20px}
+.cat-icon{font-size:1.2em}
+.cat-title{font-size:1.1em;font-weight:600;color:#e6edf3}
+.cat-count{font-size:.7em;color:#8b949e;background:#21262d;padding:2px 8px;border-radius:10px}
+/* 信息卡片 */
+.item{background:#161b22;border:1px solid #21262d;border-radius:10px;margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+.item.risk-high{border:2px solid #f85149;box-shadow:0 0 15px rgba(248,81,73,.25)}
+.item.risk-mid{border:2px solid #f0883e;box-shadow:0 0 10px rgba(240,136,62,.15)}
+.item.risk-info{border:2px solid #d29922;box-shadow:0 0 10px rgba(210,153,34,.15)}
+.item-header{display:flex;align-items:flex-start;padding:12px 14px 0;gap:10px;cursor:pointer;user-select:none}
+.item-rank{flex-shrink:0;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75em;font-weight:700;color:#fff}
+.rank-1{background:#f85149}.rank-2{background:#f0883e}.rank-3{background:#d29922}.rank-4,.rank-5{background:#30363d}
+.item-info{flex:1;min-width:0}
+.item-title{font-size:.9em;font-weight:600;color:#e6edf3;line-height:1.4}
+.item-score{font-size:.7em;color:#8b949e;margin-top:2px}
+.item-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.tag{display:inline-block;font-size:.65em;padding:1px 6px;border-radius:8px;color:#8b949e;background:#21262d}
+.tag-red{background:#3d1a1a;color:#f85149;border:1px solid #5a2d2d}
+.tag-orange{background:#3d2a1a;color:#f0883e;border:1px solid #5a3d2d}
+.tag-blue{background:#1a2a3d;color:#58a6ff;border:1px solid #2d3d5a}
+.tag-green{background:#1a3d2a;color:#3fb950;border:1px solid #2d5a3d}
+.tag-gray{background:#21262d;color:#8b949e;border:1px solid #30363d}
+/* 状态标签 - 无背景 */
+.tag-new{color:#58a6ff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700}
+.tag-update{color:#f0883e;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700}
+/* 置信度标签 - 渐变样式（50%透明度） */
+.tag-conf{background:linear-gradient(135deg,rgba(35,134,54,.5),rgba(63,185,80,.5));color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700;box-shadow:0 2px 6px rgba(35,134,54,.3);text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tag-conf-mid{background:linear-gradient(135deg,rgba(31,111,235,.5),rgba(88,166,255,.5));color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700;box-shadow:0 2px 6px rgba(31,111,235,.3);text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tag-conf-3{background:linear-gradient(135deg,rgba(158,106,3,.5),rgba(210,153,34,.5));color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700;box-shadow:0 2px 6px rgba(158,106,3,.3);text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tag-conf-low{background:linear-gradient(135deg,rgba(218,54,51,.5),rgba(248,81,73,.5));color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700;box-shadow:0 2px 6px rgba(218,54,51,.3);text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.item-toggle{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#484f58;font-size:.8em;transition:transform .2s}
+.item-toggle.open{transform:rotate(180deg)}
+.item-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.item-body.open{max-height:2000px}
+.item-body-inner{padding:8px 14px 14px;font-size:.83em;color:#8b949e;line-height:1.7}
+.item-body-inner strong{color:#c9d1d9}
+/* 风险标签 - 纯色背景（无阴影） */
+.risk-inline{background:rgba(248,81,73,.9);color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700}
+.risk-mid-inline{background:rgba(240,136,62,.9);color:#fff;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700}
+.risk-info-inline{background:rgba(210,153,34,.9);color:#000;padding:1px 6px;border-radius:4px;font-size:.7em;font-weight:700}]}}
+/* Agent结论 */
+.conclusion{padding:0 16px 24px}
+.conclusion-box{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.conclusion-box h3{color:#f0883e;font-size:1em;margin-bottom:12px}
+.conclusion-box p{font-size:.85em;color:#8b949e;margin-bottom:10px;line-height:1.7}
+.conclusion-box strong{color:#c9d1d9}
+/* 标签行 - 放在标题下方 */
+.item-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;margin-bottom:4px;align-items:center}
+/* 信源标签 */
+.tag-source{background:#21262d;color:#8b949e;padding:2px 8px;border-radius:4px;font-size:.72em;border:1px solid #30363d}
+/* 页脚 */
+.footer{text-align:center;padding:20px 16px;border-top:1px solid #21262d;font-size:.72em;color:#484f58;line-height:1.8}
+/* 无新增 */
+.no-new{text-align:center;padding:30px;color:#484f58;font-size:.9em}
+</style>
+</head>
+<body>
+
+<!-- 吸顶导航 -->
+<nav class="sticky-nav" id="nav">
+<button class="nav-btn active" onclick="filterCat('all')">全部</button>
+<button class="nav-btn" onclick="filterCat('intl')">🌍 国际形势</button>
+<button class="nav-btn" onclick="filterCat('ai')">🤖 AI应用</button>
+<button class="nav-btn" onclick="filterCat('soc')">🏠 社会民生</button>
+<button class="nav-btn" onclick="filterCat('hot')">🔥 潮流热点</button>
+</nav>
+
+<!-- 日期栏 -->
+<div class="date-bar">
+<h1>🔍 Cloud情报简报</h1>
+<div class="meta">YYYY-MM-DD HH:MM 北京时间</div>
+</div>
+
+<!-- 统计卡片 -->
+<div class="stats">
+<div class="stat-card stat-intl"><div class="stat-num"><!-- SLOT:STAT_INTERNATIONAL --></div><div class="stat-label">国际形势</div></div>
+<div class="stat-card stat-ai"><div class="stat-num"><!-- SLOT:STAT_AI --></div><div class="stat-label">AI应用</div></div>
+<div class="stat-card stat-soc"><div class="stat-num"><!-- SLOT:STAT_SOCIAL --></div><div class="stat-label">社会民生</div></div>
+<div class="stat-card stat-hot"><div class="stat-num"><!-- SLOT:STAT_TRENDING --></div><div class="stat-label">潮流热点</div></div>
+</div>
+
+<!-- ==================== 国际形势 ==================== -->
+<div class="category" data-cat="intl">
+<div class="cat-header">
+<span class="cat-icon">🌍</span>
+<span class="cat-title">国际形势</span>
+<span class="cat-count"><!-- SLOT:COUNT_INTERNATIONAL --></span>
+</div>
+<!-- SLOT:CARDS_INTERNATIONAL -->
+</div>
+
+<!-- ==================== AI应用 ==================== -->
+<div class="category" data-cat="ai">
+<div class="cat-header">
+<span class="cat-icon">🤖</span>
+<span class="cat-title">AI应用</span>
+<span class="cat-count"><!-- SLOT:COUNT_AI --></span>
+</div>
+<!-- SLOT:CARDS_AI -->
+</div>
+
+<!-- ==================== 社会民生 ==================== -->
+<div class="category" data-cat="soc">
+<div class="cat-header">
+<span class="cat-icon">🏠</span>
+<span class="cat-title">社会民生</span>
+<span class="cat-count"><!-- SLOT:COUNT_SOCIAL --></span>
+</div>
+<!-- SLOT:CARDS_SOCIAL -->
+</div>
+
+<!-- ==================== 潮流热点 ==================== -->
+<div class="category" data-cat="hot">
+<div class="cat-header">
+<span class="cat-icon">🔥</span>
+<span class="cat-title">潮流热点</span>
+<span class="cat-count"><!-- SLOT:COUNT_TRENDING --></span>
+</div>
+<!-- SLOT:CARDS_TRENDING -->
+</div>
+
+<!-- ==================== Agent 结论 ==================== -->
+<div class="conclusion">
+<div class="conclusion-box">
+<h3>📊 Agent 结论与趋势研判</h3>
+<!-- SLOT:CONCLUSION -->
+</div>
+</div>
+
+<!-- 页脚 -->
+<div class="footer">
+Cloud · 全域情报简报 · 仅供参考，不构成投资建议<br>
+数据来源：P0/P1/P2信源 | 生成时间：YYYY-MM-DD HH:MM 北京时间
+</div>
+
+<script>
+function toggle(header){
+  const body=header.parentElement.querySelector('.item-body');
+  const arrow=header.querySelector('.item-toggle');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+function filterCat(cat){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.category').forEach(c=>{
+    if(cat==='all'||c.dataset.cat===cat) c.style.display='';
+    else c.style.display='none';
+  });
+}
+</script>
+</body>
+</html>

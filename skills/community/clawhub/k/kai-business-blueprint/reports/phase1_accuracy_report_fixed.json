@@ -1,0 +1,113 @@
+{
+  "test_phase": "Phase 1 (Fixed)",
+  "test_date": "2026-04-25",
+  "metrics": {
+    "intent_inference_accuracy": [
+      1.0,
+      0.85
+    ],
+    "layer_assignment_accuracy": [
+      1.0,
+      0.88
+    ],
+    "auto_selection_success_rate": [
+      0.75,
+      0.7
+    ]
+  },
+  "pass_status": true,
+  "detailed_results": {
+    "intent": [
+      {
+        "name": "retail",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "retail-operations",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "retail-operations"
+        },
+        "accuracy": 1.0
+      },
+      {
+        "name": "common",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": null,
+          "mode": "auto",
+          "confidence": 0.7,
+          "reason": "no goals provided, default to product"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": null
+        },
+        "accuracy": 1.0
+      },
+      {
+        "name": "finance",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "finance-regulatory",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "finance-regulatory"
+        },
+        "accuracy": 1.0
+      },
+      {
+        "name": "manufacturing",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "manufacturing-supply-chain",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "manufacturing-supply-chain"
+        },
+        "accuracy": 1.0
+      }
+    ],
+    "layer": [
+      {
+        "name": "finance",
+        "accuracy": 1.0,
+        "predicted": {
+          "sys-crm": "core-business"
+        },
+        "expected": {
+          "sys-crm": "core-business"
+        }
+      },
+      {
+        "name": "manufacturing",
+        "accuracy": 1.0,
+        "predicted": {
+          "sys-erp": "supplier",
+          "sys-mes": "production",
+          "sys-wms": "warehouse"
+        },
+        "expected": {
+          "sys-erp": "supplier",
+          "sys-mes": "production",
+          "sys-wms": "warehouse"
+        }
+      }
+    ]
+  }
+}

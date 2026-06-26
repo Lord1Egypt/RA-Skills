@@ -1,0 +1,46 @@
+name: search
+version: 1.0.0
+description: Multi-engine web search (SearXNG default, Tavily, Multi-engine)
+runtime: node
+
+tools:
+  - search_web:
+      description: "搜索互联网内容。支持多个搜索引擎（SearXNG/Tavily/Multi），自动选择最佳引擎。适用于：搜索新闻、技术资料、论文、国内资讯等。优先使用此工具而非 browser。"
+      parameters:
+        type: "object"
+        properties:
+          query:
+            type: "string"
+            description: "搜索关键词"
+          max_results:
+            type: "integer"
+            default: 10
+            description: "最大返回结果数"
+          engine:
+            type: "string"
+            default: "auto"
+            enum: ["auto", "tavily", "searxng", "multi"]
+            description: "搜索引擎：auto（自动）, tavily, searxng, multi"
+        required:
+          - "query"
+
+# 自动选择策略
+# AI/技术/代码 → SearXNG（聚合 20+ 技术源）
+# 新闻/news → SearXNG（新闻引擎更全）
+# 研究/论文 → SearXNG（有学术引擎）
+# 国内资讯 → Multi（百度/必应中国更准）
+# 其他 → SearXNG（默认）
+
+providers:
+  searxng:
+    url: http://127.0.0.1:8080
+    engines: 20+
+    best_for: [AI, 技术，代码，新闻，研究，论文]
+  
+  tavily:
+    api_key_env: TAVILY_API_KEY
+    best_for: [一般搜索，快速摘要]
+  
+  multi:
+    engines: [baidu, bing, google, 360, sogou]
+    best_for: [国内资讯，中文内容]

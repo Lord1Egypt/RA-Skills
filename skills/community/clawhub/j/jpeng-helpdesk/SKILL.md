@@ -1,35 +1,42 @@
 ---
-name: "helpdesk"
+name: jpeng-helpdesk
 description: "Helpdesk ticketing system"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-helpdesk"
-sourceUrl: "https://clawhub.ai/skills/jpeng-helpdesk"
+version: "1.0.0"
+author: "jpeng"
+tags: ["support", "ticket", "communication"]
 ---
 
-# helpdesk
+# Helpdesk
 
-> Helpdesk ticketing system
+Helpdesk ticketing system
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-helpdesk`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-helpdesk](https://clawhub.ai/skills/jpeng-helpdesk)
+## When to Use
 
-## Overview
+- User needs support related functionality
+- Automating ticket tasks
+- Communication operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-helpdesk
+python3 scripts/helpdesk.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export TICKET_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

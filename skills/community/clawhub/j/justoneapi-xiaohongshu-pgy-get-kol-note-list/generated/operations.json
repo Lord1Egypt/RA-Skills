@@ -1,0 +1,109 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/get-kol-note-list/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Note List through JustOneAPI with adSwitch, kolId, and orderType.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Creator Note List",
+  "endpointPath": "get-kol-note-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Note List data, including content metadata, publish time, and engagement indicators, for content analysis.",
+      "method": "GET",
+      "operationId": "getKolNoteListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Ad filter.\n\nAvailable Values:\n- `_1`: Full traffic (All notes)\n- `_0`: Natural traffic (Organic notes)",
+          "enumValues": [
+            "_1",
+            "_0"
+          ],
+          "location": "query",
+          "name": "adSwitch",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Sorting order.\n\nAvailable Values:\n- `_1`: Latest\n- `_2`: Most read\n- `_3`: Most interactions",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "orderType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_4",
+          "description": "Note type.\n\nAvailable Values:\n- `_1`: Photo and Text notes\n- `_2`: Video notes\n- `_3`: Cooperation notes\n- `_4`: All types",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3",
+            "_4"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-note-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Note List",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_get_kol_note_list",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-get-kol-note-list",
+  "sourceTitle": "OpenAPI definition"
+}

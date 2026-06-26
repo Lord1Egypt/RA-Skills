@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Jianying Auto Editor icon">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M30 38h68v14H30zm0 38h68v14H30z" fill="#e0f2fe"/>
+  <path d="M50 28l28 36-28 36h18l28-36-28-36z" fill="#facc15" opacity="0.95"/>
+</svg>

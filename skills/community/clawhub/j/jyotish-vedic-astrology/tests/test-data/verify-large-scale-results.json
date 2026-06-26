@@ -1,0 +1,127 @@
+{
+  "results": [
+    {
+      "name": "Nelson Mandela",
+      "marriage": "1944-10-05",
+      "signals": [
+        "CD"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Tom Cruise",
+      "marriage": "1987-05-09",
+      "signals": [],
+      "score": 0,
+      "verdict": "❌无"
+    },
+    {
+      "name": "Elon Musk",
+      "marriage": "2000-01-01",
+      "signals": [
+        "DT",
+        "P8",
+        "聚集"
+      ],
+      "score": 3,
+      "verdict": "✅强"
+    },
+    {
+      "name": "Oprah Winfrey",
+      "marriage": "1986-01-01",
+      "signals": [
+        "DT",
+        "P5"
+      ],
+      "score": 2,
+      "verdict": "⚠️中"
+    },
+    {
+      "name": "Prince Harry",
+      "marriage": "2018-05-19",
+      "signals": [
+        "DT"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Jeff Bezos",
+      "marriage": "1993-01-01",
+      "signals": [
+        "DT",
+        "P5",
+        "CD"
+      ],
+      "score": 3,
+      "verdict": "✅强"
+    },
+    {
+      "name": "Priyanka Chopra",
+      "marriage": "2018-12-01",
+      "signals": [
+        "P5"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Shah Rukh Khan",
+      "marriage": "1991-10-25",
+      "signals": [
+        "DT"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Britney Spears",
+      "marriage": "2004-01-03",
+      "signals": [
+        "DT"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "marriage": "2012-05-19",
+      "signals": [
+        "DT"
+      ],
+      "score": 1,
+      "verdict": "⚠️弱"
+    },
+    {
+      "name": "Narendra Modi",
+      "marriage": "1968-01-01",
+      "signals": [
+        "P5",
+        "CD"
+      ],
+      "score": 2,
+      "verdict": "⚠️中"
+    },
+    {
+      "name": "Amitabh Bachchan",
+      "marriage": "1973-06-03",
+      "signals": [
+        "DT",
+        "P5"
+      ],
+      "score": 2,
+      "verdict": "⚠️中"
+    }
+  ],
+  "stats": {
+    "dt": 8,
+    "p5": 5,
+    "p8": 1,
+    "pariv": 0,
+    "cong": 1,
+    "vs": 0,
+    "cd": 3
+  },
+  "total": 12
+}

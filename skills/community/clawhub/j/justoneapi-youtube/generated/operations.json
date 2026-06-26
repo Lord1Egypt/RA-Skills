@@ -1,0 +1,96 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze YouTube workflows with JustOneAPI, including video Details and channel Videos.",
+  "displayName": "YouTube",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Retrieve a list of videos from a specific YouTube channel, providing detailed insights into content performance and upload history.",
+      "method": "GET",
+      "operationId": "getChannelVideosV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for a YouTube channel.",
+          "enumValues": [],
+          "location": "query",
+          "name": "channelId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The cursor for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youtube/get-channel-videos/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Channel Videos",
+      "tags": [
+        "YouTube"
+      ]
+    },
+    {
+      "description": "Get YouTube video Details data, including its title, description, and view counts, for tracking video engagement and statistics, extracting video metadata for content analysis, and verifying video availability and status.",
+      "method": "GET",
+      "operationId": "getYoutubeVideoDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for a YouTube video.",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youtube/get-video-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "YouTube"
+      ]
+    }
+  ],
+  "platformKey": "youtube",
+  "primaryTag": "YouTube",
+  "skillName": "justoneapi_youtube",
+  "slug": "justoneapi-youtube",
+  "sourceTitle": "OpenAPI definition"
+}

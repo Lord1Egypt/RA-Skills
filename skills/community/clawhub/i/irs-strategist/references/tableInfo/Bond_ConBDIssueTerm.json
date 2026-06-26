@@ -1,0 +1,220 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部代码（InnerCode）：与“债券代码对照表（Bond_Code）”中的“债券内部编码（InnerCode）”关联，得到可转换债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "CouponRateTerm",
+        "columnChiName": "利率及付息条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "11.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "CoupRateCompTerm",
+        "columnChiName": "利息补偿条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "3.22"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "PrefPlaScheduleTerm",
+        "columnChiName": "向原股东配售安排条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "66.18"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ConversionPeriodTerm",
+        "columnChiName": "转换期条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.42"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InitialCPConfirmTerm",
+        "columnChiName": "初始转股价确定条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "10.81"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "CPAdjustmentTerm",
+        "columnChiName": "转股价格调整条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.24"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "CPRevisionTerm",
+        "columnChiName": "转股价格修正条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "26.61"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "RedeemTerm",
+        "columnChiName": "赎回条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.5"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "ConBRedeemTerm",
+        "columnChiName": "可转债到期赎回条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "19.6"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "SellBackTerm",
+        "columnChiName": "回售条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "22.5"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "FroceConvertTerm",
+        "columnChiName": "强制性转股条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.45"
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "DealingRemainCBTerm",
+        "columnChiName": "转换余股处理条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "28.89"
+    },
+    {
+        "columnOrderId": 17,
+        "columnName": "CYDiviAttrTerm",
+        "columnChiName": "转换年度股利归属条款",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "40.96"
+    },
+    {
+        "columnOrderId": 18,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 19,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 20,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

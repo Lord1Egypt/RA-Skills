@@ -1,35 +1,27 @@
 ---
-name: "Kekik Crawler"
-description: "Scrapling-only, deterministic web crawler with clean SRP architecture, presets, checkpointing, and JSONL/report outputs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kekik-crawler"
-sourceUrl: "https://clawhub.ai/skills/kekik-crawler"
+name: kekik-crawler
+description: Scrapling-only, deterministic web crawler with clean SRP architecture, presets, checkpointing, and JSONL/report outputs.
 ---
 
 # Kekik Crawler
 
-> Scrapling-only, deterministic web crawler with clean SRP architecture, presets, checkpointing, and JSONL/report outputs.
+Scrapling tabanlı, browser'sız crawler.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kekik-crawler`
-- **Source URL:** [https://clawhub.ai/skills/kekik-crawler](https://clawhub.ai/skills/kekik-crawler)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/kekik-crawler
+pip install -r requirements.txt
+python main.py --urls https://example.org
 ```
+
+## Presets
+
+```bash
+python main.py --queries "Ömer Faruk Sancak" keyiflerolsun --preset person-research --out outputs/person.jsonl --report outputs/person-report.json
+python main.py --queries "Ömer Faruk Sancak" keyiflerolsun --preset deep-research --out outputs/deep.jsonl --report outputs/deep-report.json
+```
+
+## Notes
+- Output files are under `outputs/`
+- Main entrypoint: `main.py`
+- Orchestration: `core/crawl_runner.py`

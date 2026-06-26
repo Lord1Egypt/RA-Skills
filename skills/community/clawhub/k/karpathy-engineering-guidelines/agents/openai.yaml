@@ -1,0 +1,3 @@
+interface:
+  display_name: "Karpathy Guidelines"
+  short_description: "Engineering guardrails for smaller diffs, clearer reasoning, and stronger verification"

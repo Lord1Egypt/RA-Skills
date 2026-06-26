@@ -1,35 +1,133 @@
 ---
-name: "IP Geo Location - IP归属地查询"
-description: "IP地址归属地查询。查询指定IPv4地址的归属信息，包括国家、省份、城市、运营商（ISP）。使用场景：用户说"查一下这个IP"、"这个IP是哪里的"、"帮我查IP归属地"、"XX.XX.XX.XX是哪个城市"、"这个IP是什么运营商"、"批量查询这些IP"等。通过聚合数据（juhe.cn）API实时查询，支持单个..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-ip"
-sourceUrl: "https://clawhub.ai/skills/juhe-ip"
+name: juhe-ip-lookup
+description: IP地址归属地查询。查询指定IPv4地址的归属信息，包括国家、省份、城市、运营商（ISP）。使用场景：用户说"查一下这个IP"、"这个IP是哪里的"、"帮我查IP归属地"、"XX.XX.XX.XX是哪个城市"、"这个IP是什么运营商"、"批量查询这些IP"等。通过聚合数据（juhe.cn）API实时查询，支持单个或批量IP查询，免费注册每天500次调用。
+homepage: https://www.juhe.cn/docs/api/id/1
+metadata: {"openclaw":{"emoji":"🌐","requires":{"bins":["python3"],"env":["JUHE_IP_KEY"]},"primaryEnv":"JUHE_IP_KEY"}}
 ---
 
-# IP Geo Location - IP归属地查询
+# IP 归属地查询
 
-> IP地址归属地查询。查询指定IPv4地址的归属信息，包括国家、省份、城市、运营商（ISP）。使用场景：用户说"查一下这个IP"、"这个IP是哪里的"、"帮我查IP归属地"、"XX.XX.XX.XX是哪个城市"、"这个IP是什么运营商"、"批量查询这些IP"等。通过聚合数据（juhe.cn）API实时查询，支持单个...
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-ip`
-- **Source URL:** [https://clawhub.ai/skills/juhe-ip](https://clawhub.ai/skills/juhe-ip)
+查询 IPv4 地址的归属地：**国家、省份、城市、运营商（ISP）**。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [IP归属地查询 API](https://www.juhe.cn/docs/api/id/1) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-ip
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_IP_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_IP_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/ip_lookup.py --key 你的AppKey 8.8.8.8
 ```
+
+> 免费额度：每天 50 次调用，覆盖日常使用完全够用。
+
+---
+
+## 使用方法
+
+### 单个 IP 查询
+
+```bash
+python scripts/ip_lookup.py 58.215.154.11
+```
+
+输出示例：
+
+```
+🌐 58.215.154.11  中国 江苏 苏州  运营商: 电信
+
+{
+  "ip": "58.215.154.11",
+  "success": true,
+  "country": "中国",
+  "province": "江苏",
+  "city": "苏州",
+  "isp": "电信"
+}
+```
+
+### 批量 IP 查询
+
+```bash
+python scripts/ip_lookup.py 8.8.8.8 1.1.1.1 114.114.114.114
+```
+
+输出示例（表格形式）：
+
+```
++---------------+------+------+------+--------+----+
+| IP地址        | 国家 | 省份 | 城市 | 运营商 | 备注 |
++---------------+------+------+------+--------+----+
+| 8.8.8.8       | 美国 |      |      | 谷歌   | ✓  |
+| 1.1.1.1       | 澳大利亚 |    |    | Cloudflare | ✓ |
+| 114.114.114.114 | 中国 | 江苏 | 南京 | 联通 | ✓ |
++---------------+------+------+------+--------+----+
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET https://apis.juhe.cn/ip/ipNewV3?key=YOUR_KEY&ip=8.8.8.8
+```
+
+---
+
+## AI 使用指南
+
+当用户询问 IP 相关信息时，按以下步骤操作：
+
+1. **识别 IP 地址** — 从用户消息中提取所有 IPv4 地址
+2. **检查是否为私有 IP** — 如 `192.168.x.x`、`10.x.x.x`、`127.x.x.x` 直接告知用户是内网地址，无需查询
+3. **调用脚本或 API** — 执行查询，获取 JSON 结果
+4. **展示结果** — 单个 IP 用自然语言描述；多个 IP 用表格汇总
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `Country` | 国家 | 中国 |
+| `Province` | 省份 | 广东 |
+| `City` | 城市 | 深圳 |
+| `Isp` | 运营商 | 电信 / 联通 / 移动 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/1) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| 私有 IP | 直接告知是内网地址，无法查询 |
+| IPv6 地址 | 告知当前 API 仅支持 IPv4 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/ip_lookup.py` — 封装了 API 调用、私有 IP 检测、批量查询表格输出和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **网络工具**：IP查询、DNS解析、端口检测
+- **生活服务**：天气预报、万年历、节假日查询
+- **物流快递**：100+ 快递公司实时追踪
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

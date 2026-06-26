@@ -1,0 +1,19 @@
+{
+  "slug": "landing-page-copy-helper-skill",
+  "name": "Landing Page Copy Helper Skill",
+  "version": "0.1.0",
+  "tags": [
+    "landing-page-copy-helper",
+    "openclaw",
+    "templates",
+    "web"
+  ],
+  "category": "Web & Marketing",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-07",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

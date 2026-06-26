@@ -1,0 +1,37 @@
+{
+  "slug": "landing-page-angle-tester",
+  "title": "落地页角度试验器",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "针对同一产品生成多种 landing page 叙事角度，并标注适配人群和证据要求。",
+  "inputHint": "产品卖点、目标用户、约束",
+  "sections": [
+    "角度候选",
+    "适配人群",
+    "主标题建议",
+    "证据需求",
+    "风险点",
+    "测试顺序"
+  ],
+  "useCases": [
+    "落地页策划",
+    "A/B 叙事准备",
+    "产品定位"
+  ],
+  "positiveExamples": [
+    "同一个产品给我 4 个 landing page 角度",
+    "标注各自适合谁"
+  ],
+  "negativeExamples": [
+    "不要伪造用户证言",
+    "不要夸大功能"
+  ],
+  "risk": "输出为文案策略，不直接改站。",
+  "tags": [
+    "landing-page",
+    "messaging",
+    "conversion",
+    "copywriting"
+  ]
+}

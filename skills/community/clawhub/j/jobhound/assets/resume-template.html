@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{CANDIDATE_NAME}} - {{TARGET_ROLE}}简历</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    color: #1a1a2e;
+    background: #f5f5f5;
+    line-height: 1.6;
+  }
+  
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: white;
+    padding: 20mm 18mm;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  }
+  
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; padding: 15mm; }
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 3px solid #4361ee;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #4361ee;
+    letter-spacing: 2px;
+  }
+  
+  .tagline {
+    font-size: 13px;
+    color: #7209b7;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  
+  .contact {
+    text-align: right;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.8;
+  }
+  
+  .contact a {
+    color: #4361ee;
+    text-decoration: none;
+  }
+  
+  /* Sections */
+  .section {
+    margin-bottom: 18px;
+  }
+  
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4361ee;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1.5px solid #e0e0ff;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  
+  /* Experience */
+  .exp-item {
+    margin-bottom: 14px;
+    position: relative;
+  }
+  
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .exp-company {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  
+  .exp-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: #7209b7;
+  }
+  
+  .exp-date {
+    font-size: 11px;
+    color: #888;
+    white-space: nowrap;
+  }
+  
+  .exp-list {
+    margin-top: 6px;
+    padding-left: 16px;
+  }
+  
+  .exp-list li {
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 2px;
+  }
+  
+  .highlight {
+    color: #4361ee;
+    font-weight: 500;
+  }
+  
+  /* Skills */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .skill-category {
+    font-size: 11px;
+  }
+  
+  .skill-cat-title {
+    font-weight: 700;
+    color: #4361ee;
+    font-size: 11.5px;
+    margin-bottom: 3px;
+  }
+  
+  .skill-items {
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  /* Projects */
+  .project-item {
+    margin-bottom: 12px;
+  }
+  
+  .project-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  
+  .project-link {
+    font-size: 10.5px;
+    color: #4361ee;
+    text-decoration: none;
+    margin-left: 6px;
+  }
+  
+  .project-desc {
+    font-size: 11.5px;
+    color: #444;
+    margin-top: 4px;
+  }
+  
+  /* Education */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .edu-school {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  .edu-detail {
+    font-size: 11.5px;
+    color: #555;
+    margin-top: 2px;
+  }
+  
+  .edu-date {
+    font-size: 11px;
+    color: #888;
+  }
+  
+  /* Tags */
+  .tag {
+    display: inline-block;
+    background: #f0edff;
+    color: #4361ee;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== PLACEHOLDER STRUCTURE ===== -->
+  <!-- Replace all {{VARIABLES}} with actual candidate data -->
+  <!-- Reorder sections based on target position relevance -->
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="name">{{CANDIDATE_NAME}}</div>
+      <div class="tagline">{{TAGLINE}}</div>
+    </div>
+    <div class="contact">
+      {{PHONE}}<br>
+      {{EMAIL}}<br>
+      {{SCHOOL}} · {{GRADUATION_YEAR}}届本科<br>
+      {{MAJOR}}
+    </div>
+  </div>
+
+  <!-- Profile Summary -->
+  <div class="section">
+    <div class="section-title">个人总结</div>
+    <p style="font-size: 11.5px; color: #444; text-align: justify;">
+      {{PROFILE_SUMMARY}}
+      Highlight the strongest matches between the candidate and the target position.
+      Use <span class="highlight">highlighted keywords</span> for skills and experiences
+      that directly address the position requirements.
+    </p>
+    <div style="margin-top: 6px;">
+      <!-- Add 4-6 skill tags most relevant to the target position -->
+      <span class="tag">{{SKILL_TAG_1}}</span>
+      <span class="tag">{{SKILL_TAG_2}}</span>
+      <span class="tag">{{SKILL_TAG_3}}</span>
+      <span class="tag">{{SKILL_TAG_4}}</span>
+      <span class="tag">{{SKILL_TAG_5}}</span>
+    </div>
+  </div>
+
+  <!-- Experience — ORDER: most relevant first -->
+  <div class="section">
+    <div class="section-title">实习经历</div>
+    
+    <!-- Repeat .exp-item for each experience -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-company">{{COMPANY_NAME}}</span>
+          <span class="exp-role"> · {{ROLE_TITLE}}</span>
+        </div>
+        <span class="exp-date">{{START_DATE}} - {{END_DATE}}</span>
+      </div>
+      <ul class="exp-list">
+        <li><span class="highlight">{{KEY_ACHIEVEMENT}}</span>: {{DESCRIPTION}}</li>
+        <!-- Add 2-4 bullet points per experience -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Projects — include only relevant ones -->
+  <div class="section">
+    <div class="section-title">项目经历</div>
+    
+    <div class="project-item">
+      <div>
+        <span class="project-name">{{PROJECT_NAME}}</span>
+        <a href="{{PROJECT_URL}}" class="project-link">{{PROJECT_URL_DISPLAY}}</a>
+      </div>
+      <p class="project-desc">{{PROJECT_DESCRIPTION}}</p>
+    </div>
+  </div>
+
+  <!-- Skills — customize categories for target role -->
+  <div class="section">
+    <div class="section-title">核心技能</div>
+    <div class="skill-grid">
+      <div class="skill-category">
+        <div class="skill-cat-title">{{CATEGORY_1}}</div>
+        <div class="skill-items">{{SKILLS_1}}</div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">{{CATEGORY_2}}</div>
+        <div class="skill-items">{{SKILLS_2}}</div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">{{CATEGORY_3}}</div>
+        <div class="skill-items">{{SKILLS_3}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-title">教育背景</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-school">{{SCHOOL}}</div>
+        <div class="edu-detail">{{MAJOR}}（本科） · {{ENROLLMENT_DATE}}</div>
+        <div class="edu-detail" style="color: #777;">{{KEY_COURSES}}</div>
+      </div>
+      <div style="text-align: right;">
+        <div class="edu-date">{{GPA}}</div>
+        <div class="edu-date">{{CERTIFICATION}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

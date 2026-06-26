@@ -1,0 +1,39 @@
+{
+  "strategyId": "technical-architecture",
+  "kind": "perspective",
+  "version": "1.0",
+  "name": "技术架构分层",
+  "description": "按技术调用链路分层，适用于技术蓝图",
+  "rules": [
+    {
+      "layer": "frontend",
+      "layerName": "前端层",
+      "signals": [
+        {"type": "category", "values": ["frontend"], "weight": 100},
+        {"type": "nameKeyword", "values": ["Frontend", "前端", "UI"], "weight": 90}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "backend",
+      "layerName": "后端层",
+      "signals": [
+        {"type": "category", "values": ["backend", "service", "microservice"], "weight": 100},
+        {"type": "nameKeyword", "values": ["Backend", "后端", "Service", "微服务"], "weight": 90}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "database",
+      "layerName": "数据库层",
+      "signals": [
+        {"type": "category", "values": ["database", "storage"], "weight": 100},
+        {"type": "nameKeyword", "values": ["Database", "DB", "数据库"], "weight": 90}
+      ],
+      "minScore": 60
+    }
+  ],
+  "fallbackLayer": "backend",
+  "reviewThreshold": 0.75,
+  "layerOrder": ["frontend", "backend", "database"]
+}

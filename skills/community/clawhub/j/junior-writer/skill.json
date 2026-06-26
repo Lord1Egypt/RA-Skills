@@ -1,0 +1,21 @@
+{
+  "name": "junior-writer",
+  "version": "1.0.0",
+  "description": "伪装成新人的资深作家，输出具有张力和反思性的内容，并能基于读者反馈持续进化。",
+  "author": "your-name",
+  "type": "llm-skill",
+  "entry": "prompt.txt",
+  "schema": "schema.json",
+  "capabilities": [
+    "writing",
+    "style-adaptation",
+    "self-evolution"
+  ],
+  "tags": [
+    "writing",
+    "storytelling",
+    "persona",
+    "ai-creator"
+  ],
+  "visibility": "public"
+}

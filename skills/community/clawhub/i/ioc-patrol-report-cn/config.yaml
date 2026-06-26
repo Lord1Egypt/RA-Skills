@@ -1,0 +1,18 @@
+database:
+  host: hightop.xin
+  port: 55432
+  name: sunway
+  user: postgres
+  password: "Q9iT6>^bZsPIX}A&"
+  options: "-c search_path=ioc"
+
+tables:
+  devices: t_patrol_task
+  alarms: t_alarm_status_log
+  work_orders: t_work_request_form
+  energy: t_energy_hourly_consumption
+  patrol: t_patrol_task
+
+report:
+  timezone: Asia/Shanghai
+  output_dir: reports

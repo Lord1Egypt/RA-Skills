@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Support Ticket",
+  "description": "A customer support ticket with all required metadata for processing",
+  "type": "object",
+  "properties": {
+    "ticket_id": {
+      "type": "string",
+      "description": "Unique identifier for the ticket",
+      "pattern": "^TICKET-[0-9]{6}$"
+    },
+    "customer_id": {
+      "type": "string",
+      "description": "Unique identifier for the customer"
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "Name of the customer"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the customer"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject line of the ticket",
+      "minLength": 5,
+      "maxLength": 200
+    },
+    "body": {
+      "type": "string",
+      "description": "Full text of the customer's request"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Priority level of the ticket"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "in_progress", "waiting_customer", "resolved", "closed"],
+      "description": "Current status of the ticket"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the ticket was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the ticket was last updated"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorizing the ticket (e.g., 'billing', 'technical', 'feature-request')"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "ID of the agent assigned to this ticket"
+    },
+    "channel": {
+      "type": "string",
+      "enum": ["email", "chat", "phone", "social"],
+      "description": "Channel through which the ticket was submitted"
+    }
+  },
+  "required": ["ticket_id", "customer_id", "customer_email", "subject", "body", "created_at"],
+  "additionalProperties": false,
+  "x-data-lineage": {
+    "sources": ["support-intake", "external-helpdesk-system"],
+    "consumers": ["support-triage", "sentiment-analysis", "response-generator"],
+    "transformations": [
+      {
+        "from_skill": "support-intake",
+        "to_skill": "support-triage",
+        "transformation": "No transformation; data passed as-is"
+      },
+      {
+        "from_skill": "support-triage",
+        "to_skill": "sentiment-analysis",
+        "transformation": "Extract 'body' field for sentiment analysis"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+openai:
+  display_name: "Karakeep MCP-First"
+  short_description: "Use Karakeep through MCP first, with CLI/API fallbacks."
+  default_prompt: "Use $karakeep-mcp-first to work with Karakeep through MCP first, falling back to CLI or API only when needed."

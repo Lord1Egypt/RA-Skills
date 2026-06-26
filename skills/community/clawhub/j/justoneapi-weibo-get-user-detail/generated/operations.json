@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/get-user-detail/v3 for Weibo User Profile through JustOneAPI with uid.",
+  "displayName": "Weibo User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo user Profile data, including follower counts, verification status, and bio details, for creator research and account analysis.",
+      "method": "GET",
+      "operationId": "getUserProfileV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-user-detail/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

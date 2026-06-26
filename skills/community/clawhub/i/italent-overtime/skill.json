@@ -1,0 +1,49 @@
+{
+  "name": "italent-overtime",
+  "version": "1.1.0",
+  "description": "北森 iTalent 加班管理。当用户需要推送加班、查询加班、撤销加班、管理考勤时使用此技能。支持通过北森开放平台 API 执行加班数据推送、查询、撤销等操作。需要用户提供 AppKey、AppSecret 和员工邮箱/StaffId。",
+  "author": "佳敏",
+  "license": "Internal Use",
+  "homepage": "https://github.com/openclaw/skills",
+  "keywords": [
+    "北森",
+    "iTalent",
+    "加班",
+    "考勤",
+    "HR",
+    "API"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "main": "scripts/italent-overtime"
+  },
+  "references": [
+    "references/api-docs.md",
+    "references/troubleshooting.md"
+  ],
+  "requirements": {
+    "python": ">=3.6",
+    "external_deps": []
+  },
+  "triggers": [
+    "加班",
+    "推送加班",
+    "查询加班",
+    "撤销加班",
+    "北森",
+    "iTalent",
+    "考勤"
+  ],
+  "examples": [
+    "帮我推送一个加班",
+    "查询本周的加班记录",
+    "撤销昨天的加班申请",
+    "北森加班怎么弄"
+  ],
+  "config": {
+    "auth_required": true,
+    "auth_method": "oauth2_client_credentials",
+    "auth_url": "https://openapi.italent.cn/token",
+    "config_file": "~/.italent-overtime.conf"
+  }
+}

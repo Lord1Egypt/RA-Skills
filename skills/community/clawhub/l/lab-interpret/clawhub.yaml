@@ -1,0 +1,9 @@
+name: 检验报告解读
+id: lab-interpret
+version: 0.1.0
+price: 0
+description: Interpret clinical laboratory test results (blood, urine, biochemistry, hematology, tumor markers, etc.). Identify abnormal values, flag critical results, and provide clinical context.
+tags:
+  - medical
+  - laboratory
+  - clinical

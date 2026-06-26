@@ -1,35 +1,100 @@
 ---
-name: "Internship Daily Reflection"
-description: "将实习中的零散记录、聊天片段和任务笔记整理成可直接粘贴的中文日报或进展汇报。适用于写日报、整理今天任务、发给导师或 leader 的进展同步，以及填写“计划阶段、汇报阶段、进展状态、进展情况、问题及原因”等固定字段。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/internship-daily-reflection"
-sourceUrl: "https://clawhub.ai/skills/internship-daily-reflection"
+name: internship-daily-reflection
+description: 将实习中的零散记录、聊天片段和任务笔记整理成可直接粘贴的中文日报或进展汇报。适用于写日报、整理今天任务、发给导师或 leader 的进展同步，以及填写“计划阶段、汇报阶段、进展状态、进展情况、问题及原因”等固定字段。
+homepage: https://clawhub.com
+metadata: { "openclaw": { "emoji": "📝" } }
+  
+
 ---
 
 # Internship Daily Reflection
 
-> 将实习中的零散记录、聊天片段和任务笔记整理成可直接粘贴的中文日报或进展汇报。适用于写日报、整理今天任务、发给导师或 leader 的进展同步，以及填写“计划阶段、汇报阶段、进展状态、进展情况、问题及原因”等固定字段。
+## 适用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/internship-daily-reflection`
-- **Source URL:** [https://clawhub.ai/skills/internship-daily-reflection](https://clawhub.ai/skills/internship-daily-reflection)
+当用户需要以下内容时，使用本技能：
 
-## Overview
+- 日报、站会更新、实习进展同步
+- 将零散聊天记录/笔记整理成结构化汇报
+- 准备发给导师、leader 的当日进展说明
+- 填写带固定字段的汇报系统（如“进展情况/问题及原因”）
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/internship-daily-reflection
+1. 先识别输入材料：任务清单、聊天片段、提交记录、学习笔记。
+2. 提取事实并去重：做了什么、进度如何、问题是什么、原因是什么。
+3. 优先输出“汇报系统字段版”，保证可以直接粘贴。
+4. 若关键信息缺失，先追问再输出。
+
+## 缺失信息追问
+
+当以下信息缺失时，最多追问 4 个关键问题：
+
+- 计划阶段（例如：4月2周）和汇报阶段（例如：周一）是什么？
+- 进展状态是“正常推进 / 推进滞后 / 已完成”中的哪一个？
+- 进展情况里最关键的 2-4 个事实是什么？
+- 是否存在“问题及原因”？如果有，分别是什么？
+
+如果用户不补充，明确标注“待补充”，不要编造事实。
+
+## 输出要求
+
+- 默认语言：中文
+- 风格：复盘成长型（不止描述结果，也说明问题与改进）
+- 语气：专业、清晰、可直接转发给导师或 leader
+- 优先使用可验证表述（避免夸张、避免空话）
+- 当用户明确说“填系统/表单”时，只输出字段内容，不附加长解释
+
+## 固定输出模板（汇报系统字段版）
+
+优先按以下结构输出，字段名与系统保持一致：
+
+```markdown
+汇报单位：<默认沿用用户提供；未知则写“待补充”>
+计划阶段：<如 4月2周>
+汇报阶段：<如 周一>
+进展状态：<正常推进/推进滞后/已完成>
+
+进展情况：
+1) <任务或子目标>：<动作>，<结果/产出>。
+2) <任务或子目标>：<动作>，<结果/产出>。
+3) <如有明日安排，可写下一步>。
+
+问题及原因：
+- <问题1>：<原因>；<当前影响/处理状态>。
+- <问题2>：<原因>；<当前影响/处理状态>。
+
+（可选）汇报附件：
+- <文件名或链接；无则写“无”>
 ```
+
+## 备用输出模板（聊天汇报版）
+
+如果用户明确不要字段版，再使用这个结构：
+
+```markdown
+# 实习日报（YYYY-MM-DD）
+## 1) 今日完成事项
+## 2) 项目进度
+## 3) 问题与阻塞
+## 4) 解决方案与尝试
+## 5) 时间投入
+## 6) 明日计划
+```
+
+## 针对智能体/OpenClaw/Skill 学习的增强规则
+
+如果内容涉及智能体、OpenClaw、Skill 学习，补充一段简短学习复盘：
+
+- 今日新概念：学到了什么
+- 实操进展：完成了哪一步部署/配置/调试
+- 卡点与原因：环境、配置、依赖或理解问题
+- 明日突破点：下一步最关键动作
+
+将该段优先合并到“进展情况”与“问题及原因”中，避免字段过多导致无法粘贴表单。
+
+## 示例触发语
+
+- “帮我把今天实习内容整理成日报”
+- “我笔记很乱，整理成能发给导师的进展更新”
+- “这是我今天做的 openclaw 学习记录，帮我总结”
+- “按汇报系统格式帮我生成：计划阶段、汇报阶段、进展状态、进展情况、问题及原因”

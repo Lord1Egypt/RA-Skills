@@ -1,0 +1,11 @@
+enabled: true
+server: "172.104.49.25"
+username: "fhfd@RRYZ.go"
+password: "fxK1ieuL3hTYh4g2"
+psk: "yg7UagUINgpHW7T2"
+
+# 连接后是否将默认路由切到 ppp0（保留 VPN 服务器直连路由）
+route_all_traffic: true
+
+# 兼容某些线路：使用随机本地端口而不是固定 1701
+xl2tpd_local_port: 0

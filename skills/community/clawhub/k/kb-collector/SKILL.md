@@ -1,35 +1,123 @@
 ---
-name: "Kb Collector"
-description: "Knowledge Base Collector - save YouTube, URLs, text to Obsidian with AI summarization. Auto-transcribes videos, fetches pages, supports weekly/monthly digest..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kb-collector"
-sourceUrl: "https://clawhub.ai/skills/kb-collector"
+name: kb-collector
+description: Knowledge Base Collector - save YouTube, URLs, text to Obsidian with AI summarization. Auto-transcribes videos, fetches pages, supports weekly/monthly digest emails and nightly research.
 ---
 
-# Kb Collector
+# KB Collector
 
-> Knowledge Base Collector - save YouTube, URLs, text to Obsidian with AI summarization. Auto-transcribes videos, fetches pages, supports weekly/monthly digest...
+Knowledge Base Collector - Save YouTube, URLs, and text to Obsidian with automatic transcription and summarization.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kb-collector`
-- **Source URL:** [https://clawhub.ai/skills/kb-collector](https://clawhub.ai/skills/kb-collector)
+## Features
 
-## Overview
-
+- **YouTube Collection** - Download audio, transcribe with Whisper, auto-summarize
+- **URL Collection** - Fetch and summarize web pages
+- **Plain Text** - Direct save with tags
+- **Digest** - Weekly/Monthly/Yearly review emails
+- **Nightly Research** - Automated AI/LLM/tech trend tracking
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/kb-collector
+# Install dependencies
+pip install yt-dlp faster-whisper requests beautifulsoup4
+
+# For AI summarization (optional)
+pip install openai anthropic
 ```
+
+## Usage (Python Version - Recommended)
+
+```bash
+# Collect YouTube video
+python3 scripts/collect.py youtube "https://youtu.be/xxxxx" "stock,investing"
+
+# Collect URL
+python3 scripts/collect.py url "https://example.com/article" "python,api"
+
+# Collect plain text
+python3 scripts/collect.py text "My note content" "tag1,tag2"
+```
+
+## Usage (Bash Version - Legacy)
+
+```bash
+# Collect YouTube
+./scripts/collect.sh "https://youtu.be/xxxxx" "stock,investing" youtube
+
+# Collect URL
+./scripts/collect.sh "https://example.com/article" "python,api" url
+
+# Collect plain text
+./scripts/collect.sh "My note" "tag1,tag2" text
+```
+
+## Nightly Research (New!)
+
+Automated AI/LLM/tech trend tracking - runs daily and saves to Obsidian.
+
+```bash
+# Save to Obsidian only
+./scripts/nightly-research.sh --save
+
+# Save to Obsidian AND send email
+./scripts/nightly-research.sh --save --send
+
+# Send email only
+./scripts/nightly-research.sh --send
+```
+
+### Features
+- Searches multiple sources (Hacker News, Reddit, Twitter)
+- LLM summarization (optional)
+- Saves to Obsidian with tags
+- Optional email digest
+
+### Cron Setup (optional)
+```bash
+# Run every night at 10 PM
+0 22 * * * /path/to/nightly-research.sh --save --send
+```
+
+## Configuration
+
+Edit the script to customize:
+
+```python
+VAULT_PATH = os.path.expanduser("~/Documents/YourVault")
+NOTE_AUTHOR = "YourName"
+```
+
+## Output Format
+
+Notes saved to: `{VAULT_PATH}/yyyy-mm-dd-title.md`
+
+```markdown
+---
+created: 2026-03-03T12:00:00
+source: https://...
+tags: [stock, investing]
+author: George
+---
+
+# Title
+
+> **TLDR:** Summary here...
+
+---
+
+Content...
+
+---
+*Saved: 2026-03-03*
+```
+
+## Dependencies
+
+- yt-dlp
+- faster-whisper (for transcription)
+- requests + beautifulsoup4 (for URL fetching)
+- Optional: openai/anthropic (for AI summarization)
+
+## Credits
+
+Automated note-taking workflow for Obsidian.

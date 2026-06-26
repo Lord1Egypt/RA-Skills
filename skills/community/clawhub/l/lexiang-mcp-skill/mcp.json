@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "lexiang": {
+            "enabled": true,
+            "url": "https://mcp.lexiang-app.com/mcp?company_from=${COMPANY_FROM}",
+            "transportType": "streamable-http",
+            "headers": {
+                "Authorization": "Bearer ${LEXIANG_TOKEN}"
+            }
+        }
+    }
+}

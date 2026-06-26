@@ -1,0 +1,24 @@
+{
+  "date": "2026-05-14",
+  "weight_morning": 58.5,
+  "meals": {
+    "breakfast": {
+      "foods": "粥+包子",
+      "calories": 350
+    },
+    "lunch": {
+      "foods": "米饭+鱼",
+      "calories": 550
+    },
+    "dinner": {
+      "foods": "面条",
+      "calories": 400
+    }
+  },
+  "total_calories": 1300,
+  "target_steps": 8000,
+  "actual_steps": 7500,
+  "target_achieved": false,
+  "score": 7.5,
+  "streak_days": 5
+}

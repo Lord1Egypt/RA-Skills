@@ -1,0 +1,13 @@
+commands:
+  "配置":
+    clicks:
+      - "视频管理"
+      - "举报配置"
+    assert_text: "举报配置"
+
+  "帖子评论审核":
+    wait_after_login: 3000
+    clicks:
+      - "帖子社区"
+      - "帖子评论"
+    assert_text: "帖子评论"

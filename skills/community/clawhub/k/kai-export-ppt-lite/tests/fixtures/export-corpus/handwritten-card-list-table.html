@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Handwritten Export Corpus</title>
+  <style>
+    :root {
+      --paper: #f4f7fb;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #d8e1ec;
+      --card: rgba(255, 255, 255, 0.9);
+      --pill: #d5f1ef;
+      --badge: rgba(223, 237, 253, 0.7);
+      --code: rgba(14, 165, 233, 0.12);
+      --accent: #2563eb;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #eaf0f6;
+      color: var(--ink);
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .slide {
+      width: 1440px;
+      height: 810px;
+      padding: 72px 88px;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 30%),
+        linear-gradient(180deg, #f7fafc 0%, #eff5fb 100%);
+    }
+
+    .slide-content {
+      max-width: 1120px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 54px; line-height: 1.08; letter-spacing: -0.04em; }
+    h2 { font-size: 34px; line-height: 1.15; letter-spacing: -0.03em; }
+    h3 { font-size: 22px; line-height: 1.2; }
+    p, li, td, th { font-size: 20px; line-height: 1.6; }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--badge);
+      color: #1d4ed8;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .muted { color: var(--muted); }
+    .row {
+      display: flex;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px 32px;
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .card + .card { margin-top: 18px; }
+    .stack > * + * { margin-top: 14px; }
+
+    .pill,
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 18px;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+
+    .pill {
+      background: var(--pill);
+      color: #0f766e;
+      font-weight: 600;
+    }
+
+    .badge {
+      background: var(--badge);
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    code,
+    kbd {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--code);
+      color: #0f172a;
+      font-size: 18px;
+      line-height: 1.4;
+      font-family: "SFMono-Regular", "Menlo", monospace;
+    }
+
+    kbd {
+      background: rgba(15, 23, 42, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    ul.clean {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    ul.clean li + li {
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.presentation td {
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    table.presentation td:first-child {
+      width: 220px;
+    }
+
+    table.data {
+      margin-top: 18px;
+    }
+
+    table.data th,
+    table.data td {
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      text-align: left;
+    }
+
+    table.data th {
+      background: rgba(148, 163, 184, 0.12);
+      font-weight: 700;
+    }
+
+    .command-line {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <div class="slide-content stack">
+      <span class="eyebrow">Export Corpus</span>
+      <h1>Handwritten Export Corpus <span class="badge">当前</span></h1>
+      <p class="muted">一个手写的 3 页夹具，用来覆盖 grouped inline、card、list、presentation-like rows 和 real data table。</p>
+
+      <div class="row" style="margin-top: 28px;">
+        <div class="card" style="width: 48%;">
+          <div class="stack">
+            <h3>为什么需要它</h3>
+            <p class="muted">不能只围绕单个 Blue Sky deck 做回归，否则下一份 HTML 会重复踩同一类结构坑。</p>
+          </div>
+        </div>
+        <div class="card" style="width: 48%;">
+          <div class="stack">
+            <h3>覆盖目标</h3>
+            <p><span class="pill">Card</span> <span class="pill">List</span> <span class="pill">Table</span> <span class="pill">Inline</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-content stack">
+      <span class="eyebrow">Cards + Lists</span>
+      <h2>卡片、列表和命令行应该稳定导出</h2>
+      <div class="row" style="margin-top: 24px;">
+        <div class="card" style="width: 56%;">
+          <div class="stack">
+            <h3>最小能力面</h3>
+            <ul class="clean">
+              <li>标题和正文不能被错误拆散。</li>
+              <li>列表项宽度不能被误收窄成双行。</li>
+              <li>带背景的命令片段不能靠后定位补 shape。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="width: 40%;">
+          <div class="stack">
+            <h3>当前通路</h3>
+            <p class="muted">先补 fixture/corpus，再做容器承载升级。</p>
+            <p class="command-line">
+              <code>clawhub install kai-slide-creator</code>
+              ·
+              <a href="https://github.com/kaisersong/slide-creator">GitHub ↗</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-content stack">
+      <span class="eyebrow">Rows + Tables</span>
+      <h2>展示型 row 结构和数据表格必须分流</h2>
+      <div class="row" style="margin-top: 24px;">
+        <div class="card" style="width: 48%;">
+          <div class="stack">
+            <h3>快捷键导航</h3>
+            <table class="presentation">
+              <tr>
+                <td><kbd>Space</kbd> <kbd>→</kbd></td>
+                <td>下一张幻灯片</td>
+              </tr>
+              <tr>
+                <td><kbd>Shift</kbd> <kbd>Space</kbd></td>
+                <td>上一张幻灯片</td>
+              </tr>
+              <tr>
+                <td><kbd>Ctrl</kbd> <kbd>K</kbd></td>
+                <td>打开命令面板</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="card" style="width: 48%;">
+          <div class="stack">
+            <h3>真实数据表</h3>
+            <table class="data">
+              <tr>
+                <th>季度</th>
+                <th>线索</th>
+                <th>转化率</th>
+              </tr>
+              <tr>
+                <td>Q1</td>
+                <td>128</td>
+                <td>14%</td>
+              </tr>
+              <tr>
+                <td>Q2</td>
+                <td>176</td>
+                <td>19%</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

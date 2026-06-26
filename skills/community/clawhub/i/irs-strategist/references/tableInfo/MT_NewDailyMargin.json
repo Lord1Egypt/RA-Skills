@@ -1,0 +1,153 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "PubOrgCode",
+        "columnChiName": "发布机构代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "发布机构代码（PubOrgCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到发布机构的名称等基本信息:25403-上交所，25404-深交所，95051632-北交所，,348-国元证券，378-广发证券，1052-中信证券，1119-国金证券，1770-海通证券，2726-国泰君安，2921-招商证券，12120-中信建投，19934-中泰证券，41086-东方证券，41126-银河证券，41127-国信证券，41132-长城证券，41133-光大证券，41136-华泰证券，41149-华西证券，41169-申银万国，41194-兴业证券，41714-华创证券，41732-中银证券，74956-东兴证券，121604-中金证券。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnChiName": "保证金比例",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到标的证券的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "TargetCategory",
+        "columnChiName": "标的类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "标的类别(TargetCategory)与(CT_SystemConst)表中的DM字段关联，令LB = 1575 AND DM IN (10,20)，得到标的类别的具体描述：10-融资买入标的，20-融券卖出标的。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "DepositRatio",
+        "columnChiName": "保证金比例(%)",
+        "columnType": "decimal(18,10)",
+        "isNullable": 1,
+        "remark": "保证金比例（DepositRatio）：发布机构是中信证券、海通证券、广发证券、上交所、深交所，取公布值；发布机构是光大证券：融资保证金比例=初始保证金比例+(1-融资买入证券折算率)融券保证金比例=初始保证金比例+(1-融券卖出证券折算率)+融券保证金比例上浮部分；发布机构是国信证券：融资保证金比例=1+国信公布的基准保证金比例-标的证券折算率融券保证金比例=(1+国信公布的基准保证金比例-标的证券折算率）×调整倍数；发布机构是国泰君安：融资保证金比例=交易所公布的最低融资保证金比例+（1-标的证券折算率）",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "CreditGradeCode",
+        "columnChiName": "客户信用级别代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "客户信用级别代码(CreditGradeCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1372，得到客户信用级别代码的具体描述：740-D，760-C，770-CC，799-CCC，830-B-，840-B，850-B+，860-BB-，870-BB，880-BB+，891-BBB-，895-BBB，899-BBB+，930-A-，940-A，950-A+，960-AA-，970-AA，980-AA+，990-AAA-，999-AAA，1000-AAA+。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "16.7",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "CreditGrade",
+        "columnChiName": "客户信用级别",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

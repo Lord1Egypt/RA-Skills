@@ -1,0 +1,41 @@
+{
+  "schedule": {
+    "generate_time": "07:00",
+    "timezone": "Asia/Shanghai",
+    "time_period_updates": true,
+    "update_times": ["12:00", "18:00", "22:00"]
+  },
+  "generation": {
+    "reference_history_days": 3,
+    "reference_recent_chats": 5,
+    "respect_holidays": true,
+    "holiday_region": "CN",
+    "weekday_awareness": true
+  },
+  "persona": {
+    "auto_detect": true,
+    "name": null,
+    "age": null,
+    "gender": null,
+    "job": null,
+    "city": null,
+    "lifestyle_notes": null
+  },
+  "pools": {
+    "source": "builtin",
+    "auto_generate_from": "SOUL.md",
+    "custom_path": "config/life-scheduler.json"
+  },
+  "output": {
+    "file": "HEARTBEAT.md",
+    "section": "💃 今日状态",
+    "archive": true,
+    "archive_path": "memory/life-history/",
+    "inject_to_context": true
+  },
+  "advanced": {
+    "model_override": null,
+    "max_tokens": 1500,
+    "temperature": 0.9
+  }
+}

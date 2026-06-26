@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douban/get-movie-reviews/v1 for Douban Movie Movie Reviews through JustOneAPI with subjectId.",
+  "displayName": "Douban Movie Movie Reviews",
+  "endpointPath": "get-movie-reviews",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douban movie Reviews data, including review titles, ratings, and snippets, for audience sentiment analysis and review research.",
+      "method": "GET",
+      "operationId": "getMovieReviewsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a movie or TV subject on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "subjectId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "time",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `time`: Time\n- `hotest`: Hotest",
+          "enumValues": [
+            "time",
+            "hotest"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-movie-reviews/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Movie Reviews",
+      "tags": [
+        "Douban Movie"
+      ]
+    }
+  ],
+  "platformKey": "douban",
+  "primaryTag": "Douban Movie",
+  "skillName": "justoneapi_douban_get_movie_reviews",
+  "skillType": "interface",
+  "slug": "justoneapi-douban-get-movie-reviews",
+  "sourceTitle": "OpenAPI definition"
+}

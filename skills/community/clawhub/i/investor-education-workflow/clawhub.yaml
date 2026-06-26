@@ -1,0 +1,25 @@
+name: investor-education-workflow
+version: 1.2.0
+description: 投教工作流 - 基于 LLM Wiki 机制的投教内容生产与分发工作流。融合四专家思维，覆盖五大模块知识库。
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - investor-education
+  - llm-wiki
+  - behavioral-finance
+  - knowledge-base
+  - content-production
+
+features:
+  - 五大模块知识库（基本功/风险扫描/行为管理/规划/陪伴）
+  - LLM Wiki 三层架构（原始素材/Wiki编译/应用查询）
+  - 意图标记（intent/mold/audience）
+  - 因果链标注 + 知识库引用
+  - 合规检查记录 + 免责声明自动添加
+  - 多形式输出（文字/图文/语音/视频/卡片）
+
+requirements:
+  - data_layer v2.2.0
+  - mcp-aktools v0.1.15
+  - Python 3.8+

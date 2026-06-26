@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kai-report-creator async readability rubric",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "verdict",
+    "scores",
+    "findings",
+    "summary"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "needs_work",
+        "fail"
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compression",
+        "ir_contract",
+        "async_readability",
+        "render_integrity"
+      ],
+      "properties": {
+        "compression": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "ir_contract": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "async_readability": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "render_integrity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "layer",
+          "severity",
+          "message",
+          "evidence"
+        ],
+        "properties": {
+          "layer": {
+            "type": "string",
+            "enum": [
+              "compression",
+              "ir_contract",
+              "async_readability",
+              "render_integrity"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

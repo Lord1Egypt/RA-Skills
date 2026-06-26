@@ -1,0 +1,1 @@
+{"name": "multi-search-engine", "version": "1.0.0", "description": "Multi-search-engine with 17 engines (8 CN + 9 Global)", "main": "multi-search.py", "keywords": ["search", "web-search", "multi-search", "baidu", "google", "bing", "wolframalpha"], "author": "", "license": "MIT"}

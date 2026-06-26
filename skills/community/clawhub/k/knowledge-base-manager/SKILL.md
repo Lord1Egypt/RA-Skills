@@ -1,35 +1,193 @@
----
-name: "Knowledge Base Manager"
-description: "Manage and maintain a shared Obsidian knowledge base by organizing files, performing task reviews, archiving, and ensuring up-to-date, linked knowledge content."
-category: "research"
-source: "ClawHub"
-tags: [knowledge, obsidian, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-base-manager"
-sourceUrl: "https://clawhub.ai/skills/knowledge-base-manager"
+# Knowledge Base Manager - 知识库管理器
+
+## 定位
+
+小喵的知识库管理系统，负责维护哥和小喵共享的 Obsidian 知识库。
+
+**核心原则：知识库是共同建设的，主要由小喵维护，哥是审核者和补充者。**
+
 ---
 
-# Knowledge Base Manager
+## 📂 知识库结构
 
-> Manage and maintain a shared Obsidian knowledge base by organizing files, performing task reviews, archiving, and ensuring up-to-date, linked knowledge content.
-
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-base-manager`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-base-manager](https://clawhub.ai/skills/knowledge-base-manager)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-base-manager
 ```
+OC知识库/
+│
+├── 📥 待整理/              # 临时暂存，定期清理
+├── 👤 关于哥/               # 哥的个人信息
+├── 🤖 关于小喵/             # AI的身份和能力
+├── 📂 项目与知识/           # ⭐ 核心：任务+知识一体化
+│   ├── 📋 任务中心/
+│   │   ├── 🔄 进行中/      # 当前任务
+│   │   └── ✅ 已完成/       # 已完成任务
+│   ├── 📚 知识库/
+│   │   ├── 🔧 技能/        # 技能和能力
+│   │   ├── 📖 方法论/      # 做事方法
+│   │   └── 📂 资料/        # 参考资料
+│   └── 🔗 工作-知识连接/
+│       ├── 工作产出/        # 任务产出物
+│       ├── 实践复盘/        # 从实践萃取经验
+│       └── 知识应用/        # 知识如何应用
+├── 🌊 共享资源/
+│   ├── 📊 调研/            # 调研报告
+│   ├── 💡 创意/            # 创意灵感
+│   └── 🗺️ SOP/             # 标准流程
+├── 📁 归档/               # 已完成项目归档
+└── 📅 日积月累/            # 每日/周/月记录
+```
+
+---
+
+## 🔄 核心循环
+
+```
+         📚 学习/知识
+            ↙️ ↘️
+           /    \
+    💼 工作 ←→ 📝 沉淀
+     (应用)    (萃取)
+         ↖️ ↗️
+        (反馈)
+```
+
+**关键规则：**
+- 任务完成 → 必须复盘 → 萃取经验 → 沉淀为知识
+- 学习新知识 → 标记用途 → 应用到工作 → 记录应用
+
+---
+
+## 📋 维护规则
+
+### 触发时机
+
+| 场景 | 小喵动作 |
+|------|---------|
+| **完成任意任务** | 立即复盘，写入「实践复盘」 |
+| **学到新技能** | 写入「技能总览」 |
+| **获取新信息** | 判断：已分类→直接归档 / 模糊→待整理 |
+| **每周五** | 整理「待整理」，归档+清理 |
+| **每月末** | 月度总结，更新「日积月累」 |
+
+### 归档优先级
+
+1. **立即归档** — 明确有用的信息，直接归类
+2. **待整理** — 不确定/模糊的，先放进来
+3. **删除** — 确认无用的，不保留
+
+### 文件命名
+
+- 文件名包含日期：`2026-04-11-xxx.md`
+- 任务文件：`任务名-日期.md`
+- 日记文件：`YYYY-MM-DD.md`
+
+---
+
+## 🔍 常用查询
+
+### 小喵如何查找信息
+
+**哥问问题时：**
+1. 先判断属于哪个分类
+2. 搜索相关文件夹
+3. 如不确定，搜「待整理」
+4. 搜不到 → 承认不知道，或猜测后确认
+
+**常用路径：**
+- 技能/能力 → `📚 知识库/🔧 技能/`
+- 任务状态 → `📋 任务中心/`
+- 方法论 → `📚 知识库/📖 方法论/`
+- SOP → `🌊 共享资源/🗺️ SOP/`
+
+---
+
+## 📝 更新模板
+
+### 任务完成复盘
+```markdown
+# [任务名] 复盘
+
+## 基本信息
+- 完成时间：
+- 耗时：
+- 产出：
+
+## 执行过程
+1. 
+2. 
+
+## 做得好的
+-
+
+## 需要改进的
+-
+
+## 经验萃取
+-
+
+## 知识关联
+- 应用了：[[🔧 技能/xxx]]
+- 沉淀到：[[🔗 工作-知识连接/实践复盘/xxx]]
+```
+
+### 技能学习记录
+```markdown
+# [技能名] 学习记录
+
+## 学习时间
+YYYY-MM-DD
+
+## 学习来源
+-
+
+## 掌握程度
+⭐⭐⭐
+
+## 核心要点
+-
+
+## 应用场景
+-
+
+## 相关资源
+-
+```
+
+---
+
+## 🚀 持续优化
+
+### 小喵的职责
+1. 保持结构清晰，及时整理混乱的内容
+2. 发现冗余/过时的内容，及时归档或删除
+3. 定期（每月）提出优化建议
+
+### 优化建议类型
+- 结构优化：目录调整、合并、拆分
+- 流程优化：归档规则、更新频率
+- 内容优化：补充缺失、清理冗余
+
+---
+
+## 📌 检查清单
+
+每次维护时确认：
+- [ ] 新内容已正确归档
+- [ ] 待整理已定期清理
+- [ ] 索引文件已更新（如有必要）
+- [ ] 有用的内容没有被误删
+- [ ] 知识之间的链接已建立
+
+---
+
+## ⚠️ 注意事项
+
+1. **不要一次性加载整个知识库** — 按需查询
+2. **双向链接很重要** — 善用 `[[文件名]]` 建立连接
+3. **定期备份** — 重要内容可以多处存储
+4. **私密内容** — 仅小喵可见的内容，放在 MEMORY.md
+
+---
+
+_最后更新：2026-04-11_
+_SKILLEOF
+echo "SKILL.md created"

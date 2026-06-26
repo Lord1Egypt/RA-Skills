@@ -1,35 +1,184 @@
 ---
-name: "新股申购助手"
-description: "新股申购助手 - A 股 IPO 申购必备工具。提供新股申购日历、基本面分析、中签率预测、上市溢价预测、申购建议。适用于 A 股新股投资者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ipo-assistant"
-sourceUrl: "https://clawhub.ai/skills/ipo-assistant"
+name: ipo-assistant
+description: 新股申购助手 - A 股 IPO 申购必备工具。提供新股申购日历、基本面分析、中签率预测、上市溢价预测、申购建议。适用于 A 股新股投资者。
+author: Your Name
+contact:
+  email: your@email.com
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+      packages: ["requests", "pandas", "beautifulsoup4"]
 ---
 
 # 新股申购助手
 
-> 新股申购助手 - A 股 IPO 申购必备工具。提供新股申购日历、基本面分析、中签率预测、上市溢价预测、申购建议。适用于 A 股新股投资者。
+专业的 A 股新股申购辅助工具，提供申购日历、基本面分析、中签率预测等功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ipo-assistant`
-- **Source URL:** [https://clawhub.ai/skills/ipo-assistant](https://clawhub.ai/skills/ipo-assistant)
+**版本**: 1.0.0  
+**许可证**: MIT  
+**定价**: 免费（引流工具）
 
-## Overview
+---
 
+## 🎯 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 申购日历 📅
+- 今日/本周可申购新股列表
+- 申购代码、发行价格
+- 申购上限、顶格申购所需市值
+- **多数据源**：东方财富 + akshare + Tushare
+
+### 2. 新股分析 📊
+- 发行市盈率 vs 行业市盈率
+- 主营业务收入分析
+- 同行业公司对比
+- 募集资金用途
+- **申购建议**：基于估值、成长性、盈利能力
+
+### 3. 中签率预测 🎯
+- 基于发行规模
+- 基于申购热度
+- 历史中签率对比
+- **行业对比**：不同行业中签率差异
+
+### 4. 上市溢价预测 📈
+- 基于同行业对比
+- 基于市场环境
+- 预测首日涨幅
+- **置信度评估**：高/中/低
+
+### 5. 历史统计 📉
+- **近 90 天统计**：新股数量、平均涨幅、中签率
+- **行业排行**：各行业新股表现
+- **最高/最低**：涨幅 extremes
+
+### 6. 新股对比 🔄
+- 多只新股横向对比
+- 发行价、涨幅、中签率对比
+- 行业、板块对比
+
+### 7. 智能提醒 ⏰
+- **每日提醒**：9:00 自动推送
+- **申购日历**：周一推送本周新股
+- **多渠道**：飞书、微信等
+
+---
+
+## 🚀 使用方式
+
+### 快速开始
+
 ```bash
-hermes skills install clawhub/ipo-assistant
+# 安装依赖
+pip3 install requests pandas beautifulsoup4
+
+# 运行主程序
+python3 main.py
 ```
+
+### 触发词
+
+- "新股申购"
+- "今日新股"
+- "新股分析"
+- "中签率预测"
+- "上市溢价预测"
+
+---
+
+## 📁 目录结构
+
+```
+ipo-assistant/
+├── SKILL.md                      # 技能说明
+├── main.py                       # 主入口
+├── ipo_calendar.py               # 申购日历
+├── ipo_analysis.py               # 新股分析
+├── ipo_prediction.py             # 中签率/溢价预测
+├── data/
+│   └── ipo_history.csv           # 历史数据缓存
+└── references/
+    ├── API.md                    # 数据源说明
+    └── USER_GUIDE.md             # 用户指南
+```
+
+---
+
+## 📊 功能示例
+
+### 查询今日可申购新股
+
+```bash
+python main.py today
+```
+
+**输出示例:**
+```
+📅 今日可申购新股 (2026-03-08)
+
+1. 赛力斯 (601127)
+   - 发行价：15.80 元
+   - 发行市盈率：25 倍
+   - 行业市盈率：30 倍
+   - 申购上限：2 万股
+   - 顶格申购需市值：20 万元
+   💡 建议：⭐⭐⭐ 积极申购
+```
+
+### 新股分析
+
+```bash
+python main.py analyze 601127
+```
+
+**输出示例:**
+```
+📊 赛力斯 (601127) 分析
+
+• 发行价：15.80 元
+• 发行市盈率：25 倍（行业平均 30 倍）
+• 行业：汽车制造
+• 2025 年营收：120 亿元（+35%）
+• 净利润：8.5 亿元（+28%）
+• 毛利率：18%（行业平均 15%）
+
+💡 建议：⭐⭐⭐ 积极申购（估值低 + 业绩好）
+```
+
+---
+
+## 🔌 数据源
+
+| 数据类型 | 来源 | 更新频率 |
+|---------|------|---------|
+| **新股申购** | **东方财富网** | **实时** |
+| 发行价格 | 交易所公告 | 实时 |
+| 市盈率 | 东方财富数据中心 | 每日 |
+| 行业数据 | 申万宏源 | 每周 |
+
+**API 端点**:
+```
+http://datacenter-web.eastmoney.com/api/data/v1/get
+?reportName=RPTA_APP_IPOAPPLY
+```
+
+**数据缓存**: 12 小时（减少 API 调用）
+
+---
+
+## ⚠️ 风险提示
+
+1. 新股有破发风险
+2. 预测仅供参考
+3. 申购需对应市场市值
+4. 中签后需及时缴款
+
+---
+
+## 📬 反馈
+
+欢迎提交问题和建议！
+
+**作者**: Your Name  
+**邮箱**: your@email.com

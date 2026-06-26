@@ -1,0 +1,6 @@
+{
+  "name": "kimi-quota",
+  "version": "1.0.1",
+  "description": "查询 Kimi API 用量、订阅额度和账户信息",
+  "main": "scripts/check_quota.py"
+}

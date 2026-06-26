@@ -1,35 +1,118 @@
 ---
-name: "全网热搜榜查询 - 聚合数据"
-description: "全网热搜榜查询。查询各大平台（微博、抖音、快手、知乎、百度等）的实时热搜榜单。使用场景：用户说"查热搜"、"看热搜榜"、"现在什么最火"、"全网热门话题"、"微博热搜"、"抖音热搜"等。通过聚合数据（juhe.cn）API 实时查询，免费注册每天免费调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-network-hot-list"
-sourceUrl: "https://clawhub.ai/skills/juhe-network-hot-list"
+name: juhe-network-hot-list
+description: 全网热搜榜查询。查询各大平台（微博、抖音、快手、知乎、百度等）的实时热搜榜单。使用场景：用户说"查热搜"、"看热搜榜"、"现在什么最火"、"全网热门话题"、"微博热搜"、"抖音热搜"等。通过聚合数据（juhe.cn）API 实时查询，免费注册每天免费调用。
+homepage: https://www.juhe.cn/docs/api/id/739
+metadata: {"openclaw":{"emoji":"🔥","requires":{"bins":["python3"],"env":["JUHE_HOTSEARCH_KEY"]},"primaryEnv":"JUHE_HOTSEARCH_KEY"}}
 ---
 
-# 全网热搜榜查询 - 聚合数据
+# 全网热搜榜查询
 
-> 全网热搜榜查询。查询各大平台（微博、抖音、快手、知乎、百度等）的实时热搜榜单。使用场景：用户说"查热搜"、"看热搜榜"、"现在什么最火"、"全网热门话题"、"微博热搜"、"抖音热搜"等。通过聚合数据（juhe.cn）API 实时查询，免费注册每天免费调用。
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP 查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-network-hot-list`
-- **Source URL:** [https://clawhub.ai/skills/juhe-network-hot-list](https://clawhub.ai/skills/juhe-network-hot-list)
+查询全网各大平台的实时热搜榜单：**微博、抖音、快手、知乎、百度、今日头条、哔哩哔哩**等。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [全网热搜榜 API](https://www.juhe.cn/docs/api/id/739) 页面，点击「申请使用」
+3. 审核通过后在「我的 API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-network-hot-list
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_HOTSEARCH_KEY=你的 AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_HOTSEARCH_KEY=你的 AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/network_hot_list.py --key 你的 AppKey
 ```
+
+> 免费额度：每天免费调用，具体次数以官网为准。
+
+---
+
+## 使用方法
+
+### 查询全网热搜榜
+
+```bash
+python scripts/network_hot_list.py
+```
+
+输出示例：
+
+```
+🔥 全网热搜榜 - 2026-03-24 11:45
+
+┌────┬──────────────────────────────────┬─────────────┬─────────────────────────────┐
+│ 排名 │ 标题                           │ 热度        │ 摘要                        │
+├────┼──────────────────────────────────┼─────────────┼─────────────────────────────┤
+│ 1  │ 话题标题 1                        │ 9545566     │ 摘要内容...                 │
+│ 2  │ 话题标题 2                        │ 7670645     │ 摘要内容...                 │
+│ 3  │ 话题标题 3                        │ 7033409     │ 摘要内容...                 │
+└────┴──────────────────────────────────┴─────────────┴─────────────────────────────┘
+```
+
+### 查看前 N 条热搜
+
+```bash
+python scripts/network_hot_list.py --limit 10
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET http://apis.juhe.cn/fapigx/networkhot/query?key=YOUR_KEY
+```
+
+---
+
+## AI 使用指南
+
+当用户查询热搜榜时，按以下步骤操作：
+
+1. **调用脚本或 API** — 获取热搜榜单数据
+2. **展示结果** — 默认展示前 10-20 条，用表格形式清晰呈现
+3. **支持筛选** — 用户可指定查看前 N 条
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `title` | 热搜标题 | "某热门话题" |
+| `hotnum` | 热度数值 | 9545566 |
+| `digest` | 摘要/简介 | 话题详细描述... |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/739) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| 数据异常 | 重试一次 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/network_hot_list.py` — 封装了 API 调用、榜单格式化输出和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **网络工具**：IP 查询、DNS 解析、端口检测
+- **生活服务**：天气预报、万年历、节假日查询
+- **热搜榜单**：全网热搜、微博热搜、抖音热搜
+- **物流快递**：100+ 快递公司实时追踪
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

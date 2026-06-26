@@ -1,0 +1,117 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "RepurchaseVariety",
+        "columnChiName": "回购品种",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "回购品种(RepurchaseVariety)与(CT_SystemConst)表中的DM字段关联，令LB = 1205，得到回购品种的具体描述：1-7天，2-14天，3-21天，4-28天，5-91天，6-182天，7-364天，8-84天，9-1个月，10-27天，11-90天，12-5天，13-6天，14-1天，15-2天，16-3天，17-4天，18-1-2天，19-1-3天，20-1-4天，21-1-5天，22-1-6天，23-1-7天，24-2-3天，25-2-4天，26-2-5天，27-2-6天，28-2-7天，29-3-4天，30-3-5天，31-3-6天，32-3-7天，33-4-5天，34-4-6天，35-4-7天，36-5-6天，37-5-7天，38-6-7天，39-63天，40-181天。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "RepurchaseType",
+        "columnChiName": "回购交易类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "回购交易类型(RepurchaseType)与(CT_SystemConst)表中的DM字段关联，令LB = 1204，得到回购交易类型的具体描述：1-正回购，2-逆回购，3-投放流动性，4-回笼流动性，5-买断式逆回购。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "RepurchaseMethod",
+        "columnChiName": "回购交易方式",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.27"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "RepurchaseDays",
+        "columnChiName": "回购天数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.84"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "TenderRate",
+        "columnChiName": "招标利率(%)",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.22"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "TenderSize",
+        "columnChiName": "招标数量(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "94.3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

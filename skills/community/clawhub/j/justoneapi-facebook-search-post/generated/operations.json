@@ -1,0 +1,79 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/facebook/search-post/v1 for Facebook Post Search through JustOneAPI with keyword.",
+  "displayName": "Facebook Post Search",
+  "endpointPath": "search-post",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Facebook post Search data, including matched results, metadata, and ranking signals, for discovering relevant public posts for specific keywords and analyzing engagement and reach of public content on facebook.",
+      "method": "GET",
+      "operationId": "searchFacebookPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User security token for API access authentication.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Keyword to search for in public posts. Supports basic text matching.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start date for the search range (inclusive), formatted as yyyy-MM-dd.",
+          "enumValues": [],
+          "location": "query",
+          "name": "startDate",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "End date for the search range (inclusive), formatted as yyyy-MM-dd.",
+          "enumValues": [],
+          "location": "query",
+          "name": "endDate",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor for fetching the next set of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/facebook/search-post/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Search",
+      "tags": [
+        "Facebook"
+      ]
+    }
+  ],
+  "platformKey": "facebook",
+  "primaryTag": "Facebook",
+  "skillName": "justoneapi_facebook_search_post",
+  "skillType": "interface",
+  "slug": "justoneapi-facebook-search-post",
+  "sourceTitle": "OpenAPI definition"
+}

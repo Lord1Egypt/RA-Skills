@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_daily_fans/v1 for Douyin Creator Marketplace (Xingtu) Follower Growth Trend through JustOneAPI with endDate, oAuthorId, and startDate.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Follower Growth Trend",
+  "endpointPath": "gw/api/data_sp/get_author_daily_fans",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) follower Growth Trend data, including historical audience changes over time, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "gwApiDataSpGetAuthorDailyFansV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start Date (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startDate",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "End Date (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endDate",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/data_sp/get_author_daily_fans/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Growth Trend",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_data_sp_get_author_daily_fans",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-data-sp-get-author-daily-fans",
+  "sourceTitle": "OpenAPI definition"
+}

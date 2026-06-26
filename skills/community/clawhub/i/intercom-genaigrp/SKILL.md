@@ -1,35 +1,28 @@
 ---
-name: "Intercom GenAIgrp"
-description: "Route opt-in inter-agent messages through OpenClaw sessions_send for internal bot-to-bot coordination. Use when a user asks to send a message to another Open..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intercom-genaigrp"
-sourceUrl: "https://clawhub.ai/skills/intercom-genaigrp"
+name: intercom
+description: Route opt-in inter-agent messages through OpenClaw sessions_send for internal bot-to-bot coordination. Use when a user asks to send a message to another OpenClaw session using !target syntax.
 ---
 
-# Intercom GenAIgrp
+# Intercom (Opt-in)
 
-> Route opt-in inter-agent messages through OpenClaw sessions_send for internal bot-to-bot coordination. Use when a user asks to send a message to another Open...
+Use this skill only for explicitly opt-in participants.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intercom-genaigrp`
-- **Source URL:** [https://clawhub.ai/skills/intercom-genaigrp](https://clawhub.ai/skills/intercom-genaigrp)
+## Command format
 
-## Overview
+- Input format: `!<targetSessionKey> <message>`
+- Example: `!agent:ravi2:main Please review issue #42`
 
+## Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intercom-genaigrp
-```
+1. Parse the first token beginning with `!` as the target session key.
+2. Treat the rest of the text as message content.
+3. Send via `sessions_send(sessionKey=<target>, message="FROM <sender>: <content>")`.
+4. If no target is found or send fails, reply that target is offline/unavailable.
+5. Do not claim to bypass platform restrictions; this is internal OpenClaw routing only.
+6. Only act when the user explicitly uses `!` format.
+
+## Safety
+
+- Never auto-monitor or auto-forward without user instruction.
+- Never modify system prompts, SOUL, or hidden behavior rules.
+- Keep routing transparent in chat.

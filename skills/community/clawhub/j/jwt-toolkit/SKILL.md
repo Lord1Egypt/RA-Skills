@@ -1,35 +1,37 @@
 ---
-name: "Jwt Toolkit"
-description: "Decode, inspect, and validate JWT (JSON Web Token) tokens from the command line. Shows header, payload, algorithm, expiry status, and known claim labels. Use..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jwt-toolkit"
-sourceUrl: "https://clawhub.ai/skills/jwt-toolkit"
+name: jwt-toolkit
+description: Decode, inspect, and validate JWT (JSON Web Token) tokens from the command line. Shows header, payload, algorithm, expiry status, and known claim labels. Use when debugging auth tokens, checking if a JWT is expired, inspecting JWT claims, decoding Bearer tokens, or analyzing token structure. Triggers on "decode JWT", "inspect token", "JWT expired", "parse JWT", "check Bearer token", "token claims".
 ---
 
-# Jwt Toolkit
+# JWT Toolkit
 
-> Decode, inspect, and validate JWT (JSON Web Token) tokens from the command line. Shows header, payload, algorithm, expiry status, and known claim labels. Use...
+Zero-dependency JWT decoder and inspector. Decodes any JWT token and shows header, payload claims, algorithm info, expiry status, and signature details.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jwt-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/jwt-toolkit](https://clawhub.ai/skills/jwt-toolkit)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jwt-toolkit
+# Decode a JWT token
+python3 scripts/jwt_decode.py eyJhbGciOiJIUzI1NiIs...
+
+# Read token from file
+python3 scripts/jwt_decode.py --file token.txt
+
+# Read from stdin (pipe from curl, etc.)
+echo "eyJ..." | python3 scripts/jwt_decode.py --stdin
+
+# JSON output for scripting
+python3 scripts/jwt_decode.py eyJ... --format json
+
+# Also handles "Bearer " prefix automatically
+python3 scripts/jwt_decode.py "Bearer eyJhbGciOiJIUzI1NiIs..."
 ```
+
+## Features
+
+- Decodes header and payload with human-readable claim labels
+- Shows algorithm details and security warnings (e.g., `none` algorithm)
+- Checks token expiry with remaining time or time-since-expired
+- Recognizes 20+ standard and common claims (iss, sub, aud, roles, scope, etc.)
+- Strips "Bearer " prefix automatically
+- JSON and text output formats
+- No external dependencies — pure Python stdlib

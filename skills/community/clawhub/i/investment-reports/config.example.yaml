@@ -1,0 +1,39 @@
+# Investage 設定範例
+# 複製此檔案為 config.yaml 並填入你的資料
+
+# 持股設定 (範例)
+holdings:
+  - ticker: AAPL
+    shares: 100
+    avg_cost: 150.00
+  - ticker: GOOGL
+    shares: 50
+    avg_cost: 2800.00
+
+# 觀察清單
+watchlist:
+  - ticker: NVDA
+    reason: AI 領導者
+  - ticker: TSLA
+    reason: 電動車龍頭
+
+# Email 設定
+email:
+  recipients:
+    - your@email.com
+  from_name: Investage
+
+# 分析師評估權重
+scoring:
+  valuation_weight: 0.30
+  trend_weight: 0.25
+  macro_weight: 0.20
+  technical_weight: 0.15
+  risk_weight: 0.10
+
+# 資料庫設定
+database:
+  host: localhost
+  port: 5432
+  name: investage
+  user: your_user

@@ -1,0 +1,7 @@
+interface:
+  display_name: "今日日本动画新番"
+  short_description: "Find today's Japan anime airtime and episode list"
+  default_prompt: "Use $japan-anime-today to list today's Japan anime releases in Chinese."
+
+policy:
+  allow_implicit_invocation: true

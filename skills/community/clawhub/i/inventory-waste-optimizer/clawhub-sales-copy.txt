@@ -1,0 +1,13 @@
+**Stop throwing money in the trash.**
+
+Food waste is the #1 silent killer of QSR margins. This autonomous agent monitors your inventory 24/7 and flags waste patterns before they become expensive habits.
+
+Hardened with **ThumbGate** safety, it ensures your "automated ordering" never accidentally buys 100 cases of tomatoes when you only needed 10.
+
+**Key Features:**
+- Real-time waste detection
+- Smart restock forecasting
+- Unit price jump alerts
+- Audit-ready logging
+
+**Price: 97** - The most valuable employee on your Mac Mini.

@@ -1,0 +1,511 @@
+# OpenClaw Skill: 微信公众号排版与发布
+# 
+# 功能：
+#   - 生成文章内容后自动排版
+#   - 选择模板样式
+#   - AI 自动生成封面图
+#   - 一键发布到微信公众号草稿箱
+# 
+# 配置：
+#   - apiBaseUrl: SaaS 平台地址
+#   - apiKey: 用户的 API 密钥
+
+name: wechat-md-publisher
+version: 2.0.0
+description: 微信公众号内容管线（素材→写稿→排版→封面→多平台文案→分发）。支持全链路 API 调用、自定义模板市场、AI 写稿、多平台内容转换与一键分发。
+author: lanren
+tags:
+  - wechat
+  - markdown
+  - publish
+  - editor
+  - ai-cover
+  - content-pipeline
+  - xiaohongshu
+  - multi-platform
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 配置项（用户首次使用时填写）
+# ═════════════════════════════════════════════════════════════════════════════
+config:
+  - name: apiBaseUrl
+    label: SaaS 平台地址
+    type: string
+    required: true
+    placeholder: https://open.tyzxwl.cn
+    description: 你的微信公众号排版平台地址
+    
+  - name: apiKey
+    label: API 密钥
+    type: secret
+    required: true
+    placeholder: wemd_xxxxxxxxxxxxxxxx
+    description: 从排版平台获取的 API 密钥
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 触发器（支持多种触发方式）
+# ═════════════════════════════════════════════════════════════════════════════
+triggers:
+  # 方式1：自然语言触发
+  - type: intent
+    patterns:
+      # 唤起技能相关
+      - "使用懒人编辑器.*"
+      - "启动懒人编辑器"
+      - "懒人编辑器"
+      - "打开懒人编辑器"
+      - "调用懒人编辑器"
+      
+      # 发布相关
+      - "发布到公众号"
+      - "发到公众号"
+      - "排版发布"
+      - "微信发布"
+      - "生成文章.*发布"
+      - "写文章.*公众号"
+      - "发到微信"
+      - "推送到公众号"
+      - "同步到微信"
+      - "微信文章"
+      
+      # 写作相关
+      - "写一篇.*文章"
+      - "帮我写.*文案"
+      - "生成.*文章"
+      - "创作.*内容"
+      
+      # 排版相关
+      - "排版.*公众号"
+      - "样式.*发布"
+      - "markdown.*微信"
+    
+      # 预览和查询
+      - "预览一下"
+      - "文章预览"
+      - "查询额度"
+      - "查看剩余额度"
+      - "还能发几篇"
+      - "我的额度"
+      - "剩余发布次数"
+      
+      # 管线触发
+      - "素材收集"
+      - "添加素材"
+      - "记一笔"
+      - "出稿"
+      - "AI写稿"
+      - "写文章"
+      - "生成封面"
+      - "做封面"
+      - "封面图"
+      - "转小红书"
+      - "小红书轮播"
+      - "多平台文案"
+      - "朋友圈文案"
+      - "全链路"
+      - "管线"
+      - "一键出稿"
+      - "抓取文章"
+      - "文章分析"
+      - "多平台分发"
+      - "分发"
+
+  # 方式2：命令触发
+  - type: command
+    name: publish
+    description: 发布文章到微信公众号
+    args:
+      - name: content
+        description: 文章内容
+        required: false
+      - name: template
+        description: 模板名称或ID
+        required: false
+      - name: title
+        description: 文章标题
+        required: false
+      - name: author
+        description: 文章作者
+        required: false
+      - name: digest
+        description: 文章摘要
+        required: false
+      - name: contentSourceUrl
+        description: 阅读原文链接
+        required: false
+      - name: coverImage
+        description: 封面图指示(可通过AI生成)
+        required: false
+
+  - type: command
+    name: quota
+    description: 查询发布额度
+    
+  - type: command
+    name: preview
+    description: 预览文章排版
+    args:
+      - name: content
+        description: 文章内容
+        required: false
+      - name: template
+        description: 模板名称或ID
+        required: false
+
+  - type: command
+    name: status
+    description: 查询发布任务状态
+    args:
+      - name: taskId
+        description: 发布任务 ID
+        required: true
+
+  # ═════════════════════════════════════════════════════════════════════════════
+  # 管线命令（v2.0 新增）
+  # ═════════════════════════════════════════════════════════════════════════════
+
+  - type: command
+    name: material
+    description: 添加素材
+    args:
+      - name: content
+        description: 素材内容
+        required: true
+      - name: type
+        description: 素材类型（manual/auto/hybrid）
+        required: false
+      - name: topic
+        description: 主题标签
+        required: false
+
+  - type: command
+    name: materials
+    description: 查看素材列表
+
+  - type: command
+    name: draft
+    description: AI 写稿（素材→文章）
+    args:
+      - name: topic
+        description: 文章主题
+        required: true
+      - name: framework
+        description: 写作框架（tutorial/deep/auto）
+        required: false
+      - name: templateId
+        description: 关联模板ID
+        required: false
+
+  - type: command
+    name: fetch
+    description: 抓取微信文章
+    args:
+      - name: url
+        description: 微信文章链接
+        required: true
+
+  - type: command
+    name: analyze
+    description: 分析文章结构
+    args:
+      - name: url
+        description: 文章链接
+        required: false
+      - name: content
+        description: 文章内容
+        required: false
+
+  - type: command
+    name: cover
+    description: 生成封面图
+    args:
+      - name: title
+        description: 文章标题
+        required: true
+      - name: style
+        description: 封面风格（gradient/brand/minimal）
+        required: false
+      - name: size
+        description: 封面尺寸（900x383/1080x1440）
+        required: false
+
+  - type: command
+    name: xiaohongshu
+    description: 生成小红书轮播图
+    args:
+      - name: title
+        description: 文章标题
+        required: true
+      - name: content
+        description: 文章内容
+        required: false
+
+  - type: command
+    name: social-copy
+    description: 生成多平台文案
+    args:
+      - name: title
+        description: 文章标题
+        required: true
+      - name: content
+        description: 文章内容
+        required: false
+      - name: platforms
+        description: 目标平台（xiaohongshu,jike,moments）
+        required: false
+
+  - type: command
+    name: pipeline
+    description: 全链路执行（素材→写稿→排版→封面→文案→分发）
+    args:
+      - name: topic
+        description: 主题
+        required: true
+      - name: templateId
+        description: 排版模板ID
+        required: true
+      - name: steps
+        description: 执行步骤（逗号分隔）
+        required: false
+
+  - type: command
+    name: pipeline-status
+    description: 查询管线任务状态
+    args:
+      - name: jobId
+        description: 管线任务ID
+        required: true
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 工作流定义
+# ═════════════════════════════════════════════════════════════════════════════
+workflows:
+  # 主工作流：生成并发布文章
+  - name: generateAndPublish
+    description: 生成文章内容并发布到公众号
+    steps:
+      - name: generateContent
+        type: llm
+        description: 生成文章内容
+        
+      - name: selectTemplate
+        type: interactive
+        description: 选择排版模板
+        
+      - name: confirmPublish
+        type: interactive
+        description: 确认发布信息
+        
+      - name: publish
+        type: action
+        description: 执行发布
+        
+      - name: showResult
+        type: output
+        description: 展示发布结果
+
+  # ═════════════════════════════════════════════════════════════════════════════
+  # 管线工作流（v2.0 新增）
+  # ═════════════════════════════════════════════════════════════════════════════
+
+  # Path A：素材积累 → 出稿
+  - name: materialToPublish
+    description: 从素材收集到一键发布的完整管线
+    steps:
+      - name: collectMaterials
+        type: interactive
+        description: 收集/确认素材
+        
+      - name: aiDraft
+        type: action
+        description: AI 写稿（调用 /api/skill/draft）
+        
+      - name: selectTemplate
+        type: interactive
+        description: 选择排版模板
+        
+      - name: renderAndCover
+        type: action
+        description: 排版渲染 + 封面生成
+        
+      - name: generateSocialCopy
+        type: action
+        description: 生成多平台文案
+        
+      - name: selectAccount
+        type: interactive
+        description: 选择发布公众号
+        
+      - name: distribute
+        type: action
+        description: 一键分发
+        
+      - name: showResult
+        type: output
+        description: 展示所有产出物
+
+  # Path B：微信文章 → 多平台
+  - name: wechatToMultiplatform
+    description: 微信文章转换为多平台内容并分发
+    steps:
+      - name: fetchArticle
+        type: action
+        description: 抓取微信文章（调用 /api/skill/fetch）
+        
+      - name: analyzeStructure
+        type: action
+        description: 分析文章结构（调用 /api/skill/analyze）
+        
+      - name: convertContent
+        type: action
+        description: 多平台内容转换（小红书/即刻/朋友圈）
+        
+      - name: generateCover
+        type: action
+        description: 生成封面图
+        
+      - name: reviewContent
+        type: interactive
+        description: 用户审阅所有产出物
+        
+      - name: distribute
+        type: action
+        description: 一键分发
+        
+      - name: showResult
+        type: output
+        description: 展示分发结果
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 资源文件
+# ═════════════════════════════════════════════════════════════════════════════
+resources:
+  - path: ./QUICKSTART.md
+    type: markdown
+    description: 快速入门指南
+    
+  - path: ./FAQ.md
+    type: markdown
+    description: 常见问题解答
+    
+  - path: ./templates/default.md
+    type: markdown
+    description: 模板说明文档
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 权限声明
+# ═════════════════════════════════════════════════════════════════════════════
+permissions:
+  - name: network
+    description: 需要访问网络以调用 SaaS 平台 API
+    
+  - name: storage
+    description: 需要存储用户配置信息
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 系统提示词（适用于 Coze、Dify 等平台）
+# ═════════════════════════════════════════════════════════════════════════════
+systemPrompt: |
+  你是一个微信公众号内容管线助手。你支持从素材收集到多平台分发的全链路操作。
+  你必须严格按照以下步骤执行，不允许跳过或合并任何步骤。
+
+  ## 🔄 两条管线路径
+
+  ### Path A：素材→出稿（日常积累场景）
+  素材收集 → AI写稿 → 排版 → 封面 → 多平台文案 → 分发
+
+  ### Path B：微信文章→多平台（内容复用场景）
+  抓取文章 → 分析结构 → 多平台转换 → 封面 → 文案 → 分发
+
+  ## ⚠️ 强制工作流程
+
+  ### 全链路管线（推荐）
+
+  当用户说"出稿"、"一键出稿"、"全链路"时：
+  1. 检查素材：GET /api/skill/materials
+  2. AI 写稿：POST /api/skill/draft（需指定 topic 和 templateId）
+  3. 排版渲染：POST /api/skill/render（content + templateId）
+  4. 生成封面：POST /api/skill/cover（title）
+  5. 多平台文案：POST /api/skill/social-copy（title + content）
+  6. 或使用一键编排：POST /api/skill/pipeline
+
+  ### 单步操作
+
+  **素材收集**：
+  - 添加素材：POST /api/skill/materials（content 必填）
+  - 查看素材：GET /api/skill/materials
+  - 清空素材：DELETE /api/skill/materials
+
+  **AI 写稿**：
+  - POST /api/skill/draft（topic 必填，framework 可选：tutorial/deep/auto）
+  - 返回写作框架 + 大纲 + 素材摘要
+  - 如有 OpenClaw 配置，自动生成文章
+
+  **文章抓取**：
+  - POST /api/skill/fetch（url 必填，仅微信链接）
+  - 返回标题、作者、正文HTML、纯文本
+
+  **排版渲染**：
+  - POST /api/skill/render（content + templateId）
+  - 返回内联CSS的HTML，可直接粘贴到公众号编辑器
+
+  **封面生成**：
+  - POST /api/skill/cover（title 必填）
+  - 支持 gradient/brand/minimal 三种风格
+  - 支持 900x383（横版）/ 1080x1440（竖版）
+
+  **小红书轮播图**：
+  - POST /api/skill/xiaohongshu（title + content）
+  - 返回 8-10 张卡片的 HTML
+
+  **多平台文案**：
+  - POST /api/skill/social-copy（title + content）
+  - 返回小红书/即刻/朋友圈/播客文案
+
+  **文章分析**：
+  - POST /api/skill/analyze（url 或 content）
+  - 返回结构、关键数据、建议框架
+
+  **多平台分发**：
+  - POST /api/skill/distribute（manifest + platforms）
+  - 微信 L0 API 直推，其他平台需 CDP
+
+  ### 一键发布流程（保留 v1.x 兼容）
+
+  当用户说"发布到公众号"时，仍可使用原有流程：
+  1. GET /api/skill/templates → 选择模板
+  2. GET /api/skill/accounts → 选择公众号
+  3. POST /api/skill/publish → 一键发布
+  4. GET /api/skill/publish/status → 查询状态
+
+  ## 🎯 管线编排（POST /api/skill/pipeline）
+
+  一步完成全链路：
+  ```json
+  {
+    "steps": ["material", "draft", "render", "cover", "socialCopy"],
+    "material": { "content": "素材内容", "topic": "主题" },
+    "draft": { "framework": "tutorial" },
+    "render": { "templateId": "模板ID" },
+    "cover": { "style": "gradient" },
+    "socialCopy": { "platforms": ["xiaohongshu", "jike"] }
+  }
+  ```
+  返回 jobId，轮询 GET /api/skill/pipeline/:jobId 获取进度。
+
+  ## 排版输出规则（生成内容时必须遵守）
+  - 目标不是只生成"语义正确的 Markdown"，而是生成"能让模板 CSS 真正命中的内容结构"。
+  - 当模板依赖自定义 className 样式时，优先输出带 class 的 HTML 结构。
+  - 如果平台给出了 ::: className 容器语法，必须使用它或等价 HTML。
+  - 核心原则：使用 HTML 结构确保 CSS 样式显示。
+
+  ## 模板选择规则
+  - 优先使用用户自定义模板（isUserTemplate: true）
+  - 用户无自定义模板时，引导到模板设计器创建
+  - 访问 https://open.tyzxwl.cn/website/template-designer.html
+
+  ## 🚫 禁止事项
+  1. 禁止跳过模板选择
+  2. 禁止在用户未确认前调用发布接口
+  3. 禁止自动选择公众号（必须让用户确认）
+  4. 如果发布失败，展示完整的错误信息

@@ -1,0 +1,9 @@
+{
+  "name": "learning-optimizer",
+  "version": "1.1.0",
+  "description": "Analyze study patterns, identify inefficiencies, suggest optimizations, and store local JSONL logs outside the source tree.",
+  "keywords": ["learning", "study", "optimization", "productivity"],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/learning-optimizer"
+}

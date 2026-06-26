@@ -1,0 +1,410 @@
+[
+  {
+    "jobId": "linkedin-digile-glean-ai-2026-03-13",
+    "title": "Glean AI Agent Developer/Engineer",
+    "company": "Digile",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T06:01:00Z",
+    "notes": "12+ month contract, Glean AI agents, LLM/RAG, Python/Node/TS, enterprise integrations"
+  },
+  {
+    "jobId": "linkedin-finalytics-ai-ml-2026-03-13",
+    "title": "Machine Learning / Artificial Intelligence Engineer",
+    "company": "Finalytics AI",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T06:05:00Z",
+    "notes": "FinTech personalization platform, recommender systems, Python, TensorFlow/PyTorch"
+  },
+  {
+    "jobId": "linkedin-ascendion-ai-2026-03-13",
+    "title": "Artificial Intelligence Engineer",
+    "company": "Ascendion",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T06:10:00Z",
+    "notes": "$140K-$150K annually, AI/ML models, TensorFlow/PyTorch, data pipelines, APIs/microservices"
+  },
+  {
+    "jobId": "linkedin-barrington-james-ml-2026-03-13",
+    "title": "Machine Learning Engineer - Cancer AI",
+    "company": "Barrington James (confidential client)",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T05:01:00Z",
+    "notes": "Cancer AI/Healthcare, self-supervised learning, PyTorch/TensorFlow, $150k-$170k + Equity"
+  },
+  {
+    "jobId": "linkedin-berkley-hunt-llm-2026-03-13",
+    "title": "Backend LLM Engineer",
+    "company": "Berkley Hunt (AI infrastructure startup)",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T04:15:00Z",
+    "notes": "Contract role, AI infrastructure/LLM tooling, Python, $7M+ ARR startup, US citizen required"
+  },
+  {
+    "jobId": "linkedin-4373317555",
+    "title": "ML Engineer | Hybrid",
+    "company": "Crossing Hurdles",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "notes": "Requires LinkedIn profile education date completion - incomplete application"
+  },
+  {
+    "jobId": "linkedin-4378972601",
+    "title": "AI Engineer",
+    "company": "Madison-Davis, LLC",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "notes": "Up to $90/hr - Easy Apply form requires profile update"
+  },
+  {
+    "jobId": "linkedin-4362556325",
+    "title": "AI Engineer",
+    "company": "Precision Medicine Group",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "notes": "Medical/healthcare industry - good fit but requires profile update"
+  },
+  {
+    "jobId": "indeed-innovet-health",
+    "title": "AI/ML Data Scientist",
+    "company": "innoVet Health, LLC",
+    "location": "United States (Remote)",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": null,
+    "notes": "Healthcare AI for VA, requires US citizenship - good fit but external application"
+  },
+  {
+    "jobId": "linkedin-4385137345",
+    "title": "AI/ML Developer (Open AI)",
+    "company": "Avalon Information Technologies L.L.C",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T00:01:00Z",
+    "notes": "Contract role, OpenAI/LLM focus, good fit"
+  },
+  {
+    "jobId": "linkedin-4383054119",
+    "title": "Senior Software Engineer, Cryptography & Secrets Management",
+    "company": "Keeper Security, Inc.",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "notes": "Complex multi-step Greenhouse form, skipped for time efficiency"
+  },
+  {
+    "jobId": "linkedin-4383965987",
+    "title": "Machine Learning Engineer",
+    "company": "ImpetusIT",
+    "location": "New York, NY (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T00:01:00Z",
+    "notes": "LLM/Python focus, 2-3 years experience, good fit"
+  },
+  {
+    "jobId": "linkedin-4383042351",
+    "title": "Analytics Engineer",
+    "company": "CompIntelligence, Inc.",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T00:01:00Z",
+    "notes": "dbt/Snowflake/SQL, $100-120K, good fit"
+  },
+  {
+    "jobId": "linkedin-4385120621",
+    "title": "Software Engineer, New College Graduate",
+    "company": "Sift",
+    "location": "San Francisco Bay Area (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T00:01:00Z",
+    "notes": "SpaceX alumni, New Grad role, $100-150K, excellent fit"
+  },
+  {
+    "jobId": "linkedin-4384868730",
+    "title": "Remote Software Developer",
+    "company": "Turing",
+    "location": "Georgia, United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T01:01:00Z",
+    "notes": "AI/ML focus, Python/JavaScript, contract role, good fit"
+  },
+  {
+    "jobId": "linkedin-4385160098",
+    "title": "Artificial Intelligence Engineer",
+    "company": "Hanalytica GmbH",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T01:01:00Z",
+    "notes": "$60/hr, NLP/LLM focus, Python/SQL Server, good fit"
+  },
+  {
+    "jobId": "linkedin-quadsci-ml",
+    "title": "Machine Learning Engineer",
+    "company": "QuadSci.ai",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T01:01:00Z",
+    "notes": "Python/Dask/Polars, customer-facing AI, good fit"
+  },
+  {
+    "jobId": "indeed-optum-ai-ml-2026-03-12",
+    "title": "AI/ML Engineer",
+    "company": "Optum",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "applied",
+    "appliedAt": "2026-03-13T03:05:00Z",
+    "notes": "Healthcare AI, NLP/LLMs, Python, AWS, $98k-$176k"
+  },
+  {
+    "jobId": "indeed-create-music-ml-2026-03-12",
+    "title": "Machine Learning Engineer",
+    "company": "Create Music Group",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "applied",
+    "appliedAt": "2026-03-13T03:10:00Z",
+    "notes": "Music industry AI, Python, ML frameworks, $160k-$200k"
+  },
+  {
+    "jobId": "linkedin-digitech-ai-2026-03-12",
+    "title": "AI Engineer \u2013 HealthTech Start-up",
+    "company": "DigiTech Resourcing",
+    "location": "Remote",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T03:15:00Z",
+    "notes": "HealthTech startup, AI solutions, $150k-$200k"
+  },
+  {
+    "jobId": "linkedin-stealth-ml-2026-03-12",
+    "title": "Machine Learning Engineer/Applied Scientist",
+    "company": "Stealth Talent Solutions",
+    "location": "Remote",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T03:20:00Z",
+    "notes": "0-3 years experience, real-time ML systems, Python, $180k-$215k + Bonus/Stock"
+  },
+  {
+    "jobId": "linkedin-mira-fullstack-ai-2026-03-12",
+    "title": "Full Stack AI Engineer",
+    "company": "Mira Health",
+    "location": "Remote",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T03:25:00Z",
+    "notes": "Orthopedic AI, TypeScript/React/Next.js, healthcare, $160k-$180k"
+  },
+  {
+    "jobId": "linkedin-psr-associates-servicenow-2026-03-13",
+    "title": "ServiceNow Developer",
+    "company": "PSR Associates, Inc.",
+    "location": "Remote (Federal Agency - DOD)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": "2026-03-13T07:15:00Z",
+    "notes": "Skipped - requires prior Federal agency experience which Abed does not have. ServiceNow CSA cert required (Abed has this)."
+  },
+  {
+    "jobId": "linkedin-last-call-media-fullstack-2026-03-13",
+    "title": "Full Stack Engineer (Node.js)",
+    "company": "Last Call Media",
+    "location": "Remote (48 contiguous states)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": "2026-03-13T07:25:00Z",
+    "notes": "Skipped - requires 4 detailed written responses (job ID 41, trade-off examples, teammate help examples, skill improvement examples). Good fit otherwise: $120K-$145K, TypeScript/React/Node.js. Logged for manual follow-up."
+  },
+  {
+    "jobId": "indeed-jaeb-center-senior-fullstack-2026-03-13",
+    "title": "Senior Full Stack Engineer",
+    "company": "The Jaeb Center for Health Research",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": "2026-03-13T07:35:00Z",
+    "notes": "Skipped - requires application on company careers page with cover letter. Good fit: $110K-$135K, TypeScript/React, C#/.NET, SQL Server. Logged for manual follow-up."
+  },
+  {
+    "jobId": "indeed-nitka-python-fullstack-2026-03-13",
+    "title": "Full-Stack Python Developer",
+    "company": "Nitka Technologies",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": "2026-03-13T07:40:00Z",
+    "notes": "Skipped - external application required (not Indeed Easy Apply). Good fit: Python, JavaScript/React, Postgres, 100% remote, flexible schedule. Logged for manual follow-up."
+  },
+  {
+    "jobId": "linkedin-4380079035",
+    "title": "ServiceNow AI Developer | Remote Work",
+    "company": "CloudIngest",
+    "location": "Remote (Contract)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T15:10:00Z",
+    "notes": "ServiceNow Developer with AI/Agentic focus, CSA cert confirmed (Abed has CSA, CAD, CIS-ITSM), MCP integration, GenAI enablement, remote contract role. Excellent fit."
+  },
+  {
+    "jobId": "linkedin-4383147349",
+    "title": "Software Engineer",
+    "company": "DocMe360",
+    "location": "Arlington, VA (Remote)",
+    "platform": "LinkedIn",
+    "status": "discovered",
+    "appliedAt": null,
+    "notes": "Senior Software Engineer for VA, Java/Spring Boot, $110K-$135K, posted 26 min ago. Excellent fit for full stack experience. US citizen required."
+  },
+  {
+    "jobId": "linkedin-4383141564",
+    "title": "Software Engineer (ERP)",
+    "company": "Rise Technical",
+    "location": "Phoenix, AZ (Hybrid, 4 days onsite)",
+    "platform": "LinkedIn",
+    "status": "discovered",
+    "appliedAt": null,
+    "notes": "Mid-senior full stack developer, ERP/CRM development, Infor M3 & Dynamics 365, $75K-$100K + bonus. Travel required (Japan, UK, S. Korea). Posted 12 min ago."
+  },
+  {
+    "jobId": "linkedin-4385371370",
+    "title": "Full-Stack Product Engineer ($250K-$500K + Profit Sharing)",
+    "company": "Jack & Jill (Y Combinator)",
+    "location": "San Francisco, CA (Hybrid)",
+    "platform": "LinkedIn",
+    "status": "discovered",
+    "appliedAt": null,
+    "notes": "Y Combinator startup, exceptional comp package, full stack role. Strong fit for AI/early-stage company experience."
+  },
+  {
+    "jobId": "linkedin-4383138608",
+    "title": "Senior Engineer, Internal tools",
+    "company": "BJAK",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "discovered",
+    "appliedAt": null,
+    "notes": "Full stack internal tools, easy apply available, remote role. Good fit for full stack skills."
+  },
+  {
+    "jobId": "linkedin-4383159056-nozomi",
+    "title": "AI Developer",
+    "company": "Nozomi Networks",
+    "location": "San Francisco, CA (Remote)",
+    "platform": "LinkedIn",
+    "status": "applied",
+    "appliedAt": "2026-03-13T17:01:00Z",
+    "notes": "Cybersecurity AI company, MCP integrations, AI agents, RAG, Python/TypeScript, $139K-$176K, 3-7+ years. Excellent fit."
+  },
+  {
+    "jobId": "linkedin-4376796615-sierra-snow",
+    "title": "ServiceNow Architect - CMDB & Security",
+    "company": "Sierra Solutions",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Requires 8+ years ServiceNow + deep GxP/pharma experience. Abed has 5 years SWE, CSA/CAD/CIS-ITSM certs but not the deep GxP/life sciences background.",
+    "notes": "Over 100 applicants, $??K, CSA+CIS-ITSM required (Abed has these). GxP/pharma domain is the blocker."
+  },
+  {
+    "jobId": "linkedin-4383140560-russell-tobin-snow",
+    "title": "ServiceNow Technical Architect (CTA) certified",
+    "company": "Russell Tobin",
+    "location": "Tampa, FL (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Requires CTA certification which Abed does not have. $65-$70/hr.",
+    "notes": "CTA (Certified Technical Architect) is required. Abed has CSA, CAD, CIS-ITSM but not CTA."
+  },
+  {
+    "jobId": "linkedin-4383148738-onlyhire",
+    "title": "Senior AI Engineer (TypeScript / Node.js / Python)",
+    "company": "OnlyHire.Me",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Requires 8-11 years experience. Abed has 5 years. $60-$65/hr.",
+    "notes": "Excellent skills match (TS/Node/Python, LLMs, AI agents, RAG) but too senior for experience level."
+  },
+  {
+    "jobId": "indeed-allstate-lead-ai-cloud",
+    "title": "Lead AI Cloud Platform Engineer",
+    "company": "Allstate",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Requires 7+ years, Terraform expertise, Azure AI experience. Senior/lead level. Company-site application required.",
+    "notes": "$110K-$181K, good AI focus but too senior and requires infrastructure/IaC expertise Abed lacks."
+  },
+  {
+    "jobId": "indeed-upstart-personal-loans",
+    "title": "Sr. Software Engineer, Personal Loans Engineering",
+    "company": "Upstart Network, Inc.",
+    "location": "Remote",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "HARAM - Personal loans/lending company. Configured to avoid lending/loan companies.",
+    "notes": "$166K-$239K, AI-focused lending company but lending is on the haram industries list."
+  },
+  {
+    "jobId": "linkedin-4385386377-swoon",
+    "title": "Software Engineer IV",
+    "company": "Swoon",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Requires 8-9 years experience (Senior/Lead level). $60/hr. Law enforcement applications.",
+    "notes": "Java/Spring Boot/AWS stack, 6-month contract. Too senior for 5 years experience."
+  },
+  {
+    "jobId": "linkedin-4383137931-elite-recruiter",
+    "title": "Senior AI / ML Engineer",
+    "company": "Elite Recruiter",
+    "location": "United States (Remote)",
+    "platform": "LinkedIn",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "$260K-$350K salary range indicates staff/principal level. Way beyond mid-senior range.",
+    "notes": "Easy Apply available but compensation indicates far too senior a role."
+  },
+  {
+    "jobId": "indeed-buzz-integrations-fullstack",
+    "title": "Senior Software Engineer Full Stack Backend Focused",
+    "company": "Buzz Integrations (BuzzRx)",
+    "location": "Remote (Fort Lauderdale, FL)",
+    "platform": "Indeed",
+    "status": "skipped",
+    "appliedAt": null,
+    "skip_reason": "Not AI-focused company (pharmacy discount cards). Java/Spring Boot + CMS (Optimizely). No AI component.",
+    "notes": "External application required. Healthcare discount cards, not an AI company."
+  }
+]

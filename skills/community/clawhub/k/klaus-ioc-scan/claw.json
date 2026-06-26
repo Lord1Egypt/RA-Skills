@@ -1,0 +1,23 @@
+{
+  "name": "klaus-ioc-scan",
+  "description": "Analisa URLs/domínios/IPs (IOC): reputação + virus scan usando VirusTotal e AbuseIPDB",
+  "version": "1.0.0",
+  "author": "Klaus",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🛡️",
+      "homepage": "https://docs.virustotal.com/",
+      "requires": {
+        "env": ["VIRUSTOTAL_API_KEY", "ABUSEIPDB_API_KEY"],
+        "bins": ["curl"]
+      },
+      "primaryEnv": "VIRUSTOTAL_API_KEY"
+    }
+  },
+  "commands": {
+    "klaus-ioc-scan": {
+      "path": "src/ioc_scan.py",
+      "description": "Scanner de IOCs (URL, domínio, IP)"
+    }
+  }
+}

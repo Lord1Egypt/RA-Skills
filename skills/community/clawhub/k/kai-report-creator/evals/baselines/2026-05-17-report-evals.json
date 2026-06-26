@@ -1,0 +1,214 @@
+{
+  "cases": [
+    {
+      "case_id": "zh-ai-collaboration",
+      "ok": true,
+      "checks": [
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "source present"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "frontmatter complete"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "lang='zh', expected 'zh'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "report_class='narrative', expected 'narrative'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "IR body present"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "4 heading(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "3 component block(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "callout#1: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "timeline#2: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "diagram#3: valid"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "all required shell markers present"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "no raw IR block markers leaked"
+        }
+      ],
+      "rubric_ready": true,
+      "packet_path": "/Users/song/projects/report-creator/.tmp/baseline-report-eval-packets/zh-ai-collaboration.json"
+    },
+    {
+      "case_id": "en-ops-weekly",
+      "ok": true,
+      "checks": [
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "source present"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "frontmatter complete"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "lang='en', expected 'en'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "report_class='mixed', expected 'mixed'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "IR body present"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "3 heading(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "3 component block(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "kpi#1: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "timeline#2: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "callout#3: valid"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "all required shell markers present"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "no raw IR block markers leaked"
+        }
+      ],
+      "rubric_ready": true,
+      "packet_path": "/Users/song/projects/report-creator/.tmp/baseline-report-eval-packets/en-ops-weekly.json"
+    },
+    {
+      "case_id": "zh-quarterly-growth",
+      "ok": true,
+      "checks": [
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "source present"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "frontmatter complete"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "lang='zh', expected 'zh'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "report_class='data', expected 'data'"
+        },
+        {
+          "layer": "compression",
+          "ok": true,
+          "detail": "IR body present"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "4 heading(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "3 component block(s) found"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "kpi#1: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "chart#2: valid"
+        },
+        {
+          "layer": "ir_contract",
+          "ok": true,
+          "detail": "table#3: valid"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "all required shell markers present"
+        },
+        {
+          "layer": "render_integrity",
+          "ok": true,
+          "detail": "no raw IR block markers leaked"
+        }
+      ],
+      "rubric_ready": true,
+      "packet_path": "/Users/song/projects/report-creator/.tmp/baseline-report-eval-packets/zh-quarterly-growth.json"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "rubric_ready": 3
+  }
+}

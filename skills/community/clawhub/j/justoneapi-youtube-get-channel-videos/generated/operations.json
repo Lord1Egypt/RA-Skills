@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/youtube/get-channel-videos/v1 for YouTube Channel Videos through JustOneAPI with channelId.",
+  "displayName": "YouTube Channel Videos",
+  "endpointPath": "get-channel-videos",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Retrieve a list of videos from a specific YouTube channel, providing detailed insights into content performance and upload history.",
+      "method": "GET",
+      "operationId": "getChannelVideosV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for a YouTube channel.",
+          "enumValues": [],
+          "location": "query",
+          "name": "channelId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The cursor for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youtube/get-channel-videos/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Channel Videos",
+      "tags": [
+        "YouTube"
+      ]
+    }
+  ],
+  "platformKey": "youtube",
+  "primaryTag": "YouTube",
+  "skillName": "justoneapi_youtube_get_channel_videos",
+  "skillType": "interface",
+  "slug": "justoneapi-youtube-get-channel-videos",
+  "sourceTitle": "OpenAPI definition"
+}

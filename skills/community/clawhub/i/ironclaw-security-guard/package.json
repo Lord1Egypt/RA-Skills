@@ -1,0 +1,48 @@
+{
+  "name": "@wd041216-bit/openclaw-ironclaw-security-guard",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Defense-in-depth OpenClaw security plugin for dangerous-command blocking, prompt-injection detection, secret redaction, and audit logging.",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src",
+    "skills",
+    "SKILL.md",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.ts",
+    "verify": "npm test"
+  },
+  "homepage": "https://github.com/wd041216-bit/openclaw-ironclaw-security-guard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wd041216-bit/openclaw-ironclaw-security-guard.git"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "security",
+    "prompt-injection",
+    "secret-redaction",
+    "audit",
+    "openclaw-plugin",
+    "llm-security"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

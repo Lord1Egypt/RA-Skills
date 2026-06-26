@@ -1,0 +1,26 @@
+{
+  "name": "lee-cli",
+  "version": "1.0.0",
+  "description": "个人AI助手CLI工具集 - 天气笑话、新闻日报、工作总结、AI学习、智能待办",
+  "author": "李池明",
+  "license": "MIT",
+  "keywords": [
+    "claude-code-skill",
+    "lee-cli",
+    "weather",
+    "news",
+    "summary",
+    "todo",
+    "ai-learning",
+    "personal-assistant",
+    "productivity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leeking001/claude-skill-lee-cli.git"
+  },
+  "homepage": "https://github.com/leeking001/claude-skill-lee-cli#readme",
+  "bugs": {
+    "url": "https://github.com/leeking001/claude-skill-lee-cli/issues"
+  }
+}

@@ -1,35 +1,42 @@
----
-name: "Job Search MCP (JobSpy)"
-description: "Search and compare job listings across multiple boards using JobSpy MCP, with filters for criteria, location, salary, remote options, and easy apply roles."
-category: "other"
-source: "ClawHub"
-tags: [jobs careers search mcp jobspy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/job-search-mcp-jobspy"
-sourceUrl: "https://clawhub.ai/skills/job-search-mcp-jobspy"
----
+# Job Search MCP Skill
 
-# Job Search MCP (JobSpy)
+This skill enables AI agents to search for job listings across multiple job boards
+using the JobSpy MCP server.
 
-> Search and compare job listings across multiple boards using JobSpy MCP, with filters for criteria, location, salary, remote options, and easy apply roles.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/job-search-mcp-jobspy`
-- **Source URL:** [https://clawhub.ai/skills/job-search-mcp-jobspy](https://clawhub.ai/skills/job-search-mcp-jobspy)
-
-## Overview
+JobSpy aggregates listings from sources such as LinkedIn, Indeed, Glassdoor,
+ZipRecruiter, Google Jobs, and more into a unified interface.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## When to Use This Skill
+
+Use this skill when you want to:
+- Find job listings matching specific criteria (role, location, company)
+- Search for remote or on-site positions
+- Compare opportunities across job boards
+- Retrieve salary information when available
+- Find recently posted jobs
+- Filter for “Easy Apply” roles
+
+## Prerequisites
+- Python 3.10+
+- JobSpy MCP server installed and configured
+
+## Installation & Setup
+
+### macOS Setup (Homebrew Python)
+
+Homebrew-managed Python is externally managed (PEP 668).
+Create and activate a virtual environment before installing dependencies:
+
 ```bash
-hermes skills install clawhub/job-search-mcp-jobspy
+python3 -m venv .venv
+source .venv/bin/activate
+pip install mcp python-jobspy pandas pydantic
+
 ```
+
+
+
+
+
+

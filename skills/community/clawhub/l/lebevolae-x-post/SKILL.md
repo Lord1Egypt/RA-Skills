@@ -1,35 +1,48 @@
----
-name: "Lebevolae X Post"
-description: "Automatically post text or a single local image tweet to X/Twitter using provided developer credentials."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lebevolae-x-post"
-sourceUrl: "https://clawhub.ai/skills/lebevolae-x-post"
----
+\---
 
-# Lebevolae X Post
+name: Leo X Poster
 
-> Automatically post text or a single local image tweet to X/Twitter using provided developer credentials.
+slug: lebevolae-x-post
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lebevolae-x-post`
-- **Source URL:** [https://clawhub.ai/skills/lebevolae-x-post](https://clawhub.ai/skills/lebevolae-x-post)
+version: 0.1.0
 
-## Overview
+description: "Leo 的自定义技能：自动发推文到 X/Twitter，支持文本和图片"
+
+author: "Leo Liu (@LBevolae)"
+
+tags: \[twitter, x, post, social]
+
+requirements:
+
+&#x20; - TWITTER\_API\_KEY
+
+&#x20; - TWITTER\_API\_SECRET
+
+&#x20; - TWITTER\_ACCESS\_TOKEN
+
+&#x20; - TWITTER\_ACCESS\_SECRET
+
+\---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lebevolae-x-post
-```
+
+\## 功能
+
+发推文到 X，支持纯文本或带一张本地图片。
+
+
+
+\## 使用示例
+
+leo，发推：今天天气不错！ #测试
+
+leo，发带图推文：内容xxx，图片 C:\\Users\\bazin\\Desktop\\photo.jpg
+
+
+
+\## 配置
+
+需要 X Developer 账号的 4 个凭证（去 https://developer.twitter.com 申请 App，OAuth 1.0a read+write）。
+
+设置为环境变量或 OpenClaw config。
+

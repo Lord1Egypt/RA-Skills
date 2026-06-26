@@ -1,35 +1,35 @@
 ---
-name: "It Tools"
+name: "it-tools"
+version: "2.0.2"
 description: "Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for It Tools concepts, best practices, and implementation patterns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/it-tools"
-sourceUrl: "https://clawhub.ai/skills/it-tools"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [it,tools, reference]
+category: "devtools"
 ---
 
 # It Tools
 
-> Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for It Tools concepts, best practices, and implementation patterns.
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for It Tools concepts, best practices, and implementation patterns. No API keys or credentials required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/it-tools`
-- **Source URL:** [https://clawhub.ai/skills/it-tools](https://clawhub.ai/skills/it-tools)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `quickstart` | quickstart reference |
+| `patterns` | patterns reference |
+| `debugging` | debugging reference |
+| `performance` | performance reference |
+| `security` | security reference |
+| `migration` | migration reference |
+| `cheatsheet` | cheatsheet reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/it-tools
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

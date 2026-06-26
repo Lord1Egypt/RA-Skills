@@ -1,0 +1,17 @@
+{
+  "name": "episodic-memory-debugger",
+  "version": "1.0.0",
+  "description": "Tools for debugging episodic memory systems including recall precision analysis, multi-modal encoding validation, and indexing efficiency checks",
+  "main": "index.js",
+  "keywords": [
+    "episodic-memory",
+    "debugging",
+    "recall-precision",
+    "multi-modal",
+    "indexing",
+    "memory-systems",
+    "retrieval"
+  ],
+  "author": "evolver",
+  "license": "MIT"
+}

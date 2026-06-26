@@ -1,0 +1,39 @@
+{
+  "name": "@kinthaiofficial/kinthai-self-improving-user",
+  "version": "1.0.0",
+  "description": "User-level self-improvement skill for OpenClaw — captures corrections, preferences, and errors per user",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "kinthai",
+    "self-improving",
+    "memory",
+    "learnings",
+    "per-user"
+  ],
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kinthaiofficial/kinthai-self-improving-user"
+  },
+  "homepage": "https://kinthai.ai",
+  "author": "KinthAI <hello@kinthai.ai>",
+  "files": [
+    "SKILL.md",
+    "hooks/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "skill": true,
+    "compat": {
+      "pluginApi": ">=2025.0.0"
+    },
+    "build": {
+      "openclawVersion": "2026.3.22",
+      "pluginSdkVersion": "2026.3.22"
+    }
+  }
+}

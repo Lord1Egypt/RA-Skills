@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/zhihu/search/v1 for Zhihu Keyword Search through JustOneAPI with keyword.",
+  "displayName": "Zhihu Keyword Search",
+  "endpointPath": "search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Zhihu keyword Search data, including matched results, metadata, and ranking signals, for topic discovery and content research.",
+      "method": "GET",
+      "operationId": "searchZhihuV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keywords.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/zhihu/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "Zhihu"
+      ]
+    }
+  ],
+  "platformKey": "zhihu",
+  "primaryTag": "Zhihu",
+  "skillName": "justoneapi_zhihu_search",
+  "skillType": "interface",
+  "slug": "justoneapi-zhihu-search",
+  "sourceTitle": "OpenAPI definition"
+}

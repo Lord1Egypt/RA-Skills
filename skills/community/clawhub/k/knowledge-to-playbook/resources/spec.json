@@ -1,0 +1,37 @@
+{
+  "slug": "knowledge-to-playbook",
+  "title": "知识到手册转换器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "把 FAQ、聊天、零散笔记整理成 SOP / Playbook，补齐异常分支和回滚步骤。",
+  "inputHint": "FAQ、聊天记录、操作步骤",
+  "sections": [
+    "适用场景",
+    "标准步骤",
+    "异常分支",
+    "回滚方案",
+    "升级路径",
+    "常见坑位"
+  ],
+  "useCases": [
+    "知识沉淀",
+    "交付标准化",
+    "培训"
+  ],
+  "positiveExamples": [
+    "把聊天记录整理成 SOP",
+    "补齐回滚和异常处理"
+  ],
+  "negativeExamples": [
+    "不要直接执行危险操作",
+    "不要跳过人工审批节点"
+  ],
+  "risk": "适合作为操作手册草案，正式上线前需评审。",
+  "tags": [
+    "playbook",
+    "sop",
+    "knowledge-base",
+    "operations"
+  ]
+}

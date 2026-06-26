@@ -1,35 +1,42 @@
 ---
-name: "job-poster"
+name: jpeng-job-poster
 description: "Post job listings"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-job-poster"
-sourceUrl: "https://clawhub.ai/skills/jpeng-job-poster"
+version: "1.0.0"
+author: "jpeng"
+tags: ["recruitment", "job", "hr"]
 ---
 
-# job-poster
+# Job Poster
 
-> Post job listings
+Post job listings
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-job-poster`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-job-poster](https://clawhub.ai/skills/jpeng-job-poster)
+## When to Use
 
-## Overview
+- User needs recruitment related functionality
+- Automating job tasks
+- Hr operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-job-poster
+python3 scripts/job_poster.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export JOB_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

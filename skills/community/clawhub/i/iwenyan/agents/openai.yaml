@@ -1,0 +1,8 @@
+interface:
+  display_name: "爱文言"
+  short_description: "让 AI 默认以文言文答复，支持六种文体"
+  brand_color: "#8B1E1E"
+  default_prompt: "Use $iwenyan to answer in classical Chinese."
+
+policy:
+  allow_implicit_invocation: true

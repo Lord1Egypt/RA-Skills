@@ -1,0 +1,33 @@
+{
+  "id": "k8s",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "kubeconfigPath": {
+        "type": "string",
+        "description": "Custom path to kubeconfig file (defaults to ~/.kube/config)"
+      },
+      "defaultContext": {
+        "type": "string",
+        "description": "Default Kubernetes context to use"
+      },
+      "hosts": {
+        "type": "array",
+        "description": "SSH target hosts for sys-monitor skill",
+        "items": {
+          "type": "object",
+          "required": ["name", "host", "username"],
+          "properties": {
+            "name": { "type": "string", "description": "Host display name" },
+            "host": { "type": "string", "description": "IP or hostname" },
+            "port": { "type": "number", "default": 22 },
+            "username": { "type": "string" },
+            "password": { "type": "string" },
+            "privateKeyPath": { "type": "string", "description": "Path to SSH private key" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+id: ai_tells
+name: AI 套语
+description: 检查高频 AI 微表情、抽象压迫和空泛华丽词，避免文本出现明显生成感。
+severity: warning
+scope: full
+type: keywords
+threshold: 2
+message: "检测到高频 AI 套语，建议改写为更具体的动作、物体、声音或后果。"
+keywords:
+  - 瞳孔骤缩
+  - 倒吸一口凉气
+  - 不可名状
+  - 恐怖如斯
+  - 嘴角勾起了一抹弧度
+  - 深邃的眼眸
+  - 令人窒息
+  - 无法言喻
+  - 宛如实质的杀气

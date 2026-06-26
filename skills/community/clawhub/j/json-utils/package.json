@@ -1,0 +1,14 @@
+{
+  "name": "json-utils",
+  "version": "1.0.0",
+  "description": "Robust JSON parsing and validation with Pydantic",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "python3 scripts/json_processor.py --help"
+  },
+  "keywords": ["json", "pydantic", "validation"],
+  "openclaw": {
+    "skill": true,
+    "category": "development"
+  }
+}

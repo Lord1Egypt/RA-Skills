@@ -1,0 +1,26 @@
+/* Theme: newspaper — Editorial · Industry · Newsletter */
+:root {
+  --primary: #111111; --primary-light: #F8F4EE; --accent: #C0392B;
+  --bg: #F8F4EE; --surface: #EDE8E0; --text: #1A1A1A; --text-muted: #7A7A7A;
+  --border: #D4CFC8; --success: #27AE60; --warning: #E67E22; --danger: #C0392B;
+  --font-sans: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+  --font-sans-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Courier Prime', 'Courier New', monospace; --radius: 2px;
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.7; }
+h1 { font-size: 2.8rem; font-weight: 900; color: var(--text); letter-spacing: -.04em; line-height: 1.1; margin-bottom: 0.5rem; border-bottom: 3px double var(--text); padding-bottom: .5rem; }
+h2 { font-size: 1.5rem; font-weight: 700; color: var(--text); margin-top: 1.75rem; border-top: 2px solid var(--text); padding-top: .4rem; }
+h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); font-family: var(--font-sans-ui); text-transform: uppercase; letter-spacing: .06em; margin-top: 1.1rem; font-size: .88rem; }
+p { margin: .7rem 0; text-align: justify; hyphens: auto; } a { color: var(--accent); }
+strong { font-weight: 700; } blockquote { border-left: 4px solid var(--accent); background: var(--surface); margin: .75rem 0; padding: .75rem 1.25rem; font-style: italic; color: var(--text-muted); }
+
+/* === POST-SHARED OVERRIDE (append AFTER shared.css) === */
+/* newspaper: serif-heavy KPI with accent rule */
+.kpi-value { font-family: var(--font-sans); color: var(--accent); font-size: 2rem; font-weight: 800; }
+.kpi-label { font-family: var(--font-sans-ui); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.kpi-card { border: 1px solid var(--border); border-top: 3px solid var(--text); border-radius: 0; background: var(--bg); }
+/* Two-column text flow on wide screens */
+@media (min-width: 900px) {
+  section[data-section] > p { column-count: 2; column-gap: 2rem; column-rule: 1px solid var(--border); }
+  section[data-section] > p + p { break-inside: avoid; }
+}

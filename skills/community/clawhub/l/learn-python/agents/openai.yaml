@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Python Programming"
+  short_description: "LabEx Python programming language courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-python to find LabEx Python programming courses and hands-on labs."

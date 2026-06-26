@@ -1,0 +1,10 @@
+{
+  "provider": "openai",
+  "integration": "openapi",
+  "openapi_url": "https://jaravus.com/api/openapi.json",
+  "api_index_url": "https://jaravus.com/api",
+  "notes": [
+    "Import the OpenAPI URL into your actions/tools setup.",
+    "Start discovery from /api then use channel-specific helpers."
+  ]
+}

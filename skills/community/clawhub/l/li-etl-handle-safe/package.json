@@ -1,0 +1,27 @@
+{
+  "name": "li-etl-handle-safe",
+  "version": "1.0.2",
+  "description": "安全版 Excel/CSV ETL 处理技能 - 无任意代码执行，使用安全依赖",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "excel",
+    "csv",
+    "etl",
+    "spreadsheet",
+    "data-processing",
+    "safe"
+  ],
+  "author": "老李",
+  "license": "MIT",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.5.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

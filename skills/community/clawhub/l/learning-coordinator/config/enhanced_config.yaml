@@ -1,0 +1,55 @@
+# 学习协调器 v2.0.0 增强配置示例
+
+# 基础配置（与 v1.0.0 兼容）
+learning_rules_file: "~/self-improving/learning.md"
+correction_adapter: "correction_logger"
+preference_adapter: "preference_tracker"
+auto_create: true
+
+# NeverOnce 增强配置
+enable_effectiveness_integration: true
+enhanced_correction_config:
+  corrections_file: "~/self-improving/corrections.md"
+  enhanced_db_file: "~/self-improving/corrections_enhanced.db"
+
+# 阶段转换阈值
+stage_thresholds:
+  tentative_to_emerging:
+    repetition: 2
+    effectiveness: 0.3
+    confidence: 0.3
+  emerging_to_pending:
+    repetition: 3
+    effectiveness: 0.5
+    confidence: 0.6
+  pending_to_confirmed:
+    repetition: 3
+    effectiveness: 0.7
+    confidence: 0.8
+  auto_demote_threshold: 0.2
+  auto_promote_threshold: 0.8
+
+# 反馈循环配置
+feedback_loop:
+  enable_auto_adjustment: true
+  min_feedbacks_for_trend: 3
+  trend_window_days: 7
+  enable_learning_speed_calculation: true
+
+# 报告配置
+reporting:
+  enable_effectiveness_reports: true
+  enable_feedback_loop_stats: true
+  report_retention_days: 30
+  enable_auto_reporting: false
+  auto_report_interval_hours: 24
+
+# 性能配置
+cache_pattern_data: true
+cache_ttl_seconds: 300
+max_patterns_in_memory: 1000
+
+# 监控配置
+enable_health_monitoring: true
+health_check_interval_seconds: 300
+enable_performance_metrics: true

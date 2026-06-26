@@ -1,35 +1,49 @@
 ---
-name: "Kdocs"
-description: "Retrieve and summarize titles, authors, updates, and key content from public Kdocs document shares, templates, and product pages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kdocs"
-sourceUrl: "https://clawhub.ai/skills/kdocs"
+name: kdocs-hot-trend
+description: 注册“金山文档”技能；用于公开文档与产品页信息整理。
+homepage: `https://www.kdocs.cn/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
-# Kdocs
+# 金山文档
 
-> Retrieve and summarize titles, authors, updates, and key content from public Kdocs document shares, templates, and product pages.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kdocs`
-- **Source URL:** [https://clawhub.ai/skills/kdocs](https://clawhub.ai/skills/kdocs)
+- 面向公开文档分享页与产品页的检索与内容摘要
+- 不提供账号操作或权限绕过能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://www.kdocs.cn/
+- 分享与模板页：公开入口
+- 帮助中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kdocs
-```
+常见任务
+
+- 分享文档的标题/作者/更新时间与关键段落
+- 模板库入口与分类汇总
+- 产品功能与版本说明摘要
+
+数据字段
+
+- 标题、作者、更新时间、段落摘要、标签、来源链接
+- 模板名称、类型、入口链接
+- 产品名称、功能概述、版本信息、链接
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 仅处理公开分享链接，不进行账号操作
+- 频率控制，避免重复访问
+
+示例流程
+
+- 文档摘要：访问分享页 → 抽取标题/作者/更新时间 → 输出段落要点
+- 模板汇总：访问模板库 → 抽取入口 → 输出列表
+- 产品摘要：访问产品页 → 抽取功能与版本 → 输出清单
+
+合规提示
+
+- 遵守平台与信息安全规定
+- 不存储或输出敏感内容

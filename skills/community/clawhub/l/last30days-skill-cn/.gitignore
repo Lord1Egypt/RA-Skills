@@ -1,0 +1,12 @@
+# OS / tool files
+.DS_Store
+.claude/
+.entire/
+__pycache__/
+*.pyc
+.pytest_cache/
+mise.toml
+*.egg-info/
+dist/
+build/
+.env

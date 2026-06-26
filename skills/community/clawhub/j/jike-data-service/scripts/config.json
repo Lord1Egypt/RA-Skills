@@ -1,0 +1,6 @@
+{
+  "base_url": "https://ry-api.dso100.com",
+  "secret_key": "",
+  "page_size": 20,
+  "max_page_size": 100
+}

@@ -1,0 +1,16 @@
+{
+  "name": "japanese-news-briefing",
+  "displayName": "Japanese News Briefing",
+  "version": "1.0.0",
+  "description": "1 日 4 回の自動ニュースブリーフィング（日本語）。イラン戦争、米国経済、日本経済、天気をカバー。",
+  "author": "Harinezumi",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["news", "japanese", "briefing", "automation", "heartbeat"],
+  "minOpenClawVersion": "2026.3.0",
+  "repository": "https://github.com/aoikawa/openclaw-skills",
+  "category": "Productivity",
+  "language": "ja"
+}

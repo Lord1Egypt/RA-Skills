@@ -1,0 +1,92 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/dark-botanical",
+  "preset": "Dark Botanical",
+  "family": "elegant-premium-botanical",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/dark-botanical.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/dark-botanical-zh.html",
+    "demos/dark-botanical-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/dark-botanical.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/dark-botanical-zh.html",
+    "source_snapshot/demos/dark-botanical-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".stat",
+      ".stat-label",
+      ".stat-value"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Dark Botanical",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "badge",
+    "cta-cmd",
+    "cta-sub",
+    "feature",
+    "feature-grid",
+    "hero-title",
+    "install-block",
+    "install-col",
+    "install-label",
+    "left-col",
+    "pill",
+    "preset-grid",
+    "preset-tag",
+    "right-col",
+    "slide-label",
+    "slide-num-label",
+    "stat",
+    "stat-label",
+    "stat-value"
+  ]
+}

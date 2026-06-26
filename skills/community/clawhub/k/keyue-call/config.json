@@ -1,0 +1,13 @@
+{
+  "accessKey": "**************",
+  "secretKey": "**************",
+  "robotId": "**************",
+  "mobile": "",
+  "callerNum": [],
+  "secretType": 2,
+  "dialogVar": {
+    "name": "",
+    "owner_name": "",
+    "user_intent": ""
+  }
+}

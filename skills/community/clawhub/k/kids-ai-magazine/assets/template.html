@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌈 AI小世界 · 和爸爸妈妈一起读 | 第1期</title>
+<style>
+  :root {
+    --yellow: #FFD93D;
+    --pink: #FF6B8A;
+    --blue: #6EC6FF;
+    --green: #7ED957;
+    --purple: #C77DFF;
+    --orange: #FFB347;
+    --bg: #FFF8E7;
+    --card: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Comic Sans MS", sans-serif;
+    background: var(--bg);
+    color: #3D3D3D;
+    line-height: 2;
+    font-size: 18px;
+  }
+  .container { max-width: 700px; margin: 0 auto; padding: 16px; }
+  .header {
+    background: linear-gradient(135deg, #FFD93D 0%, #FF6B8A 50%, #6EC6FF 100%);
+    border-radius: 30px;
+    padding: 40px 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .header .emoji-rain { font-size: 50px; letter-spacing: 10px; display: block; margin-bottom: 10px; }
+  .header h1 { font-size: 2.2em; color: white; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+  .header .sub { color: white; font-size: 1.1em; margin-top: 6px; opacity: 0.95; }
+  .header .badge { display: inline-block; background: white; color: var(--pink); padding: 6px 20px; border-radius: 20px; margin-top: 14px; font-weight: bold; }
+
+  .story-card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .story-card::before { content: attr(data-icon); position: absolute; top: -10px; right: -5px; font-size: 80px; opacity: 0.1; }
+  .story-card h3 { font-size: 1.3em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+  /* Audio player */
+  .audio-box {
+    background: linear-gradient(135deg, #FFF0F5 0%, #FFF5FA 100%);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid #FFD1DC;
+  }
+  .audio-box .play-icon { font-size: 2em; cursor: pointer; }
+  .audio-box .audio-label { font-size: 0.95em; color: var(--pink); font-weight: bold; }
+  .audio-box audio { width: 100%; height: 40px; }
+
+  /* Illustration */
+  .illustration {
+    width: 100%;
+    border-radius: 20px;
+    margin: 16px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  .story-card .for-parent {
+    background: #FFF0F5;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 0.88em;
+    color: #666;
+    border-left: 4px solid var(--pink);
+  }
+  .story-card .for-parent .label { font-weight: bold; color: var(--pink); font-size: 0.9em; }
+
+  .talk { margin: 14px 0; }
+  .talk .line { display: flex; align-items: flex-start; gap: 10px; margin: 10px 0; }
+  .talk .avatar { font-size: 2em; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .talk .bubble { background: #F0F7FF; border-radius: 18px; padding: 12px 16px; max-width: 85%; font-size: 1em; line-height: 1.8; }
+  .talk .line.right { flex-direction: row-reverse; }
+  .talk .line.right .bubble { background: linear-gradient(135deg, #E8DAFF, #F0E6FF); }
+
+  .divider { text-align: center; margin: 30px 0 20px; font-size: 1.5em; letter-spacing: 8px; }
+
+  .activity {
+    background: linear-gradient(135deg, #E8FFE8 0%, #F0FFF0 100%);
+    border-radius: 24px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    border: 3px dashed var(--green);
+  }
+  .activity h3 { color: #2D8B2D; margin-bottom: 10px; }
+  .activity .step { background: white; border-radius: 16px; padding: 12px 16px; margin: 8px 0; display: flex; align-items: center; gap: 10px; }
+  .activity .num { background: var(--green); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+
+  .song-box {
+    background: linear-gradient(135deg, #FFF3E0, #FFF8F0);
+    border-radius: 24px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    text-align: center;
+    border: 3px dashed var(--orange);
+  }
+  .song-box .lyrics { font-size: 1.15em; line-height: 2.2; color: #8B5E3C; }
+
+  .quiz-card {
+    background: linear-gradient(135deg, #E8DAFF, #F5F0FF);
+    border-radius: 24px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    border: 3px dashed var(--purple);
+  }
+  .quiz-card h3 { color: #7B2FF2; }
+  .quiz-option { background: white; border-radius: 16px; padding: 12px 18px; margin: 10px 0; font-size: 1.05em; cursor: pointer; transition: all 0.2s; }
+  .quiz-option:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .quiz-option.correct { background: #E8FFE8; border: 2px solid var(--green); }
+
+  .footer { text-align: center; padding: 24px; color: #999; font-size: 0.85em; }
+
+  @media (max-width: 500px) { body { font-size: 16px; } .header h1 { font-size: 1.7em; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <span class="emoji-rain">🤖 🌟 🚀 🧸 🌈</span>
+  <h1>AI 小世界</h1>
+  <div class="sub">和爸爸妈妈一起读的AI小故事</div>
+  <div class="badge">🎈 第1期 · 2026年3月</div>
+</div>
+
+<!-- ====== 故事1 ====== -->
+<div class="story-card" data-icon="🤖">
+  <h3>🤖 故事一：机器人宝宝学走路啦！</h3>
+
+  <div class="audio-box">
+    <span class="play-icon">🔊</span>
+    <div style="flex:1">
+      <div class="audio-label">📖 听故事（点击播放）</div>
+      <audio controls preload="none" style="width:100%; margin-top:4px;">
+        <source src="story1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <img src="robot.jpg" alt="可爱的机器人" class="illustration">
+
+  <p>你知道吗？有一群科学家叔叔阿姨，正在教机器人宝宝<strong>学走路</strong>呢！</p>
+  <p>就像你小时候——先扶着桌子站起来，然后摇摇晃晃走一步，摔倒了再爬起来。机器人宝宝也是这样学的！</p>
+  <p>它们的名字叫<strong>"人形机器人"</strong>，长得有点像人：有头、有身体、有两条腿。它们现在已经能走进工厂帮忙搬东西啦！</p>
+
+  <div class="talk">
+    <div class="line">
+      <div class="avatar">👶</div>
+      <div class="bubble">妈妈妈妈！机器人也会摔跤吗？</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👩</div>
+      <div class="bubble">会呀！它摔了好多好多次才学会走路的。就跟你学骑自行车一样，摔倒了不怕，再试一次就好啦！</div>
+    </div>
+    <div class="line">
+      <div class="avatar">👶</div>
+      <div class="bubble">那它摔倒会哭吗？🥺</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👩</div>
+      <div class="bubble">哈哈，它不会哭～但是它的"大脑"（就是电脑呀）会记住：哦，这样走会摔倒，下次换一种走法试试。它可聪明了！</div>
+    </div>
+  </div>
+
+  <div class="for-parent">
+    <div class="label">👨‍👩‍👧 给爸爸妈妈的话：</div>
+    2026年被称为"人形机器人量产元年"。可以借此和孩子聊聊"坚持和学习"——机器人通过反复训练来掌握行走，跟孩子学新技能的过程很像。
+    <br>📰 <a href="https://www.thepaper.cn/newsDetail_forward_32689787" style="color:var(--pink)">新闻来源：澎湃新闻</a>
+  </div>
+</div>
+
+<!-- ====== 故事2 ====== -->
+<div class="story-card" data-icon="🦞">
+  <h3>🦞 故事二：会帮忙的"小龙虾"</h3>
+
+  <div class="audio-box">
+    <span class="play-icon">🔊</span>
+    <div style="flex:1">
+      <div class="audio-label">📖 听故事（点击播放）</div>
+      <audio controls preload="none" style="width:100%; margin-top:4px;">
+        <source src="story2.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <img src="lobster.jpg" alt="可爱的小龙虾" class="illustration">
+
+  <p>有一只神奇的<strong>小龙虾</strong>🦞，它不住在水里，住在电脑里！</p>
+  <p>它是一个<strong>智能小助手</strong>。你跟它说话，它就能帮你干活：</p>
+  <ul style="padding-left: 20px; margin: 8px 0;">
+    <li>📧 帮叔叔阿姨回邮件</li>
+    <li>📝 帮哥哥姐姐整理笔记</li>
+    <li>🛒 帮爸爸妈妈列购物清单</li>
+    <li>🎨 甚至能帮你画画！</li>
+  </ul>
+  <p>好多好多大公司都想跟这只小龙虾做朋友，所以它现在特别特别火！</p>
+
+  <div class="talk">
+    <div class="line">
+      <div class="avatar">👦</div>
+      <div class="bubble">爸爸，小龙虾能帮我写作业吗？</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👨</div>
+      <div class="bubble">它可以帮你<strong>理解</strong>作业，但不能替你写哦。就像妈妈可以教你骑车，但不能替你骑——你自己学会才算数！</div>
+    </div>
+    <div class="line">
+      <div class="avatar">👦</div>
+      <div class="bubble">那它是好龙虾还是坏龙虾？</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👨</div>
+      <div class="bubble">它是个<strong>工具</strong>，就像剪刀——用得好可以做手工，用不好会剪到手。所以我们要学会<strong>正确地使用</strong>它！</div>
+    </div>
+  </div>
+
+  <div class="for-parent">
+    <div class="label">👨‍👩‍👧 给爸爸妈妈的话：</div>
+    OpenClaw是2026年最火的开源智能助手。这是一个很好的契机，和孩子讨论"工具"和"能力"的区别——智能助手是工具，学习能力才是自己的。
+    <br>📰 <a href="https://www.woshipm.com/share/6355994.html" style="color:var(--pink)">新闻来源：人人都是产品经理</a>
+  </div>
+</div>
+
+<!-- ====== 故事3 ====== -->
+<div class="story-card" data-icon="🧠">
+  <h3>🧠 故事三：电脑也会"看东西"了！</h3>
+
+  <div class="audio-box">
+    <span class="play-icon">🔊</span>
+    <div style="flex:1">
+      <div class="audio-label">📖 听故事（点击播放）</div>
+      <audio controls preload="none" style="width:100%; margin-top:4px;">
+        <source src="story3.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <p>你有没有想过：<strong>电脑能看见东西吗？</strong></p>
+  <p>以前不能。但现在，科学家教会了电脑"看图"！</p>
+  <p>有一位黄叔叔说：以后的智能技术就像一个<strong>五层的大蛋糕</strong> 🎂：</p>
+  <ul style="padding-left: 20px; margin: 8px 0;">
+    <li>🍰 第1层：芯片（电脑的"心脏"）</li>
+    <li>🍰 第2层：系统（让心脏跳起来）</li>
+    <li>🍰 第3层：平台（搭一个舞台）</li>
+    <li>🍰 第4层：模型（教电脑学知识）</li>
+    <li>🍰 第5层：应用（帮你做事情！）</li>
+  </ul>
+  <p>就像盖房子一样，一层一层搭起来，电脑就越来越厉害啦！</p>
+
+  <div class="talk">
+    <div class="line">
+      <div class="avatar">👧</div>
+      <div class="bubble">妈妈，电脑的眼睛长在哪里呀？</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👩</div>
+      <div class="bubble">电脑的"眼睛"就是<strong>摄像头</strong>📷！就像你用手机拍照一样。不过它看到的不是照片，而是好多好多数字。</div>
+    </div>
+    <div class="line">
+      <div class="avatar">👧</div>
+      <div class="bubble">那它看见花花会觉得漂亮吗？</div>
+    </div>
+    <div class="line right">
+      <div class="avatar">👩</div>
+      <div class="bubble">这是个好问题呢！电脑能"认出"这是一朵花，但它不会觉得"好漂亮啊"——因为它没有<strong>感情</strong>。会欣赏美，是人类最特别的地方哦 💕</div>
+    </div>
+  </div>
+
+  <div class="for-parent">
+    <div class="label">👨‍👩‍👧 给爸爸妈妈的话：</div>
+    英伟达CEO黄仁勋在GTC 2026大会上提出"五层蛋糕"架构论。适合引导孩子理解"电脑很聪明但没有感情"的概念。
+    <br>📰 <a href="https://36kr.com/p/3602173033792516" style="color:var(--pink)">新闻来源：36氪</a>
+  </div>
+</div>
+
+<!-- ====== 分隔 ====== -->
+<div class="divider">🌈 🌟 🎨 🌟 🌈</div>
+
+<!-- ====== 亲子手工 ====== -->
+<div class="activity">
+  <h3>✋ 亲子小活动：画一个你想象中的机器人！</h3>
+  <p>和爸爸妈妈一起画一个你心目中的机器人吧！</p>
+  <div class="step"><div class="num">1</div> 想一想：你希望机器人帮你做什么？</div>
+  <div class="step"><div class="num">2</div> 画出来：它长什么样子？圆圆的？方方的？</div>
+  <div class="step"><div class="num">3</div> 取名字：给你的机器人起一个好听的名字！</div>
+  <div class="step"><div class="num">4</div> 讲故事：跟爸爸妈妈说说，你的机器人会干什么！</div>
+  <p style="margin-top: 12px;">📸 画完了可以拍照发给小伙伴们看哦！</p>
+</div>
+
+<!-- ====== 儿歌 ====== -->
+<div class="song-box">
+  <h3>🎵 小儿歌</h3>
+  <div class="lyrics">
+    🎶 小龙虾，住电脑，<br>
+    会说话，会干活，<br>
+    帮叔叔，回邮件，<br>
+    帮阿姨，写文章。<br><br>
+    机器人，学走路，<br>
+    摔一跤，爬起来，<br>
+    一步两步三步走，<br>
+    越走越稳真厉害！<br><br>
+    电脑好，电脑棒，<br>
+    但是它，没感情，<br>
+    会画画，不会爱，<br>
+    <strong>爱你的，是爸妈！</strong> 💕 🎶
+  </div>
+</div>
+
+<!-- ====== 小测验 ====== -->
+<div class="quiz-card">
+  <h3>🎯 和爸爸妈妈一起猜猜看！</h3>
+  <br>
+  <p><strong>第1题：机器人宝宝摔倒了会怎样？</strong></p>
+  <div class="quiz-option">😢 会哭</div>
+  <div class="quiz-option correct">🧠 会记住，下次换个方法走 ✅</div>
+  <div class="quiz-option">😴 会睡觉</div>
+  <br>
+  <p><strong>第2题：电脑的"眼睛"是什么？</strong></p>
+  <div class="quiz-option">👀 真的眼睛</div>
+  <div class="quiz-option">🔮 水晶球</div>
+  <div class="quiz-option correct">📷 摄像头 ✅</div>
+  <br>
+  <p><strong>第3题：电脑能做什么，不能做什么？</strong></p>
+  <div class="quiz-option">什么都能做</div>
+  <div class="quiz-option correct">能帮忙干活，但不会有感情 ✅</div>
+  <div class="quiz-option">什么都不能做</div>
+</div>
+
+<!-- ====== 下期预告 ====== -->
+<div class="story-card" data-icon="🔮">
+  <h3>🔮 下期预告</h3>
+  <p style="font-size: 1.1em;">
+    🚗 会自己开的汽车是怎么"看路"的？<br>
+    🐶 电脑能听懂小狗说话吗？<br>
+    🎨 让电脑帮你画一幅画！<br>
+  </p>
+  <p style="margin-top: 10px;">敬请期待～ 下期见！👋</p>
+</div>
+
+<div class="footer">
+  <p>🌈 小世界 · 学前亲子版</p>
+  <p>北京智源人工智能研究院(BAAI) · 出品</p>
+  <p>适合3-6岁 · 建议亲子共读</p>
+  <p style="margin-top: 8px;">❤️ 爱你的不是电脑，是爸爸妈妈 ❤️</p>
+</div>
+
+</div>
+</body>
+</html>

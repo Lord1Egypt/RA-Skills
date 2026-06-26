@@ -1,0 +1,171 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，取“上市板块(ListedSector)”=7-科创板，得到科创板上市公司的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InitialInfoPublDate",
+        "columnChiName": "首次信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "FinancingType",
+        "columnChiName": "融资类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "融资类别（FinancingType）：该字段固定常量：1-首发，2-增发，3-配股，4-其他。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AgentType",
+        "columnChiName": "机构类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "机构类别（AgentType）：与系统常量表中的DM字段关联，令LB = 1115，得到发行、上市与配股其它中介机构类别：1-发行人法律顾问；2-承销商法律顾问；3-会计师事务所；4-财务顾问；5-收款机构；6-资产评估机构；7-资产评估确认机构；8-土地评估机构；9-股票登记机构；10-担保人；11-土地评估确认机构；12-配股资产审计机构；13-股票托管机构；14-境外财务顾问；15-境外律师事务所；17-境外会计师事务所；18-承销商境外法律顾问；21-验资机构。\n减1000后与系统常量表中的DM字段关联，令LB = 1117，得到发行、上市与配股中介机构类别：1001-主承销商；1002-副主承销商；1003-分销商；1004-上市推荐人；1009-保荐人；1010-存托人；1011-托管人；1014-联席主承销商。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "AgentCode",
+        "columnChiName": "机构编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "机构编号（AgentCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到发行与上市中介机构的基本资料。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "36.81"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "DocReceParty",
+        "columnChiName": "核查材料接收方",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "6.27"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "PersonInCharge",
+        "columnChiName": "经办人",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "83.69"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Representative",
+        "columnChiName": "代表人",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "33.67"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "CancelDate",
+        "columnChiName": "取消日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "CancelStatement",
+        "columnChiName": "取消说明",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

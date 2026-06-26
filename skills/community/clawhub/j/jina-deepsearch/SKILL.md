@@ -1,35 +1,50 @@
 ---
-name: "jina-deepsearch"
-description: "Jina DeepSearch API access via AIHubMix - use curl to call the HTTP API directly."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jina-deepsearch"
-sourceUrl: "https://clawhub.ai/skills/jina-deepsearch"
+name: jina-deepsearch
+description: Jina DeepSearch API access via AIHubMix - use curl to call the HTTP API directly.
+homepage: https://jina.ai/
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔍",
+        "requires": { "env": ["AIHUBMIX_API_KEY"], "bins": ["curl"] },
+        "install":
+          [
+            {
+              "id": "config",
+              "kind": "manual",
+              "label": "Configure AIHUBMIX_API_KEY",
+              "instructions": "Set AIHUBMIX_API_KEY environment variable. Get your key from https://aihubmix.com",
+            },
+          ],
+      },
+  }
 ---
 
-# jina-deepsearch
+# Jina DeepSearch
 
-> Jina DeepSearch API access via AIHubMix - use curl to call the HTTP API directly.
+Access Jina's DeepSearch API via AIHubMix using curl.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jina-deepsearch`
-- **Source URL:** [https://clawhub.ai/skills/jina-deepsearch](https://clawhub.ai/skills/jina-deepsearch)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jina-deepsearch
+# Set your API key first
+export AIHUBMIX_API_KEY="sk-..."
+
+# Call the API directly with curl
+curl https://aihubmix.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AIHUBMIX_API_KEY" \
+  -d '{
+    "model": "jina-deepsearch-v1",
+    "messages": [{"role": "user", "content": "Your search query"}]
+  }'
 ```
+
+## Configuration
+
+Set `AIHUBMIX_API_KEY` environment variable. Get your API key from https://aihubmix.com
+
+## Model
+
+- `jina-deepsearch-v1` - Jina's deep search model

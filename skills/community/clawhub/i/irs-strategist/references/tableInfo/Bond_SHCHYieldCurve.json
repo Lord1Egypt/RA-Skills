@@ -1,0 +1,139 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "CurveCode",
+        "columnChiName": "曲线代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "曲线代码(CurveCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1448 and DM between 201 and 253，得到曲线代码的具体描述：201-上海清算所CP/SCP收益率曲线(铁道)，202-上海清算所CP/SCP收益率曲线(超AAA)，203-上海清算所CP/SCP收益率曲线(AAA)，204-上海清算所CP/SCP收益率曲线(AAA-)，205-上海清算所CP/SCP收益率曲线(AA+)，206-上海清算所CP/SCP收益率曲线(AA-)，207-上海清算所CP/SCP收益率曲线(AA)，208-上海清算所CP/SCP收益率曲线(A+)，209-上海清算所超短期融资券收益率曲线，210-上海清算所铁道债收益率曲线，211-上海清算所中短期票据收益率曲线(超AAA)，212-上海清算所中短期票据收益率曲线(AAA)，213-上海清算所中短期票据收益率曲线(AA+)，214-上海清算所中短期票据收益率曲线(A+)，215-上海清算所中短期票据收益率曲线(AA-)，216-上海清算所中短期票据收益率曲线(AAA-)，217-上海清算所中短期票据收益率曲线(AA)，218-中债企业债收益率曲线(CC)，219-中债城投债收益率曲线(AAA)，220-中债城投债收益率曲线(AA(2))，221-中债企业债收益率曲线(B)，222-中债企业债收益率曲线(BB)，223-中债企业债收益率曲线(BBB)，224-中债企业债收益率曲线(CCC)，225-中债地方政府债收益率曲线(AAA-)，226-中债资产支持证券收益率曲线(AAA-)，227-中债资产支持证券收益率曲线(AA)，228-中债资产支持证券收益率曲线(AA-)，229-中债资产支持证券收益率曲线(A＋)，230-中债浮动利率资产支持证券(Depo-1Y)点差曲线(AA)，231-上海清算所城投债收益率曲线(AA)，232-上海清算所城投债收益率曲线(AA+)，233-上海清算所城投债收益率曲线(AA-)，234-上海清算所城投债收益率曲线(AAA)，235-上海清算所固定利率同业存单收益率曲线(AA+)，236-上海清算所国开债收益率曲线，237-上海清算所进出口行债收益率曲线，238-上海清算所农发行债收益率曲线，239-上海清算所商业银行债收益率曲线(AA+)，240-上海清算所商业银行债收益率曲线(AAA)，241-上海清算所国债收益率曲线，242-上海清算所地方政府债收益率曲线(AAA)，243-上海清算所中资美元债收益率曲线(A)，244-上海清算所中资美元债收益率曲线(A+)，245-上海清算所中资美元债收益率曲线(A-)，246-上海清算所中资美元债收益率曲线(BBB)，247-上海清算所中资美元债收益率曲线(BBB+)，248-上海清算所中资美元债收益率曲线(BBB-)，250-上海清算所固定利率同业存单收益率曲线(AAA)，251-上海清算所固定利率同业存单收益率曲线(A+)，252-上海清算所固定利率同业存单收益率曲线(AA)，253-上海清算所固定利率同业存单收益率曲线(AA-)。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "CurveName",
+        "columnChiName": "曲线名称",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "YieldTypeCode",
+        "columnChiName": "收益率类型代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "收益率类型代码(YieldTypeCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1449，得到收益率类型代码的具体描述：1-到期，2-即期，3-远期的到期，4-远期的即期，5-远期。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "YieldType",
+        "columnChiName": "收益率类型",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "StandardMaturity",
+        "columnChiName": "标准待偿期(年)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Yield",
+        "columnChiName": "收益率(%)",
+        "columnType": "decimal(18,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "N",
+        "columnChiName": "N(年)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "44.4"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "K",
+        "columnChiName": "K(年)",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "44.4"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

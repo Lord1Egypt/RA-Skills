@@ -1,0 +1,7 @@
+interface:
+  display_name: "节假日安排"
+  short_description: "查询中国大陆法定节假日与调休安排。"
+  default_prompt: "Use $jiejiari to answer official Mainland China holiday schedule, make-up workday, and 2026 festival break questions with exact dates."
+
+policy:
+  allow_implicit_invocation: true

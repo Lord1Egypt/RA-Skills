@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>快乐小狗信息整理器 v2.0 - 全流程规则引擎</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0f1e;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 2rem 1rem;
+            color: #eef2ff;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: #101624;
+            border-radius: 2rem;
+            border: 1px solid #2d3748;
+            overflow: hidden;
+        }
+        .header {
+            padding: 1.5rem 2rem;
+            background: #0b0f1a;
+            border-bottom: 1px solid #2a3448;
+        }
+        .header h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffeaa7, #dfe6e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            background: #1e2a3a;
+            margin-left: 1rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #ffeaa7;
+        }
+        .header p {
+            margin-top: 0.6rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        .diagram-wrapper {
+            padding: 1.5rem 1rem;
+            background: #0f141f;
+            overflow-x: auto;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            min-width: 900px;
+        }
+        .footer-note {
+            background: #0b0f1a;
+            padding: 1rem 2rem;
+            border-top: 1px solid #232b3b;
+            font-size: 0.8rem;
+            color: #6c7a91;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .legend {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .features {
+            background: #0a0f1e;
+            padding: 2rem;
+            color: #dfe6e9;
+        }
+        .features h3 {
+            color: #ffeaa7;
+            margin-bottom: 1rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .feature-card {
+            background: #101624;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #2d3748;
+        }
+        .feature-card h4 {
+            color: #74b9ff;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 960px) {
+            .diagram-wrapper { padding: 1rem 0.5rem; }
+            .mermaid { min-width: 800px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🐕 快乐小狗信息整理器 v2.0 · 全流程规则引擎</h1>
+        <span class="badge">AI增强分类 | 多平台支持 | 智能模板 | 飞书云盘同步</span>
+        <p>微信接收内容自动处理系统 - 支持小红书/知乎/B站/GitHub等平台，全自动提取、分类、归档</p>
+    </div>
+    <div class="diagram-wrapper">
+        <pre class="mermaid">
+            %%{init: {'theme':'dark', 'themeVariables': {
+                'background': '#0f141f',
+                'primaryColor': '#ffeaa7',
+                'primaryBorderColor': '#fdcb6e',
+                'primaryTextColor': '#2d3436',
+                'lineColor': '#636e72',
+                'secondaryColor': '#1e2a3a',
+                'tertiaryColor': '#0f172a',
+                'altSectionBkgColor': '#0a0f1e',
+                'gridColor': '#2d3748'
+            }}}%%
+            flowchart TD
+            %% 输入处理层
+            A[微信消息输入] --> B{输入类型检测}
+            B -->|获取指令| C1[获取指令解析]
+            B -->|普通内容| C2[内容预处理]
+
+            %% 获取指令处理
+            C1 --> D1{平台识别}
+            D1 -->|知乎| E1[知乎热门/搜索]
+            D1 -->|GitHub| E2[GitHub趋势/仓库]
+            D1 -->|B站| E3[B站搜索结果]
+            D1 -->|其他| F1[返回不支持提示]
+
+            %% 普通内容处理流程
+            C2 --> D2[内容拆分]
+            D2 --> E4[去重缓存检查]
+            E4 -->|缓存命中| F2[返回缓存结果]
+            E4 -->|未命中| F3[并发限制队列]
+            F3 --> G1[批次处理]
+
+            %% 内容提取器模块
+            subgraph ContentExtractor[内容提取器]
+                H1[平台检测]
+                H2[URL分析]
+                H3[内容抓取]
+                H4[资源提取]
+            end
+
+            %% 平台特定处理
+            subgraph PlatformHandlers[平台处理器]
+                P1[小红书 Puppeteer动态抓取]
+                P2[知乎 API/HTML解析]
+                P3[B站视频内容提取]
+                P4[GitHub仓库信息]
+                P5[微信文章解析]
+                P6[抖音视频处理]
+                P7[通用网页解析]
+            end
+
+            G1 --> ContentExtractor
+            ContentExtractor --> PlatformHandlers
+
+            %% 内容识别与处理
+            subgraph ContentProcessing[内容处理]
+                I1[文字安全扫描]
+                I2[图片OCR识别]
+                I3{是否短视频?}
+                I4[音频提取]
+                I5[字幕生成]
+                I6[视频时长验证]
+                I7[文本规范化]
+            end
+
+            PlatformHandlers --> ContentProcessing
+            I3 -->|是| I4 --> I5 --> I7
+            I3 -->|否| I7
+            I6 -->|超过60秒| E5[抛出错误]
+            I6 -->|未超时| I7
+
+            %% AI分类引擎
+            subgraph ClassificationEngine[AI分类引擎]
+                J1[关键词匹配算法]
+                J2[分类优先级调整]
+                J3[置信度计算]
+                J4{置信度>=90%}
+            end
+
+            ContentProcessing --> ClassificationEngine
+            J1 --> J2 --> J3 --> J4
+
+            %% 低置信度处理
+            subgraph ManualConfirm[人工确认流程]
+                K1[进入待确认状态]
+                K2[发送分类选项]
+                K3[等待用户选择]
+                K4{确认分类}
+                K4 -->|有效| K5[继续处理]
+                K4 -->|无效| K6[取消操作]
+            end
+
+            J4 -->|否| ManualConfirm
+            J4 -->|是| L1[自动分配分类]
+            K5 --> L1
+
+            %% 模板引擎
+            subgraph TemplateEngine[智能模板引擎]
+                M1[内容类型识别]
+                M2[模板自动选择]
+                M3{模板类型}
+                M3 -->|知识笔记| M4[标准/详细/简洁]
+                M3 -->|视频内容| M5[视频专用模板]
+                M3 -->|GitHub仓库| M6[仓库模板]
+                M3 -->|社交媒体| M7[社交模板]
+
+                N1[Markdown生成]
+                N2[元数据注入]
+                N3[格式优化]
+            end
+
+            ClassificationEngine --> TemplateEngine
+            M4 --> N1 --> N2
+            M5 --> N1 --> N2
+            M6 --> N1 --> N2
+            M7 --> N1 --> N2
+
+            %% 飞书云盘同步
+            subgraph FeishuSync[飞书云盘同步]
+                O1[创建文件夹结构]
+                O2[文档上传]
+                O3[权限设置]
+                O4[用户通知]
+                O5[结果返回]
+            end
+
+            TemplateEngine --> FeishuSync
+            N3 --> O1 --> O2 --> O3 --> O4 --> O5
+
+            %% 通知响应
+            FeishuSync --> P8[微信返回处理结果]
+            E1 --> P8
+            E2 --> P8
+            E3 --> P8
+            F1 --> P8
+            F2 --> P8
+            K2 --> P8
+            K6 --> P8
+            E5 --> P8
+
+            %% 系统监控
+            subgraph SystemMonitor[系统监控]
+                Q1[Trace ID生成]
+                Q2[日志记录]
+                Q3[性能监控]
+                Q4[错误追踪]
+                Q5[缓存管理]
+            end
+
+            A --> Q1
+            Q1 --> Q2
+            Q2 --> Q3
+            Q3 --> Q4
+            Q4 --> Q5
+
+            %% 样式定义
+            style ContentExtractor fill:#1a1a2e,stroke:#ffeaa7,stroke-width:2px
+            style PlatformHandlers fill:#16213e,stroke:#74b9ff,stroke-width:2px
+            style ContentProcessing fill:#0f3460,stroke:#00d2d3,stroke-width:2px
+            style ClassificationEngine fill:#533483,stroke:#a29bfe,stroke-width:2px
+            style ManualConfirm fill:#e94560,stroke:#ff6b6b,stroke-width:2px
+            style TemplateEngine fill:#f97306,stroke:#fdcb6e,stroke-width:2px
+            style FeishuSync fill:#034f28,stroke:#55efc4,stroke-width:2px
+            style SystemMonitor fill:#3b3b3b,stroke:#dfe6e9,stroke-width:1px
+
+            style A fill:#ffeaa7,stroke:#dfe6e9
+            style P8 fill:#55efc4,stroke:#00b894
+
+            classDef path fill:none,stroke:#636e72,stroke-width:1px
+            classDef error fill:#e84393,color:#fff
+            classDef success fill:#00b894,color:#fff
+
+            class E5 error
+            class F2,F3,O2,O5 success
+        </pre>
+    </div>
+
+    <div class="features">
+        <h3>🚀 v2.0 新增功能特性</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>🔄 统一内容提取器</h4>
+                <p>整合5大平台内容提取，支持小红书Puppeteer动态抓取、知乎深度解析、B站视频字幕、GitHub仓库信息等</p>
+            </div>
+            <div class="feature-card">
+                <h4>🎨 智能模板引擎</h4>
+                <p>根据内容类型自动选择最佳模板，支持标准/详细/简洁三种格式，适配视频、代码、社交媒体等不同场景</p>
+            </div>
+            <div class="feature-card">
+                <h4>🧠 AI增强分类</h4>
+                <p>8大知识类别，优先级智能调整，置信度动态计算，低置信度自动触发人工确认</p>
+            </div>
+            <div class="feature-card">
+                <h4>⚡ 批量并发处理</h4>
+                <p>自动内容拆分、去重缓存、批次处理，最高3个并发，24小时内存缓存，性能优化</p>
+            </div>
+            <div class="feature-card">
+                <h4>🔒 多重安全防护</h4>
+                <p>URL安全扫描、内容敏感词过滤、视频时长验证、OCR文字安全检查、3次重试机制</p>
+            </div>
+            <div class="feature-card">
+                <h4>📊 增强飞书同步</h4>
+                <p>自动文件夹结构、权限精细控制、用户实时通知、错误不影响主流程</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <div>
+            ✨ <strong>核心特性</strong><br>
+            • 支持平台：小红书、知乎、B站、GitHub、微信、抖音<br>
+           • 智能分类：人工智能、产品经理、经济投资、心理学、商业机会、灵感、技术实践、学习成长<br>
+            • 模板类型：知识笔记、视频内容、GitHub仓库、社交媒体<br>
+            • 处理能力：图片OCR、视频转录、代码高亮、链接解析
+        </div>
+        <div class="legend">
+            <span>🟡 输入输出</span>
+            <span>🔵 内容处理</span>
+            <span>🟣 AI分析</span>
+            <span>🟠 模板生成</span>
+            <span>🟢 存储同步</span>
+            <span>🔴 错误处理</span>
+        </div>
+    </div>
+</div>
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+            background: '#0f141f',
+            primaryColor: '#ffeaa7',
+            primaryBorderColor: '#fdcb6e',
+            primaryTextColor: '#2d3436',
+            lineColor: '#636e72',
+            edgeLabelBackground: '#2d3748',
+            altSectionBkgColor: '#0a0f1e',
+            gridColor: '#2d3748'
+        },
+        flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 20
+        },
+        securityLevel: 'loose',
+        fontFamily: '"Segoe UI", "Roboto", monospace'
+    });
+</script>
+</body>
+</html>

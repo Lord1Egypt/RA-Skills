@@ -1,0 +1,180 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到证券的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": " \n公司代码（CompanyCode）：与“证券主表（SecuMain）”中的“公司代码（CompanyCode）”关联，得到上市公司的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SHID",
+        "columnChiName": "股东ID",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "股东ID（SHID）：与机构基本资料（LC_InstiArchive）中的企业编号（CompanyCode）关联",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "SHName",
+        "columnChiName": "股东名称",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "HoldAShareSum",
+        "columnChiName": "持有A股总数(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "RestrainedAShare",
+        "columnChiName": "其中:有限售A股数(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "19.4"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UnstintedAShare",
+        "columnChiName": "其中:无限售A股数(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "35.63"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "PCTOfTotalShares",
+        "columnChiName": "占总股本比例(%)",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.97"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "PCTOfFloatShares",
+        "columnChiName": "占流通A股比例(%)",
+        "columnType": "decimal(10,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "87.09"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "HoldASumChange",
+        "columnChiName": "持有A股数量增减(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "80.59"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "HoldASumChangeRate",
+        "columnChiName": "持有A股数量增减幅度(%)",
+        "columnType": "decimal(16,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "80.59"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

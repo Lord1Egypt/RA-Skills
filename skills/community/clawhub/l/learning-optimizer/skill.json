@@ -1,0 +1,22 @@
+{
+  "name": "Learning Optimizer",
+  "slug": "learning-optimizer",
+  "version": "1.1.0",
+  "description": "Analyze study patterns, identify inefficiencies, suggest optimizations, and store local JSONL logs outside the source tree.",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "zh",
+  "tags": ["learning", "study", "optimization", "productivity"],
+  "trigger_keywords": [
+    "learning optimizer",
+    "study pattern analysis",
+    "学习效率",
+    "学习优化",
+    "时间分配"
+  ],
+  "requires_api": false,
+  "requires_network": false,
+  "uses_local_storage": true,
+  "storage_env": "LEARNING_OPTIMIZER_HOME",
+  "readiness": "stable"
+}

@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-user-relation-stat/v1 for Bilibili User Relation Stats through JustOneAPI with wmid.",
+  "displayName": "Bilibili User Relation Stats",
+  "endpointPath": "get-user-relation-stat",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili user Relation Stats data, including following counts, for creator benchmarking and audience growth tracking.",
+      "method": "GET",
+      "operationId": "getUserRelationStat",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili User ID (WMID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "wmid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-user-relation-stat/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Relation Stats",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_user_relation_stat",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-user-relation-stat",
+  "sourceTitle": "OpenAPI definition"
+}

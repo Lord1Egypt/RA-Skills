@@ -1,0 +1,8 @@
+{
+  "name": "keyword-research",
+  "version": "1.1.0",
+  "description": "Multi-source keyword autocomplete from Google, YouTube, Amazon, DuckDuckGo and Bing — no API key required.",
+  "keywords": ["openclaw", "seo", "keywords", "autocomplete", "google", "bing", "youtube", "amazon", "keyword-research", "marketing"],
+  "author": "brasco05",
+  "license": "MIT"
+}

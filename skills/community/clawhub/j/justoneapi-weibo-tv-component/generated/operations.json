@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/tv-component/v1 for Weibo TV Video Details through JustOneAPI with oid.",
+  "displayName": "Weibo TV Video Details",
+  "endpointPath": "tv-component",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo tV Video Details data, including media URLs, author details, and engagement counts, for video research, archiving, and performance analysis.",
+      "method": "GET",
+      "operationId": "tvComponentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo video/object ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/tv-component/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "TV Video Details",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_tv_component",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-tv-component",
+  "sourceTitle": "OpenAPI definition"
+}

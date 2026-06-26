@@ -1,0 +1,11 @@
+{
+  "channels": {
+    "wecom": {
+      "enabled": true,
+      "botId": "你的 Bot ID（从企业微信后台获取）",
+      "secret": "你的 Secret（从企业微信后台获取）",
+      "model": "保持现有模型配置",
+      "dmPolicy": "open"
+    }
+  }
+}

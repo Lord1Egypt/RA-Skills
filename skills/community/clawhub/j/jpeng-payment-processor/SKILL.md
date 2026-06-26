@@ -1,35 +1,42 @@
 ---
-name: "payment-processor"
+name: jpeng-payment-processor
 description: "Process payments"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-payment-processor"
-sourceUrl: "https://clawhub.ai/skills/jpeng-payment-processor"
+version: "1.0.0"
+author: "jpeng"
+tags: ["payment", "process", "ecommerce"]
 ---
 
-# payment-processor
+# Payment Processor
 
-> Process payments
+Process payments
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-payment-processor`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-payment-processor](https://clawhub.ai/skills/jpeng-payment-processor)
+## When to Use
 
-## Overview
+- User needs payment related functionality
+- Automating process tasks
+- Ecommerce operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-payment-processor
+python3 scripts/payment_processor.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export PROCESS_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

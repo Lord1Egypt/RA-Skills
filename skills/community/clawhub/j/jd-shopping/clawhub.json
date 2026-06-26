@@ -1,0 +1,21 @@
+{
+  "name": "jd-shopping",
+  "version": "2.1.0",
+  "description": "JD.com shopping assistant. Input a JD product name or link; output self-operated/flagship trust checks, visible price, review risks, SKU recommendation, and cart-ready summary. Safe boundary: never logs in for the user, never submits orders, and never clicks checkout or payment.",
+  "keywords": [
+    "jd",
+    "jingdong",
+    "shopping-agent",
+    "shopping-decision",
+    "cart-preparation",
+    "price-compare",
+    "self-operated",
+    "buying-advice",
+    "china",
+    "ecommerce"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/jd-shopping",
+  "homepage": "https://clawhub.ai/harrylabsj/jd-shopping"
+}

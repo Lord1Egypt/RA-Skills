@@ -1,35 +1,185 @@
 ---
-name: "juejin-pins-publish"
-description: "自动发布沸点到稀土掘金社区。当用户要求发布沸点、发布动态到掘金、juejin.cn 时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juejin-pins-publish"
-sourceUrl: "https://clawhub.ai/skills/juejin-pins-publish"
+name: juejin-pins-publish
+version: 1.0.0
+description: 自动发布沸点到稀土掘金社区。当用户要求发布沸点、发布动态到掘金、juejin.cn 时触发此技能。
+input:
+  properties:
+    content:
+      type: string
+      description: 沸点内容文本
+    club:
+      type: string
+      description: 圈子名称，如"上班摸鱼"、"前端开发圈"等
+    topic:
+      type: string
+      description: 话题标签，如"#OpenClaw今天想篡位了吗#"
+    images:
+      type: array
+      description: 图片路径列表
+    link:
+      type: string
+      description: 要插入的链接URL
+    code:
+      type: string
+      description: 要插入的代码块
 ---
 
-# juejin-pins-publish
+# 稀土掘金沸点发布
 
-> 自动发布沸点到稀土掘金社区。当用户要求发布沸点、发布动态到掘金、juejin.cn 时触发此技能。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juejin-pins-publish`
-- **Source URL:** [https://clawhub.ai/skills/juejin-pins-publish](https://clawhub.ai/skills/juejin-pins-publish)
+本技能用于自动发布沸点到稀土掘金社区。
 
-## Overview
+**沸点页面地址**: `https://juejin.cn/pins`
 
+## 前置条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juejin-pins-publish
+- 用户已登录掘金账号
+- Chrome 浏览器已附加 OpenClaw Browser Relay 扩展
+
+## 发布区域结构
+
 ```
+┌─────────────────────────────────────────────────┐
+│  快和掘友一起分享新鲜事！                          │
+│  ┌─────────────────────────────────────────────┐│
+│  │ [圈子选择] 请选择圈子 ▼                      ││
+│  ├─────────────────────────────────────────────┤│
+│  │                                             ││
+│  │  输入框（支持富文本）                         ││
+│  │                                             ││
+│  ├─────────────────────────────────────────────┤│
+│  │ [表情] [图片] [链接] [话题] [代码]           ││
+│  │                               字数: 0/1000   ││
+│  │                               [发布按钮]     ││
+│  └─────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────┘
+```
+
+## 发布流程
+
+### 1. 打开沸点页面
+
+```
+browser action=open url=https://juejin.cn/pins profile=chrome
+```
+
+### 2. 选择圈子（可选）
+
+如果用户指定了圈子：
+- 点击"请选择圈子"按钮（`ref=e97`）
+- 从下拉列表中选择对应圈子
+
+**常用圈子列表：**
+| 圈子名称 | 圈子ID |
+|---------|--------|
+| 上班摸鱼 | 6824710203301167112 |
+| 前端开发圈 | 7237375092064256055 |
+| AICoding交流 | 7461650741493497865 |
+| 鸿蒙开发者社区 | 7396452297225535551 |
+| 大模型生态圈 | 7273343075660300349 |
+| 服务端与架构 | 7237388169522462781 |
+| 什么值得买 | 6824710203007565831 |
+
+### 3. 点击输入区域
+
+定位并点击沸点输入框激活编辑状态。
+
+### 4. 输入沸点内容
+
+使用 `action=act kind=type` 输入用户指定的内容。
+
+**支持的内容格式：**
+- 纯文本
+- 话题标签：`#话题名#`（如 `#OpenClaw今天想篡位了吗#`）
+- Emoji 表情
+
+### 5. 添加附加内容（可选）
+
+#### 5.1 添加表情
+- 点击"表情"按钮（`ref=e106`）
+- 从表情面板选择表情
+
+#### 5.2 添加图片
+- 点击"图片"按钮（`ref=e110`）
+- 上传图片或选择本地图片
+
+#### 5.3 添加链接
+- 点击"链接"按钮（`ref=e115`）
+- 输入链接URL
+
+#### 5.4 选择话题
+- 点击"话题"按钮（`ref=e121`）
+- 从话题列表选择或搜索话题
+
+#### 5.5 添加代码
+- 点击"代码"按钮（`ref=e126`）
+- 输入代码内容
+
+### 6. 发布沸点
+
+点击"发布"按钮（`ref=e132`）完成发布。
+
+## 注意事项
+
+1. **字数限制**：沸点内容不超过 1000 字
+2. **圈子推荐**：添加圈子可增加曝光度
+3. **话题热度**：热门话题可被更多掘友看到
+4. **发布频率**：短时间内发布过多可能触发限制
+5. **内容审核**：敏感内容可能需要审核
+
+## 示例用法
+
+### 示例 1：发布简单沸点
+
+**用户请求**：
+> 帮我在掘金发布一条沸点：今天天气真好
+
+**执行步骤**：
+1. 打开沸点页面
+2. 点击输入区域
+3. 输入：`今天天气真好`
+4. 点击发布
+
+### 示例 2：发布带圈子和话题的沸点
+
+**用户请求**：
+> 帮我在掘金的"上班摸鱼"圈子发布一条沸点，内容是"OpenClaw 真好用"，带上话题 #OpenClaw今天想篡位了吗#
+
+**执行步骤**：
+1. 打开沸点页面
+2. 点击圈子选择
+3. 选择"上班摸鱼"圈子
+4. 点击输入区域
+5. 输入：`#OpenClaw今天想篡位了吗# OpenClaw 真好用`
+6. 点击发布
+
+### 示例 3：发布带代码的沸点
+
+**用户请求**：
+> 帮我在掘金发布一条沸点分享一段代码
+
+**执行步骤**：
+1. 打开沸点页面
+2. 点击输入区域
+3. 输入沸点文字内容
+4. 点击"代码"按钮
+5. 输入代码内容
+6. 点击发布
+
+## 错误处理
+
+| 问题 | 解决方案 |
+|------|---------|
+| 页面无法加载 | 检查网络连接 |
+| 未登录状态 | 提示用户先登录掘金账号 |
+| 发布按钮无响应 | 检查内容是否为空 |
+| 输入框未激活 | 重新点击输入区域 |
+| 圈子列表不显示 | 刷新页面重试 |
+
+## 相关链接
+
+- 掘金首页：https://juejin.cn
+- 沸点页面：https://juejin.cn/pins
+- 圈子列表：https://juejin.cn/pin/clubs
+- 话题列表：https://juejin.cn/pin/topics

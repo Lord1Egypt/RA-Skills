@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: MIT-0
+# Copyright 2026 InvestorClaw Contributors
+#
+# Drop-in TOML snippet for ~/.zeroclaw/config.toml.
+#
+# Merge — do NOT replace — your existing config. If your config
+# already has a top-level [mcp] table or other [mcp.servers.*] blocks,
+# append these two tables alongside them. TOML treats nested tables
+# additively, so order does not matter.
+#
+# After editing, run:   zeroclaw config validate
+# Then start an agent:  zeroclaw agent -m "What is in my portfolio?"
+
+[mcp.servers.investorclaw]
+transport = "http"
+url = "http://localhost:18090/mcp"
+
+[mcp.servers.mnemos]
+transport = "http"
+url = "http://localhost:5002/mcp"

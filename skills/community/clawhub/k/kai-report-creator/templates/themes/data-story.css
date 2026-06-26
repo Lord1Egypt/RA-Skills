@@ -1,0 +1,22 @@
+/* Theme: data-story — Data Narrative · Annual */
+:root {
+  --primary: #E63946; --primary-light: #FDE8EA; --accent: #F4A261;
+  --bg: #FAFAFA; --surface: #F0F0F0; --text: #1A1A2E; --text-muted: #6B6B7B;
+  --border: #E0E0E8; --success: #2D6A4F; --warning: #E76F51; --danger: #C1121F;
+  --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace; --radius: 10px;
+  --gradient: linear-gradient(135deg, #E63946 0%, #F4A261 100%);
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.6; }
+h1 { font-size: 2.4rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1.5rem; letter-spacing: -.03em; }
+h2 { font-size: 1.45rem; font-weight: 700; color: var(--text); margin-top: 1.75rem; position: relative; padding-left: 1rem; }
+h2::before { content: ''; position: absolute; left: 0; top: .2em; bottom: .2em; width: 4px; background: var(--gradient); border-radius: 2px; }
+h3 { font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-top: 1.1rem; }
+p { margin: .6rem 0; } a { color: var(--primary); }
+strong { font-weight: 700; color: var(--primary); } blockquote { border-left: 3px solid var(--accent); margin: .75rem 0; padding: .6rem 1rem; background: var(--primary-light); border-radius: 0 var(--radius) var(--radius) 0; color: var(--text); }
+
+/* === POST-SHARED OVERRIDE (append AFTER shared.css) === */
+/* data-story: gradient KPI values */
+.kpi-value { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+/* Wide layout for data-heavy reports */
+.report-wrapper { max-width: 960px; }

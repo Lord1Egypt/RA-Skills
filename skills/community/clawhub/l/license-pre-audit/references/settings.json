@@ -1,0 +1,25 @@
+{
+  "extractPath": "./assets/files/",
+  "allowedExtensions": [
+    ".pdf",
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp"
+  ],
+  "allowedArchiveTypes": [
+    ".zip",
+    ".rar",
+    ".tar",
+    ".tar.gz",
+    ".tgz"
+  ],
+  "maxFileSize": 50000000,
+  "reportPath": "./assets/reports/",
+  "triggerWords": [
+    "审核",
+    "审核许可证",
+    "许可证"
+  ],
+  "triggerResponse": "请上传待审核许可证的文件夹或压缩文件。"
+}

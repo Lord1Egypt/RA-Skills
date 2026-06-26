@@ -1,0 +1,277 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Douban Movie workflows with JustOneAPI, including movie Reviews, review Details, and subject Details across 6 operations.",
+  "displayName": "Douban Movie",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douban movie Comments data, including ratings, snippets, and interaction counts, for quick sentiment sampling and review monitoring.",
+      "method": "GET",
+      "operationId": "getMovieCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a movie or TV subject on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "subjectId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "time",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `time`: Time\n- `new_score`: New Score",
+          "enumValues": [
+            "time",
+            "new_score"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-movie-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Comments",
+      "tags": [
+        "Douban Movie"
+      ]
+    },
+    {
+      "description": "Get Douban movie Review Details data, including metadata, content fields, and engagement signals, for review archiving and detailed opinion analysis.",
+      "method": "GET",
+      "operationId": "getMovieReviewDetailsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a specific review on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "reviewId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douban/get-movie-review-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Review Details",
+      "tags": [
+        "Douban Movie"
+      ]
+    },
+    {
+      "description": "Get Douban movie Reviews data, including review titles, ratings, and snippets, for audience sentiment analysis and review research.",
+      "method": "GET",
+      "operationId": "getMovieReviewsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a movie or TV subject on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "subjectId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "time",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `time`: Time\n- `hotest`: Hotest",
+          "enumValues": [
+            "time",
+            "hotest"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-movie-reviews/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Movie Reviews",
+      "tags": [
+        "Douban Movie"
+      ]
+    },
+    {
+      "description": "Get Douban recent Hot Movie data, including ratings, posters, and subject metadata, for movie discovery and trend monitoring.",
+      "method": "GET",
+      "operationId": "getRecentHotMovieV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-recent-hot-movie/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Recent Hot Movie",
+      "tags": [
+        "Douban Movie"
+      ]
+    },
+    {
+      "description": "Get Douban recent Hot Tv data, including ratings, posters, and subject metadata, for series discovery and trend monitoring.",
+      "method": "GET",
+      "operationId": "getRecentHotTvV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douban/get-recent-hot-tv/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Recent Hot Tv",
+      "tags": [
+        "Douban Movie"
+      ]
+    },
+    {
+      "description": "Get Douban subject Details data, including title, rating, and cast, for title enrichment and catalog research.",
+      "method": "GET",
+      "operationId": "getSubjectDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a movie or TV subject on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "subjectId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douban/get-subject-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Subject Details",
+      "tags": [
+        "Douban Movie"
+      ]
+    }
+  ],
+  "platformKey": "douban",
+  "primaryTag": "Douban Movie",
+  "skillName": "justoneapi_douban",
+  "slug": "justoneapi-douban",
+  "sourceTitle": "OpenAPI definition"
+}

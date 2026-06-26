@@ -1,0 +1,74 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/get-user-post/v1 for TikTok User Published Posts through JustOneAPI with secUid.",
+  "displayName": "TikTok User Published Posts",
+  "endpointPath": "get-user-post",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok user Published Posts data, including video ID, description, and publish time, for user activity analysis and posting frequency tracking, influencer performance evaluation, and content trend monitoring for specific creators.",
+      "method": "GET",
+      "operationId": "getUserPostV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique security ID of the TikTok user (e.g., MS4wLjABAAAAonP2...).",
+          "enumValues": [],
+          "location": "query",
+          "name": "secUid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "0",
+          "description": "Pagination cursor. Use '0' for the first page, then use the 'cursor' value returned in the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Sorting criteria for the user's posts.\n\nAvailable Values:\n- `_0`: Default (Mixed)\n- `_1`: Highest Liked\n- `_2`: Latest Published",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/get-user-post/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Posts",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_get_user_post",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-get-user-post",
+  "sourceTitle": "OpenAPI definition"
+}

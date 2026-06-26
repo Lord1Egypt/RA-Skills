@@ -1,0 +1,1 @@
+# 无额外依赖，仅使用Python标准库 (urllib, json, pathlib, argparse)

@@ -1,0 +1,283 @@
+# Kiwi Voice Assistant Configuration
+# Precedence: config.yaml → .env → hardcoded defaults
+
+# ---------------------------------------------------------------------------
+# Language — controls UI strings, STT, and TTS locale
+# Supported: "ru" (Russian), "en" (English), "zh" (Chinese)
+# Override via env: KIWI_LANGUAGE
+# ---------------------------------------------------------------------------
+language: "zh"
+
+# ---------------------------------------------------------------------------
+# WebSocket (OpenClaw Gateway v3)
+# ---------------------------------------------------------------------------
+# Token читается автоматически из ~/.openclaw/openclaw.json
+websocket:
+  enabled: true
+  host: "127.0.0.1"
+  port: 18789
+  reconnect_interval: 3.0
+  max_reconnect_attempts: 10
+
+# ---------------------------------------------------------------------------
+# LLM
+# ---------------------------------------------------------------------------
+llm:
+  model: "bailian/qwen3.5-plus"
+  chat_timeout: 120
+  stream_stall_timeout: 12
+  stream_stall_retry_max: 1
+  retry_max: 3
+  retry_delays: [0.5, 1.0, 2.0]
+
+# ---------------------------------------------------------------------------
+# TTS
+# ---------------------------------------------------------------------------
+tts:
+  # provider: elevenlabs | piper | qwen3 | kokoro
+  # 中文推荐: kokoro (免费, 自动下载, 支持中文)
+  provider: "kokoro"
+
+  # Qwen3-TTS settings (provider=qwen3)
+  qwen_backend: "local"            # runpod | local
+  voice: "Ono_Anna"                # Vivian, Serena, Uncle_Fu, Dylan, Eric, Ryan, Aiden, Ono_Anna, Sohee
+  model_size: "0.6B"               # 0.6B | 1.7B
+  default_style: "neutral"
+  local_model_path: "./models/Qwen3-TTS-12Hz-0.6B-CustomVoice"
+  local_tokenizer_path: "./models/Qwen3-TTS-Tokenizer-12Hz"
+  qwen_device: "cuda"              # auto | cpu | cuda
+
+  # Piper settings (provider=piper)
+  piper_model_path: "./piper-models/ru_RU-irina-medium.onnx"
+
+  # Kokoro ONNX settings (provider=kokoro)
+  # Free, local TTS. Models auto-download on first use (~340MB).
+  # Supported languages: en, ja, zh, ko, fr, de, it, es, pt, pl, tr, hi
+  # Note: Russian is NOT supported by Kokoro v1.0.
+  kokoro:
+    voice: "af_heart"            # af_heart, af_star, am_adam, bf_emma, bm_george, ...
+    speed: 1.0                   # 0.5 = slow, 1.0 = normal, 2.0 = fast
+    model_dir: "./models/kokoro"
+
+  # ElevenLabs settings (provider=elevenlabs)
+  # API key: .env → KIWI_ELEVENLABS_API_KEY
+  elevenlabs:
+    voice_id: "aEO01A4wXwd1O8GPgGlF"   # Arabella
+    # Alternatives:
+    # - VD1if7jDVYtAKs4P0FIY | Milly Maple
+    # - NhY0kyTmsKuEpHvDMngm | Nataly
+    # - WAhoMTNdLdMoq1j3wf3I | Hope
+    model_id: "eleven_multilingual_v2"
+    output_format: "mp3_44100_128"
+    use_streaming_endpoint: true
+    optimize_streaming_latency: 3
+    stability: 0.45
+    similarity_boost: 0.75
+    style: 0.25
+    use_speaker_boost: true
+    speed: 1.0
+    style_presets:
+      neutral:    { stability: 0.50, style: 0.20, speed: 1.00 }
+      excited:    { stability: 0.20, style: 0.80, speed: 1.15 }
+      calm:       { stability: 0.80, style: 0.08, speed: 0.88 }
+      confident:  { stability: 0.55, style: 0.45, speed: 1.02 }
+      whisper:    { stability: 0.85, style: 0.05, speed: 0.85 }
+      sad:        { stability: 0.75, style: 0.35, speed: 0.82 }
+      angry:      { stability: 0.20, style: 0.75, speed: 1.12 }
+      playful:    { stability: 0.30, style: 0.65, speed: 1.10 }
+      serious:    { stability: 0.65, style: 0.30, speed: 0.95 }
+      cheerful:   { stability: 0.35, style: 0.60, speed: 1.08 }
+
+  # RunPod serverless (qwen_backend=runpod)
+  # Keys: .env → RUNPOD_TTS_ENDPOINT_ID, RUNPOD_API_KEY
+  timeout: 60
+  poll_interval: 0.3
+
+# ---------------------------------------------------------------------------
+# STT (Speech-to-Text)
+# ---------------------------------------------------------------------------
+# engine: "faster-whisper" (default, CUDA/CPU)
+#        | "mlx-whisper"   (Apple Silicon only, requires lightning-whisper-mlx)
+#        | "elevenlabs"    (cloud, WebSocket, low latency)
+stt:
+  engine: "faster-whisper"
+  model: "medium"  # 中文推荐 medium 或 large-v3
+  device: "auto"   # 自动选择 CUDA/CPU
+  compute_type: "float16"
+  language: "zh"    # 中文
+  mlx_batch_size: 12
+  # ElevenLabs STT (cloud, WebSocket)
+  # Uses KIWI_ELEVENLABS_API_KEY from .env (same key as TTS)
+  elevenlabs:
+    model_id: "scribe_v2"
+    language_code: ""        # auto-detect if empty; or "ru", "en", etc.
+
+# ---------------------------------------------------------------------------
+# Wake Word
+# ---------------------------------------------------------------------------
+# engine: "text" (legacy fuzzy matching on transcribed text)
+#       | "openwakeword" (ML-based detection on raw audio, low latency)
+#
+# For openwakeword: set model to a built-in name (hey_jarvis, alexa,
+# hey_mycroft) or path to a custom .onnx file (see scripts/train_wake_word.py).
+# threshold: 0.0 (loose) to 1.0 (strict), default 0.5.
+wake_word:
+  engine: "text"  # 也支持 openwakeword (ML 检测)
+  keyword: "kiwi"  # 唤醒词 (中文环境也识别 kiwi)
+  position_limit: 3
+  model: "hey_jarvis"
+  threshold: 0.5
+
+# ---------------------------------------------------------------------------
+# Audio
+# ---------------------------------------------------------------------------
+audio:
+  sample_rate: 24000               # TTS output
+  input_sample_rate: 16000         # Microphone
+  output_device: null
+  input_device: -999               # 设置为无效设备，强制使用浏览器麦克风
+  disable_local_mic: true          # 禁用本地麦克风，只用浏览器
+
+# ---------------------------------------------------------------------------
+# Realtime / VAD
+# ---------------------------------------------------------------------------
+realtime:
+  chunk_duration: 0.3
+
+  # Noise calibration
+  noise_sample_duration: 2.0
+  noise_threshold_multiplier: 1.3
+  min_silence_threshold: 0.015
+
+  # Speech detection
+  min_speech_duration: 0.3
+  max_speech_duration: 30.0
+  silence_duration_end: 1.8
+  min_speech_volume: 0.015
+  post_tts_dead_zone: 2.5
+
+  # Barge-in
+  barge_in_chunks_required: 5
+  barge_in_volume_multiplier: 5.0
+  barge_in_min_volume: 0.045
+  barge_in_grace_period: 0.35
+
+  # Adaptive pause (longer speech → longer allowed pause)
+  silence_duration_long_speech: 2.0
+  silence_duration_monologue: 2.5
+  long_speech_threshold: 3.0
+  monologue_threshold: 10.0
+
+  # Extended silence tolerance after wake word detected mid-speech
+  # Gives user more time to finish command after saying "kiwi"
+  post_wake_silence_duration: 3.0
+
+  # VAD-assisted end-of-speech
+  vad_end_speech_check: true
+  vad_end_speech_frames: 5
+  vad_continuation_threshold: 3
+  vad_continuation_bonus_chunks: 5
+
+  # TTS cache
+  cache_enabled: true
+  cache_size: 100
+  cache_ttl: 3600
+
+  # Streaming transcription
+  streaming:
+    enabled: true
+    chunk_interval: 1.5
+    min_audio_for_stream: 1.0
+    early_wake_threshold: 0.7
+
+  owner_handsfree:
+    enabled: false
+    guest_cooldown_sec: 180
+
+# ---------------------------------------------------------------------------
+# Voice Security
+# ---------------------------------------------------------------------------
+# Telegram tokens: .env → KIWI_TELEGRAM_BOT_TOKEN, KIWI_TELEGRAM_CHAT_ID
+security:
+  telegram_approval_enabled: true
+  owner_control_commands:
+    block_last: ["拉黑", "阻止", "禁止", "封禁"]
+    unblock_last: ["解除阻止", "从黑名单移除", "解封"]
+    add_friend: ["记住我为", "这是我的朋友", "记住"]
+    forget_speaker: ["忘记这个声音", "删除配置"]
+    identify: ["谁在说话", "这是谁"]
+    list_voices: ["有什么声音", "列出声音"]
+  auto_learn_enabled: true
+  auto_learn_threshold: 0.85
+  identify_threshold: 0.70
+  context_timeout: 30
+
+# ---------------------------------------------------------------------------
+# Speaker Priority
+# ---------------------------------------------------------------------------
+speaker_priority:
+  owner:
+    id: "owner"
+    name: "主人"  # 主人名称 (显示在语音响应中)
+    priority: 0
+    auto_block: false
+  hot_cache_size: 10
+  hot_cache_ttl: 300
+
+# ---------------------------------------------------------------------------
+# Dangerous Command Patterns
+# ---------------------------------------------------------------------------
+dangerous_commands:
+  critical:
+    - "删除所有文件"
+    - "delete all files"
+    - "format c:"
+    - "关闭电脑"
+    - "shutdown now"
+    - "sudo rm -rf"
+    - "发送密码"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "更改设置"
+    - "打开端口"
+    - "移动文件"
+
+# ---------------------------------------------------------------------------
+# Soul system — personality switching
+# ---------------------------------------------------------------------------
+souls:
+  default: "mindful-companion"
+  nsfw:
+    model: "openrouter/mistralai/mistral-7b-instruct"
+    session: "kiwi-nsfw"  # OpenClaw agent with mistral-7b-instruct
+
+# ---------------------------------------------------------------------------
+# Home Assistant Integration (bidirectional)
+# ---------------------------------------------------------------------------
+# Enables voice control of HA devices via Conversation API.
+# Token: .env → KIWI_HA_TOKEN (or set below)
+homeassistant:
+  enabled: false
+  url: "http://homeassistant.local:8123"
+  token: ""               # Long-Lived Access Token
+  language: ""             # defaults to main language setting
+
+# ---------------------------------------------------------------------------
+# REST API Server
+# ---------------------------------------------------------------------------
+api:
+  enabled: true
+  host: "0.0.0.0"
+  port: 7789
+  auth:
+    enabled: true           # ✅ 启用认证
+    tokens:
+      - token: "x4711-kiwi-2026-secret"
+        name: "大哥的手机"
+        scopes: ["read", "control", "tts", "admin"]
+      # - token: "admin-token"
+      #   name: "Admin"
+      #   scopes: ["read", "control", "tts", "speakers", "admin"]

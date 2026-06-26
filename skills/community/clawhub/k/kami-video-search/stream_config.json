@@ -1,0 +1,41 @@
+{
+  "SEGMENT_DURATION": 10,
+  "OUTPUT_WIDTH": 640,
+  "OUTPUT_HEIGHT": 360,
+  "TIMESTAMP_SOURCE": "ntp",
+  "ENABLE_DESCRIPTION": true,
+  "SKIP_STATIC": true,
+  "STATIC_THRESHOLD": 5.0,
+  "KAMI_API_URL": "https://kamiclaw-skill-api.kamihome.com/v1/detect",
+  "KAMI_API_KEY": "",
+  "KAMI_API_RETRY": 3,
+  "SUMMARY_DETECT_TYPE": "SUMMARY",
+  "SUMMARY_DETECT_SUB_TYPE": "",
+  "SUMMARY_PROMPT": "",
+  "SUMMARY_UPLOAD_MODE": "image",
+  "SUMMARY_SAMPLE_FPS": 1,
+  "EMBED_DETECT_TYPE": "EMBED",
+  "EMBED_DETECT_SUB_TYPE": "",
+  "EMBEDDING_DIM": 2048,
+  "SIMILARITY_THRESHOLD": 0.35,
+  "SEARCH_TOP_K": 5,
+  "LIST_TOP_K": 5,
+  "DATA_DIR": "",
+  "RETENTION_DAYS": 3,
+  "INDEX_FILE": "index.db",
+  "PROCESS_WORKERS": 5,
+  "RECONNECT_DELAY": 3,
+  "MAX_RECONNECT": 3,
+  "skillId": "SK_VIDEO_SEARCH",
+  "LOG_FILE": "",
+  "cameras": [
+    {
+      "STREAM_URL": "rtsp://admin:xxx@192.168.XXX/stream1",
+      "DEVICE_ID": "camera1"
+    },
+    {
+      "STREAM_URL": "rtsp://admin:xxx@192.168.xxx/stream1",
+      "DEVICE_ID": "camera2"
+    }
+  ]
+}

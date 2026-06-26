@@ -1,0 +1,82 @@
+# 投资框架数据源配置
+
+# ===========================================
+# 数据源优先级（从高到低）
+# ===========================================
+data_sources:
+  priority:
+    - tencent      # 腾讯财经（免费，优先）
+    - sina         # 新浪财经（免费，备用）
+    - eastmoney    # 东方财富（免费，财报）
+  
+  # 个股行情优先使用腾讯/新浪，东方财富作为财报补充
+  quote_providers:
+    - tencent
+    - sina
+    - eastmoney
+  
+  # 财报数据优先使用东方财富
+  financials_providers:
+    - eastmoney
+  
+  # 各数据源开关
+  tencent:
+    enabled: true
+  sina:
+    enabled: true
+  eastmoney:
+    enabled: true
+  tushare:
+    enabled: false
+  lixinger:
+    enabled: false
+
+# ===========================================
+# API Key 配置
+# ===========================================
+api_keys:
+  # Tushare Pro（免费，需注册）
+  # 注册地址：https://tushare.pro/user/register
+  # 积分：120（✅ 已足够使用基础接口）
+  tushare:
+    token: "b2c8dcae10cf07e7d2e6e60088cef1b9404a7cf759d55bd7260ac8d9"  # 用户 token
+    enabled: true  # ✅ 已启用（120 积分）
+  
+  # 理杏仁（付费，可选）
+  # 地址：https://www.lixinger.com/
+  lixinger:
+    token: ""
+    enabled: false
+
+# ===========================================
+# 降级策略
+# ===========================================
+fallback:
+  # API 失败时是否使用缓存
+  use_cache: true
+  
+  # 缓存有效期（秒）
+  cache_ttl: 300  # 5 分钟
+  
+  # API 全部失败时是否允许手动输入
+  allow_manual_input: true
+  
+  # 请求超时时间（秒）
+  timeout: 5
+
+# ===========================================
+# 数据偏好
+# ===========================================
+preferences:
+  # A 股市场代码前缀
+  a_share_prefix:
+    sh: "sh"  # 沪市
+    sz: "sz"  # 深市
+  
+  # 默认显示字段
+  default_fields:
+    - price
+    - change_percent
+    - pe
+    - pb
+    - market_cap

@@ -1,0 +1,54 @@
+{
+  "name": "kindle-clip-cli",
+  "version": "1.1.0",
+  "description": "Parse, print, search, filter and export Kindle highlights and notes from the command line",
+  "author": "Emerson Ding",
+  "repository": "https://github.com/emersonding/kindle-clip-processor",
+  "keywords": [
+    "kindle",
+    "highlights",
+    "notes",
+    "clippings",
+    "markdown",
+    "export",
+    "search",
+    "reading",
+    "books",
+    "research"
+  ],
+  "categories": [
+    "productivity",
+    "knowledge-management",
+    "reading"
+  ],
+  "platforms": [
+    "darwin-amd64",
+    "darwin-arm64",
+    "linux-amd64",
+    "linux-arm64",
+    "windows-amd64",
+    "windows-arm64"
+  ],
+  "requires_installation": true,
+  "installation_url": "https://github.com/emersonding/kindle-clip-processor",
+  "quick_install": "brew install emersonding/tap/kindle-clip-processor",
+  "commands": [
+    "kindle-clip set",
+    "kindle-clip list",
+    "kindle-clip print",
+    "kindle-clip search"
+  ],
+  "use_cases": [
+    "Search Kindle highlights by keyword or topic",
+    "Export highlights from specific books to Markdown",
+    "Filter notes by date range, author, or book title",
+    "Generate reading summaries and research materials"
+  ],
+  "ai_friendly": true,
+  "output_format": "markdown",
+  "requires_config": false,
+  "config_optional": {
+    "saved_path": "~/.config/kindle-clip/config.json",
+    "env_var": "KINDLE_CLIP_PATH"
+  }
+}

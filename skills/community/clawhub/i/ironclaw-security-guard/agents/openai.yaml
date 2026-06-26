@@ -1,0 +1,5 @@
+version: 1
+display_name: IronClaw Security Guard
+short_description: Add lightweight guardrails for dangerous commands, prompt injection, secret leakage, and audit logging in OpenClaw.
+default_prompt: Use this skill when an OpenClaw runtime needs lightweight defense-in-depth protections, manual security scans, or safer tool-call handling.
+

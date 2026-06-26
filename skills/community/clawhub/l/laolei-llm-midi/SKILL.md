@@ -1,35 +1,79 @@
 ---
-name: "laolei llm midi"
+name: "laolei-llm-midi"
 description: "AI MIDI音乐生成助手，一句话生成MIDI文件。AI MIDI Generator - generate standard MIDI files from natural language descriptions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/laolei-llm-midi"
-sourceUrl: "https://clawhub.ai/skills/laolei-llm-midi"
 ---
 
-# laolei llm midi
+# AI MIDI音乐生成助手
 
-> AI MIDI音乐生成助手，一句话生成MIDI文件。AI MIDI Generator - generate standard MIDI files from natural language descriptions.
+这是一个利用大模型生成标准MIDI文件的技能。用户只需要用自然语言描述音乐需求，即可生成完整的MIDI文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/laolei-llm-midi`
-- **Source URL:** [https://clawhub.ai/skills/laolei-llm-midi](https://clawhub.ai/skills/laolei-llm-midi)
+可以使用daw合成MIDI文件，例如Logic Pro、Ableton Live等，来播放生成的MIDI文件，听效果是否符合预期。
+也可以在线播放生成的MIDI文件，也可以在浏览器中直接播放。 https://www.huiwanai.com/daw/ 
 
-## Overview
+## 核心功能
 
+### 1. 自然语言转MIDI
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/laolei-llm-midi
+用户只需描述想要的音乐，AI就能生成标准的MIDI文件：
+- 指定乐器（钢琴、吉他、鼓、弦乐等）
+- 指定风格（流行、古典、摇滚、爵士等）
+- 指定节拍和调式
+- 指定音乐时长或小节数
+
+### 2. MIDI格式支持
+
+生成的MIDI文件符合标准MIDI格式（Standard MIDI File Format Type 1），包含：
+- 多轨道支持（不同乐器分轨）
+- 完整的事件信息（Note On/Off、Velocity、Pitch Bend、Control Change等）
+- 时间签名和调号信息
+- 速度（Tempo）信息
+
+## 使用方法
+
+### 启动方式
+
+直接描述你的音乐需求，例如：
+- "生成一首4/4拍的钢琴曲，C大调，每分钟120拍，32小节"
+- "写一段摇滚风格的吉他伴奏，E小调，16小节"
+- "创建一首有鼓、贝斯和钢琴的爵士乐，120BPM，24小节"
+
+### 参数说明
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| 乐器 | MIDI乐器编号(0-127) | 钢琴(0), 吉他(25),|
+| 节拍 | 拍号 | 4/4, 3/4, 6/8 |
+| 调式 | 调性 | C大调, A小调, G大调 |
+| 速度 | BPM | 60, 120, 140 |
+| 小节 | 长度 | 8, 16, 32, 64 |
+
+### 常用乐器编号
+
+| 乐器 | GM编号 | 乐器 | GM编号 |
+|------|--------|------|--------|
+| 钢琴 | 0 | 电吉他 | 28 |
+| 原声吉他 | 25 | 贝斯 | 32 |
+| 弦乐 | 48 | 萨克斯 | 67 |
+| 小号 | 56 | 长笛 | 73 |
+| 鼓组 | 0 (Channel 9) | 音效 | 126 |
+
+**注意**：鼓组使用Channel 9（索引为9，第10个通道）来区分其他乐器。
+
+## 输出格式
+
+生成的MIDI文件保存为 `.mid` 文件，包含完整的多轨道数据。
+
+## 示例Prompt
+
 ```
+生成一首欢快的流行歌曲：
+- 乐器：钢琴(主旋律)、贝斯(低音)、鼓组(节奏)
+- 调式：C大调
+- 速度：每分钟124拍
+- 长度：64小节
+- 风格：明亮、活泼、朗朗上口
+```
+
+---
+
+告诉我你想要什么样的音乐，我来帮你生成MIDI文件！

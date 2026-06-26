@@ -1,0 +1,127 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "RID：与LC_SuppCustDetail的ID关联，获取相关信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "RelatedPartyName",
+        "columnChiName": "供应商/客户名称",
+        "columnType": "varchar(600)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "RelatedPartyCode",
+        "columnChiName": "供应商/客户代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "供应商/客户代码（CompanyCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到所属公司的基本信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "80.11",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "RelatedPartyAttribute",
+        "columnChiName": "供应商/客户属性",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "供应商/客户属性(RelatedPartyAttribute)与(CT_SystemConst)表中的DM字段关联，令LB = 1783，得到供应商/客户属性的具体描述：1-自然人，2-企业，3-证券品种，99-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.9",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "TradingValue",
+        "columnChiName": "交易金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "22.75"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Ratio",
+        "columnChiName": "占比(%)",
+        "columnType": "decimal(9,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "20.68"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

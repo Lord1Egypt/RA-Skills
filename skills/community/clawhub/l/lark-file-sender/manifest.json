@@ -1,0 +1,12 @@
+{
+  "name": "feishu-file-sender",
+  "version": "1.0.0",
+  "description": "Send files to Feishu/Lark users and groups via the message tool. Use when the user wants to send documents, images, PDFs, or any files through Feishu.",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "platforms": ["feishu", "lark"],
+  "tags": ["feishu", "lark", "file-transfer", "messaging", "documents"],
+  "dependencies": [],
+  "min_openclaw_version": "1.0.0",
+  "entry_point": "SKILL.md"
+}

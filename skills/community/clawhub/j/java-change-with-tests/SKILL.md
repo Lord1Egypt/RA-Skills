@@ -1,35 +1,32 @@
----
-name: "Java changing with tests"
-description: "Guide Java changes with minimal edits, verify using unit/integration tests as needed, and provide a PR-ready summary including plans, changes, test results,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/java-change-with-tests"
-sourceUrl: "https://clawhub.ai/skills/java-change-with-tests"
----
+# java-change-with-tests
 
-# Java changing with tests
+## When to use
+- Any Java change that must be merged safely (feature/refactor/bugfix).
 
-> Guide Java changes with minimal edits, verify using unit/integration tests as needed, and provide a PR-ready summary including plans, changes, test results,...
+## Inputs to request (if missing)
+- Acceptance criteria (1-3 bullets).
+- Module name (if multi-module repo).
+- Build tool and test conventions.
+- Whether integration tests are required for the change.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/java-change-with-tests`
-- **Source URL:** [https://clawhub.ai/skills/java-change-with-tests](https://clawhub.ai/skills/java-change-with-tests)
+## Steps
+1. Repo map (brief): identify the module, entrypoint, and test location.
+2. Plan: smallest diff that meets acceptance criteria.
+3. Implement: minimal edits.
+4. Tests:
+   - prefer fast unit tests first
+   - add integration tests only when required to validate behavior
+5. Verify:
+   - run targeted tests
+   - run `mvn -q test` (or module-scoped equivalent)
+6. Output PR-ready summary with evidence.
 
-## Overview
+## Verification commands (project-specific)
+- Use the repo's build tool and record the exact commands and results.
+- Prefer targeted unit tests before full test suites.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/java-change-with-tests
-```
+## Output contract
+1) Plan (3-6 steps)
+2) Files changed + intent
+3) Commands run + results
+4) Risks + follow-ups

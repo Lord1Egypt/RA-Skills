@@ -1,0 +1,108 @@
+{
+  "worldId": "lingan_endless_001",
+  "name": "灵安城",
+  "theme": "武侠",
+  "version": "1.0.0",
+  "created": "2026-03-21T08:45:00+08:00",
+  "age": 1,
+  "config": {
+    "dailyActionPoints": 5,
+    "resetTime": "08:00",
+    "reportTime": "23:00",
+    "maxDuration": null,
+    "autoSave": true
+  },
+  "state": {
+    "weather": "晴朗",
+    "mood": "平静",
+    "timeOfDay": "清晨",
+    "ongoingEvents": ["城门开启", "早市开张"],
+    "threats": [],
+    "opportunities": ["武林大会传闻", "神秘剑客现身"]
+  },
+  "locations": {
+    "城主府": {
+      "description": "灵安城权力中心，城主坐镇于此",
+      "npcs": ["城主李天衡", "护卫统领"],
+      "services": ["接取任务", "提交功勋"]
+    },
+    "集市": {
+      "description": "繁华商业区，各路商贾云集",
+      "npcs": ["铁匠老张", "药铺掌柜", "茶馆小二"],
+      "services": ["购买装备", "购买丹药", "打听消息"]
+    },
+    "茶馆": {
+      "description": "江湖人士聚集地，消息灵通",
+      "npcs": ["说书人", "神秘老者"],
+      "services": ["打听消息", "接取悬赏", "休息恢复"]
+    },
+    "武馆": {
+      "description": "修炼武艺的场所，各派弟子来往",
+      "npcs": ["武馆馆主", "大师兄"],
+      "services": ["修炼武学", "切磋武艺", "挑战高手"]
+    },
+    "城外森林": {
+      "description": "灵安城外的密林，野兽与山贼出没",
+      "npcs": ["樵夫", "猎户"],
+      "services": ["狩猎", "采集", "探索"],
+      "dangers": ["野兽", "山贼", "迷路"]
+    },
+    "古庙": {
+      "description": "城外废弃古庙，传说藏有武功秘籍",
+      "npcs": ["守庙老人"],
+      "services": ["探索", "寻宝"],
+      "dangers": ["机关", "邪派弟子"]
+    }
+  },
+  "factions": {
+    "正义盟": {
+      "description": "以城主为首的正派联盟",
+      "leader": "城主李天衡",
+      "reputation": 0,
+      "benefits": ["购买折扣", "任务优先"]
+    },
+    "黑风寨": {
+      "description": "城外山贼势力，与官府对立",
+      "leader": "黑风寨主",
+      "reputation": 0,
+      "benefits": ["黑市交易", "情报网络"]
+    },
+    "药王谷": {
+      "description": "隐世医派，擅长炼丹制药",
+      "leader": "药王弟子",
+      "reputation": 0,
+      "benefits": ["丹药折扣", "炼丹指导"]
+    },
+    "剑宗": {
+      "description": "新兴剑派，追求剑道极致",
+      "leader": "剑宗宗主",
+      "reputation": 0,
+      "benefits": ["剑法传授", "剑谱交易"]
+    }
+  },
+  "dailyEvents": [
+    {
+      "day": 1,
+      "morning": "城门大开，商旅络绎不绝",
+      "noon": "茶馆里有人议论武林大会的消息",
+      "evening": "城主府发布悬赏：清剿城外山贼"
+    }
+  ],
+  "players": {
+    "ou_4bb052e7bbf7b36373af665dbdd35c55": {
+      "name": "李寻欢",
+      "title": "小李飞刀",
+      "joinedAt": "2026-03-21T08:48:00+08:00",
+      "location": "城主府"
+    }
+  },
+  "history": [
+    { "day": 1, "event": "世界诞生，灵安城初现", "timestamp": "2026-03-21T08:45:00+08:00" }
+  ],
+  "statistics": {
+    "totalActions": 0,
+    "battlesFought": 0,
+    "questsCompleted": 0,
+    "secretsDiscovered": 0
+  }
+}

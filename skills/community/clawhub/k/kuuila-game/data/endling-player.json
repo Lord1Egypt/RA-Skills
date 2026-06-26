@@ -1,0 +1,26 @@
+{
+  "template": {
+    "actionPoints": {
+      "max": 5,
+      "current": 5,
+      "lastReset": "2026-03-21T08:45:00+08:00"
+    },
+    "attributes": {
+      "strength": 10,
+      "agility": 10,
+      "intelligence": 10,
+      "charisma": 10,
+      "luck": 10
+    },
+    "skills": [],
+    "inventory": [],
+    "status": "健康",
+    "location": "城主府",
+    "faction": null,
+    "reputation": 0,
+    "level": 1,
+    "experience": 0,
+    "gold": 100,
+    "dailyActions": []
+  }
+}

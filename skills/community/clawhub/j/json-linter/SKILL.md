@@ -1,35 +1,46 @@
 ---
-name: "Json Linter"
-description: "Validates JSON syntax across the workspace. Use this skill to check for syntax errors in configuration files, memory files, or data assets."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/json-linter"
-sourceUrl: "https://clawhub.ai/skills/json-linter"
+name: json-linter
+description: Validates JSON syntax across the workspace. Use this skill to check for syntax errors in configuration files, memory files, or data assets.
 ---
 
-# Json Linter
+# JSON Linter
 
-> Validates JSON syntax across the workspace. Use this skill to check for syntax errors in configuration files, memory files, or data assets.
+A simple utility to recursively scan the workspace for `.json` files and validate their syntax using `JSON.parse()`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/json-linter`
-- **Source URL:** [https://clawhub.ai/skills/json-linter](https://clawhub.ai/skills/json-linter)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/json-linter
+# Scan the entire workspace (from current working directory)
+node skills/json-linter/index.js
+
+# Scan a specific directory
+node skills/json-linter/index.js --dir path/to/dir
+```
+
+## Output
+
+JSON report containing:
+- `scanned_at`: Timestamp
+- `total_files`: Number of `.json` files scanned
+- `valid_files`: Number of valid files
+- `invalid_files`: Number of invalid files
+- `errors`: Array of error objects:
+  - `path`: Relative path to file
+  - `error`: Error message (e.g., "Unexpected token } in JSON at position 42")
+
+## Example Output
+
+```json
+{
+  "scanned_at": "2026-02-14T21:45:00.000Z",
+  "total_files": 150,
+  "valid_files": 149,
+  "invalid_files": 1,
+  "errors": [
+    {
+      "path": "config/broken.json",
+      "error": "Unexpected token } in JSON at position 42"
+    }
+  ]
+}
 ```

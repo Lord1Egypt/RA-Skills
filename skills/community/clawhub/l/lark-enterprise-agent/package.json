@@ -1,0 +1,13 @@
+{
+  "name": "lark-enterprise-agent",
+  "version": "1.0.0",
+  "description": "飞书+AI Agent企业解决方案",
+  "author": "fan",
+  "license": "MIT",
+  "keywords": ["lark", "feishu", "enterprise", "knowledge-base"],
+  "openclaw": {
+    "type": "skill",
+    "triggers": ["飞书企业", "lark", "知识库", "企业自动化"],
+    "platform": "any"
+  }
+}

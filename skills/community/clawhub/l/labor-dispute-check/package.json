@@ -1,0 +1,38 @@
+{
+  "name": "labor-dispute-check",
+  "version": "1.2.0",
+  "description": "Check China labor dispute issues and estimate severance, overtime, probation, arbitration, and evidence package needs",
+  "main": "scripts/labor-checker.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "labor",
+    "employment",
+    "dispute",
+    "severance",
+    "overtime",
+    "arbitration",
+    "evidence",
+    "劳动纠纷",
+    "劳动仲裁",
+    "证据清单",
+    "经济补偿"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "legal",
+    "triggers": [
+      "劳动纠纷",
+      "被辞退赔偿",
+      "加班费计算",
+      "试用期规定",
+      "劳动合同",
+      "经济补偿"
+    ]
+  }
+}

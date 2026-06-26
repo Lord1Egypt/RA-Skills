@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "kanban": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "mvp-kanban:latest",
+        "python",
+        "mcp_server.py"
+      ],
+      "cwd": "/root/.openclaw/workspace/skills/mvp-kanban/docker",
+      "env": {
+        "PYTHONPATH": "/app"
+      }
+    }
+  }
+}

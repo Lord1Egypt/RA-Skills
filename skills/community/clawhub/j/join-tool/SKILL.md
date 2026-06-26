@@ -1,35 +1,27 @@
 ---
-name: "Join Tool"
-description: "Join lines of text from multiple files based on a common field. Use for relational data operations similar to SQL JOIN on text files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/join-tool"
-sourceUrl: "https://clawhub.ai/skills/join-tool"
+name: join-tool
+description: Join lines of text from multiple files based on a common field. Use for relational data operations similar to SQL JOIN on text files.
 ---
+# Join - Relational Data Operator
 
-# Join Tool
+Merge lines from two sorted files by matching a common join field. Similar to database JOIN operations but works on plain text files with field separators.
 
-> Join lines of text from multiple files based on a common field. Use for relational data operations similar to SQL JOIN on text files.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/join-tool`
-- **Source URL:** [https://clawhub.ai/skills/join-tool](https://clawhub.ai/skills/join-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/join-tool
+join-tool [options] file1 file2
+```
+
+## Options
+
+- `-1 N`: Join on field N of file 1
+- `-2 N`: Join on field N of file 2
+- `-t char`: Use char as field separator
+- `-a 1`: Show unpaired lines from file 1
+
+## Examples
+
+```bash
+join-tool users.txt roles.txt
+join-tool -t ',' -1 2 -2 1 customers.csv orders.csv
 ```

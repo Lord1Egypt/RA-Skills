@@ -1,0 +1,50 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Douyin E-commerce workflows with JustOneAPI, including item Details.",
+  "displayName": "Douyin E-commerce",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin E-commerce item details, including price, title, and stock, for product monitoring and competitive analysis.",
+      "method": "GET",
+      "operationId": "getDouyinEcItemDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the item on Douyin E-commerce.",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-ec/get-item-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Item Details",
+      "tags": [
+        "Douyin E-commerce"
+      ]
+    }
+  ],
+  "platformKey": "douyin-ec",
+  "primaryTag": "Douyin E-commerce",
+  "skillName": "justoneapi_douyin_ec",
+  "slug": "justoneapi-douyin-ec",
+  "sourceTitle": "OpenAPI definition"
+}

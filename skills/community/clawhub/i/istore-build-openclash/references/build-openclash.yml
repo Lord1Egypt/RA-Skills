@@ -1,0 +1,653 @@
+name: Build OpenClash for iStoreOS
+
+# 基于 Nikki OpenWrt 工作流逻辑，适配 vernesong/OpenClash 项目
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_arch:
+        description: '目标架构'
+        required: true
+        default: 'x86_64'
+        type: choice
+        options:
+          - x86_64
+          - aarch64_cortex-a53
+          - aarch64_generic
+      sdk_version:
+        description: 'SDK 版本标记（用于文件名和标签）'
+        required: true
+        default: '22.03.7'
+      openssl_tag:
+        description: 'OpenSSL 标记（用于标签）'
+        required: true
+        default: 'libopenssl_1.1'
+      build_option:
+        description: '构建选项'
+        required: true
+        default: 'standard'
+        type: choice
+        options:
+          - minimal
+          - standard
+          - full
+      core_url:
+        description: '自定义内核包URL（支持 .gz 或 .tar.gz，仅 x86_64 使用）'
+        required: false
+        default: ''
+      core_name:
+        description: '安装时的内核文件名（install.sh 期望为 clash_meta）'
+        required: false
+        default: 'clash_meta'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 构建 OpenClash 安装包
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 获取日期
+        id: date
+        run: echo "date=$(date)" >> "$GITHUB_OUTPUT"
+
+      - name: 准备环境
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y makeself unzip curl jq
+          rm -rf artifact/installer
+          mkdir -p openclash-ipk artifact/installer staging
+
+      - name: 下载 OpenClash 包并解析版本
+        id: fetch
+        run: |
+          set -e
+          curl_gh() { curl -fsSL -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$@"; }
+          # 架构映射
+          case "${{ inputs.target_arch }}" in
+            x86_64) ARCH_MAP="x86_64" ;;
+            aarch64_cortex-a53) ARCH_MAP="aarch64_cortex-a53" ;;
+            aarch64_generic) ARCH_MAP="aarch64_generic" ;;
+            *) ARCH_MAP="x86_64" ;;
+          esac
+          echo "ARCH_MAP=$ARCH_MAP" >> "$GITHUB_ENV"
+
+          # 获取最新 tag，如果失败则尝试获取所有 releases 的第一个
+          API_LATEST="https://api.github.com/repos/vernesong/OpenClash/releases/latest"
+          LATEST_VERSION=$(curl_gh "$API_LATEST" | jq -r .tag_name 2>/dev/null || true)
+          
+          # 如果获取失败，尝试从所有 releases 中获取第一个
+          if [ -z "$LATEST_VERSION" ] || [ "$LATEST_VERSION" = "null" ]; then
+            echo "获取 latest release 失败，尝试从所有 releases 获取..."
+            API_RELEASES="https://api.github.com/repos/vernesong/OpenClash/releases"
+            LATEST_VERSION=$(curl_gh "$API_RELEASES" | jq -r '.[0].tag_name' 2>/dev/null || true)
+          fi
+          
+          # 最后的备用版本
+          [ -z "$LATEST_VERSION" ] || [ "$LATEST_VERSION" = "null" ] && LATEST_VERSION="v0.47.001"
+          
+          echo "检测到的版本: $LATEST_VERSION"
+          echo "LATEST_VERSION=$LATEST_VERSION" >> "$GITHUB_ENV"
+          echo "version=$LATEST_VERSION" >> "$GITHUB_OUTPUT"
+
+          # 下载 OpenClash ipk 包
+          set +e
+          # OpenClash 发布格式: 优先尝试 .ipk 格式，避免 .apk 格式问题
+          # 从版本号中提取数字部分 (去掉 v 前缀)
+          VERSION_NUM="${LATEST_VERSION#v}"
+          
+          # 优先尝试标准 ipk 格式
+          URL1="https://github.com/vernesong/OpenClash/releases/download/$LATEST_VERSION/luci-app-openclash_${VERSION_NUM}_all.ipk"
+          URL2="https://github.com/vernesong/OpenClash/releases/download/$LATEST_VERSION/luci-app-openclash_all.ipk"
+          URL3="https://github.com/vernesong/OpenClash/releases/download/$LATEST_VERSION/luci-app-openclash.ipk"
+          # 最后尝试 apk 格式（但需要验证是否为有效的 ipk）
+          URL4="https://github.com/vernesong/OpenClash/releases/download/$LATEST_VERSION/luci-app-openclash-${VERSION_NUM}.apk"
+          
+          echo "尝试下载标准 ipk 格式: $URL1"
+          if curl -fL "$URL1" -o openclash-ipk/luci-app-openclash.ipk; then
+            DOWNLOAD_SUCCESS=1
+            echo "✓ 下载成功: 标准 ipk 格式"
+          elif curl -fL "$URL2" -o openclash-ipk/luci-app-openclash.ipk; then
+            DOWNLOAD_SUCCESS=1
+            echo "✓ 下载成功: 通用 ipk 格式"
+          elif curl -fL "$URL3" -o openclash-ipk/luci-app-openclash.ipk; then
+            DOWNLOAD_SUCCESS=1
+            echo "✓ 下载成功: 简化 ipk 格式"
+          elif curl -fL "$URL4" -o openclash-ipk/luci-app-openclash.ipk; then
+            # 验证 apk 文件是否为有效的 ipk 格式
+            if file openclash-ipk/luci-app-openclash.ipk | grep -q "gzip\|Debian\|ar archive"; then
+              DOWNLOAD_SUCCESS=1
+              echo "✓ 下载成功: apk 格式（已验证为有效 ipk）"
+            else
+              echo "! apk 文件格式无效，不是标准的 ipk 包"
+              rm -f openclash-ipk/luci-app-openclash.ipk
+              DOWNLOAD_SUCCESS=0
+            fi
+          else
+            DOWNLOAD_SUCCESS=0
+          fi
+          
+          set -e
+          if [ $DOWNLOAD_SUCCESS -eq 0 ] || [ ! -s "openclash-ipk/luci-app-openclash.ipk" ]; then
+            echo "下载失败: 未找到可用的 OpenClash 包"
+            echo "尝试的 URL:"
+            echo "  $URL1"
+            echo "  $URL2" 
+            echo "  $URL3"
+            echo "  $URL4"
+            exit 1
+          fi
+
+          # 验证下载的文件是否为有效的 ipk 包
+          echo "验证下载的包格式..."
+          if ! file openclash-ipk/luci-app-openclash.ipk | grep -q "gzip\|Debian\|ar archive"; then
+            echo "错误: 下载的文件不是有效的 ipk 包格式"
+            echo "文件信息:"
+            file openclash-ipk/luci-app-openclash.ipk
+            ls -lh openclash-ipk/luci-app-openclash.ipk
+            exit 1
+          fi
+
+          echo "下载成功！"
+          echo "已下载文件："
+          find openclash-ipk -type f -name "*.ipk" | head -20
+          echo "目录结构："
+          ls -lah openclash-ipk
+          echo "文件格式验证："
+          file openclash-ipk/luci-app-openclash.ipk
+
+      - name: 校验并定位 luci 顶层包（缺失则多源补齐）
+        id: locate
+        run: |
+          set +e  # 允许某些命令失败，特别是语言包查找
+          curl_gh() { curl -fsSL -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$@"; }
+          LATEST_VERSION="${LATEST_VERSION:?need version}"
+
+          # 查找 OpenClash 相关的 luci 包
+          find_app() { 
+            # 优先查找 openclash 相关的包
+            find openclash-ipk -type f -name '*luci-app-openclash*.ipk' 2>/dev/null | head -n1 || \
+            find openclash-ipk -type f -name '*openclash*.ipk' 2>/dev/null | head -n1 || \
+            find openclash-ipk -type f -name '*luci-app-*.ipk' 2>/dev/null | head -n1 || \
+            find openclash-ipk -type f -name '*.ipk' 2>/dev/null | head -n1 || true
+          }
+          find_i18n() { 
+            # OpenClash 通常没有单独的语言包，语言文件包含在主包中
+            find openclash-ipk -type f -name '*luci-i18n-openclash*zh-cn*.ipk' 2>/dev/null | head -n1 || \
+            find openclash-ipk -type f -name '*i18n*openclash*zh-cn*.ipk' 2>/dev/null | head -n1 || true
+          }
+
+          echo "查找 OpenClash 包..."
+          echo "目录内容："
+          ls -la openclash-ipk/ || true
+          
+          APP_PKG="$(find_app)"; I18N_PKG="$(find_i18n)"
+          
+          echo "查找结果："
+          echo "APP_PKG: $APP_PKG"
+          echo "I18N_PKG: $I18N_PKG"
+
+          fetch_from_release() {
+            repo="$1"; tag="$2"
+            if [ "$tag" = "latest" ]; then
+              json="$(curl_gh "https://api.github.com/repos/$repo/releases/latest" || true)"
+            else
+              json="$(curl_gh "https://api.github.com/repos/$repo/releases/tags/$tag" || true)"
+              [ -z "$json" ] && json="$(curl_gh "https://api.github.com/repos/$repo/releases/latest" || true)"
+            fi
+            [ -z "$json" ] && return 0
+            if [ -z "$APP_PKG" ]; then
+              # 查找 OpenClash 主包
+              url="$(echo "$json" | jq -r '.assets[] | select(.name|test(".*luci-app-openclash.*\\.ipk$")) | .browser_download_url' | head -n1)"
+              [ -n "$url" ] && [ "$url" != "null" ] && echo "下载 APP: $url (from $repo/$tag)" && curl -fL "$url" -o "openclash-ipk/$(basename "$url")" && APP_PKG="$(find_app)"
+            fi
+            if [ -z "$I18N_PKG" ]; then
+              # 查找中文语言包
+              url="$(echo "$json" | jq -r '.assets[] | select(.name|test(".*luci-i18n-openclash.*zh-cn.*\\.ipk$")) | .browser_download_url' | head -n1)"
+              [ -n "$url" ] && [ "$url" != "null" ] && echo "下载 I18N: $url (from $repo/$tag)" && curl -fL "$url" -o "openclash-ipk/$(basename "$url")" && I18N_PKG="$(find_i18n)"
+            fi
+          }
+
+          # 若缺失则多源补齐
+          if [ -z "$APP_PKG" ] || [ -z "$I18N_PKG" ]; then
+            fetch_from_release "vernesong/OpenClash" "$LATEST_VERSION"
+            fetch_from_release "vernesong/OpenClash" "latest"
+          fi
+
+          # 重新定位
+          APP_PKG="$(find_app)"; I18N_PKG="$(find_i18n)"
+
+          if [ -z "$APP_PKG" ]; then
+            echo "未找到 luci-app 顶层包，尝试查找其他包..."
+            # 如果没有找到 luci-app，查找任意 ipk 文件
+            APP_PKG="$(find openclash-ipk -type f -name '*.ipk' 2>/dev/null | head -n1 || true)"
+            if [ -z "$APP_PKG" ]; then
+              echo "未找到任何 ipk 包"
+              echo "目录结构："
+              find openclash-ipk -maxdepth 2 -type f -print 2>/dev/null || true
+              ls -la openclash-ipk/ 2>/dev/null || true
+              exit 1
+            fi
+          fi
+          
+          # OpenClash 通常没有单独的语言包，语言文件包含在主包中
+          if [ -z "$I18N_PKG" ]; then
+            echo "未找到 zh-cn 语言包，OpenClash 语言文件通常包含在主包中"
+            I18N_PKG=""
+          fi
+
+          # 确保主包存在才继续
+          if [ -z "$APP_PKG" ] || [ ! -f "$APP_PKG" ]; then
+            echo "错误: 主包文件不存在或路径为空"
+            echo "APP_PKG 值: '$APP_PKG'"
+            echo "当前目录内容:"
+            pwd
+            ls -la
+            echo "openclash-ipk 目录内容:"
+            ls -la openclash-ipk/ 2>/dev/null || echo "openclash-ipk 目录不存在"
+            exit 1
+          fi
+
+          echo "APP_PKG_PATH=$APP_PKG" >> "$GITHUB_ENV"
+          echo "I18N_PKG_PATH=$I18N_PKG" >> "$GITHUB_ENV"
+          echo "app_path=$APP_PKG" >> "$GITHUB_OUTPUT"
+          echo "i18n_path=$I18N_PKG" >> "$GITHUB_OUTPUT"
+
+          echo "定位结果："
+          echo "主包: $APP_PKG"
+          ls -lh "$APP_PKG"
+          echo "✓ 主包文件存在"
+          
+          if [ -n "$I18N_PKG" ] && [ -f "$I18N_PKG" ]; then
+            echo "语言包: $I18N_PKG"
+            ls -lh "$I18N_PKG"
+            echo "✓ 语言包文件存在"
+          else
+            echo "ℹ 无语言包，OpenClash 语言文件包含在主包中，将跳过语言包安装"
+          fi
+          
+          # 重新设置严格模式，但只针对关键操作
+          set -e
+
+      - name: 解析 luci-app 版本号（用于命名）
+        id: parsever
+        run: |
+          set -e
+          APP_PATH="${APP_PKG_PATH:-${{ steps.locate.outputs.app_path }}}"
+          if [ -n "$APP_PATH" ]; then
+            BASE="$(basename "$APP_PATH")"
+            # 从 OpenClash 包名中提取版本号
+            APPVER="$(echo "$BASE" | sed -E 's/^.*luci-app-openclash[_-]?([0-9]+\.[0-9]+[^_]*).*\.ipk$/\1/' || true)"
+          fi
+          if [ -z "${APPVER:-}" ] || [ "$APPVER" = "$BASE" ]; then
+            LV="${{ steps.fetch.outputs.version }}"; APPVER="${LV#v}"
+          fi
+          echo "appver=$APPVER" >> "$GITHUB_OUTPUT"
+          echo "APP_VERSION=$APPVER" >> "$GITHUB_ENV"
+
+      - name: 下载 OpenClash 内核文件
+        id: download_cores
+        run: |
+          set -e
+          ARCH_MAP="${ARCH_MAP:-${{ inputs.target_arch }}}"
+          CORE_URL="${{ inputs.core_url }}"
+          CORE_NAME="${{ inputs.core_name }}"
+          
+          # 创建内核目录与临时目录
+          mkdir -p openclash-cores tmp_core
+          
+          # 使用 OpenClash 官方 core 分支的内核
+          echo "使用 OpenClash 官方 core 分支的内核"
+          OPENCLASH_CORE_AMD64_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-amd64.tar.gz"
+          OPENCLASH_CORE_ARM64_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+          echo "x86_64 内核 URL: $OPENCLASH_CORE_AMD64_URL"
+          echo "ARM64 内核 URL: $OPENCLASH_CORE_ARM64_URL"
+          
+          case "$ARCH_MAP" in
+            x86_64)
+              if [ -n "$CORE_URL" ]; then
+                echo "下载自定义内核包: $CORE_URL"
+                curl -fL "$CORE_URL" -o tmp_core/core.pkg
+                TYPE="$(file -b tmp_core/core.pkg || true)"
+                echo "检测到包类型: $TYPE"
+                
+                # 处理 tar.gz / tar
+                if tar -tzf tmp_core/core.pkg >/dev/null 2>&1; then
+                  echo "解压 tar.gz 包..."
+                  tar -xzf tmp_core/core.pkg -C tmp_core
+                elif tar -tf tmp_core/core.pkg >/dev/null 2>&1; then
+                  echo "解压 tar 包..."
+                  tar -xf tmp_core/core.pkg -C tmp_core
+                else
+                  # 若为单文件 gzip
+                  if echo "$TYPE" | grep -qi "gzip"; then
+                    echo "检测到 gzip 单文件，解压..."
+                    cp -f tmp_core/core.pkg "openclash-cores/${CORE_NAME}.gz"
+                    gunzip "openclash-cores/${CORE_NAME}.gz"
+                    chmod +x "openclash-cores/${CORE_NAME}"
+                    echo "内核文件下载完成:"
+                    ls -lh openclash-cores/
+                    echo "clash_core_name=${CORE_NAME}" >> "$GITHUB_OUTPUT"
+                    exit 0
+                  fi
+                fi
+
+                # 从解压目录挑选可执行文件
+                CORE_BIN="$(find tmp_core -type f -maxdepth 2 -perm -111 2>/dev/null | head -n1)"
+                [ -z "$CORE_BIN" ] && CORE_BIN="$(find tmp_core -type f -name 'clash*' 2>/dev/null | head -n1)"
+                if [ -n "$CORE_BIN" ]; then
+                  echo "找到内核可执行文件: $CORE_BIN"
+                  cp -f "$CORE_BIN" "openclash-cores/${CORE_NAME}"
+                  chmod +x "openclash-cores/${CORE_NAME}"
+                else
+                  echo "未找到可执行的内核文件"
+                  find tmp_core -maxdepth 2 -type f -print | sed -n '1,200p'
+                  exit 1
+                fi
+              else
+                # 使用 OpenClash 官方 core 分支的内核
+                CLASH_META_URL="$OPENCLASH_CORE_AMD64_URL"
+                echo "下载 Clash Meta 内核: $CLASH_META_URL"
+                curl -L "$CLASH_META_URL" -o "tmp_core/core.tar.gz"
+                # 解压 tar.gz 包
+                tar -xzf "tmp_core/core.tar.gz" -C "tmp_core"
+                # 找到可执行文件
+                CORE_BIN="$(find tmp_core -type f -maxdepth 2 -perm -111 2>/dev/null | head -n1)"
+                [ -z "$CORE_BIN" ] && CORE_BIN="$(find tmp_core -type f -name 'clash*' 2>/dev/null | head -n1)"
+                if [ -n "$CORE_BIN" ]; then
+                  echo "找到内核可执行文件: $CORE_BIN"
+                  cp -f "$CORE_BIN" "openclash-cores/${CORE_NAME}"
+                  chmod +x "openclash-cores/${CORE_NAME}"
+                else
+                  echo "未找到可执行的内核文件"
+                  find tmp_core -maxdepth 2 -type f -print | sed -n '1,200p'
+                  exit 1
+                fi
+              fi
+              ;;
+            aarch64_cortex-a53|aarch64_generic)
+              # ARM64 使用 OpenClash 官方 core 分支的内核
+              CLASH_META_URL="$OPENCLASH_CORE_ARM64_URL"
+              echo "下载 Clash Meta 内核: $CLASH_META_URL"
+              curl -L "$CLASH_META_URL" -o "tmp_core/core.tar.gz"
+              # 解压 tar.gz 包
+              tar -xzf "tmp_core/core.tar.gz" -C "tmp_core"
+              # 找到可执行文件
+              CORE_BIN="$(find tmp_core -type f -maxdepth 2 -perm -111 2>/dev/null | head -n1)"
+              [ -z "$CORE_BIN" ] && CORE_BIN="$(find tmp_core -type f -name 'clash*' 2>/dev/null | head -n1)"
+              if [ -n "$CORE_BIN" ]; then
+                echo "找到内核可执行文件: $CORE_BIN"
+                cp -f "$CORE_BIN" "openclash-cores/${CORE_NAME}"
+                chmod +x "openclash-cores/${CORE_NAME}"
+              else
+                echo "未找到可执行的内核文件"
+                find tmp_core -maxdepth 2 -type f -print | sed -n '1,200p'
+                exit 1
+              fi
+              ;;
+            *)
+              echo "不支持的架构: $ARCH_MAP"
+              exit 1
+              ;;
+          esac
+          
+          echo "内核文件下载完成:"
+          ls -lh openclash-cores/
+          
+          echo "clash_core_name=${CORE_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: 构建 Makeself 安装包（完全对齐样例结构/逻辑）
+        run: |
+          set -e
+          ARCH_MAP="${ARCH_MAP:-${{ inputs.target_arch }}}"
+          LATEST_VERSION="${LATEST_VERSION:-${{ steps.fetch.outputs.version }}}"
+          APP_VERSION="${APP_VERSION:-${{ steps.parsever.outputs.appver }}}"
+          SDK_VERSION="${{ inputs.sdk_version }}"
+          OPENSSL_TAG="${{ inputs.openssl_tag }}"
+          APP_PKG_PATH="${APP_PKG_PATH:-${{ steps.locate.outputs.app_path }}}"
+          I18N_PKG_PATH="${I18N_PKG_PATH:-${{ steps.locate.outputs.i18n_path }}}"
+          CLASH_CORE_NAME="${{ steps.download_cores.outputs.clash_core_name }}"
+
+          echo "将打包的顶层包："
+          ls -lh "$APP_PKG_PATH" ${I18N_PKG_PATH:+"$I18N_PKG_PATH"}
+          echo "将打包的内核文件："
+          ls -lh openclash-cores/
+
+          STAGING_ROOT="staging"
+          STAGING_DIR="$STAGING_ROOT/$ARCH_MAP"
+          DEP_DIR="$STAGING_DIR/depends"
+          rm -rf "$STAGING_DIR"
+          mkdir -p "$DEP_DIR"
+
+          # 复制为固定文件名，避免通配匹配
+          APP_BASE="$(basename "$APP_PKG_PATH")"
+          cp -f "$APP_PKG_PATH" "$STAGING_DIR/$APP_BASE"
+          cp -f "$APP_PKG_PATH" "$STAGING_DIR/luci-app-openclash.ipk"  # 固定名称
+          
+          # 复制内核文件
+          cp -f "openclash-cores/${CLASH_CORE_NAME}" "$STAGING_DIR/${CLASH_CORE_NAME}"
+
+          if [ -n "$I18N_PKG_PATH" ]; then
+            I18N_BASE="$(basename "$I18N_PKG_PATH")"
+            cp -f "$I18N_PKG_PATH" "$STAGING_DIR/$I18N_BASE"
+            cp -f "$I18N_PKG_PATH" "$STAGING_DIR/luci-i18n-openclash-zh-cn.ipk"  # 固定名称
+          fi
+
+          # 其余 ipk 全部放入 depends
+          while IFS= read -r -d '' f; do
+            b="$(basename "$f")"
+            if [ "$b" != "$APP_BASE" ] && [ -z "$I18N_PKG_PATH" -o "$b" != "$(basename "$I18N_PKG_PATH")" ]; then
+              cp -f "$f" "$DEP_DIR/$b"
+            fi
+          done < <(find openclash-ipk -type f -name '*.ipk' -print0)
+
+          echo "打包目录预览："
+          find "$STAGING_DIR" -maxdepth 2 -type f -print | sed -n '1,200p'
+
+          # 生成安装脚本（使用固定文件名，不再通配）
+          cat > "$STAGING_DIR/install.sh" <<'EOF'
+          #!/bin/sh
+          set -e
+
+          # 检查并安装 OpenClash 必需依赖
+          check_openclash_deps() {
+            echo "检查 OpenClash 必需依赖..."
+            
+            # 基础依赖
+            local base_deps="luci-compat luci-lib-jsonc libuci-lua coreutils-nohup bash iptables dnsmasq-full curl ca-certificates ipset ip-full iptables-mod-tproxy iptables-mod-extra libcap libcap-bin ruby ruby-yaml kmod-tun kmod-inet-diag unzip"
+            
+            for dep in $base_deps; do
+              if ! opkg list-installed | grep -q "^$dep "; then
+                echo "安装缺失依赖: $dep"
+                opkg install "$dep" 2>/dev/null || echo "警告: 无法安装 $dep，可能需要手动处理"
+              fi
+            done
+          }
+
+          # 温和地刷新 LuCI 缓存（不重启服务，避免丢失登录状态）
+          refresh_luci() {
+            # 清理缓存文件
+            rm -f /tmp/luci-indexcache 2>/dev/null || true
+            rm -rf /tmp/luci-modulecache/* 2>/dev/null || true
+            
+            # 优先使用 luci-reload（如果可用）
+            if command -v luci-reload >/dev/null 2>&1; then
+              echo "使用 luci-reload 刷新 LuCI..."
+              luci-reload 2>/dev/null || true
+            else
+              # 使用 Lua 直接重建索引（兼容不同版本函数名）
+              if command -v lua >/dev/null 2>&1; then
+                echo "使用 Lua 重建 LuCI 索引..."
+                lua -e 'local ok,d=pcall(require,"luci.dispatcher"); if ok and d then if d.rebuild_index then d.rebuild_index() elseif d.createindex then d.createindex() end end' 2>/dev/null || true
+              fi
+              
+              # 温和地重载 HTTP 服务（不重启）
+              if [ -x /etc/init.d/uhttpd ]; then
+                echo "重载 uhttpd..."
+                /etc/init.d/uhttpd reload 2>/dev/null || true
+              fi
+              if [ -x /etc/init.d/nginx ]; then
+                echo "重载 nginx..."
+                /etc/init.d/nginx reload 2>/dev/null || true
+              fi
+            fi
+            
+            # 确保文件系统同步
+            sync
+          }
+
+          # 使用固定文件名，不再通配
+          APP_PKG="luci-app-openclash.ipk"
+          I18N_PKG="luci-i18n-openclash-zh-cn.ipk"
+          CLASH_CORE="clash_meta"
+
+          if [ ! -f "$APP_PKG" ]; then
+            echo "错误: 缺少 $APP_PKG"
+            ls -l
+            exit 1
+          fi
+
+          # 安装前轻度刷新
+          refresh_luci
+
+          if ! opkg update; then
+            echo "更新软件源列表错误，请检查路由器网络以及软件源。"
+            exit 1
+          fi
+
+          # 安装基础依赖（容错）
+          echo "安装基础依赖..."
+          opkg install luci-compat luci-lib-jsonc libuci-lua 2>/dev/null || true
+
+          # 检查并安装 OpenClash 必需依赖
+          check_openclash_deps
+
+          # 安装 depends 下的 ipk（若存在）
+          if [ -d depends ] && ls depends/*.ipk >/dev/null 2>&1; then
+            echo "安装依赖包..."
+            opkg install depends/*.ipk || true
+          fi
+
+          # 始终强制重装，避免版本判断带来的不确定性
+          echo "安装 OpenClash 主程序..."
+          opkg install "$APP_PKG" --force-reinstall || exit 1
+
+          # 安装中文语言包（仅本地文件）
+          if [ -f "$I18N_PKG" ]; then
+            echo "安装中文语言包: $I18N_PKG"
+            opkg install "$I18N_PKG" || true
+          else
+            echo "未发现本地中文语言包，跳过安装"
+          fi
+          
+          # 安装内核文件
+          if [ -f "$CLASH_CORE" ]; then
+            echo "安装 OpenClash 内核文件..."
+            mkdir -p /etc/openclash/core
+            cp -f "$CLASH_CORE" /etc/openclash/core/
+            chmod 755 /etc/openclash/core/"$CLASH_CORE"
+            chown -R root:root /etc/openclash/core/
+            echo "✓ 内核文件安装完成"
+          else
+            echo "! 警告：未找到内核文件 $CLASH_CORE"
+          fi
+
+          # 启用并启动服务（如果存在）
+          for service in openclash; do
+            if [ -x /etc/init.d/$service ]; then
+              echo "启用 $service 服务..."
+              /etc/init.d/$service enable 2>/dev/null || true
+              /etc/init.d/$service start 2>/dev/null || true
+            fi
+          done
+          
+          # 重载防火墙（不重启）
+          if [ -x /etc/init.d/firewall ]; then
+            echo "重载防火墙规则..."
+            /etc/init.d/firewall reload 2>/dev/null || true
+          fi
+
+          # 安装后轻度刷新
+          refresh_luci
+
+          # 验证安装结果
+          if [ -f /usr/lib/lua/luci/controller/openclash.lua ] || \
+             ls /usr/lib/lua/luci/controller/openclash/*.lua >/dev/null 2>&1 || \
+             ls /usr/lib/lua/luci/controller/*openclash*.lua >/dev/null 2>&1 || \
+             find /usr/lib/lua/luci -name "*openclash*" -type f >/dev/null 2>&1; then
+            echo "✓ 安装完成！请在 LuCI 界面查看 OpenClash 菜单。"
+            echo "  如果菜单未显示，请刷新浏览器或重新登录 LuCI。"
+            exit 0
+          else
+            echo "! 警告：未检测到控制器文件，可能需刷新浏览器或重新登录 LuCI。"
+            echo "  已安装的包："
+            opkg list-installed | grep -i openclash || true
+            exit 0
+          fi
+          EOF
+          chmod +x "$STAGING_DIR/install.sh"
+
+          OUTPUT="OpenClash_${APP_VERSION}_${ARCH_MAP}_core_sdk_${SDK_VERSION}.run"
+          LABEL="OpenClash_${APP_VERSION}_with_core_sdk_${SDK_VERSION}_${OPENSSL_TAG}"
+          makeself --gzip --nox11 "$STAGING_DIR" "$OUTPUT" "$LABEL" ./install.sh
+
+          echo "OpenClash版本: $APP_VERSION" > version.txt
+          echo "上游Release Tag: $LATEST_VERSION" >> version.txt
+          echo "SDK版本: $SDK_VERSION" >> version.txt
+          echo "OpenSSL标记: $OPENSSL_TAG" >> version.txt
+          echo "构建时间: ${{ steps.date.outputs.date }}" >> version.txt
+          echo "目标架构: ${{ inputs.target_arch }}" >> version.txt
+          echo "GitHub Actions运行ID: ${{ github.run_id }}" >> version.txt
+          echo "构建选项: ${{ inputs.build_option }}" >> version.txt
+
+          rm -rf artifact/installer/*
+          mv -f "$OUTPUT" artifact/installer/
+          mv -f version.txt artifact/installer/
+          echo "构建产物："
+          ls -lh artifact/installer/
+
+      - name: 上传安装程序
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenClash_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_core_sdk_${{ inputs.sdk_version }}
+          path: ./artifact/installer/
+
+      - name: 创建发布
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: openclash-${{ inputs.target_arch }}-${{ steps.parsever.outputs.appver }}-${{ github.run_id }}
+          name: OpenClash ${{ steps.parsever.outputs.appver }} for iStoreOS (${{ inputs.target_arch }})
+          files: |
+            artifact/installer/OpenClash_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_core_sdk_${{ inputs.sdk_version }}.run
+            artifact/installer/version.txt
+          body: |
+            ## OpenClash ${{ steps.parsever.outputs.appver }} for iStoreOS - ${{ inputs.target_arch }}
+            
+            OpenClash版本: ${{ steps.parsever.outputs.appver }}
+            上游Release Tag: ${{ steps.fetch.outputs.version }}
+            SDK版本: ${{ inputs.sdk_version }}
+            OpenSSL标记: ${{ inputs.openssl_tag }}
+            构建时间: ${{ steps.date.outputs.date }}
+            目标架构: ${{ inputs.target_arch }}
+            GitHub Actions运行ID: ${{ github.run_id }}
+            构建选项: ${{ inputs.build_option }}
+            
+            ### 安装方法
+            
+            1. 下载 `OpenClash_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_core_sdk_${{ inputs.sdk_version }}.run` 到路由器
+            2. 执行 `chmod +x OpenClash_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_core_sdk_${{ inputs.sdk_version }}.run && ./OpenClash_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_core_sdk_${{ inputs.sdk_version }}.run`
+            3. 完成后，在LuCI界面中查看 OpenClash 菜单
+            
+            ### 注意事项
+            
+            - OpenClash 需要较多依赖包，安装过程可能需要一些时间
+            - 此版本已包含内核文件，无需额外下载
+            - 建议在安装前备份路由器配置
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

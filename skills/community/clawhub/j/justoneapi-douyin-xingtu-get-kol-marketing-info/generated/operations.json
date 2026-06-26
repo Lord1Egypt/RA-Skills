@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/get-kol-marketing-info/v1 for Douyin Creator Marketplace (Xingtu) Marketing Metrics through JustOneAPI with kolId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Marketing Metrics",
+  "endpointPath": "get-kol-marketing-info",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) marketing metrics data, including rate card details and commercial service metrics, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "getKolMarketingInfoV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Platform channel.\n\nAvailable Values:\n- `_1`: Short Video\n- `_10`: Live Streaming",
+          "enumValues": [
+            "_1",
+            "_10"
+          ],
+          "location": "query",
+          "name": "platformChannel",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/douyin-xingtu/get-kol-marketing-info/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Marketing Metrics",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_get_kol_marketing_info",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-get-kol-marketing-info",
+  "sourceTitle": "OpenAPI definition"
+}

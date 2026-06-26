@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/web/rendered-html/v1 for Web Page Rendered HTML Content through JustOneAPI with url.",
+  "displayName": "Web Page Rendered HTML Content",
+  "endpointPath": "rendered-html",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get the Rendered HTML content of a web page.",
+      "method": "GET",
+      "operationId": "renderedHtmlV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the web page to fetch.",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/web/rendered-html/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Rendered HTML Content",
+      "tags": [
+        "Web Page"
+      ]
+    }
+  ],
+  "platformKey": "web",
+  "primaryTag": "Web Page",
+  "skillName": "justoneapi_web_rendered_html",
+  "skillType": "interface",
+  "slug": "justoneapi-web-rendered-html",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,35 +1,60 @@
 ---
-name: "基于输入知识图谱个性生成节点学习内容"
+name: "learning-content-generator"
 description: "基于学习路径节点生成个性化学习内容。支持层级感知（L1/L2/L3不同深度）和上下文感知（同概念差异化）。每节点生成3000~5000字学习内容+3~5道随堂自测题。详细说明见 references/README.md"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learning-content-generator"
-sourceUrl: "https://clawhub.ai/skills/learning-content-generator"
+version: "2.3.1"
+author: "Wang Zhipeng"
+created: "2026-04-16"
+updated: "2026-04-21"
+tags: ["学习内容", "学习路径", "来源标注", "个性化学习", "层级感知", "国内合规"]
 ---
 
-# 基于输入知识图谱个性生成节点学习内容
+# 学习内容生成器 v2.3.0
 
-> 基于学习路径节点生成个性化学习内容。支持层级感知（L1/L2/L3不同深度）和上下文感知（同概念差异化）。每节点生成3000~5000字学习内容+3~5道随堂自测题。详细说明见 references/README.md
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learning-content-generator`
-- **Source URL:** [https://clawhub.ai/skills/learning-content-generator](https://clawhub.ai/skills/learning-content-generator)
+基于知识图谱节点，生成个性化学习内容（约3000~5000字/节点）+ 随堂自测题（3~5道）
 
-## Overview
+**协作模式**：与 learning-path-builder（知识图谱生成技能）配合使用
+- 接收：完整知识图谱JSON + 目标节点ID
+- 输出：该节点的完整学习内容
 
+## 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learning-content-generator
+1. **来源优先**：权威来源≥30%、参考来源≤40%、推断内容≤30%
+2. **来源标注**：每个知识点注明 ✅权威 / ⚠️参考 / 🤖推断
+3. **国内合规**：国家标准/官方文档优先，境外内容需标注
+4. **层级感知**：L1大而全/L2系统化/L3精确深入
+5. **上下文感知**：结合父L1/L2领域上下文生成差异化内容
+
+## 调用参数
+
+| 参数 | 说明 | 作用 |
+|------|------|------|
+| `target_node_id` | 目标L3叶节点ID | 指定要生成哪个节点的内容 |
+| `knowledge_graph` | 完整知识图谱JSON | 提供全局上下文 |
+| `context.l1_node` | 父L1节点信息 | 理解大领域上下文 |
+| `context.l2_node` | 父L2节点信息 | 理解模块上下文 |
+| `level` | 节点层级(1/2/3) | 决定内容深度 |
+
+## 工作流程
+
 ```
+第一步：读取知识图谱文件
+第二步：分析内容生成计划
+第三步：逐节点生成学习内容（每完成通知）
+第四步：生成随堂自测题
+第五步：验证与汇总
+```
+
+每步完成后发送会话进度通知。不设硬性超时，失败可从该步骤续接。
+
+## 输出格式
+
+- 主文件：`{name}_content_{node_id}.md`
+- 验证报告：`{name}_content_verification.md`
+- 长文本（>8000字）自动分片生成
+
+---
+
+*详细说明：references/README.md*
+*作者：Wang Zhipeng | 更新：2026-04-21 14:13*

@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval4.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "Headings rendered correctly",
+      "passed": true,
+      "evidence": "Heading count: 1"
+    },
+    {
+      "text": "H1 uses red color (#FF0000) in styles",
+      "passed": true,
+      "evidence": "Red (#FF0000) found in styles"
+    }
+  ]
+}

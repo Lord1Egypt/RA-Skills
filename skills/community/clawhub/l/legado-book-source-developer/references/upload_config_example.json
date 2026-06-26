@@ -1,0 +1,17 @@
+{
+  "compress": false,
+  "downloadUrlRule": "$.data.links.url",
+  "summary": "自定义图床示例",
+  "uploadUrl": "https://your-image-host.com/api/upload",
+  "method": "POST",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN"
+  },
+  "body": {
+    "file": "fileRequest",
+    "folder": "book_sources"
+  },
+  "type": "multipart/form-data"
+}
+

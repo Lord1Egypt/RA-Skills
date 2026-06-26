@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jianying Auto Editor"
+  short_description: "Node skill for cloud-driven Jianying drafts."
+  default_prompt: "Use this skill to scan local media, request a cloud editing plan, and write Jianying draft output files."

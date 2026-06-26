@@ -1,0 +1,96 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Social Media workflows with JustOneAPI, including cross-Platform Search.",
+  "displayName": "Social Media",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get cross-platform social media search data, including Xiaohongshu, Douyin, Kuaishou, WeChat, Bilibili, Weibo and Zhihu results, for trend research and monitoring.",
+      "method": "GET",
+      "operationId": "searchCrossPlatformV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search query string. Supports:\n- Multiple keywords (AND): keyword1 keyword2\n- Multiple keywords (OR): keyword1~keyword2\n- Excluded keywords (NOT): required_keyword -excluded_keyword",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Target social media platform for search filtering.\n\nAvailable Values:\n- `ALL`: All platforms\n- `NEWS`: News\n- `WEIBO`: Sina Weibo\n- `WEIXIN`: Weixin (WeChat)\n- `ZHIHU`: Zhihu\n- `DOUYIN`: Douyin (TikTok China)\n- `XIAOHONGSHU`: Xiaohongshu (Little Red Book)\n- `BILIBILI`: Bilibili\n- `KUAISHOU`: Kuaishou",
+          "enumValues": [
+            "ALL",
+            "NEWS",
+            "WEIBO",
+            "WEIXIN",
+            "ZHIHU",
+            "DOUYIN",
+            "XIAOHONGSHU",
+            "BILIBILI",
+            "KUAISHOU"
+          ],
+          "location": "query",
+          "name": "source",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start time of the search period (yyyy-MM-dd HH:mm:ss). Required for initial request.",
+          "enumValues": [],
+          "location": "query",
+          "name": "start",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "End time of the search period (yyyy-MM-dd HH:mm:ss). Required for initial request.",
+          "enumValues": [],
+          "location": "query",
+          "name": "end",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor provided by the 'nextCursor' field in the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "nextCursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Cross-Platform Search",
+      "tags": [
+        "Social Media"
+      ]
+    }
+  ],
+  "platformKey": "search",
+  "primaryTag": "Social Media",
+  "skillName": "justoneapi_search",
+  "slug": "justoneapi-search",
+  "sourceTitle": "OpenAPI definition"
+}

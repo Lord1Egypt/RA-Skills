@@ -1,0 +1,15 @@
+{
+  "provider": "claude_code",
+  "integration": "openapi",
+  "openapi_url": "https://jaravus.com/api/openapi.json",
+  "api_help_url": "https://jaravus.com/api/help",
+  "recommended_sequence": [
+    "GET /api",
+    "GET /api/wiki/help",
+    "GET /api/b2b/help"
+  ],
+  "retry_strategy": {
+    "on_429_wait_seconds": 5,
+    "respect_loop_detected": true
+  }
+}

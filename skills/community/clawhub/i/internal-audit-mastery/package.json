@@ -1,0 +1,19 @@
+{
+  "name": "internal-audit-mastery",
+  "version": "1.0.0",
+  "description": "全球内部审计专业实务体系：IIA 2024准则+2025胜任能力框架+2026学习目录+中国实战案例",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": [
+    "内部审计",
+    "IIA",
+    "全球内部审计准则",
+    "胜任能力框架",
+    "CIA",
+    "CGMA",
+    "审计质量",
+    "风险管理",
+    "合规",
+    "公司治理"
+  ]
+}

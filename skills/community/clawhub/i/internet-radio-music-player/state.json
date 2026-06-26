@@ -1,0 +1,219 @@
+{
+  "History": [
+    {
+      "Time": "2026-05-28 20:23:11",
+      "Genre": "country",
+      "Name": "Y Country - Today's Best Country",
+      "Url": "http://us5.internet-radio.com:8125/stream",
+      "Duration": "01:25:03",
+      "Note": "Mood: country"
+    },
+    {
+      "Time": "2026-05-28 21:48:17",
+      "Genre": "country",
+      "Name": "Spirit Country Radio",
+      "Url": "http://us2.internet-radio.com:8035/stream",
+      "Duration": "00:44:06"
+    },
+    {
+      "Time": "2026-05-28 22:43:31",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": null
+    },
+    {
+      "Time": "2026-05-29 09:14:24",
+      "Genre": "country",
+      "Name": "Spirit Country Radio",
+      "Url": "http://us2.internet-radio.com:8035/stream",
+      "Duration": "00:04:16",
+      "Note": "Mood: country"
+    },
+    {
+      "Time": "2026-05-29 09:18:43",
+      "Genre": "country",
+      "Name": "Y Country - Today's Best Country",
+      "Url": "http://us5.internet-radio.com:8125/stream",
+      "Duration": "01:27:13"
+    },
+    {
+      "Time": "2026-05-29 10:45:59",
+      "Genre": "country",
+      "Name": "All Country Radio",
+      "Url": "http://uk3.internet-radio.com:8024/stream",
+      "Duration": "00:19:22"
+    },
+    {
+      "Time": "2026-05-29 11:05:24",
+      "Genre": "country",
+      "Name": "Y Country - Today's Best Country",
+      "Url": "http://us5.internet-radio.com:8125/stream",
+      "Duration": "00:36:58"
+    },
+    {
+      "Time": "2026-05-29 11:42:36",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:03",
+      "Note": "Mood: ambient"
+    },
+    {
+      "Time": "2026-05-29 11:42:43",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:04"
+    },
+    {
+      "Time": "2026-05-29 11:42:50",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:19"
+    },
+    {
+      "Time": "2026-05-29 11:43:12",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:10"
+    },
+    {
+      "Time": "2026-05-29 11:43:25",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:10"
+    },
+    {
+      "Time": "2026-05-29 11:43:38",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:08"
+    },
+    {
+      "Time": "2026-05-29 11:43:49",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": null
+    },
+    {
+      "Time": "2026-05-29 11:45:09",
+      "Genre": "country",
+      "Name": "Y Country - Today's Best Country",
+      "Url": "http://us5.internet-radio.com:8125/stream",
+      "Duration": "00:00:12",
+      "Note": "Mood: country"
+    },
+    {
+      "Time": "2026-05-29 11:45:24",
+      "Genre": "country",
+      "Name": "All Country Radio",
+      "Url": "http://uk3.internet-radio.com:8024/stream",
+      "Duration": "00:00:20"
+    },
+    {
+      "Time": "2026-05-29 11:46:19",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:12",
+      "Note": "Mood: ambient"
+    },
+    {
+      "Time": "2026-05-29 12:13:22",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:04",
+      "Note": "Mood: ambient"
+    },
+    {
+      "Time": "2026-05-29 12:13:29",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:04"
+    },
+    {
+      "Time": "2026-05-29 12:13:36",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:04"
+    },
+    {
+      "Time": "2026-05-29 12:13:43",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:05"
+    },
+    {
+      "Time": "2026-05-29 12:13:51",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:12"
+    },
+    {
+      "Time": "2026-05-29 12:14:06",
+      "Genre": "ambient",
+      "Name": "Brown Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8280/stream",
+      "Duration": "00:00:06"
+    },
+    {
+      "Time": "2026-05-29 12:28:44",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:19:22",
+      "Note": "Mood: ambient"
+    },
+    {
+      "Time": "2026-05-29 12:48:09",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:03:14"
+    },
+    {
+      "Time": "2026-05-29 12:51:39",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:07"
+    },
+    {
+      "Time": "2026-05-29 12:51:52",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:00:05"
+    },
+    {
+      "Time": "2026-05-29 12:52:37",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "00:26:53"
+    },
+    {
+      "Time": "2026-05-29 13:19:48",
+      "Genre": "ambient",
+      "Name": "White Noise Radio",
+      "Url": "http://uk1.internet-radio.com:8267/stream",
+      "Duration": "01:33:08"
+    }
+  ],
+  "CurrentGenre": "ambient",
+  "CurrentIndex": 0,
+  "Volume": 50,
+  "CurrentStream": null,
+  "Stopped": true
+}

@@ -1,0 +1,305 @@
+#!/bin/bash
+# Knowledge Base Skill - Hooks
+# OpenClaw Hooks 集成
+
+set -e
+
+# ============================================
+# 配置
+# ============================================
+
+# KB 路径
+export KNOWLEDGE_DB="${KNOWLEDGE_DB:-$HOME/.openclaw/agents/current/knowledge.db}"
+
+# Hook 脚本路径
+KB_SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STORAGE_SCRIPT="$KB_SCRIPTS_DIR/storage.sh"
+RETRIEVER_SCRIPT="$KB_SCRIPTS_DIR/retriever.sh"
+
+# ============================================
+# before_agent_start hook
+# ============================================
+
+do_before_agent_start() {
+    local context
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --context) context="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+    
+    if [[ -z "$context" ]]; then
+        echo '{"status": "error", "error": "Missing required argument: --context"}'
+        return 1
+    fi
+    
+    # 调用 recall
+    local recall_result
+    recall_result=$("$RETRIEVER_SCRIPT" recall --context "$context" --limit 3 --max-tokens 500 2>/dev/null)
+    
+    # 解析 recall 结果
+    local injected_context entries_used
+    injected_context=$(echo "$recall_result" | python3 -c "
+import sys, json, re
+try:
+    raw = sys.stdin.read()
+    raw = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', raw)
+    data = json.loads(raw)
+    print(data.get('injected_context', ''))
+except:
+    print('')
+" 2>/dev/null)
+    
+    entries_used=$(echo "$recall_result" | python3 -c "
+import sys, json, re
+try:
+    raw = sys.stdin.read()
+    raw = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', raw)
+    data = json.loads(raw)
+    print(data.get('entries_used', 0))
+except:
+    print(0)
+" 2>/dev/null)
+    
+    # 输出结果
+    if [[ -n "$injected_context" ]]; then
+        echo "{\"status\": \"ok\", \"action\": \"recall\", \"entries_used\": $entries_used, \"injected\": true}"
+    else
+        echo "{\"status\": \"ok\", \"action\": \"recall\", \"entries_used\": 0, \"injected\": false}"
+    fi
+}
+
+# ============================================
+# after_turn hook
+# ============================================
+
+do_after_turn() {
+    local user_message agent_message threshold
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --user) user_message="$2"; shift 2 ;;
+            --agent) agent_message="$2"; shift 2 ;;
+            --threshold) threshold="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+    
+    threshold="${threshold:-0.7}"
+    
+    if [[ -z "$user_message" ]]; then
+        echo '{"status": "error", "error": "Missing required argument: --user"}'
+        return 1
+    fi
+    
+    # 组合对话
+    local turn="$user_message"
+    if [[ -n "$agent_message" ]]; then
+        turn="$turn\n$agent_message"
+    fi
+    
+    # 调用 capture 判断是否值得存储
+    local capture_result
+    capture_result=$("$RETRIEVER_SCRIPT" capture --turn "$turn" --threshold "$threshold" 2>/dev/null)
+    
+    # 解析 capture 结果
+    local captured score decision
+    captured=$(echo "$capture_result" | python3 -c "
+import sys, json, re
+try:
+    raw = sys.stdin.read()
+    raw = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', raw)
+    data = json.loads(raw)
+    print('true' if data.get('captured') else 'false')
+except:
+    print('false')
+" 2>/dev/null)
+    
+    score=$(echo "$capture_result" | python3 -c "
+import sys, json, re
+try:
+    raw = sys.stdin.read()
+    raw = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', raw)
+    data = json.loads(raw)
+    print(data.get('score', 0))
+except:
+    print(0)
+" 2>/dev/null)
+    
+    decision=$(echo "$capture_result" | python3 -c "
+import sys, json, re
+try:
+    raw = sys.stdin.read()
+    raw = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', raw)
+    data = json.loads(raw)
+    print(data.get('decision', ''))
+except:
+    print('')
+" 2>/dev/null)
+    
+    # 如果值得存储，存入 KB
+    if [[ "$captured" == "true" ]]; then
+        # 提取关键信息作为 title 和 content
+        local title="User note: ${user_message:0:50}"
+        local content="$turn"
+        local topic_key
+        topic_key=$(echo "$user_message" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//' | cut -c1-50)
+        
+        # 存入
+        "$STORAGE_SCRIPT" store \
+            --title "$title" \
+            --content "$content" \
+            --source "capture" \
+            --topic-key "capture-$topic_key" \
+            --tags "auto-captured" \
+            > /dev/null 2>&1
+        
+        echo "{\"status\": \"ok\", \"action\": \"capture\", \"captured\": true, \"score\": $score, \"decision\": \"$decision\"}"
+    else
+        echo "{\"status\": \"ok\", \"action\": \"capture\", \"captured\": false, \"score\": $score, \"decision\": \"$decision\"}"
+    fi
+}
+
+# ============================================
+# generate - 生成 hook 脚本
+# ============================================
+
+do_generate() {
+    local type="${1:-before_agent_start}"
+    local kb_path="${KNOWLEDGE_DB}"
+    
+    case "$type" in
+        before_agent_start)
+            cat <<EOF
+#!/bin/bash
+# OpenClaw before_agent_start hook
+# Generated by knowledge-base skill
+
+export KNOWLEDGE_DB="$kb_path"
+
+SCRIPT_DIR="\$(cd "\$(dirname "\${BASH_SOURCE[0]}")" && pwd)"
+source "\$SCRIPT_DIR/../scripts/hooks.sh"
+
+# 获取用户消息（从环境变量或参数）
+CONTEXT="\${1:-}"
+if [[ -z "\$CONTEXT" && -n "\$OPENCLAW_USER_MESSAGE" ]]; then
+    CONTEXT="\$OPENCLAW_USER_MESSAGE"
+fi
+
+if [[ -n "\$CONTEXT" ]]; then
+    hooks before_agent_start --context "\$CONTEXT"
+fi
+EOF
+            ;;
+        after_turn)
+            cat <<EOF
+#!/bin/bash
+# OpenClaw after_turn hook
+# Generated by knowledge-base skill
+
+export KNOWLEDGE_DB="$kb_path"
+
+SCRIPT_DIR="\$(cd "\$(dirname "\${BASH_SOURCE[0]}")" && pwd)"
+source "\$SCRIPT_DIR/../scripts/hooks.sh"
+
+# 获取对话内容
+USER_MSG="\${1:-}"
+AGENT_MSG="\${2:-}"
+
+if [[ -n "\$USER_MSG" ]]; then
+    hooks after_turn --user "\$USER_MSG" --agent "\$AGENT_MSG"
+fi
+EOF
+            ;;
+        *)
+            echo "Unknown hook type: $type"
+            return 1
+            ;;
+    esac
+}
+
+# ============================================
+# config - 配置
+# ============================================
+
+do_config() {
+    local key value
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --kb-path) 
+                KNOWLEDGE_DB="$2"
+                export KNOWLEDGE_DB
+                # 确保目录存在
+                mkdir -p "$(dirname "$KNOWLEDGE_DB")"
+                shift 2
+                ;;
+            --recall-limit)
+                export KNOWLEDGE_RECALL_LIMIT="$2"
+                shift 2
+                ;;
+            --capture-threshold)
+                export KNOWLEDGE_CAPTURE_THRESHOLD="$2"
+                shift 2
+                ;;
+            *)
+                shift
+                ;;
+        esac
+    done
+    
+    echo "{\"status\": \"ok\", \"kb_path\": \"$KNOWLEDGE_DB\"}"
+}
+
+# ============================================
+# 主入口
+# ============================================
+
+main() {
+    local command="${1:-}"
+    shift
+    
+    case "$command" in
+        before_agent_start)
+            do_before_agent_start "$@"
+            ;;
+        after_turn)
+            do_after_turn "$@"
+            ;;
+        generate)
+            do_generate "$@"
+            ;;
+        config)
+            do_config "$@"
+            ;;
+        *)
+            cat <<EOF
+Knowledge Base Hooks
+====================
+
+Usage:
+  hooks <command> [options]
+
+Commands:
+  before_agent_start    对话前 hook - recall 相关知识
+  after_turn            对话后 hook - capture 新内容
+  generate              生成 hook 脚本
+  config                配置
+
+Examples:
+  hooks before_agent_start --context "用户消息"
+  hooks after_turn --user "用户说..." --agent "Agent 回复..."
+  hooks generate before_agent_start > ~/.openclaw/hooks/before_agent_start
+  hooks config --kb-path /path/to/kb.db
+
+EOF
+            ;;
+    esac
+}
+
+# 如果直接执行
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

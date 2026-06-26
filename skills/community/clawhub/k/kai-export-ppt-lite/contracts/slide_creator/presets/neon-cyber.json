@@ -1,0 +1,82 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/neon-cyber",
+  "preset": "Neon Cyber",
+  "family": "futuristic-cyberpunk-tech",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.17.0 <3.0.0",
+  "producer_version_tested": "2.17.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/neon-cyber.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/neon-cyber-zh.html",
+    "demos/neon-cyber-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/neon-cyber.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/neon-cyber-zh.html",
+    "source_snapshot/demos/neon-cyber-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".stat",
+      ".stat-label",
+      ".stat-value"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Neon Cyber",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "cyber-card",
+    "cyber-label",
+    "cyber-title",
+    "grid",
+    "neon-body",
+    "pill",
+    "stat",
+    "stat-label",
+    "stat-value"
+  ]
+}

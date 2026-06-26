@@ -1,35 +1,460 @@
 ---
-name: "蘭(Lann)泰式按摩预约技能"
-description: "提供蘭泰式按摩（Lann Thai Massage）的门店查询、SPA服务查询和在线预约功能。支持泰式古法按摩、精油护理、草本热敷等专业服务预约，覆盖上海、杭州、成都等多城市门店。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lann-booking"
-sourceUrl: "https://clawhub.ai/skills/lann-booking"
+name: lann-booking
+slug: lann-booking
+label: 兰泰式按摩预约
+description: 提供蘭泰式按摩（Lann Thai Massage）的门店查询、SPA服务查询和在线预约功能。支持泰式古法按摩、精油护理、草本热敷等专业服务预约，覆盖上海、杭州、成都等多城市门店。
+metadata: {"clawdbot":{"emoji":"💆","requires":{"bins":[]}}}
+version: "2.0.0"
 ---
 
-# 蘭(Lann)泰式按摩预约技能
+# 蘭泰式按摩预约技能 (Lann Booking Skill)
 
-> 提供蘭泰式按摩（Lann Thai Massage）的门店查询、SPA服务查询和在线预约功能。支持泰式古法按摩、精油护理、草本热敷等专业服务预约，覆盖上海、杭州、成都等多城市门店。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lann-booking`
-- **Source URL:** [https://clawhub.ai/skills/lann-booking](https://clawhub.ai/skills/lann-booking)
+本 Skill 为 AI 助手提供蘭泰式按摩（Lann Thai Massage）的完整预约能力，包括：
+- **门店查询**：检索全国 75+ 门店信息（名称、地址、电话、交通指引、经纬度）
+- **服务查询**：检索 28+ 专业泰式按摩与 SPA 服务项目
+- **创建预约**：通过 MCP 协议或直接 API 调用完成在线预约
 
-## Overview
+**关键词**：泰式按摩、预约、SPA、Lann、lann、蘭、兰泰、古法按摩、精油护理、草本热敷
 
+## 集成模式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lann-booking
+本 Skill 支持三种调用模式，AI 应根据运行环境自动选择：
+
+### 模式 1：MCP 客户端模式（推荐）
+- **场景**：本地或远程部署 `lann-mcp-server`
+- **连接方式**：
+  - stdio：通过标准输入输出连接本地 MCP Server
+  - streamableHttp：通过 HTTP 流式连接远程 MCP Server
+- **优势**：符合 Model Context Protocol 标准，支持工具发现、类型安全
+
+### 模式 2：远程 MCP 服务模式
+- **场景**：直接连接已部署的 MCP 服务
+- **Endpoint**：`https://open.lannlife.com/mcp`
+- **协议**：streamableHttp
+- **优势**：无需本地部署，开箱即用
+
+### 模式 3：直连 API 模式（降级方案）
+- **场景**：无 MCP 环境时的备选方案
+- **API Endpoint**：`https://open.lannlife.com/mcp/book/create`
+- **方法**：HTTP POST
+- **Content-Type**：`application/json`
+- **优势**：简单直接，兼容传统 HTTP 客户端
+
+## 能力定义 (Intents)
+
+### Intent 1: 查询门店 (query_stores)
+**触发条件**：用户询问门店信息、附近门店、特定地区门店等
+
+**支持的操作**：
+- 列出所有可用门店
+- 按城市筛选（上海、杭州、成都、深圳、苏州、武汉、宁波）
+- 按关键词模糊匹配（门店名称、地址、地铁站）
+- 获取单个门店详细信息（地址、电话、交通指引、经纬度）
+
+**数据来源**：`org_store.json`（75 家门店）
+
+**示例对话**：
+- User: "上海有哪些门店？"
+- User: "淮海路附近有门店吗？"
+- User: "花木店的地址和电话是什么？"
+- User: "离地铁 2 号线最近的门店是哪个？"
+
+### Intent 2: 查询服务 (query_services)
+**触发条件**：用户询问服务项目、按摩类型、SPA 内容等
+
+**支持的操作**：
+- 列出所有可用服务项目
+- 按服务名称模糊匹配
+- 按服务描述关键词搜索
+- 按时长筛选（60分钟、90分钟、120分钟等）
+- 按服务类型分类（古法按摩、精油护理、特色 SPA 等）
+
+**数据来源**：`prod_service.json`（28 项服务）
+
+**示例对话**：
+- User: "有哪些按摩服务？"
+- User: "90 分钟的服务有哪些？"
+- User: "传统古法按摩包含什么内容？"
+- User: "推荐一个缓解肩颈疲劳的服务"
+
+### Intent 3: 创建预约 (create_booking)
+**触发条件**：用户明确表达预约意图并提供必要信息
+
+**必填参数**：
+| 参数名 | 类型 | 校验规则 | 说明 | 示例 |
+|--------|------|----------|------|------|
+| mobile | string | `/^1[3-9]\d{9}$/` | 11 位中国大陆手机号 | `"13812345678"` |
+| storeName | string | 必须与 `org_store.json` 中 `name` 字段完全一致 | 门店名称 | `"淮海店"` |
+| serviceName | string | 必须与 `prod_service.json` 中 `name` 字段完全一致 | 服务项目名称 | `"传统古法全身按摩-90分钟"` |
+| count | number | `1 <= count <= 20` | 预约人数 | `2` |
+| bookTime | string | ISO 8601 格式，且晚于当前时间 | 预约开始时间 | `"2024-01-15T14:00:00"` |
+
+**工作流程**：
+1. **意图识别**：确认用户想要创建预约
+2. **参数收集**：检查是否提供所有必填参数
+   - 若缺少手机号：提示用户提供
+   - 若缺少门店：调用 `query_stores` 展示可选门店，让用户选择
+   - 若缺少服务：调用 `query_services` 展示可选服务，让用户选择
+   - 若缺少人数：默认为 1 人，或询问用户
+   - 若缺少时间：询问用户期望的预约时间
+3. **参数校验**：
+   - 验证手机号格式
+   - 验证门店名称是否在 `org_store.json` 中存在（模糊匹配后需用户确认）
+   - 验证服务名称是否在 `prod_service.json` 中存在（模糊匹配后需用户确认）
+   - 验证人数范围（1-20 人）
+   - 验证时间格式（ISO 8601）且晚于当前时间
+4. **构造请求**：组装符合 API 规范的 JSON 请求体
+5. **选择调用模式**：
+   - 优先使用 MCP 模式（如果可用）
+   - 降级使用直连 API 模式
+6. **执行调用**：发送预约请求
+7. **处理响应**：
+   - 成功：返回预约 ID、时间、门店和服务信息
+   - 失败：根据错误码给出友好提示
+
+**示例对话**：
+- User: "我要预约淮海店的传统古法全身按摩，2 人，明天下午 2 点，手机号 13812345678"
+- User: "帮我预约花木店的泰式精油全身护理，1 人，后天上午 10 点"
+- User: "我想预约一个肩颈按摩，有什么推荐？"
+
+## 数据源说明
+
+### 门店数据结构 (org_store.json)
+```json
+{
+  "name": "门店名称",
+  "address": "详细地址",
+  "telephone": "联系电话",
+  "traffic": "交通指引",
+  "longitude": 经度,
+  "latitude": 纬度
+}
 ```
+
+**关键字段**：
+- `name`：**唯一标识符**，创建预约时必须与此字段完全一致
+- `address`：详细地址，用于地理位置匹配
+- `telephone`：门店电话，用于用户咨询
+- `traffic`：交通指引，包含地铁线路和出口信息
+- `longitude` / `latitude`：经纬度坐标，可用于距离计算
+
+**门店分布**：
+- 上海市：约 60+ 家（黄浦区、浦东新区、静安区、徐汇区、长宁区、闵行区、宝山区、普陀区、杨浦区、嘉定区、松江区、青浦区等）
+- 杭州市：7 家（奥体印象城店、EFC 店、滨江银泰店、来福士店、杭州中心店、东站万象汇店、黄龙万科店）
+- 成都市：4 家（万象城店、优品道店、太古里旗舰店、银泰中心 in99 店）
+- 其他城市：武汉（1 家）、苏州（2 家）、深圳（1 家）、宁波（1 家）
+
+### 服务项目数据结构 (prod_service.json)
+```json
+{
+  "name": "服务名称",
+  "desc": "服务描述"
+}
+```
+
+**关键字段**：
+- `name`：**唯一标识符**，创建预约时必须与此字段完全一致
+- `desc`：服务详细描述，用于关键词匹配和用户理解
+
+**服务分类**：
+1. **传统古法按摩系列**（6 项）：90-120 分钟，推、拉、蹬、摇、踩等手法
+2. **泰式精油护理系列**（7 项）：60-120 分钟，植物精油 + 泰式手法
+3. **特色护理系列**（8 项）：椰香按摩、轻体 Spa、水光焕肤等
+4. **快速/专项服务系列**（5 项）：肩颈版、精华版、深度拉伸等
+5. **其他**：泊兰泰
+
+## 工作流指南 (AI Assistant Workflow)
+
+### Step 1: 意图识别
+分析用户输入，判断属于以下哪种意图：
+- **查询门店**：包含"门店"、"地址"、"电话"、"附近"、"哪里有"等关键词
+- **查询服务**：包含"服务"、"按摩"、"SPA"、"项目"、"有什么"等关键词
+- **创建预约**：包含"预约"、"预订"、"订一个"、"帮我约"等关键词
+
+### Step 2: 信息补全
+如果用户意图是创建预约，但信息不完整：
+
+**缺少门店时**：
+1. 读取 `org_store.json`
+2. 根据用户提到的地区、地标、地铁线等关键词进行模糊匹配
+3. 如果匹配到多个候选，列出前 5 个供用户选择
+4. 如果未提到任何地区信息，询问用户期望的城市或区域
+
+**缺少服务时**：
+1. 读取 `prod_service.json`
+2. 根据用户需求（如"缓解肩颈疲劳"、"全身放松"）匹配服务描述
+3. 推荐 3-5 个相关服务，附上时长和简要说明
+4. 让用户选择或进一步说明需求
+
+**缺少时间时**：
+1. 询问用户期望的日期和时间
+2. 提供相对时间解析（如"明天下午 2 点"转换为 ISO 8601 格式）
+3. 确保时间晚于当前时间
+
+**缺少手机号时**：
+1. 提示用户提供 11 位中国大陆手机号
+2. 强调手机号用于门店联系确认
+
+### Step 3: 参数校验
+在调用 API 之前，必须完成以下校验：
+
+**手机号校验**：
+```python
+import re
+def validate_phone(mobile):
+    return bool(re.match(r'^1[3-9]\d{9}$', mobile))
+```
+
+**门店名称校验**：
+```python
+def validate_store(store_name, stores):
+    # 精确匹配
+    if store_name in [s['name'] for s in stores]:
+        return True, store_name
+    # 模糊匹配
+    candidates = [s['name'] for s in stores if store_name in s['name'] or s['name'] in store_name]
+    if len(candidates) == 1:
+        return True, candidates[0]
+    elif len(candidates) > 1:
+        return False, f"找到多个匹配门店：{', '.join(candidates)}，请指定具体门店"
+    else:
+        return False, f"未找到门店'{store_name}'，请使用以下门店名称之一：{', '.join([s['name'] for s in stores[:10]])}..."
+```
+
+**服务名称校验**：
+```python
+def validate_service(service_name, services):
+    # 精确匹配
+    if service_name in [s['name'] for s in services]:
+        return True, service_name
+    # 模糊匹配
+    candidates = [s['name'] for s in services if service_name in s['name'] or s['name'] in service_name]
+    if len(candidates) == 1:
+        return True, candidates[0]
+    elif len(candidates) > 1:
+        return False, f"找到多个匹配服务：{', '.join(candidates)}，请指定具体服务"
+    else:
+        return False, f"未找到服务'{service_name}'，请使用以下服务名称之一：{', '.join([s['name'] for s in services[:10]])}..."
+```
+
+**人数校验**：
+```python
+def validate_count(count):
+    if isinstance(count, int) and 1 <= count <= 20:
+        return True
+    return False, "预约人数必须在 1-20 人之间"
+```
+
+**时间校验**：
+```python
+from datetime import datetime
+
+def validate_time(book_time):
+    try:
+        dt = datetime.fromisoformat(book_time)
+        if dt > datetime.now():
+            return True
+        return False, "预约时间必须晚于当前时间"
+    except ValueError:
+        return False, "时间格式不正确，请使用 ISO 8601 格式（如：2024-01-15T14:00:00）"
+```
+
+### Step 4: 构造请求
+确保所有参数校验通过后，构造请求体：
+
+```json
+{
+  "mobile": "13812345678",
+  "storeName": "淮海店",
+  "serviceName": "传统古法全身按摩-90分钟",
+  "count": 2,
+  "bookTime": "2024-01-15T14:00:00"
+}
+```
+
+### Step 5: 选择调用模式
+
+**优先级顺序**：
+1. **MCP 模式**（如果检测到 MCP 工具可用）
+   - 使用 MCP 工具调用预约接口
+   - 优势：类型安全、错误处理完善
+
+2. **远程 MCP 模式**（如果配置了远程 Endpoint）
+   - 连接到 `https://open.lannlife.com/mcp`
+   - 使用 streamableHttp 协议
+
+3. **直连 API 模式**（降级方案）
+   - 直接发送 HTTP POST 请求
+   - Endpoint：`https://open.lannlife.com/mcp/book/create`
+
+### Step 6: 执行调用
+
+**MCP 模式示例**（伪代码）：
+```python
+# 假设 MCP 工具已注册
+result = mcp_tools.create_booking(
+    mobile="13812345678",
+    storeName="淮海店",
+    serviceName="传统古法全身按摩-90分钟",
+    count=2,
+    bookTime="2024-01-15T14:00:00"
+)
+```
+
+**直连 API 模式示例**：
+```python
+import requests
+
+response = requests.post(
+    "https://open.lannlife.com/mcp/book/create",
+    headers={"Content-Type": "application/json"},
+    json={
+        "mobile": "13812345678",
+        "storeName": "淮海店",
+        "serviceName": "传统古法全身按摩-90分钟",
+        "count": 2,
+        "bookTime": "2024-01-15T14:00:00"
+    }
+)
+result = response.json()
+```
+
+### Step 7: 处理响应
+
+**成功响应**：
+```json
+{
+  "success": true,
+  "bookingId": "BOOK123456",
+  "message": "预约成功！",
+  "startTime": "2024-01-15T14:00:00",
+  "endTime": "2024-01-15T15:30:00",
+  "storeInfo": {
+    "name": "淮海店",
+    "address": "上海市黄浦区进贤路216号（近陕西南路）",
+    "telephone": "021-62670235",
+    "traffic": "地铁1号线陕西南路1号口出，沿陕西南路走到进贤路右转约100m"
+  },
+  "serviceInfo": {
+    "name": "传统古法全身按摩-90分钟",
+    "desc": "通过独特的推、拉、蹬、摇、踩等手法，还有大量被动瑜伽的动作，打开韧带，释放疲劳，让肌肉的疼痛与紧绷得到真正缓解，实现从身到心的全面放松。"
+  }
+}
+```
+
+**AI 回复模板**：
+```
+✅ 预约成功！
+
+📋 预约详情：
+- 预约 ID：BOOK123456
+- 门店：淮海店
+- 地址：上海市黄浦区进贤路216号（近陕西南路）
+- 电话：021-62670235
+- 服务：传统古法全身按摩-90分钟
+- 时间：2024-01-15 14:00 - 15:30
+- 人数：2 人
+
+🚇 交通指引：
+地铁1号线陕西南路1号口出，沿陕西南路走到进贤路右转约100m
+
+💡 温馨提示：
+- 请提前 10 分钟到店
+- 如需取消或改期，请至少提前 1 小时联系门店
+- 祝您享受愉快的按摩体验！
+```
+
+**失败响应处理**：
+
+| 错误场景 | 错误消息示例 | AI 应对策略 |
+|---------|-------------|------------|
+| 手机号格式错误 | "请输入正确的11位中国大陆手机号" | 提示用户重新输入正确的手机号 |
+| 门店不存在 | "未找到匹配的门店" | 列出可用门店供用户选择 |
+| 服务不存在 | "未找到匹配的服务项目" | 列出可用服务供用户选择 |
+| 人数超出范围 | "预约人数必须在1-20人之间" | 提示用户调整人数 |
+| 时间格式错误 | "预约时间格式不正确" | 提供正确的时间格式示例 |
+| 时间已过期 | "预约时间必须晚于当前时间" | 提示用户选择未来时间 |
+| API 服务器错误 | "HTTP 500 Internal Server Error" | 建议用户稍后重试 |
+| 网络错误 | "网络连接失败" | 检查网络连接，建议重试 |
+
+## 错误处理规范
+
+### 错误码定义
+
+| 错误类型 | HTTP 状态码 | 错误消息 | 处理建议 |
+|---------|------------|---------|---------|
+| 参数校验失败 | 400 | 具体校验错误信息 | 修正参数后重试 |
+| 门店/服务不存在 | 404 | "未找到匹配的门店/服务" | 重新选择门店/服务 |
+| 时间冲突 | 409 | "该时段已被预约" | 选择其他时间 |
+| 服务器错误 | 500 | "内部服务器错误" | 稍后重试 |
+| 网络超时 | 504 | "请求超时" | 检查网络后重试 |
+
+### 重试策略
+- **可重试错误**：网络超时、服务器错误（500/502/503/504）
+  - 最多重试 3 次，每次间隔递增（1s, 2s, 4s）
+- **不可重试错误**：参数校验失败、资源不存在
+  - 提示用户修正参数
+
+## 最佳实践
+
+### 1. 门店和服务名称匹配
+- **原则**：传入 API 的 `storeName` 和 `serviceName` 必须与 JSON 文件中的 `name` 字段**完全一致**
+- **实现**：先进行模糊匹配找到候选列表，再让用户确认选择
+- **避免**：直接使用用户输入的原始文本（可能包含错别字或简称）
+
+### 2. 时间处理
+- **存储格式**：ISO 8601（`YYYY-MM-DDTHH:mm:ss`）
+- **显示格式**：友好格式（`2024年1月15日 14:00`）
+- **时区**：默认使用北京时间（UTC+8）
+- **相对时间解析**：支持"明天下午 2 点"、"后天上午 10 点"等自然语言
+
+### 3. 用户体验优化
+- **主动推荐**：根据用户描述的需求（如"肩颈疲劳"），主动推荐合适的服务
+- **就近推荐**：如果用户提供位置信息，推荐距离最近的门店
+- **信息确认**：在提交预约前，汇总所有信息让用户确认
+- **进度提示**：在调用 API 时，告知用户"正在为您预约..."
+
+### 4. 数据隐私保护
+- **手机号脱敏**：在日志和非必要场景中，将手机号中间 4 位替换为 `****`
+- **不存储敏感信息**：Skill 本身不应持久化存储用户的手机号等敏感信息
+- **最小化原则**：只收集完成预约所必需的信息
+
+## 注意事项
+
+### 预约政策
+- **提前预约**：建议至少提前 2 小时预约，以确保有可用时段
+- **取消政策**：如需取消或改期，请至少提前 1 小时联系门店
+- **人数限制**：单次预约最多 20 人，超过需分批预约或联系门店
+- **营业时间**：各门店营业时间可能不同，请以门店实际为准
+
+### 数据更新
+- **门店数据**：可能会定期更新（新增/关闭门店），请以 `org_store.json` 最新版本为准
+- **服务数据**：服务项目和描述可能会调整，请以 `prod_service.json` 最新版本为准
+- **同步机制**：建议每次使用前检查数据文件是否为最新
+
+### 兼容性
+- **API 版本**：当前 API 接口保持稳定，向后兼容
+- **MCP 协议**：遵循 Model Context Protocol 规范
+- **运行环境**：支持 Node.js 16+、Python 3.8+
+
+## 版本历史
+
+- **v2.0.0**（2026-04-09）：
+  - 重构 Skill 架构，支持三种集成模式（MCP、远程 MCP、直连 API）
+  - 优化意图识别和参数校验逻辑
+  - 完善错误处理和重试机制
+  - 增加详细的工作流指南和最佳实践
+
+- **v1.0.2**（2026-04-03）：
+  - 初始版本，实现门店查询、服务查询和创建预约功能
+
+## 相关资源
+
+- **官方文档**：参考 `references/api_reference.md`
+- **测试脚本**：参考 `scripts/test_booking.py`
+- **数据文件**：
+  - 门店数据：`org_store.json`
+  - 服务项目：`prod_service.json`
+- **预约模板**：参考 `assets/booking_template.md`

@@ -1,35 +1,42 @@
 ---
-name: "ab-test-analyzer"
+name: jpeng-ab-test-analyzer
 description: "Analyze A/B test results"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-ab-test-analyzer"
-sourceUrl: "https://clawhub.ai/skills/jpeng-ab-test-analyzer"
+version: "1.0.0"
+author: "jpeng"
+tags: ["testing", "ab", "analytics"]
 ---
 
-# ab-test-analyzer
+# A/B Test Analyzer
 
-> Analyze A/B test results
+Analyze A/B test results
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-ab-test-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-ab-test-analyzer](https://clawhub.ai/skills/jpeng-ab-test-analyzer)
+## When to Use
 
-## Overview
+- User needs testing related functionality
+- Automating ab tasks
+- Analytics operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-ab-test-analyzer
+python3 scripts/ab_test_analyzer.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export AB_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

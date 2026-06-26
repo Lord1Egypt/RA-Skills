@@ -1,35 +1,17 @@
----
-name: "LifeImageRecognitionSkill"
-description: "Recognizes key elements in lifestyle images, classifies the scene, and offers practical daily life advice based on the content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lifeimagerecognitionskill"
-sourceUrl: "https://clawhub.ai/skills/lifeimagerecognitionskill"
----
+# 生活图像识别小助手
 
-# LifeImageRecognitionSkill
+这是一个 OpenClaw Skill。
 
-> Recognizes key elements in lifestyle images, classifies the scene, and offers practical daily life advice based on the content.
+用户上传一张生活场景图片后，Skill 会：
+- 识别图片中的主要内容
+- 判断属于哪类生活场景（美食 / 宠物 / 植物 / 穿搭 / 家居 / 旅行）
+- 提供实用的生活建议，而不仅仅是描述图片
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lifeimagerecognitionskill`
-- **Source URL:** [https://clawhub.ai/skills/lifeimagerecognitionskill](https://clawhub.ai/skills/lifeimagerecognitionskill)
+## 输入
+一张图片
 
-## Overview
+## 输出
+对图片内容的识别 + 实用建议
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lifeimagerecognitionskill
-```
+## Prompt
+详见 prompt.txt

@@ -1,0 +1,107 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/neo-brutalism",
+  "preset": "Neo-Brutalism",
+  "family": "bold-uncompromising-manifesto",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/neo-brutalism.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/neo-brutalism-zh.html",
+    "demos/neo-brutalism-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/neo-brutalism.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/neo-brutalism-zh.html",
+    "source_snapshot/demos/neo-brutalism-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".hero-kpi",
+      ".hero-kpi-item",
+      ".stat-label",
+      ".stat-number"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Neo-Brutalism",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "brute-body",
+    "brute-card",
+    "brute-tag",
+    "brute-title",
+    "cta-cmd",
+    "cta-cmd-light",
+    "cta-content",
+    "cta-headline",
+    "cta-note",
+    "cta-rule",
+    "cta-sub",
+    "cta-tag",
+    "feature-card",
+    "feature-grid",
+    "feature-icon",
+    "hero-badge",
+    "hero-kpi",
+    "hero-kpi-item",
+    "hero-subtitle",
+    "install-block",
+    "install-cmd",
+    "install-platform",
+    "install-section",
+    "left-panel",
+    "preset-tag",
+    "right-panel",
+    "slide-num-label",
+    "stat-label",
+    "stat-number",
+    "style-card",
+    "style-card-label",
+    "style-card-preview",
+    "style-card-title"
+  ]
+}

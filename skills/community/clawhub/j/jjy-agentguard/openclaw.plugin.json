@@ -1,0 +1,35 @@
+{
+  "id": "agentguard",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "daemonHost": {
+        "type": "string",
+        "default": "127.0.0.1",
+        "description": "AgentGuard daemon host"
+      },
+      "daemonPort": {
+        "type": "integer",
+        "default": 19821,
+        "description": "AgentGuard daemon dashboard port"
+      },
+      "healthCheckInterval": {
+        "type": "integer",
+        "default": 30,
+        "description": "Health check interval in seconds"
+      },
+      "autoReconnect": {
+        "type": "boolean",
+        "default": true,
+        "description": "Auto reconnect to daemon on failure"
+      }
+    }
+  },
+  "uiHints": {
+    "daemonHost": { "label": "Daemon 地址", "placeholder": "127.0.0.1" },
+    "daemonPort": { "label": "Dashboard 端口", "placeholder": "19821" },
+    "healthCheckInterval": { "label": "健康检查间隔 (秒)", "placeholder": "30" },
+    "autoReconnect": { "label": "自动重连" }
+  }
+}

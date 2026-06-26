@@ -1,35 +1,35 @@
----
-name: "LegiScan Bill Search"
-description: "Search and track active or completed state bills by keywords and state using the LegiScan API with customizable filters."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/legiscan-bill-search"
-sourceUrl: "https://clawhub.ai/skills/legiscan-bill-search"
----
+# LegiScan Bill Tracker
 
-# LegiScan Bill Search
+A skill to monitor state legislative activity using the LegiScan API. It filters for active bills based on custom keywords and state selection.
 
-> Search and track active or completed state bills by keywords and state using the LegiScan API with customizable filters.
+## Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/legiscan-bill-search`
-- **Source URL:** [https://clawhub.ai/skills/legiscan-bill-search](https://clawhub.ai/skills/legiscan-bill-search)
+1.  **API Key**: Obtain a free API key from [LegiScan](https://legiscan.com/legiscan).
+2.  **Environment Variable**: Set `LEGISCAN_API_KEY` in your environment.
+3.  **Dependencies**: Requires `requests`.
 
-## Overview
+## Usage
 
+Run the script directly or via a scheduled task (cron).
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/legiscan-bill-search
+# Default (TX, cryptocurrency keywords)
+python3 search.py
+
+# Custom State and Keywords
+python3 search.py --state TX --keywords "crypto, bitcoin, blockchain"
+
+# Include passed/completed bills
+python3 search.py --state TX --keywords "crypto, bitcoin, blockchain" --all
 ```
+
+## Configuration Options
+
+-   `--state`: Two-letter state abbreviation (Default: `TX` or `LEGISCAN_STATE` env var).
+-   `--keywords`: Comma-separated list of terms to search for.
+-   `--all`: If flag is present, includes bills that have passed or are completed.
+
+## Best Practices
+- The script uses environment variables for sensitive credentials.
+- It provides CLI arguments for flexibility without modifying code.
+- It includes error handling for API failures and missing configuration.

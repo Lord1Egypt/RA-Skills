@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGO Pixel Art Generator</title>
+  <style>
+    :root {
+      --bg: #0f0f14;
+      --panel: #1a1a24;
+      --border: #2a2a3a;
+      --text: #e0e0e8;
+      --dim: #8888a0;
+      --accent: #ffd500;
+      --accent2: #0051a8;
+      --radius: 12px;
+      --gap: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+    }
+
+    .header .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #fe8a18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header .sub {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 2px;
+    }
+
+    /* Main layout */
+    .main {
+      display: flex;
+      gap: var(--gap);
+      flex-wrap: wrap;
+    }
+
+    .left {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    .right {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    /* Panels */
+    .panel {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .panel h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Upload area */
+    .dropzone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .dropzone:hover,
+    .dropzone.drag {
+      border-color: var(--accent);
+      background: rgba(255, 213, 0, 0.05);
+    }
+
+    .dropzone .icon {
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+
+    .dropzone p {
+      font-size: 14px;
+      color: var(--dim);
+    }
+
+    .dropzone .hint {
+      font-size: 12px;
+      color: var(--dim);
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+
+    .dropzone.has-image {
+      border-style: solid;
+      border-color: var(--border);
+    }
+
+    .dropzone.has-image img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 6px;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-row label {
+      font-size: 13px;
+      color: var(--dim);
+      min-width: 70px;
+    }
+
+    .control-row input[type=range] {
+      flex: 1;
+      accent-color: var(--accent);
+    }
+
+    .control-row input[type=number] {
+      width: 72px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      color: var(--text);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .control-row .val {
+      font-size: 13px;
+      color: var(--accent);
+      min-width: 56px;
+      text-align: right;
+    }
+
+    /* Lock button */
+    .size-lock {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .size-lock button {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      color: var(--dim);
+      font-size: 14px;
+    }
+
+    .size-lock button.locked {
+      background: var(--accent2);
+      color: #fff;
+      border-color: var(--accent2);
+    }
+
+    /* Canvas */
+    .canvas-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    .canvas-wrap canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .placeholder {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      color: var(--dim);
+      font-size: 14px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 2px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--dim);
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+    }
+
+    .tab:hover {
+      color: var(--text);
+    }
+
+    .tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Guide table */
+    .guide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .guide-table th {
+      text-align: left;
+      padding: 6px 8px;
+      color: var(--dim);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-table td {
+      padding: 4px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .guide-table tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .row-swatch {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+    }
+
+    .row-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .guide-scroll {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    /* Parts list */
+    .parts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .part-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      min-width: 140px;
+    }
+
+    .part-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+    }
+
+    .part-info {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .part-name {
+      font-weight: 600;
+    }
+
+    .part-count {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+      margin-left: auto;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .btn.primary:hover {
+      background: #ffe033;
+    }
+
+    /* Brick count badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--bg);
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .badge .num {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .main {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo">🧱</div>
+      <div>
+        <h1>LEGO Pixel Art Generator</h1>
+        <div class="sub">LEGO Pixel Art Builder · Pure Frontend · Zero Dependencies</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <div class="panel">
+          <h3>📷 Upload Image</h3>
+          <div class="dropzone" id="dropzone">
+            <div class="icon">🖼️</div>
+            <p>Click or drag an image here</p>
+            <div class="hint">Supports JPG / PNG / WebP / GIF</div>
+          </div>
+          <input type="file" id="fileInput" accept="image/*" style="display:none">
+        </div>
+
+        <div class="panel">
+          <h3>⚙️ Settings</h3>
+          <div class="controls">
+            <div class="control-row size-lock">
+              <button id="lockBtn" class="locked" title="Lock aspect ratio">🔗</button>
+              <label>Width</label>
+              <input type="range" id="widthRange" min="10" max="200" value="48">
+              <input type="number" id="widthNum" min="10" max="200" value="48">
+              <span class="val">studs</span>
+            </div>
+            <div class="control-row">
+              <label>Height</label>
+              <input type="range" id="heightRange" min="10" max="200" value="48">
+              <input type="number" id="heightNum" min="10" max="200" value="48">
+              <span class="val">studs</span>
+            </div>
+            <div class="control-row">
+              <label>Precision</label>
+              <input type="range" id="precRange" min="1" max="5" value="3">
+              <span class="val" id="precVal">Standard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="partsPanel" style="display:none">
+          <h3>🧩 Material List</h3>
+          <div id="totalBricks" style="margin-bottom:12px"></div>
+          <div class="parts-grid" id="partsGrid"></div>
+          <div class="actions" style="margin-top:12px">
+            <button class="btn" id="copyList">📋 Copy List</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="panel">
+          <h3>🎨 Preview</h3>
+          <div id="previewArea" style="text-align:center">
+            <div class="placeholder" id="placeholder">
+              Please upload an image first 👆
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="tabs">
+            <div class="tab active" data-tab="guide">📐 Building Guide</div>
+            <div class="tab" data-tab="colors">🎨 Color Scheme</div>
+          </div>
+          <div id="tabGuide" class="guide-scroll">
+            <p style="color:var(--dim);font-size:13px">Row-by-row building guide will appear here after generation</p>
+          </div>
+          <div id="tabColors" style="display:none">
+            <p style="color:var(--dim);font-size:13px;margin-bottom:12px">Current LEGO color palette (only colors used
+              are shown)</p>
+            <div id="usedColors"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" id="exportPng">💾 Export PNG</button>
+          <button class="btn" id="exportGuide">📄 Export Building Guide</button>
+          <button class="btn" id="resetBtn">🔄 Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── LEGO Color Palette (36 official brick colors) ──
+    const LEGO_COLORS = [
+      { name: 'White', hex: '#FFFFFF', id: '1' },
+      { name: 'Light Gray', hex: '#E4E4E4', id: '503' },
+      { name: 'Light Blue Gray', hex: '#A0A5A9', id: '194' },
+      { name: 'Dark Blue Gray', hex: '#6C6E74', id: '199' },
+      { name: 'Black', hex: '#1B2A34', id: '11' },
+      { name: 'Red', hex: '#C91A09', id: '21' },
+      { name: 'Blue', hex: '#0051A8', id: '7' },
+      { name: 'Yellow', hex: '#F5CD2F', id: '24' },
+      { name: 'Bright Yellow', hex: '#FFF03C', id: '226' },
+      { name: 'Green', hex: '#00852B', id: '28' },
+      { name: 'Dark Green', hex: '#184632', id: '288' },
+      { name: 'Bright Green', hex: '#BBE90B', id: '27' },
+      { name: 'Orange', hex: '#FE8A18', id: '25' },
+      { name: 'Dark Orange', hex: '#A95500', id: '38' },
+      { name: 'Reddish Brown', hex: '#583927', id: '8' },
+      { name: 'Dark Brown', hex: '#352100', id: '120' },
+      { name: 'Sand Brown', hex: '#958A73', id: '5' },
+      { name: 'Sand Green', hex: '#78AE78', id: '48' },
+      { name: 'Sand Blue', hex: '#6074A1', id: '135' },
+      { name: 'Sand Red', hex: '#D67572', id: '348' },
+      { name: 'Bright Pink', hex: '#E4ADC8', id: '222' },
+      { name: 'Purple', hex: '#81007B', id: '268' },
+      { name: 'Lavender', hex: '#A5A5CB', id: '325' },
+      { name: 'Magenta', hex: '#901F76', id: '26' },
+      { name: 'Light Blue', hex: '#B4D2E4', id: '208' },
+      { name: 'Medium Blue', hex: '#5C93C8', id: '156' },
+      { name: 'Aqua', hex: '#B3DEE2', id: '118' },
+      { name: 'Dark Azure', hex: '#078BC9', id: '321' },
+      { name: 'Medium Azure', hex: '#36AEBF', id: '322' },
+      { name: 'Pearl Gold', hex: '#DCBC81', id: '297' },
+      { name: 'Silver Gray', hex: '#898788', id: '315' },
+      { name: 'Coral Red', hex: '#DA8541', id: '335' },
+      { name: 'Medium Lavender', hex: '#3F3691', id: '324' },
+      { name: 'Flesh', hex: '#F6D7B3', id: '283' },
+      { name: 'Dark Purple', hex: '#3B1F5E', id: '89' },
+      { name: 'Olive Green', hex: '#7C9050', id: '330' },
+    ];
+
+    // ── State ──
+    let sourceImage = null;
+    let lockedRatio = true;
+    let aspectRatio = 1;
+    let currentPixelData = null; // { colors: Map<colorIdx, count>, grid: [[colorIdx,...]] }
+
+    // ── DOM ──
+    const $ = id => document.getElementById(id);
+    const dropzone = $('dropzone');
+    const fileInput = $('fileInput');
+    const placeholder = $('placeholder');
+    const partsPanel = $('partsPanel');
+
+    // ── Drop zone ──
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag'); });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
+    dropzone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropzone.classList.remove('drag');
+      const f = e.dataTransfer.files[0];
+      if (f && f.type.startsWith('image/')) loadImage(f);
+    });
+    fileInput.addEventListener('change', () => {
+      const f = fileInput.files[0];
+      if (f) loadImage(f);
+    });
+
+    function loadImage(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          sourceImage = img;
+          aspectRatio = img.naturalWidth / img.naturalHeight;
+          dropzone.classList.add('has-image');
+          dropzone.innerHTML = `<img src="${e.target.result}" alt="preview"><p style="margin-top:8px;font-size:12px;color:var(--dim)">${img.naturalWidth}×${img.naturalHeight} · ${(file.size / 1024).toFixed(0)}KB</p>`;
+          if (lockedRatio) {
+            const w = parseInt($('widthNum').value);
+            $('heightNum').value = Math.round(w / aspectRatio);
+            $('heightRange').value = Math.round(w / aspectRatio);
+            clampHeight();
+          }
+          generate();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ── Controls ──
+    const lockBtn = $('lockBtn');
+    lockBtn.addEventListener('click', () => {
+      lockedRatio = !lockedRatio;
+      lockBtn.classList.toggle('locked', lockedRatio);
+      lockBtn.textContent = lockedRatio ? '🔗' : '🔓';
+      if (lockedRatio && sourceImage) {
+        const w = parseInt($('widthNum').value);
+        $('heightNum').value = Math.round(w / aspectRatio);
+        $('heightRange').value = Math.round(w / aspectRatio);
+        clampHeight();
+        generate();
+      }
+    });
+
+    function clampHeight() {
+      const h = parseInt($('heightNum').value);
+      if (h < 10) { $('heightNum').value = 10; $('heightRange').value = 10; }
+      if (h > 200) { $('heightNum').value = 200; $('heightRange').value = 200; }
+    }
+
+    ['widthRange', 'widthNum'].forEach(id => $(id).addEventListener('input', () => {
+      const w = parseInt($('widthNum').value);
+      $('widthRange').value = w;
+      if (lockedRatio && sourceImage) {
+        const h = Math.round(w / aspectRatio);
+        $('heightNum').value = h;
+        $('heightRange').value = h;
+        clampHeight();
+      }
+      generate();
+    }));
+    ['heightRange', 'heightNum'].forEach(id => $(id).addEventListener('input', () => {
+      const h = parseInt($('heightNum').value);
+      $('heightRange').value = h;
+      if (lockedRatio && sourceImage) {
+        const w = Math.round(h * aspectRatio);
+        $('widthNum').value = w;
+        $('widthRange').value = w;
+      }
+      generate();
+    }));
+
+    const precRange = $('precRange');
+    const precVal = $('precVal');
+    const precLabels = ['Minimal', 'Low', 'Standard', 'High', 'Ultra'];
+    precRange.addEventListener('input', () => {
+      precVal.textContent = precLabels[precRange.value - 1];
+      generate();
+    });
+
+    function getPrecision() {
+      // Map 1-5 to actual color tolerance
+      // Higher = more colors kept before LEGO matching
+      return [16, 24, 32, 48, 64][parseInt(precRange.value) - 1];
+    }
+
+    // ── Color matching ──
+    function hexToRgb(hex) {
+      return {
+        r: parseInt(hex.slice(1, 3), 16),
+        g: parseInt(hex.slice(3, 5), 16),
+        b: parseInt(hex.slice(5, 7), 16)
+      };
+    }
+
+    function colorDist(a, b) {
+      // Weighted Euclidean distance (human perception)
+      const rMean = (a.r + b.r) / 2;
+      const dr = a.r - b.r, dg = a.g - b.g, db = a.b - b.b;
+      return Math.sqrt((2 + rMean / 256) * dr * dr + 4 * dg * dg + (2 + (255 - rMean) / 256) * db * db);
+    }
+
+    function nearestLego(rgb) {
+      let best = 0, bestDist = Infinity;
+      for (let i = 0; i < LEGO_COLORS.length; i++) {
+        const d = colorDist(rgb, hexToRgb(LEGO_COLORS[i].hex));
+        if (d < bestDist) { bestDist = d; best = i; }
+      }
+      return best;
+    }
+
+    // ── Generation ──
+    function generate() {
+      if (!sourceImage) return;
+
+      const w = parseInt($('widthNum').value);
+      const h = parseInt($('heightNum').value);
+      const precision = getPrecision();
+
+      // Create offscreen canvas to sample pixels
+      const oc = document.createElement('canvas');
+      oc.width = w; oc.height = h;
+      const ctx = oc.getContext('2d');
+      ctx.drawImage(sourceImage, 0, 0, w, h);
+      const imgData = ctx.getImageData(0, 0, w, h);
+
+      // Build grid: for each pixel, find nearest LEGO color
+      const grid = [];
+      const colorCount = new Map();
+      for (let y = 0; y < h; y++) {
+        const row = [];
+        for (let x = 0; x < w; x++) {
+          const idx = (y * w + x) * 4;
+          const rgb = { r: imgData.data[idx], g: imgData.data[idx + 1], b: imgData.data[idx + 2] };
+          const ci = nearestLego(rgb);
+          row.push(ci);
+          colorCount.set(ci, (colorCount.get(ci) || 0) + 1);
+        }
+        grid.push(row);
+      }
+
+      currentPixelData = { grid, colorCount, w, h };
+
+      renderPreview(grid, w, h);
+      renderGuide(grid, w, h);
+      renderPartsPanel(colorCount, w, h);
+      renderUsedColors(colorCount);
+      partsPanel.style.display = 'block';
+    }
+
+    // ── Preview canvas ──
+    let previewScale = 1;
+
+    function renderPreview(grid, w, h) {
+      placeholder.style.display = 'none';
+      const previewArea = $('previewArea');
+
+      // Remove existing canvas
+      const existing = previewArea.querySelector('canvas');
+      if (existing) existing.remove();
+
+      // Determine cell size (max display width ~450px on desktop)
+      const maxDisplay = Math.min(450, previewArea.clientWidth - 10);
+      const cellSize = Math.max(2, Math.floor(maxDisplay / w));
+      previewScale = cellSize;
+      const cw = w * cellSize, ch = h * cellSize;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = cw; canvas.height = ch;
+      canvas.style.width = cw + 'px';
+      canvas.style.height = ch + 'px';
+      canvas.style.imageRendering = 'pixelated';
+      previewArea.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+
+      // Draw cells
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const ci = grid[y][x];
+          ctx.fillStyle = LEGO_COLORS[ci].hex;
+          ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+
+          // Inner shadow for brick effect
+          ctx.fillStyle = 'rgba(0,0,0,0.1)';
+          ctx.fillRect(x * cellSize, y * cellSize + cellSize - 1, cellSize, 1);
+          ctx.fillRect(x * cellSize + cellSize - 1, y * cellSize, 1, cellSize);
+
+          // Highlight on top-left for 3D effect (only if cells are big enough)
+          if (cellSize >= 4) {
+            ctx.fillStyle = 'rgba(255,255,255,0.15)';
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, 1);
+            ctx.fillRect(x * cellSize, y * cellSize, 1, cellSize);
+          }
+        }
+      }
+
+      // Grid lines (only if cells >= 6px)
+      if (cellSize >= 6) {
+        ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+        ctx.lineWidth = 0.5;
+        for (let x = 0; x <= w; x++) {
+          ctx.beginPath();
+          ctx.moveTo(x * cellSize, 0);
+          ctx.lineTo(x * cellSize, ch);
+          ctx.stroke();
+        }
+        for (let y = 0; y <= h; y++) {
+          ctx.beginPath();
+          ctx.moveTo(0, y * cellSize);
+          ctx.lineTo(cw, y * cellSize);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // ── Guide ──
+    function renderGuide(grid, w, h) {
+      const container = $('tabGuide');
+
+      // Count rows with same color pattern for compression
+      const rows = [];
+      for (let y = 0; y < h; y++) {
+        const row = grid[y];
+        // Create a compact representation: runs of same color
+        const runs = [];
+        let prev = -1, count = 0;
+        for (let x = 0; x < w; x++) {
+          if (row[x] === prev) { count++; }
+          else {
+            if (prev >= 0) runs.push({ ci: prev, count });
+            prev = row[x]; count = 1;
+          }
+        }
+        if (prev >= 0) runs.push({ ci: prev, count });
+        rows.push({ y, runs, raw: row });
+      }
+
+      // Compress consecutive identical rows
+      const compressed = [];
+      for (let i = 0; i < rows.length; i++) {
+        let repeat = 1;
+        while (i + repeat < rows.length &&
+          JSON.stringify(rows[i].runs) === JSON.stringify(rows[i + repeat].runs)) {
+          repeat++;
+        }
+        compressed.push({ ...rows[i], repeat, fromRow: rows[i].y, toRow: rows[i].y + repeat - 1 });
+        i += repeat - 1;
+      }
+
+      let html = '<table class="guide-table"><thead><tr><th>Row</th><th>Repeat</th><th>Color Sequence</th><th>Details</th></tr></thead><tbody>';
+      compressed.forEach(r => {
+        const swatches = r.runs.map(run =>
+          `<span class="row-dot" style="background:${LEGO_COLORS[run.ci].hex}" title="${LEGO_COLORS[run.ci].name} ×${run.count}"></span>`
+        ).join('');
+        const detail = r.runs.map(run =>
+          `<span style="color:var(--dim)">${LEGO_COLORS[run.ci].name}</span>×${run.count}`
+        ).join(' → ');
+
+        const rowLabel = r.repeat > 1
+          ? `Rows ${r.fromRow + 1}-${r.toRow + 1}`
+          : `Row ${r.fromRow + 1}`;
+
+        html += `<tr>
+      <td>${rowLabel}</td>
+      <td>${r.repeat > 1 ? '×' + r.repeat : ''}</td>
+      <td><div class="row-swatch">${swatches}</div></td>
+      <td style="font-size:11px">${detail}</td>
+    </tr>`;
+      });
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    // ── Parts Panel ──
+    function renderPartsPanel(colorCount, w, h) {
+      const total = w * h;
+      const sorted = [...colorCount.entries()].sort((a, b) => b[1] - a[1]);
+
+      $('totalBricks').innerHTML = `
+    <div class="badge">
+      Total <span class="num">${total}</span> bricks · ${sorted.length} colors
+    </div>
+  `;
+
+      const grid = $('partsGrid');
+      grid.innerHTML = sorted.map(([ci, count]) => {
+        const c = LEGO_COLORS[ci];
+        const pct = ((count / total) * 100).toFixed(1);
+        return `
+      <div class="part-card">
+        <div class="part-swatch" style="background:${c.hex}"></div>
+        <div class="part-info">
+          <div class="part-name">${c.name}</div>
+          <div style="color:var(--dim)">Color #${c.id} · ${pct}%</div>
+        </div>
+        <div class="part-count">×${count}</div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    // ── Used colors tab ──
+    function renderUsedColors(colorCount) {
+      const sorted = [...colorCount.entries()].sort((a, b) => b[1] - a[1]);
+      $('usedColors').innerHTML = sorted.map(([ci]) => {
+        const c = LEGO_COLORS[ci];
+        return `<span style="display:inline-flex;align-items:center;gap:6px;margin:4px 12px 4px 0;font-size:13px">
+      <span style="width:18px;height:18px;border-radius:3px;background:${c.hex};display:inline-block;border:1px solid var(--border)"></span>
+      ${c.name} <span style="color:var(--dim)">#${c.id}</span>
+    </span>`;
+      }).join('');
+    }
+
+    // ── Tabs ──
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        $('tabGuide').style.display = tab.dataset.tab === 'guide' ? '' : 'none';
+        $('tabColors').style.display = tab.dataset.tab === 'colors' ? '' : 'none';
+      });
+    });
+
+    // ── Export PNG ──
+    $('exportPng').addEventListener('click', () => {
+      if (!currentPixelData) return;
+      const { grid, w, h } = currentPixelData;
+
+      // Render at higher resolution for export
+      const exportCell = 20; // 20px per brick
+      const ec = document.createElement('canvas');
+      ec.width = w * exportCell;
+      ec.height = h * exportCell;
+      const ectx = ec.getContext('2d');
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const ci = grid[y][x];
+          ectx.fillStyle = LEGO_COLORS[ci].hex;
+          ectx.fillRect(x * exportCell, y * exportCell, exportCell, exportCell);
+          // Brick effect
+          ectx.fillStyle = 'rgba(0,0,0,0.08)';
+          ectx.fillRect(x * exportCell, y * exportCell + exportCell - 1, exportCell, 1);
+          ectx.fillRect(x * exportCell + exportCell - 1, y * exportCell, 1, exportCell);
+          ectx.fillStyle = 'rgba(255,255,255,0.1)';
+          ectx.fillRect(x * exportCell, y * exportCell, exportCell, 1);
+          ectx.fillRect(x * exportCell, y * exportCell, 1, exportCell);
+        }
+      }
+
+      // Grid
+      ectx.strokeStyle = 'rgba(0,0,0,0.15)';
+      ectx.lineWidth = 0.5;
+      for (let x = 0; x <= w; x++) {
+        ectx.beginPath(); ectx.moveTo(x * exportCell, 0); ectx.lineTo(x * exportCell, h * exportCell); ectx.stroke();
+      }
+      for (let y = 0; y <= h; y++) {
+        ectx.beginPath(); ectx.moveTo(0, y * exportCell); ectx.lineTo(w * exportCell, y * exportCell); ectx.stroke();
+      }
+
+      ec.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = `lego-pixel-${w}x${h}.png`; a.click();
+        URL.revokeObjectURL(url);
+      });
+    });
+
+    // ── Export Guide ──
+    $('exportGuide').addEventListener('click', () => {
+      if (!currentPixelData) return;
+      const { grid, w, h, colorCount } = currentPixelData;
+
+      let text = `═══════════════════════════════\n`;
+      text += `  LEGO Pixel Art Building Guide\n`;
+      text += `  Size: ${w}×${h} (${w * h} studs)\n`;
+      text += `═══════════════════════════════\n\n`;
+
+      text += `【Material List】\n`;
+      text += `${'─'.repeat(40)}\n`;
+      const sorted = [...colorCount.entries()].sort((a, b) => b[1] - a[1]);
+      sorted.forEach(([ci, count]) => {
+        const c = LEGO_COLORS[ci];
+        text += `  ${c.name.padEnd(12)} Color#${c.id.padEnd(4)} ×${count}\n`;
+      });
+
+      text += `\n【Row-by-Row Guide】\n`;
+      text += `${'─'.repeat(40)}\n`;
+      for (let y = 0; y < h; y++) {
+        text += `\nRow ${y + 1}: `;
+        const row = grid[y];
+        let prev = -1, count = 0;
+        const parts = [];
+        for (let x = 0; x < w; x++) {
+          if (row[x] === prev) { count++; }
+          else {
+            if (prev >= 0) parts.push(`${LEGO_COLORS[prev].name}×${count}`);
+            prev = row[x]; count = 1;
+          }
+        }
+        if (prev >= 0) parts.push(`${LEGO_COLORS[prev].name}×${count}`);
+        text += parts.join(' → ');
+      }
+
+      text += `\n\n═══════════════════════════════\n`;
+      text += `  Generated by: LEGO Pixel Art Generator\n`;
+      text += `═══════════════════════════════\n`;
+
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `lego-guide-${w}x${h}.txt`; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // ── Copy parts list ──
+    $('copyList').addEventListener('click', () => {
+      if (!currentPixelData) return;
+      const { colorCount, w, h } = currentPixelData;
+      const sorted = [...colorCount.entries()].sort((a, b) => b[1] - a[1]);
+      let text = `LEGO Pixel Art Material List (${w}×${h}, ${w * h} studs)\n\n`;
+      sorted.forEach(([ci, count]) => {
+        const c = LEGO_COLORS[ci];
+        text += `${c.name} (Color #${c.id}): ${count} brick(s)\n`;
+      });
+      text += `\nTotal: ${w * h} bricks, ${sorted.length} colors`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = $('copyList');
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => { btn.innerHTML = '📋 Copy List'; }, 1500);
+      });
+    });
+
+    // ── Reset ──
+    $('resetBtn').addEventListener('click', () => {
+      sourceImage = null;
+      currentPixelData = null;
+      dropzone.classList.remove('has-image');
+      dropzone.innerHTML = `<div class="icon">🖼️</div><p>Click or drag an image here</p><div class="hint">Supports JPG / PNG / WebP / GIF</div>`;
+      const previewArea = $('previewArea');
+      const existing = previewArea.querySelector('canvas');
+      if (existing) existing.remove();
+      placeholder.style.display = '';
+      $('tabGuide').innerHTML = '<p style="color:var(--dim);font-size:13px">Row-by-row building guide will appear here after generation</p>';
+      $('tabColors').style.display = 'none';
+      document.querySelector('.tab.active')?.classList.remove('active');
+      document.querySelector('[data-tab="guide"]').classList.add('active');
+      $('tabGuide').style.display = '';
+      partsPanel.style.display = 'none';
+    });
+
+    // ── Window resize handler for canvas ──
+    window.addEventListener('resize', () => {
+      if (currentPixelData) {
+        renderPreview(currentPixelData.grid, currentPixelData.w, currentPixelData.h);
+      }
+    });
+  </script>
+</body>
+
+</html>

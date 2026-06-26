@@ -1,0 +1,151 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "PubChannelCode",
+        "columnChiName": "发布渠道代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "发布渠道代码（PubChannelCode）：与机构基本资料（LC_InstiArchive）中的企业编号（CompanyCode）关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "PubChannelName",
+        "columnChiName": "发布渠道名称",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IndexCode",
+        "columnChiName": "指数内部代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指数内部代码（IndexCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SecuCode",
+        "columnChiName": "证券代码",
+        "columnType": "varchar(50)",
+        "isNullable": 0,
+        "remark": "发布渠道名称为“恒生指数有限公司”的恒生指数，证券代码优先选用彭博代码，如无彭博代码则为路孚特代码。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "SecuAbbr",
+        "columnChiName": "证券简称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "PubState",
+        "columnChiName": "发布状态",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "发布状态（PubState）：1-正常发布，0-停止发布，5-其他.",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "IfOfficialCode",
+        "columnChiName": "是否官方代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "是否官方代码（IfOfficialCode）：1-是官方代码，2-不是官方代码",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "BeginDate",
+        "columnChiName": "发布起始日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "53.05"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "EndDate",
+        "columnChiName": "发布截止日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "6.16"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

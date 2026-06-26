@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/twitter/get-user-posts/v1 for Twitter User Published Posts through JustOneAPI with restId.",
+  "displayName": "Twitter User Published Posts",
+  "endpointPath": "get-user-posts",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Twitter user Published Posts data, including post content, timestamps, and engagement data, for account monitoring and content analysis.",
+      "method": "GET",
+      "operationId": "getTwitterUserPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique numeric identifier (Rest ID) for the X user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "restId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor for navigating through long timelines.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/twitter/get-user-posts/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Posts",
+      "tags": [
+        "Twitter"
+      ]
+    }
+  ],
+  "platformKey": "twitter",
+  "primaryTag": "Twitter",
+  "skillName": "justoneapi_twitter_get_user_posts",
+  "skillType": "interface",
+  "slug": "justoneapi-twitter-get-user-posts",
+  "sourceTitle": "OpenAPI definition"
+}

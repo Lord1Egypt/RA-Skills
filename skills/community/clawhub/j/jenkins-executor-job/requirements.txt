@@ -1,0 +1,3 @@
+openclaw-sdk>=1.0.0
+jenkinsapi>=0.3.13
+python-dotenv>=1.0.0

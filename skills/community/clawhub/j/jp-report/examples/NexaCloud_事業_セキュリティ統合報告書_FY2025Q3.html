@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NexaCloud 事業・セキュリティ統合報告書（FY2025 第3四半期）</title>
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1a2744; --blue: #003087; --rule: #c8c8c8;
+  --light: #f5f5f5; --text: #1a1a1a; --sub: #4a4a4a; --white: #ffffff;
+}
+body {
+  font-family: "Hiragino Mincho ProN","Yu Mincho","MS Mincho","Times New Roman",serif;
+  color: var(--text); background: #c8c8c8; font-size: 13px; line-height: 1.8;
+}
+.page {
+  width: 794px; height: 1122px; margin: 32px auto;
+  background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.page-body { flex: 1; padding: 56px 70px 22px; overflow: hidden; }
+.page-footer {
+  flex-shrink: 0; border-top: 2px solid var(--navy);
+  margin: 0 70px; padding: 9px 0 15px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  font-size: 10px; color: var(--sub);
+  font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+.f-c { text-align: center; color: var(--navy); }
+.f-r { text-align: right; }
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: white; }
+  .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; break-after: page; }
+}
+.doc-badge {
+  display: inline-block; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size: 10px; letter-spacing: 0.16em; color: var(--sub);
+  border: 1px solid var(--rule); padding: 3px 11px; margin-bottom: 60px;
+}
+.cover-en { font-family: "Times New Roman",serif; font-size: 12px; color: var(--sub); letter-spacing: 0.07em; margin-bottom: 10px; }
+.cover-h1 {
+  font-size: 27px; font-weight: normal; color: var(--navy); letter-spacing: 0.06em;
+  line-height: 1.4; margin-bottom: 10px;
+  border-bottom: 3px solid var(--blue); padding-bottom: 16px; display: inline-block;
+}
+.cover-sub { font-size: 13px; color: var(--sub); }
+.cover-rule { border: none; border-top: 1px solid var(--rule); margin: 36px auto 28px; width: 60%; }
+.cover-meta { border-collapse: collapse; font-size: 12px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
+.cover-meta td { padding: 6px 0; color: var(--sub); vertical-align: top; }
+.cover-meta td:first-child { white-space: nowrap; padding-right: 30px; }
+.cover-meta td:last-child { color: var(--text); }
+.toc-h {
+  font-size: 14px; font-weight: normal; letter-spacing: 0.14em; color: var(--navy);
+  border-bottom: 2px solid var(--navy); padding-bottom: 8px; margin-bottom: 30px;
+  font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+.toc-ul { list-style: none; }
+.toc-ul li { display: flex; align-items: baseline; padding: 7px 0; border-bottom: 1px dotted var(--rule); font-size: 13px; }
+.toc-ul li:last-child { border-bottom: none; }
+.toc-ul li.sub { padding: 5px 0 5px 56px; font-size: 12px; color: var(--sub); }
+.t-num { font-family: "Times New Roman",serif; color: var(--blue); min-width: 56px; flex-shrink: 0; }
+.toc-ul li.sub .t-num { color: var(--sub); min-width: 32px; font-size: 12px; }
+.t-title { flex: 1; }
+.t-dots { flex: 1 1 40px; max-width: 120px; border-bottom: 1px dotted #aaa; margin: 0 10px; position: relative; top: -3px; min-width: 30px; }
+.t-pg { font-family: "Times New Roman",serif; color: var(--sub); font-size: 12px; min-width: 18px; text-align: right; flex-shrink: 0; }
+.ch-num { font-family: "Times New Roman",serif; font-size: 11px; letter-spacing: 0.18em; color: var(--blue); margin-bottom: 4px; font-weight: normal; }
+.ch-title { font-size: 17px; font-weight: normal; color: var(--navy); letter-spacing: 0.04em; padding-bottom: 9px; border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
+.ch-rule { border: none; border-top: 2px solid var(--navy); margin: 26px 0; }
+.sec { font-size: 13px; font-weight: normal; color: var(--navy); letter-spacing: 0.04em; margin: 18px 0 10px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
+.sec::before { content: "■ "; color: var(--blue); }
+p { margin-bottom: 10px; color: var(--sub); font-size: 12.5px; }
+dl.def { border: 1px solid var(--rule); margin-bottom: 16px; }
+dl.def > div { display: grid; grid-template-columns: 185px 1fr; border-bottom: 1px solid var(--rule); }
+dl.def > div:last-child { border-bottom: none; }
+dl.def dt { background: var(--light); padding: 8px 12px; font-size: 12px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; color: var(--navy); font-weight: normal; border-right: 1px solid var(--rule); }
+dl.def dd { padding: 8px 12px; font-size: 12px; color: var(--sub); line-height: 1.7; }
+ul.bul { list-style: none; margin-bottom: 14px; }
+ul.bul li { padding: 3px 0 3px 16px; position: relative; font-size: 12.5px; color: var(--sub); line-height: 1.72; }
+ul.bul li::before { content: "・"; position: absolute; left: 0; color: var(--blue); }
+.notice { border: 1px solid var(--navy); border-left: 4px solid var(--blue); background: #f7f9fc; padding: 11px 15px; margin-bottom: 16px; font-size: 12px; color: var(--sub); line-height: 1.7; }
+.notice strong { color: var(--navy); font-weight: normal; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
+.arch { border: 1px solid var(--rule); margin-bottom: 18px; }
+.arch-row { display: grid; grid-template-columns: 38px 1fr; border-bottom: 1px solid var(--rule); }
+.arch-row:last-child { border-bottom: none; }
+.arch-idx { background: var(--blue); color: white; display: flex; align-items: center; justify-content: center; font-family: "Times New Roman",serif; font-size: 15px; }
+.arch-cell { padding: 11px 16px; }
+.arch-cell strong { display: block; font-size: 12.5px; color: var(--navy); font-weight: normal; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; margin-bottom: 3px; }
+.arch-cell span { font-size: 11.5px; color: var(--sub); }
+.arch-arrow { text-align: center; padding: 4px 0; background: var(--light); font-size: 10.5px; color: var(--sub); border-bottom: 1px solid var(--rule); font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; letter-spacing: 0.08em; }
+table.t { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+table.t th { background: var(--navy); color: white; font-weight: normal; padding: 7px 11px; text-align: left; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; letter-spacing: 0.03em; }
+table.t td { padding: 7px 11px; border: 1px solid var(--rule); color: var(--sub); vertical-align: top; line-height: 1.65; }
+table.t tr:nth-child(even) td { background: var(--light); }
+  </style>
+</head>
+<body>
+
+<!-- Page 1: Cover -->
+<div class="page">
+  <div class="page-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div style="width:100%;">
+      <div class="doc-badge">社外秘　｜　EXECUTIVE REPORT　｜　Rev. 1.0</div>
+      <div class="cover-en">NexaCloud — Q3 FY2025 Metrics, Architecture, Security &amp; Compliance Summary</div>
+      <h1 class="cover-h1">NexaCloud 事業・セキュリティ統合報告書</h1>
+      <div class="cover-sub">— FY2025 第3四半期（7–9月）実績および体制概要 —</div>
+      <hr class="cover-rule">
+      <table class="cover-meta" style="margin:0 auto;text-align:left;">
+        <tr><td>対象期間</td><td>FY2025 第3四半期（2025年7月〜9月）</td></tr>
+        <tr><td>作成日</td><td>2026年3月26日</td></tr>
+        <tr><td>対象読者</td><td>経営層／事業責任者／セキュリティ・コンプライアンス責任者</td></tr>
+        <tr><td>機密区分</td><td>社外秘（取扱注意）</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘</div>
+  </div>
+</div>
+
+<!-- Page 2: TOC -->
+<div class="page">
+  <div class="page-body">
+    <div class="toc-h">目　　　次</div>
+    <ul class="toc-ul">
+      <li><span class="t-num">第１章</span><span class="t-title">総括（エグゼクティブサマリー）</span><span class="t-dots"></span><span class="t-pg">3</span></li>
+      <li class="sub"><span class="t-num">1.1</span><span class="t-title">四半期総評</span><span class="t-dots"></span><span class="t-pg">3</span></li>
+      <li class="sub"><span class="t-num">1.2</span><span class="t-title">主要成長ドライバー</span><span class="t-dots"></span><span class="t-pg">3</span></li>
+
+      <li><span class="t-num">第２章</span><span class="t-title">Q3 FY2025 主要業績指標</span><span class="t-dots"></span><span class="t-pg">4</span></li>
+      <li class="sub"><span class="t-num">2.1</span><span class="t-title">財務ハイライト</span><span class="t-dots"></span><span class="t-pg">4</span></li>
+      <li class="sub"><span class="t-num">2.2</span><span class="t-title">顧客成長</span><span class="t-dots"></span><span class="t-pg">4</span></li>
+      <li class="sub"><span class="t-num">2.3</span><span class="t-title">利用状況・信頼性（運用指標）</span><span class="t-dots"></span><span class="t-pg">4</span></li>
+
+      <li><span class="t-num">第３章</span><span class="t-title">日本市場アップデートおよびQ4見通し</span><span class="t-dots"></span><span class="t-pg">5</span></li>
+      <li class="sub"><span class="t-num">3.1</span><span class="t-title">日本GTM進捗</span><span class="t-dots"></span><span class="t-pg">5</span></li>
+      <li class="sub"><span class="t-num">3.2</span><span class="t-title">Q4重点施策</span><span class="t-dots"></span><span class="t-pg">5</span></li>
+
+      <li><span class="t-num">第４章</span><span class="t-title">プラットフォーム概要（アーキテクチャ）</span><span class="t-dots"></span><span class="t-pg">6</span></li>
+      <li class="sub"><span class="t-num">4.1</span><span class="t-title">全体構成（Data Plane / Control Plane）</span><span class="t-dots"></span><span class="t-pg">6</span></li>
+      <li class="sub"><span class="t-num">4.2</span><span class="t-title">設計原則</span><span class="t-dots"></span><span class="t-pg">6</span></li>
+      <li class="sub"><span class="t-num">4.3</span><span class="t-title">主要連携ポイント</span><span class="t-dots"></span><span class="t-pg">6</span></li>
+
+      <li><span class="t-num">第５章</span><span class="t-title">セキュリティ機能・運用（主要能力）</span><span class="t-dots"></span><span class="t-pg">7</span></li>
+      <li class="sub"><span class="t-num">5.1</span><span class="t-title">アクセス制御（RBAC / SSO / MFA）</span><span class="t-dots"></span><span class="t-pg">7</span></li>
+      <li class="sub"><span class="t-num">5.2</span><span class="t-title">脅威検知</span><span class="t-dots"></span><span class="t-pg">7</span></li>
+      <li class="sub"><span class="t-num">5.3</span><span class="t-title">データ保護</span><span class="t-dots"></span><span class="t-pg">7</span></li>
+      <li class="sub"><span class="t-num">5.4</span><span class="t-title">脆弱性管理</span><span class="t-dots"></span><span class="t-pg">7</span></li>
+
+      <li><span class="t-num">第６章</span><span class="t-title">コンプライアンス／認証状況</span><span class="t-dots"></span><span class="t-pg">8</span></li>
+      <li class="sub"><span class="t-num">6.1</span><span class="t-title">認証一覧（現状）</span><span class="t-dots"></span><span class="t-pg">8</span></li>
+      <li class="sub"><span class="t-num">6.2</span><span class="t-title">責任分界（Shared Responsibility）</span><span class="t-dots"></span><span class="t-pg">8</span></li>
+      <li class="sub"><span class="t-num">6.3</span><span class="t-title">ISMAPロードマップ</span><span class="t-dots"></span><span class="t-pg">8</span></li>
+      <li class="sub"><span class="t-num">6.4</span><span class="t-title">プライバシー／データガバナンス</span><span class="t-dots"></span><span class="t-pg">8</span></li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘</div>
+  </div>
+</div>
+
+<!-- Page 3: Chapter 1 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第１章</div>
+    <h2 class="ch-title">総括（エグゼクティブサマリー）</h2>
+
+    <div class="sec">1.1　四半期総評</div>
+    <p>FY2025 第3四半期（2025年7月〜9月）におきまして、NexaCloudは堅調な成長を達成しております。ARR（年間経常収益）は前年同期比34%増となり、既存エンタープライズ顧客における拡大ならびに金融・ヘルスケア領域での新規獲得が主な牽引要因となっております。</p>
+    <p>地域別では、日本・韓国（Japan &amp; Korea）地域が前年同期比61%増と最も高い成長率を示しており、GTM（市場開拓）施策が計画を上回る進捗となっております。</p>
+
+    <div class="notice"><strong>【要点】</strong>　本四半期は「収益成長（ARR +34%）」「顧客基盤拡大」「高い運用信頼性（稼働率99.96%）」の三点が特筆事項となっております。</div>
+
+    <div class="sec">1.2　主要成長ドライバー</div>
+    <dl class="def">
+      <div>
+        <dt>エンタープライズ拡大</dt>
+        <dd>既存アカウント内での導入範囲拡大により、NRR（Net Revenue Retention）は128%となっております。</dd>
+      </div>
+      <div>
+        <dt>新規ロゴ獲得</dt>
+        <dd>New Logo ARRは\$18.2M（前年同期比+36%）となり、金融サービス／ヘルスケア領域での勝ち筋が強化されております。</dd>
+      </div>
+      <div>
+        <dt>運用・自動化</dt>
+        <dd>アラートの99.3%を自動トリアージしており、スケールと運用効率の両立を実現しております。</dd>
+      </div>
+    </dl>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　3</div>
+  </div>
+</div>
+
+<!-- Page 4: Chapter 2 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第２章</div>
+    <h2 class="ch-title">Q3 FY2025 主要業績指標</h2>
+
+    <div class="sec">2.1　財務ハイライト</div>
+    <table class="t">
+      <thead>
+        <tr>
+          <th style="width:185px">指標</th>
+          <th>Q3 FY2025</th>
+          <th>Q3 FY2024</th>
+          <th>前年差</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ARR</td><td>\$142M</td><td>\$106M</td><td>+34%</td></tr>
+        <tr><td>NRR</td><td>128%</td><td>121%</td><td>+7pp</td></tr>
+        <tr><td>New Logo ARR</td><td>\$18.2M</td><td>\$13.4M</td><td>+36%</td></tr>
+        <tr><td>粗利率</td><td>74%</td><td>71%</td><td>+3pp</td></tr>
+        <tr><td>Japan &amp; Korea ARR</td><td>\$21.3M</td><td>\$13.2M</td><td>+61%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec">2.2　顧客成長</div>
+    <ul class="bul">
+      <li>エンタープライズ顧客数：487（前年同期381から増加）となっております。</li>
+      <li>平均契約金額（ACV）：\$291K（前年同期\$278K）となっております。</li>
+      <li>ACVが\$1M超の顧客：38（前年同期24）となっております。</li>
+      <li>解約ARR：2.1%（参考：業界平均4.8%）と低水準を維持しております。</li>
+    </ul>
+
+    <div class="sec">2.3　利用状況・信頼性（運用指標）</div>
+    <ul class="bul">
+      <li>日次処理イベント数（平均）：2.4兆件となっております。</li>
+      <li>アラート発生量：18.7M件（うち99.3%を自動トリアージ）となっております。</li>
+      <li>稼働率（SLA 99.9%）：実績99.96%を達成しております。</li>
+      <li>P1サポート解決時間：平均47分（SLA 4時間）となっております。</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　4</div>
+  </div>
+</div>
+
+<!-- Page 5: Chapter 3 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第３章</div>
+    <h2 class="ch-title">日本市場アップデートおよびQ4見通し</h2>
+
+    <div class="sec">3.1　日本GTM進捗</div>
+    <p>日本向けGTM拡大（FY2025 第1四半期開始）は計画を上回る進捗となっております。FY2025 第3四半期には、国内の主要地域銀行、製薬企業、通信キャリアの3社と新規契約を締結しております。</p>
+    <ul class="bul">
+      <li>データレジデンシ（ap-northeast-1）：2025年8月に提供開始しております。</li>
+      <li>国内サポート体制：人員を4名から11名へ拡充しております。</li>
+      <li>パートナー：NTTデータ様とのリセラー配信に関する提携契約を締結しております。</li>
+    </ul>
+
+    <div class="sec">3.2　Q4重点施策</div>
+    <dl class="def">
+      <div>
+        <dt>ガイダンス（ARR目標）</dt>
+        <dd>Q4 FY2025のARR目標は\$158M〜\$162Mとしております（パイプラインカバレッジ比率：3.2×）。</dd>
+      </div>
+      <div>
+        <dt>重点領域</dt>
+        <dd>（1）日本エンタープライズ拡大、（2）FedRAMP High認可の取得推進、（3）NexaCloud AI Copilot機能のローンチを主要テーマとしております。</dd>
+      </div>
+    </dl>
+
+    <div class="notice"><strong>【注記】</strong>　本章の記載は、提供資料（事業指標レポート）に基づくものであり、将来予測の達成を保証するものではございません。</div>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　5</div>
+  </div>
+</div>
+
+<!-- Page 6: Chapter 4 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第４章</div>
+    <h2 class="ch-title">プラットフォーム概要（アーキテクチャ）</h2>
+
+    <div class="sec">4.1　全体構成（Data Plane / Control Plane）</div>
+    <p>NexaCloudは、マルチクラウド環境（AWS、Azure）における統合可視化、脅威検知、アクセスガバナンスを提供するエンタープライズ向けクラウドセキュリティ基盤でございます。主要構成は、Data PlaneおよびControl Planeの2層で整理しております。</p>
+
+    <div class="arch">
+      <div class="arch-row">
+        <div class="arch-idx">Ⅱ</div>
+        <div class="arch-cell">
+          <strong>Control Plane（分析・対応）</strong>
+          <span>検知エンジン　／　ポリシーエンジン　／　RBACモジュール　／　ダッシュボード</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↑　NCEF（共通イベント形式）で正規化されたイベントをリアルタイム処理　↑</div>
+      <div class="arch-row">
+        <div class="arch-idx">Ⅰ</div>
+        <div class="arch-cell">
+          <strong>Data Plane（収集・正規化）</strong>
+          <span>軽量エージェント／エージェントレス連携　／　ログ・設定・テレメトリ収集　／　NCEF変換</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">4.2　設計原則</div>
+    <ul class="bul">
+      <li>Zero Trust by Default：すべてのリクエストをAPI Gateway層で認証・認可したうえで内部サービスへ到達させております。</li>
+      <li>テナント分離：データベース層における行レベルセキュリティにより、クロステナントアクセスを防止しております。</li>
+      <li>暗号化の徹底：通信（TLS 1.3）および保存（AES-256）を標準としております。エンタープライズ契約ではBYOKもご利用いただけます。</li>
+      <li>監査ログの不変性：管理者／ユーザ操作を追記専用で記録し、署名により改ざん・削除を防止しております。</li>
+    </ul>
+
+    <div class="sec">4.3　主要連携ポイント</div>
+    <ul class="bul">
+      <li>SIEM連携：syslog／CEF転送（Splunk、Microsoft Sentinel、IBM QRadar）に対応しております。</li>
+      <li>IdP連携：SAML 2.0およびOIDC（Okta、Azure AD、Ping Identity）に対応しております。</li>
+      <li>チケッティング連携：Jira、ServiceNow、PagerDuty等へのWebhook連携が可能です。</li>
+      <li>自動化：REST APIによりカスタムワークフローを構築いただけます。</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　6</div>
+  </div>
+</div>
+
+<!-- Page 7: Chapter 5 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第５章</div>
+    <h2 class="ch-title">セキュリティ機能・運用（主要能力）</h2>
+
+    <div class="sec">5.1　アクセス制御（RBAC / SSO / MFA）</div>
+    <p>NexaCloudは、すべてのプラットフォーム資源に対してRBAC（Role-Based Access Control）を適用しております。管理者は組織／プロジェクト／リソース単位でカスタムロールを定義いただけます。</p>
+
+    <table class="t">
+      <thead>
+        <tr>
+          <th style="width:185px">ロール</th>
+          <th style="width:170px">スコープ</th>
+          <th>主な権限</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Organization Admin</td><td>テナント全体</td><td>フル権限（読み書き）、ユーザ管理、課金管理を実施いたします。</td></tr>
+        <tr><td>Security Analyst</td><td>割当プロジェクト</td><td>アラート参照、調査実行、コメント記録を実施いたします。</td></tr>
+        <tr><td>Compliance Auditor</td><td>割当プロジェクト</td><td>ポリシーおよび監査ログに対する参照専用アクセスとなっております。</td></tr>
+        <tr><td>API Integration</td><td>プログラム専用</td><td>APIキーによりリソース種別単位でスコープ制御いたします。</td></tr>
+      </tbody>
+    </table>
+
+    <p>なお、EnterpriseティアではSSOが必須となっております。MFAの強制はロールおよびIPレンジ単位で設定可能です。</p>
+
+    <div class="sec">5.2　脅威検知</div>
+    <dl class="def">
+      <div>
+        <dt>Signature-based rules</dt>
+        <dd>脅威リサーチチームにより週次更新され、権限昇格、ラテラルムーブメント、データ持ち出し等の既知パターンをカバーしております。</dd>
+      </div>
+      <div>
+        <dt>Behavioral baselines</dt>
+        <dd>ユーザおよびワークロード単位で30日ローリングのベースラインを構築し、しきい値超過時にアノマリーアラートを発報いたします。</dd>
+      </div>
+      <div>
+        <dt>Third-party threat intelligence</dt>
+        <dd>CrowdStrike Falcon Intelligence、Recorded Future等の商用フィードを取り込み、IP／ドメイン／ハッシュに対する評価情報を付与いたします。</dd>
+      </div>
+    </dl>
+    <p>アラート重要度はCritical / High / Medium / Low / Informationalとしております。社内ベンチマークでは、Critical事象に対するMTTDは4分未満となっております。</p>
+
+    <div class="sec">5.3　データ保護</div>
+    <ul class="bul">
+      <li>保存先：AWS us-east-1（プライマリ）およびeu-west-1（EU顧客）を基本とし、日本顧客向けにap-northeast-1のデータレジデンシを提供しております。</li>
+      <li>バックアップ：設定データは継続的、テレメトリは毎時スナップショットとしております。</li>
+      <li>保持：ホット90日／コールド13か月（設定可能）となっております。</li>
+      <li>削除：契約終了後30日以内に検証済み削除を実施し、要請に応じて破棄証明書を発行いたします。</li>
+    </ul>
+
+    <div class="sec">5.4　脆弱性管理</div>
+    <ul class="bul">
+      <li>年次ペネトレーションテスト：第三者（認定ファーム）により実施しております（直近：2025年10月）。</li>
+      <li>SAST / DAST：CI/CDへ統合し、mainへのマージごとに自動実行しております。</li>
+      <li>依存関係スキャン：日次でCVEを検知し、Criticalは72時間以内のパッチ適用を目標としております。</li>
+      <li>バグバウンティ：HackerOneにて2023年より運用しております。</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　7</div>
+  </div>
+</div>
+
+<!-- Page 8: Chapter 6 -->
+<div class="page">
+  <div class="page-body">
+    <div class="ch-num">第６章</div>
+    <h2 class="ch-title">コンプライアンス／認証状況</h2>
+
+    <div class="sec">6.1　認証一覧（現状）</div>
+    <table class="t">
+      <thead>
+        <tr>
+          <th style="width:185px">規格／制度</th>
+          <th>スコープ</th>
+          <th style="width:90px">状態</th>
+          <th style="width:110px">最終評価</th>
+          <th style="width:110px">次回更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>SOC 2 Type II</td><td>プラットフォーム全体</td><td>Active</td><td>2025年9月</td><td>2026年9月</td></tr>
+        <tr><td>ISO 27001:2022</td><td>ISMS</td><td>Active</td><td>2025年7月</td><td>2027年7月</td></tr>
+        <tr><td>ISO 27017</td><td>クラウドセキュリティ管理策</td><td>Active</td><td>2025年7月</td><td>2027年7月</td></tr>
+        <tr><td>CSA STAR Level 2</td><td>CSA</td><td>Active</td><td>2025年8月</td><td>2026年8月</td></tr>
+        <tr><td>FedRAMP Moderate</td><td>米国連邦環境</td><td>Active</td><td>2025年10月</td><td>年次レビュー</td></tr>
+        <tr><td>ISMAP</td><td>日本政府クラウド</td><td>In Progress</td><td>—</td><td>FY2026 Q1予定</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec">6.2　責任分界（Shared Responsibility）</div>
+    <p>NexaCloudのコンプライアンスポスチャは、レイヤードな責任分界モデルに基づいております。以下に、NexaCloud側および顧客側の責任範囲を整理いたします。</p>
+
+    <table class="t">
+      <thead>
+        <tr>
+          <th style="width:185px">区分</th>
+          <th>主な責任範囲</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NexaCloudが責任を負う範囲</td><td>基盤（計算資源／ストレージ／ネットワーク）の保護、プラットフォーム管理鍵の暗号鍵管理、データセンター物理セキュリティ（AWS経由）、アプリケーションスタックのパッチ適用、各種認証の維持を実施しております。</td></tr>
+        <tr><td>顧客が責任を負う範囲</td><td>ポリシー／ルール設定、コンソール内のIDおよびアクセス権管理、取込データの分類、業界固有の要件（例：HIPAA、PCI-DSS等）への対応を実施いただきます。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec">6.3　ISMAPロードマップ</div>
+    <ul class="bul">
+      <li>2025年4月：ISMAP管理策カタログに対するギャップ分析を完了しております。</li>
+      <li>2025年7月：特定された14件のギャップ是正を完了しております。</li>
+      <li>2025年9月：登録監査機関による第三者監査を開始しております。</li>
+      <li>FY2026 Q1（目標）：ISMAP登録見込みであり、中央省庁および地方自治体案件への入札可能性が拡大いたします。</li>
+    </ul>
+
+    <div class="sec">6.4　プライバシー／データガバナンス</div>
+    <ul class="bul">
+      <li>GDPR：DPAの提供およびDPOの任命を実施しております。</li>
+      <li>APPI（日本）：2022年改正後の個人情報保護法に準拠しており、日本語プライバシーポリシーをnexacloud.jp/privacyにて公開しております。</li>
+      <li>越境移転：EU–US移転はSCCを適用しております。日本向けデータレジデンシ有効時は、個人データがap-northeast-1外へ移転しない運用としております。</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="f-l">NexaCloud</div>
+    <div class="f-c">NexaCloud 事業・セキュリティ統合報告書　Rev. 1.0</div>
+    <div class="f-r">社外秘　｜　8</div>
+  </div>
+</div>
+
+</body>
+</html>

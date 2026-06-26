@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kitchen-compass"
+version = "0.1.0"
+description = "Portable household meal-planning skill: recipe catalog, weekly planner, inventory, and weekly deal briefs."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Drew Sadik" }]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Repository = "https://github.com/drewsadik-ctrl/kitchen-compass"
+
+[tool.setuptools]
+py-modules = []

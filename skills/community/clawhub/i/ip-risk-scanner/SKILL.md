@@ -1,35 +1,275 @@
 ---
-name: "ip-risk-scanner"
-description: "IP 安全评估工具。当用户提供 IP 地址时自动触发，输出详细的 IP 安全评分报告（0-100 分，越高越安全）。基于 Claude 官方 IP 审查机制，自动保存≥80 分的安全 IP 报告到 Obsidian。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ip-risk-scanner"
-sourceUrl: "https://clawhub.ai/skills/ip-risk-scanner"
+name: ip-risk-scanner
+version: "2.0.0"
+description: IP 安全评估工具。当用户提供 IP 地址时自动触发，输出详细的 IP 安全评分报告（0-100 分，越高越安全）。基于 Claude 官方 IP 审查机制，自动保存≥80 分的安全 IP 报告到 Obsidian。
+author: kui
+tags: ["security", "ip-scan", "claude-code", "safety", "network"]
+license: "MIT"
 ---
 
-# ip-risk-scanner
+# IP Risk Scanner - IP 安全评估器
 
-> IP 安全评估工具。当用户提供 IP 地址时自动触发，输出详细的 IP 安全评分报告（0-100 分，越高越安全）。基于 Claude 官方 IP 审查机制，自动保存≥80 分的安全 IP 报告到 Obsidian。
+专业的 IP 地址安全评估工具，为 Claude Code 用户生成详细的 IP 合规性报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ip-risk-scanner`
-- **Source URL:** [https://clawhub.ai/skills/ip-risk-scanner](https://clawhub.ai/skills/ip-risk-scanner)
+## 触发场景
 
-## Overview
+当用户提供 IP 地址并要求：
+- 检查这个 IP 是否安全
+- 评估 IP 风险
+- 这个 IP 会被封号吗
+- IP 安全评估/监测/扫描
+- "帮我查一下这个 IP：xxx.xxx.xxx.xxx"
 
+## 核心特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ip-risk-scanner
+### 安全评分系统（与 Claude 官方审查机制一致）
+
+| 分数范围 | 安全等级 | Claude Code 风险 | 自动保存 |
+|---------|---------|-----------------|---------|
+| 80-100 | ✅ 非常安全 | ✅ 安全 | ✅ 自动保存 |
+| 60-79 | ✅ 安全 | ✅ 基本安全 | ❌ 不保存 |
+| 40-59 | ⚠️ 中等风险 | ⚠️ 需注意 | ❌ 不保存 |
+| 20-39 | ⚠️ 高风险 | ⚠️ 高风险 | ❌ 不保存 |
+| 0-19 | ❌ 极高风险 | ❌ 立即封禁 | ❌ 不保存 |
+
+### Claude 官方 IP 审查标准参考
+
+根据 2026 年 Claude 封号潮分析与官方风控机制：
+
+| IP 类型 | 官方风险等级 | 安全评分参考 | 封号风险 |
+|--------|-------------|-------------|---------|
+| 移动网络 (4G/5G) | ✅ 最低 | 90-100 | 最安全 |
+| 住宅宽带 | ✅ 低 | 85-95 | 很安全 |
+| 大型 ISP (Comcast 等) | ✅ 低 | 80-90 | 安全 |
+| SpaceX Starlink | ✅ 低 | 85-90 | 很安全 |
+| 数据中心 IP (AWS/GCP) | ⚠️ 中 | 40-60 | 需注意频率 |
+| 小型主机商 | ⚠️ 高 | 25-45 | 可能触发风控 |
+| 商业 VPN | ⚠️ 高 | 20-35 | 高风险 |
+| 公共代理/免费 VPN | ❌ 极高 | 10-20 | 极易被封 |
+| Tor 出口节点 | ❌ 立即封禁 | 0-10 | 立即封禁 |
+
+## 评分规则
+
+### 扣分项
+
+| 检测项目 | 扣分 | 原因 |
+|---------|------|------|
+| Tor 出口节点 | -95 分 | Claude 立即封禁 |
+| 公共代理服务 | -85 分 | 大量滥用历史 |
+| 商业 VPN 服务 | -70 分 | 官方明确高风险 |
+| 数据中心 IP | -45 分 | 被标记为非人类流量风险 |
+| 高风险国家/地区 | -40 分 | 地理限制 |
+| 未知运营商 (数据中心) | -20 分 | 声誉不明 |
+| IP 信息无法查询 | -15 分 | 可疑迹象 |
+
+### 不扣分情况
+
+| 情况 | 说明 |
+|------|------|
+| 移动网络 (4G/5G) | Claude 最宽容的 IP 类型 |
+| 住宅宽带 | 真实家庭用户，最推荐 |
+| 知名大型 ISP | 信誉良好，无扣分 |
+| SpaceX Starlink | 卫星宽带，属于住宅类型 |
+
+## 自动保存机制
+
+### 保存条件
+
+**只有安全评分 ≥80 分的 IP 才会自动保存到 Obsidian**
+
+保存路径：
 ```
+/Users/kui/Documents/Obsidian Vault/claude code/IP Reports/<YYYY-MM>/<IP 报告>.md
+```
+
+### 保存标准说明
+
+**为什么只保存≥80 分的 IP？**
+
+1. **安全 IP 值得记录** - 80 分以上的 IP 是 Claude Code 官方认可的"安全类型"
+2. **追溯需求** - 如果将来账号出现问题，可以追溯当时使用的 IP 是安全的
+3. **避免污染** - 不保存高风险 IP 报告，避免 Obsidian 中充斥无用信息
+4. **合规证明** - 保存的 IP 报告可作为"使用合规 IP"的证据
+
+### 报告内容
+
+保存的报告包含：
+- YAML Frontmatter（元数据）
+- 安全评分详情
+- 基本信息（运营商、地理位置等）
+- 代理/VPN/Tor 检测结果
+- Claude Code 使用建议
+- 外部检测链接
+
+## 工作流程
+
+### 1. 接收 IP 地址
+
+```
+用户输入："检查这个 IP：192.0.2.1"
+```
+
+### 2. 执行检测
+
+- 获取 IP 基础信息（地理位置、运营商、ASN）
+- 检测代理/VPN/Tor/数据中心
+- 根据 Claude 官方标准计算安全评分
+- 判断是否≥80 分
+
+### 3. 输出报告 + 自动保存
+
+```
+输出控制台报告
+    │
+    ▼
+安全评分 ≥80？───否──→ 不保存
+    │
+   是
+    │
+    ▼
+保存到 Obsidian
+    │
+    ▼
+显示保存路径
+```
+
+## 输出示例
+
+### 控制台输出
+
+```
+============================================================
+  IP 安全评估报告
+  生成时间：2026-04-04 00:16:26
+============================================================
+
+📊 总体评估
+============================================================
+
+  安全评分：**88/100**
+  风险等级：✅ 非常安全
+  Claude 兼容性：**✅ 安全**
+  自动保存：✅ 是 (≥80 分)
+
+  评分因素:
+    • 住宅/移动 IP (无扣分)
+    • 高信誉运营商 SpaceX Starlink (+0 分，信誉良好)
+    • 正常国家/地区 日本 (+0 分)
+    • IP 信息可查询 (+0 分)
+```
+
+### 保存的报告格式
+
+```markdown
+---
+tags: [ip-risk, 安全评估，网络，claude-code]
+created: 2026-04-04
+ip_address: 192.0.2.1
+safety_score: 88
+safety_level: ✅ 非常安全
+---
+
+# IP 安全评估报告 - 192.0.2.1
+
+> 生成时间：2026-04-04 00:16:26
+> 安全评分：**88/100** | 风险等级：✅ 非常安全
+
+## 📊 总体评估
+
+| 指标 | 结果 |
+|------|------|
+| **安全评分** | 88/100 |
+| **风险等级** | ✅ 非常安全 |
+| **Claude 兼容性** | ✅ 安全 |
+| **自动保存** | ✅ 是 (≥80 分) |
+
+## 🌍 基本信息
+
+| 项目 | 详情 |
+|------|------|
+| IP 地址 | 192.0.2.1 |
+| 国家/地区 | 🇯🇵 日本 |
+| 城市 | Tokyo |
+| 运营商 | SpaceX Starlink |
+| ISP | Space Exploration Technologies Corporation |
+
+...（完整报告）
+```
+
+## 使用建议
+
+### 推荐使用频率
+
+| 安全评分 | IP 类型 | 建议频率 |
+|---------|--------|---------|
+| 80-100 | 移动/住宅/大型 ISP | 正常使用 (<200 请求/5 小时) |
+| 60-79 | 大型 ISP/卫星宽带 | 正常使用 (<200 请求/5 小时) |
+| 40-59 | 数据中心 IP | 降低频率 (<50 请求/5 小时) |
+| 20-39 | 小型主机商/VPN | 不建议使用 |
+| 0-19 | Tor/代理 | ❌ 立即停止 |
+
+### 安全 IP 管理建议
+
+1. **定期检测** - 建议每月检测一次 IP 安全评分
+2. **保存报告** - ≥80 分的 IP 报告会自动保存，便于追溯
+3. **备用 IP** - 如有条件，准备 1-2 个备用 IP（不同运营商）
+4. **避免跳跃** - 不要频繁切换不同国家的 IP
+
+## 相关命令
+
+```bash
+# 查询 IP 基础信息
+whois <IP>
+dig -x <IP>
+nslookup <IP>
+
+# 测试网络延迟
+ping -c 4 <IP>
+mtr <IP>
+```
+
+## 注意事项
+
+1. **隐私保护** - 不要分享你的真实 IP 给他人
+2. **定期检测** - 建议每月检测一次 IP 安全评分
+3. **报告管理** - ≥80 分的报告会自动保存，定期清理过时报告
+4. **Claude Code 流量** - CLI 工具流量与网页不同，更易被检测
+5. **多账号风险** - 同一 IP 使用多个账号会增加风险
+
+## 浏览器泄漏自测链接
+
+| 检测项目 | 链接 |
+|---------|------|
+| WebRTC 泄漏 | https://browserleaks.com/webrtc |
+| DNS 泄漏 | https://browserleaks.com/dns |
+| Canvas 指纹 | https://browserleaks.com/canvas |
+| 完整检测 | https://browserleaks.com/ |
+
+## 附录：常见运营商安全评分
+
+| 运营商 | 安全评分 | Claude 友好度 | 说明 |
+|--------|---------|--------------|------|
+| T-Mobile (美国) | 95 | ⭐⭐⭐⭐⭐ | 移动网络，最安全 |
+| Verizon (美国) | 90 | ⭐⭐⭐⭐⭐ | 住宅宽带，很安全 |
+| Comcast/Xfinity | 85 | ⭐⭐⭐⭐⭐ | 美国最大住宅 ISP |
+| SpaceX Starlink | 88 | ⭐⭐⭐⭐⭐ | 卫星宽带，很安全 |
+| AT&T (美国) | 85 | ⭐⭐⭐⭐ | 大型 ISP，安全 |
+| Cogent | 80 | ⭐⭐⭐⭐ | 大型骨干网 |
+| 中国移动/电信/联通 | 85 | ⭐⭐⭐⭐ | 大型 ISP |
+| AWS | 55 | ⭐⭐⭐ | 数据中心，需注意 |
+| Google Cloud | 55 | ⭐⭐⭐ | 数据中心 |
+| DigitalOcean | 50 | ⭐⭐⭐ | 数据中心 |
+| 小型主机商 | 25-45 | ⭐⭐ | 需谨慎 |
+| Catixs Ltd | 25 | ⭐ | 高风险记录 |
+
+## 参考资料
+
+- [Scamalytics 官网](https://scamalytics.com)
+- [BrowserLeaks 官网](https://browserleaks.com)
+- [2026 Claude 封号原因解析](https://www.augmunt.com/blog/claude-account-ban-solutions-deep-dive-2026/)
+- [Claude Code 源代码泄漏分析](https://blog.laozhang.ai/en/posts/claude-code-source-leak-ban-policy)
+
+---
+
+*最后更新：2026-04-04*  
+*版本：2.0.0（安全评分系统）*

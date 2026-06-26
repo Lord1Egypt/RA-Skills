@@ -1,35 +1,19 @@
----
-name: "Kuaidi100 Package Tracker"
-description: "Track Chinese packages with Kuaidi100 API, receive push updates, manage tracking, and sync delivery reminders to Google Calendar."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kuaidi100-tracker"
-sourceUrl: "https://clawhub.ai/skills/kuaidi100-tracker"
----
+# Package Tracker
 
-# Kuaidi100 Package Tracker
+Track Chinese domestic packages via Kuaidi100 push API with automatic Google Calendar delivery reminders.
 
-> Track Chinese packages with Kuaidi100 API, receive push updates, manage tracking, and sync delivery reminders to Google Calendar.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kuaidi100-tracker`
-- **Source URL:** [https://clawhub.ai/skills/kuaidi100-tracker](https://clawhub.ai/skills/kuaidi100-tracker)
+- `add_tracking_number` — Subscribe to push tracking updates for a package (costs 1 API quota)
+- `list_packages` — List all tracked packages from local cache (free, no API call)
+- `sync_to_calendar` — Manually sync today's deliveries to Google Calendar
+- `remove_tracking_number` — Remove a tracking number from the watch list
 
-## Overview
+## Setup
 
+1. Get API credentials from [Kuaidi100](https://api.kuaidi100.com)
+2. Configure `plugins.entries.package-tracker.config.kuaidi100` with your `customer` and `key`
+3. (Optional) Add Google Calendar OAuth2 credentials for delivery reminders
+4. (Optional) Set up a public webhook URL for push updates
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kuaidi100-tracker
-```
+See README.md for full configuration reference.

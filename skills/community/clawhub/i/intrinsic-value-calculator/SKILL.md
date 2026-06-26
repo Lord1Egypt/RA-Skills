@@ -1,35 +1,360 @@
 ---
-name: "内在价值计算器"
-description: "［何时使用］当用户需要计算企业内在价值时；当用户问"这只股票值多少钱"时；当进行多方法估值对比时；当需要敏感性分析时"
-category: "other"
-source: "ClawHub"
-tags: [dcf, intrinsic-value, valuation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intrinsic-value-calculator"
-sourceUrl: "https://clawhub.ai/skills/intrinsic-value-calculator"
+name: intrinsic-value-calculator
+version: 2.0.0
+description: ［何时使用］当用户需要计算企业内在价值时；当用户问"这只股票值多少钱"时；当进行多方法估值对比时；当需要敏感性分析时
+author: 燃冰 + 小蚂蚁
+created: 2026-03-13
+updated: 2026-03-19
+skill_type: 核心🔴
+related_skills: [value-analyzer, moat-evaluator, decision-checklist, stock-picker]
+tags: [内在价值，估值，安全边际，格雷厄姆，DCF]
 ---
 
-# 内在价值计算器
+# 内在价值计算器 🧮
 
-> ［何时使用］当用户需要计算企业内在价值时；当用户问"这只股票值多少钱"时；当进行多方法估值对比时；当需要敏感性分析时
+**基于《证券分析》- 格雷厄姆 & 多德 (1934)**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intrinsic-value-calculator`
-- **Source URL:** [https://clawhub.ai/skills/intrinsic-value-calculator](https://clawhub.ai/skills/intrinsic-value-calculator)
+---
 
-## Overview
+## 📋 功能描述
 
+基于财务数据计算企业内在价值和安全边际。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intrinsic-value-calculator
+**适用场景：**
+- 内在价值计算
+- 多方法估值对比
+- 安全边际分析
+- 敏感性分析
+
+**边界条件：**
+- 不替代深入研究
+- 估值是艺术不是科学
+- 需配合护城河分析
+- 假设条件需谨慎
+
+---
+
+## 🎯 核心功能
+
+### 功能 1：多种估值方法
+
+**方法 1：格雷厄姆公式**
 ```
+内在价值 = EPS × (8.5 + 2g)
+- EPS = 每股收益
+- 8.5 = 零增长公司的合理 PE
+- g = 预期增长率（%）
+
+修正公式（考虑利率）：
+内在价值 = EPS × (8.5 + 2g) × 4.4 / Y
+- Y = 当前 AAA 企业债利率
+```
+
+**方法 2：资产价值法**
+```
+流动资产价值 = 流动资产 - 总负债
+每股流动资产价值 = 流动资产价值 / 总股本
+内在价值 = 流动资产价值 × 折扣率（通常 2/3）
+```
+
+**方法 3：盈利价值法**
+```
+盈利价值 = 正常化盈利 × 合理 PE
+合理 PE = 行业平均 PE 或 10-15
+每股内在价值 = 盈利价值 / 总股本
+```
+
+**方法 4：DCF 法**
+```
+内在价值 = Σ(自由现金流 / (1+r)^t) + 终值
+- r = 折现率
+- t = 年份
+- 终值 = 最后一年现金流 × (1+g) / (r-g)
+```
+
+### 功能 2：综合估值
+
+**权重分配：**
+| 方法 | 权重 | 适用场景 |
+|------|------|---------|
+| 格雷厄姆公式 | 30% | 稳定增长公司 |
+| 资产价值法 | 20% | 重资产公司 |
+| 盈利价值法 | 30% | 盈利稳定公司 |
+| DCF 法 | 20% | 现金流稳定公司 |
+
+**综合内在价值：**
+```
+综合价值 = Σ(各方法估值 × 权重)
+```
+
+### 功能 3：敏感性分析
+
+**关键变量：**
+- 增长率（乐观/中性/悲观）
+- 折现率（8%/10%/12%）
+- 终值增长率（2%/3%/4%）
+
+**输出：**
+```
+【敏感性分析】
+
+| 情景 | 增长率 | 折现率 | 内在价值 | 安全边际 |
+|------|--------|--------|---------|---------|
+| 乐观 | 15% | 8% | X 元 | X% |
+| 中性 | 10% | 10% | X 元 | X% |
+| 悲观 | 5% | 12% | X 元 | X% |
+```
+
+---
+
+## ⚠️ 常见错误
+
+**错误 1：过度依赖单一方法**
+```
+问题：
+• 只用 DCF 一种方法
+• 忽视不同方法适用场景
+• 不交叉验证
+
+解决：
+✓ 使用至少 3 种方法
+✓ 根据行业选择方法
+✓ 综合估值取平均
+```
+
+**错误 2：增长率假设过于乐观**
+```
+问题：
+• 假设持续高增长
+• 忽视竞争和周期
+• 忽视基数效应
+
+解决：
+✓ 保守估计增长率
+✓ 分段增长假设
+✓ 参考行业平均水平
+```
+
+**错误 3：折现率选择不当**
+```
+问题：
+• 折现率过低高估价值
+• 不考虑风险差异
+• 忽视利率环境
+
+解决：
+✓ 根据风险调整折现率
+✓ 参考无风险利率
+✓ 高风险高折现
+```
+
+**错误 4：忽视正常化盈利**
+```
+问题：
+• 使用单年盈利
+• 忽视周期性波动
+• 忽视一次性损益
+
+解决：
+✓ 使用 3-5 年平均盈利
+✓ 扣除一次性损益
+✓ 周期股用周期平均
+```
+
+**错误 5：精确度幻觉**
+```
+问题：
+• 追求精确数字
+• 忽视估值是范围
+• 忽视假设不确定性
+
+解决：
+✓ 估值是范围不是点
+✓ 进行敏感性分析
+✓ 保守估计安全边际
+```
+
+---
+
+## 🔗 相关资源
+
+- `references/valuation-methods.md` - 估值方法详解
+- `examples/tech-valuation.md` - 科技公司估值示例
+- `examples/utility-valuation.md` - 公用事业公司估值示例
+- `templates/valuation-template.md` - 估值模板
+
+---
+
+## 📊 输入参数
+
+```json
+{
+  "company_name": {
+    "type": "string",
+    "required": true,
+    "description": "公司名称"
+  },
+  "financial_data": {
+    "type": "object",
+    "properties": {
+      "current_assets": {"type": "number"},
+      "total_liabilities": {"type": "number"},
+      "current_price": {"type": "number"},
+      "shares_outstanding": {"type": "number"},
+      "normalized_earnings": {"type": "number"},
+      "free_cash_flow": {"type": "number"},
+      "book_value": {"type": "number"},
+      "tangible_assets": {"type": "number"}
+    },
+    "required": true
+  },
+  "growth_rate": {
+    "type": "number",
+    "required": true,
+    "description": "预期增长率（%）"
+  },
+  "risk_free_rate": {
+    "type": "number",
+    "required": true,
+    "description": "无风险利率（%）"
+  },
+  "industry_pe": {
+    "type": "number",
+    "required": false,
+    "description": "行业平均市盈率"
+  }
+}
+```
+
+---
+
+## 📤 输出格式
+
+```json
+{
+  "status": "success",
+  "data": {
+    "valuation_methods": [
+      {
+        "method": "格雷厄姆公式",
+        "value": 0,
+        "weight": 0.3
+      }
+    ],
+    "comprehensive_value": 0,
+    "current_price": 0,
+    "margin_of_safety": 0,
+    "sensitivity_analysis": [],
+    "recommendation": "强烈买入 | 买入 | 观察 | 不买入"
+  }
+}
+```
+
+---
+
+## 🧪 使用示例
+
+### 示例 1：贵州茅台内在价值计算
+
+**输入：**
+```
+公司名称：贵州茅台
+财务数据：
+- 当前股价：1700 元
+- EPS: 57 元
+- 正常化盈利：55 元
+- 自由现金流：600 亿
+- 净资产：1800 亿
+- 总股本：12.5 亿股
+预期增长率：10%
+无风险利率：3%
+行业平均 PE: 25
+```
+
+**输出：**
+```
+【多种估值方法】
+
+**方法 1：格雷厄姆公式**
+内在价值 = 57 × (8.5 + 2×10) × 4.4 / 3
+          = 57 × 28.5 × 1.47
+          = 2394 元
+
+**方法 2：资产价值法**
+流动资产价值 = 1800 亿 - 负债
+每股价值 = 偏低（轻资产）
+          = 不适用
+
+**方法 3：盈利价值法**
+盈利价值 = 55 × 25（行业 PE）
+          = 1375 元
+
+**方法 4：DCF 法**
+自由现金流折现
+          = 约 2000 元
+
+【综合估值】
+
+| 方法 | 估值 | 权重 | 加权 |
+|------|------|------|------|
+| 格雷厄姆公式 | 2394 元 | 30% | 718 元 |
+| 资产价值法 | 不适用 | 0% | 0 元 |
+| 盈利价值法 | 1375 元 | 30% | 413 元 |
+| DCF 法 | 2000 元 | 40% | 800 元 |
+
+综合内在价值 = 1931 元
+当前价格 = 1700 元
+安全边际 = (1931-1700)/1931 = 12%
+
+【投资建议】
+
+建议：观察
+理由：
+1. 安全边际 12%，接近价值
+2. 多种方法估值区间：1375-2394 元
+3. 当前价格处于区间中部
+4. 等待更好价格或增长确认
+
+【敏感性分析】
+
+| 情景 | 增长率 | 折现率 | 内在价值 | 安全边际 |
+|------|--------|--------|---------|---------|
+| 乐观 | 15% | 8% | 2500 元 | 32% |
+| 中性 | 10% | 10% | 1931 元 | 12% |
+| 悲观 | 5% | 12% | 1500 元 | -13% |
+```
+
+---
+
+## 📚 核心理念
+
+**关键洞察：**
+1. 估值是艺术不是科学
+2. 多种方法交叉验证
+3. 安全边际是核心
+4. 保守假设是关键
+5. 估值是范围不是点
+
+**健康公式：**
+```
+好价格 = 内在价值 × (1 - 安全边际)
+```
+
+---
+
+## 🔗 相关文件
+
+- `templates/valuation-template.md` - 估值模板
+- `examples/valuation-examples.md` - 完整估值示例集
+- `references/valuation-methods.md` - 估值方法参考
+
+---
+
+## 更新日志
+
+- v2.0.0 (2026-03-19): 按照 SKILL-STANDARD-v2.md 重构，添加 Front Matter、坑点章节、相关资源 🧮
+- v1.0.0 (2026-03-13): 初始版本，内在价值计算器上线 🧮
+
+---
+
+*用 4 毛钱买 1 块钱的东西。估值是范围，不是精确数字。* 🧮

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prefect Flow Builder"
+  short_description: "Build and modify Prefect flow setups"
+  default_prompt: "Use $prefect-flow-builder to add or refactor a Prefect-based offline workflow."

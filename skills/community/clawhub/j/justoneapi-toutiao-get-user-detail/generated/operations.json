@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/toutiao/get-user-detail/v1 for Toutiao User Profile through JustOneAPI with userId.",
+  "displayName": "Toutiao User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Toutiao user Profile data, including user ID, nickname, and avatar, for influencer profiling and audience analysis and monitoring creator performance and growth.",
+      "method": "GET",
+      "operationId": "getToutiaoUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token required to access the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the Toutiao user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/toutiao/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Toutiao"
+      ]
+    }
+  ],
+  "platformKey": "toutiao",
+  "primaryTag": "Toutiao",
+  "skillName": "justoneapi_toutiao_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-toutiao-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

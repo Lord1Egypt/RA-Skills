@@ -1,0 +1,2001 @@
+[
+  {
+    "capability_id": "command-record-query",
+    "name": "命令记录查询",
+    "category": "日志与审计类",
+    "priority": "P0",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "command_records",
+    "trigger_description": "适用于按用户、资产、命令关键字、时间范围排查堡垒机命令执行记录，并输出明细与风险摘要。",
+    "examples": [
+      "查询近 7 天 root 在生产资产上执行过哪些命令",
+      "按命令关键字 sudo 排查某用户的高风险操作"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/commands/",
+      "/api/v1/terminal/commands/{pk}/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "user",
+      "asset",
+      "keyword",
+      "date_from",
+      "date_to",
+      "command_storage_scope",
+      "command_storage_id",
+      "risk_level",
+      "limit"
+    ],
+    "summary_strategy": "按时间线输出命令明细，补充高危命令计数、涉及用户/资产、风险级别分布。",
+    "error_handling": "无数据时明确返回空结果；字段缺失时降级展示已知字段；普通查询在多 storage 且无默认 storage 时要求显式指定 command_storage_id；当 command_storage_scope=all 时汇总全部可访问 storage。",
+    "coverage": "核心能力"
+  },
+  {
+    "capability_id": "session-record-query",
+    "name": "会话记录查询",
+    "category": "日志与审计类",
+    "priority": "P0",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "session_records",
+    "trigger_description": "适用于按用户、资产、协议、时间范围检索登录会话、会话状态与持续时长。",
+    "examples": [
+      "查询某用户昨天到今天的会话记录",
+      "按资产查看最近 30 天的登录会话"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/audits/user-sessions/{pk}/",
+      "/api/v1/terminal/sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "user",
+      "asset",
+      "protocol",
+      "status",
+      "date_from",
+      "date_to",
+      "limit"
+    ],
+    "summary_strategy": "返回会话总数、异常会话数、平均时长，并保留最近会话样本。",
+    "error_handling": "当 terminal 详情接口不可用时，自动回退为审计会话数据。",
+    "coverage": "核心能力"
+  },
+  {
+    "capability_id": "file-transfer-log-query",
+    "name": "文件传输日志查询",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "file_transfer_logs",
+    "trigger_description": "适用于按用户、资产、传输方向、时间范围排查上传下载记录与异常传输行为。",
+    "examples": [
+      "查询上周谁向数据库资产上传过文件",
+      "按用户统计最近 30 天下载次数"
+    ],
+    "endpoints": [
+      "/api/v1/audits/ftp-logs/",
+      "/api/v1/audits/ftp-logs/{pk}/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "user",
+      "asset",
+      "direction",
+      "date_from",
+      "date_to",
+      "limit"
+    ],
+    "summary_strategy": "按方向、用户、资产聚合传输次数，并保留最新明细样本。",
+    "error_handling": "方向字段缺失时自动按上传/下载候选字段尝试识别。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "high-risk-command-audit",
+    "name": "高危命令审计",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "high_risk_commands",
+    "trigger_description": "适用于排查高风险命令、拒绝命令、需要人工复核的命令执行行为。",
+    "examples": [
+      "查询近 24 小时被标记为高风险的命令",
+      "按资产查看被拒绝的危险命令"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/commands/",
+      "/api/v1/terminal/commands/insecure-command/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "user",
+      "asset",
+      "keyword",
+      "risk_level",
+      "date_from",
+      "date_to",
+      "command_storage_scope",
+      "command_storage_id"
+    ],
+    "summary_strategy": "输出高风险命令列表、风险等级分布和最活跃风险主体排行。",
+    "error_handling": "风险字段缺失时按命令关键字与 insecure-command 记录进行补充判断；普通查询在多 storage 且无默认 storage 时要求显式指定 command_storage_id；当 command_storage_scope=all 时汇总全部可访问 storage。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "sensitive-asset-access-audit",
+    "name": "敏感资产访问审计",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "sensitive_asset_access",
+    "trigger_description": "适用于按敏感资产名称、标签或地址关键字调查访问行为和会话分布。",
+    "examples": [
+      "审计最近 30 天对生产数据库的访问",
+      "排查谁访问过包含 prod 关键字的资产"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/sessions/",
+      "/api/v1/assets/assets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "asset",
+      "asset_keywords",
+      "user",
+      "date_from",
+      "date_to"
+    ],
+    "summary_strategy": "按资产和用户汇总会话访问次数，附带最新访问时间与协议分布。",
+    "error_handling": "未提供敏感资产范围时提示补充关键字、名称或资产 ID。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "abnormal-hours-login-query",
+    "name": "异常时间段登录查询",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "abnormal_logins",
+    "trigger_description": "适用于筛查夜间、节假日或自定义时间窗之外的登录行为。",
+    "examples": [
+      "查询凌晨 0 点到 6 点的登录记录",
+      "审计近 7 天非办公时段访问"
+    ],
+    "endpoints": [
+      "/api/v1/audits/login-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "hour_start",
+      "hour_end",
+      "user",
+      "asset"
+    ],
+    "summary_strategy": "返回异常时段命中记录、涉及来源 IP、用户和资产排行。",
+    "error_handling": "未给出小时范围时默认按 00:00-06:00 识别异常时间段。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "abnormal-source-ip-login-query",
+    "name": "异常来源 IP 登录查询",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "login_source_ip",
+    "trigger_description": "适用于按来源 IP、网段、地域线索筛查异常登录源和高频失败来源。",
+    "examples": [
+      "统计最近 7 天异常来源 IP 登录",
+      "查看某 IP 最近的登录情况"
+    ],
+    "endpoints": [
+      "/api/v1/audits/login-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "source_ip",
+      "source_ip_not_in",
+      "date_from",
+      "date_to",
+      "user"
+    ],
+    "summary_strategy": "按来源 IP 汇总成功/失败次数，并保留最近登录样本。",
+    "error_handling": "当来源 IP 字段缺失时降级返回带有 remote_addr 的记录。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "failed-login-statistics",
+    "name": "多次失败登录统计",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "failed_login_statistics",
+    "trigger_description": "适用于快速定位高频失败登录用户、来源 IP 和资产对象。",
+    "examples": [
+      "统计近 7 天失败登录最多的用户",
+      "按来源 IP 查看登录失败排行"
+    ],
+    "endpoints": [
+      "/api/v1/audits/login-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "user",
+      "source_ip"
+    ],
+    "summary_strategy": "输出失败总数、失败率、用户/IP/资产 Top 排行。",
+    "error_handling": "当状态字段未规范化时自动按失败关键词匹配。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "privileged-account-usage-audit",
+    "name": "特权账号使用审计",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "privileged_account_usage",
+    "trigger_description": "适用于按账号、资产、用户和时间范围审计特权账号的命令执行、会话访问和最近活动时间，输出账号维度聚合结果。",
+    "examples": [
+      "审计最近 30 天特权账号在哪些资产上有使用记录",
+      "查看 administrator 与 root 账号的命令数、会话数和最近访问时间"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "user",
+      "asset",
+      "date_from",
+      "date_to",
+      "days",
+      "limit",
+      "top"
+    ],
+    "summary_strategy": "按特权账号聚合 usage_count、command_count、session_count、last_seen，并返回有活动账号排行。",
+    "error_handling": "优先使用 privileged 字段识别特权账号；字段缺失时退化为高权名称规则；未显式指定命令存储时优先尝试默认 storage。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "file-transfer-risk-audit",
+    "name": "文件上传/下载风险审计",
+    "category": "日志与审计类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "file_transfer_risk",
+    "trigger_description": "适用于识别高风险文件扩展名、批量下载、异常方向传输等行为。",
+    "examples": [
+      "审计最近 7 天上传脚本文件的记录",
+      "排查批量下载行为"
+    ],
+    "endpoints": [
+      "/api/v1/audits/ftp-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "direction",
+      "keyword",
+      "date_from",
+      "date_to",
+      "user",
+      "asset"
+    ],
+    "summary_strategy": "按方向和风险关键字输出命中记录，并给出高频主体排行。",
+    "error_handling": "未命中风险关键字时仍返回基础传输统计，避免误判为接口异常。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-activity-overview",
+    "name": "账号活跃情况",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_activity_overview",
+    "trigger_description": "适用于按账号维度统计最近使用情况、活跃度和关联资产分布。",
+    "examples": [
+      "统计最近 30 天最活跃的账号",
+      "查看 root 账号最近使用情况"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "date_from",
+      "date_to",
+      "top"
+    ],
+    "summary_strategy": "输出账号活跃排行、最近使用时间、关联资产数和会话数。",
+    "error_handling": "当会话侧没有账号字段时回退为命令与账号清单交叉统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-activity-overview",
+    "name": "资产活跃情况",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_activity_overview",
+    "trigger_description": "适用于统计资产的最近访问时间、会话数、命令数和活跃排名。",
+    "examples": [
+      "查看最近 7 天最活跃的资产",
+      "统计某资产最近 30 天的访问情况"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "asset",
+      "date_from",
+      "date_to",
+      "top"
+    ],
+    "summary_strategy": "按资产输出活跃度排行、最近访问时间、协议分布和用户数。",
+    "error_handling": "当资产字段缺失时退化为地址/name 双字段匹配。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-type-distribution",
+    "name": "资产类型占比",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_type_distribution",
+    "trigger_description": "适用于查看主机、数据库、设备、Web 等资产类型的数量与占比分布。",
+    "examples": [
+      "统计当前组织的资产类型占比",
+      "查看数据库资产数量占比"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "type",
+      "node",
+      "org_id"
+    ],
+    "summary_strategy": "返回类型数量、占比、样本资产和总数。",
+    "error_handling": "类型字段缺失时按 platform/category 回退识别。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-login-ranking",
+    "name": "登录资产排名",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_login_ranking",
+    "trigger_description": "适用于按时间窗统计访问量最高的资产，并输出热门资产排行。",
+    "examples": [
+      "统计近 30 天登录最多的资产",
+      "查看最近一周访问前十的资产"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "protocol"
+    ],
+    "summary_strategy": "输出 Top 排行、访问次数、最近访问时间和活跃用户数。",
+    "error_handling": "当会话列表为空时返回零结果，不默认推断无权限。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-template-list",
+    "name": "账号模板列表",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_template_list",
+    "trigger_description": "适用于查看账号模板、模板关联资产和启用状态。",
+    "examples": [
+      "列出所有账号模板",
+      "查看某个模板关联了多少资产"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/account-templates/",
+      "/api/v1/accounts/account-templates/{pk}/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "name",
+      "is_active",
+      "limit"
+    ],
+    "summary_strategy": "按模板输出数量、关联资产数、节点数与状态摘要。",
+    "error_handling": "接口字段差异时保留原始模板对象供后续扩展。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-login-trend",
+    "name": "近 7 天/30 天资产登录趋势",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_login_trend",
+    "trigger_description": "适用于按日统计资产登录趋势，支持近 7 天、近 30 天或自定义时间窗。",
+    "examples": [
+      "统计近 7 天资产登录趋势",
+      "按资产类型看近 30 天登录趋势"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "days",
+      "date_from",
+      "date_to",
+      "asset_type"
+    ],
+    "summary_strategy": "输出日级时间序列、总量、峰值日期和趋势说明。",
+    "error_handling": "时间范围缺失时默认近 7 天。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "protocol-usage-distribution",
+    "name": "协议使用分布",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "protocol_distribution",
+    "trigger_description": "适用于查看 SSH、RDP、数据库协议等连接方式的使用占比。",
+    "examples": [
+      "统计近 30 天协议使用分布",
+      "查看数据库协议连接占比"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "asset",
+      "user"
+    ],
+    "summary_strategy": "按协议输出计数、占比和涉及资产数。",
+    "error_handling": "协议字段缺失时按 terminal_type 或 connect_method 回退识别。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-list-query",
+    "name": "资产列表查询",
+    "category": "资产治理类",
+    "priority": "P0",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_list",
+    "trigger_description": "适用于按名称、地址、节点、平台、启用状态等条件查询资产清单。",
+    "examples": [
+      "列出所有 Linux 资产",
+      "查询某个节点下的资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/assets/hosts/",
+      "/api/v1/assets/databases/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "name",
+      "address",
+      "node",
+      "platform",
+      "is_active",
+      "limit"
+    ],
+    "summary_strategy": "返回资产总数、类型分布、启用状态和最近样本。",
+    "error_handling": "大结果集默认摘要 Top 与样本，不直接回显全量。",
+    "coverage": "核心能力"
+  },
+  {
+    "capability_id": "uncategorized-assets-query",
+    "name": "未分类资产查询",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "uncategorized_assets",
+    "trigger_description": "适用于查找未挂到有效节点、分类为空或节点信息缺失的资产。",
+    "examples": [
+      "查询没有节点归属的资产",
+      "查看未分类资产数量"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "name",
+      "address"
+    ],
+    "summary_strategy": "输出未分类资产列表和节点缺失统计。",
+    "error_handling": "节点字段不存在时按 nodes/nodes_display 双字段回退。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "assets-without-valid-account-template",
+    "name": "无有效账号模板的资产",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "assets_without_valid_template",
+    "trigger_description": "适用于排查未绑定账号模板、模板失效或模板引用缺失的资产。",
+    "examples": [
+      "查哪些资产没有账号模板",
+      "统计未绑定模板的数据库资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/accounts/account-templates/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "asset",
+      "asset_type",
+      "limit"
+    ],
+    "summary_strategy": "返回未绑定模板资产清单和按类型/节点的分布。",
+    "error_handling": "模板关联字段未明确时标记为待确认并返回已识别线索。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "duplicate-asset-name-query",
+    "name": "重复命名资产查询",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "duplicate_asset_names",
+    "trigger_description": "适用于排查同名资产、命名冲突和治理规范问题。",
+    "examples": [
+      "查找重复命名的资产",
+      "按节点看同名资产冲突"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "name",
+      "node",
+      "limit"
+    ],
+    "summary_strategy": "按重复名称分组输出冲突资产和节点分布。",
+    "error_handling": "名称字段缺失时忽略该资产并计入 missing_name 统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "offline-disabled-assets-statistics",
+    "name": "离线/禁用资产统计",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "offline_disabled_assets",
+    "trigger_description": "适用于按启用状态、连通性状态统计异常资产。",
+    "examples": [
+      "统计禁用资产数量",
+      "查看离线资产分布"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/terminal/status/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "is_active",
+      "status",
+      "node",
+      "platform"
+    ],
+    "summary_strategy": "输出离线/禁用数量、占比和典型资产样本。",
+    "error_handling": "终端状态接口不可用时仅返回资产启用状态统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "node-asset-distribution",
+    "name": "按节点统计资产数量",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "node_asset_distribution",
+    "trigger_description": "适用于按节点、资产树分组查看资产数量、样本资产和节点分布。",
+    "examples": [
+      "按节点统计资产数量",
+      "查看某组织下各节点资产分布"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/assets/nodes/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "node",
+      "name",
+      "platform",
+      "limit"
+    ],
+    "summary_strategy": "按节点输出 asset_count 和样本资产列表。",
+    "error_handling": "节点字段缺失时只统计可识别节点，不伪造节点关系。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-list-query",
+    "name": "账号列表查询",
+    "category": "账号治理类",
+    "priority": "P0",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_list",
+    "trigger_description": "适用于按账号名、资产名、特权属性、启用状态查询资产账号清单，返回账号基础属性、模板线索和来源信息。",
+    "examples": [
+      "列出所有启用中的 root 账号",
+      "查看某资产有哪些特权账号"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "asset",
+      "privileged",
+      "is_active",
+      "limit"
+    ],
+    "summary_strategy": "返回 total_accounts、privileged_accounts、distinct_assets，并保留账号/资产/模板/source 样本字段。",
+    "error_handling": "账号 inventory 接口不支持部分服务端筛选时，先拉取清单再在本地执行 account/asset/privileged/is_active 过滤，避免直接报错。",
+    "coverage": "核心能力"
+  },
+  {
+    "capability_id": "expired-account-query",
+    "name": "失效账号查询",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "expired_accounts",
+    "trigger_description": "适用于排查已过期、已失效或到期时间已落后的账号对象；当前能力以 JumpServer 用户账号而非资产账号为输出范围。",
+    "examples": [
+      "查询当前已失效的 JumpServer 用户账号",
+      "查看最近有哪些用户账号已经过期"
+    ],
+    "endpoints": [
+      "/api/v1/users/users/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "user",
+      "limit"
+    ],
+    "summary_strategy": "输出 total_expired_accounts、scope、date_expired、last_login、source 等失效线索。",
+    "error_handling": "资产账号失效字段在 inventory 中未统一明确时，当前固定返回 scope=jumpserver_user_accounts，避免把用户账号结果误解为资产账号。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "long-time-unused-accounts",
+    "name": "长期未使用账号",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "long_time_unused_accounts",
+    "trigger_description": "适用于结合会话和命令记录找出在指定时间窗内长期未被使用的账号，并支持按资产、账号名和特权属性筛选。",
+    "examples": [
+      "查最近 90 天未使用的账号",
+      "找出长期未使用的特权账号"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "days",
+      "account",
+      "asset",
+      "privileged",
+      "limit"
+    ],
+    "summary_strategy": "输出 total_unused_accounts、never_seen_count，以及账号维度的 usage_count、last_seen、never_seen 和所属资产。",
+    "error_handling": "无使用记录时标记 never_seen=true；命令和会话任一侧缺失时仍保留账号基础属性与零使用计数供治理复核。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "high-privilege-account-list",
+    "name": "高权限账号清单",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "high_privilege_accounts",
+    "trigger_description": "适用于盘点 privileged 账号及高权名称账号，结合最近命令和会话活动输出高权限账号清单与资产分布。",
+    "examples": [
+      "列出所有特权账号",
+      "查询数据库高权限账号最近是否还有活动"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "asset",
+      "days",
+      "limit",
+      "top"
+    ],
+    "summary_strategy": "返回 total_high_privilege_accounts、accounts_with_activity、asset_distribution，以及每个账号的 usage_count 和 last_seen。",
+    "error_handling": "优先使用 privileged 字段；字段缺失时退化为 root/administrator/dba/sa 名称规则，并通过 privilege_source 标注识别来源。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "accounts-without-template",
+    "name": "未绑定模板的账号",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "accounts_without_template",
+    "trigger_description": "适用于识别未通过模板来源管理、缺少模板关联线索的资产账号，帮助治理时定位手工账号或来源不明账号。",
+    "examples": [
+      "查询未绑定模板的账号",
+      "找出没有模板来源线索的资产账号"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "asset",
+      "limit"
+    ],
+    "summary_strategy": "返回 total_accounts_without_template，并为每条记录补充 template、source、source_id、judgement_reason 供治理复核。",
+    "error_handling": "模板字段缺失时按 source/source_id/template 候选字段综合判断；若 source 表明模板型来源则跳过该记录，避免误报。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-asset-bindings",
+    "name": "账号与资产绑定关系查询",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_asset_bindings",
+    "trigger_description": "适用于查看账号对应哪些资产、同一资产下有哪些账号以及账号-资产绑定关系概览，输出绑定视图而非普通账号列表别名。",
+    "examples": [
+      "查看 root 绑定了哪些资产",
+      "某资产有哪些账号绑定"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/",
+      "/api/v1/assets/assets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "account",
+      "asset",
+      "limit",
+      "top"
+    ],
+    "summary_strategy": "返回 total_bindings、distinct_accounts、distinct_assets，以及 bindings_by_account/bindings_by_asset 聚合摘要。",
+    "error_handling": "资产侧字段缺失时仍保留账号绑定行；筛选条件由能力层本地匹配，避免依赖不稳定的服务端 inventory 过滤。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "session-behavior-statistics",
+    "name": "会话行为统计",
+    "category": "会话与行为分析类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "session_behavior_statistics",
+    "trigger_description": "适用于汇总会话数量、平均时长、异常中断、协议分布和用户/资产热点。",
+    "examples": [
+      "统计近 7 天会话行为",
+      "按用户查看会话行为统计"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "user",
+      "asset",
+      "protocol"
+    ],
+    "summary_strategy": "输出核心统计、时长分位、异常会话数和热点排行。",
+    "error_handling": "duration 缺失时按开始/结束时间差回算，无法回算则记为 unknown。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "frequent-operation-user-ranking",
+    "name": "高频操作用户排行",
+    "category": "会话与行为分析类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "frequent_operation_users",
+    "trigger_description": "适用于按命令执行次数统计高频操作用户，并查看涉及资产范围和最近操作时间。",
+    "examples": [
+      "统计最近 7 天高频操作用户排行",
+      "谁在最近一个月操作最频繁"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "user",
+      "asset"
+    ],
+    "summary_strategy": "按命令次数输出用户排行、涉及资产数和最近操作时间。",
+    "error_handling": "命令记录字段缺失时只统计可识别用户，不中断整体排行。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "suspicious-operation-summary",
+    "name": "可疑操作行为汇总",
+    "category": "会话与行为分析类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "suspicious_operation_summary",
+    "trigger_description": "适用于跨命令、登录、会话、文件传输多接口汇总可疑行为，形成统一排查摘要。",
+    "examples": [
+      "汇总最近 7 天可疑操作行为",
+      "按用户和资产查看可疑行为概况"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/commands/",
+      "/api/v1/audits/login-logs/",
+      "/api/v1/terminal/sessions/",
+      "/api/v1/audits/ftp-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "user",
+      "asset",
+      "keyword"
+    ],
+    "summary_strategy": "按可疑维度输出命中数量与样本记录，先给总体风险摘要再给明细样本。",
+    "error_handling": "个别维度接口失败时保留其余维度结果，并在摘要中提示 partial_failures。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "system-settings-overview",
+    "name": "系统设置总览",
+    "category": "系统设置与配置巡检类",
+    "priority": "P0",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "system_settings_overview",
+    "trigger_description": "适用于一次性查看系统设置整体配置、关键模块开关与基础安全项。",
+    "examples": [
+      "查看系统设置总览",
+      "汇总当前 JumpServer 关键配置"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/settings/public/",
+      "/api/v1/settings/server-info/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "module",
+      "keys"
+    ],
+    "summary_strategy": "按模块输出关键配置项、布尔开关和异常提示。",
+    "error_handling": "未知字段保留原始键值，避免巡检结果丢信息。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "security-policy-check",
+    "name": "安全策略配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "security_policy_check",
+    "trigger_description": "适用于检查密码、登录限制、锁定、阻断 IP 等安全策略配置。",
+    "examples": [
+      "检查安全策略配置",
+      "查看当前 IP 封禁和登录限制设置"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/settings/security/block-ip/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "keys",
+      "include_blocked_ips"
+    ],
+    "summary_strategy": "提取安全相关配置键，并汇总被阻断 IP 数量。",
+    "error_handling": "配置键无法识别时保留候选键并标注待人工确认。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "mfa-config-check",
+    "name": "MFA 配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "mfa_config_check",
+    "trigger_description": "适用于检查多因素认证是否启用、强制策略级别和相关认证项。",
+    "examples": [
+      "检查 MFA 是否开启",
+      "查看当前 MFA 强制策略"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/authentication/auth/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "keys"
+    ],
+    "summary_strategy": "抽取 mfa 相关配置键并给出启用状态说明。",
+    "error_handling": "认证接口只返回 OPTIONS 元数据时退回 settings 侧字段检查。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "auth-source-config-check",
+    "name": "LDAP / OIDC / SAML 等认证源配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "auth_source_config_check",
+    "trigger_description": "适用于检查 LDAP、OIDC、SAML、OAuth2 等认证源启用与关键配置项。",
+    "examples": [
+      "检查 LDAP 和 SAML 配置",
+      "查看外部认证源是否启用"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/authentication/auth/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "keys",
+      "source"
+    ],
+    "summary_strategy": "按认证源输出启用状态与关键字段摘要。",
+    "error_handling": "OIDC 字段未在 inventory 明确时标记待确认并保留同类字段线索。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "notification-config-check",
+    "name": "通知配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "notification_config_check",
+    "trigger_description": "适用于检查邮件、短信、Slack、钉钉、飞书、企微等通知配置。",
+    "examples": [
+      "检查通知配置",
+      "查看邮件和钉钉通知是否可用"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/settings/mail/testing/",
+      "/api/v1/notifications/backends/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "channel",
+      "keys"
+    ],
+    "summary_strategy": "按通知渠道汇总配置状态和可用后端。",
+    "error_handling": "测试接口不执行发送，仅返回配置摘要，避免副作用。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "ticket-approval-config-check",
+    "name": "工单/审批配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "ticket_approval_config_check",
+    "trigger_description": "适用于查看工单流、审批等级、待审批工单和命令审批相关配置。",
+    "examples": [
+      "检查工单审批配置",
+      "查看待审批工单和审批级别"
+    ],
+    "endpoints": [
+      "/api/v1/tickets/flows/",
+      "/api/v1/tickets/tickets/",
+      "/api/v1/tickets/apply-command-tickets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "status",
+      "type",
+      "limit"
+    ],
+    "summary_strategy": "返回工单流数量、待审批数量和审批级别摘要。",
+    "error_handling": "字段未明确时按 approval_step/approval_level 候选键提取。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "terminal-access-policy-check",
+    "name": "终端接入策略检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "terminal_access_policy_check",
+    "trigger_description": "适用于检查终端、端点规则、命令存储、回放存储与终端状态。",
+    "examples": [
+      "检查终端接入策略",
+      "查看终端状态和命令存储配置"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/endpoint-rules/",
+      "/api/v1/terminal/terminals/",
+      "/api/v1/terminal/command-storages/",
+      "/api/v1/terminal/replay-storages/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "status"
+    ],
+    "summary_strategy": "按终端、端点规则、存储组件输出数量与默认配置摘要。",
+    "error_handling": "个别终端相关接口 5xx 时保留 partial_failures，不中断整体巡检。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "org-resource-overview",
+    "name": "组织/节点维度资源统计",
+    "category": "组织/节点维度统计类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "org_resource_overview",
+    "trigger_description": "适用于查看组织、节点层面的用户、资产、节点、权限数量分布。",
+    "examples": [
+      "按组织统计资产数量",
+      "查看各组织资源总览"
+    ],
+    "endpoints": [
+      "/api/v1/orgs/orgs/",
+      "/api/v1/assets/nodes/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "org_id",
+      "node",
+      "limit"
+    ],
+    "summary_strategy": "按组织输出资源统计字段，并补充节点数量分布。",
+    "error_handling": "节点统计失败时保留组织统计，不把整体结果判为失败。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "role-binding-overview",
+    "name": "权限与授权关系查询",
+    "category": "权限与授权关系查询类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "role_binding_overview",
+    "trigger_description": "适用于查看系统角色、组织角色和绑定关系，辅助权限治理与合规排查。",
+    "examples": [
+      "查看组织角色绑定情况",
+      "统计系统角色与用户绑定关系"
+    ],
+    "endpoints": [
+      "/api/v1/rbac/org-role-bindings/",
+      "/api/v1/rbac/system-role-bindings/",
+      "/api/v1/rbac/roles/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "role",
+      "user",
+      "limit"
+    ],
+    "summary_strategy": "输出角色绑定数量、绑定主体样本和角色分类分布。",
+    "error_handling": "RBAC 接口字段差异时保留原始记录和可识别键名。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "recent-active-users-ranking",
+    "name": "最近活跃用户排行",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "recent_active_users_ranking",
+    "trigger_description": "适用于统计最近一段时间最活跃的用户和最后活跃时间。",
+    "examples": [
+      "查看最近 30 天活跃用户排行",
+      "近 7 天谁最活跃"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "user"
+    ],
+    "summary_strategy": "按用户输出会话/命令活跃次数和最后活跃时间。",
+    "error_handling": "无数据时返回空排行而不是报错。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "recent-active-assets-ranking",
+    "name": "最近活跃资产排行",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "recent_active_assets_ranking",
+    "trigger_description": "适用于查看最近最活跃的资产和最后访问时间。",
+    "examples": [
+      "查看最近 7 天活跃资产排行",
+      "近 30 天哪些资产最热门"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "asset"
+    ],
+    "summary_strategy": "按资产输出活跃次数和最后活跃时间。",
+    "error_handling": "资产字段缺失时按可识别名称降级统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "hot-assets-ranking",
+    "name": "热门资产排行",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_activity_overview",
+    "trigger_description": "适用于查看访问量最高、最热门的资产。",
+    "examples": [
+      "统计热门资产排行",
+      "近 30 天访问最多的资产有哪些"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top"
+    ],
+    "summary_strategy": "按 usage_count 排序返回热门资产 Top。",
+    "error_handling": "当会话数据不足时用命令数据补充热度。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "cold-assets-ranking",
+    "name": "冷门资产排行",
+    "category": "活跃与统计分析类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "unused_assets",
+    "trigger_description": "适用于查找长时间无人访问或访问极少的资产。",
+    "examples": [
+      "查看冷门资产排行",
+      "找出近 90 天未访问资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "days",
+      "limit"
+    ],
+    "summary_strategy": "输出 usage_count 为 0 或极低的资产清单。",
+    "error_handling": "当时间窗内无访问时明确说明按当前时间窗统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "session-duration-ranking",
+    "name": "会话时长排行",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "session_duration_ranking",
+    "trigger_description": "适用于查看最长会话、超长会话和持续时间异常的连接。",
+    "examples": [
+      "统计最近 30 天最长会话",
+      "查看会话时长排行"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "user",
+      "asset"
+    ],
+    "summary_strategy": "按 duration_seconds 倒序输出长会话排行。",
+    "error_handling": "duration 缺失时尝试按开始/结束时间回算。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "file-transfer-heavy-ranking",
+    "name": "文件传输最多的用户/资产",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "file_transfer_heavy_entities",
+    "trigger_description": "适用于查看文件传输次数最多的用户和资产。",
+    "examples": [
+      "统计最近 30 天文件传输最多的用户",
+      "查看文件传输最多的资产"
+    ],
+    "endpoints": [
+      "/api/v1/audits/ftp-logs/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "direction"
+    ],
+    "summary_strategy": "同时返回用户和资产两个维度的排行。",
+    "error_handling": "无传输记录时返回空排行。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "platform-usage-distribution",
+    "name": "平台或资产类型使用分布",
+    "category": "活跃与统计分析类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "platform_usage_distribution",
+    "trigger_description": "适用于查看按平台或资产类型归类的会话使用分布。",
+    "examples": [
+      "统计平台使用分布",
+      "查看数据库平台连接占比"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top"
+    ],
+    "summary_strategy": "按平台名称或平台类型聚合会话数和占比。",
+    "error_handling": "平台字段缺失时使用 platform.type.value 作为回退。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "long-time-unlogged-assets",
+    "name": "长时间未登录资产",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "unused_assets",
+    "trigger_description": "适用于筛查长时间没有任何登录行为的资产。",
+    "examples": [
+      "查近 90 天未登录资产",
+      "找出长时间未访问的资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "days",
+      "limit",
+      "asset"
+    ],
+    "summary_strategy": "返回 usage_count=0 的资产及其基本属性。",
+    "error_handling": "时间范围缺失时默认按 90 天统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "long-time-unused-assets",
+    "name": "长时间未使用资产",
+    "category": "资产治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "unused_assets",
+    "trigger_description": "适用于从会话和命令双维度识别长时间未使用资产。",
+    "examples": [
+      "找出长期未使用资产",
+      "统计近半年未使用资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/audits/user-sessions/",
+      "/api/v1/terminal/commands/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "days",
+      "limit",
+      "asset_type"
+    ],
+    "summary_strategy": "返回 usage_count 为 0 的资产清单和基础分布。",
+    "error_handling": "当只拿到单一数据源时仍返回已知未使用资产。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "shared-account-usage",
+    "name": "共享账号使用情况",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "shared_account_usage",
+    "trigger_description": "适用于识别被多个用户共同使用的共享账号。",
+    "examples": [
+      "查看共享账号使用情况",
+      "找出最近 30 天被多人使用的账号"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/commands/",
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "account"
+    ],
+    "summary_strategy": "按账号输出使用用户数和用户列表。",
+    "error_handling": "当账号字段缺失时忽略该条记录，不影响整体统计。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "privileged-account-activity",
+    "name": "特权账号活跃情况",
+    "category": "账号治理类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "privileged_account_activity",
+    "trigger_description": "适用于查看特权账号最近的活跃度和访问轨迹，输出账号维度的 usage_count、命令数、会话数和最近访问时间。",
+    "examples": [
+      "统计特权账号活跃情况",
+      "查看 administrator 在某台资产上最近是否活跃"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/accounts/",
+      "/api/v1/terminal/commands/",
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "days",
+      "account",
+      "asset",
+      "limit",
+      "top"
+    ],
+    "summary_strategy": "输出 total_high_privilege_accounts、active_accounts、top_accounts，以及每个特权账号的 usage_count、command_count、session_count、last_seen。",
+    "error_handling": "优先使用 privileged 字段，缺失时退化到高权名称规则；命中资产筛选时按账号-资产维度输出活跃结果，不再回退为审计样本页。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "user-session-analysis",
+    "name": "用户维度会话分析",
+    "category": "会话与行为分析类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "user_session_analysis",
+    "trigger_description": "适用于从用户视角分析会话数量、平均时长和活跃度。",
+    "examples": [
+      "按用户分析会话行为",
+      "查看用户维度会话统计"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "user"
+    ],
+    "summary_strategy": "按用户输出 session_count 和 average_duration_seconds。",
+    "error_handling": "会话无用户字段时按 unknown 聚类而不丢弃。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-session-analysis",
+    "name": "资产维度会话分析",
+    "category": "会话与行为分析类",
+    "priority": "P1",
+    "entrypoint": "jms_query.py audit-analyze",
+    "handler": "asset_session_analysis",
+    "trigger_description": "适用于从资产视角分析会话数量、平均时长和访问密度。",
+    "examples": [
+      "按资产分析会话行为",
+      "查看资产维度会话统计"
+    ],
+    "endpoints": [
+      "/api/v1/audits/user-sessions/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_query.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "date_from",
+      "date_to",
+      "top",
+      "asset"
+    ],
+    "summary_strategy": "按资产输出 session_count 和 average_duration_seconds。",
+    "error_handling": "资产字段缺失时按 unknown 聚类并显式提示。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "login-auth-config-check",
+    "name": "登录认证配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "login_auth_config_check",
+    "trigger_description": "适用于巡检登录认证、外部认证源和认证入口相关配置。",
+    "examples": [
+      "检查登录认证配置",
+      "查看认证源配置概况"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/authentication/auth/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "keys"
+    ],
+    "summary_strategy": "返回 auth/ldap/oidc/saml 等关键配置摘要。",
+    "error_handling": "认证接口只读不可用时回退为 settings 侧字段检查。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "audit-retention-check",
+    "name": "审计日志保存配置检查",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "audit_retention_check",
+    "trigger_description": "适用于查看审计、命令、回放相关日志保留和存储配置。",
+    "examples": [
+      "检查审计日志保存配置",
+      "查看命令和回放存储保留策略"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/",
+      "/api/v1/terminal/command-storages/",
+      "/api/v1/terminal/replay-storages/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "keys"
+    ],
+    "summary_strategy": "提取 audit/log/replay/retention 相关键值。",
+    "error_handling": "未知保留字段保持原样输出，避免误删信息。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "platform-access-config-query",
+    "name": "平台接入配置查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "platform_access_config_query",
+    "trigger_description": "适用于查询平台定义、协议能力和平台接入配置。",
+    "examples": [
+      "查看平台接入配置",
+      "列出所有平台模板"
+    ],
+    "endpoints": [
+      "/api/v1/assets/platforms/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "name"
+    ],
+    "summary_strategy": "返回平台数量和样本平台配置。",
+    "error_handling": "字段较多时仅展示关键字段和样本。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-template-config-query",
+    "name": "账号模板配置查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_template_config_query",
+    "trigger_description": "适用于查看账号模板的类型、启用状态和关联范围。",
+    "examples": [
+      "查看账号模板配置",
+      "列出账号模板定义"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/account-templates/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "name",
+      "is_active"
+    ],
+    "summary_strategy": "返回模板总数、状态摘要和样本配置。",
+    "error_handling": "模板字段差异时保留原始对象线索。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "asset-platform-config-query",
+    "name": "资产平台配置查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "asset_platform_config_query",
+    "trigger_description": "适用于查看资产与平台配置的对应关系和平台分布。",
+    "examples": [
+      "查看资产平台配置",
+      "按平台列出资产"
+    ],
+    "endpoints": [
+      "/api/v1/assets/assets/",
+      "/api/v1/assets/platforms/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "platform",
+      "asset"
+    ],
+    "summary_strategy": "返回资产基础信息和对应平台摘要。",
+    "error_handling": "平台字段缺失时保留空值，不伪造映射。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "setting-category-query",
+    "name": "系统设置分类查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "setting_category_query",
+    "trigger_description": "适用于按 settings category 直接读取某一类系统设置。",
+    "examples": [
+      "查询 security_auth 分类设置",
+      "查看 clean 分类配置"
+    ],
+    "endpoints": [
+      "/api/v1/settings/setting/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "category"
+    ],
+    "summary_strategy": "返回指定分类的设置原始结果，并附带分类名和结果总数。",
+    "error_handling": "分类无结果时返回空列表，不把其误判为接口错误。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "license-detail-query",
+    "name": "许可证详情查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "license_detail_query",
+    "trigger_description": "适用于读取 JumpServer xpack 许可证详情与有效性信息。",
+    "examples": [
+      "查询许可证详情",
+      "查看当前许可证状态"
+    ],
+    "endpoints": [
+      "/api/v1/xpack/license/detail"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [],
+    "summary_strategy": "返回许可证详情原始对象，并标注当前是否可读。",
+    "error_handling": "若目标环境未启用 xpack 或接口不可用，保留原始错误状态。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "ticket-list-query",
+    "name": "工单列表查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "ticket_list_query",
+    "trigger_description": "适用于读取工单列表、按状态过滤以及查看待处理工单样本。",
+    "examples": [
+      "查询工单列表",
+      "查看待处理工单"
+    ],
+    "endpoints": [
+      "/api/v1/tickets/tickets/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "status",
+      "limit",
+      "offset"
+    ],
+    "summary_strategy": "返回工单数量和工单样本列表。",
+    "error_handling": "无工单时返回空列表；过滤条件原样透传给服务端。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "command-storage-query",
+    "name": "命令存储查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "command_storage_query",
+    "trigger_description": "适用于查看命令记录存储配置、默认存储和多存储场景。",
+    "examples": [
+      "查询命令存储配置",
+      "查看默认命令存储"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/command-storages/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "offset"
+    ],
+    "summary_strategy": "返回命令存储数量、默认存储数量与样本配置。",
+    "error_handling": "多存储场景不做隐式选择，只返回事实结果供用户确认。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "replay-storage-query",
+    "name": "录像存储查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "replay_storage_query",
+    "trigger_description": "适用于查看录像回放存储位置、默认存储和多存储场景。",
+    "examples": [
+      "查询录像存储配置",
+      "查看默认回放存储"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/replay-storages/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "offset"
+    ],
+    "summary_strategy": "返回录像存储数量、默认存储数量与样本配置。",
+    "error_handling": "多存储场景不做隐式选择，只返回事实结果供用户确认。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "terminal-component-query",
+    "name": "终端组件列表查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P2",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "terminal_component_query",
+    "trigger_description": "适用于查看终端组件列表和运行状态样本。",
+    "examples": [
+      "查询终端组件列表",
+      "查看堡垒机服务组件状态"
+    ],
+    "endpoints": [
+      "/api/v1/terminal/terminals/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "offset"
+    ],
+    "summary_strategy": "返回终端组件数量和组件样本。",
+    "error_handling": "结果过大时只回显样本，不丢失总数。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "report-query",
+    "name": "统计报告查询",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "report_query",
+    "trigger_description": "适用于读取账号、资产、用户及账号自动化相关报表或 dashboard。",
+    "examples": [
+      "查询账号统计报告",
+      "查看资产活动报告"
+    ],
+    "endpoints": [
+      "/api/v1/reports/reports/account-statistic/",
+      "/api/v1/reports/reports/account-automation/",
+      "/api/v1/reports/reports/asset-statistic/",
+      "/api/v1/reports/reports/asset-activity/",
+      "/api/v1/reports/reports/users/",
+      "/api/v1/reports/reports/user-change-password/",
+      "/api/v1/accounts/pam-dashboard/",
+      "/api/v1/accounts/change-secret-dashboard/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "report_type",
+      "days"
+    ],
+    "summary_strategy": "按 report_type 返回原始报表对象，并保留 days 等服务端参数。",
+    "error_handling": "不支持的 report_type 直接报错，避免误打到错误接口。",
+    "coverage": "专项能力"
+  },
+  {
+    "capability_id": "account-automation-overview",
+    "name": "账号自动化与风险概览",
+    "category": "系统设置与配置巡检类",
+    "priority": "P1",
+    "entrypoint": "jms_diagnose.py inspect",
+    "handler": "account_automation_overview",
+    "trigger_description": "适用于汇总账号风险、备份、改密、检测任务及其执行情况。",
+    "examples": [
+      "查询账号自动化概览",
+      "查看账号风险与改密任务情况"
+    ],
+    "endpoints": [
+      "/api/v1/accounts/account-risks/",
+      "/api/v1/accounts/account-backup-plans/",
+      "/api/v1/accounts/account-backup-plan-executions/",
+      "/api/v1/accounts/change-secret-automations/",
+      "/api/v1/accounts/change-secret-executions/",
+      "/api/v1/accounts/change-secret-records/",
+      "/api/v1/accounts/change-secret-records/dashboard/",
+      "/api/v1/accounts/check-account-automations/",
+      "/api/v1/accounts/check-account-executions/",
+      "/api/v1/accounts/account-check-engines/"
+    ],
+    "scripts": [
+      "scripts/jumpserver_api/jms_diagnose.py",
+      "scripts/jumpserver_api/jms_analytics.py"
+    ],
+    "input_params": [
+      "limit",
+      "offset",
+      "days",
+      "asset",
+      "node"
+    ],
+    "summary_strategy": "返回各模块原始结果并汇总 partial_failures，便于做环境级验证。",
+    "error_handling": "单个接口失败时保留其余接口结果，不中断整体概览。",
+    "coverage": "专项能力"
+  }
+]

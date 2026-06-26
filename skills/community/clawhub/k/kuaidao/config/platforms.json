@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "version": "1.1.0",
+    "description": "快导(KD) Skill - 平台参数配置",
+    "last_updated": "2026-04-27"
+  },
+  "platforms": {
+    "xiaohongshu": {
+      "name": "小红书",
+      "name_en": "Xiaohongshu",
+      "user_profile": "女性、种草决策",
+      "content_style": "攻略型、图文结合、实用价值",
+      "theme_direction": [],
+      "theme_direction_note": "用户首次使用时需配置主题方向",
+      "title_rules": {
+        "max_length": 20,
+        "style": "攻略感强",
+        "emoji": true
+      },
+      "duration": {
+        "total": "2-3min",
+        "total_seconds": { "min": 120, "max": 180 },
+        "segment": "6-12s",
+        "segment_seconds": { "min": 6, "max": 12 },
+        "segments_count": 18
+      },
+      "content_requirements": {
+        "columns": {
+          "A": { "name": "视频文案", "min_chars": 0, "story_required": true },
+          "B": { "name": "时间段", "format": "精确到秒" },
+          "C": { "name": "镜头", "min_chars": 20 },
+          "D": { "name": "运镜", "min_chars": 15 },
+          "E": { "name": "拍摄技巧", "min_chars": 15 },
+          "F": { "name": "画面", "min_chars": 20 },
+          "G": { "name": "台词", "min_chars": 30 },
+          "H": { "name": "音效", "min_chars": 15 },
+          "I": { "name": "推荐音乐/BGM" },
+          "J": { "name": "文案标签" },
+          "K": { "name": "使用状态", "default": "待使用" },
+          "L": { "name": "关联活动" },
+          "M": { "name": "发布日期" },
+          "N": { "name": "备注" }
+        }
+      },
+      "keywords": [],
+      "keywords_note": "用户首次使用时需配置搜索关键词"
+    },
+    "douyin": {
+      "name": "抖音",
+      "name_en": "Douyin",
+      "user_profile": "年轻人、公域流量",
+      "content_style": "快节奏、黄金3秒、视觉冲击",
+      "theme_direction": [],
+      "theme_direction_note": "用户首次使用时需配置主题方向",
+      "title_rules": {
+        "max_length": 50,
+        "style": "吸睛、话题性强",
+        "emoji": true
+      },
+      "duration": {
+        "total": "1min",
+        "total_seconds": { "min": 45, "max": 60 },
+        "segment": "3-5s",
+        "segment_seconds": { "min": 3, "max": 5 },
+        "segments_count": 12
+      },
+      "content_requirements": {
+        "columns": {
+          "A": { "name": "视频文案", "story_required": true },
+          "B": { "name": "时间段", "min_chars": 0 },
+          "C": { "name": "镜头", "min_chars": 15 },
+          "D": { "name": "运镜", "min_chars": 10 },
+          "E": { "name": "拍摄技巧", "min_chars": 10 },
+          "F": { "name": "画面", "min_chars": 15 },
+          "G": { "name": "台词", "min_chars": 20 },
+          "H": { "name": "音效", "min_chars": 10 },
+          "I": { "name": "推荐音乐/BGM" },
+          "J": { "name": "文案标签" },
+          "K": { "name": "使用状态", "default": "待使用" },
+          "L": { "name": "关联活动" },
+          "M": { "name": "发布日期" },
+          "N": { "name": "备注" }
+        }
+      },
+      "keywords": [],
+      "keywords_note": "用户首次使用时需配置搜索关键词"
+    },
+    "shipinhao": {
+      "name": "视频号",
+      "name_en": "Channels",
+      "user_profile": "中老年、私域社交",
+      "content_style": "温情叙事、真实人设、完播率",
+      "theme_direction": [],
+      "theme_direction_note": "用户首次使用时需配置主题方向",
+      "title_rules": {
+        "max_length": 16,
+        "no_punctuation": true,
+        "style": "温情、真实"
+      },
+      "duration": {
+        "total": "1-3min",
+        "total_seconds": { "min": 60, "max": 180 },
+        "segment": "5-10s",
+        "segment_seconds": { "min": 5, "max": 10 },
+        "segments_count": 15
+      },
+      "content_requirements": {
+        "columns": {
+          "A": { "name": "视频文案", "story_required": true },
+          "B": { "name": "时间段" },
+          "C": { "name": "镜头", "min_chars": 18 },
+          "D": { "name": "运镜", "min_chars": 12 },
+          "E": { "name": "拍摄技巧", "min_chars": 12 },
+          "F": { "name": "画面", "min_chars": 18 },
+          "G": { "name": "台词", "min_chars": 25 },
+          "H": { "name": "音效", "min_chars": 12 },
+          "I": { "name": "推荐音乐/BGM" },
+          "J": { "name": "文案标签" },
+          "K": { "name": "使用状态", "default": "待使用" },
+          "L": { "name": "关联活动" },
+          "M": { "name": "发布日期" },
+          "N": { "name": "备注" }
+        }
+      },
+      "keywords": [],
+      "keywords_note": "用户首次使用时需配置搜索关键词"
+    }
+  },
+  "industry_templates": {
+    "note": "用户可在此添加自定义行业模板"
+  },
+  "global_settings": {
+    "copy_library_path": "",
+    "copy_library_path_note": "用户首次使用时需配置文案库路径",
+    "file_naming": "{platform}文案库.xlsx",
+    "report_space_id": "",
+    "report_space_id_note": "用户首次使用时需配置飞书空间ID",
+    "rules_path": "",
+    "rules_path_note": "用户首次使用时需配置平台规则文档保存路径（默认：references/platform_rules/）",
+    "max_scripts_per_task": 5,
+    "skip_conditions": {
+      "no_trending": "如无爆款可选，则取消本次任务执行",
+      "duplicate_theme": "避开已有脚本主题"
+    },
+    "row_height": {
+      "title_row": 20.4,
+      "data_row": 100
+    },
+    "row_height_note": "Excel行高设置：标题行20.4，数据行100（符合嘉泰苑标准）"
+  },
+  "activities": {
+    "list": [
+      {
+        "id": "example",
+        "name": "日常推广",
+        "keywords": [],
+        "applicable_platforms": ["xiaohongshu", "douyin", "shipinhao", "pyq"],
+        "note": "示例活动，请删除后添加自己的活动"
+      }
+    ],
+    "default": "日常推广，当前未设置activities",
+    "user_configured": false,
+    "tutorial_note": "请参考SKILL.md中的'如何配置活动'章节"
+  },
+  "bgm_library": {
+    "categories": {
+      "food_display": {
+        "name": "美食展示",
+        "tracks": [
+          {"name": "《小美满》周深", "style": "治愈轻快", "suitable": "全程"},
+          {"name": "《风吹一夏》", "style": "轻快活泼", "suitable": "卡点"},
+          {"name": "《世间美好与你环环相扣》", "style": "温暖治愈", "suitable": "全程"}
+        ]
+      },
+      "emotional_narrative": {
+        "name": "情感叙事",
+        "tracks": [
+          {"name": "《父亲写的散文诗》许飞", "style": "温情叙事", "suitable": "高潮"},
+          {"name": "《成都》赵雷", "style": "民谣怀旧", "suitable": "全程"},
+          {"name": "《光阴的故事》罗大佑", "style": "经典怀旧", "suitable": "回忆段落"}
+        ]
+      },
+      "weekend_leisure": {
+        "name": "周末休闲",
+        "tracks": [
+          {"name": "《想去海边》夏日入侵企画", "style": "轻快青春", "suitable": "开头+全程"},
+          {"name": "《稻香》周杰伦", "style": "田园治愈", "suitable": "全程"},
+          {"name": "《平凡之路》朴树", "style": "励志治愈", "suitable": "转场+高潮"}
+        ]
+      },
+      "nostalgic": {
+        "name": "怀旧回忆",
+        "tracks": [
+          {"name": "《童年》罗大佑", "style": "经典怀旧", "suitable": "回忆片段"},
+          {"name": "《外婆的澎湖湾》", "style": "温情经典", "suitable": "家庭场景"},
+          {"name": "《故乡的云》费翔", "style": "思乡情怀", "suitable": "返乡场景"}
+        ]
+      }
+    },
+    "update_note": "每月更新热门抖音BGM，保持时效性"
+  },
+  "duration_policy": {
+    "xiaohongshu": {
+      "target_duration": { "min": 120, "max": 180, "default": 150 },
+      "segment_duration": { "min": 6, "max": 15 },
+      "auto_calculate": true,
+      "auto_adjust": true,
+      "adjust_mode": "recommended",
+      "calculation_rules": {
+        "speech_rate": 0.25,
+        "motion_base": {
+          "static": 2,
+          "push_pull": 3,
+          "pan_tilt": 4,
+          "complex": 6,
+          "drone": 8
+        },
+        "buffer_seconds": 1,
+        "min_motion_time": 2
+      }
+    },
+    "douyin": {
+      "target_duration": { "min": 45, "max": 60, "default": 55 },
+      "segment_duration": { "min": 3, "max": 8 },
+      "auto_calculate": true,
+      "auto_adjust": true,
+      "adjust_mode": "recommended",
+      "calculation_rules": {
+        "speech_rate": 0.25,
+        "motion_base": {
+          "static": 2,
+          "push_pull": 2,
+          "pan_tilt": 3,
+          "complex": 5,
+          "drone": 6
+        },
+        "buffer_seconds": 1,
+        "min_motion_time": 2
+      }
+    },
+    "shipinhao": {
+      "target_duration": { "min": 60, "max": 180, "default": 120 },
+      "segment_duration": { "min": 5, "max": 12 },
+      "auto_calculate": true,
+      "auto_adjust": true,
+      "adjust_mode": "recommended",
+      "calculation_rules": {
+        "speech_rate": 0.25,
+        "motion_base": {
+          "static": 2,
+          "push_pull": 3,
+          "pan_tilt": 4,
+          "complex": 6,
+          "drone": 8
+        },
+        "buffer_seconds": 1,
+        "min_motion_time": 2
+      }
+    }
+  }
+}

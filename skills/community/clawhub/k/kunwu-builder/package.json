@@ -1,0 +1,17 @@
+{
+  "name": "kunwu-builder-skill",
+  "version": "1.0.0",
+  "description": "Kunwu Builder 坤吾工业仿真软件控制技能",
+  "type": "module",
+  "main": "kunwu-tool.js",
+  "bin": {
+    "kunwu-tool": "./kunwu-tool.js",
+    "kunwu-test": "./test-connection-kunwu.js"
+  },
+  "scripts": {
+    "test": "node test-connection-kunwu.js"
+  },
+  "keywords": ["kunwu", "builder", "simulation", "industrial", "坤吾"],
+  "author": "Sam",
+  "license": "MIT"
+}

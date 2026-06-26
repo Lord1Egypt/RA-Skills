@@ -1,35 +1,37 @@
----
-name: "Kling"
-description: "Generate 5-second AI videos in 16:9 ratio using Kling 2.6 for fitness promos, UGC marketing, testimonials, and product demos."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kling"
-sourceUrl: "https://clawhub.ai/skills/kling"
----
+# Kling Video Generation Skill
 
-# Kling
+Generate AI videos using Kling 2.6 (via Kie.ai).
 
-> Generate 5-second AI videos in 16:9 ratio using Kling 2.6 for fitness promos, UGC marketing, testimonials, and product demos.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kling`
-- **Source URL:** [https://clawhub.ai/skills/kling](https://clawhub.ai/skills/kling)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/kling
+# Generate video and wait for result
+/root/clawd/skills/kling/kling.js generate "A gym owner high-fiving a member"
+
+# Quick start (returns task ID immediately)
+/root/clawd/skills/kling/kling.js quick "Professional fitness environment"
+
+# Check status
+/root/clawd/skills/kling/kling.js status <task_id>
 ```
+
+## Parameters
+
+- **Model**: kling-2.6/text-to-video (default)
+- **Aspect Ratio**: 16:9 (default)
+- **Duration**: 5 seconds (default)
+- **Negative Prompt**: Filters out blurry/low quality
+
+## Use Cases
+
+- UGC-style marketing videos
+- Gym/fitness promotional content
+- LinkedIn video posts
+- Client testimonial visualizations
+- Product demos
+
+## Notes
+
+- Videos take 1-5 minutes to generate
+- Results include video URL in the response
+- API key stored in `.env` as `KIE_API_KEY`

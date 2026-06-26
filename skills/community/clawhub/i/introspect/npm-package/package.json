@@ -1,0 +1,35 @@
+{
+  "name": "@umang-boss/introspect",
+  "version": "1.1.0",
+  "description": "Discover your developer DNA - install the Introspect skill for Claude Code. Gamified session analysis with archetypes, grades and growth tips.",
+  "bin": {
+    "introspect": "bin/cli.js"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "introspect",
+    "developer",
+    "productivity",
+    "skill",
+    "analysis",
+    "gamified",
+    "archetype",
+    "ai"
+  ],
+  "author": "Umang Dabhi <umang-dabhi>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umang-dabhi/introspect"
+  },
+  "homepage": "https://github.com/umang-dabhi/introspect",
+  "scripts": {
+    "postinstall": "node bin/cli.js install --silent"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "README.md"
+  ]
+}

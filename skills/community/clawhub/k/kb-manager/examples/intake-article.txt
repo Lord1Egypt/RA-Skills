@@ -1,0 +1,8 @@
+Please save this article to the knowledge base.
+
+Requirements:
+1. Decide whether it is worth saving
+2. Classify it automatically
+3. Use the default entry template
+4. If classification is uncertain, put it into `00_inbox`
+5. Output the save path, filename, and structured Markdown

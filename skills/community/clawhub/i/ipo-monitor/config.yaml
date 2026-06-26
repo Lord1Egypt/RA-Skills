@@ -1,0 +1,94 @@
+# IPO监控 V2 配置文件
+
+# 飞书配置
+feishu:
+  webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK_HERE"
+  mention_ids: []  # 需要@的用户ID，可选
+  # 告警回调配置
+  alert_webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_ALERT_WEBHOOK_HERE"
+
+# 抓取配置
+scraper:
+  # 请求超时（秒）
+  timeout: 30
+  
+  # 重试次数
+  max_retries: 3
+  
+  # 请求间隔（秒）
+  min_delay: 1
+  max_delay: 3
+  
+  # User-Agent池
+  user_agents:
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15"
+
+# 告警配置
+alert:
+  # 连续失败多少次触发告警
+  failure_threshold: 3
+  # 告警冷却时间（秒）
+  cooldown_seconds: 3600
+  # 是否启用告警
+  enabled: true
+
+# 监控范围（可灵活配置）
+monitor:
+  exchanges:
+    # A股 - 证监会来源（通过配置URL实现多板块监控）
+    - name: "上交所"
+      enabled: true
+      source: "sse"
+      url: "https://www.sse.com.cn/listing/renewal/ipo/"
+    - name: "深交所"
+      enabled: true
+      source: "szse"
+      url: "https://www.szse.cn/listing/projectdynamic/ipo/"
+    - name: "北交所"
+      enabled: true
+      source: "bse"
+      url: "https://www.bse.cn/audit/project_news.html"
+    # 港股
+    - name: "港股新上市"
+      enabled: true
+      source: "hkex"
+      url: "https://www.hkex.com.hk/Services/Trading/Securities/Trading-News/Newly-Listed-Securities"
+    - name: "港股申请"
+      enabled: true
+      source: "hkex"
+      url: "https://www.hkexnews.hk/app/appindex.html"
+    # 美股
+    - name: "纳斯达克"
+      enabled: true
+      source: "nasdaq"
+      url: "https://www.nasdaq.com/market-activity/ipos"
+    - name: "纽交所"
+      enabled: true
+      source: "nyse"
+      url: "https://www.nyse.com/ipo-center/ipo-calendar"
+
+# 数据存储
+storage:
+  # 本地SQLite路径
+  db_path: "./data/ipo_cache.db"
+  
+  # 备份保留天数
+  backup_days: 30
+
+# 定时任务配置
+scheduler:
+  # 启用定时任务
+  enabled: true
+  # 调度间隔（小时）
+  interval_hours: 1
+  # 每日定时运行时间（可选，格式: "HH:MM"）
+  # daily_time: "09:00"
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "./logs/ipo_monitor.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5

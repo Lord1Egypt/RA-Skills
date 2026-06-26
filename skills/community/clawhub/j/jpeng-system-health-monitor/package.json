@@ -1,0 +1,11 @@
+{
+  "name": "system-health-monitor",
+  "version": "1.0.0",
+  "description": "Monitor system health including disk, memory, processes, and evolution status",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').check().then(r => console.log('Health:', r.status))\""
+  },
+  "keywords": ["health", "monitor", "system", "diagnostic"],
+  "license": "MIT"
+}

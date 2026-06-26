@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q3 Product Launch Performance Report — corporate-blue Theme Example</title>
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/highlight.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+
+  <style>
+        /* Theme: corporate-blue — Professional · Business (warm premium palette) */
+    :root {
+      --primary: #1F6F50; --primary-light: #E7EFE9; --accent: #C79A2B;
+      --bg: #F8F5EF; --surface: #FFFDF9; --text: #2B2623; --text-muted: #766B63;
+      --border: #E7DDD2; --success: #2F6B50; --warning: #A8741A; --danger: #A34A3F;
+      --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace; --radius: 8px;
+      --report-bg: #F8F5EF; --report-surface: #FFFDF9; --report-text: #2B2623;
+      --report-text-muted: #766B63; --report-border: #E7DDD2; --report-structure: #1F6F50;
+      --report-chip-bg: #F4EAD5; --report-chip-text: #7A6858; --report-chip-border: #E0D4C6;
+      --report-delta-up-bg: #E7F1EA; --report-delta-up-text: #2F6B50;
+      --report-delta-down-bg: #F6E8E6; --report-delta-down-text: #A34A3F;
+      --report-delta-flat-bg: #EEE7DE; --report-delta-flat-text: #766B63;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.58; }
+    h1 { font-size: 2.25rem; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--report-structure); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; color: var(--text); border-left: 3px solid var(--report-structure); padding-left: .75rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-top: 1.1rem; }
+    p { margin: .5rem 0; } a { color: var(--report-structure); }
+    strong { font-weight: 700; } blockquote { border-left: 3px solid var(--border); margin: .75rem 0; padding: .5rem 1rem; color: var(--text-muted); }
+    
+
+/* ── Shared components ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-variant-numeric: lining-nums tabular-nums; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Table */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Status badges */
+    .badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--wip  { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note    { background: #EFF6FF; border-color: #3B82F6; }
+    .callout--tip     { background: #F0FDF4; border-color: #22C55E; }
+    .callout--warning { background: #FFFBEB; border-color: #F59E0B; }
+    .callout--danger  { background: #FEF2F2; border-color: #EF4444; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    /* Image */
+    .report-image { margin: 1.1rem 0; }
+    .report-image img { max-width: 100%; border-radius: var(--radius); }
+    .report-image figcaption { font-size: .82rem; color: var(--text-muted); text-align: center; margin-top: .4rem; }
+    .report-image--full { width: 100%; display: block; }
+    .report-image--left { float: left; max-width: 40%; margin-right: 1.5rem; margin-bottom: .5rem; }
+    .report-image--right { float: right; max-width: 40%; margin-left: 1.5rem; margin-bottom: .5rem; }
+    .clearfix::after { content: ''; display: table; clear: both; }
+    .image-placeholder { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 100%); border: 1px dashed var(--border); border-radius: var(--radius); height: 200px; color: var(--text-muted); font-size: .9rem; }
+    .image-placeholder-sm { height: 130px; font-size: .82rem; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; }
+
+    /* Lists */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; }
+    .styled-list li { margin-bottom: .25rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .chart-container { position: relative; height: 280px; }
+
+    /* Animation */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ───────────────────────────────────────────────────── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.18); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle { position: fixed; top: .75rem; left: .75rem; z-index: 200; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Progress bars */
+    .progress-bar-track { background: var(--border); border-radius: 999px; height: 8px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 999px; background: var(--primary); transition: width 1s ease; }
+
+    /* Section separator */
+    section { padding-top: .5rem; }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 Print / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 Save PNG (Desktop)</button>
+    <button class="export-item" id="export-png-mobile">📱 Save PNG (Mobile)</button>
+    <button class="export-item" id="export-im-share">💬 IM Image</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="Export">↓ Export</button>
+
+
+<!-- TOC toggle button -->
+<button class="toc-toggle" id="toc-toggle-btn" aria-expanded="false" aria-label="Contents">☰</button>
+
+<!-- Floating TOC sidebar -->
+<nav class="toc-sidebar" id="toc-sidebar" aria-label="Table of Contents">
+  <h4>Contents</h4>
+  <a href="#section-kpi"        data-section="kpi">Core Metrics</a>
+  <a href="#section-trend"      data-section="trend">Growth Trends</a>
+  <a href="#section-features"   data-section="features">Feature Completion</a>
+  <a href="#section-timeline"   data-section="timeline">Release Milestones</a>
+  <a href="#section-arch"       data-section="arch">System Architecture</a>
+  <a href="#section-code"       data-section="code">Code Example</a>
+  <a href="#section-callouts"   data-section="callouts">Notices</a>
+  <a href="#section-images"     data-section="images">Image Showcase</a>
+  <a href="#section-richtext"   data-section="richtext">Rich Text Demo</a>
+</nav>
+
+<!-- AI Summary JSON (machine-readable) -->
+<script type="application/json" id="report-summary">
+{
+  "title": "corporate-blue Theme — Full Component Showcase",
+  "subtitle": "Q3 Product Launch Performance Report",
+  "generated": "2026-03-16",
+  "sections": [
+    "Core Metrics",
+    "Growth Trends",
+    "Feature Completion",
+    "Release Milestones",
+    "System Architecture",
+    "Code Example",
+    "Notices",
+    "Image Showcase",
+    "Rich Text Demo"
+  ],
+  "kpis": [
+    { "label": "DAU",              "value": "128,400", "trend": "+18%", "direction": "up" },
+    { "label": "Paid Conversion",  "value": "8.6%",    "trend": "+1.2%","direction": "up" },
+    { "label": "D1 Retention",     "value": "67%",     "trend": "+5%",  "direction": "up" },
+    { "label": "NPS",              "value": "72",      "trend": "+8",   "direction": "up" }
+  ]
+}
+</script>
+
+<main class="main-with-toc">
+  <div class="report-wrapper">
+
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <h1>Q3 Product Launch Performance Report</h1>
+    <p class="report-meta">
+      Period: January 1, 2024 — June 30, 2024 &nbsp;·&nbsp;
+      Owner: Product &amp; Engineering &nbsp;·&nbsp;
+      Updated: March 16, 2026 &nbsp;·&nbsp;
+      Version: v2.4.0
+    </p>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §1  Core Metrics                                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-kpi" data-section="kpi">
+      <h2>Core Metrics</h2>
+      <p>Data as of March 15, 2026. All four core KPIs improved month-over-month. DAU crossed the 128K milestone, paid conversion held above 8%, D1 retention surpassed the industry benchmark, and NPS climbed steadily.</p>
+
+      <div class="kpi-grid fade-in-up" data-component="kpi-grid" data-summary="Core KPIs">
+        <div class="kpi-card">
+          <div class="kpi-label">DAU</div>
+          <div class="kpi-value" data-kpi-target="128400" data-kpi-format="comma">0</div>
+          <div class="kpi-trend kpi-trend--up">▲ +18% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Paid Conversion</div>
+          <div class="kpi-value" data-kpi-target="8.6" data-kpi-format="percent">0%</div>
+          <div class="kpi-trend kpi-trend--up">▲ +1.2% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">D1 Retention</div>
+          <div class="kpi-value" data-kpi-target="67" data-kpi-format="percent">0%</div>
+          <div class="kpi-trend kpi-trend--up">▲ +5% MoM</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">NPS</div>
+          <div class="kpi-value" data-kpi-target="72" data-kpi-format="integer">0</div>
+          <div class="kpi-trend kpi-trend--up">▲ +8 MoM</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §2  Growth Trends                                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-trend" data-section="trend">
+      <h2>Growth Trends</h2>
+      <p>Since the January launch, Monthly Active Users have grown consistently every month. The introduction of the AI recommendation engine in March triggered a visible acceleration. Organic search and word-of-mouth dominate acquisition, while paid channel ROI continues to improve.</p>
+
+      <!-- Line chart: Monthly Active Users -->
+      <div data-component="chart" data-summary="Monthly Active Users Jan–Jun">
+        <h3>Monthly Active Users (Jan–Jun 2024)</h3>
+        <div class="chart-container fade-in-up">
+          <canvas id="chart-mau-trend"></canvas>
+        </div>
+      </div>
+
+      <!-- Bar chart: Acquisition by channel -->
+      <div data-component="chart" data-summary="Acquisition by Channel">
+        <h3>User Acquisition by Channel (avg. monthly)</h3>
+        <div class="chart-container fade-in-up">
+          <canvas id="chart-channel"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §3  Feature Completion                                   -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-features" data-section="features">
+      <h2>Feature Completion</h2>
+      <p>Eight core features were scoped for Q3. Five are fully shipped, two are in active development, and one is yet to start. Overall engineering progress is on schedule; quality gate pass rate stands at 96.4%.</p>
+
+      <div class="table-wrapper fade-in-up" data-component="table" data-summary="Feature completion status">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Status</th>
+              <th>Owner</th>
+              <th>Completion</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI Chat Core Engine</td>
+              <td><span class="badge badge--done">Done</span></td>
+              <td>Alice / Bob</td>
+              <td>100%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Personalized Recommendations</td>
+              <td><span class="badge badge--done">Done</span></td>
+              <td>Carol</td>
+              <td>100%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Multimodal Input (image / voice)</td>
+              <td><span class="badge badge--done">Done</span></td>
+              <td>Dave / Eve</td>
+              <td>100%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Knowledge Base Management</td>
+              <td><span class="badge badge--done">Done</span></td>
+              <td>Frank</td>
+              <td>100%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Analytics Dashboard</td>
+              <td><span class="badge badge--done">Done</span></td>
+              <td>Grace</td>
+              <td>100%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Enterprise Role &amp; Permission</td>
+              <td><span class="badge badge--wip">In Progress</span></td>
+              <td>Hank / Iris</td>
+              <td>72%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:72%; background:#3B82F6;"></div></div></td>
+            </tr>
+            <tr>
+              <td>Third-party Plugin Marketplace</td>
+              <td><span class="badge badge--wip">In Progress</span></td>
+              <td>Jack</td>
+              <td>45%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:45%; background:#3B82F6;"></div></div></td>
+            </tr>
+            <tr>
+              <td>On-device Inference</td>
+              <td><span class="badge badge--todo">Planned</span></td>
+              <td>(TBD)</td>
+              <td>0%</td>
+              <td><div class="progress-bar-track"><div class="progress-bar-fill" style="width:0%"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Top 5 Priorities for Q4</h3>
+      <div class="report-list fade-in-up" data-component="list" data-summary="Q4 top priorities">
+        <ol class="styled-list">
+          <li>Complete role-inheritance model for Enterprise Permissions (est. 3 person-days)</li>
+          <li>Ship Plugin Marketplace MVP: install, rate, and sandbox-run third-party extensions</li>
+          <li>Analyze AI Engine v2.1 A/B test results and produce upgrade decision report</li>
+          <li>Fix iOS 16 compatibility crash reported by users (P1 bug #4821)</li>
+          <li>Complete joint acceptance testing of GDPR data-deletion API with the compliance team</li>
+        </ol>
+      </div>
+
+      <h3>Technical Debt Items</h3>
+      <div class="report-list fade-in-up" data-component="list" data-summary="Technical debt backlog">
+        <ul class="styled-list">
+          <li>Vector search layer still depends on Faiss 0.7.x; upgrade to 1.7.4 for GPU acceleration</li>
+          <li>WebSocket connection pool lacks a priority queue; head-of-line blocking under high concurrency</li>
+          <li>User-profile service is too tightly coupled; needs extraction into an independent microservice</li>
+          <li>Frontend bundle is 3.2 MB; tree-shaking optimizations can bring it down to ~1.8 MB</li>
+          <li>Several API endpoints lack idempotency guarantees; duplicate submissions may cause double billing</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §4  Release Milestones                                   -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-timeline" data-section="timeline">
+      <h2>Release Milestones</h2>
+      <p>From project kickoff to GA, the product passed through six critical checkpoints, each with defined acceptance criteria and retrospective notes.</p>
+
+      <div class="timeline fade-in-up" data-component="timeline" data-summary="Release milestone timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jan 8, 2024</div>
+          <div class="timeline-content">
+            <strong>Project Kickoff &amp; Requirements Freeze</strong><br>
+            Completed PRD v1.0 review; scoped MVP to 24 user stories. Assembled an 18-person engineering team and established OKR tracking.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Feb 3, 2024</div>
+          <div class="timeline-content">
+            <strong>Internal Alpha Launch</strong><br>
+            Core chat engine and recommendation module integrated; opened to 200 internal employees. Collected 312 feedback items; resolved 41 P0/P1 bugs.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Feb 28, 2024</div>
+          <div class="timeline-content">
+            <strong>Closed Beta (Invited Users)</strong><br>
+            Opened to 5,000 seed users with multimodal input enabled. 7-day retention hit 58%, well above the industry average, validating the core hypothesis.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Mar 10, 2024</div>
+          <div class="timeline-content">
+            <strong>Staged Rollout (10% Traffic)</strong><br>
+            Payments integrated and end-to-end billing verified. Knowledge Base Management went live. Delivered first three enterprise customer PoCs.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: #F59E0B;"></div>
+          <div class="timeline-date">Apr 15, 2024 &nbsp;<span style="color:var(--warning);font-size:.78rem;">· In Progress</span></div>
+          <div class="timeline-content">
+            <strong>Full Rollout (100% Traffic)</strong><br>
+            Gradual ramp to all users, paired with a brand-marketing campaign. Target: DAU &gt; 200K; Enterprise edition sales officially open.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--border);"></div>
+          <div class="timeline-date">Jun 30, 2024 &nbsp;<span style="color:var(--text-muted);font-size:.78rem;">· Planned</span></div>
+          <div class="timeline-content">
+            <strong>General Availability v1.0</strong><br>
+            Enterprise Permissions, Plugin Marketplace, and 99.9% SLA commitment all in place. Target ARR: $1.2 M.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §5  System Architecture                                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-arch" data-section="arch">
+      <h2>System Architecture</h2>
+      <p>The platform uses a microservices architecture. A single API Gateway handles all inbound traffic (auth, rate-limiting, routing), a load balancer distributes requests across stateless services, and data is persisted in a primary-replica PostgreSQL cluster with Redis for caching.</p>
+
+      <div class="diagram-wrapper fade-in-up" data-component="diagram" data-summary="System architecture flowchart">
+        <svg viewBox="0 0 760 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System Architecture Diagram"
+             style="font-family: var(--font-sans); max-width: 100%;">
+
+          <!-- ── Defs: arrowhead ── -->
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#1A56DB"/>
+            </marker>
+            <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#9CA3AF"/>
+            </marker>
+          </defs>
+
+          <!-- Row 1: User Request -->
+          <rect x="310" y="20" width="140" height="44" rx="8" fill="#E3EDFF" stroke="#1A56DB" stroke-width="1.5"/>
+          <text x="380" y="47" text-anchor="middle" font-size="13" font-weight="600" fill="#1A56DB">User Request</text>
+
+          <!-- Arrow down -->
+          <line x1="380" y1="64" x2="380" y2="96" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Row 2: API Gateway -->
+          <rect x="285" y="96" width="190" height="44" rx="8" fill="#1A56DB" stroke="#1A56DB" stroke-width="1.5"/>
+          <text x="380" y="123" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">API Gateway</text>
+          <text x="380" y="136" text-anchor="middle" font-size="10" fill="#C7D9FF">Auth · Rate Limit · Routing</text>
+
+          <!-- Arrow down -->
+          <line x1="380" y1="140" x2="380" y2="172" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Row 3: Load Balancer -->
+          <rect x="285" y="172" width="190" height="44" rx="8" fill="#EFF6FF" stroke="#1A56DB" stroke-width="1.5"/>
+          <text x="380" y="199" text-anchor="middle" font-size="13" font-weight="600" fill="#1D4ED8">Load Balancer</text>
+          <text x="380" y="212" text-anchor="middle" font-size="10" fill="#6B7280">Round-Robin / Least-Conn</text>
+
+          <!-- Arrows to services -->
+          <line x1="310" y1="216" x2="200" y2="248" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="450" y1="216" x2="560" y2="248" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Row 4: Services -->
+          <!-- Service A: AI Service -->
+          <rect x="80" y="248" width="160" height="50" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <text x="160" y="272" text-anchor="middle" font-size="12" font-weight="600" fill="#111928">AI Service</text>
+          <text x="160" y="288" text-anchor="middle" font-size="10" fill="#6B7280">Inference · Context Mgmt</text>
+
+          <!-- Service B: Business Logic -->
+          <rect x="520" y="248" width="160" height="50" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <text x="600" y="272" text-anchor="middle" font-size="12" font-weight="600" fill="#111928">Business Logic</text>
+          <text x="600" y="288" text-anchor="middle" font-size="10" fill="#6B7280">Users · Billing · Permissions</text>
+
+          <!-- Arrows down to DB -->
+          <line x1="160" y1="298" x2="255" y2="310" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+          <line x1="600" y1="298" x2="505" y2="310" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+          <!-- Row 5: Storage -->
+          <!-- PostgreSQL -->
+          <rect x="180" y="308" width="140" height="44" rx="8" fill="#F0FDF4" stroke="#22C55E" stroke-width="1.5"/>
+          <text x="250" y="332" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">PostgreSQL</text>
+          <text x="250" y="346" text-anchor="middle" font-size="10" fill="#6B7280">Primary-Replica · Business Data</text>
+
+          <!-- Redis -->
+          <rect x="440" y="308" width="140" height="44" rx="8" fill="#FFF7ED" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="510" y="332" text-anchor="middle" font-size="12" font-weight="600" fill="#92400E">Redis</text>
+          <text x="510" y="346" text-anchor="middle" font-size="10" fill="#6B7280">Session Cache · Rate Counter</text>
+
+          <!-- Stage labels -->
+          <text x="18" y="50"  font-size="9" fill="#9CA3AF" font-weight="600">CLIENT</text>
+          <text x="18" y="124" font-size="9" fill="#9CA3AF" font-weight="600">GATEWAY</text>
+          <text x="18" y="199" font-size="9" fill="#9CA3AF" font-weight="600">LB</text>
+          <text x="18" y="278" font-size="9" fill="#9CA3AF" font-weight="600">SERVICES</text>
+          <text x="18" y="335" font-size="9" fill="#9CA3AF" font-weight="600">STORAGE</text>
+
+          <!-- Stage divider lines -->
+          <line x1="55" y1="80"  x2="730" y2="80"  stroke="#F3F4F6" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="55" y1="158" x2="730" y2="158" stroke="#F3F4F6" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="55" y1="235" x2="730" y2="235" stroke="#F3F4F6" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="55" y1="302" x2="730" y2="302" stroke="#F3F4F6" stroke-width="1" stroke-dasharray="4,4"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §6  Code Example                                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-code" data-section="code">
+      <h2>Code Example</h2>
+      <p>The snippet below demonstrates the recommended way to call the streaming API from Python, with support for multi-turn conversation history.</p>
+
+      <div class="code-wrapper fade-in-up" data-component="code" data-summary="Python streaming API example">
+        <div class="code-title">python · Streaming API Example</div>
+        <pre><code class="language-python">"""SaaS Platform Python SDK — Streaming API Example"""
+import os
+from saasplatform import Client, ChatMessage
+
+# Initialize client (API key loaded from environment)
+client = Client(
+    api_key=os.environ["PLATFORM_API_KEY"],
+    base_url="https://api.saasplatform.example.com/v1",
+)
+
+# Build multi-turn conversation history
+history: list[ChatMessage] = [
+    ChatMessage(role="system",  content="You are a concise product analytics assistant."),
+    ChatMessage(role="user",    content="Summarize the Q3 growth highlights for me."),
+]
+
+# Streaming call
+with client.chat.completions.stream(
+    model="platform-v2",
+    messages=history,
+    temperature=0.3,
+    max_tokens=1024,
+) as stream:
+    print("Assistant: ", end="", flush=True)
+    full_response = ""
+    for chunk in stream:
+        delta = chunk.choices[0].delta.content or ""
+        print(delta, end="", flush=True)
+        full_response += delta
+
+# Append assistant reply and continue the conversation
+history.append(ChatMessage(role="assistant", content=full_response))
+history.append(ChatMessage(role="user", content="What drove the DAU spike in March?"))
+
+# Non-streaming follow-up
+response = client.chat.completions.create(
+    model="platform-v2",
+    messages=history,
+    temperature=0.3,
+)
+print("\nAssistant:", response.choices[0].message.content)
+</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §7  Notices                                              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-callouts" data-section="callouts">
+      <h2>Notices</h2>
+      <p>Review all four items below before the next release. Warning and Danger items must be checked off individually in the release checklist.</p>
+
+      <div class="fade-in-up" data-component="callouts">
+
+        <div class="callout callout--note" data-component="callout" data-summary="API documentation updated">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>API Documentation Updated to v2.4</strong><br>
+            This release adds the <code>/v1/knowledge/import-async</code> async import endpoint and deprecates the synchronous <code>/v1/knowledge/import</code> (to be removed July 1, 2026). Please migrate as soon as possible. See <a href="#">Developer Docs &rarr; Knowledge Base API</a>.
+          </div>
+        </div>
+
+        <div class="callout callout--tip" data-component="callout" data-summary="Performance optimization tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>Performance Tip</strong><br>
+            Enable HTTP/2 multiplexing on the client side to reduce TTFB by ~18%. The server already supports gzip/brotli compression (up to 60% size reduction); confirm your SDK sends the <code>Accept-Encoding</code> header.
+          </div>
+        </div>
+
+        <div class="callout callout--warning" data-component="callout" data-summary="Staged rollout precautions">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>Staged Rollout Precaution</strong><br>
+            During the 10% rollout phase, <strong>do not</strong> run schema migrations on the permissions tables. Staged and full-traffic databases share the same write primary; DDL statements will cause brief lock waits for all users. Schedule changes in the weekly maintenance window (Wednesdays 02:00–03:00 UTC after full rollout).
+          </div>
+        </div>
+
+        <div class="callout callout--danger" data-component="callout" data-summary="No direct production database writes">
+          <span class="callout-icon">🚫</span>
+          <div class="callout-body">
+            <strong>No Direct Production Database Writes</strong><br>
+            No one — including DBAs — may execute <code>DELETE</code>, <code>UPDATE</code>, or <code>DROP</code> statements on the production database without dual-approval. All changes must be submitted via the <a href="#">DataOps workflow system</a>, validated in the sandbox, and approved by the Release Manager. Violations will be logged as security incidents and trigger the compliance process.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §8  Image Showcase                                       -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-images" data-section="images">
+      <h2>Image Showcase</h2>
+      <p>Reports support three image layouts: <code>full</code> (full-width), <code>left</code> (left-float with text wrap), and <code>right</code> (right-float). Placeholders are used below to demonstrate each layout.</p>
+
+      <!-- layout=full -->
+      <figure class="report-image fade-in-up" data-component="image" data-summary="Full-width product architecture overview">
+        <img src="https://placehold.co/860x400/E3EDFF/1A56DB?text=Product+Architecture+Overview"
+             alt="Product Architecture Overview" class="report-image--full">
+        <figcaption>Fig. 1 — Product Architecture Overview (replace with actual screenshot)</figcaption>
+      </figure>
+
+      <!-- layout=left with text wrap -->
+      <div class="clearfix fade-in-up" data-component="image" data-summary="Left-float image with text wrap example">
+        <figure class="report-image report-image--left" style="max-width:38%; margin-bottom:.5rem;">
+          <div class="image-placeholder image-placeholder-sm">
+            Left-float — layout: left
+          </div>
+          <figcaption>Fig. 2 — AI Recommendation Module</figcaption>
+        </figure>
+        <p>
+          When <code>layout=left</code> is set, the image floats to the left and body text wraps around the right side — ideal for embedding explanatory screenshots inline. Here is a sample of wrapped copy: the AI recommendation module uses a two-tower recall + re-ranking model that returns personalized results within a P99 latency of 80 ms. A/B tests show a 34% increase in average session length and a 1.2-point lift in paid conversion.</p>
+        <p>
+          The model retrains hourly on incremental data; real-time features are served from the Feature Store, keeping recommendations aligned with the user's most recent interests.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §9  Rich Text Demo                                       -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-richtext" data-section="richtext">
+      <h2>Rich Text Demo</h2>
+
+      <p>
+        This report is generated by the <strong>kai-report-creator Markdown rendering engine</strong>, which supports standard CommonMark syntax and common extensions.
+        Body copy can use <strong>bold text</strong> to highlight key information, <em>italics</em> for terms or titles,
+        <code>inline code</code> for API names or commands, and <a href="#">hyperlinks</a> to external resources.
+        Line spacing and paragraph margins are controlled by the theme CSS — no manual adjustments needed.
+      </p>
+
+      <blockquote>
+        "Data is the new oil, but unrefined crude has no value. The core competitive advantage of an AI product lies in turning raw data into the insights and decisions users actually need."<br>
+        <em>— Product Strategy White Paper v3.0</em>
+      </blockquote>
+
+      <h3>Nested List Example</h3>
+      <ul class="styled-list">
+        <li>
+          <strong>Data Layer</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Raw data collection (event tracking, logs, third-party APIs)</li>
+            <li>ETL pipeline and feature engineering</li>
+            <li>Feature Store (online + offline dual-path)</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Model Layer</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Pre-trained large language model (LLM base)</li>
+            <li>Domain fine-tuning (SFT + RLHF)</li>
+            <li>Recall &amp; re-ranking recommendation models</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Application Layer</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Multi-turn conversation management</li>
+            <li>Personalized recommendation engine</li>
+            <li>Knowledge base Q&amp;A (RAG)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:.82rem; color:var(--text-muted); text-align:center;">
+      Q3 Product Launch Performance Report &nbsp;·&nbsp; corporate-blue theme &nbsp;·&nbsp; Generated by kai-report-creator &nbsp;·&nbsp; 2026-03-16
+    </footer>
+
+  </div><!-- /.report-wrapper -->
+</main>
+
+<!-- ───────────────────────────────────────────────────────────
+     Scripts
+─────────────────────────────────────────────────────────────── -->
+<script>
+/* ── highlight.js ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+});
+
+/* ── TOC: hover-to-open, click-to-lock ── */
+const tocBtn     = document.getElementById('toc-toggle-btn');
+const tocSidebar = document.getElementById('toc-sidebar');
+if (tocBtn && tocSidebar) {
+  let locked = false, closeTimer;
+  function openToc()       { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded','true'); }
+  function scheduleClose() { closeTimer = setTimeout(() => { if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded','false'); } }, 150); }
+  tocBtn.addEventListener('mouseenter', openToc);
+  tocSidebar.addEventListener('mouseenter', openToc);
+  tocBtn.addEventListener('mouseleave', scheduleClose);
+  tocSidebar.addEventListener('mouseleave', scheduleClose);
+  tocBtn.addEventListener('click', () => {
+    locked = !locked;
+    tocBtn.classList.toggle('locked', locked);
+    if (locked) openToc(); else scheduleClose();
+  });
+  document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+    if (!locked) scheduleClose();
+  }));
+}
+
+/* ── TOC active section highlight ── */
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const id   = e.target.dataset.section;
+    const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+    if (link) link.classList.toggle('active', e.isIntersecting);
+  });
+}, { rootMargin: '-10% 0px -60% 0px' });
+document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+
+// Auto-reveal in headless/screenshot environments
+if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+/* ── fade-in-up animation ── */
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+/* ── KPI counter animation ── */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.kpiTarget);
+  const fmt    = el.dataset.kpiFormat;
+  const dur    = 1200;
+  const start  = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val  = target * ease;
+    if      (fmt === 'comma')   el.textContent = Math.round(val).toLocaleString('en-US');
+    else if (fmt === 'percent') el.textContent = val.toFixed(1) + '%';
+    else                        el.textContent = Math.round(val).toString();
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const kpiObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-kpi-target]').forEach(animateCounter);
+      kpiObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.kpi-grid').forEach(g => kpiObserver.observe(g));
+
+/* ── Chart.js: Monthly Active Users ── */
+window.addEventListener('load', () => {
+  const mauCtx = document.getElementById('chart-mau-trend');
+  if (mauCtx) {
+    new Chart(mauCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Monthly Active Users (K)',
+          data: [32, 58, 74, 89, 105, 128],
+          fill: true,
+          backgroundColor: 'rgba(26,86,219,0.08)',
+          borderColor: 'rgba(26,86,219,0.8)',
+          borderWidth: 2.5,
+          pointBackgroundColor: 'rgba(26,86,219,0.8)',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: 0.4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` MAU: ${ctx.parsed.y}K` } }
+        },
+        scales: {
+          x: { grid: { color: '#F3F4F6' }, ticks: { font: { size: 12 } } },
+          y: {
+            grid: { color: '#F3F4F6' },
+            ticks: { font: { size: 12 }, callback: v => v + 'K' },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  }
+
+  /* ── Chart.js: Acquisition by Channel ── */
+  const chanCtx = document.getElementById('chart-channel');
+  if (chanCtx) {
+    new Chart(chanCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Organic', 'Paid', 'Referral', 'Social', 'Email'],
+        datasets: [{
+          label: 'Monthly Avg. Users',
+          data: [42000, 31000, 28000, 15000, 12000],
+          backgroundColor: [
+            'rgba(26,86,219,0.80)',
+            'rgba(28,100,242,0.70)',
+            'rgba(59,130,246,0.65)',
+            'rgba(99,160,255,0.65)',
+            'rgba(147,197,253,0.65)',
+          ],
+          borderRadius: 6,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y.toLocaleString('en-US')} users` } }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 12 } } },
+          y: {
+            grid: { color: '#F3F4F6' },
+            ticks: { font: { size: 12 }, callback: v => (v / 1000) + 'K' },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  }
+});
+</script>
+
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

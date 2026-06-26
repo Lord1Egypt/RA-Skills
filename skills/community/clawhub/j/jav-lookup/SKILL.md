@@ -1,35 +1,174 @@
 ---
-name: "jav-lookup"
-description: "This skill should be used when the user provides a list of Japanese AV film codes (番号, e.g. ABF-328, START-510, MIDA-563) and wants to look up the cast (主演),..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jav-lookup"
-sourceUrl: "https://clawhub.ai/skills/jav-lookup"
+name: jav-lookup
+description: This skill should be used when the user provides a list of Japanese AV film codes (番号, e.g. ABF-328, START-510, MIDA-563) and wants to look up the cast (主演), a one-sentence plot summary (一句话剧情), and/or magnet links (磁力链接). Triggers on phrases like "查询番号"、"番号主演剧情"、"查影片信息"、"查这些番号"、"找磁力链接"、"magnet" etc.
 ---
 
-# jav-lookup
+# JAV Lookup Skill — 番号批量查询
 
-> This skill should be used when the user provides a list of Japanese AV film codes (番号, e.g. ABF-328, START-510, MIDA-563) and wants to look up the cast (主演),...
+## 目的
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jav-lookup`
-- **Source URL:** [https://clawhub.ai/skills/jav-lookup](https://clawhub.ai/skills/jav-lookup)
+根据用户提供的日本 AV 番号列表，批量查询：
+- **主演**（演员信息）
+- **一句话剧情**（剧情简介）
+- **磁力链接**（可选，需明确要求）
 
-## Overview
+最终整理成表格输出。
 
+## 触发场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jav-lookup
+**场景 A：查询主演 + 剧情**
+- 用户提供一个或多个番号（格式如 `ABF-328`、`MIDA-563`、`START-510`）
+- 用户要求查询主演 / 剧情 / 简介
+- 用户想整理成列表或表格
+
+**场景 B：查询磁力链接**
+- 用户要求找磁力链接 / magnet
+- 用户提到 `-u` / `-c` / `-uc` 后缀（无码/中字/无码中字）
+- 建议通过 JAVDB (`javdb.com`) 搜索
+
+---
+
+## 工作流程
+
+### 场景 A：查询主演 + 剧情
+
+#### Step 1：识别番号与已知主演
+
+用户通常会以 `主演：番号` 的格式提供列表。直接从输入中提取番号与对应主演名。
+
+#### Step 2：批量并行网络搜索
+
+对每个番号，**同时发起多个搜索**（利用并行工具调用节省时间），搜索策略如下：
+
+**优先搜索（中文/繁体）：**
 ```
+"<番号>" <主演> 剧情 简介
+```
+
+**备用搜索（日文，更精准）：**
+```
+"<番号>" <主演日文名> あらすじ 内容
+```
+
+**推荐数据来源（按优先级）：**
+1. JAVDB (`javdb.com`) — 有中文剧情
+2. FANZA / DMM (`dmm.co.jp`) — 官方日文简介
+3. AV聚合站（yyshoo.com、aixiangaa.com 等）— 中文翻译版
+4. Prestige / SOD / MOODYZ 等片商官网
+
+#### Step 3：判断信息质量
+
+- 若找到**具体的剧情标题或情节描述** → 直接使用
+- 若只找到发行信息但无具体剧情 → 根据片商系列惯例+已有线索推断，并在备注中说明
+- 若完全没有信息 → 标注"暂无资料，建议前往 FANZA/JAVDB 查询"
+
+#### Step 4：整理输出表格
+
+输出格式：
+
+```markdown
+| # | 番号 | 主演 | 片商 | 一句话剧情 |
+|---|------|------|------|-----------|
+| 1 | ABF-328 | 涼森玲夢 | Prestige | 剧情... |
+```
+
+表格字段说明：
+- **番号**：原始番号
+- **主演**：中文名（如有日文名括号附注）
+- **片商**：从番号前缀推断（见下方对照表）
+- **一句话剧情**：20~50 字，简洁描述核心情节
+
+---
+
+### 场景 B：查询磁力链接
+
+当用户明确要求查找磁力链接时，执行以下流程：
+
+#### Step 1：确认搜索需求
+
+- 用户要求找 magnet、磁力链接
+- 用户提到特定后缀需求：` -u`（无码）、`-c`（中文字幕）、`-uc`（无码中字）
+
+#### Step 2：通过 JAVDB 搜索磁力
+
+**首选网站：JAVDB (`javdb.com`)**
+
+搜索流程：
+1. 使用 `https://javdb.com/search?q=<番号>&f=all` 搜索番号
+2. 从搜索结果获取详情页 URL（如 `/v/xxxxxx`）
+3. 访问详情页，提取磁力链接
+
+**搜索示例：**
+```
+https://javdb.com/search?q=JUR-067&f=all
+https://javdb.com/v/qAb836  (详情页)
+```
+
+#### Step 3：筛选特殊版本
+
+在详情页上，特别关注以下后缀：
+- **`-u`**：无码版（uncensored）
+- **`-c`**：中文字幕版
+- **`-uc`**：无码中字版
+- **`-FHD`**：全高清版
+- **`-中文字幕`**：中文完整标注
+
+若找到特殊版本，在表格"备注"栏标注。
+
+#### Step 4：整理输出表格
+
+**输出格式（含磁力）：**
+
+```markdown
+| # | 番号 | 主演 | 一句话剧情 | 磁力链接 | 备注 |
+|---|------|------|-----------|----------|------|
+| 1 | JUR-067 | 久遠美緒 | 超大型新人出道... | magnet:?xt=urn:btih:xxx | |
+```
+
+**重要：**
+- 磁力链接格式：`magnet:?xt=urn:btih:<HASH值>&dn=<文件名>`
+- 优先提供 **较大文件/高清版本** 的磁力链接
+- 若同一番号有多个版本，在备注栏说明（如"中文字幕版"）
+- 若未找到 `-u` / `-c` / `-uc` 版本，标注"暂无特殊版本"
+
+#### Step 5：提醒用户
+
+在表格下方添加备注：
+- 建议使用 115网盘、PikPak、比特球等离线下载
+- 新番通常暂无特殊版本，过段时间再搜索可能有惊喜
+- 磁力链接的可用性取决于做种人数
+
+---
+
+## 常见番号前缀 → 片商对照
+
+| 前缀 | 片商 |
+|------|------|
+| ABF / ABP / ABW | Prestige |
+| START / SOD / SDNM | SOD Create |
+| MIDA / MIFD / MIAA | MOODYZ |
+| IPZZ / IPX / IPVR | IdeaPocket (S1) |
+| JUR / JUQ / JUY | Madonna |
+| NGOD / NTR / NDR | JET映像（NTR系列）|
+| SSIS / SSS | S1 No.1 Style |
+| DASS / DAD | Das! |
+| MEYD / MBD | Tameike Goro |
+| PRED / PLD | Premium |
+
+---
+
+## 输出备注规范
+
+在表格下方添加备注，说明：
+- 哪些番号剧情来源于推断而非直接数据
+- 哪些是最新发行（网络资料较少）
+- 建议用户到 FANZA / JAVDB 核实
+
+---
+
+## 注意事项
+
+- 全程保持**客观、简洁**的描述，不添加主观评价
+- 剧情描述使用**繁体中文**（用户习惯）
+- 对 NTR / 时间停止 / 特定企划类型，明确标出类型特征
+- 若用户只提供番号不提供主演，仍需搜索主演信息一并输出

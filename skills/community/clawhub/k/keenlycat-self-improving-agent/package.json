@@ -1,0 +1,19 @@
+{
+  "name": "keenlycat-self-improving-agent",
+  "version": "1.0.1",
+  "description": "Self-improving agent with automation: auto-capture errors, pre-task learning retrieval, and heartbeat integration",
+  "keywords": ["self-improvement", "learning", "memory", "error-tracking", "optimization", "automation"],
+  "author": "keenlycat",
+  "license": "MIT",
+  "scripts": {
+    "capture": "./capture-learning.sh",
+    "search": "./search-learnings.sh",
+    "review": "./review-learnings.sh",
+    "pre-task": "./pre-task-check.sh",
+    "auto-error": "./auto-capture-error.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "*.sh"
+  ]
+}

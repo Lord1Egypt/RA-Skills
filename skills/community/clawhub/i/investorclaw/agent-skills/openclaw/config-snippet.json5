@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: MIT-0
+// Copyright 2026 InvestorClaw Contributors
+//
+// InvestorClaw v4.0 — openclaw MCP server registration.
+//
+// Apply with the validated config-patch path (NEVER hand-edit
+// ~/.openclaw/openclaw.json — openclaw 4.29-beta.4+ has a
+// config-health daemon that clobbers raw writes lacking required
+// schema fields and reverts to openclaw.json.last-good):
+//
+//     openclaw config patch --file config-snippet.json5
+//
+// Or apply servers individually:
+//
+//     openclaw mcp set --name investorclaw --transport http \
+//       --url http://localhost:18090/mcp
+//     openclaw mcp set --name mnemos --transport http \
+//       --url http://localhost:5002/mcp
+//
+// If openclaw runs in a container, replace 127.0.0.1 with
+// host.docker.internal (or the compose service names if openclaw
+// joins the investorclaw_default bridge network).
+
+{
+  mcp: {
+    servers: {
+      investorclaw: { transport: "http", url: "http://localhost:18090/mcp" },
+      mnemos:       { transport: "http", url: "http://localhost:5002/mcp" }
+    }
+  }
+}

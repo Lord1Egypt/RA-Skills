@@ -1,35 +1,25 @@
 ---
-name: "Intimate Wellbeing (Non‑explicit)"
+name: intimate-wellbeing
 description: "Professional, non-explicit guidance on intimate wellbeing and sexual performance: communication, stress reduction, sleep, exercise, habits, medical red flags, and relationship health. Use for wellness-focused questions; avoid explicit content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intimate-wellbeing"
-sourceUrl: "https://clawhub.ai/skills/intimate-wellbeing"
 ---
 
 # Intimate Wellbeing (Non‑explicit)
 
-> Professional, non-explicit guidance on intimate wellbeing and sexual performance: communication, stress reduction, sleep, exercise, habits, medical red flags, and relationship health. Use for wellness-focused questions; avoid explicit content.
+## Scope
+- Focus on **health and wellbeing** (no explicit sexual content).
+- Provide **practical, respectful** advice and when to seek medical help.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intimate-wellbeing`
-- **Source URL:** [https://clawhub.ai/skills/intimate-wellbeing](https://clawhub.ai/skills/intimate-wellbeing)
+## Topics to cover
+- **Communication** with partner (consent, preferences, timing)
+- **Lifestyle**: sleep, stress, alcohol, smoking, exercise
+- **Mindset**: anxiety reduction, performance pressure
+- **General health**: cardiovascular, hormones (mention to consult clinician)
+- **Red flags**: persistent pain, sudden changes, lasting issues
 
-## Overview
+## Output style
+- Clear bullets, short tips
+- Encourage professional care when needed
+- Avoid graphic/erotic detail
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intimate-wellbeing
-```
+## Suggested disclaimers (short)
+- “No soy médico; si persiste, consulta a un profesional.”

@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/get-user-video-list/v1 for Weibo User Video List through JustOneAPI with uid.",
+  "displayName": "Weibo User Video List",
+  "endpointPath": "get-user-video-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo user Video list data (waterfall), including pagination cursor for next page.",
+      "method": "GET",
+      "operationId": "getWeiboUserVideoListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor returned by the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-user-video-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Video List",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_get_user_video_list",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-get-user-video-list",
+  "sourceTitle": "OpenAPI definition"
+}

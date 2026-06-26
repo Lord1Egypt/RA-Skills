@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 Knowledge Graph — Atlas 的记忆</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: -apple-system, 'SF Pro', 'Inter', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0) 100%);
+    padding: 20px 32px 40px;
+    pointer-events: none;
+  }
+  .header h1 {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    pointer-events: auto;
+  }
+  .header .subtitle {
+    font-size: 12px; color: #666; margin-top: 4px; pointer-events: auto;
+  }
+
+  /* Stats bar */
+  .stats {
+    position: fixed; top: 16px; right: 32px; z-index: 100;
+    display: flex; gap: 16px; align-items: center;
+    font-size: 12px; color: #888;
+  }
+  .stat { display: flex; align-items: center; gap: 4px; }
+  .stat .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .dot-l1 { background: #60a5fa; }
+  .dot-l2 { background: #a78bfa; }
+  .dot-l3 { background: #f59e0b; }
+
+  /* Legend */
+  .legend {
+    position: fixed; bottom: 24px; left: 32px; z-index: 100;
+    display: flex; gap: 20px; font-size: 11px; color: #666;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  /* Tag filter */
+  .tag-filter {
+    position: fixed; bottom: 24px; right: 32px; z-index: 100;
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end;
+    max-width: 50vw;
+  }
+  .tag-btn {
+    padding: 4px 10px; border-radius: 12px; font-size: 11px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+    color: #888; cursor: pointer; transition: all 0.2s;
+  }
+  .tag-btn:hover { background: rgba(255,255,255,0.12); color: #ccc; }
+  .tag-btn.active {
+    background: rgba(167,139,250,0.2); border-color: rgba(167,139,250,0.4);
+    color: #a78bfa;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed; z-index: 200; pointer-events: none;
+    background: rgba(15,15,25,0.96); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 16px 20px; max-width: 360px;
+    backdrop-filter: blur(20px); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .tooltip.visible { opacity: 1; }
+  .tooltip .tt-level {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .tooltip .tt-level.l1 { color: #60a5fa; }
+  .tooltip .tt-level.l2 { color: #a78bfa; }
+  .tooltip .tt-level.l3 { color: #f59e0b; }
+  .tooltip .tt-title {
+    font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 8px;
+    color: #fff;
+  }
+  .tooltip .tt-context {
+    font-size: 12px; line-height: 1.6; color: #999; margin-bottom: 10px;
+  }
+  .tooltip .tt-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tooltip .tt-tag {
+    padding: 2px 8px; border-radius: 8px; font-size: 10px;
+    background: rgba(255,255,255,0.06); color: #aaa;
+  }
+  .tooltip .tt-confidence {
+    font-size: 10px; margin-top: 8px;
+  }
+
+  /* SVG */
+  svg { width: 100%; height: 100%; }
+  
+  .link {
+    stroke: rgba(255,255,255,0.06);
+    stroke-width: 1;
+    transition: stroke 0.2s;
+  }
+  .link.highlighted {
+    stroke: rgba(167,139,250,0.4);
+    stroke-width: 2;
+  }
+  .link.dimmed { stroke: rgba(255,255,255,0.02); }
+
+  .node { cursor: pointer; }
+  .node circle {
+    transition: all 0.2s;
+  }
+  .node text {
+    font-size: 11px; fill: #888;
+    text-anchor: middle; pointer-events: none;
+    transition: fill 0.2s;
+  }
+  .node.highlighted text { fill: #fff; }
+  .node.dimmed circle { opacity: 0.15; }
+  .node.dimmed text { fill: #333; }
+
+  /* Edge labels */
+  .edge-label {
+    font-size: 9px; fill: #555;
+    text-anchor: middle; pointer-events: none;
+  }
+
+  /* Instructions */
+  .instructions {
+    position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: #444; z-index: 50;
+    transition: opacity 2s;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🧠 Knowledge Graph</h1>
+  <div class="subtitle">Atlas 的概念图谱 · 实时渲染</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="dot dot-l1"></div><span id="stat-l1">0 L1</span></div>
+  <div class="stat"><div class="dot dot-l2"></div><span id="stat-l2">0 L2</span></div>
+  <div class="stat"><div class="dot dot-l3"></div><span id="stat-l3">0 L3</span></div>
+  <div class="stat">⚡ <span id="stat-edges">0</span> 关联</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>L1 事实</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>L2 洞察</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>L3 元规律</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#555;border:2px solid #888"></div>低置信度</div>
+</div>
+
+<div class="tag-filter" id="tagFilter"></div>
+
+<div class="tooltip" id="tooltip">
+  <div class="tt-level" id="ttLevel"></div>
+  <div class="tt-title" id="ttTitle"></div>
+  <div class="tt-context" id="ttContext"></div>
+  <div class="tt-tags" id="ttTags"></div>
+  <div class="tt-confidence" id="ttConfidence"></div>
+</div>
+
+<div class="instructions" id="instructions">拖拽节点 · 滚轮缩放 · 点击标签筛选</div>
+
+<svg id="graph"></svg>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const DATA = {
+  "nodes": [
+    {
+      "id": "分发能力-制作能力-d2a0e8ed",
+      "label": "分发能力 > 制作能力",
+      "tags": [
+        "创业",
+        "洞察",
+        "AI",
+        "分发"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "当AI让创作成本趋近于零，稀缺资源转移到分发\n[2026-03-28] 从以下 L1 概念蒸馏而来：\n- 北京开发者副业一年亏2200美元: 6个项目全军覆没，技术没问题但找不到客户、不会分发、合伙人"
+    },
+    {
+      "id": "self-belief是做出来的不是喊出来的-0ccecd1b",
+      "label": "Self-belief是做出来的不是喊出来的",
+      "tags": [
+        "创业",
+        "信念",
+        "心态"
+      ],
+      "confidence": "medium",
+      "level": "L1",
+      "context": "Musk的conviction是十几年失败中锤出来的"
+    },
+    {
+      "id": "智商20和智商200的共同点-495aed2d",
+      "label": "智商20和智商200的共同点",
+      "tags": [
+        "创业",
+        "Crypto",
+        "信念"
+      ],
+      "confidence": "medium",
+      "level": "L1",
+      "context": "中间的人不赚钱，因为有足够信息犹豫却没有足够认知坚定"
+    },
+    {
+      "id": "harness工程是新的技术壁垒-0ca0d5f8",
+      "label": "Harness工程是新的技术壁垒",
+      "tags": [
+        "AI",
+        "工程",
+        "Agent"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "模型趋同，差异化来自工程化"
+    },
+    {
+      "id": "ai-agent的界面不应该是聊天-80d50f78",
+      "label": "AI Agent的界面不应该是聊天",
+      "tags": [
+        "AI",
+        "Agent",
+        "产品"
+      ],
+      "confidence": "medium",
+      "level": "L1",
+      "context": "聊天是线性的，真实项目不是线性的"
+    },
+    {
+      "id": "ai让创作免费后分发怎么办-f6fe61a4",
+      "label": "AI让创作免费后分发怎么办",
+      "tags": [
+        "AI",
+        "创业",
+        "分发",
+        "经济"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "生产成本趋近于零时，稀缺资源转移到品味/判断/分发/信任"
+    },
+    {
+      "id": "北京开发者副业一年亏2200美元-5501bc71",
+      "label": "北京开发者副业一年亏2200美元",
+      "tags": [
+        "创业",
+        "失败案例",
+        "分发"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "6个项目全军覆没，技术没问题但找不到客户、不会分发、合伙人都跑路"
+    },
+    {
+      "id": "notion-custom-agent自动执行工作流-ee739cc5",
+      "label": "Notion Custom Agent自动执行工作流",
+      "tags": [
+        "洞察",
+        "自动化",
+        "Agent",
+        "AI",
+        "产品"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "AI Agent的价值不在于对话，在于自动执行。一个Agent自动完成11步工作流\n[2026-03-28] 从以下 L1 概念蒸馏而来：\n- 品味是最后的差异化: AI能复制工作流程但复制不了品味。"
+    },
+    {
+      "id": "agent能思考但不能记忆-5e09e8ed",
+      "label": "Agent能思考但不能记忆",
+      "tags": [
+        "AI",
+        "Agent",
+        "记忆",
+        "工程"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "持久化是Agent工程化的核心瓶颈。Ghost提供即时临时Postgres数据库"
+    },
+    {
+      "id": "500美元gpu跑赢claude-sonnet-a05d9270",
+      "label": "500美元GPU跑赢Claude Sonnet",
+      "tags": [
+        "AI",
+        "开源",
+        "推理",
+        "创业"
+      ],
+      "confidence": "medium",
+      "level": "L1",
+      "context": "本地推理的可行性在增加，动摇AI创业必须依赖大厂API的假设"
+    },
+    {
+      "id": "无聊生意比ai-chatbot更赚钱-4501f8e4",
+      "label": "无聊生意比AI chatbot更赚钱",
+      "tags": [
+        "创业",
+        "洞察",
+        "垂直领域"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "一家做政府表格填写的公司年收入3000万美元，不涉及神经网络\n[2026-03-28] 从以下 L1 概念蒸馏而来：\n- 复利曲线拐点前和线性曲线一样: 你可能已经在正确路径上但因为没到拐点看不到回报"
+    },
+    {
+      "id": "品味是最后的差异化-b0615830",
+      "label": "品味是最后的差异化",
+      "tags": [
+        "创业",
+        "品味",
+        "产品"
+      ],
+      "confidence": "high",
+      "level": "L1",
+      "context": "AI能复制工作流程但复制不了品味。AI+taste是赢家公式"
+    },
+    {
+      "id": "复利曲线拐点前和线性曲线一样-c1e5010a",
+      "label": "复利曲线拐点前和线性曲线一样",
+      "tags": [
+        "创业",
+        "复利",
+        "判断"
+      ],
+      "confidence": "medium",
+      "level": "L1",
+      "context": "你可能已经在正确路径上但因为没到拐点看不到回报，也可能在错误路径上因为短期涨得快误判"
+    },
+    {
+      "id": "l2-创业领域-从9个事实提炼的深层模式-9a89b30a",
+      "label": "[L2] 创业领域：从9个事实提炼的深层模式",
+      "tags": [
+        "创业",
+        "洞察"
+      ],
+      "confidence": "medium",
+      "level": "L2",
+      "context": "从以下 L1 概念蒸馏而来（2026-03-28）：\n- 复利曲线拐点前和线性曲线一样\n- 品味是最后的差异化\n- 无聊生意比AI chatbot更赚钱\n- 500美元GPU跑赢Claude Sonn"
+    },
+    {
+      "id": "l2-产品领域-从3个事实提炼的深层模式-b0af288b",
+      "label": "[L2] 产品领域：从3个事实提炼的深层模式",
+      "tags": [
+        "产品",
+        "洞察"
+      ],
+      "confidence": "medium",
+      "level": "L2",
+      "context": "从以下 L1 概念蒸馏而来（2026-03-28）：\n- 品味是最后的差异化\n- Notion Custom Agent自动执行工作流\n- AI Agent的界面不应该是聊天"
+    },
+    {
+      "id": "l2-ai领域-从7个事实提炼的深层模式-6f3aac8c",
+      "label": "[L2] AI领域：从7个事实提炼的深层模式",
+      "tags": [
+        "AI",
+        "洞察"
+      ],
+      "confidence": "medium",
+      "level": "L2",
+      "context": "从以下 L1 概念蒸馏而来（2026-03-28）：\n- 500美元GPU跑赢Claude Sonnet\n- Agent能思考但不能记忆\n- Notion Custom Agent自动执行工作流\n- "
+    },
+    {
+      "id": "l2-agent领域-从4个事实提炼的深层模式-69ff7c63",
+      "label": "[L2] Agent领域：从4个事实提炼的深层模式",
+      "tags": [
+        "Agent",
+        "洞察"
+      ],
+      "confidence": "medium",
+      "level": "L2",
+      "context": "从以下 L1 概念蒸馏而来（2026-03-28）：\n- Agent能思考但不能记忆\n- Notion Custom Agent自动执行工作流\n- AI Agent的界面不应该是聊天\n- Harnes"
+    },
+    {
+      "id": "l2-分发领域-从3个事实提炼的深层模式-bfc08e82",
+      "label": "[L2] 分发领域：从3个事实提炼的深层模式",
+      "tags": [
+        "分发",
+        "洞察"
+      ],
+      "confidence": "medium",
+      "level": "L2",
+      "context": "从以下 L1 概念蒸馏而来（2026-03-28）：\n- 北京开发者副业一年亏2200美元\n- AI让创作免费后分发怎么办\n- 分发能力 > 制作能力"
+    }
+  ],
+  "edges": [
+    {
+      "source": "harness工程是新的技术壁垒-0ca0d5f8",
+      "target": "agent能思考但不能记忆-5e09e8ed",
+      "relation": "example"
+    },
+    {
+      "source": "harness工程是新的技术壁垒-0ca0d5f8",
+      "target": "ai-agent的界面不应该是聊天-80d50f78",
+      "relation": "related"
+    },
+    {
+      "source": "notion-custom-agent自动执行工作流-ee739cc5",
+      "target": "ai-agent的界面不应该是聊天-80d50f78",
+      "relation": "supports"
+    },
+    {
+      "source": "self-belief是做出来的不是喊出来的-0ccecd1b",
+      "target": "复利曲线拐点前和线性曲线一样-c1e5010a",
+      "relation": "related"
+    },
+    {
+      "source": "分发能力-制作能力-d2a0e8ed",
+      "target": "ai让创作免费后分发怎么办-f6fe61a4",
+      "relation": "same_thesis"
+    },
+    {
+      "source": "分发能力-制作能力-d2a0e8ed",
+      "target": "北京开发者副业一年亏2200美元-5501bc71",
+      "relation": "evidence"
+    },
+    {
+      "source": "分发能力-制作能力-d2a0e8ed",
+      "target": "智商20和智商200的共同点-495aed2d",
+      "relation": "supports"
+    },
+    {
+      "source": "品味是最后的差异化-b0615830",
+      "target": "ai让创作免费后分发怎么办-f6fe61a4",
+      "relation": "part_of"
+    },
+    {
+      "source": "无聊生意比ai-chatbot更赚钱-4501f8e4",
+      "target": "北京开发者副业一年亏2200美元-5501bc71",
+      "relation": "contrast"
+    }
+  ]
+};
+
+// ─── Color scheme ───
+const COLORS = {
+  L1: { fill: '#60a5fa', glow: 'rgba(96,165,250,0.3)' },
+  L2: { fill: '#a78bfa', glow: 'rgba(167,139,250,0.3)' },
+  L3: { fill: '#f59e0b', glow: 'rgba(245,158,11,0.3)' },
+};
+const CONFIDENCE_OPACITY = { high: 1, medium: 0.7, low: 0.45 };
+
+// ─── Setup ───
+const svg = d3.select('#graph');
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+// Stats
+const l1Count = DATA.nodes.filter(n => n.level === 'L1').length;
+const l2Count = DATA.nodes.filter(n => n.level === 'L2').length;
+const l3Count = DATA.nodes.filter(n => n.level === 'L3').length;
+document.getElementById('stat-l1').textContent = `${l1Count} L1`;
+document.getElementById('stat-l2').textContent = `${l2Count} L2`;
+document.getElementById('stat-l3').textContent = `${l3Count} L3`;
+document.getElementById('stat-edges').textContent = DATA.edges.length;
+
+// Tag filter
+const allTags = [...new Set(DATA.nodes.flatMap(n => n.tags))].sort();
+let activeTag = null;
+const tagFilter = document.getElementById('tagFilter');
+allTags.forEach(tag => {
+  const btn = document.createElement('div');
+  btn.className = 'tag-btn';
+  btn.textContent = tag;
+  btn.onclick = () => {
+    if (activeTag === tag) {
+      activeTag = null;
+      btn.classList.remove('active');
+    } else {
+      document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+      activeTag = tag;
+      btn.classList.add('active');
+    }
+    applyFilter();
+  };
+  tagFilter.appendChild(btn);
+});
+
+// ─── Simulation ───
+const simulation = d3.forceSimulation(DATA.nodes)
+  .force('link', d3.forceLink(DATA.edges).id(d => d.id).distance(120))
+  .force('charge', d3.forceManyBody().strength(-400))
+  .force('center', d3.forceCenter(width / 2, height / 2))
+  .force('collision', d3.forceCollide().radius(50))
+  .force('x', d3.forceX(width / 2).strength(0.03))
+  .force('y', d3.forceY(height / 2).strength(0.03));
+
+// ─── Draw ───
+const g = svg.append('g');
+
+// Zoom
+svg.call(d3.zoom()
+  .scaleExtent([0.3, 3])
+  .on('zoom', (event) => {
+    g.attr('transform', event.transform);
+    document.getElementById('instructions').style.opacity = '0';
+  }));
+
+// Links
+const linkGroup = g.append('g');
+const link = linkGroup.selectAll('line')
+  .data(DATA.edges).join('line')
+  .attr('class', 'link');
+
+// Edge labels
+const edgeLabel = linkGroup.selectAll('text')
+  .data(DATA.edges).join('text')
+  .attr('class', 'edge-label')
+  .text(d => d.relation);
+
+// Nodes
+const nodeGroup = g.append('g');
+const node = nodeGroup.selectAll('g')
+  .data(DATA.nodes).join('g')
+  .attr('class', 'node')
+  .call(d3.drag()
+    .on('start', dragStarted)
+    .on('drag', dragged)
+    .on('end', dragEnded));
+
+// Glow
+node.append('circle')
+  .attr('r', d => getNodeRadius(d) + 6)
+  .attr('fill', d => COLORS[d.level].glow)
+  .attr('opacity', 0);
+
+// Main circle
+node.append('circle')
+  .attr('r', d => getNodeRadius(d))
+  .attr('fill', d => COLORS[d.level].fill)
+  .attr('opacity', d => CONFIDENCE_OPACITY[d.confidence])
+  .attr('stroke', d => d.confidence === 'low' ? '#888' : 'none')
+  .attr('stroke-width', d => d.confidence === 'low' ? 2 : 0)
+  .attr('stroke-dasharray', d => d.confidence === 'low' ? '3,3' : 'none');
+
+// Label
+node.append('text')
+  .attr('dy', d => getNodeRadius(d) + 14)
+  .text(d => truncate(d.label, 18));
+
+// ─── Interactions ───
+const tooltip = document.getElementById('tooltip');
+
+node.on('mouseover', (event, d) => {
+  // Highlight connected
+  const connected = new Set([d.id]);
+  DATA.edges.forEach(e => {
+    const sid = typeof e.source === 'object' ? e.source.id : e.source;
+    const tid = typeof e.target === 'object' ? e.target.id : e.target;
+    if (sid === d.id) connected.add(tid);
+    if (tid === d.id) connected.add(sid);
+  });
+
+  node.classed('dimmed', n => !connected.has(n.id));
+  node.classed('highlighted', n => connected.has(n.id));
+  link.classed('dimmed', l => {
+    const sid = typeof l.source === 'object' ? l.source.id : l.source;
+    const tid = typeof l.target === 'object' ? l.target.id : l.target;
+    return sid !== d.id && tid !== d.id;
+  });
+  link.classed('highlighted', l => {
+    const sid = typeof l.source === 'object' ? l.source.id : l.source;
+    const tid = typeof l.target === 'object' ? l.target.id : l.target;
+    return sid === d.id || tid === d.id;
+  });
+
+  // Glow
+  d3.select(event.currentTarget).select('circle:first-child')
+    .attr('opacity', 0.6);
+
+  // Tooltip
+  document.getElementById('ttLevel').className = `tt-level ${d.level.toLowerCase()}`;
+  document.getElementById('ttLevel').textContent = `${d.level} · ${d.confidence} confidence`;
+  document.getElementById('ttTitle').textContent = d.label;
+  document.getElementById('ttContext').textContent = d.context || '';
+  document.getElementById('ttTags').innerHTML = d.tags.map(t =>
+    `<span class="tt-tag">${t}</span>`).join('');
+  document.getElementById('ttConfidence').textContent = 
+    d.confidence === 'high' ? '🟢 高置信度' : d.confidence === 'medium' ? '🟡 中置信度' : '🔴 低置信度';
+  
+  tooltip.classList.add('visible');
+  positionTooltip(event);
+});
+
+node.on('mousemove', positionTooltip);
+
+node.on('mouseout', (event, d) => {
+  node.classed('dimmed', false).classed('highlighted', false);
+  link.classed('dimmed', false).classed('highlighted', false);
+  d3.select(event.currentTarget).select('circle:first-child')
+    .attr('opacity', 0);
+  tooltip.classList.remove('visible');
+});
+
+// ─── Tick ───
+simulation.on('tick', () => {
+  link
+    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  edgeLabel
+    .attr('x', d => (d.source.x + d.target.x) / 2)
+    .attr('y', d => (d.source.y + d.target.y) / 2 - 4);
+  node.attr('transform', d => `translate(${d.x},${d.y})`);
+});
+
+// ─── Helpers ───
+function getNodeRadius(d) {
+  const base = d.level === 'L3' ? 16 : d.level === 'L2' ? 12 : 8;
+  const connections = DATA.edges.filter(e => {
+    const sid = typeof e.source === 'object' ? e.source.id : e.source;
+    const tid = typeof e.target === 'object' ? e.target.id : e.target;
+    return sid === d.id || tid === d.id;
+  }).length;
+  return base + connections * 2;
+}
+
+function truncate(str, max) {
+  return str.length > max ? str.slice(0, max) + '…' : str;
+}
+
+function positionTooltip(event) {
+  const x = event.clientX + 16;
+  const y = event.clientY - 10;
+  tooltip.style.left = (x + 360 > width ? x - 376 : x) + 'px';
+  tooltip.style.top = Math.max(10, y) + 'px';
+}
+
+function applyFilter() {
+  if (!activeTag) {
+    node.attr('opacity', 1);
+    link.attr('opacity', 1);
+    edgeLabel.attr('opacity', 1);
+    return;
+  }
+  const matching = new Set(DATA.nodes.filter(n => n.tags.includes(activeTag)).map(n => n.id));
+  node.attr('opacity', d => matching.has(d.id) ? 1 : 0.1);
+  link.attr('opacity', d => {
+    const sid = typeof d.source === 'object' ? d.source.id : d.source;
+    const tid = typeof d.target === 'object' ? d.target.id : d.target;
+    return matching.has(sid) || matching.has(tid) ? 1 : 0.05;
+  });
+  edgeLabel.attr('opacity', 0.1);
+}
+
+function dragStarted(event, d) {
+  if (!event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x; d.fy = d.y;
+}
+function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+function dragEnded(event, d) {
+  if (!event.active) simulation.alphaTarget(0);
+  d.fx = null; d.fy = null;
+}
+
+// Hide instructions after 5s
+setTimeout(() => { document.getElementById('instructions').style.opacity = '0'; }, 5000);
+</script>
+</body>
+</html>

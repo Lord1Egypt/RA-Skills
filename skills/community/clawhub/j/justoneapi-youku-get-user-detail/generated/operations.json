@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/youku/get-user-detail/v1 for YOUKU User Profile through JustOneAPI with uid.",
+  "displayName": "YOUKU User Profile",
+  "endpointPath": "get-user-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get YOUKU user Profile data, including user ID, username, and avatar, for analyzing creator influence and audience size, monitoring account growth and verification status, and fetching basic user info for social crm.",
+      "method": "GET",
+      "operationId": "getYoukuUserDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for the user.",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youku/get-user-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "YOUKU"
+      ]
+    }
+  ],
+  "platformKey": "youku",
+  "primaryTag": "YOUKU",
+  "skillName": "justoneapi_youku_get_user_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-youku-get-user-detail",
+  "sourceTitle": "OpenAPI definition"
+}

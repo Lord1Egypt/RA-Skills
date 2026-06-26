@@ -1,0 +1,21 @@
+{
+  "name": "蓝紫卡片",
+  "description": "蓝紫色调，顶部背景图 + 浅蓝卡片引言，适合科技、商务类公众号文章",
+  "accent_color": "#3b5eff",
+  "fragments": {
+    "body_wrapper": "<section style=\"background:linear-gradient(180deg, #daeafb 0%, #eaf4fe 10%, #eaf4fe 100%);\">",
+    "body_wrapper_end": "</section>",
+    "header_image": "<section style=\"width:100%;\"><img src=\"https://file.dso100.com/f/wechat-material/img_proxy.png\" style=\"width:100%;display:block;\" alt=\"\"></section>",
+    "top_decoration": "",
+    "hero": "<section style=\"margin:-20px 16px 24px;padding:20px;background-color:#eef2f9;border-radius:8px;position:relative;z-index:1;\"><p style=\"font-size:15px;color:#3a3a3a;line-height:1.9;text-align:justify;margin:0;\">{TEXT}</p></section>",
+    "blockquote": "<section style=\"margin:16px 20px;padding:14px 16px;border-radius:6px;background-color:#f0f4ff;border-left:3px solid #3b5eff;\"><p style=\"font-size:15px;color:#666666;line-height:1.8;font-style:italic;text-align:left;margin:0;\">{TEXT}</p></section>",
+    "section_title": "<section style=\"text-align:center;margin:28px 20px 18px;\"><section style=\"display:inline-flex;align-items:center;position:relative;height:40px;\"><span style=\"display:inline-flex;align-items:center;justify-content:center;width:44px;height:40px;background-color:#3b5eff;color:#ffffff;font-size:20px;font-weight:700;border-radius:6px 0 0 6px;position:relative;z-index:2;\">{NUM}</span><span style=\"display:inline-block;height:40px;width:120px;background-color:#3b5eff;transform:skewX(-15deg);margin-left:-6px;position:relative;z-index:1;\"></span><span style=\"font-size:18px;font-weight:700;color:#3b5eff;letter-spacing:0.5px;margin-left:12px;position:relative;z-index:2;\">{TEXT}</span></section></section>",
+    "highlight": "<section style=\"display:flex;align-items:center;margin:24px 20px 14px;gap:10px;\"><section style=\"display:flex;align-items:center;flex-shrink:0;\"><span style=\"display:inline-block;width:9px;height:9px;border-radius:50%;background-color:#1a1a1a;\"></span><span style=\"display:inline-block;width:9px;height:9px;border-radius:50%;background-color:#ffffff;border:1px solid #1a1a1a;margin-left:-4px;\"></span></section><span style=\"font-size:16px;font-weight:700;color:#1a1a1a;letter-spacing:0.3px;\">{TEXT}</span></section>",
+    "paragraph": "<section style=\"padding:0 20px;\"><p style=\"font-size:15px;color:#3a3a3a;line-height:1.85;margin-bottom:16px;text-align:justify;\">{TEXT}</p></section>",
+    "list_ordered": "<ol style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ol>",
+    "list_unordered": "<ul style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ul>",
+    "list_item": "<li style=\"font-size:15px;color:#3a3a3a;line-height:1.85;margin-bottom:6px;\">{TEXT}</li>",
+    "image": "<p style=\"text-align:center;margin:0 0 16px 0;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:6px;\" /></p>",
+    "image_placeholder": "<section style=\"margin:0 0 16px 0;text-align:center;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:6px;\" /><p style=\"font-size:13px;color:#999;margin:8px 0 0 0;\">{ALT}</p></section>"
+  }
+}

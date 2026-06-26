@@ -1,0 +1,95 @@
+{
+  "name": "Beginner Vocabulary List",
+  "level": "beginner",
+  "total_words": 50,
+  "description": "初级英语词汇列表，适合英语初学者",
+  "words": [
+    {
+      "word": "apple",
+      "phonetic": "/ˈæpl/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "苹果",
+      "example_sentence": "I eat an apple every day.",
+      "roots": []
+    },
+    {
+      "word": "book",
+      "phonetic": "/bʊk/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "书",
+      "example_sentence": "This is an interesting book.",
+      "roots": []
+    },
+    {
+      "word": "cat",
+      "phonetic": "/kæt/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "猫",
+      "example_sentence": "The cat is sleeping.",
+      "roots": []
+    },
+    {
+      "word": "dog",
+      "phonetic": "/dɔːɡ/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "狗",
+      "example_sentence": "I have a dog.",
+      "roots": []
+    },
+    {
+      "word": "happy",
+      "phonetic": "/ˈhæpi/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "快乐的",
+      "example_sentence": "She looks very happy.",
+      "roots": [
+        {"part": "hap", "meaning": "luck, chance", "type": "root"},
+        {"part": "-y", "meaning": "characterized by", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "unhappy",
+      "phonetic": "/ʌnˈhæpi/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "不快乐的",
+      "example_sentence": "He is unhappy about the result.",
+      "roots": [
+        {"part": "un-", "meaning": "not", "type": "prefix"},
+        {"part": "hap", "meaning": "luck, chance", "type": "root"},
+        {"part": "-y", "meaning": "characterized by", "type": "suffix"}
+      ]
+    },
+    {
+      "word": "water",
+      "phonetic": "/ˈwɔːtər/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "水",
+      "example_sentence": "I drink water every day.",
+      "roots": []
+    },
+    {
+      "word": "food",
+      "phonetic": "/fuːd/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "食物",
+      "example_sentence": "The food is delicious.",
+      "roots": []
+    },
+    {
+      "word": "friend",
+      "phonetic": "/frend/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "朋友",
+      "example_sentence": "He is my best friend.",
+      "roots": []
+    },
+    {
+      "word": "family",
+      "phonetic": "/ˈfæməli/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "家庭",
+      "example_sentence": "I love my family.",
+      "roots": []
+    }
+  ]
+}

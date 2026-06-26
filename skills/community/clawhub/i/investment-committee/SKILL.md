@@ -1,35 +1,91 @@
 ---
-name: "Investment Committee"
-description: "调用由查理·芒格、霍华德·马克斯、段永平、斯坦利·德鲁肯米勒、詹姆斯·西蒙斯组成的投资大师委员会，对任意标的进行多维度独立分析并输出委员会裁决报告。适用场景：(1) 买入判断——「委员会分析腾讯」「大师怎么看英伟达」「帮我分析BTC」；(2) 仓位管理——「我持有半仓BTC，怎么操作」「已持有NVDA，加仓还是减..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investment-committee"
-sourceUrl: "https://clawhub.ai/skills/investment-committee"
+name: investment-committee
+description: 调用由查理·芒格、霍华德·马克斯、段永平、斯坦利·德鲁肯米勒、詹姆斯·西蒙斯组成的投资大师委员会，对任意标的进行多维度独立分析并输出委员会裁决报告。适用场景：(1) 买入判断——「委员会分析腾讯」「大师怎么看英伟达」「帮我分析BTC」；(2) 仓位管理——「我持有半仓BTC，怎么操作」「已持有NVDA，加仓还是减仓」；(3) 比较分析——「腾讯和谷歌选哪个」。支持股票（A/港/美）、ETF、BTC/加密资产、黄金/大宗商品。
 ---
 
-# Investment Committee
+# Investment Committee Skill
 
-> 调用由查理·芒格、霍华德·马克斯、段永平、斯坦利·德鲁肯米勒、詹姆斯·西蒙斯组成的投资大师委员会，对任意标的进行多维度独立分析并输出委员会裁决报告。适用场景：(1) 买入判断——「委员会分析腾讯」「大师怎么看英伟达」「帮我分析BTC」；(2) 仓位管理——「我持有半仓BTC，怎么操作」「已持有NVDA，加仓还是减...
+五位大师平权投票（各 20%），并行独立分析，输出中文裁决报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investment-committee`
-- **Source URL:** [https://clawhub.ai/skills/investment-committee](https://clawhub.ai/skills/investment-committee)
+## 执行流程
 
-## Overview
+### Step 1：数据准备
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+**行情抓取**（优先用脚本，比搜索更准确）：
 ```bash
-hermes skills install clawhub/investment-committee
+python3 {workspace}/investment-committee/scripts/fetch_price.py GOOGL 700.hk BTC GOLD
 ```
+> 数据源：stooq.com（免费无限流）。常用映射：`700`→`700.hk`，`NVDA`→`nvda.us`，`BTC`→`btc.v`，`GOLD`/`黄金`→`xauusd`。
+
+**基本面数据**：web_search 补充 PE、Forward PE、分析师目标价、近期财报、宏观事件。
+
+**关键信息清单**（装进所有委员 prompt）：
+- 价格 + 日涨跌 + 52周区间
+- TTM PE / Forward PE（股票）或恐惧贪婪指数（加密）
+- RSI / 与200日均线偏差
+- 近期重大事件（财报日期、政策、宏观催化剂）
+- 若用户有持仓：持仓比例 + 是否已盈亏
+
+### Step 2：识别分析模式
+
+| 用户请求 | 模式 | 重点 |
+|---|---|---|
+| "分析 XXX" / "要不要买" | **买入判断模式** | 五委员给买入评分 |
+| "我持有 X 仓位，怎么办" | **仓位管理模式** | 五委员给操作建议（止损/持有/加仓） |
+| "XXX 和 YYY 哪个更好" | **比较模式** | 两标的同时分析，最后比较结论 |
+
+### Step 3：并行召唤五位委员
+
+```
+sessions_spawn × 5（同时发出，保证独立性）
+```
+
+每个 sub-agent 的 task 格式：
+```
+你现在扮演 [大师姓名]。
+
+以下是你的投资哲学和分析框架：
+[读取对应 references/ 文件全文]
+
+[买入判断模式] 请用你的视角分析以下标的，严格按你的框架输出评分和判断：
+[仓位管理模式] 用户当前 [X%] 仓位持有该标的，请从你的框架出发给出仓位管理建议：
+
+标的：[XXX]
+当前价格：[YYY]
+关键数据：[数据清单]
+近期事件：[事件]
+[上次你的评分：X/10（若有历史档案）]
+
+输出格式：（按对应 reference 文件的 "输出要求" 一节）
+```
+
+**⚠️ 关键约束**：五个 sub-agent 必须独立，不能互相看到结论。
+
+### Step 4：整合裁决
+
+收齐五份结果后，读取 `references/verdict.md` 进行整合：
+
+1. 计算加权综合分（各 20%）
+2. 识别最大分歧（分差最大的两位委员）
+3. 检查否决规则
+4. 提取可直接执行的操作参数（止损价、仓位、加仓条件）
+5. 按 `assets/report-template.md` 格式输出
+6. 发送到当前 Discord 频道
+7. 存档到 `{workspace}/investment-committee/history/YYYY-MM-DD_标的_说明.md`
+
+## 特殊资产权重调整
+
+**加密资产 / 黄金**：芒格和段永平因"无内在价值"天然低分，报告中注明「本标的宏观/量化视角权重更具参考价值」，重点参考马克斯（周期）、德鲁肯米勒（宏观流动性）、西蒙斯（量化信号）。
+
+## 委员角色速查
+
+| 委员 | 核心框架 | Reference 文件 |
+|---|---|---|
+| 芒格 | 护城河 / 生意本质 / 能力圈 | `references/munger.md` |
+| 马克斯 | 周期位置 / 情绪温度 / 风险不对称 | `references/marks.md` |
+| 段永平 | 本分 / 动机审查 / 十年持有 | `references/duan.md` |
+| 德鲁肯米勒 | 宏观流动性 / 催化剂 / 止损 | `references/druckenmiller.md` |
+| 西蒙斯 | 量化五信号 / 动量 / 统计胜率 | `references/simons.md` |
+
+裁决整合规则见 `references/verdict.md`。
+报告格式见 `assets/report-template.md`。

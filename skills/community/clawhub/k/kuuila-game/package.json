@@ -1,0 +1,49 @@
+{
+  "name": "kuuila-game",
+  "displayName": "Kuuila互动游戏框架",
+  "version": "3.1.0",
+  "description": "通用互动游戏框架，支持文字冒险、猜谜、多人武侠、卡牌系统(155张)、三幕式结构、6大主题模组、剧情引擎、26个剧本模板、无尽模式(每日行动点/定时反馈)等完整游戏体验",
+  "author": "kuuila",
+  "license": "MIT",
+  "keywords": [
+    "game",
+    "adventure",
+    "puzzle",
+    "interactive",
+    "entertainment",
+    "文字冒险",
+    "猜谜游戏",
+    "多人游戏",
+    "三幕式结构",
+    "主题模组",
+    "回合管理",
+    "卡牌系统",
+    "剧情引擎",
+    "剧本系统",
+    "克苏鲁",
+    "武侠",
+    "修仙",
+    "无尽模式",
+    "日常任务"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "src/",
+    "data/",
+    "scripts/"
+  ],
+  "scripts": {
+    "test": "node test/test-all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "kuuila-game"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "changelog": "v3.1.0 - ♾️ 新增无尽模式：每日行动点系统(每日重置)、定时反馈机制(日报推送)、持久世界状态(跨日保存)、管理员工具(强制重置/事件注入/点数调整)，适合公会日常/长线养成/共建世界场景。\nv3.0.0 - 🎉 正式发布版！完整功能集成：卡牌系统(155张)、战斗系统(万智牌风格)、三幕式结构、剧情引擎、剧本系统(26个克苏鲁剧本)、心流引擎(成就/奖励/提示系统)。49项测试用例全部通过，API文档完善，支持6大主题模组。"
+}

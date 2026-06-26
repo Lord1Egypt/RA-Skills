@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Slide</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1080px;
+      height: 1920px;
+      font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #0D1B2A 0%, #1E3A5F 50%, #0D1B2A 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 背景装饰圆 */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    .circle-1 {
+      width: 800px;
+      height: 800px;
+      background: #D32F2F;
+      top: -300px;
+      right: -200px;
+    }
+
+    .circle-2 {
+      width: 600px;
+      height: 600px;
+      background: #48CAE4;
+      bottom: -200px;
+      left: -150px;
+    }
+
+    .circle-3 {
+      width: 400px;
+      height: 400px;
+      background: #FF6B6B;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 主内容 */
+    .content {
+      z-index: 10;
+      text-align: center;
+      padding: 80px 60px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    /* 画面说明（可选） */
+    {
+      display: none;
+    }
+
+    /* 字幕区域 */
+    .subtitle {
+      font-size: 64px;
+      line-height: 1.6;
+      color: #FFFFFF;
+      font-weight: 600;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      letter-spacing: 2px;
+    }
+
+    /* 画面说明显示时字幕上移 */
+    .has-visual .subtitle {
+      margin-top: 0;
+    }
+
+    /* 序号标识 */
+    .index {
+      position: absolute;
+      bottom: 80px;
+      right: 80px;
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 700;
+    }
+
+    /* 装饰线 */
+    .decoration-line {
+      position: absolute;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #D32F2F, transparent);
+      width: 600px;
+    }
+
+    .line-top {
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .line-bottom {
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 龙虾哥标识 */
+    .brand {
+      position: absolute;
+      top: 80px;
+      left: 60px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.8;
+    }
+
+    .brand-icon {
+      font-size: 36px;
+    }
+
+    .brand-text {
+      font-size: 28px;
+      color: #FF6B6B;
+      font-weight: 600;
+      letter-spacing: 4px;
+    }
+
+    /* 画面说明样式（如果需要显示） */
+    .visual-info {
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+      padding: 20px 40px;
+      border-left: 4px solid #48CAE4;
+      background: rgba(72, 202, 228, 0.1);
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-circle circle-1"></div>
+  <div class="bg-circle circle-2"></div>
+  <div class="bg-circle circle-3"></div>
+
+  <!-- 装饰线 -->
+  <div class="decoration-line line-top"></div>
+  <div class="decoration-line line-bottom"></div>
+
+  <!-- 龙虾哥标识 -->
+  <div class="brand">
+    <span class="brand-icon">🦞</span>
+    <span class="brand-text">龙虾哥</span>
+  </div>
+
+  <!-- 主内容 -->
+  <div class="content" id="content">
+    <!-- 画面说明（可选，默认隐藏） -->
+    <div class="visual-info" id="visual"></div>
+
+    <!-- 字幕 -->
+    <div class="subtitle" id="subtitle"></div>
+  </div>
+
+  <!-- 序号 -->
+  <div class="index">{{INDEX}}</div>
+
+  <script>
+    // 设置字幕内容（支持 HTML 的 <br> 换行）
+    const subtitleText = '{{SUBTITLE}}';
+    const subtitleEl = document.getElementById('subtitle');
+    subtitleEl.innerHTML = subtitleText;
+
+    // 设置画面说明（如果有内容则显示）
+    const visualText = '{{VISUAL}}';
+    const visualEl = document.getElementById('visual');
+    const contentEl = document.getElementById('content');
+
+    if (visualText && visualText !== '' && visualText !== '{{VISUAL}}') {
+      visualEl.innerHTML = visualText;
+      visualEl.style.display = 'block';
+      contentEl.classList.add('has-visual');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+id: ending_summary
+name: 结尾升华
+description: 检查章节结尾是否落在感悟、总结、感叹，而不是动作、发现、选择或危险上。
+severity: warning
+scope: ending
+type: keywords
+threshold: 1
+message: "章节结尾疑似落在总结或升华上，建议改停在未决动作、发现、选择或危险。"
+keywords:
+  - 他明白了
+  - 她明白了
+  - 他终于明白
+  - 她终于懂得
+  - 他意识到
+  - 她意识到
+  - 真是太
+  - 多么
+  - 竟然如此

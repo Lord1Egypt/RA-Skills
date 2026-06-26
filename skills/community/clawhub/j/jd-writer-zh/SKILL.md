@@ -1,35 +1,54 @@
 ---
-name: "Jd Writer Zh"
-description: "专为HR和招聘团队设计的中文招聘JD生成工具，输入岗位名称与核心要求， 一键生成结构规范、表达专业的招聘职位描述（Job Description）。覆盖岗位 职责、任职要求、薪资福利等完整模块，适用于互联网、制造、金融、教育等 各行业场景。支持"JD撰写/招聘文案/岗位描述/招聘需求/职位说明书"等多种 表达方式..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jd-writer-zh"
-sourceUrl: "https://clawhub.ai/skills/jd-writer-zh"
+name: jd-writer-zh
+description: >
+  专为HR和招聘团队设计的中文招聘JD生成工具，输入岗位名称与核心要求，  
+  一键生成结构规范、表达专业的招聘职位描述（Job Description）。覆盖岗位  
+  职责、任职要求、薪资福利等完整模块，适用于互联网、制造、金融、教育等  
+  各行业场景。支持"JD撰写/招聘文案/岗位描述/招聘需求/职位说明书"等多种  
+  表达方式触发，帮助HR快速产出高质量招聘内容，提升候选人吸引力。
+tags: [JD撰写, 招聘文案, 岗位描述, job-description, 人力资源, HR, 招聘需求, 职位说明]
 ---
 
-# Jd Writer Zh
+# 中文招聘JD生成器
 
-> 专为HR和招聘团队设计的中文招聘JD生成工具，输入岗位名称与核心要求， 一键生成结构规范、表达专业的招聘职位描述（Job Description）。覆盖岗位 职责、任职要求、薪资福利等完整模块，适用于互联网、制造、金融、教育等 各行业场景。支持"JD撰写/招聘文案/岗位描述/招聘需求/职位说明书"等多种 表达方式...
+输入岗位名称与核心要求，自动生成结构完整、语言专业的中文招聘职位描述（JD）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jd-writer-zh`
-- **Source URL:** [https://clawhub.ai/skills/jd-writer-zh](https://clawhub.ai/skills/jd-writer-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写一份高级产品经理的招聘JD，要求5年以上经验，熟悉ToB产品"
+- "我要招一名Java后端工程师，请帮我生成招聘需求文案，薪资20-35K"
+- "请帮我撰写市场运营专员的岗位描述，互联网行业，应届生也可以"
+- "生成一份数据分析师的job description，需要会Python和SQL"
+- "写一个销售总监的招聘JD，快消行业，要求有团队管理经验"
 
+## Examples
+输入：高级UI设计师，互联网公司，要求3年以上经验，熟悉Figma，薪资15-25K
+输出：
+**【高级UI设计师】**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jd-writer-zh
-```
+**公司简介**
+我们是一家快速成长的互联网科技公司，致力于打造极致用户体验的数字产品。
+
+**岗位职责**
+1. 负责公司核心产品的UI界面设计，包括移动端与PC端的视觉规范制定；
+2. 深度参与产品需求评审，从用户视角提出设计优化方案；
+3. 与产品、研发团队紧密协作，确保设计还原度与落地质量；
+4. 建立并维护设计组件库，推动设计系统化与标准化；
+5. 关注行业设计趋势，持续提升产品视觉竞争力。
+
+**任职要求**
+1. 本科及以上学历，设计相关专业优先；
+2. 3年以上UI设计工作经验，有互联网产品设计经验者优先；
+3. 熟练使用Figma、Sketch等主流设计工具；
+4. 具备扎实的视觉设计功底，审美能力强，作品集优秀；
+5. 良好的沟通表达能力，能够清晰阐述设计思路。
+
+**薪资福利**
+- 薪资范围：15,000 - 25,000元/月（根据能力面议）
+- 五险一金 | 弹性工作制 | 带薪年假 | 定期团建
+- 完善晋升通道，优秀者可快速成长为设计负责人
+
+📍 工作地点：[城市]  |  🕐 工作性质：全职

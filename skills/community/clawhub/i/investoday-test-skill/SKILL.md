@@ -1,35 +1,21 @@
 ---
-name: "investoday-test-skill"
-description: "优先级"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-test-skill"
-sourceUrl: "https://clawhub.ai/skills/investoday-test-skill"
+name: test-skill
+title: 这是一个优先级的skill
+description: 优先级
 ---
 
-# investoday-test-skill
+### 中期优先级（1-3月视角）
 
-> 优先级
+| 排名 | 板块 | 理由 |
+|------|------|------|
+| 1 | **消费电子** | PE 38% 分位估值最低 + 盈利预测 +15.8% 增长确定 + 拥挤度最低，性价比最高 |
+| 2 | **半导体** | 景气上行 + 盈利预测 +32.5% 最高，但估值 72% 分位偏高，需消化 |
+| 3 | **AI应用** | 盈利模式待验证 + ROE 仅 8.5% 最低，中期需要业绩兑现 |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-test-skill`
-- **Source URL:** [https://clawhub.ai/skills/investoday-test-skill](https://clawhub.ai/skills/investoday-test-skill)
+## 七、结论与优先级
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-test-skill
-```
+1. **短期看半导体**：硬催化（景气加速+国产替代）+ 资金持续流入，是当前市场主线。但 PE 72% 分位 + 近3月涨幅 +28.72%，拥挤风险需警惕
+2. **中期看消费电子**：PE 38% 分位估值最低、拥挤度最低、增长确定性高（+15.8%），是三个板块中性价比最高的方向，适合左侧布局
+3. **AI应用介于两者之间**：受益于 AI 算力主线扩散，短期有资金关注，但 ROE 仅 8.5%，盈利模式尚未完全验证，中期需要业绩兑现
+4. 配置建议方向：短期可跟踪半导体主线（控制仓位），中期逐步向消费电子倾斜（等待催化信号）
+5. 核心风险：半导体拥挤度偏高，若 AI 算力需求预期下修可能触发回调

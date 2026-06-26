@@ -1,0 +1,30 @@
+<!-- ca-cards-4 — 四列卡片，2×2网格 -->
+<div class="content-area" style="align-items:flex-start;padding:40px 80px;flex-direction:column">
+  {{#if title}}
+  <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 24px 0;width:100%">{{title}}</h2>
+  {{/if}}
+  <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;width:100%;flex:1">
+    {{#each cards}}
+    <div style="background:var(--color-bg);border:2px solid var(--color-border);border-radius:16px;padding:24px;display:flex;flex-direction:column;position:relative">
+      {{#if badge}}
+      <div style="position:absolute;top:-10px;left:16px;padding:3px 14px;border-radius:9999px;background:var(--color-primary);color:#fff;font-family:var(--font);font-size:12px;font-weight:600">{{badge}}</div>
+      {{/if}}
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        {{#if icon}}
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--color-primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#{{icon}}"/>
+          </svg>
+        </div>
+        {{/if}}
+        <h3 style="font-family:var(--font);font-size:18px;font-weight:600;color:var(--color-text);margin:0">{{card_title}}</h3>
+      </div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;flex:1">
+        {{#each items}}
+        <li style="font-family:var(--font);font-size:14px;color:var(--color-text-secondary);line-height:1.5;">{{text}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/each}}
+  </div>
+</div>

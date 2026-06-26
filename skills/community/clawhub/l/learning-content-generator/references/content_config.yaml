@@ -1,0 +1,331 @@
+# 权威学习内容生成器配置文件
+# 版本: 1.0.0
+# 生成时间: 2026年4月16日
+
+# 内容质量标准
+content_quality_standards:
+  authoritative_content_ratio: 0.75    # 权威内容比例
+  direct_citation_ratio: 0.40          # 直接引用比例
+  frontier_content_ratio: 0.15         # 前沿内容比例
+  citation_completeness: 1.0           # 引用完整性
+  technical_accuracy: 0.95             # 技术准确性
+  learning_effectiveness: 0.90         # 学习有效性
+  readability_score: 0.85              # 可读性评分
+  structure_coherence: 0.90            # 结构一致性
+
+# 时长控制规则
+duration_control_rules:
+  words_per_minute: 150                # 每分钟阅读字数
+  audio_words_per_minute: 120          # 每分钟语音字数
+  total_minutes: 25                    # 总时长
+  text_reading_minutes: 15             # 文字阅读时长
+  audio_listening_minutes: 10          # 语音听学时長
+  practice_minutes: 5                  # 练习时长
+  review_minutes: 5                    # 复习时长
+  
+  # 字数控制
+  min_words_per_unit: 2000             # 每个单元最少字数
+  max_words_per_unit: 5000             # 每个单元最多字数
+  recommended_words_per_unit: 3500     # 推荐字数
+
+# 权威来源配置
+authoritative_source_types:
+  national_standards:
+    priority: 1
+    validation_method: "国家标准全文公开系统"
+    example: "GB/T 42752-2023"
+    required_fields: ["标准号", "名称", "发布机构", "实施日期"]
+  
+  academic_literature:
+    priority: 2
+    validation_method: "DOI/ISBN验证"
+    example: "DOI: 10.1109/TBLOCK.2024.1234567"
+    required_fields: ["标题", "作者", "期刊/会议", "年份", "卷期页码"]
+  
+  official_reports:
+    priority: 3
+    validation_method: "官方网站验证"
+    example: "工信部《区块链技术白皮书（2023年版）》"
+    required_fields: ["标题", "发布机构", "发布日期", "网址"]
+  
+  mooc_courses:
+    priority: 4
+    validation_method: "慕课平台验证"
+    example: "清华大学《区块链技术与应用》"
+    required_fields: ["课程名称", "机构", "平台", "网址"]
+  
+  technical_documentation:
+    priority: 5
+    validation_method: "官方文档验证"
+    example: "以太坊官方文档"
+    required_fields: ["文档名称", "项目/组织", "网址", "语言"]
+
+# 前沿信息来源
+frontier_sources:
+  - name: "官方技术博客"
+    examples: 
+      - "Ethereum Foundation Blog"
+      - "Apache Foundation Blog"
+      - "Google AI Blog"
+      - "Microsoft Research Blog"
+    timeliness: "最近6个月"
+    credibility: "高"
+    
+  - name: "学术会议"
+    examples:
+      - "IEEE Blockchain"
+      - "ACM AFT (Advances in Financial Technologies)"
+      - "AAAI (Association for the Advancement of Artificial Intelligence)"
+      - "NeurIPS (Neural Information Processing Systems)"
+    timeliness: "最近1年"
+    credibility: "高"
+    
+  - name: "行业报告"
+    examples:
+      - "CoinDesk Research"
+      - "BIS (Bank for International Settlements) Reports"
+      - "IMF (International Monetary Fund) Reports"
+      - "Gartner Research"
+    timeliness: "最近1年"
+    credibility: "高"
+    
+  - name: "技术社区"
+    examples:
+      - "GitHub Trending"
+      - "Stack Overflow Insights"
+      - "Hacker News"
+      - "Reddit r/programming"
+    timeliness: "最近3个月"
+    credibility: "中"
+    
+  - name: "专业媒体"
+    examples:
+      - "TechCrunch"
+      - "Wired"
+      - "The Verge"
+      - "MIT Technology Review"
+    timeliness: "最近6个月"
+    credibility: "中"
+
+# 引用格式规范
+citation_formats:
+  national_standard:
+    template: "《{name}》（{number}），{issuer}，{date}实施"
+    example: "《区块链和分布式记账技术 参考架构》（GB/T 42752-2023），国家标准化管理委员会，2023年10月1日实施"
+  
+  academic_paper:
+    template: "{authors}. {title}[J]. {journal}, {year}, {volume}({issue}): {pages}."
+    example: "张三, 李四. 区块链技术综述[J]. 计算机学报, 2023, 45(1): 1-15."
+  
+  online_resource:
+    template: "{title}[EB/OL]. {url}, {date}."
+    example: "区块链技术白皮书（2023年版）[EB/OL]. https://www.miit.gov.cn, 2023-12-01."
+  
+  book:
+    template: "{authors}. {title}[M]. {edition}版. {publisher}: {location}, {year}."
+    example: "陈钟, 祝烈煌. 区块链技术原理与应用[M]. 第3版. 北京: 清华大学出版社, 2024."
+
+# 语音生成配置
+audio_generation_config:
+  recommended_tools:
+    - name: "gTTS"
+      type: "Python库"
+      quality: "基础"
+      cost: "免费"
+      languages: ["zh-cn", "en", "ja", "ko"]
+      installation: "pip install gtts"
+      
+    - name: "百度语音合成"
+      type: "在线API"
+      quality: "良好"
+      cost: "免费额度（5万字符/日）"
+      languages: ["zh", "en", "yue", "cte"]
+      registration: "百度AI开放平台"
+      
+    - name: "讯飞开放平台"
+      type: "在线API"
+      quality: "优秀"
+      cost: "免费额度（500万字符/月）"
+      languages: ["zh-cn", "en-us", "ja-jp"]
+      registration: "讯飞开放平台"
+      
+    - name: "Azure语音服务"
+      type: "在线API"
+      quality: "优秀"
+      cost: "免费额度（500万字符/月）"
+      languages: ["100+种语言"]
+      registration: "Microsoft Azure"
+  
+  segmentation_rules:
+    max_segment_length: 500            # 每段最大字数
+    min_segment_length: 100            # 每段最少字数
+    segment_by_topic: true             # 按主题分段
+    add_transitions: true              # 添加过渡语
+    include_guidance: true             # 包含学习指导
+    segment_markers: ["##", "###"]     # 分段标记
+  
+  audio_quality_settings:
+    sample_rate: 22050                 # 采样率
+    bit_rate: "64k"                    # 比特率
+    channels: 1                        # 声道数（单声道）
+    format: "mp3"                      # 音频格式
+    
+  voice_selection:
+    chinese:
+      - name: "标准女声"
+        speed: 5                       # 语速（1-9）
+        pitch: 5                       # 音调（1-9）
+        volume: 5                      # 音量（1-9）
+      - name: "标准男声"
+        speed: 5
+        pitch: 3
+        volume: 6
+    english:
+      - name: "en-US-Wavenet-A"
+        gender: "female"
+        naturalness: "high"
+
+# 学习内容结构模板
+content_structure_templates:
+  beginner_template:
+    sections:
+      - "权威定义（直接引用）"
+      - "核心概念解释"
+      - "简单示例说明"
+      - "基础练习题目"
+      - "学习要点总结"
+    
+  intermediate_template:
+    sections:
+      - "技术定义和标准"
+      - "原理和机制分析"
+      - "技术实现细节"
+      - "应用案例分析"
+      - "进阶练习题目"
+    
+  advanced_template:
+    sections:
+      - "前沿技术综述"
+      - "深度技术分析"
+      - "研究进展评述"
+      - "挑战和展望"
+      - "研究性题目"
+
+# 评估问题类型
+assessment_question_types:
+  concept_understanding:
+    weight: 0.3
+    formats: ["解释题", "选择题", "判断题"]
+    example: "请用自己的话解释区块链的核心概念"
+    
+  technical_knowledge:
+    weight: 0.4
+    formats: ["简答题", "分析题", "计算题"]
+    example: "分析区块链共识机制的工作原理"
+    
+  application_ability:
+    weight: 0.2
+    formats: ["案例分析", "设计题", "解决问题"]
+    example: "设计一个基于区块链的供应链追溯方案"
+    
+  critical_thinking:
+    weight: 0.1
+    formats: ["论述题", "评价题", "展望题"]
+    example: "论述区块链技术面临的挑战和未来发展方向"
+
+# 输出配置
+output_config:
+  markdown:
+    include_toc: true                  # 包含目录
+    include_metadata: true             # 包含元数据
+    include_references: true           # 包含引用列表
+    include_appendix: true             # 包含附录
+    toc_depth: 3                       # 目录深度
+    
+  html:
+    template: "bootstrap"              # HTML模板
+    responsive: true                   # 响应式设计
+    include_css: true                  # 包含CSS
+    include_js: false                  # 包含JavaScript
+    mathjax: false                     # 数学公式支持
+    
+  pdf:
+    engine: "weasyprint"               # PDF引擎
+    page_size: "A4"                    # 页面大小
+    margin: "2cm"                      # 页边距
+    font_size: "12pt"                  # 字体大小
+    font_family: "SimSun"              # 字体家族
+
+# 验证配置
+validation_config:
+  check_citations: true                # 检查引用
+  validate_urls: true                  # 验证URL
+  check_timeliness: true               # 检查时效性
+  verify_authority: true               # 验证权威性
+  assess_readability: true             # 评估可读性
+  
+  validation_timeout: 10               # 验证超时（秒）
+  max_retries: 3                       # 最大重试次数
+  require_https: true                  # 要求HTTPS
+  cache_results: true                  # 缓存结果
+
+# 更新配置
+update_config:
+  check_updates: true                  # 检查更新
+  update_frequency_days: 30            # 更新频率（天）
+  archive_old_versions: true           # 归档旧版本
+  keep_versions: 5                     # 保留版本数
+  notify_changes: true                 # 通知变更
+
+# 性能配置
+performance_config:
+  max_content_length: 10000            # 最大内容长度（字）
+  processing_timeout: 300              # 处理超时（秒）
+  cache_enabled: true                  # 启用缓存
+  cache_ttl_hours: 24                  # 缓存有效期（小时）
+  parallel_processing: false           # 并行处理
+
+# 扩展配置
+extension_config:
+  # 支持的知识领域
+  supported_domains:
+    blockchain:
+      - "基础概念"
+      - "密码学基础"
+      - "共识机制"
+      - "智能合约"
+      - "DApp开发"
+      - "安全测试"
+      - "系统运维"
+    
+    ai:
+      - "机器学习基础"
+      - "深度学习"
+      - "自然语言处理"
+      - "计算机视觉"
+      - "强化学习"
+    
+    cloud_computing:
+      - "虚拟化技术"
+      - "容器技术"
+      - "微服务架构"
+      - "云原生"
+      - "Serverless"
+  
+  # 插件系统
+  plugins:
+    enabled: true
+    directory: "plugins"
+    auto_load: true
+    required_plugins: ["citation_validator", "content_assessor"]
+
+# 版本信息
+version_info:
+  skill_name: "authoritative-content-generator"
+  version: "1.0.0"
+  author: "书童AI助手"
+  created: "2026-04-16"
+  last_updated: "2026-04-16"
+  license: "MIT"
+  repository: "https://github.com/example/authoritative-content-generator"
+  documentation: "https://docs.example.com/authoritative-content-generator"

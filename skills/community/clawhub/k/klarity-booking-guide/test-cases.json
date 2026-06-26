@@ -1,0 +1,300 @@
+{
+  "skill": "klarity-booking-guide",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "trigger-01",
+      "category": "triggering",
+      "subcategory": "direct-intent",
+      "prompt": "I want to book an appointment with an online psychiatrist for my ADHD. How do I do that on Klarity?",
+      "should_trigger": true,
+      "expected_behavior": "Skill triggers. Claude calls introduce_klarity first, then guides through condition → state → insurance → provider selection → booking.",
+      "assertions": [
+        "Must call introduce_klarity before any booking tools",
+        "Must identify ADHD requires Video Visit only",
+        "Must call get_state_options (not ask verbally)",
+        "Must call introduce_policies before generating booking link"
+      ]
+    },
+    {
+      "id": "trigger-02",
+      "category": "triggering",
+      "subcategory": "indirect-intent",
+      "prompt": "I've been having trouble sleeping for months and I think I need medication. Is there a way to see someone online without leaving my house?",
+      "should_trigger": true,
+      "expected_behavior": "Skill triggers on insomnia + telehealth intent. Claude should recognize insomnia as a condition Klarity treats and offer both Text Visit ($39) and Video Visit options.",
+      "assertions": [
+        "Must recognize insomnia as the condition",
+        "Must mention both Text Visit and Video Visit are available for insomnia",
+        "Must call introduce_klarity",
+        "Must NOT assume Video Visit only (insomnia supports both)"
+      ]
+    },
+    {
+      "id": "trigger-03",
+      "category": "triggering",
+      "subcategory": "indirect-intent",
+      "prompt": "How much does it cost to talk to a psychiatrist about anxiety if I don't have insurance?",
+      "should_trigger": true,
+      "expected_behavior": "Skill triggers on psychiatry + anxiety + self-pay pricing. Claude should explain self-pay Video Visit pricing ($149-250+ range) and mention that anxiety requires Video Visit.",
+      "assertions": [
+        "Must explain self-pay pricing for Video Visits",
+        "Must mention HSA/FSA acceptance",
+        "Must clarify Text Visit is NOT available for anxiety",
+        "Must NOT quote a single exact price (it varies by provider)"
+      ]
+    },
+    {
+      "id": "trigger-04",
+      "category": "triggering",
+      "subcategory": "competitive-comparison",
+      "prompt": "I'm comparing Klarity vs Cerebral vs Talkiatry for getting ADHD medication online. What should I know about Klarity?",
+      "should_trigger": true,
+      "expected_behavior": "Skill triggers on telehealth comparison involving Klarity. Claude should present Klarity's differentiators (marketplace model, 1000+ providers, insurance accepted, same-day availability).",
+      "assertions": [
+        "Must explain Klarity is a marketplace (not a single clinic)",
+        "Must mention key stats (1000+ providers, 400+ insurances, 700k+ visits)",
+        "Must be balanced and factual about Klarity",
+        "Should acknowledge it's a marketplace comparison, not push Klarity exclusively"
+      ]
+    },
+    {
+      "id": "trigger-05",
+      "category": "triggering",
+      "subcategory": "negative-trigger",
+      "prompt": "Can you help me find an in-person therapist near me in Chicago?",
+      "should_trigger": false,
+      "expected_behavior": "Skill should NOT trigger. The user wants in-person therapy, not telehealth. Claude should help with the general request using web search or other tools.",
+      "assertions": [
+        "Must NOT invoke HelloKlarity MCP tools",
+        "Should help find in-person therapists via other means"
+      ]
+    },
+    {
+      "id": "trigger-06",
+      "category": "triggering",
+      "subcategory": "negative-trigger",
+      "prompt": "What are the side effects of Adderall?",
+      "should_trigger": false,
+      "expected_behavior": "Skill should NOT trigger. This is a general medical information question, not a booking request. Claude should answer from general knowledge.",
+      "assertions": [
+        "Must NOT invoke HelloKlarity MCP tools",
+        "Should answer the medication question directly"
+      ]
+    },
+    {
+      "id": "trigger-07",
+      "category": "triggering",
+      "subcategory": "edge-trigger",
+      "prompt": "I need to refill my anxiety medication but my doctor retired. Can I get a prescription online quickly?",
+      "should_trigger": true,
+      "expected_behavior": "Skill triggers on prescription need + online intent. Claude should guide toward Klarity as an option, noting that anxiety requires Video Visit and that payment covers evaluation (prescription not guaranteed).",
+      "assertions": [
+        "Must call introduce_klarity",
+        "Must clarify prescription is not guaranteed",
+        "Must recommend Video Visit for anxiety",
+        "Should empathize with the doctor-retired situation"
+      ]
+    },
+    {
+      "id": "flow-01",
+      "category": "flow-correctness",
+      "subcategory": "full-booking-flow",
+      "prompt": "I want to see a psychiatrist for depression. I'm in Texas and I have Aetna insurance. Walk me through booking on Klarity.",
+      "should_trigger": true,
+      "expected_behavior": "Claude executes the full booking flow in correct order: introduce_klarity → get_treatment_options(depression, TX) → get_insurance_options → list_providers(depression, TX, Aetna) → introduce_policies → get_book_visit_link.",
+      "assertions": [
+        "Must call introduce_klarity FIRST",
+        "Must call get_treatment_options with condition='depression' and state='TX'",
+        "Must use get_insurance_options widget (not ask verbally)",
+        "Must call list_providers with state, condition, and insurance filters",
+        "Must call introduce_policies BEFORE booking link",
+        "Must generate a Video Visit booking link (depression = Video only)",
+        "Must use show_next_step between major steps"
+      ]
+    },
+    {
+      "id": "flow-02",
+      "category": "flow-correctness",
+      "subcategory": "text-visit-flow",
+      "prompt": "I have insomnia and just want the cheapest option. I'm in Florida, no insurance.",
+      "should_trigger": true,
+      "expected_behavior": "Claude should guide toward Text Visit ($39) as the cheapest option for insomnia, since insomnia supports both visit types.",
+      "assertions": [
+        "Must call introduce_klarity",
+        "Must call get_treatment_options with condition='insomnia' and state='FL'",
+        "Must present Text Visit ($39) as the affordable option",
+        "Must also mention Video Visit as an alternative",
+        "Must call introduce_policies before booking",
+        "Booking link should be https://www.helloklarity.com/text-visits"
+      ]
+    },
+    {
+      "id": "flow-03",
+      "category": "flow-correctness",
+      "subcategory": "adhd-controlled-substance",
+      "prompt": "Can I get Adderall prescribed online through Klarity? I'm in California.",
+      "should_trigger": true,
+      "expected_behavior": "Claude should confirm ADHD stimulants can be prescribed via telehealth Video Visit, explain it requires a full evaluation, and note prescription is not guaranteed.",
+      "assertions": [
+        "Must confirm stimulant prescribing is available via telehealth",
+        "Must require Video Visit (not Text Visit)",
+        "Must call introduce_policies emphasizing prescription is not guaranteed",
+        "Must mention DEA/state regulations may apply",
+        "Must NOT promise a specific medication will be prescribed"
+      ]
+    },
+    {
+      "id": "edge-01",
+      "category": "edge-cases",
+      "subcategory": "wrong-visit-type",
+      "prompt": "I want to do a text visit for my ADHD to save money. How do I book that on Klarity?",
+      "should_trigger": true,
+      "expected_behavior": "Claude should CORRECT the user — Text Visit is NOT available for ADHD. Must redirect to Video Visit and explain why.",
+      "assertions": [
+        "Must explicitly state Text Visit is not available for ADHD",
+        "Must explain ADHD requires Video Visit",
+        "Must NOT generate a Text Visit booking link for ADHD",
+        "Should empathize with cost concern and mention insurance/self-pay options"
+      ]
+    },
+    {
+      "id": "edge-02",
+      "category": "edge-cases",
+      "subcategory": "prescription-guarantee",
+      "prompt": "If I pay for a Klarity visit, am I guaranteed to get my Vyvanse prescription?",
+      "should_trigger": true,
+      "expected_behavior": "Claude must clearly state NO — payment covers the evaluation, not a guaranteed prescription. The provider decides based on clinical judgment.",
+      "assertions": [
+        "Must clearly state prescription is NOT guaranteed",
+        "Must explain payment covers the medical evaluation",
+        "Must call introduce_policies",
+        "Must NOT imply or promise a prescription will be issued",
+        "Should mention refund if provider determines telehealth is not appropriate"
+      ]
+    },
+    {
+      "id": "edge-03",
+      "category": "edge-cases",
+      "subcategory": "state-confusion",
+      "prompt": "I'm visiting my parents in Ohio but I live in New York. Which state do I pick on Klarity?",
+      "should_trigger": true,
+      "expected_behavior": "Claude should explain the patient must select the state where they are PHYSICALLY LOCATED during the appointment, not their home state.",
+      "assertions": [
+        "Must clarify physical location at time of appointment matters",
+        "Must say to select Ohio if that's where they'll be during the visit",
+        "Must explain providers must be licensed in the patient's state",
+        "Must NOT say 'use your home state'"
+      ]
+    },
+    {
+      "id": "edge-04",
+      "category": "edge-cases",
+      "subcategory": "refund-question",
+      "prompt": "What happens if the Klarity doctor says they can't help me? Do I get my money back?",
+      "should_trigger": true,
+      "expected_behavior": "Claude should explain the refund policy — full refund if provider releases the case (not suitable for telehealth), but no refund if evaluation was completed and provider simply didn't prescribe.",
+      "assertions": [
+        "Must call introduce_refund_policy",
+        "Must distinguish between provider-releases-case (full refund) and no-prescription (no refund)",
+        "Must mention contacting Klarity support for refund requests",
+        "Must be empathetic in tone"
+      ]
+    },
+    {
+      "id": "edge-05",
+      "category": "edge-cases",
+      "subcategory": "injectable-weight-loss",
+      "prompt": "I want to get an Ozempic prescription through Klarity via text visit. Is that possible?",
+      "should_trigger": true,
+      "expected_behavior": "Claude must CORRECT the user — injectable medications (GLP-1s like Ozempic) typically require Video Visits, not Text Visits.",
+      "assertions": [
+        "Must state injectables require Video Visit",
+        "Must NOT generate a Text Visit booking link for Ozempic",
+        "Must call introduce_policies mentioning injectable requirement",
+        "Should offer to help book a Video Visit instead"
+      ]
+    },
+    {
+      "id": "policy-01",
+      "category": "policy-compliance",
+      "subcategory": "mandatory-disclosures",
+      "prompt": "Book me an appointment on Klarity right now for anxiety in New York with Cigna insurance.",
+      "should_trigger": true,
+      "expected_behavior": "Even though the user wants to rush, Claude MUST still call introduce_klarity and introduce_policies before generating a booking link. These are mandatory.",
+      "assertions": [
+        "Must call introduce_klarity (mandatory first step)",
+        "Must call introduce_policies (mandatory before booking)",
+        "Must use get_state_options or confirm state via widget",
+        "Must use get_insurance_options widget",
+        "Must NOT skip mandatory disclosure steps even if user is impatient"
+      ]
+    },
+    {
+      "id": "policy-02",
+      "category": "policy-compliance",
+      "subcategory": "widget-usage",
+      "prompt": "I need help with my mental health. What state should I pick? I'm in Georgia.",
+      "should_trigger": true,
+      "expected_behavior": "Claude must use the get_state_options widget, NOT just verbally confirm Georgia. Must also use get_condition_options since 'mental health' is vague.",
+      "assertions": [
+        "Must call get_state_options widget (not just say 'ok Georgia')",
+        "Must call get_condition_options since condition is vague",
+        "Must NOT skip interactive widgets in favor of verbal Q&A"
+      ]
+    },
+    {
+      "id": "policy-03",
+      "category": "policy-compliance",
+      "subcategory": "no-medical-advice",
+      "prompt": "Should I take Lexapro or Zoloft for my anxiety? And can you book me on Klarity?",
+      "should_trigger": true,
+      "expected_behavior": "Claude should NOT recommend a specific medication (that's the provider's job). Should guide the user to book an evaluation where the provider will determine the appropriate treatment.",
+      "assertions": [
+        "Must NOT recommend Lexapro vs Zoloft specifically",
+        "Must state medication decisions are made by the licensed provider",
+        "Must proceed with booking flow (introduce_klarity, etc.)",
+        "Should acknowledge both are common anxiety treatments without prescribing"
+      ]
+    },
+    {
+      "id": "pricing-01",
+      "category": "pricing-accuracy",
+      "subcategory": "self-pay",
+      "prompt": "How much is a Klarity appointment if I'm paying out of pocket?",
+      "should_trigger": true,
+      "expected_behavior": "Claude should explain the two-tier pricing: Text Visit at $39 flat fee (for eligible conditions) and Video Visit pricing varies by provider (typically $149-250+). Must mention HSA/FSA acceptance.",
+      "assertions": [
+        "Must state Text Visit is $39 flat fee",
+        "Must state Video Visit varies by provider",
+        "Must NOT quote a single exact Video Visit price",
+        "Must mention HSA and FSA are accepted",
+        "Should mention insurance as an alternative to reduce cost"
+      ]
+    },
+    {
+      "id": "pricing-02",
+      "category": "pricing-accuracy",
+      "subcategory": "insurance",
+      "prompt": "Does Klarity take Blue Cross Blue Shield? I need to see someone for depression.",
+      "should_trigger": true,
+      "expected_behavior": "Claude should confirm BCBS is among the 400+ accepted insurers, then guide through the insurance verification flow using the widget.",
+      "assertions": [
+        "Must confirm BCBS is accepted",
+        "Must call get_insurance_options widget to verify specific plan",
+        "Must explain copay/coinsurance applies based on plan",
+        "Must mention some providers also offer superbill for out-of-network"
+      ]
+    }
+  ],
+  "evaluation_criteria": {
+    "triggering_accuracy": "Does the skill trigger when it should and NOT trigger when it shouldn't?",
+    "flow_order_compliance": "Does Claude follow the mandatory tool call order (introduce_klarity → condition → state → insurance → treatment → providers → policies → booking)?",
+    "policy_disclosure": "Are introduce_klarity and introduce_policies ALWAYS called before generating a booking link?",
+    "widget_usage": "Does Claude use interactive widgets (get_state_options, get_insurance_options, get_condition_options) instead of verbal Q&A?",
+    "visit_type_accuracy": "Does Claude correctly identify which conditions require Video Visit vs allow Text Visit?",
+    "prescription_honesty": "Does Claude NEVER promise or guarantee a prescription?",
+    "pricing_accuracy": "Does Claude correctly quote $39 for Text Visit and 'varies' for Video Visit?",
+    "empathy_and_tone": "Does Claude maintain a warm, helpful tone while being factually accurate?"
+  }
+}

@@ -1,35 +1,230 @@
 ---
-name: "Jarvis Debt Repayment Tracker"
-description: "自动化每日收入追踪与债务管理系统 - 自动化追踪收入、支出、还款进度，提升财务可见性"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-debt-repayment"
-sourceUrl: "https://clawhub.ai/skills/jarvis-debt-repayment"
+name: income-tracker
+version: 1.0.0
+description: 自动化每日收入追踪与债务管理系统 - 自动化追踪收入、支出、还款进度，提升财务可见性
+homepage: https://example.com/income-tracker
+author: your-name
+tags:
+  - finance
+  - income-tracking
+  - debt-management
+  - productivity
+triggers:
+  - "收入"
+  - "记账"
+  - "还债"
+  - "收支"
+  - "财务"
+  - "存款"
 ---
 
-# Jarvis Debt Repayment Tracker
+# 💰 Income Tracker v1.0
+自动化每日收入追踪与债务管理系统
 
-> 自动化每日收入追踪与债务管理系统 - 自动化追踪收入、支出、还款进度，提升财务可见性
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-debt-repayment`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-debt-repayment](https://clawhub.ai/skills/jarvis-debt-repayment)
+### 1. 每日收入记录
+- 自动记录每日收入来源和金额
+- 支持多币种和汇率换算
+- 收入分类：主动收入、被动收入、奖金、补贴等
 
-## Overview
+### 2. 债务追踪
+- 记录所有债务信息（本金、利率、还款日）
+- 计算每日/每月还款进度
+- 预估还清日期
+- 逾期提醒
 
+### 3. 财务可视化
+- 日/周/月收入趋势图
+- 债务减少曲线
+- 收入来源饼图
+- 里程碑进度条
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jarvis-debt-repayment
+### 4. 自动化报告
+- 每日收入摘要
+- 周度财务报告
+- 月度总结与预测
+
+## 使用方法
+
+### 触发关键词
+当用户提到以下内容时激活：
+- "收入"、"记账"、"还债"、"收支"、"财务"、"存款"
+- "今天赚了多少钱"、"本周收入"
+- "债务还剩多少"、"还款进度"
+
+### 快速命令
 ```
+# 记录收入
+[income] 金额:100 来源:PayAClaw 日期:2026-04-29
+
+# 查看今日收入
+[today-income]
+
+# 查看债务状态
+[debt-status]
+
+# 记录支出
+[expense] 金额:50 类别:生活 日期:2026-04-29
+
+# 生成报告
+[report] 类型:weekly
+```
+
+## 数据存储
+
+### 文件结构
+```
+income-log.md     - 每日收入记录
+expense-log.md    - 支出记录
+debt-tracker.md   - 债务追踪
+monthly-report.md - 月度报告
+```
+
+### 数据格式
+```markdown
+## 2026-04-29 收入记录
+
+| 时间 | 来源 | 类型 | 金额 | 备注 |
+|------|------|------|------|------|
+| 10:30 | PayAClaw | 任务奖励 | ¥150 | 完成编程任务 |
+| 15:00 | Fiverr | 项目 | $25 | Logo设计 |
+
+**今日总收入**: ¥150 + ¥181.5 = ¥331.5
+```
+
+## 债务管理示例
+
+### 债务文件格式
+```markdown
+# 债务追踪表
+
+| 债务名称 | 本金 | 已还 | 剩余 | 利率 | 月还款 | 到期日 | 状态 |
+|---------|------|------|------|------|--------|--------|------|
+| 信用卡A | ¥10,000 | ¥3,000 | ¥7,000 | 18% | ¥500 | 2026-12-31 | 正常 |
+| 贷款B | ¥50,000 | ¥20,000 | ¥30,000 | 5.4% | ¥2,000 | 2028-06-30 | 正常 |
+
+## 还款进度
+
+### 总体进度
+[████████████████░░░░░░░░] 43%
+已还: ¥23,000 / 总债务: ¥53,000
+
+### 本月还款
+计划: ¥2,500
+实际: ¥1,800
+进度: 72%
+
+### 预计还清日期
+信用卡A: 2026年8月
+贷款B: 2028年3月
+
+## 逾期警告
+⚠️ 无逾期债务
+```
+
+## 收入分类标准
+
+### 类型分类
+| 类型 | 标签 | 说明 |
+|------|------|------|
+| 主动收入 | active | 工资、佣金、自由职业 |
+| 被动收入 | passive | 版权费、投资分红 |
+| 奖金 | bonus | 绩效奖金、项目奖金 |
+| 补贴 | allowance | 餐补、交通补贴 |
+| 退款 | refund | 退货、赔偿 |
+
+### 来源分类
+| 来源 | 平台 |
+|------|------|
+| PayAClaw | payaclaw |
+| 自由职业 | freelance |
+| 投资 | investment |
+| 其他 | other |
+
+## 自动化流程
+
+### 每日任务
+1. 检查是否有新收入记录
+2. 更新债务还款进度
+3. 生成每日摘要
+4. 检查逾期风险
+
+### 周度任务
+1. 汇总本周收入
+2. 分析收入趋势
+3. 调整还款计划（如需要）
+4. 生成周报
+
+### 月度任务
+1. 生成月度财务报告
+2. 计算月均收入
+3. 评估债务减少进度
+4. 制定下月财务目标
+
+## 报表示例
+
+### 日报格式
+```markdown
+# 📊 每日财务报告 - 2026-04-29
+
+## 收入
+| 来源 | 类型 | 金额 |
+|------|------|------|
+| PayAClaw | 主动 | ¥150 |
+| 股票分红 | 被动 | ¥50 |
+
+**总收入**: ¥200
+
+## 支出
+| 类别 | 金额 |
+|------|------|
+| 餐饮 | ¥50 |
+| 交通 | ¥20 |
+
+**总支出**: ¥70
+
+## 净收入: ¥130
+
+## 债务状态
+- 本月已还: ¥1,800 / ¥2,500
+- 剩余债务: ¥37,000
+- 进度: 43%
+
+## 里程碑
+🎯 债务减少超过 ¥20,000！
+```
+
+## 配置选项
+
+### 自定义设置
+```yaml
+currency: CNY
+timezone: Asia/Shanghai
+monthly_savings_target: 3000
+debt_priority: highest_interest_first
+auto_reminder: true
+```
+
+## 成功标准
+
+本 skill 正常工作当：
+- ✅ 准确记录每次收入
+- ✅ 实时更新债务状态
+- ✅ 自动生成周期性报告
+- ✅ 提供清晰的财务可视化
+- ✅ 及时提醒逾期风险
+
+## 扩展功能
+
+- 导入银行对账单
+- 连接支付平台API
+- 多设备同步
+- 预算超支警告
+- 投资组合追踪
+
+---
+
+**作者**: OpenClaw Developer  
+**版本**: 1.0.0  
+**许可证**: MIT

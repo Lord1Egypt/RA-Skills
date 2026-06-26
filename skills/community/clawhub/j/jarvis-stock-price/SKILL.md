@@ -1,35 +1,48 @@
----
-name: "Jarvis Stock Price"
-description: "免费查询沪深A股实时股价，显示涨跌幅、成交量及多期限均线，支持股票代码和名称搜索。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-stock-price"
-sourceUrl: "https://clawhub.ai/skills/jarvis-stock-price"
+# jarvis-stock-price - 股票价格查询
+
+**版本**: 1.0.0
+
+**免费工具** - 快速查询 A 股实时价格
+
 ---
 
-# Jarvis Stock Price
+## 功能
 
-> 免费查询沪深A股实时股价，显示涨跌幅、成交量及多期限均线，支持股票代码和名称搜索。
+- ✅ 查询 A 股实时股价
+- ✅ 显示涨跌幅、成交量
+- ✅ 5 日/10 日/20 日均线
+- ✅ 支持代码/名称搜索
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-stock-price`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-stock-price](https://clawhub.ai/skills/jarvis-stock-price)
+---
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jarvis-stock-price
 ```
+查询股票价格：贵州茅台 / 600519
+```
+
+---
+
+## 升级服务
+
+需要更高级的缠论分析、买卖点监控、实时预警？
+
+👉 **[贾维斯股票监控服务](https://clawhub.ai/15910701838/jarvis-stock-monitor)**
+
+| 套餐 | 价格 | 功能 |
+|------|------|------|
+| 体验版 | ¥99/周 | 3 只股票 + 日报 |
+| 标准版 | ¥299/月 | 10 只股票 + 实时预警 |
+| 专业版 | ¥799/月 | 30 只股票 + 一对一答疑 |
+
+---
+
+## 技术实现
+
+- 数据源：通达信本地数据 / Tushare
+- 更新频率：实时（交易时段）
+- 支持市场：沪深 A 股
+
+---
+
+*免费工具，仅供参考，不构成投资建议*

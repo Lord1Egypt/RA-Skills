@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/get-post-comments/v1 for Weibo Post Comments through JustOneAPI with mid.",
+  "displayName": "Weibo Post Comments",
+  "endpointPath": "get-post-comments",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo post Comments data, including text, authors, and timestamps, for feedback analysis.",
+      "method": "GET",
+      "operationId": "getWeiboPostCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo post mid.",
+          "enumValues": [],
+          "location": "query",
+          "name": "mid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "TIME",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `TIME`: Time\n- `HOT`: Hot",
+          "enumValues": [
+            "TIME",
+            "HOT"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor returned by the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "maxId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-post-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Comments",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_get_post_comments",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-get-post-comments",
+  "sourceTitle": "OpenAPI definition"
+}

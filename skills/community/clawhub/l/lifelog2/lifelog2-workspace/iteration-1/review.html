@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifelog2 技能评测结果</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #666;
+            margin-top: 30px;
+        }
+        .eval-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fafafa;
+        }
+        .eval-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        .prompt {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+        .expected {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #FF9800;
+        }
+        .assertions {
+            margin-top: 15px;
+        }
+        .assertion {
+            display: inline-block;
+            background: #e8f5e9;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin: 4px;
+            font-size: 14px;
+            border: 1px solid #4CAF50;
+        }
+        .feedback-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .skill-info {
+            background: #f3e5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9C27B0;
+        }
+        .save-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .save-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>lifelog2 技能评测</h1>
+        
+        <div class="skill-info">
+            <strong>技能名称：</strong>lifelog2<br>
+            <strong>技能描述：</strong>碎片化日记记录和汇总技能。当用户想要记录当天碎片化的想法、心情、事件，或者需要汇总、存档日记时使用。
+        </div>
+
+        <div class="eval-card">
+            <div class="eval-name">测试用例 1: 单次碎片记录</div>
+            <div class="prompt">
+                <strong>输入：</strong><br>
+                记日记 今天天气真好，心情不错
+            </div>
+            <div class="expected">
+                <strong>预期输出：</strong><br>
+                确认已记录，包含时间戳，不修改原文内容
+            </div>
+            <div class="assertions">
+                <strong>验证项：</strong><br>
+                <span class="assertion">✓ 包含确认标记</span>
+                <span class="assertion">✓ 包含时间戳</span>
+                <span class="assertion">✓ 不修改原文</span>
+            </div>
+            <div class="feedback-section">
+                <strong>反馈：</strong>
+                <textarea placeholder="请留下你的反馈..."></textarea>
+            </div>
+        </div>
+
+        <div class="eval-card">
+            <div class="eval-name">测试用例 2: 多次碎片记录后汇总</div>
+            <div class="prompt">
+                <strong>输入：</strong><br>
+                记日记 早上开会讨论了新项目<br>
+                记日记 中午吃了沙拉，味道一般<br>
+                记日记 下午完成了重要报告<br>
+                汇总日记
+            </div>
+            <div class="expected">
+                <strong>预期输出：</strong><br>
+                汇总所有三条记录，使用无序列表，标题格式为'YYYY 年 M 月 D 日#lifelog'，每条带时间戳
+            </div>
+            <div class="assertions">
+                <strong>验证项：</strong><br>
+                <span class="assertion">✓ 标题格式正确</span>
+                <span class="assertion">✓ 使用无序列表</span>
+                <span class="assertion">✓ 包含所有三条记录</span>
+                <span class="assertion">✓ 保留原文内容</span>
+            </div>
+            <div class="feedback-section">
+                <strong>反馈：</strong>
+                <textarea placeholder="请留下你的反馈..."></textarea>
+            </div>
+        </div>
+
+        <div class="eval-card">
+            <div class="eval-name">测试用例 3: 完整流程测试</div>
+            <div class="prompt">
+                <strong>输入：</strong><br>
+                记日记 今天开始尝试用碎片化方式记录生活<br>
+                记日记 同事分享了好用的工具<br>
+                汇总日记<br>
+                日记存档
+            </div>
+            <div class="expected">
+                <strong>预期输出：</strong><br>
+                完成记录、汇总、存档全流程，存档时调用 flomo-notes 和 ima-skill 技能，最后清理暂存
+            </div>
+            <div class="assertions">
+                <strong>验证项：</strong><br>
+                <span class="assertion">✓ 调用 flomo-notes 技能</span>
+                <span class="assertion">✓ 调用 ima-skill 技能</span>
+                <span class="assertion">✓ 确认存档完成</span>
+                <span class="assertion">✓ 确认暂存清理</span>
+            </div>
+            <div class="feedback-section">
+                <strong>反馈：</strong>
+                <textarea placeholder="请留下你的反馈..."></textarea>
+            </div>
+        </div>
+
+        <button class="save-btn" onclick="saveFeedback()">保存反馈</button>
+    </div>
+
+    <script>
+        function saveFeedback() {
+            const feedbacks = [];
+            const textareas = document.querySelectorAll('textarea');
+            const evalNames = document.querySelectorAll('.eval-name');
+            
+            textareas.forEach((textarea, index) => {
+                if (textarea.value.trim()) {
+                    feedbacks.push({
+                        eval: evalNames[index].textContent,
+                        feedback: textarea.value
+                    });
+                }
+            });
+            
+            const data = {
+                reviews: feedbacks.map((f, i) => ({
+                    run_id: `eval-${i}-with_skill`,
+                    feedback: f.feedback,
+                    timestamp: new Date().toISOString()
+                })),
+                status: 'complete'
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'feedback.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('反馈已保存到 feedback.json 文件！');
+        }
+    </script>
+</body>
+</html>

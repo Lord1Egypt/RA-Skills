@@ -1,35 +1,91 @@
 ---
-name: "KOL Profiler"
-description: "Analyze physician academic influence and collaboration networks"
-category: "other"
-source: "ClawHub"
+name: kol-profiler
+description: Analyze physician academic influence and collaboration networks
+version: 1.0.0
+category: Pharma
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kol-profiler"
-sourceUrl: "https://clawhub.ai/skills/kol-profiler"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
 # KOL Profiler
 
-> Analyze physician academic influence and collaboration networks
+Key Opinion Leader analysis tool.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kol-profiler`
-- **Source URL:** [https://clawhub.ai/skills/kol-profiler](https://clawhub.ai/skills/kol-profiler)
+## Use Cases
+- KOL identification
+- Collaboration mapping
+- Speaker bureau selection
+- Advisory board planning
 
-## Overview
+## Parameters
 
+| Parameter | Type | Default | Required | Description |
+|-----------|------|---------|----------|-------------|
+| `--therapeutic-area` | string | - | Yes | Disease field or therapeutic area |
+| `--geography` | string | global | No | Regional scope (global, US, EU, Asia) |
+| `--metrics` | string | h-index | No | Metrics to analyze (h-index, citations, centrality, all) |
+| `--output`, `-o` | string | stdout | No | Output file path |
+| `--format` | string | json | No | Output format (json, csv, html)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kol-profiler
-```
+## Returns
+- Ranked KOL list
+- Network visualization data
+- Publication timeline
+- Collaboration clusters
+
+## Example
+Oncology KOLs in East Asia with high trial participation
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

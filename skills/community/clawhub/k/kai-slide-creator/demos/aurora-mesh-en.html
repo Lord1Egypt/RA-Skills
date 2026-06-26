@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>kai-slide-creator — Zero-Dependency HTML Presentation Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════
+   AURORA MESH DESIGN TOKENS
+   ═══════════════════════════════════════════════ */
+:root {
+  --bg:          #0a0a1a;
+  --accent:      #00f5c4;
+  --accent-rgb:   0,245,196;
+  --text:        #ffffff;
+  --text-body:   rgba(255,255,255,0.70);
+  --text-m:      rgba(255,255,255,0.45);
+  --card-bg:     rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.10);
+  --divider:     rgba(255,255,255,0.15);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --title-size: clamp(1.8rem, 5vw, 4rem);
+  --subtitle-size: clamp(0.85rem, 1.5vw, 1.2rem);
+  --body-size: clamp(0.75rem, 1.3vw, 0.95rem);
+  --slide-padding: clamp(1.5rem, 4vw, 4rem);
+  --content-gap: clamp(1rem, 2vw, 2rem);
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-normal: 0.7s;
+  --text-primary: var(--text);
+  --text-secondary: var(--text-m);
+  --bg-primary: var(--bg);
+}
+
+::selection { background: rgba(0,245,196,0.30); color: #00f5c4; }
+
+/* Reset */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-snap-type: y mandatory;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  height: 100%;
+  background-color: #0a0a1a;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(120,40,200,0.40) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,180,255,0.30) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(0,255,180,0.20) 0%, transparent 50%);
+  animation: auroraDrift 20s ease-in-out infinite alternate;
+  background-size: 200% 200%;
+}
+@keyframes auroraDrift {
+  0%   { background-position: 0% 50%; }
+  33%  { background-position: 50% 20%; }
+  66%  { background-position: 80% 80%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ── Slide Container ── */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--slide-padding);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.slide-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+  max-width: min(90vw, 1000px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Typography ── */
+.a-title {
+  font-family: var(--font-display);
+  font-size: var(--title-size);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.a-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.a-subtitle {
+  font-size: var(--subtitle-size);
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+.a-body {
+  font-size: var(--body-size);
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+.a-label {
+  font-size: clamp(0.6rem, 1vw, 0.7rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.a-accent { color: var(--accent); font-weight: 600; }
+
+/* ── Components ── */
+.g {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: clamp(14px, 2.5vw, 24px);
+}
+
+.stat { text-align: center; padding: clamp(12px, 2vw, 20px); }
+.stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #00f5c4, #00b4d8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat .label {
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  color: var(--text-m);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+.pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 14px; border-radius: 9999px;
+  font-size: clamp(0.6rem, 1vw, 0.7rem);
+  font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(var(--accent-rgb),0.12);
+  border: 1px solid rgba(var(--accent-rgb),0.30);
+  color: var(--accent);
+}
+
+kbd {
+  display: inline-block; padding: 2px 8px;
+  font-size: 0.8em; font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 6px;
+  color: var(--accent);
+  vertical-align: middle;
+}
+
+.co, .info-callout {
+  padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2vw, 18px);
+  border-radius: 10px;
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  line-height: 1.6;
+}
+.co {
+  background: rgba(var(--accent-rgb),0.08);
+  border-left: 3px solid var(--accent);
+  color: rgba(255,255,255,0.80);
+}
+.info-callout {
+  background: rgba(0,180,255,0.08);
+  border-left: 3px solid #00b4d8;
+  color: rgba(255,255,255,0.80);
+}
+
+.cmd {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2vw, 18px);
+  font-family: var(--font-display), monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  color: var(--accent);
+  line-height: 1.6;
+}
+.cmd::before { content: '> '; color: var(--text-m); }
+
+.layer {
+  display: flex; gap: 16px;
+  padding: clamp(8px, 1.2vw, 12px) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  align-items: flex-start;
+}
+.layer:last-child { border-bottom: none; }
+.layer-num {
+  font-family: var(--font-display);
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--accent);
+  min-width: 24px;
+}
+
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 20px); }
+.cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 20px); }
+.cols4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(8px, 1.5vw, 16px); }
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(60px, auto);
+  gap: clamp(8px, 1.5vw, 14px);
+}
+.bento .span2 { grid-column: span 2; }
+
+.a-divider { height: 1px; background: rgba(255,255,255,0.15); margin: clamp(12px, 2vw, 20px) 0; }
+
+.step { position: relative; padding-left: 32px; }
+.step::before {
+  content: attr(data-step);
+  position: absolute; left: 0; top: 0;
+  font-size: 0.65rem; font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Reveal animations ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              transform var(--duration-normal) var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1) { transition-delay: 0.05s; }
+.reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal:nth-child(3) { transition-delay: 0.25s; }
+.reveal:nth-child(4) { transition-delay: 0.35s; }
+
+.chapter-num {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.3), rgba(120,40,200,0.2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.a-eof {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #00f5c4, #00b4d8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+.a-eof-sub {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  color: var(--text-m);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.a-table {
+  width: 100%; border-collapse: collapse;
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+}
+.a-table th {
+  text-align: left; padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  color: var(--accent); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: clamp(0.55rem, 1vw, 0.7rem);
+}
+.a-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: var(--text-body);
+}
+.a-table tr:last-child td { border-bottom: none; }
+
+/* ── Responsive ── */
+@media (max-height: 700px) {
+  :root {
+    --slide-padding: clamp(0.75rem, 3vw, 2rem);
+    --title-size: clamp(1.2rem, 4vw, 2.5rem);
+  }
+}
+@media (max-height: 600px) {
+  :root {
+    --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+    --title-size: clamp(1rem, 3.5vw, 2rem);
+    --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+  }
+  .nav-dots, .keyboard-hint, .decorative { display: none; }
+}
+@media (max-height: 500px) {
+  :root {
+    --slide-padding: clamp(0.4rem, 2vw, 1rem);
+    --title-size: clamp(1rem, 3.5vw, 1.5rem);
+  }
+}
+@media (max-width: 600px) {
+  .cols2, .cols3, .cols4, .bento { grid-template-columns: 1fr; }
+  .bento .span2 { grid-column: span 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.2s !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ═══════════════════════════════════════════════
+   PRESENT MODE CSS
+   ═══════════════════════════════════════════════ */
+#present-btn {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9997;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(var(--accent-rgb),0.2); color: var(--accent);
+  border: 1.5px solid rgba(var(--accent-rgb),0.4);
+  font-size: 1rem; cursor: pointer;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}
+body:hover #present-btn { opacity: 1; pointer-events: auto; }
+#present-btn:hover { background: rgba(var(--accent-rgb),0.35); }
+
+#present-counter {
+  display: none; position: fixed; bottom: 1.4rem; left: 50%;
+  transform: translateX(-50%); z-index: 9997;
+  font-size: 0.65rem; letter-spacing: 0.14em; font-family: var(--font-body);
+  color: var(--text-m); opacity: 0.5;
+}
+
+body.presenting { background: #000 !important; overflow: hidden !important; }
+body.presenting .slide { position: fixed !important; inset: 0; width: 100vw !important; height: 100vh !important; transform-origin: center center; scroll-snap-align: none !important; display: none !important; }
+body.presenting .slide.p-on { display: flex !important; }
+body.presenting .nav-dots,
+body.presenting .keyboard-hint,
+body.presenting .slide-credit { display: none !important; }
+body.presenting #present-btn { display: none !important; }
+body.presenting #present-counter { display: block; }
+
+/* ═══════════════════════════════════════════════
+   PROGRESS BAR & NAV DOTS
+   ═══════════════════════════════════════════════ */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--accent); width: 0%; z-index: 100;
+  transition: width 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════
+   EDIT MODE
+   ═══════════════════════════════════════════════ */
+.edit-hotzone {
+  position: fixed; top: 0; left: 0; width: 48px; height: 48px;
+  z-index: 9990; cursor: pointer;
+}
+.edit-toggle {
+  position: fixed; top: 8px; left: 8px; z-index: 9991;
+  background: rgba(10,10,26,0.8); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px; padding: 3px 8px;
+  font-family: var(--font-body); font-size: 0.65rem;
+  color: var(--text-m); cursor: pointer;
+  opacity: 0; transition: opacity 0.2s;
+}
+.edit-hotzone:hover ~ .edit-toggle,
+.edit-toggle.show { opacity: 0.6; }
+.edit-toggle:hover, .edit-toggle.active { opacity: 1 !important; color: var(--accent); border-color: var(--accent); }
+
+#notes-panel {
+  position: fixed; top: 0; right: 0; width: 320px; height: 100vh;
+  background: rgba(10,10,26,0.95); backdrop-filter: blur(12px);
+  border-left: 1px solid rgba(255,255,255,0.1);
+  z-index: 9992; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.3s ease;
+}
+.edit-toggle.active ~ #notes-panel,
+#notes-panel.active { transform: translateX(0) !important; }
+#notes-panel.collapsed #notes-body { display: none; }
+#notes-panel-header {
+  padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer; font-size: 0.65rem; color: var(--text-m);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  display: flex; align-items: center; justify-content: space-between;
+}
+#notes-panel-header:hover { background: rgba(255,255,255,0.03); }
+#notes-panel-label { flex: 1; }
+#notes-collapse-btn {
+  font-size: 1rem; color: var(--text-m); background: none; border: none;
+  cursor: pointer; transition: transform 0.2s;
+}
+#notes-panel.collapsed #notes-collapse-btn { transform: rotate(180deg); }
+#notes-body { padding: 0 12px 12px; }
+#notes-textarea {
+  width: 100%; height: 72px; min-height: 48px; max-height: 200px;
+  resize: vertical; background: transparent; border: none; outline: none;
+  color: var(--text); font-size: 0.75rem; line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+</style>
+</head>
+<body data-export-progress="true" data-preset="Aurora Mesh">
+
+<div class="progress-bar"></div>
+
+<nav class="nav-dots" aria-label="Slide navigation"></nav>
+
+<!-- ═══════════════════════ SLIDES ═══════════════════════ -->
+
+<!-- Slide 1: Hero — Full-screen declaration -->
+<section class="slide" data-notes="kai-slide-creator product intro, zero dependencies and 21 presets" aria-label="Hero">
+  <div class="slide-content" style="text-align: center; align-items: center;">
+    <div class="reveal a-label" style="margin-bottom: 8px;">Zero-Dependency HTML Presentations</div>
+    <div class="reveal a-title" style="background: linear-gradient(135deg, #fff 30%, rgba(var(--accent-rgb),0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px;">kai-slide-creator</div>
+    <div class="reveal a-subtitle">Three commands. 21 design presets. Pure HTML.<br>No templates, no exports, no platforms.</div>
+    <div class="reveal" style="margin-top: clamp(20px, 3vw, 36px); display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+      <span class="pill">0 Dependencies</span>
+      <span class="pill">21 Presets</span>
+      <span class="pill" style="border-color: rgba(120,40,200,0.30); color: #b388ff; background: rgba(120,40,200,0.12);">Pure HTML</span>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 2: Problem — Split evidence -->
+<section class="slide" data-notes="Three major pain points with existing tools" aria-label="Problem">
+  <div class="slide-content">
+    <div class="reveal a-label" style="margin-bottom: 12px; color: var(--accent);">Core Pain Points</div>
+    <div class="reveal a-h2">Why Do Existing Presentation Tools Always Fall Short?</div>
+    <div class="reveal" style="margin-top: clamp(16px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px;">
+      <div class="layer"><div class="layer-num">01</div><div class="a-body"><span class="a-accent">Complex toolchains</span> — Install dependencies, configure environments, manage versions — too much friction for a single deck</div></div>
+      <div class="layer"><div class="layer-num">02</div><div class="a-body"><span class="a-accent">Generic AI aesthetics</span> — Every slide looks the same: gradients, rounded corners, purple tones, zero identity</div></div>
+      <div class="layer"><div class="layer-num">03</div><div class="a-body"><span class="a-accent">Platform lock-in</span> — Use a platform, get trapped. Files don't export, formats are proprietary</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 3: Discovery — Flow steps -->
+<section class="slide" data-notes="Show the visual selection philosophy" aria-label="Discovery">
+  <div class="slide-content" style="text-align: center; align-items: center;">
+    <div class="reveal a-label" style="margin-bottom: 12px;">Core Philosophy</div>
+    <div class="reveal a-h2" style="text-align: center;">See Styles, Don't Describe Them</div>
+    <div class="reveal" style="margin-top: clamp(20px, 3vw, 36px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 20px);">
+      <div class="g" style="text-align: center;"><div class="stat"><div class="num">3</div><div class="label">Previews</div></div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">Generate 3 style previews</div></div>
+      <div class="g" style="text-align: center; border-color: rgba(var(--accent-rgb),0.30);"><div class="stat"><div class="num">→</div><div class="label">Visual Choice</div></div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">Pick with your eyes</div></div>
+      <div class="g" style="text-align: center;"><div class="stat"><div class="num">21</div><div class="label">Presets</div></div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">Signature visual languages</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 4: Solution — Preset grid -->
+<section class="slide" data-notes="Showcase 21 presets" aria-label="Solution">
+  <div class="slide-content">
+    <div class="reveal a-label" style="margin-bottom: 12px;">Design Presets</div>
+    <div class="reveal a-h2">21 Styles. No Generic AI Look.</div>
+    <div class="reveal" style="margin-top: clamp(12px, 2vw, 20px);">
+      <div class="bento">
+        <div class="g span2" style="border-left: 3px solid var(--accent);"><div class="a-label">Bold Signal</div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 4px;">Pitch decks — high contrast, bold type</div></div>
+        <div class="g" style="border-left: 3px solid var(--accent); border-color: rgba(var(--accent-rgb),0.40); background: rgba(0,245,196,0.08);"><div class="a-label" style="color: var(--accent);">Aurora Mesh</div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 4px;">Product launch — animated gradient, frosted glass</div></div>
+        <div class="g" style="border-left: 3px solid #00b4d8;"><div class="a-label" style="color: #00b4d8;">Terminal Green</div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 4px;">Dev tools — monospace, scan lines</div></div>
+        <div class="g" style="border-left: 3px solid #b388ff;"><div class="a-label" style="color: #b388ff;">Modern Newspaper</div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 4px;">Research — editorial typography</div></div>
+        <div class="g" style="border-left: 3px solid var(--text-m);"><div class="a-label" style="color: var(--text-m);">Enterprise Dark</div><div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 4px;">Data dashboard — dark panels</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Workflow — Flow steps -->
+<section class="slide" data-notes="Three steps to create a presentation" aria-label="Workflow">
+  <div class="slide-content">
+    <div class="reveal a-label" style="margin-bottom: 12px;">Workflow</div>
+    <div class="reveal a-h2">Three Commands. Idea to Deck.</div>
+    <div class="reveal" style="margin-top: clamp(16px, 2vw, 24px);">
+      <div class="cols3">
+        <div class="g"><div class="a-label" style="margin-bottom: 6px; color: var(--accent);">01 Plan</div><div class="a-body" style="line-height: 1.8;"><span class="a-accent">/slide-creator --plan</span><br>Tell the AI what you need</div></div>
+        <div class="g"><div class="a-label" style="margin-bottom: 6px; color: var(--accent);">02 Generate</div><div class="a-body" style="line-height: 1.8;"><span class="a-accent">/slide-creator --generate</span><br>Pick a style, auto-generate</div></div>
+        <div class="g"><div class="a-label" style="margin-bottom: 6px; color: var(--accent);">03 Present</div><div class="a-body" style="line-height: 1.8;"><span class="a-accent">Open in browser</span><br>Zero install, F5 to play</div></div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top: 12px;">
+      <div class="co">Or skip planning — give content + style, generate immediately.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Features — Grid checkpoints -->
+<section class="slide" data-notes="Four key capabilities" aria-label="Features">
+  <div class="slide-content">
+    <div class="reveal a-label" style="margin-bottom: 12px;">Key Features</div>
+    <div class="reveal a-h2">Four Capabilities. Full Workflow.</div>
+    <div class="reveal" style="margin-top: clamp(16px, 2vw, 24px);">
+      <div class="cols2">
+        <div class="g" style="text-align: center;">
+          <div class="stat"><div class="num">F5</div><div class="label">Playback</div></div>
+          <div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">Auto-scale, controls auto-hide</div>
+        </div>
+        <div class="g" style="text-align: center;">
+          <div class="stat"><div class="num">E</div><div class="label">Edit Mode</div></div>
+          <div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">contenteditable, Ctrl+S save</div>
+        </div>
+        <div class="g" style="text-align: center;">
+          <div class="stat"><div class="num">P</div><div class="label">Presenter</div></div>
+          <div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">Notes, timer, sync via BroadcastChannel</div>
+        </div>
+        <div class="g" style="text-align: center;">
+          <div class="stat"><div class="num">PPTX</div><div class="label">Export</div></div>
+          <div class="a-body" style="font-size: clamp(0.65rem, 1vw, 0.75rem); margin-top: 8px;">/kai-html-export to PPTX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 7: Install — Evidence list -->
+<section class="slide" data-notes="Installation methods" aria-label="Install">
+  <div class="slide-content">
+    <div class="reveal a-label" style="margin-bottom: 12px;">Installation</div>
+    <div class="reveal a-h2">One Command. Zero Dependencies.</div>
+    <div class="reveal" style="margin-top: clamp(16px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px;">
+      <div class="g">
+        <div class="a-label" style="margin-bottom: 6px;">Claude Code</div>
+        <div class="a-body">Tell Claude: install kai-slide-creator</div>
+      </div>
+      <div class="g" style="border-color: rgba(var(--accent-rgb),0.30);">
+        <div class="a-label" style="margin-bottom: 6px; color: var(--accent);">OpenClaw</div>
+        <div class="a-body"><span class="a-accent">clawhub install kai-slide-creator</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top: 12px;"><div class="co">Python 3 only. No npm, no node, no build step.</div></div>
+  </div>
+</section>
+
+<!-- Slide 8: CTA — Stacked action -->
+<section class="slide" data-notes="Call to action" aria-label="CTA">
+  <div class="slide-content" style="text-align: center; align-items: center;">
+    <div class="reveal">
+      <span class="pill" style="margin-bottom: 16px;">Start Now</span>
+    </div>
+    <div class="reveal a-title" style="background: linear-gradient(135deg, #fff 30%, rgba(var(--accent-rgb),0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px;">Start Now</div>
+    <div class="a-divider" style="background: rgba(var(--accent-rgb),0.30); margin: 20px auto; max-width: 80px;"></div>
+    <div class="reveal">
+      <div class="cmd" style="text-align: center; font-size: clamp(0.9rem, 1.5vw, 1.2rem);">/slide-creator</div>
+    </div>
+    <div class="reveal a-subtitle" style="margin-top: 12px; text-align: center;">Tell Claude to install kai-slide-creator</div>
+  </div>
+</section>
+
+<!-- Edit mode UI -->
+<div class="edit-hotzone"></div>
+<button class="edit-toggle" id="editToggle">Edit</button>
+
+<div id="notes-panel">
+  <div id="notes-panel-header">
+    <span id="notes-panel-label">SPEAKER NOTES</span>
+    <button id="notes-collapse-btn" aria-label="Collapse notes">&#x25B2;</button>
+  </div>
+  <div id="notes-body">
+    <textarea id="notes-textarea" placeholder="Speaker notes for this slide..."></textarea>
+  </div>
+</div>
+
+<!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+<script>
+class SlidePresentation {
+  constructor() {
+    this.slides = document.querySelectorAll('.slide');
+    this.currentSlide = 0;
+    this.channel = new BroadcastChannel('slide-creator-presenter');
+
+    this.slides[0]?.classList.add('visible');
+    this.slides[0]?.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'));
+
+    this.setupNavDots();
+    this.setupObserver();
+    this.setupKeyboard();
+    this.setupTouch();
+    this.setupWheel();
+    this.setupPresenter();
+    this.updateProgress();
+    this.setupEditor();
+  }
+
+  setupNavDots() {
+    const nav = document.querySelector('.nav-dots');
+    if (!nav) return;
+    this.slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,0.15);transition:all 0.3s;';
+      dot.addEventListener('click', () => this.goTo(i));
+      nav.appendChild(dot);
+    });
+  }
+
+  setupObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          this.currentSlide = Array.prototype.indexOf.call(this.slides, entry.target);
+          this.updateProgress();
+          this.updateDots();
+          this.broadcastState();
+          this.updateNotesPanel();
+        }
+      });
+    }, { threshold: 0.5 });
+    this.slides.forEach(s => observer.observe(s));
+  }
+
+  setupKeyboard() {
+    const _self = this;
+    document.addEventListener('keydown', function(e) {
+      if (e.target.getAttribute('contenteditable')) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault(); self.next();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        e.preventDefault(); self.prev();
+      } else if (e.key === 'Home') { e.preventDefault(); self.goTo(0); }
+      else if (e.key === 'End') { e.preventDefault(); self.goTo(self.slides.length - 1); }
+      else if (e.key === 'p' || e.key === 'P') {
+        const url = location.href.split('?')[0] + '?presenter';
+        window.open(url, 'slide-presenter-' + Date.now(), 'width=1100,menubar=no,toolbar=no');
+      } else if (e.key === 'e' || e.key === 'E') {
+        if (this.editor && !this.editor.active) this.editor.enter();
+        else if (this.editor) this.editor.exit();
+      }
+    });
+  }
+
+  setupTouch() {
+    const _self = this;
+    let startY = 0;
+    document.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const delta = startY - e.changedTouches[0].clientY;
+      if (Math.abs(delta) > 50) delta > 0 ? self.next() : self.prev();
+    });
+  }
+
+  setupWheel() {
+    // scroll-snap-type: y mandatory handles wheel natively
+  }
+
+  setupPresenter() {
+    const _self = this;
+    this.channel.addEventListener('message', function(e) {
+      if (e.data.type === 'nav-next') self.next();
+      else if (e.data.type === 'nav-prev') self.prev();
+      else if (e.data.type === 'request-state') self.broadcastState();
+    });
+  }
+
+  broadcastState() {
+    const slide = this.slides[this.currentSlide];
+    this.channel.postMessage({
+      type: 'state',
+      index: this.currentSlide,
+      total: this.slides.length,
+      notes: slide?.dataset.notes || ''
+    });
+  }
+
+  goTo(index) {
+    this.slides[index]?.scrollIntoView({ behavior: 'smooth' });
+  }
+  next() { this.goTo(Math.min(this.currentSlide + 1, this.slides.length - 1)); }
+  prev() { this.goTo(Math.max(this.currentSlide - 1, 0)); }
+
+  updateProgress() {
+    const pct = (this.currentSlide / (this.slides.length - 1)) * 100;
+    const bar = document.querySelector('.progress-bar');
+    if (bar) bar.style.width = pct + '%';
+    var counter = document.getElementById('present-counter');
+    if (counter) counter.textContent = (this.currentSlide + 1) + ' / ' + this.slides.length;
+  }
+
+  updateDots() {
+    document.querySelectorAll('.nav-dots button').forEach((dot, i) => {
+      dot.style.background = i === this.currentSlide ? 'var(--accent)' : 'rgba(255,255,255,0.15)';
+      dot.style.transform = i === this.currentSlide ? 'scale(1.4)' : 'scale(1)';
+    });
+  }
+
+  setupEditor() {
+    const _self = this;
+    const panel = document.getElementById('notes-panel');
+    const label = document.getElementById('notes-panel-label');
+    const textarea = document.getElementById('notes-textarea');
+    const toggle = document.getElementById('editToggle');
+    const hotzone = document.querySelector('.edit-hotzone');
+    let hideTimeout = null;
+
+    hotzone.addEventListener('mouseenter', function() { clearTimeout(hideTimeout); toggle.classList.add('show'); });
+    hotzone.addEventListener('mouseleave', function() { hideTimeout = setTimeout(function() { if (!this.editor?.active) toggle.classList.remove('show'); }, 400); });
+    toggle.addEventListener('mouseenter', function() { clearTimeout(hideTimeout); });
+    toggle.addEventListener('mouseleave', function() { hideTimeout = setTimeout(function() { if (!this.editor?.active) toggle.classList.remove('show'); }, 400); });
+    hotzone.addEventListener('click', function() { self.editor.toggle(); });
+    toggle.addEventListener('click', function() { self.editor.toggle(); });
+
+    document.getElementById('notes-panel-header').addEventListener('click', function() {
+      panel.classList.toggle('collapsed');
+    });
+
+    textarea.addEventListener('input', function() {
+      const slide = self.slides[self.currentSlide];
+      if (slide) { slide.dataset.notes = textarea.value; self.broadcastState(); }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault(); self.saveFile();
+      }
+    });
+
+    this.editor = {
+      active: false,
+      toggle: function() { self.editor.active ? self.editor.exit() : self.editor.enter(); },
+      enter: function() {
+        self.editor.active = true;
+        toggle.classList.add('active');
+        toggle.textContent = 'Done';
+        self.slides.forEach(function(s) {
+          s.querySelectorAll('h1,h2,h3,p,li,span,td,th').forEach(function(el) {
+            el.setAttribute('contenteditable', 'true');
+            el.style.outline = 'none';
+          });
+        });
+        panel.classList.add('active');
+        self.updateNotesPanel();
+      },
+      exit: function() {
+        self.editor.active = false;
+        toggle.classList.remove('active');
+        toggle.textContent = 'Edit';
+        self.slides.forEach(function(s) {
+          s.querySelectorAll('[contenteditable]').forEach(function(el) {
+            el.removeAttribute('contenteditable');
+            el.style.outline = '';
+          });
+        });
+        panel.classList.remove('active');
+      }
+    };
+
+    this._notesLabel = label;
+    this._notesTextarea = textarea;
+  }
+
+  updateNotesPanel() {
+    if (!this.editor?.active) return;
+    const slide = this.slides[this.currentSlide];
+    this._notesLabel.textContent = 'SPEAKER NOTES — SLIDE ' + (this.currentSlide + 1) + ' / ' + this.slides.length;
+    this._notesTextarea.value = slide?.dataset.notes || '';
+  }
+
+  saveFile() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = document.title + '.html';
+    a.click();
+  }
+}
+
+/* ═══════════════════════ PRESENTER MODE ═══════════════════════ */
+if (new URLSearchParams(location.search).has('presenter')) {
+  document.title = 'Presenter — ' + document.title;
+  document.body.innerHTML =
+    '<style>*{box-sizing:border-box;margin:0}body{background:#111;color:#fff;font-family:system-ui,sans-serif}#pv{display:grid;grid-template-columns:1fr 220px;gap:1rem;padding:1.25rem;align-items:start}.pv-panel{background:#1e1e1e;border-radius:12px;padding:1.25rem}#pv-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.6rem}#pv-notes{font-size:1.05rem;line-height:1.85;color:#d0d0d0}#pv-right{display:flex;flex-direction:column;gap:1rem}#pv-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem}.pv-arrow{width:32px;height:32px;border-radius:6px;border:1px solid #333;background:#2a2a2a;color:#aaa;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;flex-shrink:0}.pv-arrow:hover{background:#383838;color:#fff}#pv-counter{text-align:center;flex:1}#pv-num{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}#pv-of{color:#555;font-size:.75rem;margin-top:.2rem}#pv-timer-box{text-align:center}#pv-timer-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.3rem}#pv-timer{font-size:1.5rem;font-weight:700;font-family:monospace;font-variant-numeric:tabular-nums}</style>' +
+    '<div id="pv"><div class="pv-panel"><div id="pv-label">Speaker Notes</div><div id="pv-notes">Waiting for main window\u2026</div></div><div id="pv-right"><div class="pv-panel"><div id="pv-nav"><button class="pv-arrow" id="pv-prev">\u2190</button><div id="pv-counter"><div id="pv-num">\u2014</div><div id="pv-of">/ \u2014</div></div><button class="pv-arrow" id="pv-next">\u2192</button></div></div><div class="pv-panel" id="pv-timer-box"><div id="pv-timer-label">Elapsed</div><div id="pv-timer">0:00</div></div></div></div>';
+
+  const ch = new BroadcastChannel('slide-creator-presenter');
+  let startTime = null;
+  ch.addEventListener('message', function(e) {
+    if (e.data.type !== 'state') return;
+    if (!startTime) startTime = Date.now();
+    document.getElementById('pv-notes').textContent = e.data.notes || '(no notes for this slide)';
+    document.getElementById('pv-num').textContent = e.data.index + 1;
+    document.getElementById('pv-of').textContent = '/ ' + e.data.total;
+  });
+  ch.postMessage({ type: 'request-state' });
+  setInterval(function() {
+    if (!startTime) return;
+    const s = Math.floor((Date.now() - startTime) / 1000);
+    document.getElementById('pv-timer').textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  }, 1000);
+  document.getElementById('pv-prev').addEventListener('click', function() { ch.postMessage({ type: 'nav-prev' }); });
+  document.getElementById('pv-next').addEventListener('click', function() { ch.postMessage({ type: 'nav-next' }); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') ch.postMessage({ type: 'nav-next' });
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'Backspace') ch.postMessage({ type: 'nav-prev' });
+  });
+} else {
+  /* ═══════════════════════ PRESENT MODE ═══════════════════════ */
+  class PresentMode {
+    constructor(ctrl) {
+      this.ctrl = ctrl;
+      this.baseW = 1440; this.baseH = 900;
+      this.active = false;
+      const btn = document.createElement('button');
+      btn.id = 'present-btn'; btn.title = 'Present (F5)';
+      btn.setAttribute('aria-label', 'Present'); btn.textContent = '\u25B6';
+      document.body.appendChild(btn);
+      const counter = document.createElement('div');
+      counter.id = 'present-counter'; document.body.appendChild(counter);
+      btn.addEventListener('click', () => this.enter());
+      document.addEventListener('keydown', e => {
+        if (e.key === 'F5') { e.preventDefault(); this.enter(); }
+        if (e.key === 'Escape' && this.active) this.exit();
+        if ((e.key === 'b' || e.key === 'B') && this.active) document.body.classList.toggle('presenting-black');
+      });
+      document.addEventListener('fullscreenchange', () => { if (this.active) { setTimeout(() => this._scale(), 100); } if (!document.fullscreenElement && this.active) this.exit(); });
+                window.addEventListener('resize', () => { if (this.active) this._scale(); });
+    }
+    enter() {
+      if (this.active) return;
+      this.active = true;
+      document.body.classList.add('presenting');
+      document.documentElement.requestFullscreen?.().catch(() => {});
+      this._scale();
+      this._show(this.ctrl.currentSlide);
+      this._origGoTo = this.ctrl.goTo.bind(this.ctrl);
+      this.ctrl.goTo = (i) => {
+        const idx = Math.max(0, Math.min(i, this.ctrl.slides.length - 1));
+        this.ctrl.currentSlide = idx;
+        this.ctrl.slides.forEach((s, j) => s.classList.toggle('visible', j === idx));
+        this._show(idx);
+        this.ctrl.updateProgress?.();
+        this.ctrl.updateDots?.();
+        this.ctrl.broadcastState?.();
+      };
+    }
+    _reset() {
+                this.ctrl.slides.forEach(slide => { slide.style.transform = ''; slide.classList.remove('p-on'); });
+            }
+    exit() {
+                if (!this.active) return;
+                this.active = false;
+                document.body.classList.remove('presenting', 'presenting-black');
+                this._reset();
+      if (document.fullscreenElement) document.exitFullscreen?.();
+      if (this._origGoTo) { this.ctrl.goTo = this._origGoTo; this._origGoTo = null; }
+      this.ctrl.slides[this.ctrl.currentSlide]?.scrollIntoView({ behavior: 'instant' });
+    }
+    _scale() {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const scale = Math.min(vw / this.baseW, vh / this.baseH);
+                this.ctrl.slides.forEach(slide => { slide.style.transform = 'scale(' + scale + ')'; });
+            }
+    _show(i) {
+      document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('p-on', idx === i));
+      const c = document.getElementById('present-counter');
+      if (c) c.textContent = (i + 1) + ' / ' + this.ctrl.slides.length;
+    }
+
+            _updateCounter() {
+                const c = document.getElementById('present-counter');
+                if (c) c.textContent = (this.ctrl.currentSlide + 1) + ' / ' + this.ctrl.slides.length;
+            }
+  }
+
+  new PresentMode(new SlidePresentation());
+}
+
+/* Watermark */
+(function() {
+  var slides = document.querySelectorAll('.slide');
+  if (!slides.length) return;
+  var last = slides[slides.length - 1];
+  var credit = document.createElement('div');
+  credit.className = 'slide-credit';
+  credit.textContent = 'By kai-slide-creator v2.16.0 \u00B7 Aurora Mesh';
+  last.appendChild(credit);
+})();
+</script>
+</body>
+</html>

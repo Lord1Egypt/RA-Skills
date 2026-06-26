@@ -1,0 +1,22 @@
+[
+  {
+    "id": "obsidian_broken_links",
+    "prompt": "请检查一个 Obsidian vault，里面有 wiki 链接、缺失文件和缺失 heading。输出健康报告和修复建议，但不要直接修改文件。",
+    "expected": "Must scan scope, detect broken wiki links and headings, produce health score, prioritize P0/P1/P2, and avoid destructive changes."
+  },
+  {
+    "id": "notion_export_placeholders",
+    "prompt": "我从 Notion 导出了一批 Markdown，很多页面只有标题或 TODO。请做知识库健康检查。",
+    "expected": "Must identify hollow notes/placeholders, distinguish delete/archive/fill suggestions, and provide safe fix plan."
+  },
+  {
+    "id": "large_wiki_graph",
+    "prompt": "一个 3000 个 Markdown 文件的文档库需要检查孤岛、中心节点和连通分量。请设计检查方案。",
+    "expected": "Must address scalability, summarization, graph metrics, top examples, and avoid flooding context."
+  },
+  {
+    "id": "safe_fix_request",
+    "prompt": "请生成修复脚本清理断链和空文件，但不要自动执行。",
+    "expected": "Must classify fix risks, generate dry-run/review plan, require confirmation for deletes/renames/global rewrites."
+  }
+]

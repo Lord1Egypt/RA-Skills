@@ -1,0 +1,5 @@
+{
+  "name": "invoiceforge-api",
+  "version": "1.0.0",
+  "description": "Generate professional PDF invoices using InvoiceForge API"
+}

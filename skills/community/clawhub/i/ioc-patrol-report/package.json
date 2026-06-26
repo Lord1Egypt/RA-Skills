@@ -1,0 +1,46 @@
+{
+  "name": "ioc-patrol-report",
+  "version": "1.0.0",
+  "description": "为 IOC（智能运营中心）生成智能巡检报告。自动分析设备状态、报警记录、能耗数据，生成专业的巡检日报/周报。支持连接 PostgreSQL 数据库读取实时数据，输出 Markdown/HTML 报告。适用于物业管理、商业综合体、工业园区等场景。",
+  "keywords": [
+    "ioc",
+    "巡检",
+    "报告",
+    "智能运维",
+    "postgresql",
+    "物业管理",
+    "能耗分析",
+    "设备监控"
+  ],
+  "author": "ClawHub",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/skills/ioc-patrol-report"
+  },
+  "main": "scripts/generate_report.py",
+  "scripts": {
+    "daily": "uv run scripts/generate_report.py --type daily",
+    "weekly": "uv run scripts/generate_report.py --type weekly",
+    "test": "pytest tests/"
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "psycopg2-binary": ">=2.9.0",
+    "pyyaml": ">=6.0"
+  },
+  "engines": {
+    "python": ">=3.10"
+  },
+  "categories": [
+    "analytics",
+    "reporting",
+    "iot",
+    "business"
+  ],
+  "skills": {
+    "entry": "scripts/generate_report.py",
+    "config": "config.yaml",
+    "readme": "SKILL.md"
+  }
+}

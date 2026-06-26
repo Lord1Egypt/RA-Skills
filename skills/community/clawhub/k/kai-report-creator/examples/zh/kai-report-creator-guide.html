@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kai-report-creator 使用指南</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/highlight.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+  <style>
+    /* Theme: corporate-blue */
+    :root {
+      --primary: #1F6F50; --primary-light: #E7EFE9; --accent: #C79A2B;
+      --bg: #F8F5EF; --surface: #FFFDF9; --text: #2B2623; --text-muted: #766B63;
+      --border: #E7DDD2; --success: #2F6B50; --warning: #A8741A; --danger: #A34A3F;
+      --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace; --radius: 8px;
+      --report-bg: #F8F5EF; --report-surface: #FFFDF9; --report-text: #2B2623;
+      --report-text-muted: #766B63; --report-border: #E7DDD2; --report-structure: #1F6F50;
+      --report-chip-bg: #F4EAD5; --report-chip-text: #7A6858; --report-chip-border: #E0D4C6;
+      --report-delta-up-bg: #E7F1EA; --report-delta-up-text: #2F6B50;
+      --report-delta-down-bg: #F6E8E6; --report-delta-down-text: #A34A3F;
+      --report-delta-flat-bg: #EEE7DE; --report-delta-flat-text: #766B63;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.58; }
+    h1 { font-size: 2.25rem; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--report-structure); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; color: var(--text); border-left: 3px solid var(--report-structure); padding-left: .75rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-top: 1.1rem; }
+    p { margin: .5rem 0; } a { color: var(--report-structure); }
+    strong { font-weight: 700; } blockquote { border-left: 3px solid var(--border); margin: .75rem 0; padding: .5rem 1rem; color: var(--text-muted); }
+
+    /* Shared Component CSS */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--report-text, var(--text)); line-height: 1.2; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-variant-numeric: lining-nums tabular-nums; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; word-break: break-word; overflow-wrap: break-word; }
+    .kpi-value .kpi-suffix { font-size: .75em; font-weight: 600; line-height: 1.3; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+    .kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); }
+    .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+    .badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--tip { background: #F0FDF4; border-color: #22C55E; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { flex: 1; min-width: 0; line-height: 1.6; font-size: .93rem; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s cubic-bezier(0.22,1,0.36,1), transform .5s cubic-bezier(0.22,1,0.36,1); }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    body.no-animations .fade-in-up { opacity: 1; transform: none; transition: none; }
+    .kpi-grid.stagger-ready .kpi-card { opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity .45s cubic-bezier(0.34,1.56,0.64,1), transform .45s cubic-bezier(0.34,1.56,0.64,1); }
+    .kpi-grid.stagger-ready .kpi-card.visible { opacity: 1; transform: none; }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+
+    /* Export */
+    .export-btn { position: fixed; bottom: 16px; right: 16px; z-index: 10001; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .export-menu { position: fixed; bottom: 52px; right: 16px; z-index: 10001; background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb); border-radius: 6px; overflow: hidden; display: none; box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px; }
+    .export-menu.open { display: block; }
+    .export-item { display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem; background: none; border: none; cursor: pointer; text-align: left; color: var(--text, #111); }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+
+    /* Floating TOC */
+    .toc-sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface); border-right: 1px solid var(--border); font-size: .83rem; z-index: 100; transform: translateX(-100%); transition: transform .28s ease; }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.18); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+    .toc-toggle { position: fixed; top: .75rem; left: .75rem; z-index: 200; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    .main-with-toc { margin-left: 0; }
+
+    /* Summary card */
+    .title-row { display: flex; align-items: flex-end; gap: 1rem; }
+    .title-row h1 { flex: 1; }
+    .card-mode-btn { flex-shrink: 0; margin-bottom: .6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: .28rem .65rem; font-size: .76rem; font-weight: 600; color: var(--text-muted); cursor: pointer; }
+    .card-mode-btn:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+    .sc-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.52); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 2rem; }
+    body.card-mode .sc-overlay { display: flex; }
+    body.card-mode { overflow: hidden; height: 100vh; }
+    .sc-card { position: relative; display: flex; width: min(900px, 92vw); background: #fff; border: 1px solid rgba(0,0,0,.12); border-radius: 8px; overflow: hidden; box-shadow: 0 24px 72px rgba(0,0,0,.3); }
+    .sc-left { flex: 0 0 44%; display: flex; flex-direction: column; padding: 1.8rem 2rem 1.6rem; background: var(--primary); color: #fff; }
+    .sc-label { font-size: .55rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .5; margin-bottom: .55rem; display: flex; align-items: center; gap: .45rem; }
+    .sc-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: currentColor; }
+    .sc-title { font-size: 3.6rem; font-weight: 900; line-height: .96; letter-spacing: -.04em; text-transform: uppercase; margin-bottom: .8rem; word-break: break-word; }
+    .sc-abstract { font-size: .78rem; line-height: 1.6; opacity: .8; flex: 1; }
+    .sc-right { flex: 1; display: flex; flex-direction: column; padding: 1.8rem; border-left: 1px solid var(--border); }
+    .sc-kpi-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 0 .6rem; margin-bottom: .5rem; }
+    .sc-kpi-row { padding: .32rem 0; border-bottom: 1px solid var(--border); }
+    .sc-kpi-row-l { font-size: .56rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+    .sc-kpi-row-v { font-size: 1.15rem; font-weight: 800; color: var(--primary); line-height: 1.15; }
+    .sc-summaries { flex: 1; display: flex; flex-direction: column; }
+    .sc-sum-item { padding: .35rem 0; border-bottom: 1px solid var(--border); }
+    .sc-sum-item:last-child { border-bottom: none; }
+    .sc-sum-name { font-size: .56rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .08em; }
+    .sc-sum-text { font-size: .74rem; color: var(--text); line-height: 1.45; margin-top: .06rem; opacity: .72; }
+    .sc-close { position: absolute; top: .8rem; right: .8rem; z-index: 1; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); border-radius: 3px; width: 24px; height: 24px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .75rem; }
+
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle, .export-btn, .export-menu { display: none !important; }
+      h2 { break-after: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+    @media (max-width: 768px) {
+      .report-wrapper { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <script type="application/json" id="report-summary">
+  {
+    "title": "kai-report-creator 使用指南",
+    "author": "kai-report-creator",
+    "date": "2024-04-07",
+    "abstract": "一行命令生成异步友好的 HTML 报告——决策者 30 秒抓住要点，下游 AI 可解析三层结构。",
+    "sections": ["为什么需要这个技能", "一行命令生成报告", "核心工作流", "报告格式（IR）", "设计理念", "主题选择", "创建自定义主题", "面向 AI 智能体", "安装"],
+    "kpis": [
+      {"label": "零依赖", "value": "单文件 HTML", "trend": ""},
+      {"label": "6 套主题", "value": "企业蓝/极简/深色科技/看板/数据叙事/报纸", "trend": ""},
+      {"label": "9 种组件", "value": "KPI/图表/表格/时间线/流程图/代码块/标注/图片/列表", "trend": ""},
+      {"label": "AI 可读", "value": "三层机器结构", "trend": ""}
+    ]
+  }
+  </script>
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+  <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 打印 / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 保存图片（桌面）</button>
+    <button class="export-item" id="export-png-mobile">📱 保存图片（手机）</button>
+    <button class="export-item" id="export-im-share">💬 IM 分享长图</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="Export">↓ 导出</button>
+
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+    <h4>目录</h4>
+    <a href="#section-why" data-section="为什么需要这个技能">为什么需要这个技能</a>
+    <a href="#section-one-command" data-section="一行命令生成报告">一行命令生成报告</a>
+    <a href="#section-workflow" data-section="核心工作流">核心工作流</a>
+    <a href="#section-ir" data-section="报告格式（IR）">报告格式（IR）</a>
+    <a href="#section-philosophy" data-section="设计理念">设计理念</a>
+    <a href="#section-themes" data-section="主题选择">主题选择</a>
+    <a href="#section-custom-theme" data-section="创建自定义主题">创建自定义主题</a>
+    <a href="#section-ai-agents" data-section="面向 AI 智能体">面向 AI 智能体</a>
+    <a href="#section-install" data-section="安装">安装</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <div class="title-row">
+        <h1>kai-report-creator 使用指南</h1>
+        <button class="card-mode-btn" id="card-mode-btn" title="摘要卡片">⊞ 摘要卡</button>
+      </div>
+      <p class="report-meta">kai-report-creator · 2024-04-07</p>
+
+      <div class="sc-overlay" id="sc-overlay">
+        <div class="sc-card" id="sc-card">
+          <button class="sc-close" id="sc-close" aria-label="Close">✕</button>
+        </div>
+      </div>
+
+      <section data-section="为什么需要这个技能" data-summary="决策者没时间读完所有材料，AI 生成的报告往往一眼就能看出是模板产物，kai-report-creator 解决异步阅读、AI 模板感、机器可读三个问题。">
+        <h2 id="section-why">为什么需要这个技能</h2>
+        <p>决策者没时间读完所有材料。AI 能生成报告，但往往一眼就能看出是模板产物：章节标题像填空、主色泛滥在六种元素上、KPI 不管几个都是三列。</p>
+        <p>kai-report-creator 解决三个问题：</p>
+        <ul>
+          <li><strong>异步阅读</strong> — 报告没有讲述者在场，必须让读者 30 秒内抓住要点</li>
+          <li><strong>AI 模板感</strong> — 90/8/2 配色、字号张力、KPI 网格规则，避免"一眼 AI"</li>
+          <li><strong>机器可读</strong> — 输出内嵌三层结构，下游智能体可自动解析</li>
+        </ul>
+      </section>
+
+      <section data-section="一行命令生成报告" data-summary="零依赖单文件 HTML，6 套主题，9 种组件，三层 AI 可读结构。">
+        <h2 id="section-one-command">一行命令生成报告</h2>
+        <div data-component="kpi" class="kpi-grid fade-in-up">
+          <div class="kpi-card">
+            <div class="kpi-label">零依赖</div>
+            <div class="kpi-value">单文件 HTML</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">6 套主题</div>
+            <div class="kpi-value" style="font-size: 1.1rem;">企业蓝/极简/深色科技/看板/数据叙事/报纸</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">9 种组件</div>
+            <div class="kpi-value" style="font-size: 1rem;">KPI/图表/表格/时间线/流程图/代码块/标注/图片/列表</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">AI 可读</div>
+            <div class="kpi-value">三层机器结构</div>
+          </div>
+        </div>
+        <p><strong>安装后立即可用：</strong></p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-bash">/report --from meeting-notes.md
+/report --from https://example.com/data-page --output market-analysis.html</code></pre>
+        </div>
+        <p>对 Claude 说「安装 https://github.com/kaisersong/report-creator」即可。</p>
+      </section>
+
+      <section data-section="核心工作流" data-summary="一步生成、两阶段流程、Review 优化三种工作模式。">
+        <h2 id="section-workflow">核心工作流</h2>
+        <h3>一步生成</h3>
+        <p>从文档或 URL 直接生成 HTML：</p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-bash">/report --from ./analysis.md --theme corporate-blue
+/report --from https://example.com/report --output summary.html</code></pre>
+        </div>
+        <h3>两阶段流程</h3>
+        <p>复杂报告建议先生成大纲，确认后再渲染：</p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-bash">/report --plan "Q3 销售总结" --from q3-data.csv
+# 编辑生成的 .report.md 文件
+/report --generate q3-sales.report.md</code></pre>
+        </div>
+        <h3>Review 优化</h3>
+        <p>已有报告可用 8 项检查点自动优化：</p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-bash">/report --review market-analysis.html</code></pre>
+        </div>
+        <p>检查点包括：BLUF 开场、标题栈逻辑、去模板腔标题、文字砖块拆解、数据后 takeaway、洞察优于数据、扫读锚点覆盖、条件触发读者指引。</p>
+      </section>
+
+      <section data-section="报告格式（IR）" data-summary="IR 是人机协作的契约：人类自然书写，AI 确定性渲染。">
+        <h2 id="section-ir">报告格式（IR）</h2>
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">IR 是人机协作的契约：人类自然书写，AI 确定性渲染。</div>
+        </div>
+        <p><strong>Frontmatter 声明文档身份：</strong></p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-yaml">---
+title: Q3 销售报告
+theme: corporate-blue
+abstract: "Q3 营收同比增长12%，新客户数创历史新高。"
+---</code></pre>
+        </div>
+        <p><strong>组件块传递结构化数据：</strong></p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-markdown">:::kpi
+- 营收: ¥2,450万 ↑12%
+- 新客户数: 183 ↑8%
+:::
+
+:::chart type=line title="月度营收"
+labels: [7月, 8月, 9月]
+datasets:
+  - data: [780000, 820000, 850000]
+:::
+
+:::timeline
+- 2024-10-15: Q4 目标下发
+- 2024-10-31: 新品发布会
+:::</code></pre>
+        </div>
+      </section>
+
+      <section data-section="设计理念" data-summary="渐进式披露、硅碳协作设计、视觉节奏、异步决策支持、设计质量基线五大原则。">
+        <h2 id="section-philosophy">设计理念</h2>
+        <h3>渐进式披露</h3>
+        <p>命令路由表确保每次只加载必要内容：<code>--plan</code> 不接触 CSS，<code>--generate</code> 只加载一个主题。</p>
+        <h3>硅碳协作设计</h3>
+        <p><strong>输入端：</strong>IR 三层结构（Frontmatter/正文/组件块），人类自然书写。</p>
+        <p><strong>输出端：</strong>HTML 三层 AI 可读结构（文档级/章节级/组件级），机器渐进解析。</p>
+        <p>渐进式披露为双物种设计：IR 为碳基读者揭示结构，HTML 为硅基读者揭示数据。</p>
+        <h3>视觉节奏即认知节拍</h3>
+        <p>禁止连续 3 个纯文字章节，每 4-5 章节必须有视觉锚点（KPI 网格/图表/流程图）。</p>
+        <h3>异步决策支持</h3>
+        <p>报告必须独立承受第一次阅读——读者扫开头、看标题、瞥数据，30 秒内决定是否继续。</p>
+        <h3>设计质量基线</h3>
+        <ul>
+          <li><strong>90/8/2 配色</strong> — 90% 中性面，8% 结构色，2% 弹点</li>
+          <li><strong>10:1 字号张力</strong> — 标题有锚点感，不是标签感</li>
+          <li><strong>KPI 网格规则</strong> — 4 个 KPI 用 2×2，英雄指标用 2fr 1fr 1fr</li>
+          <li><strong>内容气质色调</strong> — 思辨用暖棕、技术用藏蓝、商业用深青绿</li>
+        </ul>
+      </section>
+
+      <section data-section="主题选择" data-summary="6 套主题覆盖商务、学术、技术、看板、叙事、编辑场景。">
+        <h2 id="section-themes">主题选择</h2>
+        <div data-component="table" class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr><th>主题</th><th>风格</th><th>适合场景</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>corporate-blue</td><td>暖感商务</td><td>高管汇报、商业报告</td></tr>
+              <tr><td>minimal</td><td>简洁学术</td><td>研究论文、分析报告</td></tr>
+              <tr><td>dark-tech</td><td>工程感</td><td>运维报告、技术文档</td></tr>
+              <tr><td>dark-board</td><td>看板风格</td><td>架构图、指标看板</td></tr>
+              <tr><td>data-story</td><td>叙事驱动</td><td>年度报告、增长故事</td></tr>
+              <tr><td>newspaper</td><td>编辑感</td><td>行业分析、通讯</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section data-section="创建自定义主题" data-summary="三步创建自定义主题：创建目录、编写 CSS、调用。">
+        <h2 id="section-custom-theme">创建自定义主题</h2>
+        <ol>
+          <li>创建 <code>themes/你的主题/theme.css</code></li>
+          <li>定义 CSS 变量：<code>--primary</code>、<code>--bg</code>、<code>--text</code>、<code>--font-heading</code></li>
+          <li>运行 <code>/report --theme 你的主题 --from file.md</code></li>
+        </ol>
+      </section>
+
+      <section data-section="面向 AI 智能体" data-summary="其他技能可直接调用，HTML 内嵌三层机器可读结构供提取。">
+        <h2 id="section-ai-agents">面向 AI 智能体</h2>
+        <p>其他技能可直接调用：</p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-bash">/report --from ./analysis.md --output summary.html
+/report --from https://example.com/data --theme dark-board</code></pre>
+        </div>
+        <p><strong>提取结构化数据：</strong></p>
+        <div data-component="code" class="code-wrapper">
+          <pre><code class="language-python">from bs4 import BeautifulSoup
+import json
+
+soup = BeautifulSoup(open("report.html"), "html.parser")
+summary = json.loads(soup.find("script", {"id": "report-summary"}).string)
+print(summary["title"], summary["kpis"])</code></pre>
+        </div>
+      </section>
+
+      <section data-section="安装" data-summary="Claude Code 和 OpenClaw 两种安装方式。">
+        <h2 id="section-install">安装</h2>
+        <p><strong>Claude Code：</strong>对 Claude 说「安装 https://github.com/kaisersong/report-creator」</p>
+        <p><strong>OpenClaw：</strong><code>clawhub install kai-report-creator</code></p>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // Scroll-triggered animations
+    const fadeObserver = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+    function staggerGroup(parentSel, childSel, delay) {
+      document.querySelectorAll(parentSel).forEach(parent => {
+        new IntersectionObserver((entries, obs) => {
+          if (!entries[0].isIntersecting) return;
+          obs.disconnect();
+          parent.classList.add('stagger-ready');
+          parent.querySelectorAll(childSel).forEach((el, i) =>
+            setTimeout(() => el.classList.add('visible'), i * delay)
+          );
+        }, { threshold: 0.1 }).observe(parent);
+      });
+    }
+    staggerGroup('.kpi-grid', '.kpi-card', 100);
+
+    // TOC
+    const tocBtn = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    if (tocBtn && tocSidebar) {
+      let locked = false, closeTimer;
+      function openToc() { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded', 'true'); }
+      function scheduleClose() { closeTimer = setTimeout(() => { if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); } }, 150); }
+      tocBtn.addEventListener('mouseenter', openToc);
+      tocSidebar.addEventListener('mouseenter', openToc);
+      tocBtn.addEventListener('mouseleave', scheduleClose);
+      tocSidebar.addEventListener('mouseleave', scheduleClose);
+      tocBtn.addEventListener('click', () => { locked = !locked; tocBtn.classList.toggle('locked', locked); if (locked) openToc(); else scheduleClose(); });
+    }
+
+    // TOC active state
+    const tocLinks = document.querySelectorAll('.toc-sidebar a[data-section]');
+    if (tocLinks.length) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          const id = e.target.dataset.section;
+          const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+          if (link) link.classList.toggle('active', e.isIntersecting);
+        });
+      }, { rootMargin: '-10% 0px -60% 0px' });
+      document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+    }
+
+    // Edit mode
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() { active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done'; document.body.classList.add('edit-mode'); document.querySelectorAll('h1,h2,h3,p,li,td,th').forEach(el => el.setAttribute('contenteditable', 'true')); }
+      function exitEdit() { active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit'; document.body.classList.remove('edit-mode'); document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable')); schedHide(); }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) { active ? exitEdit() : enterEdit(); }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML; const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([html], {type: 'text/html'})), download: location.pathname.split('/').pop() || 'report.html' }); a.click(); URL.revokeObjectURL(a.href); }
+      });
+    })();
+
+    // Export
+    const exportBtn = document.getElementById('export-btn');
+    const exportMenu = document.getElementById('export-menu');
+    if (exportBtn && exportMenu) {
+      exportBtn.addEventListener('click', () => exportMenu.classList.toggle('open'));
+      document.addEventListener('click', e => { if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target)) exportMenu.classList.remove('open'); });
+    }
+
+    // Summary card
+    (function() {
+      const btn = document.getElementById('card-mode-btn');
+      const overlay = document.getElementById('sc-overlay');
+      const card = document.getElementById('sc-card');
+      const closeBtn = document.getElementById('sc-close');
+      if (!btn || !overlay || !card) return;
+      const summary = JSON.parse(document.getElementById('report-summary').textContent);
+      function buildCard() {
+        const left = document.createElement('div');
+        left.className = 'sc-left';
+        left.innerHTML = `<div class="sc-label">Report Summary</div><div class="sc-title">${summary.title.replace(/([^\s]{8,12})/g, '$1<br>')}</div><div class="sc-abstract">${summary.abstract}</div>`;
+        const right = document.createElement('div');
+        right.className = 'sc-right';
+        let kpiHtml = '<div class="sc-kpi-rows">';
+        summary.kpis.slice(0, 4).forEach(k => { kpiHtml += `<div class="sc-kpi-row"><div class="sc-kpi-row-l">${k.label}</div><div class="sc-kpi-row-v">${k.value}</div></div>`; });
+        kpiHtml += '</div><div class="sc-summaries">';
+        summary.sections.forEach(s => { kpiHtml += `<div class="sc-sum-item"><div class="sc-sum-name">${s}</div></div>`; });
+        kpiHtml += '</div>';
+        right.innerHTML = kpiHtml;
+        card.querySelectorAll('.sc-left, .sc-right').forEach(el => el.remove());
+        card.appendChild(left);
+        card.appendChild(right);
+      }
+      btn.addEventListener('click', () => { buildCard(); document.body.classList.add('card-mode'); });
+      closeBtn.addEventListener('click', () => document.body.classList.remove('card-mode'));
+      overlay.addEventListener('click', e => { if (e.target === overlay) document.body.classList.remove('card-mode'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') document.body.classList.remove('card-mode'); });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+{
+  "name": "knowledge-card-factory",
+  "version": "1.0.0",
+  "description": "智能知识卡片生产流水线 - 从选题到发布的全自动化解决方案",
+  "author": "OpenClaw AgentSkills Architect",
+  "created": "2026-03-22",
+  
+  "metadata": {
+    "category": "content-automation",
+    "tags": ["content-creation", "social-media", "ai-workflow", "productivity"],
+    "estimated_time": "5-10 minutes",
+    "difficulty": "intermediate"
+  },
+
+  "dependencies": {
+    "required": [
+      {
+        "name": "brave-search",
+        "purpose": "热点发现与网络搜索",
+        "source": "https://clawhub.ai/brave-search"
+      },
+      {
+        "name": "agent-reach",
+        "purpose": "多平台内容抓取",
+        "source": "https://clawhub.ai/agent-reach"
+      },
+      {
+        "name": "nano-banana-pro",
+        "purpose": "AI 图片生成",
+        "source": "https://clawhub.ai/nano-banana-pro"
+      },
+      {
+        "name": "xiaohongshu-mcp",
+        "purpose": "小红书发布",
+        "source": "https://clawhub.ai/xiaohongshu-mcp"
+      }
+    ],
+    "optional": [
+      {
+        "name": "card-renderer",
+        "purpose": "知识卡片样式渲染",
+        "source": "https://clawhub.ai/card-renderer"
+      },
+      {
+        "name": "weather",
+        "purpose": "天气数据获取",
+        "source": "https://clawhub.ai/weather"
+      },
+      {
+        "name": "feishu-doc",
+        "purpose": "飞书文档协同",
+        "source": "https://clawhub.ai/feishu-doc"
+      },
+      {
+        "name": "summarize",
+        "purpose": "内容摘要生成",
+        "source": "https://clawhub.ai/summarize"
+      }
+    ]
+  },
+
+  "stages": [
+    {
+      "id": "discover",
+      "name": "热点发现",
+      "description": "搜索热点话题和趋势数据",
+      "skills": ["brave-search"],
+      "config": {
+        "result_limit": 10,
+        "freshness": "week",
+        "language": "zh"
+      },
+      "inputs": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "搜索关键词或主题"
+        },
+        "freshness": {
+          "type": "string",
+          "default": "week",
+          "enum": ["day", "week", "month"],
+          "description": "内容时效性"
+        }
+      },
+      "outputs": {
+        "topics": {
+          "type": "array",
+          "description": "热点话题列表"
+        },
+        "news": {
+          "type": "array",
+          "description": "相关新闻报道"
+        },
+        "data_points": {
+          "type": "object",
+          "description": "关键数据点"
+        }
+      }
+    },
+    {
+      "id": "research",
+      "name": "内容深挖",
+      "description": "跨平台抓取和聚合内容",
+      "skills": ["agent-reach"],
+      "depends_on": ["discover"],
+      "config": {
+        "platforms": ["twitter", "xiaohongshu", "wechat", "bilibili"],
+        "max_results_per_platform": 5,
+        "extract_images": true
+      },
+      "inputs": {
+        "topics": {
+          "type": "array",
+          "source": "discover.topics"
+        },
+        "platforms": {
+          "type": "array",
+          "default": ["twitter", "xiaohongshu", "wechat"]
+        }
+      },
+      "outputs": {
+        "content": {
+          "type": "array",
+          "description": "聚合的内容列表"
+        },
+        "insights": {
+          "type": "array",
+          "description": "提取的核心观点"
+        },
+        "images": {
+          "type": "array",
+          "description": "相关图片资源"
+        }
+      }
+    },
+    {
+      "id": "create",
+      "name": "卡片创作",
+      "description": "生成知识卡片和配套文案",
+      "skills": ["nano-banana-pro", "card-renderer"],
+      "depends_on": ["research"],
+      "config": {
+        "default_style": "cyberpunk",
+        "image_size": "1024x1024",
+        "card_template": "knowledge-card"
+      },
+      "inputs": {
+        "insights": {
+          "type": "array",
+          "source": "research.insights"
+        },
+        "style": {
+          "type": "string",
+          "default": "cyberpunk",
+          "enum": ["cyberpunk", "minimalist", "bauhaus", "mac-pro"]
+        },
+        "custom_prompt": {
+          "type": "string",
+          "required": false,
+          "description": "自定义图片生成提示词"
+        }
+      },
+      "outputs": {
+        "card_image": {
+          "type": "file",
+          "description": "生成的知识卡片图片"
+        },
+        "caption": {
+          "type": "string",
+          "description": "配套文案"
+        },
+        "tags": {
+          "type": "array",
+          "description": "推荐话题标签"
+        }
+      }
+    },
+    {
+      "id": "publish",
+      "name": "多端发布",
+      "description": "发布到社交媒体平台",
+      "skills": ["xiaohongshu-mcp"],
+      "depends_on": ["create"],
+      "config": {
+        "auto_publish": false,
+        "require_confirmation": true,
+        "save_draft_on_failure": true
+      },
+      "inputs": {
+        "card_image": {
+          "type": "file",
+          "source": "create.card_image"
+        },
+        "caption": {
+          "type": "string",
+          "source": "create.caption"
+        },
+        "tags": {
+          "type": "array",
+          "source": "create.tags"
+        },
+        "platforms": {
+          "type": "array",
+          "default": ["xiaohongshu"]
+        }
+      },
+      "outputs": {
+        "publish_results": {
+          "type": "array",
+          "description": "各平台发布结果"
+        },
+        "urls": {
+          "type": "array",
+          "description": "发布链接"
+        }
+      }
+    }
+  ],
+
+  "error_handling": {
+    "retry_policy": {
+      "max_retries": 3,
+      "backoff": "exponential",
+      "initial_delay_ms": 1000
+    },
+    "fallback_actions": {
+      "search_failure": "use_cached_data",
+      "image_generation_failure": "generate_text_card",
+      "publish_failure": "save_local_draft"
+    },
+    "notifications": {
+      "on_error": true,
+      "on_success": true,
+      "channels": ["feishu", "email"]
+    }
+  },
+
+  "execution": {
+    "mode": "sequential",
+    "timeout_ms": 300000,
+    "checkpoint_enabled": true,
+    "resume_from_checkpoint": true
+  },
+
+  "templates": {
+    "caption_template": "# {title}\n\n{summary}\n\n{insights}\n\n{hashtags}",
+    "image_prompt_template": "Create a {style} style illustration about {topic}, featuring {key_elements}, modern, clean design, suitable for social media"
+  }
+}

@@ -1,35 +1,59 @@
 ---
-name: "JD.com API"
-description: "Analyze JD.com workflows with JustOneAPI, including product Details, product Comments, and shop Product List."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/justoneapi-jd"
-sourceUrl: "https://clawhub.ai/skills/justoneapi-jd"
+name: JD.com API
+description: Analyze JD.com workflows with JustOneAPI, including product Details, product Comments, and shop Product List.
+author: JustOneAPI
+homepage: https://api.justoneapi.com
+metadata: {"openclaw":{"homepage":"https://api.justoneapi.com","primaryEnv":"JUST_ONE_API_TOKEN","requires":{"bins":["node"],"env":["JUST_ONE_API_TOKEN"]},"skillKey":"justoneapi_jd"}}
 ---
 
-# JD.com API
+# JD.com
 
-> Analyze JD.com workflows with JustOneAPI, including product Details, product Comments, and shop Product List.
+This skill wraps 3 JD.com operations exposed by JustOneAPI. It is strongest for product Details, product Comments, and shop Product List. Expect common inputs such as `itemId`, `page`, `shopId`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/justoneapi-jd`
-- **Source URL:** [https://clawhub.ai/skills/justoneapi-jd](https://clawhub.ai/skills/justoneapi-jd)
+## When To Use It
 
-## Overview
+- The user needs product Details or product Comments on JD.com.
+- The task lines up with shop Product List rather than a generic cross-platform workflow.
+- The user can provide identifiers or filters such as `itemId`, `page`, `shopId`.
+- The user wants an exact API-backed answer instead of a freeform summary.
 
+## Representative Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `getJdItemDetailV1`: Product Details — Get JD.com product Details data, including pricing, images, and shop information, for catalog analysis, product monitoring, and ecommerce research
+- `getItemCommentsV1`: Product Comments — Get JD.com product Comments data, including ratings, timestamps, and reviewer signals, for customer feedback analysis and product research
+- `getJdShopItemListV1`: Shop Product List — Get JD.com shop Product List data, including item titles, prices, and images, for catalog tracking and seller research
+
+## Request Pattern
+
+- 3 operations are available in this skill.
+- HTTP methods used here: `GET`.
+- The most common non-token parameters are `itemId`, `page`, `shopId`.
+- All operations in this skill are parameter-driven requests; none require a request body.
+
+## How To Work
+
+1. Read `generated/operations.md` before choosing an endpoint.
+2. Start with one of these operations when it matches the user's request: `getJdItemDetailV1`, `getItemCommentsV1`, `getJdShopItemListV1`.
+3. Pick the smallest matching operation instead of guessing.
+4. Ask the user for any missing required parameter. Do not invent values.
+5. Call the helper with:
+
 ```bash
-hermes skills install clawhub/justoneapi-jd
+node {baseDir}/bin/run.mjs --operation "<operation-id>" --token "$JUST_ONE_API_TOKEN" --params-json '{"key":"value"}'
 ```
+
+## Environment
+
+- Required: `JUST_ONE_API_TOKEN`
+- This skill uses `JUST_ONE_API_TOKEN` only for authenticated Just One API requests.
+- Keep `JUST_ONE_API_TOKEN` private. Do not paste it into chat messages, screenshots, or logs.
+- Get a token from [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd&utm_content=project_link).
+- Authentication details: [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_jd&utm_content=project_link).
+
+## Output Rules
+
+- Start with a plain-language answer tied to the JD.com task the user asked for.
+- Include the most decision-relevant fields from the selected endpoint before dumping raw JSON.
+- When using `getJdItemDetailV1`, explain why the returned fields answer the user's question.
+- If the user gave filters such as `itemId`, `page`, `shopId`, echo those back so the scope is explicit.
+- If the backend errors, include the backend payload and the exact operation ID.

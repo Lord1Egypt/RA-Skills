@@ -1,35 +1,134 @@
 ---
-name: "发票识别（invoice-ocr-xy）翔云平台"
-description: "发票 OCR 识别技能。扫描文件夹中的发票文件（PDF/图片），调用翔云 OCR API 识别发票信息。支持 40+ 种发票类型（增值税发票、火车票、出租车票、机票行程单、定额发票、机动车销售发票、过路过桥费发票等）。使用场景：(1) 用户提到"发票识别" (2) 用户需要批量处理发票 (3) 用户提到翔云 OC..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/invoice-ocr-xy"
-sourceUrl: "https://clawhub.ai/skills/invoice-ocr-xy"
+name: invoice-ocr
+description: 发票 OCR 识别技能。扫描文件夹中的发票文件（PDF/图片），调用翔云 OCR API 识别发票信息。支持 40+ 种发票类型（增值税发票、火车票、出租车票、机票行程单、定额发票、机动车销售发票、过路过桥费发票等）。使用场景：(1) 用户提到"发票识别" (2) 用户需要批量处理发票 (3) 用户提到翔云 OCR 识别发票。**重要：首次使用必须先配置翔云凭证，主动向用户索要 netocr_key 和 netocr_secret，或引导用户运行 --config 命令自行配置。**
 ---
 
-# 发票识别（invoice-ocr-xy）翔云平台
+# 发票 OCR 识别技能
 
-> 发票 OCR 识别技能。扫描文件夹中的发票文件（PDF/图片），调用翔云 OCR API 识别发票信息。支持 40+ 种发票类型（增值税发票、火车票、出租车票、机票行程单、定额发票、机动车销售发票、过路过桥费发票等）。使用场景：(1) 用户提到"发票识别" (2) 用户需要批量处理发票 (3) 用户提到翔云 OC...
+批量识别发票。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/invoice-ocr-xy`
-- **Source URL:** [https://clawhub.ai/skills/invoice-ocr-xy](https://clawhub.ai/skills/invoice-ocr-xy)
+## ⚠️ 首次使用必须配置凭证
 
-## Overview
+**此技能需要翔云 OCR 服务，使用前必须先配置凭证！**
 
+### 方式一：向用户提供凭证（推荐）
 
-## Installation
-To install this skill, run the following command in your terminal:
+主动询问用户：
+> "使用此技能需要翔云 netocr_key 和 netocr_secret，请提供这两个凭证。\
+> 获取方式：翔云个人中心"
+
+然后运行：
 ```bash
-hermes skills install clawhub/invoice-ocr-xy
+python scripts/recognize_invoices.py --config
 ```
+
+### 方式二：引导用户自行配置
+
+告诉用户：
+> "请先运行以下命令配置翔云凭证："
+> ```bash
+> python ~/.openclaw/skills/invoice-ocr/scripts/recognize_invoices.py --config
+> ```
+
+## 特点
+
+- ✅ **40+ 发票类型** - 自动识别发票类型
+- ✅ **支持 PDF/OFD** - 电子发票友好
+
+
+## 支持的发票类型
+
+| 票种名称 | 票种代码 |
+| :------- | :------- |
+| 增值税专用发票 | 01 |
+| 机动车销售统一发票 | 03 |
+| 增值税普通发票 | 04 |
+| 增值税专用电子发票 | 08 |
+| 增值税电子普通发票 | 10 |
+| 增值税普通发票(卷票) | 11 |
+| 通行费增值税电子普通发票 | 14 |
+| 二手车销售统一发票 | 15 |
+| 数电发票(增值税专用发票) | 09 |
+| 数电发票(普通发票) | 83 |
+| 数电发票(航空运输电子客票行程单) | 61 |
+| 数电发票(铁路电子客票) | 62 |
+| 电子发票(机动车销售统一发票) | 63 |
+| 数电发票(二手车销售统一发票) | 64 |
+| 电子发票（普通发票） 通行费 | 72 |
+| 数电纸质发票(增值税专用发票) | 91 |
+| 数电纸票发票(普通发票) | 92 |
+| 数电纸质发票(机动车销售统一发票) | 93 |
+| 数电纸票发票(二手车销售统一发票) | 94 |
+| 火车票 | 20 |
+| 区块链发票 | 21 |
+| 船票 | 22 |
+| 定额发票 | 23 |
+| 机打发票 | 24 |
+| 出租车发票 | 25 |
+| 客运汽车 | 26 |
+| 航空运输电子客票行程单 | 27 |
+| 过路费 | 28 |
+| 打车行程单 | 31 |
+| 货物清单 | 33 |
+| 财政电子票据 | 34 |
+| 海关缴款书 | 35 |
+| 通用电子发票 | 36 |
+| 完税证明 | 37 |
+| 医疗票据 | 38 |
+| 退票费报销凭证 | 39 |
+| 非税收入一般缴款书(电子) | 40 |
+| 车辆通行费通用(电子)发票 | 41 |
+| 银行回单 | 42 |
+
+## 支持的文件格式
+
+| 格式 | 扩展名 |
+|------|--------|
+| PDF | .pdf |
+| OFD | .ofd |
+| 图片 | .jpg, .jpeg, .png, .bmp |
+
+
+## 使用方法
+
+### 识别发票
+
+```bash
+# 识别文件夹中的所有发票
+python scripts/recognize_invoices.py /path/to/invoices
+
+# 识别单张发票
+python scripts/recognize_invoices.py /path/to/invoices/123.png
+```
+
+### 配置管理
+
+```bash
+# 设置翔云凭证
+python scripts/recognize_invoices.py --config
+
+# 查看当前配置
+python scripts/recognize_invoices.py --list-config
+```
+
+## 获取 netocr_key 和 netocr_secret
+
+1. 登录[翔云](https://netocr.com)
+2. 在个人中心获得
+
+详细 API 说明见 [翔云 OCR API 参考](https://www.netocr.com/invoiceFor2.html)
+
+## 工作流程
+
+```
+发票文件 → OCR识别 → 返回结果
+   ↓           ↓         ↓
+ PDF/图片   混贴识别   JSON结构
+```
+
+## 注意事项
+
+1. 图片需清晰，建议长宽 > 500px
+2. 单个文件不超过 10MB
+3. 翔云 OCR 按次计费，注意费用控制
+4. 配置文件保存在技能目录下的 config.json

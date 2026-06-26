@@ -1,0 +1,33 @@
+{
+  "theme": "light",
+  "language": "zh",
+  "favoriteTools": [],
+  "searchHistory": [
+    {
+      "tool": "translate",
+      "query": "english",
+      "result": "{\"original\":\"english\",\"sourceLang\":\"en\",\"targetLang\":\"zh\"}",
+      "timestamp": "2026-05-10T03:02:07.669Z"
+    },
+    {
+      "tool": "history",
+      "query": "random event",
+      "result": "{\"year\":\"28 BC\",\"text\":\"A sunspot is observed by Han dynasty astronomers during the reign of Emperor Cheng of Han, one of the earliest dated sunspot observations in China.\",\"html\":\"28 BC - 28 BC - A <a href=\\\"https://wikipedia.org/wiki/Sunspot\\\" title=\\\"Sunspot\\\">sunspot</a> is <a href=\\\"https://wikipedia.org/wiki/Science_and_technology_of_the_Han_dynasty#Astronomical_observations\\\" title=\\\"Science and technology of the Han dynasty\\\">observed</a> by <a href=\\\"https://wikipedia.org/wiki/Han_dynasty\\\" title=\\\"Han dynasty\\\">Han dynasty</a> <a href=\\\"https://wikipedia.org/wiki/Chinese_astronomy\\\" title=\\\"Chinese astronomy\\\">astronomers</a> during the reign of <a href=\\\"https://wikipedia.org/wiki/Emperor_Cheng_of_Han\\\" title=\\\"Emperor Cheng of Han\\\">Emperor Cheng of Han</a>, one of the earliest dated sunspot observations in China.\",\"no_year_html\":\"28 BC - A <a href=\\\"https://wikipedia.org/wiki/Sunspot\\\" title=\\\"Sunspot\\\">sunspot</a> is <a href=\\\"https://wikipedia.org/wiki/Science_and_technology_of_the_Han_dynasty#Astronomical_observations\\\" title=\\\"Science and technology of the Han dynasty\\\">observed</a> by <a href=\\\"https://wikipedia.org/wiki/Han_dynasty\\\" title=\\\"Han dynasty\\\">Han dynasty</a> <a href=\\\"https://wikipedia.org/wiki/Chinese_astronomy\\\" title=\\\"Chinese astronomy\\\">astronomers</a> during the reign of <a href=\\\"https://wikipedia.org/wiki/Emperor_Cheng_of_Han\\\" title=\\\"Emperor Cheng of Han\\\">Emperor Cheng of Han</a>, one of the earliest dated sunspot observations in China.\",\"links\":[{\"title\":\"Sunspot\",\"link\":\"https://wikipedia.org/wiki/Sunspot\"},{\"title\":\"Science and technology of the Han dynasty\",\"link\":\"https://wikipedia.org/wiki/Science_and_technology_of_the_Han_dynasty#Astronomical_observations\"},{\"title\":\"Han dynasty\",\"link\":\"https://wikipedia.org/wiki/Han_dynasty\"},{\"title\":\"Chinese astronomy\",\"link\":\"https://wikipedia.org/wiki/Chinese_astronomy\"},{\"title\":\"Emperor Cheng of Han\",\"link\":\"https://wikipedia.org/wiki/Emperor_Cheng_of_Han\"}]}",
+      "timestamp": "2026-05-10T03:01:27.488Z"
+    },
+    {
+      "tool": "facts",
+      "query": "random fact",
+      "result": "{\"id\":\"3b3dd7608388f9341fe1d2878a5c7f5b\",\"text\":\"Virginia Woolf wrote all her books standing.\",\"source\":\"djtech.net\",\"source_url\":\"http://www.djtech.net/humor/useless_facts.htm\",\"language\":\"en\",\"permalink\":\"https://uselessfacts.jsph.pl/api/v2/facts/3b3dd7608388f9341fe1d2878a5c7f5b\"}",
+      "timestamp": "2026-05-10T03:01:27.283Z"
+    }
+  ],
+  "translationSettings": {
+    "sourceLang": "en",
+    "targetLang": "zh"
+  },
+  "calculatorSettings": {
+    "autoCalculate": false,
+    "showExamples": true
+  }
+}

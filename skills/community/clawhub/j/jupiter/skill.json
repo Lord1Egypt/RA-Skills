@@ -1,0 +1,47 @@
+{
+  "name": "jupiter",
+  "version": "1.0.0",
+  "description": "Compute the best path when multiple choices compete. Designed for routing logic across vendors, investments, execution options, and strategic decisions.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "jupiter",
+    "routing logic",
+    "best path",
+    "option comparison",
+    "vendor selection",
+    "decision routing",
+    "route optimization",
+    "strategic choice"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "route_comparison": "Compare multiple options using explicit routing logic",
+    "best_path_selection": "Identify the strongest route under real constraints",
+    "tradeoff_analysis": "Expose hidden weaknesses and structural tradeoffs",
+    "decision_ranking": "Rank alternatives by objective-fit and route quality"
+  },
+  "triggers": [
+    "best option",
+    "compare vendors",
+    "route optimization",
+    "which path should I choose",
+    "best route",
+    "option comparison",
+    "supplier selection",
+    "strategic choice"
+  ],
+  "audience": [
+    "Operators choosing between vendors or suppliers",
+    "Founders comparing strategic options",
+    "Users ranking multiple execution paths",
+    "Decision-makers needing best-path logic under constraints"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

@@ -1,0 +1,17 @@
+interface:
+  display_name: "Jin10"
+  short_description: "Bundled Python skill for Jin10 market, flash, news, calendar"
+  default_prompt: "Use $jin10 to query Jin10 market quotes, flash headlines, news details, or the economic calendar through its bundled Python script."
+
+policy:
+  allow_implicit_invocation: true
+
+requirements:
+  runtime:
+    - name: python3
+      description: Required to run the bundled script at scripts/jin10.py
+      required: true
+  env_vars:
+    - name: JIN10_API_TOKEN
+      description: Jin10 API token for https://mcp.jin10.com (required)
+      required: true

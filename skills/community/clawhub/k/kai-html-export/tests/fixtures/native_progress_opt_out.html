@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native Progress Opt Out</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", sans-serif; background: #ffffff; }
+    .slide {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      background: #ffffff;
+      color: #111827;
+    }
+    .slide-content {
+      padding: 56px 72px;
+    }
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 6px;
+      width: 75%;
+      background: rgb(255, 60, 126);
+      z-index: 100;
+    }
+    .nav-dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .nav-dots button {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgb(17, 17, 17);
+      background: transparent;
+    }
+    .nav-dots button.active {
+      background: rgb(255, 60, 126);
+    }
+  </style>
+</head>
+<body data-export-progress="false">
+  <div class="progress-bar"></div>
+  <nav class="nav-dots" aria-label="Slide navigation">
+    <button class="active" aria-label="Slide 1"></button>
+    <button aria-label="Slide 2"></button>
+  </nav>
+
+  <section class="slide">
+    <div class="slide-content">
+      <h1>Progress bar should be omitted from PPT export</h1>
+      <p>Navigation chrome can stay, but the top progress bar should not be recreated.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div class="slide-content">
+      <h1>Second slide</h1>
+      <p>The opt-out flag should apply to the whole deck.</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,35 +1,30 @@
 ---
-name: "Less Tool"
-description: "View file contents with interactive scrolling and search. Use for reading log files, code, and large text documents with pagination."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/less-tool"
-sourceUrl: "https://clawhub.ai/skills/less-tool"
+name: less-tool
+description: View file contents with interactive scrolling and search. Use for reading log files, code, and large text documents with pagination.
 ---
+# Less - Interactive File Viewer
 
-# Less Tool
+View file contents with forward and backward scrolling, search functionality, and line number navigation. Supports large files by loading only the viewed portion into memory.
 
-> View file contents with interactive scrolling and search. Use for reading log files, code, and large text documents with pagination.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/less-tool`
-- **Source URL:** [https://clawhub.ai/skills/less-tool](https://clawhub.ai/skills/less-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/less-tool
+less-tool [options] <file>
+```
+
+## Navigation
+
+- `Space`: Forward one page
+- `b`: Back one page
+- `j/k`: Scroll up/down one line
+- `/pattern`: Search forward
+- `?pattern`: Search backward
+- `n`: Next match
+- `q`: Quit
+
+## Examples
+
+```bash
+less-tool large_log.txt
+less-tool -N script.py
 ```

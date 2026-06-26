@@ -1,35 +1,239 @@
 ---
-name: "investoday-fund-risk-analysis"
-description: "面向公募基金量化风险分析，聚焦回撤、波动率、下行风险、VaR、Beta、夏普与风险收益匹配度。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金风险分析报告。触发词：基金风险、回撤、波动率、下行风险、VaR、Beta、夏普、风险收益比。"
-category: "other"
-source: "ClawHub"
-tags: [beta, downside-risk, fund-risk-analysis, max-drawdown, risk-return-ratio, sharpe-ratio, value-at-risk, volatility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-fund-risk-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-fund-risk-analysis"
+name: investoday-fund-risk-analysis
+title: "基金风险分析"
+version: 1.3.0
+description: 面向公募基金量化风险分析，聚焦回撤、波动率、下行风险、VaR、Beta、夏普与风险收益匹配度。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金风险分析报告。触发词：基金风险、回撤、波动率、下行风险、VaR、Beta、夏普、风险收益比。
+tags:
+  - fund-risk-analysis
+  - max-drawdown
+  - volatility
+  - downside-risk
+  - value-at-risk
+  - beta
+  - sharpe-ratio
+  - risk-return-ratio
+metadata:
+  clawdbot:
+    emoji: "🛡️"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-fund-risk-analysis
+# 🛡️ 基金风险分析
 
-> 面向公募基金量化风险分析，聚焦回撤、波动率、下行风险、VaR、Beta、夏普与风险收益匹配度。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金风险分析报告。触发词：基金风险、回撤、波动率、下行风险、VaR、Beta、夏普、风险收益比。
+面向公募基金量化风险分析，聚焦回撤、波动率、下行风险、VaR、Beta、夏普与风险收益匹配度。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金风险分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-fund-risk-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-fund-risk-analysis](https://clawhub.ai/skills/investoday-fund-risk-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只基金风险大不大、回撤如何、波动高不高
+- 用户希望判断风险收益比、Beta、夏普、索提诺、卡玛等指标表现
+- 用户想知道“适不适合低风险偏好”“这只基金回撤控制怎么样”
+- 关键词：基金风险、回撤、波动率、下行风险、VaR、Beta、夏普、索提诺、卡玛、风险收益比
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-fund-risk-analysis
+**示例 1：风险水平**
 ```
+帮我看看这只基金风险大不大。
+```
+
+**示例 2：回撤控制**
+```
+000001 这只基金近一年最大回撤怎么样？
+```
+
+**示例 3：风险收益比**
+```
+这只基金波动和夏普比率怎么样，风险特征偏稳健还是偏进取？
+```
+
+> 💡 支持输入基金名称或 6 位基金代码。若用户只提供名称，优先使用 `entity-recognition` 识别基金实体；若无法稳定唯一识别，再提示补充完整名称或代码。若只想看收益来源与主动管理能力，优先使用 `基金业绩归因分析`；若希望把收益、风险、持仓、经理、费率放在同一框架里一起看，优先使用 `基金综合诊断`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 标的识别工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 实体识别 | `entity-recognition` | POST | 从自然语言中识别基金实体 |
+| 基金基本信息 | `fund/basic-info` | POST | 获取基金名称、类型、风险收益特征 |
+
+### 风险核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 归因分析 | `fund/performance-attribution` | POST | 获取回撤、波动率、下行波动率、VaR、夏普、索提诺、卡玛、Beta、Alpha 等指标 |
+| 现任基金经理及回报 | `fund/current-manager-returns` | POST | 获取基金经理任期回报、从业年限等信息，用于辅助判断风控结果 |
+
+## 数据获取流程
+
+用户提供基金名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：基金实体识别（如用户输入名称而非代码）**：工具ID `entity-recognition` (POST)，参数 `input=<用户原始问题>`
+- **Step 1：基金基本信息**：工具ID `fund/basic-info` (POST)，参数 `fundCode=<code>`
+- **Step 2：归因分析**：工具ID `fund/performance-attribution` (POST)，参数 `fundCode=<code>`
+- **Step 3：现任基金经理及回报**：工具ID `fund/current-manager-returns` (POST)，参数 `fundCode=<code>`
+
+> **并行优化**：完成 Step 0 的基金识别后，Step 1-3 可并行调用；风险分析优先看近 1 年与近 3 年维度，再用近 1 月、3 月、6 月辅助判断风险是否在放大或收敛。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：建立基金风险画像
+
+**目标**：确认基金类型与产品定位，为风险判断建立基准。
+
+**数据来源**：`fund/basic-info`
+
+分析要点：
+- 基金类型、风险收益特征、投资策略
+- 产品定位是否天然偏高波动或偏稳健
+- 股票型、债券型、指数型等不同基金的回撤与波动中枢不同，后续判断应优先与同类型产品比较
+- 为后续量化风险判断提供背景
+
+**输出**：基金风险画像与分析口径。
+
+### Step 2：评估回撤风险
+
+**目标**：判断基金净值承压时的回撤深度与回撤控制能力。
+
+**数据来源**：`fund/performance-attribution`
+
+分析要点：
+- 近 1 月、3 月、6 月、1 年、3 年最大回撤
+- 回撤是阶段性还是长期偏大
+- 若短期与长期回撤都偏高，应明确提示风控压力
+
+**输出**：回撤风险结论与主要风险区间。
+
+### Step 3：评估波动与下行风险
+
+**目标**：判断基金净值波动幅度和下跌风险暴露程度。
+
+**数据来源**：`fund/performance-attribution`
+
+分析要点：
+- 年化波动率、下行波动率、VaR 的高低
+- 风险是否集中体现在下跌方向
+- 是否存在“回撤不算大但波动很高”或相反情况
+
+**输出**：波动性与下行风险结论。
+
+### Step 4：评估风险调整后收益与市场敏感度
+
+**目标**：判断基金承担的风险是否换来了相对匹配的收益。
+
+**数据来源**：`fund/performance-attribution`
+
+分析要点：
+- 夏普、索提诺、卡玛等风险调整后收益指标
+- Beta、Alpha、稳定性指标反映的市场敏感度与超额收益质量
+- 若 Beta 较高且夏普偏弱，需提示“高风险但性价比一般”
+
+**输出**：风险收益匹配度与市场敏感度判断。
+
+### Step 5：评估基金经理风控结果并形成综合结论
+
+**目标**：结合基金经理任期表现，判断当前风险承担结果是否匹配。
+
+**数据来源**：`fund/current-manager-returns` + 前 4 步结果汇总
+
+分析要点：
+- 任职起始时间、任期回报、从业年限
+- 任期表现是否说明经理在承担风险后获得了相应回报
+- 结合历史风险指标给出综合风险等级判断
+
+**输出**：综合风险结论、主要短板与后续观察重点。
+
+## 策略逻辑汇总
+
+> **口径提示**：以下阈值仅适合作为同类型基金内部的粗略参考，不能直接拿股票型、债券型、指数型等不同产品横向套用。
+
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 近1年最大回撤 < 10% | 回撤压力较低 | ✅ 积极 |
+| 近1年最大回撤在 10%-20% | 回撤处于中等水平 | 📊 中性 |
+| 近1年最大回撤 ≥ 20% | 回撤压力较大 | ⚠️ 警惕 |
+| 近1年年化波动率 < 15% | 波动较低 | ✅ 积极 |
+| 近1年年化波动率在 15%-25% | 波动中等 | 📊 中性 |
+| 近1年年化波动率 ≥ 25% | 波动较高 | ⚠️ 警惕 |
+| 夏普比率 > 1 | 风险调整后收益较好 | ✅ 积极 |
+| 夏普比率在 0-1 | 风险收益比一般 | 🟡 关注 |
+| 夏普比率 < 0 | 风险承担未换来正向回报 | 🔴 高风险 |
+| Beta > 1 且回撤偏大 | 对市场敏感度较高 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# 🛡️ [基金名称]（[基金代码]）风险分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、风险结论
+
+（先用一段话概括当前风险等级和主要原因）
+
+## 二、基金风险画像
+
+（基金类型、风险收益特征、产品定位）
+
+## 三、回撤风险分析
+
+（多期限最大回撤与回撤控制结论）
+
+## 四、波动与下行风险分析
+
+（波动率、下行波动率、VaR）
+
+## 五、风险收益匹配度
+
+（夏普、索提诺、卡玛、Beta、Alpha）
+
+## 六、经理风控结果
+
+（任期回报、从业经验与风险承担结果）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确主要风险来源与风险缓冲因素
+- 给出后续需要跟踪的风险信号
+```
+
+## 证据约束（必须遵守）
+
+1. 每个风险结论至少给出 2 个数值证据；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许只写“风险高/低”，必须说明是回撤、波动、Beta 还是风险收益比导致
+3. 时间口径必须明确，如“近1年”“近3年”“任期内”
+4. 百分比统一保留 2 位小数
+5. 不给申购赎回建议、定投建议、仓位建议或交易时点
+6. 若基金识别不唯一，必须先要求补充更完整名称或 6 位基金代码
+7. 若收益高但风险同样偏高，必须明确说明“高收益来自更高风险承担”，不得直接视为优势
+8. 回撤、波动、VaR、Beta 等风险比较默认应以同类型或相近策略基金为前提；若产品类型差异明显，必须先说明不可直接横向比较
+
+## 执行示例
+
+用户说：“这只基金近一年回撤怎么样，风险特征偏稳健还是偏进取？”
+
+1. 通过 `entity-recognition` 识别基金实体与基金代码
+2. 并行调用 `fund/basic-info`、`fund/performance-attribution` 与 `fund/current-manager-returns`
+3. 从回撤、波动、风险收益比与经理风控结果 4 个维度完成分析
+4. 输出 Markdown 格式基金风险分析报告
+5. 在结尾写出综合风险等级与后续观察重点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

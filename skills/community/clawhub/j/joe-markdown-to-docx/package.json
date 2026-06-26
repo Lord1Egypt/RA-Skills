@@ -1,0 +1,16 @@
+{
+  "name": "joe-markdown-to-docx",
+  "version": "1.0.0",
+  "description": "Convert Markdown to DOCX with table and image support",
+  "author": "Joe Cao",
+  "type": "module",
+  "main": "main.js",
+  "dependencies": {
+    "docx": "^9.0.0",
+    "unified": "^11.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}

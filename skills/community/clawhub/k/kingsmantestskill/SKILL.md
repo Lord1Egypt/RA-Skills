@@ -1,35 +1,77 @@
 ---
-name: "mytestskill"
-description: "每天定时汇总"昨天"的10条民航相关新闻，输出结构化快速总览，并通过邮件发送给指定收件人。触发词：民航新闻晨报、昨日民航新闻、每日航空资讯、民航日报、航空新闻摘要。不处理会议、审批、待办、文档编辑等任务，不处理非民航领域资讯。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kingsmantestskill"
-sourceUrl: "https://clawhub.ai/skills/kingsmantestskill"
+name: civil-aviation-news-daily
+description: 每天定时汇总"昨天"的10条民航相关新闻，输出结构化快速总览，并通过邮件发送给指定收件人。触发词：民航新闻晨报、昨日民航新闻、每日航空资讯、民航日报、航空新闻摘要。不处理会议、审批、待办、文档编辑等任务，不处理非民航领域资讯。
 ---
+# 民航新闻晨报
 
-# mytestskill
+## 适用场景
 
-> 每天定时汇总"昨天"的10条民航相关新闻，输出结构化快速总览，并通过邮件发送给指定收件人。触发词：民航新闻晨报、昨日民航新闻、每日航空资讯、民航日报、航空新闻摘要。不处理会议、审批、待办、文档编辑等任务，不处理非民航领域资讯。
+用户需要"昨日民航新闻摘要""每日民航资讯晨报""昨天航空业动态10条总览"，并希望通过邮件接收结果时触发。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kingsmantestskill`
-- **Source URL:** [https://clawhub.ai/skills/kingsmantestskill](https://clawhub.ai/skills/kingsmantestskill)
+## 不触发场景
 
-## Overview
+- 用户要求执行业务动作（发审批、建会议、改文档、群发消息等）
+- 用户要求深度行业报告、投标文档、专题研究
+- 资讯范围与民航无关
 
+## 输入约定
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kingsmantestskill
+| 字段 | 默认值 |
+|------|--------|
+| 时间基准 | 北京时间"昨天" 00:00–23:59 |
+| 条数 | 10条 |
+| 主题范围 | 民航/航空公司/机场/空管/航线运行/政策监管/安全服务 |
+| 输出语言 | 中文 |
+| 收件邮箱 | wuyun5329@163.com |
+
+## 执行流程
+
+1. 确定统计窗口为"昨天 00:00–23:59（北京时间）"，计算具体日期。
+2. 使用 web_search 检索民航相关新闻，优先官方与主流媒体来源（民航局官网、中国民航报、澎湃、新华社等）。
+3. 去重与相关性筛选，按"行业影响度 + 时效性 + 信息完整度"排序。
+4. 选取前10条，生成结构化摘要（见输出格式）。
+5. 使用 dws skill 发送邮件至 wuyun5329@163.com，邮件主题为「昨日民航新闻快速总览 YYYY-MM-DD」。
+
+## 输出格式
+
 ```
+昨日民航新闻快速总览（YYYY-MM-DD）
+
+1. 【标题】
+   来源：xxx  |  发布时间：HH:MM
+   摘要：一句话说明事件核心
+   影响：对航司/机场/旅客/行业的简短判断
+
+2. …（共10条）
+
+---
+今日观察重点：
+• 重点1
+• 重点2
+• 重点3
+
+---
+本报告按公开信息整理，可能存在后续更新。
+```
+
+## 质量规则
+
+- 不编造新闻，不补齐不存在的信息。
+- 若有效新闻不足10条，按实际条数输出并明确说明缺口。
+- 同一事件多篇报道只保留一条主消息，其他信息合并到摘要中。
+- 标题和摘要必须可追溯到公开来源。
+
+## 失败降级
+
+若检索结果不足或邮件发送失败：
+- 先输出已验证条目；
+- 明确标注"本次仅获取X条有效新闻"；
+- 邮件发送失败时在当前会话中输出正文并提示用户。
+
+## 交付承诺
+
+每次运行产出：
+- 昨日民航新闻快速总览（最多10条，最少为实际可验证条目）
+- 今日观察重点（2–3条）
+- 邮件发送至 wuyun5329@163.com，主题含日期
+- 条目不足时的缺口说明

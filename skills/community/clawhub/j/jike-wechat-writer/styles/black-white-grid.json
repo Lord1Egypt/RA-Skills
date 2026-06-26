@@ -1,0 +1,38 @@
+{
+  "name": "黑白网格",
+  "description": "浅灰网格背景 + 极简黑白排版，标题含左引号和右侧序号，适合教程、方法论和品牌文案",
+  "accent_color": "#2f3137",
+  "templateId": "mono_grid",
+  "templateName": "黑白网格",
+  "bodyBackground": "#f5f6f8",
+  "editableStyles": [
+    {"key": "h2-font-size", "type": "fontSize", "group": "一级标题", "label": "字号", "default": "18px"},
+    {"key": "h2-color", "type": "color", "group": "一级标题", "label": "字体颜色", "default": "#2f3137"},
+    {"key": "h2-text-align", "type": "textAlign", "group": "一级标题", "label": "对齐", "default": "center"},
+    {"key": "h3-font-size", "type": "fontSize", "group": "二级标题", "label": "字号", "default": "16px"},
+    {"key": "h3-color", "type": "color", "group": "二级标题", "label": "字体颜色", "default": "#2f3137"},
+    {"key": "h3-text-align", "type": "textAlign", "group": "二级标题", "label": "对齐", "default": "left"},
+    {"key": "p-font-size", "type": "fontSize", "group": "正文", "label": "字号", "default": "15px"},
+    {"key": "p-color", "type": "color", "group": "正文", "label": "字体颜色", "default": "#3a4048"},
+    {"key": "p-text-align", "type": "textAlign", "group": "正文", "label": "对齐", "default": "justify"},
+    {"key": "blockquote-font-size", "type": "fontSize", "group": "引用", "label": "字号", "default": "15px"},
+    {"key": "blockquote-color", "type": "color", "group": "引用", "label": "字体颜色", "default": "#454b54"},
+    {"key": "blockquote-text-align", "type": "textAlign", "group": "引用", "label": "对齐", "default": "left"}
+  ],
+  "fragments": {
+    "body_wrapper": "<section style=\"background-color:#f5f6f8;\">",
+    "body_wrapper_end": "</section>",
+    "header_image": "",
+    "top_decoration": "",
+    "hero": "<section style=\"margin:18px 20px 28px;padding:18px 16px;background-color:#f0f2f5;\"><p style=\"font-size:15px;color:#3b4048;line-height:1.82;text-align:justify;margin:0;\">{TEXT}</p></section>",
+    "blockquote": "<section style=\"margin:16px 20px;padding:14px 16px;border-radius:2px;background-color:#eceef1;border-left:3px solid #757c86;\"><p style=\"font-size:15px;color:#454b54;line-height:1.8;font-style:italic;text-align:left;margin:0;\">{TEXT}</p></section>",
+    "section_title": "<section style=\"margin:10px 20px 18px;\"><section style=\"display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #2f3137;\"><section style=\"display:inline-flex;align-items:flex-end;gap:10px;\"><span style=\"font-family:Georgia,serif;color:#2f3137;font-size:54px;line-height:0.7;font-weight:700;transform:translateY(4px);\">&ldquo;</span><span style=\"font-size:18px;color:#2f3137;font-weight:700;letter-spacing:0.3px;line-height:1;transform:translateY(-2px);\">{TEXT}</span></section><span style=\"font-size:66px;line-height:0.82;letter-spacing:-2px;font-weight:700;color:#2f3137;transform:translateY(4px);\">{NUM}</span></section></section>",
+    "highlight": "<section style=\"display:flex;align-items:center;margin:22px 20px 12px;gap:10px;\"><section style=\"width:24px;height:14px;position:relative;flex-shrink:0;\"><span style=\"position:absolute;left:0;top:1px;width:14px;height:14px;border-radius:50%;background-color:#2f3137;\"></span><span style=\"position:absolute;left:10px;top:1px;width:14px;height:14px;border-radius:50%;background-color:#ffffff;border:1px solid #2f3137;\"></span></section><span style=\"font-size:16px;font-weight:700;color:#2f3137;\">{TEXT}</span></section>",
+    "paragraph": "<section style=\"padding:0 20px;\"><p style=\"font-size:15px;color:#3a4048;line-height:1.86;margin-bottom:16px;text-align:justify;\">{TEXT}</p></section>",
+    "list_ordered": "<ol style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ol>",
+    "list_unordered": "<ul style=\"padding:0 20px 0 44px;margin-bottom:16px;\">{ITEMS}</ul>",
+    "list_item": "<li style=\"font-size:15px;color:#3a4048;line-height:1.85;margin-bottom:6px;\">{TEXT}</li>",
+    "image": "<section style=\"padding:0 20px;margin-bottom:16px;text-align:center;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:2px;\" /></section>",
+    "image_placeholder": "<section style=\"padding:0 20px;margin-bottom:16px;text-align:center;\"><img src=\"{SRC}\" alt=\"{ALT}\" style=\"max-width:100%;border-radius:2px;\" /><p style=\"font-size:13px;color:#999;margin:8px 0 0 0;\">{ALT}</p></section>"
+  }
+}

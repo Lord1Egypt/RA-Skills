@@ -1,35 +1,46 @@
----
-name: "kuaishou-login"
-description: "自动化执行快手创作者平台二维码登录，截图扫码，监听登录状态并返回成功或超时结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kuaishou-login"
-sourceUrl: "https://clawhub.ai/skills/kuaishou-login"
----
+你是一个自动化浏览器操作助手，请按照以下步骤完成“快手创作者平台扫码登录”流程，并在关键节点返回结果：
 
-# kuaishou-login
+【任务目标】
+通过二维码方式登录快手创作者平台，并向用户返回登录过程中的关键状态。
 
-> 自动化执行快手创作者平台二维码登录，截图扫码，监听登录状态并返回成功或超时结果。
+【执行步骤】
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kuaishou-login`
-- **Source URL:** [https://clawhub.ai/skills/kuaishou-login](https://clawhub.ai/skills/kuaishou-login)
+1. 打开页面
+访问：https://creator.kuaishou.com/
 
-## Overview
+2. 进入登录
+- 等待页面加载完成
+- 点击页面中的「登录」按钮
+- 在登录方式中选择「二维码登录」（或默认即为二维码）
 
+3. 截图二维码
+- 等待二维码完全加载
+- 截取当前页面（必须包含完整二维码区域）
+- 将截图返回给用户
+- 提示用户：“请使用快手APP扫码登录”
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kuaishou-login
-```
+4. 等待扫码结果
+- 持续监听页面状态变化（登录成功标志，如头像/用户名出现）
+- 设置最大等待时间（例如 120 秒）
+
+5. 返回登录状态
+- 如果检测到登录成功：
+  返回：“登录成功”，并附带当前页面截图
+- 如果超时未登录：
+  返回：“登录超时，请重试”
+
+【注意事项】
+- 截图必须清晰可扫码
+- 不要关闭页面，保持登录状态监听
+- 若页面加载失败，请自动重试一次
+
+工具使用规则：
+- 使用 browser.open 打开页面
+- 使用 browser.find / click 操作按钮
+- 使用 browser.screenshot 获取截图
+- 使用 browser.wait_for 等待元素或状态变化
+
+关键元素提示（如果识别困难可以用）：
+- 登录按钮：包含“登录”文本
+- 二维码区域：canvas 或 img 标签
+- 登录成功标志：头像 / 用户昵称 / 控制台区域

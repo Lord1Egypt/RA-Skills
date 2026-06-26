@@ -1,35 +1,228 @@
 ---
-name: "investoday-stock-research-interpretation"
-description: "面向A股个股研报解读，聚焦机构观点、评级变化、核心逻辑、机会风险与一致性判断。基于今日投资金融数据接口，自动识别股票代码并输出结构化个股研报解读报告。触发词：机构怎么看、研报解读、评级变化、卖方观点、目标价、一致预期。"
-category: "other"
-source: "ClawHub"
-tags: [consensus-expectations, expectation-gap, institutional-view, rating-changes, research-analysis, sell-side-view, stock-research-interpretation, target-price]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-research-interpretation"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-research-interpretation"
+name: investoday-stock-research-interpretation
+title: "个股研报解读"
+version: 1.3.0
+description: 面向A股个股研报解读，聚焦机构观点、评级变化、核心逻辑、机会风险与一致性判断。基于今日投资金融数据接口，自动识别股票代码并输出结构化个股研报解读报告。触发词：机构怎么看、研报解读、评级变化、卖方观点、目标价、一致预期。
+tags:
+  - stock-research-interpretation
+  - institutional-view
+  - rating-changes
+  - sell-side-view
+  - consensus-expectations
+  - target-price
+  - research-analysis
+  - expectation-gap
+metadata:
+  clawdbot:
+    emoji: "📑"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-stock-research-interpretation
+# 📑 个股研报解读
 
-> 面向A股个股研报解读，聚焦机构观点、评级变化、核心逻辑、机会风险与一致性判断。基于今日投资金融数据接口，自动识别股票代码并输出结构化个股研报解读报告。触发词：机构怎么看、研报解读、评级变化、卖方观点、目标价、一致预期。
+面向 A 股个股研报解读，聚焦机构观点、评级变化、核心逻辑、机会风险与一致性判断。基于今日投资金融数据接口，自动识别股票代码并输出结构化个股研报解读报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-research-interpretation`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-research-interpretation](https://clawhub.ai/skills/investoday-stock-research-interpretation)
+## 触发场景
 
-## Overview
+- 用户询问某只股票最近机构怎么看、评级有没有变化
+- 用户希望理解卖方核心逻辑、主要风险点与市场一致性
+- 用户想知道“最近研报偏多还是偏空”“机构之间分歧大不大”
+- 关键词：机构怎么看、研报解读、评级变化、卖方观点、目标价、一致预期、研报分析
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-research-interpretation
+**示例 1：机构观点**
 ```
+浪潮信息最近机构怎么看？
+```
+
+**示例 2：评级变化**
+```
+宁德时代最近有没有机构上调评级？
+```
+
+**示例 3：一致性判断**
+```
+中际旭创最近研报是偏多还是分歧比较大？
+```
+
+> 💡 本 Skill 偏单只股票的机构观点与评级解读。若用户想看行业或板块层面的卖方共识，请优先使用 `板块研报解读`；若重点是新闻、公告或单条消息解读，优先转到 `股票消息解读`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 基础工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 综合标的搜索 | `search` | GET | 通过关键字搜索股票代码 |
+| 股票基本信息 | `stock/basic-info` | GET | 获取股票名称、行业与主营业务 |
+
+### 研报核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 研报舆情 | `research/sentiment` | POST | 获取研报标题、观点、机会风险、情绪与逻辑 |
+| 研报预测评级 | `report/stock-forecast-ratings` | GET | 获取评级、目标价与预测变动 |
+
+## 数据获取流程
+
+用户提供股票名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：标的识别（如用户输入名称而非代码）**：工具ID `search`，参数 `key=<股票名称> type=11`
+- **Step 1：股票基本信息**：工具ID `stock/basic-info`，参数 `stockCode=<code>`
+- **Step 2：研报舆情（近90天）**：工具ID `research/sentiment` (POST)，参数 `stockCode=<code> beginTime=<90天前> endTime=<当前时间> pageNum=1 pageSize=10`
+- **Step 3：研报预测评级（近180天）**：工具ID `report/stock-forecast-ratings`，参数 `stockCode=<code> beginDate=<180天前> endDate=<今天> pageNum=1 pageSize=20`
+
+> **并行优化**：完成 Step 0 的代码识别后，Step 1-3 可并行调用；分析时优先保留时间更近、相关度更高、逻辑更完整的研报内容。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：提炼机构总体态度
+
+**目标**：先判断当前机构整体偏多、偏空还是中性。
+
+**数据来源**：`research/sentiment` + `report/stock-forecast-ratings`
+
+分析要点：
+- 近期评级分布和情绪方向
+- 机构整体更偏一致看多还是存在明显谨慎情绪
+- 若样本较少，应说明覆盖度有限
+
+**输出**：机构总体态度与覆盖情况。
+
+### Step 2：提炼核心逻辑与催化点
+
+**目标**：识别近期研报反复强调的核心逻辑。
+
+**数据来源**：`research/sentiment`
+
+分析要点：
+- 当前最被强调的成长驱动、订单、业绩、竞争格局或行业逻辑
+- 哪些逻辑是共识，哪些只是少数机构提法
+- 只保留 3-4 条真正高频、相关性高的逻辑
+
+**输出**：核心逻辑清单与优先级。
+
+### Step 3：判断评级变化与预期差
+
+**目标**：识别近期评级、目标价和盈利预测的变化方向。
+
+**数据来源**：`report/stock-forecast-ratings`
+
+分析要点：
+- 是否存在上调、下调或维持评级
+- 目标价变化反映的是预期强化还是预期降温
+- 若观点仍偏多但目标价不再上修，应提示预期空间收敛
+
+**输出**：评级变化结论与预期差判断。
+
+### Step 4：判断一致性与分歧点
+
+**目标**：区分卖方共识和主要分歧所在。
+
+**数据来源**：`research/sentiment` + `report/stock-forecast-ratings`
+
+分析要点：
+- 哪些观点是大多数机构共同认可的
+- 哪些争议集中在增速、订单兑现、盈利能力或估值消化
+- 若评级一致但逻辑分歧明显，应单独指出“表面一致、内部分歧”
+
+**输出**：一致性判断与关键分歧点。
+
+### Step 5：形成综合研报解读结论
+
+**目标**：把机构态度、逻辑、评级变化和分歧统一起来，形成完整结论。
+
+**数据来源**：前 4 步分析结果汇总
+
+分析要点：
+- 当前研报生态更偏积极、谨慎还是分歧
+- 最重要的机会点和风险点分别是什么
+- 后续应重点跟踪哪些验证信号
+
+**输出**：综合研报结论与后续跟踪重点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 多家机构观点同向且评级稳定偏积极 | 卖方共识较强 | ✅ 积极 |
+| 评级上调且目标价上修 | 预期改善 | ✅ 积极 |
+| 评级维持但目标价不再上修 | 预期空间边际收敛 | 🟡 关注 |
+| 逻辑高频一致但目标价分散较大 | 共识存在但估值判断有分歧 | 📊 中性 |
+| 机构观点明显分化 | 研判尚未形成统一共识 | 🟡 关注 |
+| 机会点和风险点都被反复强调 | 机构在做平衡表达 | 📊 中性 |
+| 风险点集中于业绩兑现与估值消化 | 后续验证要求较高 | ⚠️ 警惕 |
+| 覆盖机构较少 | 卖方样本有限，结论需谨慎 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# 📑 [股票名称] 研报解读报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、研报结论
+
+（用一段话概括机构整体态度、核心逻辑、主要风险与一致性）
+
+## 二、机构观点与评级概览
+
+（列出近期主要评级、目标价、机构态度变化）
+
+## 三、核心逻辑与催化点
+
+（提炼 3-4 条最重要的卖方逻辑）
+
+## 四、一致性与分歧
+
+（说明机构共识和主要分歧点）
+
+## 五、机会与风险
+
+（分别写机会点和风险点）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确当前机构生态偏积极/谨慎/分歧
+- 给出后续需要重点跟踪的验证信号
+```
+
+## 证据约束（必须遵守）
+
+1. 每个研报结论至少给出 2 个证据来源；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许只写“机构看多/看空”，必须说明对应评级、逻辑或预期变化
+3. 时间口径必须明确，如“近90天研报”“近180天评级变化”
+4. 不展示内部评分、未公开排序或中间推理
+5. 不给买卖建议、目标价空间测算、仓位建议或交易时点
+6. 若机构样本过少，必须提示“研报覆盖有限”
+7. 不机械搬运整段研报原文，必须做归纳与提炼
+
+## 执行示例
+
+用户说：“浪潮信息最近机构怎么看？”
+
+1. 通过 `search` 获取股票代码
+2. 并行调用 `stock/basic-info`、`research/sentiment` 与 `report/stock-forecast-ratings`
+3. 提炼机构总体态度、核心逻辑、评级变化与分歧点
+4. 输出 Markdown 格式个股研报解读报告
+5. 在结尾写出综合结论与后续跟踪重点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

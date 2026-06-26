@@ -1,0 +1,174 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 2 search-note versions for Xiaohongshu (RedNote) Note Search through JustOneAPI with keyword.",
+  "displayName": "Xiaohongshu (RedNote) Note Search",
+  "endpointPath": "search-note",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) note Search data, including snippets, authors, and media, for topic discovery.",
+      "method": "GET",
+      "operationId": "getSearchNoteV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "general",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `general`: General\n- `popularity_descending`: Popularity Descending\n- `time_descending`: Time Descending\n- `comment_descending`: Comment Descending\n- `collect_descending`: Collect Descending",
+          "enumValues": [
+            "general",
+            "popularity_descending",
+            "time_descending",
+            "comment_descending",
+            "collect_descending"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Note type filter.\n\nAvailable Values:\n- `_0`: General\n- `_1`: Video\n- `_2`: Normal",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Note publish time filter. This parameter is for reference only and does not have much effect.\n\nAvailable Values:\n- `一天内`: Within one day\n- `一周内`: Within a week\n- `半年内`: Within half a year",
+          "enumValues": [
+            "一天内",
+            "一周内",
+            "半年内"
+          ],
+          "location": "query",
+          "name": "noteTime",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-note/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Search",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Search data, including snippets, authors, and media, for topic discovery.",
+      "method": "GET",
+      "operationId": "getSearchNoteV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "general",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `general`: General\n- `popularity_descending`: Hot\n- `time_descending`: New",
+          "enumValues": [
+            "general",
+            "popularity_descending",
+            "time_descending"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Note type filter.\n\nAvailable Values:\n- `_0`: General\n- `_1`: Video\n- `_2`: Normal",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/search-note/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Search",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_search_note",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-search-note",
+  "sourceTitle": "OpenAPI definition"
+}

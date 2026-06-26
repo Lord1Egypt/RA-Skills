@@ -1,0 +1,153 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "公司代码（CompanyCode）：与“证券主表（SecuMain）”中的“公司代码（CompanyCode）”关联，得到上市公司的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnChiName": "事项状况",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "EventType",
+        "columnChiName": "事项类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "事项类型(EventType)与(CT_SystemConst)表中的DM字段关联，令LB = 1162，得到事项类型的具体描述：10-募集资金使用，13-重大担保，15-关联债权债务，17-委托理财，19-关联交易，21-关联销售和采购，31-应收帐款，32-其他应收款，33-预付帐款，41-收购资产，43-出售资产，99-其他事项，1001-募集资金总额，1003-本期使用募资金额，1005-累计使用募资金额，1007-承诺投资项目数量，1009-变更项目数量，1010-变更项目资金总额，1011-投资项目收益总额，1301-担保本期发生额，1303-担保期末余额，1305-关联担保余额，1307-上市公司对控股子公司担保发生额，1308-上市公司对控股子公司担保余额，1309-违规担保总额，1310-担保总额，1311-担保余额占净资产比例，1313-担保总额占净资产比例，1314-子公司对子公司担保发生额，1315-子公司对子公司担保余额，1501-向关联方提供资金发生额，1503-向关联方提供资金余额，1505-关联方向上市公司提供资金发生额，1507-关联方向上市公司提供资金余额，1511-上市公司向控股股东及其子公司提供资金发生额，1513-上市公司向控股股东及其子公司提供资金余额，1521-大股东及其附属企业非经营性占用上市公司资金余额，1701-委托理财本期发生额，1703-委托理财余额，1705-委托理财本期收回金额，1707-委托理财本期收益金额，1709-逾期未收回的本金和收益累计金额，1711-委托理财委托金额，1713-委托理财实际收益，1715-委托理财实际收回金额，1901-上市公司向控股股东及其子公司销售产品关联交易总额，2101-向关联方销售产品和提供劳务交易金额，2103-向关联方采购产品和接受劳务交易金额，2111-向关联方销售产品和提供劳务占同类交易金额比例，2113-向关联方采购产品和接受劳务占同类交易金额比例，3001-前五名欠款合计，3003-持股5%以上股东欠款，9903-预计股改日期，10111-未变更项目收益，10113-已变更项目收益，13091-为控股股东及持股50%以下关联方提供的担保金额(违规)，13092-为股东、实际控制人及其关联方提供的担保金额，13093-为资产负债率超70%的被担保方提供债务担保金额(违规)，13094-担保总额超过净资产50%部分的金额，13097-三项担保金额合计，13099-担保总额是否超过净资产的50%(是-1否-0)。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Subitem",
+        "columnChiName": "子项选择",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "子项选择(Subitem)与(CT_SystemConst)表中的DM字段关联，令LB = 1162，得到子项选择的具体描述：10-募集资金使用，13-重大担保，15-关联债权债务，17-委托理财，19-关联交易，21-关联销售和采购，31-应收帐款，32-其他应收款，33-预付帐款，41-收购资产，43-出售资产，99-其他事项，1001-募集资金总额，1003-本期使用募资金额，1005-累计使用募资金额，1007-承诺投资项目数量，1009-变更项目数量，1010-变更项目资金总额，1011-投资项目收益总额，1301-担保本期发生额，1303-担保期末余额，1305-关联担保余额，1307-上市公司对控股子公司担保发生额，1308-上市公司对控股子公司担保余额，1309-违规担保总额，1310-担保总额，1311-担保余额占净资产比例，1313-担保总额占净资产比例，1314-子公司对子公司担保发生额，1315-子公司对子公司担保余额，1501-向关联方提供资金发生额，1503-向关联方提供资金余额，1505-关联方向上市公司提供资金发生额，1507-关联方向上市公司提供资金余额，1511-上市公司向控股股东及其子公司提供资金发生额，1513-上市公司向控股股东及其子公司提供资金余额，1521-大股东及其附属企业非经营性占用上市公司资金余额，1701-委托理财本期发生额，1703-委托理财余额，1705-委托理财本期收回金额，1707-委托理财本期收益金额，1709-逾期未收回的本金和收益累计金额，1711-委托理财委托金额，1713-委托理财实际收益，1715-委托理财实际收回金额，1901-上市公司向控股股东及其子公司销售产品关联交易总额，2101-向关联方销售产品和提供劳务交易金额，2103-向关联方采购产品和接受劳务交易金额，2111-向关联方销售产品和提供劳务占同类交易金额比例，2113-向关联方采购产品和接受劳务占同类交易金额比例，3001-前五名欠款合计，3003-持股5%以上股东欠款，9903-预计股改日期，10111-未变更项目收益，10113-已变更项目收益，13091-为控股股东及持股50%以下关联方提供的担保金额(违规)，13092-为股东、实际控制人及其关联方提供的担保金额，13093-为资产负债率超70%的被担保方提供债务担保金额(违规)，13094-担保总额超过净资产50%部分的金额，13097-三项担保金额合计，13099-担保总额是否超过净资产的50%(是-1否-0)。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "Unit",
+        "columnChiName": "单位",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "单位(Unit)与(CT_SystemConst)表中的DM字段关联，令LB = 1225，得到单位的具体描述：1-万元，2-元，3-%，4-个，5-户，6-份，7-天，8-次，9-点，10-倍，11-家，12-百万元，13-美元，14-港币，15-吨/手，16-元/手，17-元/吨，18-克/手，19-桶/手，20-立方米/手，21-千克/手，22-张/手，23-元/指数点，24-手。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.86",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Data",
+        "columnChiName": "字段数据",
+        "columnType": "decimal(18,6)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "Note",
+        "columnChiName": "备注说明",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.06"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

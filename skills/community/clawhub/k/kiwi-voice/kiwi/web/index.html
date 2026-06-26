@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiwi Voice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F95D;</text></svg>">
+</head>
+<body>
+    <div class="dashboard">
+
+        <!-- ── Header ── -->
+        <header class="header">
+            <div class="header-brand">
+                <div class="brand-mark">K</div>
+                <div class="brand-text">
+                    <h1 class="logo">Kiwi<span class="logo-dim">Voice</span></h1>
+                    <span class="version" id="header-version">Dashboard</span>
+                </div>
+            </div>
+            <div class="header-center" id="state-indicator">
+                <span class="state-dot" id="state-dot"></span>
+                <span class="state-label" id="state-label">Connecting...</span>
+            </div>
+            <div class="header-meta">
+                <span class="meta-pill" id="uptime">--:--:--</span>
+            </div>
+        </header>
+
+        <!-- Toasts -->
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- ── Two-Column Layout ── -->
+        <div class="columns">
+
+            <!-- Left Column (primary) -->
+            <div class="col-primary">
+
+                <!-- Live Status -->
+                <section class="panel" style="--i:0; --panel-accent-color:var(--accent)">
+                    <div class="panel-header">
+                        <span class="panel-accent" style="background:var(--accent)"></span>
+                        <h2 class="panel-title">Live Status</h2>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value" id="status-state"><span class="state-badge state-idle">Idle</span></div>
+                            <div class="metric-label">State</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="status-speaking"><span class="indicator-off">No</span></div>
+                            <div class="metric-label">Speaking</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="status-processing"><span class="indicator-off">No</span></div>
+                            <div class="metric-label">Processing</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="status-speaker">--</div>
+                            <div class="metric-label">Active Speaker</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="status-tts-provider">--</div>
+                            <div class="metric-label">TTS Provider</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="status-soul">--</div>
+                            <div class="metric-label">Active Soul</div>
+                        </div>
+                        <div class="metric metric-wide">
+                            <div class="metric-value" id="status-exec-approval"><span class="indicator-off">None</span></div>
+                            <div class="metric-label">Exec Approval</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Controls -->
+                <section class="panel" style="--i:1; --panel-accent-color:var(--amber)">
+                    <div class="panel-header">
+                        <span class="panel-accent" style="background:var(--amber)"></span>
+                        <h2 class="panel-title">Controls</h2>
+                    </div>
+                    <div class="controls-row">
+                        <button class="btn btn-danger" onclick="stopService()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                            Stop
+                        </button>
+                        <button class="btn btn-warning" onclick="resetContext()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                            Reset
+                        </button>
+                        <button class="btn btn-primary" onclick="restartService()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                            Restart
+                        </button>
+                        <button class="btn btn-danger" onclick="shutdownService()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+                            Shutdown
+                        </button>
+                    </div>
+                    <div class="tts-row">
+                        <input type="text" id="tts-test-input" class="input" placeholder="Type something to speak..." value="Hello, I am Kiwi!">
+                        <button class="btn btn-primary" id="tts-test-btn" onclick="testTTS()">Speak</button>
+                    </div>
+                </section>
+
+                <!-- Configuration -->
+                <section class="panel" style="--i:2; --panel-accent-color:var(--cyan)">
+                    <div class="panel-header">
+                        <span class="panel-accent" style="background:var(--cyan)"></span>
+                        <h2 class="panel-title">Configuration</h2>
+                    </div>
+                    <div class="config-grid" id="config-grid">
+                        <div class="config-item">
+                            <span class="config-label">Wake Word</span>
+                            <span class="config-value" id="config-wake-word">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">Wake Engine</span>
+                            <span class="config-value" id="config-wake-engine">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">STT Engine</span>
+                            <span class="config-value" id="config-stt-engine">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">STT Model</span>
+                            <span class="config-value" id="config-stt-model">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">STT Device</span>
+                            <span class="config-value" id="config-stt-device">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">TTS Provider</span>
+                            <span class="config-value" id="config-tts-provider">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">LLM Model</span>
+                            <span class="config-value" id="config-llm-model">--</span>
+                        </div>
+                        <div class="config-item">
+                            <span class="config-label">Sample Rate</span>
+                            <span class="config-value" id="config-sample-rate">--</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column (secondary) -->
+            <div class="col-secondary">
+
+                <!-- Web Microphone -->
+                <section class="panel panel-mic" style="--i:0; --panel-accent-color:var(--emerald)">
+                    <div class="panel-header">
+                        <span class="panel-accent" style="background:var(--emerald)"></span>
+                        <h2 class="panel-title">Web Microphone</h2>
+                    </div>
+                    <div class="mic-hero">
+                        <button class="mic-btn" id="mic-btn" onclick="toggleMicrophone()">
+                            <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                            <span class="mic-ring mic-ring-1"></span>
+                            <span class="mic-ring mic-ring-2"></span>
+                        </button>
+                        <div class="mic-info">
+                            <span class="mic-state" id="mic-state">Click to connect</span>
+                            <div class="volume-bars" id="volume-bars">
+                                <div class="vol-bar"></div>
+                                <div class="vol-bar"></div>
+                                <div class="vol-bar"></div>
+                                <div class="vol-bar"></div>
+                                <div class="vol-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mic-volume-fill" style="display:none"></div>
+                </section>
+
+                <!-- Language -->
+                <section class="panel" style="--i:1; --panel-accent-color:var(--violet)">
+                    <div class="panel-header">
+                        <span class="panel-accent" style="background:var(--violet)"></span>
+                        <h2 class="panel-title">Language</h2>
+                    </div>
+                    <div class="lang-row">
+                        <span class="lang-label">Current</span>
+                        <span class="lang-value" id="current-language">--</span>
+                    </div>
+                    <div class="lang-controls">
+                        <select id="language-select" class="input select">
+                            <option value="">Loading...</option>
+                        </select>
+                        <button class="btn btn-primary" id="language-apply-btn" onclick="applyLanguage()">Apply</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ── Full-Width Sections ── -->
+
+        <!-- Personalities -->
+        <section class="panel panel-souls" style="--i:3; --panel-accent-color:var(--orange)">
+            <div class="panel-header">
+                <span class="panel-accent" style="background:var(--orange)"></span>
+                <h2 class="panel-title">Personalities</h2>
+                <div class="carousel-nav">
+                    <button class="carousel-arrow" onclick="scrollSouls(-1)" aria-label="Scroll left">
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"/></svg>
+                    </button>
+                    <button class="carousel-arrow" onclick="scrollSouls(1)" aria-label="Scroll right">
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="souls-carousel" id="souls-grid">
+                <p class="empty-state">Loading souls...</p>
+            </div>
+        </section>
+
+        <!-- Speakers -->
+        <section class="panel" style="--i:4; --panel-accent-color:var(--emerald)">
+            <div class="panel-header">
+                <span class="panel-accent" style="background:var(--emerald)"></span>
+                <h2 class="panel-title">Speakers</h2>
+            </div>
+            <div class="table-wrap">
+                <table class="speakers-table" id="speakers-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Priority</th>
+                            <th>Samples</th>
+                            <th>Last Seen</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="speakers-tbody">
+                        <tr><td colspan="5" class="empty-state">Loading speakers...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Event Log -->
+        <section class="panel" style="--i:5; --panel-accent-color:var(--text-3)">
+            <div class="panel-header">
+                <span class="panel-accent" style="background:var(--text-3)"></span>
+                <h2 class="panel-title">Event Log</h2>
+                <button class="btn btn-small btn-secondary" onclick="clearEventLog()">Clear</button>
+            </div>
+            <div class="event-log" id="event-log">
+                <div class="event-entry event-system">
+                    <span class="event-time">--:--:--</span>
+                    <span class="event-type">SYSTEM</span>
+                    <span class="event-data">Dashboard loaded, waiting for connection...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connection Overlay -->
+        <div class="connection-overlay" id="connection-overlay" style="display:none;">
+            <div class="connection-box">
+                <div class="spinner"></div>
+                <p class="connection-title">Connecting to Kiwi Voice</p>
+                <p class="connection-sub">Waiting for service on <code>localhost:7789</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/audio-client.js"></script>
+    <script src="static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "intelligent-inspection",
+  "version": "1.0.0",
+  "description": "Intelligent workplace inspection system with guided setup, configurable inspection tasks, AI-powered image analysis, and Feishu alerting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["inspection", "monitoring", "ai", "feishu", "workplace"],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "description": "layered-memory-sys 配置文件",
+  
+  "paths": {
+    "memoryDir": "${WORKSPACE}/memory",
+    "sessionDir": "${HOME}/.openclaw/agents/main/sessions",
+    "indexFile": "index.json",
+    "dreamLog": "dream-log.md",
+    "archiveFile": "archive.md",
+    "statsDir": "stats"
+  },
+  
+  "embedding": {
+    "provider": "local",
+    "model": "all-MiniLM-L6-v2",
+    "fallback": "tfidf"
+  },
+  
+  "layers": {
+    "flash": { "ttl": 3, "desc": "临时查询/一次性问答" },
+    "active": { "ttl": 7, "desc": "正在进行的任务" },
+    "attention": { "ttl": 30, "desc": "反复讨论的话题" },
+    "settled": { "ttl": 90, "desc": "重要经验/决策记录" }
+  },
+  
+  "autoWrite": {
+    "enabled": true,
+    "rules": {
+      "turnsThreshold": 10,
+      "rememberKeywords": ["记住", "记住这个", "别忘了", "记下来"],
+      "longReplyThreshold": 2000,
+      "taskCompletePatterns": ["完成了", "搞定了", "已经", "成功"]
+    }
+  },
+  
+  "stats": {
+    "enabled": true,
+    "outputFormat": "html",
+    "chartLibrary": "chart.js"
+  }
+}

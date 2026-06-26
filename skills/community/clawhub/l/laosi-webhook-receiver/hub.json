@@ -1,0 +1,20 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "webhook",
+                 "http",
+                 "events",
+                 "automation",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "webhook-receiver",
+    "pricing":  {
+                    "price":  2900,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "Webhook Receiver Pro"
+}

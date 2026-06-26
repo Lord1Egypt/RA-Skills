@@ -1,0 +1,63 @@
+{
+  "results": [
+    {
+      "test_name": "\u4f4e\u5185\u5bb9\u4e66\u751f\u6210 - \u5f15\u5bfc\u65e5\u8bb0",
+      "with_skill_time": 4.76837158203125e-07,
+      "with_skill_tokens": 1500,
+      "with_skill_passed": true,
+      "without_skill_time": 0.0,
+      "without_skill_tokens": 5000,
+      "without_skill_passed": false,
+      "improvement_ratio": 1.6666666666666667,
+      "notes": ""
+    },
+    {
+      "test_name": "\u6279\u91cf\u751f\u6210\u4e66\u7c4d",
+      "with_skill_time": 7.152557373046875e-07,
+      "with_skill_tokens": 1800,
+      "with_skill_passed": true,
+      "without_skill_time": 4.76837158203125e-07,
+      "without_skill_tokens": 6000,
+      "without_skill_passed": false,
+      "improvement_ratio": 2.0,
+      "notes": ""
+    },
+    {
+      "test_name": "AI\u5c01\u9762Prompt\u751f\u6210",
+      "with_skill_time": 2.384185791015625e-07,
+      "with_skill_tokens": 1200,
+      "with_skill_passed": true,
+      "without_skill_time": 2.384185791015625e-07,
+      "without_skill_tokens": 4000,
+      "without_skill_passed": true,
+      "improvement_ratio": 2.166666666666667,
+      "notes": ""
+    },
+    {
+      "test_name": "\u7535\u5b50\u4e66EPUB\u8f6c\u6362",
+      "with_skill_time": 0.0,
+      "with_skill_tokens": 1200,
+      "with_skill_passed": true,
+      "without_skill_time": 0.0,
+      "without_skill_tokens": 4000,
+      "without_skill_passed": false,
+      "improvement_ratio": 2.166666666666667,
+      "notes": ""
+    },
+    {
+      "test_name": "\u751f\u6210\u4e66\u7c4d\u5c01\u9762",
+      "with_skill_time": 2.384185791015625e-07,
+      "with_skill_tokens": 1000,
+      "with_skill_passed": true,
+      "without_skill_time": 0.0,
+      "without_skill_tokens": 3500,
+      "without_skill_passed": true,
+      "improvement_ratio": 1.75,
+      "notes": ""
+    }
+  ],
+  "summary": {
+    "total_tests": 5,
+    "avg_improvement": 1.95
+  }
+}

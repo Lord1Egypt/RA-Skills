@@ -1,0 +1,6 @@
+allowed_hosts:
+  - staff.bluemv.net
+
+allowed_host_suffixes: []
+
+host_overrides: {}

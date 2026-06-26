@@ -1,0 +1,24 @@
+{
+  "name": "Legacy Thinking Facilitator",
+  "slug": "legacy-thinking-facilitator",
+  "version": "1.0.0",
+  "description": "Guides reflection on personal legacy and what lasting impact one wants to leave.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "legacy",
+    "values",
+    "purpose",
+    "self-reflection"
+  ],
+  "trigger_keywords": [
+    "personal legacy",
+    "what will I be remembered for",
+    "long-term impact",
+    "legacy thinking",
+    "life purpose reflection"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

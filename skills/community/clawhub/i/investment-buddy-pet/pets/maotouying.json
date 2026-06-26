@@ -1,0 +1,46 @@
+{
+  "pet_id": "maotouying",
+  "name": "智多星",
+  "emoji": "🦉",
+  "investment_style": "analytical",
+  "risk_tolerance": "balanced",
+  "communication_style": "rational",
+  "expertise": ["valuation", "financial_analysis", "industry_research"],
+  "catchphrase": "数据不会说谎",
+  
+  "personality_traits": {
+    "proactivity_level": 70,
+    "verbosity_level": 70,
+    "intervention_level": 60,
+    "emotional_bond": 40,
+    "optimism": 50,
+    "patience": 60
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": false,
+    "night_person": true
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早安。今日市场数据已更新，请查看。📊",
+    "greeting_night": "晚安。今天的学习数据已记录。",
+    "market_up": "今日涨幅 {percent}%。分析：{analysis}",
+    "market_down": "今日跌幅 {percent}%。历史数据：{history_data}",
+    "sip_reminder": "定投日提醒：今日适合买入，当前估值 {valuation} 分位。",
+    "achievement": "成就解锁：{achievement}。数据分析显示你的胜率提升了 {win_rate}%。",
+    "comfort_loss": "根据历史数据，跌幅>3% 后 3 个月内涨回的概率是 91.6%。建议：继续持有。"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小猫头鹰", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "数据分析师", "xp_required": 500, "unlocks": ["估值分析"]},
+    {"level": 3, "name": "行业研究员", "xp_required": 1500, "unlocks": ["行业监测"]},
+    {"level": 4, "name": "首席分析师", "xp_required": 3000, "unlocks": ["持仓诊断"]},
+    {"level": 5, "name": "投资科学家", "xp_required": 6000, "unlocks": ["量化策略"]}
+  ]
+}

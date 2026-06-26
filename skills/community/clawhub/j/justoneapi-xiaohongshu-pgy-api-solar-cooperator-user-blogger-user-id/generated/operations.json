@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/solar/cooperator/user/blogger/userId/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Profile through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Creator Profile",
+  "endpointPath": "api/solar/cooperator/user/blogger/userId",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Profile data, including audience and pricing data, for influencer vetting, benchmark analysis, and campaign planning.",
+      "method": "GET",
+      "operationId": "apiSolarCooperatorUserBloggerUserIdV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Blogger's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/cooperator/user/blogger/userId/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Profile",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_solar_cooperator_user_blogger_user_id",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-solar-cooperator-user-blogger-user-id",
+  "sourceTitle": "OpenAPI definition"
+}

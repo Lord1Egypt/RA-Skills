@@ -1,35 +1,74 @@
 ---
-name: "Calendar Sync"
+name: jpeng-calendar-sync
 description: "Calendar synchronization skill. Sync events between Google Calendar, Outlook, and local storage. Supports CRUD operations and reminders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-calendar-sync"
-sourceUrl: "https://clawhub.ai/skills/jpeng-calendar-sync"
+version: "1.0.0"
+author: "jpeng"
+tags: ["calendar", "google", "outlook", "scheduling", "events"]
 ---
 
 # Calendar Sync
 
-> Calendar synchronization skill. Sync events between Google Calendar, Outlook, and local storage. Supports CRUD operations and reminders.
+Synchronize calendar events across Google Calendar, Outlook, and local storage.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-calendar-sync`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-calendar-sync](https://clawhub.ai/skills/jpeng-calendar-sync)
+## When to Use
 
-## Overview
+- User wants to add/edit/delete calendar events
+- Sync events between different calendar providers
+- Set up reminders and recurring events
+- Check availability and schedule meetings
 
+## Configuration
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-calendar-sync
+# Google Calendar
+export GOOGLE_CLIENT_ID="xxx"
+export GOOGLE_CLIENT_SECRET="xxx"
+export GOOGLE_REDIRECT_URI="http://localhost:8080/callback"
+
+# Microsoft Outlook
+export OUTLOOK_CLIENT_ID="xxx"
+export OUTLOOK_CLIENT_SECRET="xxx"
+```
+
+## Usage
+
+### List events
+
+```bash
+python3 scripts/calendar.py list --days 7
+```
+
+### Add event
+
+```bash
+python3 scripts/calendar.py add \
+  --title "Team Meeting" \
+  --start "2024-01-15T10:00:00" \
+  --end "2024-01-15T11:00:00" \
+  --description "Weekly sync" \
+  --reminder 15
+```
+
+### Delete event
+
+```bash
+python3 scripts/calendar.py delete --event-id "xxx"
+```
+
+### Check availability
+
+```bash
+python3 scripts/calendar.py available \
+  --date "2024-01-15" \
+  --duration 60
+```
+
+## Output
+
+```json
+{
+  "success": true,
+  "event_id": "evt_xxx",
+  "calendar_link": "https://calendar.google.com/..."
+}
 ```

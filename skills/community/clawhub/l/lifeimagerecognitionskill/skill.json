@@ -1,0 +1,15 @@
+{
+  "name": "生活图像识别小助手",
+  "description": "上传一张生活场景图片，我帮你识别内容并给出实用建议。",
+  "version": "1.0.0",
+  "tags": ["图像识别", "生活助手", "拍照识别", "美食", "宠物", "穿搭", "植物", "旅行"],
+  "input": {
+    "type": "image",
+    "description": "上传一张图片"
+  },
+  "output": {
+    "type": "text",
+    "description": "识别结果与建议"
+  },
+  "prompt": "prompt.txt"
+}

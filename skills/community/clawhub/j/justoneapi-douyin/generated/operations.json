@@ -1,0 +1,417 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Douyin (TikTok China) workflows with JustOneAPI, including user Profile, user Published Videos, and video Details across 8 operations.",
+  "displayName": "Douyin (TikTok China)",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) user Profile data, including follower counts, verification status, and bio details, for creator research and account analysis.",
+      "method": "GET",
+      "operationId": "getUserDetailV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique user ID (sec_uid) on Douyin.",
+          "enumValues": [],
+          "location": "query",
+          "name": "secUid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/get-user-detail/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) user Published Videos data, including captions, covers, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserVideoListV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique user ID (sec_uid) on Douyin.",
+          "enumValues": [],
+          "location": "query",
+          "name": "secUid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination cursor; use 0 for the first page, and the `max_cursor` from the previous response for subsequent pages.",
+          "enumValues": [],
+          "location": "query",
+          "name": "maxCursor",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin/get-user-video-list/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Videos",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) video Comments data, including authors, text, and likes, for sentiment analysis and engagement review.",
+      "method": "GET",
+      "operationId": "getVideoCommentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique video identifier (aweme_id).",
+          "enumValues": [],
+          "location": "query",
+          "name": "awemeId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin/get-video-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Comments",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) video Details data, including author details, publish time, and engagement counts, for video research, archiving, and performance analysis.",
+      "method": "GET",
+      "operationId": "getDouyinVideoDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique video identifier (aweme_id or model_id).",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/get-video-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) comment Replies data, including text, authors, and timestamps, for thread analysis and feedback research.",
+      "method": "GET",
+      "operationId": "getVideoSubCommentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier of the top-level comment.",
+          "enumValues": [],
+          "location": "query",
+          "name": "commentId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin/get-video-sub-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Comment Replies",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) user Search data, including profile metadata and follower signals, for creator discovery and account research.",
+      "method": "GET",
+      "operationId": "searchDouyinUserV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by user type.\n\nAvailable Values:\n- `common_user`: Common User\n- `enterprise_user`: Enterprise User\n- `personal_user`: Verified Individual User",
+          "enumValues": [
+            "common_user",
+            "enterprise_user",
+            "personal_user"
+          ],
+          "location": "query",
+          "name": "userType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/search-user/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Search",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) video Search data, including metadata and engagement signals, for content discovery, trend research, and competitive monitoring.",
+      "method": "GET",
+      "operationId": "searchVideoV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Sorting criteria for search results.\n\nAvailable Values:\n- `_0`: General\n- `_1`: More likes\n- `_2`: Newest",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "sortType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Filter by video publish time range.\n\nAvailable Values:\n- `_0`: No Limit\n- `_1`: Last 24 Hours\n- `_7`: Last 7 Days\n- `_180`: Last 6 Months",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_7",
+            "_180"
+          ],
+          "location": "query",
+          "name": "publishTime",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Filter by video duration.\n\nAvailable Values:\n- `_0`: No Limit\n- `_1`: Under 1 Minute\n- `_2`: 1-5 Minutes\n- `_3`: Over 5 Minutes",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "duration",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search ID; required for pages > 1 (use the search_id value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/search-video/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Search",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    },
+    {
+      "description": "Get Douyin (TikTok China) share Link Resolution data, including helping extract canonical IDs, for downstream video and comment workflows.",
+      "method": "GET",
+      "operationId": "shareDouyinUrlTransferV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Douyin short share URL.",
+          "enumValues": [],
+          "location": "query",
+          "name": "shareUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/share-url-transfer/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Share Link Resolution",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin",
+  "slug": "justoneapi-douyin",
+  "sourceTitle": "OpenAPI definition"
+}

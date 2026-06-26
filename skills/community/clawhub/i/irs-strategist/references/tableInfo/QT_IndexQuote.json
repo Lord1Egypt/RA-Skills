@@ -1,0 +1,170 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到指数的代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "PrevClosePrice",
+        "columnChiName": "昨收盘(元/点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.79"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "OpenPrice",
+        "columnChiName": "今开盘(元/点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.36"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "HighPrice",
+        "columnChiName": "最高价(元/点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.2"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "LowPrice",
+        "columnChiName": "最低价(元/点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "38.2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ClosePrice",
+        "columnChiName": "收盘价(元/点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.82"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量",
+        "columnType": "decimal(19,2)",
+        "isNullable": 1,
+        "remark": "成交量(TurnoverVolume)单位：与“指数基本情况（LC_IndexBasicInfo）”中的“指数内部代码（IndexCode）”关联，当指数类别（IndexType）为46-债券类指数时，单位为元；当IndexType为45-基金类指数，单位为份；当IndexType为50-期货类指数，单位为手；其余IndexType，单位为股。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "70.16",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "61.93"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "TurnoverDeals",
+        "columnChiName": "成交笔数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "5.94"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "ChangePCT",
+        "columnChiName": "涨跌幅(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.78"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "NegotiableMV",
+        "columnChiName": "指数市值(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "remark": "指数市值(元)(NegotiableMV)：中证/上证指数，指数总市值；申万指数，2010-12-31前是流通市值，2011-1-4后是自由流通市值。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "16.62",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

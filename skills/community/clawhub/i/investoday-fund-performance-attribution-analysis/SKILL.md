@@ -1,35 +1,247 @@
 ---
-name: "investoday-fund-performance-attribution-analysis"
-description: "面向公募基金业绩归因分析，聚焦超额收益来源、选股能力、择时能力、配置支撑与业绩可持续性。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金业绩归因报告。触发词：业绩归因、超额收益、选股能力、择时能力、业绩来源、主动管理能力。"
-category: "other"
-source: "ClawHub"
-tags: [active-management, allocation-support, excess-return, market-timing, peer-comparison, performance-attribution, return-drivers, stock-selection]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-fund-performance-attribution-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-fund-performance-attribution-analysis"
+name: investoday-fund-performance-attribution-analysis
+title: "基金业绩归因分析"
+version: 1.3.0
+description: 面向公募基金业绩归因分析，聚焦超额收益来源、选股能力、择时能力、配置支撑与业绩可持续性。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金业绩归因报告。触发词：业绩归因、超额收益、选股能力、择时能力、业绩来源、主动管理能力。
+tags:
+  - performance-attribution
+  - excess-return
+  - stock-selection
+  - market-timing
+  - active-management
+  - allocation-support
+  - peer-comparison
+  - return-drivers
+metadata:
+  clawdbot:
+    emoji: "🎯"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-fund-performance-attribution-analysis
+# 🎯 基金业绩归因分析
 
-> 面向公募基金业绩归因分析，聚焦超额收益来源、选股能力、择时能力、配置支撑与业绩可持续性。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金业绩归因报告。触发词：业绩归因、超额收益、选股能力、择时能力、业绩来源、主动管理能力。
+面向公募基金业绩归因分析，聚焦超额收益来源、选股能力、择时能力、配置支撑与业绩可持续性。基于今日投资金融数据接口，自动识别基金代码并输出结构化基金业绩归因报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-fund-performance-attribution-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-fund-performance-attribution-analysis](https://clawhub.ai/skills/investoday-fund-performance-attribution-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只基金的收益来自哪里，是靠选股还是择时
+- 用户希望判断主动管理能力、超额收益来源与当前配置是否支撑业绩
+- 用户想知道“这只基金为什么能跑赢”“业绩可持续吗”“更偏 Beta 还是 Alpha”
+- 关键词：业绩归因、超额收益、选股能力、择时能力、业绩来源、主动管理能力、Alpha、Beta
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-fund-performance-attribution-analysis
+**示例 1：收益来源**
 ```
+帮我分析一下这只基金的收益主要来自哪里。
+```
+
+**示例 2：选股还是择时**
+```
+这只基金最近跑赢同类，是靠选股还是靠择时？
+```
+
+**示例 3：可持续性**
+```
+这只基金的超额收益能不能持续，当前配置支不支持？
+```
+
+> 💡 支持输入基金名称或 6 位基金代码。若用户只提供名称，优先使用 `entity-recognition` 识别基金实体；若无法稳定唯一识别，再提示补充完整名称或代码。若用户主要关心波动、回撤和风险承受，优先使用 `基金风险分析`；若需要把收益、风险、持仓、经理、费用分红一起看，优先使用 `基金综合诊断`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 标的识别工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 实体识别 | `entity-recognition` | POST | 从自然语言中识别基金实体 |
+| 基金基本信息 | `fund/basic-info` | POST | 获取基金名称、类型、投资目标与策略 |
+
+### 业绩归因核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 同类平均指标 | `fund/eval-peer-avg-ind` | POST | 获取收益、同类平均、排名、Alpha、Beta 等同类比较数据 |
+| 归因分析 | `fund/performance-attribution` | POST | 获取选股能力、择时能力、风险收益指标等 |
+
+### 配置与管理工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 基金资产分布 | `fund/portfolio-asset-holdings` | POST | 获取股票、债券、现金等配置比例 |
+| 现任基金经理及回报 | `fund/current-manager-returns` | POST | 获取基金经理任期回报与从业信息 |
+
+## 数据获取流程
+
+用户提供基金名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：基金实体识别（如用户输入名称而非代码）**：工具ID `entity-recognition` (POST)，参数 `input=<用户原始问题>`
+- **Step 1：基金基本信息**：工具ID `fund/basic-info` (POST)，参数 `fundCode=<code>`
+- **Step 2：同类平均指标**：工具ID `fund/eval-peer-avg-ind` (POST)，参数 `fundCode=<code>`
+- **Step 3：归因分析**：工具ID `fund/performance-attribution` (POST)，参数 `fundCode=<code>`
+- **Step 4：基金资产分布**：工具ID `fund/portfolio-asset-holdings` (POST)，参数 `fundCode=<code>`
+- **Step 5：现任基金经理及回报**：工具ID `fund/current-manager-returns` (POST)，参数 `fundCode=<code>`
+
+> **并行优化**：完成 Step 0 的基金识别后，Step 1-5 可并行调用；分析时优先用 Step 2-3 判断超额收益与主动管理来源，再用 Step 4-5 验证业绩支撑与延续性。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：确认基金定位与分析口径
+
+**目标**：明确基金属于主动还是偏被动、偏股还是偏债，以及评价业绩的合适口径。
+
+**数据来源**：`fund/basic-info`
+
+分析要点：
+- 基金类型、投资目标、投资策略
+- 产品定位是否决定了更高 Beta 暴露或更强主动管理诉求
+- 若产品为指数基金、ETF、联接基金或其他偏被动产品，应优先从跟踪与 Beta 暴露解释业绩，不夸大选股或择时结论
+- 为后续业绩来源分析建立对照框架
+
+**输出**：基金定位与业绩分析口径。
+
+### Step 2：判断超额收益来源
+
+**目标**：确认基金近期和中长期收益是否持续跑赢同类，以及超额收益强度如何。
+
+**数据来源**：`fund/eval-peer-avg-ind`
+
+分析要点：
+- 近 1 月、6 月、1 年、3 年收益与同类平均差异
+- Alpha、Beta 是否支持“主动超额”还是“市场 Beta 驱动”
+- 若短期跑赢但长期一般，应明确指出期限结构分化
+
+**输出**：超额收益来源与同类竞争力判断。
+
+### Step 3：判断主动管理能力
+
+**目标**：对主动产品区分业绩主要来自选股能力还是择时能力；对偏被动产品优先判断 Beta 与配置暴露。
+
+**数据来源**：`fund/performance-attribution`
+
+分析要点：
+- 选股能力与择时能力在多个期限的表现方向
+- 是否存在“长期靠选股、短期靠择时”或相反情况
+- 若选股与择时都偏弱但收益仍不错，需提示可能主要来自风格或 Beta 暴露
+
+**输出**：主动管理能力结构与稳定性判断。
+
+### Step 4：判断当前配置是否支撑业绩
+
+**目标**：分析当前仓位和资产配置是否支持既有收益特征。
+
+**数据来源**：`fund/portfolio-asset-holdings` + `fund/basic-info`
+
+分析要点：
+- 股票、债券、现金等配置比例与产品定位是否一致
+- 当前高权益仓位是否支撑了高收益，也是否放大了波动
+- 若配置与策略不一致，应提示业绩持续性的疑问
+
+**输出**：配置支撑判断与风格依赖结论。
+
+### Step 5：评估业绩可持续性并形成综合结论
+
+**目标**：结合基金经理任期表现，判断当前业绩是否具有一定持续性。
+
+**数据来源**：`fund/current-manager-returns` + 前 4 步结果汇总
+
+分析要点：
+- 基金经理任期回报、从业年限与业绩兑现情况
+- 当前超额收益是短期放大还是有延续基础
+- 后续应重点观察选股能力、择时能力、配置变化还是经理稳定性
+
+**输出**：业绩可持续性判断与综合结论。
+
+## 策略逻辑汇总
+
+> **口径提示**：以下信号更适合作为主动管理型或同策略基金之间的粗略参考；若产品偏被动或指数跟踪，应弱化对“选股/择时能力”的直接解读。
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 收益持续高于同类平均且 Alpha 为正 | 主动超额较明确 | ✅ 积极 |
+| 收益高于同类但 Beta 明显偏高 | 业绩更偏市场暴露驱动 | 🟡 关注 |
+| 选股能力持续为正 | 经理选股贡献较强 | ✅ 积极 |
+| 择时能力持续为正 | 仓位调整有效 | ✅ 积极 |
+| 选股能力为正、择时能力偏弱 | 更偏选股型产品 | 📊 中性 |
+| 选股与择时都偏弱但收益不差 | 可能更多来自风格或 Beta | ⚠️ 警惕 |
+| 资产配置与产品定位一致且股票仓位支撑收益 | 当前配置具备支撑 | ✅ 积极 |
+| 高收益伴随高波动和高回撤 | 业绩质量需折价看待 | 🟡 关注 |
+| 经理任期较短或任期回报缺乏代表性 | 可持续性仍需观察 | 📊 中性 |
+| 长期业绩、选股能力、经理任期回报三者一致 | 业绩延续性较强 | ✅ 积极 |
+
+## 输出格式
+
+```markdown
+# 🎯 [基金名称]（[基金代码]）业绩归因分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、业绩归因结论
+
+（先用一段话概括超额收益来源、主动管理强弱与可持续性）
+
+## 二、基金定位与业绩画像
+
+（基金类型、策略、收益风格、同类位置）
+
+## 三、超额收益来源
+
+（收益、同类平均、Alpha、Beta 角度的判断）
+
+## 四、主动管理能力
+
+（选股能力、择时能力及其稳定性）
+
+## 五、配置支撑与风格依赖
+
+（资产配置是否支持当前业绩特征）
+
+## 六、业绩可持续性
+
+（经理任期表现与后续延续性判断）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确业绩主要来自 Alpha、Beta、选股还是择时
+- 给出后续需要跟踪的关键变量
+```
+
+## 证据约束（必须遵守）
+
+1. 每个业绩归因结论至少给出 2 个数值证据；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许只写“业绩好/差”，必须说明对应收益、同类平均、Alpha/Beta、选股或择时指标
+3. 时间口径必须明确，如“近1年”“近3年”“任期内”
+4. 百分比统一保留 2 位小数
+5. 不给申购赎回建议、定投建议、仓位建议或交易时点
+6. 若基金识别不唯一，必须先要求补充更完整名称或 6 位基金代码
+7. 若超额收益、主动管理能力与当前配置三者不一致，必须明确指出背离，不得直接给出乐观结论
+8. 同类比较、Alpha/Beta 解读与选股/择时判断默认应建立在相近策略产品之间；若产品偏被动或指数跟踪，必须先说明分析边界，不得机械套用主动管理框架夸大选股或择时能力
+
+## 执行示例
+
+用户说：“这只基金最近跑赢同类，是靠选股还是择时？”
+
+1. 通过 `entity-recognition` 识别基金实体与基金代码
+2. 并行调用 `fund/basic-info`、`fund/eval-peer-avg-ind`、`fund/performance-attribution`、`fund/portfolio-asset-holdings` 与 `fund/current-manager-returns`
+3. 分别判断超额收益来源、主动管理能力、配置支撑和业绩可持续性
+4. 输出 Markdown 格式基金业绩归因分析报告
+5. 在结尾写出综合结论与后续跟踪重点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

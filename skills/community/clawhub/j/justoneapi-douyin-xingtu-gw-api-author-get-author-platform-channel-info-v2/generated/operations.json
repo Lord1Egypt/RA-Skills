@@ -1,0 +1,66 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/author/get_author_platform_channel_info_v2/v1 for Douyin Creator Marketplace (Xingtu) Creator Channel Metrics through JustOneAPI with oAuthorId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Creator Channel Metrics",
+  "endpointPath": "gw/api/author/get_author_platform_channel_info_v2",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) creator Channel Metrics data, including platform distribution and channel performance data used, for creator evaluation.",
+      "method": "GET",
+      "operationId": "gwApiAuthorGetAuthorPlatformChannelInfoV2V1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "SHORT_VIDEO",
+          "description": "Platform type.\n\nAvailable Values:\n- `SHORT_VIDEO`: Short video\n- `LIVE_STREAMING`: Live streaming\n- `PICTURE_TEXT`: Picture and text\n- `SHORT_DRAMA`: Short drama",
+          "enumValues": [
+            "SHORT_VIDEO",
+            "LIVE_STREAMING",
+            "PICTURE_TEXT",
+            "SHORT_DRAMA"
+          ],
+          "location": "query",
+          "name": "platform",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/author/get_author_platform_channel_info_v2/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Channel Metrics",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_author_get_author_platform_channel_info_v2",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-author-get-author-platform-channel-info-v2",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,35 +1,251 @@
 ---
-name: "社区运营小助手"
-description: "口碑圈商家运营自动化技能。用于口碑圈发帖（文字/图片/视频/商品）、活动管理、数据监控、自动提醒、长连接推送。使用场景：商家需要在口碑圈发布内容、管理社区互动、查看运营数据、配置自动任务时触发此技能。需要商户 Key 才能执行操作。口碑圈官网：https://dengluu.com"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/koubei-circle-operator"
-sourceUrl: "https://clawhub.ai/skills/koubei-circle-operator"
+name: koubei-circle-operator
+description: 口碑圈商家运营自动化技能。用于口碑圈发帖（文字/图片/视频/商品）、活动管理、数据监控、自动提醒、长连接推送。使用场景：商家需要在口碑圈发布内容、管理社区互动、查看运营数据、配置自动任务时触发此技能。需要商户 Key 才能执行操作。口碑圈官网：https://dengluu.com
 ---
 
-# 社区运营小助手
+# 口碑圈运营助手 (Koubei Circle Operator) 
 
-> 口碑圈商家运营自动化技能。用于口碑圈发帖（文字/图片/视频/商品）、活动管理、数据监控、自动提醒、长连接推送。使用场景：商家需要在口碑圈发布内容、管理社区互动、查看运营数据、配置自动任务时触发此技能。需要商户 Key 才能执行操作。口碑圈官网：https://dengluu.com
+**当前版本**: v1.4.1  
+**口碑圈官网**：[https://dengluu.com](https://dengluu.com)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/koubei-circle-operator`
-- **Source URL:** [https://clawhub.ai/skills/koubei-circle-operator](https://clawhub.ai/skills/koubei-circle-operator)
-
-## Overview
+---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/koubei-circle-operator
+
+## ⚠️ 首次使用必读
+
+**安装完成后，请按以下步骤完成首次配置：**
+
+### 第 1 步：获取商户 Key
+
+1. 登录 **口碑圈商家后台**
+2. 进入 **「口碑圈」** 应用
+3. 找到 **「商户 Key」**（或「API Key」）
+4. 点击复制
+
+### 第 2 步：在 OpenClaw 中配置
+
+**按顺序执行以下操作：**
+
+1. 点击 **AI 助手**
+2. 点击 **openclaw 小助手**
+3. 发送以下指令到 OpenClaw：
+   ```
+   我复制好口碑圈 Key 了，帮我配置
+   ```
+4. 调用以下指令到 OpenClaw:
+   ```bash
+   node scripts/openclaw.js init --key {{key}}
+   ```
+---
+
+**注意**：首次使用必须完成 Key 配置，否则无法使用任何功能。
+
+**配置成功后，你可以：**
+- 📝 发布文字贴、图片贴、视频贴
+- 📊 查询用户数据、帖子数据、活动数据
+- 📈 查看运营报表
+- 📬 批量发送站内信/私信
+- ⚙️ 配置自动化任务
+
+---
+
+## AI 配置流程（重要）
+
+当用户说"帮我配置口碑圈"或"我复制好 Key 了"时，AI 必须按以下流程执行：
+
+### 步骤 1：获取 Key 并验证
+
+1. 请用户提供商户 Key（从口碑圈商家后台复制）
+2. **向用户说明**：商户 Key 将发送至口碑圈官方 API 服务器（`https://ocg.myfans.cc`），用于验证和绑定配置
+3. **用户确认后**，调用 `node scripts/openclaw.js init --key {{key}}` 完成验证和保存
+   - 验证 Key 有效性
+   - 保存到本地配置文件 `scripts/config.json`
+
+### 步骤 2：确认配置成功
+
+直接告知用户配置已完成，并说明可以使用的功能：
+- 📝 发布文字贴、图片贴、视频贴
+- 📊 查询用户数据、帖子数据、活动数据
+- 📈 查看运营报表
+- ⚙️ 配置自动化任务
+
+---
+
+## 使用方式
+
+**所有操作请直接与 AI 对话完成**，无需手动运行命令。
+
+| 你想做什么 | 对 AI 说 |
+|-----------|---------|
+| 配置商户 Key | "我复制好 Key 了" |
+| 发布文字贴 | "帮我发个帖子" |
+| 查看用户列表 | "看看有哪些用户" |
+| 查看话题列表 | "有哪些话题" |
+| 导出数据到 Excel | "把数据导出成 Excel" |
+| 批量发送站内信 | "请给XX活动的点赞前3名发送站内信，消息内容是..." |
+| 自动化任务 | "今天10点时告诉我社区的发贴数量" |
+
+---
+
+## 使用约束（重要）
+
+### 接口调用约束
+
+- ✅ **所有接口必须通过 openclaw.js 调用**
+- ✅ 任何中文必须使用UTF-8字符集
+- ❌ 禁止直接调用 API 接口
+- ❌ 禁止绕过 CLI 工具访问后端服务
+
+### 操作确认约束（重要）
+
+- ⚠️ **所有写操作必须向用户明确确认后方可执行**
+- 需要确认的操作类型：
+  - 删除类：删帖、删评论、删用户、删活动、删标签等
+  - 修改类：编辑帖子标题/内容、修改活动信息、修改用户信息等
+  - 积分类：增加积分、扣除积分、调整积分等
+- 确认可直接执行的操作（免确认）：
+  - 通知类：批量发送站内信/私信
+  - 状态类：置顶/取消置顶
+- 确认话术示例：`"即将删除帖子《xxx》，共 X 条关联数据，确认执行吗？"`
+- **禁止未经确认私自执行任何需要确认的写操作**
+
+### ID 展示约束
+
+- ✅ **禁止直接向用户展示原始 ID**
+- ✅ 查询结果必须关联显示名称（用户昵称、话题名称等）
+- ✅ 任何 ID 字段都应关联查询对应的名称信息
+
+**示例**：
+- ❌ 错误：`这个帖子的 author_id 是 12`
+- ✅ 正确：`这个帖子的作者是 张三（user_id: 12）`
+
+### 数据查询约束
+
+- ✅ **严格按用户要求的时间范围查询**
+- ✅ 用户查"今天" → SQL 必须加今天的时间条件
+- ✅ 用户查"昨天" → SQL 必须加昨天的时间条件
+- ❌ **禁止返回非要求时间的数据**
+
+### 帖子审核状态约束
+
+- ✅ **默认只查询审核通过的帖子**（audit_status=1）
+- ⚠️ 回复包含非通过状态的帖子时，**必须告知用户审核状态**
+
+| audit_status | 状态 |
+|--------------|------|
+| 0 | 未审核 |
+| 1 | 审核通过 |
+| 2 | 审核拒绝 |
+
+### SQL 查询限制
+
+- ❌ 禁止使用 `SELECT *`
+- ❌ 禁止查询未开放的字段
+- ❌ 禁止使用 forum_id 字段
+- ⚠️ LIMIT 最大 500
+
+---
+
+## 发帖与帖子管理流程（重要）
+
+### 第一步：确认帖子类型（发帖/编辑都必须执行）
+
+当用户要求发帖或编辑帖子时，**必须先向用户确认**：
+
+> "请确认：这是普通贴还是活动贴？"
+
+- **普通贴**：关联话题（topic_id），走普通发帖/编辑流程
+- **活动贴**：关联活动（activity_id），走活动发帖/编辑流程
+
+**禁止跳过此步骤直接执行发帖或编辑。**
+
+---
+
+### 第二步：发帖
+
+#### 普通帖发帖流程
+
+1. **确认发帖参数**：
+   - 必须提供：`user_id`（马甲/作者ID）、`topic_id`（话题ID）、`title`（标题）、`message`（内容）
+   - `type`：查询帖子表获取（文字贴通常为 `1`）
+
+2. **执行发帖**：
+   ```bash
+   node scripts/openclaw.js publish '{"user_id":12,"type":1,"topic_id":3,"title":"标题","message":"内容"}'
+   ```
+
+3. **禁止测试验证**：发帖成功后，**不要**再次查询验证，避免重复发帖
+
+#### 活动帖发帖流程
+
+1. 先查询可用活动列表，供用户选择：
+   ```bash
+   node scripts/openclaw.js query "SELECT activity_id, title, started_at, ended_at FROM wb_activity LIMIT 20"
+   ```
+2. 确认活动 ID 和发帖参数后，调用对应接口发布活动关联帖子
+
+---
+
+### 第三步：帖子编辑/优化
+
+#### 帖子优化（含图片）
+
+当用户要求优化已有帖子时，按以下步骤执行：
+
+1. **先确认帖子类型**：查询帖子详情，判断是普通贴还是活动贴
+2. **理解图片内容**（如有）：用 vision 工具查看图片，理解信息、氛围、卖点
+3. **分析帖子原文**：结合图片内容，找出可优化的文案方向
+4. **优化并回传**：生成优化后的文案，图片链接原样透传，**禁止修改**
+
+#### 编辑帖子通用流程
+
+1. **确认帖子类型**：先查询帖子详情，明确是普通贴还是活动贴
+2. **获取帖子当前信息**：查询原标题、正文、图片等
+3. **执行修改**：根据用户要求修改对应字段
+4. **调用对应接口**：普通贴走普通编辑，活动贴走活动编辑
+
+### 热议话题发帖
+
+1. 查询马甲列表供用户选择
+2. 查询热议话题列表供用户选择
+3. 用户选择后调用：
+   ```bash
+   node scripts/openclaw.js publish-hot '{"user_id":12,"type":1,"hot_say_id":8,"title":"标题","message":"内容"}'
+   ```
+
+---
+
+## 使用前提
+
+1. 已开通口碑圈服务（https://dengluu.com）
+2. 已获取商户 Key
+3. 已创建至少一个圈子
+
+---
+
+## 数据导出到 Excel
+
+当用户需要导出查询数据时，引导安装 **excel-xlsx** 技能：
+
+```text
+请先安装 excel-xlsx 技能（通过 SkillHub 商店）
 ```
+
+---
+
+## 注意事项
+
+- 商户 Key 存储在本地 `scripts/config.json`，需妥善保管
+- 所有 API 请求发送至口碑圈官方服务器 `https://ocg.myfans.cc`，该服务器为口碑圈官方服务域名
+- 遵守平台内容发布规则
+- 部分功能需旗舰版及以上版本
+
+---
+
+## 详细文档
+
+- 功能详情：[references/features.md](references/features.md)
+- 版本方案：[references/versions.md](references/versions.md)
+- CLI 命令参考：[references/api.md](references/api.md)
+- 使用 `scripts/openclaw.js` 前必须先阅读 [references/api.md](references/api.md)

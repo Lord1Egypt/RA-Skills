@@ -1,0 +1,132 @@
+{
+  "name": "jira-task-creator",
+  "version": "1.0.0",
+  "description": "Jira Task Creator - Intelligent Jira task management skill with natural language parsing, smart user search, batch creation, and task analytics",
+  "author": "Pipixia",
+  "license": "MIT",
+  "capabilities": {
+    "create_issue": {
+      "description": "Create Jira issues with natural language parsing",
+      "parameters": {
+        "summary": "Task title (required)",
+        "description": "Task description",
+        "project_key": "Project key (e.g., ERP)",
+        "issue_type": "Issue type (Bug, Story)",
+        "priority": "Priority (High, Medium, Low)",
+        "assignee": "Assignee username",
+        "due_date": "Due date (relative dates supported)"
+      }
+    },
+    "search_user": {
+      "description": "Search for users assignable to a project",
+      "parameters": {
+        "query": "Search query (name, email, open_id)",
+        "project_key": "Project key (optional)"
+      }
+    },
+    "batch_create": {
+      "description": "Batch create tasks from CSV or templates",
+      "features": [
+        "CSV import",
+        "Task templates",
+        "Variable replacement"
+      ]
+    },
+    "analytics": {
+      "description": "Analyze and generate task statistics reports",
+      "features": [
+        "Multi-dimensional statistics",
+        "Completion rate calculation",
+        "Overdue identification"
+      ]
+    }
+  },
+  "dependencies": {
+    "python": ">=3.7",
+    "pip": [
+      "requests>=2.25.0",
+      "python-dateutil>=2.8.0"
+    ]
+  },
+  "configuration": {
+    "environment_variables": {
+      "JIRA_BASE_URL": {
+        "required": true,
+        "description": "Jira server base URL (e.g., http://your-jira.com)"
+      },
+      "JIRA_BEARER_TOKEN": {
+        "required": true,
+        "description": "Jira Bearer Token for authentication"
+      },
+      "JIRA_DEFAULT_PROJECT": {
+        "required": false,
+        "description": "Default project key"
+      },
+      "JIRA_DEFAULT_ASSIGNEE": {
+        "required": false,
+        "description": "Default assignee username"
+      }
+    },
+    "config_file": "config.json",
+    "config_schema": {
+      "jira": {
+        "baseUrl": "string",
+        "bearerToken": "string",
+        "defaultProject": "string",
+        "defaultAssignee": "string",
+        "timeout": "number"
+      },
+      "cache": {
+        "enabled": "boolean",
+        "ttl": "number",
+        "maxSize": "number"
+      },
+      "logging": {
+        "level": "string",
+        "saveToFile": "boolean",
+        "logDirectory": "string"
+      }
+    }
+  },
+  "usage_examples": [
+    {
+      "description": "Create a simple task",
+      "code": "create_issue(summary='Fix login bug', project_key='ERP', priority='High')"
+    },
+    {
+      "description": "Create task with natural language",
+      "code": "create_issue_natural(user_instruction='Complete API by next week', project='ERP')"
+    },
+    {
+      "description": "Search for user",
+      "code": "user = search_user('John Doe', 'ERP')"
+    }
+  ],
+  "troubleshooting": {
+    "common_errors": {
+      "401 Unauthorized": "Check Bearer Token validity",
+      "404 Not Found": "Project key or user not found",
+      "422 Unprocessable Entity": "Invalid field values or missing required fields"
+    },
+    "solutions": [
+      "Verify JIRA_BASE_URL and JIRA_BEARER_TOKEN are set",
+      "Check network connectivity to Jira server",
+      "Validate project key and issue type name",
+      "Ensure assignee exists and is assignable to project"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md",
+    "examples": "examples/"
+  },
+  "changelog": {
+    "1.0.0": [
+      "Initial release",
+      "Natural language parsing for dates and priorities",
+      "Smart user search with caching",
+      "Batch task creation support",
+      "Task analytics and reporting"
+    ]
+  }
+}

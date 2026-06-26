@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Docker"
+  short_description: "LabEx Docker courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-docker to find LabEx Docker courses and hands-on labs."

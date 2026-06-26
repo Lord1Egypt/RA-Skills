@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douban/get-movie-review-detail/v1 for Douban Movie Review Details through JustOneAPI with reviewId.",
+  "displayName": "Douban Movie Review Details",
+  "endpointPath": "get-movie-review-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douban movie Review Details data, including metadata, content fields, and engagement signals, for review archiving and detailed opinion analysis.",
+      "method": "GET",
+      "operationId": "getMovieReviewDetailsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a specific review on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "reviewId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douban/get-movie-review-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Review Details",
+      "tags": [
+        "Douban Movie"
+      ]
+    }
+  ],
+  "platformKey": "douban",
+  "primaryTag": "Douban Movie",
+  "skillName": "justoneapi_douban_get_movie_review_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-douban-get-movie-review-detail",
+  "sourceTitle": "OpenAPI definition"
+}

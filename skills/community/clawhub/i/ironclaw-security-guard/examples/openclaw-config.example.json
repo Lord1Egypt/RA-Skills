@@ -1,0 +1,26 @@
+{
+  "plugins": {
+    "load": {
+      "paths": [
+        "/absolute/path/to/openclaw-ironclaw-security-guard"
+      ]
+    },
+    "entries": [
+      {
+        "id": "ironclaw-security-guard",
+        "config": {
+          "enabled": true,
+          "monitorOnly": false,
+          "blockDestructiveShell": true,
+          "protectSensitivePaths": true,
+          "redactSecretsInMessages": true,
+          "networkDenyByDefault": true,
+          "allowedOutboundHosts": [
+            "localhost",
+            "127.0.0.1"
+          ]
+        }
+      }
+    ]
+  }
+}

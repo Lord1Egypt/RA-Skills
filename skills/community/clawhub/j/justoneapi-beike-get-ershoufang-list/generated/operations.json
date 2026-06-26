@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/beike/get-ershoufang-list/v1 for Beike Resale Housing List through JustOneAPI with cityId.",
+  "displayName": "Beike Resale Housing List",
+  "endpointPath": "get-ershoufang-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Beike resale Housing List data, including - Supports filtering by city/region, price range, and layout, for building search result pages for property portals and aggregating market data for regional housing trends.",
+      "method": "GET",
+      "operationId": "getErshoufangListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The ID of the city (e.g., '110000' for Beijing).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cityId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Filter conditions (e.g., region, price range, layout).",
+          "enumValues": [],
+          "location": "query",
+          "name": "condition",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination offset, starting from 0 (e.g., 0, 20, 40...).",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/beike/get-ershoufang-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Resale Housing List",
+      "tags": [
+        "Beike"
+      ]
+    }
+  ],
+  "platformKey": "beike",
+  "primaryTag": "Beike",
+  "skillName": "justoneapi_beike_get_ershoufang_list",
+  "skillType": "interface",
+  "slug": "justoneapi-beike-get-ershoufang-list",
+  "sourceTitle": "OpenAPI definition"
+}

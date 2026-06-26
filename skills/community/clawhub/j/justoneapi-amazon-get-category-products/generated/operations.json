@@ -1,0 +1,111 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/amazon/get-category-products/v1 for Amazon Products By Category through JustOneAPI with categoryId.",
+  "displayName": "Amazon Products By Category",
+  "endpointPath": "get-category-products",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Amazon products By Category data, including title, price, and rating, for category-based product discovery and returns product information such as title, price, and rating.",
+      "method": "GET",
+      "operationId": "getProductsByCategoryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "For example: https://amazon.com/s?node=172282 - the Amazon Category ID is 172282",
+          "enumValues": [],
+          "location": "query",
+          "name": "categoryId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "US",
+          "description": "Country code for the Amazon product.\n\nAvailable Values:\n- `US`: United States\n- `AU`: Australia\n- `BR`: Brazil\n- `CA`: Canada\n- `CN`: China\n- `FR`: France\n- `DE`: Germany\n- `IN`: India\n- `IT`: Italy\n- `MX`: Mexico\n- `NL`: Netherlands\n- `SG`: Singapore\n- `ES`: Spain\n- `TR`: Turkey\n- `AE`: United Arab Emirates\n- `GB`: United Kingdom\n- `JP`: Japan\n- `SA`: Saudi Arabia\n- `PL`: Poland\n- `SE`: Sweden\n- `BE`: Belgium\n- `EG`: Egypt\n- `ZA`: South Africa\n- `IE`: Ireland",
+          "enumValues": [
+            "US",
+            "AU",
+            "BR",
+            "CA",
+            "CN",
+            "FR",
+            "DE",
+            "IN",
+            "IT",
+            "MX",
+            "NL",
+            "SG",
+            "ES",
+            "TR",
+            "AE",
+            "GB",
+            "JP",
+            "SA",
+            "PL",
+            "SE",
+            "BE",
+            "EG",
+            "ZA",
+            "IE"
+          ],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "RELEVANCE",
+          "description": "Sort by.\n\nAvailable Values:\n- `RELEVANCE`: Relevance\n- `LOWEST_PRICE`: Lowest Price\n- `HIGHEST_PRICE`: Highest Price\n- `REVIEWS`: Reviews\n- `NEWEST`: Newest\n- `BEST_SELLERS`: Best Sellers",
+          "enumValues": [
+            "RELEVANCE",
+            "LOWEST_PRICE",
+            "HIGHEST_PRICE",
+            "REVIEWS",
+            "NEWEST",
+            "BEST_SELLERS"
+          ],
+          "location": "query",
+          "name": "sortBy",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/amazon/get-category-products/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Products By Category",
+      "tags": [
+        "Amazon"
+      ]
+    }
+  ],
+  "platformKey": "amazon",
+  "primaryTag": "Amazon",
+  "skillName": "justoneapi_amazon_get_category_products",
+  "skillType": "interface",
+  "slug": "justoneapi-amazon-get-category-products",
+  "sourceTitle": "OpenAPI definition"
+}

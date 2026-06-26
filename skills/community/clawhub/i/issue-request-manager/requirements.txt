@@ -1,0 +1,10 @@
+# Issue Request Manager Skill Requirements
+
+# 基础依赖
+python>=3.7
+
+# 数据处理
+json5>=0.9.0
+
+# 网络请求（用于微信通知）
+requests>=2.25.1

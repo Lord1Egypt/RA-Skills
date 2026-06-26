@@ -1,0 +1,78 @@
+{
+  "name": "li-etl-handle",
+  "version": "1.0.1",
+  "description": "ETL 自动化处理技能 - 读取、写入、清洗、转换、合并 Excel/CSV 文件",
+  "description:en": "Excel Automation Skill - Read, write, clean, transform, and merge Excel files",
+  "description:zh": "Excel 自动化处理技能 - 读取、写入、清洗、转换、合并 Excel 文件",
+  "description:fr": "Compétence d'automatisation Excel - Lire, écrire, nettoyer, transformer et fusionner des fichiers Excel",
+  "description:de": "Excel-Automatisierungsfähigkeit - Lesen, Schreiben, Bereinigen, Transformieren und Zusammenführen von Excel-Dateien",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/unit.test.js",
+    "test:unit": "node tests/unit.test.js",
+    "test:scenario": "node tests/scenario.test.js",
+    "test:all": "npm run test:unit && npm run test:scenario"
+  },
+  "keywords": [
+    "excel",
+    "xlsx",
+    "csv",
+    "数据处理",
+    "办公自动化",
+    "openclaw-skill"
+  ],
+  "keywords:en": [
+    "excel",
+    "xlsx",
+    "csv",
+    "data processing",
+    "office automation",
+    "openclaw-skill"
+  ],
+  "keywords:zh": [
+    "excel",
+    "xlsx",
+    "csv",
+    "数据处理",
+    "办公自动化",
+    "openclaw-skill"
+  ],
+  "keywords:fr": [
+    "excel",
+    "xlsx",
+    "csv",
+    "traitement de données",
+    "automatisation de bureau",
+    "openclaw-skill"
+  ],
+  "keywords:de": [
+    "excel",
+    "xlsx",
+    "csv",
+    "datenverarbeitung",
+    "büroautomatisierung",
+    "openclaw-skill"
+  ],
+  "author": "北京老李",
+  "author:en": "Beijing Lao Li",
+  "author:zh": "北京老李",
+  "author:fr": "Pékin Lao Li",
+  "author:de": "Peking Lao Li",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beijing-laoli/li-excel-handle"
+  },
+  "homepage": "https://clawhub.com/skills/li-excel-handle",
+  "bugs": {
+    "url": "https://github.com/beijing-laoli/li-excel-handle/issues"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.4.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

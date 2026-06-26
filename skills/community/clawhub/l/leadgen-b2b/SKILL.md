@@ -1,35 +1,57 @@
----
-name: "LeadGenerator"
-description: "Wyszukuj i generuj listy firm B2B w Polsce według branży, lokalizacji i filtrów, eksportując dane kontaktowe w formatach CSV, JSON, TXT."
-category: "domain"
-source: "ClawHub"
-tags: [b2b, firmy, handel, leads, marketing, sales]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/leadgen-b2b"
-sourceUrl: "https://clawhub.ai/skills/leadgen-b2b"
----
+# LeadGenerator — Generator Leadów B2B
 
-# LeadGenerator
+## Description
+Generator leadów sprzedażowych dla firm i handlowców. Pozwala wyszukiwać firmy w Polsce według branży i lokalizacji, pobierać dane kontaktowe i generować listę potencjalnych klientów.
 
-> Wyszukuj i generuj listy firm B2B w Polsce według branży, lokalizacji i filtrów, eksportując dane kontaktowe w formatach CSV, JSON, TXT.
+## Features
+- **Wyszukiwanie firm** — po branży, mieście, regionie
+- **Generator leadów** — lista firm z danymi kontaktowymi
+- **Filtry** — wielkość firmy, forma prawna
+- **Eksport danych** — CSV, JSON
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/leadgen-b2b`
-- **Source URL:** [https://clawhub.ai/skills/leadgen-b2b](https://clawhub.ai/skills/leadgen-b2b)
+## Wymagania
+- Python 3.8+ (opcjonalnie)
+- OpenClaw z zainstalowanym skillem
+- Dane do wyszukiwania: branża, lokalizacja
 
-## Overview
+## Usage
+Użytkownik podaje:
+1. Branżę (np. "fotowoltaika", "IT", "budownictwo")
+2. Lokalizację (np. "Zamość", "Lublin", "cała Polska")
+3. Opcjonalnie: wielkość firmy
 
+Skill automatycznie:
+- Wyszukuje firmy wg kryteriów
+- Pobiera dane kontaktowe (nazwa, adres, www, telefon)
+- Generuje listę leadów
+- Sortuje i filtruje wyniki
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/leadgen-b2b
+## Przykłady użycia
 ```
+"Znajdź firmy fotowoltaiczne w Zamościu"
+"Lista firm IT w Lublinie"
+"Eksportuj leadów z branży budowlanej do CSV"
+```
+
+## Wersja PRO (12.29 zł brutto)
+- Generator raportów CSV z danymi leadów (do 100 pozycji)
+- Eksport do formatu CSV i JSON
+- Sortowanie i filtrowanie po dowolnym polu (branża, miasto, wielkość firmy)
+- Profesjonalne formatowanie raportów dla klientów
+- Priorytetowa obsługa mailowa
+- Kontakt: tomaszpedzierski.infinity@wp.pl
+
+**Jak wykupić?** Wyślij maila na tomaszpedzierski.infinity@wp.pl — odpowiem z linkiem do płatności.
+
+## Autor
+**Twórca:** Tomasz Pędzierski
+
+## Licencja
+MIT License
+
+## Status
+✅ Gotowy do użycia
+
+---
+
+*LeadGenerator — zwiększ sprzedaż dzięki lepszym leadom*

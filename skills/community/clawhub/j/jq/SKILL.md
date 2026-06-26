@@ -1,35 +1,56 @@
 ---
-name: "jq"
-description: "Command-line JSON processor. Extract, filter, transform JSON."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jq"
-sourceUrl: "https://clawhub.ai/skills/jq"
+name: jq
+description: Command-line JSON processor. Extract, filter, transform JSON.
 ---
 
 # jq
 
-> Command-line JSON processor. Extract, filter, transform JSON.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jq`
-- **Source URL:** [https://clawhub.ai/skills/jq](https://clawhub.ai/skills/jq)
-
-## Overview
-
+Command-line JSON processor for extracting, filtering, and transforming JSON.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+**macOS / Linux (Homebrew):**
 ```bash
-hermes skills install clawhub/jq
+brew install jq
+```
+
+**All platforms:** See [jqlang.org/download](https://jqlang.org/download/) for packages, binaries, and build instructions.
+
+## Usage
+
+```bash
+jq '[filter]' [file.json]
+cat file.json | jq '[filter]'
+```
+
+## Quick Reference
+
+```bash
+.key                    # Get key
+.a.b.c                  # Nested access
+.[0]                    # First element
+.[]                     # Iterate array
+.[] | select(.x > 5)    # Filter
+{a: .x, b: .y}          # Reshape
+. + {new: "val"}        # Add field
+del(.key)               # Remove field
+length                  # Count
+[.[] | .x] | add        # Sum
+keys                    # List keys
+unique                  # Dedupe array
+group_by(.x)            # Group
+```
+
+## Flags
+
+`-r` raw output (no quotes) · `-c` compact · `-s` slurp into array · `-S` sort keys
+
+## Examples
+
+```bash
+jq '.users[].email' data.json          # Extract emails
+jq -r '.name // "default"' data.json   # With fallback
+jq '.[] | select(.active)' data.json   # Filter active
+jq -s 'add' *.json                     # Merge files
+jq '.' file.json                       # Pretty-print
 ```

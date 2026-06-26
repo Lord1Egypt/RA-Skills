@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: 跨境卫士客户端 OpenAPI
+  version: v1
+  description: |
+    该 OpenAPI 文档由 PDF《跨境卫士客户端 OpenAPI 接口文档》整理转换而来。
+    注意：
+    1. 原始 PDF 未提供完整 server/base URL，这里使用占位地址，请按实际环境修改。
+    2. 原始 PDF 未给出统一错误响应结构，因此本文档仅整理了已明确给出的 200 响应。
+    3. `POST /v1/shops/{id}/close` 的 200 响应在 PDF 中未完整展示，这里仅保留成功响应的最小定义。
+servers:
+  - url: http://127.0.0.1:54981
+    description: 请替换为实际服务地址
+
+tags:
+  - name: Shops
+    description: 店铺相关接口
+
+components:
+  securitySchemes:
+    AppIdAppSecret:
+      type: apiKey
+      in: header
+      name: x-app-id
+      description: 与 x-app-secret 配合使用；PDF 中说明为跨境卫士颁发的 appId
+  parameters:
+    XAppSecret:
+      name: x-app-secret
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 跨境卫士颁发的 appSecret
+    Page:
+      name: page
+      in: query
+      required: false
+      description: 页码
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 1
+    Size:
+      name: size
+      in: query
+      required: false
+      description: 页数量
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 10
+    ShopId:
+      name: id
+      in: path
+      required: true
+      description: 店铺 ID
+      schema:
+        type: string
+    NoHeadless:
+      name: noheadless
+      in: query
+      required: false
+      description: 是否取消无头模式
+      schema:
+        type: boolean
+
+  schemas:
+    ShopItem:
+      type: object
+      required:
+        - model
+        - id
+        - name
+      properties:
+        model:
+          type: string
+          example: shop.item
+        id:
+          type: string
+          description: 店铺 ID，用于启动/关闭店铺
+          example: "1590270200912805889"
+        name:
+          type: string
+          description: 店铺名称
+          example: xxx店铺
+
+    DataSetShopItem:
+      type: object
+      required:
+        - model
+        - datas
+        - total
+      properties:
+        model:
+          type: string
+          example: data.set
+        datas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShopItem'
+        total:
+          type: integer
+          example: 1
+
+    PageInfo:
+      type: object
+      required:
+        - model
+        - current
+        - total
+        - size
+      properties:
+        model:
+          type: string
+          example: page
+        current:
+          type: integer
+          example: 1
+        total:
+          type: integer
+          example: 1
+        size:
+          type: integer
+          example: 10
+
+    ShopListResponse:
+      type: object
+      required:
+        - model
+        - result
+        - page
+      properties:
+        model:
+          type: string
+          example: grid.result
+        result:
+          $ref: '#/components/schemas/DataSetShopItem'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+
+    SeleniumDetail:
+      type: object
+      required:
+        - model
+        - address
+        - port
+      properties:
+        model:
+          type: string
+          example: selenium.detail
+        address:
+          type: string
+          description: selenium 接入地址
+          example: 127.0.0.1
+        port:
+          type: integer
+          description: selenium 接入端口
+          example: 8000
+
+paths:
+  /v1/shops:
+    get:
+      tags:
+        - Shops
+      summary: 当前可启动店铺列表
+      description: 获取当前可启动店铺列表
+      operationId: listShops
+      security:
+        - AppIdAppSecret: []
+      parameters:
+        - $ref: '#/components/parameters/XAppSecret'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: 成功返回店铺分页列表
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopListResponse'
+
+  /v1/shops/{id}/open:
+    post:
+      tags:
+        - Shops
+      summary: 启动店铺
+      description: 启动指定店铺，并返回 selenium 接入信息
+      operationId: openShop
+      security:
+        - AppIdAppSecret: []
+      parameters:
+        - $ref: '#/components/parameters/XAppSecret'
+        - $ref: '#/components/parameters/ShopId'
+        - $ref: '#/components/parameters/NoHeadless'
+      responses:
+        '200':
+          description: 成功返回 selenium 接入信息
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeleniumDetail'
+
+  /v1/shops/{id}/close:
+    post:
+      tags:
+        - Shops
+      summary: 关闭店铺
+      description: 关闭指定店铺
+      operationId: closeShop
+      security:
+        - AppIdAppSecret: []
+      parameters:
+        - $ref: '#/components/parameters/XAppSecret'
+        - $ref: '#/components/parameters/ShopId'
+      responses:
+        '200':
+          description: 成功关闭店铺
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 原始 PDF 未展示明确的响应体结构，这里保留最小对象定义
+                additionalProperties: true

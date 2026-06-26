@@ -1,0 +1,4 @@
+interface:
+  display_name: "功夫财经"
+  short_description: "A股个股快照、财务分析、板块分析、策略、研究员与深度研究"
+  default_prompt: "Use $kungfu_finance for mainland China A-share stock snapshots, finance analysis, sector analysis, bucket management, strategy queries, researcher lookups, bayesian monitor, and preview stock/sector deep research."

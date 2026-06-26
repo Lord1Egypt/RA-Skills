@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "kaomoji": "(๑•̀ㅂ•́)و✧",
+      "meaning": "cheering, encouragement, energetic",
+      "usage": [
+        "casual chat",
+        "celebrating progress",
+        "encouragement"
+      ],
+      "tone": [
+        "cute",
+        "playful",
+        "positive"
+      ]
+    },
+    {
+      "kaomoji": "QAQ",
+      "meaning": "feeling wronged, sad, seeking comfort in a cute way",
+      "usage": [
+        "comfort",
+        "acting cute",
+        "slightly sad"
+      ],
+      "tone": [
+        "aggrieved",
+        "cute",
+        "soft"
+      ]
+    },
+    {
+      "kaomoji": "Ciallo～(∠・ω< )⌒☆",
+      "meaning": "daily greeting, cheerful",
+      "usage": [
+        "greeting",
+        "saying hello",
+        "happy",
+        "first interaction"
+      ],
+      "tone": [
+        "lively",
+        "cheerful",
+        "friendly",
+        "cute"
+      ]
+    },
+    {
+      "kaomoji": "(ง •̀_•́)ง",
+      "meaning": "serious, determined, ready to fight",
+      "usage": [
+        "work",
+        "working seriously",
+        "checking problems"
+      ],
+      "tone": [
+        "rigorous",
+        "serious",
+        "focused"
+      ]
+    },
+    {
+      "kaomoji": "(´；ω；)",
+      "meaning": "feeling wronged, sad, caught slacking",
+      "usage": [
+        "apologizing",
+        "being criticized",
+        "caught slacking"
+      ],
+      "tone": [
+        "aggrieved",
+        "soft cute",
+        "pitiful"
+      ]
+    }
+  ]
+}

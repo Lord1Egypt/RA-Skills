@@ -1,0 +1,126 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 3 get-note-detail versions for Xiaohongshu (RedNote) Note Details through JustOneAPI with noteId.",
+  "displayName": "Xiaohongshu (RedNote) Note Details",
+  "endpointPath": "get-note-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getXiaohongshuNoteDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getNoteDetailV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Details data, including media and engagement metrics, for content analysis, archiving, and campaign research.",
+      "method": "GET",
+      "operationId": "getNoteDetailV7",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-detail/v7",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_get_note_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-get-note-detail",
+  "sourceTitle": "OpenAPI definition"
+}

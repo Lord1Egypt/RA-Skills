@@ -1,35 +1,124 @@
 ---
-name: "今日油价查询 - 聚合数据"
-description: "今日国内油价查询。查询各省市 92 号汽油、95 号汽油、98 号汽油、0 号柴油的最新价格。使用场景：用户说"查一下油价"、"北京油价多少"、"今日汽油价格"、"92 汽油价格"、"柴油价格"等。通过聚合数据（juhe.cn）API 实时查询，免费注册即可使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-oil-price"
-sourceUrl: "https://clawhub.ai/skills/juhe-oil-price"
+name: juhe-oil-price
+description: 今日国内油价查询。查询各省市 92 号汽油、95 号汽油、98 号汽油、0 号柴油的最新价格。使用场景：用户说"查一下油价"、"北京油价多少"、"今日汽油价格"、"92 汽油价格"、"柴油价格"等。通过聚合数据（juhe.cn）API 实时查询，免费注册即可使用。
+homepage: https://www.juhe.cn/docs/api/id/540
+metadata: {"openclaw":{"emoji":"⛽","requires":{"bins":["python3"],"env":["JUHE_OIL_KEY"]},"primaryEnv":"JUHE_OIL_KEY"}}
 ---
 
-# 今日油价查询 - 聚合数据
+# 今日国内油价查询
 
-> 今日国内油价查询。查询各省市 92 号汽油、95 号汽油、98 号汽油、0 号柴油的最新价格。使用场景：用户说"查一下油价"、"北京油价多少"、"今日汽油价格"、"92 汽油价格"、"柴油价格"等。通过聚合数据（juhe.cn）API 实时查询，免费注册即可使用。
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供油价、天气、快递、身份证等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-oil-price`
-- **Source URL:** [https://clawhub.ai/skills/juhe-oil-price](https://clawhub.ai/skills/juhe-oil-price)
+查询今日国内各省市油价：**92 号汽油、95 号汽油、98 号汽油、0 号柴油**。部分省份可能不支持，以实际返回数据为准。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [今日国内油价查询 API](https://www.juhe.cn/docs/api/id/540) 页面，点击「申请使用」
+3. 审核通过后在「我的API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-oil-price
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_OIL_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_OIL_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/oil_price.py --key 你的AppKey
 ```
+
+---
+
+## 使用方法
+
+### 查询全国油价
+
+```bash
+python scripts/oil_price.py
+```
+
+### 查询指定省市油价
+
+```bash
+python scripts/oil_price.py --city 北京
+python scripts/oil_price.py --city 上海
+python scripts/oil_price.py --city 广东
+python scripts/oil_price.py --city 江苏
+```
+
+支持模糊匹配，如 `--city 江` 可匹配江苏、江西、浙江等。
+
+输出示例（指定江苏省）：
+
+```
+⛽ 今日国内油价（单位：元/升）
+
++------------+------------+------------+------------+------------+
+| 省份/城市  | 92号汽油   | 95号汽油   | 98号汽油   | 0号柴油    |
++------------+------------+------------+------------+------------+
+| 江苏       | 8.53       | 9.08       | 11.15      | 8.21       |
++------------+------------+------------+------------+------------+
+
+{"success": true, "data": [{"city": "江苏", "92h": "8.53", "95h": "9.08", "98h": "11.15", "0h": "8.21"}]}
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET http://apis.juhe.cn/gnyj/query?key=YOUR_KEY
+```
+
+---
+
+## 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| city | 省份/直辖市 | 北京、上海、广东 |
+| 92h | 92 号汽油价格（元/升） | 9.33 |
+| 95h | 95 号汽油价格（元/升） | 9.93 |
+| 98h | 98 号汽油价格（元/升） | 10.91 |
+| 0h | 0 号柴油价格（元/升） | 9.10 |
+
+---
+
+## AI 使用指南
+
+当用户询问油价相关信息时，按以下步骤操作：
+
+1. **识别意图** — 用户想查全国油价、某省油价，还是某油品价格
+2. **提取地区** — 从用户消息中提取省市名称（如「北京」「广东」），无则查全部
+3. **调用脚本或 API** — 执行查询，获取 JSON 结果
+4. **展示结果** — 用表格呈现；单省时突出该省数据
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| error_code 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/540) 重新申请 |
+| error_code 10012 | 当日免费次数已用尽，建议升级套餐 |
+| 部分省份无数据 | 接口文档说明部分省份可能不支持，以返回为准 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/oil_price.py` — 封装了 API 调用、按省市筛选和表格输出。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **生活服务**：油价查询、天气预报、万年历
+- **新闻资讯**：新闻头条、各类分类新闻
+- **物流快递**：100+ 快递公司实时追踪
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

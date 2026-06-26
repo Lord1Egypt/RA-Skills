@@ -1,0 +1,57 @@
+# ecosystem-map.yaml
+# Produced in Phase 2. Maps every source ecosystem symbol to its target equivalent.
+# Covers: imports, stdlib modules, third-party libraries, data types, numeric precision,
+#         language-specific idioms, runtime behaviors.
+
+# equivalence_type values:
+#   structural  → same algorithm structure, same data representation
+#   behavioral  → same observable behavior but different internal structure/algorithm
+#   partial     → covers most cases but has documented edge-case gaps
+#   none        → no equivalent exists; compensation_strategy is mandatory
+
+# status values:
+#   CONFIRMED     → mapping verified with evidence; ready for P4
+#   NEEDS_REVIEW  → AI-proposed, evidence not yet populated
+#   BLOCKED       → cannot determine without human decision
+#   GAP_ACCEPTED  → known gap, compensation documented, approved
+
+meta:
+  generated_at: ""
+  total_entries: 0
+  by_equivalence:
+    structural: 0
+    behavioral: 0
+    partial: 0
+    none: 0
+  new_dependencies: []
+
+entries: []
+# Each entry:
+# - id: ""                    # unique key, e.g. "numpy.float64"
+#   category: ""              # type | stdlib | third_party | idiom | runtime_behavior
+#   source_symbol: ""         # exact symbol as used in source
+#   source_module: ""         # top-level package/module
+#   source_semantics: ""      # precise description of guarantees
+#   target_equivalent: ""     # exact target symbol or construct
+#   equivalence_type: ""
+#   precision_delta: ""       # "none" or description of numeric difference
+#   gap_notes: ""
+#   dependency: ""            # package to add in target, if any
+#   compensation_strategy: "" # how to handle the gap (required when equivalence != structural)
+#   used_in_files: []
+#   status: NEEDS_REVIEW
+#   confirmed_by: ""          # "AI" or "human:YYYY-MM-DD"
+#
+#   # MANDATORY for CONFIRMED entries (anti-cheating):
+#   confirmation_evidence:
+#     source_behavior: ""     # specific behavior of source symbol
+#     target_behavior: ""     # specific behavior of target equivalent
+#     equivalence_rationale: ""  # why they are equivalent (or behaviorally acceptable)
+#     verified_from: ""       # docs/source files actually consulted
+#
+#   # MANDATORY for GAP_ACCEPTED entries (replaces confirmation_evidence):
+#   gap_acceptance_evidence:
+#     gap_description: ""     # precise description of what is missing
+#     compensation_strategy: ""  # specific actionable implementation plan
+#     human_decision: ""      # reference to decisions_log entry if human decided
+#     verified_from: ""

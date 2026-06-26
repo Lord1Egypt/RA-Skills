@@ -1,0 +1,4 @@
+interface:
+  display_name: "Life Alignment"
+  short_description: "Run a dedicated planning and decision agent that learns the user and keeps daily action aligned with goals"
+  default_prompt: "Use $life-alignment-agent to run a behavior-first life planning, triage, and decision agent that knows the user over time, gives strong recommendations, and aligns daily action with weekly, 3-6 month, and long-term direction."

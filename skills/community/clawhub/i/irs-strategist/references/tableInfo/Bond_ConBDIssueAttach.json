@@ -1,0 +1,105 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "RID：与“可转债发行信息(Bond_ConBDIssue)”表的ID字段相关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoType",
+        "columnChiName": "信息类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "信息类别(InfoType)与(CT_SystemConst)表中的DM字段关联，令LB = 2291 OR (LB = 2095 AND DM IN (6001,7002))，得到信息类别的具体描述：1001-受限股东优先配售收款信息，1002-网下申购收款信息，2001-债券发行方式，6001-受限股东优先配售收款信息，7002-可转债网上发行中签号，100201-网下申购保证金缴纳账户信息，100202-网下申购补缴账户信息。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InfoContentCode",
+        "columnChiName": "信息内容编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "信息内容编码(InfoContentCode)与常量表中的DM字段关联，当信息类别InfoType in (1001,1002,100201,100202)，令LB=2290，得到信息内容编码的具体描述：1-账户名称，2-开户银行，3-账号，4-大额支付系统行号，5-现代化支付系统实时行号，6-同城交换号，7-同城票据交换号，8-联行行号，9-汇入地点，10-联系人，11-联系电话，12-传真，13-收款银行地址，14-汇款用途，15-备注。当信息类别InfoType= 2001, 令LB=1018 and DM in (2,7,8,9,13,14,17)，得到信息内容编码的具体描述：2-认购证，7-上网定价，8-基金配售，9-法人配售，13-法人定向配售，14-老股东优先配售，17-私募配售。当信息类别InfoType= 7002,得到内容编码的具体描述：1-中签号。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InfoContent",
+        "columnChiName": "信息内容",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "49.87"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

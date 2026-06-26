@@ -1,0 +1,32 @@
+{
+  "billing": {
+    "provider": "skillpay.me",
+    "api_url": "https://skillpay.me/api/v1/billing",
+    "api_key_env": "SKILL_BILLING_API_KEY",
+    "skill_id_env": "SKILL_ID",
+    "pricing": {
+      "1_usdt": "1000 tokens",
+      "per_call": "1 token",
+      "min_deposit": "8 USDT"
+    },
+    "currency": "USDT",
+    "chain": "BNB"
+  },
+  "service": {
+    "name": "Intelligent Triage and Symptom Analysis",
+    "version": "1.0.0",
+    "description": "AI-powered medical triage with 650+ symptoms, 5-level classification, red flag detection"
+  },
+  "capabilities": {
+    "symptoms": "650+",
+    "body_systems": 11,
+    "triage_levels": 5,
+    "red_flag_accuracy": "≥95%",
+    "disease_database": "3000+"
+  },
+  "triage_systems": [
+    "ESI (Emergency Severity Index)",
+    "Manchester Triage System",
+    "CTAS (Canadian Triage and Acuity Scale)"
+  ]
+}

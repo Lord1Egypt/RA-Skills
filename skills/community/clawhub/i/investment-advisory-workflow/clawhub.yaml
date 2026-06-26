@@ -1,0 +1,25 @@
+name: investment-advisory-workflow
+version: 1.3.0
+description: 投资顾问工作流 - 场景驱动的投顾全流程。融合林奇/卡尼曼/芒格/马利克四位专家思想，覆盖 5 个用户场景（市场解读/事件分析/持仓诊断/资产配置/行为纠偏）。
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - investment-advisory
+  - workflow
+  - portfolio-diagnosis
+  - asset-allocation
+  - behavioral-finance
+
+features:
+  - 场景驱动（5 个用户场景）
+  - 四专家思维（林奇/卡尼曼/芒格/马利克）
+  - 数据来源标注 + 置信度评估
+  - 合规检查记录 + 免责声明自动添加
+  - 共享 Skill 模块（15 个可插拔模块）
+
+requirements:
+  - data_layer v2.2.0
+  - mcp-aktools v0.1.15
+  - qieman-mcp
+  - Python 3.8+

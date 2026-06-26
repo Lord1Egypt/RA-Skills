@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "schema_version": "1.0.0",
+    "skill": "job-email-apply",
+    "description": "Single source of truth for all job applications. Written by the agent, readable by the user. Do not edit manually unless you know what you are doing.",
+    "last_updated": "",
+    "total_applications": 0,
+    "status_legend": {
+      "APPLIED": "Email sent, awaiting response",
+      "RESPONDED": "Recruiter replied, general interest expressed",
+      "INTERVIEW_SCHEDULED": "Interview date confirmed",
+      "INTERVIEW_DONE": "Interview completed, awaiting decision",
+      "OFFER": "Offer received",
+      "REJECTED": "Application declined",
+      "WITHDRAWN": "You withdrew the application",
+      "EMAIL_NOT_FOUND": "Could not find application email — not sent",
+      "EMAIL_SEND_FAILED": "Email found but sending failed",
+      "NEEDS_REVIEW": "Inbox reply is unclear — requires your attention",
+      "DUPLICATE_SKIP": "Already applied to this company+role within 60 days"
+    }
+  },
+
+  "applications": [],
+
+  "session_log": [],
+
+  "do_not_apply": [],
+
+  "stats": {
+    "total_sent": 0,
+    "total_responded": 0,
+    "total_interviews": 0,
+    "total_offers": 0,
+    "total_rejected": 0,
+    "response_rate_percent": 0,
+    "interview_rate_percent": 0,
+    "last_calculated": ""
+  }
+}

@@ -1,0 +1,142 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "RID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "RID（RID）：与科创板配股(LC_STIBSharePlacement)的ID字段关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SHSN",
+        "columnChiName": "股东序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "SHName",
+        "columnChiName": "股东名称",
+        "columnType": "varchar(120)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SHAttribute",
+        "columnChiName": "股东所属性质",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "股东所属性质(SHAttribute)与(CT_SystemConst)表中的DM字段关联，令LB = 1783，得到股东所属性质的具体描述：1-自然人，2-企业，3-证券品种，99-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "SHID",
+        "columnChiName": "股东ID",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "股东ID（GDID）：当股东所属性质（SHAttribute）=2时，与机构基本资料（LC_InstiArchive）中的企业编号（CompanyCode）关联；股东所属性质（SHAttribute）=3时，与理财产品主表（SF_PlanMain）或证券主表（SecuMain）中的内部编码（InnerCode）关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SubscriptionWay",
+        "columnChiName": "认配方式",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "认配方式(SubscriptionWay)与(CT_SystemConst)表中的DM字段关联，令LB = 1114，得到认配方式的具体描述：1-全额放弃，2-全额认配—现金，3-全额认配—实物，4-全额认配—现金、实物，5-部分认配—现金，6-部分认配—实物，7-部分认配—现金、实物，8-部分定向转让，9-全额定向转让，10-接受定向转让，11-部分转配，12-全额转配。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 1,
+        "fieldExplain": "与CT_SystemConst表中的DM字段关联，令LB = 1114",
+        "isEffective": true,
+        "tableVersion": null,
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "OughtShares",
+        "columnChiName": "应配股数(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "ActualShares",
+        "columnChiName": "实配股数(股)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

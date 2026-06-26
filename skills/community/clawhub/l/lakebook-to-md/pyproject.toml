@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lakebook-to-md"
+version = "1.1.0"
+description = "将语雀导出的 .lakebook 文件转换为 Markdown + Excel 文件夹，支持自动下载附件和生成转换报告"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.7"
+dependencies = [
+    "beautifulsoup4>=4.12.0",
+    "PyYAML>=6.0",
+    "Requests>=2.31.0",
+    "openpyxl>=3.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/luhuiwang/lakebook-to-md"
+Repository = "https://github.com/luhuiwang/lakebook-to-md"
+
+[project.scripts]
+lakebook2md = "scripts.startup:main"

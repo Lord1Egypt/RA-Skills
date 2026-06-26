@@ -1,35 +1,117 @@
 ---
-name: "Keyword Rank Monitor"
-description: "关键词排名追踪、SEO 分析、搜索趋势监控、竞品关键词对比。适合电商卖家、SEO 从业者、内容运营。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/keyword-rank-monitor"
-sourceUrl: "https://clawhub.ai/skills/keyword-rank-monitor"
+name: keyword-rank-monitor
+version: 1.0.0
+description: 关键词排名追踪、SEO 分析、搜索趋势监控、竞品关键词对比。适合电商卖家、SEO 从业者、内容运营。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔍",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+            {
+              "id": "pandas",
+              "kind": "pip",
+              "package": "pandas",
+              "label": "安装依赖：pip3 install pandas",
+            },
+          ],
+      },
+  }
 ---
 
-# Keyword Rank Monitor
+# 关键词排名监控技能
 
-> 关键词排名追踪、SEO 分析、搜索趋势监控、竞品关键词对比。适合电商卖家、SEO 从业者、内容运营。
+追踪关键词在淘宝、京东、百度、抖音等平台的搜索排名，分析 SEO 效果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/keyword-rank-monitor`
-- **Source URL:** [https://clawhub.ai/skills/keyword-rank-monitor](https://clawhub.ai/skills/keyword-rank-monitor)
+## 功能
 
-## Overview
+1. **排名追踪**: 实时监控关键词排名变化
+2. **搜索趋势**: 分析关键词热度趋势
+3. **竞品对比**: 对比竞品关键词排名
+4. **长尾词挖掘**: 发现低竞争高价值长尾词
+5. **SEO 建议**: 基于排名数据提供优化建议
+6. **预警通知**: 排名大幅波动时提醒
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/keyword-rank-monitor
 ```
+添加关键词监控：抗老精华（淘宝搜索）
+```
+
+```
+查看这个关键词的排名历史：[关键词]
+```
+
+```
+帮我找护肤品的长尾关键词
+```
+
+```
+分析竞品在哪些关键词上排名比我高
+```
+
+```
+设置排名预警：跌出前 10 名时提醒
+```
+
+## 输出示例
+
+```
+🔍 关键词排名报告
+
+📊 排名追踪（你的商品）：
+┌─────────────┬───────┬───────┬───────┐
+│ 关键词      │ 昨日  │ 今日  │ 变化  │
+├─────────────┼───────┼───────┼───────┤
+│ 抗老精华    │ 8     │ 6     │ ↑2    │
+│ 敏感肌精华  │ 15    │ 12    │ ↑3    │
+│ 平价精华    │ 23    │ 25    │ ↓2    │
+│ 学生党精华  │ 5     │ 5     │ -     │
+└─────────────┴───────┴───────┴───────┘
+
+📈 搜索趋势（抗老精华）：
+├─ 7 日平均搜索量：125,000
+├─ 趋势：上升 +15% 🔺
+├─ 竞争度：中等（62/100）
+└─ 最佳排名：第 3 名（历史）
+
+🎯 竞品对比：
+┌─────────────┬───────┬───────┐
+│ 竞品        │ 排名  │ 差距  │
+├─────────────┼───────┼───────┤
+│ 竞品 A      │ 3     │ -3    │
+│ 竞品 B      │ 5     │ -1    │
+│ 你的商品    │ 6     │ -     │
+│ 竞品 C      │ 9     │ +3    │
+└─────────────┴───────┴───────┘
+
+💡 长尾词推荐：
+├─ 25 岁抗老精华（搜索 8500，竞争低）⭐
+├─ 敏感肌抗老（搜索 12000，竞争中）
+└─ 平价抗老精华（搜索 25000，竞争高）
+
+📋 优化建议：
+1. ✅ 标题加入"25 岁"更精准
+2. ✅ 增加"敏感肌"相关描述
+3. 📝 优化主图点击率
+4. 💰 考虑投放"抗老精华"直通车
+```
+
+## 变现模式
+
+- 免费：监控 5 个关键词，每日 1 次更新
+- 付费 (¥79/月)：监控 50 个关键词，每小时更新 + 预警
+- 付费 (¥149/月)：无限监控 + 竞品对比 + API 访问
+
+---
+
+**声明**: 排名数据为估算值，受个性化推荐影响，仅供参考。

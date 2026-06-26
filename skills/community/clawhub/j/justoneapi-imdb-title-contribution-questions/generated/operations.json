@@ -1,0 +1,72 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/imdb/title-contribution-questions/v1 for IMDb Contribution Questions through JustOneAPI with id.",
+  "displayName": "IMDb Contribution Questions",
+  "endpointPath": "title-contribution-questions",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get IMDb title Contribution Questions data, including specific IMDb title, for data maintenance workflows and title metadata review.",
+      "method": "GET",
+      "operationId": "titleContributionQuestions",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User's authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique IMDb ID of the title (e.g., tt12037194).",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "en_US",
+          "description": "Language and country preferences.\n\nAvailable Values:\n- `en_US`: English (US)\n- `fr_CA`: French (Canada)\n- `fr_FR`: French (France)\n- `de_DE`: German (Germany)\n- `hi_IN`: Hindi (India)\n- `it_IT`: Italian (Italy)\n- `pt_BR`: Portuguese (Brazil)\n- `es_ES`: Spanish (Spain)\n- `es_US`: Spanish (US)\n- `es_MX`: Spanish (Mexico)",
+          "enumValues": [
+            "en_US",
+            "fr_CA",
+            "fr_FR",
+            "de_DE",
+            "hi_IN",
+            "it_IT",
+            "pt_BR",
+            "es_ES",
+            "es_US",
+            "es_MX"
+          ],
+          "location": "query",
+          "name": "languageCountry",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/imdb/title-contribution-questions/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Contribution Questions",
+      "tags": [
+        "IMDb"
+      ]
+    }
+  ],
+  "platformKey": "imdb",
+  "primaryTag": "IMDb",
+  "skillName": "justoneapi_imdb_title_contribution_questions",
+  "skillType": "interface",
+  "slug": "justoneapi-imdb-title-contribution-questions",
+  "sourceTitle": "OpenAPI definition"
+}

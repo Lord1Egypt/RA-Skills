@@ -1,35 +1,49 @@
----
-name: "Jrb Remote Site Api Skill Repo"
-description: "Interface with WordPress sites via jrb-remote-site-api plugin for admin tasks, content CRUD, plugin/theme management, and Fluent suite integrations through R..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jrb-remote-site-api-skill-repo"
-sourceUrl: "https://clawhub.ai/skills/jrb-remote-site-api-skill-repo"
----
+# JRB Remote Site API Skill
 
-# Jrb Remote Site Api Skill Repo
+Interface with WordPress sites running the `jrb-remote-site-api` plugin. This skill enables AI agents to perform administrative tasks, content management, and integration with the Fluent suite (CRM, Forms, Support, etc.) via a secure REST API.
 
-> Interface with WordPress sites via jrb-remote-site-api plugin for admin tasks, content CRUD, plugin/theme management, and Fluent suite integrations through R...
+## Configuration
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jrb-remote-site-api-skill-repo`
-- **Source URL:** [https://clawhub.ai/skills/jrb-remote-site-api-skill-repo](https://clawhub.ai/skills/jrb-remote-site-api-skill-repo)
+Required environment variables for targeting a site:
+- `JRB_API_URL`: The base URL of the site (e.g., `https://jrbconsulting.au`)
+- `JRB_API_TOKEN`: The secure API token configured in the plugin settings
 
-## Overview
+## Core Capabilities
 
+### 1. System & Auth
+- **Ping**: Verify connection and token validity.
+- **Site Info**: Get WordPress version, active theme, plugin version, and capabilities.
+
+### 2. Content Management (CRUD)
+- **Posts & Pages**: Create, read, update, delete, and list. Supports custom statuses (draft, publish, private).
+- **Media**: Upload and manage files in the WordPress Media Library.
+
+### 3. Plugin & Theme Management
+- **Plugins**: List, install, activate, deactivate, update, and delete.
+- **Themes**: List active/available themes, switch themes, install from URL.
+
+### 4. Fluent Suite Integration (Modules)
+- **FluentCRM**: Manage contacts, lists, tags, and campaigns.
+- **FluentSupport**: Professional ticket management and customer support.
+- **FluentProject**: Task and project management automation.
+- **FluentBoards**: Advanced board and task management.
+
+## Usage Patterns
+
+### Verification
+```bash
+curl -H "X-JRB-Token: \$JRB_API_TOKEN" "\$JRB_API_URL/wp-json/jrb-remote/v1/site"
+```
+
+### Create a Page
+```bash
+curl -X POST -H "X-JRB-Token: \$JRB_API_TOKEN" \\
+     -H "Content-Type: application/json" \\
+     -d '{"title": "New Page", "content": "Hello World", "status": "publish"}' \\
+     "\$JRB_API_URL/wp-json/jrb-remote/v1/pages"
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jrb-remote-site-api-skill-repo
-```
+This skill is designed to work with the **JRB Remote Site API** WordPress plugin.
+To install:
+`clawhub install jrb-remote-site-api`

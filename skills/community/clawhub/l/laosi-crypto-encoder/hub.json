@@ -1,0 +1,21 @@
+﻿{
+    "description":  "Premium version with full implementation, examples, and enterprise support",
+    "minOpenClawVersion":  "1.2.0",
+    "version":  "2.0.0",
+    "tags":  [
+                 "crypto",
+                 "encoding",
+                 "base64",
+                 "hash",
+                 "security",
+                 "pro"
+             ],
+    "author":  "laosi",
+    "name":  "crypto-encoder",
+    "pricing":  {
+                    "price":  1500,
+                    "model":  "one-time"
+                },
+    "license":  "MIT",
+    "displayName":  "Crypto Encoder Pro"
+}

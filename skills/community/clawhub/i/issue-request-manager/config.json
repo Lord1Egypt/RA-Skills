@@ -1,0 +1,38 @@
+{
+  "name": "Issue Request Manager",
+  "version": "1.0.0",
+  "description": "管理Issue Request的完整生命周期",
+  "author": "OpenClaw Assistant",
+  "modules": {
+    "creator": "ir_creator.py",
+    "tracker": "ir_tracker.py",
+    "responder": "ir_responder.py",
+    "database": "ir_database.py",
+    "notifier": "wechat_notifier.py"
+  },
+  "default_settings": {
+    "default_priority": "medium",
+    "default_status": "open",
+    "notification_enabled": true,
+    "auto_save": true,
+    "max_comments": 100,
+    "wechat_notification": {
+      "enabled": false,
+      "corp_id": "",
+      "secret": "",
+      "agent_id": 0
+    }
+  },
+  "supported_platforms": [
+    "local",
+    "github",
+    "gitlab",
+    "jira"
+  ],
+  "api_endpoints": {
+    "create": "/api/issues/create",
+    "track": "/api/issues/{id}/track",
+    "reply": "/api/issues/{id}/reply",
+    "update": "/api/issues/{id}/update"
+  }
+}

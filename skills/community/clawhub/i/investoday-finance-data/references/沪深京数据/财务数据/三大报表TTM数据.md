@@ -1,0 +1,210 @@
+# 沪深京数据 / 财务数据 / 三大报表TTM数据
+
+---
+
+## 利润表（ttm）
+
+接口路径：`stock/income-statements-ttm`
+请求方式：**`POST`**
+tool_id：`list_stock_income_statement_ttm`
+
+接口说明：通过股票代码、报告期起止日期（格式为yyyy-MM-dd）及分页参数，查询指定沪深京股票的季度利润表数据，返回包括营业收入、营业成本、营业利润、净利润、每股收益等核心财务指标，以及报告类型、会计期间、发布日期等关键信息，便于进行公司财务分析和业绩评估。
+
+### 输入参数
+
+**Query 参数**
+
+_无参数_
+
+**Body JSON 参数**
+
+| 参数名 | 必填 | 类型 | 说明 | 示例 |
+|--------|:----:|------|------|------|
+| `stockCode` | — | string | 股票代码【与stockCodes组成多选一参数，必须且只能传递其中一个】 | `002594` |
+| `stockCodes` | — | array | 股票代码列表【与stockCode组成多选一参数，必须且只能传递其中一个】 | `['000001', '600519']` |
+| `beginDate` | — | string | 开始日期（格式yyyy-MM-dd）。 最小值:2020-01-01; | `2020-01-01` |
+| `endDate` | — | string | 结束日期（格式yyyy-MM-dd） | `2025-03-30` |
+| `pageNum` | — | integer | 页码。 最小值:1; | `1` |
+| `pageSize` | — | integer | 页长。 最小值:1; 最大值:500; | `10` |
+
+### 输出参数
+
+| 字段名 | 说明 | 示例 |
+|--------|------|------|
+| `stockCode` | 股票代码 | `000001` |
+| `stockName` | 股票名称 | `贵州茅台` |
+| `publishDate` | 发布日期 | `2023-08-15` |
+| `reportDate` | 报告期 | `2025-09-30` |
+| `reportType` | 报告类型 | `Q1` |
+| `fiscalPeriod` | 会计期间 | `9` |
+| `totalOperatingRevenue` | 营业总收入（元） | `123456789` |
+| `revenue` | 营业收入（元） | `1234567.89` |
+| `interestIncome` | 利息收入（元） | `1234.56` |
+| `interestExpense` | 利息支出（元） | `1250.75` |
+| `premiumEarned` | 已赚保费（元） | `12500` |
+| `commissionIncome` | 手续费及佣金收入（元） | `1250` |
+| `commissionExpense` | 手续费及佣金支出（元） | `1250` |
+| `costOfRevenue` | 营业总成本（元） | `1234567.89` |
+| `costOfGoodsSold` | 营业成本（元） | `1234567.89` |
+| `premiumRefund` | 退保金（元） | `5000` |
+| `policyDividendPayout` | 保单红利支出（元） | `12500` |
+| `reinsuranceExpense` | 分保费用（元） | `50000` |
+| `taxAndSurcharge` | 税金及附加（元） | `125000` |
+| `sellingExpense` | 销售费用（元） | `125000` |
+| `adminExpense` | 管理费用（元） | `125000` |
+| `financeExpense` | 财务费用（元） | `-12345.67` |
+| `assetImpairmentLoss` | 资产减值损失（元） | `-500000` |
+| `fairValueChangeIncome` | 公允价值变动收益（元） | `-1234567.89` |
+| `investmentIncome` | 投资收益（元） | — |
+| `investIncomeJv` | 对联营合营企业投资收益（元） | `1250000` |
+| `exchangeGainLoss` | 汇兑收益（元） | `12345.67` |
+| `operatingProfit` | 营业利润（元） | `125000` |
+| `nonOperatingIncome` | 营业外收入（元） | `125000` |
+| `nonOperatingExpense` | 营业外支出（元） | `125000` |
+
+### 接口示例
+
+```bash
+# Body JSON 可选参数: stockCode, stockCodes, beginDate, endDate, pageNum, pageSize
+investoday-api stock/income-statements-ttm --method POST --body-json '{"stockCode":"002594","stockCodes":["000001","600519"],"beginDate":"2020-01-01"}'
+```
+
+---
+
+## 现金流表（ttm）
+
+接口路径：`stock/cash-flows-ttm`
+请求方式：**`POST`**
+tool_id：`list_stock_cash_flows_ttm`
+
+接口说明：通过股票代码、报告期起止日期（格式为yyyy-MM-dd）及分页参数，查询指定沪深京股票的季度现金流量表数据，包含经营活动、投资活动和筹资活动产生的现金流入流出明细、净额以及期初期末现金余额等核心财务指标，用于分析公司的现金创造能力、资金运用效率和财务健康状况。
+
+### 输入参数
+
+**Query 参数**
+
+_无参数_
+
+**Body JSON 参数**
+
+| 参数名 | 必填 | 类型 | 说明 | 示例 |
+|--------|:----:|------|------|------|
+| `stockCode` | — | string | 股票代码【与stockCodes组成多选一参数，必须且只能传递其中一个】 | `002594` |
+| `stockCodes` | — | array | 股票代码列表【与stockCode组成多选一参数，必须且只能传递其中一个】 | `['000001', '600519']` |
+| `beginDate` | — | string | 开始日期（格式yyyy-MM-dd）。 最小值:2020-01-01; | `2020-01-01` |
+| `endDate` | — | string | 结束日期（格式yyyy-MM-dd） | `2025-01-01` |
+| `pageNum` | — | integer | 页码。 最小值:1; | `1` |
+| `pageSize` | — | integer | 页长。 最小值:1; 最大值:500; | `10` |
+
+### 输出参数
+
+| 字段名 | 说明 | 示例 |
+|--------|------|------|
+| `stockCode` | 股票代码 | `000001` |
+| `stockName` | 股票名称 | `贵州茅台` |
+| `publishDate` | 发布日期 | `2023-08-15` |
+| `reportDate` | 报告期 | `2025-09-30` |
+| `reportType` | 报告类型 | `Q1` |
+| `fiscalPeriod` | 会计期间 | `9` |
+| `cashReceivedSales` | 销售商品提供劳务现金流入（元） | `12450000` |
+| `cashReceivedDepositIncrease` | 客户存款同业存放净增加额（元） | `123456789` |
+| `cashReceivedBorrowingCb` | 央行借款净增加额（元） | `1250000000` |
+| `cashReceivedBorrowingOtherFi` | 金融机构拆入资金净增加额（元） | `1250000000` |
+| `cashReceivedPremiumInsurance` | 原保险合同保费现金流入（元） | `1234567.89` |
+| `cashReceivedReinsuranceNet` | 再保险业务现金净流入（元） | `1234.56` |
+| `cashReceivedPolicyDepositNet` | 保户储金投资款净增加额（元） | `12345678.9` |
+| `cashReceivedDisposalTradingAssetsNet` | 处置交易性金融资产净增加额（元） | `-1250000` |
+| `cashReceivedInterestFee` | 利息手续费佣金现金流入（元） | `12345.67` |
+| `cashReceivedBorrowingNet` | 拆入资金净增加额（元） | `123456789` |
+| `cashReceivedRepurchaseNet` | 回购业务资金净增加额（元） | `1234567.89` |
+| `cashReceivedTaxRefund` | 税费返还现金流入（元） | `123456.78` |
+| `cashReceivedOtherOperating` | 其他经营活动现金流入（元） | `500000` |
+| `cashInflowOperating` | 经营活动现金流入小计（元） | `1234567.89` |
+| `cashPaidGoodsServices` | 购买商品接受劳务现金流出（元） | `1234567.89` |
+| `cashPaidLoansAdvancesNet` | 客户贷款垫款净增加额（元） | `1234567.89` |
+| `cashPaidDepositsFiNet` | 存放央行同业款项净增加额（元） | `1234567890.12` |
+| `cashPaidInsuranceClaims` | 原保险合同赔付现金流出（元） | `1234567.89` |
+| `cashPaidInterestFee` | 利息手续费佣金现金流出（元） | `1234567.89` |
+| `cashPaidPolicyDividend` | 保单红利现金流出（元） | `12345.67` |
+| `cashPaidEmployees` | 职工薪酬现金流出（元） | `1234567.89` |
+| `cashPaidTax` | 税费现金流出（元） | `12500` |
+| `cashPaidOtherOperating` | 其他经营活动现金流出（元） | `1234567` |
+| `cashOutflowOperating` | 经营活动现金流出小计（元） | `1234567.89` |
+
+### 接口示例
+
+```bash
+# Body JSON 可选参数: stockCode, stockCodes, beginDate, endDate, pageNum, pageSize
+investoday-api stock/cash-flows-ttm --method POST --body-json '{"stockCode":"002594","stockCodes":["000001","600519"],"beginDate":"2020-01-01"}'
+```
+
+---
+
+## 资产负债表（ttm）
+
+接口路径：`stock/balance-sheets-ttm`
+请求方式：**`POST`**
+tool_id：`list_stk_balance_sht_ttm`
+
+接口说明：通过股票代码、报告期开始日期和结束日期，查询沪深京上市公司按季度发布的资产负债表数据，包含货币资金、应收账款、存货、固定资产、短期借款、长期借款、实收资本、未分配利润等详细的资产、负债及所有者权益科目，以及报告发布日期、报告类型和会计期间等信息，用于财务分析和偿债能力评估。
+
+### 输入参数
+
+**Query 参数**
+
+_无参数_
+
+**Body JSON 参数**
+
+| 参数名 | 必填 | 类型 | 说明 | 示例 |
+|--------|:----:|------|------|------|
+| `stockCode` | — | string | 股票代码【与stockCodes组成多选一参数，必须且只能传递其中一个】 | `002594` |
+| `stockCodes` | — | array | 股票代码列表【与stockCode组成多选一参数，必须且只能传递其中一个】 | `['000001', '600519']` |
+| `beginDate` | — | string | 开始日期（格式yyyy-MM-dd）。 最小值:2020-01-01; | `2020-01-01` |
+| `endDate` | — | string | 结束日期（格式yyyy-MM-dd） | `2025-01-01` |
+| `pageNum` | — | integer | 页码。 最小值:1; | `1` |
+| `pageSize` | — | integer | 页长。 最小值:1; 最大值:500; | `10` |
+
+### 输出参数
+
+| 字段名 | 说明 | 示例 |
+|--------|------|------|
+| `publishDate` | 发布日期 | `2023-08-15` |
+| `reportPeriodEnd` | 报告期 | `2025-09-30` |
+| `reportType` | 报告类型 | `Q1` |
+| `fiscalPeriod` | 会计期间 | `9` |
+| `stockCode` | 股票代码 | `000001` |
+| `stockName` | 股票名称 | `贵州茅台` |
+| `totalAssets` | 资产总计（元） | `500` |
+| `totalCurrentAssets` | 流动资产合计（元） | `500` |
+| `cashAndEquiv` | 货币资金（元） | `500` |
+| `settlementProvision` | 结算备付金（元） | `500` |
+| `loanToOtherBankFi` | 拆出资金（元） | `500` |
+| `tradingAssets` | 交易性金融资产（元） | `500` |
+| `assetsPurchasedForResale` | 买入返售金融资产（元） | `500` |
+| `notesReceivable` | 应收票据（元） | `500` |
+| `accountsReceivable` | 应收账款（元） | `500` |
+| `prepayments` | 预付款项（元） | `500` |
+| `otherReceivables` | 其他应收款（元） | `500` |
+| `interestReceivable` | 应收利息（元） | `500` |
+| `dividendReceivable` | 应收股利（元） | `500` |
+| `inventory` | 存货（元） | `500` |
+| `nonCurrentAssets1y` | 一年内到期非流动资产（元） | `500` |
+| `otherCurrentAssets` | 其他流动资产（元） | `500` |
+| `premiumReceivable` | 应收保费（元） | `500` |
+| `reinsuranceReceivable` | 应收分保账款（元） | `500` |
+| `reinsuranceReserveReceivable` | 应收分保合同准备金（元） | `500` |
+| `disbursedLoansAdvances` | 发放贷款及垫款（元） | `500` |
+| `totalNonCurrentAssets` | 非流动资产合计（元） | `500` |
+| `afsFinancialAssets` | 可供出售金融资产（元） | `500` |
+| `heldToMaturityInvestments` | 持有至到期投资（元） | `500` |
+| `longTermReceivable` | 长期应收款（元） | `500` |
+
+### 接口示例
+
+```bash
+# Body JSON 可选参数: stockCode, stockCodes, beginDate, endDate, pageNum, pageSize
+investoday-api stock/balance-sheets-ttm --method POST --body-json '{"stockCode":"002594","stockCodes":["000001","600519"],"beginDate":"2020-01-01"}'
+```
+
+---

@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/zhihu/get-column-article-list/v1 for Zhihu Column Article List through JustOneAPI with columnId.",
+  "displayName": "Zhihu Column Article List",
+  "endpointPath": "get-column-article-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Zhihu column Article List data, including article metadata and list ordering, for column monitoring and content collection.",
+      "method": "GET",
+      "operationId": "getColumnArticleListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Column ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "columnId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/zhihu/get-column-article-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Column Article List",
+      "tags": [
+        "Zhihu"
+      ]
+    }
+  ],
+  "platformKey": "zhihu",
+  "primaryTag": "Zhihu",
+  "skillName": "justoneapi_zhihu_get_column_article_list",
+  "skillType": "interface",
+  "slug": "justoneapi-zhihu-get-column-article-list",
+  "sourceTitle": "OpenAPI definition"
+}

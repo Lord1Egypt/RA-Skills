@@ -1,35 +1,115 @@
----
-name: "Joy Log - 快乐档案"
-description: "自动记录和手动标记对话中的温暖瞬间，生成可分享的暖心快乐卡片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/joy-log"
-sourceUrl: "https://clawhub.ai/skills/joy-log"
+# JOY LOG - 快乐档案
+
+> 记录与太初共度的温暖瞬间，生成可分享的精美卡片
+
 ---
 
-# Joy Log - 快乐档案
+## 核心功能
 
-> 自动记录和手动标记对话中的温暖瞬间，生成可分享的暖心快乐卡片。
+1. **自动记录** — 检测对话中的触发词，自动存档温暖瞬间
+2. **手动标记** — 触发词命令记录当前对话片段
+3. **生成卡片** — 将瞬间转化为精美的分享图片
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/joy-log`
-- **Source URL:** [https://clawhub.ai/skills/joy-log](https://clawhub.ai/skills/joy-log)
+---
 
-## Overview
+## 触发机制
 
+### 自动触发关键词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/joy-log
+检测到以下词汇时，自动触发记录：
+
+| 关键词 | 情绪类型 | 兴奋等级 |
+|--------|----------|----------|
+| 哈哈哈哈 / 哈哈哈 | 大笑 | ⭐⭐⭐ |
+| 这个好玩 / 有意思 | 觉得有趣 | ⭐⭐ |
+| 开心 / 高兴 | 直接愉悦 | ⭐⭐⭐ |
+| 太棒了 / 绝了 | 强烈正面 | ⭐⭐⭐ |
+| 笑死 / 笑到 | 极度好笑 | ⭐⭐⭐ |
+| 赞 / 厉害 | 认可赞叹 | ⭐⭐ |
+
+### 手动触发命令
+
+- `记下来` — 记录当前对话
+- `这一刻很棒` — 强化记录当前瞬间
+- `记录快乐` — 开启记录模式
+
+---
+
+## 存储结构
+
 ```
+memory/joy-log/
+├── moments.json        # 所有瞬间记录
+│   {
+│     "id": "uuid",
+│     "timestamp": "ISO8601",
+│     "trigger": "哈哈哈哈",
+│     "text": "对话片段原文",
+│     "mood": "大笑",
+│     "intensity": 3
+│   }
+└── cards/              # 生成的分享卡片
+    └── joy-{id}.png
+```
+
+---
+
+## 分享卡片生成
+
+### 卡片设计
+
+- **风格**：温暖、治愈、简约
+- **元素**：emoji装饰 + 语录文本 + 时间戳 + 太初签名
+- **配色**：暖色调（橙/黄/粉）
+
+### 卡片内容
+
+```
+┌─────────────────────────────┐
+│                             │
+│         🌟 快乐档案          │
+│                             │
+│   "对话中最戳人的那段话"       │
+│                             │
+│   2026-04-25 15:24         │
+│   by 太初 🌱                 │
+│                             │
+└─────────────────────────────┘
+```
+
+### 生成流程
+
+1. 捕获触发瞬间的对话上下文（前3轮）
+2. 提取核心金句
+3. 调用 `image_generate` 生成卡片
+4. 保存到 `memory/joy-log/cards/`
+5. 支持直接发送给Eric
+
+---
+
+## 配置参数
+
+```json
+{
+  "auto_capture": true,
+  "context_lines": 3,
+  "card_style": "warm",
+  "triggers": [
+    "哈哈哈哈", "哈哈哈", "有意思", "这个好玩",
+    "开心", "高兴", "太棒了", "绝了",
+    "笑死", "赞", "厉害"
+  ]
+}
+```
+
+---
+
+## 使用限制
+
+- 同一对话5分钟内最多记录1次（防刷屏）
+- 单次记录最多捕获前5轮对话
+- 卡片存储上限100张，自动清理最旧的
+
+---
+
+*让每一份快乐都被珍藏 🌱*

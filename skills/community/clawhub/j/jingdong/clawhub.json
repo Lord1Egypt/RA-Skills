@@ -1,0 +1,16 @@
+{
+  "name": "jingdong",
+  "version": "2.1.0",
+  "description": "Redirect: jingdong has been merged into jd-shopping. Use jd-shopping for JD.com search, review checks, price comparison, SKU selection, and safe cart preparation. Safe boundary: no login, no order submission, no payment.",
+  "keywords": [
+    "jingdong",
+    "jd",
+    "shopping",
+    "e-commerce",
+    "redirect",
+    "jd-shopping"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/jingdong"
+}

@@ -1,0 +1,6 @@
+{
+  "secret_key": "",
+  "product_id": null,
+  "poll_interval": 3,
+  "poll_timeout": 300
+}

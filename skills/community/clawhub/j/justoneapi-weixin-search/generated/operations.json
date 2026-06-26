@@ -1,0 +1,97 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weixin/search/v1 for WeChat Official Accounts Keyword Search through JustOneAPI with keyword.",
+  "displayName": "WeChat Official Accounts Keyword Search",
+  "endpointPath": "search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get WeChat Official Accounts keyword Search data, including account names, titles, and publish times, for content discovery.",
+      "method": "GET",
+      "operationId": "searchWeixinV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination offset (starts with 0, increment by 20).",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Type of search results (accounts, articles, etc.).\n\nAvailable Values:\n- `_0`: All\n- `_1`: WeChat Official Account\n- `_2`: Article\n- `_7`: WeChat Channel\n- `_262208`: Wechat Mini Program\n- `_384`: Emoji\n- `_16777728`: Encyclopedia\n- `_9`: Live\n- `_1024`: Book\n- `_512`: Music\n- `_16384`: News\n- `_8192`: Wechat Index\n- `_8`: Moments",
+          "enumValues": [
+            "_0",
+            "_1",
+            "_2",
+            "_7",
+            "_262208",
+            "_384",
+            "_16777728",
+            "_9",
+            "_1024",
+            "_512",
+            "_16384",
+            "_8192",
+            "_8"
+          ],
+          "location": "query",
+          "name": "searchType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Sorting criteria for search results.\n\nAvailable Values:\n- `_0`: Default\n- `_2`: Latest\n- `_4`: Hot",
+          "enumValues": [
+            "_0",
+            "_2",
+            "_4"
+          ],
+          "location": "query",
+          "name": "sortType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weixin/search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "WeChat Official Accounts"
+      ]
+    }
+  ],
+  "platformKey": "weixin",
+  "primaryTag": "WeChat Official Accounts",
+  "skillName": "justoneapi_weixin_search",
+  "skillType": "interface",
+  "slug": "justoneapi-weixin-search",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,0 +1,30 @@
+{
+  "userId": "",
+  "name": "",
+  "city": "上海",
+  "language": "zh",
+  "channels": {
+    "morning": { "channel": "telegram", "to": "" },
+    "evening": { "channel": "telegram", "to": "" }
+  },
+  "modules": {
+    "morning": {
+      "news":     true,
+      "tech":     true,
+      "finance":  true,
+      "weather":  true,
+      "yunshi":   true,
+      "history":  true,
+      "recipe":   true,
+      "quote":    true,
+      "mindful":  true,
+      "fitness":  true,
+      "english":  true
+    },
+    "evening": {
+      "yunshi_tomorrow": true
+    }
+  },
+  "createdAt": "",
+  "updatedAt": ""
+}

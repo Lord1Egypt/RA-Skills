@@ -1,35 +1,72 @@
 ---
-name: "Liepin V4 Skill"
-description: "基于 liepin-v4.mjs 的猎聘岗位检索与抓取技能，支持关键词搜索、结构化结果输出与调试截图。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liepin-v4-skill"
-sourceUrl: "https://clawhub.ai/skills/liepin-v4-skill"
+name: liepin-v4-skill
+description: 基于 liepin-v4.mjs 的猎聘岗位检索与抓取技能，支持关键词搜索、结构化结果输出与调试截图。
+version: 1.0.1
+homepage: https://github.com/qiaoxinxin/liepin-v4-skill
 ---
 
-# Liepin V4 Skill
+# liepin-v4-skill
 
-> 基于 liepin-v4.mjs 的猎聘岗位检索与抓取技能，支持关键词搜索、结构化结果输出与调试截图。
+## 功能概述
+`liepin-v4-skill` 用于在猎聘站点执行自动化岗位检索流程，适合需要批量收集职位信息的场景。
+技能会调用 `scripts/liepin-v4.mjs`，完成页面访问、搜索、结果提取，并输出可复用的数据。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liepin-v4-skill`
-- **Source URL:** [https://clawhub.ai/skills/liepin-v4-skill](https://clawhub.ai/skills/liepin-v4-skill)
+## 适用场景
+按技能画像批量搜索和筛选候选人
+对高匹配度候选人自动发起沟通
+截图存档候选人简历，记录匹配评分
+为后续面试安排准备候选人数据
 
-## Overview
+## 运行方式
+Excel 配置（默认）	HR / 招聘人员	读取桌面「简历AI搜寻功能设计模板」中的画像条件
 
+## 输出结果
+输出到 Desktop/candidates/liepin-<岗位名>/：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liepin-v4-skill
-```
+## 文件	说明
+candidates.csv	候选人结构化数据
+candidate_001.png	简历截图
+candidate_001.txt	简历文本（DOM 提取）
+liepin-progress.json	断点进度（支持续跑）
+
+## CSV 输出字段
+
+编号, 姓名, 公司, 职位, 学校, 学历, 工作年限,
+技能, 匹配度, 来源, 联系方式, 日期, 状态, 备注
+
+## 依赖与环境要求
+为确保不同同事安装后可直接运行，请确认运行环境满足以下条件：
+- Node.js 18 或更高版本
+- 已安装依赖包：`playwright`、`xlsx`、`iconv-lite`
+- 若首次运行 Playwright，可能需要自动下载浏览器内核（请保持网络可用）
+- 能访问猎聘相关页面（网络策略不拦截）
+- 具备有效的猎聘登录态（如技能流程需要登录后页面）
+
+## 故障排查
+### 1) 提示模块找不到（Cannot find module）
+原因：运行环境缺少依赖包。
+处理：在运行环境补齐依赖后重试。
+
+### 2) 浏览器启动失败或 Playwright 报错
+原因：浏览器内核未准备完成，或本机安全策略拦截。
+处理：保持网络连通并重试；必要时联系管理员检查终端安全策略。
+
+### 3) 页面打开但没有抓到结果
+原因：关键词过窄、城市不匹配、页面结构变更，或未登录导致内容受限。
+处理：
+- 先改用更宽泛关键词测试
+- 将 `pages` 调小到 1 快速验证
+- 确认登录态有效
+- 如持续失败，附截图反馈维护人更新脚本选择器
+
+### 4) 运行超时
+原因：网络慢、页面响应慢、请求频率过高。
+处理：
+- 降低抓取页数（先用 `pages=1`）
+- 错峰重试
+- 避免短时间高频重复运行
+
+## 注意事项
+- 请控制请求频率，避免触发网站风控。
+- 页面结构变动可能导致脚本失效，需要维护人更新。
+- 仅用于合法合规的招聘信息检索场景。

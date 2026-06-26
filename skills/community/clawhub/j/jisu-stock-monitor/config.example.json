@@ -1,0 +1,52 @@
+{
+  "history_days": 90,
+  "state_file": "jisu-stock-monitor.state.json",
+  "alert_cooldown_minutes": 240,
+  "holdings": [
+    {
+      "code": "300917",
+      "name": "示例股",
+      "cost": 47.6,
+      "type": "individual",
+      "alerts": {
+        "cost_pct_above": 15,
+        "cost_pct_below": -12,
+        "change_pct_above": 4,
+        "change_pct_below": -4,
+        "gap_monitor": true,
+        "gap_true_monitor": true,
+        "gap_true_min_pct": 0.3,
+        "dynamic_trailing": {
+          "persist": true,
+          "min_peak_profit_pct": 10,
+          "drawdown_warn_pct": 5,
+          "drawdown_urgent_pct": 10
+        },
+        "ma_monitor": true,
+        "volume_surge": 2.0,
+        "volume_shrink": 0.5,
+        "rsi_monitor": true,
+        "rsi_overbought": 70,
+        "rsi_oversold": 30
+      }
+    },
+    {
+      "code": "510300",
+      "cost": 4.2,
+      "type": "etf",
+      "alerts": {
+        "change_pct_above": 2,
+        "change_pct_below": -2
+      }
+    },
+    {
+      "code": "518880",
+      "name": "黄金 ETF 示例",
+      "type": "gold",
+      "alerts": {
+        "change_pct_above": 2.5,
+        "change_pct_below": -2.5
+      }
+    }
+  ]
+}

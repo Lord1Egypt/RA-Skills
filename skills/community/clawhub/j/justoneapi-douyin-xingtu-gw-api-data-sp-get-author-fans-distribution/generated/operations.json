@@ -1,0 +1,64 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_fans_distribution/v1 for Douyin Creator Marketplace (Xingtu) Follower Distribution through JustOneAPI with oAuthorId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Follower Distribution",
+  "endpointPath": "gw/api/data_sp/get_author_fans_distribution",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) follower Distribution data, including audience segmentation and location and demographic breakdowns, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "gwApiDataSpGetAuthorFansDistributionV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "FAN",
+          "description": "Author type filter.\n\nAvailable Values:\n- `FAN`: Fan\n- `DIE_HARD_FAN`: Die Hard Fan",
+          "enumValues": [
+            "FAN",
+            "DIE_HARD_FAN"
+          ],
+          "location": "query",
+          "name": "authorType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/data_sp/get_author_fans_distribution/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Distribution",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_data_sp_get_author_fans_distribution",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-data-sp-get-author-fans-distribution",
+  "sourceTitle": "OpenAPI definition"
+}

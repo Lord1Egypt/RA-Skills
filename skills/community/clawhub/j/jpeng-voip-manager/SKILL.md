@@ -1,35 +1,42 @@
 ---
-name: "voip-manager"
+name: jpeng-voip-manager
 description: "Manage VoIP calls"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-voip-manager"
-sourceUrl: "https://clawhub.ai/skills/jpeng-voip-manager"
+version: "1.0.0"
+author: "jpeng"
+tags: ["voice", "voip", "communication"]
 ---
 
-# voip-manager
+# VoIP Manager
 
-> Manage VoIP calls
+Manage VoIP calls
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-voip-manager`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-voip-manager](https://clawhub.ai/skills/jpeng-voip-manager)
+## When to Use
 
-## Overview
+- User needs voice related functionality
+- Automating voip tasks
+- Communication operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-voip-manager
+python3 scripts/voip_manager.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export VOIP_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

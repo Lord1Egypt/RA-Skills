@@ -1,35 +1,16 @@
----
-name: "jimeng-openclaw-video"
-description: "Generate videos from text prompts using Jimeng OpenClaw with customizable frame counts and asynchronous task handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jimeng-openclaw-video-v1-1"
-sourceUrl: "https://clawhub.ai/skills/jimeng-openclaw-video-v1-1"
----
+# 即梦视频生成技能
 
-# jimeng-openclaw-video
+该技能包提供万界方舟即梦模型（Jimeng）的视频生成能力，支持文生视频任务。
 
-> Generate videos from text prompts using Jimeng OpenClaw with customizable frame counts and asynchronous task handling.
+### 功能特点
+- 异步提交任务，支持自动轮询状态。
+- 支持指定帧数（121或241）。
+- 自动清理任务锁。
+- 结果实时记录到 `veo_result.txt`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jimeng-openclaw-video-v1-1`
-- **Source URL:** [https://clawhub.ai/skills/jimeng-openclaw-video-v1-1](https://clawhub.ai/skills/jimeng-openclaw-video-v1-1)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jimeng-openclaw-video-v1-1
+### 使用方法
+在 Python 中调用：
+```python
+from model.scripts.video_interface import trigger_jimeng_generation
+trigger_jimeng_generation("一个赛博朋克风格的城市街道")
 ```

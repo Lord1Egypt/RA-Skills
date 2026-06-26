@@ -1,35 +1,215 @@
 ---
-name: "investoday-sector-research-interpretation"
-description: "面向行业、板块、概念与主题方向的研报解读，聚焦卖方共识、核心逻辑、机会风险与代表性方向。基于今日投资金融数据接口，自动识别行业或概念实体并输出结构化板块研报解读报告。触发词：板块研报、行业观点、赛道共识、主题分歧、重点关注方向。"
-category: "other"
-source: "ClawHub"
-tags: [industry-research, industry-view, opportunity-risk, sector-consensus, sector-research, sector-research-interpretation, sell-side-view, theme-divergence]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-sector-research-interpretation"
-sourceUrl: "https://clawhub.ai/skills/investoday-sector-research-interpretation"
+name: investoday-sector-research-interpretation
+title: "板块研报解读"
+version: 1.3.0
+description: 面向行业、板块、概念与主题方向的研报解读，聚焦卖方共识、核心逻辑、机会风险与代表性方向。基于今日投资金融数据接口，自动识别行业或概念实体并输出结构化板块研报解读报告。触发词：板块研报、行业观点、赛道共识、主题分歧、重点关注方向。
+tags:
+  - sector-research-interpretation
+  - industry-view
+  - sector-consensus
+  - theme-divergence
+  - opportunity-risk
+  - sell-side-view
+  - sector-research
+  - industry-research
+metadata:
+  clawdbot:
+    emoji: "🧭"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-sector-research-interpretation
+# 🧭 板块研报解读
 
-> 面向行业、板块、概念与主题方向的研报解读，聚焦卖方共识、核心逻辑、机会风险与代表性方向。基于今日投资金融数据接口，自动识别行业或概念实体并输出结构化板块研报解读报告。触发词：板块研报、行业观点、赛道共识、主题分歧、重点关注方向。
+面向行业、板块、概念与主题方向的研报解读，聚焦卖方共识、核心逻辑、机会风险与代表性方向。基于今日投资金融数据接口，自动识别行业或概念实体并输出结构化板块研报解读报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-sector-research-interpretation`
-- **Source URL:** [https://clawhub.ai/skills/investoday-sector-research-interpretation](https://clawhub.ai/skills/investoday-sector-research-interpretation)
+## 触发场景
 
-## Overview
+- 用户询问某个行业、板块、概念或主题最近机构怎么看
+- 用户希望了解卖方共识、核心逻辑、主要分歧和机会风险
+- 用户想知道“最近券商重点覆盖哪些方向”“这个板块分歧大不大”
+- 关键词：板块研报、行业观点、赛道共识、主题分歧、重点关注方向、板块研究
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-sector-research-interpretation
+**示例 1：行业观点**
 ```
+半导体板块最近券商怎么看？
+```
+
+**示例 2：共识与分歧**
+```
+机器人板块最近研报里的共识和分歧是什么？
+```
+
+**示例 3：机会风险**
+```
+创新药这条赛道最近机构最看好的方向和风险点有哪些？
+```
+
+> 💡 本 Skill 偏行业、板块、概念层面的卖方观点归纳。若用户只想看单只股票的研报观点，请优先使用 `个股研报解读`；若用户更关心最近发生了什么催化、热点如何演绎，请优先使用 `热点事件解码`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 对象识别工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 实体识别 | `entity-recognition` | POST | 识别用户输入中的行业、概念、主题对象 |
+
+### 研报核心工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 研报舆情 | `research/sentiment` | POST | 获取行业、概念或主题方向的研报观点、逻辑、机会与风险 |
+
+## 数据获取流程
+
+用户提供行业、板块、概念或主题方向后，Agent 按以下流程获取数据：
+
+- **Step 0：实体识别**：工具ID `entity-recognition` (POST)，参数 `input=<用户原始问题>`
+- **Step 1：行业/概念研报舆情**：工具ID `research/sentiment` (POST)，参数 `<industryCode或conceptCode参数> beginTime=<90天前> endTime=<当前时间> pageNum=1 pageSize=6`
+
+> **对象选择规则**：若识别结果为行业，优先传 `industryCode`；若识别结果为概念，传 `conceptCode`。默认使用近 90 天数据；只有用户明确要求“详细报告”时，`pageSize` 可放大到 10。
+
+## 分析框架（4步）
+
+Agent 获取数据后，按以下 4 步框架进行结构化分析：
+
+### Step 1：确认当前卖方总体态度
+
+**目标**：先判断市场机构对该板块或主题的整体态度偏积极、偏中性还是分歧较大。
+
+**数据来源**：`research/sentiment`
+
+分析要点：
+- 近期研报情绪方向是否集中
+- 研报覆盖是否充分
+- 若样本有限，应提示“结论代表性有限”
+
+**输出**：总体态度与覆盖情况。
+
+### Step 2：提炼研报主线与共识逻辑
+
+**目标**：归纳机构高频强调的主线逻辑。
+
+**数据来源**：`research/sentiment`
+
+分析要点：
+- 当前最重要的产业逻辑、政策逻辑、景气逻辑或估值逻辑
+- 哪些逻辑是多数机构共同提及的
+- 只保留最有代表性的 2-4 条共识主线
+
+**输出**：研报主线与卖方共识。
+
+### Step 3：识别分歧点与重点方向
+
+**目标**：找出机构之间的主要分歧，以及反复被强调的重点方向。
+
+**数据来源**：`research/sentiment`
+
+分析要点：
+- 分歧集中在兑现节奏、景气持续性、盈利能力还是估值容忍度
+- 哪些子方向或代表性公司被多次提及
+- 只有被多篇研报重复强化的方向，才可写成“重点关注方向”
+
+**输出**：分歧点与重点方向。
+
+### Step 4：形成机会风险与后续观察框架
+
+**目标**：把共识、分歧与重点方向整合为结构化观察框架。
+
+**数据来源**：前 3 步分析结果汇总
+
+分析要点：
+- 当前最值得关注的机会方向是什么
+- 当前最需要警惕的风险点是什么
+- 接下来应重点跟踪哪些验证信号
+
+**输出**：机会与风险判断、后续观察重点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 多篇研报逻辑同向且近 90 天持续强化 | 板块卖方共识较强 | ✅ 积极 |
+| 共识主线明确但子方向分歧较大 | 主线成立、细分选择有争议 | 🟡 关注 |
+| 机会与风险同时被高频提及 | 机构表达趋于平衡 | 📊 中性 |
+| 重点方向被多篇研报重复强化 | 方向识别度较高 | ✅ 积极 |
+| 研报样本少且观点分散 | 共识尚不稳定 | ⚠️ 警惕 |
+| 逻辑更多来自政策催化而非业绩兑现 | 更偏预期交易 | 🟡 关注 |
+| 景气持续性成为主要分歧 | 后续验证难度较高 | ⚠️ 警惕 |
+| 风险点集中于估值与兑现节奏 | 需重点跟踪业绩验证 | ⚠️ 警惕 |
+
+## 输出格式
+
+```markdown
+# 🧭 [板块/主题名称] 研报解读报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、研报结论
+
+（用一段话概括当前机构态度、核心主线、主要分歧和机会风险）
+
+## 二、研报主线
+
+（提炼 2-4 条高频主线逻辑）
+
+## 三、共识与分歧
+
+（说明共识逻辑与争议点）
+
+## 四、重点方向
+
+（说明最被看好的子方向或反复提及的代表方向）
+
+## 五、机会与风险
+
+（分别写机会方向和风险方向）
+
+## 六、后续观察
+
+（接下来需重点跟踪的验证信号）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确当前卖方共识强弱与关键分歧
+- 给出后续研究的关键抓手
+```
+
+## 证据约束（必须遵守）
+
+1. 每个板块判断至少给出 2 个证据来源；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许把个别机构的单篇观点直接写成板块共识，必须有重复验证
+3. 时间口径必须明确，如“近90天研报”
+4. 不展示内部打分、未公开排序或中间推理
+5. 不给买卖建议、目标价、仓位建议或交易时点
+6. 只给行业、板块、概念、子方向层面的判断，不做具体个股推荐
+7. 若对象识别不稳定，必须先要求用户提供更明确的行业、板块或概念名称
+
+## 执行示例
+
+用户说：“机器人板块最近机构最看好什么方向？”
+
+1. 通过 `entity-recognition` 识别行业或概念对象
+2. 调用 `research/sentiment` 获取近 90 天相关研报舆情
+3. 提炼研报主线、共识与分歧、重点方向和风险点
+4. 输出 Markdown 格式板块研报解读报告
+5. 在结尾写出综合结论与后续观察重点
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

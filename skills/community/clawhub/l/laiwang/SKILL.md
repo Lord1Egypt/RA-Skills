@@ -1,35 +1,26 @@
 ---
-name: "Laiwang"
+name: "来往"
+version: "1.0.0"
 description: "来往（已停运）- 阿里巴巴社交应用历史存档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/laiwang"
-sourceUrl: "https://clawhub.ai/skills/laiwang"
+tags: ["social", "archived", "alibaba"]
+author: "ClawSkills Team"
+category: "social"
+status: "archived"
 ---
 
-# Laiwang
+# 来往（已停运）
 
-> 来往（已停运）- 阿里巴巴社交应用历史存档
+来往已停止运营或已边缘化，本技能作为历史存档保留。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/laiwang`
-- **Source URL:** [https://clawhub.ai/skills/laiwang](https://clawhub.ai/skills/laiwang)
+## 产品简介
 
-## Overview
+来往曾是中国互联网生态中的一款产品，现已停止服务。
 
+## 替代方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/laiwang
-```
+如果你需要类似功能，可以考虑当前主流的同类产品。
+
+---
+
+**最后更新**: 2026-03-16
+**状态**: 已存档

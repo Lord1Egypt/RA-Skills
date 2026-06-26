@@ -1,0 +1,14 @@
+# 投放数据分析技能依赖
+# 基于《数据分析基础概念和逻辑v3.md》开发
+
+pandas>=1.5.0
+numpy>=1.21.0
+chardet>=5.0.0
+openpyxl>=3.0.0  # 用于Excel文件支持
+python-dateutil>=2.8.0
+tqdm>=4.60.0  # 进度条显示
+
+# 可选依赖（用于高级功能）
+# matplotlib>=3.3.0  # 数据可视化
+# seaborn>=0.11.0    # 统计可视化
+# scikit-learn>=1.0.0  # 机器学习分析

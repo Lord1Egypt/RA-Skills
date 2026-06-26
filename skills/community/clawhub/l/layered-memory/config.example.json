@@ -1,0 +1,23 @@
+{
+  "defaultLayer": "l1",
+  "autoMaintain": true,
+  "maintainInterval": "daily",
+  "skipPatterns": [".git", "node_modules", ".clawhub", "tmp", ".DS_Store"],
+  "maxConcurrent": 4,
+  "dryRun": false,
+  "verbose": false,
+  "l0": {
+    "maxTokens": 100,
+    "includeSections": 3
+  },
+  "l1": {
+    "maxTokens": 1000,
+    "includeSubtasks": true,
+    "maxSubsections": 5
+  },
+  "hooks": {
+    "onBootstrap": true,
+    "onSave": false,
+    "logLevel": "info"
+  }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "markdown-to-docx-with-frontmatter",
+    "prompt": "把下面这段 markdown 转成 Word 文档，保存到 /tmp/eval1.docx：\n\n---\ntitle: 2026年Q1产品运营报告\nauthor: 张三\ndate: 2026-04-10\nheader:\n  text: 内部资料\n  alignment: center\nfooter:\n  page_number: true\ntoc:\n  max_level: 2\n---\n\n# 2026年Q1产品运营报告\n\n## 核心指标\n\n本季度活跃用户数达到 12.8 万，环比增长 23%。\n\n## 用户反馈\n\n> 用户体验显著提升，建议继续优化移动端性能。\n\n## 技术改进\n\n- 优化了首屏加载速度，从 3.2s 降至 1.1s\n- 新增了深色模式支持\n- 修复了 47 个 bug\n\n## 下季度计划\n\n1. 推出 API 开放平台\n2. 上线数据分析仪表盘\n3. 支持多语言国际化",
+    "expected_output": "生成有效的 .docx 文件，包含标题、页眉（内部资料）、页码、目录字段代码、callout 信息框、列表"
+  },
+  {
+    "id": 2,
+    "name": "style-recommendation-contract",
+    "prompt": "我有一份合同需要生成 Word 版本，内容是关于甲乙双方合作开发软件的协议，包含条款、金额、日期等。帮我转成 .docx 保存到 /tmp/eval2.docx：\n\n# 软件合作开发合同\n\n## 合同双方\n\n**甲方**：某某科技有限公司\n**乙方**：某某软件开发工作室\n\n## 合同金额\n\n本合同总金额为人民币 50 万元整。\n\n## 交付时间\n\n自合同签订之日起 90 个工作日内完成交付。",
+    "expected_output": "推荐使用 contract 样式，生成的 docx 使用仿宋字体，标题用黑体，格式正式"
+  },
+  {
+    "id": 3,
+    "name": "template-fill-with-json",
+    "prompt": "用下面这个 JSON 数据填充合同模板，保存到 /tmp/eval3.docx。\n\nJSON 数据：\n```json\n{\n  \"合同标题\": \"技术服务合同\",\n  \"甲方\": \"北京科技有限公司\",\n  \"乙方\": \"上海软件开发有限公司\",\n  \"合同金额\": \"人民币壹佰万元整\",\n  \"签订日期\": \"2026年4月10日\",\n  \"有效期限\": \"自签订之日起一年\"\n}\n```\n\n模板文件在项目 templates/contract.docx 下。",
+    "expected_output": "成功填充模板，所有 {{placeholder}} 被替换为对应的 JSON 值",
+    "files": []
+  },
+  {
+    "id": 4,
+    "name": "red-header-dispatch",
+    "prompt": "生成一份红头文件格式的通知，保存到 /tmp/eval4.docx：\n\n# 关于2026年清明节放假安排的通知\n\n各部门：\n\n根据《国务院办公厅关于2026年部分节假日安排的通知》精神，现将清明节放假安排通知如下：\n\n4月4日（周六）至4月6日（周一）放假，共3天。4月7日（周二）正常上班。\n\n请各部门提前做好工作安排，确保节日期间各项工作正常运转。\n\n特此通知。",
+    "expected_output": "使用 dispatch 样式，H1 为红色（#FF0000），仿宋正文，符合红头文件格式"
+  },
+  {
+    "id": 5,
+    "name": "technical-spec-with-code",
+    "prompt": "把这段技术规范转成 Word 文档，保存到 /tmp/eval5.docx：\n\n# API 接口规范\n\n## 认证方式\n\n所有请求必须携带 `Authorization` header，格式为 `Bearer <token>`。\n\n## 请求示例\n\n```python\nimport requests\n\nresponse = requests.get(\n    \"https://api.example.com/v1/users\",\n    headers={\"Authorization\": \"Bearer your-token\"}\n)\nprint(response.json())\n```\n\n## 错误码\n\n| 错误码 | 说明 | 处理方式 |\n|--------|------|----------|\n| 400 | 请求参数错误 | 检查参数格式 |\n| 401 | 未授权 | 检查 token |\n| 429 | 请求过于频繁 | 等待后重试 |",
+    "expected_output": "使用 tech_spec 样式，代码块有等宽字体和灰色背景，表格正确渲染"
+  },
+  {
+    "id": 6,
+    "name": "validate-generated-docx",
+    "prompt": "生成一份会议纪要 Word 文档并验证其结构是否有效，保存到 /tmp/eval6.docx：\n\n# 产品周会纪要\n\n**日期**：2026年4月7日\n**参会人员**：产品组全员\n\n## 本周进展\n\n- 用户反馈功能已上线\n- A/B 测试完成第一轮\n\n## 下周计划\n\n- 启动新版首页设计\n- 完成数据分析模块开发",
+    "expected_output": "使用 meeting 样式，生成后用 validate.py 验证文件结构有效"
+  },
+  {
+    "id": 7,
+    "name": "yaml-frontmatter-fill",
+    "prompt": "用下面这个 YAML front matter 的数据填充合同模板 templates/contract.docx，输出到 /tmp/eval7.docx：\n\n```markdown\n---\n合同标题: 年度维保服务合同\n甲方: 城市物业管理有限公司\n乙方: 设备维护工程有限公司\n合同金额: 叁拾万元整\n签订日期: 2026年4月1日\n有效期限: 一年\n---\n```",
+    "expected_output": "成功解析 YAML front matter 并填充模板"
+  },
+  {
+    "id": 8,
+    "name": "strict-mode-unfilled",
+    "prompt": "用这个不完整的数据填充模板 templates/contract.docx，使用 --strict 模式，输出到 /tmp/eval8.docx：\n\n```json\n{\n  \"合同标题\": \"测试合同\",\n  \"甲方\": \"公司A\"\n}\n```",
+    "expected_output": "由于存在未替换的占位符，--strict 模式下应返回非零退出码"
+  }
+]

@@ -1,35 +1,61 @@
----
-name: "Life Logging Analyzer"
-description: "Analyze fragmented life data from calendars, health apps, and notes to identify patterns, trends, and build a personal timeline narrative."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/life-logging-analyzer"
-sourceUrl: "https://clawhub.ai/skills/life-logging-analyzer"
----
-
 # Life Logging Analyzer
 
-> Analyze fragmented life data from calendars, health apps, and notes to identify patterns, trends, and build a personal timeline narrative.
+> 生活日志分析器 — 从碎片化生活记录中提取模式、洞察和趋势，构建个人时间线叙事。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/life-logging-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/life-logging-analyzer](https://clawhub.ai/skills/life-logging-analyzer)
+## Description
 
-## Overview
+将散落在日历、笔记、照片元数据、健康App、屏幕时间等数据源中的生活轨迹，结构化为可分析的时间线。通过模式识别发现生活节奏、习惯变化和长期趋势。
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/life-logging-analyzer
-```
+当用户需要：
+- 回顾过去一周/月/年的生活模式
+- 发现时间分配黑洞
+- 建立个人生活数据库
+- 生成生活年度报告
+- 对比不同时期的生活状态
+
+使用本 Skill。
+
+## Key Concepts
+
+### 1. 五维生活日志模型
+- **时间维**：日历事件、屏幕时间、应用使用时长
+- **物理维**：位置轨迹、步数、睡眠、运动
+- **数字维**：消息频率、社交媒体活跃度、代码提交
+- **内容维**：笔记关键词、照片标签、阅读书目
+- **情绪维**：心情记录、能量水平、压力指标
+
+### 2. 模式提取三阶法
+- **微观模式**（日级）：注意力峰值时段、触发分心的首因
+- **中观模式**（周级）：工作-休息节奏、社交-独处比例
+- **宏观模式**（年级）：兴趣演变轨迹、生活重心迁移
+
+### 3. 叙事生成引擎
+- 原始数据 → 统计摘要 → 因果假设 → 人类验证 → 个人叙事
+- 关键原则：数据提出假设，人类确认因果，避免伪相关
+
+## Instructions
+
+1. 确定用户可用的数据源
+2. 建立统一的时序数据格式
+3. 运行五维相关性分析
+4. 生成模式报告（日/周/月/年）
+5. 提出可执行的优化建议
+
+## Examples
+
+**输入**: "帮我分析上个月的时间都去哪了"
+**输出**: 五维时间分配图 + TOP5时间消耗 + 与上月对比 + 3个优化建议
+
+## Boundaries
+
+- 不要求完美的数据覆盖，部分数据也能产出洞察
+- 隐私优先：所有数据本地处理
+- 不做心理健康诊断
+
+## References
+
+- Quantified Self 运动
+- 个人知识管理(PKM)实践
+- 时间感知心理学

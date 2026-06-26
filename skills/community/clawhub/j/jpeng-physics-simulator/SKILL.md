@@ -1,35 +1,42 @@
 ---
-name: "physics-simulator"
+name: jpeng-physics-simulator
 description: "Simulate physics experiments"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-physics-simulator"
-sourceUrl: "https://clawhub.ai/skills/jpeng-physics-simulator"
+version: "1.0.0"
+author: "jpeng"
+tags: ["physics", "simulation", "science"]
 ---
 
-# physics-simulator
+# Physics Simulator
 
-> Simulate physics experiments
+Simulate physics experiments
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-physics-simulator`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-physics-simulator](https://clawhub.ai/skills/jpeng-physics-simulator)
+## When to Use
 
-## Overview
+- User needs physics related functionality
+- Automating simulation tasks
+- Science operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-physics-simulator
+python3 scripts/physics_simulator.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export SIMULATION_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

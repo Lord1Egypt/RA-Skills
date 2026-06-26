@@ -1,0 +1,11 @@
+{
+  "name": "permission-auditor",
+  "version": "1.0.0",
+  "description": "Audit tool usage patterns and permissions for security",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["security", "audit", "permission", "tool", "access"],
+  "license": "MIT"
+}

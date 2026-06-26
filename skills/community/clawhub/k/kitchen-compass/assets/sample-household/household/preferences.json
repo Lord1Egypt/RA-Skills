@@ -1,0 +1,12 @@
+{
+  "planning": {
+    "default_preset": "balanced",
+    "default_dinners_per_week": 3,
+    "prioritize_inventory": false
+  },
+  "notes": [
+    "The v1 planner reads planning.default_preset, planning.default_dinners_per_week, and planning.prioritize_inventory.",
+    "prioritize_inventory only matters for households actively using structured inventory; empty/default setups still get no inventory effect.",
+    "Use history/events.jsonl for meal history and recency, not a toggle in this file."
+  ]
+}

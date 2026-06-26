@@ -1,35 +1,153 @@
 ---
-name: "Interview Evaluation"
-description: "Use when writing a Chinese-language interview evaluation from interview audio transcripts, video recordings, or interviewer notes. Triggers include 把这段面试录音转写..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interview-evaluation"
-sourceUrl: "https://clawhub.ai/skills/interview-evaluation"
+name: interview-evaluation
+description: Use when writing a Chinese-language interview evaluation from interview audio transcripts, video recordings, or interviewer notes. Triggers include 把这段面试录音转写写成面评、根据这份面试转写帮我写面试评价、给候选人写录用建议、判断候选人是否进入下一轮、按用人单位视角写面评 等。
 ---
 
-# Interview Evaluation
-
-> Use when writing a Chinese-language interview evaluation from interview audio transcripts, video recordings, or interviewer notes. Triggers include 把这段面试录音转写...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interview-evaluation`
-- **Source URL:** [https://clawhub.ai/skills/interview-evaluation](https://clawhub.ai/skills/interview-evaluation)
+# 面试评价
 
 ## Overview
 
+根据面试录音转写、视频记录或面试官笔记，撰写**结构化、可直接用于用人决策**的面试评价。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interview-evaluation
+**Core principle: 面试是筛选"能力合适"的候选人，而非"经验匹配"的候选人。**
+
+- 简历写的是"做过什么"，面试要验证"是不是真的做过""做到什么深度""下次遇到会不会"。
+- 底层能力（钻研精神、学习速度、逻辑性、自我认知、表达沟通、自驱力）驱动解决复杂新问题。
+- 能力不是凭空存在的，需要从候选人的具体行为和表达中推断。
+- 面试能可靠考察的能力中，**逻辑性最可靠**，其他能力容易被表演，需要深挖细节验证。
+
+## When to Use
+
+- 用户发来面试录音转写文字 / 面试视频转写 / 面试官记录，要求写面评。
+- 用户要求"判断候选人是否进入下一轮 / 终面 / 录用"。
+- 用户要求"按用人单位视角写面评"，而不是顾问报告。
+- 用户在 [[recruiting-skillset]] 流程中走到面试评价阶段。
+
+## Output Structure（严格遵循）
+
+```markdown
+## 综合建议
+> ⭐⭐⭐ 强推 / ⭐⭐ 推荐 / ⭐ 待定 / ❌ 不推荐 进入下一轮
+
+## 综合评价
+
+### 优势（2-4 条）
+每条格式：**先说能力判断，再接证据叙述**，能力融入叙述中，不单独标注。
+
+### 不足（2-4 条）
+同上，反映能力短板或经验缺口。
+
+### 风险（1-3 条）
+标注风险类型：□ 稳定性 □ 技术边界 □ 方向偏离 □ 团队适配 □ 其他
+
+## 下一步建议
+□ 进入二面 — 重点验证：...
+□ 进入终面 — 重点验证：...
+□ 不推荐 — 原因：...
 ```
+
+空白模板见 [evaluation-template.md](evaluation-template.md)。完整示例见 [example-evaluation.md](example-evaluation.md)。
+
+## Writing Rules
+
+1. **用人单位视角**：直接输出内部面评结论（"建议进入下一轮""不建议继续推进""不满足我们当前预期"），不要写成第三方顾问式建议。
+2. **避免条件化、顾问式表达**：不要使用"更准确地说""如果团队当前更需要…那么…""可以保留观察"这类外部视角措辞，除非用户明确要求顾问报告。
+3. **优势 / 不足每条只描述一件事**，不要把多件事揉在一起。
+4. **证据为能力判断服务**：证据要有具体行为，而非泛泛描述。
+5. **能力名称直接出现在句首或句中**，不加括号标注，不单独列维度。
+6. **描述具体可感**，避免"有一定经验""表现出色"等模糊表达。
+7. **不足的归因必须准确**：把"经验不匹配""岗位不要求的能力"和"真正的能力短板"分清。详见 [attribution-errors.md](attribution-errors.md)。
+
+## Capability Dimensions
+
+候选人评估参考 16 个维度（不作为固定框架，需揉进优势 / 不足 / 风险描述）：
+
+- **底层能力（6）**：钻研精神、学习速度、逻辑性、自我认知、表达沟通、自驱力。
+- **经验维度（5）**：领域 context 理解、产品场景匹配度、工程落地深度、产品 sense、技术栈覆盖。
+- **风险维度（5）**：稳定性、技术边界、方向偏离、团队适配、意愿真实性。
+
+完整定义、行为信号和打分提示见 [capability-dimensions.md](capability-dimensions.md)。
+
+## Probing Techniques
+
+面试追问 / 复核证据的 3 类技巧：真实性验证、能力深度验证、风险验证。详见 [probing-techniques.md](probing-techniques.md)。
+
+关键提醒：
+
+- **真实性验证最重要**：流畅讲细节 → 大概率真实参与；答不上来或绕 → 参与深度有限或非主导。
+- **技术深度 ≠ 表达流畅**：必须追问关键技术替代方案、数据 / 指标 / 失败案例 / 权衡。
+- **新概念 ≠ 探索能力强**：必须核实是否实际读过源码、跑过 demo、改造过旧系统。
+
+## Anti-Patterns
+
+| 错误归因 | 正确归因 |
+| --- | --- |
+| 产品经理不深度参与模型微调 → 钻研精神弱 | → 简历夸大 / 不实 |
+| 跨行业没经验 → 学习能力差 | → 面试准备不充分 / 方向偏离 |
+| 回答绕 → 逻辑不清 | → 可能是细节参与有限（自我认知问题） |
+| 说不清楚 → 表达差 | → 可能是没想清楚（钻研 / 认知问题） |
+| 表达流畅、项目链路讲得完整 → 技术能力强 | → 表达能力好；技术深度看关键追问下能否讲清实现细节、指标、badcase、方案权衡 |
+| 说"我设计 / 我负责" → 独立主导 | → 需核实 mentor、正式员工、数据 / 测试团队边界 |
+| 提到新框架 / 新概念 → 探索能力强 | → 需核实是否实际读源码、跑 demo、改造旧系统 |
+
+完整列表见 [attribution-errors.md](attribution-errors.md)。
+
+## Pre-Output Discipline
+
+- **必须先读完整转写 / 记录**，再判断，不只根据简历印象。
+- **批量面试转写姓名误识别风险**：同一候选人在转写中可能有多个称呼（姓名、昵称、口误）。若用户提到"昨天那批名单 / 按名字匹配"，必须先用历史会话和本地简历文件核对正式姓名，再在内部材料里加"姓名匹配说明"表。**正式报告中不要出现姓名匹配过程**。
+- **PDF 简历提取**：见 [[recruiting-resume-screening]] 的 `pdf-extraction.md`。
+
+## Output Discipline
+
+- Markdown 格式，中文输出。
+- 每条优势 / 不足不加"体现：XXX"括号标注，能力直接融入叙述。
+- 优势不超过 4 条，不足不超过 4 条，风险不超过 3 条（精炼）。
+- 不回避矛盾——候选人某方面强但另一方面有风险，两面都写。
+- 下一步建议要具体，"重点验证：xxx"要写清楚验证什么。
+- 完成面评后**必须落为 `.md` 文件并交付给用户**（保存到本地或发送到对话），不要只在回复中给出一次性文本。
+- **正式报告只保留评价内容**：综合建议、优势、不足、风险、下一步。姓名匹配、修订说明、材料定位、工具执行痕迹不要混入正式报告，除非用户明确要求。
+
+## Self-Check
+
+输出前逐项确认：
+
+- [ ] 简历 PDF 是否已正确提取？
+- [ ] 面试转写文字是否完整阅读？
+- [ ] 优势 2-4 条，每条先说能力再接证据？
+- [ ] 不足 2-4 条，归因是否准确（产品不该背工程的锅）？
+- [ ] 风险标注了类型？
+- [ ] 下一步建议是否具体？
+- [ ] 没有"体现：XXX"类型括号标注？
+- [ ] 把"表达好"与"技术深度强"分开？
+- [ ] 核实了候选人个人贡献边界，没有把"我负责"默认成"独立主导"？
+- [ ] 把"提到新技术"与"真实探索 / 实践"分开？
+- [ ] 已将面试评价保存为 Markdown 文件并交付给用户？
+- [ ] 正式报告里没有姓名匹配、修订说明、工具执行痕迹？
+
+## Feedback Loop
+
+每次完成面评后主动询问用户：
+
+1. 评价是否准确？哪些地方评高了 / 评低了？后续面试 / 共事结果是否验证了判断？
+2. 是否有遗漏的能力维度？哪些维度过度关注，哪些被忽略？
+3. 归因是否准确？有没有新的常见归因错误？
+4. 追问技巧是否有效？哪些追问挖出了有效信息，哪些是无效问题？
+
+| 反馈类型 | 更新内容 |
+| --- | --- |
+| 评价偏差 | 在 EVOLUTION.md 记录预测命中率，形成校准数据 |
+| 归因错误 | 补充到 [attribution-errors.md](attribution-errors.md) |
+| 追问无效 | 优化 [probing-techniques.md](probing-techniques.md) |
+| 维度缺失 | 补充到 [capability-dimensions.md](capability-dimensions.md) |
+| 新发现 | 记录到 [EVOLUTION.md](EVOLUTION.md) |
+
+## See Also
+
+- [capability-dimensions.md](capability-dimensions.md) — 16 个能力维度的定义。
+- [attribution-errors.md](attribution-errors.md) — 常见归因错误对照。
+- [probing-techniques.md](probing-techniques.md) — 真实性 / 深度 / 风险 3 类追问技巧。
+- [evaluation-template.md](evaluation-template.md) — 空白面评模板。
+- [example-evaluation.md](example-evaluation.md) — 完整面评示例（含写作要点说明）。
+- [EVOLUTION.md](EVOLUTION.md) — 演化日志。
+- 总控流程：[[recruiting-skillset]]；简历筛选：[[recruiting-resume-screening]]。

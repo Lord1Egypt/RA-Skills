@@ -1,35 +1,39 @@
----
-name: "Life Analyzer"
-description: "Analyzes your thoughts or journal entries to identify emotional tones, patterns, root issues, blind spots, and suggests specific improvement steps."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/life-analyzer"
-sourceUrl: "https://clawhub.ai/skills/life-analyzer"
----
+name: Deep Life Analyzer
+description: Analyzes user thoughts or journal entries and extracts patterns, blind spots, and actionable improvements.
 
-# Life Analyzer
+trigger:
+  when:
+    - user shares thoughts, problems, or journal entries
+    - user asks for self-improvement or clarity
+  avoid:
+    - factual questions
+    - technical tasks
 
-> Analyzes your thoughts or journal entries to identify emotional tones, patterns, root issues, blind spots, and suggests specific improvement steps.
+input_schema:
+  text: string
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/life-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/life-analyzer](https://clawhub.ai/skills/life-analyzer)
+execution:
+  - detect emotional tone
+  - identify repeating patterns or beliefs
+  - highlight contradictions or blind spots
+  - extract root problem (not surface-level)
+  - generate 3 actionable steps
 
-## Overview
+output_format:
+  CORE PATTERN:
+  
+  ROOT ISSUE:
+  
+  BLIND SPOTS:
+  - 
+  - 
+  
+  ACTION STEPS:
+  1.
+  2.
+  3.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/life-analyzer
-```
+constraints:
+  - be honest, not comforting
+  - avoid generic advice
+  - insights must be specific to the input

@@ -1,35 +1,20 @@
 ---
-name: "Knowledge"
-description: "本地知识库集成 - 文档检索、投喂、双轨模式切换"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge"
-sourceUrl: "https://clawhub.ai/skills/knowledge"
+name: knowledge
+description: 本地知识库集成 - 文档检索、投喂、双轨模式切换
 ---
 
-# Knowledge
+# 本地知识库
 
-> 本地知识库集成 - 文档检索、投喂、双轨模式切换
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge`
-- **Source URL:** [https://clawhub.ai/skills/knowledge](https://clawhub.ai/skills/knowledge)
+| 命令 | 说明 |
+|------|------|
+| "查一下 xxx" | 搜索知识库 |
+| "切换到本地知识库" | 使用本地检索 |
+| "切换到 AnythingLLM" | 使用对话模式 |
+| "知识库统计" | 查看文档数量 |
 
-## Overview
+## 文件位置
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge
-```
+- 知识库根目录：`E:/knowledge-base`
+- API服务：`http://127.0.0.1:8001`

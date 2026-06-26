@@ -1,35 +1,14 @@
 ---
-name: "ISS Tracker"
-description: "Get the real-time location (latitude/longitude) of the International Space Station."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iss-tracker"
-sourceUrl: "https://clawhub.ai/skills/iss-tracker"
+name: iss-tracker
+description: Get the real-time location (latitude/longitude) of the International Space Station.
+bins: ["curl", "jq"]
 ---
 
 # ISS Tracker
 
-> Get the real-time location (latitude/longitude) of the International Space Station.
+This skill provides the current geographic coordinates of the International Space Station using the Open Notify API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iss-tracker`
-- **Source URL:** [https://clawhub.ai/skills/iss-tracker](https://clawhub.ai/skills/iss-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Current Location
+To get the current position of the ISS, run this command:
 ```bash
-hermes skills install clawhub/iss-tracker
-```
+curl -s "http://api.open-notify.org/iss-now.json" | jq -r '"Lat: \(.iss_position.latitude), Lon: \(.iss_position.longitude)"'

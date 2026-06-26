@@ -1,35 +1,89 @@
 ---
-name: "Leo"
-description: "Leo 的个人介绍。提供关于 Leo 的基本信息、兴趣爱好、技能专长、社交账号、联系方式等内容的查询。适用于：1) 了解 Leo 是谁；2) 联系 Leo；3) 了解 Leo 的工作和项目；4) 与 Leo 展开合作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/leo"
-sourceUrl: "https://clawhub.ai/skills/leo"
+name: Leo
+description: Leo 的个人介绍。提供关于 Leo 的基本信息、兴趣爱好、技能专长、社交账号、联系方式等内容的查询。适用于：1) 了解 Leo 是谁；2) 联系 Leo；3) 了解 Leo 的工作和项目；4) 与 Leo 展开合作。
 ---
 
-# Leo
+# Leo 个人介绍
 
-> Leo 的个人介绍。提供关于 Leo 的基本信息、兴趣爱好、技能专长、社交账号、联系方式等内容的查询。适用于：1) 了解 Leo 是谁；2) 联系 Leo；3) 了解 Leo 的工作和项目；4) 与 Leo 展开合作。
+本技能帮助你了解 Leo 的相关信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/leo`
-- **Source URL:** [https://clawhub.ai/skills/leo](https://clawhub.ai/skills/leo)
+## 基本信息
 
-## Overview
+- **昵称**：Leo
+- **性别**：男
+- **所在地**：中国
+- **时区**：Asia/Shanghai (北京时间 UTC+8)
 
+## 背景与经历
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/leo
-```
+### 教育背景
+- [待补充]
+
+### 工作经历
+- [待补充]
+
+### 项目经验
+- [待补充]
+
+## 技能与专长
+
+### 技术领域
+- [待补充]
+- OpenClaw
+- AI Agent 开发
+- 技能开发 (Skills)
+
+### 兴趣爱好
+- [待补充]
+- 人工智能
+- 加密货币
+- 编程开发
+
+## 社交账号
+
+### 即时通讯
+- Telegram: [待补充]
+- WeChat: [待补充]
+
+### 社交平台
+- GitHub: [待补充]
+- 知乎: [待补充]
+- Twitter: [待补充]
+
+## 作品与项目
+
+### 已发布的 Skills（ClawHub）
+- zengming - 曾鸣教授智能助手
+- money-knowledge - 金钱与财富知识
+- alibaba - 阿里巴巴集团介绍
+- chenlang - 微信介绍
+
+### 其他项目
+- [待补充]
+
+## 联系方式
+
+- Email: [待补充]
+- Telegram: [待补充]
+- WeChat: [待补充]
+
+## 合作意向
+
+- AI/大模型相关合作
+- 技能开发
+- 技术咨询
+- [其他]
+
+## 座右铭
+
+[待补充]
+
+---
+
+### 使用说明
+
+本技能是 Leo 的个人介绍模板。如需更新个人信息，请编辑 `~/.openclaw/workspace/skills/Leo/SKILL.md` 文件。
+
+---
+
+**最后更新**：2026年3月

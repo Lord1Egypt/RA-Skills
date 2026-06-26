@@ -1,0 +1,181 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SecuMarket",
+        "columnChiName": "证券市场",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券市场(SecuMarket)与(CT_SystemConst)表中的DM字段关联，令LB = 201 AND DM IN (83,90,18)，得到证券市场的具体描述：18-北京证券交易所，83-上海证券交易所，90-深圳证券交易所。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "MemberAbbr",
+        "columnChiName": "会员名称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InstitutionCode",
+        "columnChiName": "机构代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "机构代码（InstitutionCode）：与“机构基本资料表（Bond_IBSettMemberInfo）”中的“企业编号（MemberCode）”关联，得到对应的机构的相关资料。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "FinanceBuyValueM",
+        "columnChiName": "本月累计融资买入额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "SecuritySellVolumeM",
+        "columnChiName": "本月累计融券卖出量(股)",
+        "columnType": "decimal(18,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "51.22"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "SecuritySellValueM",
+        "columnChiName": "本月累计融券卖出额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "48.78"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "SellSecuRepayment",
+        "columnChiName": "卖券还款(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "48.78"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "BuySecuRepaySecu",
+        "columnChiName": "买券还券(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "48.78"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "FinanceValueM",
+        "columnChiName": "月末融资余额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "SecurityVolumeM",
+        "columnChiName": "月末融券余量(股)",
+        "columnType": "decimal(18,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "51.22"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "SecurityValueM",
+        "columnChiName": "月末融券余额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "MarginValueM",
+        "columnChiName": "月末融资融券余额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.91"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

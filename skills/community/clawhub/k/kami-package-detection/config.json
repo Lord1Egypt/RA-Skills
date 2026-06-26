@@ -1,0 +1,23 @@
+{
+  "cameras": [
+    {
+      "rtsp_url": "rtsp://admin:xxx@192.168.XXX/stream1",
+      "device_id": "yuanqu"
+    },
+    {
+      "rtsp_url": "rtsp://admin:xxx@192.168.xxx/stream1",
+      "device_id": "bangongshi"
+    }
+  ],
+  "conf_threshold": 0.25,
+  "run_time": 0,
+  "alarm_cooldown": 60,
+  "feishu_webhook_url": "",
+  "feishu_app_id": "",
+  "feishu_app_secret": "",
+  "telegram_bot_token": "",
+  "telegram_chat_id": "",
+  "discord_webhook_url": "",
+  "discord_bot_token": "",
+  "discord_channel_id": ""
+}

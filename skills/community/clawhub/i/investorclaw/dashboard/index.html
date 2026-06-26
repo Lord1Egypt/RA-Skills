@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+SPDX-License-Identifier: Apache-2.0
+
+InvestorClaw v4.0 dashboard — placeholder index page.
+
+Real dashboard UI lands incrementally:
+  - First-run wizard (portfolio upload → keys → connect-an-agent)
+  - Portfolio view (holdings, performance, refresh)
+  - Provider/key config
+  - Narrative tier picker
+  - MCP server settings + connected-agents list
+  - Memory (mnemos) browser
+  - Bundle import/export
+  - Diagnostics
+
+Tech: vanilla JS or preact (no build pipeline). All dynamic content
+fetched from the bridge's REST API at /api/* on the same port.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InvestorClaw — v4.0</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      max-width: 720px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      color: #222;
+      line-height: 1.5;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    section { margin: 2rem 0; }
+    h2 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    code {
+      background: #f4f4f5;
+      padding: 0.15rem 0.35rem;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <h1>InvestorClaw <span style="color:#888;">v4.0</span></h1>
+  <p class="subtitle">
+    Portfolio analysis + memory, served as an MCP-HTTP application service.
+    <span class="status">v4.0.0a1 — bridge implementation pending</span>
+  </p>
+
+  <section>
+    <h2>Service health</h2>
+    <ul>
+      <li>MCP-HTTP (this port + 8090): <code>http://127.0.0.1:8090/healthz</code></li>
+      <li>mnemos sibling: <code>http://127.0.0.1:5002/healthz</code></li>
+      <li>Dashboard (this page): <code>http://127.0.0.1:8092/</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What's coming here</h2>
+    <ul>
+      <li>First-run wizard — portfolio upload → keys → connect-an-agent</li>
+      <li>Portfolio view (holdings, performance, top sectors, top bonds)</li>
+      <li>Provider / key config (Together / OpenAI / Anthropic / Groq / etc.)</li>
+      <li>Data source keys (Finnhub, FRED, NewsAPI, Alpha Vantage, massive)</li>
+      <li>Narrative tier picker (heuristic / local-LLM / cloud-LLM / off)</li>
+      <li>MCP server settings + connected-agents list</li>
+      <li>Memory (mnemos) browser + retention policy</li>
+      <li>Bundle import / export</li>
+      <li>Diagnostics — live tool call log, MCP request stream</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>For developers</h2>
+    <p>
+      This is the placeholder static index served by
+      <code>investorclaw_bridge/dashboard.py</code>. Real UI lands after
+      bridge implementation completes. See the
+      <a href="https://github.com/mnemos-os/mnemos-ic-runtime/blob/main/RFC-v0.1.md">v4.0 RFC</a>
+      for architecture.
+    </p>
+    <p>
+      Want to call the MCP tools directly?
+      <code>curl -sS http://127.0.0.1:8090/mcp -d '{"jsonrpc":"2.0","method":"tools/list","id":1}'</code>
+    </p>
+  </section>
+
+  <footer style="margin-top: 4rem; color: #888; font-size: 0.85rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    <a href="https://investorclaw.app">InvestorClaw</a> — Apache 2.0 service code, MIT distribution-edge artifacts. Educational use only — not investment advice.
+  </footer>
+</body>
+</html>

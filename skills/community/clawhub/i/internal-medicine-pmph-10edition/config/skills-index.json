@@ -1,0 +1,2585 @@
+[
+  {
+    "name": "21-羟化酶缺乏症诊断流程",
+    "description": "用于对疑似先天性肾上腺皮质增生症（CAH）患者进行21-羟化酶缺乏症（21-OHD）的标准化诊断。当新生儿出现外生殖器模糊伴失盐、低血压或低血糖，或儿童/成人出现高雄激素表现（如阴蒂肥大、性早熟、多毛、闭经）时，应启动本技能。",
+    "folder": "21-hydroxylase-deficiency-diagnostic-workflow",
+    "id": "1"
+  },
+  {
+    "name": "72小时饥饿试验操作规程",
+    "description": "当怀疑胰岛素瘤且Whipple三联征阳性时，使用本技能执行72小时饥饿试验，通过监测血糖、胰岛素及C肽水平来确诊胰岛素瘤。",
+    "folder": "72-hour-fasting-test-protocol",
+    "id": "2"
+  },
+  {
+    "name": "ABPA综合管理",
+    "description": "制定变应性支气管肺曲霉病（ABPA）患者的激素与抗真菌联合治疗计划，包括药物选择、剂量调整、疗程设定及疗效监测。当患者符合ABPA诊断标准（如血清总IgE>1000 IU/ml、曲霉特异性IgE阳性、中央性支气管扩张等），或表现为激素依赖型哮喘伴曲霉致敏且常规治疗无效时，使用本技能。",
+    "folder": "abpa-comprehensive-management",
+    "id": "3"
+  },
+  {
+    "name": "Access Digital Resources for New-Form Medical Textbooks",
+    "description": "获取全国高等学校五年制本科临床医学专业第十轮规划教材配套数字资源和电子教材的完整流程。当用户持有配备二维码的新形态人卫版纸质教材，并希望激活并访问其关联的数字内容（如课件、视频、AR互动、电子教材等）时使用本技能。",
+    "folder": "access-digital-resources-for-new-form-medical-textbooks",
+    "id": "4"
+  },
+  {
+    "name": "肢端肥大症确诊的金标准流程",
+    "description": "执行肢端肥大症的确诊流程，包括IGF-1筛查、口服葡萄糖耐量试验（OGTT-GH）及必要时的辅助动态功能试验。当患者具有典型肢端肥大特征（如眉弓高突、手脚增厚）或血清IGF-1升高时使用本技能。",
+    "folder": "acromegaly-diagnosis-gold-standard",
+    "id": "5"
+  },
+  {
+    "name": "肢端肥大症的鉴别诊断",
+    "description": "当患者表现为肢端肥大样外貌（如手足增大、皮肤粗糙、面容改变）但缺乏典型病程或生化特征时，使用本技能启动系统性鉴别诊断流程，以区分真性肢端肥大症与其他类似表现疾病。",
+    "folder": "acromegaly-differential-diagnosis",
+    "id": "6"
+  },
+  {
+    "name": "ACTH兴奋试验诊断肾上腺皮质功能减退",
+    "description": "当患者出现慢性消耗、色素沉着、低血压、低血糖、呕吐等疑似肾上腺皮质功能减退表现时，使用本技能执行ACTH兴奋试验以评估肾上腺储备功能并区分原发性与继发性病因。",
+    "folder": "acth-stimulation-test-for-adrenal-insufficiency",
+    "id": "7"
+  },
+  {
+    "name": "急性胆囊炎诊断与并发症风险评估",
+    "description": "当患者出现右上腹持续疼痛、发热（<38.5°C）和墨菲征阳性时，使用本技能判断是否为急性胆囊炎，并评估其进展为坏疽、穿孔等严重并发症的风险。适用于急性胆囊炎患者及胆囊结石嵌顿病例，不适用于慢性胆囊炎稳定期或无症状胆囊结石。",
+    "folder": "acute-cholecystitis-diagnosis-complication-risk",
+    "id": "390"
+  },
+  {
+    "name": "急性糜烂出血性胃炎管理",
+    "description": "识别急性糜烂出血性胃炎的四大病因（应激、药物、乙醇、物理因素），并据此实施去除诱因、抑酸治疗、黏膜保护及高危人群预防措施。当患者有应激/NSAIDs/乙醇暴露史且出现上消化道出血或胃镜见糜烂时使用本技能。",
+    "folder": "acute-erosive-hemorrhagic-gastritis-management",
+    "id": "389"
+  },
+  {
+    "name": "急性乙醇中毒临床分期评估",
+    "description": "根据患者血乙醇浓度（mmol/L 或 mg/dl）判断急性乙醇中毒的临床分期（兴奋期、共济失调期、昏迷期），并据此指导支持治疗强度。在急诊场景中，当患者有明确大量饮酒史且出现意识障碍、运动不协调或生命体征异常时使用本技能。",
+    "folder": "acute-ethanol-poisoning-clinical-staging",
+    "id": "384"
+  },
+  {
+    "name": "急性心衰利尿剂与血管扩张剂应用",
+    "description": "本技能用于指导在急性心力衰竭患者中，根据液体潴留状态和血压水平，合理选择并使用静脉袢利尿剂或血管扩张剂。当患者存在液体潴留且无低灌注时使用利尿剂；当收缩压≥90mmHg且无组织低灌注时可考虑血管扩张剂。",
+    "folder": "acute-heart-failure-diuretic-vasodilator",
+    "id": "387"
+  },
+  {
+    "name": "急性心力衰竭四型分型及治疗",
+    "description": "当患者诊断为急性心力衰竭时，使用本技能根据淤血（湿/干）与灌注（冷/暖）状态进行四型分型，并制定个体化治疗方案。",
+    "folder": "acute-heart-failure-four-type-strategy",
+    "id": "8"
+  },
+  {
+    "name": "急性心衰正性肌力药物使用",
+    "description": "本技能用于指导在急性心力衰竭或心源性休克患者出现低血压（收缩压<90mmHg）或组织低灌注时，合理选择并短期使用正性肌力药物以改善心输出量和灌注。仅在明确指征下使用，并在低灌注纠正后及时停药。",
+    "folder": "acute-heart-failure-inotropic-therapy",
+    "id": "388"
+  },
+  {
+    "name": "急性高尿酸血症性肾病的预防与治疗",
+    "description": "当患者即将接受肿瘤放化疗，或已出现急性高尿酸血症性肾病（如血尿酸 > 893 μmol/L、少尿、氮质血症等）时，使用本技能制定降尿酸、水化、碱化及必要时透析的综合干预方案。适用于恶性肿瘤患者、接受放化疗者及高尿酸血症患者。",
+    "folder": "acute-hyperuricemic-nephropathy-prevention-treatment",
+    "id": "9"
+  },
+  {
+    "name": "急性间质性肾炎免疫抑制治疗决策",
+    "description": "在确诊为非感染性急性间质性肾炎（AIN）且已去除病因（如停用可疑药物）但肾功能持续恶化的前提下，指导何时启动糖皮质激素治疗、如何选择剂量与疗程、何时联合或停用免疫抑制剂。适用于药物性、特发性或自身免疫相关AIN患者。",
+    "folder": "acute-interstitial-nephritis-immunosuppression",
+    "id": "392"
+  },
+  {
+    "name": "急性白血病FAB分型诊断",
+    "description": "根据骨髓细胞形态学、组织化学染色及非红系有核细胞（NEC）计数，对疑似急性白血病患者进行FAB形态学分型（包括AML的M₀–M₇和ALL的L₁–L₃）。在尚未获得完整MICM（形态学、免疫学、细胞遗传学、分子生物学）数据但需初步分型时使用此技能。",
+    "folder": "acute-leukemia-fab-classification",
+    "id": "10"
+  },
+  {
+    "name": "急性心肌梗死β受体拮抗剂应用",
+    "description": "本技能用于指导在ST段抬高型心肌梗死（STEMI）或急性心肌梗死（AMI）患者发病24小时内，若无心力衰竭、低心排或休克风险等禁忌证，合理启动β受体拮抗剂治疗以降低心肌耗氧、缩小梗死面积并预防恶性心律失常。",
+    "folder": "acute-mi-beta-blocker-application",
+    "id": "385"
+  },
+  {
+    "name": "急性心肌梗死心电图动态演变",
+    "description": "根据心电图动态演变规律诊断急性心肌梗死并判断所处时期。当患者出现急性持续性胸痛且疑似AMI时使用本技能。",
+    "folder": "acute-mi-ecg-evolution",
+    "id": "386"
+  },
+  {
+    "name": "急性心肌梗死心肌坏死标志物动态变化解读",
+    "description": "当患者出现持续胸痛超过20分钟，需对疑似急性心肌梗死（AMI）或胸痛待查患者进行心肌坏死标志物的动态监测与临床判读。本技能指导如何根据肌红蛋白、心肌肌钙蛋白（cTnI/cTnT）和CK-MB的时间-浓度变化趋势，判断是否为AMI、评估梗死范围、治疗效果及是否发生再梗死。",
+    "folder": "acute-myocardial-infarction-biomarker-interpretation",
+    "id": "11"
+  },
+  {
+    "name": "急性胰腺炎诊断标准",
+    "description": "应用三大诊断标准确诊急性胰腺炎。当患者出现急性腹痛且需排除其他急腹症时使用本技能。",
+    "folder": "acute-pancreatitis-diagnosis-criteria",
+    "id": "391"
+  },
+  {
+    "name": "急性胰腺炎严重程度分级（基于器官衰竭与坏死感染）",
+    "description": "根据改良Marshall评分、胰腺坏死范围及感染状态，对已确诊急性胰腺炎患者进行MAP/MSAP/SAP/CAP四级分类。在患者完成器官功能评估、增强CT检查且发病≥48小时后使用本技能，以指导监护强度、治疗策略及预后判断。",
+    "folder": "acute-pancreatitis-severity-classification",
+    "id": "12"
+  },
+  {
+    "name": "急性胰腺炎中生长抑素类药物的抗炎使用方案",
+    "description": "在患者确诊为急性胰腺炎且处于起病初期（48小时内）时，根据病情严重程度分层使用生长抑素或奥曲肽进行抗炎治疗，以控制胰腺及全身炎症反应、预防重症化。适用于轻症（MAP）、中度重症（MSAP）及重症高危（SAP）患者。",
+    "folder": "acute-pancreatitis-somatostatin-anti-inflammatory-protocol",
+    "id": "13"
+  },
+  {
+    "name": "急性中毒洗胃规范",
+    "description": "执行急性中毒患者的洗胃操作。当患者经口摄入非腐蚀性毒物且在时间窗内、无禁忌证时使用本技能。",
+    "folder": "acute-poisoning-gastric-lavage-protocol",
+    "id": "383"
+  },
+  {
+    "name": "急性肺血栓栓塞症（PTE）临床分型",
+    "description": "根据血流动力学状态、右心功能不全（RVD）影像学证据及心脏生物标志物水平，对已确诊的急性肺血栓栓塞症（PTE）患者进行高危、中高危、中低危或低危分型，以指导抗凝、溶栓或介入治疗决策。在患者完成CTPA或V/Q显像确诊后，且已评估血流动力学、影像学和生物标志物时使用本技能。",
+    "folder": "acute-pulmonary-thromboembolism-clinical-classification",
+    "id": "14"
+  },
+  {
+    "name": "急性呼吸衰竭诊断分类",
+    "description": "基于动脉血气分析结果对急性呼吸衰竭进行类型诊断（Ⅰ型或Ⅱ型）并初步定位病因。当患者出现呼吸困难、发绀或精神神经症状，且已完成动脉血气分析和胸部影像学检查时使用本技能。",
+    "folder": "acute-respiratory-failure-classification",
+    "id": "15"
+  },
+  {
+    "name": "急性上呼吸道感染的临床分型与鉴别诊断",
+    "description": "本技能用于对急性上呼吸道感染（AURI）进行临床分型，并与其他具有相似症状的疾病进行鉴别诊断。当用户描述发热、咽痛、鼻塞、流涕、咳嗽等上感症状，且需要明确具体病原类型（如普通感冒、流行性感冒、疱疹性咽峡炎、咽结膜热等）或排除其他疾病（如过敏性鼻炎、急性支气管炎、肺炎、麻疹早期等）时使用。",
+    "folder": "acute-upper-respiratory-infection-clinical-classification-and-differential-diagnosis",
+    "id": "16"
+  },
+  {
+    "name": "急性上呼吸道感染的病原学与发病机制",
+    "description": "用于在患者出现急性鼻塞、咽痛、咳嗽等上呼吸道症状时，判断可能的病原体构成（病毒性或细菌性）、识别易感因素，并评估是否需要抗生素治疗或高危风险。适用于临床医生初步鉴别诊断、流行病学研究人员分析感染特征，以及对急性上呼吸道感染患者的病因评估。",
+    "folder": "acute-upper-respiratory-infection-etiology-and-pathogenesis",
+    "id": "17"
+  },
+  {
+    "name": "急性上呼吸道感染的治疗与抗生素使用原则",
+    "description": "本技能提供急性上呼吸道感染（AURI）的标准治疗流程及抗生素合理使用原则。当用户询问如何治疗普通感冒、咽炎、扁桃体炎等病毒性上感，或何时应考虑使用抗生素时触发此技能。适用于判断是否需要抗生素、选择合适药物及避免滥用。",
+    "folder": "acute-upper-respiratory-infection-treatment-and-antibiotic-use",
+    "id": "18"
+  },
+  {
+    "name": "急性血管反应试验的操作与阳性判定",
+    "description": "在新诊断的特发性肺动脉高压（IPAH）患者中，于右心导管检查期间执行急性血管反应试验，并依据标准化标准判定结果是否为阳性，以指导钙通道阻滞剂的使用。当患者确诊为IPAH且准备启动靶向治疗时使用本技能。",
+    "folder": "acute-vasoreactivity-testing-in-ipah",
+    "id": "19"
+  },
+  {
+    "name": "Addison病肾上腺危象识别与处理",
+    "description": "当已知或疑似Addison病的患者在应激状态下（如感染、手术、失水）出现呕吐、脱水、低血压或意识障碍等症状时，立即使用本技能识别肾上腺危象并启动紧急处理流程。适用于原发性慢性肾上腺皮质功能减退症患者及双侧肾上腺受损者。",
+    "folder": "addisonian-crisis-management",
+    "id": "20"
+  },
+  {
+    "name": "ADPKD超声诊断年龄分层标准",
+    "description": "根据患者年龄应用常染色体显性多囊肾病（ADPKD）的超声诊断标准进行判断。当用户需要依据不同年龄段（如<30岁、30–59岁、≥60岁）评估肾脏囊肿数量以确诊ADPKD时使用本技能。",
+    "folder": "adpkd-ultrasound-diagnosis-age-stratification",
+    "id": "21"
+  },
+  {
+    "name": "成人先天性心脏病分类与诊断",
+    "description": "根据血流动力学特征对成人常见先天性心血管病进行分类，并指导典型临床表现识别、关键辅助检查选择及初步干预策略制定。当成人患者出现劳力性呼吸困难、心律失常、青紫，或体检发现心脏杂音、心电图/影像学异常，且怀疑为先天性心脏病（非获得性）时使用本技能。",
+    "folder": "adult-congenital-heart-disease-classification",
+    "id": "66"
+  },
+  {
+    "name": "成人斯蒂尔病（AOSD）活动期识别与评估",
+    "description": "当面对年龄20-40岁、持续发热>1周、伴有皮疹、关节痛或咽痛的成人患者，且已行血常规、炎症指标及铁蛋白检测时，使用本技能识别AOSD活动期的典型临床与实验室特征，并预警巨噬细胞活化综合征（MAS）风险。适用于类风湿因子和抗核抗体阴性、已排除感染、恶性肿瘤及其他自身免疫病的疑似病例。",
+    "folder": "adult-onset-still-disease-activity-assessment",
+    "id": "22"
+  },
+  {
+    "name": "AI辅助临床诊疗",
+    "description": "当需要快速处理大量病历数据、医学影像或文献以生成结构化诊断建议、风险预测或健康干预方案供医生参考时，使用本技能。适用于临床医生在电子病历系统中整合病人健康数据并借助人工智能进行决策支持的场景。",
+    "folder": "ai-assisted-clinical-diagnosis",
+    "id": "23"
+  },
+  {
+    "name": "急性肾损伤临床诊断标准",
+    "description": "当患者在48小时内Scr升高≥0.3mg/dl、7天内Scr较基础值升高≥50%或尿量<0.5ml/(kg·h)持续≥6小时时，使用本技能进行急性肾损伤（AKI）的临床诊断。",
+    "folder": "aki-diagnosis-criteria",
+    "id": "24"
+  },
+  {
+    "name": "酒精性肝病乙醇摄入量诊断",
+    "description": "根据患者饮酒史计算日均乙醇摄入量，并判断是否达到酒精性肝病（ALD）的诊断阈值。当患者存在肝功能异常或肝病体征，且需通过乙醇摄入量评估ALD可能性时使用。",
+    "folder": "alcoholic-liver-disease-ethanol-threshold-diagnosis",
+    "id": "25"
+  },
+  {
+    "name": "过敏性紫癜诊断",
+    "description": "根据典型皮疹及附加临床或病理特征，判断是否符合过敏性紫癜的诊断标准。当患者出现可触性、对称分布于四肢远端和臀部的紫红色皮疹（压之不褪色），且至少伴有一项系统性表现（如腹痛、关节症状、肾脏受累或IgA沉积的组织学证据）时使用本技能。",
+    "folder": "allergic-purpura-diagnosis",
+    "id": "26"
+  },
+  {
+    "name": "α珠蛋白生成障碍性贫血基因缺失分型与临床表现解读",
+    "description": "根据α珠蛋白基因缺失或突变数量（1–4个），对α珠蛋白生成障碍性贫血患者进行临床分型，并输出对应的临床表现、实验室特征及预后。在患者已被确诊为α珠蛋白生成障碍性贫血，且已获得基因检测或血红蛋白电泳结果时使用本技能。",
+    "folder": "alpha-thalassemia-genotype-phenotype-classification",
+    "id": "27"
+  },
+  {
+    "name": "Alport综合征的确诊标准",
+    "description": "本技能用于判断疑似Alport综合征患者是否满足确诊条件。当患者表现为持续性肾小球源性血尿或血尿伴蛋白尿，并具备特征性肾小球基底膜（GBM）病理改变或COL4A3～COL4A6基因致病性突变时，使用此技能进行确诊评估。",
+    "folder": "alport-syndrome-diagnostic-criteria",
+    "id": "28"
+  },
+  {
+    "name": "ANCA相关小血管炎诱导治疗",
+    "description": "为确诊为ANCA相关小血管炎（包括肉芽肿性多血管炎GPA、显微镜下多血管炎MPA、嗜酸性肉芽肿性多血管炎EGPA）且处于活动期的患者，根据病情严重程度、肾功能状态及药物禁忌症，制定并执行个体化的诱导治疗方案。当用户需要为ANCA相关小血管炎患者选择初始免疫抑制治疗组合（如糖皮质激素联合环磷酰胺或利妥昔单抗）或判断是否需加用甲泼尼龙冲击或血浆置换时，使用本技能。",
+    "folder": "anca-vasculitis-guided-therapy",
+    "id": "29"
+  },
+  {
+    "name": "强直性脊柱炎纽约诊断标准",
+    "description": "应用纽约标准对疑似强直性脊柱炎（AS）患者进行诊断分类。当患者有慢性炎性腰背痛且骶髂关节影像学显示关节炎时，结合临床和放射学标准判断是否为肯定或可能AS。",
+    "folder": "ankylosing-spondylitis-diagnosis",
+    "id": "30"
+  },
+  {
+    "name": "抗CCP抗体在类风湿关节炎中的应用",
+    "description": "解读抗CCP抗体检测结果以辅助类风湿关节炎诊断和预后评估。当患者出现对称性多关节肿痛、晨僵等症状时，使用此技能判断抗CCP阳性对RA的支持程度及预后风险。",
+    "folder": "anti-ccp-antibody-in-ra",
+    "id": "31"
+  },
+  {
+    "name": "抗心律失常药物临床使用与安全监测",
+    "description": "当临床医生、药师或重症监护团队需为心律失常患者选择、调整或监测抗心律失常药物时，使用本技能获取标准化的剂量方案、禁忌证识别、关键安全警示及特殊人群用药调整建议。适用于已明确诊断且已完成肝肾功能、电解质和基线心电图评估的患者。",
+    "folder": "antiarrhythmic-drug-clinical-use-monitoring",
+    "id": "399"
+  },
+  {
+    "name": "抗凝血酶（AT）抗凝机制",
+    "description": "解释抗凝血酶（AT）如何在肝素存在下灭活关键凝血因子（如FXa和凝血酶），适用于分析生理性抗凝功能、评估肝素治疗效果或解读AT缺乏相关凝血异常。当用户涉及内源性抗凝系统、肝素作用机制或AT活性检测时触发本技能。",
+    "folder": "antithrombin-anticoagulation-mechanism",
+    "id": "32"
+  },
+  {
+    "name": "主动脉夹层缺血表现识别",
+    "description": "根据缺血症状定位主动脉夹层累及的动脉分支。当患者被诊断或高度怀疑为主动脉夹层并出现神经系统、四肢或内脏缺血症状时使用本技能。",
+    "folder": "aortic-dissection-ischemia-recognition",
+    "id": "365"
+  },
+  {
+    "name": "主动脉瓣狭窄血流动力学阈值分析",
+    "description": "当主动脉瓣口面积 ≤1.0 cm² 时，分析其引发的病理生理连锁反应，包括左心室重构、心衰进展、心肌缺血及脑供血不足机制。适用于已确诊主动脉瓣狭窄且具备瓣口面积测量数据（如超声心动图）的患者，尤其用于识别有症状阶段及三联征（呼吸困难、心绞痛、晕厥）风险。",
+    "folder": "aortic-stenosis-hemodynamic-threshold-analysis",
+    "id": "33"
+  },
+  {
+    "name": "主动脉瓣狭窄杂音特征与狭窄严重程度评估",
+    "description": "当在胸骨右缘第1～2肋间听到粗糙响亮的递增-递减型收缩期杂音时，使用本技能根据杂音强度、持续时间、高峰时间、传导特点及动态变化规律，初步判断主动脉瓣狭窄的严重程度，并决定是否需紧急安排超声心动图检查。",
+    "folder": "aortic-stenosis-murmur-severity-assessment",
+    "id": "34"
+  },
+  {
+    "name": "主动脉瓣狭窄程度的超声心动图评估标准",
+    "description": "利用超声心动图参数对主动脉瓣狭窄严重程度进行分级。当患者疑似或确诊主动脉瓣狭窄并已完成多普勒超声检查、获得跨瓣血流速度等数据时使用本技能，用于指导干预时机（如TAVR或外科换瓣）。",
+    "folder": "aortic-stenosis-severity-echo-criteria",
+    "id": "35"
+  },
+  {
+    "name": "再生障碍性贫血促造血治疗方案",
+    "description": "为已确诊的再生障碍性贫血（AA）或重型再生障碍性贫血（SAA）患者制定并实施促造血药物治疗方案，适用于已完成免疫抑制治疗（如适用）且无禁忌证的患者。当临床诊断为AA或SAA时触发本技能。",
+    "folder": "aplastic-anemia-hematopoietic-stimulation-therapy",
+    "id": "36"
+  },
+  {
+    "name": "ARDS辅助检查方法的选择与解读",
+    "description": "当临床怀疑急性呼吸窘迫综合征（ARDS）并需评估肺部病变或氧合状态时，根据设备可用性、患者稳定性及操作者资质，选择并解读X线胸片、肺部超声、动脉血气分析、SpO₂/FiO₂比值、床旁呼吸功能监测及心脏超声等辅助检查结果，以判断ARDS可能性、严重程度或排除心源性肺水肿。",
+    "folder": "ards-auxiliary-examination-selection-and-interpretation",
+    "id": "37"
+  },
+  {
+    "name": "ARDS诊断标准对比（柏林定义 vs 2023年ATS新定义）",
+    "description": "对比并应用急性呼吸窘迫综合征（ARDS）的柏林定义与2023年美国胸科学会（ATS）新定义进行诊断。当患者在明确诱因下1周内出现急性或进展性呼吸困难、影像学显示双肺浸润影，并满足氧合指标要求时，使用本技能判断是否符合ARDS诊断及严重程度分级。",
+    "folder": "ards-diagnostic-criteria-comparison",
+    "id": "38"
+  },
+  {
+    "name": "ARDS肺保护性通气策略",
+    "description": "为确诊急性呼吸窘迫综合征（ARDS）并接受有创机械通气的患者制定和实施肺保护性通气策略，以减少呼吸机相关肺损伤。当患者被诊断为ARDS且需机械通气支持时，应立即启用本技能。",
+    "folder": "ards-lung-protective-ventilation",
+    "id": "39"
+  },
+  {
+    "name": "ARDS病理分期及特征识别",
+    "description": "根据ARDS患者的发病时间、临床表现、影像学和病理特征，判断其所处的病理阶段（渗出期、增生期或纤维化期），用于指导治疗策略、预后评估及机械通气参数设置。当患者已被诊断或高度疑似急性呼吸窘迫综合征（ARDS）且发病时间明确时使用本技能。",
+    "folder": "ards-pathological-staging-and-characteristics",
+    "id": "40"
+  },
+  {
+    "name": "ASCVD危险因素分类与干预靶点",
+    "description": "当个体已确诊或疑似动脉粥样硬化性心血管疾病（ASCVD），或属于高危人群且存在至少一项可改变危险因素时，使用本技能对危险因素进行分类，并根据危险分层确定LDL-C目标值，制定生活方式与药物联合干预方案。",
+    "folder": "ascvd-risk-factor-classification-and-intervention",
+    "id": "41"
+  },
+  {
+    "name": "评估烟草暴露相关的肺癌风险",
+    "description": "根据个体的主动吸烟史（包·年、开始吸烟年龄、戒烟时长）或二手烟暴露情况，评估其肺癌风险等级并发出相应预警。当用户需要对吸烟者、戒烟者或长期接触二手烟的非吸烟者进行肺癌风险分层时使用此技能。",
+    "folder": "assess-lung-cancer-risk-from-tobacco-exposure",
+    "id": "42"
+  },
+  {
+    "name": "哮喘急性发作期分级治疗方案",
+    "description": "根据哮喘急性发作的严重程度（轻度、中度、重度至危重度）执行对应的药物和监护措施，用于已确诊哮喘且处于急性发作期的患者。当患者出现喘息、气促、胸闷或咳嗽加重等症状，并已完成发作严重程度评估时，应立即应用本技能。",
+    "folder": "asthma-acute-exacerbation-graded-treatment",
+    "id": "43"
+  },
+  {
+    "name": "动脉粥样硬化的炎症发病机制",
+    "description": "本技能用于解释动脉粥样硬化在持续致炎刺激下通过内皮损伤启动的炎症级联反应全过程。当用户需要理解动脉粥样硬化如何从内皮功能障碍发展为斑块形成与破裂，或需评估炎症在疾病进展中的作用时使用此技能。",
+    "folder": "atherosclerosis-inflammatory-pathogenesis",
+    "id": "44"
+  },
+  {
+    "name": "动脉粥样硬化斑块分类与临床转归评估",
+    "description": "本技能用于在腔内影像学（如IVUS/OCT）发现动脉粥样硬化斑块后，判断其稳定性以评估急性心血管事件风险。适用于冠状动脉、颈动脉、主动脉及外周动脉斑块，且病变已达Ⅲ型及以上。当用户需根据斑块特征决定是否启动强化抗血小板、降脂或血运重建治疗时使用。",
+    "folder": "atherosclerotic-plaque-classification-and-clinical-outcomes",
+    "id": "45"
+  },
+  {
+    "name": "房颤与房扑抗凝决策",
+    "description": "根据CHA₂DS₂-VASc和HAS-BLED评分，为非瓣膜性房颤或持续性房扑患者制定抗凝治疗决策。当患者确诊为非瓣膜性房颤或持续性房扑且已完成两项评分时使用本技能。",
+    "folder": "atrial-fibrillation-flutter-anticoagulation",
+    "id": "396"
+  },
+  {
+    "name": "房颤心室率控制策略",
+    "description": "为心房颤动患者制定个体化心室率控制目标并选择合适药物。当患者确诊房颤、未计划立即复律且已完成心功能评估时使用本技能。",
+    "folder": "atrial-fibrillation-rate-control-strategy",
+    "id": "397"
+  },
+  {
+    "name": "房扑与房颤心电图鉴别",
+    "description": "基于12导联心电图特征鉴别心房扑动与心房颤动。当心电图显示P波消失且心律异常时使用本技能。",
+    "folder": "atrial-flutter-fibrillation-ecg-differentiation",
+    "id": "395"
+  },
+  {
+    "name": "房室传导阻滞的心电图分度诊断",
+    "description": "根据心电图中P波与QRS波群的关系、PR间期及传导比例，判断房室传导阻滞的具体分度（一度、二度Ⅰ型、二度Ⅱ型、高度或三度）并推测阻滞部位。当心电图显示P波规律出现但PR间期异常或部分P波后无QRS波群时使用此技能。",
+    "folder": "atrioventricular-block-ecg-diagnosis",
+    "id": "46"
+  },
+  {
+    "name": "自体输血类型选择与适用性评估",
+    "description": "本技能用于在患者需要输血时，根据其临床状况判断是否符合自体输血的适应证与禁忌证，并选择合适的自体输血方式（稀释式、保存式或回收式）。当患者为拟行择期手术者、孕妇、稀有血型者、有异体输血反应史者、边远地区需血者或健康预存血者，且无禁忌证时，应使用本技能。",
+    "folder": "autologous-blood-transfusion-selection",
+    "id": "47"
+  },
+  {
+    "name": "AVRT心电图分类与特征识别",
+    "description": "用于对房室折返性心动过速（AVRT）患者的心电图进行分型判断，适用于心电图显示连续、快速、规则QRS波群且心率在150～220次/分的情况。当怀疑存在旁道并出现心动过速发作时使用本技能，以区分顺向型与逆向型AVRT，并识别是否合并束支传导阻滞或室内差异性传导。",
+    "folder": "avrt-ecg-classification",
+    "id": "48"
+  },
+  {
+    "name": "Basic Cardiopulmonary Resuscitation (CAB)",
+    "description": "执行标准化初级心肺复苏（CAB）流程，适用于无反应、无正常呼吸或仅有喘息且无脉搏的成人心脏骤停患者、儿童心脏骤停患者及婴儿心脏骤停患者。当确认患者符合上述条件并在硬质平面上仰卧时立即使用本技能。",
+    "folder": "basic-cardiopulmonary-resuscitation-cab",
+    "id": "50"
+  },
+  {
+    "name": "Beck三联征与心脏压塞诊断",
+    "description": "当患者出现呼吸困难并伴有低血压、颈静脉怒张、心音遥远等体征时，使用本技能评估是否符合Beck三联征及心脏压塞的临床诊断标准。适用于疑似心脏压塞或呼吸困难伴循环障碍的急症场景，不适用于单纯心力衰竭或肺栓塞。",
+    "folder": "beck-triad-cardiac-tamponade-diagnosis",
+    "id": "51"
+  },
+  {
+    "name": "白塞病2014国际诊断评分系统",
+    "description": "应用2014年国际白塞病诊断评分系统对疑似患者进行评估。当患者有反复口腔溃疡（每年≥3次）及其他系统表现时，计算各项得分以判断是否达到诊断阈值。",
+    "folder": "behcets-disease-diagnosis",
+    "id": "52"
+  },
+  {
+    "name": "苯与苯胺特异性中毒机制分析",
+    "description": "分析苯或苯胺暴露后引发的特异性中毒生化通路，包括苯致白血病机制与苯胺致高铁血红蛋白血症及溶血机制。当用户涉及职业性芳香胺/芳香烃暴露、血液系统异常（如贫血、高铁血红蛋白血症）或疑似苯系物中毒时使用本技能。",
+    "folder": "benzene-specific-toxicity-mechanism",
+    "id": "53"
+  },
+  {
+    "name": "β受体拮抗剂在心绞痛治疗中的规范应用",
+    "description": "本技能用于指导临床医生在稳定型心绞痛或心肌梗死后患者中规范使用β受体拮抗剂。当患者确诊为稳定型心绞痛或处于心肌梗死后阶段，且无严重心动过缓、高度房室传导阻滞、支气管哮喘等禁忌证时，应启动此技能以选择合适药物、确定起始剂量、调整至目标心率并监测安全性。",
+    "folder": "beta-blocker-use-in-angina-management",
+    "id": "54"
+  },
+  {
+    "name": "Beta Cell Function Assessment via Oral Stimulation",
+    "description": "评估疑似糖尿病患者或需判断内源性胰岛素分泌能力者的β细胞功能，通过口服葡萄糖后的胰岛素或C肽释放试验。当患者未使用外源性胰岛素时选用胰岛素释放试验；当患者正在使用外源性胰岛素、存在胰岛素抗体或需排除干扰时，应选用C肽释放试验。",
+    "folder": "beta-cell-function-assessment-via-oral-stimulation",
+    "id": "55"
+  },
+  {
+    "name": "Beta Cell Function Assessment via Special Stimuli",
+    "description": "在疑难糖尿病分型或需全面评估β细胞储备功能时，使用静脉葡萄糖、胰高血糖素或精氨酸等非口服刺激物进行β细胞功能测试。适用于疑似1型糖尿病、混合型糖尿病鉴别或科研场景，必须在专业医疗监护下执行。",
+    "folder": "beta-cell-function-assessment-via-special-stimuli",
+    "id": "56"
+  },
+  {
+    "name": "β珠蛋白生成障碍性贫血的分型与重型特征识别",
+    "description": "本技能用于对已确诊为β珠蛋白生成障碍性贫血的患者（包括儿科血液病患儿和输血依赖者）进行临床分型，并识别是否符合重型（Cooley贫血）标准。当患者已完成β珠蛋白基因缺陷确认、血红蛋白电泳（HbA、HbA₂、HbF）及贫血程度评估后，应使用此技能指导分型判断与后续干预决策。",
+    "folder": "beta-thalassemia-classification-and-severe-features",
+    "id": "57"
+  },
+  {
+    "name": "生物-心理-社会医学模式在慢性病管理中的应用",
+    "description": "当面对慢性非传染性疾病（如糖尿病、高血压、冠心病）患者出现治疗效果不佳或依从性差时，使用本技能对患者进行生物、心理、社会三维度的综合评估，并制定个体化、可持续的长期健康管理策略。不适用于需紧急生物学干预的急性危重症。",
+    "folder": "biopsychosocial-model-for-chronic-disease-management",
+    "id": "58"
+  },
+  {
+    "name": "双膦酸盐类药物治疗骨质疏松",
+    "description": "制定并执行双膦酸盐类药物治疗原发性或继发性骨质疏松的个体化方案，包括药物选择、用法、用药注意事项、不良反应监测及疗效评估。当患者已确诊骨质疏松、无禁忌症且满足用药前提条件（如肾功能正常、可保持直立30分钟以上等）时使用本技能。",
+    "folder": "bisphosphonate-osteoporosis-treatment",
+    "id": "299"
+  },
+  {
+    "name": "成分输血选择与应用",
+    "description": "根据患者特定血液成分缺乏或功能障碍（如贫血、血小板减少、凝血因子缺乏、低蛋白血症或免疫缺陷），选择并应用最匹配的血液成分制品进行精准输注。当临床明确存在单一或多种血液成分不足且符合输血适应证时使用本技能，避免在急性大失血需快速扩容等不适用场景中误用。",
+    "folder": "blood-component-transfusion-selection",
+    "id": "394"
+  },
+  {
+    "name": "BNP/NT-proBNP在心力衰竭诊断与排除中的阈值应用",
+    "description": "当患者出现急性或慢性呼吸困难等症状且已检测BNP或NT-proBNP水平时，使用本技能根据标准化阈值判断是否可排除或支持心力衰竭诊断，并识别需校正的影响因素和特殊人群限制。",
+    "folder": "bnp-nt-probnp-heart-failure-diagnosis-thresholds",
+    "id": "59"
+  },
+  {
+    "name": "bronchiectasis-vicious-cycle-mechanism",
+    "description": "阐述支气管扩张症中“感染→炎症→结构破坏→引流障碍→再感染”的恶性循环发病机制，并据此制定多靶点干预策略。当患者出现慢性咳嗽咳痰、反复呼吸道感染或影像学提示支气管异常扩张时，应使用本技能理解疾病进展并指导治疗。",
+    "folder": "bronchiectasis-vicious-cycle-mechanism",
+    "id": "60"
+  },
+  {
+    "name": "钙通道阻滞剂选择与使用规范",
+    "description": "根据心绞痛患者是否合并高血压、心功能状态及传导系统状况，选择合适的钙通道阻滞剂类型（二氢吡啶类或非二氢吡啶类）并确定安全剂量。在β受体拮抗剂禁忌或不耐受时，或患者同时患有高血压时使用本技能。",
+    "folder": "calcium-channel-blocker-selection-protocol",
+    "id": "418"
+  },
+  {
+    "name": "CAR-T细胞代际选择与功能特征分析",
+    "description": "根据治疗目标（如持久性、安全性、肿瘤微环境改造能力）选择合适的CAR-T细胞代次结构。当需要理解不同代次CAR-T的设计差异、信号结构组成及其对T细胞功能的影响，或在研发、临床前研究中决策使用哪一代CAR-T时，应用此技能。",
+    "folder": "car-t-cell-generation-selection",
+    "id": "61"
+  },
+  {
+    "name": "CAR-T主要并发症识别与管理",
+    "description": "本技能用于在CAR-T细胞回输后患者出现发热（≥38°C）或神经系统异常时，快速识别并分级细胞因子释放综合征（CRS）和免疫效应细胞相关神经毒性综合征（ICANS），并启动相应的干预措施。适用于血液科医生、重症监护团队对CAR-T治疗后患者的急性并发症管理。",
+    "folder": "car-t-complication-identification-and-management",
+    "id": "62"
+  },
+  {
+    "name": "CAR-T治疗标准流程与关键操作规范",
+    "description": "本技能提供CAR-T细胞治疗从患者筛选到长期随访的完整标准化操作流程，适用于复发/难治性B细胞肿瘤或多发性骨髓瘤患者。当临床团队计划对符合适应证的患者实施CAR-T治疗时，应使用本技能确保治疗安全、规范并符合GMP及多学科协作要求。",
+    "folder": "car-t-therapy-standard-procedure",
+    "id": "63"
+  },
+  {
+    "name": "一氧化碳中毒分级与高压氧治疗",
+    "description": "根据COHb浓度和临床表现确定一氧化碳中毒分级并决定高压氧治疗。当患者有CO暴露史、出现神经系统症状且COHb≥10%时使用本技能。",
+    "folder": "carbon-monoxide-poisoning-grading-hyperbaric-oxygen",
+    "id": "360"
+  },
+  {
+    "name": "心脏骤停电除颤操作",
+    "description": "在确认心脏骤停且心律为室颤（VF）或无脉性室速（pVT）时，执行电除颤以恢复有效心律。适用于具备AED或除颤仪、已完成初步胸外按压的急救场景。不适用于心脏停搏（asystole）或无脉电活动（PEA）。",
+    "folder": "cardiac-arrest-defibrillation-procedure",
+    "id": "381"
+  },
+  {
+    "name": "心脏起搏器植入适应证评估",
+    "description": "用于评估患者是否符合永久性心脏起搏器植入的I类适应证。当患者出现与缓慢型心律失常相关的症状（如晕厥、乏力、黑矇等），且存在特定类型的心律失常（如窦房结功能障碍、高度房室传导阻滞等）并已排除可逆性病因时，应使用本技能进行判定。",
+    "folder": "cardiac-pacemaker-implantation-indications",
+    "id": "379"
+  },
+  {
+    "name": "心脏压塞风险评估",
+    "description": "评估心包积液患者发生心脏压塞的风险。当心包积液在短期内快速增加或慢性积液量极大且出现血流动力学障碍时使用本技能。",
+    "folder": "cardiac-tamponade-risk-assessment",
+    "id": "378"
+  },
+  {
+    "name": "心血管系统功能与内分泌调节",
+    "description": "阐明心血管系统在物质运输、体液调节、内环境稳态维持及自身内分泌作用中的核心机制；当用户需要分析人体物质运输路径、激素传递方式、酸碱/体温调节或心血管源性生物活性物质（如心房钠尿肽、肾素、血管紧张素）的生理作用时，应使用本技能。",
+    "folder": "cardiovascular-endocrine-regulation",
+    "id": "382"
+  },
+  {
+    "name": "心血管神经症诊断",
+    "description": "用于对疑似心血管疾病但无器质性病变的患者进行心血管神经症的诊断与鉴别。当患者主诉多样（如心悸、胸闷、心前区痛等）且症状缺乏内在联系，但体格检查和辅助检查（如心电图）未发现器质性心脏病证据时，应使用本技能。",
+    "folder": "cardiovascular-neurosis-diagnosis",
+    "id": "355"
+  },
+  {
+    "name": "中枢性尿崩症的诊断与禁水-加压素试验",
+    "description": "当患者日尿量>50ml/(kg·d)、尿比重<1.005、尿渗透压<300mOsm/(kg·H₂O)且伴烦渴多饮时，使用本技能执行禁水-加压素试验以确诊中枢性尿崩症并评估其严重程度。",
+    "folder": "central-diabetes-insipidus-diagnosis",
+    "id": "64"
+  },
+  {
+    "name": "中枢性尿崩症分类与三相性演变",
+    "description": "对已确诊的中枢性尿崩症（CDI）患者，根据病因进行分类，并识别是否存在三相性尿崩症的典型病程。适用于有头部外伤、垂体手术史或下丘脑-垂体区域肿瘤的患者，用于指导进一步检查（如垂体MRI）和治疗策略（如DDAVP替代或病因处理）。当患者出现术后或创伤后尿量及电解质波动时，应启用本技能。",
+    "folder": "central-diabetes-insipidus-three-phase-evolution",
+    "id": "359"
+  },
+  {
+    "name": "中枢性换气过度病因分类",
+    "description": "用于对换气过度患者进行病因鉴别，特别适用于无明显外周诱因（如疼痛、机械通气不当）的情况。当患者出现过度通气且怀疑由中枢神经系统或代谢因素驱动时，使用本技能将病因分为低氧性与非低氧性两大类，以指导针对性治疗。",
+    "folder": "central-hyperventilation-etiology-classification",
+    "id": "364"
+  },
+  {
+    "name": "胸腔闭式引流操作规范与负压吸引管理",
+    "description": "本技能用于对不稳定型气胸、交通性或张力性气胸、反复气胸及继发性气胸患者实施胸腔闭式引流，并根据引流情况决定是否启用负压吸引。当患者存在肺压缩>20%、张力性/交通性气胸、反复发作或合并肺基础疾病时，应触发此技能。",
+    "folder": "chest-tube-drainage-and-negative-pressure-management",
+    "id": "67"
+  },
+  {
+    "name": "Chinese Hypertension Epidemiology Risk Assessment",
+    "description": "评估中国高血压患者的心血管并发症风险时，优先考虑脑卒中而非心肌梗死，并据此调整防治策略。当用户需要基于中国人群特征进行高血压相关风险评估、制定公共卫生政策或个体化干预方案时使用本技能。",
+    "folder": "chinese-hypertension-epidemiology-risk-assessment",
+    "id": "68"
+  },
+  {
+    "name": "慢性支气管炎诊断标准",
+    "description": "根据临床症状持续时间、病程年限及排除性诊断，判断患者是否符合慢性支气管炎的诊断标准。当用户描述患者每年咳嗽、咳痰≥3个月且连续≥2年，并需排除其他类似疾病时，使用本技能进行结构化诊断评估。",
+    "folder": "chronic-bronchitis-diagnostic-criteria",
+    "id": "69"
+  },
+  {
+    "name": "慢性咳嗽病因诊断路径",
+    "description": "当患者咳嗽持续超过8周且胸部影像学检查（X线或CT）未发现明确结构性病变时，使用本技能系统排查不明原因慢性咳嗽的五大常见病因。适用于呼吸科医师、全科医生及临床诊断流程开发者在排除急性感染和已知肺部疾病后进行鉴别诊断。",
+    "folder": "chronic-cough-etiologic-diagnosis-pathway",
+    "id": "70"
+  },
+  {
+    "name": "慢性腹泻分型诊断",
+    "description": "对病程≥4周的慢性腹泻患者，根据粪便特征、禁食反应及伴随症状，按病理生理机制分为渗透性、分泌性、渗出性或动力异常性四类，并推荐针对性检查路径。",
+    "folder": "chronic-diarrhea-classification-diagnosis",
+    "id": "393"
+  },
+  {
+    "name": "慢性胃炎癌前病变的识别与干预流程",
+    "description": "本技能用于对经胃镜及病理活检确诊为慢性胃炎、且病理显示萎缩、肠化或异型增生的患者（包括Hp感染者和有胃癌家族史者）进行癌前病变的风险评估、干预决策与随访管理。当用户提及“慢性胃炎伴肠化/萎缩/异型增生”“胃癌前病变管理”或“Hp阳性伴病理异常”等关键词时触发。",
+    "folder": "chronic-gastritis-precancerous-lesion-management",
+    "id": "71"
+  },
+  {
+    "name": "慢性二尖瓣反流的随访策略",
+    "description": "为无症状、心功能正常的慢性原发性二尖瓣反流（MR）患者制定个体化随访计划。当患者确诊为慢性MR、左室射血分数（LVEF）正常且无心衰症状时使用本技能，根据MR严重程度确定临床和超声心动图随访频率，并识别需提前干预的恶化信号。",
+    "folder": "chronic-mitral-regurgitation-follow-up-strategy",
+    "id": "72"
+  },
+  {
+    "name": "慢性二尖瓣反流的药物治疗",
+    "description": "根据慢性二尖瓣反流（MR）患者的病因类型（原发性或继发性）、症状状态、左室射血分数（LVEF）、合并症（如高血压、心力衰竭、房颤）等因素，制定个体化药物治疗方案。当用户需要为确诊为慢性MR的患者决定是否启用药物治疗及选择具体药物组合时使用本技能。",
+    "folder": "chronic-mitral-regurgitation-pharmacotherapy",
+    "id": "73"
+  },
+  {
+    "name": "慢性肾炎诊断标准",
+    "description": "当患者出现持续≥3个月的蛋白尿和/或血尿，伴或不伴水肿、高血压，且无继发性或遗传性肾病证据时，使用本技能进行慢性肾小球肾炎的临床诊断。",
+    "folder": "chronic-nephritis-diagnosis",
+    "id": "74"
+  },
+  {
+    "name": "慢性肾炎高血压与蛋白尿控制策略",
+    "description": "本技能用于为慢性肾炎合并高血压（收缩压≥120 mmHg）或蛋白尿（≥1 g/d）的患者制定降压与降蛋白尿治疗方案。当满足上述条件时，应启动本技能，优先选用具有肾脏保护作用的药物，并设定明确的治疗目标。",
+    "folder": "chronic-nephritis-hypertension-proteinuria-management",
+    "id": "75"
+  },
+  {
+    "name": "慢性肾炎肾功能恶化诱因识别与防护",
+    "description": "本技能用于识别并规避慢性肾炎患者肾功能恶化的常见诱因，制定个体化防护措施以延缓疾病进展。当用户为已确诊的慢性肾炎患者或为其提供照护时（如询问饮食、用药、生活方式建议），应触发此技能。",
+    "folder": "chronic-nephritis-renal-protection",
+    "id": "76"
+  },
+  {
+    "name": "慢性胰腺炎病因分类与发病机制分析",
+    "description": "当患者表现为反复上腹痛、脂肪泻或胰腺功能不全，且影像学显示胰管狭窄、钙化或胰腺萎缩时，使用本技能系统分析慢性胰腺炎（CP）的可能病因及发病机制，以指导针对性治疗和预防。适用于已排除胰腺肿瘤及其他非胰腺性消化疾病的CP、反复发作性急性胰腺炎（RAP）或特发性胰腺炎疑似病例。",
+    "folder": "chronic-pancreatitis-etiology-analysis",
+    "id": "77"
+  },
+  {
+    "name": "慢性呼吸衰竭患者的氧疗管理",
+    "description": "为慢性阻塞性肺疾病（COPD）合并慢性呼吸衰竭的稳定期患者制定并执行个体化氧疗方案，包括长期家庭氧疗（LTOT）适应证判断、低浓度氧疗原则应用及安全监测。当用户需要为符合指征的慢阻肺患者启动家庭氧疗，或处理伴有高碳酸血症风险的慢性呼吸衰竭患者氧疗时使用本技能。",
+    "folder": "chronic-respiratory-failure-oxygen-therapy",
+    "id": "78"
+  },
+  {
+    "name": "CKD急性加重的危险因素识别与处理原则",
+    "description": "本技能用于识别慢性肾脏病（CKD）患者发生急性加重的常见危险因素，并提供初步处理原则。当用户提及CKD患者出现肾功能短期内恶化、诱因排查或急性管理策略时触发。",
+    "folder": "ckd-acute-exacerbation-risk-assessment-and-management",
+    "id": "79"
+  },
+  {
+    "name": "CKD患者血压控制目标与药物选择",
+    "description": "当慢性肾脏病（CKD）患者伴有高血压时，使用本技能根据尿白蛋白/肌酐比值设定血压控制目标（<130/80或<140/90 mmHg）并选择合适的降压药物。",
+    "folder": "ckd-blood-pressure-management",
+    "id": "80"
+  },
+  {
+    "name": "慢性肾脏病定义与分期标准",
+    "description": "当患者存在肾脏结构/功能异常≥3个月或GFR≤60ml/(min·1.73m²)≥3个月时，使用本技能应用CKD定义与K/DOQI分期标准进行诊断和分期。",
+    "folder": "ckd-definition-staging",
+    "id": "81"
+  },
+  {
+    "name": "CKD-EPI 2021 eGFR 计算（无种族变量）",
+    "description": "使用2021年更新的CKD-EPI公式估算成人肾小球滤过率（eGFR），适用于慢性肾脏病评估和肾功能分期，且需避免种族校正偏倚。当临床需要基于血清肌酐（Scr）或联合血清Cystatin C（Scys）精确估算成人eGFR时使用本技能。",
+    "folder": "ckd-epi-2021-egfr-calculation",
+    "id": "82"
+  },
+  {
+    "name": "CKD营养治疗中的蛋白质与热量摄入规范",
+    "description": "根据慢性肾脏病（CKD）分期及透析状态，为CKD 1-5期患者、血液透析或腹膜透析患者制定个体化蛋白质与热量摄入方案。当用户提供患者CKD分期、体重和透析状态时使用本技能。",
+    "folder": "ckd-nutrition-protein-calorie-guidelines",
+    "id": "83"
+  },
+  {
+    "name": "原发性肝癌临床诊断（2022年中国指南）",
+    "description": "根据《原发性肝癌诊疗指南（2022年版）》，对具有HBV/HCV感染或肝硬化背景的疑似肝癌患者进行临床诊断。当患者存在肝癌高危因素且发现肝占位时，使用本技能判断是否可直接临床诊断为肝癌，或需进一步活检/随访。",
+    "folder": "clinical-diagnosis-of-primary-liver-cancer-2022-china-guideline",
+    "id": "84"
+  },
+  {
+    "name": "CLL诊断标准与免疫表型特征",
+    "description": "当患者出现持续性外周血小淋巴细胞增多时，使用本技能评估是否符合慢性淋巴细胞白血病（CLL）的诊断标准。适用于疑似CLL患者或外周血淋巴细胞增多者，需结合流式细胞术、血涂片形态学及必要时骨髓活检结果进行综合判断。",
+    "folder": "cll-diagnostic-criteria-and-immunophenotyping",
+    "id": "85"
+  },
+  {
+    "name": "CLL治疗启动指征与分子靶向治疗选择",
+    "description": "判断慢性淋巴细胞白血病（CLL）患者是否满足活动性疾病标准以启动治疗，并根据遗传学风险分层（如TP53突变、17p缺失）和患者状况选择合适的分子靶向治疗、化疗或免疫治疗方案。当CLL患者出现疾病相关症状、进行性器官肿大、血细胞减少或淋巴细胞快速增殖等任一活动性表现时使用本技能。",
+    "folder": "cll-treatment-indication-and-targeted-therapy-selection",
+    "id": "86"
+  },
+  {
+    "name": "CML进展期TKI与移植治疗策略",
+    "description": "针对加速期（AP）或急变期（BC）慢性髓系白血病（CML）患者的靶向治疗与造血干细胞移植整合策略。当患者被确诊为CML进展期且已完成细胞遗传学、分子学BCR::ABL1水平及激酶区突变评估时使用本技能。",
+    "folder": "cml-advanced-phase-tki-transplant-strategy",
+    "id": "87"
+  },
+  {
+    "name": "结直肠高危腺瘤识别",
+    "description": "当用户需要根据结肠镜或病理结果判断结直肠腺瘤是否属于高危进展性腺瘤时使用本技能。适用于已确诊为结直肠腺瘤的患者或结肠镜检查发现息肉者，用于评估癌变风险并指导后续干预。",
+    "folder": "colorectal-high-risk-adenoma-identification",
+    "id": "88"
+  },
+  {
+    "name": "成分输血支持策略与安全措施",
+    "description": "当患者血红蛋白（Hb）≤80g/L 或血小板计数过低伴出血风险时，执行本技能以安全有效地纠正贫血或血小板减少，并预防输血相关并发症（如TA-GVHD、发热反应等）。适用于血液病、接受强化疗/放疗、allo-HSCT及先天性免疫缺陷等高危人群。",
+    "folder": "component-blood-transfusion-safety",
+    "id": "65"
+  },
+  {
+    "name": "慢阻肺病（COPD）确诊标准",
+    "description": "根据支气管扩张剂后肺功能检查结果（FEV₁/FVC < 70%）并排除其他气流受限疾病，对有高危因素及呼吸道症状的患者进行慢阻肺病确诊。当用户提供疑似慢阻肺病患者的肺功能数据、吸烟史或慢性呼吸道症状，并询问是否符合COPD诊断时使用本技能。",
+    "folder": "copd-diagnosis-criteria",
+    "id": "89"
+  },
+  {
+    "name": "慢阻肺病稳定期综合评估与分组治疗策略",
+    "description": "本技能用于对已确诊的稳定期慢阻肺病（COPD）患者，根据其症状评分（mMRC或CAT）、上一年急性加重史及肺功能检查结果，进行GOLD指南推荐的综合分组（A/B/E组），并输出对应的首选药物治疗方案。当用户提供符合稳定期条件的COPD患者数据（包括急性加重次数、症状评分和血嗜酸性粒细胞计数等）时触发此技能。",
+    "folder": "copd-stable-phase-assessment-and-treatment-strategy",
+    "id": "90"
+  },
+  {
+    "name": "慢阻肺稳定期吸入糖皮质激素使用指征评估",
+    "description": "本技能用于评估慢性阻塞性肺疾病（慢阻肺）稳定期患者是否应在长效支气管扩张剂基础上加用吸入型糖皮质激素（ICS）。当患者已充分使用长效支气管扩张剂但急性加重仍未控制时，应触发此评估流程，依据嗜酸性粒细胞计数、急性加重频率、合并症及哮喘特征等指标判断ICS使用的推荐等级。",
+    "folder": "copd-stable-phase-ics-indication-assessment",
+    "id": "91"
+  },
+  {
+    "name": "冠状动脉解剖分支与心肌供血区域映射",
+    "description": "根据标准冠状动脉解剖结构，识别左、右冠状动脉系统的主要分支及其对应的心肌供血区域，用于解读冠脉CTA、定位心肌缺血或梗死部位、制定经皮冠状动脉介入（PCI）策略。在分析心肌梗死部位、解读冠状动脉造影或规划血运重建时触发此技能。",
+    "folder": "coronary-artery-anatomy-and-perfusion-mapping",
+    "id": "92"
+  },
+  {
+    "name": "冠状动脉瘘介入封堵术适应证与禁忌证评估",
+    "description": "本技能用于评估确诊冠状动脉瘘（CAF）患者是否符合经导管介入封堵术的适应证，并识别绝对或相对禁忌证。当患者存在症状、大量分流且无外科手术绝对指征时，应使用本技能判断是否推荐介入封堵作为首选治疗。",
+    "folder": "coronary-artery-fistula-interventional-closure-criteria",
+    "id": "93"
+  },
+  {
+    "name": "冠状动脉痉挛的诊断与治疗规范",
+    "description": "当患者出现静息性胸痛、一过性ST段抬高且发作时间集中在午夜至上午8点时，使用本技能识别变异型心绞痛（Prinzmetal心绞痛）并执行标准化诊断与治疗流程。适用于疑似冠状动脉痉挛但常规心电图或冠脉造影阴性的病例。",
+    "folder": "coronary-artery-spasm-diagnosis-and-treatment",
+    "id": "94"
+  },
+  {
+    "name": "冠心病临床分型",
+    "description": "对已确诊或疑似冠心病患者进行临床分型，判断其属于急性冠脉综合征（ACS）还是慢性冠脉综合征（CCS），以指导后续治疗策略和风险评估。当患者被诊断或怀疑患有冠心病且具备相关临床症状或检查结果时使用本技能。",
+    "folder": "coronary-heart-disease-clinical-classification",
+    "id": "146"
+  },
+  {
+    "name": "危重症医学核心实践",
+    "description": "定义危重症医学的核心要素并指导在ICU环境中对危重症病人启动系统化诊疗流程。当患者出现一个或多个脏器功能障碍或衰竭、且具备救治可能性时，应使用本技能来确认适用条件、组建多学科团队、部署脏器支持技术，并确保ICU资源配置符合标准。",
+    "folder": "critical-care-medicine-core-events",
+    "id": "352"
+  },
+  {
+    "name": "克罗恩病活动期药物治疗方案制定",
+    "description": "为确诊处于活动期的克罗恩病患者制定个体化药物治疗方案，包括糖皮质激素、免疫抑制剂、生物制剂及营养支持等策略。当患者需快速缓解症状且无严重感染或禁忌证时使用本技能。",
+    "folder": "crohns-disease-active-phase-treatment",
+    "id": "95"
+  },
+  {
+    "name": "肿瘤治疗相关心功能不全（CTRCD）的监测与诊断",
+    "description": "本技能用于对接受蒽环类、HER-2靶向药或免疫检查点抑制剂等具有心血管毒性的肿瘤治疗的患者，进行CTRCD的分级诊断。当患者在治疗期间或之后出现LVEF下降、左室整体纵向应变（GLS）异常或心脏生物标志物升高时，应使用本技能执行标准化评估与分级。",
+    "folder": "ctr-cd-monitoring-and-diagnosis",
+    "id": "96"
+  },
+  {
+    "name": "库欣病的手术治疗原则",
+    "description": "为确诊库欣病且影像学提示垂体病变的患者制定经蝶窦垂体手术方案，并管理术后激素替代治疗。当患者被明确诊断为库欣病并考虑手术干预时使用本技能。",
+    "folder": "cushings-disease-surgical-management",
+    "id": "97"
+  },
+  {
+    "name": "D-二聚体用于急性肺血栓栓塞症排除诊断规则",
+    "description": "当面对疑似急性肺血栓栓塞症（PTE）的患者时，若其临床可能性为低度，且使用高敏感度方法检测D-二聚体，本技能用于判断是否可基本排除急性PTE。适用于急诊或门诊初步筛查场景，不适用于高度临床可能性患者或存在干扰因素（如恶性肿瘤、近期手术等）需谨慎解读的情况。",
+    "folder": "d-dimer-rule-for-acute-pulmonary-thromboembolism-exclusion",
+    "id": "98"
+  },
+  {
+    "name": "大健康理念在医学教材中的整合路径",
+    "description": "本技能用于指导医学教材内容设计者、课程开发者及医教整合人员，系统性地将“大健康”国家战略融入医学教材体系。当教材内容涉及疾病诊疗、预防、健康管理或人群健康服务时，应使用本技能评估并实施从“以治病为中心”向“以健康为中心”的结构性转型。",
+    "folder": "da-jian-kang-concept-integration-in-medical-curriculum",
+    "id": "99"
+  },
+  {
+    "name": "静脉药物成瘾者感染性心内膜炎抗生素治疗方案选择",
+    "description": "本技能用于为确诊为右心系统感染性心内膜炎（DAIE）且以三尖瓣受累为主的静脉药物成瘾者（IVDA）选择合适的抗生素治疗方案。当患者满足特定临床和微生物学条件时，可采用2周短程单药治疗；否则必须采用4～6周标准联合治疗方案。在以下情境触发本技能：患者为IVDA、诊断为单纯三尖瓣DAIE、致病菌已明确为甲氧西林敏感金黄色葡萄球菌（MSSA），并已完成超声心动图和免疫状态评估。",
+    "folder": "daie-antibiotic-regimen-selection",
+    "id": "100"
+  },
+  {
+    "name": "DCM患者ICD植入的一级预防指征评估",
+    "description": "用于评估扩张型心肌病（DCM）患者或遗传性心肌病家系成员是否符合植入式心脏复律除颤器（ICD）一级预防的临床指征。当患者LVEF≤35%且NYHAⅡ～Ⅲ级，或携带高危致病基因（如LMNA、FLNC截短变异等）即使LVEF>35%但合并其他危险因素（如室速、明显LGE、晕厥或家族猝死史）时，应触发本技能。",
+    "folder": "dcm-icd-yiji-yufang-zhizheng",
+    "id": "101"
+  },
+  {
+    "name": "深静脉血栓诊断与抗凝",
+    "description": "诊断深静脉血栓形成并制定抗凝治疗方案。当患者出现单侧下肢突发肿胀、疼痛、皮温升高等DVT疑似症状时使用本技能。",
+    "folder": "deep-vein-thrombosis-diagnosis-anticoagulation",
+    "id": "402"
+  },
+  {
+    "name": "糖尿病合并高血压管理",
+    "description": "当2型糖尿病患者同时患有高血压时，使用本技能设定个体化降压目标（一般<130/80 mmHg）并选择RAAS抑制剂为基础的药物组合方案。",
+    "folder": "diabetes-hypertension-management",
+    "id": "102"
+  },
+  {
+    "name": "糖尿病酮症酸中毒严重程度评估",
+    "description": "用于评估糖尿病酮症酸中毒（DKA）患者的代谢性酸中毒严重程度。当患者出现恶心呕吐、深快呼吸（Kussmaul呼吸）、烂苹果味呼气或意识障碍，且动脉血pH<7.3时，应使用本技能判断酸中毒分级并指导补碱决策与监护级别。",
+    "folder": "diabetic-ketoacidosis-severity-assessment",
+    "id": "408"
+  },
+  {
+    "name": "使用CRAB+SLiM标准诊断活动性多发性骨髓瘤",
+    "description": "当患者存在单克隆浆细胞增殖证据（如骨髓浆细胞≥10%或浆细胞瘤活检阳性）且疑似出现终末器官损害或高肿瘤负荷时，使用本技能判断是否符合活动性（有症状）多发性骨髓瘤的诊断标准，以决定是否启动系统治疗。",
+    "folder": "diagnose-active-multiple-myeloma-using-crab-slim",
+    "id": "103"
+  },
+  {
+    "name": "使用Yamaguchi标准诊断成人斯蒂尔病（AOSD）",
+    "description": "当患者出现长期高热（≥39℃持续1周以上）、关节痛、典型皮疹和白细胞升高（≥10×10⁹/L且中性粒细胞≥80%）等表现，且已排除感染、肿瘤及其他风湿性疾病（如SLE、血管炎）时，使用本技能应用Yamaguchi诊断标准评估是否符合成人斯蒂尔病（AOSD）的临床诊断。",
+    "folder": "diagnose-adult-onset-still-disease-yamaguchi",
+    "id": "104"
+  },
+  {
+    "name": "原发性血小板增多症（ET）诊断",
+    "description": "根据WHO标准判断疑似患者是否确诊为原发性血小板增多症（ET）。当患者外周血血小板持续≥450×10⁹/L且已排除继发性原因时使用本技能。",
+    "folder": "diagnose-essential-thrombocythemia",
+    "id": "105"
+  },
+  {
+    "name": "脾功能亢进诊断",
+    "description": "根据1991年国内标准评估疑似患者是否符合脾功能亢进诊断。当患者出现不明原因的一系或多系血细胞减少并怀疑脾亢时使用本技能。",
+    "folder": "diagnose-hypersplenism",
+    "id": "106"
+  },
+  {
+    "name": "使用Michet标准诊断复发性多软骨炎（RP）",
+    "description": "当患者出现耳廓红肿疼痛（不累及耳垂）、鼻软骨塌陷或气道狭窄等发作性软骨炎表现，且已排除外伤、感染、梅毒或肉芽肿性疾病时，使用本技能应用Michet诊断标准评估是否确诊复发性多软骨炎（RP）。",
+    "folder": "diagnose-relapsing-polychondritis-michet",
+    "id": "107"
+  },
+  {
+    "name": "诊断烟草依赖",
+    "description": "基于《中国临床戒烟指南（2015年版）》，通过评估患者在过去1年内是否出现至少3项特定症状或行为，判断是否符合烟草依赖诊断标准。当临床医生或公共卫生工作者需对有吸烟行为的个体进行成瘾性评估时使用此技能。",
+    "folder": "diagnose-tobacco-dependence",
+    "id": "108"
+  },
+  {
+    "name": "分化型甲状腺癌术式选择",
+    "description": "根据肿瘤特征选择分化型甲状腺癌的手术方式。当患者为DTC且已完成术前评估时使用本技能。",
+    "folder": "differentiated-thyroid-cancer-surgery-selection",
+    "id": "373"
+  },
+  {
+    "name": "扩张型心肌病诊断与鉴别",
+    "description": "本技能用于在患者表现为心脏扩大且左室射血分数（LVEF）降低、并已排除缺血性、瓣膜性或高血压等继发原因时，指导临床医生进行扩张型心肌病（DCM）的诊断与关键鉴别。当遇到疑似DCM患者且满足初步影像学和功能指标时，应使用本技能。",
+    "folder": "dilated-cardiomyopathy-diagnosis-differential",
+    "id": "398"
+  },
+  {
+    "name": "药物性肝损伤（DILI）临床分型与R值计算",
+    "description": "当患者有明确用药史且出现肝功能异常（如ALT或ALP升高）时，使用本技能计算R值并进行DILI临床分型。适用于疑似药物性肝损伤的初步评估，不适用于病毒性肝炎、酒精性肝病等非药物性肝损伤。",
+    "folder": "dili-clinical-classification-and-r-value-calculation",
+    "id": "109"
+  },
+  {
+    "name": "Disease and Syndrome Naming Standardization",
+    "description": "提供符合国际标准的疾病与综合征中英文对照命名规范。当用户需要将中文疾病名称转换为标准英文名称，或验证现有中英对照是否符合医学命名惯例时使用此技能。",
+    "folder": "disease-and-syndrome-naming-standardization",
+    "id": "110"
+  },
+  {
+    "name": "DKA补液与胰岛素治疗的核心方案",
+    "description": "本技能提供糖尿病酮症酸中毒（DKA）患者的标准补液与胰岛素治疗流程。当用户需要处理确诊或疑似DKA患者的初始治疗、液体复苏、胰岛素给药及电解质管理时使用此技能。适用于急诊、重症监护或内分泌科临床场景。",
+    "folder": "dka-fluid-insulin-therapy",
+    "id": "111"
+  },
+  {
+    "name": "淹溺的病理生理与急救处理",
+    "description": "本技能用于对淡水或海水淹溺患者及近乎淹溺者实施标准化急救。当患者被救出水面且出现呼吸停止、意识丧失或咳出泡沫痰时，立即启动此流程。该技能指导识别淹溺类型（淡水/海水）、执行院前急救步骤（包括体位引流、气道清理、CPR）并为后续治疗提供病理生理依据。",
+    "folder": "drowning-pathophysiology-and-emergency-response",
+    "id": "112"
+  },
+  {
+    "name": "淹溺患者呼吸支持",
+    "description": "根据氧合与通气指标决定淹溺患者的呼吸支持方式。当患者经高流量吸氧后SpO₂<90%或PaO₂<60mmHg时使用本技能。",
+    "folder": "drowning-patient-respiratory-support",
+    "id": "403"
+  },
+  {
+    "name": "双心治疗模式",
+    "description": "针对心血管神经症患者或器质性心血管病合并焦虑/抑郁的肿瘤/非肿瘤患者，提供整合心理干预与药物治疗的标准化流程。当患者存在心血管症状且合并明显焦虑或抑郁时使用本技能，前提是已排除其他器质性病因且无急性精神病性障碍。",
+    "folder": "dual-heart-treatment-model",
+    "id": "300"
+  },
+  {
+    "name": "下肢深静脉血栓（DVT）临床体征评估与周径测量",
+    "description": "当患者出现单侧下肢肿胀、疼痛、压痛或双下肢不对称性肿胀时，使用本技能系统评估DVT典型体征并规范测量双侧下肢周径，以判断是否存在具有临床意义的差异（>1 cm），从而决定是否需进一步行加压静脉超声检查。",
+    "folder": "dvt-clinical-signs-and-circumference-measurement",
+    "id": "114"
+  },
+  {
+    "name": "动态心电图监测选择与解读",
+    "description": "本技能用于根据患者症状特征、发作频率和临床需求，选择合适的动态心电监测方式（Holter、事件记录器、可穿戴设备或植入型监测仪），并指导数据采集、症状记录与结果判读。当患者出现间歇性心悸、晕厥或疑似阵发性心律失常，且症状与日常活动相关时，应使用本技能。",
+    "folder": "dynamic-ecg-monitoring-selection-and-interpretation",
+    "id": "115"
+  },
+  {
+    "name": "早期胃癌内镜治疗适应证与追加手术指征",
+    "description": "根据病理类型、病灶特征（大小、溃疡、浸润深度）和术后病理结果，判断是否适合行内镜下黏膜切除术（EMR）或内镜黏膜下剥离术（ESD），并确定是否需要追加外科手术。当用户咨询早期胃癌的内镜治疗选择、术后处理或手术指征时使用本技能。",
+    "folder": "early-gastric-cancer-endoscopic-treatment-indications",
+    "id": "116"
+  },
+  {
+    "name": "ECMO启动指征与初始参数设置",
+    "description": "当危重型新冠肺炎、ARDS或难治性低氧血症患者在最优肺保护性通气和俯卧位治疗无效后，若满足特定血气指标（如PaO₂/FiO₂ < 50 mmHg持续3小时等），应立即评估并准备启动ECMO。本技能指导如何判断ECMO启动指征、选择模式及设定初始呼吸机参数。",
+    "folder": "ecmo-initiation-indications-and-initial-settings",
+    "id": "117"
+  },
+  {
+    "name": "依库珠单抗治疗经典型PNH的标准方案与预防措施",
+    "description": "当患者确诊为经典型阵发性睡眠性血红蛋白尿症（PNH）且已完成脑膜炎奈瑟菌疫苗接种时，使用本技能执行依库珠单抗的标准给药方案、疫苗加强计划及风险告知。适用于启动或管理长期依库珠单抗治疗的临床场景。",
+    "folder": "eculizumab-treatment-for-pnh",
+    "id": "118"
+  },
+  {
+    "name": "内分泌和代谢性疾病的三级诊断框架",
+    "description": "当患者出现无法用常见内科疾病解释的多系统症状（如体重显著变化、电解质紊乱、血压异常、皮肤色素改变等）时，使用本技能执行内分泌和代谢性疾病的系统化诊断流程，包括临床表现评估、功能诊断、定位诊断和病因诊断。",
+    "folder": "endocrine-metabolic-diagnosis-framework",
+    "id": "119"
+  },
+  {
+    "name": "内分泌代谢病诊断三要素",
+    "description": "当怀疑患者患有内分泌腺体疾病或代谢性疾病（如糖尿病、甲亢、库欣综合征、嗜铬细胞瘤等）时，使用本技能按“功能→定位→病因”顺序系统化执行诊断流程。不适用于纯营养缺乏症或非内分泌性肿瘤。",
+    "folder": "endocrine-metabolic-disease-diagnosis-triad",
+    "id": "120"
+  },
+  {
+    "name": "内源性高胰岛素血症实验室诊断",
+    "description": "当非糖尿病患者低血糖发作且血糖<3.1 mmol/L时，使用本技能通过同步测定胰岛素、C肽、β-羟丁酸等指标诊断内源性高胰岛素血症。",
+    "folder": "endogenous-hyperinsulinemia-diagnosis",
+    "id": "121"
+  },
+  {
+    "name": "胃镜结合黏膜活检诊断胃癌",
+    "description": "本技能提供对疑似胃癌患者实施胃镜检查并联合黏膜活检的标准化操作流程，用于明确胃癌诊断、组织学分型及浸润深度。当患者出现胃部不适、贫血、粪便隐血阳性或存在胃癌高危因素时应启动此流程。",
+    "folder": "endoscopy-biopsy-gastric-cancer-diagnosis",
+    "id": "413"
+  },
+  {
+    "name": "食管癌内镜治疗方案选择",
+    "description": "根据食管癌分期（早期或进展期）及是否伴梗阻症状，选择合适的内镜治疗方式。当患者经确诊为食管癌且需内镜干预时（如早期病变需根治性切除，或进展期伴梗阻需姑息治疗），应使用本技能。",
+    "folder": "esophageal-cancer-endoscopic-treatment-selection",
+    "id": "123"
+  },
+  {
+    "name": "纤维肌发育不良性肾动脉狭窄诊疗",
+    "description": "当年轻患者（<50岁）新发顽固性高血压且无传统心血管危险因素时，使用本技能启动纤维肌发育不良性肾动脉狭窄的筛查、确诊和血管成形术治疗流程。",
+    "folder": "fibromuscular-dysplasia-ras-pathway",
+    "id": "126"
+  },
+  {
+    "name": "叶酸缺乏致巨幼细胞贫血发病机制分析",
+    "description": "分析叶酸缺乏如何通过干扰DNA合成导致巨幼细胞贫血及其相关黏膜病变。当患者存在叶酸摄入不足、吸收障碍、需求增加、利用受阻或排出增多，且出现全血细胞减少、骨髓巨幼变或口腔/胃肠道黏膜萎缩等症状时使用本技能。",
+    "folder": "folate-deficiency-megaloblastic-anemia-pathogenesis",
+    "id": "127"
+  },
+  {
+    "name": "功能性便秘的饮食与心理干预策略",
+    "description": "为已确诊为功能性便秘且无报警症状的患者制定综合非药物干预方案。当患者排除器质性病因、无急性并发症（如粪便嵌塞、肠梗阻），且存在慢性便秘表现时使用本技能。",
+    "folder": "functional-constipation-diet-psych-intervention",
+    "id": "128"
+  },
+  {
+    "name": "功能性消化不良亚型诊断与治疗",
+    "description": "用于对疑似功能性消化不良（FD）患者进行亚型分型（餐后不适综合征PDS或上腹痛综合征EPS）并制定个体化治疗方案。当患者存在慢性上消化道症状（如餐后饱胀、早饱、上腹痛或烧灼感）、症状持续≥6个月且近3个月符合罗马IV标准、已通过胃镜等检查排除器质性疾病、且无报警症状（如体重下降、呕血、贫血）时，应使用本技能。",
+    "folder": "functional-dyspepsia-subtype-diagnosis-and-treatment",
+    "id": "129"
+  },
+  {
+    "name": "功能性神经内分泌肿瘤与异位激素综合征鉴别分类",
+    "description": "判断神经内分泌肿瘤是否为功能性（F-NEN），并鉴别是否属于异位激素分泌综合征。当患者存在神经内分泌肿瘤且伴有内分泌症状时，用于区分原发功能性肿瘤与异位激素分泌。",
+    "folder": "functional-neuroendocrine-tumor-classification",
+    "id": "130"
+  },
+  {
+    "name": "G6PD缺乏症的发病机制与临床管理",
+    "description": "本技能用于解释葡萄糖-6-磷酸脱氢酶（G6PD）缺乏症的分子发病机制、诱发溶血的常见诱因，并提供急性溶血发作时的临床评估与管理流程。当用户询问G6PD缺乏症的病因、遗传模式、溶血诱因或临床处理策略时使用。",
+    "folder": "g6pd-deficiency-pathogenesis-and-clinical-management",
+    "id": "131"
+  },
+  {
+    "name": "胆囊结石相关胆囊癌风险判定",
+    "description": "本技能用于评估胆囊结石、胆囊息肉或慢性胆囊炎患者的胆囊癌风险，并据此决定是否建议预防性胆囊切除术或定期影像学随访。当用户提及胆囊结石直径>3cm、病史>10年、瓷性胆囊、胆囊息肉≥10mm、胆囊壁钙化或其他高危因素时，应触发此技能。",
+    "folder": "gallbladder-cancer-risk-assessment-for-gallstone-patients",
+    "id": "132"
+  },
+  {
+    "name": "胆囊结石风险评估",
+    "description": "基于胆汁胆固醇饱和度、胆囊动力状态及个体危险因素，评估胆囊结石形成风险。当患者具备年龄>40岁、女性、肥胖、糖尿病、长期肠外营养等高危特征时使用本技能。",
+    "folder": "gallstone-risk-assessment",
+    "id": "415"
+  },
+  {
+    "name": "胃黏膜屏障保护机制分析",
+    "description": "分析胃黏膜在高酸、胃蛋白酶或病原体刺激下启动的三层保护机制（上皮前、上皮细胞、上皮后屏障），用于评估胃黏膜完整性受损风险或解释胃炎、溃疡等疾病的病理基础。当用户提及胃酸暴露、NSAIDs使用、幽门螺杆菌感染或胃黏膜防御功能时触发本技能。",
+    "folder": "gastric-mucosal-barrier-protection-mechanism",
+    "id": "414"
+  },
+  {
+    "name": "GERD诊断与分型标准流程",
+    "description": "本技能用于对主诉烧心或反流症状的患者进行胃食管反流病（GERD）的标准诊断与分型，包括初步拟诊、内镜评估、客观反流证据确认及鉴别诊断。当患者出现典型或非典型食管/食管外症状且已排除心源性胸痛等危重疾病时使用。",
+    "folder": "gerd-diagnosis-and-classification",
+    "id": "137"
+  },
+  {
+    "name": "肾小球滤过率检测方法选择",
+    "description": "根据临床目的（研究、高危筛查、常规体检或透析监测）、患者风险等级及可用资源，选择最合适的肾小球滤过率（GFR）检测方法。当需要在多种GFR评估手段中做出决策时使用本技能。",
+    "folder": "gfr-measurement-method-selection",
+    "id": "411"
+  },
+  {
+    "name": "生长激素缺乏性矮小症诊断",
+    "description": "用于对疑似生长激素缺乏性矮小症的儿童患者进行系统性诊断评估。当患儿身高低于同年龄同性别正常人均值-2SD且生长速度缓慢，并已排除其他明显病因时，应使用本技能执行标准化诊断流程，以确认是否为完全性或部分性生长激素缺乏症（GHD），并排除其他导致生长迟缓的疾病。",
+    "folder": "gh-deficiency-dwarfism-diagnosis",
+    "id": "297"
+  },
+  {
+    "name": "生长激素缺乏性矮小症的临床评估与分型",
+    "description": "当儿童出现持续性匀称性生长迟缓（如身高低于同龄第3百分位或年生长速度<5.5cm/年）且已排除营养不良、慢性病、甲状腺功能减退等继发原因时，使用本技能系统评估是否为生长激素缺乏症（GHD），并进行病因分型及特殊类型识别。",
+    "folder": "ghd-clinical-assessment-and-subtyping",
+    "id": "138"
+  },
+  {
+    "name": "肾小球源性血尿鉴别诊断",
+    "description": "当血尿患者需明确出血来源时，使用本技能通过相差显微镜或红细胞容积分布曲线检查判断是否为肾小球源性血尿。",
+    "folder": "glomerular-hematuria-diagnosis",
+    "id": "139"
+  },
+  {
+    "name": "GLP-1受体激动剂临床应用规范",
+    "description": "本技能用于指导在2型糖尿病（T2DM）患者中规范使用GLP-1受体激动剂（GLP-1RA），尤其适用于肥胖、胰岛素抵抗明显或合并动脉粥样硬化性心血管疾病（ASCVD）及其高危因素的患者。当患者确诊T2DM且存在上述特征或血糖控制不佳时，应考虑启动GLP-1RA治疗。",
+    "folder": "glp-1ra-clinical-application",
+    "id": "140"
+  },
+  {
+    "name": "痛风分类诊断（2015 ACR/EULAR标准）",
+    "description": "使用2015年ACR/EULAR三步流程对疑似痛风患者进行分类诊断。当患者存在外周关节或滑囊的肿胀、疼痛或压痛，且需排除无症状高尿酸血症时使用本技能。若偏振光显微镜检出尿酸钠结晶可直接确诊；否则通过评分系统（≥8分）分类为痛风。",
+    "folder": "gout-classification-diagnosis-2015-acr-eular",
+    "id": "141"
+  },
+  {
+    "name": "GRACE风险评分分层及治疗策略",
+    "description": "基于入院24小时内完成的GRACE评分，对UA/NSTEMI住院患者进行院内死亡风险分层，并结合综合临床标准确定侵入性治疗时机。当用户需要为确诊或疑似UA/NSTEMI的住院患者制定早期干预策略时使用本技能。",
+    "folder": "grace-risk-stratification-and-treatment-strategy",
+    "id": "142"
+  },
+  {
+    "name": "Graves病抗甲状腺药物（ATD）规范治疗方案",
+    "description": "为Graves病患者制定三阶段抗甲状腺药物（ATD）治疗方案，包括药物选择、剂量调整、疗程管理及副作用监测。当患者确诊Graves病并选择药物治疗时，使用本技能指导全程管理。",
+    "folder": "graves-disease-antithyroid-drug-protocol",
+    "id": "143"
+  },
+  {
+    "name": "Graves眼病活动性与严重度评估",
+    "description": "用于对Graves病患者或疑似甲状腺相关眼病者进行临床活动性（CAS评分）和严重度分级（EUGOGO或ATA标准）的系统评估，以指导治疗决策。当患者出现眼部症状（如异物感、复视、视力下降）或体征（如眼睑退缩、眼球突出）时触发本技能。",
+    "folder": "graves-eye-disease-activity-and-severity-assessment",
+    "id": "144"
+  },
+  {
+    "name": "Graves眼病分级治疗策略",
+    "description": "根据Graves眼病（GO）患者的活动性（活动期/稳定期）和严重程度（轻度/中重度/威胁视力）选择对应的治疗方案。当用户明确提及“Graves眼病”且已完成活动性与严重程度评估时使用本技能。",
+    "folder": "graves-eye-disease-tiered-treatment",
+    "id": "145"
+  },
+  {
+    "name": "肠道微生态的组成、功能及其系统影响",
+    "description": "分析肠道微生态的组成结构、核心生理功能及其对全身系统的调控作用；当用户涉及肠道菌群失衡、肠黏膜屏障、免疫调节、代谢疾病或肠-肝/脑轴相关问题时使用本技能。",
+    "folder": "gut-microbiota-composition-function-and-systemic-impact",
+    "id": "147"
+  },
+  {
+    "name": "桥本甲状腺炎的诊断标准与抗体特征",
+    "description": "当患者表现为甲状腺弥漫性肿大、质地韧、无触痛，且甲状腺过氧化物酶抗体（TPOAb）或甲状腺球蛋白抗体（TgAb）显著升高时，使用本技能进行桥本甲状腺炎的诊断。适用于甲状腺功能异常（甲减、甲亢或正常）伴自身抗体阳性的患者。",
+    "folder": "hashimoto-thyroiditis-diagnosis",
+    "id": "148"
+  },
+  {
+    "name": "肥厚型心肌病（HCM）诊断与分型",
+    "description": "当影像学检查发现左心室壁增厚且无法用后负荷增加（如高血压、主动脉瓣狭窄）解释时，使用本技能评估是否符合肥厚型心肌病（HCM）的诊断标准，并进行血流动力学和解剖部位分型。适用于疑似心肌肥厚患者、HCM先证者一级亲属及青少年猝死高危人群。",
+    "folder": "hcm-diagnosis-and-classification",
+    "id": "149"
+  },
+  {
+    "name": "心力衰竭按左心室射血分数分类",
+    "description": "当患者被诊断为心力衰竭且已获得LVEF测量值时，使用本技能根据左心室射血分数（LVEF）将心衰分为HFrEF、HFmrEF、HFpEF或HFimpEF亚型，用于指导后续治疗方案选择。",
+    "folder": "heart-failure-classification-by-lvef",
+    "id": "150"
+  },
+  {
+    "name": "心力衰竭利尿剂使用原则",
+    "description": "当慢性或急性心力衰竭患者存在体液潴留（如水肿、肺淤血）且肾功能允许时，使用本技能选择合适的利尿剂种类与剂量，实现液体负平衡并避免容量不足。",
+    "folder": "heart-failure-diuretic-principles",
+    "id": "151"
+  },
+  {
+    "name": "高温环境下人体散热机制分析",
+    "description": "分析环境温度高于28℃时健康成人、热适应个体或高温作业人员的散热能力，评估蒸发、辐射、对流和传导四种方式的有效性，并判断当前散热是否足以平衡产热。当用户提及高温作业、中暑风险、湿热环境或热适应状态时使用本技能。",
+    "folder": "heat-environment-human-thermoregulation",
+    "id": "134"
+  },
+  {
+    "name": "热射病快速降温治疗",
+    "description": "当患者中心体温>40℃且出现神志障碍（确诊为热射病）时，立即执行本技能，在黄金半小时内将体温降至40℃以下，以降低病死率。适用于劳力性与非劳力性热射病患者，但需排除虚脱等禁忌证。",
+    "folder": "heatstroke-rapid-cooling-treatment",
+    "id": "404"
+  },
+  {
+    "name": "中暑风险评估",
+    "description": "评估个体中暑风险等级并提示预防措施。当环境温度>32℃且湿度>60%且个体无充分热适应时使用本技能。",
+    "folder": "heatstroke-risk-assessment",
+    "id": "363"
+  },
+  {
+    "name": "Hematopoietic Stem Cell Collection and Preservation",
+    "description": "执行骨髓、外周血或脐带血来源的造血干细胞采集与保存操作，确保获得符合数量与质量标准的干细胞产品用于造血干细胞移植（HSCT）。当临床需要为供者、自体患者或新生儿采集造血干细胞时使用本技能。",
+    "folder": "hematopoietic-stem-cell-collection-and-preservation",
+    "id": "152"
+  },
+  {
+    "name": "溶血性贫血的发病机制与分类",
+    "description": "本技能用于系统分析溶血性贫血的发病机制并进行临床分类。当用户需要理解溶血性贫血的病因、病理生理过程或对具体病例进行分类（如血管内/外溶血、遗传性/获得性）时使用。",
+    "folder": "hemolytic-anemia-pathogenesis-and-classification",
+    "id": "153"
+  },
+  {
+    "name": "血友病凝血因子替代治疗剂量计算",
+    "description": "根据患者体重和目标凝血因子活性水平，计算血友病A或B患者所需输注的凝血因子VIII（FVIII）或IX（FIX）剂量（IU）。在患者需进行按需或预防性凝血因子替代治疗、已知体重、明确目标活性水平且无高滴度抑制物时使用。",
+    "folder": "hemophilia-clotting-factor-dose-calculation",
+    "id": "154"
+  },
+  {
+    "name": "肝性脑病诊断依据与排除流程",
+    "description": "当患者出现精神症状或意识障碍，且有肝病史或门体分流手术史时，使用本技能系统评估是否符合肝性脑病（HE）的四大诊断依据，并排除其他代谢性或器质性脑病。适用于急诊、消化内科、神经内科等场景中对不明原因精神神经症状的鉴别诊断。",
+    "folder": "hepatic-encephalopathy-diagnosis-workflow",
+    "id": "155"
+  },
+  {
+    "name": "肝性脑病的多机制发病模型与诱因管理",
+    "description": "当肝硬化失代偿期患者出现性格改变、扑翼样震颤或意识障碍等神经精神症状时，使用本技能评估肝性脑病的发病机制、临床分期并识别/管理关键诱因。适用于神经科或肝病科医生对疑似肝性脑病患者的快速诊断与干预。",
+    "folder": "hepatic-encephalopathy-pathogenesis-and-trigger-management",
+    "id": "156"
+  },
+  {
+    "name": "肝癌肝外转移的三种途径及其特征",
+    "description": "当患者被确诊为原发性肝癌时，使用本技能评估其肝外转移的三种主要途径（血行、淋巴、种植）及其典型靶器官与临床特征，以指导针对性影像学或体液检查安排。",
+    "folder": "hepatocellular-carcinoma-extrahepatic-metastasis-pathways",
+    "id": "157"
+  },
+  {
+    "name": "肝细胞损伤的生化标志物判读",
+    "description": "当患者存在疑似肝损伤的临床背景且已检测ALT、AST和胆红素水平时，使用本技能分析转氨酶升高模式以判断肝细胞损伤的程度、性质及是否存在肝衰竭高风险（如“酶胆分离”现象）。适用于病毒性肝炎、药物性肝损伤、酒精性肝病和肝硬化等场景。",
+    "folder": "hepatocellular-injury-biomarker-interpretation",
+    "id": "158"
+  },
+  {
+    "name": "肝肾综合征诊断标准",
+    "description": "当肝硬化伴腹腔积液患者出现急性或慢性肾功能恶化时，使用本技能判断是否符合肝肾综合征诊断。适用于已停用利尿剂>2天并接受白蛋白扩容治疗但仍存在肾功能异常的终末期肝病患者。",
+    "folder": "hepatorenal-syndrome-diagnosis-criteria",
+    "id": "159"
+  },
+  {
+    "name": "Hepcidin-Mediated Anemia Analysis",
+    "description": "分析慢性炎症、感染或肿瘤背景下铁调素（hepcidin）介导的功能性铁缺乏性贫血机制。当患者表现为血清铁降低、转铁蛋白饱和度下降但铁蛋白正常或升高，且存在基础炎症或慢性病时使用本技能，以解释为何单纯补铁无效并指导治疗方向。",
+    "folder": "hepcidin-mediated-anemia-analysis",
+    "id": "160"
+  },
+  {
+    "name": "HFrEF新四联药物治疗方案",
+    "description": "当LVEF<40%的慢性HFrEF患者无相关药物禁忌证时，使用本技能尽早启动RAS抑制剂、β受体拮抗剂、SGLT2抑制剂和盐皮质激素受体拮抗剂的联合治疗方案。",
+    "folder": "hfrEF-new-quadruple-therapy",
+    "id": "161"
+  },
+  {
+    "name": "高原病发病机制分析",
+    "description": "分析个体从平原快速进入海拔≥2400米高原地区后出现缺氧症状时的病理生理机制，用于判断高原病类型（急性高原反应、高原肺水肿、高原脑水肿或慢性高原病）及其严重程度，指导氧疗、药物干预或下撤决策。当用户描述“快速上高原后头痛/呼吸困难”“海拔3000米以上出现意识模糊”或类似缺氧相关症状时触发本技能。",
+    "folder": "high-altitude-disease-pathogenesis",
+    "id": "136"
+  },
+  {
+    "name": "HLA配型标准与供者选择原则",
+    "description": "当患者需要进行异基因造血干细胞移植（allo-HSCT）时，使用本技能确定HLA配型技术要求并按照优先级选择最优供者。适用于移植中心、骨髓库及allo-HSCT患者相关决策场景。",
+    "folder": "hla-typing-and-donor-selection-for-allo-hsct",
+    "id": "162"
+  },
+  {
+    "name": "Hormone Interaction Pattern Analysis",
+    "description": "识别并分类多种代谢调节激素在共同生理过程中的相互作用模式（整合作用、协同作用或拮抗作用）。当分析涉及胰岛素、胰高血糖素、糖皮质激素、肾上腺素、生长激素等两种及以上激素共同调节同一代谢通路（如血糖稳态）时使用本技能。",
+    "folder": "hormone-interaction-pattern-analysis",
+    "id": "163"
+  },
+  {
+    "name": "Hormone Replacement Therapy for Endocrine Hypofunction",
+    "description": "制定因内分泌腺体破坏、发育异常或激素合成缺陷导致的功能减退患者的个体化激素替代治疗方案。当患者确诊为1型糖尿病、甲状腺功能减退症或肾上腺皮质功能减退，且明确缺乏特定激素时使用本技能。",
+    "folder": "hormone-replacement-therapy-for-endocrine-hypofunction",
+    "id": "164"
+  },
+  {
+    "name": "hsct-classification-system",
+    "description": "根据供者来源、干细胞采集部位、血缘关系和HLA配型结果，对造血干细胞移植（HSCT）进行系统分类。当临床医生或移植方案制定者需要为患者制定HSCT方案并明确移植类型时使用此技能。",
+    "folder": "hsct-classification-system",
+    "id": "165"
+  },
+  {
+    "name": "高钾血症的紧急心脏保护措施",
+    "description": "当患者血清钾浓度＞5.3 mmol/L且出现T波高尖等心电图改变时，立即执行本技能以稳定心肌电活动、防止心搏骤停。适用于急性高钾血症伴心电图异常或临床症状的紧急处理。",
+    "folder": "hyperkalemia-cardiac-protection-emergency",
+    "id": "166"
+  },
+  {
+    "name": "高钾血症的分级防治策略",
+    "description": "当慢性肾脏病（CKD）3期及以上患者或已发生高钾血症的患者出现GFR<30ml/(min·1.73m²) 或 血清钾>5.5mmol/L时，使用本技能执行分级预防与治疗措施。适用于临床医生评估并干预高钾血症风险或已确诊病例。",
+    "folder": "hyperkalemia-graded-prevention-and-treatment",
+    "id": "167"
+  },
+  {
+    "name": "高白细胞血症紧急处理",
+    "description": "当急性白血病或慢性髓系白血病慢性期患者外周血白细胞计数 >100×10⁹/L 并出现呼吸困难、低氧血症或意识障碍等白细胞淤滞症状时，立即启动本技能以执行紧急降白细胞措施，防止早期死亡。不适用于未明确白血病类型或疑似急性早幼粒细胞白血病（APL）的患者。",
+    "folder": "hyperleukocytosis-emergency-management",
+    "id": "422"
+  },
+  {
+    "name": "高渗性失水补液计算方法",
+    "description": "当诊断为高渗性失水且需精确计算已丢失液体量时，使用本技能通过血钠浓度法估算丢失液体量，用于制定补液方案。",
+    "folder": "hyperosmolar-dehydration-fluid-calculation",
+    "id": "168"
+  },
+  {
+    "name": "高血压心血管危险分层",
+    "description": "根据中国高血压防治指南，对已完成初步评估的原发性高血压患者进行心血管危险分层（低危/中危/高危/很高危），以指导是否立即启动药物治疗及随访强度。当用户为临床医生或慢病管理团队成员，且已获得患者的血压分级、危险因素、靶器官损害和伴随临床疾病信息时使用本技能。",
+    "folder": "hypertension-cardiovascular-risk-stratification",
+    "id": "169"
+  },
+  {
+    "name": "高血压药物治疗四项基本原则",
+    "description": "根据患者血压水平、心血管危险分层、年龄及合并症，制定个体化的初始降压药物治疗方案。当高血压患者需启动药物治疗时（而非仅生活方式干预），使用本技能指导选药、剂量、给药频率及联合用药策略。",
+    "folder": "hypertension-drug-treatment-principles",
+    "id": "170"
+  },
+  {
+    "name": "高血压血流动力学分析",
+    "description": "使用平均动脉血压 = 心排血量 × 总外周血管阻力公式，分析高血压患者血压升高的主要驱动因素（高心排型、高阻型或混合型），用于分型诊断和个体化治疗决策。当需要解释血压升高机制、评估心血管系统状态或指导降压药物选择时使用本技能。",
+    "folder": "hypertension-hemodynamic-analysis",
+    "id": "135"
+  },
+  {
+    "name": "高血压急症控制性降压",
+    "description": "为高血压急症患者制定分阶段静脉降压方案。当患者血压>180/120mmHg伴急性靶器官损害时使用本技能。",
+    "folder": "hypertensive-emergency-controlled-decompression",
+    "id": "423"
+  },
+  {
+    "name": "高甘油三酯血症诱发急性胰腺炎的评估与识别",
+    "description": "当患者出现急性腹痛且血清甘油三酯 ≥11.3 mmol/L 时，使用本技能判断高甘油三酯血症是否为急性胰腺炎（AP）的病因，并指导紧急干预。适用于高脂血症患者或急性胰腺炎疑似病例，在排除其他常见病因后触发。",
+    "folder": "hypertriglyceridemia-induced-acute-pancreatitis-assessment",
+    "id": "171"
+  },
+  {
+    "name": "高尿酸血症肾病的预防与处理",
+    "description": "在患者即将接受化疗或存在高肿瘤负荷时，用于预防和处理因肿瘤溶解综合征引发的高尿酸血症肾病，保护肾功能。当出现少尿、无尿或血肌酐升高时，指导急性肾损伤的紧急应对措施。",
+    "folder": "hyperuricemia-nephropathy-prevention",
+    "id": "133"
+  },
+  {
+    "name": "高尿酸血症分型诊断标准",
+    "description": "当患者确诊高尿酸血症且需明确病因类型时，使用本技能通过24小时尿尿酸排泄量和尿酸排泄分数（FEUA）进行分型诊断，指导个体化药物治疗。",
+    "folder": "hyperuricemia-typing-diagnosis",
+    "id": "172"
+  },
+  {
+    "name": "低血糖分层治疗与预防",
+    "folder": "hypoglycemia-graded-treatment-prevention",
+    "id": "424"
+  },
+  {
+    "name": "低血糖分层治疗与预防",
+    "description": "当患者确诊低血糖时，根据其意识状态、用药史和严重程度，执行相应的紧急处理、病因治疗及长期预防措施。适用于糖尿病患者、非糖尿病低血糖患者及药物相关性低血糖患者。",
+    "folder": "hypoglycemia-stratified-treatment-prevention",
+    "id": "369"
+  },
+  {
+    "name": "低血糖症Whipple三联征诊断",
+    "description": "当患者出现交感神经兴奋或神经精神异常症状时，使用本技能应用Whipple三联征判断是否为低血糖症，必须使用静脉血糖测定而非家用快速血糖仪。",
+    "folder": "hypoglycemia-whipple-triad-diagnosis",
+    "id": "173"
+  },
+  {
+    "name": "甲状旁腺功能减退症的病因分类与机制",
+    "description": "当患者出现手足搐搦、低钙血症和高磷血症，且已排除维生素D缺乏或肾功能不全等非甲状旁腺原因时，使用本技能对甲状旁腺功能减退症进行病因分类。适用于需明确PTH生成、分泌或作用障碍机制的临床场景。",
+    "folder": "hypoparathyroidism-etiology-classification",
+    "id": "174"
+  },
+  {
+    "name": "甲状旁腺功能减退症的实验室诊断与血钙校正",
+    "description": "当患者出现手足搐搦或Chvostek/Trousseau征阳性时，使用本技能对疑似甲状旁腺功能减退症患者进行血钙、磷、PTH及白蛋白的实验室评估，并校正血清总钙以排除低白蛋白干扰。适用于检验科医师和内分泌科医生在已采集血清样本且已知白蛋白浓度的前提下进行诊断判断。",
+    "folder": "hypoparathyroidism-lab-diagnosis-and-calcium-correction",
+    "id": "175"
+  },
+  {
+    "name": "Hypoparathyroidism Treatment Management",
+    "description": "制定甲状旁腺功能减退症（甲旁减）患者的个体化治疗方案，包括急性低钙血症的紧急处理、长期钙剂与维生素D联合用药、尿钙监测及并发症预防。当患者确诊为甲旁减或假性甲旁减，并已完成血钙、尿钙和肾功能评估时使用本技能。",
+    "folder": "hypoparathyroidism-treatment-management",
+    "id": "176"
+  },
+  {
+    "name": "腺垂体功能减退症的病因分类",
+    "description": "当患者出现多种垂体前叶激素缺乏表现（如乏力、闭经、低血糖、低血压）且已排除原发性靶腺疾病时，使用本技能系统分析病因类型（获得性、遗传性或特发性）并阐明致病机制。",
+    "folder": "hypopituitarism-etiology-classification",
+    "id": "177"
+  },
+  {
+    "name": "下丘脑病损定位诊断",
+    "description": "根据患者同时出现的内分泌紊乱与下丘脑相关非内分泌症状（如体温、睡眠、食欲异常），推断下丘脑受损的具体功能区域。在已排除单一靶腺或垂体原发病、且存在至少一项非典型内分泌症状（如体温异常、嗜睡、肥胖）时使用本技能。",
+    "folder": "hypothalamic-lesion-localization-diagnosis",
+    "id": "178"
+  },
+  {
+    "name": "下丘脑-垂体-靶腺轴反馈调节机制分析",
+    "description": "分析血液中靶腺激素（如甲状腺激素、皮质醇、性激素）浓度变化如何通过负反馈或正反馈调节下丘脑或垂体促激素分泌。当用户需要解释激素水平异常原因（如原发性 vs 继发性功能减退）或设计动态内分泌功能试验时使用本技能。",
+    "folder": "hypothalamic-pituitary-target-gland-feedback-regulation",
+    "id": "179"
+  },
+  {
+    "name": "hypothalamic-pituitary-target-gland-feedback-regulation-2",
+    "description": "分析和解释下丘脑-垂体-靶腺轴（包括甲状腺、肾上腺皮质和性腺）中的负反馈与正反馈调节机制。当用户需要理解激素水平异常如何触发反馈调节、维持内分泌稳态，或解释LH峰等特殊生理现象时使用本技能。",
+    "folder": "hypothalamic-pituitary-target-gland-feedback-regulation-2",
+    "id": "180"
+  },
+  {
+    "name": "冻僵患者监护",
+    "description": "执行冻僵患者的特殊监护措施。当患者被诊断为冻僵且存在胃肠麻痹或胃扩张风险时使用本技能。",
+    "folder": "hypothermia-patient-monitoring",
+    "id": "372"
+  },
+  {
+    "name": "I-131治疗分化型甲状腺癌的适应证与剂量分层",
+    "description": "用于判断已行甲状腺全切术的分化型甲状腺癌（DTC）患者是否符合¹³¹I治疗条件，并根据治疗目的（清甲、辅助或清灶）确定相应剂量及治疗前准备方案。当患者存在腺外侵犯、血管侵犯、淋巴结转移或侵袭性病理亚型等中高危复发因素时，应启用本技能。",
+    "folder": "i-131-therapy-for-differentiated-thyroid-cancer",
+    "id": "181"
+  },
+  {
+    "name": "肠易激综合征（IBS）诊断标准",
+    "description": "根据罗马IV标准判断患者是否符合肠易激综合征（IBS）的临床诊断。当患者反复出现与排便相关的腹痛或腹部不适，并伴有粪便性状或频率改变，且已排除器质性疾病时使用本技能。",
+    "folder": "ibs-diagnosis-criteria",
+    "id": "182"
+  },
+  {
+    "name": "IBS亚型分类（基于粪便性状量表）",
+    "description": "根据布里斯托粪便性状量表对已确诊IBS患者的排便记录进行统计分析，确定其临床亚型（IBS-C、IBS-D、IBS-M或IBS-U）。当患者已被诊断为肠易激综合征（IBS）且需明确亚型以指导个体化治疗（如选择泻剂或止泻剂）时使用本技能。",
+    "folder": "ibs-subtype-classification-by-stool-form",
+    "id": "183"
+  },
+  {
+    "name": "IBS内脏高敏感性评估",
+    "description": "本技能用于评估肠易激综合征（IBS）患者症状是否主要由内脏高敏感性驱动。当患者表现为典型IBS症状（如腹痛、腹胀、排便后缓解）且已排除器质性病变时，应使用本技能判断内脏高敏感性的可能性，并据此推荐以调节内脏感知为核心的治疗策略。",
+    "folder": "ibs-visceral-hypersensitivity-assessment",
+    "id": "184"
+  },
+  {
+    "name": "缺铁性贫血（IDA）诊断标准",
+    "description": "当患者表现为小细胞低色素性贫血且存在铁缺乏的生化证据时，使用本技能确认是否符合缺铁性贫血的完整诊断标准，并排除其他类型小细胞性贫血。适用于临床医生和实验室检验人员在完成血常规、铁代谢及骨髓铁染色等检查后进行最终诊断。",
+    "folder": "ida-diagnostic-criteria",
+    "id": "185"
+  },
+  {
+    "name": "IDA三阶段铁缺乏评估",
+    "description": "根据血清铁蛋白、转铁蛋白饱和度、血红蛋白和MCV等指标，判断疑似缺铁患者处于铁缺乏的哪一阶段（贮存铁耗尽、缺铁性红细胞生成或缺铁性贫血），以指导干预时机。当用户提及贫血、铁缺乏症状、小细胞低色素性贫血或需评估铁状态时使用本技能。",
+    "folder": "ida-three-stage-assessment",
+    "id": "186"
+  },
+  {
+    "name": "特发性炎症性肌病ACR/EULAR 2017分类",
+    "description": "应用2017年ACR/EULAR评分系统对疑似特发性炎症性肌病（IIM）患者进行分类。当患者出现对称性近端肌无力伴或不伴皮疹时，根据是否进行肌活检选择路径并计算总分以判定IIM可能性。",
+    "folder": "idiopathic-inflammatory-myopathy-classification",
+    "id": "187"
+  },
+  {
+    "name": "IgG4相关性疾病发病机制分析",
+    "description": "分析IgG4相关性疾病（IgG4-RD）的免疫病理级联反应过程，适用于评估多器官系统（如胰腺、泪腺、唾液腺、胆管、肾、主动脉等）出现肿块、血清IgG4升高及典型组织病理特征时是否符合IgG4-RD发病机制。当临床或病理发现提示“大量IgG4⁺浆细胞浸润”、“席纹状纤维化”和“闭塞性静脉炎”三大核心特征时使用本技能。",
+    "folder": "igg4-rd-pathogenesis-analysis",
+    "id": "188"
+  },
+  {
+    "name": "IgG4相关性疾病2012日本诊断标准",
+    "description": "应用2012年日本风湿病学会标准诊断IgG4相关性疾病（IgG4-RD）。当患者有单个或多个脏器肿大、已完成血清IgG4和组织病理学评估时，结合临床、血清学和组织学标准判定诊断等级。",
+    "folder": "igg4-related-disease-diagnosis",
+    "id": "189"
+  },
+  {
+    "name": "IgG4相关肝胆疾病的诊断与治疗",
+    "description": "当患者表现为胆汁淤积或肝炎样症状且血清IgG4升高时，使用本技能对疑似IgG4相关硬化性胆管炎（IgG4-SC）或IgG4相关自身免疫性肝炎（IgG4-AIH）进行标准化诊断分型并制定个体化治疗方案。适用于已完成血清IgG4、肝功能、影像学及必要时肝活检检查的患者，且需排除原发性硬化性胆管炎（PSC）、原发性胆汁性胆管炎（PBC）和单纯AIH等其他自身免疫性肝病。",
+    "folder": "igg4-related-hepatobiliary-disease-diagnosis-and-treatment",
+    "id": "190"
+  },
+  {
+    "name": "感染性心内膜炎血培养采样规范",
+    "description": "按照国际标准对疑似感染性心内膜炎（IE）患者进行血培养采样，包括采血时机、频次、技术要求及阴性结果处理策略。适用于临床医生在怀疑IE时规范获取病原学证据，以满足Duke或ESC诊断标准中的主要标准。",
+    "folder": "infective-endocarditis-blood-culture-protocol",
+    "id": "191"
+  },
+  {
+    "name": "感染性心内膜炎影像学阳性诊断标准",
+    "description": "当临床怀疑患者患有感染性心内膜炎（IE）时，使用本技能判断是否满足影像学阳性证据这一主要诊断标准。适用于疑似IE、自体瓣膜心内膜炎（NVE）或人工瓣膜心内膜炎（PVE）患者的诊断评估阶段。",
+    "folder": "infective-endocarditis-imaging-diagnostic-criteria",
+    "id": "192"
+  },
+  {
+    "name": "胰岛素/血糖比值诊断胰岛素瘤",
+    "description": "当患者存在低血糖且怀疑内源性高胰岛素血症时，使用本技能计算胰岛素/血糖比值（胰岛素单位IU/ml，血糖单位mg/dl）来支持胰岛素瘤诊断。",
+    "folder": "insulin-glucose-ratio-for-insulinoma",
+    "id": "193"
+  },
+  {
+    "name": "胰岛素治疗适应证与使用原则",
+    "description": "当患者符合T1DM诊断、严重急慢性并发症、手术/妊娠/分娩、新诊断消瘦且分型困难、明显高血糖等任一情况时，使用本技能制定个体化胰岛素治疗方案。",
+    "folder": "insulin-therapy-indications-principles",
+    "id": "194"
+  },
+  {
+    "name": "肠结核与克罗恩病鉴别诊断",
+    "description": "当患者存在回盲部病变且诊断不明时，使用本技能系统性比较肠结核与克罗恩病的临床表现、影像学特征、内镜所见、病理结果及治疗反应，以指导鉴别诊断和后续处理。",
+    "folder": "intestinal-tuberculosis-crohn-differential",
+    "id": "410"
+  },
+  {
+    "name": "静脉补钾安全规范",
+    "description": "本技能用于在患者确诊为低钾血症且无法口服补钾、同时尿量充足（>500ml/d 或 >30ml/h）时，安全实施静脉补钾治疗。适用于临床医生处理需静脉补钾的低钾血症患者，确保补钾速度与浓度符合安全标准，防止高钾血症及心律失常风险。",
+    "folder": "intravenous-potassium-supplementation-safety",
+    "id": "421"
+  },
+  {
+    "name": "侵袭性与慢性肺曲霉病抗真菌治疗",
+    "description": "为确诊或高度疑似侵袭性肺曲霉病（IPA）或慢性肺曲霉病（CPA）的患者制定个体化抗真菌治疗方案，包括药物选择、剂量调整、给药途径、疗程规划及治疗药物监测（TDM）要求。当患者出现症状加重、咯血、影像学或血清学进展时使用本技能。",
+    "folder": "invasive-chronic-pulmonary-aspergillosis-antifungal",
+    "id": "370"
+  },
+  {
+    "name": "特发性肺动脉高压诊断标准与排除原则",
+    "description": "当患者多普勒超声心动图提示肺动脉收缩压＞50mmHg且无明确继发性病因时，使用本技能指导临床医生通过右心导管检查和系统性排除流程确诊或排除特发性肺动脉高压（IPAH）。适用于疑似IPAH患者的确诊评估。",
+    "folder": "ipah-diagnosis-criteria-and-exclusion",
+    "id": "195"
+  },
+  {
+    "name": "特发性肺动脉高压支持治疗管理",
+    "description": "当特发性肺动脉高压（IPAH）患者达到WHO功能Ⅲ～Ⅳ级或动脉血氧分压（PaO₂）持续低于8kPa（60mmHg）时，提供个体化支持治疗方案，包括氧疗、抗凝、利尿、铁剂补充及其他综合干预措施。适用于已确诊IPAH并完成基础评估的患者。",
+    "folder": "ipah-supportive-care-management",
+    "id": "196"
+  },
+  {
+    "name": "特发性肺纤维化(IPF)的诊断标准与流程",
+    "description": "当患者表现为进行性呼吸困难伴限制性通气障碍，且高分辨率CT（HRCT）显示间质性改变时，使用本技能执行IPF的标准化诊断流程。适用于疑似间质性肺疾病或老年呼吸困难患者，在已排除结缔组织病、药物性肺损伤及职业暴露等已知病因后，依据HRCT表现决定是否需活检，并通过多学科讨论（MDD）确认最终诊断。",
+    "folder": "ipf-diagnosis-criteria-and-workflow",
+    "id": "197"
+  },
+  {
+    "name": "异烟肼（INH）用药规范与监测",
+    "description": "本技能用于为确诊活动性结核病且无禁忌证的患者（包括初治肺结核、结核性脑膜炎或血行播散性肺结核）制定异烟肼个体化给药方案，并实施肝功能与神经毒性监测。当用户需要根据患者年龄、体重及病情类型确定异烟肼剂量，或评估用药安全性时触发此技能。",
+    "folder": "isoniazid-dosing-and-monitoring",
+    "id": "198"
+  },
+  {
+    "name": "ISTH显性DIC诊断积分系统",
+    "description": "使用国际血栓与止血学会（ISTH）显性DIC评分系统对疑似弥散性血管内凝血（DIC）患者进行标准化评估。当患者存在典型DIC相关基础疾病（如感染、恶性肿瘤、产科并发症等）并出现出血、微循环障碍或血栓表现时，应启动本技能进行诊断评分。",
+    "folder": "isth-overt-dic-scoring",
+    "id": "199"
+  },
+  {
+    "name": "ITP出血风险评估与治疗启动",
+    "description": "用于对已确诊的原发免疫性血小板减少症（ITP）患者进行出血风险评分，并根据评分和血小板计数判断是否需要启动治疗。当患者出血评分 ≥ 2 分，或血小板 < 30×10⁹/L 且存在活动性出血风险时，应使用本技能指导临床决策。",
+    "folder": "itp-bleeding-risk-treatment-trigger",
+    "id": "200"
+  },
+  {
+    "name": "关节液白细胞计数鉴别关节炎类型",
+    "description": "根据关节腔穿刺液的白细胞计数、中性粒细胞比例及外观，初步判断关节炎性质（非炎性、炎性或化脓性）。当患者有关节肿痛且已获取关节液时使用本技能，以指导是否需进一步进行结晶检查或微生物培养。",
+    "folder": "joint-fluid-wbc-count-arthritis-differentiation",
+    "id": "371"
+  },
+  {
+    "name": "Jones风湿热诊断标准（2015年，按人群风险分层）",
+    "description": "根据2015年修订的Jones标准，对链球菌咽炎后1～5周出现多系统症状的儿童或青少年进行急性风湿热诊断。仅在存在明确链球菌感染证据时使用，并依据患者所在地区风险等级（低风险或中高风险）应用不同表现组合规则。当用户描述疑似风湿热症状（如发热、关节痛、心脏杂音、舞蹈病或皮疹）且有近期链球菌感染史时触发本技能。",
+    "folder": "jones-rheumatic-fever-diagnostic-criteria-2015",
+    "id": "203"
+  },
+  {
+    "name": "Klinefelter综合征诊断与雄激素替代治疗",
+    "description": "当男性患者（青春期或成年）出现小而质韧的睾丸、无痛性男性乳房发育、第二性征发育不全、性欲低下，且实验室检查显示高LH/FSH伴低睾酮时，使用本技能进行Klinefelter综合征的确诊评估并制定个体化雄激素替代治疗方案。本技能不适用于低促性腺激素性腺功能减退症患者。",
+    "folder": "klinefelter-syndrome-diagnosis-and-testosterone-replacement",
+    "id": "204"
+  },
+  {
+    "name": "大血管血管炎（TA与GCA）分类与诊断",
+    "description": "对疑似大动脉炎（TA）或巨细胞动脉炎（GCA）患者应用相应分类标准进行评估。当患者年龄≤60岁且有大血管血管炎影像学证据时使用TA标准；当患者≥50岁出现新发颞部头痛、视力障碍或颞动脉异常时使用GCA诊断流程。",
+    "folder": "large-vessel-vasculitis-classification",
+    "id": "205"
+  },
+  {
+    "name": "左心衰竭与重症哮喘的鉴别诊断",
+    "description": "当患者表现为突发呼吸困难、喘鸣和端坐呼吸，且有高血压、冠心病或风湿性心脏病病史时，使用本技能进行左心衰竭与重症哮喘的快速鉴别。适用于急诊或临床一线场景，避免误用禁忌药物（如肾上腺素、吗啡）。",
+    "folder": "left-heart-failure-vs-severe-asthma-differential-diagnosis",
+    "id": "206"
+  },
+  {
+    "name": "左室流出道梗阻的超声心动图诊断标准",
+    "description": "诊断肥厚型梗阻性心肌病相关的左室流出道梗阻。当患者被怀疑患有肥厚型心肌病、超声显示室间隔显著增厚且存在二尖瓣前叶收缩期前向运动（SAM现象）时使用本技能，通过多普勒测量峰压差判断梗阻严重程度。",
+    "folder": "left-ventricular-outflow-tract-obstruction-diagnosis",
+    "id": "207"
+  },
+  {
+    "name": "白血病分类框架（急慢性与细胞系列）",
+    "description": "当患者已被初步诊断为白血病且具备骨髓或外周血细胞形态学数据时，使用本技能进行基础临床分型（急性/慢性、淋巴系/髓系），为后续MICM分型和治疗策略提供方向。不适用于非造血系统恶性肿瘤或单独用于治疗决策。",
+    "folder": "leukemia-classification-framework",
+    "id": "208"
+  },
+  {
+    "name": "白血病“二次打击”学说应用",
+    "description": "应用“二次打击”学说解释白血病的分子发病机制，适用于分析造血干/祖细胞中协同发生的增殖驱动突变与分化阻滞事件。当用户需要解析特定融合基因（如PML::RARA）或致癌突变（如RAS、MYC）在白血病发生中的作用，或评估病因（病毒、辐射、化学物、遗传易感等）如何促成多步骤致癌过程时使用本技能。",
+    "folder": "leukemia-two-hit-theory",
+    "id": "49"
+  },
+  {
+    "name": "Light标准鉴别胸腔积液性质",
+    "description": "使用Light标准判断胸腔积液为漏出液或渗出液。当已完成诊断性胸腔穿刺，并获得胸腔积液及血清的蛋白和乳酸脱氢酶（LDH）检测结果时，应用此技能进行初步分类，以指导后续病因诊断。",
+    "folder": "light-criteria-pleural-effusion-differentiation",
+    "id": "209"
+  },
+  {
+    "name": "调脂药物联合应用策略",
+    "description": "根据患者血脂异常类型（高胆固醇血症、高甘油三酯血症或混合型高脂血症），在单药治疗未达标或不耐受且无禁忌证时，制定个体化调脂药物联合治疗方案。适用于临床医生在管理血脂异常患者、需启动或调整联合降脂治疗时使用。",
+    "folder": "lipid-lowering-drug-combination-therapy",
+    "id": "210"
+  },
+  {
+    "name": "肝硬化病因分类与地域化诊断流程",
+    "description": "当患者被确诊为肝硬化时，使用本技能系统评估其病因类型，结合地域流行病学特征优先排查常见病因，并指导后续对因治疗。适用于临床医生、肝病专科医师及流行病学研究者在明确肝硬化病因时使用。",
+    "folder": "liver-cirrhosis-etiology-classification-diagnosis",
+    "id": "409"
+  },
+  {
+    "name": "肝脏合成功能评估",
+    "description": "本技能用于在患者出现肝功能异常表现时，系统评估肝脏合成功能相关指标（如血清白蛋白、凝血因子、胆固醇等），以支持Child-Pugh评分和肝功能分级。当临床怀疑慢性肝病或肝硬化导致合成能力下降，且需结合多维度数据进行综合判断时使用。",
+    "folder": "liver-synthetic-function-assessment",
+    "id": "211"
+  },
+  {
+    "name": "下肢动脉硬化闭塞症分期与诊断",
+    "description": "当患者存在吸烟、糖尿病、高血压等动脉粥样硬化危险因素，并出现下肢疼痛、麻木、发凉、动脉搏动减弱等症状或体征时，使用本技能进行临床分期（Fontaine/Rutherford）和踝肱指数（ABI）评估，以确诊外周动脉疾病（PAD）并指导治疗决策。适用于血管科医生、全科医生及下肢动脉疾病患者。",
+    "folder": "lower-extremity-arterial-disease-staging-and-diagnosis",
+    "id": "212"
+  },
+  {
+    "name": "下消化道出血手术指征",
+    "description": "判定下消化道出血患者的急诊手术指征。当患者接受药物、内镜及介入治疗后仍持续出血且危及生命时使用本技能。",
+    "folder": "lower-gi-bleeding-surgery-indications",
+    "id": "362"
+  },
+  {
+    "name": "下呼吸道标本病原菌判定阈值解读",
+    "description": "根据下呼吸道标本类型（痰液、支气管肺泡灌洗液、防污染毛刷样本、人工气道吸引物）及其菌落浓度（cfu/ml），结合标本质量控制指标，判断分离细菌是否为致病菌。适用于临床医生或检验人员在收到细菌培养报告后评估感染病因，指导抗感染治疗方案选择。",
+    "folder": "lower-respiratory-tract-specimen-pathogen-threshold-interpretation",
+    "id": "213"
+  },
+  {
+    "name": "肺脓肿抗感染治疗方案与疗程管理",
+    "description": "当患者确诊为肺脓肿时，根据感染来源（吸入性或血源性）选择初始抗感染方案、调整策略、给药途径转换及6–8周疗程管理。适用于呼吸内科和感染科临床用药决策。",
+    "folder": "lung-abscess-antibiotic-therapy-and-duration-management",
+    "id": "214"
+  },
+  {
+    "name": "肺脓肿诊断综合评估",
+    "description": "对疑似肺脓肿患者整合实验室检查、微生物学检测和影像学表现进行综合诊断。适用于患者出现高热、咳大量脓臭痰且影像提示肺部空洞性病变时，用于确诊肺脓肿、识别并发症并指导治疗决策。",
+    "folder": "lung-abscess-diagnostic-workup",
+    "id": "215"
+  },
+  {
+    "name": "肺癌骨转移的骨γ闪烁显像诊断",
+    "description": "当肺癌患者出现骨痛、碱性磷酸酶升高或影像学提示骨异常时，使用本技能指导实施和解读全身骨γ闪烁显像，以评估是否存在骨转移。适用于临床怀疑骨转移但需影像学筛查的场景，不适用于软组织或内脏转移评估。",
+    "folder": "lung-cancer-bone-metastasis-gamma-scintigraphy-diagnosis",
+    "id": "216"
+  },
+  {
+    "name": "肺癌流行病学特征与全球负担",
+    "description": "提供基于GLOBOCAN 2020和中国2022年官方数据的肺癌发病与死亡负担统计，用于公共卫生风险评估、资源分配或政策制定。当用户需要评估肺癌在全球或中国的疾病负担时使用此技能。",
+    "folder": "lung-cancer-epidemiology-and-global-burden",
+    "id": "217"
+  },
+  {
+    "name": "肺癌组织病理学分类",
+    "description": "根据2021版WHO肺肿瘤分型标准，对肺癌组织病理标本进行系统分类，明确组织学类型、分化级别及免疫组化特征，以指导临床治疗决策和预后评估。当用户需要基于手术切除或活检标本对肺癌进行精准分型（如区分非小细胞肺癌亚型、小细胞肺癌或罕见类型）时使用此技能。",
+    "folder": "lung-cancer-histopathological-classification",
+    "id": "218"
+  },
+  {
+    "name": "肺癌介入治疗选择",
+    "description": "针对晚期肺癌、失去手术指征且全身化疗无效的患者，提供支气管动脉灌注化疗、经支气管镜激光/放疗及超声引导下局部药物注射等介入治疗方案的选择与执行指导。当患者满足“晚期肺癌 + 无手术适应证 + 全身化疗无效”三重条件时使用本技能。",
+    "folder": "lung-cancer-interventional-therapy",
+    "id": "125"
+  },
+  {
+    "name": "肺癌三级预防体系",
+    "description": "应用肺癌三级预防框架制定个体化防控策略。当需要为普通人群、肺癌高危人群或已确诊患者设计预防、筛查或康复方案时使用本技能。",
+    "folder": "lung-cancer-three-tier-prevention",
+    "id": "219"
+  },
+  {
+    "name": "恶性小动脉性肾硬化症的降压治疗方案",
+    "description": "本技能提供恶性小动脉性肾硬化症（Malignant Arteriolar Nephrosclerosis）的规范化降压治疗流程。当用户提及“恶性高血压伴肾损害”、“急进性高血压肾病”或“恶性小动脉性肾硬化”并寻求降压策略时，应触发此技能。重点在于快速但可控地降低血压以保护肾功能，避免过度降压导致肾灌注不足。",
+    "folder": "malignant-arteriolar-nephrosclerosis-hypertension-treatment",
+    "id": "220"
+  },
+  {
+    "name": "MDR-TB长程与短程治疗方案选择",
+    "description": "根据耐多药结核病（MDR-TB）或利福平耐药结核病（RR-TB）患者的药敏结果、禁忌症和治疗史，判断应采用标准化短程方案还是个体化长程方案，并输出具体药物组合及疗程。当用户需要为确诊RR-TB/MDR-TB患者制定一线化疗方案时使用本技能。",
+    "folder": "mdr-tb-treatment-regimen-selection",
+    "id": "221"
+  },
+  {
+    "name": "医学术语中英文对照索引查询",
+    "description": "根据结构化医学术语索引，快速查找中文医学名词对应的英文术语（含缩写）及原文页码。当用户需要将中文临床术语翻译为标准英文表达，或定位该术语在专业文献中的出处时使用此技能。",
+    "folder": "medical-terminology-bilingual-index-lookup",
+    "id": "222"
+  },
+  {
+    "name": "medical-terminology-mapping-for-diagnostic-procedures",
+    "description": "将中文诊疗技术、检查方法或实验室检测名称准确转换为标准英文全称及国际通用缩写。当用户需要在病历书写、科研论文或医疗设备操作中使用规范英文术语时应用此技能。",
+    "folder": "medical-terminology-mapping-for-diagnostic-procedures",
+    "id": "223"
+  },
+  {
+    "name": "医学教材分级负责编写制度",
+    "description": "为大型医学教材或多专家协作学术出版项目建立主编统筹、分篇负责人具体落实的分级负责制。当组织《内科学》等权威医学教材第10版及以上版本编写，且涉及多学科专家协同、明确篇章分工时使用本技能。",
+    "folder": "medical-textbook-hierarchical-editing-system",
+    "id": "224"
+  },
+  {
+    "name": "巨幼细胞贫血诊断与试验性治疗验证",
+    "description": "用于对疑似巨幼细胞贫血或大细胞性贫血患者进行标准化诊断确认及试验性治疗验证。当患者具备典型血象/骨髓象、存在叶酸或维生素B₁₂缺乏的临床线索，且已排除其他大细胞性贫血病因时使用本技能。",
+    "folder": "megaloblastic-anemia-diagnosis-therapeutic-trial",
+    "id": "377"
+  },
+  {
+    "name": "代谢性碱中毒的病因分类与针对性治疗",
+    "description": "本技能用于对已确诊为代谢性碱中毒（pH＞7.45且HCO₃⁻升高，已排除呼吸性因素）的患者进行病因鉴别和针对性治疗。当临床遇到AB、SB、BE或CO₂CP升高的患者，且符合触发条件（pH＞7.45、HCO₃⁻升高、排除呼吸性碱中毒）时，应使用本技能指导分类诊断与个体化干预。",
+    "folder": "metabolic-alkalosis-etiology-and-targeted-treatment",
+    "id": "225"
+  },
+  {
+    "name": "代谢综合征诊断标准",
+    "description": "当患者存在肥胖、高血压、高血糖或血脂异常中的任一表现时，使用本技能评估是否符合代谢综合征诊断标准（满足五项中的至少三项）。",
+    "folder": "metabolic-syndrome-diagnosis-criteria",
+    "id": "226"
+  },
+  {
+    "name": "二尖瓣反流超声分级评估",
+    "description": "基于多参数综合标准对慢性或急性二尖瓣反流患者进行超声分级（轻度、中度、重度）。当超声检查发现二尖瓣反流信号，且已完成彩色多普勒、脉冲/连续波多普勒及二维超声检查，并已获取反流束面积、缩流颈宽度、EROA等关键参数时使用本技能。不适用于极低心输出量或严重心律失常导致信号不稳定的情况。",
+    "folder": "mitral-regurgitation-ultrasound-grading",
+    "id": "366"
+  },
+  {
+    "name": "二尖瓣狭窄的血流动力学分期与症状演变",
+    "description": "本技能用于评估风湿性二尖瓣狭窄患者的血流动力学分期、症状演变阶段及干预时机。当患者已确诊二尖瓣狭窄且二尖瓣口面积（MVA）≤ 2.5 cm²时使用，以判断疾病进展、预测并发症风险并指导治疗决策。",
+    "folder": "mitral-stenosis-hemodynamic-phases",
+    "id": "122"
+  },
+  {
+    "name": "二尖瓣狭窄并发急性肺水肿治疗",
+    "description": "当重度二尖瓣狭窄患者突发急性肺水肿时，使用本技能执行特定药物组合（硝酸酯类+利尿剂±毛花苷丙），避免不当使用正性肌力药和后负荷降低剂。",
+    "folder": "mitral-stenosis-pulmonary-edema-treatment",
+    "id": "227"
+  },
+  {
+    "name": "二尖瓣狭窄严重程度超声心动图判定标准",
+    "description": "基于超声心动图数据对二尖瓣狭窄严重程度进行分级。当患者已完成经胸或经食管超声心动图检查并获得瓣口面积、平均压力阶差和肺动脉压数据时使用本技能，用于指导是否行经皮球囊二尖瓣成形术（PBMV）或手术治疗。",
+    "folder": "mitral-stenosis-severity-echo-criteria",
+    "id": "228"
+  },
+  {
+    "name": "Morning Fasting Hyperglycemia Differentiation",
+    "description": "针对接受胰岛素治疗的糖尿病患者（尤其是T1DM和T2DM使用基础+餐时方案者）出现早晨空腹血糖持续升高时，通过夜间多次血糖监测鉴别其原因（剂量不足、黎明现象或索莫吉现象），并据此调整胰岛素方案。当用户描述“胰岛素治疗后早晨空腹血糖仍高”且具备夜间血糖数据时触发本技能。",
+    "folder": "morning-fasting-hyperglycemia-differentiation",
+    "id": "229"
+  },
+  {
+    "name": "多发性骨髓瘤支持治疗",
+    "description": "针对已确诊的有症状多发性骨髓瘤患者，根据其出现的骨痛、高钙血症、肾功能不全、贫血、感染或高黏滞血症等并发症，提供标准化的支持治疗措施。当患者出现上述任一症状且已明确并发症类型及严重程度时使用本技能。",
+    "folder": "multiple-myeloma-supportive-care",
+    "id": "113"
+  },
+  {
+    "name": "心肌耗氧量决定因素及缺血机制分析",
+    "description": "分析心肌耗氧量的三大决定因素（心率、心肌收缩力、心室壁张力）及其与冠脉供血之间的平衡关系，用于评估冠心病患者在胸痛、心电图缺血改变或运动诱发症状等情境下的心肌缺血风险。当患者存在冠脉狭窄或微血管病变且出现供需失衡迹象时使用本技能。",
+    "folder": "myocardial-oxygen-demand-and-ischemia-mechanism-analysis",
+    "id": "230"
+  },
+  {
+    "name": "NAFLD临床诊断",
+    "description": "根据代谢风险、饮酒量、排除其他肝病及影像学或病理学证据，判断是否符合非酒精性脂肪性肝病（NAFLD）的临床诊断标准。当患者存在肥胖、2型糖尿病或高脂血症等代谢易感因素，且需排除病毒性肝炎、药物性肝病等其他病因时使用。",
+    "folder": "nafld-clinical-diagnosis",
+    "id": "231"
+  },
+  {
+    "name": "NAFLD生活方式干预疗效阈值",
+    "description": "根据非酒精性脂肪性肝病（NAFLD）患者的减重幅度预测生活方式干预的肝脏组织学与生化改善效果。当患者存在超重或肥胖（BMI ≥ 25 kg/m² 或中心性肥胖）并启动饮食与运动干预时，使用本技能设定减重目标、评估疗效阈值并规划随访。",
+    "folder": "nafld-lifestyle-intervention-efficacy-threshold",
+    "id": "232"
+  },
+  {
+    "name": "肾病综合征利尿治疗原则与药物选择",
+    "description": "本技能用于为肾病综合征或伴有水肿的肾小球疾病患者制定个体化利尿方案。当患者存在水肿、肾功能尚可（尿量≥400 ml/d）且无严重电解质紊乱时，应使用本技能选择合适的利尿剂组合，并实施安全有效的利尿治疗。",
+    "folder": "nephrotic-syndrome-diuretic-therapy",
+    "id": "235"
+  },
+  {
+    "name": "肾病综合征水肿形成的双重机制分析",
+    "description": "分析肾病综合征患者全身性水肿的成因，区分低白蛋白血症主导的胶体渗透压下降机制与肾脏原发性水钠潴留机制。当肾病综合征患者出现明显水肿时使用本技能，用于判断水肿主导机制并指导利尿策略（如是否联合白蛋白输注）。",
+    "folder": "nephrotic-syndrome-edema-mechanism-analysis",
+    "id": "236"
+  },
+  {
+    "name": "肾病综合征蛋白尿的病理生理机制分析",
+    "description": "解释肾病综合征患者出现以白蛋白为主的大量蛋白尿（>3.5g/d）的形成机制，包括肾小球分子屏障和电荷屏障损伤的作用及加重因素。当患者表现为持续性大量蛋白尿且成分以白蛋白为主时使用本技能，用于指导临床干预（如控制血压、限制蛋白摄入）。",
+    "folder": "nephrotic-syndrome-proteinuria-pathophysiology",
+    "id": "237"
+  },
+  {
+    "name": "亚硝酸盐中毒解救",
+    "folder": "nitrite-poisoning-management",
+    "id": "425"
+  },
+  {
+    "name": "亚硝酸盐中毒解救",
+    "description": "解救亚硝酸盐中毒患者。当患者有可疑摄入史、出现无法解释的全身性发绀且高铁血红蛋白升高时使用本技能。",
+    "folder": "nitrite-poisoning-treatment",
+    "id": "367"
+  },
+  {
+    "name": "非小细胞肺癌分子病理诊断基因检测规范",
+    "description": "本技能用于指导非小细胞肺癌（NSCLC）患者，尤其是腺癌亚型，在确诊后进行标准化的驱动基因变异和免疫治疗标志物检测。当患者被确诊为IV期或不可手术的NSCLC时，必须立即启动该检测流程以制定个体化靶向或免疫治疗方案。",
+    "folder": "nsclc-molecular-pathology-testing",
+    "id": "238"
+  },
+  {
+    "name": "Numano大动脉炎血管分型及临床表现评估",
+    "description": "根据大动脉炎患者的血管影像学结果，应用Numano分型系统对主动脉及其分支受累范围进行分类，并关联典型临床表现与体征。当患者已确诊大动脉炎并完成CTA、MRA或血管造影等影像评估时使用本技能。",
+    "folder": "numano-vascular-classification-for-takayasu-arteritis",
+    "id": "239"
+  },
+  {
+    "name": "NYHA心力衰竭功能分级评估",
+    "description": "根据慢性心力衰竭患者的日常活动耐量和症状表现，应用NYHA（纽约心脏病协会）标准进行心功能分级（Ⅰ至Ⅳ级）。在患者确诊为慢性心力衰竭且处于稳定期、需评估功能状态以指导治疗或预后判断时使用本技能。",
+    "folder": "nyha-heart-failure-functional-classification",
+    "id": "240"
+  },
+  {
+    "name": "肥胖症体脂评估方法",
+    "description": "当患者存在体重异常或疑似肥胖时，使用本技能通过BMI、腰围、腰臀比等多种体脂评估方法综合判断是否肥胖、超重或中心性肥胖。",
+    "folder": "obesity-body-fat-assessment",
+    "id": "241"
+  },
+  {
+    "name": "阻塞性睡眠呼吸暂停的诊断与病情分度",
+    "description": "当患者存在典型夜间打鼾伴呼吸暂停及日间嗜睡症状，或虽无症状但合并高血压、糖尿病等重要脏器损害，且多导睡眠监测（PSG）显示以阻塞型事件为主时，使用本技能判断是否确诊阻塞性睡眠呼吸暂停，并依据呼吸暂停低通气指数（AHI）和最低血氧饱和度（SaO₂）进行病情轻、中、重度分度。",
+    "folder": "obstructive-sleep-apnea-diagnosis-and-severity-grading",
+    "id": "242"
+  },
+  {
+    "name": "阿片类中毒纳洛酮应用",
+    "folder": "opioid-overdose-naloxone-administration",
+    "id": "426"
+  },
+  {
+    "name": "阿片类中毒纳洛酮应用",
+    "description": "应用纳洛酮治疗阿片类物质中毒。当患者出现阿片类中毒典型症状（瞳孔缩小、呼吸抑制、昏迷）时使用本技能。",
+    "folder": "opioid-poisoning-naloxone-application",
+    "id": "420"
+  },
+  {
+    "name": "有机溶剂共性毒性风险评估",
+    "description": "评估接触有机溶剂后的理化与毒理共性风险，包括吸入暴露、中枢神经抑制及器官特异性毒性。当患者或工作人员接触脂肪烃、芳香烃、卤代烃、醇、酮、酯、醚等挥发性有机溶剂时使用。",
+    "folder": "organic-solvent-common-toxicity-assessment",
+    "id": "243"
+  },
+  {
+    "name": "有机溶剂中毒多系统临床评估",
+    "description": "当患者出现疑似有机溶剂中毒症状时，按九大系统分类评估其临床表现，结合暴露途径、溶剂种类和中毒时程（急性/慢性）进行系统性排查，以锁定诊断方向。适用于所有500余种有机溶剂引起的急慢性中毒场景。",
+    "folder": "organic-solvent-poisoning-multisystem-assessment",
+    "id": "400"
+  },
+  {
+    "name": "有机磷杀虫药中毒分级诊断",
+    "description": "基于全血胆碱酯酶（ChE）活性和临床症状，对急性有机磷杀虫药中毒（AOPIP）进行轻度、中度或重度分级。当患者有OPI暴露史、出现胆碱能症状且已完成ChE检测时使用。",
+    "folder": "organophosphate-poisoning-severity-grading",
+    "id": "244"
+  },
+  {
+    "name": "骨关节炎（OA）按部位诊断标准",
+    "description": "根据手、膝、髋等不同关节部位，应用对应的美国风湿病学会（ACR）临床或影像学标准诊断骨关节炎。当患者出现关节疼痛、僵硬或功能障碍，且已排除类风湿关节炎、痛风等其他炎症性关节病时使用本技能。",
+    "folder": "osteoarthritis-diagnosis-criteria-by-joint",
+    "id": "245"
+  },
+  {
+    "name": "骨质疏松症诊断标准应用",
+    "description": "根据DXA骨密度测量结果和/或脆性骨折病史，对绝经后女性、50岁及以上男性或已发生脆性骨折的患者进行骨质疏松症诊断。当用户需要判断是否符合骨质疏松症诊断条件（如T值≤-2.5、特定部位脆性骨折等）时使用本技能。",
+    "folder": "osteoporosis-diagnosis-criteria",
+    "id": "246"
+  },
+  {
+    "name": "心脏起搏器植入适应证评估",
+    "folder": "pacemaker-implantation-indications",
+    "id": "427"
+  },
+  {
+    "name": "胰腺癌高危人群识别与营养支持原则",
+    "description": "识别胰腺癌高危个体并提供针对性营养支持方案。当用户需评估个体是否属于胰腺癌高危人群，或为已确诊胰腺癌且存在严重营养不良/肠黏膜损伤的患者制定营养干预措施时使用此技能。",
+    "folder": "pancreatic-cancer-risk-assessment-and-nutrition-support",
+    "id": "247"
+  },
+  {
+    "name": "胰腺癌肿瘤标志物解读",
+    "description": "解读胰腺癌相关血清肿瘤标志物（如CA19-9、CA125、CEA）的临床意义，适用于胰腺癌疑似或已确诊患者。当患者血清CA19-9升高，或临床高度怀疑胰腺癌但CA19-9正常时使用本技能，结合其他标志物和临床背景综合判断诊断、疗效或复发风险。",
+    "folder": "pancreatic-cancer-tumor-marker-interpretation",
+    "id": "248"
+  },
+  {
+    "name": "原发性胆汁性胆管炎（PBC）诊断标准",
+    "description": "当患者表现为皮肤瘙痒、乏力、黄疸、肝大且无肝外胆管阻塞证据时，使用本技能评估是否符合原发性胆汁性胆管炎（PBC）的诊断。适用于疑似PBC患者、中年女性黄疸患者或无症状但存在生化异常者。",
+    "folder": "pbc-diagnosis-criteria",
+    "id": "249"
+  },
+  {
+    "name": "消化性溃疡并发症识别",
+    "description": "当已知或疑似消化性溃疡患者出现呕血、黑便、剧烈腹痛、呕吐宿食或体重下降时，快速识别四大并发症（出血、穿孔、幽门梗阻、癌变）并启动相应处理流程。",
+    "folder": "peptic-ulcer-complication-identification",
+    "id": "401"
+  },
+  {
+    "name": "消化性溃疡药物治疗与疗程规范",
+    "description": "为确诊良性消化性溃疡（DU/GU）患者制定标准药物治疗方案，包括抑酸、根除幽门螺杆菌（Hp）、黏膜保护及疗程管理。当患者确诊为活动性消化性溃疡且已排除恶性病变时，使用本技能指导治疗。",
+    "folder": "peptic-ulcer-drug-treatment-protocol",
+    "id": "250"
+  },
+  {
+    "name": "识别消化性溃疡的典型临床表现与节律性特征",
+    "description": "当患者出现慢性、周期性、节律性上腹痛时，使用本技能评估是否符合消化性溃疡（包括胃溃疡和十二指肠溃疡）的典型临床表现，以指导初步诊断。适用于有NSAIDs服药史或幽门螺杆菌感染史的成人患者，不适用于无症状性溃疡或表现不典型的儿童及老年人。",
+    "folder": "peptic-ulcer-typical-clinical-features",
+    "id": "417"
+  },
+  {
+    "name": "腹膜透析相关机械性并发症处理",
+    "description": "当腹膜透析患者出现腹壁包块、生殖器水肿或不明原因胸腔积液时，用于识别和处理疝或透析液渗漏等机械性并发症。适用于长期接受腹膜透析且存在腹壁薄弱区域的患者。",
+    "folder": "peritoneal-dialysis-mechanical-complications-management",
+    "id": "251"
+  },
+  {
+    "name": "腹膜透析相关腹膜炎诊断与治疗",
+    "description": "当接受腹膜透析的终末期肾病患者出现腹痛、透析液浑浊或发热任一症状时，使用本技能评估是否符合腹膜炎诊断标准，并据此启动抗感染治疗、选择抗生素方案、确定疗程及判断是否需拔管。",
+    "folder": "peritoneal-dialysis-peritonitis-diagnosis-treatment",
+    "id": "416"
+  },
+  {
+    "name": "PET-CT在肺癌诊断与分期中的应用规范",
+    "description": "本技能指导如何规范使用PET-CT对疑似或已确诊肺癌患者进行初始分期、复发评估或治疗反应监测。当临床需要鉴别肺结节良恶性、筛查全身转移、优化TNM分期（特别是N和M状态）或评估治疗后代谢活性变化时，应启用此技能。",
+    "folder": "pet-ct-lung-cancer-diagnosis-staging",
+    "id": "252"
+  },
+  {
+    "name": "嗜铬细胞瘤阵发性高血压三联征评估",
+    "description": "当患者出现阵发性血压骤升（收缩压200～300mmHg）并伴随头痛、心悸、多汗三联征时，使用本技能识别嗜铬细胞瘤的典型临床表现、诱发因素及后续诊断建议。适用于20～50岁不明原因高血压、血压波动大或难治性高血压、以及高代谢或交感神经过度兴奋症状的患者。",
+    "folder": "pheochromocytoma-paroxysmal-hypertension-triad-assessment",
+    "id": "253"
+  },
+  {
+    "name": "理化因素疾病诊断与防治",
+    "description": "应用四原则诊断理化因素所致疾病并执行四大防治措施。当患者在特定环境中发病且出现相关症状时使用本技能。",
+    "folder": "physical-chemical-disease-diagnosis-treatment",
+    "id": "406"
+  },
+  {
+    "name": "理化因素疾病诊断与防治",
+    "folder": "physical-chemical-factor-disease-diagnosis",
+    "id": "428"
+  },
+  {
+    "name": "生理性食管抗反流防御机制",
+    "description": "本技能用于解释和评估人体在胃食管反流发生时启动的三重生理性防御机制（抗反流屏障、食管清除作用、黏膜屏障）。当用户询问胃食管反流的生理防护原理、反流为何未导致疾病，或评估反流性疾病潜在病因时使用。",
+    "folder": "physiologic-esophageal-antireflux-mechanism",
+    "id": "296"
+  },
+  {
+    "name": "垂体瘤分类体系",
+    "description": "对已确诊为垂体来源的肿瘤进行多维度分类，包括内分泌功能状态、大小、生长类型和发生部位。当临床需要明确垂体瘤类型以指导诊断与治疗策略时使用本技能。",
+    "folder": "pituitary-tumor-classification",
+    "id": "254"
+  },
+  {
+    "name": "血浆渗透压计算公式及临床意义",
+    "description": "当患者出现意识障碍、脱水、电解质紊乱或怀疑渗透压异常时，使用本技能计算血浆总渗透压和有效渗透压，判断高渗、等渗或低渗状态。",
+    "folder": "plasma-osmolarity-calculation",
+    "id": "255"
+  },
+  {
+    "name": "胸腔积液病因分类与诊断",
+    "description": "本技能用于在已确认胸腔积液且完成胸腔穿刺后，根据积液性质（漏出性或渗出性）及关键生化指标（如NT-proBNP、pH、葡萄糖、LDH等），系统判断胸腔积液的最可能病因。当临床医生面对胸腔积液患者需明确病因以指导治疗时使用此技能。",
+    "folder": "pleural-effusion-etiology-diagnosis",
+    "id": "256"
+  },
+  {
+    "name": "胸腔积液形成的压力梯度计算",
+    "description": "计算壁胸膜与脏胸膜处的压力梯度，以分析胸腔积液在正常生理或病理状态下的形成机制。当需要判断液体滤出来源、解释积液分布特征或评估胸膜液体动力学时使用本技能。不适用于外伤性或医源性直接漏出情况。",
+    "folder": "pleural-effusion-pressure-gradient-calculation",
+    "id": "257"
+  },
+  {
+    "name": "PMF骨髓纤维化分级",
+    "description": "对疑似原发性骨髓纤维化（PMF）患者的骨髓活检标本进行网硬蛋白和胶原纤维的组织学评估，并依据WHO标准进行MF-0至MF-3四级分级。当骨髓活检显示巨核细胞异常增生且需评估纤维化程度以区分pre-PMF与overt-PMF时使用此技能。",
+    "folder": "pmf-bone-marrow-fibrosis-grading",
+    "id": "258"
+  },
+  {
+    "name": "肺炎链球菌肺炎的抗菌治疗方案",
+    "description": "当患者确诊或高度怀疑为肺炎链球菌肺炎且无青霉素过敏史时，使用本技能确定青霉素G阶梯剂量、耐药情况下的调整策略、替代方案及疗程管理。适用于呼吸内科和感染科临床决策。",
+    "folder": "pneumococcal-pneumonia-antibiotic-therapy",
+    "id": "259"
+  },
+  {
+    "name": "肺炎严重程度评估",
+    "description": "使用 CURB-65 评分和重症肺炎诊断标准评估社区获得性肺炎（CAP）患者的病情严重程度，以决定治疗场所（门诊、普通病房或ICU）。当患者已被确诊为肺炎且具备基本生命体征与实验室检查数据时使用本技能。",
+    "folder": "pneumonia-severity-assessment",
+    "id": "260"
+  },
+  {
+    "name": "PNH支持对症治疗中的铁剂使用原则",
+    "description": "在阵发性睡眠性血红蛋白尿症（PNH）患者中，当存在明确缺铁证据且无活动性溶血时，指导如何安全使用小剂量铁剂进行对症治疗。适用于临床医生评估PNH患者是否符合铁剂使用条件、确定剂量及监测溶血风险的场景。",
+    "folder": "pnh-iron-supplementation-principles",
+    "id": "261"
+  },
+  {
+    "name": "中毒救治中血液净化技术的选择",
+    "description": "根据毒物的理化特性（分子量、脂溶性、蛋白结合率）和中毒时间窗，选择最合适的血液净化方式（血液透析、血液灌流或血浆置换）。在中毒患者出现血液中毒物浓度显著升高、昏迷时间长、并发症或病情持续恶化，且符合血液净化指征时使用本技能。",
+    "folder": "poisoning-blood-purification-selection",
+    "id": "358"
+  },
+  {
+    "name": "Portal Hypertension Collateral Circulation Analysis",
+    "description": "分析失代偿期肝硬化患者门静脉高压引发的侧支循环形成机制及其临床后果，用于预警食管胃底静脉曲张出血、肝性脑病等高危并发症。当患者出现脾大、腹水或食管胃底静脉曲张（EGV）时触发本技能。",
+    "folder": "portal-hypertension-collateral-circulation-analysis",
+    "id": "262"
+  },
+  {
+    "name": "心脏骤停后脑复苏综合管理",
+    "description": "针对心脏骤停后恢复自主循环（ROSC）但处于昏迷状态的患者，实施以低温治疗为核心的多模态神经保护干预策略。当患者满足ROSC、昏迷且血流动力学相对稳定时使用本技能，旨在减轻脑缺血再灌注损伤、控制颅内压、维持脑灌注并改善神经功能预后。",
+    "folder": "post-cardiac-arrest-cerebral-resuscitation",
+    "id": "380"
+  },
+  {
+    "name": "PRCA分类与病因诊断",
+    "description": "本技能用于对表现为单纯红细胞减少且骨髓红系增生低下的患者进行纯红细胞再生障碍（PRCA）的分类与病因判断。当临床怀疑PRCA（即存在骨髓红系造血衰竭、排除其他类型贫血）时，应使用此技能以明确其为先天性或后天性，并进一步细分亚型，从而指导针对性治疗（如免疫抑制、胸腺瘤切除或抗病毒等）。",
+    "folder": "prca-classification-and-etiology",
+    "id": "263"
+  },
+  {
+    "name": "肾前性AKI向肾性AKI进展的四阶段机制评估",
+    "description": "评估肾前性急性肾损伤（AKI）未及时纠正后向缺血性急性肾小管坏死（ATN）进展的四个病理生理阶段。当肾前性AKI患者在初始干预后肾功能持续恶化时使用本技能，用于判断当前所处阶段、预后及干预窗口。",
+    "folder": "prerenal-to-intrinsic-aki-progression-staging",
+    "id": "264"
+  },
+  {
+    "name": "肾前性与急性肾小管坏死尿液鉴别",
+    "description": "当急性肾损伤患者需鉴别肾前性病因与ATN时，使用本技能检测尿液指标并计算FE_Na和肾衰指数进行鉴别诊断。",
+    "folder": "prerenal-vs-atn-urine-differentiation",
+    "id": "265"
+  },
+  {
+    "name": "原发性醛固酮增多症诊断流程",
+    "description": "当高血压患者伴低血钾或难治性高血压时，使用本技能启动原醛症筛查流程，包括ARR筛查、生理盐水抑制试验确诊和分型诊断。",
+    "folder": "primary-aldosteronism-diagnosis-pathway",
+    "id": "266"
+  },
+  {
+    "name": "原发性甲旁亢手术适应证评估",
+    "description": "本技能用于评估已确诊为原发性甲状旁腺功能亢进症（高钙血症 + PTH升高）的患者是否符合手术治疗指征。当用户需要判断某位原发性甲旁亢患者是否应接受手术时（例如存在症状、高钙血症、肾功能下降、骨密度降低、年龄<50岁或无法规律随访等情况），应调用此技能。",
+    "folder": "primary-hyperparathyroidism-surgery-indications",
+    "id": "374"
+  },
+  {
+    "name": "原发性干燥综合征ACR/EULAR 2016诊断",
+    "description": "应用2016 ACR/EULAR评分系统诊断原发性干燥综合征（pSS）。当患者有持续眼干/口干症状、已完成必要排除（如丙肝、放疗史）后，计算唇腺活检、抗SSA抗体、泪液/唾液功能等项目总分。",
+    "folder": "primary-sjogren-syndrome-diagnosis",
+    "id": "267"
+  },
+  {
+    "name": "催乳素瘤诊断标准与干扰因素处理",
+    "description": "当患者出现闭经、溢乳、性欲减退或不孕等症状且血清催乳素（PRL）升高时，使用本技能判断是否为催乳素瘤，并识别和处理可能导致假阳性或假阴性的检测干扰因素。适用于疑似高催乳素血症患者、闭经溢乳女性及性功能障碍男性。",
+    "folder": "prolactinoma-diagnosis-and-interference-management",
+    "id": "268"
+  },
+  {
+    "name": "蛋白C系统抗凝机制",
+    "description": "阐述蛋白C系统如何通过凝血酶-TM复合物激活蛋白C，并在蛋白S辅助下灭活FV/FVIII，实现负反馈抗凝。适用于分析维生素K依赖性抗凝通路、内皮功能障碍相关血栓风险或APC抵抗机制。当用户提及蛋白C/蛋白S缺乏、TM表达异常或凝血负反馈调节时触发本技能。",
+    "folder": "protein-c-system-anticoagulation-mechanism",
+    "id": "269"
+  },
+  {
+    "name": "蛋白尿定义与分类机制",
+    "description": "当尿蛋白排泄量>150mg/d时，使用本技能诊断蛋白尿类型（普通或大量）并判断肾小球屏障损伤类型（电荷或分子屏障）。",
+    "folder": "proteinuria-definition-classification",
+    "id": "270"
+  },
+  {
+    "name": "PTE病理生理评估",
+    "description": "本技能用于在急性肺血栓栓塞症（PTE）患者出现低血压、右心功能不全或严重低氧血症时，系统评估其病理生理级联反应，以识别高危状态并指导溶栓、强化抗凝或血流动力学支持决策。当肺动脉栓塞负荷≥30%且存在呼吸困难、低氧血症或血流动力学不稳定时触发。",
+    "folder": "pte-pathophysiological-assessment",
+    "id": "271"
+  },
+  {
+    "name": "肺曲霉病的临床分型与诊断",
+    "description": "根据患者的免疫状态、临床表现、影像学特征及实验室检查结果，对肺曲霉病进行准确分型（侵袭性、慢性或变应性）并提供诊断依据。在患者为免疫抑制宿主、出现咳嗽/咯血/呼吸困难等症状，或胸部CT显示晕轮征、新月征、曲霉球等特征性改变时使用本技能。",
+    "folder": "pulmonary-aspergillosis-classification-and-diagnosis",
+    "id": "272"
+  },
+  {
+    "name": "肺结核诊断程序与分类标准",
+    "description": "当患者出现咳嗽、咳痰≥2周或咯血等可疑症状，且胸部影像学检查异常时，使用本技能执行系统化的肺结核诊断流程，并依据WS 196—2017标准完成最终分类（包括病变部位、病原学结果、耐药状况和治疗史），以指导临床治疗与公共卫生管理。",
+    "folder": "pulmonary-tuberculosis-diagnosis-and-classification",
+    "id": "273"
+  },
+  {
+    "name": "肺结核影像学诊断特征识别",
+    "description": "本技能用于在胸部X线或CT显示肺部异常阴影时，判断影像是否符合肺结核的典型表现，包括病变部位、形态多样性、活动性征象及具体分型特征。适用于疑似肺结核患者（如咳嗽咳痰≥2周或咯血）且已完成胸部影像检查的场景，不能用于无肺部异常阴影者，也不能单独确诊，需结合病原学检查。",
+    "folder": "pulmonary-tuberculosis-imaging-diagnosis",
+    "id": "274"
+  },
+  {
+    "name": "肺结核病原学确诊与痰标本采集规范",
+    "description": "本技能用于对有肺结核可疑症状（如咳嗽咳痰≥2周）或肺部影像异常的患者，执行标准化的痰标本采集、病原学检测及结果判读流程，以实现肺结核的确诊、分类（病原学阳性/阴性）和治疗方案制定。当临床怀疑肺结核时必须启用此技能。",
+    "folder": "pulmonary-tuberculosis-microbiological-diagnosis",
+    "id": "275"
+  },
+  {
+    "name": "多发性骨髓瘤R-ISS分期",
+    "description": "根据血清β2微球蛋白、白蛋白、LDH水平和FISH细胞遗传学结果，对新诊断的活动性多发性骨髓瘤患者进行R-ISS（修订版国际分期体系）分期。当患者确诊为活动性多发性骨髓瘤且已完成全部四项必要检测时使用本技能，用于指导治疗强度选择和预后判断。",
+    "folder": "r-iss-staging-for-multiple-myeloma",
+    "id": "276"
+  },
+  {
+    "name": "类风湿关节炎ACR/EULAR 2010分类标准应用",
+    "description": "使用ACR/EULAR 2010评分系统对疑似类风湿关节炎患者进行分类评估。当患者表现为慢性多关节肿痛、已完成血清学检查（RF、抗CCP）、滑膜炎持续时间及CRP/ESR检测时，应用此技能计算总分以判断是否满足RA分类标准。",
+    "folder": "ra-diagnosis-acr-eular-2010",
+    "id": "277"
+  },
+  {
+    "name": "类风湿关节炎阶梯式药物治疗",
+    "description": "为确诊类风湿关节炎患者制定个体化阶梯药物治疗方案。当患者已确诊RA、完成疾病活动度、预后因素及合并症评估后，启动以DMARDs为核心的治疗流程，并根据疗效与安全性决定是否升级治疗。",
+    "folder": "ra-stepwise-drug-therapy",
+    "id": "278"
+  },
+  {
+    "name": "RAAS抑制剂在心力衰竭中的应用",
+    "description": "当HFrEF、HFmrEF或HFpEF患者血流动力学稳定且无禁忌证时，使用本技能根据心衰类型选择ACEI、ARB或ARNI，并逐步滴定至目标剂量。",
+    "folder": "raas-inhibitors-in-heart-failure",
+    "id": "279"
+  },
+  {
+    "name": "肿瘤放疗后心脏瓣膜病监测与干预",
+    "description": "本技能用于为曾接受纵隔放疗且预期存活超过5年的肿瘤患者制定心脏瓣膜病的定期监测计划或介入治疗建议。当临床场景中出现“患者曾接受纵隔放疗”这一触发条件时，应启动本技能以评估左心瓣膜病变风险并指导后续管理。",
+    "folder": "radiation-induced-heart-valve-monitoring-intervention",
+    "id": "412"
+  },
+  {
+    "name": "肿瘤放疗后心脏瓣膜病监测与干预",
+    "folder": "radiation-induced-valvular-disease-monitoring",
+    "id": "429"
+  },
+  {
+    "name": "Reducing Proteinuria with ACEI/ARB and SGLT2 Inhibitors",
+    "description": "制定以ACEI或ARB为基础、必要时联合SGLT2抑制剂的药物干预方案，用于治疗持续性蛋白尿（尤其≥0.5g/d）且无禁忌证的肾小球疾病患者。当患者存在持续性蛋白尿（特别是≥1.0g/d）、已确诊为肾小球源性蛋白尿、且无ACEI/ARB禁忌证时，应启动本技能。",
+    "folder": "reducing-proteinuria-with-acei-arb-and-sglt2i",
+    "id": "280"
+  },
+  {
+    "name": "refractory-ascites-management",
+    "description": "针对肝硬化患者在规范限钠、限水及大剂量利尿剂治疗无效后出现的顽固性腹腔积液，提供诊断确认与后续处理策略。当肝硬化患者经标准治疗4-5天后腹腔积液无明显减少，或穿刺放液后48小时内快速再发时，使用本技能。",
+    "folder": "refractory-ascites-management",
+    "id": "281"
+  },
+  {
+    "name": "难治性高血压定义与常见原因评估",
+    "description": "当患者在接受规范三联降压治疗（含利尿剂）至少4周、生活方式已干预后，诊室及诊室外血压仍高于目标值时，使用本技能确认难治性高血压诊断并系统排查七大类常见原因，包括假性高血压、生活方式因素、药物方案问题、干扰药物、容量超负荷、胰岛素抵抗及继发性高血压。",
+    "folder": "refractory-hypertension-definition-and-cause-evaluation",
+    "id": "282"
+  },
+  {
+    "name": "肾动脉闭塞的影像学检查选择",
+    "description": "根据患者肾功能状态（eGFR 和 CKD 分期）选择安全有效的影像学检查方法，用于诊断疑似急性肾动脉栓塞或血栓形成。当患者出现急性腰肋痛、血尿及肾功能恶化并怀疑肾动脉闭塞时使用本技能。",
+    "folder": "renal-artery-occlusion-imaging-selection",
+    "id": "283"
+  },
+  {
+    "name": "肾性水肿的病理生理分类与临床特征",
+    "description": "本技能用于对已确诊肾小球疾病的水肿患者进行肾病性或肾炎性水肿的鉴别诊断。当肾小球疾病患者出现水肿时，应使用本技能分析其起始部位、蛋白尿水平及血浆白蛋白浓度，以明确水肿类型并指导后续治疗。",
+    "folder": "renal-edema-classification-and-clinical-features",
+    "id": "284"
+  },
+  {
+    "name": "肾移植排斥反应分类与处理策略",
+    "description": "当肾移植受者术后出现肾功能减退、移植肾肿胀、发热、高血压或血尿等症状时，使用本技能对排斥反应进行分类（超急性、加速性、急性或慢性）并选择对应的处理策略。适用于已接受肾移植且具备临床监测和病理检查条件的患者。",
+    "folder": "renal-transplant-rejection-classification-and-management",
+    "id": "285"
+  },
+  {
+    "name": "呼吸性碱中毒处理",
+    "description": "评估呼吸性碱中毒的代偿状态并选择相应干预措施。当患者存在换气过度、PaCO₂降低、pH升高时使用本技能。",
+    "folder": "respiratory-alkalosis-management",
+    "id": "376"
+  },
+  {
+    "name": "呼吸性酸中毒合并代谢性酸中毒的补碱治疗",
+    "description": "当患者被确诊为呼吸性酸中毒合并代谢性酸中毒，且动脉血pH < 7.2时，执行本技能以指导安全、有效的静脉补碱治疗。适用于慢性肺心病失代偿期等合并双重酸中毒的临床场景。不适用于单纯呼吸性酸中毒或pH ≥ 7.2的情况。",
+    "folder": "respiratory-and-metabolic-acidosis-alkali-therapy",
+    "id": "286"
+  },
+  {
+    "name": "基于病因或发病机制的呼吸系统疾病治疗",
+    "description": "根据已明确的呼吸系统疾病病因（如感染、炎症、肿瘤）或特定发病机制（如气流受限、纤维化、血栓栓塞），制定个体化的针对性治疗与预防方案。当患者被诊断为具有明确病因或机制的呼吸系统疾病（如哮喘、慢阻肺病、间质性肺炎、肺癌等）且满足适用条件时使用本技能。",
+    "folder": "respiratory-disease-etiology-based-treatment",
+    "id": "287"
+  },
+  {
+    "name": "静息心电图分析原则",
+    "description": "本技能用于对标准12导联静息心电图进行系统性分析，以判断心律类型、心率、传导间期异常、心肌缺血征象及特殊心电综合征。当临床需要无创评估心律失常类型或疑似心肌缺血时（例如患者主诉心悸、晕厥或胸痛但非急性发作），应使用此技能。",
+    "folder": "resting-ecg-analysis-principles",
+    "id": "288"
+  },
+  {
+    "name": "限制型心肌病诊断与鉴别",
+    "description": "用于对表现为右心衰竭和/或心律失常、心房显著扩大且已排除继发性病因的患者，执行限制型心肌病（RCM）的系统性诊断与鉴别诊断流程。当临床怀疑RCM时（如存在典型血流动力学表现但无左心衰或心包疾病证据），应启用本技能。",
+    "folder": "restrictive-cardiomyopathy-diagnosis",
+    "id": "354"
+  },
+  {
+    "name": "rheumatoid-arthritis-pathogenesis-analysis",
+    "description": "分析类风湿关节炎（RA）的核心病理机制，包括关节内滑膜病变、血管翳形成及关节外血管炎表现。当患者出现关节畸形、关节外器官损害或类风湿结节时，使用本技能解释其病理基础并评估疾病活动度与预后。",
+    "folder": "rheumatoid-arthritis-pathogenesis-analysis",
+    "id": "289"
+  },
+  {
+    "name": "rhG-CSF治疗中性粒细胞减少症",
+    "description": "当患者中性粒细胞绝对计数（ANC）<1.0×10⁹/L且病因适合促生成治疗时，使用重组人粒细胞集落刺激因子（rhG-CSF）提升中性粒细胞数量并增强抗感染能力。适用于化疗后、先天性或骨髓增生异常综合征（MDS）等导致的中重度中性粒细胞减少症，不适用于假性减少或分布异常。",
+    "folder": "rhg-csf-treatment-for-neutropenia",
+    "id": "290"
+  },
+  {
+    "name": "利福平与利福喷丁在结核病治疗中的用药规范",
+    "description": "本技能用于指导临床医生在初治、复治或间歇治疗肺结核患者中，根据体重、治疗方案类型（每日/间歇）及禁忌状态（如妊娠早期、肝功能异常）合理选择利福平（RFP）或利福喷丁（RFT）的剂量，并管理其不良反应。当患者需使用利福霉素类药物进行抗结核治疗且未处于妊娠前三个月时触发此技能。",
+    "folder": "rifampicin-rifapentine-tb-treatment",
+    "id": "291"
+  },
+  {
+    "name": "结节病胸部X线分期标准",
+    "description": "根据后前位胸部X线胸片表现，对疑似结节病患者进行0至IV期的标准化影像学分期，用于评估疾病阶段、自然缓解可能性及预后。当临床怀疑结节病且已获取标准后前位胸部X线片时使用本技能。",
+    "folder": "sarcoidosis-chest-xray-staging",
+    "id": "292"
+  },
+  {
+    "name": "结节病诊断三要素",
+    "description": "当患者存在肺门淋巴结肿大或肺实质病变时，使用本技能验证是否同时满足结节病诊断的三项核心条件：（1）临床与影像表现相符；（2）组织病理证实非干酪样坏死性类上皮肉芽肿；（3）已系统排除其他类似疾病。仅当三项条件全部满足时方可确诊结节病。",
+    "folder": "sarcoidosis-diagnostic-triad",
+    "id": "293"
+  },
+  {
+    "name": "继发性高血压筛查指征与病因",
+    "description": "当高血压患者符合年轻+中重度高血压、药物控制不佳、突发血压恶化或有可疑体征（如低钾、血管杂音）任一条件时，使用本技能启动继发性高血压筛查并识别可根治病因。",
+    "folder": "secondary-hypertension-screening",
+    "id": "294"
+  },
+  {
+    "name": "镇静催眠药中毒类型鉴别",
+    "description": "根据患者的意识障碍及特征性体征（如锥体外系反应、瞳孔变化、呼吸抑制程度等），快速鉴别苯二氮䓬类、巴比妥类、非巴比妥非苯二氮䓬类或吩噻嗪类药物中毒。在急诊或中毒科接诊出现中枢神经系统抑制症状且有服药史或可疑暴露史的患者时使用本技能。",
+    "folder": "sedative-hypnotic-poisoning-differentiation",
+    "id": "295"
+  },
+  {
+    "name": "镇静催眠药中毒救治",
+    "description": "救治急性镇静催眠药中毒患者。当患者有大量镇静催眠药服用史并出现意识障碍、呼吸抑制、低血压时使用本技能。",
+    "folder": "sedative-hypnotic-poisoning-treatment",
+    "id": "419"
+  },
+  {
+    "name": "血清肌酐检测临床应用",
+    "description": "本技能用于在需要快速、简便地初步评估肾小球滤过功能时，指导如何正确执行和解读血清肌酐检测。适用于病情稳定的患者进行粗略肾功能评估，但不适用于早期肾损害（<50% GFR下降）的筛查。当用户需判断是否应使用血清肌酐作为肾功能指标，或需结合临床背景解释检测结果时触发此技能。",
+    "folder": "serum-creatinine-clinical-application",
+    "id": "357"
+  },
+  {
+    "name": "重型/危重型病例中糖皮质激素的短期使用规范",
+    "description": "在患者为重型或危重型且出现氧合指标进行性恶化、胸部影像学快速进展或机体炎症反应过度激活（如炎症因子显著升高）时，指导如何安全启动并管理短期糖皮质激素治疗。仅适用于符合明确临床指征的重症患者，不适用于轻型或普通型病例。",
+    "folder": "short-term-glucocorticoid-therapy-in-severe-cases",
+    "id": "298"
+  },
+  {
+    "name": "SIADH诊断与鉴别",
+    "description": "当面对血清钠<130 mmol/L、尿钠>20 mmol/L、血浆渗透压<275 mOsm/(kg·H₂O)且临床评估为正常血容量的低钠血症患者时，使用本技能系统评估是否符合抗利尿不适当综合征（SIADH）的诊断标准，并与脑盐耗综合征（CSWS）、肾性SIAD等关键疾病进行鉴别。",
+    "folder": "siadh-diagnosis-and-differential",
+    "id": "301"
+  },
+  {
+    "name": "SLE自身抗体临床效应预测",
+    "description": "根据系统性红斑狼疮（SLE）患者血清中检出的特定IgG型致病性自身抗体，预测其可能受累的靶器官、典型临床表现及严重并发症风险。当用户需要解读SLE相关自身抗体检测结果并评估器官损害风险时使用本技能。",
+    "folder": "sle-autoantibody-clinical-effect-prediction",
+    "id": "304"
+  },
+  {
+    "name": "SLE环境诱发因素评估",
+    "description": "评估系统性红斑狼疮（SLE）易感个体暴露于紫外线、特定药物或病毒感染等环境因素后触发自身免疫反应的风险。当用户询问SLE诱因、预防措施或环境暴露与疾病活动关系时使用本技能。",
+    "folder": "sle-environmental-triggers-assessment",
+    "id": "302"
+  },
+  {
+    "name": "系统性红斑狼疮药物治疗规范",
+    "description": "为系统性红斑狼疮（SLE）患者制定糖皮质激素和羟氯喹治疗方案。当患者确诊SLE且处于诱导缓解期、狼疮危象或稳定期时，应用此技能确定激素剂量、羟氯喹使用及眼部监测策略。",
+    "folder": "sle-glucocorticoid-therapy",
+    "id": "303"
+  },
+  {
+    "name": "SLEDAI狼疮活动度评估",
+    "description": "使用SLEDAI评分系统对已确诊系统性红斑狼疮（SLE）患者的当前疾病活动程度进行标准化评估。当临床医生需要判断SLE患者病情是否稳定、轻度、中度或重度活动，以指导治疗强度调整、预后评估或临床试验入组时，应使用本技能。",
+    "folder": "sledai-lupus-activity-assessment",
+    "id": "305"
+  },
+  {
+    "name": "吸烟对健康的多系统危害机制与证据等级",
+    "description": "系统阐述吸烟通过主要致病、复合致病、易感性增强等机制导致多系统疾病的科学证据及其等级。当用户需全面理解吸烟如何引发多种疾病（如癌症、心脑血管病、呼吸系统病等）并获取权威证据支持时使用此技能。",
+    "folder": "smoking-health-hazards-mechanisms-and-evidence",
+    "id": "306"
+  },
+  {
+    "name": "SOFA评分系统评估",
+    "description": "使用SOFA（序贯器官衰竭估计）评分系统对ICU中的危重症患者进行多器官功能障碍严重程度的量化评估。当患者入住ICU且需判断器官功能障碍程度、预测预后或监测病情进展时使用本技能。",
+    "folder": "sofa-score-assessment",
+    "id": "307"
+  },
+  {
+    "name": "特定灭鼠药中毒救治",
+    "folder": "specific-rodenticide-poisoning-management",
+    "id": "430"
+  },
+  {
+    "name": "特定灭鼠药中毒救治",
+    "description": "针对毒鼠强、氟乙酰胺、第二代抗凝血灭鼠药中毒制定特异性救治方案。当患者有明确灭鼠药接触史并出现相应症状时使用本技能。",
+    "folder": "specific-rodenticide-poisoning-treatment",
+    "id": "405"
+  },
+  {
+    "name": "自发性气胸临床分型与紧急处理指征",
+    "description": "当已确诊自发性气胸的患者出现进行性呼吸困难、血流动力学不稳定或疑似张力性气胸表现时，使用本技能快速分型并判断是否需立即干预。适用于急诊或呼吸科医师对气胸危重程度的紧急评估。",
+    "folder": "spontaneous-pneumothorax-classification-and-emergency-intervention",
+    "id": "308"
+  },
+  {
+    "name": "自发性气胸保守治疗指征与吸氧机制",
+    "description": "当自发性气胸患者满足肺压缩≤20%、无明显症状、初次发作且CT未见明显肺大疱、无血胸等并发症时，使用本技能指导卧床休息、高流量吸氧及病情观察。不适用于年龄偏大、合并慢阻肺等基础肺病或症状严重者。",
+    "folder": "spontaneous-pneumothorax-conservative-management",
+    "id": "309"
+  },
+  {
+    "name": "痰标本质量判定与病原学诊断标准",
+    "description": "当需要通过痰液进行下呼吸道感染的病原学诊断时，使用本技能评估痰标本质量并解读培养结果。适用于临床微生物实验室、呼吸科医生和感染科医师在处理疑似细菌性、结核性或真菌性肺部感染时。",
+    "folder": "sputum-specimen-quality-assessment-and-pathogen-diagnosis",
+    "id": "310"
+  },
+  {
+    "name": "SSc肾危象识别与处理",
+    "description": "用于系统性硬化症（SSc）患者，尤其是弥漫皮肤型患者，出现急性肾功能恶化和/或急进性恶性高血压时，快速识别肾危象并立即启动血管紧张素转换酶抑制剂（ACEI）治疗。当SSc患者血肌酐快速升高、舒张压>120 mmHg，或存在微血管病性溶血表现时，应触发本技能。",
+    "folder": "ssc-renal-crisis-management",
+    "id": "311"
+  },
+  {
+    "name": "系统性硬化症亚型分类",
+    "description": "根据患者的皮肤病变范围、血清学抗体类型和内脏受累情况，将系统性硬化症（SSc）分为局限皮肤型、弥漫皮肤型、无皮肤硬化型或重叠综合征四类。当患者出现雷诺现象、皮肤硬化或内脏器官受累表现时使用本技能进行临床分型，以指导预后判断和治疗策略。",
+    "folder": "ssc-subtype-classification",
+    "id": "312"
+  },
+  {
+    "name": "病态窦房结综合征（SSS）诊断与治疗",
+    "description": "当患者出现头晕、黑朦或晕厥等症状，且心电图显示显著窦性心动过缓、窦性停搏或慢-快综合征时，使用本技能评估是否符合病态窦房结综合征（SSS）的诊断标准，并制定相应的治疗方案。适用于疑似窦房结功能障碍、反复晕厥或慢-快综合征患者，在已排除药物影响和完成基础心电图/动态心电图的前提下使用。",
+    "folder": "sss-diagnosis-and-treatment",
+    "id": "313"
+  },
+  {
+    "name": "稳定型心绞痛诊断与辅助检查流程",
+    "description": "当患者表现为劳力诱发、数分钟内缓解、硝酸甘油有效的典型胸痛时，使用本技能指导心血管科医生对疑似稳定型心绞痛患者进行系统性诊断评估。适用于年龄≥40岁或有冠心病危险因素（如吸烟、高血压、高脂血症）的患者，且排除急性冠脉综合征（ACS）等禁忌情况。",
+    "folder": "stable-angina-diagnosis-and-testing",
+    "id": "314"
+  },
+  {
+    "name": "他汀类药物临床应用",
+    "description": "为高胆固醇血症、混合性高脂血症或ASCVD患者选择合适的他汀类药物。当患者确诊相关疾病且无禁忌证时使用本技能。",
+    "folder": "statin-clinical-application",
+    "id": "368"
+  },
+  {
+    "name": "冠心病二级预防中他汀类药物的使用",
+    "description": "为所有确诊冠心病、动脉粥样硬化性心血管疾病（ASCVD）或杂合子家族性高胆固醇血症患者制定他汀类药物治疗方案，设定LDL-C目标值，并根据耐受性和疗效决定是否联合其他降脂药物。当用户需要为上述患者启动或优化二级预防降脂治疗时使用本技能。",
+    "folder": "statin-therapy-for-secondary-prevention-of-coronary-artery-disease",
+    "id": "315"
+  },
+  {
+    "name": "STEMI溶栓治疗适应证与禁忌证判定",
+    "description": "判定疑似STEMI患者是否符合溶栓治疗的适应证且无禁忌证，适用于胸痛伴ST段抬高、预计直接PCI时间超过120分钟的场景。当ECG显示两个及以上相邻导联ST段抬高（胸导联≥0.2mV，肢导联≥0.1mV）或新发左束支传导阻滞，且症状发作时间明确时使用本技能。",
+    "folder": "stemis-thrombolytic-eligibility-assessment",
+    "id": "316"
+  },
+  {
+    "name": "亚急性甲状腺炎分期诊断",
+    "description": "当患者出现颈前疼痛、发热、甲状腺触痛明显，且血清T3/T4升高而131I摄取率降低时，使用本技能进行亚急性甲状腺炎的分期诊断并指导治疗策略。",
+    "folder": "subacute-thyroiditis-staging-diagnosis",
+    "id": "317"
+  },
+  {
+    "name": "磺酰脲类药物使用规范",
+    "description": "当新诊断的非肥胖2型糖尿病患者经饮食运动控制不佳时，使用本技能选择合适的磺酰脲类药物、起始剂量和给药频次，并评估联合用药方案。",
+    "folder": "sulfonylurea-drug-guidelines",
+    "id": "318"
+  },
+  {
+    "name": "Sydney 2006抗磷脂综合征分类标准应用",
+    "description": "根据2006年悉尼修订的国际标准，判断疑似抗磷脂综合征（APS）患者是否满足分类诊断条件。当患者出现不明原因血栓、反复流产、青年卒中等可疑APS临床表现，且已完成抗磷脂抗体检测时使用本技能。",
+    "folder": "sydney-2006-aps-classification-criteria",
+    "id": "319"
+  },
+  {
+    "name": "同步与非同步电复律除颤决策",
+    "description": "判断快速型心律失常患者是否适用电复律/除颤，并根据心电图R波是否存在，选择同步电复律或非同步电除颤。在患者出现血流动力学不稳定或药物无效的快速型心律失常时使用本技能。",
+    "folder": "synchronized-unsynchronized-cardioversion-defibrillation",
+    "id": "375"
+  },
+  {
+    "name": "关节液白细胞计数鉴别关节炎类型",
+    "folder": "synovial-fluid-wbc-differential-arthritis",
+    "id": "431"
+  },
+  {
+    "name": "系统性血管炎Chapel Hill 2012分类",
+    "description": "根据Chapel Hill 2012标准对系统性血管炎进行分类。当患者有多系统血管炎症表现且已明确受累血管类型（大、中、小）时，使用此技能确定具体血管炎类型以指导治疗。",
+    "folder": "systemic-vasculitis-chapel-hill-classification",
+    "id": "320"
+  },
+  {
+    "name": "T2DM胰岛β细胞功能缺陷三重表现分析",
+    "description": "分析2型糖尿病（T2DM）或糖尿病前期患者在葡萄糖刺激试验中表现出的胰岛β细胞功能缺陷的三种核心维度——分泌量不足、分泌模式异常和分泌质缺陷。当临床需评估β细胞功能状态以指导治疗决策（如是否启用GLP-1受体激动剂）时使用本技能。",
+    "folder": "t2dm-beta-cell-dysfunction-triad-analysis",
+    "id": "321"
+  },
+  {
+    "name": "T2DM双重核心机制分析",
+    "description": "分析2型糖尿病（T2DM）发病过程中胰岛素抵抗与β细胞功能失代偿的双重核心机制，用于判断疾病阶段并指导干预策略。当患者出现空腹或餐后血糖升高且不符合1型糖尿病特征时使用本技能。",
+    "folder": "t2dm-dual-center-pathogenesis",
+    "id": "323"
+  },
+  {
+    "name": "T2DM胰高血糖素与GLP-1轴失调机制分析",
+    "description": "分析2型糖尿病（T2DM）患者中胰高血糖素与GLP-1调控轴的病理生理失调机制，适用于空腹或餐后高血糖控制不佳、胰岛素治疗效果有限的患者。当患者符合GLP-1受体激动剂治疗候选条件且已排除器质性胰腺病变时，使用本技能评估是否因GLP-1分泌缺陷或胰高血糖素失控导致血糖恶化，并指导是否优先启用GLP-1受体激动剂干预。",
+    "folder": "t2dm-glucagon-glp1-axis-dysregulation-analysis",
+    "id": "322"
+  },
+  {
+    "name": "TEER适应证评估",
+    "description": "评估有症状的重度二尖瓣反流（MR）患者是否符合经导管缘对缘修复术（TEER）的指南推荐适应证。当用户需要判断原发性或继发性MR患者在解剖合适、外科手术高危或禁忌的前提下是否可考虑TEER时使用本技能。",
+    "folder": "teer-indication-assessment",
+    "id": "324"
+  },
+  {
+    "name": "第十轮临床医学教材修订五大核心原则",
+    "description": "本技能提供第十轮全国高等学校五年制本科临床医学专业规划教材修订所必须遵循的五大核心原则。当用户正在参与、评审或管理该轮次教材的编写、审核、选用或政策制定时，应使用此技能以确保符合国家卫生健康委员会与教育部的最新教育改革方向和质量标准。",
+    "folder": "tenth-round-clinical-medical-textbook-revision-principles",
+    "id": "325"
+  },
+  {
+    "name": "法洛四联症辅助检查特征组合",
+    "description": "当患者表现为自幼进行性青紫、劳力性呼吸困难及蹲踞位时，使用本技能指导系统性辅助检查流程，以确认法洛四联症的四大解剖畸形（肺动脉狭窄、室间隔缺损、主动脉骑跨、右心室肥厚）。适用于疑似法洛四联症患者或发绀型先天性心脏病筛查场景。",
+    "folder": "tetralogy-of-fallot-auxiliary-examination",
+    "id": "124"
+  },
+  {
+    "name": "内科学教材编写原则",
+    "description": "本技能用于指导五年制本科临床医学专业《内科学》教材的编写或修订工作。当用户参与由全国高等学校五年制本科临床医学专业教材评审委员会主导的《内科学》第10版（或后续版本）编写任务时，应使用本技能确保内容符合现代医学教育标准。",
+    "folder": "textbook-compilation-principles",
+    "id": "233"
+  },
+  {
+    "name": "内科学教材适用对象判断",
+    "description": "判断用户是否属于《内科学》（第10版）的目标受众，并据此推荐合适的使用方式。当用户身份涉及医学教育、执业医师考试、研究生备考或临床实践时触发本技能。",
+    "folder": "textbook-target-audience-assessment",
+    "id": "234"
+  },
+  {
+    "name": "易栓症临床识别与分类标准",
+    "description": "当患者出现无明显诱因的多发性或反复血栓、发病年龄<45岁、有血栓家族史，或对常规抗血栓治疗反应不佳时，使用本技能评估是否存在易栓症，并区分遗传性与获得性类型。不适用于由明确诱因（如术后、外伤）导致的孤立性血栓。",
+    "folder": "thrombophilia-clinical-identification",
+    "id": "326"
+  },
+  {
+    "name": "甲状腺结节良恶性超声评估与FNA指征",
+    "description": "根据TSH水平和颈部超声特征，对新发现或随访中变化的甲状腺实性/混合性结节进行恶性风险分层，并判断是否需行超声引导下细针穿刺活检（FNA）。适用于TSH正常或升高的患者，不适用于热结节或囊性成分>90%的结节。",
+    "folder": "thyroid-nodule-malignancy-ultrasound-assessment-and-fna-indication",
+    "id": "327"
+  },
+  {
+    "name": "甲状腺危象综合治疗方案",
+    "description": "当患者出现高热、心动过速、意识障碍等甲状腺危象表现时，使用本技能执行六步抢救流程，目标是24-48小时内控制危象症状。",
+    "folder": "thyroid-storm-comprehensive-treatment",
+    "id": "328"
+  },
+  {
+    "name": "甲状腺毒症多系统临床表现",
+    "description": "当患者出现多汗、不耐热、体重下降、心悸、细颤、腹泻等多系统症状时，使用本技能识别甲状腺毒症的高代谢与多系统临床表现，并建议立即检测甲状腺功能。",
+    "folder": "thyrotoxicosis-clinical-manifestations",
+    "id": "329"
+  },
+  {
+    "name": "托珠单抗在重型/危重型新冠肺炎中的使用",
+    "description": "当患者为重型或危重型新冠肺炎且实验室检测显示IL-6显著升高时，指导如何安全、规范地试用托珠单抗（IL-6抑制剂），包括给药方案、禁忌证筛查和不良反应监测。",
+    "folder": "tocilizumab-use-in-covid-19",
+    "id": "330"
+  },
+  {
+    "name": "中毒四要素综合诊断",
+    "description": "通过毒物接触史、既往史、临床表现和实验室/环境调查四个维度，系统评估中毒可能性。当患者出现不明原因昏迷、呕吐、惊厥、呼吸困难、发绀、贫血或肝损伤等症状时启动此诊断流程。",
+    "folder": "toxic-exposure-four-element-diagnosis",
+    "id": "331"
+  },
+  {
+    "name": "溃疡性结肠炎中毒性巨结肠的诊断与诱发因素识别",
+    "description": "当重症溃疡性结肠炎患者出现病情急剧恶化、毒血症、脱水、肠鸣音消失及腹部压痛时，使用本技能快速识别中毒性巨结肠的高风险状态、确认诱发因素并启动急诊评估流程。适用于急诊科和消化科医生对疑似病例进行初步判断与紧急干预。",
+    "folder": "toxic-megacolon-diagnosis-in-ulcerative-colitis",
+    "id": "332"
+  },
+  {
+    "name": "转化医学与整合医学实施机制",
+    "description": "当存在实验室研究成果尚未应用于临床，或临床实践中发现新问题需基础研究解释时，使用本技能指导启动并执行转化医学（bench-to-bedside 与 bedside-to-bench 双向循环）和整合医学（以患者为中心的多学科协作诊疗）流程。适用于基础医学研究者、临床医生、慢性病或多病共存老年患者、医药企业及政府机构。",
+    "folder": "translational-and-integrative-medicine-implementation",
+    "id": "333"
+  },
+  {
+    "name": "经鼻高流量吸氧（HFNC）参数设置与生理效应应用",
+    "description": "本技能用于为急性呼吸衰竭、轻中度低氧血症或需避免气管插管的患者设置经鼻高流量吸氧（HFNC）参数，并解释其生理效应。当患者需要稳定高流量氧疗且希望避免插管时使用此技能。",
+    "folder": "transnasal-hfnc-parameter-settings",
+    "id": "202"
+  },
+  {
+    "name": "TTP确诊标准与紧急处理原则",
+    "description": "当患者出现血小板减少、微血管病性溶血及神经系统症状等疑似血栓性血小板减少性紫癜（TTP）表现时，使用本技能快速确认诊断标准并立即启动紧急处理流程。适用于急诊、重症或血液科场景中对疑似TTP患者的识别与干预。",
+    "folder": "ttp-diagnosis-and-emergency-management",
+    "id": "334"
+  },
+  {
+    "name": "结核性胸膜炎抽液治疗规范与并发症处理",
+    "description": "当患者确诊或高度怀疑结核性胸膜炎且存在中至大量胸腔积液时，执行安全、规范的胸腔穿刺抽液操作，并准备应对复张后肺水肿或胸膜反应等并发症。适用于结核性胸腔积液患者及执行胸腔穿刺的医师。",
+    "folder": "tuberculous-pleurisy-effusion-treatment",
+    "id": "201"
+  },
+  {
+    "name": "远端肾小管酸中毒（Ⅰ型RTA）诊断",
+    "description": "当患者表现为阴离子间隙（AG）正常的高氯性代谢性酸中毒时，使用本技能执行Ⅰ型远端肾小管酸中毒（dRTA）的系统性诊断流程。适用于疑似肾小管性酸中毒患者，不适用于AG增高的代谢性酸中毒（如乳酸酸中毒、酮症酸中毒）。",
+    "folder": "type-1-renal-tubular-acidosis-diagnosis",
+    "id": "335"
+  },
+  {
+    "name": "UA/NSTEMI抗缺血药物治疗方案",
+    "description": "本技能用于对不稳定型心绞痛（UA）或非ST段抬高型心肌梗死（NSTEMI）急性期患者，以及心绞痛发作患者，实施标准化的抗心肌缺血药物治疗。当患者出现心绞痛发作或存在持续心肌缺血证据时，且已排除低血压（SBP<90mmHg）、右心室梗死及磷酸二酯酶-5抑制剂使用史等禁忌后，应启动本流程。",
+    "folder": "ua-nstemi-anti-ischemic-drug-therapy",
+    "id": "336"
+  },
+  {
+    "name": "溃疡性结肠炎癌变监测策略",
+    "description": "本技能用于为长期溃疡性结肠炎（UC）患者制定结肠癌监测计划。当患者为广泛结肠炎且病程≥8年，或左半结肠炎且病程≥15年时，应启动定期结肠镜监测。适用于消化科医生对符合高危条件的UC患者进行癌症风险管理和随访安排。",
+    "folder": "ulcerative-colitis-cancer-surveillance",
+    "id": "337"
+  },
+  {
+    "name": "溃疡性结肠炎严重度分型评估",
+    "description": "根据活动期溃疡性结肠炎患者的临床症状和实验室指标，综合判定疾病严重程度（轻度、中度或重度），并结合病变范围与临床类型完成完整分型。当患者表现为持续或反复发作的腹泻、黏液脓血便、腹痛，且已排除感染性肠炎等其他疾病时使用本技能。",
+    "folder": "ulcerative-colitis-severity-classification",
+    "id": "338"
+  },
+  {
+    "name": "上消化道非静脉曲张出血抑酸治疗",
+    "description": "为非静脉曲张性上消化道出血患者制定PPI抑酸止血方案。当患者存在活动性非静脉曲张性上消化道出血时使用本技能。",
+    "folder": "upper-gi-non-variceal-bleeding-acid-suppression",
+    "id": "361"
+  },
+  {
+    "name": "尿毒症毒素分类及其临床影响机制",
+    "description": "本技能用于对尿毒症毒素进行系统分类，并解释各类毒素在慢性肾病患者中的临床影响机制。当用户需要理解尿毒症毒素的类型（如小分子水溶性毒素、中分子毒素、蛋白结合毒素等）及其如何导致心血管疾病、神经系统损伤、炎症或营养不良等并发症时，应使用此技能。",
+    "folder": "uremic-toxin-classification-and-clinical-impact",
+    "id": "339"
+  },
+  {
+    "name": "不同类型尿路感染的抗生素治疗方案",
+    "description": "当患者确诊为尿路感染（UTI）时，根据感染类型（膀胱炎、肾盂肾炎）、患者人群（孕妇、儿童、糖尿病等）及严重程度选择抗生素、剂量、疗程和给药途径。适用于泌尿科、感染科和全科临床决策。",
+    "folder": "urinary-tract-infection-antibiotic-therapy-by-type",
+    "id": "340"
+  },
+  {
+    "name": "尿路感染的分类标准",
+    "description": "对尿路感染患者进行四维度临床分型（症状性/无症状、上/下尿路、非复杂性/复杂性、孤立/反复发作），用于指导诊断路径、治疗方案选择和预后评估。当临床医生需明确尿路感染类型以制定个体化管理策略时使用本技能。",
+    "folder": "urinary-tract-infection-classification",
+    "id": "341"
+  },
+  {
+    "name": "尿路感染的诊断阈值与标准",
+    "description": "根据尿液细菌培养结果、临床症状和患者类型，判断是否确诊尿路感染及其具体类型（如膀胱炎、肾盂肾炎、无症状细菌尿或复杂性尿路感染）。当用户需要依据标准化阈值解读尿培养报告并结合临床表现进行诊断时使用本技能。",
+    "folder": "urinary-tract-infection-diagnostic-thresholds",
+    "id": "342"
+  },
+  {
+    "name": "尿路感染疗效评定标准",
+    "description": "评估已完成抗菌治疗的尿路感染患者的临床与微生物学结局，判定为“治愈”或“治疗失败”。在患者完成标准抗菌疗程后、需进行疗效确认及后续管理决策时使用本技能。",
+    "folder": "urinary-tract-infection-treatment-efficacy-assessment",
+    "id": "343"
+  },
+  {
+    "name": "Vaughan Williams 抗心律失常药物分类",
+    "description": "根据 Vaughan Williams 经典四类及拓展八类分类法，对抗心律失常药物进行机制归类，并指导临床用药选择。当需要理解药物电生理作用机制、对药物进行分类或制定基于机制的治疗方案时使用本技能。",
+    "folder": "vaughan-williams-antiarrhythmic-classification",
+    "id": "344"
+  },
+  {
+    "name": "静脉补钾安全规范",
+    "folder": "venous-potassium-supplementation-safety",
+    "id": "432"
+  },
+  {
+    "name": "心室预激心电图诊断与A/B型分型",
+    "description": "当心电图显示PR间期缩短且QRS起始异常（如存在δ波）时，使用本技能确认是否符合预激综合征诊断标准，并根据胸导联QRS主波方向判断为A型或B型预激。适用于窦性心律下、具备完整12导联心电图的疑似预激综合征患者。",
+    "folder": "ventricular-preexcitation-ecg-diagnosis-and-ab-typing",
+    "id": "345"
+  },
+  {
+    "name": "室性期前收缩心电图诊断与分类",
+    "description": "当心电图显示提前出现的宽大畸形QRS波群时，使用本技能判断是否为室性期前收缩（室早），并根据其节律模式、形态特征和代偿间歇进行准确分类。适用于疑似室性心律失常患者的心电图分析，不适用于室上性早搏伴差异传导或起搏器介导的心律。",
+    "folder": "ventricular-premature-contraction-ecg-diagnosis-and-classification",
+    "id": "346"
+  },
+  {
+    "name": "心室压力-容积周期分析",
+    "description": "解析左心室或右心室在一个心动周期中压力与容积的动态变化规律，用于评估心脏泵血功能。当需要解释心脏机械活动机制、解读心导管或压力-容积环数据、或判断心功能状态时使用此技能。",
+    "folder": "ventricular-pressure-volume-loop-analysis",
+    "id": "356"
+  },
+  {
+    "name": "VIP瘤诊断标准与特征",
+    "description": "用于评估疑似血管活性肠肽瘤（VIP瘤）患者，当出现禁食不缓解的大量水样腹泻（>1L/天）伴水电解质紊乱时，执行该技能以确认诊断、排除鉴别疾病并指导肿瘤定位。",
+    "folder": "vip-oma-diagnosis-criteria",
+    "id": "347"
+  },
+  {
+    "name": "病毒性心肌炎诊断与特殊类型识别",
+    "description": "本技能用于对疑似病毒性心肌炎（VM）患者进行系统性诊断评估，包括确认必要条件、收集支持证据、识别特殊临床类型，并指导鉴别诊断。当患者具有1-3周前病毒感染史、出现胸闷/心悸/心衰等心脏症状、且心肌肌钙蛋白升高时，应启用此技能。",
+    "folder": "viral-myocarditis-diagnosis-special-types",
+    "id": "407"
+  },
+  {
+    "name": "病毒性肺炎抗病毒药物治疗",
+    "description": "根据确诊或高度疑似病毒性肺炎患者的病原体类型（如流感病毒、疱疹病毒、CMV、RSV等），在发病早期（通常5天内）且无禁忌症的前提下，选择对应的抗病毒药物、剂量、给药途径和疗程。适用于免疫抑制宿主及重症高风险人群，不适用于单纯细菌性肺炎。",
+    "folder": "viral-pneumonia-antiviral-treatment",
+    "id": "348"
+  },
+  {
+    "name": "病毒性肺炎的诊断与病原学确认",
+    "description": "当患者表现为流感样症状（如发热、咳嗽、全身酸痛）、胸部影像显示磨玻璃影或小片状浸润、白细胞计数正常或偏低、且已排除细菌等其他病原体时，使用本技能进行病毒性肺炎的临床初步诊断和病原学确诊。适用于疑似病毒性肺炎或社区获得性肺炎患者。",
+    "folder": "viral-pneumonia-diagnosis-and-confirmation",
+    "id": "349"
+  },
+  {
+    "name": "维生素B₁₂缺乏的双重病理机制",
+    "description": "解释维生素B₁₂缺乏如何通过甲硫氨酸合成酶和L-甲基丙二酰-CoA变位酶两条代谢通路，同时导致造血系统（巨幼细胞贫血）和神经系统（感觉障碍、共济失调、精神症状）损害。当血清维生素B₁₂ <74pmol/L（100ng/ml）且患者出现相关临床表现时使用本技能，尤其用于区分B₁₂缺乏与单纯叶酸缺乏。",
+    "folder": "vitamin-b12-deficiency-dual-pathogenesis",
+    "id": "350"
+  },
+  {
+    "name": "血管性血友病（vWD）分型诊断",
+    "description": "当患者vWF:Ag和/或vWF:RCo低于30%时，用于对疑似血管性血友病患者进行标准分型诊断，明确为1型、2A/2B/2M/2N型或3型，以指导后续治疗。适用于已完成基础凝血检查并排除血友病及其他血小板疾病的出血倾向患者。",
+    "folder": "vwds-subtype-diagnosis",
+    "id": "351"
+  },
+  {
+    "name": "温抗体型自身免疫性溶血性贫血（AIHA）诊断与治疗",
+    "description": "本技能用于对疑似温抗体型自身免疫性溶血性贫血（AIHA）的成人患者进行标准化诊断与分层治疗。当患者出现慢性溶血表现（如贫血、黄疸、网织红细胞升高）且直接抗人球蛋白试验（DAT）阳性时，应启动本流程。适用于Coombs试验阳性者、Evans综合征患者，但不适用于冷凝集素病、阵发性睡眠性血红蛋白尿症（PNH）或近4个月内有输血/特殊药物暴露史者。",
+    "folder": "warm-antibody-aiha-diagnosis-treatment",
+    "id": "353"
+  }
+]

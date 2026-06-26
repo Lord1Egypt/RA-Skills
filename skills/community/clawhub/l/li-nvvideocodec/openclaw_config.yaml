@@ -1,0 +1,89 @@
+skill:
+  name: li_nvvideocodec
+  version: 1.0.0
+  author: "北京老李 (beijingLL)"
+  description: "NVIDIA AV1视频批量压缩工具"
+  
+  entry_point: agent_interface.py
+  interpreter: python3
+  
+  actions:
+    check:
+      description: "检查运行环境"
+      command: "python agent_interface.py --action check"
+      output_format: json
+      returns:
+        ffmpeg: "FFmpeg版本和编码器支持"
+        gpu: "NVIDIA GPU信息"
+        can_proceed: "环境是否满足要求"
+    
+    analyze:
+      description: "分析视频目录"
+      command: "python agent_interface.py --action analyze -i {input_dir}"
+      parameters:
+        input_dir: "required"
+      output_format: json
+      returns:
+        count: "视频数量"
+        total_size_gb: "总大小"
+        videos: "视频列表"
+    
+    compress:
+      description: "批量压缩视频"
+      command: "python agent_interface.py --action compress -i {input_dir} -p {profile} {test_flag}"
+      parameters:
+        input_dir: "required"
+        profile: "optional, default: B"
+        test_flag: "optional, --test for test mode"
+        output_dir: "optional"
+      output_format: text
+      timeout: 3600
+  
+  profiles:
+    A:
+      name: "保守压缩"
+      resolution: "keep"
+      crf: 23
+      expected_savings: "40-60%"
+    
+    B:
+      name: "平衡压缩（推荐）"
+      resolution: "1280x720"
+      crf: 24
+      expected_savings: "65-75%"
+      recommended: true
+    
+    C:
+      name: "激进压缩"
+      resolution: "1280x720"
+      crf: 28
+      expected_savings: "78-85%"
+  
+  workflow:
+    - step: 1
+      action: check
+      description: "检查FFmpeg、GPU、编码器"
+    
+    - step: 2
+      action: analyze
+      description: "分析视频文件"
+    
+    - step: 3
+      action: compress
+      mode: test
+      description: "测试压缩1个视频"
+    
+    - step: 4
+      action: user_confirmation
+      description: "让用户确认质量"
+    
+    - step: 5
+      action: compress
+      mode: full
+      description: "完整批量压缩"
+  
+  safety:
+    protect_original: true
+    separate_output_dir: true
+    auto_validate: true
+    validation_threshold: "5% savings"

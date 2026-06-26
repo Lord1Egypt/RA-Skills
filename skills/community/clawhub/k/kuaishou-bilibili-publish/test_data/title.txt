@@ -1,0 +1,4 @@
+标题：明天更好
+视频数据路径：/Users/xiaohei/.openclaw/workspace/skills/kuaishou-bilibili-publish/test_data/test_video.mp4
+封面：/Users/xiaohei/.openclaw/workspace/skills/kuaishou-bilibili-publish/test_data/image.png
+关键词：美好的，欢快，一天的

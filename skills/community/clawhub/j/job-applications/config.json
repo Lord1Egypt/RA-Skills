@@ -1,0 +1,82 @@
+{
+  "candidate": {
+    "name": "Abed Mir",
+    "email": "abedmir31@gmail.com",
+    "phone": "469-999-2480",
+    "location": "Plano, TX",
+    "website": "abedmir.com",
+    "linkedin": "https://linkedin.com/in/abedmmir",
+    "github": ""
+  },
+  "search_criteria": {
+    "target_titles": [
+      "ServiceNow Developer",
+      "ServiceNow Administrator",
+      "ServiceNow Architect",
+      "ServiceNow Engineer",
+      "ServiceNow Consultant",
+      "Full Stack Engineer",
+      "Full Stack Developer",
+      "Senior Full Stack Engineer",
+      "Software Engineer",
+      "Senior Software Engineer",
+      "AI Engineer",
+      "AI Agent Engineer",
+      "AI Agent Developer",
+      "Machine Learning Engineer",
+      "LLM Engineer",
+      "Backend Engineer",
+      "Senior Backend Engineer",
+      "Platform Engineer"
+    ],
+    "primary_focus": "ServiceNow development (CSA, CAD, CIS-ITSM certified) and Full Stack Engineering at AI-focused companies",
+    "location": {
+      "remote": true,
+      "hybrid_metros": ["Dallas", "Plano", "Fort Worth", "DFW", "Irving", "Frisco", "Richardson"],
+      "onsite": false
+    },
+    "salary": {
+      "floor_usd": 100000,
+      "target_range_usd": [120000, 140000],
+      "notes": "100k only if perfect remote situation"
+    },
+    "experience_level": ["mid", "senior"],
+    "company_size": "any"
+  },
+  "filters": {
+    "avoid_industries": [
+      "banking",
+      "mortgage",
+      "lending",
+      "conventional finance",
+      "interest-based financial services",
+      "alcohol",
+      "gambling",
+      "casino",
+      "adult entertainment",
+      "pork/meat processing",
+      "tobacco",
+      "weapons manufacturing",
+      "cannabis"
+    ],
+    "avoid_keywords_in_company": [
+      "bank", "mortgage", "lending", "loan", "credit union",
+      "brewery", "distillery", "winery", "casino", "betting",
+      "tobacco", "cannabis", "dispensary"
+    ],
+    "require_sponsorship": false,
+    "us_work_authorized": true
+  },
+  "application_settings": {
+    "selectivity": "wide_net",
+    "cover_letter": "skip_if_optional",
+    "max_applications_per_day": 20,
+    "platforms_supported": ["greenhouse", "lever", "workday", "indeed_easy_apply", "linkedin_easy_apply"],
+    "auto_apply": true
+  },
+  "resume": {
+    "source_json": "resume-source/resume.json",
+    "source_tex": "resume-source/resume.tex",
+    "tailor_strategy": "reorder_bullets_emphasize_relevant_skills_adjust_summary"
+  }
+}

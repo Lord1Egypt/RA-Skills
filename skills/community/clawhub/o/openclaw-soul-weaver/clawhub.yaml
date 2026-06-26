@@ -1,0 +1,76 @@
+name: openclaw-soul-weaver
+version: 1.0.0
+description: "No waiting! Create professional-grade OpenClaw configurations in 30 seconds through natural conversation. Instantly generate enthusiast-level base configs that intelligently combine emotional and professional needs, replacing system files to instantly professionalize your OpenClaw."
+author: AI Soul Weaver Team
+license: MIT
+
+category: productivity
+tags:
+  - openclaw
+  - soul-weaver
+  - ai
+  - agent
+  - configuration
+  - template
+  - generator
+
+permissions:
+  - network
+  - file-write
+  - file-read
+
+# File write permissions for avatar saving
+file-write:
+  - /avatars/*
+  - /.openclaw/workspace/avatars/*
+  - /tmp/avatars/*
+
+triggers:
+  - pattern: "create.*ai.*(agent|config|assistant)"
+  - pattern: "generate.*soul"
+  - pattern: "make.*AI.*like"
+  - pattern: "设计.*AI.*助手"
+  - pattern: "创建.*数字灵魂"
+
+api:
+  endpoint: "https://sora2.wboke.com/api/v1/generate"
+  method: POST
+  timeout: 30000
+
+image_api:
+  endpoint: "https://sora2.wboke.com/api/generate-image"
+  method: POST
+
+templates:
+  celebrity:
+    - musk
+    - jobs
+    - einstein
+    - bezos
+    - da_vinci
+    - qianxuesen
+    - ng
+    - kondo
+    - ferris
+  profession:
+    - developer
+    - writer
+    - researcher
+    - analyst
+    - collaborator
+
+output:
+  format: zip
+  structure:
+    - avatars/
+    - SOUL.md
+    - IDENTITY.md
+    - MEMORY.md
+    - USER.md
+    - TOOLS.md
+    - AGENTS.md
+
+required_tools:
+  - find-skills
+  - autoclaw
+  - brave-search

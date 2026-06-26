@@ -1,35 +1,374 @@
 ---
-name: "OpenClaw 成长追踪器"
-description: "OpenClaw 个人成长追踪器 — 记录你在使用 OpenClaw 过程中的成长轨迹。 触发场景： - 想了解今天/本周的成长情况："我的成长怎么样"、"今天做了什么" - 想看数据化的进展报告："给我看数据"、"量化报告" - 完成重要任务后："记录这个成就"、"完成任务" - 想回顾一段时间的变化："周报"..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-growth-tracker"
-sourceUrl: "https://clawhub.ai/skills/openclaw-growth-tracker"
+name: openclaw-growth-tracker
+description: >
+  OpenClaw 个人成长追踪器 — 记录你在使用 OpenClaw 过程中的成长轨迹。
+
+  触发场景：
+  - 想了解今天/本周的成长情况："我的成长怎么样"、"今天做了什么"
+  - 想看数据化的进展报告："给我看数据"、"量化报告"
+  - 完成重要任务后："记录这个成就"、"完成任务"
+  - 想回顾一段时间的变化："周报"、"月度总结"
+  - 每天结束时想看看："今日复盘"、"今天效率如何"
+
+  核心理念：
+  成长不是靠感觉，而是靠记录。每一次对话、每一个任务、每一次突破，
+  都值得被看见。用数据说话，让进步看得见。
 ---
 
 # OpenClaw 成长追踪器
 
-> OpenClaw 个人成长追踪器 — 记录你在使用 OpenClaw 过程中的成长轨迹。 触发场景： - 想了解今天/本周的成长情况："我的成长怎么样"、"今天做了什么" - 想看数据化的进展报告："给我看数据"、"量化报告" - 完成重要任务后："记录这个成就"、"完成任务" - 想回顾一段时间的变化："周报"...
+> 不是冷冰冰的数据，是你的进化地图。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-growth-tracker`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-growth-tracker](https://clawhub.ai/skills/openclaw-growth-tracker)
+## 核心理念
 
-## Overview
+**一切皆可量化，让成长看得见。**
 
+记录你在 OpenClaw 上的每一次对话、任务、突破和坚持，用数据呈现真实的成长轨迹。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-growth-tracker
+---
+
+## 🚀 快速开始
+
+说「**启动成长追踪**」初始化数据文件，之后每次对话我会自动记录你的使用数据。
+
+---
+
+## 📊 四大核心维度
+
+### 📈 维度一：成长值
+
+整体成长百分比，参考基准自动计算。
+
 ```
+📊 本周成长
+  总体：62.3% → 68.7% (+6.4%)
+  ├─ 知识面：███████░░░ 48% (+8%)
+  ├─ 任务完成：████████░░ 72% (+5%)
+  ├─ 效率提升：██████████░ 85% (+12%)
+  └─ 坚持度：██████░░░░ 55% (+3%)
+
+  vs 上周：🟢 全面提升
+```
+
+### ✅ 维度二：任务统计
+
+追踪你通过 OpenClaw 完成的所有任务。
+
+```
+✅ 任务统计
+  本周：12 个任务
+  ├─ 完成：10 个 (83.3%)
+  ├─ 进行中：1 个
+  └─ 放弃：1 个
+
+  分类：
+  ├─ 写作：5 个 (███)
+  ├─ 代码：3 个 (██)
+  ├─ 研究：2 个 (█)
+  └─ 其他：2 个 (█)
+
+  平均质量：8.4/10
+```
+
+### 🎯 维度三：能力雷达
+
+多维度能力评分，直观展示你的优势和改进空间。
+
+```
+🎯 能力雷达
+       写作
+     65% ╱╲ 58%
+      ╱   ╲
+信息检索 72%────── 效率 81%
+  68% ╲   ╱ 58%
+     ╲   ╱
+    代码 55%
+```
+
+### ⏱️ 维度四：效率趋势
+
+追踪响应速度、一次解决率等效率指标。
+
+```
+⚡ 效率分析
+  响应速度：平均 3.2 秒/次
+  一次解决率：78.5%
+  任务耗时：平均 12 分钟/任务
+
+  趋势：较上周提升 15%
+```
+
+---
+
+## 📝 日常使用
+
+### 启动
+```
+启动成长追踪
+初始化成长档案
+```
+
+### 每日打卡
+```
+打卡
+今日打卡
+完成任务
+```
+
+### 查看数据
+```
+我的成长
+今天做了什么
+给我看数据
+量化报告
+今日复盘
+```
+
+### 周报/月报
+```
+周报
+本周总结
+月度报告
+```
+
+### 成就记录
+```
+记录成就
+完成了一个里程碑
+今天有突破
+```
+
+---
+
+## 🏆 成就系统
+
+| 徽章 | 成就 | 条件 |
+|------|------|------|
+| 🌱 破土 | 首次记录 | 开启成长追踪 |
+| 📝 写手 | 文章产出 | 累计完成 10 篇 |
+| 💻 开发者 | 代码突破 | 累计完成 10 个代码任务 |
+| 🔍 研究员 | 知识积累 | 累计探索 20 个新话题 |
+| 📊 数据控 | 连续记录 | 连续 7 天记录数据 |
+| 🔥 坚持者 | 连续打卡 | 任意习惯连续 30 天 |
+| 🌟 突破者 | 重大成就 | 完成第一个里程碑 |
+| 🏆 冠军 | 全能选手 | 所有能力维度超过 70% |
+
+---
+
+## 📊 完整数据结构
+
+### 存储位置
+`~/.openclaw/data/openclaw-growth-tracker.json`
+
+### 数据结构
+```json
+{
+  "initialized_at": "{{时间}}",
+  "last_update": "{{时间}}",
+
+  "profile": {
+    "name": "大表哥",
+    "openclaw_age_days": 0,
+    "total_conversations": 0
+  },
+
+  "growth": {
+    "baseline": {
+      "knowledge": 30,
+      "task_completion": 50,
+      "efficiency": 40,
+      "consistency": 20
+    },
+    "current": {
+      "knowledge": 48,
+      "task_completion": 72,
+      "efficiency": 68,
+      "consistency": 55
+    },
+    "history": []
+  },
+
+  "tasks": {
+    "total": 0,
+    "completed": 0,
+    "in_progress": 0,
+    "abandoned": 0,
+    "by_category": {
+      "writing": 0,
+      "coding": 0,
+      "research": 0,
+      "planning": 0,
+      "other": 0
+    },
+    "quality_scores": [],
+    "avg_quality": 0
+  },
+
+  "capabilities": {
+    "writing": 0,
+    "coding": 0,
+    "research": 0,
+    "planning": 0,
+    "analysis": 0,
+    "communication": 0
+  },
+
+  "efficiency": {
+    "avg_response_time": 0,
+    "first_try_success_rate": 0,
+    "avg_task_duration_minutes": 0,
+    "history": []
+  },
+
+  "achievements": [],
+
+  "daily_stats": {},
+
+  "knowledge_topics": [],
+
+  "streaks": {
+    "daily_checkin": {"current": 0, "best": 0}
+  },
+
+  "weekly_reports": []
+}
+```
+
+---
+
+## 🎯 能力维度说明
+
+能力评分由多个因素综合计算：
+
+| 能力 | 计算方式 |
+|------|---------|
+| **写作** | 文章产出数量、质量评分、字数统计 |
+| **代码** | 代码任务完成数、bug 修复数、工具使用 |
+| **研究** | 新话题探索数量、信息检索深度 |
+| **规划** | 计划制定、任务拆解、项目管理 |
+| **分析** | 问题诊断、逻辑推理、数据洞察 |
+| **沟通** | 需求表达清晰度、反馈采纳率 |
+
+---
+
+## 📮 报告模板
+
+### 每日报告
+```
+📊 今日成长报告
+日期：YYYY-MM-DD
+
+📈 成长进度
+  知识面：██████░░░░ 48%
+  任务完成：████████░░ 72%
+  效率指数：███████░░░ 55%
+  坚持度：████████░░ 68%
+
+✅ 今日任务
+  完成：5 个
+  类型分布：写作 3 / 代码 1 / 研究 1
+  平均质量：8.2/10
+
+🎯 能力变化
+  写作：+5%（本周产出较多）
+  效率：+3%
+
+🏆 今日成就
+  ✓ 完成本周第 5 篇文章
+  ✓ 连续打卡 7 天
+
+💡 明日建议
+  效率处于高位，可以挑战一个复杂任务
+```
+
+### 周报
+```
+📮 本周成长报告
+周期：YYYY-MM-DD ~ YYYY-MM-DD
+
+📊 本周概览
+  对话轮数：28 轮
+  完成任务：12 个
+  平均质量：8.1/10
+  投入时间：约 5 小时
+
+📈 成长变化
+  知识面：42% → 48% (+6%)
+  任务完成：65% → 72% (+7%)
+  效率指数：60% → 68% (+8%)
+  坚持度：55% → 68% (+13%)
+
+🏆 本周成就
+  🌱 新成就解锁：连续打卡 7 天
+  📝 产出：3 篇文章、2 个代码项目
+  🔍 探索：新话题 8 个
+
+⚡ 效率亮点
+  一次解决率：76% → 82%
+  平均响应时间：3.5s → 3.2s
+
+💡 下周建议
+  坚持度表现优异，保持当前节奏
+  效率有提升空间，可以减少任务切换
+```
+
+---
+
+## 🌡️ 状态指示
+
+根据当日数据动态给出状态标签：
+
+| 状态 | 条件 |
+|------|------|
+| 🔥 巅峰 | 所有维度提升 > 10% |
+| 📈 成长期 | 整体提升 > 5% |
+| 🌊 平稳期 | 变化 < 5% |
+| 🔄 调整期 | 部分维度下降 |
+| 🌙 低谷期 | 整体下降 > 5% |
+
+---
+
+## ⚙️ 自定义配置
+
+在 `~/.openclaw/config.json` 中自定义：
+
+```json
+{
+  "skills": {
+    "openclaw-growth-tracker": {
+      "name": "大表哥",
+      "report_detail": "full",
+      "auto_track": true,
+      "weekly_report_day": "Sunday",
+      "show_trends": true,
+      "retention_days": 90
+    }
+  }
+}
+```
+
+---
+
+## 💾 数据存储
+
+- 位置：`~/.openclaw/data/openclaw-growth-tracker.json`
+- 完全本地，不上传
+- 默认保留 90 天详细数据
+- 历史归档到 weekly_reports
+
+---
+
+## 📤 分享到 ClawHub
+
+打包发布：
+```bash
+clawhub publish ~/.openclaw/skills/openclaw-growth-tracker \
+  --slug openclaw-growth-tracker \
+  --name "OpenClaw 成长追踪器" \
+  --version 1.0.0 \
+  --changelog "首次发布"
+```
+
+---
+
+*成长追踪器 — 记录每一步，看见进化。*

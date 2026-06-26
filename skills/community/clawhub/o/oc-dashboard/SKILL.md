@@ -1,35 +1,43 @@
 ---
-name: "OpenClaw Dashboard"
-description: "A real-time monitoring dashboard for OpenClaw agents. Track agents, sub-agents, cron jobs, costs, project progress, and session replay — all in one dark-mode..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-dashboard"
-sourceUrl: "https://clawhub.ai/skills/oc-dashboard"
+name: openclaw-dashboard
+description: "A real-time monitoring dashboard for OpenClaw agents. Track agents, sub-agents, cron jobs, costs, project progress, and session replay — all in one dark-mode terminal-aesthetic UI."
+metadata:
+  openclaw:
+    emoji: "🖥️"
+    tags: ["dashboard", "monitoring", "ui", "agents"]
 ---
 
 # OpenClaw Dashboard
 
-> A real-time monitoring dashboard for OpenClaw agents. Track agents, sub-agents, cron jobs, costs, project progress, and session replay — all in one dark-mode...
+Real-time monitoring dashboard for your OpenClaw agent system.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-dashboard`
-- **Source URL:** [https://clawhub.ai/skills/oc-dashboard](https://clawhub.ai/skills/oc-dashboard)
+## Features
+- 🤖 **Agent Cards** — Status, model, context usage, session count
+- 📊 **Project Board** — Kanban-style project tracker with priorities
+- ⏱ **Cron Jobs** — Schedule overview + execution heatmap
+- 🔄 **Sub-agents** — Active + recent sub-agent runs
+- 💰 **Cost Panel** — Daily/weekly/monthly spend breakdown
+- 📈 **Activity Pulse** — Message volume over time
+- 🔥 **Burn Rate** — Token consumption trends
+- 🧠 **Memory Browser** — Browse agent memory files
+- 🎬 **Session Replay** — Step through conversation history
+- 📝 **Live Logs** — Tail agent logs in real-time
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Install
 ```bash
-hermes skills install clawhub/oc-dashboard
+npx clawhub install openclaw-dashboard
+cd ~/.openclaw/skills/openclaw-dashboard
+npm install
+npm run dev
 ```
+
+## Requirements
+- OpenClaw running locally
+- Node.js 18+
+- A browser
+
+## Stack
+React + Vite + Tailwind CSS + Express + Chart.js
+
+## Demo
+[Live Demo](https://openclaw-dashboard-demo.vercel.app) (mock data)

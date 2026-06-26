@@ -1,35 +1,21 @@
----
-name: "openclaw-voice"
-description: "Transcribe audio to text and generate spoken AI responses using Whisper and ElevenLabs via CLI with transcript storage and search."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-voice"
-sourceUrl: "https://clawhub.ai/skills/openclaw-voice"
----
-
-# openclaw-voice
-
-> Transcribe audio to text and generate spoken AI responses using Whisper and ElevenLabs via CLI with transcript storage and search.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-voice`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-voice](https://clawhub.ai/skills/openclaw-voice)
+# OpenClaw Voice Skill
 
 ## Overview
+Voice conversation with AI via Whisper STT + ElevenLabs TTS. Records audio, transcribes, generates spoken responses, stores transcripts. For v1: CLI-based commands only (no real-time conversation mode — that's v1.1). Focus on transcript storage/search + TTS/STT wrappers.
 
+## Tech Stack
+- Node.js ESM
+- better-sqlite3 (WAL mode always)
+- commander for CLI
+- uuid for IDs
+- @openclaw/interchange (import from ../interchange/src/index.js)
+- NO external audio packages — use child_process to call sox/rec and ffplay
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-voice
-```
+## Database
+See migrations/001_initial.sql for schema.
+
+## CLI
+See src/cli.js for commands.
+
+## Tests
+Run with npm test.

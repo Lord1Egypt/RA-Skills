@@ -1,0 +1,42 @@
+{
+  "name": "openclaw-official-docs-search",
+  "version": "1.0.4",
+  "main": "dist/search.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/search.js"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "docs",
+    "documentation",
+    "official-docs",
+    "official-search",
+    "real-time-search",
+    "config-safe",
+    "token-efficient",
+    "cli",
+    "gateway",
+    "channels",
+    "skills",
+    "llm",
+    "markdown",
+    "agent",
+    "skill"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Real-time search of the latest official OpenClaw docs with compact Markdown output for safer config, CLI, gateway, channels, and skills workflows.",
+  "dependencies": {
+    "jsdom": "^29.0.1",
+    "turndown": "^7.2.2"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.1",
+    "@types/turndown": "^5.0.6",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

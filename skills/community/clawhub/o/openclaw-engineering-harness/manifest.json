@@ -1,0 +1,39 @@
+{
+  "skill_name": "openclaw-engineering-harness",
+  "package_type": "single-skill",
+  "runtime_surface": {
+    "includes_scripts": true,
+    "includes_policies": true,
+    "includes_tool_layer": true,
+    "includes_state_layer": true,
+    "includes_policy_layer": true,
+    "includes_constraint_script": true,
+    "stdlib_only": true
+  },
+  "export_policy": {
+    "copy_only_skill_files": true,
+    "exclude_host_specific_content": true,
+    "exclude_generated_assets": true,
+    "run_content_audit_before_publish": true,
+    "run_constraint_checks_before_publish": true
+  },
+  "exported_files": [
+    "SKILL.md",
+    "refs/MEMORY-index-template.md",
+    "refs/capability-model.md",
+    "refs/execution-loop.md",
+    "refs/export-policy.md",
+    "refs/memory-system.md",
+    "refs/release-checklist.md",
+    "refs/request-shape.md",
+    "scripts/run_audit.py",
+    "scripts/run_constraints.py",
+    "scripts/run_workflow.py",
+    "scripts/runtime_support.py",
+    "policies/export-audit-policy.json",
+    "policies/workflow-policy.json",
+    "tool/tool-config.json",
+    "state/state-policy.json",
+    "policy/constraint-policy.json"
+  ]
+}

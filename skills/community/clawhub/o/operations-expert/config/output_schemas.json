@@ -1,0 +1,14 @@
+{
+  "topic_map": {
+    "required": ["brief_summary", "content_pillars", "ranked_topic_ideas", "recommended_next_batch"]
+  },
+  "content_calendar": {
+    "required": ["strategic_goal", "audience_segment", "platform_mix", "publishing_cadence", "content_sequence"]
+  },
+  "post_output": {
+    "required": ["objective", "hook_options", "full_draft", "cta_options", "fit_notes"]
+  },
+  "performance_review": {
+    "required": ["underperformed", "why", "next_changes", "revision_or_test_plan"]
+  }
+}

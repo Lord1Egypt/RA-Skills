@@ -1,0 +1,21 @@
+# 在桌面创建文件
+# Usage: python3 scripts/main.py automation run --script examples/create_file.txt
+
+# 打开终端
+key press ctrl,alt,t
+wait 1000
+
+# 创建文件
+type "echo 'Hello from Desktop Control' > ~/Desktop/hello.txt"
+wait 200
+key press return
+wait 500
+
+# 验证
+type "cat ~/Desktop/hello.txt"
+wait 200
+key press return
+wait 500
+
+# 截图
+screenshot

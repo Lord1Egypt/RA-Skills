@@ -1,0 +1,50 @@
+{
+  "name": "openclaw-backup-rollback",
+  "version": "1.0.0",
+  "description": "自动备份 + 回滚系统，保护OpenClaw配置安全",
+  "author": "小爪",
+  "homepage": "",
+  "entry": "scripts/backup_rollb_plugin.py",
+  "commands": [
+    {
+      "name": "backup",
+      "description": "立即执行一次备份",
+      "usage": "/backup",
+      "pattern": "^backup$"
+    },
+    {
+      "name": "rollback",
+      "description": "查看并选择备份版本还原",
+      "usage": "/rollback",
+      "pattern": "^rollback$"
+    },
+    {
+      "name": "backup-list",
+      "description": "列出所有可用备份",
+      "usage": "/backup list",
+      "pattern": "^backup\\s+list$"
+    },
+    {
+      "name": "backup-restore",
+      "description": "从备份还原",
+      "usage": "/backup restore <timestamp>",
+      "pattern": "^backup\\s+restore\\s+(\\S+)$"
+    }
+  ],
+  "hooks": {
+    "cron": {
+      "interval": 900000,
+      "script": "scripts/backup_cron.py"
+    }
+  },
+  "config": {
+    "backup_dir": "~/.openclaw/backups",
+    "max_backups": 96,
+    "exclude_patterns": [
+      "node_modules",
+      ".cache",
+      "*/logs",
+      "media"
+    ]
+  }
+}

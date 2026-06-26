@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw 资金费套利"
+  short_description: "运行 MEXC 股票合约资金费套利并支持卡点调参与风控。"
+  default_prompt: "使用 $openclaw-funding-arb 运行或调优 MEXC 股票合约资金费套利脚本。"

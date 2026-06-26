@@ -1,35 +1,8 @@
 ---
-name: "Grill Me"
-description: "Stress-test a plan, idea, or design by interviewing the user relentlessly until reaching shared understanding. Resolves each branch of the decision tree one-..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nox-grill-me"
-sourceUrl: "https://clawhub.ai/skills/nox-grill-me"
+name: grill-me
+description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
 ---
 
-# Grill Me
+Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
 
-> Stress-test a plan, idea, or design by interviewing the user relentlessly until reaching shared understanding. Resolves each branch of the decision tree one-...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nox-grill-me`
-- **Source URL:** [https://clawhub.ai/skills/nox-grill-me](https://clawhub.ai/skills/nox-grill-me)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nox-grill-me
-```
+If a question can be answered by exploring the codebase, explore the codebase instead.

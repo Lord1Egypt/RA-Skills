@@ -1,0 +1,84 @@
+{
+  "id": "wechatMailBridge",
+  "name": "WeChat Mail Bridge",
+  "version": "0.1.0",
+  "description": "Plugin-first WeChat group to BHMailer bridge",
+  "entry": "dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": { "type": "boolean", "default": true },
+      "bridge": {
+        "type": "object",
+        "properties": {
+          "sharedSecretEnv": { "type": "string", "default": "BRIDGE_SHARED_SECRET" },
+          "sqlitePath": { "type": "string", "default": "./state/wechat-mail-bridge.db" },
+          "sweepIntervalSec": { "type": "integer", "minimum": 2, "default": 5 },
+          "staleClaimSec": { "type": "integer", "minimum": 10, "default": 120 },
+          "dedupeRetentionHours": { "type": "integer", "minimum": 1, "default": 72 },
+          "jobRetentionHours": { "type": "integer", "minimum": 1, "default": 168 },
+          "sidecarStaleSec": { "type": "integer", "minimum": 5, "default": 60 }
+        },
+        "additionalProperties": true
+      },
+      "wechat": {
+        "type": "object",
+        "properties": {
+          "allowGroups": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "triggerPrefixes": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": ["/mail", "查邮箱", "/watch", "/mail-watch", "监控"]
+          },
+          "passiveSingleEmailMode": { "type": "boolean", "default": false },
+          "defaultWaitTimeoutSec": { "type": "integer", "minimum": 5, "maximum": 3600, "default": 120 }
+        },
+        "additionalProperties": true
+      },
+      "mail": {
+        "type": "object",
+        "properties": {
+          "backend": { "type": "string", "enum": ["mock", "bhmailer-http"], "default": "mock" },
+          "queryMode": { "type": "string", "enum": ["direct-api", "push-webhook"], "default": "direct-api" },
+          "preferPushWebhook": { "type": "boolean", "default": true },
+          "bhmailerApiBase": { "type": "string", "default": "" },
+          "uidEnv": { "type": "string", "default": "BHMAILER_UID" },
+          "signEnv": { "type": "string", "default": "BHMAILER_SIGN" },
+          "webhookSecretEnv": { "type": "string", "default": "BHMAILER_WEBHOOK_SECRET" },
+          "defaultTimeoutSec": { "type": "integer", "minimum": 1, "default": 20 },
+          "extractionProfile": { "type": "string", "default": "default" }
+        },
+        "additionalProperties": true
+      },
+      "reply": {
+        "type": "object",
+        "properties": {
+          "maxBodyPreviewChars": { "type": "integer", "minimum": 100, "default": 400 },
+          "includeSubject": { "type": "boolean", "default": true },
+          "includeFrom": { "type": "boolean", "default": true },
+          "includeReceivedAt": { "type": "boolean", "default": true }
+        },
+        "additionalProperties": true
+      },
+      "privacy": {
+        "type": "object",
+        "properties": {
+          "redactEmailsInLogs": { "type": "boolean", "default": true },
+          "storeRawWechatText": { "type": "boolean", "default": true },
+          "storeRawMailBody": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "skills": [
+    {
+      "id": "wechat-mail-bridge",
+      "path": "skills/wechat-mail-bridge/SKILL.md"
+    }
+  ]
+}

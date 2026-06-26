@@ -1,35 +1,30 @@
 ---
-name: "OC SRE On-Demand Service"
-description: "Provides expert SRE support for OpenClaw environments including health checks, connectivity fixes, execution stabilization, and security hardening guidance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-sre-on-demand-service"
-sourceUrl: "https://clawhub.ai/skills/oc-sre-on-demand-service"
+name: oc-sre-on-demand-service
+description: Service blueprint for OpenClaw SRE support: health checks, connectivity repair, execution stabilization, and hardening guidance.
 ---
 
 # OC SRE On-Demand Service
 
-> Provides expert SRE support for OpenClaw environments including health checks, connectivity fixes, execution stabilization, and security hardening guidance.
+## Service scope
+- Gateway and node health checks
+- Pairing/connectivity incident response
+- Execution-path stabilization
+- Security and configuration optimization
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-sre-on-demand-service`
-- **Source URL:** [https://clawhub.ai/skills/oc-sre-on-demand-service](https://clawhub.ai/skills/oc-sre-on-demand-service)
+## Engagement model
+1. Intake: issue summary and target environment.
+2. Diagnosis: evidence-first checks and hypothesis.
+3. Remediation: smallest safe fix first.
+4. Verification: before/after proofs.
+5. Handoff: actionable next steps.
 
-## Overview
+## Output contract
+- findings
+- actions taken
+- verification
+- residual risk
+- recommended roadmap
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-sre-on-demand-service
-```
+## Data handling
+- external-facing reports must be fully sanitized.
+- use placeholders for endpoints, infra, and identities.

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 简约高级灰风格 ===== */
+/* 封面样式 */
+.card-cover-minimal {
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card-cover-minimal .cover-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-minimal .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 20);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-minimal .cover-content {
+  background: #ffffff;
+  padding: calc(var(--spacing) * 6);
+  border-top: 1px solid #f0f0f0;
+}
+
+.card-cover-minimal .cover-title {
+  color: #333;
+  font-size: calc(var(--spacing) * 6);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 4);
+  margin-bottom: calc(var(--spacing) * 4);
+}
+
+.card-cover-minimal .cover-title:after {
+  content: "";
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 0.75);
+  background: #333;
+}
+
+.card-cover-separate.card-cover-minimal .cover-title:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-cover-minimal .cover-description {
+  color: #555;
+  font-size: calc(var(--spacing) * 3.75);
+  line-height: 1.6;
+}
+
+.card-cover-minimal .cover-tag {
+  background-color: #f0f0f0;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  padding: calc(var(--spacing) * 1) calc(var(--spacing) * 3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.card-cover-minimal .cover-tag:hover {
+  background-color: #e0e0e0;
+}
+
+.card-cover-minimal .cover-date {
+  color: #888;
+  font-weight: 400;
+}
+/* 卡片样式 */
+.card-minimal {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  padding: calc(var(--spacing) * 8);
+  border: 1px solid #f0f0f0;
+}
+
+.card-minimal .card-content {
+  position: relative;
+  height: calc(var(--card-height) - calc(var(--spacing) * 22.5));
+}
+/* 段落样式 */
+.card-minimal p {
+  color: #555;
+}
+
+.card-minimal p a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.card-minimal p a:hover {
+  color: #000;
+  border-bottom: 1px solid #999;
+}
+.card-minimal h1 {
+  font-size: calc(var(--spacing) * 6);
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.card-minimal h2 {
+  font-size: calc(var(--spacing) * 4);
+  color: #888;
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.card-minimal h2:after {
+  content: "";
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 0.75);
+  background: #333;
+  display: block;
+  margin-top: calc(var(--spacing) * 2);
+}
+
+.card-minimal li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin: calc(var(--spacing) * 4) 0;
+  color: #555;
+  font-size: inherit;
+}
+
+.card-minimal li:before {
+  content: "0" attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -7);
+  top: calc(var(--spacing) * 0);
+  color: #fff;
+  font-weight: 600;
+  font-size: calc(var(--spacing) * 3);
+  background: #333;
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  line-height: calc(var(--spacing) * 6);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.card-minimal h3 {
+  display: block;
+  color: #333;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 600;
+}
+/* 表格样式 */
+.card-minimal table {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-minimal th {
+  background-color: #f7f7f7;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.card-minimal td {
+  color: #555;
+}
+
+.card-minimal tr {
+  border-bottom-color: #f0f0f0;
+}
+
+.card-minimal tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* 代码块样式 */
+.card-minimal pre {
+  border: 1 solid #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-minimal code:not(pre code) {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* 引用块样式 */
+.card-minimal blockquote {
+  background-color: #f7f7f7;
+  border-left: 4px solid #333;
+  color: #555;
+}
+
+.card-minimal ul ul,
+.card-minimal ul ol {
+  padding-left: calc(var(--spacing) * 5);
+}
+
+/* 无序列表样式 */
+.card-minimal ul > li:before {
+  content: "";
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  top: calc(var(--spacing) * 2);
+  left: calc(var(--spacing) * -5);
+  background-color: #333;
+  border-radius: 0;
+}
+
+/* 水平线样式 */
+.card-minimal hr {
+  background-color: #e0e0e0;
+}
+
+.card-minimal .card-footer {
+  text-align: right;
+}
+
+.card-minimal .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-minimal">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

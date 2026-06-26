@@ -1,0 +1,60 @@
+{
+  "name": "jaka-robotics-control",
+  "version": "1.1.0",
+  "description": "JAKA 协作机器人控制技能 - 关节运动、直线运动、状态监控",
+  "author": "RobotQu",
+  "license": "MIT",
+  "repository": "https://github.com/RobotQu/openclaw-robot-skills",
+  "homepage": "https://robotqu.com/jaka-robot",
+  "keywords": ["robot", "jaka", "collaborative", "cobot"],
+  "platforms": ["jaka-zu20", "jaka-zu5", "jaka-zu10", "jaka-zu15"],
+  "dependencies": {
+    "asyncio": "*"
+  },
+  "entry": "jaka_skill.py",
+  "skills": {
+    "main": "JakaRobot"
+  },
+  "features": {
+    "state_monitoring": true,
+    "motion_control": true,
+    "safety": true,
+    "camera": false,
+    "io_control": true,
+    "force_control": false
+  },
+  "motion_types": {
+    "ptp": true,
+    "line": true,
+    "circle": false,
+    "pvt": false
+  },
+  "examples": [
+    "example_linear.py",
+    "home.py"
+  ],
+  "scripts": [
+    "test_api.py",
+    "test_connect.py"
+  ],
+  "changelog": {
+    "1.1.0": {
+      "date": "2026-03-31",
+      "changes": [
+        "✅ 更新到统一 API 架构",
+        "✅ 类型注解完善",
+        "✅ 日志系统",
+        "✅ 与 TM Robot 保持一致的接口"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-27",
+      "changes": [
+        "初始版本",
+        "基础连接功能",
+        "关节运动",
+        "直线运动"
+      ]
+    }
+  }
+}

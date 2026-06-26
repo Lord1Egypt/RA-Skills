@@ -1,35 +1,50 @@
 ---
-name: "Ntriq X402 Image Upscale Batch"
+name: ntriq-x402-image-upscale-batch
 description: "Batch AI image upscaling for up to 500 images using Real-ESRGAN. Flat $30.00 USDC via x402."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ntriq-x402-image-upscale-batch"
-sourceUrl: "https://clawhub.ai/skills/ntriq-x402-image-upscale-batch"
+version: 1.0.0
+metadata:
+  openclaw:
+    primaryTag: data-intelligence
+    tags: [image, upscale, esrgan, super-resolution, batch, vision, x402]
+    author: ntriq
+    homepage: https://x402.ntriq.co.kr
 ---
 
-# Ntriq X402 Image Upscale Batch
+# Image Upscale Batch (x402)
 
-> Batch AI image upscaling for up to 500 images using Real-ESRGAN. Flat $30.00 USDC via x402.
+Upscale up to 500 images in one call using Real-ESRGAN on Apple M4 GPU. Flat $30.00 USDC.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ntriq-x402-image-upscale-batch`
-- **Source URL:** [https://clawhub.ai/skills/ntriq-x402-image-upscale-batch](https://clawhub.ai/skills/ntriq-x402-image-upscale-batch)
+## How to Call
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ntriq-x402-image-upscale-batch
+POST https://x402.ntriq.co.kr/image-upscale-batch
+Content-Type: application/json
+X-PAYMENT: <x402-payment-header>
+
+{
+  "images": [
+    "https://example.com/img1.jpg",
+    "https://example.com/img2.jpg"
+  ],
+  "scale": 4,
+  "mode": "general"
+}
+```
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `images` | array | ✅ | Image URLs to upscale (max 500, jpg/png/webp) |
+| `scale` | integer | ❌ | Upscale factor: `2`, `3`, or `4` (default: `4`) |
+| `mode` | string | ❌ | `general` (default) or `photo` (real-world photos, always 4x) |
+
+## Payment
+
+- **Price**: $30.00 USDC flat (up to 500 images)
+- **Network**: Base mainnet (EIP-3009 gasless)
+- **Protocol**: [x402](https://x402.org)
+
+```bash
+curl https://x402.ntriq.co.kr/services
 ```

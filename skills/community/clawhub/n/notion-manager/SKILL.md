@@ -1,35 +1,26 @@
 ---
-name: "Notion Manager"
-description: "Production-ready Notion API client for SaaS workflows. Create/read/update pages, query data sources, append blocks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notion-manager"
-sourceUrl: "https://clawhub.ai/skills/notion-manager"
+name: notion
+description: Production-ready Notion API client for SaaS workflows. Create/read/update pages, query data sources, append blocks.
+author: tomas-mikula
+web: https://FrontendAccelerator.com
+env:
+  - NOTION_API_KEY
+primary-credential: NOTION_API_KEY
 ---
 
-# Notion Manager
+## Description
+Execute Notion API operations with automatic version header and structured outputs.
 
-> Production-ready Notion API client for SaaS workflows. Create/read/update pages, query data sources, append blocks.
+## Usage
+{"auth": {"notionApiKey": "secret_..."}, "input": {"operation": "queryDataSource", "params": {"dataSourceId": "abc123"}}}
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notion-manager`
-- **Source URL:** [https://clawhub.ai/skills/notion-manager](https://clawhub.ai/skills/notion-manager)
+Operations: search, getPage, queryDataSource, createPage, updatePage, appendBlocks, createDataSource
 
-## Overview
+## Input schema
+{"type": "object", "properties": {"operation": {"type": "string", "enum": ["search","getPage","queryDataSource","createPage","updatePage","appendBlocks","createDataSource"]}, "params": {"type": "object"}}, "required": ["operation"]}
 
+## Output schema
+{"type": "object", "properties": {"status": {"type": "string", "enum": ["success","error"]}, "data": {}, "meta": {}, "error_type": {"type": "string"}, "http_status": {"type": "integer"}}, "required": ["status"]}
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/notion-manager
-```
+## Environment variables
+NOTION_API_KEY: secret_ or ntn_ key from notion.so/my-integrations

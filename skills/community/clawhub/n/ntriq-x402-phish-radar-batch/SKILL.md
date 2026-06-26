@@ -1,35 +1,62 @@
 ---
-name: "Ntriq X402 Phish Radar Batch"
+name: ntriq-x402-phish-radar-batch
 description: "Batch phishing detection for up to 500 URLs or domains. Flat $9.00 USDC via x402."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ntriq-x402-phish-radar-batch"
-sourceUrl: "https://clawhub.ai/skills/ntriq-x402-phish-radar-batch"
+version: 1.0.0
+metadata:
+  openclaw:
+    primaryTag: data-intelligence
+    tags: [phishing, cybersecurity, threat, batch, domain, x402]
+    author: ntriq
+    homepage: https://x402.ntriq.co.kr
 ---
 
-# Ntriq X402 Phish Radar Batch
+# Phish Radar Batch (x402)
 
-> Batch phishing detection for up to 500 URLs or domains. Flat $9.00 USDC via x402.
+Scan up to 500 URLs or domains for phishing in one call. Flat $9.00 USDC. Local AI inference on Mac Mini.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ntriq-x402-phish-radar-batch`
-- **Source URL:** [https://clawhub.ai/skills/ntriq-x402-phish-radar-batch](https://clawhub.ai/skills/ntriq-x402-phish-radar-batch)
+## How to Call
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ntriq-x402-phish-radar-batch
+POST https://x402.ntriq.co.kr/phish-radar-batch
+Content-Type: application/json
+X-PAYMENT: <x402-payment-header>
+
+{
+  "targets": [
+    "https://paypa1.com/login",
+    "https://amazon-security-update.net",
+    "https://google.com"
+  ]
+}
+```
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `targets` | array | ✅ | URLs or domains to scan (max 500) |
+| `language` | string | ❌ | Output language (default: `en`) |
+
+## Example Response
+
+```json
+{
+  "status": "ok",
+  "count": 3,
+  "results": [
+    {"index": 0, "target": "https://paypa1.com/login", "risk_level": "critical", "recommendation": "block"},
+    {"index": 1, "target": "https://amazon-security-update.net", "risk_level": "high", "recommendation": "avoid"},
+    {"index": 2, "target": "https://google.com", "risk_level": "safe", "recommendation": "safe_to_visit"}
+  ]
+}
+```
+
+## Payment
+
+- **Price**: $9.00 USDC flat (up to 500 targets)
+- **Network**: Base mainnet (EIP-3009 gasless)
+- **Protocol**: [x402](https://x402.org)
+
+```bash
+curl https://x402.ntriq.co.kr/services
 ```

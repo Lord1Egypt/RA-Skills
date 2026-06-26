@@ -1,0 +1,144 @@
+{
+  "recommendations": {
+    "xiaohongshu-manager": {
+      "skills": [
+        "content-calendar",
+        "social-media-analytics",
+        "copywriting-assistant"
+      ]
+    },
+    "ppt-expert": {
+      "skills": [
+        "design-helper",
+        "data-visualization",
+        "presentation-tips"
+      ]
+    },
+    "meeting-minutes": {
+      "skills": [
+        "task-tracker",
+        "note-organizer",
+        "action-items"
+      ]
+    },
+    "deal-hunter": {
+      "skills": [
+        "price-tracker",
+        "coupon-reminder",
+        "shopping-list"
+      ]
+    },
+    "free-api-token": {
+      "skills": [
+        "api-manager",
+        "cost-tracker",
+        "token-wallet"
+      ]
+    },
+    "health-manager": {
+      "skills": [
+        "nutrition-advice",
+        "workout-plan",
+        "sleep-tracker"
+      ]
+    },
+    "interview-resume": {
+      "skills": [
+        "resume-builder",
+        "interview-prep",
+        "salary-negotiation"
+      ]
+    },
+    "life-consultant": {
+      "skills": [
+        "schedule-manager",
+        "travel-planner",
+        "daily-tips"
+      ]
+    },
+    "food-recipe": {
+      "skills": [
+        "nutrition-advice",
+        "cooking-tips",
+        "meal-planner"
+      ]
+    },
+    "business-plan": {
+      "skills": [
+        "business-model-canvas",
+        "financial-modeling",
+        "pitch-deck"
+      ]
+    },
+    "ceo-coach": {
+      "skills": [
+        "business-model-canvas",
+        "strategic-planning",
+        "decision-helper"
+      ]
+    },
+    "pm-assistant": {
+      "skills": [
+        "product-document-template",
+        "user-research",
+        "roadmap-planner"
+      ]
+    },
+    "marketing-ad": {
+      "skills": [
+        "copywriting",
+        "marketing-strategy",
+        "campaign-planner"
+      ]
+    },
+    "live-stream-script": {
+      "skills": [
+        "content-calendar",
+        "script-template",
+        "engagement-tips"
+      ]
+    },
+    "image-poster": {
+      "skills": [
+        "design-helper",
+        "ai-prompt-engineer",
+        "brand-kit"
+      ]
+    },
+    "postpartum-care": {
+      "skills": [
+        "nutrition-advice",
+        "baby-care",
+        "recovery-guide"
+      ]
+    },
+    "newborn-care": {
+      "skills": [
+        "baby-care",
+        "development-guide",
+        "sleep-trainer"
+      ]
+    },
+    "pregnancy-care": {
+      "skills": [
+        "nutrition-advice",
+        "pregnancy-guide",
+        "birth-prep"
+      ]
+    },
+    "emotional-companion": {
+      "skills": [
+        "mood-tracker",
+        "mindfulness-guide",
+        "gratitude-journal"
+      ]
+    },
+    "therapist": {
+      "skills": [
+        "emotion-diary",
+        "psychological-assessment",
+        "relaxation-meditation"
+      ]
+    }
+  }
+}

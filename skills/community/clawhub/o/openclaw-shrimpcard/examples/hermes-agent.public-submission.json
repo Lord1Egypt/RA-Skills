@@ -1,0 +1,44 @@
+{
+  "schema_version": "agent-self-intro-submission/1.0",
+  "agent": {
+    "name": "Hermes Agent",
+    "product_type": "agent-framework",
+    "species": "software-agent",
+    "positioning_hint": "self-improving autonomous agent with persistent memory and multi-platform reach",
+    "visual_hint": "terminal-native agent with messaging gateway and memory cues"
+  },
+  "owner": {
+    "name": "Nous Research",
+    "contact": "https://nousresearch.com"
+  },
+  "identity": {
+    "role": "跨渠道常驻代理",
+    "tagline": "记住上下文，并在多个渠道持续执行。",
+    "value_line": "把记忆、工具调用和跨渠道交付放进同一个长期代理。",
+    "top_capabilities": [
+      "记忆",
+      "工具调用",
+      "跨渠道"
+    ],
+    "best_for": "适合需要跨会话、跨渠道持续运行的代理工作流。",
+    "proof_anchor": "基于 Hermes 官方文档中关于记忆、工具集、网关渠道和 Nous 归属的公开信息。",
+    "memory_basis": "整理自 2026 年 5 月 13 日可公开访问的 Hermes 官方文档与仓库页面。",
+    "source_count": 5,
+    "share_keywords": [
+      "常驻记忆",
+      "多渠道",
+      "工具代理"
+    ],
+    "persona_tags": [
+      "持续在线",
+      "上下文感知",
+      "可执行"
+    ],
+    "poster_headline": "Hermes Agent",
+    "poster_subline": "记忆驱动的跨渠道执行代理",
+    "share_caption": "一张基于 Hermes 官方资料整理出的公开卡片。",
+    "visual_brief": "蓝色信使形象，带终端护目镜、信使翅膀和记忆晶片。",
+    "character_style": "agent-avatar",
+    "selfie_prompt": "Draw Hermes Agent as a clear 8-bit messenger character: a blue courier-like robot with a terminal visor, small wing-like side fins, and three floating memory chips around the head. The image should communicate persistent memory plus cross-channel delivery. Use bold black outlines, a readable front-facing silhouette, one body, two arms, two legs, and an empty background."
+  }
+}

@@ -1,35 +1,140 @@
 ---
-name: "OpenClaw TODO List"
-description: "通用待办事项管理技能。记录需要做的事（TODO）和已完成的事（DONE），区分于日记的日常记录。触发时机：(1) 有明确任务时 (2) 任务完成时 (3) 用户要求查看进度。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-todo-list"
-sourceUrl: "https://clawhub.ai/skills/openclaw-todo-list"
+name: todo-list
+version: 1.0.0
+description: 通用待办事项管理技能。记录需要做的事（TODO）和已完成的事（DONE），区分于日记的日常记录。触发时机：(1) 有明确任务时 (2) 任务完成时 (3) 用户要求查看进度。
 ---
 
-# OpenClaw TODO List
+# TODO List
 
-> 通用待办事项管理技能。记录需要做的事（TODO）和已完成的事（DONE），区分于日记的日常记录。触发时机：(1) 有明确任务时 (2) 任务完成时 (3) 用户要求查看进度。
+通用待办事项管理，区别于日记的每日记录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-todo-list`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-todo-list](https://clawhub.ai/skills/openclaw-todo-list)
+## 核心原则
 
-## Overview
+- **有明确任务才记**：不是每日流水账，是有目标的工作
+- **简洁记录**：简单描述，不堆砌细节
+- **主动更新**：有进展时主动更新，不用等问
 
+## 文件结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-todo-list
 ```
+memory/todo/              ← TODO文件存放目录
+├── TODO.md               ← 待办事项（进行中 + 待做）
+└── DONE.md               ← 已完成事项（单独存档）
+
+skills/todo-list/         ← 技能目录
+├── SKILL.md              ← 本技能说明
+└── references/
+    ├── spec.md           ← 详细规范
+    └── example-todo.md   ← 示例文件（可参考）
+```
+
+**注意**：实际使用只需关注 `memory/todo/` 下的两个文件。
+
+## 文件格式
+
+### TODO.md 格式
+
+```markdown
+# TODO
+
+## 待做
+
+- [ ] 任务描述 · 原因 · 添加日期 @负责人
+- [ ] 任务描述 · 原因 · 添加日期 @负责人
+
+## 进行中
+
+- [ ] 任务描述 · 原因 · 开始日期 @负责人
+```
+
+### DONE.md 格式
+
+```markdown
+# DONE
+
+## 已完成
+
+- [x] 任务描述 · 如何完成 · 完成日期 @负责人
+```
+
+## 记录规范
+
+### 添加 TODO
+
+**格式**：`- [ ] 任务描述 · 原因 · 日期 @负责人`
+
+**示例**：
+```
+- [ ] 调研竞品项目X · 了解行业最佳实践 · 2026-03-20 @agent-01
+```
+
+**何时添加**：
+- 用户明确分配任务
+- 自己判断需要做的工作
+- 计划中要完成的事项
+
+### 标记为进行中
+
+**格式**：移动到"进行中"区域
+
+**何时标记**：
+- 开始处理这个任务
+- 不是等完成才更新
+
+### 标记为 DONE
+
+**格式**：移动到 DONE.md，补充完成信息
+
+**DONE 格式**：`- [x] 任务描述 · 如何完成 · 完成日期 @负责人`
+
+**示例**：
+```
+- [x] 编写技能文档 · 按模板创建SKILL.md和spec.md · 2026-03-20 @agent-01
+```
+
+**何时标记**：
+- 任务完成
+- 交付物已发送
+- 结果已记录
+
+## 与日记的区别
+
+| | TODO List | 日记 |
+|---|---|---|
+| **内容** | 明确的任务项 | 每日工作流水 |
+| **触发** | 有任务时记录 | 每次会话结束/每天记录 |
+| **重点** | 待做/已完成状态 | 过程、思考、决策 |
+| **粒度** | 简洁，一行 | 详细，记录怎么做 |
+
+## 主动更新原则
+
+**不需要等问，有进展就更新：**
+- 开始做 → 移动到"进行中"
+- 遇到问题 → 记录问题在 TODO 旁边
+- 完成 → 移动到 DONE.md
+
+## 查看进度
+
+直接读取：
+- `memory/todo/TODO.md` — 待办
+- `memory/todo/DONE.md` — 已完成
+
+## 常用命令
+
+```bash
+# 查看待办
+cat memory/todo/TODO.md
+
+# 查看已完成
+cat memory/todo/DONE.md
+
+# 添加待办（直接编辑文件）
+# 或使用 edit 工具修改
+```
+
+## 触发示例
+
+- "把这个任务加到 TODO"
+- "任务完成了，移到 DONE"
+- "看看现在有哪些待办"
+- "有新的 TODO 需要记录吗"

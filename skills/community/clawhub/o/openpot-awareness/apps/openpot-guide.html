@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OpenPot Guide</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --surface-3: #242430;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #c8a44e;
+    --accent-glow: rgba(200, 164, 78, 0.15);
+    --accent-soft: rgba(200, 164, 78, 0.08);
+    --green: #30d158;
+    --blue: #4a9eff;
+    --red: #ff453a;
+    --orange: #ff9f0a;
+    --purple: #af52de;
+    --teal: #2aacac;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 20px 20px 100px; }
+
+  /* Navigation */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 10, 12, 0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 12px 20px;
+    margin: -20px -20px 24px;
+  }
+  .nav-title { font-size: 17px; font-weight: 700; text-align: center; }
+  .nav-scroll {
+    display: flex; gap: 6px; overflow-x: auto; margin-top: 10px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-pill {
+    flex-shrink: 0; padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    background: var(--surface-2); border: none; cursor: pointer;
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-pill:active, .nav-pill:hover { background: var(--accent); color: var(--bg); }
+
+  /* Hero */
+  .hero { text-align: center; padding: 32px 0 28px; }
+  .hero-icon {
+    width: 72px; height: 72px; border-radius: 18px;
+    background: linear-gradient(135deg, var(--accent), #a07830);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px; font-size: 36px;
+    box-shadow: 0 8px 32px var(--accent-glow);
+  }
+  .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .hero .subtitle { font-size: 15px; color: var(--text-muted); margin-top: 6px; max-width: 300px; margin-left: auto; margin-right: auto; }
+
+  /* Sections */
+  .section { margin-bottom: 36px; scroll-margin-top: 100px; }
+  .section-label {
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 12px; padding-left: 2px;
+  }
+  .section-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .section-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+
+  /* Cards */
+  .card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 18px 20px; margin-bottom: 10px;
+  }
+  .card h3 {
+    font-size: 16px; font-weight: 600; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card h3 .icon { font-size: 18px; width: 24px; text-align: center; }
+  .card p { font-size: 14px; color: var(--text-muted); line-height: 1.55; padding-left: 34px; }
+  .card p.no-indent { padding-left: 0; }
+
+  /* Tab cards */
+  .tab-list { background: var(--surface); border-radius: var(--radius); overflow: hidden; }
+  .tab-item {
+    padding: 14px 18px; display: flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid var(--surface-2);
+  }
+  .tab-item:last-child { border-bottom: none; }
+  .tab-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .tab-icon.chat { background: rgba(74, 158, 255, 0.15); }
+  .tab-icon.pulse { background: rgba(200, 164, 78, 0.15); }
+  .tab-icon.calendar { background: rgba(48, 209, 88, 0.15); }
+  .tab-icon.apps { background: rgba(175, 82, 222, 0.15); }
+  .tab-icon.terminal { background: rgba(255, 159, 10, 0.15); }
+  .tab-icon.agents { background: rgba(255, 69, 58, 0.15); }
+  .tab-info { flex: 1; min-width: 0; }
+  .tab-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .tab-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+  /* Tip boxes */
+  .tip {
+    background: var(--accent-soft); border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 14px 16px; margin-bottom: 12px;
+  }
+  .tip .tip-label { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .tip p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+  .warn {
+    background: rgba(255, 69, 58, 0.06); border-left: 3px solid var(--red);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 14px 16px; margin-bottom: 12px;
+  }
+  .warn .warn-label { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .warn p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+  /* Command blocks */
+  .cmd {
+    background: var(--surface-2); border-radius: var(--radius-sm);
+    padding: 12px 16px; margin: 8px 0 12px; font-size: 14px;
+    color: var(--accent); font-style: italic; line-height: 1.5;
+  }
+
+  /* Requirements list */
+  .req-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--surface-2);
+  }
+  .req-item:last-child { border-bottom: none; }
+  .req-check { color: var(--green); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
+  .req-text { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+  .req-text strong { color: var(--text); }
+
+  /* Feature table */
+  .feat-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .feat-table th {
+    text-align: left; font-size: 12px; font-weight: 600;
+    color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 8px 12px; border-bottom: 1px solid var(--surface-2);
+  }
+  .feat-table td {
+    font-size: 14px; padding: 10px 12px; color: var(--text-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: top;
+  }
+  .feat-table td:first-child { color: var(--text); font-weight: 500; }
+
+  /* Collapsible sections */
+  details { margin-bottom: 10px; }
+  details summary {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 14px 18px; font-size: 15px; font-weight: 600;
+    cursor: pointer; list-style: none; display: flex;
+    align-items: center; gap: 10px;
+  }
+  details summary::before { content: '▸'; color: var(--accent); font-size: 14px; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details .detail-content {
+    background: var(--surface); border-radius: 0 0 var(--radius) var(--radius);
+    padding: 16px 18px; margin-top: -8px;
+  }
+  details .detail-content p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  details .detail-content p:last-child { margin-bottom: 0; }
+
+  .footer {
+    text-align: center; padding: 40px 0 20px;
+    color: var(--text-dim); font-size: 13px; line-height: 1.6;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media (min-width: 768px) {
+    .container { padding: 32px 32px 100px; }
+    .hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Navigation -->
+  <div class="nav">
+    <div class="nav-title">OpenPot Guide</div>
+    <div class="nav-scroll">
+      <a href="#getting-started" class="nav-pill">Getting Started</a>
+      <a href="#chat" class="nav-pill">Chat</a>
+      <a href="#pulse" class="nav-pill">Pulse</a>
+      <a href="#calendar" class="nav-pill">Calendar</a>
+      <a href="#apps" class="nav-pill">Apps</a>
+      <a href="#terminal" class="nav-pill">Terminal</a>
+      <a href="#agents" class="nav-pill">Agents</a>
+      <a href="#voice" class="nav-pill">Voice</a>
+      <a href="#settings" class="nav-pill">Settings</a>
+      <a href="#tips" class="nav-pill">Tips</a>
+      <a href="#troubleshooting" class="nav-pill">Help</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">🫕</div>
+    <h1>OpenPot</h1>
+    <div class="subtitle">Your AI agent, in your pocket. The native iOS command center for self-hosted agents.</div>
+  </div>
+
+  <!-- GETTING STARTED -->
+  <div class="section" id="getting-started">
+    <div class="section-label">Getting Started</div>
+    <div class="section-title">Connect to Your Agent</div>
+    <div class="section-desc">OpenPot connects to agents running on the OpenClaw framework. Your agent runs on your server. OpenPot runs on your phone. Everything is direct — no cloud, no middleman.</div>
+
+    <div class="card">
+      <h3><span class="icon">1️⃣</span> Add Your Agent</h3>
+      <p>Agents tab → Add Agent → enter your gateway URL (ws://your-ip:18789) and auth token → Save.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">2️⃣</span> Approve the Pairing</h3>
+      <p>Tell your agent (via Telegram, Slack, or any channel): "Approve the OpenPot device." One-time step — after approval, OpenPot connects automatically.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">3️⃣</span> Install the Skill</h3>
+      <p>Say: "Install the OpenPot Awareness Skill" then "OpenPot sync." Your agent configures itself for all supported features.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Dual Routes</div>
+      <p>Add both a LAN route (home WiFi) and a Tailscale route (cellular/remote). OpenPot switches automatically based on which is reachable.</p>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="section" id="chat">
+    <div class="section-label">Tab Guide</div>
+    <div class="section-title">💬 Chat</div>
+    <div class="section-desc">Your main conversation with your agent. Real-time streaming with markdown, voice, and full message persistence.</div>
+
+    <div class="card">
+      <h3><span class="icon">🎤</span> Voice Input</h3>
+      <p>Tap and hold the mic button to speak. Transcribed on-device — audio never leaves your phone.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🔊</span> Voice Output</h3>
+      <p>Your agent speaks back via ElevenLabs TTS. Set your API key in Settings, choose a voice per agent in the Agents tab.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">💾</span> Message Persistence</h3>
+      <p>Messages are stored locally. With a backend server, messages are also backed up to PostgreSQL — surviving reinstalls and working across devices.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Every Tab Feeds Chat</div>
+      <p>Messages from the Calendar "Ask Agent" action, Terminal chat strip, and other tabs all appear in Chat. It's your complete conversation history.</p>
+    </div>
+  </div>
+
+  <!-- PULSE -->
+  <div class="section" id="pulse">
+    <div class="section-title">📡 Pulse</div>
+    <div class="section-desc">Your agent's proactive outbound — briefings, alerts, reports, and reminders delivered as notification cards.</div>
+
+    <div class="card">
+      <h3><span class="icon">👆</span> Tap to Expand</h3>
+      <p>Report cards (health checks, DCA signals, briefings) open into a full detail view with markdown formatting and action buttons.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">👈</span> Swipe to Dismiss</h3>
+      <p>Quick-triage cards you've seen. They're removed from the stream.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">📂</span> Categories</h3>
+      <p>Cards are organized by category: briefing, system, finance, calendar, projects, health, entertainment. Your agent creates new categories as needed.</p>
+    </div>
+
+    <div class="cmd">"Send me a few sample Pulse cards so I can see how they work"</div>
+    <div class="cmd">"Every morning at 7 AM, send me a briefing with today's weather and my calendar"</div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="section" id="calendar">
+    <div class="section-title">📅 Calendar</div>
+    <div class="section-desc">Your schedule through your agent's perspective. Three views — Year, Month, and Agenda — with events from multiple sources.</div>
+
+    <div class="card">
+      <h3><span class="icon">📆</span> Three Views</h3>
+      <p class="no-indent"><strong>Year</strong> — 12-month overview with event dots. Tap a month to zoom in.<br>
+      <strong>Month</strong> — day grid with colored indicators. Tap to expand, long-press to add an event.<br>
+      <strong>Agenda</strong> — chronological list from today forward.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">🔗</span> Multiple Sources</h3>
+      <p class="no-indent"><strong>External calendars</strong> — Google Calendar, Apple Calendar, CalDAV, or any ClawHub calendar skill your agent uses. All feed into one unified display.<br>
+      <strong>Agent calendar</strong> — events your agent creates in conversation, shown with a gold accent.<br>
+      <strong>Your events</strong> — add events directly with the + button or long-press on a date.</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="icon">📱</span> Interact with Events</h3>
+      <p>Long press any event to: Ask your agent about it, edit (local events), delete (local events), or copy details.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Agent Calendar Events</div>
+      <p>Your agent creates calendar events using a special :::calendar format in chat messages. The event appears on your Calendar tab with a gold accent. Your agent always asks permission first — it never adds events silently.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Coaching Your Agent</div>
+      <p>If your agent doesn't create calendar events correctly at first, coach it: "When I ask you to remember a date, use the :::calendar format to put it on my OpenPot calendar." The agent learns the format from the OpenPot Awareness Skill, but a reminder helps.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Calendar Context</div>
+      <p>Every time you interact with the Calendar tab, OpenPot quietly sends your today/tomorrow schedule to your agent. It absorbs this silently and uses it to answer schedule questions naturally.</p>
+    </div>
+
+    <div class="cmd">"Add my weekly review to my agent calendar — Fridays at 4 PM, remind me 1 day before"</div>
+  </div>
+
+  <!-- APPS -->
+  <div class="section" id="apps">
+    <div class="section-title">🧩 Apps</div>
+    <div class="section-desc">Web apps built and served by your agent — calculators, trackers, dashboards. Displayed as an iOS-style grid with emoji icons.</div>
+
+    <div class="card">
+      <h3><span class="icon">💬</span> Just Ask</h3>
+      <p>Tell your agent what you need. It confirms the details, builds a self-contained HTML app, and it appears in your grid automatically.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">📱</span> Managing Apps</h3>
+      <p>Tap to open full-screen. Long press to move to the App Drawer (archive) or delete. Pull down to refresh and pick up new apps.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">📦</span> App Drawer</h3>
+      <p>The rightmost page is your App Drawer — a holding area for less-used apps. Long press in the Drawer to move an app back to your main grid.</p>
+    </div>
+
+    <div class="cmd">"Build me a tip calculator"</div>
+    <div class="cmd">"I need a medication schedule tracker"</div>
+    <div class="cmd">"Build me a dark-themed grocery list app"</div>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="section" id="terminal">
+    <div class="section-title">⌨️ Terminal</div>
+    <div class="section-desc">Full SSH terminal access to your agent's server, right from your phone.</div>
+
+    <div class="card">
+      <h3><span class="icon">🔑</span> First-Time Setup</h3>
+      <p>Tap the key icon in the Terminal status bar → Copy your SSH public key → Send it to your agent → It adds the key to authorized_keys. One-time step.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🌐</span> Route-Aware</h3>
+      <p>Terminal connects to whatever host your gateway is using — LAN at home, Tailscale away. It follows the active connection automatically.</p>
+    </div>
+
+    <div class="warn">
+      <div class="warn-label">Known Limitation</div>
+      <p>SSH Terminal currently works on LAN connections. Tailscale SSH support is in development.</p>
+    </div>
+  </div>
+
+  <!-- AGENTS -->
+  <div class="section" id="agents">
+    <div class="section-title">🤖 Agents</div>
+    <div class="section-desc">Manage your connected agents — identity, routes, voice, skills, themes, and sync.</div>
+
+    <div class="card">
+      <h3><span class="icon">🔀</span> Multiple Agents</h3>
+      <p>Each agent appears in the dock at the bottom. Tap to switch — the entire app context changes to that agent's chat, cards, apps, and calendar.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🛣️</span> Routes</h3>
+      <p>Each agent supports multiple connection routes (LAN + Tailscale). OpenPot tries routes in priority order. Swipe or long press to edit or delete routes.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🔄</span> OpenPot Sync</h3>
+      <p>Tap the OpenPot Sync button to refresh your agent's skill and reconfigure features. The agent uninstalls and reinstalls the latest skill version.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🎨</span> Themes</h3>
+      <p>Each agent can have its own color theme. Pick from the swatches in the agent's detail view to personalize the chat appearance.</p>
+    </div>
+  </div>
+
+  <!-- VOICE -->
+  <div class="section" id="voice">
+    <div class="section-label">Features</div>
+    <div class="section-title">🗣️ Voice</div>
+    <div class="section-desc">Speak to your agent and hear it respond. Voice input uses on-device Apple Speech Recognition. Voice output uses ElevenLabs TTS.</div>
+
+    <div class="card">
+      <h3><span class="icon">⚙️</span> Setup</h3>
+      <p class="no-indent">1. Get an API key at elevenlabs.io<br>
+      2. Settings → Voice Output → enter the API key<br>
+      3. Agents tab → tap agent → Voice → enter a Voice ID<br><br>
+      Each agent can have its own voice. Browse voices at elevenlabs.io/voice-library.</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-label">Voice Modes</div>
+      <p><strong>ElevenLabs</strong> — high-quality, requires API key. <strong>System Voice</strong> — free Apple TTS, works offline. <strong>Off</strong> — text only.</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="section" id="settings">
+    <div class="section-title">⚙️ Settings</div>
+    <div class="section-desc">Access via the gear icon in the agent dock.</div>
+
+    <div class="card">
+      <h3><span class="icon">🎛️</span> Features</h3>
+      <p>Toggle which tabs appear: Pulse, Calendar, Apps, Terminal. Chat and Agents are always present. Customize the app to your workflow.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🔒</span> Privacy</h3>
+      <p>Direct connection to your server. No cloud relay, no third-party data handling. Your conversations stay between you and your hardware.</p>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="section" id="tips">
+    <div class="section-label">Get More</div>
+    <div class="section-title">Tips & Ideas</div>
+
+    <div class="cmd">"What's on my calendar today?"</div>
+    <div class="cmd">"Summarize my unread emails"</div>
+    <div class="cmd">"Remember that my anniversary is June 14"</div>
+    <div class="cmd">"Every morning at 7 AM, send me a Pulse briefing"</div>
+    <div class="cmd">"Send me a card if any of my stocks drop more than 5%"</div>
+    <div class="cmd">"Build me a unit converter app"</div>
+    <div class="cmd">"I care about fitness, cooking, and my portfolio — keep those in mind"</div>
+    <div class="cmd">"I work night shifts Tue-Fri — no morning briefings those days"</div>
+
+    <div class="tip">
+      <div class="tip-label">Make It Yours</div>
+      <p>The more context you give your agent, the more useful OpenPot becomes. Tell it about your schedule, your interests, your routines. It learns and adapts.</p>
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="section" id="troubleshooting">
+    <div class="section-label">Support</div>
+    <div class="section-title">Troubleshooting</div>
+
+    <details>
+      <summary>Connecting stays amber</summary>
+      <div class="detail-content">
+        <p>Check your address starts with <strong>ws://</strong> not http://. Confirm port is <strong>18789</strong>. If using Tailscale, make sure the Tailscale app is running on your phone.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Works on WiFi but not cellular</summary>
+      <div class="detail-content">
+        <p>You need <strong>Tailscale</strong> for remote access. LAN addresses (192.168.x.x) only work on your home network. Install Tailscale on both your server and your phone.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Device not approved</summary>
+      <div class="detail-content">
+        <p>Tell your agent: "Approve the OpenPot device." Or on the server: <strong>openclaw devices approve</strong></p>
+      </div>
+    </details>
+    <details>
+      <summary>Pulse shows "No Pulse Server"</summary>
+      <div class="detail-content">
+        <p>Your agent needs an HTTP server on port 8000 with card endpoints. Tell your agent: <strong>"OpenPot sync"</strong> — it will check what's needed.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Calendar is empty</summary>
+      <div class="detail-content">
+        <p>Your agent needs a calendar endpoint configured. Run <strong>"OpenPot sync"</strong>. For Google Calendar, your agent will walk you through OAuth setup. Calendar skills from ClawHub also work — any skill that feeds events into the unified endpoint.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Events show raw HTML</summary>
+      <div class="detail-content">
+        <p>Some Google Calendar events contain HTML in the notes field. Your agent should strip HTML before serving events. Tell your agent about this issue and run <strong>"OpenPot sync"</strong> to update the skill.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Voice not working</summary>
+      <div class="detail-content">
+        <p><strong>Mic:</strong> Check iOS Settings → Privacy → Speech Recognition → enable OpenPot.<br>
+        <strong>Playback:</strong> Check ElevenLabs API key in Settings. Check Voice ID is set per-agent in the Agents tab.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Terminal SSH failed</summary>
+      <div class="detail-content">
+        <p>Verify your SSH public key is on the server (tap key icon → copy → send to agent). Terminal currently works on LAN. Tailscale SSH is in development.</p>
+      </div>
+    </details>
+    <details>
+      <summary>App stuck on splash screen</summary>
+      <div class="detail-content">
+        <p>OpenPot waits up to 8 seconds for a connection, then lets you in regardless. If you have no network at all, the app opens after the timeout with an offline indicator.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="section" id="privacy">
+    <div class="section-label">Security</div>
+    <div class="section-title">Privacy & Security</div>
+
+    <div class="card" style="background: var(--surface-2);">
+      <h3><span class="icon">🔐</span> Direct Connection</h3>
+      <p class="no-indent">OpenPot connects directly to your server. No data passes through Anthropic, Apple, or any third party. Your conversations stay between you and your hardware.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🔑</span> Ed25519 Device Auth</h3>
+      <p>Your phone authenticates with a cryptographic key pair generated on first launch. No passwords transmitted over the network.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🎤</span> On-Device Speech</h3>
+      <p>Voice input is transcribed by Apple's on-device recognition. Audio never leaves your phone.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">📊</span> No Analytics</h3>
+      <p>No tracking, no telemetry, no crash reporting services. Zero data collection by the app developer.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Built by Al Menard<br>
+    <a href="https://openpot.app">openpot.app</a> · <a href="https://github.com/AlMnotAi/openpot-agent">GitHub</a><br><br>
+    OpenPot v1.0 · Free · Open source at v1.0<br>
+    Powered by OpenClaw
+  </div>
+
+</div>
+</body>
+</html>

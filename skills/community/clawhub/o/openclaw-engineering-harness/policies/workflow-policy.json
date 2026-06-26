@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "required_fields": [
+    "goal",
+    "scope",
+    "success_criteria",
+    "memory_context"
+  ],
+  "phase_order": [
+    "clarify",
+    "map",
+    "implement",
+    "verify",
+    "deliver"
+  ],
+  "phase_display": {
+    "clarify": "Clarify",
+    "map": "Map",
+    "implement": "Implement",
+    "verify": "Verify",
+    "deliver": "Deliver"
+  },
+  "phase_checks": {
+    "clarify": ["goal", "scope", "success_criteria", "memory_context"],
+    "map": ["scope", "constraints"],
+    "implement": ["goal", "scope", "rollback"],
+    "verify": ["success_criteria", "verification"],
+    "deliver": ["success_criteria", "deliverables", "memory_extracted"]
+  },
+  "default_tool_config": "tool/tool-config.json",
+  "default_state_policy": "state/state-policy.json",
+  "default_constraint_policy": "policy/constraint-policy.json",
+  "default_audit_policy": "export-audit-policy.json"
+}

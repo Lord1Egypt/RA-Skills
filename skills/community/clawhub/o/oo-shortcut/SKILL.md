@@ -1,35 +1,92 @@
 ---
-name: "Shortcut"
-description: "Shortcut (shortcut.com). Use this skill for ANY Shortcut request — reading, creating, and updating data. Whenever a task involves Shortcut, use this skill in..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-shortcut"
-sourceUrl: "https://clawhub.ai/skills/oo-shortcut"
+name: oo-shortcut
+description: "Shortcut (shortcut.com). Use this skill for ANY Shortcut request — reading, creating, and updating data. Whenever a task involves Shortcut, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Shortcut"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["shortcut"]
+  icon: "https://static.oomol.com/logo/third-party/shortcut.svg"
 ---
 
 # Shortcut
 
-> Shortcut (shortcut.com). Use this skill for ANY Shortcut request — reading, creating, and updating data. Whenever a task involves Shortcut, use this skill in...
+Operate **Shortcut** through your OOMOL-connected account. This skill calls the `shortcut` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-shortcut`
-- **Source URL:** [https://clawhub.ai/skills/oo-shortcut](https://clawhub.ai/skills/oo-shortcut)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Shortcut. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-shortcut
+oo connector schema "shortcut" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "shortcut" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `create_epic` — Create one Shortcut epic with the first-pass supported fields. [write]
+- `create_story` — Create one Shortcut story with the first-pass supported fields. [write]
+- `get_epic` — Get one Shortcut epic by epic ID.
+- `get_member` — Get one Shortcut member by member UUID.
+- `get_project` — Get one Shortcut project by project ID.
+- `get_story` — Get one Shortcut story by story ID.
+- `get_workflow` — Get one Shortcut workflow by workflow ID.
+- `list_epics` — List the epics available in the connected Shortcut workspace.
+- `list_members` — List the members available in the connected Shortcut workspace.
+- `list_projects` — List the projects available in the connected Shortcut workspace.
+- `list_stories` — List the stories in one Shortcut project.
+- `list_workflows` — List the workflows available in the connected Shortcut workspace.
+- `search_stories` — Search Shortcut stories with the official search endpoint and stable pagination.
+- `update_epic` — Update one Shortcut epic with the first-pass supported fields. [write]
+- `update_story` — Update one Shortcut story with the first-pass supported fields. [write]
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Shortcut state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Shortcut is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=shortcut
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Shortcut homepage: https://www.shortcut.com

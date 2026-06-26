@@ -1,0 +1,26 @@
+id: FIX-023
+name: "modern contract fixture"
+type: coding
+created_at: "2026-03-31T00:00:00Z"
+description: "Fixture for object deliverables and weighted criteria"
+agent:
+  generator: codex-gen-01
+  evaluator: claude-eval-01
+scope:
+  files:
+    - packages/cli/src/commands/callback.ts
+  boundaries: []
+  conflicts_with: []
+deliverables:
+  - path: packages/cli/src/commands/callback.ts
+    description: "callback keeps session naming and dispatch metadata aligned"
+eval_strategy:
+  type: review
+  criteria:
+    - id: C1
+      desc: "session naming uses actual runtime family"
+      method: code_review
+      threshold: must_pass
+      weight: 3
+max_iterations: 2
+depends_on: []

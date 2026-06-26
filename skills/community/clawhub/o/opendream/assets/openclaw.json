@@ -1,0 +1,18 @@
+{
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "30m",
+        "target": "none",
+        "isolatedSession": true,
+        "lightContext": true,
+        "prompt": "Read HEARTBEAT.md and skills/opendream/assets/prompts.yaml. Follow them strictly. If nothing needs attention, reply HEARTBEAT_OK.",
+        "activeHours": {
+          "start": "23:00",
+          "end": "06:00",
+          "timezone": "Europe/London"
+        }
+      }
+    }
+  }
+}

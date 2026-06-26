@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Weather</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --surface-3: #242429;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #4a9eff;
+    --accent-dim: rgba(74,158,255,0.12);
+    --warm: #ff9f0a;
+    --cold: #64d2ff;
+    --green: #30d158;
+    --red: #ff453a;
+    --radius: 16px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    min-height: 100vh;
+  }
+  .container { max-width:600px; margin:0 auto; padding:20px 16px 80px; }
+
+  /* Header */
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 0 20px;
+  }
+  .header h1 { font-size:28px; font-weight:700; letter-spacing:-0.3px; }
+  .header .count { font-size:13px; color:var(--text-muted); }
+
+  /* Search */
+  .search-bar {
+    display:flex; gap:10px; margin-bottom:20px;
+  }
+  .search-bar input {
+    flex:1; background:var(--surface); border:1px solid var(--surface-2);
+    border-radius:12px; padding:12px 16px; font-size:16px; color:var(--text);
+    outline:none; font-family:inherit;
+  }
+  .search-bar input::placeholder { color:var(--text-dim); }
+  .search-bar input:focus { border-color:var(--accent); }
+  .search-bar button {
+    background:var(--accent); color:#fff; border:none; border-radius:12px;
+    padding:12px 20px; font-size:15px; font-weight:600; cursor:pointer;
+    font-family:inherit; white-space:nowrap;
+  }
+  .search-bar button:active { opacity:0.8; }
+  .search-bar button:disabled { opacity:0.4; cursor:default; }
+
+  /* Status */
+  .status {
+    text-align:center; padding:12px; font-size:14px; color:var(--text-muted);
+    display:none;
+  }
+  .status.error { color:var(--red); }
+  .status.visible { display:block; }
+
+  /* Location Cards */
+  .locations { display:flex; flex-direction:column; gap:12px; }
+
+  .location-card {
+    background:var(--surface); border-radius:var(--radius);
+    padding:20px; cursor:pointer; position:relative;
+    transition: background 0.15s;
+  }
+  .location-card:active { background:var(--surface-2); }
+
+  .loc-header {
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:12px;
+  }
+  .loc-name { font-size:18px; font-weight:600; }
+  .loc-region { font-size:13px; color:var(--text-muted); margin-top:2px; }
+  .loc-temp { font-size:42px; font-weight:300; letter-spacing:-2px; line-height:1; }
+  .loc-condition {
+    font-size:14px; color:var(--text-muted); margin-bottom:12px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .loc-condition .wx-icon { font-size:18px; }
+
+  .loc-details {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+  }
+  .loc-detail {
+    background:var(--surface-2); border-radius:10px; padding:10px;
+    text-align:center;
+  }
+  .loc-detail-label { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+  .loc-detail-value { font-size:15px; font-weight:600; }
+
+  .loc-remove {
+    position:absolute; top:12px; right:12px; background:var(--surface-2);
+    border:none; color:var(--text-dim); width:28px; height:28px;
+    border-radius:8px; font-size:16px; cursor:pointer; display:flex;
+    align-items:center; justify-content:center;
+  }
+  .loc-remove:hover { color:var(--red); background:rgba(255,69,58,0.12); }
+
+  /* Forecast */
+  .forecast {
+    display:none; margin-top:12px; padding-top:12px;
+    border-top:1px solid var(--surface-2);
+  }
+  .forecast.visible { display:block; }
+  .forecast-title { font-size:13px; color:var(--text-dim); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+  .forecast-days { display:flex; gap:6px; overflow-x:auto; }
+  .forecast-day {
+    background:var(--surface-2); border-radius:12px; padding:12px 10px;
+    text-align:center; min-width:72px; flex-shrink:0;
+  }
+  .forecast-day .day-name { font-size:12px; color:var(--text-muted); font-weight:600; margin-bottom:6px; }
+  .forecast-day .day-icon { font-size:22px; margin-bottom:6px; }
+  .forecast-day .day-temps { font-size:13px; font-weight:600; }
+  .forecast-day .day-lo { color:var(--text-dim); font-weight:400; }
+
+  /* Empty */
+  .empty {
+    text-align:center; padding:60px 20px; color:var(--text-dim);
+  }
+  .empty .icon { font-size:48px; margin-bottom:16px; }
+  .empty h2 { font-size:20px; color:var(--text-muted); font-weight:600; margin-bottom:8px; }
+  .empty p { font-size:15px; line-height:1.5; max-width:280px; margin:0 auto; }
+
+  @media(min-width:768px) {
+    .container { padding:32px 24px 80px; }
+    .loc-details { grid-template-columns:repeat(4,1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>☀️ Weather</h1>
+    </div>
+    <div class="count" id="locCount"></div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="zipInput" placeholder="City name or ZIP code" maxlength="50">
+    <button id="addBtn" onclick="addLocation()">Add</button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <div id="locations" class="locations"></div>
+
+  <div class="empty" id="emptyState">
+    <div class="icon">🌤️</div>
+    <h2>No Locations</h2>
+    <p>Search by city name or postal code to add a location. You can save up to 10.</p>
+  </div>
+</div>
+
+<script>
+const MAX_LOCATIONS = 10;
+const STORAGE_KEY = 'openpot_weather_locations';
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+let locations = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+let expandedId = null;
+
+function wxCode(code, isDay) {
+  const map = {
+    0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️',
+    45:'🌫️', 48:'🌫️',
+    51:'🌦️', 53:'🌦️', 55:'🌧️',
+    56:'🌧️', 57:'🌧️',
+    61:'🌧️', 63:'🌧️', 65:'🌧️',
+    66:'🌧️', 67:'🌧️',
+    71:'🌨️', 73:'🌨️', 75:'❄️',
+    77:'❄️',
+    80:'🌦️', 81:'🌧️', 82:'⛈️',
+    85:'🌨️', 86:'❄️',
+    95:'⛈️', 96:'⛈️', 99:'⛈️'
+  };
+  return map[code] || '🌡️';
+}
+
+function wxDesc(code) {
+  const map = {
+    0:'Clear sky', 1:'Mainly clear', 2:'Partly cloudy', 3:'Overcast',
+    45:'Foggy', 48:'Depositing rime fog',
+    51:'Light drizzle', 53:'Moderate drizzle', 55:'Dense drizzle',
+    56:'Light freezing drizzle', 57:'Dense freezing drizzle',
+    61:'Slight rain', 63:'Moderate rain', 65:'Heavy rain',
+    66:'Light freezing rain', 67:'Heavy freezing rain',
+    71:'Slight snow', 73:'Moderate snow', 75:'Heavy snow',
+    77:'Snow grains',
+    80:'Slight showers', 81:'Moderate showers', 82:'Violent showers',
+    85:'Slight snow showers', 86:'Heavy snow showers',
+    95:'Thunderstorm', 96:'Thunderstorm w/ slight hail', 99:'Thunderstorm w/ heavy hail'
+  };
+  return map[code] || 'Unknown';
+}
+
+function showStatus(msg, isError) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status visible' + (isError ? ' error' : '');
+  if (!isError) setTimeout(() => el.className = 'status', 3000);
+}
+
+function hideStatus() {
+  document.getElementById('status').className = 'status';
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(locations));
+}
+
+async function geocodeLocation(query) {
+  // 5-digit numeric = US ZIP code
+  if (/^\d{5}$/.test(query)) {
+    try {
+      const res = await fetch('https://api.zippopotam.us/us/' + query);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.places && data.places.length > 0) {
+          const p = data.places[0];
+          return {
+            lat: parseFloat(p.latitude),
+            lon: parseFloat(p.longitude),
+            name: p['place name'],
+            region: p['state abbreviation'] || p.state || ''
+          };
+        }
+      }
+    } catch(e) {}
+  }
+
+  // Everything else: city names, non-US postal codes, failed ZIP
+  try {
+    const url = 'https://geocoding-api.open-meteo.com/v1/search?name='
+      + encodeURIComponent(query) + '&count=5&language=en&format=json';
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.results && data.results.length > 0) {
+      const sorted = data.results.sort((a, b) =>
+        (b.population || 0) - (a.population || 0));
+      const r = sorted[0];
+      return {
+        lat: r.latitude,
+        lon: r.longitude,
+        name: r.name,
+        region: r.admin1 || r.country || ''
+      };
+    }
+  } catch(e) {}
+
+  return null;
+}
+
+async function fetchWeather(lat, lon) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=6&timezone=auto`;
+  const res = await fetch(url);
+  return await res.json();
+}
+
+async function addLocation() {
+  const input = document.getElementById('zipInput');
+  const query = input.value.trim();
+  if (!query || query.length < 2) { showStatus('Enter a city name or postal code', true); return; }
+  if (locations.length >= MAX_LOCATIONS) { showStatus(`Maximum ${MAX_LOCATIONS} locations reached`, true); return; }
+
+  // Check for duplicates by query string
+  const queryLower = query.toLowerCase();
+  if (locations.find(l => l.zip && l.zip.toLowerCase() === queryLower)) {
+    showStatus('Location already added', true); return;
+  }
+
+  const btn = document.getElementById('addBtn');
+  btn.disabled = true;
+  btn.textContent = '...';
+  hideStatus();
+
+  try {
+    const geo = await geocodeLocation(query);
+    if (!geo) { showStatus('Location not found', true); btn.disabled = false; btn.textContent = 'Add'; return; }
+
+    // Check for duplicate by coordinates (within ~10km)
+    if (locations.find(l => Math.abs(l.lat - geo.lat) < 0.1 && Math.abs(l.lon - geo.lon) < 0.1)) {
+      showStatus('A nearby location is already added', true); btn.disabled = false; btn.textContent = 'Add'; return;
+    }
+
+    const weather = await fetchWeather(geo.lat, geo.lon);
+
+    const loc = {
+      id: Date.now().toString(),
+      zip: query,
+      name: geo.name,
+      region: geo.region,
+      lat: geo.lat,
+      lon: geo.lon,
+      weather: weather,
+      updatedAt: new Date().toISOString()
+    };
+
+    locations.unshift(loc);
+    save();
+    input.value = '';
+    render();
+  } catch (e) {
+    showStatus('Failed to fetch weather data', true);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Add';
+}
+
+async function refreshLocation(id) {
+  const loc = locations.find(l => l.id === id);
+  if (!loc) return;
+  try {
+    const weather = await fetchWeather(loc.lat, loc.lon);
+    loc.weather = weather;
+    loc.updatedAt = new Date().toISOString();
+    save();
+    render();
+  } catch (e) {
+    showStatus('Failed to refresh', true);
+  }
+}
+
+function removeLocation(id, e) {
+  e.stopPropagation();
+  locations = locations.filter(l => l.id !== id);
+  if (expandedId === id) expandedId = null;
+  save();
+  render();
+}
+
+function toggleExpand(id) {
+  expandedId = expandedId === id ? null : id;
+  render();
+}
+
+function render() {
+  const container = document.getElementById('locations');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('locCount');
+
+  count.textContent = `${locations.length}/${MAX_LOCATIONS}`;
+
+  if (locations.length === 0) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  container.innerHTML = locations.map(loc => {
+    const w = loc.weather;
+    if (!w || !w.current) return '';
+    const cur = w.current;
+    const temp = Math.round(cur.temperature_2m);
+    const feels = Math.round(cur.apparent_temperature);
+    const humidity = cur.relative_humidity_2m;
+    const wind = Math.round(cur.wind_speed_10m);
+    const code = cur.weather_code;
+    const isDay = cur.is_day;
+    const expanded = expandedId === loc.id;
+
+    let forecastHTML = '';
+    if (expanded && w.daily) {
+      const days = w.daily.time.slice(1, 6);
+      forecastHTML = `
+        <div class="forecast visible">
+          <div class="forecast-title">5-Day Forecast</div>
+          <div class="forecast-days">
+            ${days.map((d, i) => {
+              const dt = new Date(d + 'T12:00:00');
+              const hi = Math.round(w.daily.temperature_2m_max[i+1]);
+              const lo = Math.round(w.daily.temperature_2m_min[i+1]);
+              const fc = w.daily.weather_code[i+1];
+              return `
+                <div class="forecast-day">
+                  <div class="day-name">${DAYS[dt.getDay()]}</div>
+                  <div class="day-icon">${wxCode(fc, true)}</div>
+                  <div class="day-temps">${hi}° <span class="day-lo">${lo}°</span></div>
+                </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+    }
+
+    return `
+      <div class="location-card" onclick="toggleExpand('${loc.id}')">
+        <button class="loc-remove" onclick="removeLocation('${loc.id}', event)" title="Remove">✕</button>
+        <div class="loc-header">
+          <div>
+            <div class="loc-name">${loc.name}</div>
+            <div class="loc-region">${loc.region} · ${loc.zip}</div>
+          </div>
+          <div class="loc-temp">${temp}°</div>
+        </div>
+        <div class="loc-condition">
+          <span class="wx-icon">${wxCode(code, isDay)}</span>
+          ${wxDesc(code)} · Feels like ${feels}°
+        </div>
+        <div class="loc-details">
+          <div class="loc-detail">
+            <div class="loc-detail-label">Humidity</div>
+            <div class="loc-detail-value">${humidity}%</div>
+          </div>
+          <div class="loc-detail">
+            <div class="loc-detail-label">Wind</div>
+            <div class="loc-detail-value">${wind} mph</div>
+          </div>
+          <div class="loc-detail">
+            <div class="loc-detail-label">High/Low</div>
+            <div class="loc-detail-value">${Math.round(w.daily.temperature_2m_max[0])}°/${Math.round(w.daily.temperature_2m_min[0])}°</div>
+          </div>
+        </div>
+        ${forecastHTML}
+      </div>`;
+  }).join('');
+}
+
+// Refresh all on load
+async function init() {
+  render();
+  for (const loc of locations) {
+    try {
+      const weather = await fetchWeather(loc.lat, loc.lon);
+      loc.weather = weather;
+      loc.updatedAt = new Date().toISOString();
+    } catch(e) {}
+  }
+  save();
+  render();
+}
+
+document.getElementById('zipInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addLocation();
+});
+
+init();
+</script>
+</body>
+</html>

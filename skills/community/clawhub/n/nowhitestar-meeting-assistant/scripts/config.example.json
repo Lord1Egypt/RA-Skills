@@ -1,0 +1,88 @@
+{
+  "calendars": [
+    {
+      "type": "feishu",
+      "enabled": false,
+      "app_id_env": "FEISHU_APP_ID",
+      "app_secret_env": "FEISHU_APP_SECRET"
+    },
+    {
+      "type": "google",
+      "enabled": false,
+      "gog_account": "your.email@example.com",
+      "watch_calendars": ["primary"]
+    }
+  ],
+  "audio": {
+    "backend": "daemon",
+    "mic_device": ":0",
+    "system_audio_device": ":1",
+    "output_dir": "/path/to/meeting-assistant/meeting-recordings",
+    "format": "wav",
+    "silence_threshold": 0.01,
+    "silence_duration_sec": 300,
+    "half_duplex": true,
+    "note": "backend=daemon 使用原生 ScreenCaptureKit + AVFoundation，不需要 BlackHole；mic/system device 仅 SoX fallback 使用"
+  },
+  "transcription": {
+    "mode": "local",
+    "api_key_env": "OPENAI_API_KEY",
+    "language": "zh",
+    "model": "whisper-1",
+    "local_model_path": "~/Models/whisper/ggml-medium.bin",
+    "whisper_cli": "whisper-cli"
+  },
+  "llm": {
+    "enabled": false,
+    "provider": "openai",
+    "model": "gpt-4",
+    "api_key_env": "OPENAI_API_KEY"
+  },
+  "output": {
+    "channel": "file",
+    "zulip": {
+      "stream": "meetings",
+      "topic": "会议纪要"
+    },
+    "notion": {
+      "api_key_env": "NOTION_API_KEY",
+      "database_id": "your-database-id"
+    },
+    "telegram": {
+      "chat_id": ""
+    }
+  },
+  "meeting_detection": {
+    "enabled": true,
+    "interval_sec": 10,
+    "stable_sec": 15,
+    "prompt_cooldown_sec": 1800,
+    "window_keywords": [
+      "Zoom Meeting", "Zoom 会议", "zoom.us", "Zoom Workplace",
+      "腾讯会议", "Tencent Meeting", "VooV Meeting", "WeMeet",
+      "Google Meet", "meet.google.com", "Meet -",
+      "飞书会议", "Feishu Meeting", "Lark Meeting", "视频会议",
+      "微信通话", "微信电话", "语音通话", "视频通话", "Voice Call",
+      "WeChat Call", "企业微信", "WeCom",
+      "正在通话", "正在会议", "加入会议", "会议中", "通话中"
+    ],
+    "app_name_hints": [
+      "zoom.us", "Zoom", "腾讯会议", "TencentMeeting", "VooV", "WeMeet",
+      "Feishu", "Lark", "飞书", "WeChat", "微信", "企业微信", "WeCom",
+      "Google Chrome", "Arc", "Safari", "Microsoft Edge", "Firefox"
+    ],
+    "target_app_names": [
+      "zoom.us", "Zoom", "腾讯会议", "TencentMeeting", "VooV Meeting", "WeMeet",
+      "Feishu", "Lark", "飞书", "WeChat", "微信", "企业微信", "WeCom",
+      "Google Chrome", "Arc", "Safari", "Microsoft Edge", "Firefox"
+    ],
+    "dedicated_meeting_apps": [
+      "zoom.us", "Zoom", "腾讯会议", "TencentMeeting", "VooV Meeting", "WeMeet"
+    ],
+    "ignore_window_keywords": [
+      "Calendar", "日历", "Gmail", "Inbox", "Settings", "Preferences",
+      "聊天", "通讯录", "朋友圈", "文件传输助手",
+      "PolyMeet"
+    ]
+  }
+}

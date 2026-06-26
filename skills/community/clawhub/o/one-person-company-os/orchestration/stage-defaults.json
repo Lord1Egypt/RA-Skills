@@ -1,0 +1,81 @@
+{
+  "version": "2.0",
+  "stage_labels": {
+    "validate": "验证期",
+    "build": "构建期",
+    "launch": "上线期",
+    "operate": "运营期",
+    "grow": "增长期"
+  },
+  "stage_defaults": {
+    "validate": [
+      "founder-ceo",
+      "control-tower",
+      "product-strategist",
+      "growth-sales"
+    ],
+    "build": [
+      "founder-ceo",
+      "control-tower",
+      "product-strategist",
+      "engineer-tech-lead"
+    ],
+    "launch": [
+      "founder-ceo",
+      "control-tower",
+      "product-strategist",
+      "engineer-tech-lead",
+      "designer",
+      "growth-sales",
+      "qa-reliability",
+      "devops-sre",
+      "customer-success"
+    ],
+    "operate": [
+      "founder-ceo",
+      "control-tower",
+      "engineer-tech-lead",
+      "customer-success",
+      "qa-reliability",
+      "devops-sre",
+      "data-analyst"
+    ],
+    "grow": [
+      "founder-ceo",
+      "control-tower",
+      "product-strategist",
+      "growth-sales",
+      "customer-success",
+      "data-analyst",
+      "finance"
+    ]
+  },
+  "stage_optional_roles": {
+    "validate": [
+      "designer",
+      "legal-compliance"
+    ],
+    "build": [
+      "designer",
+      "qa-reliability",
+      "devops-sre",
+      "legal-compliance"
+    ],
+    "launch": [
+      "data-analyst",
+      "legal-compliance"
+    ],
+    "operate": [
+      "product-strategist",
+      "growth-sales",
+      "finance",
+      "legal-compliance"
+    ],
+    "grow": [
+      "designer",
+      "qa-reliability",
+      "devops-sre",
+      "legal-compliance"
+    ]
+  }
+}

@@ -1,35 +1,90 @@
----
-name: "Memory Archiver"
-description: "定期扫描并压缩超过指定天数的内存日志，提炼关键信息更新长期记忆，释放存储空间并清理过期文件。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-memory-archiver"
-sourceUrl: "https://clawhub.ai/skills/openclaw-memory-archiver"
+# memory-archiver
+
+内存归档技能 - 定期压缩旧日志为摘要，释放存储资源，提炼长期记忆。
+
 ---
 
-# Memory Archiver
+## 📖 描述
 
-> 定期扫描并压缩超过指定天数的内存日志，提炼关键信息更新长期记忆，释放存储空间并清理过期文件。
+基于 OpenClaw 70 用例中的"每周内存归档"设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-memory-archiver`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-memory-archiver](https://clawhub.ai/skills/openclaw-memory-archiver)
+**核心功能：**
+- 扫描 memory/*.md 文件
+- 识别超过 N 天的日志
+- 提取关键信息到 MEMORY.md
+- 归档旧日志到压缩文件
+- 清理过期内容
 
-## Overview
+---
 
+## 🎯 能力
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 能力 | 说明 |
+|------|------|
+| 日志扫描 | 识别指定天龄的记忆文件 |
+| 关键信息提取 | 用 AI 提炼决策/上下文/待办 |
+| 长期记忆更新 | 将重要信息合并到 MEMORY.md |
+| 归档压缩 | 将旧日志打包为 zip |
+| 自动清理 | 删除已归档的原始文件 |
+
+---
+
+## 🚀 使用方法
+
+### 手动归档
+
 ```bash
-hermes skills install clawhub/openclaw-memory-archiver
+openclaw agent --message "归档 7 天前的记忆文件"
 ```
+
+### 定时任务
+
+```bash
+# 每周日凌晨 2 点执行
+cron add --schedule "0 2 * * 0" --message "执行内存归档"
+```
+
+---
+
+## 📋 归档流程
+
+1. **扫描** - 找出 `memory/YYYY-MM-DD.md` 中超过阈值的文件
+2. **读取** - 用 memory_search 获取内容
+3. **提炼** - 识别重要决策、上下文、待办
+4. **合并** - 将关键信息追加到 MEMORY.md
+5. **压缩** - 打包旧文件到 `memory/archive/`
+6. **清理** - 删除原始文件
+
+---
+
+## ⚙️ 配置参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `archive_after_days` | 7 | 多少天后的文件归档 |
+| `delete_after_archive` | true | 归档后是否删除原文件 |
+| `extract_to_memory` | true | 是否提炼到 MEMORY.md |
+| `archive_dir` | memory/archive/ | 归档目录 |
+
+---
+
+## 📁 目录结构
+
+```
+memory/
+├── MEMORY.md              # 长期记忆（保留）
+├── 2026-03-27.md          # 当前日志（保留）
+├── 2026-03-26.md          # 近期日志（保留）
+├── 2026-03-20.md          # 待归档
+└── archive/
+    ├── 2026-03-10.zip     # 已归档
+    └── 2026-03-11.zip
+```
+
+---
+
+## 📝 变更记录
+
+| 日期 | 版本 | 说明 |
+|------|------|------|
+| 2026-03-27 | 1.0.0 | 初始版本 |

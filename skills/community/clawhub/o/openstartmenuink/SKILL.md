@@ -1,35 +1,74 @@
----
-name: "OpenStartMenuInk"
-description: "Automatically scans Windows start menu shortcuts and opens applications by name with fuzzy matching on user command."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openstartmenuink"
-sourceUrl: "https://clawhub.ai/skills/openstartmenuink"
----
+# OpenStartMenuInk - 开始菜单快捷方式管理器
 
-# OpenStartMenuInk
+> 🚀 自动搜索并保存 Windows 开始菜单中的所有快捷方式，根据用户指令快速打开应用
 
-> Automatically scans Windows start menu shortcuts and opens applications by name with fuzzy matching on user command.
+## 🎯 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openstartmenuink`
-- **Source URL:** [https://clawhub.ai/skills/openstartmenuink](https://clawhub.ai/skills/openstartmenuink)
+### 1. 自动扫描快捷方式
+- 自动搜索当前用户目录下的开始菜单快捷方式
+- 自动搜索公共程序目录的快捷方式
+- 包含子文件夹中的所有快捷方式
 
-## Overview
+### 2. 快速打开应用
+- 用户只需说出应用名称，系统会自动搜索并打开
+- 支持模糊匹配（如输入"飞智"即可打开"飞智空间站"）
 
+### 3. 动态刷新
+- 如果未找到应用或列表为空，自动重新扫描
+- 无需手动更新，系统会智能处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openstartmenuink
+## 📋 使用示例
+
+### 打开应用
 ```
+打开飞智空间站
+打开微信
+打开飞书
+打开 QQ
+打开 Steam
+```
+
+### 初始化扫描（如需要）
+```
+检查并开始菜单管理
+```
+
+## 🛠️ 安装与启用
+
+### 通过爪爪安装
+```
+安装技能：OpenStartMenuInk
+```
+
+### 手动安装
+1. 将技能文件夹复制到 `%LOCALAPPDATA%\OneClaw\resources\skills\` 目录
+2. 运行 `openclaw skill sync` 同步技能
+
+## 📁 数据存储
+快捷方式列表将保存在临时文件中，无需手动管理。
+
+## ⚙️ 技术细节
+- **语言**: PowerShell 7+
+- **依赖**: Windows 系统 API
+- **权限**: 需要扫描文件系统的权限
+- **安全**: 仅读取开始菜单快捷方式，不修改系统设置
+
+## 📝 注意事项
+- 首次使用可能需要几秒钟扫描时间
+- 应用名称支持模糊匹配
+- 如遇权限问题，请确保 OpenClaw 有适当权限
+
+## 🐛 故障排除
+
+如果应用无法打开：
+1. 确保该应用已正确安装在开始菜单
+2. 运行"检查并开始菜单管理"重新扫描
+
+如果没有看到想要的应用：
+1. 右键点击目标应用的安装文件夹
+2. 选择"发送到" -> "桌面快捷方式"
+3. 右键快捷方式 -> "属性" -> "快速访问" 勾选
+
+## 🔗 相关链接
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [ClawHub 技能平台](https://clawhub.com)

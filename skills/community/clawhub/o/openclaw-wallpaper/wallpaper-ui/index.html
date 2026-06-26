@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小暖 - 文字世界</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="world">
+        <!-- 星空背景 -->
+        <div class="stars-bg"></div>
+        <div class="stars-bg stars2"></div>
+        <div class="stars-bg stars3"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star s2"></div>
+        
+        <!-- 漂浮文字 -->
+        <div class="float-chars" id="floatChars"></div>
+        
+        <!-- 左侧：桌面图标区域（留空） -->
+        <div class="desktop-space"></div>
+        
+        <!-- 中央：聊天区域 -->
+        <div class="chat-area">
+            <div class="chat-container">
+                <div class="chat-scroll" id="chatScroll">
+                    <div class="chat-messages" id="messages"></div>
+                </div>
+            </div>
+            
+            <!-- 输入栏 -->
+            <div class="input-bar">
+                <input type="file" id="imageInput" accept="image/*" style="display:none">
+                <button id="imageBtn" class="image-btn" title="上传图片">🖼️</button>
+                <input type="text" id="userInput" placeholder="说点什么..." autocomplete="off">
+                <button id="sendBtn">发送</button>
+                <button id="refreshBtn" class="refresh-btn" title="刷新状态">🔄</button>
+            </div>
+            <!-- 图片预览 -->
+            <div id="imagePreview" class="image-preview" style="display:none">
+                <img id="previewImg" src="" alt="预览">
+                <button id="removeImg" class="remove-img">×</button>
+            </div>
+        </div>
+        
+        <!-- 右侧：成就区域 -->
+        <div class="achievement-area">
+            <!-- 状态显示 -->
+            <div class="top-right">
+                <div class="clock" id="clock">00:00</div>
+                <div class="status">
+                    <span class="dot" id="statusDot"></span>
+                    <span id="statusText">在线</span>
+                </div>
+                <div class="count" id="count">对话: 0</div>
+            </div>
+            
+            <!-- 成就殿堂 -->
+            <div class="achievement-wall" id="achievementWall">
+                <div class="wall-title">🏆 成就殿堂</div>
+                <div class="wall-grid" id="wallGrid"></div>
+            </div>
+        </div>
+        
+        <!-- 思考中 -->
+        <div class="thinking" id="thinking">
+            <span>思</span><span>考</span><span>中</span>
+        </div>
+        
+        <!-- 成就弹窗 -->
+        <div class="ach-modal" id="achModal">
+            <div class="ach-badge" id="achBadge"></div>
+            <div class="ach-title" id="achTitle"></div>
+            <div class="ach-desc" id="achDesc"></div>
+        </div>
+        
+        <!-- 版本信息 -->
+        <div class="version-info" id="versionInfo">v1.4</div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

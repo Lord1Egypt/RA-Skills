@@ -1,0 +1,20 @@
+{
+  "name": "openclaw-consensus",
+  "version": "0.1.2",
+  "private": true,
+  "description": "Repo-local OpenClaw skill and CLI for fixed 2-round cross-model deliberation.",
+  "type": "module",
+  "bin": {
+    "openclaw-consensus": "src/cli.mjs"
+  },
+  "scripts": {
+    "help": "node src/cli.mjs help",
+    "models": "node src/cli.mjs models",
+    "install:skill": "./scripts/install-skill.sh",
+    "uninstall:skill": "./scripts/uninstall-skill.sh",
+    "test": "./scripts/run-tests.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

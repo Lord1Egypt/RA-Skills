@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Tailscale Remote Access"
+  short_description: "Configure OpenClaw remote access over Tailscale"
+  default_prompt: "Use $openclaw-tailscale-remote-access to configure or repair OpenClaw remote access over Tailscale Serve + HTTPS."

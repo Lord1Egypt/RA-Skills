@@ -1,0 +1,7 @@
+{
+  "title": "这里改标题",
+  "content": "这里改正文内容。这个模板适合用 HTTPS 图片 URL 快速发文。",
+  "images": ["https://picsum.photos/seed/openclaw-xhs-template/1080/1440"],
+  "visibility": "仅自己可见",
+  "tags": ["OpenClaw", "URL图片"]
+}

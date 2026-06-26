@@ -1,0 +1,12 @@
+{
+  "apiUrl": "https://api.openai.com/v1/chat/completions",
+  "apiKey": "sk-your-api-key-here",
+  "modelName": "gpt-4",
+  "fallbackThreshold": 0.6,
+  "maxRetries": 2,
+  "timeout": 30,
+  "enableStreaming": false,
+  "customHeaders": {
+    "X-Custom-Header": "value"
+  }
+}

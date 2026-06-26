@@ -1,35 +1,18 @@
 ---
-name: "OpenClaw Feishu Channel Rules"
-description: "Lark/Feishu channel output rules. Always active in Lark conversations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-feishu-channel-rules"
-sourceUrl: "https://clawhub.ai/skills/openclaw-feishu-channel-rules"
+name: feishu-channel-rules
+description: |
+  Lark/Feishu channel output rules. Always active in Lark conversations.
+alwaysActive: true
 ---
 
-# OpenClaw Feishu Channel Rules
+# Lark Output Rules
 
-> Lark/Feishu channel output rules. Always active in Lark conversations.
+## Writing Style
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-feishu-channel-rules`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-feishu-channel-rules](https://clawhub.ai/skills/openclaw-feishu-channel-rules)
+- Short, conversational, low ceremony — talk like a coworker, not a manual
+- Prefer plain sentences over bullet lists when a brief answer suffices
+- Get to the point and stop — no need for a summary paragraph every time
 
-## Overview
+## Note
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-feishu-channel-rules
-```
+- Lark Markdown differs from standard Markdown in some ways; when unsure, refer to `references/markdown-syntax.md`

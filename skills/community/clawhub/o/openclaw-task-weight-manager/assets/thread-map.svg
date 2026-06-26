@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-label="Thread map diagram">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081520"/>
+      <stop offset="100%" stop-color="#0f2235"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="760" rx="32" fill="url(#bg2)"/>
+  <text x="70" y="90" fill="#f6fbff" font-size="46" font-weight="700" font-family="Arial, Helvetica, sans-serif">One Conversation. Five Live Threads.</text>
+  <text x="70" y="132" fill="#95b8d1" font-size="24" font-family="Arial, Helvetica, sans-serif">The skill does not flatten context. It routes it.</text>
+
+  <rect x="80" y="210" width="250" height="108" rx="20" fill="#17283d"/>
+  <text x="112" y="255" fill="#8edcff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">THREAD A</text>
+  <text x="112" y="293" fill="#f7fbff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Product Strategy</text>
+
+  <rect x="80" y="360" width="250" height="108" rx="20" fill="#17283d"/>
+  <text x="112" y="405" fill="#8edcff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">THREAD B</text>
+  <text x="112" y="443" fill="#f7fbff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Skill Design</text>
+
+  <rect x="80" y="510" width="250" height="108" rx="20" fill="#17283d"/>
+  <text x="112" y="555" fill="#8edcff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">THREAD C</text>
+  <text x="112" y="593" fill="#f7fbff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Reflection</text>
+
+  <path d="M340 264 C490 264 460 220 600 220" fill="none" stroke="#3b82f6" stroke-width="4"/>
+  <path d="M340 414 C490 414 460 380 600 380" fill="none" stroke="#38bdf8" stroke-width="4"/>
+  <path d="M340 564 C490 564 460 540 600 540" fill="none" stroke="#60a5fa" stroke-width="4"/>
+
+  <rect x="600" y="130" width="350" height="500" rx="28" fill="#0b1726" stroke="#27445f" stroke-width="2"/>
+  <text x="640" y="190" fill="#f7fbff" font-size="38" font-weight="700" font-family="Arial, Helvetica, sans-serif">Priority Router</text>
+  <text x="640" y="234" fill="#96b5cd" font-size="22" font-family="Arial, Helvetica, sans-serif">Weights, urgency, dependency, intent.</text>
+
+  <rect x="640" y="276" width="270" height="74" rx="18" fill="#102438"/>
+  <text x="672" y="322" fill="#f1fbff" font-size="24" font-family="Arial, Helvetica, sans-serif">User intent signal</text>
+
+  <rect x="640" y="372" width="270" height="74" rx="18" fill="#102438"/>
+  <text x="672" y="418" fill="#f1fbff" font-size="24" font-family="Arial, Helvetica, sans-serif">Urgency signal</text>
+
+  <rect x="640" y="468" width="270" height="74" rx="18" fill="#102438"/>
+  <text x="672" y="514" fill="#f1fbff" font-size="24" font-family="Arial, Helvetica, sans-serif">Dependency signal</text>
+
+  <path d="M950 380 H1040" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="1040" y="180" width="280" height="146" rx="24" fill="#0d2b25" stroke="#4ade80" stroke-width="2"/>
+  <text x="1072" y="226" fill="#9ff6c8" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">MAINLINE</text>
+  <text x="1072" y="272" fill="#f7fff9" font-size="34" font-weight="700" font-family="Arial, Helvetica, sans-serif">Execute Release</text>
+  <text x="1072" y="307" fill="#c7f9dd" font-size="20" font-family="Arial, Helvetica, sans-serif">Highest weight wins the lane.</text>
+
+  <rect x="1040" y="360" width="280" height="118" rx="24" fill="#1c2434"/>
+  <text x="1072" y="406" fill="#9db7cb" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">PARKED</text>
+  <text x="1072" y="446" fill="#eef7ff" font-size="30" font-weight="700" font-family="Arial, Helvetica, sans-serif">Explore variants</text>
+
+  <rect x="1040" y="512" width="280" height="118" rx="24" fill="#1c2434"/>
+  <text x="1072" y="558" fill="#9db7cb" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">PARKED</text>
+  <text x="1072" y="598" fill="#eef7ff" font-size="30" font-weight="700" font-family="Arial, Helvetica, sans-serif">Deep reflection</text>
+</svg>

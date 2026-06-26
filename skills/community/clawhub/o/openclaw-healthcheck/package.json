@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-healthcheck",
+  "version": "0.1.1",
+  "description": "This skill should be used when the user asks for an OpenClaw health check, OpenClaw security audit, server hardening review, exposure review, gateway safety check, or production-readiness audit for a machine running OpenClaw.",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "healthcheck",
+    "security-audit",
+    "hardening",
+    "gateway",
+    "self-hosted-ai",
+    "ops",
+    "production-readiness"
+  ],
+  "bin": {
+    "openclaw-healthcheck": "./scripts/healthcheck.mjs"
+  },
+  "scripts": {
+    "test": "node tests/test.mjs"
+  },
+  "author": "X-RayLuan",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/healthcheck.mjs",
+    "references/checklist.md"
+  ]
+}

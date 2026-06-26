@@ -1,35 +1,43 @@
 ---
-name: "Openai Whisper Api"
-description: "Transcribe audio via OpenAI Audio Transcriptions API (Whisper)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openai-whisper-api"
-sourceUrl: "https://clawhub.ai/skills/openai-whisper-api"
+name: openai-whisper-api
+description: Transcribe audio via OpenAI Audio Transcriptions API (Whisper).
+homepage: https://platform.openai.com/docs/guides/speech-to-text
+metadata: {"clawdbot":{"emoji":"☁️","requires":{"bins":["curl"],"env":["OPENAI_API_KEY"]},"primaryEnv":"OPENAI_API_KEY"}}
 ---
 
-# Openai Whisper Api
+# OpenAI Whisper API (curl)
 
-> Transcribe audio via OpenAI Audio Transcriptions API (Whisper).
+Transcribe an audio file via OpenAI’s `/v1/audio/transcriptions` endpoint.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openai-whisper-api`
-- **Source URL:** [https://clawhub.ai/skills/openai-whisper-api](https://clawhub.ai/skills/openai-whisper-api)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openai-whisper-api
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a
+```
+
+Defaults:
+- Model: `whisper-1`
+- Output: `<input>.txt`
+
+## Useful flags
+
+```bash
+{baseDir}/scripts/transcribe.sh /path/to/audio.ogg --model whisper-1 --out /tmp/transcript.txt
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --language en
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --prompt "Speaker names: Peter, Daniel"
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --json --out /tmp/transcript.json
+```
+
+## API key
+
+Set `OPENAI_API_KEY`, or configure it in `~/.clawdbot/clawdbot.json`:
+
+```json5
+{
+  skills: {
+    "openai-whisper-api": {
+      apiKey: "OPENAI_KEY_HERE"
+    }
+  }
+}
 ```

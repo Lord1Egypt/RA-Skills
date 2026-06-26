@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* 青野晨光 */
+.card-meadow-dawn {
+  font-family: "Noto Serif JP", serif;
+  background-color: #f0e6d2;
+  color: #5a4a3f;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  --highlight-color: #6b8c42;
+  --highlight-bg-color: rgba(107, 140, 66, 0.1);
+}
+
+.card-meadow-dawn .card-header {
+  background-color: rgba(139, 154, 122, 0.7);
+  height: calc(var(--spacing) * 3);
+}
+
+.card-meadow-dawn .card-footer {
+  background-color: rgba(139, 154, 122, 0.7);
+  height: calc(var(--spacing) * 6);
+}
+
+.card-meadow-dawn .card-content {
+  padding: calc(var(--spacing) * 5);
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 253, 245, 0.9);
+  height: calc(var(--card-height) - calc(var(--spacing) * 9));
+}
+
+.card-meadow-dawn .card-content {
+  background-image: url("/img/assets/img/meadow-dawn-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+}
+
+/* 标题样式 */
+.card-meadow-dawn h1,
+.card-meadow-dawn h2,
+.card-meadow-dawn h3,
+.card-meadow-dawn h4,
+.card-meadow-dawn h5,
+.card-meadow-dawn h6 {
+  color: #6b8c42;
+  margin-top: calc(var(--spacing) * 4.8);
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 700;
+  border-bottom: 1px solid #d4d9c9;
+  padding-bottom: calc(var(--spacing) * 1.2);
+}
+
+.card-meadow-dawn h1 {
+  font-size: 2rem;
+}
+
+.card-meadow-dawn h2 {
+  font-size: 1.6rem;
+}
+
+.card-meadow-dawn h3 {
+  font-size: 1.4rem;
+}
+
+/* 链接样式 */
+.card-meadow-dawn a {
+  color: #8b9a7a;
+  text-decoration: none;
+  border-bottom: 1px dotted #8b9a7a;
+}
+
+.card-meadow-dawn a:hover {
+  color: #6b8c42;
+  border-bottom-style: solid;
+}
+
+/* 引用样式 */
+.card-meadow-dawn blockquote {
+  border-left: 4px solid #8b9a7a;
+  padding-left: calc(var(--spacing) * 4);
+  margin-left: 0;
+  color: #7a6b5f;
+  font-style: italic;
+  background-color: rgba(139, 154, 122, 0.1);
+  padding: calc(var(--spacing) * 4);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+/* 代码样式 */
+.card-meadow-dawn code {
+  font-family: "Courier New", monospace;
+  background-color: rgba(139, 154, 122, 0.2);
+  padding: calc(var(--spacing) * 0.8) calc(var(--spacing) * 1.6);
+  border-radius: 3px;
+  font-size: calc(var(--spacing) * 3.6);
+}
+
+.card-meadow-dawn pre {
+  background-color: rgba(139, 154, 122, 0.2);
+  padding: calc(var(--spacing) * 4);
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+.card-meadow-dawn pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* 图片样式 */
+.card-meadow-dawn img {
+  max-width: 100%;
+  border-radius: 0px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 表格样式 */
+.card-meadow-dawn table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+.card-meadow-dawn th,
+.card-meadow-dawn td {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  border: 1px solid #d4d9c9;
+}
+
+.card-meadow-dawn th {
+  background-color: rgba(139, 154, 122, 0.2);
+}
+
+.card-meadow-dawn ul li {
+  position: relative;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.card-meadow-dawn ul li::before {
+  content: "";
+  display: block;
+  background: #8b9a7a;
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  position: absolute;
+  left: calc(var(--spacing) * -8);
+  top: calc(var(--spacing) * 3);
+}
+
+/* 有序列表样式 */
+.card-meadow-dawn ol,
+.card-meadow-dawn ul {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 2)
+    calc(var(--spacing) * 2) calc(var(--spacing) * 14);
+  margin-bottom: calc(var(--spacing) * 6);
+}
+
+.card-meadow-dawn ol li {
+  position: relative;
+  margin-bottom: calc(var(--spacing) * 7.2);
+}
+
+.card-meadow-dawn ol li::before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -14);
+  top: 0;
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  line-height: calc(var(--spacing) * 10);
+  text-align: center;
+  color: #6b8c42;
+  background-color: rgba(255, 253, 245, 0.9);
+  border: 1px solid #d4d9c9;
+  border-radius: 8px;
+  font-family: "Noto Serif JP", serif;
+  font-size: calc(var(--spacing) * 3.6);
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(139, 154, 122, 0.2);
+}
+
+.card-meadow-dawn ol li::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--spacing) * -2);
+  bottom: calc(var(--spacing) * -2);
+  width: calc(100% + calc(var(--spacing) * 2));
+  height: calc(var(--spacing) * 0.25);
+  background-color: rgba(139, 154, 122, 0.3);
+}
+
+/* 强调文本样式 */
+.card-meadow-dawn strong {
+  color: #6b8c42;
+  font-weight: 700;
+}
+
+/* 行内代码样式 */
+.card-meadow-dawn :not(pre) > code {
+  font-size: calc(var(--spacing) * 3.6);
+  padding: calc(var(--spacing) * 0.8) calc(var(--spacing) * 1.6);
+  border-radius: 3px;
+  background-color: rgba(139, 154, 122, 0.2);
+}
+
+.card-meadow-dawn .card-footer {
+  text-align: right;
+  padding: 0 calc(var(--spacing) * 2.5);
+}
+
+.card-meadow-dawn .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-meadow-dawn">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

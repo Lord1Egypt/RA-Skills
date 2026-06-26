@@ -1,0 +1,31 @@
+identity:
+  name: update_focus
+  label:
+    en_US: Update Operating Focus
+    zh_Hans: 更新经营焦点
+description:
+  human:
+    en_US: Update current goal, bottleneck, primary arena, and shortest action.
+    zh_Hans: 更新当前主目标、主瓶颈、主战场和今日最短动作。
+parameters:
+  - name: company_dir
+    type: string
+    required: true
+  - name: primary_goal
+    type: string
+    required: true
+  - name: primary_bottleneck
+    type: string
+    required: true
+  - name: primary_arena
+    type: select
+    required: true
+    options:
+      - sales
+      - product
+      - delivery
+      - cash
+      - asset
+  - name: today_action
+    type: string
+    required: true

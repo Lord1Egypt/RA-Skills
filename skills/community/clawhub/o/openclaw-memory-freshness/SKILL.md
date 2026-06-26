@@ -1,35 +1,91 @@
 ---
-name: "OpenClaw: memory freshness"
-description: "为 OpenClaw 4.2 记忆搜索结果添加新鲜度警告。当记忆搜索结果返回时自动注入时间戳警告，提示模型验证旧记忆。当用户提到记忆过时、记忆不准确、记忆过期、或要求添加记忆新鲜度提醒时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-memory-freshness"
-sourceUrl: "https://clawhub.ai/skills/openclaw-memory-freshness"
+name: openclaw-memory-freshness
+description: 为 OpenClaw 4.2 记忆搜索结果添加新鲜度警告。当记忆搜索结果返回时自动注入时间戳警告，提示模型验证旧记忆。当用户提到记忆过时、记忆不准确、记忆过期、或要求添加记忆新鲜度提醒时触发。
 ---
 
-# OpenClaw: memory freshness
+# OpenClaw Memory Freshness
 
-> 为 OpenClaw 4.2 记忆搜索结果添加新鲜度警告。当记忆搜索结果返回时自动注入时间戳警告，提示模型验证旧记忆。当用户提到记忆过时、记忆不准确、记忆过期、或要求添加记忆新鲜度提醒时触发。
+在记忆搜索结果中自动注入新鲜度警告，提示模型验证旧记忆。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-memory-freshness`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-memory-freshness](https://clawhub.ai/skills/openclaw-memory-freshness)
+## 核心问题
 
-## Overview
+OpenClaw 4.2 的 memory 系统返回搜索结果时，不包含 `mtimeMs` 时间戳信息。模型无法判断一条记忆是昨天创建的还是半年前创建的。
 
+Claude Code 有 `memoryFreshnessText` 函数，生成类似：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-memory-freshness
 ```
+> ⚠️ 此记忆 7 天前创建。代码可能已变化，使用前请先 grep 验证。
+```
+
+## 新鲜度警告规则
+
+| 记忆年龄 | 警告级别 | 警告内容 |
+|----------|----------|----------|
+| ≤ 1 天 | 无警告 | — |
+| 2–7 天 | ⚠️ 低 | 记忆较新，但仍建议验证 |
+| 7–30 天 | ⚠️ 中 | 记忆可能过时，使用前验证 |
+| > 30 天 | 🔴 高 | 记忆严重过时，代码可能已变化，**必须验证** |
+
+## 实现方式
+
+### 方式 1：通过 system prompt 注入（推荐）
+
+在 `~/.openclaw/openclaw.json` 的 `agents.defaults.systemPrompt` 中添加：
+
+```
+## 记忆新鲜度规则
+
+当使用记忆中的信息时，遵循以下规则：
+
+1. **≤ 2 天**：可直接使用
+2. **2–7 天**：使用前简单验证（如 grep 文件是否存在）
+3. **7–30 天**：使用前必须验证（如 grep 函数是否存在，内容是否匹配）
+4. **> 30 天**：标记为过时，**必须**通过实际读取文件验证后使用
+
+记忆可能过时，因为：
+- 代码已被修改或删除
+- 配置已更改
+- 项目架构已重构
+```
+
+### 方式 2：记忆文件添加时间戳
+
+在每次记忆写入时，在文件顶部添加创建时间：
+
+```markdown
+> 创建时间: 2026-03-01
+> 最后验证: 2026-03-05
+> ⚠️ 7 天前创建，代码可能已变化
+
+## [user] 项目配置
+
+...
+```
+
+### 方式 3：搜索结果中注入 freshness score
+
+修改搜索结果的提示，格式如下：
+
+```
+## 相关记忆
+- `[user] 项目配置` (创建于 7 天前) ⚠️
+  描述: 用户偏好使用 pnpm
+
+- `[project] API 设计` (创建于 45 天前) 🔴
+  描述: REST vs GraphQL 决策
+```
+
+## 验证行为
+
+当模型要基于记忆行动时，必须遵循：
+
+```
+当记忆信息需要被使用时：
+1. 如果记忆指向文件 → `grep -n "关键字" [文件路径]`
+2. 如果记忆指向函数/配置 → `rg "函数名|配置名"`
+3. 验证匹配后再使用，**不要**直接假设记忆内容仍正确
+```
+
+## 关闭新鲜度警告
+
+如果用户明确说"我知道这是旧记忆，直接用"，可以跳过验证。

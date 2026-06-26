@@ -1,0 +1,43 @@
+{
+  "name": "@everything_openclaw/openclaw-plugin",
+  "version": "3.0.4",
+  "description": "Everything Openclaw (EO) v3.0.4 - Multi-Expert Collaboration Plugin with 141 experts",
+  "type": "module",
+  "main": "dist/index.js",
+  "openclaw": {
+    "version": ">=2026.3.0",
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc --skipLibCheck",
+    "dev": "tsc --watch",
+    "deploy": "bash scripts/deploy.sh",
+    "test": "node --test 'tests/**/*.test.ts'",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "multi-agent",
+    "collaboration",
+    "expert",
+    "141-experts"
+  ],
+  "author": "467718584",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^20.19.37",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
+    "eslint": "^10.2.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "ops-maintenance",
+  "version": "3.1.0",
+  "description": "运维助手 v3.1 - 支持本地、远程、多服务器集群监控、告警通知、定时巡检、Docker容器健康巡检、SSL证书监控",
+  "main": "src/index.ts",
+  "bin": {
+    "ops": "src/cli.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "ops",
+    "ssh",
+    "monitoring",
+    "devops"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ssh2": "^1.15.0",
+    "ssh2-sftp-client": "^10.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ssh2": "^1.15.5",
+    "@types/ssh2-sftp-client": "^9.0.6",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.7"
+  }
+}

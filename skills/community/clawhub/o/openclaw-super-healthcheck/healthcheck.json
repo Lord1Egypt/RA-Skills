@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "lastRun": null,
+  "lastAudit": null,
+  "config": {
+    "checkInterval": "daily",
+    "warnings": {
+      "diskSpaceThresholdGB": 10,
+      "memoryUsagePercentThreshold": 80,
+      "updateDaysOld": 30
+    },
+    "enabledChecks": [
+      "systemUpdates",
+      "securityConfig",
+      "network",
+      "openclawStatus",
+      "diskSpace",
+      "memory",
+      "dependencies"
+    ]
+  },
+  "risks": {
+    "low": [
+      "缺少系统更新",
+      "内存使用较高"
+    ],
+    "medium": [
+      "防火墙配置不完整"
+    ],
+    "high": []
+  }
+}

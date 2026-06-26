@@ -1,0 +1,117 @@
+{
+  "name": "openclaw-smart-search",
+  "version": "1.0.14",
+  "description": "统一智能搜索技能，整合 5 个搜索引擎（百炼 MCP、Tavily、Serper、Exa、Firecrawl），自动选择最佳引擎并融合结果",
+  "main": "dist/index.js",
+  "bin": {
+    "smart-search": "./scripts/search.sh"
+  },
+  "scripts": {
+    "preinstall": "command -v mcporter >/dev/null 2>&1 || { echo '⚠️  警告: mcporter 未安装。请先安装 mcporter 以使用百炼搜索功能。'; echo '安装指南: https://github.com/openclaw/mcporter'; exit 0; }",
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "search": "cross-env DOTENV_CONFIG_PATH=.env node -r dotenv/config dist/src/index.js",
+    "search:cli": "./scripts/search.sh",
+    "setup": "ts-node scripts/setup-wizard.ts",
+    "key:init": "ts-node scripts/manage-keys.ts init",
+    "key:set": "ts-node scripts/set-key.ts",
+    "key:import": "ts-node scripts/import-keys.ts",
+    "key:list": "ts-node scripts/manage-keys.ts list",
+    "key:get": "ts-node scripts/manage-keys.ts get",
+    "key:rotate": "ts-node scripts/manage-keys.ts rotate",
+    "key:status": "ts-node scripts/manage-keys.ts status",
+    "doctor": "ts-node scripts/doctor.ts",
+    "setup:bailian": "ts-node scripts/setup-bailian.ts",
+    "key:generate-master": "openssl rand -base64 32",
+    "test": "jest",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:performance": "jest --testPathPattern=performance",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "files": [
+    "dist/",
+    "scripts/",
+    "SKILL.md",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "keywords": [
+    "search",
+    "ai",
+    "multi-engine",
+    "smart-search",
+    "openclaw",
+    "skill"
+  ],
+  "author": "小胖虾",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/smart-search"
+  },
+  "clawhub": {
+    "category": "search",
+    "tags": [
+      "search",
+      "ai",
+      "multi-engine",
+      "smart",
+      "bailian",
+      "tavily",
+      "serper",
+      "exa",
+      "firecrawl"
+    ],
+    "features": [
+      "统一智能搜索",
+      "5 个搜索引擎整合",
+      "智能路由",
+      "自动降级",
+      "结果优化",
+      "加密 Key 管理"
+    ],
+    "engines": [
+      {
+        "name": "百炼 MCP",
+        "quota": "2000 次/月",
+        "use": "中文搜索"
+      },
+      {
+        "name": "Tavily",
+        "quota": "1000 次/月",
+        "use": "高级搜索"
+      },
+      {
+        "name": "Serper",
+        "quota": "2500 次/月",
+        "use": "Google 结果"
+      },
+      {
+        "name": "Exa",
+        "quota": "1000 次/月",
+        "use": "学术/技术"
+      },
+      {
+        "name": "Firecrawl",
+        "quota": "500 页/月",
+        "use": "网页抓取"
+      }
+    ],
+    "totalQuota": "~7500 次/月"
+  },
+  "dependencies": {
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.9.3"
+  }
+}

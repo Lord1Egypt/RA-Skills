@@ -1,0 +1,45 @@
+{
+  "skill_name": "OccamsRazorAnalyzer",
+  "version": "1.0.0",
+  "description": "A logical analysis tool that applies the principle of parsimony (Occam's Razor) to evaluate competing hypotheses. Capable of operating in Forensic (probabilistic, evidentiary) and Academic (theoretical, ontological) modes.",
+  "tags": ["logic", "reasoning", "analysis", "forensics", "philosophy", "problem-solving"],
+  "triggers": {
+    "keywords": ["simplest explanation", "occam's razor", "parsimony", "competing theories", "evaluate hypotheses"],
+    "contexts": ["debate", "investigation", "troubleshooting", "research_synthesis"]
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "scenario_description": {
+        "type": "string",
+        "description": "The problem, event, or phenomenon requiring explanation."
+      },
+      "hypotheses": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "A list of competing explanations or theories to be evaluated."
+      },
+      "mode": {
+        "type": "string",
+        "enum": ["FORENSIC", "ACADEMIC"],
+        "default": "FORENSIC",
+        "description": "The operational environment. FORENSIC prioritizes evidence probability and likelihood. ACADEMIC prioritizes ontological economy and theoretical elegance."
+      },
+      "constraints": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Optional: Known facts or axioms that must be adhered to."
+      }
+    },
+    "required": ["scenario_description", "hypotheses", "mode"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "preferred_hypothesis": { "type": "string" },
+      "complexity_analysis": { "type": "object" },
+      "logic_rationale": { "type": "string" },
+      "confidence_score": { "type": "number", "minimum": 0, "maximum": 1 }
+    }
+  }
+}

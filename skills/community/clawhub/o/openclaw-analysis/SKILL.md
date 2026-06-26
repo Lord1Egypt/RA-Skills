@@ -1,35 +1,54 @@
 ---
-name: "Openclaw Analysis"
+name: openclaw-analysis
 description: "用 OpenClaw 七大核心理念分析重大项目架构"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-analysis"
-sourceUrl: "https://clawhub.ai/skills/openclaw-analysis"
+trigger: "分析|评估|审查|架构"
 ---
 
-# Openclaw Analysis
+# OpenClaw 七大理念架构分析
 
-> 用 OpenClaw 七大核心理念分析重大项目架构
+用 OpenClaw 七大核心理念分析任何重大项目。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-analysis`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-analysis](https://clawhub.ai/skills/openclaw-analysis)
+## 七大理念框架
 
-## Overview
+### 1️⃣ Agent 无处不在（Ubiquitous Agents）
+- 硬件即 Agent：每个设备是否都是独立 Agent 节点？
+- 边缘自治网络：是否支持本地 Agent 集群自组织？
+- Agent 市场机制：是否支持技能/Agent 的发布和订阅？
 
+### 2️⃣ 技能即插件（Skill-as-Plugin）
+- 动态技能热插拔：是否支持运行时动态加载/卸载技能？
+- 技能组合编程：是否支持低代码/无代码组合新功能？
+- 技能基因库：技能是否可继承、变异、重组？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-analysis
-```
+### 3️⃣ 记忆即永续（Memory-as-Persistence）
+- 跨设备记忆同步：是否所有设备共享同一记忆层？
+- 记忆压缩与蒸馏：是否有记忆总结、提炼、遗忘机制？
+- 集体记忆网络：是否支持跨用户知识共享？
+
+### 4️⃣ 协作即本能（Collaboration-as-Instinct）
+- Agent 意图对齐：Agent 之间是否能自动理解彼此目标？
+- 动态任务编排：是否支持复杂任务自动分解和分配？
+- 跨领域专家：是否有专家 Agent 相互调用？
+
+### 5️⃣ 感知即语言（Perception-as-Language）
+- 多模态统一编码：是否支持图像、声音、触觉统一处理？
+- 物理世界数字孪生：是否实时构建3D环境模型？
+- 持续学习感知：设备是否能持续学习用户习惯？
+
+### 6️⃣ 安全即信任（Security-as-Trust）
+- 可解释 AI 决策：每个 Agent 行为是否可追溯？
+- 隐私优先架构：敏感数据是否本地处理？
+- 硬件级信任链：是否有硬件级别的安全验证？
+
+### 7️⃣ 进化即必然（Evolution-as-Inevitable）
+- 自进化 Agent：是否能根据使用模式自我优化？
+- 人机共生进化：是否支持人类和 AI 相互促进？
+
+---
+
+## 使用方法
+
+告诉我你要分析的项目，我会用以上 7 大理念 21 个维度进行全面评估。
+
+**示例：**
+> "帮我用七大理念分析这个智能家居系统"

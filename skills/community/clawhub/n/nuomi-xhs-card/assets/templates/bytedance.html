@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+.card-bytedance {
+  font-family: "PingFang SC", "SF Pro Text", "Microsoft YaHei", sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 104, 255, 0.08);
+  background: white;
+  position: relative;
+  border: none;
+  --highlight-color: #0066ff;
+  --highlight-bg-color: rgba(0, 102, 255, 0.1);
+}
+
+/* 卡片背景SVG装饰 */
+.card-bytedance::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' fill='none'%3E%3Ccircle cx='85' cy='15' r='3' fill='%230066FF' opacity='0.1'/%3E%3Ccircle cx='75' cy='15' r='2' fill='%230066FF' opacity='0.08'/%3E%3Ccircle cx='65' cy='15' r='1' fill='%230066FF' opacity='0.06'/%3E%3Ccircle cx='15' cy='85' r='3' fill='%23FA2C19' opacity='0.1'/%3E%3Ccircle cx='15' cy='75' r='2' fill='%23FA2C19' opacity='0.08'/%3E%3Ccircle cx='15' cy='65' r='1' fill='%23FA2C19' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position:
+    top right,
+    bottom left;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 字节跳动特色顶部装饰 */
+.card-bytedance .card-header {
+  height: calc(var(--spacing) * 2);
+  background: linear-gradient(90deg, #0066ff 0%, #fa2c19 100%);
+  position: relative;
+}
+
+/* 添加字节跳动品牌标识点阵 */
+.card-bytedance .card-header::before {
+  content: "";
+  position: absolute;
+  right: calc(var(--spacing) * 3.75);
+  top: calc(var(--spacing) * 3);
+  width: calc(var(--spacing) * 1.5);
+  height: calc(var(--spacing) * 1.5);
+  border-radius: 50%;
+  background: #fa2c19;
+  box-shadow:
+    -12px 0 0 rgba(250, 44, 25, 0.6),
+    -24px 0 0 rgba(250, 44, 25, 0.4),
+    -36px 0 0 rgba(250, 44, 25, 0.2);
+}
+
+/* 添加波浪形SVG装饰 */
+.card-bytedance .card-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--spacing) * -2.5);
+  height: calc(var(--spacing) * 2.5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.05' fill='%230066FF'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.card-bytedance .card-content {
+  padding: 0;
+  position: relative;
+  min-height: calc(var(--card-height) - calc(var(--spacing) * 14.5));
+}
+
+/* 字节跳动特色装饰元素 */
+.card-bytedance .card-content::before {
+  content: "";
+  position: absolute;
+  right: calc(var(--spacing) * 5);
+  top: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 8.75);
+  height: calc(var(--spacing) * 8.75);
+  border-radius: 50% 50% 50% 0;
+  background: rgba(0, 102, 255, 0.06);
+  z-index: 1;
+}
+
+.card-bytedance .card-content::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--spacing) * 8.75);
+  bottom: calc(var(--spacing) * 6.25);
+  width: calc(var(--spacing) * 4.5);
+  height: calc(var(--spacing) * 4.5);
+  border-radius: 0 50% 50% 50%;
+  background: rgba(250, 44, 25, 0.06);
+  z-index: 1;
+}
+
+.card-bytedance .card-content-inner {
+  padding: calc(var(--spacing) * 7) calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M1 5 L5 1 L5 5 L1 5' fill='%230066FF' opacity='0.05'/%3E%3Cpath d='M15 1 L19 5 L15 5 L15 1' fill='%23FA2C19' opacity='0.05'/%3E%3Cpath d='M1 15 L5 19 L1 19 L1 15' fill='%23FA2C19' opacity='0.05'/%3E%3Cpath d='M15 19 L19 15 L19 19 L15 19' fill='%230066FF' opacity='0.05'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position:
+    top left,
+    top right,
+    bottom left,
+    bottom right;
+}
+
+/* 标题样式 - 居中 */
+.card-bytedance .card-content-inner h1 {
+  font-size: calc(var(--spacing) * 5.5);
+  line-height: 1.4;
+  font-weight: 600;
+  color: #1c1f23;
+  position: relative;
+  text-align: center;
+  padding: 0 0 calc(var(--spacing) * 3.5) 0;
+}
+
+/* 字节跳动风格的标题装饰 - 水平线 */
+.card-bytedance .card-content-inner h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 1);
+  background: linear-gradient(90deg, #0066ff, #fa2c19);
+  border-radius: 4px;
+  transform: translateX(-50%);
+}
+
+/* 标题装饰元素 */
+.card-bytedance .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--spacing) * -1);
+  height: calc(var(--spacing) * 0.25);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 二级标题样式 - 双色系优化 */
+.card-bytedance h2 {
+  display: table;
+  padding: calc(var(--spacing) * 1.6) calc(var(--spacing) * 5.6);
+  margin: calc(var(--spacing) * 12) auto calc(var(--spacing) * 6);
+  color: #fff;
+  background: linear-gradient(135deg, #1677ff, #05d4cd);
+  font-size: calc(var(--spacing) * 5.2);
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px 24px 8px 24px;
+  box-shadow: 0 4px 12px rgba(5, 212, 205, 0.15);
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.card-bytedance h2::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -0.5);
+  left: calc(var(--spacing) * -0.5);
+  right: calc(var(--spacing) * -0.5);
+  bottom: calc(var(--spacing) * -0.5);
+  background: linear-gradient(135deg, #1677ff, #05d4cd);
+  border-radius: 10px 26px 10px 26px;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
+/* 三级标题样式 - 双色系优化 */
+.card-bytedance h3 {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4)
+    calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  font-size: calc(var(--spacing) * 4.8);
+  border-radius: 6px;
+  line-height: 1.6;
+  border-left: 4px solid #1677ff;
+  border-right: 1px solid rgba(22, 119, 255, 0.1);
+  border-bottom: 1px solid rgba(22, 119, 255, 0.1);
+  border-top: 1px solid rgba(22, 119, 255, 0.1);
+  background: rgba(22, 119, 255, 0.05);
+  color: #1677ff;
+  margin: calc(var(--spacing) * 8) 0 calc(var(--spacing) * 3);
+  font-weight: 600;
+  position: relative;
+}
+
+.card-bytedance h3::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -0.25);
+  right: calc(var(--spacing) * -0.25);
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  border-radius: 0 0 6px 0;
+  background: #05d4cd;
+  opacity: 0.4;
+}
+
+/* 正文样式 */
+.card-bytedance .card-content-inner p {
+  color: #4e5969;
+}
+
+/* 列表容器样式 */
+.card-bytedance .card-content-inner ol {
+  list-style: none;
+}
+.card-bytedance .card-content-inner ol,
+.card-bytedance .card-content-inner ul {
+  background: rgba(0, 102, 255, 0.02);
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3)
+    calc(var(--spacing) * 3) calc(var(--spacing) * 9);
+  border-radius: 8px 16px 8px 16px;
+}
+
+.card-bytedance .card-content-inner li {
+  color: #4e5969;
+  position: relative;
+}
+
+.card-bytedance .card-content-inner li::before {
+  position: absolute;
+  left: calc(var(--spacing) * -7);
+  top: calc(var(--spacing) * 1);
+}
+
+/* 自定义列表序号/符号 */
+.card-bytedance .card-content-inner ol li::before {
+  content: attr(data-index);
+  background-color: #0066ff;
+  color: white;
+  font-size: calc(var(--spacing) * 3);
+  font-weight: bold;
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: calc(var(--spacing) * 5);
+}
+
+.card-bytedance .card-content-inner ul li::before {
+  content: "";
+  top: calc(var(--spacing) * 2.5);
+  left: calc(var(--spacing) * -5);
+  width: calc(var(--spacing) * 1.5);
+  height: calc(var(--spacing) * 1.5);
+  background: #fa2c19;
+  border-radius: 0 2px 2px 2px;
+  transform: rotate(45deg);
+}
+
+/* 强调/加粗文本 */
+.card-bytedance .card-content-inner strong {
+  font-weight: 600;
+  color: #1c1f23;
+  position: relative;
+  z-index: 1;
+}
+
+/* 加粗文本下划线装饰 */
+.card-bytedance .card-content-inner strong::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--spacing) * 1.5);
+  background: rgba(0, 102, 255, 0.1);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+/* 引用样式 */
+.card-bytedance .card-content-inner blockquote {
+  background: rgba(0, 102, 255, 0.04);
+  border-left: 4px solid #0066ff;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.card-bytedance .card-content-inner blockquote::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -2);
+  left: calc(var(--spacing) * 3);
+  width: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 4);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'%3E%3Cpath d='M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z' fill='%230066FF' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+.card-bytedance .card-content-inner blockquote p {
+  color: #4e5969;
+}
+
+/* 代码样式 */
+.card-bytedance .card-content-inner code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background: rgba(0, 0, 0, 0.04);
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+  border-radius: 4px;
+  font-size: calc(var(--spacing) * 3.5);
+  color: #fa2c19;
+  border-bottom: 2px solid rgba(250, 44, 25, 0.1);
+}
+
+.card-bytedance .card-content-inner pre {
+  background: #f7f8fa;
+  border-radius: 6px 12px 6px 12px;
+  padding: calc(var(--spacing) * 4);
+  overflow-x: auto;
+  position: relative;
+  border: 1px solid #ebedf0;
+}
+
+.card-bytedance .card-content-inner pre::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 2);
+  left: calc(var(--spacing) * 2);
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  border-radius: 50%;
+  background: #fa2c19;
+  box-shadow:
+    16px 0 0 rgba(250, 44, 25, 0.6),
+    32px 0 0 rgba(250, 44, 25, 0.3);
+}
+
+.card-bytedance .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #1c1f23;
+  border: none;
+  display: block;
+  margin-top: calc(var(--spacing) * 2);
+}
+
+/* 表格样式 */
+.card-bytedance .card-content-inner table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: calc(var(--spacing) * 3.5);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0, 102, 255, 0.1);
+}
+
+.card-bytedance .card-content-inner table th {
+  background: rgba(0, 102, 255, 0.06);
+  font-weight: 600;
+  text-align: left;
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+  color: #1c1f23;
+  border-bottom: 2px solid rgba(0, 102, 255, 0.1);
+}
+
+.card-bytedance .card-content-inner table td {
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+  border-bottom: 1px solid #ebedf0;
+  color: #4e5969;
+}
+
+.card-bytedance .card-content-inner table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 底部样式 */
+.card-bytedance .card-footer {
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+  border-top: 1px solid #ebedf0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #86909c;
+  font-size: calc(var(--spacing) * 3.5);
+  position: relative;
+  background: linear-gradient(
+    to right,
+    rgba(0, 102, 255, 0.02),
+    rgba(250, 44, 25, 0.02)
+  );
+}
+
+/* 字节跳动标志 */
+.card-bytedance .card-footer::before {
+  content: "";
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 100 100'%3E%3Cpath d='M27.4 69.4c5-4.3 10-8.5 14.8-12.8l-14.7-15.3c-4.8 4.2-9.8 8.3-14.9 12.5 5 5.2 9.9 10.3 14.8 15.6zm22.7-19.6c-5 4.3-10 8.5-14.9 12.9 5 5.2 9.9 10.3 14.7 15.5 5-4.2 10-8.4 14.9-12.6l-14.7-15.8zm7.9-13.5c-5-4.2-10-8.5-14.8-12.8-4.9 4.3-9.9 8.4-14.9 12.6 4.9 5.2 9.9 10.4 14.8 15.5 5-4.2 10-8.4 14.9-12.6v-2.7zm15.5 13.2c5-4.3 10-8.5 14.9-12.8-5-5.1-9.9-10.3-14.8-15.6-4.9 4.2-9.9 8.4-14.9 12.6l14.8 15.8z' fill='%23808695'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-bytedance">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

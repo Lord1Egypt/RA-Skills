@@ -1,0 +1,12 @@
+{
+  "prover_address": "shentu1replace-with-prover-address",
+  "agent_key_name": "agent-prover",
+  "agent_address": "shentu1replace-with-agent-address",
+  "authz_messages": [
+    "/shentu.bounty.v1.MsgSubmitProofHash",
+    "/shentu.bounty.v1.MsgSubmitProofDetail"
+  ],
+  "feegrant_messages": [
+    "/cosmos.authz.v1beta1.MsgExec"
+  ]
+}

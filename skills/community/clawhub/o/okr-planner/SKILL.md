@@ -1,35 +1,49 @@
 ---
-name: "Okr Planner"
-description: "OKR目标管理。OKR制定、季度复盘、上下对齐、评分、模板库、级联分解。OKR planner with goal setting, quarterly reviews, alignment, scoring, templates, cascading. OKR、目标管理、绩效。"
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/okr-planner"
-sourceUrl: "https://clawhub.ai/skills/okr-planner"
+version: "2.0.0"
+name: OKR Planner
+description: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━. Use when you need okr planner capabilities. Triggers on: okr planner."
+  OKR目标管理。OKR制定、季度复盘、上下对齐、评分、模板库、级联分解。OKR planner with goal setting, quarterly reviews, alignment, scoring, templates, cascading. OKR、目标管理、绩效。
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# OKR Planner
 
-# Okr Planner
+OKR目标管理。OKR制定、季度复盘、上下对齐、评分、模板库、级联分解。OKR planner with goal setting, quarterly reviews, alignment, scoring, templates, cascading. OKR、目标管理、绩效。
 
-> OKR目标管理。OKR制定、季度复盘、上下对齐、评分、模板库、级联分解。OKR planner with goal setting, quarterly reviews, alignment, scoring, templates, cascading. OKR、目标管理、绩效。
+## 速查表
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/okr-planner`
-- **Source URL:** [https://clawhub.ai/skills/okr-planner](https://clawhub.ai/skills/okr-planner)
+See commands above.
 
-## Overview
+## 命令速查
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/okr-planner
 ```
+  create          create
+  review          review
+  align           align
+  score           score
+  template        template
+  cascade         cascade
+```
+
+> 💡 小技巧：先用 `help` 查看所有命令，再选择最适合的
+
+## 专业建议
+
+- OKR: 目标导向,鼓励挑战,0.7=成功
+- KPI: 绩效考核,必须100%完成
+- 鼓舞人心,不是数字
+- 例: "成为用户最信赖的教育平台"
+- 可衡量,有截止日期
+
+---
+*OKR Planner by BytesAgain*
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+- Run `okr-planner help` for all commands
+
+## Commands
+
+Run `okr-planner help` to see all available commands.

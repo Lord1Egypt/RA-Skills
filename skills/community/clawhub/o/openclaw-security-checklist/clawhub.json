@@ -1,0 +1,92 @@
+{
+  "name": "openclaw-security-checklist",
+  "version": "1.0.0",
+  "semver": "1.0.0",
+  "description": "OpenClaw 部署前安全检查清单 - 合规导向，清单式检查，多场景覆盖",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw/tree/main/skills/openclaw-security-checklist",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "skills/openclaw-security-checklist"
+  },
+  "keywords": [
+    "security",
+    "checklist",
+    "compliance",
+    "deployment",
+    "audit",
+    "openclaw"
+  ],
+  "categories": [
+    "security",
+    "devops",
+    "compliance"
+  ],
+  "features": [
+    "部署前安全检查",
+    "合规清单（中国法规）",
+    "多场景支持（Mac/VPS/Docker/企业）",
+    "自动化报告生成",
+    "API 密钥管理检查",
+    "数据出境合规检查"
+  ],
+  "requirements": {
+    "os": [
+      "darwin",
+      "linux"
+    ],
+    "bins": [
+      "bash"
+    ],
+    "optional_bins": [
+      "ufw",
+      "ssh",
+      "openssl",
+      "curl"
+    ]
+  },
+  "scripts": {
+    "check": "./scripts/security-check.sh",
+    "audit": "./scripts/security-check.sh --verbose",
+    "report": "./scripts/security-check.sh > report.md"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "example-report.md",
+    "scripts/",
+    "references/"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-15",
+      "changes": [
+        "初始版本发布",
+        "支持 4 大部署场景（个人 Mac、VPS、Docker、企业）",
+        "覆盖 6 类安全检查（防火墙、SSH、API 密钥、数据出境等）",
+        "生成 Markdown 格式检查报告",
+        "集成 Discord 告警通知"
+      ]
+    },
+    "0.1.0": {
+      "date": "2026-03-14",
+      "changes": [
+        "内部测试版",
+        "基础检查框架",
+        "个人 Mac 场景支持"
+      ]
+    }
+  },
+  "related_skills": [
+    "healthcheck",
+    "openclaw-skill-vetter",
+    "discord"
+  ],
+  "badges": [
+    "🔒 安全",
+    "📋 清单式",
+    "✅ 已测试"
+  ]
+}

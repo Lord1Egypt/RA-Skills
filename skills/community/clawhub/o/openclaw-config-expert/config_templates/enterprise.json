@@ -1,0 +1,159 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "loopback",
+    "port": 18789
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "qwen/qwen3.5-plus",
+        "fallback": "deepseek/deepseek-chat",
+        "thinking": "stream"
+      },
+      "workspace": "~/OpenClaw输出",
+      "subagents": {
+        "allowAgents": ["hermes", "coder", "analyst", "researcher", "writer", "qa"]
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "主协调器",
+        "model": "qwen/qwen3.5-plus",
+        "description": "负责任务分发和协调"
+      },
+      {
+        "id": "hermes",
+        "name": "Hermes助手",
+        "model": {
+          "primary": "deepseek/deepseek-chat",
+          "thinking": "stream"
+        },
+        "description": "高级推理和复杂任务处理"
+      },
+      {
+        "id": "coder",
+        "name": "代码专家",
+        "model": "qwen/qwen3-coder-plus",
+        "tools": {
+          "profile": "coding"
+        },
+        "description": "编程和代码相关任务"
+      },
+      {
+        "id": "analyst",
+        "name": "数据分析师",
+        "model": "deepseek/deepseek-chat",
+        "tools": {
+          "profile": "data-analysis"
+        },
+        "description": "数据分析和可视化"
+      },
+      {
+        "id": "researcher",
+        "name": "研究助理",
+        "model": "qwen/qwen3.5-plus",
+        "description": "信息搜集和研究分析"
+      }
+    ]
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek/deepseek-chat",
+            "name": "DeepSeek Chat",
+            "context": 32768,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "qwen": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "${QWEN_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen/qwen3.5-plus",
+            "name": "Qwen 3.5 Plus",
+            "context": 32768,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen/qwen3-coder-plus",
+            "name": "Qwen 3.5 Coder Plus",
+            "context": 32768,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "${FEISHU_APP_ID}",
+      "appSecret": "${FEISHU_APP_SECRET}",
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "typingIntervalSeconds": 10,
+      "streamMode": "partial",
+      "dedupStore": ".openclaw-memory"
+    },
+    "wecom": {
+      "enabled": true,
+      "corpId": "${WECOM_CORP_ID}",
+      "secret": "${WECOM_SECRET}",
+      "agentId": "${WECOM_AGENT_ID}"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "memory-core": {
+        "enabled": true
+      },
+      "multi-search-engine": {
+        "enabled": true
+      },
+      "smart-router": {
+        "enabled": true
+      }
+    }
+  },
+  "session": {
+    "store": ".openclaw-memory"
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu"
+      }
+    },
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "wecom"
+      }
+    }
+  ],
+  "meta": {
+    "lastTouchedVersion": "2026.4.15",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "template": "enterprise",
+    "environment": "production"
+  },
+  "description": "企业级配置 - 包含多Agent团队、多通道集成、插件系统、环境变量等完整功能"
+}

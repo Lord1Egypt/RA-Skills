@@ -1,0 +1,50 @@
+<!--
+  Layout: quote
+  引用页 — 金句/引用，大字居中
+  Agent 替换引用文字和作者
+-->
+<section class="slide slide--quote" data-slide="{{N}}">
+  <div class="quote-content">
+    <blockquote class="quote-text">
+      {{引用文字}}
+    </blockquote>
+    <cite class="quote-author">— {{作者/出处}}</cite>
+  </div>
+</section>
+
+<style>
+.slide--quote {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slide--quote .quote-content {
+  max-width: 75%;
+}
+.slide--quote .quote-text {
+  font-size: var(--font-size-heading);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+.slide--quote .quote-text::before {
+  content: '\201C';
+  font-size: 6rem;
+  color: var(--color-primary);
+  opacity: 0.15;
+  position: absolute;
+  top: -2.5rem;
+  left: -1.5rem;
+  line-height: 1;
+  font-style: normal;
+}
+.slide--quote .quote-author {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-weight: 500;
+}
+</style>

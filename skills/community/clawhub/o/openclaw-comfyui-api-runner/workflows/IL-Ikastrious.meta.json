@@ -1,0 +1,52 @@
+{
+  "positive_prompt_node": "17",
+  "positive_prompt_input": "text",
+  "negative_prompt_node": "18",
+  "negative_prompt_input": "text",
+  "seed_node": "28",
+  "keywords": [
+    "anime",
+    "cartoon",
+    "illustration",
+    "ikastrious",
+    "il-ikastrious"
+  ],
+  "model": {
+    "node": "14",
+    "input": "ckpt_name"
+  },
+  "extra": {
+    "ratio_selected": {
+      "node": "16",
+      "input": "ratio_selected"
+    },
+    "upscale_by": {
+      "node": "27",
+      "input": "value"
+    },
+    "cfg": {
+      "node": "32",
+      "input": "value"
+    },
+    "steps": {
+      "node": "33",
+      "input": "value"
+    },
+    "sampler_name": {
+      "node": "15",
+      "input": "sampler_name"
+    },
+    "scheduler": {
+      "node": "15",
+      "input": "scheduler"
+    },
+    "denoise": {
+      "node": "15",
+      "input": "denoise"
+    },
+    "upscale_model": {
+      "node": "23",
+      "input": "model_name"
+    }
+  }
+}

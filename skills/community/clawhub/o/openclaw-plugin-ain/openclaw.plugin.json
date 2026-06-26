@@ -1,0 +1,12 @@
+{
+  "id": "openclaw-plugin-ain",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "configPath": { "type": "string" },
+      "enableRouting": { "type": "boolean", "default": true },
+      "routingPolicy": { "type": "string" },
+      "exposeTools": { "type": "boolean", "default": true }
+    }
+  }
+}

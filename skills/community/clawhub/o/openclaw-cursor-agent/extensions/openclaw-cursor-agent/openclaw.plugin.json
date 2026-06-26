@@ -1,0 +1,57 @@
+{
+  "id": "openclaw-cursor-agent",
+  "name": "OpenClaw Cursor Agent",
+  "description": "Manage persistent Cursor CLI coding tasks through tmux from OpenClaw tools and commands.",
+  "version": "0.1.0",
+  "skills": ["./skill"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "toolkitRoot": {
+        "type": "string",
+        "description": "Absolute path of the cursor-agent-system directory."
+      },
+      "defaultProjectPath": {
+        "type": "string",
+        "description": "Default project directory used when spawn requests omit projectPath."
+      },
+      "executionMode": {
+        "type": "string",
+        "enum": ["direct", "wsl"],
+        "default": "direct",
+        "description": "direct: call bash directly; wsl: call scripts through wsl.exe bash."
+      },
+      "timeoutMs": {
+        "type": "number",
+        "default": 120000,
+        "minimum": 1000
+      },
+      "shell": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "executable": {
+            "type": "string",
+            "default": "bash"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "workingDirectory": {
+            "type": "string",
+            "default": ""
+          },
+          "wslDistro": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
+    }
+  }
+}

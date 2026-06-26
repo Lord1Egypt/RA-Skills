@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-label="Focus shield diagram">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09121d"/>
+      <stop offset="100%" stop-color="#101c2b"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="760" rx="32" fill="url(#bg3)"/>
+  <text x="90" y="92" fill="#f7fbff" font-size="48" font-weight="700" font-family="Arial, Helvetica, sans-serif">Protected Mainline Execution</text>
+  <text x="90" y="136" fill="#9db8cd" font-size="24" font-family="Arial, Helvetica, sans-serif">Parallel threads stay visible without breaking the active lane.</text>
+
+  <g transform="translate(118,220)">
+    <rect x="0" y="0" width="360" height="320" rx="28" fill="#111d2d"/>
+    <text x="34" y="52" fill="#eff8ff" font-size="32" font-weight="700" font-family="Arial, Helvetica, sans-serif">Incoming Noise</text>
+    <rect x="34" y="92" width="292" height="58" rx="16" fill="#1a2b40"/>
+    <text x="58" y="129" fill="#dbeeff" font-size="22" font-family="Arial, Helvetica, sans-serif">New side idea</text>
+    <rect x="34" y="170" width="248" height="58" rx="16" fill="#1a2b40"/>
+    <text x="58" y="207" fill="#dbeeff" font-size="22" font-family="Arial, Helvetica, sans-serif">Random question</text>
+    <rect x="34" y="248" width="314" height="58" rx="16" fill="#1a2b40"/>
+    <text x="58" y="285" fill="#dbeeff" font-size="22" font-family="Arial, Helvetica, sans-serif">Reflection prompt</text>
+  </g>
+
+  <g transform="translate(540,170)">
+    <path d="M160 0 C250 60 320 72 320 72 V248 C320 370 236 458 160 496 C84 458 0 370 0 248 V72 S70 60 160 0 Z" fill="#0b2230" stroke="url(#shield)" stroke-width="4"/>
+    <path d="M160 64 C218 101 262 110 262 110 V240 C262 331 204 396 160 424 C116 396 58 331 58 240 V110 S102 101 160 64 Z" fill="#102c3c"/>
+    <text x="160" y="174" text-anchor="middle" fill="#89fff1" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">MAINLINE LOCK</text>
+    <text x="160" y="228" text-anchor="middle" fill="#f4feff" font-size="34" font-weight="700" font-family="Arial, Helvetica, sans-serif">Release Skill</text>
+    <text x="160" y="266" text-anchor="middle" fill="#c3f5f1" font-size="22" font-family="Arial, Helvetica, sans-serif">Weight 97</text>
+    <circle cx="160" cy="336" r="42" fill="url(#shield)"/>
+    <path d="M141 338 L156 353 L185 323" fill="none" stroke="#05222a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(970,220)">
+    <rect x="0" y="0" width="320" height="320" rx="28" fill="#111d2d"/>
+    <text x="34" y="52" fill="#eff8ff" font-size="32" font-weight="700" font-family="Arial, Helvetica, sans-serif">Captured Safely</text>
+    <rect x="34" y="92" width="252" height="58" rx="16" fill="#18273a"/>
+    <text x="58" y="129" fill="#b6d3ea" font-size="22" font-family="Arial, Helvetica, sans-serif">Parked thread A</text>
+    <rect x="34" y="170" width="252" height="58" rx="16" fill="#18273a"/>
+    <text x="58" y="207" fill="#b6d3ea" font-size="22" font-family="Arial, Helvetica, sans-serif">Parked thread B</text>
+    <rect x="34" y="248" width="252" height="58" rx="16" fill="#18273a"/>
+    <text x="58" y="285" fill="#b6d3ea" font-size="22" font-family="Arial, Helvetica, sans-serif">Parked thread C</text>
+  </g>
+
+  <path d="M478 380 H530" stroke="#4cc9f0" stroke-width="6" stroke-linecap="round"/>
+  <path d="M860 380 H934" stroke="#4cc9f0" stroke-width="6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "name": "openviking-context",
+  "tagline": "L0/L1/L2 分层上下文加载，token 消耗降低 83-96%",
+  "description": "OpenViking 上下文数据库 Skill — 字节跳动开源的 Agent 上下文管理方案。通过 viking:// 文件系统协议统一管理记忆、资源和技能，利用 L0(摘要)/L1(概览)/L2(全文) 三层按需加载显著降低 token 消耗。内置会话级 token 追踪，每次操作自动对比分层加载 vs 传统全量加载的节省效果。",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "Developer Tools",
+  "tags": ["rag", "context-database", "vector-search", "token-optimization", "memory", "semantic-search", "knowledge-base"],
+  "author": {
+    "name": "guoweisheng"
+  },
+  "pricing": "free",
+  "requirements": {
+    "python": ">=3.10",
+    "packages": ["openviking"]
+  },
+  "triggers": [
+    "openviking",
+    "context database",
+    "viking memory",
+    "layered context",
+    "token saving",
+    "L0/L1/L2",
+    "viking://",
+    "memsearch",
+    "memread",
+    "context setup"
+  ]
+}

@@ -1,0 +1,17 @@
+identity:
+  author: living-hi
+  name: one-person-company-os
+  label:
+    en_US: One Person Company OS
+    zh_Hans: AI 一人公司经营驾驶舱
+  description:
+    en_US: Tools for creating and advancing a solo-founder operating cockpit.
+    zh_Hans: 创建并推进一人公司经营驾驶舱的工具。
+tools:
+  - tools/init_business.yaml
+  - tools/update_focus.yaml
+  - tools/generate_artifact_document.yaml
+  - tools/validate_release.yaml
+extra:
+  python:
+    source: provider/one_person_company_os.py

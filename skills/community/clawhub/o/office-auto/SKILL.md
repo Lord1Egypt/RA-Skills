@@ -1,35 +1,17 @@
----
-name: "文员自动化助手"
-description: "将口语化任务转为结构化工单并自动保存，助力会议记录和待办事项整理办公自动化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/office-auto"
-sourceUrl: "https://clawhub.ai/skills/office-auto"
----
+# 办公自动化辅助 (Office Auto)
 
-# 文员自动化助手
+## 技能描述
+这是一个通用的办公文员自动化处理工具，专门用于将杂乱的口语化任务描述转化为结构化的文本工单，并自动保存到服务器。
 
-> 将口语化任务转为结构化工单并自动保存，助力会议记录和待办事项整理办公自动化。
+## 使用场景
+- 当用户需要记录一段零散的工作想法或会议摘要时。
+- 当用户需要将非结构化的文本转化为标准工单格式时。
+- 适用于日常办公中的待办事项整理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/office-auto`
-- **Source URL:** [https://clawhub.ai/skills/office-auto](https://clawhub.ai/skills/office-auto)
+## 调用示例
+- "帮我记录一下：明天下午两点要和财务部对账，顺便发邮件给老王。"
+- "把这段话存成工单：本周五前完成 OpenClaw 的初步部署测试。"
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/office-auto
-```
+## 注意事项
+- 该技能不涉及用户的个人隐私数据处理。
+- 生成的文件将以时间戳命名，保存在服务器的 exports 目录下。

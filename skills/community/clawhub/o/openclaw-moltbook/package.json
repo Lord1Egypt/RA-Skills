@@ -1,0 +1,45 @@
+{
+  "name": "openclaw-moltbook",
+  "version": "0.2.2",
+  "description": "Moltbook collaboration space integration for OpenClaw - post, browse, and engage",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "openclaw.plugin.json",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "openclaw",
+    "moltbook",
+    "plugin",
+    "skill"
+  ],
+  "author": "duncanghola",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=0.25.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "openclaw": {
+    "plugin": "./openclaw.plugin.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/openclaw-moltbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/openclaw-moltbook/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/openclaw-moltbook#readme"
+}

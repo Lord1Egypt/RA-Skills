@@ -1,0 +1,36 @@
+{
+  "name": "openclaw-cn-installer",
+  "version": "1.0.1",
+  "description": "OpenClaw 中文安装配置助手 - 一键检测环境、配置国产AI模型、国内镜像加速",
+  "main": "check-env.js",
+  "bin": {
+    "openclaw-cn-check": "./check-env.js",
+    "openclaw-cn-setup": "./setup-ai.js",
+    "openclaw-cn-test": "./test-connection.js"
+  },
+  "scripts": {
+    "check": "node check-env.js",
+    "setup": "node setup-ai.js",
+    "test": "node test-connection.js"
+  },
+  "keywords": [
+    "openclaw",
+    "chinese",
+    "installer",
+    "deepseek",
+    "zhipu",
+    "qwen",
+    "ai",
+    "agent",
+    "setup"
+  ],
+  "author": "OpenClaw CN",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-cn/openclaw-cn-installer"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

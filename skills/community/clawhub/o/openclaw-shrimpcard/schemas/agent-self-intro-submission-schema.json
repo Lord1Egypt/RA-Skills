@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shrimp.cards/schema/agent-self-intro-submission/1.0",
+  "title": "AgentSelfIntroSubmission",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "owner",
+    "identity"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "agent-self-intro-submission/1.0"
+    },
+    "agent": {
+      "type": "object",
+      "required": ["name", "product_type"],
+      "properties": {
+        "name": { "type": "string" },
+        "product_type": { "type": "string" },
+        "species": { "type": "string" },
+        "positioning_hint": { "type": "string" },
+        "visual_hint": { "type": "string" }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "role",
+        "tagline",
+        "top_capabilities",
+        "best_for",
+        "proof_anchor",
+        "memory_basis",
+        "source_count",
+        "share_keywords",
+        "persona_tags",
+        "poster_headline",
+        "poster_subline",
+        "share_caption",
+        "visual_brief",
+        "character_style",
+        "selfie_prompt"
+      ],
+      "properties": {
+        "role": { "type": "string" },
+        "tagline": { "type": "string" },
+        "value_line": { "type": "string" },
+        "top_capabilities": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string" }
+        },
+        "best_for": { "type": "string" },
+        "proof_anchor": { "type": "string" },
+        "memory_basis": { "type": "string" },
+        "source_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "share_keywords": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 4,
+          "items": { "type": "string" }
+        },
+        "persona_tags": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string" }
+        },
+        "poster_headline": { "type": "string" },
+        "poster_subline": { "type": "string" },
+        "share_caption": { "type": "string" },
+        "visual_brief": { "type": "string" },
+        "character_style": {
+          "type": "string",
+          "enum": ["lobster", "agent-avatar", "tool-spirit", "minimal-badge"]
+        },
+        "selfie_prompt": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ocas-look",
+  "version": "2.3.0",
+  "description": "Look: image-to-action skill. Converts user-provided images into validated, decision-ready drafts across real-world action domains: events from flyers, macros from meal photos, places to save, products to price, receipts to log, documents to file, civic issues to report. Trigger phrases: 'look at this image', 'what is this', 'scan this receipt', 'what event is this', 'how many calories', 'save this place', 'update look'. Do not use for generic OCR, computer vision research, or surveillance.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-look/",
+      "~/openclaw/journals/ocas-look/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-look/",
+      "~/openclaw/journals/ocas-look/"
+    ]
+  }
+}

@@ -1,35 +1,37 @@
 ---
-name: "OpenMerge"
-description: "A simple description say hello"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/open-merge"
-sourceUrl: "https://clawhub.ai/skills/open-merge"
+name: merge
+description: A simple description say hello
+license: MIT
+metadata:
+  author: Ajay Lakhani
+  hooks: "onInstall"
+  version: "0.1.0"
 ---
 
-# OpenMerge
+# Merge Skill
+When the user asks to merge, use the echo tool to say "Hello from merge"
 
-> A simple description say hello
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/open-merge`
-- **Source URL:** [https://clawhub.ai/skills/open-merge](https://clawhub.ai/skills/open-merge)
+## Workspace files
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/open-merge
 ```
+~/.openclaw/workspace/merge/
+  profile.json      never transmitted to broker
+  preferences.json  encrypted before broker upload
+  signal.json       local record of current signal state
+  matches.json      log of Discord introductions
+  card.txt          introduction card posted to Discord on match
+  .anonymous_id     anonymous broker UUID
+  .keypair          device key pair — private key never transmitted
+```
+
+---
+
+## Lifecycle hooks
+
+### onInstall
+Create workspace directory. Confirm once:
+> "Merge is installed. Say 'set up Merge' when you're ready."
+
+---

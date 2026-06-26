@@ -1,35 +1,88 @@
 ---
-name: "Coda"
-description: "Coda (coda.io). Use this skill for ANY Coda request — reading, creating, and updating data. Whenever a task involves Coda, use this skill instead of calling..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-coda"
-sourceUrl: "https://clawhub.ai/skills/oo-coda"
+name: oo-coda
+description: "Coda (coda.io). Use this skill for ANY Coda request — reading, creating, and updating data. Whenever a task involves Coda, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Coda"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["coda"]
+  icon: "https://static.oomol.com/logo/third-party/Coda.svg"
 ---
 
 # Coda
 
-> Coda (coda.io). Use this skill for ANY Coda request — reading, creating, and updating data. Whenever a task involves Coda, use this skill instead of calling...
+Operate **Coda** through your OOMOL-connected account. This skill calls the `coda` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-coda`
-- **Source URL:** [https://clawhub.ai/skills/oo-coda](https://clawhub.ai/skills/oo-coda)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Coda. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-coda
+oo connector schema "coda" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "coda" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `create_page` — Create a new page in a Coda doc, with optional subtitle, icon, image, parent page, and structured page content. [write]
+- `get_current_user` — Get the current Coda user associated with the authenticated API token.
+- `get_doc` — Get metadata for a specific Coda doc by doc ID.
+- `get_mutation_status` — Get the completion status for an asynchronous Coda mutation using a previously returned request ID.
+- `get_table` — Get details about a specific Coda table or view.
+- `list_columns` — List columns in a Coda table with pagination and optional visibility filtering.
+- `list_docs` — List Coda docs accessible to the authenticated user with optional ownership, publication, workspace, and pagination filters.
+- `list_pages` — List pages in a Coda doc with pagination.
+- `list_rows` — List rows in a Coda table with filtering, sorting, pagination, optional sync tokens, and configurable cell value formats.
+- `list_tables` — List tables in a Coda doc with pagination, optional sort order, and optional table-type filtering.
+- `upsert_rows` — Insert rows into a Coda table, optionally updating existing rows when key columns are provided. [write]
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Coda state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Coda is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=coda
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Coda homepage: https://coda.io

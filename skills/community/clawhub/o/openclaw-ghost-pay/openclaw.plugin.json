@@ -1,0 +1,8 @@
+{
+  "name": "ghost-protocol-openclaw",
+  "version": "1.5.0",
+  "description": "Ghost Protocol skill package for OpenClaw agents.",
+  "skills": [
+    "skills"
+  ]
+}

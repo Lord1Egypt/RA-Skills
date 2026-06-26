@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#f6f3ec"/>
+  <text x="70" y="88" fill="#1f1a14" font-family="Arial, sans-serif" font-size="46" font-weight="800">Visual Loop Preview</text>
+  <circle cx="600" cy="350" r="210" fill="#fffdf8" stroke="#d8c9b8" stroke-width="3"/>
+  <path d="M600 140 A210 210 0 1 1 430 475" fill="none" stroke="#b85c38" stroke-width="16" stroke-linecap="round"/>
+  <path d="M430 475 l54 -2 l-29 46 z" fill="#b85c38"/>
+  <g font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1f1a14">
+    <text x="545" y="180">Promise</text>
+    <text x="760" y="300">Buyer</text>
+    <text x="705" y="515">Product</text>
+    <text x="420" y="535">Cash</text>
+    <text x="310" y="305">Asset</text>
+  </g>
+  <text x="150" y="625" fill="#5f5448" font-family="Arial, sans-serif" font-size="26">Use this slot as the v1.0 loop preview for launch surfaces.</text>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "name": "openclaw-local-storage",
+  "version": "1.0.0",
+  "description": "OpenClaw本地存储技能，使用Node.js实现本地文件存储数据，支持增删改查功能",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "local-storage",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}

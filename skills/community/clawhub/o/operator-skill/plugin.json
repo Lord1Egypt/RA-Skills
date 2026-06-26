@@ -1,0 +1,41 @@
+{
+  "name": "skill-operator",
+  "version": "1.0.1",
+  "description": "Orchestrates multi-agent teams with persistent CRDT storage and crash recovery.",
+  "author": "YourName",
+  "metadata": {
+    "clawdbot": {
+      "emoji": "💾",
+      "requires": {
+        "bins": ["node"],
+        "env": []
+      },
+      "files":["dist/index.js", "data/sessions"]
+    }
+  },
+  "skills":[
+    {
+      "action": "team.create",
+      "description": "Create a persistent collaborative session",
+      "parameters":[ { "name": "taskName", "type": "string", "required": true } ],
+      "permissions":["file.write"]
+    },
+    {
+      "action": "team.sync",
+      "description": "Securely sync CRDT updates with mandatory Ed25519 verification",
+      "parameters":[
+        { "name": "sessionId", "type": "string", "required": true },
+        { "name": "updatePayload", "type": "string", "required": true },
+        { "name": "publicKeyHex", "type": "string", "required": true },
+        { "name": "signatureHex", "type": "string", "required": true }
+      ],
+      "permissions":["file.write", "file.read"]
+    },
+    {
+      "action": "team.load",
+      "description": "Recover full session state from disk",
+      "parameters":[ { "name": "sessionId", "type": "string", "required": true } ],
+      "permissions": ["file.read"]
+    }
+  ]
+}

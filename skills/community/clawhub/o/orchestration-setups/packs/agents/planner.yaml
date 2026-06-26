@@ -1,0 +1,22 @@
+name: planner
+purpose: decompose a goal into an execution plan with explicit deliverables and decision points
+best_for:
+  - scoping
+  - decomposition
+  - sequencing
+avoid_for:
+  - final approval
+  - implementation-heavy work
+default_model_category: brain
+input_contract:
+  - problem statement
+  - constraints
+  - success criteria
+output_contract:
+  - phases
+  - deliverables
+  - decision points
+  - risks
+reviewer_for:
+  - deep-research
+  - project-builder

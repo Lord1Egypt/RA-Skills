@@ -1,0 +1,19 @@
+{
+  "name": "OpenClaw Feishu Multi-Agent",
+  "tagline": "Make Feishu multi-agent workflows actually work.",
+  "description": "OpenClaw + Feishu integrations often fail at the handoff layer: a bot can visibly mention another bot in the group, but that does not actually wake the other agent. This skill codifies the correct pattern: use Feishu `<at>` for human-visible coordination and `sessions_send` for real agent-to-agent delivery.\n\nThe bundle includes production-oriented docs, role templates, and Python utilities for rendering configs from a roles file, auditing existing OpenClaw setups, repairing broken Feishu group session metadata, and applying changes with a dry-run-first workflow. The architecture is role-driven, so users can define any coordinator and specialist team instead of being locked into fixed personas.",
+  "category": "communication",
+  "tags": [
+    "openclaw",
+    "feishu",
+    "lark",
+    "multi-agent",
+    "agent-orchestration",
+    "team-collaboration",
+    "workflow-automation",
+    "session-routing"
+  ],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free"
+}

@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-19T15:05:24.687Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-19T15:05:24.676Z",
+    "lastRunVersion": "2026.3.13",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "volcengine:default": {
+        "provider": "volcengine",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "volcengine-plan/ark-code-latest"
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "userTimezone": "Asia/Shanghai",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "heartbeat": {}
+    },
+    "list": [
+      {
+        "id": "main",
+        "workspace": "/root/.openclaw/workspace"
+      },
+      {
+        "id": "companion",
+        "name": "念禾",
+        "workspace": "/root/.openclaw/workspace-companion",
+        "agentDir": "/root/.openclaw/agents/companion/agent",
+        "model": {
+          "primary": "dzmm-ai-nalang/nalang-xl-0826"
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding",
+    "media": {
+      "audio": {
+        "enabled": true,
+        "models": [
+          {
+            "type": "cli",
+            "command": "bash",
+            "args": [
+              "-c",
+              "curl -s -X POST http://localhost:8001/transcribe -H 'Content-Type: application/json' -d \"{\\\"audio_path\\\": \\\"{{MediaPath}}\\\", \\\"language\\\": \\\"Chinese\\\"}\" | jq -r '.text // empty'"
+            ],
+            "timeoutSeconds": 60
+          }
+        ]
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu",
+        "accountId": "openclaw"
+      }
+    },
+    {
+      "agentId": "companion",
+      "match": {
+        "channel": "feishu",
+        "accountId": "companion"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "defaultAccount": "openclaw",
+      "accounts": {
+        "openclaw": {
+          "appId": "cli_a93b740be238dcc5",
+          "appSecret": "vR3hq3JFdNp5AKeSNNQcQeHuXCJwIRym",
+          "renderMode": "card"
+        },
+        "companion": {
+          "appId": "cli_a93819f287f81cd5",
+          "appSecret": "FRsnUTov8i2mhIkRUvCIAe58sKflTxvx",
+          "renderMode": "raw"
+        },
+        "default": {
+          "groupPolicy": "open"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "90ba0eeebf4759d377f2ec298304a5b6b4687c87e1d0257b"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/skills"
+      ]
+    },
+    "entries": {
+      "clawra-selfie": {
+        "enabled": true,
+        "apiKey": "fb5a6c55-e525-4f96-87fb-652543847610"
+      },
+      "openclaw-tavily-search": {
+        "enabled": true,
+        "env": {
+          "TAVILY_API_KEY": "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"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "load": {
+      "paths": [
+        "/usr/lib/node_modules/openclaw/extensions/feishu"
+      ]
+    },
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    }
+  },
+  "messages": {
+    "tts": {
+      "auto": "always",
+      "provider": "openai",
+      "timeoutMs": 120000,
+      "openai": {
+        "apiKey": "no need",
+        "baseUrl": "http://localhost:8000/v1",
+        "model": "Qwen3-TTS-12Hz-1.7B-Base",
+        "voice": "huopo_kexin"
+      }
+    }
+  }
+}

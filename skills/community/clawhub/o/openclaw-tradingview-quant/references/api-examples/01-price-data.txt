@@ -1,0 +1,890 @@
+curl --request GET \
+	--url 'https://tradingview-data1.p.rapidapi.com/api/price/BINANCE:BTCUSDT?timeframe=1&range=10' \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+{
+  "success": true,
+  "data": {
+    "symbol": "BINANCE:BTCUSDT",
+    "current": {
+      "time": 1773128580,
+      "open": 70354.55,
+      "close": 70331.51,
+      "max": 70373.4,
+      "min": 70328.64,
+      "volume": 16.78
+    },
+    "history": [
+      {
+        "time": 1773128580,
+        "open": 70354.55,
+        "close": 70331.51,
+        "max": 70373.4,
+        "min": 70328.64,
+        "volume": 16.78
+      },
+      {
+        "time": 1773128520,
+        "open": 70370.99,
+        "close": 70354.55,
+        "max": 70371,
+        "min": 70343.62,
+        "volume": 4.54
+      },
+      {
+        "time": 1773128460,
+        "open": 70354.34,
+        "close": 70371,
+        "max": 70400,
+        "min": 70354.34,
+        "volume": 3.97
+      },
+      {
+        "time": 1773128400,
+        "open": 70324.94,
+        "close": 70354.34,
+        "max": 70378.98,
+        "min": 70322.41,
+        "volume": 7.26
+      },
+      {
+        "time": 1773128340,
+        "open": 70303.9,
+        "close": 70324.95,
+        "max": 70355.34,
+        "min": 70303.9,
+        "volume": 9.5
+      },
+      {
+        "time": 1773128280,
+        "open": 70334.25,
+        "close": 70303.9,
+        "max": 70334.26,
+        "min": 70291.93,
+        "volume": 21.26
+      },
+      {
+        "time": 1773128220,
+        "open": 70300.02,
+        "close": 70334.26,
+        "max": 70334.26,
+        "min": 70287.2,
+        "volume": 33.15
+      },
+      {
+        "time": 1773128160,
+        "open": 70317.44,
+        "close": 70300.03,
+        "max": 70317.45,
+        "min": 70294.21,
+        "volume": 15.15
+      },
+      {
+        "time": 1773128100,
+        "open": 70327.44,
+        "close": 70317.44,
+        "max": 70355.34,
+        "min": 70295.31,
+        "volume": 6.3
+      },
+      {
+        "time": 1773128040,
+        "open": 70349.82,
+        "close": 70327.44,
+        "max": 70349.83,
+        "min": 70308.42,
+        "volume": 8.35
+      }
+    ],
+    "info": {
+      "series_id": "ser_1",
+      "source2": {
+        "country": "MT",
+        "description": "Binance",
+        "exchange-type": "exchange",
+        "id": "BINANCE",
+        "name": "Binance",
+        "url": "https://www.binance.com/en"
+      },
+      "currency_code": "USDT",
+      "source_id": "BINANCE",
+      "subsession_id": "regular",
+      "provider_id": "binance",
+      "base_currency_id": "XTVCBTC",
+      "base_currency": "BTC",
+      "currency_id": "XTVCUSDT",
+      "format": "price",
+      "formatter": "price",
+      "pro_perm": "",
+      "volume_type": "base",
+      "measure": "price",
+      "allowed_adjustment": "none",
+      "short_description": "Bitcoin / TetherUS",
+      "variable_tick_size": "",
+      "name": "BTCUSDT",
+      "full_name": "BINANCE:BTCUSDT",
+      "pro_name": "BINANCE:BTCUSDT",
+      "base_name": [
+        "BINANCE:BTCUSDT"
+      ],
+      "description": "Bitcoin / TetherUS",
+      "exchange": "Binance",
+      "pricescale": 100,
+      "pointvalue": 1,
+      "minmov": 1,
+      "session": "24x7",
+      "session_display": "24x7",
+      "subsessions": [
+        {
+          "description": "Regular Trading Hours",
+          "id": "regular",
+          "private": false,
+          "session": "24x7",
+          "session-display": "24x7"
+        }
+      ],
+      "type": "spot",
+      "typespecs": [
+        "crypto"
+      ],
+      "has_intraday": true,
+      "fractional": false,
+      "listed_exchange": "BINANCE",
+      "legs": [
+        "BINANCE:BTCUSDT"
+      ],
+      "is_tradable": true,
+      "minmove2": 0,
+      "timezone": "Etc/UTC",
+      "aliases": [],
+      "alternatives": [],
+      "is_replayable": true,
+      "has_adjustment": false,
+      "has_extended_hours": false,
+      "bar_source": "trade",
+      "bar_transform": "none",
+      "bar_fillgaps": false,
+      "visible_plots_set": "ohlcv",
+      "is-tickbars-available": true,
+      "exchange_listed_name": "Binance"
+    }
+  },
+  "msg": "Success"
+}
+
+
+curl --request POST \
+	--url https://tradingview-data1.p.rapidapi.com/api/price/batch \
+	--header 'Content-Type: application/json' \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY' \
+	--data '{"requests":[{"symbol":"BINANCE:BTCUSDT","timeframe":"60","range":20},{"symbol":"BINANCE:ETHUSDT","timeframe":"60","range":20},{"symbol":"NASDAQ:AAPL","timeframe":"D","range":10}]}'
+
+
+{
+  "success": true,
+  "data": {
+    "total": 3,
+    "successful": 3,
+    "failed": 0,
+    "data": [
+      {
+        "success": true,
+        "symbol": "BINANCE:BTCUSDT",
+        "current": {
+          "time": 1773126000,
+          "open": 69910.91,
+          "close": 70297.6,
+          "max": 70527.47,
+          "min": 69805.7,
+          "volume": 1215.41
+        },
+        "history": [
+          {
+            "time": 1773126000,
+            "open": 69910.91,
+            "close": 70297.6,
+            "max": 70527.47,
+            "min": 69805.7,
+            "volume": 1215.41
+          },
+          {
+            "time": 1773122400,
+            "open": 69971.34,
+            "close": 69910.91,
+            "max": 70185.24,
+            "min": 69750.62,
+            "volume": 1142.22
+          },
+          {
+            "time": 1773118800,
+            "open": 70072.95,
+            "close": 69971.34,
+            "max": 70355.06,
+            "min": 69885.71,
+            "volume": 879.64
+          },
+          {
+            "time": 1773115200,
+            "open": 69429.85,
+            "close": 70072.94,
+            "max": 70132.27,
+            "min": 69429.85,
+            "volume": 1115.41
+          },
+          {
+            "time": 1773111600,
+            "open": 70272,
+            "close": 69429.85,
+            "max": 70370.86,
+            "min": 69390,
+            "volume": 1103.58
+          },
+          {
+            "time": 1773108000,
+            "open": 69260,
+            "close": 70272.01,
+            "max": 70578.29,
+            "min": 69103.12,
+            "volume": 2014.55
+          },
+          {
+            "time": 1773104400,
+            "open": 69157.36,
+            "close": 69260.01,
+            "max": 69389.06,
+            "min": 68786.04,
+            "volume": 1074.99
+          },
+          {
+            "time": 1773100800,
+            "open": 68432.16,
+            "close": 69157.37,
+            "max": 69290.42,
+            "min": 68391.41,
+            "volume": 1138.84
+          },
+          {
+            "time": 1773097200,
+            "open": 68635.88,
+            "close": 68432.16,
+            "max": 68694.73,
+            "min": 68384.69,
+            "volume": 666.29
+          },
+          {
+            "time": 1773093600,
+            "open": 68919.71,
+            "close": 68635.88,
+            "max": 69030.56,
+            "min": 68597,
+            "volume": 943.34
+          },
+          {
+            "time": 1773090000,
+            "open": 68961.15,
+            "close": 68919.72,
+            "max": 69102.53,
+            "min": 68660.94,
+            "volume": 800.9
+          },
+          {
+            "time": 1773086400,
+            "open": 68991.93,
+            "close": 68961.71,
+            "max": 69145.28,
+            "min": 68762.2,
+            "volume": 509.35
+          },
+          {
+            "time": 1773082800,
+            "open": 68356.37,
+            "close": 68991.93,
+            "max": 69516.65,
+            "min": 68356.37,
+            "volume": 1714.37
+          },
+          {
+            "time": 1773079200,
+            "open": 68600.71,
+            "close": 68356.37,
+            "max": 68705.76,
+            "min": 68179.12,
+            "volume": 1351.56
+          },
+          {
+            "time": 1773075600,
+            "open": 68960.12,
+            "close": 68600.71,
+            "max": 69088.49,
+            "min": 68270.34,
+            "volume": 890.37
+          },
+          {
+            "time": 1773072000,
+            "open": 68863.67,
+            "close": 68960.12,
+            "max": 69225,
+            "min": 68614.47,
+            "volume": 1087
+          },
+          {
+            "time": 1773068400,
+            "open": 69151.5,
+            "close": 68863.66,
+            "max": 69254.87,
+            "min": 68717.86,
+            "volume": 1996.25
+          },
+          {
+            "time": 1773064800,
+            "open": 68975.8,
+            "close": 69151.5,
+            "max": 69480,
+            "min": 68696.28,
+            "volume": 2378.51
+          },
+          {
+            "time": 1773061200,
+            "open": 68151.93,
+            "close": 68976,
+            "max": 69300,
+            "min": 68133.93,
+            "volume": 2462.21
+          },
+          {
+            "time": 1773057600,
+            "open": 67764.99,
+            "close": 68151.93,
+            "max": 68348.26,
+            "min": 67759.57,
+            "volume": 971.53
+          }
+        ],
+        "info": {
+          "series_id": "ser_1",
+          "source2": {
+            "country": "MT",
+            "description": "Binance",
+            "exchange-type": "exchange",
+            "id": "BINANCE",
+            "name": "Binance",
+            "url": "https://www.binance.com/en"
+          },
+          "currency_code": "USDT",
+          "source_id": "BINANCE",
+          "subsession_id": "regular",
+          "provider_id": "binance",
+          "base_currency_id": "XTVCBTC",
+          "base_currency": "BTC",
+          "currency_id": "XTVCUSDT",
+          "format": "price",
+          "formatter": "price",
+          "pro_perm": "",
+          "volume_type": "base",
+          "measure": "price",
+          "allowed_adjustment": "none",
+          "short_description": "Bitcoin / TetherUS",
+          "variable_tick_size": "",
+          "name": "BTCUSDT",
+          "full_name": "BINANCE:BTCUSDT",
+          "pro_name": "BINANCE:BTCUSDT",
+          "base_name": [
+            "BINANCE:BTCUSDT"
+          ],
+          "description": "Bitcoin / TetherUS",
+          "exchange": "Binance",
+          "pricescale": 100,
+          "pointvalue": 1,
+          "minmov": 1,
+          "session": "24x7",
+          "session_display": "24x7",
+          "subsessions": [
+            {
+              "description": "Regular Trading Hours",
+              "id": "regular",
+              "private": false,
+              "session": "24x7",
+              "session-display": "24x7"
+            }
+          ],
+          "type": "spot",
+          "typespecs": [
+            "crypto"
+          ],
+          "has_intraday": true,
+          "fractional": false,
+          "listed_exchange": "BINANCE",
+          "legs": [
+            "BINANCE:BTCUSDT"
+          ],
+          "is_tradable": true,
+          "minmove2": 0,
+          "timezone": "Etc/UTC",
+          "aliases": [],
+          "alternatives": [],
+          "is_replayable": true,
+          "has_adjustment": false,
+          "has_extended_hours": false,
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "visible_plots_set": "ohlcv",
+          "is-tickbars-available": true,
+          "exchange_listed_name": "Binance"
+        }
+      },
+      {
+        "success": true,
+        "symbol": "BINANCE:ETHUSDT",
+        "current": {
+          "time": 1773126000,
+          "open": 2043.77,
+          "close": 2049.67,
+          "max": 2059.69,
+          "min": 2040.09,
+          "volume": 11220.64
+        },
+        "history": [
+          {
+            "time": 1773126000,
+            "open": 2043.77,
+            "close": 2049.67,
+            "max": 2059.69,
+            "min": 2040.09,
+            "volume": 11220.64
+          },
+          {
+            "time": 1773122400,
+            "open": 2044,
+            "close": 2043.76,
+            "max": 2049.34,
+            "min": 2036.25,
+            "volume": 11951.13
+          },
+          {
+            "time": 1773118800,
+            "open": 2045.69,
+            "close": 2043.99,
+            "max": 2054.2,
+            "min": 2039.75,
+            "volume": 23567.75
+          },
+          {
+            "time": 1773115200,
+            "open": 2026.8,
+            "close": 2045.7,
+            "max": 2047.31,
+            "min": 2026.36,
+            "volume": 10647.25
+          },
+          {
+            "time": 1773111600,
+            "open": 2042.4,
+            "close": 2026.8,
+            "max": 2047.88,
+            "min": 2022.63,
+            "volume": 13235.66
+          },
+          {
+            "time": 1773108000,
+            "open": 2019.2,
+            "close": 2042.4,
+            "max": 2054.19,
+            "min": 2014.01,
+            "volume": 27255.51
+          },
+          {
+            "time": 1773104400,
+            "open": 2015.37,
+            "close": 2019.21,
+            "max": 2024.99,
+            "min": 2006.23,
+            "volume": 11953
+          },
+          {
+            "time": 1773100800,
+            "open": 1992.97,
+            "close": 2015.37,
+            "max": 2022.5,
+            "min": 1991,
+            "volume": 30632.07
+          },
+          {
+            "time": 1773097200,
+            "open": 2002.52,
+            "close": 1992.98,
+            "max": 2007.67,
+            "min": 1989.12,
+            "volume": 25900.33
+          },
+          {
+            "time": 1773093600,
+            "open": 2028.33,
+            "close": 2002.53,
+            "max": 2031.32,
+            "min": 1997.87,
+            "volume": 56063.06
+          },
+          {
+            "time": 1773090000,
+            "open": 2025.89,
+            "close": 2028.35,
+            "max": 2035.39,
+            "min": 2022.19,
+            "volume": 6365
+          },
+          {
+            "time": 1773086400,
+            "open": 2033.91,
+            "close": 2025.89,
+            "max": 2037.3,
+            "min": 2018.77,
+            "volume": 9560.53
+          },
+          {
+            "time": 1773082800,
+            "open": 2012.11,
+            "close": 2033.91,
+            "max": 2053.52,
+            "min": 2010,
+            "volume": 30137.03
+          },
+          {
+            "time": 1773079200,
+            "open": 2016.94,
+            "close": 2012.1,
+            "max": 2022.9,
+            "min": 2006.15,
+            "volume": 12319.81
+          },
+          {
+            "time": 1773075600,
+            "open": 2027.54,
+            "close": 2016.94,
+            "max": 2032.5,
+            "min": 2005.76,
+            "volume": 20457.18
+          },
+          {
+            "time": 1773072000,
+            "open": 2022.64,
+            "close": 2027.53,
+            "max": 2039.29,
+            "min": 2018.93,
+            "volume": 18206.86
+          },
+          {
+            "time": 1773068400,
+            "open": 2022.27,
+            "close": 2022.63,
+            "max": 2029.25,
+            "min": 2013.97,
+            "volume": 21397.25
+          },
+          {
+            "time": 1773064800,
+            "open": 2018.15,
+            "close": 2022.29,
+            "max": 2032.84,
+            "min": 2007.82,
+            "volume": 39678.89
+          },
+          {
+            "time": 1773061200,
+            "open": 2002.19,
+            "close": 2018.16,
+            "max": 2030,
+            "min": 2001.13,
+            "volume": 41794.2
+          },
+          {
+            "time": 1773057600,
+            "open": 1992.2,
+            "close": 2002.19,
+            "max": 2013.74,
+            "min": 1992.2,
+            "volume": 12668.25
+          }
+        ],
+        "info": {
+          "series_id": "ser_1",
+          "source2": {
+            "country": "MT",
+            "description": "Binance",
+            "exchange-type": "exchange",
+            "id": "BINANCE",
+            "name": "Binance",
+            "url": "https://www.binance.com/en"
+          },
+          "currency_code": "USDT",
+          "source_id": "BINANCE",
+          "subsession_id": "regular",
+          "provider_id": "binance",
+          "base_currency_id": "XTVCETH",
+          "base_currency": "ETH",
+          "currency_id": "XTVCUSDT",
+          "format": "price",
+          "formatter": "price",
+          "pro_perm": "",
+          "volume_type": "base",
+          "measure": "price",
+          "allowed_adjustment": "none",
+          "short_description": "Ethereum / TetherUS",
+          "variable_tick_size": "",
+          "name": "ETHUSDT",
+          "full_name": "BINANCE:ETHUSDT",
+          "pro_name": "BINANCE:ETHUSDT",
+          "base_name": [
+            "BINANCE:ETHUSDT"
+          ],
+          "description": "Ethereum / TetherUS",
+          "exchange": "Binance",
+          "pricescale": 100,
+          "pointvalue": 1,
+          "minmov": 1,
+          "session": "24x7",
+          "session_display": "24x7",
+          "subsessions": [
+            {
+              "description": "Regular Trading Hours",
+              "id": "regular",
+              "private": false,
+              "session": "24x7",
+              "session-display": "24x7"
+            }
+          ],
+          "type": "spot",
+          "typespecs": [
+            "crypto"
+          ],
+          "has_intraday": true,
+          "fractional": false,
+          "listed_exchange": "BINANCE",
+          "legs": [
+            "BINANCE:ETHUSDT"
+          ],
+          "is_tradable": true,
+          "minmove2": 0,
+          "timezone": "Etc/UTC",
+          "aliases": [],
+          "alternatives": [],
+          "is_replayable": true,
+          "has_adjustment": false,
+          "has_extended_hours": false,
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "visible_plots_set": "ohlcv",
+          "is-tickbars-available": true,
+          "exchange_listed_name": "Binance"
+        }
+      },
+      {
+        "success": true,
+        "symbol": "NASDAQ:AAPL",
+        "current": {
+          "time": 1773063000,
+          "open": 255.69,
+          "close": 259.88,
+          "max": 261.15,
+          "min": 253.6805,
+          "volume": 38218533
+        },
+        "history": [
+          {
+            "time": 1773063000,
+            "open": 255.69,
+            "close": 259.88,
+            "max": 261.15,
+            "min": 253.6805,
+            "volume": 38218533
+          },
+          {
+            "time": 1772807400,
+            "open": 258.63,
+            "close": 257.46,
+            "max": 258.77,
+            "min": 254.37,
+            "volume": 41120042
+          },
+          {
+            "time": 1772721000,
+            "open": 260.79,
+            "close": 260.29,
+            "max": 261.555,
+            "min": 257.25,
+            "volume": 49658626
+          },
+          {
+            "time": 1772634600,
+            "open": 264.65,
+            "close": 262.52,
+            "max": 266.15,
+            "min": 261.42,
+            "volume": 39803119
+          },
+          {
+            "time": 1772548200,
+            "open": 263.48,
+            "close": 263.75,
+            "max": 265.56,
+            "min": 260.13,
+            "volume": 38568921
+          },
+          {
+            "time": 1772461800,
+            "open": 262.41,
+            "close": 264.72,
+            "max": 266.53,
+            "min": 260.2,
+            "volume": 41827946
+          },
+          {
+            "time": 1772202600,
+            "open": 272.81,
+            "close": 264.18,
+            "max": 272.81,
+            "min": 262.89,
+            "volume": 72366505
+          },
+          {
+            "time": 1772116200,
+            "open": 274.945,
+            "close": 272.95,
+            "max": 276.11,
+            "min": 270.795,
+            "volume": 32345114
+          },
+          {
+            "time": 1772029800,
+            "open": 271.78,
+            "close": 274.23,
+            "max": 274.94,
+            "min": 271.05,
+            "volume": 33714342
+          },
+          {
+            "time": 1771943400,
+            "open": 267.86,
+            "close": 272.14,
+            "max": 274.89,
+            "min": 267.71,
+            "volume": 47014619
+          }
+        ],
+        "info": {
+          "series_id": "ser_1",
+          "source2": {
+            "country": "US",
+            "description": "Cboe One",
+            "exchange-type": "exchange",
+            "id": "BATS",
+            "name": "Cboe One",
+            "url": "https://markets.cboe.com/us/equities/overview/"
+          },
+          "currency_code": "USD",
+          "source_id": "BATS",
+          "session_holidays": "20000117,20000221,20000421,20000529,20000704,20000904,20001123,20001225,20010101,20010115,20010219,20010413,20010528,20010704,20010903,20011122,20011225,20020101,20020121,20020218,20020329,20020527,20020704,20020902,20021128,20021225,20030101,20030120,20030217,20030418,20030526,20030704,20030901,20031127,20031225,20040101,20040119,20040216,20040409,20040531,20040611,20040705,20040906,20041125,20041224,20050117,20050221,20050325,20050530,20050704,20050905,20051124,20051226,20060102,20060116,20060220,20060414,20060529,20060704,20060904,20061123,20061225,20070101,20070102,20070115,20070219,20070406,20070528,20070704,20070903,20071122,20071225,20080101,20080121,20080218,20080321,20080526,20080704,20080901,20081127,20081225,20090101,20090119,20090216,20090410,20090525,20090703,20090907,20091126,20091225,20100101,20100118,20100215,20100402,20100531,20100705,20100906,20101125,20101224,20110117,20110221,20110422,20110530,20110704,20110905,20111124,20111226,20120102,20120116,20120220,20120406,20120528,20120704,20120903,20121122,20121225,20130101,20130121,20130218,20130329,20130527,20130704,20130902,20131128,20131225,20140101,20140120,20140217,20140418,20140526,20140704,20140901,20141127,20141225,20150101,20150119,20150216,20150403,20150525,20150703,20150907,20151126,20151225,20160101,20160118,20160215,20160325,20160530,20160704,20160905,20161124,20161226,20170102,20170116,20170220,20170414,20170529,20170704,20170904,20171123,20171225,20180101,20180115,20180219,20180330,20180528,20180704,20180903,20181122,20181225,20190101,20190121,20190218,20190419,20190527,20190704,20190902,20191128,20191225,20200101,20200120,20200217,20200410,20200525,20200703,20200907,20201126,20201225,20210101,20210118,20210215,20210402,20210531,20210705,20210906,20211125,20211224,20220117,20220221,20220415,20220530,20220620,20220704,20220905,20221124,20221226,20230102,20230116,20230220,20230407,20230529,20230619,20230704,20230904,20231123,20231225,20240101,20240115,20240219,20240329,20240527,20240619,20240704,20240902,20241128,20241225,20250101,20250120,20250217,20250418,20250526,20250619,20250704,20250901,20251127,20251225,20260101,20260119,20260216,20260403,20260525,20260619,20260703,20260907,20261126,20261225,20270101,20270118,20270215,20270326,20270531,20270618,20270705,20270906,20271125,20271224",
+          "subsession_id": "regular",
+          "provider_id": "ice",
+          "currency_id": "USD",
+          "country": "US",
+          "pro_perm": "nasdaq",
+          "measure": "price",
+          "allowed_adjustment": "any",
+          "short_description": "Apple Inc.",
+          "variable_tick_size": "0.0001 1 0.01",
+          "cusip": "037833100",
+          "isin": "US0378331005",
+          "language": "en",
+          "local_description": "Apple Inc.",
+          "name": "AAPL",
+          "full_name": "BATS:AAPL",
+          "pro_name": "NASDAQ:AAPL",
+          "base_name": [
+            "NASDAQ:AAPL"
+          ],
+          "description": "Apple Inc.",
+          "exchange": "Cboe One",
+          "pricescale": 100,
+          "pointvalue": 1,
+          "minmov": 1,
+          "session": "0930-1600",
+          "session_display": "0930-1600",
+          "subsessions": [
+            {
+              "description": "Regular Trading Hours",
+              "id": "regular",
+              "private": false,
+              "session": "0930-1600",
+              "session-correction": "0930-1300:20190703,20191129,20191224,20211126,20221125,20230703,20231124,20240703,20241129,20241224,20250703,20251128,20251224,20261127,20261224,20271126,20271223;dayoff:20250109",
+              "session-display": "0930-1600"
+            },
+            {
+              "description": "Extended Trading Hours",
+              "id": "extended",
+              "private": false,
+              "session": "0400-2000",
+              "session-correction": "0400-1700:20190703,20191129,20191224,20211126,20221125,20230703,20231124,20240703,20241129,20241224,20250703,20251128,20251224,20261127,20261224,20271126,20271223;dayoff:20250109",
+              "session-display": "0400-2000"
+            },
+            {
+              "description": "Premarket",
+              "id": "premarket",
+              "private": true,
+              "session": "0400-0930",
+              "session-correction": "dayoff:20250109",
+              "session-display": "0400-0930"
+            },
+            {
+              "description": "Postmarket",
+              "id": "postmarket",
+              "private": true,
+              "session": "1600-2000",
+              "session-correction": "1300-1700:20190703,20191129,20191224,20211126,20221125,20230703,20231124,20240703,20241129,20241224,20250703,20251128,20251224,20261127,20261224,20271126,20271223;dayoff:20250109",
+              "session-display": "1600-2000"
+            }
+          ],
+          "type": "stock",
+          "typespecs": [
+            "common"
+          ],
+          "has_intraday": true,
+          "fractional": false,
+          "listed_exchange": "NASDAQ",
+          "legs": [
+            "BATS:AAPL"
+          ],
+          "is_tradable": true,
+          "minmove2": 0,
+          "timezone": "America/New_York",
+          "aliases": [],
+          "alternatives": [
+            "BATS_DLY:AAPL"
+          ],
+          "is_replayable": true,
+          "has_adjustment": true,
+          "has_extended_hours": true,
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "visible_plots_set": "ohlcv",
+          "isin-displayed": "US0378331005",
+          "is-tickbars-available": true,
+          "figi": {
+            "country-composite": "BBG000B9XRY4",
+            "exchange-level": "BBG000B9XRY4"
+          },
+          "exchange_listed_name": "NASDAQ"
+        }
+      }
+    ]
+  },
+  "msg": "Success"
+}
+
+
+
+
+

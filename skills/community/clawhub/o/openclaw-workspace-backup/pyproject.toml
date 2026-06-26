@@ -1,0 +1,9 @@
+[project]
+name = "workspace-backup"
+version = "0.1.2"
+description = "OpenClaw 工作空间备份工具"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.scripts]
+workspace = "workspace_backup.cli:main"

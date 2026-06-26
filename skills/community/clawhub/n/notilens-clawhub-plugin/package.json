@@ -1,0 +1,19 @@
+{
+  "name": "notilens",
+  "version": "0.2.0",
+  "description": "NotiLens plugin for OpenClaw — send alerts from any script, app, or AI agent",
+  "main": "src/notilens.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "openclaw": {
+    "extensions": ["executes-code"],
+    "compat": {
+      "pluginApi": "1.0"
+    },
+    "build": {
+      "openclawVersion": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "nsfc",
+  "version": "1.0.0",
+  "description": "国家自然科学基金（NSFC）申请统一入口 - 从选题、撰写、优化到形式审查的全流程支持",
+  "license": "MIT",
+  "author": "OpenClaw Community"
+}

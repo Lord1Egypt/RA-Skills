@@ -1,0 +1,180 @@
+# 投资分析流水线模板
+
+> 搜索信息 → 投资分析 → 生成建议/更新组合
+
+## 元数据
+
+```yaml
+name: investment-pipeline
+version: 1.0.0
+description: 投资信息搜索 → 分析 → 生成建议/更新投资组合
+intent_type: investment_analysis
+author: openclaw-skill-compounder
+created: 2026-04-30
+```
+
+## 流水线定义
+
+### Step 1: 投资信息搜索
+
+```yaml
+step: 1
+skill: multi-search-engine
+trigger: 用户提供投资标的或研究主题
+timeout: 45s
+
+input:
+  query: "${user.investment_topic}"
+  search_engines:
+    - tavily
+    - baidu
+  max_results: "${user.max_results || 15}"
+  search_depth: "advanced"
+  include_financial_data: true
+    
+output:
+  result_field: "investment_intel"
+  metadata:
+    - sources
+    - news_count
+    - financial_metrics
+    - sentiment_scores
+  confidence_weight: 0.9
+```
+
+### Step 2: 投资分析
+
+```yaml
+step: 2
+skill: investment-agent
+trigger: step_1 完成
+timeout: 90s
+depends_on: step_1
+
+input:
+  text: "${step_1.result.investment_intel}"
+  context:
+    analysis_type: "${user.analysis_type || 'fundamental'}"
+    time_horizon: "${user.time_horizon || 'medium'}"
+    risk_tolerance: "${user.risk_tolerance || 'moderate'}"
+    include_technical: "${user.include_technical || false}"
+    
+output:
+  result_field: "investment_analysis"
+  metadata:
+    - recommendation
+    - risk_assessment
+    - target_price
+    - confidence_level
+  confidence_weight: 0.85
+```
+
+### Step 3: 投资建议生成
+
+```yaml
+step: 3
+skill: investment-agent
+trigger: step_2 完成
+timeout: 60s
+depends_on: step_2
+
+input:
+  text: "${step_2.result.investment_analysis}"
+  context:
+    action: "generate_recommendation"
+    format: "${user.rec_format || 'detailed'}"
+    include_rationale: true
+    include_risk_disclaimer: true
+    
+output:
+  result_field: "investment_recommendation"
+  metadata:
+    - action_type  # buy/sell/hold
+    - entry_points
+    - exit_strategy
+    - position_sizing
+  confidence_weight: 0.85
+```
+
+### Step 4: 组合更新（可选）
+
+```yaml
+step: 4
+skill: investment-portfolio
+trigger: step_3 完成 + user.update_portfolio == true
+timeout: 30s
+depends_on: step_3
+optional: true
+
+input:
+  action: update
+  symbol: "${user.symbol}"
+  recommendation: "${step_3.result.investment_recommendation}"
+  current_position: "${user.current_position || 0}"
+  
+output:
+  result_field: "portfolio_update"
+  metadata:
+    - new_allocation
+    - expected_impact
+    - rebalance_suggestions
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    investment_intel → text
+    financial_metrics → context.financial_data
+    
+  step_2_to_step_3:
+    investment_analysis → text
+    recommendation → context.recommendation
+    
+  step_3_to_step_4:
+    investment_recommendation → recommendation
+    action_type → context.action
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: confirm
+    message: "投资信息搜索失败，是否继续使用通用分析？"
+    
+  step_2_failure:
+    strategy: fallback
+    fallback_skill: writing-agent
+    message: "深度分析失败，提供基础分析结果"
+    
+  step_3_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "建议生成失败，简化输出格式"
+    
+  step_4_failure:
+    strategy: skip_optional
+    message: "组合更新失败，跳过此步骤"
+```
+
+## 适用场景
+
+- 投资标的深度研究
+- 持仓股票/基金分析
+- 新投资机会评估
+- 加密货币策略研究
+- 行业趋势投资分析
+
+## 触发词示例
+
+```
+"帮我分析这只股票"
+"研究一下这个投资机会"
+"分析我的持仓"
+"生成投资建议"
+"帮我做一下XXX的分析"
+"调研这个投资标的"
+```

@@ -1,0 +1,147 @@
+/*
+ * CSS 入场动画库
+ * 所有页面默认可用，Agent 通过给元素添加 class 即可触发
+ * 动画在元素所在 Slide 变为 active 时播放
+ */
+
+/* ============================================================
+   基础入场动画
+   ============================================================ */
+
+/* 淡入 */
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+.slide.active .anim-fade-in {
+  opacity: 1;
+}
+
+/* 从下方滑入 */
+.anim-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.slide.active .anim-slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 从左侧滑入 */
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.slide.active .anim-slide-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 从右侧滑入 */
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.slide.active .anim-slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 缩放入场 */
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.slide.active .anim-scale-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 从上方落下 */
+.anim-drop-in {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.slide.active .anim-drop-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   延迟类 — 配合 stagger 效果使用
+   Agent 给列表/卡片的每个子元素加不同的 delay class
+   ============================================================ */
+.anim-delay-1 { transition-delay: 0.1s !important; }
+.anim-delay-2 { transition-delay: 0.2s !important; }
+.anim-delay-3 { transition-delay: 0.3s !important; }
+.anim-delay-4 { transition-delay: 0.4s !important; }
+.anim-delay-5 { transition-delay: 0.5s !important; }
+.anim-delay-6 { transition-delay: 0.6s !important; }
+.anim-delay-7 { transition-delay: 0.7s !important; }
+.anim-delay-8 { transition-delay: 0.8s !important; }
+
+/* ============================================================
+   组合类 — 常见的入场组合
+   ============================================================ */
+
+/* 标题专用：放大 + 淡入 */
+.anim-title-enter {
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.slide.active .anim-title-enter {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 卡片弹入 */
+.anim-bounce-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.slide.active .anim-bounce-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 线条/边框展开 */
+.anim-expand-width {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-out;
+}
+.slide.active .anim-expand-width {
+  transform: scaleX(1);
+}
+
+/* 数字/文字渐显 */
+.anim-blur-in {
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out;
+}
+.slide.active .anim-blur-in {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ============================================================
+   无障碍：尊重用户的"减少动画"偏好
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-in, .anim-slide-up, .anim-slide-left, .anim-slide-right,
+  .anim-scale-in, .anim-drop-in, .anim-title-enter, .anim-bounce-in,
+  .anim-expand-width, .anim-blur-in {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

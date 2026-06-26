@@ -1,0 +1,75 @@
+# skill.yaml - 龙虾安全卫士 平台注册元数据
+name: "龙虾安全卫士"
+id: "openclaw-safe-guard"
+version: "1.2.3"
+description: "提供对 OpenClaw 系统安全检查设置及已安装和你想要安装的 Skills 进行静态安全扫描，检测权限风险、恶意代码和依赖风险并生成中文风险评估报告"
+author: "ansengu11"
+license: "MIT-0"
+
+# 触发关键词
+triggers:
+  - "扫描 Skill 安全"
+  - "检查 Skill 风险"
+  - "这个 Skill 安全吗"
+  - "帮我看看这个技能"
+  - "扫描已安装的 Skills"
+
+# 所需系统工具
+requirements:
+  binaries:
+    - name: "curl"
+      description: "访问 GitHub API 获取技能信息"
+      check_command: "curl --version"
+    - name: "jq"
+      description: "解析 JSON 数据"
+      check_command: "jq --version"
+    - name: "git"
+      description: "克隆 GitHub 仓库（在线扫描时）"
+      check_command: "git --version"
+    - name: "grep"
+      description: "搜索代码中的敏感模式"
+      check_command: "grep --version"
+    - name: "find"
+      description: "查找技能文件"
+      check_command: "find --version"
+
+# 文件系统权限
+filesystem_access:
+  - path: "~/.openclaw/skills"
+    permission: "read"
+    reason: "扫描已安装的 Skills 进行安全分析"
+  - path: "~/.openclaw/workspace/skills"
+    permission: "read"
+    reason: "扫描工作区中的 Skills"
+  - path: "/tmp"
+    permission: "write"
+    reason: "创建临时目录克隆 GitHub 仓库，扫描完成后自动清理"
+
+# 网络访问权限
+network_access:
+  - domain: "api.github.com"
+    port: 443
+    reason: "查询 GitHub 仓库元数据（stars、许可证等）"
+  - domain: "github.com"
+    port: 443
+    reason: "克隆公开仓库进行源码分析"
+
+# 环境变量
+environment_variables:
+  - name: "OPENCLAW_NONINTERACTIVE"
+    default: "false"
+    description: "设为 true 跳过运行确认提示"
+
+# 安全声明
+security:
+  always_enabled: false
+  persist_data: false
+  isolate_recommended: true
+  risk_level: "medium"
+  risk_disclosure: |
+    本技能需要读取 ~/.openclaw/skills 目录，可能访问到其他技能中存在的敏感信息（如 API 密钥）。
+    仅做静态分析，不执行被扫描代码，但建议在隔离环境中使用。
+    需要 curl、jq、git、grep、find 等系统工具，请确保已安装。
+
+# 输出格式
+output_format: "markdown"

@@ -1,0 +1,23 @@
+{
+  "skill_name": "open-source-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze https://github.com/vuejs/core",
+      "expected_output": "An English analysis report for the Vue.js core repository, including Project Introduction, Tech Stack, Programming Language, Project Stats, License, Project Rating (Active Development, Documentation Quality, Community Activity, Ease of Use), and Overall Score.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "请帮我分析一下这个开源项目：https://github.com/ant-design/ant-design",
+      "expected_output": "A Chinese analysis report for the Ant Design repository, including 项目简介, 技术栈, 编程语言, 项目数据, 开源协议, 项目评分 (活跃度高, 文档完善, 社区活跃, 上手难度低), and 综合评分. NO English headings should be present.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Analyze https://github.com/torvalds/linux",
+      "expected_output": "An English analysis report for the Linux Kernel repository, highlighting its massive community activity, C programming language, GPL-2.0 license, and extremely high stats. The structure should strictly follow the English template.",
+      "files": []
+    }
+  ]
+}

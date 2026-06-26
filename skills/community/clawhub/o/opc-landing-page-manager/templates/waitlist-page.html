@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{og_title}}">
+  <meta property="og:description" content="{{og_description}}">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="https://yourdomain.com/og-image.png"> -->
+  <!-- <meta property="og:url" content="https://yourdomain.com"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{og_title}}">
+  <meta name="twitter:description" content="{{og_description}}">
+
+  <!-- Favicon placeholder -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Colors — replace with selected palette */
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+
+      /* Typography */
+      --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+      /* Spacing */
+      --section-padding: 4rem 2rem;
+      --section-padding-mobile: 2.5rem 1.25rem;
+      --max-w: 720px;
+    }
+
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; }
+    a { color: var(--primary); text-decoration: none; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); }
+    .section { padding: var(--section-padding); }
+
+    /* ===== SKIP NAV (accessibility) ===== */
+    .skip-nav {
+      position: absolute; left: -9999px; top: auto;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-nav:focus {
+      position: fixed; top: 0; left: 0;
+      width: auto; height: auto;
+      background: var(--primary); color: white;
+      padding: 0.75rem 1.5rem; z-index: 9999;
+      font-size: 1rem;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-align: center;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .hero p.subheadline {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== INLINE EMAIL FORM ===== */
+    .email-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto 1rem;
+    }
+    .email-form input[type="email"] {
+      flex: 1;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .email-form input[type="email"]:focus {
+      border-color: var(--primary);
+    }
+    .email-form button {
+      padding: 0.875rem 1.75rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .email-form button:hover {
+      background: var(--accent-hover);
+    }
+    .form-reassurance {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ===== PROBLEM TEASER ===== */
+    .problem-teaser {
+      text-align: center;
+    }
+    .problem-teaser p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== SOLUTION PREVIEW ===== */
+    .solution-preview {
+      text-align: center;
+    }
+    .solution-preview h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .preview-points {
+      list-style: none;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .preview-points li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      font-size: 1.0625rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .preview-points li:last-child {
+      border-bottom: none;
+    }
+    .preview-points li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline-section {
+      text-align: center;
+      background: var(--bg-alt);
+    }
+    .timeline-section .launch-date {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-section .waitlist-count {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== SOCIAL PROOF BAR ===== */
+    .social-proof {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .social-proof p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin-bottom: 1rem;
+    }
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      opacity: 0.5;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p.subheadline { font-size: 1.0625rem; }
+      .email-form {
+        flex-direction: column;
+      }
+      .email-form button {
+        width: 100%;
+      }
+      .section { padding: var(--section-padding-mobile); }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .nav, .email-form button { display: none; }
+      body { font-size: 12pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip Navigation (Accessibility) -->
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">{{product_name}}</a>
+      <a href="#waitlist-form" class="btn btn-primary" style="padding: 0.625rem 1.5rem; font-size: 0.9375rem;">Join the Waitlist</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <h1>{{headline}}</h1>
+        <p class="subheadline">{{subheadline}}</p>
+        <form class="email-form" id="waitlist-form" action="#" method="post">
+          <input type="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button type="submit" class="btn-primary">Join the Waitlist</button>
+        </form>
+        <p class="form-reassurance">{{risk_reversal_text}}</p>
+        <!-- Default: "We'll only email you once, when we launch. No spam." -->
+      </div>
+    </section>
+
+    <!-- Problem / Opportunity Teaser -->
+    <section class="section problem-teaser" aria-label="The problem">
+      <div class="container">
+        <p>{{problem_teaser}}</p>
+        <!-- Keep this to 1-2 sentences. Not a full problem section. -->
+      </div>
+    </section>
+
+    <!-- Solution Preview -->
+    <section class="section solution-preview" aria-label="What's coming">
+      <div class="container">
+        <h2>{{solution_preview_headline}}</h2>
+        <ul class="preview-points">
+          <li>{{preview_point_1}}</li>
+          <li>{{preview_point_2}}</li>
+          <li>{{preview_point_3}}</li>
+        </ul>
+        <!-- Maximum 3 bullet points. Keep each concise. -->
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section timeline-section" aria-label="Launch timeline">
+      <div class="container">
+        <p class="launch-date">{{launch_timeline}}</p>
+        <!-- e.g., "Launching Q2 2026" -->
+        <p class="waitlist-count">{{waitlist_count_text}}</p>
+        <!-- e.g., "432 people already waiting" — remove if no count yet -->
+      </div>
+    </section>
+
+    <!-- Social Proof Bar (uncomment if you have proof to show) -->
+    <!--
+    <section class="social-proof" aria-label="Social proof">
+      <p>{{social_proof_text}}</p>
+      <div class="logo-bar">
+        <span>Advisor 1</span>
+        <span>Advisor 2</span>
+        <span>Beta User Count</span>
+      </div>
+    </section>
+    -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; {{year}} {{product_name}}. All rights reserved.</p>
+  </footer>
+
+  <!-- Analytics placeholder -->
+  <!--
+  <script>
+    // Replace with your analytics script (e.g., Plausible, Fathom, GA)
+  </script>
+  -->
+
+</body>
+</html>

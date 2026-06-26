@@ -1,35 +1,70 @@
 ---
-name: "OpenClaw confluence"
-description: "Full Confluence Cloud REST API v2 skill (pages, spaces, folders, databases, whiteboards, comments, labels, tasks, properties, etc.) with basic/OAuth auth, pagination, and migration from confluence-cli."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-confluence-skill"
-sourceUrl: "https://clawhub.ai/skills/openclaw-confluence-skill"
+name: confluence-v2
+description: Full Confluence Cloud REST API v2 skill (pages, spaces, folders, databases, whiteboards, comments, labels, tasks, properties, etc.) with basic/OAuth auth, pagination, and migration from confluence-cli.
 ---
 
-# OpenClaw confluence
+# Confluence Cloud REST API v2
 
-> Full Confluence Cloud REST API v2 skill (pages, spaces, folders, databases, whiteboards, comments, labels, tasks, properties, etc.) with basic/OAuth auth, pagination, and migration from confluence-cli.
+Use this skill to call **Confluence Cloud REST API v2** endpoints directly. Supports **all v2 groups** (pages, spaces, folders, whiteboards, databases, embeds, comments, labels, properties, tasks, etc.).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-confluence-skill`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-confluence-skill](https://clawhub.ai/skills/openclaw-confluence-skill)
+## Quick Start
 
-## Overview
+1) Configure credentials (one of):
+- **Basic**: email + API token
+- **OAuth**: access token
 
+2) Call endpoints using scripts in `scripts/`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-confluence-skill
+## Config
+
+Set these env vars (preferred) or store in a local config file:
+
 ```
+CONFLUENCE_BASE_URL=https://pangin.atlassian.net/wiki
+CONFLUENCE_AUTH_METHOD=basic   # basic | oauth
+CONFLUENCE_EMAIL=chrono3412@gmail.com
+CONFLUENCE_API_TOKEN=YOUR_TOKEN
+# or for OAuth
+# CONFLUENCE_OAUTH_TOKEN=YOUR_OAUTH_ACCESS_TOKEN
+
+# Optional admin key header (Premium/Enterprise only)
+# CONFLUENCE_ADMIN_KEY=true
+```
+
+**Base URL** is always `https://<site>.atlassian.net/wiki`.
+
+## Core Helpers
+
+- `scripts/client.js` — HTTP client wrapper, auth header, pagination
+- `scripts/*` — endpoint groups (pages, spaces, folders, etc.)
+
+## Example
+
+```bash
+# list everything
+node scripts/spaces.js list --all
+node scripts/pages.js list --all
+node scripts/labels.js list --all
+
+# get single items
+node scripts/pages.js get 89522178
+node scripts/folders.js direct-children 87457793
+
+# ad-hoc call
+node scripts/call.js GET /folders/87457793/direct-children
+```
+
+## Migration from confluence-cli
+
+If `~/.confluence-cli/config.json` exists, map:
+- `domain` → `CONFLUENCE_BASE_URL` (`https://{domain}/wiki`)
+- `email` → `CONFLUENCE_EMAIL`
+- `token` → `CONFLUENCE_API_TOKEN`
+
+## References
+
+- OpenAPI spec: `refs/openapi-v2.v3.json`
+- Endpoints list: `refs/endpoints.md`
+- Scopes: `refs/scopes.md`
+- Tests: `refs/tests.md`
+- Usage tips: `refs/usage.md`

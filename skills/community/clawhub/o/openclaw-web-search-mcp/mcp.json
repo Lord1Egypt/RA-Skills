@@ -1,0 +1,18 @@
+{
+  "name": "ai-browser",
+  "version": "1.0.0",
+  "description": "AI browsing and research MCP",
+  "entry": "index.js",
+  "tools": [
+    { "name": "search" },
+    { "name": "open_page" },
+    { "name": "extract_links" },
+    { "name": "crawl_site" },
+    { "name": "extract_pdf" },
+    { "name": "youtube_transcript" },
+    { "name": "summarize" },
+    { "name": "embed" },
+    { "name": "semantic_search" },
+    { "name": "research" }
+  ]
+}

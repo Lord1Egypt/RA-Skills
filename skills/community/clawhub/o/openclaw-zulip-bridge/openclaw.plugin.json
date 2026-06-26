@@ -1,0 +1,125 @@
+{
+  "id": "zulip",
+  "name": "Zulip",
+  "description": "OpenClaw Zulip channel plugin",
+  "version": "2026.5.1",
+  "kind": "channel",
+  "channels": ["zulip"],
+  "channelEnvVars": {
+    "zulip": [
+      "ZULIP_API_KEY",
+      "ZULIP_EMAIL",
+      "ZULIP_URL",
+      "ZULIP_SITE",
+      "ZULIP_REALM"
+    ]
+  },
+  "securityExemptions": {
+    "envAccess": ["ZULIP_API_KEY", "ZULIP_EMAIL", "ZULIP_URL", "ZULIP_SITE", "ZULIP_REALM"],
+    "reason": "Zulip credentials from environment variables (documented pattern)"
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "zulip": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "site": { "type": "string" },
+          "url": { "type": "string" },
+          "realm": { "type": "string" },
+          "email": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "streams": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "chatmode": {
+            "type": "string",
+            "enum": ["oncall", "onmessage", "onchar"]
+          },
+          "oncharPrefixes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "requireMention": { "type": "boolean" },
+          "dmPolicy": {
+            "type": "string",
+            "enum": ["pairing", "allowlist", "open", "disabled"]
+          },
+          "allowFrom": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "groupAllowFrom": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "groupPolicy": {
+            "type": "string",
+            "enum": ["allowlist", "open", "disabled"]
+          }
+        }
+      }
+    }
+  },
+  "channelConfigs": {
+    "zulip": {
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "site": { "type": "string" },
+          "url": { "type": "string" },
+          "realm": { "type": "string" },
+          "email": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "streams": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "chatmode": {
+            "type": "string",
+            "enum": ["oncall", "onmessage", "onchar"]
+          },
+          "oncharPrefixes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "requireMention": { "type": "boolean" },
+          "dmPolicy": {
+            "type": "string",
+            "enum": ["pairing", "allowlist", "open", "disabled"]
+          },
+          "allowFrom": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "groupAllowFrom": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "groupPolicy": {
+            "type": "string",
+            "enum": ["allowlist", "open", "disabled"]
+          },
+          "accounts": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "uiHints": {
+        "apiKey": { "label": "API Key", "sensitive": true },
+        "email": { "label": "Bot Email", "sensitive": false },
+        "url": { "label": "Zulip URL", "sensitive": false },
+        "site": { "label": "Zulip Site", "sensitive": false },
+        "dmPolicy": { "label": "DM Policy" },
+        "groupPolicy": { "label": "Group Policy" }
+      }
+    }
+  }
+}

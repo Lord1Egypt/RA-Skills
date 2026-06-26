@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "profiles": {
+    "moonshot:default": {
+      "type": "api_key",
+      "provider": "moonshot",
+      "keyRef": {
+        "source": "env",
+        "provider": "default",
+        "id": "MOONSHOT_API_KEY"
+      }
+    },
+    "xiaomi:default": {
+      "type": "api_key",
+      "provider": "xiaomi",
+      "keyRef": {
+        "source": "env",
+        "provider": "default",
+        "id": "XIAOMI_API_KEY"
+      }
+    }
+  }
+}

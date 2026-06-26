@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{og_title}}">
+  <meta property="og:description" content="{{og_description}}">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="https://yourdomain.com/og-image.png"> -->
+  <!-- <meta property="og:url" content="https://yourdomain.com"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{og_title}}">
+  <meta name="twitter:description" content="{{og_description}}">
+
+  <!-- Favicon placeholder -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Colors — replace with selected palette */
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+
+      /* Typography */
+      --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+      /* Spacing */
+      --section-padding: 5rem 2rem;
+      --section-padding-mobile: 3rem 1.25rem;
+      --max-w: 1200px;
+      --max-w-text: 680px;
+    }
+
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; }
+    a { color: var(--primary); text-decoration: none; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); }
+    .section { padding: var(--section-padding); }
+    .section-alt { background: var(--bg-alt); }
+
+    /* ===== SKIP NAV (accessibility) ===== */
+    .skip-nav {
+      position: absolute; left: -9999px; top: auto;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-nav:focus {
+      position: fixed; top: 0; left: 0;
+      width: auto; height: auto;
+      background: var(--primary); color: white;
+      padding: 0.75rem 1.5rem; z-index: 9999;
+      font-size: 1rem;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-align: center;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover { background: var(--primary); color: white; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 5rem 2rem 4rem;
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-cta .sub-cta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      display: block;
+      width: 100%;
+    }
+    .hero-visual {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 1rem;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.125rem;
+    }
+
+    /* ===== SOCIAL PROOF BAR ===== */
+    .social-proof {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .social-proof p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin-bottom: 1rem;
+    }
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      opacity: 0.5;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ===== PROBLEM ===== */
+    .problem { text-align: center; }
+    .problem h2 { font-size: 2rem; margin-bottom: 1.25rem; }
+    .problem .lead { font-size: 1.125rem; color: var(--text-muted); max-width: var(--max-w-text); margin: 0 auto 2rem; }
+    .pain-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .pain-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      text-align: left;
+    }
+    .pain-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .pain-card h3 { font-size: 1.0625rem; margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.9375rem; color: var(--text-muted); }
+
+    /* ===== SOLUTION / BENEFITS ===== */
+    .benefits h2 { font-size: 2rem; text-align: center; margin-bottom: 0.75rem; }
+    .benefits .lead { text-align: center; color: var(--text-muted); max-width: var(--max-w-text); margin: 0 auto 3rem; font-size: 1.125rem; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .benefit-card {
+      padding: 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+    }
+    .benefit-card .icon { font-size: 2rem; margin-bottom: 1rem; }
+    .benefit-card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .benefit-card p { font-size: 0.9375rem; color: var(--text-muted); }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works { text-align: center; }
+    .how-it-works h2 { font-size: 2rem; margin-bottom: 3rem; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .step .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .step h3 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9375rem; color: var(--text-muted); }
+
+    /* ===== MID CTA ===== */
+    .mid-cta {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--bg-alt);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+    }
+    .testimonial-card blockquote {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .testimonial-card .author { font-weight: 600; font-size: 0.9375rem; }
+    .testimonial-card .role { color: var(--text-muted); font-size: 0.875rem; }
+
+    /* ===== FAQ ===== */
+    .faq h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+    .faq-list { max-width: var(--max-w-text); margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 1.0625rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::after { content: '+'; font-size: 1.5rem; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p { margin-top: 0.75rem; color: var(--text-muted); }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: var(--primary);
+      color: white;
+    }
+    .final-cta h2 { font-size: 2.25rem; margin-bottom: 1rem; color: white; }
+    .final-cta p { font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9; }
+    .final-cta .btn-primary { background: var(--accent); }
+    .final-cta .sub-cta { margin-top: 1rem; font-size: 0.875rem; opacity: 0.8; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .footer a { color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.25rem; }
+      .hero p { margin: 0 auto 2rem; }
+      .hero-cta { justify-content: center; }
+      .hero-visual { margin-top: 2rem; }
+      .pain-points, .benefits-grid, .steps, .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      .section { padding: var(--section-padding-mobile); }
+      .btn { width: 100%; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .nav, .final-cta .btn, .mid-cta { display: none; }
+      body { font-size: 12pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip Navigation (Accessibility) -->
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">{{product_name}}</a>
+      <a href="{{cta_url}}" class="btn btn-primary" style="padding: 0.625rem 1.5rem; font-size: 0.9375rem;">{{cta_primary_text}}</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1>{{headline}}</h1>
+          <p>{{subheadline}}</p>
+          <div class="hero-cta">
+            <a href="{{cta_url}}" class="btn btn-primary">{{cta_primary_text}}</a>
+            <!-- <a href="#how-it-works" class="btn btn-secondary">{{cta_secondary_text}}</a> -->
+            <span class="sub-cta">{{risk_reversal_text}}</span>
+          </div>
+        </div>
+        <div class="hero-visual" role="img" aria-label="Product screenshot">
+          <!-- Replace with: product screenshot, 800x600px -->
+          <span>📸 Product Screenshot</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Bar -->
+    <section class="social-proof" aria-label="Social proof">
+      <p>{{social_proof_text}}</p>
+      <!--
+      <div class="logo-bar">
+        <span>Company 1</span>
+        <span>Company 2</span>
+        <span>Company 3</span>
+        <span>Company 4</span>
+        <span>Company 5</span>
+      </div>
+      -->
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section problem" aria-label="The problem">
+      <div class="container">
+        <h2>{{problem_headline}}</h2>
+        <p class="lead">{{problem_body}}</p>
+        <div class="pain-points">
+          <!-- Pain point cards generated here -->
+          <div class="pain-card">
+            <div class="icon">😤</div>
+            <h3>{{pain_1_title}}</h3>
+            <p>{{pain_1_description}}</p>
+          </div>
+          <div class="pain-card">
+            <div class="icon">⏰</div>
+            <h3>{{pain_2_title}}</h3>
+            <p>{{pain_2_description}}</p>
+          </div>
+          <div class="pain-card">
+            <div class="icon">💸</div>
+            <h3>{{pain_3_title}}</h3>
+            <p>{{pain_3_description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution / Benefits Section -->
+    <section class="section section-alt benefits" aria-label="Benefits">
+      <div class="container">
+        <h2>{{solution_headline}}</h2>
+        <p class="lead">{{solution_intro}}</p>
+        <div class="benefits-grid">
+          <!-- Benefit cards generated here -->
+          <div class="benefit-card">
+            <div class="icon">✨</div>
+            <h3>{{benefit_1_title}}</h3>
+            <p>{{benefit_1_description}}</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon">⚡</div>
+            <h3>{{benefit_2_title}}</h3>
+            <p>{{benefit_2_description}}</p>
+          </div>
+          <div class="benefit-card">
+            <div class="icon">🎯</div>
+            <h3>{{benefit_3_title}}</h3>
+            <p>{{benefit_3_description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section how-it-works" id="how-it-works" aria-label="How it works">
+      <div class="container">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <h3>{{step_1_title}}</h3>
+            <p>{{step_1_description}}</p>
+          </div>
+          <div class="step">
+            <div class="number">2</div>
+            <h3>{{step_2_title}}</h3>
+            <p>{{step_2_description}}</p>
+          </div>
+          <div class="step">
+            <div class="number">3</div>
+            <h3>{{step_3_title}}</h3>
+            <p>{{step_3_description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mid-Page CTA -->
+    <section class="mid-cta" aria-label="Call to action">
+      <a href="{{cta_url}}" class="btn btn-primary">{{cta_primary_text}}</a>
+    </section>
+
+    <!-- Testimonials (comment out if no testimonials available) -->
+    <!--
+    <section class="section testimonials" aria-label="Testimonials">
+      <div class="container">
+        <h2>What People Are Saying</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_1_quote}}"</blockquote>
+            <div class="author">{{testimonial_1_name}}</div>
+            <div class="role">{{testimonial_1_title}}</div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_2_quote}}"</blockquote>
+            <div class="author">{{testimonial_2_name}}</div>
+            <div class="role">{{testimonial_2_title}}</div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_3_quote}}"</blockquote>
+            <div class="author">{{testimonial_3_name}}</div>
+            <div class="role">{{testimonial_3_title}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- FAQ -->
+    <section class="section section-alt faq" aria-label="Frequently asked questions">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>{{faq_1_question}}</summary>
+            <p>{{faq_1_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_2_question}}</summary>
+            <p>{{faq_2_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_3_question}}</summary>
+            <p>{{faq_3_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_4_question}}</summary>
+            <p>{{faq_4_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_5_question}}</summary>
+            <p>{{faq_5_answer}}</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" aria-label="Get started">
+      <h2>{{final_cta_headline}}</h2>
+      <p>{{final_cta_subtext}}</p>
+      <a href="{{cta_url}}" class="btn btn-primary">{{cta_primary_text}}</a>
+      <p class="sub-cta">{{risk_reversal_text}}</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <!-- <a href="/privacy">Privacy Policy</a> -->
+      <!-- <a href="/terms">Terms of Service</a> -->
+      <a href="mailto:{{contact_email}}">Contact</a>
+    </div>
+    <p>&copy; {{year}} {{product_name}}. All rights reserved.</p>
+  </footer>
+
+  <!-- Analytics placeholder -->
+  <!--
+  <script>
+    // Replace with your analytics script (e.g., Plausible, Fathom, GA)
+  </script>
+  -->
+
+</body>
+</html>

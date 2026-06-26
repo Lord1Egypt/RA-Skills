@@ -1,0 +1,202 @@
+# ============================================================
+# 小红书自动化养号 - 全局配置文件 v2.0
+# ============================================================
+# 基于实战执行经验优化，所有配置项均为实际可执行参数
+# ============================================================
+
+# --- 目标定义 ---
+targets:
+  keywords:
+    - "期货入门"
+    - "交易心得"
+    - "投资理财"
+    - "期货交易"
+    - "行情分析"
+    - "期货技术分析"
+    - "交易系统"
+
+  competitor_accounts:
+    - "@期货老王"
+    - "@交易笔记"
+
+  hashtags:
+    - "#期货"
+    - "#投资"
+    - "#交易"
+
+  # 搜索策略
+  search:
+    sort_by: "default"            # default | popularity | latest
+    keyword_rotation: "random"    # random | sequential
+    max_notes_per_keyword: 8      # 单关键词处理笔记数后换词
+    max_scroll_without_match: 3   # 连续滚动N屏无合格笔记则换词
+    low_match_switch_threshold: 2 # 浏览N屏且合格率<10%时立即换词（不等3屏）
+
+# --- 过滤器 ---
+filters:
+  # Tier 1: 粗筛（搜索结果/Feed 页面，不进入笔记）
+  note:
+    min_likes: 50                   # 从100降至50（细分话题下100过严，80%笔记被过滤）
+    min_likes_fallback: 30          # 当合格率<10%时自动降级到此阈值
+    max_likes: 50000
+    keywords_include:
+      - "期货"
+      - "交易"
+      - "投资"
+      - "原油"
+      - "黄金"
+      - "交易系统"
+      - "止损"
+      - "持仓"
+      - "技术分析"
+      - "基本面"
+    keywords_exclude:
+      - "广告"
+      - "代理"
+      - "带单"
+      - "喊单"
+      - "保证收益"
+      - "稳赚"
+      - "零风险"
+      - "开户找"
+      - "加微信"
+      - "返佣"
+      - "手续费优惠"
+      - "免费领"
+      - "福利"
+    note_type:
+      - "image_text"
+      - "video"
+
+  # Tier 2: 精筛（进入笔记详情页后）
+  detail:
+    publish_within_days: 30       # 放宽到30天（7天太严导致合格笔记不足）
+    min_content_length: 50        # 正文至少50字
+    author_min_notes: 3           # 作者至少发过3篇笔记
+
+  user:
+    min_followers: 100
+    max_followers: 100000
+    min_notes: 5
+    has_recent_post: true
+
+# --- 速率控制 ---
+rate_control:
+  daily_limits:
+    likes: 120
+    collects: 30
+    follows: 25
+    comments: 15
+    total: 150
+
+  session:
+    max_duration_minutes: 45
+    cooldown_after_actions: 20    # 每N次互动后强制休息
+    cooldown_duration: [120, 300] # 休息秒数范围
+    mid_break_interval_minutes: [15, 20]  # 中场休息间隔
+    mid_break_duration: [180, 480]        # 中场休息秒数
+
+  # 动作间隔（秒）- 所有值均为基准值，实际执行时叠加随机抖动
+  intervals:
+    like_to_like: [8, 30]
+    like_to_collect: [5, 20]
+    like_to_follow: [30, 120]
+    collect_to_any: [10, 40]
+    follow_to_any: [60, 180]
+    comment_to_any: [90, 300]
+    any_to_comment: [60, 180]
+
+  jitter:
+    type: "gaussian"              # gaussian | uniform
+    factor: 0.3                   # 标准差为基准值的30%
+    burst_prevention: true
+    max_consecutive_likes: 5
+    max_consecutive_actions: 8
+
+# --- 预热配置 ---
+warmup:
+  min_duration_seconds: 120
+  max_duration_seconds: 300
+  min_notes_browsed: 2
+  max_notes_browsed: 5
+
+# --- AI 评论配置 ---
+comment_generation:
+  # Claude 直接生成评论，不调用外部模型
+  use_templates_only: false       # true = 仅用模板，不AI生成
+
+  style:
+    tone: "casual"
+    max_length: 50
+    use_emoji: true
+    emoji_frequency: 0.3
+
+  safety:
+    no_sensitive_words: true
+    no_marketing_links: true
+    no_contact_info: true
+    diversity_check: true
+
+# --- 反检测 / 行为随机化 ---
+anti_detection:
+  # 概率参数（制造不可预测的行为模式）
+  skip_qualifying_note_probability: 0.20   # 故意跳过合格笔记
+  interact_off_target_probability: 0.05    # 偶尔与非目标笔记互动
+  back_scroll_probability: 0.12            # 回滚概率
+  misclick_probability: 0.03               # 模拟误点（进入后立刻返回）
+  browse_without_interact_probability: 0.15 # 进入笔记只看不互动
+  reading_time_multiplier_range: [0.7, 1.5] # 阅读时长随机倍数
+
+# --- 运行策略（按阶段） ---
+strategy:
+  nurturing:
+    daily_limits:
+      likes: 60
+      collects: 15
+      follows: 10
+      comments: 5
+      total: 70
+    session_duration_minutes: 30
+    preferred_mode: "discover_feed"
+
+  growth:
+    daily_limits:
+      likes: 120
+      collects: 30
+      follows: 25
+      comments: 15
+      total: 150
+    session_duration_minutes: 45
+    preferred_mode: "search"
+
+  mature:
+    daily_limits:
+      likes: 100
+      collects: 25
+      follows: 20
+      comments: 20
+      total: 130
+    session_duration_minutes: 40
+    preferred_mode: "comment_section"
+
+# --- 操作时段 ---
+active_hours:
+  - "09:00-11:30"
+  - "14:00-16:00"
+  - "20:00-22:30"
+
+# --- 安全阈值（绝对上限，不可超越） ---
+safety_max:
+  likes: 200
+  collects: 50
+  follows: 30
+  comments: 20
+  total: 250
+  session_minutes: 60
+
+# --- 数据路径 ---
+data:
+  log_dir: "data/nurture-log"
+  dedup_file: "data/interacted-notes.txt"
+  state_file: "data/nurture-state.json"
+  dedup_max_entries: 5000         # 去重文件最大条目数

@@ -1,0 +1,14 @@
+{
+  "name": "openslaw",
+  "homepage": "https://www.openslaw.com",
+  "api_base": "https://www.openslaw.com/api/v1",
+  "files": [
+    { "path": "/skill.md", "url": "https://www.openslaw.com/skill.md" },
+    { "path": "/docs.md", "url": "https://www.openslaw.com/docs.md" },
+    { "path": "/api-guide.md", "url": "https://www.openslaw.com/api-guide.md" },
+    { "path": "/playbook.md", "url": "https://www.openslaw.com/playbook.md" },
+    { "path": "/auth.md", "url": "https://www.openslaw.com/auth.md" },
+    { "path": "/developers.md", "url": "https://www.openslaw.com/developers.md" },
+    { "path": "/manual/index.html", "url": "https://www.openslaw.com/manual/index.html" }
+  ]
+}

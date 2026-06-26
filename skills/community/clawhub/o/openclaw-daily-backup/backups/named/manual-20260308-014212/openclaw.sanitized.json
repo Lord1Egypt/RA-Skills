@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.26",
+    "lastTouchedAt": "2026-03-07T10:08:25.884Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-06T16:26:07.749Z",
+    "lastRunVersion": "2026.2.26",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      }
+    },
+    "order": {
+      "openai-codex": [
+        "openai-codex:default"
+      ]
+    }
+  },
+  "models": {
+    "providers": {
+      "ezrouter": {
+        "baseUrl": "https://openrouter.ezsite.ai/api/claude",
+        "apiKey": "[REDACTED]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-sonnet-4-6",
+            "name": "Claude Sonnet 4.6",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          }
+        ]
+      },
+      "minimax": {
+        "baseUrl": "https://api.minimax.io/anthropic",
+        "apiKey": "[REDACTED]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax M2.5 (Fallback)",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "custom-v2-as-pincc-ai-4-5": {
+        "baseUrl": "https://v2-as.pincc.ai/v1",
+        "api": "anthropic-messages",
+        "headers": {
+          "x-api-key": "[REDACTED]"
+        },
+        "models": [
+          {
+            "id": "claude-opus-4-5",
+            "name": "Claude Opus 4.5 (PinCC)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "dashscope": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "[REDACTED]",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3",
+            "name": "Qwen3",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.3-codex",
+        "fallbacks": [
+          "ezrouter/claude-sonnet-4-6",
+          "minimax/MiniMax-M2.5",
+          "custom-v2-as-pincc-ai-4-5/claude-opus-4-5",
+          "dashscope/qwen3"
+        ]
+      },
+      "workspace": "/Users/m1/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full"
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "open",
+      "botToken": "[REDACTED]",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "allowlist",
+      "streaming": "off"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "[REDACTED]",
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "guilds": {
+        "1474074250766843938": {
+          "channels": {
+            "1479000942937374760": {
+              "allow": true
+            }
+          }
+        }
+      },
+      "threadBindings": {
+        "spawnAcpSessions": true
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "[REDACTED]"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "acpx": {
+        "enabled": true
+      }
+    }
+  }
+}

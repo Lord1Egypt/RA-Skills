@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocaleFlow — i18n Layer for OpenClaw</title>
+  <meta name="description" content="The first i18n post-processing layer for OpenClaw that fixes diacritics, removes stray characters, and makes your AI truly multilingual.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        LocaleFlow
+      </a>
+      <ul class="nav-links">
+        <li><a href="docs.html">Docs</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <!-- Wireframe canvas background -->
+    <canvas id="wireframe-canvas"></canvas>
+    <div class="hero-ghost" aria-hidden="true">i18n</div>
+    
+    <div class="container">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Auto language detection — now in beta
+      </div>
+      <h1 class="hero-title">
+        <span class="split-text"><span class="word"><span class="word-inner">Your AI Agent Speaks</span></span></span>
+        <span class="hero-highlight-wrap"><em class="highlight">Your Language</em></span>
+      </h1>
+      <p>The first i18n post-processing layer for OpenClaw that fixes diacritics, removes stray characters, and makes your AI truly multilingual.</p>
+      <div class="hero-cta">
+        <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+          <a href="https://clawhub.ai" class="btn btn-primary" style="font-size: 1.1rem; padding: var(--space-3) var(--space-8);">Install Free on ClawHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems -->
+  <section class="problems">
+    <div class="container">
+      <h2 data-animate="fade-up" class="split-text">
+        <span class="word"><span class="word-inner">The Problem</span></span>
+      </h2>
+      <div class="problem-list">
+        <div class="problem-item" data-animate="fade-up" data-delay="1">
+          <span class="problem-icon">❌</span>
+          <div>
+            <h4>Broken Diacritics</h4>
+            <p>Your AI outputs " Romania" instead of "România", "munca" instead of "muncă" — errors that make your brand look unprofessional.</p>
+          </div>
+        </div>
+        <div class="problem-item" data-animate="fade-up" data-delay="2">
+          <span class="problem-icon">❌</span>
+          <div>
+            <h4>Stray Characters</h4>
+            <p>Random Chinese or Cyrillic characters appear mid-sentence: "Bună理论 ziua" — confusing users and breaking trust.</p>
+          </div>
+        </div>
+        <div class="problem-item" data-animate="fade-up" data-delay="3">
+          <span class="problem-icon">❌</span>
+          <div>
+            <h4>Wrong Locale Formatting</h4>
+            <p>Dates show as MM/DD/YYYY instead of localized formats. Currency symbols in wrong positions. Phone numbers broken.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 data-animate="fade-up" class="split-text">
+        <span class="word"><span class="word-inner">The Solution</span></span>
+      </h2>
+      <p data-animate="fade-up" data-delay="1">Two layers of protection against broken non-English output.</p>
+      <div class="features-grid">
+        <div class="feature-card" data-animate="fade-up" data-delay="2">
+          <h3><span class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> SKILL.md Layer</h3>
+          <p>Configures your agent to think in the correct language. Auto-detection, locale-aware formatting, and cultural communication norms baked in.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="3">
+          <h3><span class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Post-Processor</h3>
+          <p>A Python engine that mechanically cleans every response before it reaches the user. Fixes diacritics, removes artifacts, normalizes whitespace.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="4">
+          <h3><span class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> High Accuracy</h3>
+          <p>Conservative rules with 95%+ confidence. We never guess — when uncertain, we leave text unchanged. No false positives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages -->
+  <section class="languages">
+    <div class="container">
+      <h2 data-animate="fade-up" class="split-text">
+        <span class="word"><span class="word-inner">Supported Languages</span></span>
+      </h2>
+      <div class="language-grid">
+        <div class="language-card" data-animate="scale-in" data-delay="1">
+          <div class="language-flag">🇷🇴</div>
+          <div class="language-name">Romanian</div>
+          <span class="language-status stable">Stable</span>
+        </div>
+        <div class="language-card" data-animate="scale-in" data-delay="2">
+          <div class="language-flag">🇩🇪</div>
+          <div class="language-name">German</div>
+          <span class="language-status stable">Stable</span>
+        </div>
+        <div class="language-card" data-animate="scale-in" data-delay="3">
+          <div class="language-flag">🇫🇷</div>
+          <div class="language-name">French</div>
+          <span class="language-status stable">Stable</span>
+        </div>
+        <div class="language-card" data-animate="scale-in" data-delay="4">
+          <div class="language-flag">🇪🇸</div>
+          <div class="language-name">Spanish</div>
+          <span class="language-status stable">Stable</span>
+        </div>
+        <div class="language-card" data-animate="scale-in" data-delay="5">
+          <div class="language-flag">🇮🇹</div>
+          <div class="language-name">Italian</div>
+          <span class="language-status planned">Coming v1.1</span>
+        </div>
+        <div class="language-card" data-animate="scale-in" data-delay="6">
+          <div class="language-flag">🇵🇹</div>
+          <div class="language-name">Portuguese</div>
+          <span class="language-status planned">Coming v1.1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="steps">
+    <div class="container steps-container">
+      <h2 data-animate="fade-up" class="split-text">
+        <span class="word"><span class="word-inner">How It Works</span></span>
+      </h2>
+      
+      <div class="steps-grid">
+        <div class="step" data-animate="fade-up" data-delay="1">
+          <div class="step-number">1</div>
+          <h3>Install</h3>
+          <p>Install via ClawHub with one click. No config needed.</p>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="2">
+          <div class="step-number">2</div>
+          <h3>Configure</h3>
+          <p>Set your preferred language or let auto-detection handle it.</p>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="3">
+          <div class="step-number">3</div>
+          <h3>Done</h3>
+          <p>Your agent now speaks correctly in Romanian, German, French, Spanish, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free & Open Source -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 data-animate="fade-up" class="split-text">
+        <span class="word"><span class="word-inner">Free & Open Source</span></span>
+      </h2>
+      <p data-animate="fade-up" data-delay="1" style="text-align: center; max-width: 600px; margin: 0 auto var(--space-6);">Install LocaleFlow on ClawHub — completely free. No trial, no paywall, no credit card.</p>
+      <div style="text-align: center;" data-animate="fade-up" data-delay="2">
+        <a href="https://clawhub.ai" class="btn btn-primary" style="font-size: 1.1rem; padding: var(--space-3) var(--space-8);">Install Free on ClawHub</a>
+      </div>
+      <p data-animate="fade-up" data-delay="3" style="text-align: center; margin-top: var(--space-4); font-size: 0.9rem; opacity: 0.7;">Romanian, German, French, Spanish — all included. Forever.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="https://github.com/bloommediacorporation-lab/openclaw-i18n-skill">GitHub</a></li>
+        </ul>
+        <p class="footer-copyright">Built by Bloom Media © 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ─── WIREFRAME CANVAS (Griflan-style) ───
+    (function() {
+      const canvas = document.getElementById('wireframe-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height, nodes = [], mouseX = 0, mouseY = 0;
+      let animFrame;
+
+      function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+        initNodes();
+      }
+
+      function initNodes() {
+        nodes = [];
+        const cols = Math.ceil(width / 80);
+        const rows = Math.ceil(height / 80);
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            nodes.push({
+              x: i * 80,
+              y: j * 80,
+              ox: i * 80,
+              oy: j * 80,
+              vx: 0,
+              vy: 0
+            });
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Connection lines
+        const maxDist = 140;
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.12;
+              ctx.strokeStyle = `rgba(255, 77, 77, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Node dots
+        nodes.forEach((node, idx) => {
+          // Mouse repulsion
+          const mdx = node.x - mouseX;
+          const mdy = node.y - mouseY;
+          const md = Math.sqrt(mdx * mdx + mdy * mdy);
+          const repel = Math.max(0, 1 - md / 200) * 80;
+          const angle = Math.atan2(mdy, mdx);
+          node.vx += Math.cos(angle) * repel * 0.03;
+          node.vy += Math.sin(angle) * repel * 0.03;
+
+          // Spring back to origin
+          node.vx += (node.ox - node.x) * 0.02;
+          node.vy += (node.oy - node.y) * 0.02;
+
+          // Dampen
+          node.vx *= 0.92;
+          node.vy *= 0.92;
+
+          node.x += node.vx;
+          node.y += node.vy;
+
+          // Glow dot
+          const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 3);
+          gradient.addColorStop(0, 'rgba(255, 77, 77, 0.4)');
+          gradient.addColorStop(1, 'rgba(255, 77, 77, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Core dot
+          ctx.fillStyle = 'rgba(255, 77, 77, 0.2)';
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 1, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        animFrame = requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+
+    // ─── SCROLL ANIMATIONS ───
+    const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -40px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // ─── NAV SCROLL ───
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.pageYOffset > 50);
+    }, { passive: true });
+
+    // Waitlist form handling
+    function setupWaitlistForm(formSelector, confirmSelector) {
+      const forms = document.querySelectorAll(formSelector);
+      const confirms = document.querySelectorAll(confirmSelector);
+      forms.forEach((form, i) => {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const input = form.querySelector('input[type="email"]');
+          if (input && input.value) {
+            form.style.display = 'none';
+            if (confirms[i]) confirms[i].style.display = 'block';
+          }
+        });
+      });
+    }
+
+  </script>
+</body>
+</html>

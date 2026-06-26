@@ -1,0 +1,15 @@
+{
+  "capability_version": 1,
+  "backend": "openviking",
+  "supported_modes": ["semantic", "exact"],
+  "requires_credentials": true,
+  "requires_external_service": false,
+  "cold_start_ms": 500,
+  "probe": {
+    "l1_install": "python3 -c 'import openviking' 2>/dev/null",
+    "l2_runtime": "python3 -c 'import openviking as ov; ov.SyncOpenViking()' 2>/dev/null",
+    "l3_functional": "python3 -c 'import openviking as ov; c=ov.SyncOpenViking(); c.initialize(); c.close()' 2>/dev/null",
+    "l3_deep": null
+  },
+  "install_hint": "$HOME/.openclaw/venv/bin/pip install openviking"
+}

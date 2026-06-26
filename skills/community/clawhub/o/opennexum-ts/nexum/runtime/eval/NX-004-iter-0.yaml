@@ -1,0 +1,31 @@
+verdict: pass
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "实现位于 packages/notify/src/templates.ts:12-30，`formatDispatch()` 明确输出 `Task: ${taskId}`、`Agent: ${agentId}`、`Scope files: ${scopeCount}`、`Progress: ${progress}`。对应单测 packages/notify/src/__tests__/templates.test.ts:10-17 通过，断言返回字符串包含 `NX-004`、`agent-1`、`7`、`2/10`。`pnpm test` 输出显示 `✔ formatDispatch contains taskId, agentId, scopeCount, progress`。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "实现位于 packages/notify/src/templates.ts:32-57，`formatComplete()` 输出任务名、`Elapsed: ...`、`Criteria: ${passCount}/${totalCount} passed`，并在有解锁任务时输出 `Unlocked: ${unlockedTasks.join(', ')}`。对应单测 packages/notify/src/__tests__/templates.test.ts:27-44 通过，验证了任务名 `Telegram Notify`、通过数 `5/5`、已解锁任务 `NX-005`/`NX-006`、以及无解锁任务时的 `none`；另有 :36-39 验证用时格式 `1m5s`。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "实现位于 packages/notify/src/templates.ts:59-84，`formatFail()` 输出 `Criteria: ${passCount}/${totalCount} passed, ${failCount} failed` 与 `Feedback: ${feedbackExcerpt}`。对应单测 packages/notify/src/__tests__/templates.test.ts:48-63 通过，断言输出包含失败数 `2`、反馈摘要 `Build error on line 42`，以及失败 criteria 列表项 `C3 - missing field`、`C5 - build failed`。"
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: "实现位于 packages/notify/src/telegram.ts:3-22，`sendMessage()` 将 `fetch` 包在 `try/catch` 中，失败路径仅调用 `console.error(...)`，不会重新抛出。单测 packages/notify/src/__tests__/templates.test.ts:86-101 通过，`fetch` 抛错时 `assert.doesNotReject()` 成功；另外执行最小复现 `node --input-type=module -e ...` 得到 `{\"errorCalls\":1,\"firstCall\":\"[notify] Telegram sendMessage error: Error: network error\"}`，证明失败时确实记录了 `console.error`。"
+        detail: null
+        score: null
+      - id: C5
+        result: pass
+        evidence: "在 packages/notify 目录实际执行成功：`pnpm build` 退出码 0，输出 `> @nexum/notify@0.0.0 build ...` 后运行 `../prompts/node_modules/.bin/tsc -p tsconfig.json` 无报错；`pnpm test` 退出码 0，输出 `tests 10`、`pass 10`、`fail 0`，全部测试通过。"
+        detail: null
+        score: null
+feedback: ""

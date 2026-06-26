@@ -1,0 +1,243 @@
+{
+  "description": "Token optimization config patches for OpenClaw",
+  "_notice": "IMPORTANT: This file is reference documentation only — it is not executed automatically. Patches marked requires_external_api require you to obtain and configure API keys from third-party providers. Patches marked local_only or native_openclaw use no network access and apply directly. Review each patch before applying.",
+  "_categories": {
+    "native_openclaw": ["session_pruning", "bootstrap_size_limits", "cache_retention_long"],
+    "local_only": ["heartbeat_optimization", "token_budgets", "lazy_context_loading"],
+    "requires_openrouter_api_key": ["multi_provider_fallback"],
+    "requires_anthropic_beta": ["enable_prompt_caching"],
+    "partial_core_support": ["model_routing"]
+  },
+  "patches": {
+    "session_pruning": {
+      "description": "Auto-trim old tool results when Anthropic cache TTL expires — reduces cache write costs after idle sessions",
+      "implementation_status": "✅ Native OpenClaw 2026.2.15 feature — apply directly via gateway config.patch",
+      "_category": "native_openclaw",
+      "patch": {
+        "agents": {
+          "defaults": {
+            "contextPruning": {
+              "mode": "cache-ttl",
+              "ttl": "5m"
+            }
+          }
+        }
+      },
+      "how_to_apply": "gateway config.patch with the agents block above",
+      "savings": "Reduces cache write costs on sessions that go idle past the Anthropic 1h cache TTL window. Only old tool results are trimmed — user/assistant messages untouched.",
+      "notes": [
+        "Only active for Anthropic API key users (not OAuth)",
+        "Match ttl to your model cacheControlTtl (default 1h on API key profiles)",
+        "Protected: last 3 assistant messages + tool results after them are never pruned",
+        "Tool results containing images are always skipped"
+      ]
+    },
+    "bootstrap_size_limits": {
+      "description": "Cap workspace file injection into system prompt — reduces system prompt bloat for agents with large AGENTS.md, MEMORY.md, or SOUL.md",
+      "implementation_status": "✅ Native OpenClaw 2026.2.15 feature — apply directly via gateway config.patch",
+      "_category": "native_openclaw",
+      "patch": {
+        "agents": {
+          "defaults": {
+            "bootstrapMaxChars": 10000,
+            "bootstrapTotalMaxChars": 15000
+          }
+        }
+      },
+      "how_to_apply": "gateway config.patch with the agents block above",
+      "savings": "20-40% reduction in system prompt size. Default bootstrapTotalMaxChars is 24000 — cutting to 15000 eliminates the tail of large memory/agent files.",
+      "notes": [
+        "bootstrapMaxChars: per-file cap (individual files truncated at this limit)",
+        "bootstrapTotalMaxChars: total cap across all injected workspace files",
+        "Use /context detail to see per-file token breakdown before and after",
+        "memory/*.md files are NOT auto-injected — loaded on demand via memory tools"
+      ]
+    },
+    "cache_retention_long": {
+      "description": "Set longer cache retention for Opus to amortize cache write costs on long reasoning sessions",
+      "implementation_status": "✅ Native OpenClaw 2026.2.15 feature — apply directly via gateway config.patch",
+      "_category": "native_openclaw",
+      "patch": {
+        "agents": {
+          "defaults": {
+            "models": {
+              "anthropic/claude-opus-4-5": {
+                "params": {
+                  "cacheRetention": "long"
+                }
+              }
+            }
+          }
+        }
+      },
+      "how_to_apply": "gateway config.patch with the agents block above",
+      "savings": "Reduces repeated cache write costs on extended Opus sessions. Cache writes are billed at a higher multiplier — fewer re-writes = lower total cost.",
+      "notes": [
+        "Only meaningful for Anthropic API key users",
+        "Combine with session_pruning for maximum effect",
+        "For Sonnet sessions, the default cache retention is usually sufficient"
+      ]
+    },
+    "enable_prompt_caching": {
+      "description": "Enable Anthropic prompt caching for SOUL.md, AGENTS.md, and docs",
+      "implementation_status": "⏳ Requires Anthropic API caching feature (verify current status)",
+      "patch": {
+        "agentConfig": {
+          "promptCaching": {
+            "enabled": true,
+            "cacheTTL": 14400,
+            "cacheableFiles": [
+              "SOUL.md",
+              "AGENTS.md",
+              "USER.md",
+              "TOOLS.md",
+              "IDENTITY.md",
+              "docs/**/*.md"
+            ]
+          }
+        }
+      },
+      "savings": "Up to 90% reduction on cached content"
+    },
+    "lazy_context_loading": {
+      "description": "Don't load all project files upfront, load on-demand (use context_optimizer.py script for this today)",
+      "implementation_status": "⏳ Core config form pending — use context_optimizer.py script now for equivalent results",
+      "patch": {
+        "agentConfig": {
+          "contextLoading": {
+            "mode": "lazy",
+            "alwaysLoad": [
+              "SOUL.md",
+              "AGENTS.md",
+              "USER.md"
+            ],
+            "loadOnMention": true,
+            "loadOnToolCall": true
+          }
+        }
+      },
+      "savings": "50-70% reduction in initial context size"
+    },
+    "model_routing": {
+      "description": "Route simple tasks to cheaper model tiers",
+      "implementation_status": "⚠️ Partial — use model_router.py script for recommendations; native config routing pending",
+      "_note": "Haiku is available with multi-provider setups (OpenRouter, Together.ai). For single-provider Anthropic deployments, Sonnet is the minimum — use Sonnet for standard tasks, Opus only for complex reasoning.",
+      "patch": {
+        "agentConfig": {
+          "modelRouting": {
+            "enabled": true,
+            "defaultModel": "anthropic/claude-sonnet-4-5",
+            "rules": [
+              {
+                "pattern": "complex|design|architect|comprehensive",
+                "model": "anthropic/claude-opus-4-5"
+              }
+            ]
+          }
+        }
+      },
+      "savings": "15-30% cost reduction with smart routing (more with multi-provider)"
+    },
+    "heartbeat_optimization": {
+      "description": "Optimized heartbeat intervals — longer, smarter, cache-TTL-aware",
+      "implementation_status": "✅ Fully functional via heartbeat_optimizer.py",
+      "_category": "local_only",
+      "patch": {
+        "agentConfig": {
+          "heartbeat": {
+            "interval": 3300,
+            "useOptimizer": true,
+            "quietHours": {
+              "start": 23,
+              "end": 8
+            },
+            "skipOnLowActivity": true
+          }
+        }
+      },
+      "_interval_note": "3300s = 55 minutes — deliberately set just under the 1h Anthropic cache TTL to keep the cache warm between heartbeats. See heartbeat_optimizer.py cache-ttl command.",
+      "savings": "50% reduction in heartbeat API calls + prevents cache re-write penalty"
+    },
+    "token_budgets": {
+      "description": "Set daily token budgets per session type",
+      "implementation_status": "✅ Fully functional via token_tracker.py",
+      "_category": "local_only",
+      "patch": {
+        "agentConfig": {
+          "tokenBudgets": {
+            "enabled": true,
+            "daily": {
+              "main": 100000,
+              "heartbeat": 10000,
+              "subagent": 50000
+            },
+            "actions": {
+              "onExceed": "switch_to_cheaper_model",
+              "warnThreshold": 0.8
+            }
+          }
+        }
+      },
+      "savings": "Prevents runaway costs, enforces discipline"
+    },
+    "multi_provider_fallback": {
+      "description": "Automatic fallback to alternative providers when rate-limited",
+      "implementation_status": "⚠️ Partial — requires external API keys",
+      "_requires_external_api": true,
+      "_warning": "This patch requires OPENROUTER_API_KEY and/or TOGETHER_API_KEY environment variables. These are credentials for third-party services (openrouter.ai, together.ai) that involve network requests. Do NOT apply unless you have registered for and obtained these keys. The executable scripts in this skill do NOT use this patch.",
+      "patch": {
+        "providers": [
+          {
+            "name": "anthropic-primary",
+            "type": "anthropic",
+            "apiKey": "${ANTHROPIC_API_KEY}",
+            "priority": 1
+          },
+          {
+            "name": "openrouter-fallback",
+            "type": "openrouter",
+            "apiKey": "${OPENROUTER_API_KEY}",
+            "priority": 2,
+            "models": {
+              "anthropic/claude-sonnet-4-5": "anthropic/claude-sonnet-4",
+              "anthropic/claude-haiku-4": "google/gemini-2.5-flash"
+            }
+          },
+          {
+            "name": "together-fallback",
+            "type": "together",
+            "apiKey": "${TOGETHER_API_KEY}",
+            "priority": 3,
+            "models": {
+              "anthropic/claude-sonnet-4-5": "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+            }
+          }
+        ],
+        "routing": {
+          "onRateLimit": "fallback",
+          "onError": "fallback",
+          "retryAttempts": 3
+        }
+      },
+      "savings": "Prevents downtime from rate limits, spreads load"
+    }
+  },
+  "usage": {
+    "apply_native_patch": "Use the gateway config.patch tool with the patch block — native_openclaw patches work immediately",
+    "apply_single_patch": "gateway config.patch --patch '{\"agents\": {...}}'",
+    "apply_multiple": "Combine multiple patches into one config.patch call",
+    "diagnose_first": "Run /context detail in chat to see per-file token breakdown before applying bootstrap_size_limits",
+    "note": "native_openclaw patches apply directly. Other patches may require scripts, external APIs, or future OpenClaw updates."
+  },
+  "implementation_status_summary": {
+    "session_pruning": "✅ Native — apply now",
+    "bootstrap_size_limits": "✅ Native — apply now",
+    "cache_retention_long": "✅ Native — apply now",
+    "heartbeat_optimization": "✅ Script — fully functional",
+    "token_budgets": "✅ Script — fully functional",
+    "model_routing": "⚠️ Script only — config form pending",
+    "lazy_context": "⚠️ Script only — config form pending",
+    "prompt_caching": "⏳ Verify Anthropic API status",
+    "multi_provider": "⏳ Requires external API keys"
+  }
+}

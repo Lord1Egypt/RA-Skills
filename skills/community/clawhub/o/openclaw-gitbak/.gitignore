@@ -1,0 +1,19 @@
+.DS_Store
+Thumbs.db
+*.backup
+*.bak
+*.tar.gz
+*.zip
+*.log
+logs/
+openclaw.json.bak*
+workspace*/
+# 运行时状态（不需要备份）
+agents/main/sessions/*.jsonl
+agents/main/sessions/sessions.json
+agents/main/sessions/*.jsonl.lock
+agents/main/sessions/*.jsonl.reset.*
+agents/main/agent/models.json
+feishu/dedup/*.json
+openclaw-weixin/accounts/*.sync.json
+/.clawhub/lock.json

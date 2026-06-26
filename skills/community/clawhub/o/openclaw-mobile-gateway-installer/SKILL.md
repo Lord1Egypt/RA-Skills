@@ -1,35 +1,52 @@
 ---
-name: "OpenClaw Mobile Gateway Installer"
+name: "openclaw-mobile-gateway-installer"
 description: "Installs and manages OpenClaw mobile gateway as a system service. Invoke when users need one-command deploy, start, stop, upgrade, or uninstall."
-category: "devops"
-source: "ClawHub"
-tags: [devops, gateway, installer, mobile, openclaw, systemd]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-mobile-gateway-installer"
-sourceUrl: "https://clawhub.ai/skills/openclaw-mobile-gateway-installer"
 ---
 
 # OpenClaw Mobile Gateway Installer
 
-> Installs and manages OpenClaw mobile gateway as a system service. Invoke when users need one-command deploy, start, stop, upgrade, or uninstall.
+## 作用
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-mobile-gateway-installer`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-mobile-gateway-installer](https://clawhub.ai/skills/openclaw-mobile-gateway-installer)
+一键安装并管理 OpenClaw 移动端管理网关，自动注册为 systemd 服务并开机自启。
 
-## Overview
+## 何时调用
 
+- 用户希望快速部署移动端管理网关
+- 用户希望开机自动启动网关
+- 用户需要升级、重启、卸载网关
+- 用户需要检查健康状态和端口监听
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 目录结构
+
+- `backend/`: 网关后端源码
+- `install.sh`: 安装/升级并启动服务
+- `check.sh`: 服务与健康检查
+- `uninstall.sh`: 卸载服务与目录
+
+## 使用命令
+
 ```bash
-hermes skills install clawhub/openclaw-mobile-gateway-installer
+export OPENCLAW_API_BASE_URL="https://openclaws.example.com"
+export OPENCLAW_AUTH_HEADER_NAME="Authorization"
+export OPENCLAW_AUTH_HEADER_VALUE="Bearer <token>"
+bash ./install.sh
 ```
+
+```bash
+bash ./check.sh
+```
+
+```bash
+bash ./uninstall.sh
+```
+
+## 安装后
+
+- 服务名：`openclaw-mobile-gateway`
+- 默认端口：`4800`
+- 健康检查：`http://127.0.0.1:4800/health`
+- APK 网关地址：`http://<server-ip>:4800`
+
+## 常见排查
+
+- 如果 APK 提示 `Cannot GET /api/quick-actions`，说明服务端网关版本过旧，重新执行 `bash ./install.sh` 升级即可。

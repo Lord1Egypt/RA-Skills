@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 清新自然风格 ===== */
+
+/* 添加封面样式 */
+.card-cover-nature {
+  background: #f9fcf7;
+  box-shadow: 0 10px 30px rgba(142, 199, 142, 0.15);
+  position: relative;
+}
+
+.card-cover-nature:before {
+  content: "uD83CuDF3F";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  right: calc(var(--spacing) * 3.75);
+  font-size: calc(var(--spacing) * 6);
+  z-index: 20;
+  opacity: 0.8;
+}
+
+.card-cover-nature .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(76, 175, 80, 0.1),
+    rgba(76, 175, 80, 0.6)
+  );
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-nature .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(249, 252, 247, 0.95),
+    rgba(249, 252, 247, 0.7) 50%,
+    rgba(249, 252, 247, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-nature .cover-content {
+  background: #f9fcf7;
+  padding: calc(var(--spacing) * 6);
+}
+
+.card-cover-nature .cover-title {
+  color: #4caf50;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.card-cover-nature .cover-description {
+  color: #555;
+}
+
+.card-cover-nature .cover-tag {
+  background-color: #e8f5e9;
+  color: #4caf50;
+  border: 1px dashed #a5d6a7;
+  transition: all 0.3s ease;
+}
+
+.card-cover-nature .cover-tag:hover {
+  background-color: #c8e6c9;
+  transform: translateY(-2px);
+}
+
+.card-cover-nature .cover-date {
+  color: #81c784;
+}
+/* 卡片样式 */
+.card-nature {
+  width: 100%;
+  background: #f9fcf7;
+  box-shadow: 0 10px 30px rgba(142, 199, 142, 0.15);
+  padding: calc(var(--spacing) * 7.5);
+  --highlight-color: #4caf50;
+  --highlight-bg-color: #f1f8f1;
+}
+
+.card-nature .card-content {
+  position: relative;
+  color: #555;
+  height: calc(var(--card-height) - calc(var(--spacing) * 20));
+}
+
+.card-nature p:has(> img) {
+  padding: 0;
+}
+
+.card-nature strong {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.card-nature em {
+  color: #81c784;
+  font-style: italic;
+}
+
+.card-nature p a {
+  color: #4caf50;
+  text-decoration: none;
+  border-bottom: 1px dashed #c8e6c9;
+  transition: all 0.3s ease;
+}
+
+.card-nature p a:hover {
+  color: #388e3c;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+.card-nature h1 {
+  font-size: calc(var(--spacing) * 6.5);
+  color: #4caf50;
+  margin-bottom: calc(var(--spacing) * 2);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.card-nature h1:after {
+  content: "uD83CuDF3F";
+  position: absolute;
+  right: calc(var(--spacing) * -7.5);
+  top: 0;
+}
+
+.card-nature h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #81c784;
+  margin-bottom: calc(var(--spacing) * 7);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.card-nature ul,
+.card-nature ol {
+  background: white;
+  border-radius: 12px;
+  padding: calc(var(--spacing) * 5) calc(var(--spacing) * 5)
+    calc(var(--spacing) * 5) calc(var(--spacing) * 12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.card-nature li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-top: calc(var(--spacing) * 5);
+  color: #555;
+  font-size: inherit;
+  border-bottom: 1px dashed #e8f5e9;
+  padding-bottom: calc(var(--spacing) * 5);
+}
+
+.card-nature li:first-child {
+  margin-top: 0;
+}
+
+.card-nature li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.card-nature li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -9);
+  top: 0;
+  background: #a5d6a7;
+  color: white;
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  border-radius: 50%;
+  text-align: center;
+  line-height: calc(var(--spacing) * 7);
+  font-weight: bold;
+}
+
+.card-nature h3 {
+  display: block;
+  color: #4caf50;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4.25);
+}
+/* 表格样式 */
+.card-nature table {
+  box-shadow: 0 4px 15px rgba(142, 199, 142, 0.1);
+  background: white;
+  border-radius: 12px;
+}
+
+.card-nature th {
+  background-color: #f1f8f1;
+  color: #4caf50;
+  border-bottom: 2px solid #c8e6c9;
+}
+
+.card-nature td {
+  color: #555;
+}
+
+.card-nature tr {
+  border-bottom-color: #e8f5e9;
+}
+
+.card-nature tr:nth-child(even) {
+  background-color: #f9fcf7;
+}
+
+/* 代码块样式 */
+.card-nature pre {
+  border: 1px dashed #a5d6a7;
+  box-shadow: 0 4px 15px rgba(142, 199, 142, 0.1);
+}
+
+.card-nature code:not(pre code) {
+  background-color: #f1f8f1;
+  color: #4caf50;
+}
+
+/* 引用块样式 */
+.card-nature blockquote {
+  background-color: white;
+  border-left: 4px solid #a5d6a7;
+  color: #4caf50;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.card-nature ul > li {
+  border-bottom: 1px dashed #e8f5e9;
+  padding-bottom: calc(var(--spacing) * 4);
+}
+
+.card-nature ul > li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.card-nature ul > li:before {
+  content: "uD83CuDF43";
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* 水平线样式 */
+.card-nature hr {
+  background: linear-gradient(to right, transparent, #a5d6a7, transparent);
+  height: calc(var(--spacing) * 0.25);
+}
+
+.card-nature .card-footer {
+  text-align: right;
+}
+
+.card-nature .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-nature">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

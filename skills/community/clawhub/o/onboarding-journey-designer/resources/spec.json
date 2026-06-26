@@ -1,0 +1,37 @@
+{
+  "slug": "onboarding-journey-designer",
+  "title": "上手旅程设计师",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "设计客户或员工 onboarding 路径，按第 1 天、第 7 天、第 30 天拆解。",
+  "inputHint": "目标人群、核心动作、成功标准",
+  "sections": [
+    "第1天",
+    "第7天",
+    "第30天",
+    "关键里程碑",
+    "阻塞预警",
+    "衡量指标"
+  ],
+  "useCases": [
+    "客户启用",
+    "员工入职",
+    "新用户引导"
+  ],
+  "positiveExamples": [
+    "设计客户 onboarding 路线",
+    "按第 1/7/30 天拆任务"
+  ],
+  "negativeExamples": [
+    "不要一刀切套模板",
+    "不要忽视行业差异"
+  ],
+  "risk": "适合作为旅程蓝图，需要结合具体产品调整。",
+  "tags": [
+    "onboarding",
+    "journey",
+    "enablement",
+    "success"
+  ]
+}

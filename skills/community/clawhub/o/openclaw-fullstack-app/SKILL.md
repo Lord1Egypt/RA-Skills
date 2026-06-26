@@ -1,35 +1,55 @@
----
-name: "Openclaw Fullstack App"
-description: "Generate complete fullstack apps with React/Vue/Next frontend, Node/Python backend, PostgreSQL/MongoDB, Docker, CI/CD, auth, REST/GraphQL APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-fullstack-app"
-sourceUrl: "https://clawhub.ai/skills/openclaw-fullstack-app"
----
+# OpenClaw Fullstack App Generator
 
-# Openclaw Fullstack App
+Generate complete fullstack applications with OpenClaw.
 
-> Generate complete fullstack apps with React/Vue/Next frontend, Node/Python backend, PostgreSQL/MongoDB, Docker, CI/CD, auth, REST/GraphQL APIs.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-fullstack-app`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-fullstack-app](https://clawhub.ai/skills/openclaw-fullstack-app)
+- React + TypeScript frontend
+- Node.js/Python backend
+- PostgreSQL/MongoDB database
+- Docker deployment
+- CI/CD pipeline
+- Authentication
+- REST/GraphQL API
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-fullstack-app
+# Generate React + Node app
+./generate.sh my-app react node
+
+# Generate Vue + Python app
+./generate.sh my-app vue python
+
+# Generate Next.js + PostgreSQL
+./generate.sh my-app next postgresql
 ```
+
+## Templates
+
+- React + Express + PostgreSQL
+- Vue + FastAPI + MongoDB
+- Next.js + Node + PostgreSQL
+- React + Django + PostgreSQL
+
+## Output
+
+Generates complete project structure:
+```
+my-app/
+├── frontend/
+├── backend/
+├── docker/
+├── ci-cd/
+└── docs/
+```
+
+## Requirements
+
+- Node.js 18+
+- Python 3.8+
+- Docker
+
+## Author
+
+Sunshine-del-ux

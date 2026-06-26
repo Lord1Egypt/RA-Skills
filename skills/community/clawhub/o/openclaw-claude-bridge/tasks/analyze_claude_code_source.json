@@ -1,0 +1,8 @@
+{
+  "id": "analyze_claude_code_source",
+  "prompt": "请深度分析 /Users/mars/.openclaw/workspace/claude-code-source/ 目录下的 Claude Code 源码。\n\n分析要求：\n\n1. **架构概览**\n   - 整体项目结构\n   - 核心模块划分\n   - 技术栈分析 (Bun, TypeScript, React, etc.)\n\n2. **核心子系统解构**\n   - Query Engine (查询引擎)\n   - Tool System (工具系统)\n   - Command System (命令系统)\n   - Permission System (权限系统)\n   - Memory System (记忆系统)\n   - MCP System (MCP集成)\n\n3. **关键设计模式**\n   - 提取可借鉴的架构模式\n   - 代码组织方式\n   - 扩展性设计\n\n4. **与 OpenClaw 的对比**\n   - 优势分析\n   - 可移植组件\n   - 改进建议\n\n5. **输出格式**\n   - 结构化报告\n   - 关键代码片段\n   - 架构图描述\n\n请生成详细的分析报告，保存到 /Users/mars/.openclaw/workspace/claude-code-analysis.md",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T09:41:38.775311",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/analyze_claude_code_source.json"
+}

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Python Syntax Check
+        run: |
+          python -m py_compile \
+            assets/templates/openclaw_autopilot.py \
+            scripts/deploy_autopilot.py \
+            scripts/doctor_autopilot.py \
+            scripts/setup_autopilot.py \
+            scripts/log_summary.py \
+            scripts/install_skill.py \
+            scripts/smoke_test_deploy.py
+
+      - name: Deploy Script Help Smoke
+        run: |
+          python scripts/deploy_autopilot.py --help
+          python scripts/doctor_autopilot.py --help
+          python scripts/setup_autopilot.py --help
+          python scripts/log_summary.py --help
+          python scripts/install_skill.py --help
+
+      - name: Offline Deploy Smoke Test
+        run: |
+          python scripts/smoke_test_deploy.py

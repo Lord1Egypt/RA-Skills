@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ops Issue Follow-up"
+  short_description: "Follow up operational issues with aligned investigation steps"
+  default_prompt: "Use $ops-issue-followup to investigate this operations issue and summarize the confirmed evidence."

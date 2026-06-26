@@ -1,0 +1,49 @@
+/*
+ * Theme: Data Light
+ * 数据学院浅色 — 白底深蓝文字，青绿强调色，数据可视化友好
+ * 适合：数据分析报告、研究成果展示、技术趋势分析、学术数据汇报
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #0a2540;
+  --color-secondary: #546b81;
+  --color-accent: #0dab76;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-text: #0a2540;
+  --color-text-secondary: #546b81;
+  --color-text-on-primary: #ffffff;
+  --color-border: #d0d7de;
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
+  --font-size-title: 3.6rem;
+  --font-size-heading: 2.7rem;
+  --font-size-subheading: 1.57rem;
+  --font-size-body: 1.24rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.06rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 1.97rem;
+  --spacing-lg: 3.09rem;
+  --spacing-xl: 4.22rem;
+
+  /* --- 效果 --- */
+  --border-radius: 6px;
+  --shadow-sm: 0 1px 2px rgba(10,37,64,0.05);
+  --shadow-md: 0 3px 10px rgba(10,37,64,0.08);
+  --shadow-lg: 0 6px 20px rgba(10,37,64,0.1);
+  --transition-speed: 0.25s;
+  --transition-easing: ease-out;
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

@@ -1,0 +1,7 @@
+numpy>=1.26
+opencv-python>=4.10
+openvino>=2025.0.0
+nncf>=2.14.0
+tqdm>=4.66
+pyyaml>=6.0
+ultralytics

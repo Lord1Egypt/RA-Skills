@@ -1,35 +1,90 @@
 ---
-name: "Opencode Select Confirm"
-description: "当用户请求推荐多个选项时弹出选择框让用户确认，以及当用户说"让我确认"时显示确认对话框"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opencode-select-confirm"
-sourceUrl: "https://clawhub.ai/skills/opencode-select-confirm"
+name: 对话与选择确认
+description: 当用户请求推荐多个选项时弹出选择框让用户确认，以及当用户说"让我确认"时显示确认对话框
+trigger:
+  - "推荐"
+  - "选择"
+  - "哪个好"
+  - "要一个"
+  - "有什么"
+  - "列出"
+  - "让我确认"
+  - "确认"
+  - "confirm"
+response_type: choice
 ---
 
-# Opencode Select Confirm
+# Skill: 对话与选择确认
 
-> 当用户请求推荐多个选项时弹出选择框让用户确认，以及当用户说"让我确认"时显示确认对话框
+本技能包含两个功能：
+1. **推荐/选择场景**：当用户请求推荐或选择时，直接弹出选择框
+2. **确认对话框**：当用户说"让我确认"时显示确认对话框
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opencode-select-confirm`
-- **Source URL:** [https://clawhub.ai/skills/opencode-select-confirm](https://clawhub.ai/skills/opencode-select-confirm)
+---
 
-## Overview
+## 功能一：推荐/选择场景
 
+### 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opencode-select-confirm
+1. **立即弹出**：用户说推荐/选择时，第一反应是弹出选择框，不是先分析
+2. **直接给选项**：列出3-5个候选选项让用户选择
+3. **选择后继续**：用户选择后，弹出下一步操作选项
+4. **结束判断**：用户说"可以了""不需要"时，结束对话
+
+### 处理流程
+
+```
+用户：推荐X
+助手：立即弹出选择框（列出候选选项）
+
+用户：选择某个选项
+助手：弹出下一步操作选择框（查看详情/使用/继续推荐）
+
+用户：可以了
+助手：结束对话
+```
+
+### 常见错误（必须避免）
+
+- ❌ 用户说"推荐X"后，先写分析再给选择框
+- ❌ 用户说"推荐X"后，直接列出所有选项让用户看
+- ❌ 用户选择后直接结束，没有后续操作选项
+- ❌ 用户说"都可以"时，忽略继续列出选项
+
+### 正确示例
+
+| 场景 | 正确做法 |
+|------|----------|
+| 用户说"推荐" | 立即弹出选择框 |
+| 用户选择后 | 弹出下一步操作选择框 |
+| 用户说"可以了" | 结束对话 |
+
+---
+
+## 功能二：确认对话框
+
+### 描述
+
+当用户说"让我确认"或类似语句时，使用 question 工具显示选择框让用户确认操作。
+
+### 选项要求
+
+- "让我确认" - 确认执行当前操作
+- "取消" - 取消当前操作
+
+### 使用示例
+
+- 用户说："让我确认"
+- 响应：显示包含"让我确认"和"取消"选项的选择框
+
+---
+
+## 检验清单
+
+每次执行推荐类请求时，按以下顺序检查：
+
+```
+□ 用户说推荐/选择 → 立即弹出选择框
+□ 用户选择后 → 弹出下一步操作选择框
+□ 用户说"可以了" → 结束对话
 ```

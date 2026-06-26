@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "version": "1.0",
+    "bot_name": "Bot Alpha",
+    "user_id": "u_bot1"
+  },
+  "fixed_base": {
+    "offense": 0.55,
+    "live_three": 0.45,
+    "chong_four": 0.65,
+    "defense": 0.6,
+    "block_three": 0.5,
+    "block_four": 0.85,
+    "center_control": 0.75,
+    "edge_avoid": 0.4,
+    "corner_avoid": 0.6
+  },
+  "personality": {
+    "attack_style": "steady",
+    "defense_style": "flexible",
+    "risk_like": 0.5,
+    "creativity": 0.5
+  },
+  "personality_boost": {
+    "attack_boost": 0.05,
+    "defense_boost": 0.05,
+    "risk_boost": 0.03,
+    "creative_boost": 0.02
+  },
+  "random": {
+    "enable": true,
+    "range": 0.01
+  }
+}

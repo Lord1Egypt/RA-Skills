@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-feishu-message",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Feishu/Lark messaging plugin for OpenClaw with contact lookup, caching, direct messaging, and follow-up actions.",
+  "keywords": ["openclaw", "feishu", "lark", "message", "im", "chat"],
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.59.0",
+    "@sinclair/typebox": "^0.34.48",
+    "openclaw": "^2026.3.22",
+    "zod": "^4.3.6"
+  },
+  "openclaw": {
+    "extensions": ["./index.js"]
+  }
+}

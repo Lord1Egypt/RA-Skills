@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-04-18T08:05:08.178Z",
+  "score": 65,
+  "maxScore": 100,
+  "scorePercent": 65,
+  "rating": "🟡 良好",
+  "results": [
+    {
+      "category": "system",
+      "name": "OpenClaw版本",
+      "description": "检查是否安装最新版本",
+      "passed": true,
+      "message": "OpenClaw 2026.4.15-beta.2 (29427fe)",
+      "details": "版本较新",
+      "score": 10
+    },
+    {
+      "category": "system",
+      "name": "Node.js版本",
+      "description": "检查Node.js版本兼容性",
+      "passed": true,
+      "message": "v22.22.1",
+      "details": "版本符合要求",
+      "score": 10
+    },
+    {
+      "category": "system",
+      "name": "内存可用性",
+      "description": "检查内存使用情况",
+      "passed": false,
+      "message": "5MB/6MB (83%)",
+      "details": "内存使用较高，建议优化",
+      "score": 5
+    },
+    {
+      "category": "config",
+      "name": "配置文件存在",
+      "description": "检查OpenClaw配置文件",
+      "passed": true,
+      "message": "找到1个配置文件",
+      "details": "配置文件: openclaw.json",
+      "score": 10
+    },
+    {
+      "category": "performance",
+      "name": "响应时间",
+      "description": "测试基础响应延迟",
+      "passed": true,
+      "message": "114ms",
+      "details": "响应时间正常",
+      "score": 15
+    },
+    {
+      "category": "performance",
+      "name": "内存稳定性",
+      "description": "测试内存增长情况",
+      "passed": true,
+      "message": "增长2MB",
+      "details": "内存增长正常",
+      "score": 15
+    }
+  ],
+  "problems": [
+    {
+      "issue": "内存可用性",
+      "description": "内存使用较高，建议优化",
+      "severity": "medium",
+      "category": "system"
+    },
+    {
+      "issue": "内存管理问题",
+      "description": "内存使用过高或增长过快，可能导致性能下降",
+      "severity": "high",
+      "category": "memory"
+    }
+  ],
+  "recommendations": [
+    "根据诊断结果，建议采取以下优化措施:",
+    "缩短上下文TTL，启用智能修剪，配置内存限制",
+    "参考B站视频《OpenClaw 卡顿、响应慢？一条提示词让它提速 95%》",
+    "使用 /compact 命令手动压缩上下文",
+    "配置代理解决国内访问延迟问题"
+  ]
+}

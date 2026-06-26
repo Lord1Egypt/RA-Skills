@@ -1,0 +1,90 @@
+---
+name: notion-im-helper
+description: "通过 IM 向 Notion 追加记录。支持日记、笔记、待办、想法、问题、链接、摘抄 7 种内容类型，标题/引用/分割线/列表 4 种格式，标签/项目 2 种元数据。当消息以指定前缀开头或包含记录意图时触发。只追加不删除，安全可靠。"
+metadata:
+  openclaw:
+    emoji: 📝
+    requires:
+      bins:
+        - python3
+      env:
+        - NOTION_API_KEY
+        - NOTION_PARENT_PAGE_ID
+      optional:
+        - NOTION_QUOTES_PAGE_ID
+    install:
+      - id: python-deps
+        kind: note
+        label: "pip install notion-client"
+    primaryEnv: NOTION_API_KEY
+    trigger:
+      keywords:
+        - 日记
+        - 笔记
+        - 待办
+        - todo
+        - 想法
+        - 灵感
+        - idea
+        - 问题
+        - 疑问
+        - 摘抄
+        - quote
+        - 链接
+        - link
+        - 图片
+        - photo
+        - img
+        - flash
+        - 闪念
+        - 月报
+        - monthly
+        - 撤回
+        - undo
+        - 搜索
+        - search
+        - notion
+        - riji
+      prefixPatterns:
+        - "^diary:"
+        - "^日记:"
+        - "^今天:"
+        - "^笔记:"
+        - "^学习:"
+        - "^note:"
+        - "^待办:"
+        - "^todo:"
+        - "^想法:"
+        - "^灵感:"
+        - "^idea:"
+        - "^问题:"
+        - "^疑问:"
+        - "^question:"
+        - "^摘抄:"
+        - "^quote:"
+        - "^链接:"
+        - "^link:"
+        - "^图片:"
+        - "^photo:"
+        - "^img:"
+        - "^flash:"
+        - "^闪念:"
+        - "^done:"
+        - "^完成:"
+        - "^月报"
+        - "^monthly"
+        - "^撤回"
+        - "^undo"
+        - "^搜:"
+        - "^search:"
+        - "^今日"
+      shortcutKeys:
+        d: diary
+        n: note
+        t: todo
+        i: idea
+        q: question
+        z: quote
+        l: link
+        p: image
+---

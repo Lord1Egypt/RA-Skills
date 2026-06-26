@@ -1,0 +1,56 @@
+{
+  "telegram": {
+    "bot_token": "123456789:REPLACE_WITH_BOT_TOKEN",
+    "personal_chat_id": "123456789"
+  },
+  "network": {
+    "telegram_api_host": "api.telegram.org",
+    "api_port": 443,
+    "ipv4_only": true,
+    "public_dns_resolvers": [
+      "1.1.1.1",
+      "8.8.8.8"
+    ]
+  },
+  "intervals_sec": {
+    "ping": 30,
+    "traceroute": 300,
+    "dns_reresolve": 300,
+    "mtu_test": 900
+  },
+  "timeouts_ms": {
+    "connect": 4000,
+    "request": 10000,
+    "delivery_ack": 60000,
+    "subprocess": 15000
+  },
+  "retry": {
+    "max_retries": 2,
+    "backoff_base_ms": 500
+  },
+  "delivery_verification": {
+    "mode": "bot_api_ack",
+    "ack_text_prefix": "NETDIAG_ACK",
+    "callback_button_text": "Confirm delivery",
+    "require_read_hint": false,
+    "allow_probe_messages": true
+  },
+  "logging": {
+    "log_file_path": "./logs/netdiag.jsonl",
+    "summary_file_path": "./logs/netdiag-summary.json",
+    "max_file_size_mb": 50,
+    "max_total_size_mb": 500,
+    "verbosity": "normal",
+    "redact_sensitive_fields": true
+  },
+  "diagnostics": {
+    "latency_anomaly_threshold_ms": 1200,
+    "packet_loss_probe_count": 4,
+    "tcp_keepalive_idle_sec": 30,
+    "tcp_keepalive_interval_sec": 10,
+    "tcp_keepalive_probe_count": 3,
+    "max_response_bytes": 2000000,
+    "mtu_min_payload": 1200,
+    "mtu_max_payload": 1472
+  }
+}

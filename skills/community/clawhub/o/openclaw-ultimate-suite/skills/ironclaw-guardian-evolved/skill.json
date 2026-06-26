@@ -1,0 +1,15 @@
+{
+  "name": "ironclaw-guardian-evolved",
+  "version": "1.0.0",
+  "description": "融合 IronClaw + Guardian + Security Guard 的进化版安全技能",
+  "emoji": "🛡️",
+  "category": "security",
+  "homepage": "https://github.com/wd041216-bit/openclaw-ironclaw-security-guard",
+  "metadata": {
+    "moltbot": {
+      "emoji": "🛡️",
+      "category": "security",
+      "api_base": "https://ironclaw.io/api/v1"
+    }
+  }
+}

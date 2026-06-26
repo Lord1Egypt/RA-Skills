@@ -1,0 +1,19 @@
+{
+  "www.bqquge.com": {
+    "name": "笔趣阁",
+    "title_selector": "h1",
+    "content_selector": "#content p",
+    "next_selector": ".next a",
+    "wait_element": "#content",
+    "memory_limit_mb": 500,
+    "notes": "URL 格式：/4/1962 或 /4/1962-2（分页）"
+  },
+  "m.bqquge.com": {
+    "name": "笔趣阁（移动版）",
+    "title_selector": ".title",
+    "content_selector": "#chaptercontent p",
+    "next_selector": ".next a",
+    "wait_element": "#chaptercontent",
+    "memory_limit_mb": 500
+  }
+}

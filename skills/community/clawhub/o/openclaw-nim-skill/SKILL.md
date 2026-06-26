@@ -1,35 +1,38 @@
 ---
-name: "NVIDIA NIM Skill"
-description: "Invoke various LLMs (GLM-5, Kimi-k2.5, Llama 3.1, etc.) via NVIDIA NIM API to save main agent tokens and leverage specialized model capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-nim-skill"
-sourceUrl: "https://clawhub.ai/skills/openclaw-nim-skill"
+name: nim
+description: >
+  Invoke various LLMs (GLM-5, Kimi-k2.5, Llama 3.1, etc.) via NVIDIA NIM API 
+  to save main agent tokens and leverage specialized model capabilities.
 ---
 
-# NVIDIA NIM Skill
+# NVIDIA NIM Skill for OpenClaw
 
-> Invoke various LLMs (GLM-5, Kimi-k2.5, Llama 3.1, etc.) via NVIDIA NIM API to save main agent tokens and leverage specialized model capabilities.
+This skill allows OpenClaw to delegate tasks to external models hosted on the NVIDIA NIM platform.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-nim-skill`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-nim-skill](https://clawhub.ai/skills/openclaw-nim-skill)
+## Setup
 
-## Overview
+1. **Get API Key**: Register at [build.nvidia.com](https://build.nvidia.com) and get your `nvapi-...` key.
+2. **Set Environment Variable**:
+   ```bash
+   export NVIDIA_API_KEY="your_api_key_here"
+   ```
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Direct Command
 ```bash
-hermes skills install clawhub/openclaw-nim-skill
+python3 scripts/nim_call.py <model_alias> "<prompt>"
+```
+
+### Supported Aliases
+- `glm5`: Zhipu AI GLM-5
+- `kimi`: Moonshot Kimi-k2.5
+- `r1`: DeepSeek R1 (Llama-8B Distill)
+- `llama`: Llama 3.1 405B
+- `phi`: Microsoft Phi-4
+
+## Integration with CLAUDE.md
+Add this to your project's `CLAUDE.md`:
+```markdown
+- /nim <model> <prompt>: Call NVIDIA NIM models.
 ```

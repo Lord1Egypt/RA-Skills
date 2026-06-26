@@ -1,0 +1,49 @@
+{
+  "name": "ocas-vesper",
+  "version": "2.7.0",
+  "description": "Vesper: daily briefing generator. Aggregates signals from across the system into concise morning and evening briefings. Surfaces outcomes, opportunities, and decisions in natural language without exposing internal processes. Trigger phrases: 'morning briefing', 'evening briefing', 'what's happening', 'daily brief', 'pending decisions', 'catch me up', 'update vesper'. Do not use for deep research (use Sift), pattern analysis (use Corvus), or message drafting (use Dispatch).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "skill_type": "system",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-vesper/",
+      "~/openclaw/journals/ocas-vesper/",
+      "~/openclaw/data/*/intake/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-vesper/",
+      "~/openclaw/journals/ocas-vesper/"
+    ]
+  },
+  "self_update": {
+    "source": "https://github.com/indigokarasu/vesper",
+    "mechanism": "version-checked tarball from GitHub via gh CLI",
+    "command": "vesper.update",
+    "requires_binaries": [
+      "gh",
+      "tar",
+      "python3"
+    ]
+  },
+  "scheduled_tasks": [
+    {
+      "name": "vesper:morning",
+      "schedule": "0 6 * * *",
+      "command": "vesper.morning",
+      "description": "Morning briefing generation (6am PT, configurable)"
+    },
+    {
+      "name": "vesper:evening",
+      "schedule": "0 20 * * *",
+      "command": "vesper.evening",
+      "description": "Evening briefing generation (8pm PT, configurable)"
+    },
+    {
+      "name": "vesper:update",
+      "schedule": "0 0 * * *",
+      "command": "vesper.update",
+      "description": "Self-update from GitHub source"
+    }
+  ]
+}

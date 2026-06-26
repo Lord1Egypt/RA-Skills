@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenAI Auth Switcher Public</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero glass-card">
+      <div class="hero-copy">
+        <span class="kicker">Public Skill · 0.2.0</span>
+        <h1>OpenAI Auth Switcher Public</h1>
+        <p>面向发布场景的 OpenClaw OpenAI OAuth 切换技能。强调可移植、可审查、可首次接管，并补齐 Web-first 安装体验。</p>
+        <div class="hero-actions">
+          <a class="brand-link-btn" href="https://claw.amior.cn/openai-auth-switcher-public-guide/" target="_blank" rel="noopener noreferrer">查看功能介绍与使用教程</a>
+          <span class="soft-pill">亮色 UI · 移动端自适应</span>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-metric">
+          <div class="metric-k">定位</div>
+          <div class="metric-v">Web-first / Public Track</div>
+        </div>
+        <div class="hero-metric">
+          <div class="metric-k">能力</div>
+          <div class="metric-v">安装 · 检测 · Dry-run · 打包发布</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="brand-hero-card glass-card">
+      <div class="brand-copy">
+        <span class="brand-kicker">作者署名</span>
+        <h2>作者：摩尔君</h2>
+        <p>关注微信公众号 <strong>摩尔君</strong>，获取 OpenClaw、账号切换、自动化工具更新。</p>
+        <div class="brand-actions">
+          <a class="brand-link-btn" href="https://claw.amior.cn/openai-auth-switcher-public-guide/" target="_blank" rel="noopener noreferrer">查看功能介绍与使用教程</a>
+        </div>
+      </div>
+      <div class="brand-qr-block">
+        <img src="./media/molejun-wechat.jpg" alt="摩尔君公众号二维码" class="brand-qr" />
+        <div class="brand-qr-caption">微信扫码关注：摩尔君</div>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <article class="summary-card glass-card">
+        <div class="summary-k">安装体验</div>
+        <div class="summary-v">一键部署 Web 入口</div>
+        <p>安装后直接拿到端口、账号密码、SSH 隧道命令。</p>
+      </article>
+      <article class="summary-card glass-card">
+        <div class="summary-k">端口策略</div>
+        <div class="summary-v">9527 → 12138 → 随机</div>
+        <p>优先固定入口，不冲突时稳定，冲突时自动回退。</p>
+      </article>
+      <article class="summary-card glass-card">
+        <div class="summary-k">运行模式</div>
+        <div class="summary-v">systemd-user 优先</div>
+        <p>兼容后台 fallback，并补齐 stop/status/reinstall 链路。</p>
+      </article>
+    </section>
+
+    <main class="content-grid">
+      <section class="panel glass-card">
+        <h2>当前公开版能力</h2>
+        <ul>
+          <li>环境发现 / doctor 检查</li>
+          <li>运行时检查 / slot 管理</li>
+          <li>受控切换实验 / 回滚</li>
+          <li>本地 token 账本 / 小时日统计</li>
+          <li>安全打包 / ClawHub 发布准备</li>
+        </ul>
+      </section>
+
+      <section class="panel panel-highlight glass-card">
+        <h2>0.2.0 已补齐</h2>
+        <ul>
+          <li>Web-first 首次接管安装流</li>
+          <li>systemd 主路径与回退逻辑修复</li>
+          <li>停止后状态实时判定</li>
+          <li>发布前验证闭环与清洁打包</li>
+        </ul>
+      </section>
+
+      <section class="panel glass-card">
+        <h2>推荐使用方式</h2>
+        <ol>
+          <li>先运行 install，拿到端口与默认凭证</li>
+          <li>再跑 doctor / env_detect / inspect_runtime</li>
+          <li>先 dry-run，再做正式切换</li>
+        </ol>
+      </section>
+
+      <section class="panel panel-highlight glass-card">
+        <h2>推荐关注</h2>
+        <p>公众号 <strong>摩尔君</strong> 持续分享 OpenClaw、账号切换、自动化运营与部署实战内容。</p>
+        <div class="mini-brand-row">
+          <img src="./media/molejun-wechat.jpg" alt="摩尔君公众号二维码" class="mini-qr" />
+          <div>
+            <div class="mini-title">微信公众号：摩尔君</div>
+            <div class="muted">扫码即可关注</div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <a class="brand-link-btn secondary-link" href="https://claw.amior.cn/openai-auth-switcher-public-guide/" target="_blank" rel="noopener noreferrer">查看功能介绍与使用教程</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer glass-card">
+      <div>
+        <div class="site-footer-title">作者：摩尔君</div>
+        <div class="muted">公众号：摩尔君 · 欢迎扫码关注，获取 OpenClaw / 账号切换 / 自动化工具更新</div>
+        <div class="footer-links">
+          <a href="https://claw.amior.cn/openai-auth-switcher-public-guide/" target="_blank" rel="noopener noreferrer">查看功能介绍与使用教程</a>
+        </div>
+      </div>
+      <div class="site-footer-qr-wrap">
+        <img src="./media/molejun-wechat.jpg" alt="摩尔君公众号二维码" class="site-footer-qr" />
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

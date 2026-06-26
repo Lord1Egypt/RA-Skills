@@ -1,0 +1,38 @@
+{
+  "name": "ocas-sift",
+  "version": "2.3.0",
+  "description": "Sift: web search, research synthesis, fact verification, and entity extraction. The system's general research engine. Use for topic research, web lookups, fact-checking, document summarization, comparison research, or structured information extraction. Trigger phrases: 'search for', 'look up', 'research this topic', 'fact check', 'compare', 'summarize this', 'what is', 'find information about', 'update sift'. Do not use for person-focused OSINT investigations (use Scout) or image processing (use Look).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "requires": {
+    "credentials": [
+      {
+        "name": "brave_search_api_key",
+        "description": "Brave Search API key for Tier 2 web search",
+        "required": false,
+        "note": "Falls back to DuckDuckGo if unavailable"
+      },
+      {
+        "name": "exa_api_key",
+        "description": "Exa API key for Tier 3 semantic research",
+        "required": false
+      },
+      {
+        "name": "tavily_api_key",
+        "description": "Tavily API key for Tier 3 semantic research",
+        "required": false
+      }
+    ]
+  },
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-sift/",
+      "~/openclaw/journals/ocas-sift/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-sift/",
+      "~/openclaw/journals/ocas-sift/",
+      "~/openclaw/db/ocas-elephas/intake/"
+    ]
+  }
+}

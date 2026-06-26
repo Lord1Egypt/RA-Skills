@@ -1,0 +1,9 @@
+{
+  "name": "openclaw-sage",
+  "version": "0.3.1",
+  "description": "OpenClaw documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets",
+  "main": "SKILL.md",
+  "keywords": ["openclaw", "clawdbot", "documentation", "help", "docs"],
+  "author": "Alfonso Ramirez",
+  "license": "MIT"
+}

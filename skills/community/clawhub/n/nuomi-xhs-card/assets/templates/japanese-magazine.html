@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 日本杂志风格 ===== */
+/* 封面样式 */
+.card-cover-japanese-magazine {
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 顶部装饰线 */
+.card-cover-japanese-magazine:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 2);
+  background: #000;
+  z-index: 30;
+}
+
+/* 右上角装饰 */
+.card-cover-japanese-magazine:after {
+  content: "JP";
+  position: absolute;
+  top: calc(var(--spacing) * 5);
+  right: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  background: #ff0033;
+  color: white;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  font-size: calc(var(--spacing) * 4);
+  text-align: center;
+  line-height: calc(var(--spacing) * 10);
+  z-index: 30;
+}
+
+.card-cover-japanese-magazine .cover-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-japanese-magazine .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-japanese-magazine .cover-content {
+  background: white;
+  border-top: 1px solid #eee;
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+.card-cover-japanese-magazine .cover-title {
+  color: #000;
+
+  letter-spacing: 1px;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 3.75);
+  text-transform: uppercase;
+}
+
+.card-cover-japanese-magazine .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 0.75);
+  background: #000;
+}
+
+.card-cover-japanese-magazine .cover-description {
+  color: #333;
+}
+
+.card-cover-japanese-magazine .cover-tag {
+  background: white;
+  color: #ff0033;
+  border: 1px solid #ff0033;
+  border-radius: 0;
+
+  font-size: calc(var(--spacing) * 3);
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.card-cover-japanese-magazine .cover-tag:hover {
+  background: #ff0033;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.card-cover-japanese-magazine .cover-date {
+  color: #666;
+
+  font-size: calc(var(--spacing) * 3);
+  font-weight: bold;
+}
+.card-japanese-magazine {
+  width: 100%;
+  border-radius: 0;
+  background: #ffffff;
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  --highlight-color: #ff0033;
+  --highlight-bg-color: rgba(255, 0, 51, 0.1);
+}
+
+/* 左上角红色三角形装饰 */
+.card-japanese-magazine:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 15);
+  background: #ff0033;
+  transform: rotate(45deg) translate(-40px, -40px);
+  z-index: 1;
+}
+
+/* 右下角黑色圆点装饰 */
+.card-japanese-magazine:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * 2.25);
+  right: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  background: #000;
+  border-radius: 50%;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.card-japanese-magazine .card-content-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.card-japanese-magazine .card-content {
+  position: relative;
+  height: calc(var(--card-height) - calc(var(--spacing) * 25));
+}
+
+/* 主标题样式 - 日系杂志风格 */
+.card-japanese-magazine h1 {
+  font-size: calc(var(--spacing) * 7.5);
+  position: relative;
+  color: #000;
+  margin: calc(var(--spacing) * 6.25) 0 calc(var(--spacing) * 6.25) 0;
+  font-weight: 800;
+  padding-left: calc(var(--spacing) * 3.75);
+  padding-bottom: 0;
+  border-left: 5px solid #ff0033;
+}
+
+/* 标题装饰线 */
+.card-japanese-magazine h1:after {
+  content: "";
+  display: block;
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 0.75);
+  background: #000;
+}
+
+/* 副标题样式 */
+.card-japanese-magazine h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #ff0033;
+  margin: calc(var(--spacing) * 6.25) 0 calc(var(--spacing) * 3.75) 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  padding: 0 calc(var(--spacing) * 1.25);
+  background: #fff;
+  z-index: 2;
+}
+
+/* 副标题背景装饰 */
+.card-japanese-magazine h2::after {
+  content: "";
+  display: block;
+  height: calc(var(--spacing) * 1);
+  width: 100%;
+  background: #ddd;
+  transform: translate3d(0px, -2px, 0px);
+}
+
+/* 段落样式 */
+.card-japanese-magazine p {
+  color: #333;
+}
+
+.card-japanese-magazine strong {
+  color: #000;
+  font-weight: 700;
+  background: linear-gradient(transparent 60%, rgba(255, 0, 51, 0.2) 40%);
+  padding: 0 calc(var(--spacing) * 0.5);
+}
+
+.card-japanese-magazine em {
+  color: #ff0033;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.card-japanese-magazine p a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #ff0033;
+  transition: all 0.2s ease;
+}
+
+.card-japanese-magazine p a:hover {
+  color: #ff0033;
+}
+
+/* 有序列表样式 */
+
+.card-japanese-magazine li {
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 3.75);
+  color: #333;
+  line-height: 1.6;
+  font-size: inherit;
+  position: relative;
+}
+
+/* 序号日系杂志风格 */
+.card-japanese-magazine li:before {
+  content: attr(data-index);
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  display: block;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6);
+  font-weight: bold;
+  font-size: calc(var(--spacing) * 3.5);
+  position: absolute;
+  left: calc(var(--spacing) * -7);
+  top: 0;
+}
+
+/* 小标题样式 */
+.card-japanese-magazine h3 {
+  display: block;
+  color: #000;
+  margin: calc(var(--spacing) * 5) 0 calc(var(--spacing) * 2.5) 0;
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 表格样式 */
+.card-japanese-magazine table {
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  width: 100%;
+}
+
+.card-japanese-magazine th {
+  background-color: #000;
+  color: #fff;
+  padding: calc(var(--spacing) * 2.5);
+  text-align: left;
+  font-weight: 600;
+
+  font-size: calc(var(--spacing) * 3);
+  letter-spacing: 1px;
+}
+
+.card-japanese-magazine td {
+  color: #333;
+  padding: calc(var(--spacing) * 2.5);
+  border-bottom: 1px solid #eee;
+}
+
+.card-japanese-magazine tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 代码块样式 */
+.card-japanese-magazine pre {
+  border: 1px solid #eee;
+  background-color: #f9f9f9;
+  padding: calc(var(--spacing) * 3.75);
+  overflow-x: auto;
+  font-family: "SF Mono", monospace;
+  font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-japanese-magazine code:not(pre code) {
+  background-color: #f1f1f1;
+  color: #ff0033;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+  font-family: "SF Mono", monospace;
+  font-size: calc(var(--spacing) * 3.6);
+}
+
+/* 引用块样式 */
+.card-japanese-magazine blockquote {
+  background-color: #fff;
+  border-left: 3px solid #ff0033;
+  color: #666;
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+}
+
+.card-japanese-magazine blockquote:before {
+  content: "“";
+  display: block;
+  height: calc(var(--spacing) * 0.25);
+  transform: translate(0, -24px);
+  color: rgba(255, 0, 51, 0.2);
+  font-size: calc(var(--spacing) * 10);
+  font-family: serif;
+}
+
+.card-japanese-magazine ul > li:before {
+  content: "";
+  display: block;
+  width: calc(var(--spacing) * 2);
+  height: calc(var(--spacing) * 2);
+  color: #ff0033;
+  font-size: calc(var(--spacing) * 3);
+  top: calc(var(--spacing) * 3);
+  left: calc(var(--spacing) * -6);
+}
+
+/* 水平线样式 */
+.card-japanese-magazine hr {
+  height: calc(var(--spacing) * 0.75);
+  border: none;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+}
+
+/* 图片样式 */
+.card-japanese-magazine img {
+  max-width: 100%;
+  height: auto;
+  border: 5px solid #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: rotate(-1deg);
+}
+
+/* 添加日系杂志风格的页脚装饰 */
+.card-japanese-magazine .card-footer {
+  text-align: right;
+  font-size: calc(var(--spacing) * 3);
+  color: #333;
+
+  letter-spacing: 1px;
+  border-top: 1px solid #eee;
+  padding-top: calc(var(--spacing) * 3.75);
+}
+
+/* 添加随机倾斜效果的类 */
+.card-japanese-magazine .tilt-left {
+  transform: rotate(-2deg);
+}
+
+.card-japanese-magazine .tilt-right {
+  transform: rotate(1deg);
+}
+
+/* 添加日系杂志特有的装饰元素 */
+.card-japanese-magazine .card-header:before {
+  content: "STYLE";
+  position: absolute;
+  top: calc(var(--spacing) * 3.75);
+  right: calc(var(--spacing) * 5);
+  font-size: calc(var(--spacing) * 2.5);
+  color: #fff;
+  background: #000;
+  padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 2);
+  letter-spacing: 1px;
+  font-weight: bold;
+  transform: rotate(3deg);
+  z-index: 3;
+}
+
+/* 添加日系风格的下划线装饰 */
+.card-japanese-magazine .highlight {
+  background: linear-gradient(transparent 60%, rgba(255, 0, 51, 0.3) 40%);
+  padding: 0 calc(var(--spacing) * 0.5);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-japanese-magazine">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

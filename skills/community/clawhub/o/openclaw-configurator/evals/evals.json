@@ -1,0 +1,80 @@
+{
+  "skill_name": "openclaw-configurator",
+  "version": "1.0.2",
+  "evals": [
+    {
+      "id": 0,
+      "category": "basic",
+      "prompt": "我想配置一个专门帮我写代码的助手。他应该很冷静，不废话，用 Emoji 🤖。我是个全栈开发。帮我生成所有的 OPENClaw 配置文件。",
+      "files": [],
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["🤖", "~/.openclaw/workspace/", "git"],
+        "must_not_contain": [],
+        "tone": "冷静、简洁",
+        "multi_round": false
+      }
+    },
+    {
+      "id": 1,
+      "category": "basic",
+      "prompt": "给我写个配置。",
+      "files": [],
+      "assertions": {
+        "must_ask_clarification": true,
+        "must_ask_topics": ["性格", "用途", "安全"],
+        "must_not_generate_files_immediately": true,
+        "multi_round": true
+      }
+    },
+    {
+      "id": 2,
+      "category": "basic",
+      "prompt": "帮我配置一个温柔的、像姐姐一样的助手，帮我管理日程和提醒吃药。叫我小明。",
+      "files": [],
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["小明", "温柔", "日程", "吃药"],
+        "tone": "温柔、关怀",
+        "multi_round": false
+      }
+    },
+    {
+      "id": 3,
+      "category": "basic",
+      "prompt": "I want an assistant that is professional and formal, for managing emails and calendar. My name is John.",
+      "files": [],
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["John", "professional", "email", "calendar"],
+        "language": "en",
+        "tone": "professional",
+        "multi_round": false
+      }
+    },
+    {
+      "id": 4,
+      "category": "basic",
+      "prompt": "帮我搞个中二病助手，说话要很夸张，用⚡这个emoji。我是做游戏开发的。",
+      "files": [],
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["⚡", "游戏开发"],
+        "tone": "中二、夸张",
+        "multi_round": false
+      }
+    },
+    {
+      "id": 5,
+      "category": "basic",
+      "prompt": "帮我配置一个毒舌助手，专门帮我review代码。叫我老板。",
+      "files": [],
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["老板", "review", "代码"],
+        "tone": "毒舌、直接",
+        "multi_round": false
+      }
+    }
+  ]
+}

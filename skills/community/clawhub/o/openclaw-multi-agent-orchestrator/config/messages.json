@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-03-15T15:10:02.192465",
+  "messages": [
+    {
+      "id": "msg_20260315150837",
+      "from_agent": "orchestrator",
+      "to_agent": "search-agent",
+      "content": "新任务来了！",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.186898",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315150837",
+      "from_agent": "orchestrator",
+      "to_agent": "writer-agent",
+      "content": "新任务来了！",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.186914",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315150837",
+      "from_agent": "orchestrator",
+      "to_agent": "coder-agent",
+      "content": "新任务来了！",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.186926",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315150837",
+      "from_agent": "orchestrator",
+      "to_agent": "analyst-agent",
+      "content": "新任务来了！",
+      "type": "direct",
+      "timestamp": "2026-03-15T15:10:02.186938",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315151002",
+      "from_agent": "orchestrator",
+      "to_agent": "search-agent",
+      "content": "新协作任务：写一篇关于 AI 的技术文章",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.190300",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315151002",
+      "from_agent": "orchestrator",
+      "to_agent": "writer-agent",
+      "content": "新协作任务：写一篇关于 AI 的技术文章",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.190669",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315151002",
+      "from_agent": "orchestrator",
+      "to_agent": "coder-agent",
+      "content": "新协作任务：写一篇关于 AI 的技术文章",
+      "type": "broadcast",
+      "timestamp": "2026-03-15T15:10:02.191639",
+      "read": false,
+      "replies": []
+    },
+    {
+      "id": "msg_20260315151002",
+      "from_agent": "orchestrator",
+      "to_agent": "analyst-agent",
+      "content": "新协作任务：写一篇关于 AI 的技术文章",
+      "type": "direct",
+      "timestamp": "2026-03-15T15:10:02.192435",
+      "read": false,
+      "replies": []
+    }
+  ]
+}

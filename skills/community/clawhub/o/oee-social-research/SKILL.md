@@ -1,35 +1,58 @@
----
-name: "OEE Social Research"
-description: "Conduct tiered social media research on Twitter and web sources, compiling insights into structured briefings without requiring API keys for basic access."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oee-social-research"
-sourceUrl: "https://clawhub.ai/skills/oee-social-research"
----
+# 🐾 Social Research (Ravens) — What Are People Saying?
 
-# OEE Social Research
+> by Odin's Eye Enterprises — Ancient Wisdom. Modern Intelligence.
 
-> Conduct tiered social media research on Twitter and web sources, compiling insights into structured briefings without requiring API keys for basic access.
+Tiered X/Twitter research tool. Sends out the ravens, brings back intelligence.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oee-social-research`
-- **Source URL:** [https://clawhub.ai/skills/oee-social-research](https://clawhub.ai/skills/oee-social-research)
+## What It Does
 
-## Overview
+1. **Tier 1** — FxTwitter API (free, fast, public tweets)
+2. **Tier 2** — Web search fallback (broader reach)
+3. **Tier 3** — Browser scraping (last resort, full fidelity)
+4. **Briefings** — Compiled research reports
 
+## Trigger Phrases
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "what are people saying about"
+- "social research on"
+- "twitter research"
+- "send the ravens"
+- "what's the buzz on"
+
+## Usage
+
 ```bash
-hermes skills install clawhub/oee-social-research
+# Research a topic
+python social_research.py "OpenAI GPT-5 reactions"
+
+# Research with specific tier
+python social_research.py "AI agents" --tier 1
+
+# Get cached briefing
+python social_research.py --briefing "topic"
 ```
+
+## Files
+
+- `social_research.py` — main research engine
+- `fxtwitter.py` — FxTwitter API client
+- `.cache/` — cached results (auto-managed)
+- `.briefings/` — compiled reports
+
+## Requirements
+
+- Python 3.10+
+- No API keys for Tier 1 (FxTwitter is free)
+- Web search available via agent tools for Tier 2
+
+## For Agents
+
+Run from the skill directory:
+
+```bash
+python social_research.py "TOPIC"
+```
+
+Output is a structured briefing on stdout.
+
+<!-- 🐾 Huginn and Muninn fly at dawn -->

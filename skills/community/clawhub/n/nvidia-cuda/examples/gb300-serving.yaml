@@ -1,0 +1,23 @@
+hardware_tier: gb300-rack-scale
+objective: large-scale LLM reasoning and low-latency serving
+
+precision:
+  baseline: bf16
+  fp8_candidate: true
+  accuracy_gate_required: true
+
+serving:
+  paged_kv_cache: true
+  chunked_prefill: true
+  inflight_batching: true
+  speculative_decoding: evaluate
+  cuda_graphs_for_decode: true
+
+attention:
+  benchmark_default_sdpa: true
+  benchmark_flash_impls: true
+  benchmark_cudnn_attention: true
+
+notes:
+  - Treat GB300 NVL72 as a rack-scale system recommendation, not a loose-card recommendation.
+  - Prioritize scheduler-level benchmarks and TTFT/ITL measurement over isolated kernel wins.

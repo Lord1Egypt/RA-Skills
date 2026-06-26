@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organization Operations"
+  short_description: "Operate ZingUp org, post, and activity APIs with env-aware auth flows"
+  default_prompt: "Implement, debug, or extend ZingUp organization-operation API flows. Prefer the bundled CLI first, keep production and test environments isolated, and read only the relevant auth/org/content/activity reference files for the task."

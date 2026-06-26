@@ -1,0 +1,118 @@
+{
+  "tasks": [
+    {
+      "id": "NX2-001",
+      "name": "完善 Task 类型定义 + core 类型修复",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-001.yaml",
+      "depends_on": [],
+      "started_at": "2026-03-29T09:27:28.159Z",
+      "base_commit": "29221654ae003270d4a33cb49716564a209e7382",
+      "iteration": 0,
+      "updated_at": "2026-03-29T09:33:44.078Z",
+      "acp_session_key": "agent:codex:acp:133bacf4-0ea2-4b56-bf52-214969621ca2",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/codex/sessions/cc20c775-2f84-44d2-a182-729012101c5e.acp-stream.jsonl",
+      "eval_result_path": "/Users/tongyaojin/code/nexum-ts/nexum/runtime/eval/NX2-001-iter-0.yaml",
+      "completed_at": "2026-03-29T09:33:44.078Z"
+    },
+    {
+      "id": "NX2-002",
+      "name": "nexum init 命令 + nexum.config.ts 配置加载",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-002.yaml",
+      "depends_on": [
+        "NX2-001"
+      ],
+      "updated_at": "2026-03-29T09:46:14.347Z",
+      "started_at": "2026-03-29T09:33:56.066Z",
+      "base_commit": "b2dc91498a819e8d6a9ac4050a22f3f32e7d0f50",
+      "iteration": 0,
+      "acp_session_key": "agent:claude:acp:97dc7eba-8b67-4433-8b82-fefc4f4aee1f",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/claude/sessions/699ef345-0196-44aa-a307-409d6ca7b6aa.acp-stream.jsonl",
+      "eval_result_path": "nexum/runtime/eval/NX2-002-iter-0.yaml",
+      "completed_at": "2026-03-29T09:46:14.346Z"
+    },
+    {
+      "id": "NX2-003",
+      "name": "spawn/eval/complete 集成 config agent 映射",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-003.yaml",
+      "depends_on": [
+        "NX2-002"
+      ],
+      "updated_at": "2026-03-29T11:18:08.152Z",
+      "started_at": "2026-03-29T09:46:26.233Z",
+      "base_commit": "5d96efaa6e314626ccf8b48519154ebb322126b3",
+      "iteration": 0,
+      "acp_session_key": "agent:claude:acp:851befad-a54e-4663-abca-77e2224e6be2",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/claude/sessions/85d67ae4-c5d7-4b85-a4ed-995cbc67ea54.acp-stream.jsonl",
+      "eval_result_path": "nexum/runtime/eval/NX2-003-iter-0.yaml",
+      "completed_at": "2026-03-29T11:18:08.151Z"
+    },
+    {
+      "id": "NX2-004",
+      "name": "status --json 模式 + 统一错误码",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-004.yaml",
+      "depends_on": [
+        "NX2-001"
+      ],
+      "updated_at": "2026-03-29T09:46:14.274Z",
+      "started_at": "2026-03-29T09:34:00.814Z",
+      "base_commit": "b2dc91498a819e8d6a9ac4050a22f3f32e7d0f50",
+      "iteration": 1,
+      "acp_session_key": "agent:codex:acp:1b30a28b-e2a5-4d0b-aea6-a41f8e313e63",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/codex/sessions/e84652b0-9c86-4765-bd69-43e7aa686aab.acp-stream.jsonl",
+      "eval_result_path": "nexum/runtime/eval/NX2-004-iter-1.yaml",
+      "completed_at": "2026-03-29T09:46:14.273Z"
+    },
+    {
+      "id": "NX2-005",
+      "name": "SKILL.md + README + Contract Schema 文档",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-005.yaml",
+      "depends_on": [
+        "NX2-003",
+        "NX2-004"
+      ],
+      "updated_at": "2026-03-29T11:29:41.842Z",
+      "acp_session_key": "agent:codex:acp:b4fd9c9a-9bfb-4846-8f3d-31692d8dfc27",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/codex/sessions/ab2a7780-64ab-4b8e-a247-e7d225aaea17.acp-stream.jsonl",
+      "eval_result_path": "nexum/runtime/eval/NX2-005-iter-0.yaml",
+      "completed_at": "2026-03-29T11:29:41.841Z"
+    },
+    {
+      "id": "NX2-006",
+      "name": "发布校验 + package.json 版本 + bin 入口",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-006.yaml",
+      "depends_on": [
+        "NX2-005"
+      ],
+      "updated_at": "2026-03-29T11:34:06.873Z",
+      "acp_session_key": "agent:codex:acp:9334b4b8-5377-4bbf-86a9-c73da79cd059",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/codex/sessions/6782717b-29f3-4664-8fe3-6ddd97ec951c.acp-stream.jsonl",
+      "eval_result_path": "nexum/runtime/eval/NX2-006-iter-0.yaml",
+      "completed_at": "2026-03-29T11:34:06.872Z"
+    },
+    {
+      "id": "NX2-007",
+      "name": "nexum callback 命令 + nexum init 写入 CLAUDE.md 回调协议",
+      "status": "done",
+      "contract_path": "docs/nexum/contracts/NX2-007.yaml",
+      "depends_on": [],
+      "acp_session_key": "agent:codex:acp:1ba80cf5-3d9a-410a-91c2-1a42545b2eb7",
+      "acp_stream_log": "/Users/tongyaojin/.openclaw/agents/codex/sessions/a5352a5d-f101-40ff-bafe-a51ca8b14efe.acp-stream.jsonl",
+      "updated_at": "2026-03-29T14:36:29.017Z",
+      "eval_result_path": "/Users/tongyaojin/code/nexum-ts/nexum/runtime/eval/NX2-007-iter-2.yaml",
+      "iteration": 2,
+      "completed_at": "2026-03-29T14:36:28.993Z",
+      "eval_tmux_session": "nexum-eval",
+      "last_error": null,
+      "base_commit": "ff59ac59f47824153d8eb4c9debed38716bd4d8a",
+      "tmux_session": "nexum-cc-frontend",
+      "started_at": "2026-03-29T14:32:41Z",
+      "commit_hash": "e23d14f453ff30a4d8018a298a9ceaeaa8f456c8"
+    }
+  ]
+}

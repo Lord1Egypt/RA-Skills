@@ -1,0 +1,15 @@
+{
+  "capability_version": 1,
+  "backend": "nowledge",
+  "supported_modes": ["semantic", "relationship", "timeline", "multi_hop"],
+  "requires_credentials": false,
+  "requires_external_service": true,
+  "cold_start_ms": 300,
+  "probe": {
+    "l1_install": "command -v curl",
+    "l2_runtime": "curl -sf http://localhost:14242/api/health >/dev/null 2>&1 || curl -sf http://localhost:14242/ >/dev/null 2>&1",
+    "l3_functional": "curl -sf 'http://localhost:14242/api/memories?limit=1' >/dev/null 2>&1",
+    "l3_deep": null
+  },
+  "install_hint": "command -v docker &>/dev/null && docker pull nowledge/nowledge-mem:latest || echo 'nowledge requires Docker — install manually: https://github.com/nowledge-co/nowledge-mem'"
+}

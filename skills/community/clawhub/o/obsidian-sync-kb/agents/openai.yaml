@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Sync KB"
+  short_description: "Build a searchable Obsidian sync inbox KB"
+  default_prompt: "Use $obsidian-sync-kb to structure my 笔记同步助手 inbox and answer with citations."

@@ -1,0 +1,51 @@
+{
+  "name": "openclaw-dynamics-365",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Microsoft Dynamics 365 CRM — voice-to-CRM via Dataverse Web API (Opportunities, Leads, Contacts, Accounts, Tasks)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "dynamics365",
+    "crm",
+    "dataverse",
+    "microsoft",
+    "azure",
+    "voice-to-crm",
+    "oauth",
+    "odata"
+  ],
+  "author": "Diego Vieira <talk@youco.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vieiradiego/openclaw-dynamics-365.git"
+  },
+  "homepage": "https://github.com/vieiradiego/openclaw-dynamics-365#readme",
+  "bugs": {
+    "url": "https://github.com/vieiradiego/openclaw-dynamics-365/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^22.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "typescript": "^5.7.0"
+  }
+}

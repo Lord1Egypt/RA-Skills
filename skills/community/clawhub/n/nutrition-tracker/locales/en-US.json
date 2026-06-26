@@ -1,0 +1,10 @@
+{
+  "profile_saved": "✅ Saved nutrition profile: {path}",
+  "logged": "✅ Logged: {path}",
+  "missing_profile": "Nutrition profile not found (profile.json). Run nutrition_init.sh first.",
+  "today_summary": "{date} total: kcal={kcal} (remain {kcalRemain}) | P={p}g C={c}g F={f}g",
+  "targets": "Targets: kcal={kcalTarget} | P≥{pTarget}g | F={fMin}-{fMax}g | C={cMin}-{cMax}g",
+  "status_ok": "✅ Met: {ok}; Not met: {bad}",
+  "status_all_ok": "✅ All targets met",
+  "diff": "Diff: kcal {kcalDiff}; P {pDiff}g; C {cDiff}g; F {fDiff}g"
+}

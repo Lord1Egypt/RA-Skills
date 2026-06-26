@@ -1,0 +1,22 @@
+Repo: /root/.openclaw/workspace/upstream/openclaw
+Diff: main...upstream/fix/perplexity-web-search-provider
+
+Changed files:
+- CHANGELOG.md
+- src/config/config.web-search-provider.test.ts
+- src/config/schema.ts
+- src/config/zod-schema.agent-runtime.ts
+
+Recommended commands:
+- pnpm build
+- pnpm check
+- pnpm test
+- pnpm format:docs:check
+- pnpm lint:docs
+
+Maintainers to consider:
+- Peter Steinberger (@steipete) / appropriate subsystem maintainer based on touched area
+
+Warnings / PR notes:
+- Mark AI-assisted work in the PR title or description and state the testing level.
+- Keep the PR focused: one bugfix/feature per PR; use Discussions first for new features or architecture changes.

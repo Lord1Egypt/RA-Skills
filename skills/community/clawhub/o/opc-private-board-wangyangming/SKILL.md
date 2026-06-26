@@ -1,35 +1,77 @@
 ---
-name: "胡田 OPC导师 私董会 王阳明 心智模型"
-description: "基于女娲心智蒸馏工程试点，六路并行采集三重验证，提取王阳明心学模型用于私董会"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opc-private-board-wangyangming"
-sourceUrl: "https://clawhub.ai/skills/opc-private-board-wangyangming"
+name: opc-private-board-wangyangming
+description: 基于女娲心智蒸馏工程试点，六路并行采集三重验证，提取王阳明心学模型用于私董会
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# 胡田 OPC导师 私董会 王阳明 心智模型
+# 胡田-OPC导师-私董会-王阳明-心智模型.Skill
 
-> 基于女娲心智蒸馏工程试点，六路并行采集三重验证，提取王阳明心学模型用于私董会
+## 一、心智模型概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opc-private-board-wangyangming`
-- **Source URL:** [https://clawhub.ai/skills/opc-private-board-wangyangming](https://clawhub.ai/skills/opc-private-board-wangyangming)
+### 1.1 核心定位
 
-## Overview
+这是基于女娲心智蒸馏工程的第一个试点成果。通过六路并行采集和三重验证机制，提取王阳明的思维操作系统基因，而非简单的角色扮演。
 
+### 1.2 蒸馏验证状态
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opc-private-board-wangyangming
-```
+| 验证维度 | 状态 |
+|---------|------|
+| 著作采集 | 进行中 |
+| 对话采集 | 待启动 |
+| 表达采集 | 待启动 |
+| 他者采集 | 待启动 |
+| 决策采集 | 待启动 |
+| 时间线采集 | 待启动 |
+| 跨域复现验证 | 待验证 |
+| 生成力验证 | 待验证 |
+| 排他性验证 | 待验证 |
+
+---
+
+## 二、蒸馏工作区
+
+（以下内容将在蒸馏过程中逐步填充）
+
+### 2.1 核心信念系统（预计5-10条）
+
+待蒸馏...
+
+### 2.2 决策权重矩阵
+
+待蒸馏...
+
+### 2.3 推理路径偏好
+
+待蒸馏...
+
+### 2.4 边界感清单
+
+待蒸馏...
+
+### 2.5 表达风格DNA
+
+待蒸馏...
+
+---
+
+## 三、蒸馏进度跟踪
+
+| 阶段 | 完成时间 | 状态 |
+|------|---------|------|
+| 六路并行采集 | | 进行中 |
+| 三重验证过滤 | | 待启动 |
+| 心智模型封装 | | 待启动 |
+| 效果验证与优化 | | 待启动 |
+
+---
+
+**蒸馏工程启动时间：2026年5月2日
+**预计完成时间：2026年5月5日

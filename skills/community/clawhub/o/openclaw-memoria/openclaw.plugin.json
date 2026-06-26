@@ -1,0 +1,560 @@
+{
+  "id": "memoria",
+  "version": "3.25.1",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+      "autoRecall": {
+        "type": "boolean",
+        "default": true
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "default": true
+      },
+      "recallLimit": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 12
+      },
+      "captureMaxFacts": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 8
+      },
+      "defaultAgent": {
+        "type": "string",
+        "default": "koda"
+      },
+      "contextWindow": {
+        "type": "number",
+        "minimum": 4096,
+        "default": 200000
+      },
+      "workspacePath": {
+        "type": "string"
+      },
+      "syncMd": {
+        "type": "boolean",
+        "default": true
+      },
+      "lifecycle": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Human-like memory lifecycle. Controls recall priority, never deletes. Dormant facts are always searchable on explicit request.",
+        "properties": {
+          "freshDays": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 90,
+            "default": 15,
+            "description": "Days a fact stays 'fresh' (highest recall priority)"
+          },
+          "settledMinAccess": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 50,
+            "default": 3,
+            "description": "Access count to become 'settled' before freshDays expires"
+          },
+          "dormantAfterDays": {
+            "type": "number",
+            "minimum": 15,
+            "maximum": 365,
+            "default": 60,
+            "description": "Days without access before becoming 'dormant' (low auto-recall priority, still searchable)"
+          },
+          "detailCursor": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5,
+            "description": "Detail cursor (1-10). Higher = more dormant context in auto-recall. 1=minimal, 5=normal, 10=everything"
+          }
+        }
+      },
+      "procedural": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reflectEvery": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20,
+            "default": 3,
+            "description": "Reflect on procedure quality every N executions (0 = never)"
+          },
+          "degradedThreshold": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 1.0,
+            "default": 0.5,
+            "description": "Degradation score above which a procedure is flagged as degraded"
+          },
+          "defaultSafety": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 1.0,
+            "default": 0.8,
+            "description": "Default safety score for new procedures"
+          },
+          "staleDays": {
+            "type": "number",
+            "minimum": 7,
+            "maximum": 365,
+            "default": 30,
+            "description": "Days without use before a procedure starts degrading from staleness"
+          },
+          "docCheckDays": {
+            "type": "number",
+            "minimum": 7,
+            "maximum": 365,
+            "default": 60,
+            "description": "Days without use before flagging for doc verification"
+          }
+        }
+      },
+      "embed": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "ollama",
+              "lmstudio",
+              "openai",
+              "openrouter"
+            ],
+            "default": "ollama"
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string",
+            "default": "nomic-embed-text-v2-moe"
+          },
+          "dimensions": {
+            "type": "number",
+            "default": 768
+          },
+          "apiKey": {
+            "type": "string"
+          }
+        }
+      },
+      "llm": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "ollama",
+              "lmstudio",
+              "openai",
+              "openrouter",
+              "anthropic"
+            ],
+            "default": "ollama"
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string",
+            "default": "gemma3:4b"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "overrides": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "extract": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "ollama",
+                      "lmstudio",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "model"
+                ]
+              },
+              "contradiction": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "ollama",
+                      "lmstudio",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "model"
+                ]
+              },
+              "graph": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "ollama",
+                      "lmstudio",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "model"
+                ]
+              },
+              "topics": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "ollama",
+                      "lmstudio",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "model"
+                ]
+              },
+              "procedural": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "ollama",
+                      "lmstudio",
+                      "openai",
+                      "openrouter"
+                    ]
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider",
+                  "model"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "fallback": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "apiKey": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "topics": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "emergenceThreshold": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 20
+          },
+          "mergeOverlap": {
+            "type": "number",
+            "minimum": 0.3,
+            "maximum": 1.0
+          },
+          "subtopicThreshold": {
+            "type": "number",
+            "minimum": 3,
+            "maximum": 50
+          },
+          "decayDays": {
+            "type": "number",
+            "minimum": 7,
+            "maximum": 365
+          },
+          "scanInterval": {
+            "type": "number",
+            "minimum": 5,
+            "maximum": 100
+          }
+        }
+      },
+      "mdRegen": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "recentDays": {
+            "type": "number",
+            "minimum": 7,
+            "maximum": 365
+          },
+          "maxFactsPerFile": {
+            "type": "number",
+            "minimum": 10,
+            "maximum": 500
+          },
+          "archiveNotice": {
+            "type": "boolean"
+          }
+        }
+      },
+      "continuous": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Layer 21: Continuous Learning. Real-time capture from message_received + llm_output hooks.",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable continuous learning (real-time extraction between turns)"
+          },
+          "interval": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 20,
+            "default": 4,
+            "description": "Extract every N turns (periodic mode)"
+          },
+          "cooldownMs": {
+            "type": "number",
+            "minimum": 10000,
+            "maximum": 300000,
+            "default": 45000,
+            "description": "Minimum ms between extractions"
+          },
+          "maxExtractionsPerSession": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 50,
+            "default": 10,
+            "description": "Max extractions per session (budget control)"
+          }
+        }
+      },
+      "patterns": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Layer 20: Behavioral pattern detection. Consolidates repeated similar facts.",
+        "properties": {
+          "minOccurrences": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 20,
+            "default": 3,
+            "description": "Min similar facts to form a pattern"
+          },
+          "similarityThreshold": {
+            "type": "number",
+            "minimum": 0.3,
+            "maximum": 0.95,
+            "default": 0.7,
+            "description": "Cosine similarity threshold for grouping"
+          }
+        }
+      },
+      "observations": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "emergenceThreshold": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 10,
+            "default": 3
+          },
+          "matchThreshold": {
+            "type": "number",
+            "minimum": 0.2,
+            "maximum": 0.9,
+            "default": 0.6
+          },
+          "maxRecallObservations": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5
+          },
+          "maxEvidencePerObservation": {
+            "type": "number",
+            "minimum": 5,
+            "maximum": 50,
+            "default": 15
+          }
+        }
+      }
+    }
+  },
+  "uiHints": {
+    "autoRecall": {
+      "label": "Auto-Recall",
+      "help": "Inject relevant memories before each response"
+    },
+    "autoCapture": {
+      "label": "Auto-Capture",
+      "help": "Extract facts after each agent turn"
+    },
+    "recallLimit": {
+      "label": "Recall Limit",
+      "help": "Max facts injected (adaptive budget may lower this)",
+      "advanced": true
+    },
+    "contextWindow": {
+      "label": "Context Window",
+      "help": "Total tokens available (for budget calculation)",
+      "advanced": true
+    },
+    "syncMd": {
+      "label": "Sync to .md",
+      "help": "Auto-sync new facts to workspace .md files"
+    },
+    "embed": {
+      "label": "Embedding Provider",
+      "help": "Default: Ollama + nomic-embed-text-v2-moe. Override only if needed.",
+      "advanced": true
+    },
+    "llm": {
+      "label": "LLM Provider",
+      "help": "Default: Ollama + gemma3:4b. Per-layer overrides available for extract/contradiction/graph/topics/procedural.",
+      "advanced": true
+    },
+    "fallback": {
+      "label": "LLM Fallback Chain",
+      "help": "Providers tried in order if primary fails. Default: Ollama \u2192 OpenAI \u2192 LM Studio.",
+      "advanced": true
+    },
+    "topics": {
+      "label": "Topic Emergence",
+      "help": "Auto-clustering settings",
+      "advanced": true
+    },
+    "mdRegen": {
+      "label": ".md Regeneration",
+      "help": "Bounded .md file regeneration settings",
+      "advanced": true
+    },
+    "continuous": {
+      "label": "Continuous Learning",
+      "help": "Layer 21: Real-time fact capture between turns. Detects urgent signals (errors, frustration) for immediate extraction.",
+      "advanced": true
+    },
+    "patterns": {
+      "label": "Pattern Detection",
+      "help": "Layer 20: Auto-consolidate repeated similar facts into behavioral patterns.",
+      "advanced": true
+    },
+    "observations": {
+      "label": "Observations",
+      "help": "Living multi-fact syntheses. emergenceThreshold=min facts to create, matchThreshold=cosine sim to update",
+      "advanced": true
+    }
+  },
+  "description": "The most advanced memory system for AI agents. 21 cognitive layers, knowledge graph, procedural learning, vector search. 100% local-first, zero cloud cost.",
+  "keywords": [
+    "memory",
+    "ai-agent",
+    "persistent-memory",
+    "long-term-memory",
+    "knowledge-graph",
+    "procedural",
+    "vector-search",
+    "sqlite",
+    "ollama",
+    "local-first",
+    "cognitive",
+    "claude",
+    "cursor",
+    "copilot",
+    "openclaw",
+    "wal",
+    "developer-tools",
+    "typescript"
+  ]
+}

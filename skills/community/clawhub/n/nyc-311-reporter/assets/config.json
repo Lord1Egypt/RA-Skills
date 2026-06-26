@@ -1,0 +1,10 @@
+{
+  "name": "Ricardo Díaz",
+  "phone": "+19299990000",
+  "email": "ricardo@example.com",
+  "home_address": "726 DeKalb Avenue",
+  "work_address": "726 DeKalb Avenue",
+  "apartment": "1E",
+  "preferred_contact": "email",
+  "notify_updates": true
+}

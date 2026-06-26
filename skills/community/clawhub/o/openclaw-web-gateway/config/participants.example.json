@@ -1,0 +1,17 @@
+[
+  {
+    "key": "alex",
+    "display_name": "Alex",
+    "aliases": ["alex"]
+  },
+  {
+    "key": "sam",
+    "display_name": "Sam",
+    "aliases": ["sam"]
+  },
+  {
+    "key": "family",
+    "display_name": "Family",
+    "aliases": ["family"]
+  }
+]

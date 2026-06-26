@@ -1,0 +1,54 @@
+/*
+ * Theme: Gradient Dark
+ * 渐变深色 — 深邃渐变背景，霓虹感强调色，沉浸式视觉体验
+ * 适合：产品发布会、创意演讲、音乐/艺术展示、高端品牌、路演
+ *
+ * 特性：深紫蓝渐变背景、半透明面板、轻度模糊、霓虹色点缀
+ * 需要 base.html 的 backdrop-filter 支持（v1.1+）
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #a78bfa;
+  --color-secondary: #8b7fad;
+  --color-accent: #f472b6;
+  --color-bg: #0c0118;
+  --color-bg-alt: #140225;
+  --color-surface: rgba(255, 255, 255, 0.06);
+  --color-text: #f5f0ff;
+  --color-text-secondary: #a599bf;
+  --color-text-on-primary: #0c0118;
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-size-title: 4.27rem;
+  --font-size-heading: 2.93rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.24rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.62rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 1.97rem;
+  --spacing-lg: 3.09rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 14px;
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* --- 玻璃/渐变扩展 --- */
+  --surface-blur: 10px;
+  --bg-pattern:
+    radial-gradient(ellipse 70% 70% at 10% 40%, rgba(244, 114, 182, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 55% 85%, rgba(167, 139, 250, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 90% 15%, rgba(56, 189, 248, 0.10) 0%, transparent 70%);
+}

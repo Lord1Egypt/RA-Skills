@@ -1,0 +1,162 @@
+# 时间线条目字段定义
+
+## 事件时间轴格式 (events.yaml)
+
+```yaml
+time_system:                  # 时间体系定义
+  name: "青云历"
+  type: linear                # linear|cyclic|branching
+  epoch: "青云子开宗立派之年"
+  granularity: day            # year|month|day|hour
+  format: "青云历{年}·{季}·{月}{日}"
+
+events:
+  - id: evt-001
+    time_display: "青云历1034年·春·三月初三"
+    time_sort: 10340303        # 用于排序的数字（年月日拼接）
+    event: "林凡通过青云宗外门考核"
+    type: plot                # plot|daily|background|turning_point
+    importance: high           # high|medium|low
+    chapter: vol-01/ch-001
+    pov_character: @char:林凡
+    characters: [@char:林凡, @char:苏晴, @char:叶寒]
+    location: 青云宗外门演武场
+    description: |
+      林凡以练气三层修为通过外门考核，
+      过程中意外触发了残破玉简的微弱反应，
+      展现出一瞬间的惊人剑意。
+    causes: []                  # 导致此事件的原因（事件ID）
+    consequences: [evt-002, evt-003]  # 此事件导致的后果
+    related_foreshadows: [fs-001]
+    related_settings: [@item:残破玉简, @power:太极剑法]
+    tags: [考核, 入门]
+
+  - id: evt-002
+    time_display: "青云历1034年·春·三月初三"
+    time_sort: 10340303
+    event: "叶寒注意到林凡考核时的异常"
+    type: plot
+    importance: medium
+    chapter: vol-01/ch-001
+    pov_character: @char:叶寒
+    characters: [@char:叶寒]
+    location: 青云宗外门演武场（观战区）
+    description: |
+      叶寒在观战时注意到林凡那一瞬的异常剑意，
+      虽然转瞬即逝，但以他的眼力不可能看错。
+    causes: [evt-001]
+    consequences: [evt-005]
+    related_foreshadows: [fs-003]
+    related_settings: []
+    tags: [注意, 竞争]
+```
+
+## 角色轨迹格式 (character-tracks/<角色ID>.yaml)
+
+```yaml
+character: @char:林凡
+character_name: 林凡
+
+track:
+  - time_display: "青云历1034年·春·三月初三"
+    time_sort: 10340303
+    location: 青云宗外门演武场
+    action: "参加外门考核"
+    chapter: vol-01/ch-001
+    note: "通过考核，触发残玉微弱反应"
+
+  - time_display: "青云历1034年·春·三月初四"
+    time_sort: 10340304
+    location: 青云宗外门宿舍
+    action: "入住外门，结识苏晴"
+    chapter: vol-01/ch-002
+    note: null
+
+  - time_display: "青云历1034年·春·三月中旬"
+    time_sort: 10340315
+    location: 青云宗外门修炼场
+    action: "开始修炼太极剑法残篇"
+    chapter: vol-01/ch-005
+    note: "从残玉中领悟前三式"
+```
+
+## 冲突检测规则
+
+### 空间冲突检测
+```
+条件：同一角色在 time_sort 相同的条目中，location 不同
+且两个 location 之间的正常移动时间 > 0
+严重度：🔴 critical
+
+例外：
+- 角色有能力瞬间移动（需设定支持）
+- 明确的分身/替身情节
+- 时间排序精度不够（如"三月中旬"可能包含多天）
+```
+
+### 因果倒置检测
+```
+条件：事件B的causes包含事件A，但B的time_sort < A的time_sort
+严重度：🔴 critical
+
+例外：
+- 预言/预知类情节（需设定支持）
+- 时间回溯类情节（需设定支持）
+```
+
+### 时间跳跃检测
+```
+条件：角色轨迹中，相邻两条记录的 time_sort 差值 > 阈值
+且中间没有交代行踪
+阈值：30天（可按作品节奏调整）
+严重度：🟡 warning
+
+例外：
+- 明确的时间跳过（如"三年后"）
+- 修炼/闭关类情节
+```
+
+### 季节矛盾检测
+```
+条件：时间标记的季节与章节描写中的季节/天气矛盾
+如：time=三月（春），但描写"大雪纷飞"
+严重度：🟡 warning
+
+例外：
+- 设定中有异常气候
+- 高海拔/特殊地理环境
+```
+
+## 时间线操作
+
+### 添加事件
+1. 指定 time_display 和 time_sort
+2. 指定关联角色、章节、类型
+3. 自动检测与已有事件的冲突
+4. 无冲突则插入，有冲突则报告
+
+### 修改时间
+1. 修改 time_display 和 time_sort
+2. 触发涟漪检测：
+   - 后续事件的因果链是否仍成立？
+   - 角色轨迹是否仍有逻辑？
+3. 输出影响报告
+
+### 查询时间线
+支持按以下维度筛选：
+- 角色：某角色在某个时间段的所有行动
+- 时间段：指定起止时间的所有事件
+- 类型：所有 turning_point 类型事件
+- 地点：某地点发生的所有事件
+- 因果链：某事件的所有上游/下游事件
+
+### 生成时间线视图
+输出文字版时间线表格：
+
+```
+时间           | 事件                    | 角色        | 地点          | 章节
+--------------|------------------------|-------------|--------------|------
+1034年春三月初三 | 林凡通过外门考核        | 林凡,苏晴   | 外门演武场    | ch-001
+1034年春三月初四 | 林凡入住外门            | 林凡        | 外门宿舍      | ch-002
+1034年春三月中旬 | 林凡开始修炼太极剑法    | 林凡        | 外门修炼场    | ch-005
+```

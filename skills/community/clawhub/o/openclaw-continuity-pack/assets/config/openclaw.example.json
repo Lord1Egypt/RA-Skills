@@ -1,0 +1,64 @@
+{
+  "gateway": {
+    "port": 18789,
+    "auth": {
+      "token": "<REPLACE_WITH_GATEWAY_TOKEN>"
+    }
+  },
+  "models": {
+    "providers": {
+      "primary": {
+        "api": "openai-responses",
+        "baseUrl": "<REPLACE_WITH_UPSTREAM_BASE_URL>",
+        "apiKey": "<REPLACE_WITH_API_KEY>",
+        "models": {
+          "gpt-5.4": {
+            "name": "GPT-5.4",
+            "api": "openai-responses",
+            "id": "gpt-5.4"
+          }
+        }
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "~/.openclaw/workspace",
+      "model": {
+        "primary": "primary/gpt-5.4"
+      },
+      "thinkingDefault": "xhigh",
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokensFloor": 24000,
+        "postCompactionSections": [
+          "Session Startup",
+          "Red Lines",
+          "Long Task Continuity"
+        ],
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 14000,
+          "systemPrompt": "Session nearing compaction. Preserve durable state before context is compacted. Prefer updating workspace files over producing long prose. Follow the Long Task Continuity rules if present.",
+          "prompt": "Quietly write durable state now. Update memory/YYYY-MM-DD.md with lasting facts. If an active long task exists, update the matching status/<task>.md and, when needed, handoff/<task>.md. If context pressure is high, preserve Root task, Current status, Completed, Remaining, Critical constraints, Files / paths, Commands / outputs worth preserving, Key decisions, Known blockers, and Next best action. Reply with NO_REPLY unless a visible warning is absolutely necessary."
+        }
+      }
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "<CHANNEL_NAME>": [
+          "<TRUSTED_SENDER_LABEL>"
+        ]
+      }
+    },
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    }
+  }
+}

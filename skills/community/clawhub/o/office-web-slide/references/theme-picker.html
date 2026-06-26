@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选择 Slide 主题</title>
+  <style>
+    /* ============================================================
+       全局
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0e0e10;
+      color: #e4e4e7;
+      min-height: 100vh;
+      padding: 40px 32px 120px;
+    }
+
+    /* ============================================================
+       标题区域
+       ============================================================ */
+    .picker-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .picker-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .picker-header p {
+      font-size: 15px;
+      color: #a1a1aa;
+    }
+
+    /* ============================================================
+       风格行：每行一个风格，左 light 右 dark
+       ============================================================ */
+    .style-row {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+    .style-row-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #71717a;
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .style-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ============================================================
+       主题卡片
+       ============================================================ */
+    .theme-card {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+    }
+    .theme-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .theme-card.selected {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99,102,241,0.3), 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .theme-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      background: #6366f1;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 10;
+    }
+
+    /* ---- mini slide 预览区域 ---- */
+    .mini-slide {
+      aspect-ratio: 16 / 9;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .mini-top h2 {
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .mini-top p {
+      line-height: 1.5;
+    }
+
+    /* ---- mini 卡片组 ---- */
+    .mini-cards {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .mini-card-item {
+      flex: 1;
+      padding: 10px 8px;
+      border-radius: inherit;
+      text-align: center;
+    }
+    .mini-card-item .card-num {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .mini-card-item .card-label {
+      font-size: 0.65em;
+    }
+
+    /* ---- mini 柱状图 ---- */
+    .mini-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 40px;
+      margin-top: 8px;
+    }
+    .mini-bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      min-height: 4px;
+    }
+
+    /* ---- 卡片底部信息 ---- */
+    .card-footer {
+      padding: 10px 16px;
+      background: rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-footer .theme-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e4e4e7;
+    }
+    .card-footer .theme-desc {
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+
+    /* ============================================================
+       底部确认栏
+       ============================================================ */
+    .confirm-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 32px;
+      background: rgba(14,14,16,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 100;
+    }
+    .confirm-bar .selection-text {
+      font-size: 14px;
+      color: #a1a1aa;
+    }
+    .confirm-bar .selection-text strong {
+      color: #e4e4e7;
+    }
+    .confirm-btn {
+      padding: 10px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+    .confirm-btn:active { transform: scale(0.97); }
+    .confirm-btn-primary {
+      background: #6366f1;
+      color: #fff;
+    }
+    .confirm-btn-primary:hover { background: #4f46e5; }
+    .confirm-btn-primary:disabled {
+      background: #3f3f46;
+      color: #71717a;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<div class="picker-header">
+  <h1>选择 Slide 主题风格</h1>
+  <p>点击卡片选择，然后点击底部按钮确认</p>
+</div>
+
+<!-- ============================================================
+     Pure — 极致简约 / 精密排版
+     ============================================================ -->
+<div class="style-row">
+  <div class="style-row-label">Pure · 极致简约</div>
+  <div class="style-row-grid">
+    <!-- pure-light -->
+    <div class="theme-card" data-theme="pure-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#ffffff; color:#1d1d1f;">
+        <div class="mini-top">
+          <h2 style="font-family:'SF Pro Display',system-ui,sans-serif; font-size:20px; color:#1d1d1f;">产品发布会</h2>
+          <p style="font-size:11px; color:#86868b;">极致简约 · 精密排版 · 系统蓝强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#f5f5f7; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#0071e3;">98%</div>
+            <div class="card-label" style="color:#86868b;">用户满意度</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f5f7; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#0071e3;">2.4M</div>
+            <div class="card-label" style="color:#86868b;">活跃用户</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f5f7; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#0071e3;">4.9★</div>
+            <div class="card-label" style="color:#86868b;">应用评分</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#0071e3; height:55%;"></div>
+          <div class="mini-bar" style="background:#0071e3; opacity:0.7; height:80%;"></div>
+          <div class="mini-bar" style="background:#0071e3; height:65%;"></div>
+          <div class="mini-bar" style="background:#0071e3; opacity:0.7; height:100%;"></div>
+          <div class="mini-bar" style="background:#0071e3; height:75%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Pure Light</span>
+        <span class="theme-desc">白底 · SF Pro · 圆角 12px</span>
+      </div>
+    </div>
+
+    <!-- pure-dark -->
+    <div class="theme-card" data-theme="pure-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#000000; color:#f5f5f7;">
+        <div class="mini-top">
+          <h2 style="font-family:'SF Pro Display',system-ui,sans-serif; font-size:20px; color:#f5f5f7;">产品发布会</h2>
+          <p style="font-size:11px; color:#a1a1a6;">极致简约 · 纯黑背景 · 苹果蓝强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#1d1d1f; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#2997ff;">98%</div>
+            <div class="card-label" style="color:#a1a1a6;">用户满意度</div>
+          </div>
+          <div class="mini-card-item" style="background:#1d1d1f; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#2997ff;">2.4M</div>
+            <div class="card-label" style="color:#a1a1a6;">活跃用户</div>
+          </div>
+          <div class="mini-card-item" style="background:#1d1d1f; border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#2997ff;">4.9★</div>
+            <div class="card-label" style="color:#a1a1a6;">应用评分</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#2997ff; height:55%;"></div>
+          <div class="mini-bar" style="background:#2997ff; opacity:0.7; height:80%;"></div>
+          <div class="mini-bar" style="background:#2997ff; height:65%;"></div>
+          <div class="mini-bar" style="background:#2997ff; opacity:0.7; height:100%;"></div>
+          <div class="mini-bar" style="background:#2997ff; height:75%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Pure Dark</span>
+        <span class="theme-desc">纯黑 · SF Pro · 圆角 12px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Warm — 暖调学院 / 衬线标题
+     ============================================================ -->
+<div class="style-row">
+  <div class="style-row-label">Warm · 暖调学院</div>
+  <div class="style-row-grid">
+    <!-- warm-light -->
+    <div class="theme-card" data-theme="warm-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#faf9f5; color:#141413;">
+        <div class="mini-top">
+          <h2 style="font-family:Georgia,'Noto Serif SC',serif; font-size:20px; color:#141413;">AI 前沿研究</h2>
+          <p style="font-size:11px; color:#615f59;">衬线标题 · 奶油白底 · 琥珀强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#f0efe8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#c4642d;">1.2B</div>
+            <div class="card-label" style="color:#615f59;">参数规模</div>
+          </div>
+          <div class="mini-card-item" style="background:#f0efe8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#c4642d;">97.3</div>
+            <div class="card-label" style="color:#615f59;">准确率</div>
+          </div>
+          <div class="mini-card-item" style="background:#f0efe8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#c4642d;">3.8×</div>
+            <div class="card-label" style="color:#615f59;">性能提升</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#c4642d; height:40%;"></div>
+          <div class="mini-bar" style="background:#c4642d; opacity:0.7; height:60%;"></div>
+          <div class="mini-bar" style="background:#c4642d; height:85%;"></div>
+          <div class="mini-bar" style="background:#c4642d; opacity:0.7; height:70%;"></div>
+          <div class="mini-bar" style="background:#c4642d; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Warm Light</span>
+        <span class="theme-desc">奶油白 · 衬线标题 · 圆角 8px</span>
+      </div>
+    </div>
+
+    <!-- warm-dark -->
+    <div class="theme-card" data-theme="warm-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#1a1915; color:#f0efe8;">
+        <div class="mini-top">
+          <h2 style="font-family:Georgia,'Noto Serif SC',serif; font-size:20px; color:#f0efe8;">AI 前沿研究</h2>
+          <p style="font-size:11px; color:#9b9891;">衬线标题 · 橄榄深底 · 琥珀强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#2a2820; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#d4845a;">1.2B</div>
+            <div class="card-label" style="color:#9b9891;">参数规模</div>
+          </div>
+          <div class="mini-card-item" style="background:#2a2820; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#d4845a;">97.3</div>
+            <div class="card-label" style="color:#9b9891;">准确率</div>
+          </div>
+          <div class="mini-card-item" style="background:#2a2820; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#d4845a;">3.8×</div>
+            <div class="card-label" style="color:#9b9891;">性能提升</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#d4845a; height:40%;"></div>
+          <div class="mini-bar" style="background:#d4845a; opacity:0.7; height:60%;"></div>
+          <div class="mini-bar" style="background:#d4845a; height:85%;"></div>
+          <div class="mini-bar" style="background:#d4845a; opacity:0.7; height:70%;"></div>
+          <div class="mini-bar" style="background:#d4845a; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Warm Dark</span>
+        <span class="theme-desc">橄榄深底 · 衬线标题 · 圆角 8px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Cyber — 赛博蓝紫
+     ============================================================ -->
+<div class="style-row">
+  <div class="style-row-label">Cyber · 赛博蓝紫</div>
+  <div class="style-row-grid">
+    <!-- cyber-light -->
+    <div class="theme-card" data-theme="cyber-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#ffffff; color:#0b1120;">
+        <div class="mini-top">
+          <h2 style="font-family:Inter,system-ui,sans-serif; font-size:20px; color:#0b1120;">SaaS 产品路演</h2>
+          <p style="font-size:11px; color:#5e6a81;">现代无衬线 · 白底 · 靛紫强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#f5f6fa; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#6366f1;">$12M</div>
+            <div class="card-label" style="color:#5e6a81;">ARR</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f6fa; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#6366f1;">340%</div>
+            <div class="card-label" style="color:#5e6a81;">YoY 增长</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f6fa; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#6366f1;">99.9</div>
+            <div class="card-label" style="color:#5e6a81;">SLA %</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#6366f1; height:30%;"></div>
+          <div class="mini-bar" style="background:#6366f1; opacity:0.7; height:50%;"></div>
+          <div class="mini-bar" style="background:#6366f1; height:70%;"></div>
+          <div class="mini-bar" style="background:#6366f1; opacity:0.7; height:85%;"></div>
+          <div class="mini-bar" style="background:#6366f1; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Cyber Light</span>
+        <span class="theme-desc">白底 · Inter · 圆角 10px</span>
+      </div>
+    </div>
+
+    <!-- cyber-dark -->
+    <div class="theme-card" data-theme="cyber-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#0b0f19; color:#f0f4ff;">
+        <div class="mini-top">
+          <h2 style="font-family:Inter,system-ui,sans-serif; font-size:20px; color:#f0f4ff;">SaaS 产品路演</h2>
+          <p style="font-size:11px; color:#8b95ad;">现代无衬线 · 深蓝黑底 · 霓虹紫</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#1a2035; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#818cf8;">$12M</div>
+            <div class="card-label" style="color:#8b95ad;">ARR</div>
+          </div>
+          <div class="mini-card-item" style="background:#1a2035; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#818cf8;">340%</div>
+            <div class="card-label" style="color:#8b95ad;">YoY 增长</div>
+          </div>
+          <div class="mini-card-item" style="background:#1a2035; border-radius:10px;">
+            <div class="card-num" style="font-size:16px; color:#818cf8;">99.9</div>
+            <div class="card-label" style="color:#8b95ad;">SLA %</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#818cf8; height:30%;"></div>
+          <div class="mini-bar" style="background:#818cf8; opacity:0.7; height:50%;"></div>
+          <div class="mini-bar" style="background:#818cf8; height:70%;"></div>
+          <div class="mini-bar" style="background:#818cf8; opacity:0.7; height:85%;"></div>
+          <div class="mini-bar" style="background:#818cf8; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Cyber Dark</span>
+        <span class="theme-desc">深蓝黑 · Inter · 圆角 10px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Data — 数据可视化
+     ============================================================ -->
+<div class="style-row">
+  <div class="style-row-label">Data · 数据可视化</div>
+  <div class="style-row-grid">
+    <!-- data-light -->
+    <div class="theme-card" data-theme="data-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#ffffff; color:#0a2540;">
+        <div class="mini-top">
+          <h2 style="font-family:Inter,system-ui,sans-serif; font-size:20px; color:#0a2540;">数据分析报告</h2>
+          <p style="font-size:11px; color:#546b81;">紧凑排版 · 白底 · 青绿强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#f6f8fa; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#0dab76;">+27%</div>
+            <div class="card-label" style="color:#546b81;">转化率</div>
+          </div>
+          <div class="mini-card-item" style="background:#f6f8fa; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#0dab76;">58ms</div>
+            <div class="card-label" style="color:#546b81;">P99 延迟</div>
+          </div>
+          <div class="mini-card-item" style="background:#f6f8fa; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#0dab76;">3.2M</div>
+            <div class="card-label" style="color:#546b81;">日请求量</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#0dab76; height:60%;"></div>
+          <div class="mini-bar" style="background:#0dab76; opacity:0.7; height:45%;"></div>
+          <div class="mini-bar" style="background:#0dab76; height:80%;"></div>
+          <div class="mini-bar" style="background:#0dab76; opacity:0.7; height:100%;"></div>
+          <div class="mini-bar" style="background:#0dab76; height:70%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Data Light</span>
+        <span class="theme-desc">白底 · IBM Plex Mono · 圆角 6px</span>
+      </div>
+    </div>
+
+    <!-- data-dark -->
+    <div class="theme-card" data-theme="data-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#0d1117; color:#e6edf3;">
+        <div class="mini-top">
+          <h2 style="font-family:Inter,system-ui,sans-serif; font-size:20px; color:#e6edf3;">数据分析报告</h2>
+          <p style="font-size:11px; color:#7d8590;">仪表盘风格 · GitHub 深底 · 青绿强调</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#1c2129; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#10d48e;">+27%</div>
+            <div class="card-label" style="color:#7d8590;">转化率</div>
+          </div>
+          <div class="mini-card-item" style="background:#1c2129; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#10d48e;">58ms</div>
+            <div class="card-label" style="color:#7d8590;">P99 延迟</div>
+          </div>
+          <div class="mini-card-item" style="background:#1c2129; border-radius:6px;">
+            <div class="card-num" style="font-size:16px; color:#10d48e;">3.2M</div>
+            <div class="card-label" style="color:#7d8590;">日请求量</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#10d48e; height:60%;"></div>
+          <div class="mini-bar" style="background:#10d48e; opacity:0.7; height:45%;"></div>
+          <div class="mini-bar" style="background:#10d48e; height:80%;"></div>
+          <div class="mini-bar" style="background:#10d48e; opacity:0.7; height:100%;"></div>
+          <div class="mini-bar" style="background:#10d48e; height:70%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Data Dark</span>
+        <span class="theme-desc">深蓝黑 · IBM Plex Mono · 圆角 6px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Azure — 蓝调科技 / 企业
+     ============================================================ -->
+<div class="style-row">
+  <div class="style-row-label">Azure · 蓝调科技</div>
+  <div class="style-row-grid">
+    <!-- azure-light -->
+    <div class="theme-card" data-theme="azure-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#ffffff; color:#1a1a1a;">
+        <div class="mini-top">
+          <h2 style="font-family:'PingFang SC','Microsoft YaHei',sans-serif; font-size:20px; color:#1a1a1a;">企业年度汇报</h2>
+          <p style="font-size:11px; color:#666666;">中文优化 · 白底 · 经典蓝</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#f5f6f8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#0052D9;">¥8.6亿</div>
+            <div class="card-label" style="color:#666666;">年营收</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f6f8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#0052D9;">1,200+</div>
+            <div class="card-label" style="color:#666666;">客户数</div>
+          </div>
+          <div class="mini-card-item" style="background:#f5f6f8; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#0052D9;">46%</div>
+            <div class="card-label" style="color:#666666;">市场份额</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#0052D9; height:50%;"></div>
+          <div class="mini-bar" style="background:#0052D9; opacity:0.7; height:65%;"></div>
+          <div class="mini-bar" style="background:#0052D9; height:80%;"></div>
+          <div class="mini-bar" style="background:#0052D9; opacity:0.7; height:90%;"></div>
+          <div class="mini-bar" style="background:#0052D9; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Azure Light</span>
+        <span class="theme-desc">白底 · PingFang/雅黑 · 圆角 8px</span>
+      </div>
+    </div>
+
+    <!-- azure-dark -->
+    <div class="theme-card" data-theme="azure-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#141414; color:#f0f2f5;">
+        <div class="mini-top">
+          <h2 style="font-family:'PingFang SC','Microsoft YaHei',sans-serif; font-size:20px; color:#f0f2f5;">企业年度汇报</h2>
+          <p style="font-size:11px; color:#8c8c8c;">中文优化 · 深灰底 · 明亮蓝</p>
+        </div>
+        <div class="mini-cards">
+          <div class="mini-card-item" style="background:#262626; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#4787F0;">¥8.6亿</div>
+            <div class="card-label" style="color:#8c8c8c;">年营收</div>
+          </div>
+          <div class="mini-card-item" style="background:#262626; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#4787F0;">1,200+</div>
+            <div class="card-label" style="color:#8c8c8c;">客户数</div>
+          </div>
+          <div class="mini-card-item" style="background:#262626; border-radius:8px;">
+            <div class="card-num" style="font-size:16px; color:#4787F0;">46%</div>
+            <div class="card-label" style="color:#8c8c8c;">市场份额</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-bar" style="background:#4787F0; height:50%;"></div>
+          <div class="mini-bar" style="background:#4787F0; opacity:0.7; height:65%;"></div>
+          <div class="mini-bar" style="background:#4787F0; height:80%;"></div>
+          <div class="mini-bar" style="background:#4787F0; opacity:0.7; height:90%;"></div>
+          <div class="mini-bar" style="background:#4787F0; height:100%;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Azure Dark</span>
+        <span class="theme-desc">深灰黑 · PingFang/雅黑 · 圆角 8px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="style-row">
+  <div class="style-row-label">Glass · 液态玻璃</div>
+  <div class="style-row-grid">
+    <!-- glass-light -->
+    <div class="theme-card" data-theme="glass-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#f2f2f7; color:#1c1c1e; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 45%,rgba(175,82,222,0.12),transparent 70%),radial-gradient(ellipse at 85% 25%,rgba(0,122,255,0.10),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#1c1c1e;">液态玻璃效果</h2>
+          <p style="font-size:11px; color:#636366;">多层半透明 · 色调偏移 · 液态光感</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.45); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.6); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#007AFF;">94%</div>
+            <div class="card-label" style="color:#636366;">透明度</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.45); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.6); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#AF52DE;">24px</div>
+            <div class="card-label" style="color:#636366;">模糊</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.45); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.6); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#007AFF;">3层</div>
+            <div class="card-label" style="color:#636366;">折射</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Glass Light</span>
+        <span class="theme-desc">液态玻璃 · 蓝紫光斑 · 圆角 16px</span>
+      </div>
+    </div>
+
+    <!-- glass-dark -->
+    <div class="theme-card" data-theme="glass-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#1c1c1e; color:#f5f5f7; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 45%,rgba(191,90,242,0.15),transparent 70%),radial-gradient(ellipse at 80% 20%,rgba(10,132,255,0.12),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#f5f5f7;">液态玻璃效果</h2>
+          <p style="font-size:11px; color:#98989d;">深色 · 冷调光斑 · 液态光感</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.08); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.12); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#0A84FF;">94%</div>
+            <div class="card-label" style="color:#98989d;">透明度</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.08); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.12); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#BF5AF2;">24px</div>
+            <div class="card-label" style="color:#98989d;">模糊</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.08); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.12); border-radius:16px;">
+            <div class="card-num" style="font-size:16px; color:#0A84FF;">3层</div>
+            <div class="card-label" style="color:#98989d;">折射</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Glass Dark</span>
+        <span class="theme-desc">液态玻璃深色 · 冷调蓝紫 · 圆角 16px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="style-row">
+  <div class="style-row-label">Frost · 磨砂玻璃</div>
+  <div class="style-row-grid">
+    <!-- frost-light -->
+    <div class="theme-card" data-theme="frost-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#eef2f6; color:#0f172a; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(59,130,246,0.08),transparent 70%),radial-gradient(ellipse at 75% 35%,rgba(6,182,212,0.06),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#0f172a;">磨砂玻璃面板</h2>
+          <p style="font-size:11px; color:#64748b;">经典 glassmorphism · 强模糊</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.7); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#3b82f6;">12K</div>
+            <div class="card-label" style="color:#64748b;">用户</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.7); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#06b6d4;">98%</div>
+            <div class="card-label" style="color:#64748b;">在线率</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.7); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#3b82f6;">4.9★</div>
+            <div class="card-label" style="color:#64748b;">评分</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Frost Light</span>
+        <span class="theme-desc">磨砂玻璃 · 蓝青氛围 · 圆角 12px</span>
+      </div>
+    </div>
+
+    <!-- frost-dark -->
+    <div class="theme-card" data-theme="frost-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#0f172a; color:#f1f5f9; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 25% 50%,rgba(96,165,250,0.10),transparent 70%),radial-gradient(ellipse at 80% 30%,rgba(34,211,238,0.07),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#f1f5f9;">磨砂玻璃面板</h2>
+          <p style="font-size:11px; color:#94a3b8;">深色 · 冷调科技 · 强模糊</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.10); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#60a5fa;">12K</div>
+            <div class="card-label" style="color:#94a3b8;">用户</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.10); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#22d3ee;">98%</div>
+            <div class="card-label" style="color:#94a3b8;">在线率</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.10); border-radius:12px;">
+            <div class="card-num" style="font-size:16px; color:#60a5fa;">4.9★</div>
+            <div class="card-label" style="color:#94a3b8;">评分</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Frost Dark</span>
+        <span class="theme-desc">磨砂玻璃深色 · 蓝青氛围 · 圆角 12px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="style-row">
+  <div class="style-row-label">Gradient · 渐变</div>
+  <div class="style-row-grid">
+    <!-- gradient-light -->
+    <div class="theme-card" data-theme="gradient-light" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#faf5ff; color:#1e1033; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 10% 30%,rgba(236,72,153,0.15),transparent 70%),radial-gradient(ellipse at 50% 80%,rgba(124,58,237,0.12),transparent 70%),radial-gradient(ellipse at 90% 20%,rgba(59,130,246,0.10),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#1e1033;">渐变视觉冲击</h2>
+          <p style="font-size:11px; color:#6b5e7b;">粉紫蓝渐变 · 大胆 · 高对比</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.70); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.55); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#7c3aed;">$5M</div>
+            <div class="card-label" style="color:#6b5e7b;">融资</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.70); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.55); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#ec4899;">300%</div>
+            <div class="card-label" style="color:#6b5e7b;">增长</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.70); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.55); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#7c3aed;">50K</div>
+            <div class="card-label" style="color:#6b5e7b;">DAU</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Gradient Light</span>
+        <span class="theme-desc">粉紫蓝渐变 · 高冲击力 · 圆角 14px</span>
+      </div>
+    </div>
+
+    <!-- gradient-dark -->
+    <div class="theme-card" data-theme="gradient-dark" onclick="selectTheme(this)">
+      <div class="mini-slide" style="background:#0c0118; color:#f5f0ff; position:relative; overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 10% 40%,rgba(244,114,182,0.18),transparent 70%),radial-gradient(ellipse at 55% 85%,rgba(167,139,250,0.15),transparent 70%),radial-gradient(ellipse at 90% 15%,rgba(56,189,248,0.10),transparent 70%);"></div>
+        <div class="mini-top" style="position:relative;">
+          <h2 style="font-size:18px; color:#f5f0ff;">渐变视觉冲击</h2>
+          <p style="font-size:11px; color:#a599bf;">深紫蓝渐变 · 霓虹 · 沉浸</p>
+        </div>
+        <div class="mini-cards" style="position:relative;">
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.08); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#a78bfa;">$5M</div>
+            <div class="card-label" style="color:#a599bf;">融资</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.08); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#f472b6;">300%</div>
+            <div class="card-label" style="color:#a599bf;">增长</div>
+          </div>
+          <div class="mini-card-item" style="background:rgba(255,255,255,0.06); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.08); border-radius:14px;">
+            <div class="card-num" style="font-size:16px; color:#a78bfa;">50K</div>
+            <div class="card-label" style="color:#a599bf;">DAU</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="theme-name">Gradient Dark</span>
+        <span class="theme-desc">深紫蓝渐变 · 霓虹色 · 圆角 14px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     底部确认栏
+     ============================================================ -->
+<div class="confirm-bar">
+  <span class="selection-text" id="selectionText">请点击上方卡片选择主题</span>
+  <button class="confirm-btn confirm-btn-primary" id="confirmBtn" disabled onclick="confirmSelection()">
+    确认主题并继续
+  </button>
+</div>
+
+<script>
+  let selectedTheme = null;
+
+  function selectTheme(card) {
+    // 清除之前选中
+    document.querySelectorAll('.theme-card.selected').forEach(c => c.classList.remove('selected'));
+    // 选中当前
+    card.classList.add('selected');
+    selectedTheme = card.getAttribute('data-theme');
+    // 更新底部栏
+    const name = card.querySelector('.theme-name').textContent;
+    document.getElementById('selectionText').innerHTML = '已选择：<strong>' + name + '</strong>';
+    document.getElementById('confirmBtn').disabled = false;
+  }
+
+  function confirmSelection() {
+    if (!selectedTheme) return;
+    const btn = document.getElementById('confirmBtn');
+    btn.disabled = true;
+    btn.textContent = '正在确认…';
+
+    // 向本地 server 发送选择结果
+    fetch('/api/theme-choice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ theme: selectedTheme })
+    })
+    .then(res => {
+      if (res.ok) {
+        btn.textContent = '✓ 已确认，Agent 将自动继续';
+        btn.style.background = '#059669';
+        document.getElementById('selectionText').innerHTML =
+          '已确认：<strong>' + selectedTheme + '</strong> — 可以关闭此页面';
+      } else {
+        throw new Error('Server error');
+      }
+    })
+    .catch(() => {
+      // 降级：写入剪贴板
+      navigator.clipboard.writeText(selectedTheme).then(() => {
+        btn.textContent = '✓ 已复制主题名到剪贴板';
+        btn.style.background = '#d97706';
+      }).catch(() => {
+        btn.textContent = '请将以下主题名告知 Agent：' + selectedTheme;
+        btn.style.background = '#dc2626';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

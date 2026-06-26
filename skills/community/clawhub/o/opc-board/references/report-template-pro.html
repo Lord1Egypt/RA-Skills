@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>OPC Board - Dashboard Report</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#3b82f6;--blue-d:#2563eb;--blue-dd:#1d4ed8;--blue-l:#dbeafe;--blue-ul:#eff6ff;
+  --orange:#f97316;--orange-d:#ea580c;--orange-l:#ffedd5;--orange-ul:#fff7ed;
+  --green:#16a34a;--green-l:#dcfce7;--red:#dc2626;--red-l:#fee2e2;
+  --amber:#d97706;--amber-l:#fef3c7;
+  --s50:#f8fafc;--s100:#f1f5f9;--s200:#e2e8f0;--s300:#cbd5e1;--s400:#94a3b8;--s500:#64748b;--s600:#475569;--s700:#334155;--s800:#1e293b;--s900:#0f172a;
+  --card:#fff;--r:12px;--r2:16px;--r3:20px;
+  --sh-s:0 1px 2px rgba(0,0,0,.04);
+  --sh:0 1px 3px rgba(50,50,93,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh-m:0 4px 12px rgba(50,50,93,.10),0 2px 4px rgba(0,0,0,.04);
+  --sh-l:0 12px 28px rgba(50,50,93,.12),0 4px 10px rgba(0,0,0,.06);
+}
+html{font-size:14px}
+body{
+  font-family:'Inter',-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  color:var(--s800);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:#f0f4f8;min-height:100vh;padding:24px 16px;
+}
+.wrap{max-width:1160px;margin:0 auto}
+
+/* ===== HERO (且慢浅蓝色调) ===== */
+.hero{
+  position:relative;overflow:hidden;border-radius:var(--r3);
+  background:linear-gradient(135deg,#7eb8d8 0%,#a3d0e8 25%,#bddcee 50%,#d0e8f5 75%,#e3f1fa 100%);
+  color:#1a3a52;padding:0;margin-bottom:20px;
+  box-shadow:0 20px 60px -15px rgba(126,184,216,.35),0 8px 20px -8px rgba(0,0,0,.08);
+}
+.hero-glow{position:absolute;inset:0;pointer-events:none}
+.hero-glow::before{content:"";position:absolute;width:600px;height:600px;right:-180px;top:-280px;background:radial-gradient(circle,rgba(255,255,255,.35) 0%,rgba(255,255,255,.10) 40%,transparent 65%)}
+.hero-glow::after{content:"";position:absolute;width:500px;height:500px;left:-120px;bottom:-260px;background:radial-gradient(circle,rgba(100,180,220,.25) 0%,rgba(100,180,220,.08) 40%,transparent 60%)}
+.hero-grid{
+  position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 240px;gap:0;min-height:180px;
+}
+.hero-left{padding:28px 32px}
+.hero-kicker{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;opacity:.55;margin-bottom:8px;font-weight:500}
+.hero-title{font-size:28px;font-weight:700;letter-spacing:-.5px;line-height:1.3}
+.hero-desc{opacity:.78;margin-top:10px;font-size:13px;line-height:1.6;max-width:520px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hp{background:rgba(255,255,255,.45);backdrop-filter:blur(6px);border:1px solid rgba(26,58,82,.12);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:500;color:#1a3a52}
+.hp.go{background:rgba(22,163,74,.20);border-color:rgba(22,163,74,.35);color:#15803d}
+.hp.cgo{background:rgba(217,119,6,.20);border-color:rgba(217,119,6,.35);color:#b45309}
+.hp.nogo{background:rgba(220,38,38,.20);border-color:rgba(220,38,38,.35);color:#dc2626}
+.hero-right{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-left:1px solid rgba(26,58,82,.12);padding:24px;
+}
+.hero-ts{font-size:10px;opacity:.50;margin-bottom:4px}
+.hero-big{font-size:52px;font-weight:800;letter-spacing:-3px;line-height:1;color:#1a3a52}
+.hero-big-sub{font-size:11px;opacity:.55;margin-top:4px;letter-spacing:.5px}
+
+/* ===== RADIAL HUB ===== */
+.hub{display:grid;grid-template-columns:320px 1fr;gap:16px;margin-bottom:16px}
+.hub-center{
+  background:var(--card);border:1px solid var(--s200);border-radius:var(--r2);
+  box-shadow:var(--sh-m);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:28px 20px;position:relative;overflow:hidden;
+}
+.hub-center::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%,rgba(59,130,246,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.gauge-svg{width:220px;height:220px;position:relative;z-index:1}
+.gauge-track{fill:none;stroke:var(--s100);stroke-width:16}
+.gauge-arc{fill:none;stroke-width:16;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(59,130,246,.25))}
+.gauge-num{font-size:42px;font-weight:800;fill:var(--s900);letter-spacing:-2px;font-family:inherit}
+.gauge-unit{font-size:12px;fill:var(--s400);font-weight:500}
+.gauge-label{font-size:10px;fill:var(--s400);text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+.hub-meta{text-align:center;margin-top:14px;font-size:11px;color:var(--s400);position:relative;z-index:1;line-height:1.6}
+
+/* ===== RADAR ===== */
+.hub-radar{
+  background:var(--card);border:1px solid var(--s200);border-radius:var(--r2);
+  box-shadow:var(--sh-m);padding:24px;display:flex;flex-direction:column;
+}
+.radar-head{font-size:14px;font-weight:600;color:var(--s700);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.radar-body{display:flex;gap:24px;flex:1;align-items:center}
+.radar-svg{width:340px;height:290px;flex:none}
+.radar-grid{fill:none;stroke:var(--s200);stroke-width:.5}
+.radar-axis{stroke:var(--s200);stroke-width:.5}
+.radar-area{fill:rgba(59,130,246,.12);stroke:var(--blue);stroke-width:2}
+.radar-dot{fill:var(--blue);stroke:#fff;stroke-width:2}
+.radar-dot-orange{fill:var(--orange);stroke:#fff;stroke-width:2}
+.radar-lbl{font-size:11px;fill:var(--s600);font-weight:600;font-family:'PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif}
+.radar-legend{flex:1;display:flex;flex-direction:column;gap:6px}
+.rl-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--r);border:1px solid var(--s100);background:var(--s50);transition:background .15s}
+.rl-item:hover{background:var(--blue-ul)}
+.rl-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.rl-name{font-size:12px;font-weight:600;color:var(--s700);flex:1;white-space:nowrap}
+.rl-val{font-size:16px;font-weight:700;color:var(--s800);min-width:28px;text-align:right}
+.rl-bar{height:4px;border-radius:2px;background:var(--s100);flex:2;overflow:hidden;position:relative}
+.rl-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;transition:width .6s ease}
+
+/* ===== CALLOUTS ===== */
+.cos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.co{border-radius:var(--r);padding:14px 16px;display:flex;gap:10px;align-items:flex-start;box-shadow:var(--sh-s)}
+.co.danger{background:linear-gradient(135deg,#fff5f5,var(--red-l));border:1px solid rgba(220,38,38,.15)}
+.co.success{background:linear-gradient(135deg,#f0fdf4,var(--green-l));border:1px solid rgba(22,163,74,.15)}
+.co-icon{font-size:20px;flex:none;line-height:1}
+.co-title{font-size:12px;font-weight:600;color:var(--s700);margin-bottom:3px}
+.co-body{font-size:13px;color:var(--s600);line-height:1.5}
+
+/* ===== CARD ===== */
+.card{background:var(--card);border:1px solid var(--s200);border-radius:var(--r2);padding:20px 24px;box-shadow:var(--sh);margin-bottom:16px}
+.card-h{font-size:15px;font-weight:600;color:var(--s800);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-sub{font-size:11px;color:var(--s400);margin:-6px 0 12px;line-height:1.4}
+
+/* ===== GRID ===== */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+
+/* ===== FRAMEWORK CARDS (且慢浅蓝) ===== */
+.fw-card{background:linear-gradient(180deg,#e9f3fb 0%,#f4f9fd 100%);border:1px solid #c8dde9;border-radius:var(--r2);padding:20px;box-shadow:var(--sh)}
+.fw-card .card-h{font-size:15px;font-weight:700;margin-bottom:2px;color:#1a3a52}
+.fw-card .card-sub{font-size:11px;color:#5a7a8f;margin-bottom:14px;line-height:1.4}
+.fw-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.fw-tag.tiger{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.fw-tag.paper{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.fw-tag.elephant{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+.fw-tag.must{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.fw-tag.should{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.fw-tag.could{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+.fw-tag.wont{background:#f1f5f9;color:#64748b;border:1px solid #cbd5e1}
+.fw-item{font-size:12.5px;color:#334155;line-height:1.5;padding:5px 0;border-bottom:1px solid rgba(200,221,233,.5)}
+.fw-item:last-child{border-bottom:none}
+.fw-group{margin-bottom:12px}
+.fw-group:last-child{margin-bottom:0}
+.fw-stage{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(200,221,233,.4);font-size:12.5px}
+.fw-stage:last-child{border-bottom:none}
+.fw-stage-name{font-weight:600;color:#1a3a52;min-width:90px}
+.fw-stage-status{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;min-width:28px;text-align:center}
+.fw-stage-status.s{background:#dcfce7;color:#16a34a}
+.fw-stage-status.m{background:#dbeafe;color:#2563eb}
+.fw-stage-status.w{background:#fef3c7;color:#d97706}
+.fw-stage-issue{font-size:11.5px;color:#5a7a8f;flex:1}
+
+/* ===== TABLE ===== */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+th,td{padding:8px 12px;text-align:left}
+th{font-size:10px;font-weight:600;color:var(--s400);text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--s100);background:var(--s50)}
+td{border-bottom:1px solid var(--s100)}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.3px}
+.pill.g{color:var(--green);background:var(--green-l)}
+.pill.w{color:var(--amber);background:var(--amber-l)}
+.pill.r{color:var(--red);background:var(--red-l)}
+.pill.b{color:var(--blue);background:var(--blue-l)}
+
+/* ===== OPC DECISION ===== */
+.opc-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.opc-box{border-radius:var(--r);padding:16px;position:relative;overflow:hidden}
+.opc-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.opc-box.do{background:linear-gradient(145deg,#f0fdf4,#dcfce7);border:1px solid rgba(22,163,74,.15)}.opc-box.do::before{background:var(--green)}
+.opc-box.help{background:linear-gradient(145deg,#fffbeb,#fef3c7);border:1px solid rgba(217,119,6,.15)}.opc-box.help::before{background:var(--amber)}
+.opc-box.cut{background:linear-gradient(145deg,#fef2f2,#fee2e2);border:1px solid rgba(220,38,38,.15)}.opc-box.cut::before{background:var(--red)}
+.opc-box-h{font-size:13px;font-weight:600;margin-bottom:8px}
+.opc-box.do .opc-box-h{color:var(--green)}
+.opc-box.help .opc-box-h{color:var(--amber)}
+.opc-box.cut .opc-box-h{color:var(--red)}
+.opc-li{font-size:12px;color:var(--s600);padding:4px 0;border-bottom:1px dashed rgba(0,0,0,.06)}
+.opc-li:last-child{border-bottom:none}
+
+/* ===== ROLE ===== */
+.role{border:1px solid var(--s200);border-radius:var(--r);overflow:hidden;margin-top:12px}
+.role-hd{background:linear-gradient(135deg,var(--s50),#fff);border-bottom:1px solid var(--s200);padding:10px 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.role-scroll{overflow-x:auto}
+.role table{min-width:640px}
+
+/* ===== UC ===== */
+.uc{display:inline-block;padding:1px 7px;border-radius:999px;font-size:9px;font-weight:600;color:var(--amber);border:1px solid rgba(217,119,6,.25);background:var(--amber-l);vertical-align:middle;margin-left:4px;letter-spacing:.3px}
+
+/* ===== DISCLAIMER ===== */
+.disc{background:var(--s50);border:1px solid var(--s200);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;font-size:11px;color:var(--s400);line-height:1.7}
+.disc strong{color:var(--s500)}
+.disc ul{padding-left:18px;margin:4px 0}
+.disc li{margin:3px 0}
+
+/* ===== FOOTER ===== */
+.ft{text-align:center;font-size:10px;color:var(--s300);padding:16px 0;letter-spacing:.5px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px){
+  .hub{grid-template-columns:1fr}
+  .radar-body{flex-direction:column}
+  .g2,.g3,.opc-3{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-right{border-left:none;border-top:1px solid rgba(26,58,82,.12)}
+}
+@media(max-width:640px){
+  .cos{grid-template-columns:1fr}
+  body{padding:12px 8px}
+}
+</style>
+</head>
+
+<!--
+  OPC Board Dashboard Report Template
+  ====================================
+  Placeholder format:  __placeholder_name__
+
+  SVG gauge:           stroke-dasharray = 534 (2*PI*85)
+                       stroke-dashoffset = 534 * (1 - score/100)
+  SVG radar:           5-axis polygon, center(130,130), max-r=100, 72-deg intervals
+                       viewBox="-55 -5 375 270" to accommodate Chinese labels
+
+  Section order:
+    1. Hero
+    2. Radial Hub (Gauge + Radar)
+    3. Callouts (Fatal Flaw / Lifeline)
+    4. Decision Gates + A/B/C Plans
+    5. User-Provided Information
+    6. Five-Dimension Score Breakdown   ← __l1_*__ __d1_*__ __g1_*__ __b1_*__ __r1_*__
+    7. Analytical Frameworks (Pre-Mortem / MoSCoW / User Journey)
+    8. Five-Advisor Challenge Board
+    9. OPC Decision Card
+   10. Optimization Suggestions
+   11. Action List
+   12. Disclaimer
+-->
+
+<body>
+<div class="wrap">
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-kicker">OPC Board &middot; One-Person Company Dashboard</div>
+        <h1 class="hero-title">__project_name__</h1>
+        <p class="hero-desc">__one_line_summary__</p>
+        <div class="hero-pills">
+          <span class="hp">__requirement_type__</span>
+          <span class="hp">__project_goal__</span>
+          <span class="hp __decision_style__">__decision_conclusion__</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-ts">__generated_at__</div>
+        <div class="hero-big">__grade__</div>
+        <div class="hero-big-sub">__total_score__ / 100</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== RADIAL HUB: GAUGE + RADAR ========== -->
+  <div class="hub">
+
+    <!-- Main Gauge -->
+    <div class="hub-center">
+      <svg class="gauge-svg" viewBox="0 0 220 220">
+        <defs>
+          <linearGradient id="gG" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="60%" stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle class="gauge-track" cx="110" cy="110" r="85"/>
+        <!-- score arc: dasharray=534, dashoffset=534*(1-score/100) -->
+        <circle class="gauge-arc" cx="110" cy="110" r="85"
+          stroke="url(#gG)" stroke-dasharray="534" stroke-dashoffset="__gauge_offset__"
+          transform="rotate(-90 110 110)" filter="url(#glow)"/>
+        <text class="gauge-num" x="110" y="105" text-anchor="middle">__total_score__</text>
+        <text class="gauge-unit" x="110" y="122" text-anchor="middle">/ 100</text>
+        <text class="gauge-label" x="110" y="155" text-anchor="middle">Feasibility Score</text>
+      </svg>
+      <div class="hub-meta">
+        __grade__ &middot; __decision_conclusion__<br>
+        __weight_description__
+      </div>
+    </div>
+
+    <!-- Radar Chart + Legend -->
+    <div class="hub-radar">
+      <div class="radar-head">
+        <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="var(--blue)" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="var(--blue)"/></svg>
+        Five-Dimension Radar
+      </div>
+      <div class="radar-body">
+        <!-- SVG Radar Chart: center(130,130), max-r=100, 5 axes at 72-deg intervals -->
+        <svg class="radar-svg" viewBox="-55 -5 375 270">
+          <defs>
+            <linearGradient id="radarFill" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(59,130,246,.18)"/>
+              <stop offset="100%" stop-color="rgba(249,115,22,.12)"/>
+            </linearGradient>
+            <linearGradient id="radarStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid rings at 25%, 50%, 75%, 100% -->
+          <polygon class="radar-grid" points="__grid_25__"/>
+          <polygon class="radar-grid" points="__grid_50__"/>
+          <polygon class="radar-grid" points="__grid_75__"/>
+          <polygon class="radar-grid" points="__grid_100__"/>
+          <!-- Axes -->
+          <line class="radar-axis" x1="130" y1="130" x2="__ax0x__" y2="__ax0y__"/>
+          <line class="radar-axis" x1="130" y1="130" x2="__ax1x__" y2="__ax1y__"/>
+          <line class="radar-axis" x1="130" y1="130" x2="__ax2x__" y2="__ax2y__"/>
+          <line class="radar-axis" x1="130" y1="130" x2="__ax3x__" y2="__ax3y__"/>
+          <line class="radar-axis" x1="130" y1="130" x2="__ax4x__" y2="__ax4y__"/>
+          <!-- Data polygon -->
+          <polygon fill="url(#radarFill)" stroke="url(#radarStroke)" stroke-width="2" points="__radar_data__"/>
+          <!-- Data dots -->
+          <circle class="radar-dot" cx="__d0x__" cy="__d0y__" r="4"/>
+          <circle class="radar-dot" cx="__d1x__" cy="__d1y__" r="4"/>
+          <circle class="radar-dot-orange" cx="__d2x__" cy="__d2y__" r="4"/>
+          <circle class="radar-dot-orange" cx="__d3x__" cy="__d3y__" r="4"/>
+          <circle class="radar-dot" cx="__d4x__" cy="__d4y__" r="4"/>
+          <!-- Labels -->
+          <text class="radar-lbl" x="130" y="18" text-anchor="middle">__dim0_name__</text>
+          <text class="radar-lbl" x="248" y="100" text-anchor="start">__dim1_name__</text>
+          <text class="radar-lbl" x="210" y="230" text-anchor="middle">__dim2_name__</text>
+          <text class="radar-lbl" x="50" y="230" text-anchor="middle">__dim3_name__</text>
+          <text class="radar-lbl" x="12" y="100" text-anchor="end">__dim4_name__</text>
+        </svg>
+
+        <!-- Legend -->
+        <div class="radar-legend">
+          <div class="rl-item">
+            <div class="rl-dot" style="background:var(--blue)"></div>
+            <span class="rl-name">__dim0_name__</span>
+            <div class="rl-bar"><div class="rl-fill" style="width:__dim0_pct__%;background:var(--blue)"></div></div>
+            <span class="rl-val">__dim0_score__</span>
+          </div>
+          <div class="rl-item">
+            <div class="rl-dot" style="background:var(--blue-d)"></div>
+            <span class="rl-name">__dim1_name__</span>
+            <div class="rl-bar"><div class="rl-fill" style="width:__dim1_pct__%;background:var(--blue-d)"></div></div>
+            <span class="rl-val">__dim1_score__</span>
+          </div>
+          <div class="rl-item">
+            <div class="rl-dot" style="background:var(--orange)"></div>
+            <span class="rl-name">__dim2_name__</span>
+            <div class="rl-bar"><div class="rl-fill" style="width:__dim2_pct__%;background:var(--orange)"></div></div>
+            <span class="rl-val">__dim2_score__</span>
+          </div>
+          <div class="rl-item">
+            <div class="rl-dot" style="background:var(--amber)"></div>
+            <span class="rl-name">__dim3_name__</span>
+            <div class="rl-bar"><div class="rl-fill" style="width:__dim3_pct__%;background:var(--amber)"></div></div>
+            <span class="rl-val">__dim3_score__</span>
+          </div>
+          <div class="rl-item">
+            <div class="rl-dot" style="background:var(--green)"></div>
+            <span class="rl-name">__dim4_name__</span>
+            <div class="rl-bar"><div class="rl-fill" style="width:__dim4_pct__%;background:var(--green)"></div></div>
+            <span class="rl-val">__dim4_score__</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== CALLOUTS ========== -->
+  <div class="cos">
+    <div class="co danger">
+      <span class="co-icon">&#9760;</span>
+      <div><div class="co-title">Fatal Flaw</div><div class="co-body">__fatal_flaw__</div></div>
+    </div>
+    <div class="co success">
+      <span class="co-icon">&#128737;</span>
+      <div><div class="co-title">Lifeline</div><div class="co-body">__lifeline__</div></div>
+    </div>
+  </div>
+
+  <!-- ========== GATES + ABC ========== -->
+  <div class="g2">
+    <div class="card">
+      <div class="card-h">&#128678; Decision Gates</div>
+      <table>
+        <thead><tr><th>Gate</th><th>Status</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Value Gate</td><td><span class="pill __vg_style__">__vg_status__</span></td><td>__vg_note__</td></tr>
+          <tr><td>Risk Gate</td><td><span class="pill __rg_style__">__rg_status__</span></td><td>__rg_note__</td></tr>
+          <tr><td>Resource Gate</td><td><span class="pill __sg_style__">__sg_status__</span></td><td>__sg_note__</td></tr>
+          <tr><td>Strategy Gate</td><td><span class="pill __tg_style__">__tg_status__</span></td><td>__tg_note__</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h">&#128208; A/B/C Plans</div>
+      <table>
+        <thead><tr><th>Plan</th><th>Scope</th><th>Timeline</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A Full</strong></td><td>__a_scope__</td><td>__a_time__</td><td>__a_risk__</td></tr>
+          <tr><td><strong>B Recommended</strong></td><td>__b_scope__</td><td>__b_time__</td><td>__b_risk__</td></tr>
+          <tr><td><strong>C MVP</strong></td><td>__c_scope__</td><td>__c_time__</td><td>__c_risk__</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:8px;font-size:11px;color:var(--s400)">Recommended: __recommend__ &middot; Checkpoint: __checkpoint__</div>
+    </div>
+  </div>
+
+  <!-- ========== USER INFO ========== -->
+  <div class="card">
+    <div class="card-h">&#128203; User-Provided Information</div>
+    <div class="card-sub">Items marked <span class="uc">Unconfirmed</span> are inferred; scored conservatively.</div>
+    <table>
+      <thead><tr><th>Item</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <!-- Replace rows -->
+        <tr><td>__info_item__</td><td>__info_value__</td><td>__info_source__</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== SCORE BREAKDOWN ========== -->
+  <div class="card">
+    <div class="card-h">&#128202; Five-Dimension Score Breakdown</div>
+    <div class="card-sub">5 sub-items per dimension, scored 0/1/2, max 10. Open-source projects use B1'–B5' for sustainability.</div>
+    <table>
+      <thead><tr><th>Dimension</th><th>Sub-item</th><th>Score</th><th>Note</th></tr></thead>
+      <tbody>
+        <!-- Dimension L -->
+        <tr style="background:var(--blue-ul)"><td colspan="2"><strong>__dim0_name__ (L)</strong></td><td><strong>__dim0_score__/10</strong></td><td><strong>Weight __w0__%</strong></td></tr>
+        <tr><td></td><td>L1 __l1_name__</td><td>__l1_score__</td><td>__l1_note__</td></tr>
+        <tr><td></td><td>L2 __l2_name__</td><td>__l2_score__</td><td>__l2_note__</td></tr>
+        <tr><td></td><td>L3 __l3_name__</td><td>__l3_score__</td><td>__l3_note__</td></tr>
+        <tr><td></td><td>L4 __l4_name__</td><td>__l4_score__</td><td>__l4_note__</td></tr>
+        <tr><td></td><td>L5 __l5_name__</td><td>__l5_score__</td><td>__l5_note__</td></tr>
+        <!-- Dimension D -->
+        <tr style="background:var(--blue-ul)"><td colspan="2"><strong>__dim1_name__ (D)</strong></td><td><strong>__dim1_score__/10</strong></td><td><strong>Weight __w1__%</strong></td></tr>
+        <tr><td></td><td>D1 __d1_name__</td><td>__d1_score__</td><td>__d1_note__</td></tr>
+        <tr><td></td><td>D2 __d2_name__</td><td>__d2_score__</td><td>__d2_note__</td></tr>
+        <tr><td></td><td>D3 __d3_name__</td><td>__d3_score__</td><td>__d3_note__</td></tr>
+        <tr><td></td><td>D4 __d4_name__</td><td>__d4_score__</td><td>__d4_note__</td></tr>
+        <tr><td></td><td>D5 __d5_name__</td><td>__d5_score__</td><td>__d5_note__</td></tr>
+        <!-- Dimension G -->
+        <tr style="background:var(--orange-ul)"><td colspan="2"><strong>__dim2_name__ (G)</strong></td><td><strong>__dim2_score__/10</strong></td><td><strong>Weight __w2__%</strong></td></tr>
+        <tr><td></td><td>G1 __g1_name__</td><td>__g1_score__</td><td>__g1_note__</td></tr>
+        <tr><td></td><td>G2 __g2_name__</td><td>__g2_score__</td><td>__g2_note__</td></tr>
+        <tr><td></td><td>G3 __g3_name__</td><td>__g3_score__</td><td>__g3_note__</td></tr>
+        <tr><td></td><td>G4 __g4_name__</td><td>__g4_score__</td><td>__g4_note__</td></tr>
+        <tr><td></td><td>G5 __g5_name__</td><td>__g5_score__</td><td>__g5_note__</td></tr>
+        <!-- Dimension B -->
+        <tr style="background:var(--orange-ul)"><td colspan="2"><strong>__dim3_name__ (B)</strong></td><td><strong>__dim3_score__/10</strong></td><td><strong>Weight __w3__%</strong></td></tr>
+        <tr><td></td><td>B1 __b1_name__</td><td>__b1_score__</td><td>__b1_note__</td></tr>
+        <tr><td></td><td>B2 __b2_name__</td><td>__b2_score__</td><td>__b2_note__</td></tr>
+        <tr><td></td><td>B3 __b3_name__</td><td>__b3_score__</td><td>__b3_note__</td></tr>
+        <tr><td></td><td>B4 __b4_name__</td><td>__b4_score__</td><td>__b4_note__</td></tr>
+        <tr><td></td><td>B5 __b5_name__</td><td>__b5_score__</td><td>__b5_note__</td></tr>
+        <!-- Dimension R -->
+        <tr style="background:var(--blue-ul)"><td colspan="2"><strong>__dim4_name__ (R)</strong></td><td><strong>__dim4_score__/10</strong></td><td><strong>Weight __w4__%</strong></td></tr>
+        <tr><td></td><td>R1 __r1_name__</td><td>__r1_score__</td><td>__r1_note__</td></tr>
+        <tr><td></td><td>R2 __r2_name__</td><td>__r2_score__</td><td>__r2_note__</td></tr>
+        <tr><td></td><td>R3 __r3_name__</td><td>__r3_score__</td><td>__r3_note__</td></tr>
+        <tr><td></td><td>R4 __r4_name__</td><td>__r4_score__</td><td>__r4_note__</td></tr>
+        <tr><td></td><td>R5 __r5_name__</td><td>__r5_score__</td><td>__r5_note__</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:10px 14px;background:var(--s50);border-radius:var(--r);font-size:12px;color:var(--s500)">
+      <strong>Calculation</strong>: __score_formula__ = <strong>__total_score__</strong>
+    </div>
+  </div>
+
+  <!-- ========== FRAMEWORKS ========== -->
+  <div class="g3">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-h">&#128270; Pre-Mortem</div>
+      <div class="card-sub">How might this die?</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="color:var(--red)">&#128005; Tiger</th>
+            <th style="color:var(--amber)">&#128196; Paper</th>
+            <th style="color:var(--blue)">&#128024; Elephant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>__tiger__</td><td>__paper__</td><td>__elephant__</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-h">&#127919; MoSCoW MVP</div>
+      <div class="card-sub">Cut until one person can ship it</div>
+      <table>
+        <thead><tr><th style="color:var(--red)">Must</th><th style="color:var(--amber)">Should</th><th style="color:var(--green)">Could</th><th style="color:var(--s400)">Won't</th></tr></thead>
+        <tbody><tr><td>__must__</td><td>__should__</td><td>__could__</td><td>__wont__</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-h">&#128506; User Journey</div>
+      <div class="card-sub">Aha moment: __aha__</div>
+      <table>
+        <thead><tr><th>Stage</th><th>State</th><th>Issue</th></tr></thead>
+        <tbody>
+          <tr><td>Awareness</td><td>__stage_state__</td><td>__stage_issue__</td></tr>
+          <tr><td>Onboarding</td><td>__stage_state__</td><td>__stage_issue__</td></tr>
+          <tr><td>Retention</td><td>__stage_state__</td><td>__stage_issue__</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:6px;font-size:10px;color:var(--s400)">Churn: __churn_stage__</div>
+    </div>
+  </div>
+
+  <!-- ========== ADVISORS ========== -->
+  <div class="card">
+    <div class="card-h">&#127917; Five-Advisor Challenge Board</div>
+    <div class="card-sub">All challenges are based strictly on user-provided information.</div>
+
+    <div class="role"><div class="role-hd">&#128736; Tech Advisor &middot; Deliverability</div><div class="role-scroll"><table>
+      <thead><tr><th style="width:5%">#</th><th style="width:40%">Challenge</th><th style="width:12%">Level</th><th style="width:43%">Real Concern</th></tr></thead>
+      <tbody><tr><td>1</td><td>__challenge__</td><td><span class="pill __style__">__level__</span></td><td>__concern__</td></tr></tbody>
+    </table></div></div>
+
+    <div class="role"><div class="role-hd">&#128200; Growth Advisor &middot; Growth Viability</div><div class="role-scroll"><table>
+      <thead><tr><th style="width:5%">#</th><th style="width:40%">Challenge</th><th style="width:12%">Level</th><th style="width:43%">Real Concern</th></tr></thead>
+      <tbody><tr><td>1</td><td>__challenge__</td><td><span class="pill __style__">__level__</span></td><td>__concern__</td></tr></tbody>
+    </table></div></div>
+
+    <div class="role"><div class="role-hd">&#127912; UX Advisor &middot; Growth + Deliverability</div><div class="role-scroll"><table>
+      <thead><tr><th style="width:5%">#</th><th style="width:40%">Challenge</th><th style="width:12%">Level</th><th style="width:43%">Real Concern</th></tr></thead>
+      <tbody><tr><td>1</td><td>__challenge__</td><td><span class="pill __style__">__level__</span></td><td>__concern__</td></tr></tbody>
+    </table></div></div>
+
+    <div class="role"><div class="role-hd">&#128176; Business Advisor &middot; Sustainability</div><div class="role-scroll"><table>
+      <thead><tr><th style="width:5%">#</th><th style="width:40%">Challenge</th><th style="width:12%">Level</th><th style="width:43%">Real Concern</th></tr></thead>
+      <tbody><tr><td>1</td><td>__challenge__</td><td><span class="pill __style__">__level__</span></td><td>__concern__</td></tr></tbody>
+    </table></div></div>
+
+    <div class="role"><div class="role-hd">&#9878; Risk Advisor &middot; Risk Control</div><div class="role-scroll"><table>
+      <thead><tr><th style="width:5%">#</th><th style="width:40%">Challenge</th><th style="width:12%">Level</th><th style="width:43%">Real Concern</th></tr></thead>
+      <tbody><tr><td>1</td><td>__challenge__</td><td><span class="pill __style__">__level__</span></td><td>__concern__</td></tr></tbody>
+    </table></div></div>
+  </div>
+
+  <!-- ========== OPC DECISION ========== -->
+  <div class="card">
+    <div class="card-h">&#127183; OPC Decision Card</div>
+    <div class="card-sub">Five advisors' challenges distilled into a solo-founder action list</div>
+
+    <div class="opc-3">
+      <div class="opc-box do">
+        <div class="opc-box-h">&#9989; Do It Yourself</div>
+        <div class="opc-li">__item__</div>
+      </div>
+      <div class="opc-box help">
+        <div class="opc-box-h">&#9888; Get Help</div>
+        <div class="opc-li">__item__</div>
+      </div>
+      <div class="opc-box cut">
+        <div class="opc-box-h">&#10060; Cut It</div>
+        <div class="opc-li">__item__</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div style="font-size:14px;font-weight:600;margin-bottom:8px">&#9201; Recommended Time-box</div>
+      <table>
+        <thead><tr><th>Phase</th><th>Deliverable</th><th>Exit Criteria</th></tr></thead>
+        <tbody>
+          <tr><td><strong>3 wks &middot; Validate</strong></td><td>__3w_deliverable__</td><td>__3w_exit__</td></tr>
+          <tr><td><strong>6 wks &middot; MVP</strong></td><td>__6w_deliverable__</td><td>__6w_exit__</td></tr>
+          <tr><td><strong>3 mo &middot; Growth</strong></td><td>__3m_deliverable__</td><td>__3m_exit__</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ========== OPTIMIZATION ========== -->
+  <div class="card">
+    <div class="card-h">&#128295; Optimization Suggestions</div>
+    <table>
+      <thead><tr><th>Priority</th><th>Point</th><th>Impact</th><th>Cost</th><th>Solution</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill r">P0</span></td><td>__point__</td><td>__impact__</td><td>__cost__</td><td>__solution__</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== ACTION LIST ========== -->
+  <div class="card">
+    <div class="card-h">&#128203; Action List</div>
+    <ul style="list-style:none;padding:0">
+      <li style="margin:6px 0;padding:6px 10px;font-size:13px;border-left:3px solid var(--blue);background:var(--blue-ul);border-radius:0 var(--r) var(--r) 0">
+        <span style="color:var(--blue);font-weight:600">__owner__</span>
+        completes <strong>__deliverable__</strong>
+        by <span style="color:var(--orange);font-weight:600">__deadline__</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ========== DISCLAIMER ========== -->
+  <div class="disc">
+    <strong>&#9888; Disclaimer</strong>
+    <ul>
+      <li><strong>AI-Generated</strong> &mdash; This report is produced by OPC Board (AI). It does not constitute professional advice, investment guidance, or legal opinion.</li>
+      <li><strong>Accuracy</strong> &mdash; Scores are based solely on user-provided inputs. "Unconfirmed" items are inferred and may cause scoring bias.</li>
+      <li><strong>Compliance</strong> &mdash; Any compliance, legal, or data-security references are indicative only and do not replace licensed professional counsel.</li>
+      <li><strong>Decision</strong> &mdash; Go / Conditional Go / No Go ratings are advisory only. Final decisions rest with the user.</li>
+      <li><strong>Timeliness</strong> &mdash; This assessment reflects a point-in-time snapshot. Re-evaluate at key milestones.</li>
+    </ul>
+  </div>
+
+  <div class="ft">OPC Board &middot; __generated_at__ &middot; __total_score__ / 100</div>
+
+</div>
+</body>
+</html>

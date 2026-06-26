@@ -1,0 +1,8 @@
+{
+  "id": "analyze_query_engine",
+  "prompt": "请分析 /Users/mars/.openclaw/workspace/claude-code-source/src/QueryEngine.ts 文件。\n\n重点关注：\n1. Query Engine 的核心架构\n2. 消息处理流程  \n3. 工具调用机制\n4. 权限控制设计\n5. 与 OpenClaw 的对比优势\n\n输出简洁的技术分析，不超过500字。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T09:54:28.234311",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/analyze_query_engine.json"
+}

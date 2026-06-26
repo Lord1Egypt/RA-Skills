@@ -1,0 +1,22 @@
+vault_root: __SET_VAULT_ROOT__
+inbox_dir: 笔记同步助手
+research_dir: Research/同步助手主题卡片
+topic_updates_dir: Research/同步助手主题更新日志
+daily_digest_dir: Research/同步助手今日变更摘要
+artifacts_dir: artifacts
+state_dir: state
+exclude_bad_capture: true
+chunking:
+  target_min_chars: 400
+  target_max_chars: 800
+  overlap_chars: 100
+promotion:
+  min_quality: 0.55
+  min_docs: 3
+research:
+  min_chars: 220
+  max_external_sources: 3
+  network_timeout: 10
+  enable_network: true
+scan:
+  full_rescan_days: 7

@@ -1,35 +1,133 @@
----
-name: "OpenClaw Memory Fix Skill"
-description: "Provides a multi-layer memory system for OpenClaw, enabling AI to remember user preferences, learn from mistakes, and evolve continuously."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-memory-fix-skill"
-sourceUrl: "https://clawhub.ai/skills/openclaw-memory-fix-skill"
----
-
 # OpenClaw Memory Fix Skill
 
-> Provides a multi-layer memory system for OpenClaw, enabling AI to remember user preferences, learn from mistakes, and evolve continuously.
+> 专门解决 OpenClaw 记忆问题，让 AI 像人一样思考和成长
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-memory-fix-skill`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-memory-fix-skill](https://clawhub.ai/skills/openclaw-memory-fix-skill)
+## 简介
 
-## Overview
+这个 Skill 为 OpenClaw 提供完整的记忆系统解决方案，解决 AI "失忆" 问题，让 AI 能够：
+- 记住用户偏好
+- 从错误中学习
+- 持续进化成长
 
+## 解决的问题
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 问题 | 解决方案 |
+|------|----------|
+| 每次对话都是全新开始 | 三层记忆架构 |
+| 重复犯同样的错误 | FEEDBACK-LOG |
+| 不知道用户偏好 | USER.md + 语义记忆 |
+| 不会主动学习 | 主动学习机制 |
+| 效率与智能不平衡 | 分层缓存 + 动态推理 |
+
+## 核心功能
+
+### 1. 四层记忆架构
+- **短期**: 当前会话任务
+- **情景**: 每日工作日志
+- **语义**: 知识图谱
+- **长期**: 精选记忆
+
+### 2. 11大增强功能
+- 情绪识别
+- 置信度评估
+- 自我反思
+- 任务规划
+- 动态知识整合
+- 隐私治理
+- 可解释性
+- 弹性自适应
+- 持续进化
+- 协作共享
+- 元认知
+
+### 3. 7大性能优化
+- 分层缓存
+- 动态推理
+- 上下文压缩
+- 技能懒加载
+- 预测性交互
+- 效能监控
+- 知识图谱
+
+## 快速安装
+
 ```bash
-hermes skills install clawhub/openclaw-memory-fix-skill
+# 1. 复制配置到 workspace
+cp -r openclaw-memory-fix/config-files/* ~/.openclaw/workspace/
+
+# 2. 重启 OpenClaw
 ```
+
+## 文件结构
+
+```
+openclaw-memory-fix/
+├── SKILL.md                 # 说明文档
+├── memory-fix.json          # Skill 配置
+├── config-files/            # 核心配置（19个文件）
+│   ├── SOUL.md             # AI 身份
+│   ├── USER.md             # 用户信息
+│   ├── MEMORY.md           # 长期记忆
+│   ├── NOW.md              # 当前任务
+│   ├── AGENTS.md           # Agent 规则
+│   └── ...
+└── scripts/
+    └── auto-memlog.sh      # 自动记录工具
+```
+
+## 配置文件说明
+
+| 文件 | 用途 |
+|------|------|
+| SOUL.md | 定义 AI 是谁、性格、行为准则 |
+| USER.md | 记录用户基本信息、偏好 |
+| MEMORY.md | 长期精选记忆 |
+| NOW.md | 当前任务看板 |
+| AGENTS.md | 多代理分工、记忆规则 |
+| FEEDBACK-LOG.md | 错误记录与改进 |
+| TRAINING.md | 边做边教机制 |
+
+## 核心规则
+
+### 记忆触发规则
+1. 首次对话 → 创建当日记忆
+2. 完成任务 → 自动记录
+3. 用户说"记住" → 立即写入
+4. 每天 Heartbeat → 整理到 MEMORY
+
+### 置信度标准
+| 置信度 | 行动 |
+|--------|------|
+| 90-100% | 确定回答 |
+| 70-89% | 提供依据 |
+| 50-69% | 提供备选 |
+| <50% | 请求澄清 |
+
+## 使用示例
+
+### 记录工作
+```bash
+./auto-memlog.sh "完成任务A" "完成内容描述"
+```
+
+### 查看记忆
+```bash
+cat memory/2026-03-07.md
+```
+
+### 更新配置
+编辑对应的 .md 文件即可
+
+## 版本
+
+- v1.0: 基础记忆系统
+- v2.0: 完整11大功能 + 7大优化
+- v3.0: 元认知 + 主动学习
+
+## 作者
+
+Odin（总舵主）
+
+## 许可
+
+免费使用

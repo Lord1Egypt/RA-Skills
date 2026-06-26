@@ -1,35 +1,31 @@
 ---
-name: "OpenClaw Agent Control Skill"
-description: "Deploy and start OpenClaw Agent Control with one command (backend + frontend) using skill-based workflow."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-agent-control"
-sourceUrl: "https://clawhub.ai/skills/openclaw-agent-control"
+name: openclaw-agent-control
+description: Deploy and start OpenClaw Agent Control with one command (backend + frontend) using skill-based workflow.
 ---
 
 # OpenClaw Agent Control Skill
 
-> Deploy and start OpenClaw Agent Control with one command (backend + frontend) using skill-based workflow.
+## Purpose
+Deploy and run OpenClaw Agent Control quickly for operator usage.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-agent-control`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-agent-control](https://clawhub.ai/skills/openclaw-agent-control)
+## What this skill does
+- Clone or update repository.
+- Start backend on `8787`.
+- Build and start frontend on `3000`.
+- Provide health checks and runtime tips.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Use
 ```bash
-hermes skills install clawhub/openclaw-agent-control
+bash scripts/deploy_project.sh
 ```
+
+## Optional environment variables
+- `REPO_URL` default: `https://github.com/JiangAgentLabs/OpenClaw-Agent-Control.git`
+- `PROJECT_DIR` default: `/root/OpenClaw-Agent-Control`
+- `MONITOR_PORT` default: `8787`
+- `PORT` default: `3000`
+
+## Validation
+After deployment:
+- Frontend: `http://127.0.0.1:3000`
+- Backend: `http://127.0.0.1:8787/api/status`

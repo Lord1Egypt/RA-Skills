@@ -1,0 +1,67 @@
+<!--
+  Layout: ending
+  结尾页 — 致谢/CTA/联系方式
+  Agent 替换 {{...}} 占位符。
+  ending-contact 整块为可选：仅当用户明确提供了联系方式时才保留，否则整个 div.ending-contact 删除。
+  禁止自行编造或从其他项目推测联系方式/GitHub 地址等信息。
+-->
+<section class="slide slide--ending" data-slide="{{N}}">
+  <div class="ending-content">
+    <h2 class="ending-title">{{感谢语，如"谢谢"}}</h2>
+    <p class="ending-subtitle">{{副文案，如"期待与您合作"}}</p>
+    <!-- 可选：仅当用户提供了联系方式时保留 -->
+    <div class="ending-contact">
+      <div class="contact-item">
+        <span class="contact-label">邮箱</span>
+        <span class="contact-value">{{email}}</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">网站</span>
+        <span class="contact-value">{{website}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.slide--ending {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slide--ending .ending-content {
+  max-width: 88%;  /* 放宽：与 title 页对齐，避免结尾标题换行 */
+}
+.slide--ending .ending-title {
+  font-size: var(--font-size-title);
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+}
+.slide--ending .ending-subtitle {
+  font-size: var(--font-size-subheading);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+.slide--ending .ending-contact {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+.slide--ending .contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.slide--ending .contact-label {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.slide--ending .contact-value {
+  font-size: var(--font-size-body);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+</style>

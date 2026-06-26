@@ -1,0 +1,21 @@
+workflow_id: batch-review
+goal: Process many similar items in bounded parallel batches
+entry_conditions:
+  - items can be reviewed or revised independently
+phases:
+  - id: split_batch
+    agent: planner
+    output: batch_plan
+  - id: process_items
+    agent: reviewer
+    parallelism: 2-5
+    output: item_reviews
+  - id: aggregate
+    agent: synthesizer
+    output: batch_summary
+retry_modes:
+  failed_items_only: targeted-second-batch
+retry_targets:
+  failed_items_only: process_items
+completion_conditions:
+  - batch_summary_exists

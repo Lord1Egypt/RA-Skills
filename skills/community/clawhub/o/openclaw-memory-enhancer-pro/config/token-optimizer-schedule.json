@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "schedule": {
+    "analyze": "0 8 * * *",
+    "compress": "0 3 * * 0",
+    "suggest": "0 8 * * 1"
+  },
+  "settings": {
+    "keep_days": 30,
+    "auto_compress": true,
+    "notify_on_savings": true,
+    "min_savings_tokens": 500
+  },
+  "stats": {
+    "last_analyze": "2026-03-14T11:27:28.954488",
+    "last_compress": null,
+    "total_saved_tokens": 0
+  }
+}

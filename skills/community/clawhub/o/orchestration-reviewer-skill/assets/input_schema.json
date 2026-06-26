@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plan IR",
+  "type": "object",
+  "required": ["nodes", "edges"],
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "target_skill", "purpose", "scoped_state_keys"],
+        "properties": {
+          "node_id": {"type": "string"},
+          "target_skill": {"type": "string"},
+          "purpose": {"type": "string"},
+          "scoped_state_keys": {"type": "array", "items": {"type": "string"}},
+          "input_mapping": {"type": "object"},
+          "output_mapping": {"type": "object"},
+          "retry_policy": {"type": "object"},
+          "timeout_seconds": {"type": "integer"},
+          "human_review_required": {"type": "boolean"}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from_node", "to_node"],
+        "properties": {
+          "from_node": {"type": "string"},
+          "to_node": {"type": "string"},
+          "condition_type": {"type": "string", "enum": ["always", "on_success", "on_failure", "conditional"]},
+          "condition_expression": {"type": "string"},
+          "on_failure_route": {"type": "string"}
+        }
+      }
+    },
+    "entry_nodes": {"type": "array", "items": {"type": "string"}},
+    "exit_nodes": {"type": "array", "items": {"type": "string"}}
+  }
+}

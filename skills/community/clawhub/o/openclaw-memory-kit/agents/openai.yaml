@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw Memory Kit"
+  short_description: "Share and scaffold a sanitized OpenClaw memory system."
+  default_prompt: "Use $openclaw-memory-kit to scaffold a sanitized OpenClaw memory workspace and installer."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-07T17:42:12.239Z",
+  "name": "manual-20260308-014212",
+  "description": "Manual backup requested by Ray",
+  "workspace": "/Users/m1/.openclaw/workspace",
+  "openclaw_root": "/Users/m1/.openclaw",
+  "files": {
+    "SOUL.md": {
+      "size": 3747,
+      "hash": "sha256:b7f65d85948f6984de53d618e8fdd3c90ae6d96837877eafce13edc53ab36a79",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "USER.md": {
+      "size": 626,
+      "hash": "sha256:c9abc0adb0b80ea9291de16f4fdcade269f00bf2ff841364f15e158ab0932250",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "AGENTS.md": {
+      "size": 7869,
+      "hash": "sha256:b9a756230e062b1ee3fa5ea17b5d78fa938703938b1ce79bab6e34af41bfdbe4",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "IDENTITY.md": {
+      "size": 433,
+      "hash": "sha256:e102d128645903bdfcc17a8dcd0512a30424540692f769f1750166a04e9f32b3",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "TOOLS.md": {
+      "size": 1813,
+      "hash": "sha256:a0c60b97ff25461dcab624f29d727e36c76be948239aecc94b063fb1b0ffd97e",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "HEARTBEAT.md": {
+      "size": 168,
+      "hash": "sha256:dac422286075ba178e9bae58154cc0ae8749a66854e438c9c58e8eb91f22c126",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "BOOTSTRAP.md": {
+      "size": 1470,
+      "hash": "sha256:5c4cb81099167dc7901bf16d7d4b8fd4bdbb37d2ec57437952f9409f19b88e39",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "openclaw.sanitized.json": {
+      "size": 4306,
+      "hash": "sha256:2b472a37ad0db214d6c89c76ba6934c64393638e3676374993b32d74ce3c5de6",
+      "exists": true,
+      "sanitized": true,
+      "original": "~/.openclaw/openclaw.json",
+      "restoreTo": "manual"
+    }
+  },
+  "created_by": "workspace",
+  "openclaw_version": "1.1.1"
+}

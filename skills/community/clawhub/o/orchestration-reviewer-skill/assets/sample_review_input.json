@@ -1,0 +1,27 @@
+{
+  "business_goal": "新员工入职流程：完成账号开通、设备采购、工位安排、入职培训",
+  "existing_plan_ir": {
+    "nodes": [
+      {"node_id": "N1", "target_skill": "hr-onboarding", "purpose": "创建入职工单", "scoped_state_keys": ["employee_info", "ticket_id"], "timeout_seconds": 300},
+      {"node_id": "N2", "target_skill": "it-provisioning", "purpose": "开通IT账号", "scoped_state_keys": ["employee_info", "it_account_id"], "input_mapping": {"employee_info": "N1.employee_info"}, "timeout_seconds": 600},
+      {"node_id": "N3", "target_skill": "facilities-booking", "purpose": "安排工位", "scoped_state_keys": ["employee_info", "desk_id"], "input_mapping": {"employee_info": "N1.employee_info"}, "timeout_seconds": 300},
+      {"node_id": "N4", "target_skill": "notification-service", "purpose": "通知入职安排", "scoped_state_keys": ["employee_info", "it_account_id", "desk_id"], "input_mapping": {"it_account_id": "N2.it_account_id", "desk_id": "N3.desk_id"}, "timeout_seconds": 60}
+    ],
+    "edges": [
+      {"from_node": "N1", "to_node": "N2", "condition_type": "on_success"},
+      {"from_node": "N1", "to_node": "N3", "condition_type": "on_success"},
+      {"from_node": "N2", "to_node": "N4", "condition_type": "on_success"},
+      {"from_node": "N3", "to_node": "N4", "condition_type": "on_success"}
+    ],
+    "entry_nodes": ["N1"],
+    "exit_nodes": ["N4"]
+  },
+  "available_skills_manifest": [
+    {"skill_name": "hr-onboarding", "description": "员工入职流程管理", "allowed_context_scope": "full"},
+    {"skill_name": "it-provisioning", "description": "IT账号和设备开通", "allowed_context_scope": "full"},
+    {"skill_name": "facilities-booking", "description": "工位和设备采购", "allowed_context_scope": "read-only"},
+    {"skill_name": "notification-service", "description": "消息通知", "allowed_context_scope": "full"}
+  ],
+  "review_mode": "review_and_revise",
+  "review_preferences": {"strictness_level": "normal", "require_scorecard": true}
+}

@@ -1,0 +1,42 @@
+{
+  "id": "openclaw-i18n",
+  "name": "openclaw-i18n",
+  "version": "1.0.0",
+  "description": "Internationalization layer for OpenClaw — auto-detects language, enforces correct diacritics, formats dates/currency per locale, and pipes output through a post-processing cleaner. Supports Romanian and German.",
+  "author": "Bloom Media <bloommediacorporation@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/bloommediacorporation-lab/openclaw-i18n-skill",
+  "keywords": [
+    "openclaw",
+    "i18n",
+    "internationalization",
+    "diacritics",
+    "romanian",
+    "german",
+    "bloommedia"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "openclaw": {
+    "kind": "plugin",
+    "emoji": "🌍",
+    "languages": ["ro", "de"],
+    "pricing": "€5/month",
+    "trial": "7 days free",
+    "install": {
+      "id": "clawhub",
+      "kind": "clawhub",
+      "label": "Install via ClawHub",
+      "source": "bloommediacorporation-lab/openclaw-i18n-skill"
+    }
+  },
+  "extensions": [
+    "./processor/i18n_processor.py"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

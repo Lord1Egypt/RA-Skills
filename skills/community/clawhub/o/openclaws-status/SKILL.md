@@ -1,35 +1,54 @@
----
-name: "OpenClaw Status API"
-description: "Provides real-time OpenClaw agent statuses, cron job health, platform uptime, geocoding, and weather data via a paid API."
-category: "software-development"
-source: "ClawHub"
-tags: [api, base, monetization, status, x402]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaws-status"
-sourceUrl: "https://clawhub.ai/skills/openclaws-status"
----
-
 # OpenClaw Status API
 
-> Provides real-time OpenClaw agent statuses, cron job health, platform uptime, geocoding, and weather data via a paid API.
+Monetize your OpenClaw agent status and health as an x402-paid API endpoint.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaws-status`
-- **Source URL:** [https://clawhub.ai/skills/openclaws-status](https://clawhub.ai/skills/openclaws-status)
+## What It Does
 
-## Overview
+- Returns agent status (active/idle)
+- Reports cron job health  
+- Shows platform uptime
+- Geocode locations via Nominatim
+- Weather data via Open-Meteo
 
+## Endpoints
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Endpoint | Description |
+|----------|-------------|
+| `/api/status` | Get all agent statuses, cron jobs |
+| `/api/geocode?q=City` | Geocode location to lat/lon |
+| `/api/weather?lat=X&lon=Y` | Get weather by coordinates |
+
+## Price
+
+$0.001 USDC per request via x402 on Base
+
+## Setup
+
 ```bash
-hermes skills install clawhub/openclaws-status
+# Deploy to Vercel
+vercel deploy --prod
+
+# Or run locally
+npm install
+node index.js
+```
+
+## Wallet
+
+Payments: `0x483AE22AaEc52c0a1871C07E631d325bF5C8A08`
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "platform": "OpenClaw Status API",
+  "agents": [
+    { "name": "main", "status": "active" },
+    { "name": "ceo", "status": "active" }
+  ],
+  "cronJobs": [
+    { "name": "Simmer Trading", "schedule": "15min", "status": "active" }
+  ]
+}
 ```

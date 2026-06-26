@@ -1,0 +1,39 @@
+{
+  "id": "openclaw-plugin-dg-lab",
+  "name": "DG-Lab V3 Controller",
+  "description": "Connect and control DG-Lab (Coyote) V3 devices via WebSocket. Provides agent tools, chat commands, and an emotion-driven stimulation engine.",
+  "version": "1.0.3",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "port": {
+        "type": "number",
+        "default": 18888
+      },
+      "serverIp": {
+        "type": "string"
+      },
+      "limitIntensity": {
+        "type": "number",
+        "default": 40,
+        "minimum": 0,
+        "maximum": 200
+      }
+    }
+  },
+  "uiHints": {
+    "port": {
+      "label": "WebSocket Port",
+      "placeholder": "18888"
+    },
+    "serverIp": {
+      "label": "Public Server IP / Domain",
+      "placeholder": "e.g., 203.0.113.10"
+    },
+    "limitIntensity": {
+      "label": "Default Intensity Limit (0-200)",
+      "placeholder": "40"
+    }
+  }
+}

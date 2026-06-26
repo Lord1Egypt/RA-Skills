@@ -1,0 +1,68 @@
+{
+  "name": "example-triggers",
+  "description": "Example trigger rate test queries. Replace with queries relevant to your skill.",
+  "skill_name": "weather",
+  "skill_path": "weather/SKILL.md",
+  "evals": [
+    {
+      "id": 1,
+      "query": "What's the weather in Singapore?",
+      "expected": true,
+      "category": "positive_direct"
+    },
+    {
+      "id": 2,
+      "query": "Will it rain tomorrow in London?",
+      "expected": true,
+      "category": "positive_direct"
+    },
+    {
+      "id": 3,
+      "query": "Check the temperature in Tokyo",
+      "expected": true,
+      "category": "positive_direct"
+    },
+    {
+      "id": 4,
+      "query": "I'm going hiking this weekend, what's the forecast?",
+      "expected": true,
+      "category": "positive_indirect"
+    },
+    {
+      "id": 5,
+      "query": "Should I bring an umbrella today?",
+      "expected": true,
+      "category": "positive_indirect"
+    },
+    {
+      "id": 6,
+      "query": "What is 2 + 2?",
+      "expected": false,
+      "category": "negative_unrelated"
+    },
+    {
+      "id": 7,
+      "query": "Help me write a Python function to sort a list",
+      "expected": false,
+      "category": "negative_coding"
+    },
+    {
+      "id": 8,
+      "query": "What's the capital of France?",
+      "expected": false,
+      "category": "negative_trivia"
+    },
+    {
+      "id": 9,
+      "query": "Tell me a joke",
+      "expected": false,
+      "category": "negative_casual"
+    },
+    {
+      "id": 10,
+      "query": "Summarize this article for me",
+      "expected": false,
+      "category": "negative_other_skill"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "deeprecall": {
+    "summarizer": {
+      "preferred_provider": "deepseek-reasoner",
+      "preferred_model": "deepseek-reasoner",
+      "max_content_length": 6000,
+      "temperature": 0.1,
+      "max_tokens": 4000,
+      "timeout_seconds": 180,
+      "store_raw_content": true,
+      "auto_summarize_cron": "0 2 * * *"
+    }
+  }
+}

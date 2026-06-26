@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-24T21:54:00-07:00",
+  "templates": {
+    "whatsapp": [
+      {
+        "name": "appointment-confirm",
+        "displayName": "Appointment Confirmation",
+        "type": "notification",
+        "priority": "high",
+        "variables": ["recipient_name", "date", "time", "location", "service"],
+        "path": "whatsapp/appointment-confirm.md"
+      },
+      {
+        "name": "appointment-reminder",
+        "displayName": "Appointment Reminder",
+        "type": "notification",
+        "priority": "normal",
+        "variables": ["recipient_name", "date", "time", "location"],
+        "path": "whatsapp/appointment-reminder.md"
+      },
+      {
+        "name": "payment-received",
+        "displayName": "Payment Received",
+        "type": "notification",
+        "priority": "high",
+        "variables": ["recipient_name", "amount", "invoice_id", "service", "delivery_date"],
+        "path": "whatsapp/payment-received.md"
+      },
+      {
+        "name": "status-update",
+        "displayName": "Status Update",
+        "type": "notification",
+        "priority": "normal",
+        "variables": ["recipient_name", "status_text", "cta_url"],
+        "path": "whatsapp/status-update.md"
+      },
+      {
+        "name": "broadcast-promotion",
+        "displayName": "Broadcast Promotion",
+        "type": "marketing",
+        "priority": "low",
+        "variables": ["sender_name", "message", "cta_url"],
+        "path": "whatsapp/broadcast-promotion.md"
+      },
+      {
+        "name": "support-acknowledged",
+        "displayName": "Support Acknowledged",
+        "type": "notification",
+        "priority": "normal",
+        "variables": ["recipient_name", "ticket_id"],
+        "path": "whatsapp/support-acknowledged.md"
+      }
+    ],
+    "telegram": [
+      {
+        "name": "system-alert",
+        "displayName": "System Alert",
+        "type": "alert",
+        "priority": "high",
+        "parseMode": "HTML",
+        "variables": ["subject", "message", "action_required", "timestamp"],
+        "path": "telegram/system-alert.md"
+      },
+      {
+        "name": "status-report",
+        "displayName": "Status Report",
+        "type": "report",
+        "priority": "normal",
+        "parseMode": "Markdown",
+        "variables": ["title", "metrics", "cta_url"],
+        "path": "telegram/status-report.md"
+      },
+      {
+        "name": "daily-brief",
+        "displayName": "Daily Brief",
+        "type": "report",
+        "priority": "normal",
+        "parseMode": "Markdown",
+        "variables": ["date", "sections"],
+        "path": "telegram/daily-brief.md"
+      },
+      {
+        "name": "broadcast",
+        "displayName": "Broadcast",
+        "type": "broadcast",
+        "priority": "low",
+        "parseMode": "Markdown",
+        "variables": ["sender_name", "message", "cta_url"],
+        "path": "telegram/broadcast.md"
+      }
+    ],
+    "email": [
+      {
+        "name": "invoice",
+        "displayName": "Invoice",
+        "type": "notification",
+        "priority": "high",
+        "variables": ["recipient_name", "invoice_number", "date", "due_date", "amount", "line_items", "total", "payment_url", "sender_name", "unsubscribe_url"],
+        "path": "email/invoice.md"
+      },
+      {
+        "name": "welcome",
+        "displayName": "Welcome Email",
+        "type": "notification",
+        "priority": "normal",
+        "variables": ["recipient_name", "company", "next_steps", "cta_url", "unsubscribe_url"],
+        "path": "email/welcome.md"
+      },
+      {
+        "name": "notification",
+        "displayName": "Generic Notification",
+        "type": "notification",
+        "priority": "normal",
+        "variables": ["recipient_name", "subject", "message", "cta_url", "sender_name", "unsubscribe_url"],
+        "path": "email/notification.md"
+      }
+    ]
+  }
+}

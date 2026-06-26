@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product Spec Metadata",
+  "description": "Schema for product spec metadata. Used by product_tracker.py.",
+  "type": "object",
+  "required": [
+    "product_id",
+    "product_name",
+    "product_type",
+    "status"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Unique ID in format: YYYY-MM-DD_product-slug",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}_[a-z0-9-]+$"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Name of the product"
+    },
+    "product_slug": {
+      "type": "string",
+      "description": "URL-safe lowercase slug",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "tagline": {
+      "type": ["string", "null"],
+      "description": "One-sentence product description"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": ["web_app", "api_service", "cli_tool", "browser_extension", "mobile_app", "static_site", "automation", "ai_agent"],
+      "description": "Product type classification"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "spec", "building", "launched", "paused", "archived"],
+      "description": "Current lifecycle phase"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Spec version number, incremented on each revision"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the spec was created"
+    },
+    "updated_at": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date of last update"
+    },
+
+    "brief": {
+      "type": "object",
+      "properties": {
+        "target_user": {
+          "type": ["string", "null"],
+          "description": "Primary target user description"
+        },
+        "primary_use_case": {
+          "type": ["string", "null"],
+          "description": "The core use case this product serves"
+        },
+        "success_metric": {
+          "type": ["string", "null"],
+          "description": "How you'll know the product is working"
+        },
+        "brief_completeness": {
+          "type": ["string", "null"],
+          "enum": ["full", "partial", "assumptions_made", null],
+          "description": "How complete the initial idea brief was"
+        },
+        "brief_assumptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Assumptions made when the brief was incomplete"
+        }
+      },
+      "description": "Product brief / idea intake outputs"
+    },
+
+    "scope": {
+      "type": "object",
+      "properties": {
+        "user_story_count": {
+          "type": ["integer", "null"],
+          "description": "Total number of user stories"
+        },
+        "mvp_story_count": {
+          "type": ["integer", "null"],
+          "description": "Number of P0 (MVP) stories"
+        },
+        "deferred_story_count": {
+          "type": ["integer", "null"],
+          "description": "Number of P1+P2 (deferred) stories"
+        },
+        "complexity_score": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Complexity score (1-10)"
+        },
+        "complexity_grade": {
+          "type": ["string", "null"],
+          "enum": ["weekend", "week", "multi_week", "complex", null],
+          "description": "Human-readable complexity grade"
+        },
+        "complexity_factors": {
+          "type": ["object", "null"],
+          "properties": {
+            "entity_count": { "type": "integer" },
+            "auth_complexity": { "type": "integer" },
+            "integration_count": { "type": "integer" },
+            "realtime_features": { "type": "integer" },
+            "payment_processing": { "type": "integer" }
+          },
+          "description": "Per-factor complexity breakdown"
+        }
+      },
+      "description": "Scope and complexity assessment"
+    },
+
+    "tech_stack": {
+      "type": ["object", "null"],
+      "properties": {
+        "frontend": { "type": ["string", "null"] },
+        "backend": { "type": ["string", "null"] },
+        "database": { "type": ["string", "null"] },
+        "auth": { "type": ["string", "null"] },
+        "deployment": { "type": ["string", "null"] },
+        "external_apis": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "estimated_monthly_cost": {
+          "type": ["string", "null"],
+          "enum": ["free", "under_20", "under_100", "under_500", "over_500", null],
+          "description": "Rough monthly infrastructure cost estimate"
+        }
+      },
+      "description": "Recommended tech stack"
+    },
+
+    "spec_completeness": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 100,
+      "description": "How complete the spec is (0-100). 100 = all sections filled."
+    },
+
+    "handoff_generated": {
+      "type": ["boolean", "null"],
+      "description": "Whether an AGENTS.md-style handoff spec has been generated"
+    },
+
+    "output_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Relative paths to generated spec files"
+    },
+
+    "contract_id": {
+      "type": ["string", "null"],
+      "description": "Linked contract ID from opc-contract-manager"
+    },
+    "landing_page_project_id": {
+      "type": ["string", "null"],
+      "description": "Linked landing page project ID from opc-landing-page-manager"
+    },
+    "related_invoices": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Invoice IDs from opc-invoice-manager related to this product"
+    },
+
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-form notes about this product spec"
+    }
+  }
+}

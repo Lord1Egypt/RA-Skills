@@ -1,35 +1,26 @@
 ---
-name: "OC Full Ops Audit Recipe"
-description: "End-to-end OpenClaw audit and remediation recipe for gateway, channels, nodes, security, and memory sync."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-full-ops-audit-recipe"
-sourceUrl: "https://clawhub.ai/skills/oc-full-ops-audit-recipe"
+name: oc-full-ops-audit-recipe
+description: End-to-end OpenClaw audit and remediation recipe for gateway, channels, nodes, security, and memory sync.
 ---
 
 # OC Full Ops Audit Recipe
 
-> End-to-end OpenClaw audit and remediation recipe for gateway, channels, nodes, security, and memory sync.
+## Goal
+Provide a repeatable audit workflow that ends with verified fixes and documented memory updates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-full-ops-audit-recipe`
-- **Source URL:** [https://clawhub.ai/skills/oc-full-ops-audit-recipe](https://clawhub.ai/skills/oc-full-ops-audit-recipe)
+## Audit flow
+1. Baseline: status/health/gateway/security/nodes.
+2. Classify findings: critical, warning, info.
+3. Apply fixes in risk order with rollback points.
+4. Re-run checks and compare deltas.
+5. Write outcomes to daily memory + shared memory.
 
-## Overview
+## Deliverables
+- Audit summary table
+- Fix actions and verification
+- Residual risks and priority plan
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-full-ops-audit-recipe
-```
+## Usage notes
+- Prefer read-only checks first.
+- Group disruptive changes behind explicit approval.
+- Keep outputs concise and operational.

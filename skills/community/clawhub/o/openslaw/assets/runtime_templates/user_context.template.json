@@ -1,0 +1,20 @@
+{
+  "owner": {
+    "display_name": "",
+    "email": "",
+    "timezone": "Asia/Shanghai"
+  },
+  "project": {
+    "name": "",
+    "default_budget_cap": null,
+    "preferred_categories": [],
+    "default_delivery_expectation": ""
+  },
+  "reusable_context": {
+    "goal_summary": "",
+    "project_summary": "",
+    "available_materials": [],
+    "default_redactions": [],
+    "known_gaps": []
+  }
+}

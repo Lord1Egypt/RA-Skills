@@ -1,35 +1,135 @@
----
-name: "novel-writer"
+﻿---
+name: novel-writer
 description: "小说创作 Agent。支持参考文章风格分析、多重大小阶级世界观、大纲灵活推进、分段写作+编辑审读。当用户提到写小说、创作小说、小说agent、参考文章风格写作时使用此 skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/novel-writer-giantess"
-sourceUrl: "https://clawhub.ai/skills/novel-writer-giantess"
 ---
 
-# novel-writer
+# Novel Writer — 小说创作 Agent
 
-> 小说创作 Agent。支持参考文章风格分析、多重大小阶级世界观、大纲灵活推进、分段写作+编辑审读。当用户提到写小说、创作小说、小说agent、参考文章风格写作时使用此 skill。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/novel-writer-giantess`
-- **Source URL:** [https://clawhub.ai/skills/novel-writer-giantess](https://clawhub.ai/skills/novel-writer-giantess)
+个人创作助手，专攻长篇连载小说。核心特色：
+- **风格学习**：从参考文章自动提取风格参数，也可手动配置
+- **世界观管理**：模板+自由设定混合模式，自动维护设定一致性索引
+- **大纲灵活推进**：大纲偏航检测+用户决策
+- **分段写作+编辑审读**：逐段确认+四维审读保障质量
 
-## Overview
+## 触发场景
 
+当用户提到以下意图时激活此 skill：
+- "新建小说项目" / "写小说" / "创建小说"
+- "分析风格" / "参考文章风格"
+- "生成大纲" / "写下一章" / "审读"
+- 任何与小说创作相关的请求
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/novel-writer-giantess
+## 核心命令
+
+| 用户说 | Agent 做 |
+|--------|----------|
+| "新建小说项目 [名称]" | 初始化项目目录结构，引导配置风格/主题/世界观 |
+| "分析这篇文章的风格" | 读取参考文章，输出风格参数表供确认 |
+| "调整风格" / "调整主题" | 更新项目配置 |
+| "生成大纲" | 根据主题+世界观生成卷章结构 |
+| "写下一章" / "继续写作" | 按大纲分段写作，逐段确认 |
+| "审读第X章" | 运行四维审读，输出报告 |
+| "偏离检查" | 检查大纲偏航，给出选项 |
+| "更新设定索引" | 扫描设定文件，刷新一致性索引 |
+| "添加角色" / "添加设定" | 创建角色卡/设定文件，更新索引 |
+
+## 工作流程
+
+### 1. 项目初始化
+
+用户说"新建小说项目 XXX"时：
+1. 创建项目目录结构
+2. 引导选择世界观模板或自由创建
+3. 引导配置风格（丢文章分析 or 手动配置）
+4. 引导配置主题
+5. 生成 config.yaml
+6. 更新设定索引
+
+项目目录结构：
 ```
+novel-projects/[项目名]/
+├── config.yaml          # 风格、主题、世界观、写作参数配置
+├── outline.md           # 大纲（卷→章）
+├── settings/            # 世界观设定
+│   ├── world.md         # 世界观核心设定
+│   ├── rules.md         # 力量体系/阶级规则
+│   └── index.yaml       # 设定一致性索引（自动生成）
+├── characters/          # 角色卡
+│   └── [角色名].md
+├── chapters/            # 章节正文
+│   ├── ch01.md
+│   └── ch02.md
+└── reviews/             # 编辑审读记录
+    └── ch01-review.md
+```
+
+### 2. 风格分析
+
+读取用户提供的参考文章，按以下维度提取风格参数：
+
+1. **用词倾向**：口语化程度、文学性、高频词
+2. **句式节奏**：长短句比例、对话平均长度、拟声词使用
+3. **叙事视角**：主视角、切换规律、双视角对照技法
+4. **描写比重**：对话/动作/心理/尺度/性感各占比例
+5. **情感基调**：情绪曲线、黑色幽默模式
+6. **对话风格**：男性/女性/巨人角色对话特征
+7. **修辞偏好**：尺度隐喻、数字具体化、参照物锚定
+8. **感官描写**：视/触/听/嗅比例
+9. **性感描写**：身体部位排序、服装要素排序、嵌入方式
+10. **叙事结构**：章节组织、设定嵌入、升级节奏
+
+输出格式化的风格参数表，用户确认或微调后写入 config.yaml。
+
+使用 `prompts/style-analyzer.md` 模板。
+
+### 3. 大纲管理
+
+大纲采用卷→章两级结构，每章包含：
+- 标题、摘要（200字以内）
+- 关键事件（3-5个）
+- 视角层级（pov_tier）+ 视角角色（pov_character）+ 尺度提示（scale_note）
+- 状态（planned / writing / done）
+- 偏航记录（deviation）
+
+大纲偏航检测在每章写完后自动运行。
+
+使用 `prompts/outline-generator.md` 和 `prompts/deviation-checker.md` 模板。
+
+### 4. 分段写作
+
+每章自动拆分段落（场景切换/视角切换/时间跳跃 = 新段落）。
+每段目标 800-1500 字（可配置）。
+
+每段注入上下文：风格配置 + 世界观索引 + 角色卡(本章相关) + 大纲(本章+前后章) + 前文(最近2段) + 视角层级提示 + 主题关键词
+
+流程：生成段落 → 用户确认/修改 → 下一段 → ... → 成章
+
+使用 `prompts/segment-writer.md` 模板。
+
+### 5. 编辑审读
+
+成章后自动触发四维审读：
+
+| 维度 | 检查内容 | 严重程度 |
+|------|----------|----------|
+| 一致性 | 角色行为/外貌/能力是否与设定矛盾 | 🔴 必须修 |
+| 情节逻辑 | 因果链是否断裂，伏笔是否遗忘 | 🔴 必须修 |
+| 风格偏移 | 与风格配置的偏离程度 | 🟡 建议修 |
+| 尺度感 | 视角层级对应的体感描写是否到位 | 🟡 建议修 |
+
+使用 `prompts/reviewer.md` 模板。
+
+## 配置文件
+
+详见 `templates/size-hierarchy.yaml` 和项目 `config.yaml`。
+
+## 注意事项
+
+1. **写作语言**：默认简体中文
+2. **Token 预算**：参考文章仅分析阶段使用，写作时只注入风格参数表
+3. **设定一致性**：每次写作前检查 index.yaml
+4. **尺度描写**：严格执行尺度隐喻+参照物锚定+双视角对照
+5. **性感描写**：嵌入式不停顿，用尺度对比放大
+6. **用户控制**：每段确认、每章审读、偏航决策

@@ -1,0 +1,45 @@
+{
+  "locale": "en-US",
+  "theme": "crimson",
+  "avatar_style": "robot_classic",
+  "tap_action": "nudge",
+  "hero_metric": "score",
+  "deployment": {
+    "mode": "local",
+    "cloud_enabled": false,
+    "cloud_url": ""
+  },
+  "dashboard": {
+    "title": "OpenClaw Studio",
+    "subtitle": "Local visual operations dashboard for one OpenClaw agent.",
+    "widgets": [
+      "agent_status",
+      "autoheal",
+      "chat",
+      "efficiency_trend"
+    ]
+  },
+  "agent": {
+    "id": "main",
+    "type": "openclaw",
+    "display_name": "OpenClaw Main",
+    "robot_name": "OpenClaw Main",
+    "openclaw": {
+      "home": "~/.openclaw",
+      "session_key": "agent:main:main",
+      "case_roots": [
+        "~/Documents/OpenClaw/cases"
+      ]
+    }
+  },
+  "monitoring": {
+    "force_work_mode": true,
+    "require_reply_after_nudge": true,
+    "force_idle_threshold_sec": 180,
+    "normal_idle_threshold_rounds": 4,
+    "overdue_threshold_rounds": 2,
+    "soft_heal_cooldown_sec": 180,
+    "hard_heal_cooldown_sec": 420,
+    "allow_hard_restart": false
+  }
+}

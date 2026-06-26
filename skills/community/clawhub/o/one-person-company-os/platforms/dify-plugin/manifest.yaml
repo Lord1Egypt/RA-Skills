@@ -1,0 +1,27 @@
+version: 0.0.1
+type: plugin
+author: living-hi
+name: one-person-company-os
+label:
+  en_US: One Person Company OS
+  zh_Hans: AI 一人公司经营驾驶舱
+description:
+  en_US: Build a visual operating cockpit for an AI-native one-person company.
+  zh_Hans: 为 AI 一人公司建立可视化经营驾驶舱。
+icon: ""
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/one-person-company-os.yaml
+meta:
+  version: 1.0.3
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.11"

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — LocaleFlow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span>🌐</span> LocaleFlow
+      </a>
+      <ul class="nav-links">
+        <li><a href="docs.html">Docs</a></li>
+        <li><a href="changelog.html" class="active">Changelog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="changelog">
+      <h1>Changelog</h1>
+      <p>All notable changes to LocaleFlow are documented here.</p>
+
+      <!-- v1.0.0 -->
+      <div class="changelog-version" data-animate="fade-up">
+        <div class="changelog-header">
+          <span class="changelog-version-number">v1.0.0</span>
+          <span class="changelog-date">March 2026</span>
+        </div>
+        <p>Initial release — the first i18n post-processing layer for OpenClaw.</p>
+        
+        <h4 style="margin-top: var(--space-4); margin-bottom: var(--space-2);">Added</h4>
+        <ul class="changelog-features">
+          <li>SKILL.md — Agent configuration layer with language detection and output rules</li>
+          <li>Post-processor engine — Python-based text cleaning with diacritics fixing</li>
+          <li>Romanian support — ă, â, î, ș, ț diacritics, 30+ typo corrections</li>
+          <li>German support — ü, ö, ä, ß diacritics, 20+ typo corrections</li>
+          <li>Stray character removal — Removes CJK/Cyrillic/Arabic artifacts glued to Latin text</li>
+          <li>Whitespace normalization — Fixes double spaces, trailing/leading spaces</li>
+          <li>Locale formatting — Date, currency, and phone number formats per language</li>
+          <li>Auto-detection — Detects language from context with 80% confidence threshold</li>
+          <li>Configuration commands — Set/reset language via natural language</li>
+          <li>26 passing tests — Comprehensive test suite for all features</li>
+          <li>Full documentation — Installation, configuration, troubleshooting guides</li>
+          <li>Website — Landing page, docs, changelog</li>
+        </ul>
+
+        <h4 style="margin-top: var(--space-4); margin-bottom: var(--space-2);">Known Issues</h4>
+        <ul class="changelog-features">
+          <li>Some edge cases in auto-detection may require manual language setting</li>
+        </ul>
+      </div>
+
+      <!-- v1.1 -->
+      <div class="changelog-version" data-animate="fade-up">
+        <div class="changelog-header">
+          <span class="changelog-version-number">v1.1</span>
+          <span class="changelog-date">March 2026</span>
+        </div>
+        <p>French and Spanish support now stable.</p>
+        <ul class="changelog-features">
+          <li>French support — à â ç é è ê ë î ï ô û ù ü diacritics, 60+ typo corrections</li>
+          <li>Spanish support — á é í ó ú ñ ü diacritics, 100+ typo corrections</li>
+          <li>High-confidence interrogative fixes (qué, cómo, dónde, quién, etc.)</li>
+          <li>Conservative ambiguous-word handling (si/sí, tu/tú, el/él)</li>
+        </ul>
+      </div>
+
+      <!-- Roadmap -->
+      <div class="roadmap">
+        <h2>Coming Soon</h2>
+        
+        <div class="changelog-version" data-animate="fade-up">
+          <div class="changelog-header">
+            <span class="changelog-version-number">v1.1</span>
+            <span class="changelog-date">Q2 2026</span>
+          </div>
+          <p>More European languages.</p>
+          <ul class="changelog-features">
+            <li>Italian support</li>
+            <li>Portuguese support</li>
+          </ul>
+        </div>
+
+        <div class="changelog-version" data-animate="fade-up">
+          <div class="changelog-header">
+            <span class="changelog-version-number">v1.2</span>
+            <span class="changelog-date">Q3 2026</span>
+          </div>
+          <p>More European languages.</p>
+          <ul class="changelog-features">
+            <li>Italian support</li>
+            <li>Portuguese support</li>
+          </ul>
+        </div>
+
+        <div class="changelog-version" data-animate="fade-up">
+          <div class="changelog-header">
+            <span class="changelog-version-number">v1.3</span>
+            <span class="changelog-date">Q4 2026</span>
+          </div>
+          <p>Advanced features (experimental).</p>
+          <ul class="changelog-features">
+            <li>Advanced grammar correction using language-tool-python</li>
+            <li>Style suggestions based on context</li>
+            <li>Custom rule definitions for domain-specific vocabulary</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="https://github.com/bloommediacorporation-lab/openclaw-i18n-skill">GitHub</a></li>
+        </ul>
+        <p class="footer-copyright">Built by Bloom Media © 2026</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

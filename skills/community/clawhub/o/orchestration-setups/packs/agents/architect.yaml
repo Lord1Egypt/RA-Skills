@@ -1,0 +1,20 @@
+name: architect
+purpose: define structure, interfaces, and decomposition before build
+best_for:
+  - system design
+  - module boundaries
+  - tradeoff framing
+avoid_for:
+  - approving own architecture
+  - low-level mechanical edits
+default_model_category: brain
+input_contract:
+  - goal
+  - constraints
+  - spec
+output_contract:
+  - architecture plan
+  - module split
+  - risks
+reviewer_for:
+  - planner

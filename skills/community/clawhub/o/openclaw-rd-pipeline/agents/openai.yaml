@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw RD Pipeline"
+  short_description: "Feishu R&D workflow orchestration and QA gates"
+  default_prompt: "Use $openclaw-rd-pipeline to run this Feishu requirement from intake to coding, review, testing, bug loop, and closure."

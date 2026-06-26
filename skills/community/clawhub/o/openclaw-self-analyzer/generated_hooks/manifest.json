@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-03-03 22:42:05.277752",
+  "hooks": [
+    {
+      "name": "pre_input_receive_custom",
+      "type": "pre",
+      "stage": "input_receive",
+      "file": "pre_input_receive_custom.js"
+    },
+    {
+      "name": "pre_context_gather_custom",
+      "type": "pre",
+      "stage": "context_gather",
+      "file": "pre_context_gather_custom.js"
+    },
+    {
+      "name": "pre_memory_retrieve_custom",
+      "type": "pre",
+      "stage": "memory_retrieve",
+      "file": "pre_memory_retrieve_custom.js"
+    },
+    {
+      "name": "pre_prompt_assemble_custom",
+      "type": "pre",
+      "stage": "prompt_assemble",
+      "file": "pre_prompt_assemble_custom.js"
+    },
+    {
+      "name": "pre_token_check_custom",
+      "type": "pre",
+      "stage": "token_check",
+      "file": "pre_token_check_custom.js"
+    },
+    {
+      "name": "pre_context_compress_custom",
+      "type": "pre",
+      "stage": "context_compress",
+      "file": "pre_context_compress_custom.js"
+    },
+    {
+      "name": "pre_llm_submit_custom",
+      "type": "pre",
+      "stage": "llm_submit",
+      "file": "pre_llm_submit_custom.js"
+    },
+    {
+      "name": "pre_response_process_custom",
+      "type": "pre",
+      "stage": "response_process",
+      "file": "pre_response_process_custom.js"
+    },
+    {
+      "name": "pre_memory_store_custom",
+      "type": "pre",
+      "stage": "memory_store",
+      "file": "pre_memory_store_custom.js"
+    }
+  ]
+}

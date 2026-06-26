@@ -1,0 +1,19 @@
+name: critic
+purpose: challenge a synthesis, plan, or design by surfacing weak evidence and hidden assumptions
+best_for:
+  - gap detection
+  - adversarial review
+  - robustness checks
+avoid_for:
+  - first-pass creation
+default_model_category: brain
+input_contract:
+  - target artifact
+  - evaluation criteria
+output_contract:
+  - weaknesses
+  - missing evidence
+  - recommended next pass
+reviewer_for:
+  - synthesizer
+  - planner

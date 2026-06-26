@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice {{invoice_number}}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1a1a1a;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+    .logo-area { max-width: 200px; }
+    .logo-area .company-name { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+    .invoice-title { text-align: right; }
+    .invoice-title h1 { font-size: 28px; font-weight: 300; color: #333; letter-spacing: 2px; margin-bottom: 8px; }
+    .invoice-title .invoice-number { font-size: 16px; color: #666; }
+    .parties { display: flex; justify-content: space-between; margin-bottom: 32px; }
+    .party { width: 45%; }
+    .party-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; font-weight: 600; }
+    .party-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+    .party-detail { color: #555; font-size: 13px; }
+    .meta-table { width: 100%; margin-bottom: 32px; border-collapse: collapse; }
+    .meta-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+    .meta-table td:first-child { font-weight: 600; color: #555; width: 160px; }
+    .line-items { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .line-items thead th {
+      text-align: left; padding: 10px 12px; border-bottom: 2px solid #1a1a1a;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #555;
+    }
+    .line-items thead th:last-child, .line-items thead th:nth-child(4), .line-items thead th:nth-child(5) { text-align: right; }
+    .line-items tbody td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+    .line-items tbody td:last-child, .line-items tbody td:nth-child(4), .line-items tbody td:nth-child(5) { text-align: right; }
+    .line-items tbody tr:last-child td { border-bottom: 2px solid #1a1a1a; }
+    .totals { width: 300px; margin-left: auto; margin-bottom: 40px; }
+    .totals table { width: 100%; border-collapse: collapse; }
+    .totals td { padding: 6px 0; }
+    .totals td:last-child { text-align: right; }
+    .totals .total-row { border-top: 2px solid #1a1a1a; font-weight: 700; font-size: 18px; }
+    .totals .total-row td { padding-top: 12px; }
+    .section { margin-bottom: 24px; }
+    .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; font-weight: 600; }
+    .section-content { color: #333; font-size: 13px; }
+    .footer { margin-top: 60px; padding-top: 16px; border-top: 1px solid #eee; text-align: center; color: #999; font-size: 11px; }
+    @media print {
+      body { padding: 20px; max-width: none; }
+      .footer { position: fixed; bottom: 20px; left: 0; right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-area">
+      <!-- Logo placeholder: replace with <img src="logo.png" alt="Logo" style="max-height:60px"> -->
+      <div class="company-name">{{your_entity_name}}</div>
+    </div>
+    <div class="invoice-title">
+      <h1>INVOICE</h1>
+      <div class="invoice-number">{{invoice_number}}</div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <div class="party-label">From</div>
+      <div class="party-name">{{your_entity_name}}</div>
+      <div class="party-detail">{{your_entity_address}}</div>
+      <div class="party-detail">{{your_entity_email}}</div>
+      <div class="party-detail">Tax ID: {{your_tax_id}}</div>
+    </div>
+    <div class="party">
+      <div class="party-label">Bill To</div>
+      <div class="party-name">{{client_name}}</div>
+      <div class="party-detail">{{client_billing_address}}</div>
+      <div class="party-detail">Attn: {{client_contact_name}}</div>
+      <div class="party-detail">{{client_email}}</div>
+    </div>
+  </div>
+
+  <table class="meta-table">
+    <tr><td>Invoice Number</td><td>{{invoice_number}}</td></tr>
+    <tr><td>Issue Date</td><td>{{issue_date}}</td></tr>
+    <tr><td>Due Date</td><td>{{due_date}}</td></tr>
+    <tr><td>Payment Terms</td><td>{{payment_terms}}</td></tr>
+    <tr><td>Reference / PO</td><td>{{reference_number}}</td></tr>
+    <tr><td>Currency</td><td>{{currency}}</td></tr>
+    <tr><td>Service Period</td><td>{{service_period_label}}</td></tr>
+  </table>
+
+  <table class="line-items">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Repeat for each line item -->
+      <tr>
+        <td>{{n}}</td>
+        <td>{{description}}</td>
+        <td>{{type}}</td>
+        <td>{{quantity}}</td>
+        <td>{{unit_price}}</td>
+        <td>{{amount}} {{currency}}</td>
+      </tr>
+      <!-- End repeat -->
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <table>
+      <tr><td>Subtotal</td><td>{{subtotal}} {{currency}}</td></tr>
+      <tr><td>{{tax_name}} ({{tax_rate}})</td><td>{{tax_amount}} {{currency}}</td></tr>
+      <tr><td>Discount</td><td>-{{discount_amount}} {{currency}}</td></tr>
+      <tr class="total-row"><td>Total Due</td><td>{{total_amount}} {{currency}}</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Payment Instructions</div>
+    <div class="section-content">{{payment_instructions}}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Notes</div>
+    <div class="section-content">{{notes}}</div>
+  </div>
+
+  <div class="footer">
+    {{invoice_number}} &mdash; Issued {{issue_date}} &mdash; Due {{due_date}}
+  </div>
+
+</body>
+</html>

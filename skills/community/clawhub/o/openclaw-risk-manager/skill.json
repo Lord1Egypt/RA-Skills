@@ -1,0 +1,8 @@
+{
+  "name": "Risk Manager",
+  "description": "Monitor portfolio risk, R-multiples, and position limits. Creates hedging strategies, calculates expectancy, and implements stop-losses.",
+  "version": "1.0.0",
+  "identifier": "risk-manager",
+  "author": "sickn33",
+  "category": "finance"
+}

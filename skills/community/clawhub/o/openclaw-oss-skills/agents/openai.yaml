@@ -1,0 +1,8 @@
+interface:
+  display_name: "OSS Artifact Upload"
+  short_description: "Uploads artifacts and returns signed OSS links"
+  brand_color: "#2563EB"
+  default_prompt: "Use $openclaw-oss-skills to upload the generated artifact to OSS and return a signed download link."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,26 @@
 ---
-name: "orbcafe-pivot-ainav"
-description: "Build ORBCAFE advanced analytics interactions using CPivotTable/usePivotTable and voice navigation using CAINavProvider/useVoiceInput. Use when requests invo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/orbcafe-pivot-ainav"
-sourceUrl: "https://clawhub.ai/skills/orbcafe-pivot-ainav"
+name: orbcafe-pivot-ainav
+description: Build ORBCAFE advanced analytics interactions using CPivotTable/usePivotTable and voice navigation using CAINavProvider/useVoiceInput. Use when requests involve drag-drop pivot dimensions, aggregation controls, preset management, or space-key voice navigation workflows.
 ---
 
-# orbcafe-pivot-ainav
+# ORBCAFE Pivot + AINav
 
-> Build ORBCAFE advanced analytics interactions using CPivotTable/usePivotTable and voice navigation using CAINavProvider/useVoiceInput. Use when requests invo...
+## Scope
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/orbcafe-pivot-ainav`
-- **Source URL:** [https://clawhub.ai/skills/orbcafe-pivot-ainav](https://clawhub.ai/skills/orbcafe-pivot-ainav)
+Use this skill for advanced analytics interaction and voice navigation.
 
-## Overview
+Primary APIs:
+- `CPivotTable`, `usePivotTable`
+- `CAINavProvider`, `useVoiceInput`, `CVoiceWaveOverlay`, `COrbCanvas`
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/orbcafe-pivot-ainav
-```
+1. Determine if request is pivot, voice, or combined from `references/domain-patterns.md`.
+2. Start from matching recipe in `references/recipes.md`.
+3. Apply interaction and reliability constraints in `references/guardrails.md`.
+
+## Output Contract
+
+1. `Module choice`: pivot or AINav (or both).
+2. `Minimal implementation`: controlled if persistence/integration needed.
+3. `Ops note`: one operational requirement (preset persistence or ASR endpoint contract).

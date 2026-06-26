@@ -1,0 +1,20 @@
+name: researcher
+purpose: investigate one bounded angle and produce evidence-backed findings
+best_for:
+  - literature review
+  - web research
+  - source gathering
+avoid_for:
+  - final synthesis
+  - final decision making
+default_model_category: deep
+input_contract:
+  - research angle
+  - scope limit
+  - expected output format
+output_contract:
+  - findings
+  - evidence
+  - open questions
+reviewer_for:
+  - none

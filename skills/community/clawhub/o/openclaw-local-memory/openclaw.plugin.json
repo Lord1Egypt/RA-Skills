@@ -1,0 +1,218 @@
+{
+  "id": "openclaw-local-memory",
+  "kind": "memory",
+  "uiHints": {
+    "containerTag": {
+      "label": "Memory Name",
+      "placeholder": "openclaw_local_memory",
+      "help": "Namespace for this memory store"
+    },
+    "autoRecall": {
+      "label": "Auto-Recall",
+      "help": "Inject relevant memories before every AI turn"
+    },
+    "autoCapture": {
+      "label": "Auto-Capture",
+      "help": "Automatically store conversation exchanges in memory"
+    },
+    "captureInterval": {
+      "label": "Capture Interval",
+      "placeholder": "5",
+      "help": "Capture every N turns (set 0 to disable periodic capture)"
+    },
+    "minSignificanceScore": {
+      "label": "Min Significance",
+      "placeholder": "0.4",
+      "help": "Only capture content with significance score >= this value (0-1)"
+    },
+    "profileFrequency": {
+      "label": "Profile Frequency",
+      "placeholder": "10",
+      "help": "Inject user profile every N turns"
+    },
+    "maxRecallResults": {
+      "label": "Max Recall Results",
+      "placeholder": "10",
+      "help": "Maximum memories injected per turn",
+      "advanced": true
+    },
+    "similarityThreshold": {
+      "label": "Relevance Threshold",
+      "placeholder": "0.3",
+      "help": "Minimum relevance score to inject (0-1)",
+      "advanced": true
+    },
+    "maxMemories": {
+      "label": "Max Memories",
+      "placeholder": "500",
+      "help": "Maximum memories to keep (older pruned first)",
+      "advanced": true
+    },
+    "pruneOlderThanDays": {
+      "label": "Prune After Days",
+      "placeholder": "30",
+      "help": "Auto-delete memories older than N days",
+      "advanced": true
+    },
+    "decayRate": {
+      "label": "Importance Decay",
+      "placeholder": "0.05",
+      "help": "How fast importance decays over time (higher = faster decay)",
+      "advanced": true
+    },
+    "debug": {
+      "label": "Debug Logging",
+      "help": "Enable verbose debug logs",
+      "advanced": true
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "containerTag": {
+        "type": "string",
+        "default": "openclaw_local_memory"
+      },
+      "autoRecall": {
+        "type": "boolean",
+        "default": true
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "default": true
+      },
+      "maxRecallResults": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 50,
+        "default": 10
+      },
+      "similarityThreshold": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.3
+      },
+      "debug": {
+        "type": "boolean",
+        "default": false
+      },
+      "captureInterval": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
+        "default": 8,
+        "help": "Capture every N turns (higher = less storage, lower context)"
+      },
+      "summariseThreshold": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 500000,
+        "default": 60000,
+        "help": "Token count to trigger consolidation (LOWER = more often, saves context)"
+      },
+      "captureSignificantOnly": {
+        "type": "boolean",
+        "default": true,
+        "help": "Only capture truly significant content"
+      },
+      "pruneAfterCapture": {
+        "type": "boolean",
+        "default": true,
+        "help": "Signal context pruning after capturing"
+      },
+      "minSignificanceScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.5,
+        "help": "Min significance score to capture (HIGHER = stricter, less noise)"
+      },
+      "profileFrequency": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 15,
+        "help": "Inject profile every N turns (HIGHER = less context)"
+      },
+      "includeProfileOnFirstTurn": {
+        "type": "boolean",
+        "default": true,
+        "help": "Include profile on first turn of conversation"
+      },
+      "maxMemories": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 10000,
+        "default": 500,
+        "help": "Maximum memories to keep (older pruned first)",
+        "advanced": true
+      },
+      "pruneOlderThanDays": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 365,
+        "default": 30,
+        "help": "Auto-delete memories older than N days",
+        "advanced": true
+      },
+      "decayRate": {
+        "type": "number",
+        "minimum": 0.001,
+        "maximum": 1,
+        "default": 0.05,
+        "help": "Importance decay rate (higher = faster decay)",
+        "advanced": true
+      },
+      "chunkThreshold": {
+        "type": "number",
+        "minimum": 500,
+        "maximum": 10000,
+        "default": 2000,
+        "help": "Min content length to trigger chunking",
+        "advanced": true
+      },
+      "chunkSize": {
+        "type": "number",
+        "minimum": 200,
+        "maximum": 5000,
+        "default": 1000,
+        "help": "Target size per chunk in characters",
+        "advanced": true
+      },
+      "maxChunks": {
+        "type": "number",
+        "minimum": 2,
+        "maximum": 20,
+        "default": 5,
+        "help": "Maximum chunks per memory",
+        "advanced": true
+      },
+      "importanceWeight": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.3,
+        "help": "Weight of importance in recall scoring",
+        "advanced": true
+      },
+      "recencyWeight": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.3,
+        "help": "Weight of recency in recall scoring",
+        "advanced": true
+      },
+      "relevanceWeight": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.4,
+        "help": "Weight of TF-IDF relevance in recall scoring",
+        "advanced": true
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+name: OpenClaw VLN Planner
+description: Multimodal next-step navigation planner that sends one current image plus history images to an OpenAI-compatible gateway and returns a single pure-JSON mid-level robot action.

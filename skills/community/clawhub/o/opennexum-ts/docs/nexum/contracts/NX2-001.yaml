@@ -1,0 +1,48 @@
+id: NX2-001
+name: "完善 Task 类型定义 + core 类型修复"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - packages/core/src/types.ts
+    - packages/core/src/tasks.ts
+    - packages/core/src/__tests__/tasks.test.ts
+  boundaries:
+    - packages/spawn/
+    - packages/prompts/
+    - packages/notify/
+    - packages/cli/
+  conflicts_with: []
+
+deliverables:
+  - "packages/core/src/types.ts：Task interface 补充以下字段（均可选）：acp_session_key、acp_stream_log、started_at、completed_at、eval_result_path、base_commit、last_error；TaskStatus 枚举补充 Evaluating = 'evaluating' 和 Cancelled = 'cancelled'"
+  - "packages/core/src/tasks.ts：updateTask 的 patch 参数类型改为 Partial<Task>，移除任何 Record<string,unknown> 类型断言"
+  - "packages/core/src/types.ts：新增 EvalVerdict 类型导出：type EvalVerdict = 'pass' | 'fail' | 'escalated'"
+  - "packages/core/src/__tests__/tasks.test.ts：新增测试，验证 updateTask 能正确写入 acp_session_key 和 acp_stream_log 字段"
+  - "pnpm build 和 pnpm test 均通过，无 TypeScript 编译错误"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "Task interface 包含所有新字段，均为可选类型"
+      method: "review: 检查 types.ts 的 Task interface"
+      threshold: pass
+    - id: C2
+      desc: "TaskStatus 包含 Evaluating 和 Cancelled"
+      method: "review: 检查 TaskStatus 枚举"
+      threshold: pass
+    - id: C3
+      desc: "updateTask patch 参数类型为 Partial<Task>，无类型断言绕过"
+      method: "review: 检查 tasks.ts 的 updateTask 函数签名"
+      threshold: pass
+    - id: C4
+      desc: "pnpm build && pnpm test 通过"
+      method: "unit: 运行构建和测试"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: []

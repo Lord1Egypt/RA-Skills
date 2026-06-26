@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "updated_at": "1970-01-01T00:00:00+00:00",
+  "sleep_pattern": {
+    "chronotype": null,
+    "usual_sleep_time": "23:00",
+    "active_window": "07:00-23:00",
+    "care_nudge_time": null,
+    "sleep_block_window": "23:00-07:00",
+    "source": "setup"
+  },
+  "care_style": {
+    "tone": "warm",
+    "format": "brief",
+    "relationship": "assistant",
+    "use_case": "developer",
+    "source": "setup"
+  },
+  "reminder_style": {
+    "tone": "gentle",
+    "verbosity": "brief",
+    "source": "default-profile"
+  },
+  "task_followup_preference": {
+    "allowed": true,
+    "style": "light_progress_check",
+    "source": "default-profile"
+  },
+  "emoji_style": {
+    "forbidden": [],
+    "preferred": [],
+    "source": "setup"
+  },
+  "inactivity_routine": {
+    "light_after_hours": 3,
+    "playful_after_hours": 6,
+    "care_after_hours": 12,
+    "concern_after_hours": 24,
+    "strong_concern_after_hours": 48,
+    "same_type_cooldown_hours": 6,
+    "source": "default-profile"
+  },
+  "tracking_hints": {
+    "keywords": ["deploy", "migration", "deadline"],
+    "source": "setup"
+  }
+}

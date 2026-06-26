@@ -1,0 +1,36 @@
+{
+  "exclude_dirs": [
+    "node_modules",
+    ".git",
+    "__pycache__",
+    "dist",
+    "build",
+    ".venv",
+    "venv"
+  ],
+  "whitelist": [
+    "secret-input.ts",
+    "secret-input.d.ts",
+    "secret-input.js"
+  ],
+  "sensitive_extensions": [
+    ".env",
+    ".key",
+    ".pem",
+    ".p12",
+    ".pfx",
+    ".crt",
+    ".cer"
+  ],
+  "sensitive_keywords": [
+    "password",
+    "secret",
+    "credentials",
+    "private_key"
+  ],
+  "critical_paths": [
+    "openclaw.json",
+    "gateway.json",
+    "credentials/"
+  ]
+}

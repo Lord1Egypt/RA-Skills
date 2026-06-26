@@ -1,35 +1,29 @@
 ---
-name: "@openclaw/interchange"
-description: "Shared .md interchange library for OpenClaw skills — atomic writes, deterministic serialization, YAML frontmatter, advisory locking, and schema validation. T..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-interchange"
-sourceUrl: "https://clawhub.ai/skills/openclaw-interchange"
+name: openclaw-interchange
+description: Shared .md interchange library for OpenClaw skills — atomic writes, deterministic serialization, YAML frontmatter, advisory locking, and schema validation. The foundation all other OpenClaw skills build on.
 ---
 
 # @openclaw/interchange
 
-> Shared .md interchange library for OpenClaw skills — atomic writes, deterministic serialization, YAML frontmatter, advisory locking, and schema validation. T...
+The shared library that powers agent-to-agent communication via `.md` files.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-interchange`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-interchange](https://clawhub.ai/skills/openclaw-interchange)
+## Usage
 
-## Overview
+```javascript
+import { writeMd, readMd, acquireLock } from '@openclaw/interchange';
 
+// Write an interchange file atomically
+await writeMd('ops/status.md', { skill: 'crm', status: 'healthy' }, '## Status\nAll systems go.');
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-interchange
+// Read it back
+const { meta, content } = readMd('ops/status.md');
 ```
+
+## Key Features
+- Atomic writes (tmp + fsync + rename)
+- Deterministic serialization (sorted keys, stable YAML)
+- Advisory file locking with stale lock detection
+- YAML frontmatter parsing
+- Schema validation
+- Circuit breaker pattern
+- Generation tracking + content hashing

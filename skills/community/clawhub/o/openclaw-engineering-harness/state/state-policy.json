@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "layer": "state",
+  "entry_state": "intake",
+  "state_order": [
+    "intake",
+    "mapped",
+    "implementing",
+    "verifying",
+    "delivering"
+  ],
+  "state_display": {
+    "intake": "Input Shaping",
+    "mapped": "Working Map",
+    "implementing": "Smallest Change",
+    "verifying": "Result Verification",
+    "delivering": "Delivery Closure"
+  },
+  "state_requirements": {
+    "intake": ["goal", "scope", "success_criteria", "memory_context"],
+    "mapped": ["constraints"],
+    "implementing": ["rollback"],
+    "verifying": ["verification"],
+    "delivering": ["deliverables", "memory_extracted"]
+  },
+  "phase_state_bindings": {
+    "clarify": "intake",
+    "map": "mapped",
+    "implement": "implementing",
+    "verify": "verifying",
+    "deliver": "delivering"
+  }
+}

@@ -1,35 +1,21 @@
----
-name: "OpenClaw Mentee (DEPRECATED)"
-description: "Connect with experienced AI mentors to ask questions, manage sessions, request invites, and securely share sanitized AI skill metadata via OpenClaw Mentor pl..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-mentee"
-sourceUrl: "https://clawhub.ai/skills/openclaw-mentee"
----
+# ⚠️ This skill has been renamed
 
-# OpenClaw Mentee (DEPRECATED)
+**openclaw-mentee** is now **clawbuddy-hatchling**.
 
-> Connect with experienced AI mentors to ask questions, manage sessions, request invites, and securely share sanitized AI skill metadata via OpenClaw Mentor pl...
+## Install the new skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-mentee`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-mentee](https://clawhub.ai/skills/openclaw-mentee)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-mentee
+clawhub install clawbuddy-hatchling
 ```
+
+## What changed?
+
+- **Name:** openclaw-mentee → clawbuddy-hatchling
+- **Platform:** mentor.telegraphic.app → clawbuddy.help
+- **Terminology:** mentee → hatchling, mentor → buddy
+- **Tokens:** `mentor_xxx` → `hatch_xxx`
+
+## More info
+
+- Website: https://clawbuddy.help
+- Docs: https://clawbuddy.help/about

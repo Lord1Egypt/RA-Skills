@@ -1,0 +1,143 @@
+# 研究分析流水线模板
+
+> 多引擎搜索 → 整理分析 → 生成研究报告
+
+## 元数据
+
+```yaml
+name: research-pipeline
+version: 1.0.0
+description: 多引擎搜索 → 信息整理 → 生成研究报告
+intent_type: research_analysis
+author: openclaw-skill-compounder
+created: 2026-04-30
+```
+
+## 流水线定义
+
+### Step 1: 多引擎搜索
+
+```yaml
+step: 1
+skill: multi-search-engine
+trigger: 用户提供研究主题或问题
+timeout: 45s
+
+input:
+  query: "${user.research_topic}"
+  search_engines:
+    - tavily
+    - baidu
+  max_results: "${user.max_results || 10}"
+  include_summary: true
+    
+output:
+  result_field: "search_results"
+  metadata:
+    - sources
+    - relevance_scores
+    - top_urls
+  confidence_weight: 0.9
+```
+
+### Step 2: 信息整理
+
+```yaml
+step: 2
+skill: writing-agent
+trigger: step_1 完成
+timeout: 30s
+depends_on: step_1
+
+input:
+  text: "${step_1.result.search_results}"
+  context:
+    task: "整理信息"
+    format: "结构化笔记"
+    include_sources: true
+    
+output:
+  result_field: "organized_notes"
+  metadata:
+    - key_findings
+    - source_attributions
+    - knowledge_gaps
+  confidence_weight: 0.85
+```
+
+### Step 3: 报告生成
+
+```yaml
+step: 3
+skill: content-creator
+trigger: step_2 完成
+timeout: 60s
+depends_on: step_2
+
+input:
+  text: "${step_2.result.organized_notes}"
+  context:
+    output_format: "${user.report_format || 'markdown'}"
+    report_type: "${user.report_type || '深度分析'}"
+    target_length: "${user.target_length || '中等篇幅'}"
+    include_toc: true
+    include_references: true
+    
+output:
+  result_field: "final_report"
+  metadata:
+    - word_count
+    - section_count
+    - reference_count
+  confidence_weight: 0.85
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    search_results → text
+    sources → metadata.sources
+    
+  step_2_to_step_3:
+    organized_notes → text
+    key_findings → context.key_findings
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: retry
+    max_attempts: 2
+    fallback_message: "搜索失败，尝试简化关键词"
+    
+  step_2_failure:
+    strategy: skip
+    skip_to_step_3
+    message: "整理失败，直接基于原始搜索结果生成报告"
+    
+  step_3_failure:
+    strategy: fallback
+    fallback_skill: writing-agent
+    message: "报告生成失败，尝试简化格式"
+```
+
+## 适用场景
+
+- 行业研究、市场分析
+- 技术方案调研
+- 竞品分析、趋势研究
+- 投资标的尽职调查
+
+## 触发词示例
+
+```
+"帮我研究一下这个领域"
+"生成一份XXX行业分析报告"
+"调研一下这个技术方案"
+"帮我分析这几个竞品"
+"研究一下这个投资机会"
+```

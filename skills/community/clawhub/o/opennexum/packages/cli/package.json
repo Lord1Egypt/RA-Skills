@@ -1,0 +1,35 @@
+{
+  "name": "@nexum/cli",
+  "version": "0.1.4",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "nexum": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
+    "test": "pnpm dlx --package=tsx tsx --test src/__tests__/*.test.ts"
+  },
+  "dependencies": {
+    "@nexum/core": "workspace:*",
+    "@nexum/spawn": "workspace:*",
+    "@nexum/prompts": "workspace:*",
+    "@nexum/notify": "workspace:*",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
+  }
+}

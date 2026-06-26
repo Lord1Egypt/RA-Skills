@@ -1,0 +1,33 @@
+{
+  "name": "openclaw-self-improvement",
+  "version": "0.2.11",
+  "description": "An operator-guided workflow improvement skill for OpenClaw and ClawLite that logs learnings, runs eval loops, and promotes reviewed fixes into local SOPs and configuration files.",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "binary-evals",
+    "continuous-improvement",
+    "dry-run",
+    "eval-loop",
+    "karen",
+    "lessons-learned",
+    "local-file-writes",
+    "mission-control",
+    "obsidian",
+    "openclaw",
+    "operator-guided",
+    "ops-learning",
+    "self-improvement"
+  ],
+  "bin": {
+    "openclaw-log-learning": "./scripts/log-learning.mjs",
+    "openclaw-log-experiment": "./scripts/log-experiment.mjs",
+    "openclaw-experiment-summary": "./scripts/experiment-summary.mjs",
+    "openclaw-promote-learning": "./scripts/promote-learning.mjs",
+    "openclaw-analyze-failures": "./scripts/analyze-openclaw-failures.mjs",
+    "openclaw-agent-scorecard": "./scripts/daily-agent-scorecard.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

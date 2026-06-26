@@ -1,0 +1,49 @@
+/*
+ * Theme: Pure Light
+ * 极致简约浅色 — 纯净白底，精密排版，系统蓝强调色
+ * 适合：产品发布、科技展示、设计提案、品牌介绍
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #1d1d1f;
+  --color-secondary: #86868b;
+  --color-accent: #0071e3;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-text: #1d1d1f;
+  --color-text-secondary: #86868b;
+  --color-text-on-primary: #ffffff;
+  --color-border: #d2d2d7;
+
+  /* --- 字体 --- */
+  --font-heading: 'SF Pro Display', -apple-system, 'Helvetica Neue', 'Inter', sans-serif;
+  --font-body: 'SF Pro Text', -apple-system, 'Helvetica Neue', 'Inter', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --font-size-title: 4.27rem;
+  --font-size-heading: 3.15rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.27rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.62rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 2.25rem;
+  --spacing-lg: 3.94rem;
+  --spacing-xl: 5.62rem;
+
+  /* --- 效果 --- */
+  --border-radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 28px rgba(0,0,0,0.08);
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

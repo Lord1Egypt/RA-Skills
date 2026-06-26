@@ -1,0 +1,40 @@
+{
+  "defaultStyle": "modern",
+  "colorPalettes": {
+    "modern": {
+      "primary": "#3B82F6",
+      "secondary": "#10B981",
+      "accent": "#F59E0B",
+      "neutral": "#6B7280",
+      "background": "#FFFFFF",
+      "surface": "#F3F4F6"
+    },
+    "minimal": {
+      "primary": "#000000",
+      "secondary": "#6B7280",
+      "accent": "#EF4444",
+      "neutral": "#9CA3AF",
+      "background": "#FFFFFF",
+      "surface": "#F9FAFB"
+    },
+    "bold": {
+      "primary": "#DC2626",
+      "secondary": "#7C3AED",
+      "accent": "#F59E0B",
+      "neutral": "#1F2937",
+      "background": "#FFFFFF",
+      "surface": "#FEF3C7"
+    }
+  },
+  "componentLibrary": "tailwind",
+  "designTools": {
+    "figma": false,
+    "sketch": false,
+    "adobeXd": false
+  },
+  "accessibility": {
+    "wcagLevel": "AA",
+    "contrastCheck": true,
+    "colorBlindFriendly": true
+  }
+}

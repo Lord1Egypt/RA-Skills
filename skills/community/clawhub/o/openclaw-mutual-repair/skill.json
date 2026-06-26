@@ -1,0 +1,38 @@
+{
+  "name": "openclaw-mutual-repair",
+  "version": "1.0.0",
+  "description": "OpenClaw 双机互修助手 - 实现双机心跳监控、故障检测和自动修复",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "triggers": [
+    "心跳",
+    "heartbeat",
+    "互修",
+    "mutual",
+    "修复",
+    "repair",
+    "监控",
+    "monitor",
+    "健康",
+    "health",
+    "诊断",
+    "diagnose",
+    "状态",
+    "status"
+  ],
+  "config": {
+    "localHost": "0.0.0.0",
+    "localPort": 9528,
+    "remoteHost": "",
+    "remotePort": 9528,
+    "heartbeatInterval": 300000,
+    "heartbeatTimeout": 30000,
+    "memoryThreshold": 85,
+    "cpuThreshold": 80
+  },
+  "permissions": [
+    "exec",
+    "network"
+  ]
+}

@@ -1,0 +1,25 @@
+name: reviewer
+purpose: verify artifacts against spec and classify failures for the next retry mode
+best_for:
+  - correctness checks
+  - edge-case review
+  - scope drift detection
+  - failure classification
+avoid_for:
+  - first-pass implementation
+  - approving work it authored
+default_model_category: brain
+input_contract:
+  - canonical artifacts
+  - expected outcome
+  - verification criteria
+output_contract:
+  - verdict
+  - issues_by_severity
+  - minimal_fix_scope
+  - classification
+  - recommended_next_step
+reviewer_for:
+  - builder
+  - architect
+  - synthesizer

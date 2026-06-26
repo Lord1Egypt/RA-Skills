@@ -1,35 +1,41 @@
 ---
-name: "Open Exchange Rate"
-description: "Get real-time exchange rates and currency conversion using free public ExchangeRate-API. No API key required. Use when users ask for current exchange rates,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/open-exchange-rate"
-sourceUrl: "https://clawhub.ai/skills/open-exchange-rate"
+name: open-exchange-rate
+description: Get real-time exchange rates and currency conversion using free public ExchangeRate-API. No API key required. Use when users ask for current exchange rates, currency conversion calculations, or need to check currency prices.
 ---
 
-# Open Exchange Rate
-
-> Get real-time exchange rates and currency conversion using free public ExchangeRate-API. No API key required. Use when users ask for current exchange rates,...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/open-exchange-rate`
-- **Source URL:** [https://clawhub.ai/skills/open-exchange-rate](https://clawhub.ai/skills/open-exchange-rate)
+# open-exchange-rate
 
 ## Overview
 
+A simple skill for getting real-time exchange rate information and performing currency conversion using the public ExchangeRate-API. No API key required for requests.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Features
+
+- **Get latest exchange rates**: Retrieve up-to-date exchange rates for all currencies
+- **Currency conversion**: Convert an amount from one currency to another
+- **List all available currencies**: Show a complete list of supported currency codes
+
+## Usage
+
+### Get latest rates for base currency
 ```bash
-hermes skills install clawhub/open-exchange-rate
+python3 scripts/get_rates.py --base USD
 ```
+
+### Convert currency
+```bash
+python3 scripts/convert.py --from USD --to EUR --amount 100
+```
+
+### List all available currencies
+```bash
+python3 scripts/list_currencies.py
+```
+
+## Resources
+
+### scripts/
+- `get_rates.py` - Get latest exchange rates with optional base currency
+- `convert.py` - Convert amount between two currencies
+- `list_currencies.py` - List all available currency codes and names
+

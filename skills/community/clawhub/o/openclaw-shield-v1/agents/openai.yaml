@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shield"
+  short_description: "Cloud security guardrails for OpenClaw workflows"
+  default_prompt: "Enforce Shield checks before execution and redact sensitive data before every response."

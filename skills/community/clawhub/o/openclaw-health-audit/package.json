@@ -1,0 +1,8 @@
+{
+  "name": "openclaw-health-audit",
+  "version": "1.4.0",
+  "description": "OpenClaw system health audit & auto-fix. 7-category monitoring across 3 layers.",
+  "main": "scripts/health_monitor.py",
+  "author": "halfmoon82",
+  "license": "MIT"
+}

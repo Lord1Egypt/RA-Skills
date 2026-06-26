@@ -1,0 +1,100 @@
+curl --request GET \
+	--url 'https://tradingview-data1.p.rapidapi.com/api/search/market/AAPL?filter=stock' \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+  {
+  "success": true,
+  "data": {
+    "markets": [
+      {
+        "symbol": "AAPL",
+        "description": "Apple Inc.",
+        "type": "stock",
+        "exchange": "NASDAQ",
+        "found_by_isin": false,
+        "found_by_cusip": false,
+        "cusip": "037833100",
+        "isin": "US0378331005",
+        "cik_code": "0000320193",
+        "currency_code": "USD",
+        "currency-logoid": "country/US",
+        "logoid": "apple",
+        "logo": {
+          "style": "single",
+          "logoid": "apple"
+        },
+        "provider_id": "ice",
+        "source_logoid": "source/NASDAQ",
+        "source2": {
+          "id": "NASDAQ",
+          "name": "Nasdaq Stock Market",
+          "description": "Nasdaq Stock Market"
+        },
+        "source_id": "NASDAQ",
+        "country": "US",
+        "is_primary_listing": true,
+        "typespecs": [
+          "common"
+        ],
+        "id": "NASDAQ:AAPL",
+        "fullExchange": "NASDAQ",
+        "full_name": "NASDAQ:AAPL"
+      },
+      {
+        "symbol": "AAPL",
+        "description": "Apple Inc. Shs Canadian Depositary Receipt Repr Shs Reg S",
+        "type": "dr",
+        "exchange": "TSX",
+        "found_by_isin": false,
+        "found_by_cusip": false,
+        "cusip": "03785Y100",
+        "isin": "CA03785Y1007",
+        "currency_code": "CAD",
+        "currency-logoid": "country/CA",
+        "logoid": "apple",
+        "logo": {
+          "style": "single",
+          "logoid": "apple"
+        },
+        "provider_id": "ice",
+        "source_logoid": "source/TSX",
+        "source2": {
+          "id": "TSX",
+          "name": "Toronto Stock Exchange",
+          "description": "Toronto Stock Exchange"
+        },
+        "source_id": "TSX",
+        "country": "CA",
+        "id": "TSX:AAPL",
+        "fullExchange": "TSX",
+        "full_name": "TSX:AAPL"
+      },
+      {
+        "symbol": "AAPL",
+        "description": "Apple Inc.",
+        "type": "stock",
+        "exchange": "BMV",
+        "found_by_isin": false,
+        "found_by_cusip": false,
+        "cusip": "037833100",
+        "isin": "US0378331005",
+        "currency_code": "MXN",
+        "currency-logoid": "country/MX",
+        "logoid": "apple",
+        "logo": {
+          "style": "single",
+          "logoid": "apple"
+        },
+        "provider_id": "ice",
+        "source_logoid": "source/BMV",
+        "source2": {
+          "id": "BMV",
+          "name": "Mexican Stock Exchange",
+          "description": "Mexican Stock Exchange"
+        },
+        "source_id": "BMV",
+        "country": "MX",
+        "typespecs": [
+          "common"
+        ],

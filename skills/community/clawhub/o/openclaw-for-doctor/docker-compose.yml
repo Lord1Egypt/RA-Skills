@@ -1,0 +1,10 @@
+services:
+  openclaw-doctor:
+    build: .
+    container_name: openclaw-doctor
+    ports:
+      - "8010:8010"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data

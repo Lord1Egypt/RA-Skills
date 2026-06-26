@@ -1,0 +1,66 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "loopback",
+    "port": 18789
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat",
+        "fallback": "qwen/qwen3.5-plus"
+      },
+      "workspace": "~/OpenClaw输出",
+      "subagents": {
+        "allowAgents": ["hermes", "coder", "analyst"]
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "主协调器",
+        "model": "deepseek/deepseek-chat"
+      },
+      {
+        "id": "hermes",
+        "name": "Hermes助手",
+        "model": {
+          "primary": "deepseek/deepseek-chat",
+          "thinking": "stream"
+        }
+      },
+      {
+        "id": "coder",
+        "name": "代码专家",
+        "model": "qwen/qwen3-coder-plus",
+        "tools": {
+          "profile": "coding"
+        }
+      }
+    ]
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "api": "openai-completions"
+      },
+      "qwen": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "${QWEN_API_KEY}",
+        "api": "openai-completions"
+      }
+    }
+  },
+  "session": {
+    "store": ".openclaw-memory"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.15",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "template": "standard"
+  },
+  "description": "标准配置 - 包含多Agent、多模型Provider、工作空间等常用功能"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@elvatis_com/openclaw-ispconfig",
+  "version": "1.0.0",
+  "description": "OpenClaw plugin for ISPConfig server management - domains, mailboxes, databases, DNS, websites",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build",
+    "test:watch": "vitest"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "ispconfig",
+    "hosting",
+    "dns",
+    "mailbox",
+    "server-management"
+  ],
+  "author": "Elvatis <emre.kohler@elvatis.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elvatis/openclaw-ispconfig.git"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "overrides": {
+    "test-exclude": "^7.0.1"
+  }
+}

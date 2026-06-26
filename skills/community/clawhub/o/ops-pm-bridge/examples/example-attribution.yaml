@@ -1,0 +1,117 @@
+# 效果归因配置示例
+# 双11大促活动
+
+project: "双11大促活动"
+version: "1.0.0"
+
+# ===========================================
+# 归因模型配置
+# ===========================================
+attribution:
+  # 归因模型：first_touch / last_touch / linear / time_decay / position
+  model: "time_decay"
+  
+  # 回溯窗口（天）
+  lookback_window: 7
+  
+  # 衰减系数（仅 time_decay 生效）
+  decay_factor: 0.5
+
+# ===========================================
+# 渠道配置
+# ===========================================
+channels:
+  - name: "App推送"
+    cost: 0
+    weight: 1.0
+    description: "App内推送消息"
+    
+  - name: "短信"
+    cost: 5000
+    weight: 1.0
+    description: "短信营销"
+    
+  - name: "社群"
+    cost: 2000
+    weight: 1.0
+    description: "社群运营推送"
+    
+  - name: "投放"
+    cost: 50000
+    weight: 1.0
+    description: "付费广告投放"
+
+# ===========================================
+# 指标配置
+# ===========================================
+metrics:
+  # 主指标
+  primary: "GMV"
+  
+  # 次要指标
+  secondary:
+    - name: "参与用户数"
+      definition: "至少完成1个任务的用户"
+      data_source: "活动系统"
+      
+    - name: "转化率"
+      definition: "参与用户中下单的比例"
+      data_source: "订单+活动系统"
+      
+    - name: "ROI"
+      definition: "GMV / 总成本"
+      data_source: "计算字段"
+
+# ===========================================
+# 数据口径
+# ===========================================
+data_definitions:
+  - name: "活动GMV"
+    definition: "活动期间已支付订单金额"
+    formula: "SUM(order_amount) WHERE order_status IN ('paid', 'shipped', 'completed')"
+    data_source: "订单系统"
+    
+  - name: "参与用户数"
+    definition: "至少完成1个任务的用户"
+    formula: "COUNT(DISTINCT user_id) WHERE task_completed >= 1"
+    data_source: "活动系统"
+    
+  - name: "渠道贡献"
+    definition: "各渠道带来的GMV占比"
+    formula: "渠道GMV / 总GMV"
+    data_source: "埋点+订单系统"
+
+# ===========================================
+# 归因规则
+# ===========================================
+rules:
+  # 跨渠道争议
+  cross_channel:
+    method: "time_decay"
+    description: "使用时间衰减模型，数据为准"
+    
+  # 时间范围争议
+  time_range:
+    method: "activity_config"
+    description: "以活动配置的起止时间为准"
+    
+  # 指标定义争议
+  metric_definition:
+    method: "document_first"
+    description: "以本文档定义为准，变更需双方确认"
+
+# ===========================================
+# 输出配置
+# ===========================================
+output:
+  # 归因报告频率
+  frequency: "daily"
+  
+  # 报告格式
+  format: "markdown"
+  
+  # 接收人
+  recipients:
+    - "运营负责人"
+    - "产品负责人"
+    - "数据分析师"

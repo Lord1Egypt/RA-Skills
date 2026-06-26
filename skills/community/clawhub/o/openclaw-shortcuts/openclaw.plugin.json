@@ -1,0 +1,29 @@
+{
+  "id": "openclaw-shortcuts",
+  "name": "OpenClaw Shortcuts",
+  "version": "0.1.0",
+  "description": "Config-driven /shortcuts command. Lists your local project shortcuts, commands, and tools without leaking private info to public repos.",
+  "configSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": { "type": "boolean", "default": true },
+      "includeTips": { "type": "boolean", "default": true },
+      "sections": {
+        "type": "array",
+        "description": "Custom shortcut sections (configure locally; keep repo placeholder-only).",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": { "type": "string" },
+            "lines": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["title", "lines"]
+        },
+        "default": []
+      }
+    }
+  }
+}

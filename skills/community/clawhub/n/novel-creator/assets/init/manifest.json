@@ -1,0 +1,8 @@
+{
+  "novel_name": "{{NOVEL_NAME}}",
+  "init_mode": "{{MODE}}",
+  "created_at": "{{CREATED_AT}}",
+  "current_chapter": 0,
+  "current_arc": "",
+  "status": "active"
+}

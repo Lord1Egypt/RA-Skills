@@ -1,0 +1,2 @@
+# Optional: parse ~/.openclaw/openclaw.json (JSON5 with comments)
+json5>=0.9.0

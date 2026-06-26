@@ -1,0 +1,18 @@
+{
+  "name": "open-source-contributor",
+  "version": "3.0.0",
+  "description": "Autonomous GitHub contribution agent using the Architect-Builder pattern. Main agent handles all I/O; subagents do focused cognitive work only. Supports three difficulty levels with API-first approach for simple fixes.",
+  "author": "wahajahmed010",
+  "license": "MIT-0",
+  "requirements": {
+    "bins": ["git", "python3"],
+    "skills": ["subagent-orchestration"]
+  },
+  "config": {
+    "github_token_path": "~/.openclaw/.github_token",
+    "difficulty_level": 2,
+    "max_contributions_per_night": 1,
+    "languages": ["python", "javascript", "typescript", "go", "rust"],
+    "excluded_repos": []
+  }
+}

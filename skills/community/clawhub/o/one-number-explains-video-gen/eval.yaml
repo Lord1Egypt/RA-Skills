@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "one-number-explains-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use one-number-explains-video-gen: one mega-stat vertical, counter animation, closing meaning line, English subtitles timed."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "One number explains the world—data viz explosion, climbing counter, final meaning, burned-in English on a schedule."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "I need a TikTok data hook: giant metric, ramping graph, last line explains why it matters—all subtitled."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Document my REST API with OpenAPI only."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must require hook/ramp/meaning beats, duration scaling, illustrative-stat disclaimer where relevant, and full prompt confirmation.

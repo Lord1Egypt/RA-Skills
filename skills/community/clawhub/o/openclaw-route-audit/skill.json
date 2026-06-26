@@ -1,0 +1,26 @@
+{
+  "name": "openclaw-route-audit",
+  "displayName": "OpenClaw Route Audit",
+  "version": "0.1.1",
+  "summary": "Audit OpenClaw cron notification routing with static route analysis plus runtime delivery checks.",
+  "repo": "https://github.com/pfrederiksen/openclaw-route-check",
+  "homepage": "https://github.com/pfrederiksen/openclaw-route-check",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "cron",
+    "routing",
+    "audit",
+    "telegram",
+    "delivery"
+  ],
+  "prerequisites": {
+    "files": [
+      "/root/.openclaw/cron/jobs.json",
+      "/root/.openclaw/workspace/tools/cron_delivery_audit.py"
+    ],
+    "binaries": [
+      "openclaw-route-check"
+    ]
+  }
+}

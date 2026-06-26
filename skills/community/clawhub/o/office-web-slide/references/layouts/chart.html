@@ -1,0 +1,79 @@
+<!--
+  Layout: chart
+  图表页 — 数据可视化，CSS grid 三段式强制布局：标题 | 图表 | 脚注
+  Agent 在图表区域嵌入 SVG / Chart.js / ECharts（参考 components/ 下的图表参考）
+
+  垂直预算：标题区 ≤ 15%、图表区 ≥ 70%、脚注区 ≤ 10%
+  禁止：标题过长挤压图表、图表容器外再套白色大卡片
+
+  🔴 Chart.js 动画红线：
+  - 使用 Chart.js 时，必须用 createChartLazy() 延迟初始化（见 chart-js.html）
+  - 必须注册到 slideAnimations 对象：slideAnimations[N] = createChartLazy(...)
+  - 必须取消注释 HTML 底部的 Chart.js CDN <script> 标签
+  - 必须在 CDN 之后、slideAnimations 之前放置 createChartLazy 函数定义
+  - 违反以上任意一条 → 图表动画丢失（用户翻到该页时看到静态图表）
+
+  🔴 静态图片红线：
+  - 图表区域禁止使用 <img> 标签嵌入静态截图/预渲染图片
+  - 必须使用 <canvas>（Chart.js）或内联 <svg> 实现可交互/可动画的图表
+  - 违反 → 图表无法自适应主题配色、无交互、无动画
+-->
+<section class="slide slide--chart" data-slide="{{N}}">
+  <h2 class="chart-title">{{页面标题}}</h2>
+  <div class="chart-container">
+    <!-- Agent 在此区域嵌入图表代码 -->
+    <!-- SVG 内嵌 / <canvas> + Chart.js / ECharts -->
+    {{图表代码}}
+  </div>
+  <p class="chart-footnote">{{图表注释/数据来源（可选，留空则不显示）}}</p>
+</section>
+
+<style>
+.slide--chart {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: stretch;
+  gap: 0;
+}
+.slide--chart .chart-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-sm);
+  /* 用 line-clamp 替代 max-height+overflow:hidden，避免截断第二行文字显示不全 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.slide--chart .chart-container {
+  position: relative;         /* Chart.js responsive 需要定位上下文 */
+  min-height: 0;              /* grid 子元素必须，允许收缩 */
+  width: 100%;
+  overflow: hidden;
+}
+.slide--chart .chart-container canvas {
+  display: block;
+  /* ❌ 禁止 width/height: 100% !important — 会与 Chart.js responsive 模式的
+     ResizeObserver 互相打架，形成 resize 反馈循环（表现为图表加载时抖动/扩张，
+     hover tooltip 时再次扩张）。Chart.js responsive:true 会自行读取父容器尺寸
+     并设置 canvas 的内在分辨率和显示尺寸，无需 CSS 干预。 */
+}
+.slide--chart .chart-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* SVG 保持比例居中 */
+}
+.slide--chart .chart-footnote {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--spacing-xs);
+  font-style: italic;
+  max-height: 48px;         /* 脚注区硬上限 */
+  overflow: hidden;
+}
+/* 脚注为空时不占空间 */
+.slide--chart .chart-footnote:empty {
+  display: none;
+}
+</style>

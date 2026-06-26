@@ -1,0 +1,36 @@
+{
+  "name": "odoo-assistant-manager",
+  "version": "1.1.0",
+  "description": "Odoo ERP: sales, web orders, stock, products via XML-RPC. Optional Discuss listener.",
+  "license": "MIT-0",
+  "environment": {
+    "required": [
+      {
+        "name": "ODOO_URL",
+        "description": "HTTPS base URL of the Odoo instance"
+      },
+      {
+        "name": "ODOO_DB",
+        "description": "PostgreSQL database name used by Odoo"
+      },
+      {
+        "name": "ODOO_USER",
+        "description": "Login (usually email)"
+      },
+      {
+        "name": "ODOO_PASSWORD",
+        "description": "Password or API key; ODOO_PASS is accepted as an alias"
+      }
+    ],
+    "optional": [
+      "ODOO_PASS",
+      "ODOO_BOT_PARTNER_ID",
+      "ODOO_STORE_LABEL",
+      "ODOO_TAX_ID",
+      "ODOO_STOCK_LOCATION_ID",
+      "ODOO_LOCATION_ID",
+      "ODOO_DEFAULT_CATEGORY_ID"
+    ]
+  },
+  "notes": "Registry metadata on ClawHub must list the same required env vars as this file to avoid security scanner inconsistencies."
+}

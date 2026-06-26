@@ -1,0 +1,7 @@
+{
+  "name": "ocas-custodian",
+  "version": "1.0.0",
+  "description": "Monitors OpenClaw gateway logs, cron jobs, skill journals, and OCAS data directories for operational failures. Detects errors, applies safe non-destructive fixes autonomously during quiet hours, initializes uninitialized skills, registers missing background tasks, and escalates issues it cannot fix. Use when asking about system health, log errors, cron failures, skill initialization, or overnight maintenance. Triggers on: 'check system health', 'fix log errors', 'why is X failing', 'initialize skills', 'clean up errors'.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com"
+}

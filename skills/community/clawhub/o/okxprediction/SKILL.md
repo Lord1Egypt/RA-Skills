@@ -1,35 +1,157 @@
----
-name: "okxprediction"
-description: "Predicts short-term BTC market direction using multi-timeframe analysis, funding rates, and sentiment to signal trade execution, watch, or no trade."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/okxprediction"
-sourceUrl: "https://clawhub.ai/skills/okxprediction"
+# OKX预测技能
+
+## 🎯 技能目标
+用于预测BTC短线（1M~1H）及1天级别方向，并输出是否执行交易。
+
+核心逻辑：
+不是预测价格，而是预测市场行为与概率方向。
+
 ---
 
-# okxprediction
+## 📊 输入数据
 
-> Predicts short-term BTC market direction using multi-timeframe analysis, funding rates, and sentiment to signal trade execution, watch, or no trade.
+- K线数据：1D / 4H / 1H / 15M / 5M / 1M
+- 资金费率（funding rate）
+- 多空比（long/short ratio）
+- （可选）爆仓数据
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/okxprediction`
-- **Source URL:** [https://clawhub.ai/skills/okxprediction](https://clawhub.ai/skills/okxprediction)
+---
 
-## Overview
+## 🧩 多周期分析逻辑
 
+### ① 方向层（1H / 1D）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/okxprediction
-```
+偏多：
+- 高点抬高 + 低点抬高
+- 价格在均线上方
+
+偏空：
+- 高点降低 + 低点降低
+- 价格在均线下方
+
+中性：
+- 均线缠绕
+- 区间震荡
+
+---
+
+### ② 结构层（15M / 4H）
+
+趋势：
+- EMA排列清晰
+- 持续创新高/低
+
+震荡：
+- EMA缠绕
+- 区间波动
+
+突破准备：
+- 波动收缩
+- 靠近关键位
+
+反转：
+- 结构被破坏
+
+---
+
+### ③ 位置层（5M）
+
+做多：
+- 在支撑上方
+- 回踩不破
+
+做空：
+- 在压力下方
+- 反弹不过
+
+禁止：
+- 区间中部
+
+---
+
+### ④ 情绪层
+
+资金费率：
+- > 0.01 → 多头过热 → 偏空
+- < -0.01 → 空头过热 → 偏多
+
+多空比：
+- 多头 > 70% → 看跌
+- 空头 > 70% → 看涨
+
+---
+
+### ⑤ 流动性层
+
+- 价格倾向移动到爆仓密集区
+- 作为目标位参考
+
+---
+
+### ⑥ 触发层（1M）
+
+做多：
+- 更高低点形成
+- 突破并站稳
+
+做空：
+- 更低高点形成
+- 跌破并站稳
+
+---
+
+## 🧮 评分系统
+
+| 项目 | 分数 |
+|------|------|
+| 方向 | 20 |
+| 结构 | 20 |
+| 位置 | 20 |
+| 情绪 | 15 |
+| 流动性 | 15 |
+| 触发 | 10 |
+
+---
+
+## ✅ 执行规则
+
+- ≥80 → 执行交易
+- 60~79 → 观察
+- <60 → 不交易
+
+---
+
+## ⚠️ 强制规则
+
+- 方向不一致 → 不交易
+- 没有位置 → 不交易
+- 没有触发 → 不入场
+- 必须有止损
+
+---
+
+## 🔁 执行流程
+
+1. 判断1H/1D方向
+2. 判断15M/4H结构
+3. 判断5M位置
+4. 判断情绪（资金费率+多空比）
+5. 判断流动性目标
+6. 判断1M触发
+7. 计算评分
+8. 输出信号
+
+---
+
+## 📤 输出格式
+
+```json
+{
+  "direction": "long / short / neutral",
+  "score": 0,
+  "signal": "execute / watch / no_trade",
+  "entry_type": "pullback / breakout / reversal",
+  "stop_loss": "price",
+  "target": "price zone",
+  "reason": "summary"
+}

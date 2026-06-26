@@ -1,0 +1,109 @@
+{
+  "title": "OpenClaw 安全管家",
+  "version": "v1.0.0",
+  "description": "OpenClaw 用户的安全工具",
+
+  "commands": {
+    "audit": "运行安全审计",
+    "scan": "扫描敏感信息",
+    "access": "访问控制管理",
+    "token": "令牌管理",
+    "report": "生成安全报告",
+    "harden": "安全加固",
+    "status": "快速安全状态"
+  },
+
+  "severity": {
+    "critical": "严重",
+    "high": "高危",
+    "medium": "中危",
+    "low": "低危",
+    "info": "信息"
+  },
+
+  "status": {
+    "excellent": "优秀",
+    "good": "良好",
+    "warning": "警告",
+    "poor": "较差",
+    "critical": "危险"
+  },
+
+  "messages": {
+    "no_issues": "未发现安全问题",
+    "fix_available": "可自动修复",
+    "run_harden": "使用 --fix 参数自动修复问题",
+    "scan_complete": "扫描完成",
+    "audit_complete": "审计完成",
+    "report_generated": "报告已生成",
+    "no_config": "未找到 OpenClaw 配置",
+    "restart_gateway": "重启 gateway 使更改生效"
+  },
+
+  "categories": {
+    "config": "配置安全",
+    "secrets": "敏感信息",
+    "access": "访问控制",
+    "network": "网络安全"
+  },
+
+  "findings": {
+    "CFG001": {
+      "title": "Gateway 绑定地址",
+      "description": "Gateway 绑定配置"
+    },
+    "CFG002": {
+      "title": "认证模式",
+      "description": "认证配置"
+    },
+    "CFG003": {
+      "title": "令牌强度",
+      "description": "令牌安全强度"
+    },
+    "CFG004": {
+      "title": "Tailscale VPN",
+      "description": "VPN 配置"
+    },
+    "CFG005": {
+      "title": "插件白名单",
+      "description": "插件限制配置"
+    },
+    "ACC001": {
+      "title": "已配对设备",
+      "description": "设备配对状态"
+    },
+    "ACC002": {
+      "title": "频道权限",
+      "description": "频道访问控制"
+    },
+    "ACC003": {
+      "title": "执行审批",
+      "description": "命令审批系统"
+    },
+    "SEC001": {
+      "title": "OpenAI API 密钥",
+      "description": "检测到 OpenAI API 密钥"
+    },
+    "SEC002": {
+      "title": "飞书应用密钥",
+      "description": "检测到飞书应用密钥"
+    }
+  },
+
+  "recommendations": {
+    "change_bind": "将绑定地址改为 'loopback' 仅限本地访问",
+    "enable_auth": "启用基于令牌的认证",
+    "rotate_token": "生成更强的令牌（32+ 字符）",
+    "use_tailscale": "考虑使用 Tailscale 进行安全的远程访问",
+    "review_plugins": "配置插件白名单限制可加载的插件",
+    "review_devices": "检查已配对设备并移除不使用的设备",
+    "use_env_vars": "使用环境变量存储敏感信息"
+  },
+
+  "help": {
+    "usage": "用法",
+    "options": "选项",
+    "examples": "示例",
+    "more_info": "运行 '%(prog)s <command> --help' 获取更多信息"
+  }
+}

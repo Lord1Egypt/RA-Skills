@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — LocaleFlow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span>🌐</span> LocaleFlow
+      </a>
+      <ul class="nav-links">
+        <li><a href="docs.html" class="active">Docs</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="docs-layout">
+      <!-- Sidebar -->
+      <aside class="docs-sidebar">
+        <h4>Getting Started</h4>
+        <ul class="docs-nav">
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#languages">Supported Languages</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+        </ul>
+        <h4 style="margin-top: var(--space-6);">Reference</h4>
+        <ul class="docs-nav">
+          <li><a href="#processor">Post-Processor</a></li>
+          <li><a href="#detection">Language Detection</a></li>
+          <li><a href="#locale">Locale Formats</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="docs-content">
+        <h2 id="overview">Overview</h2>
+        <p>LocaleFlow is a two-layer internationalization system for OpenClaw that ensures your AI agent outputs clean, properly formatted text in any supported language.</p>
+        
+        <h3>Why LocaleFlow?</h3>
+        <ul>
+          <li><strong>Fixes diacritics:</strong> Romanian "ă â î ș ț" and German "ü ö ä ß" are corrected automatically</li>
+          <li><strong>Removes stray characters:</strong> No more random Chinese or Cyrillic characters in your output</li>
+          <li><strong>Locale-aware formatting:</strong> Dates, currency, and phone numbers in local formats</li>
+          <li><strong>Conservative approach:</strong> When uncertain, we leave text unchanged — no false positives</li>
+        </ul>
+
+        <h2 id="languages">Supported Languages</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Language</th>
+                <th>Code</th>
+                <th>Status</th>
+                <th>Diacritics Fixed</th>
+                <th>Typos Corrected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Romanian</td>
+                <td><code>ro</code></td>
+                <td><span style="color: var(--color-success);">Stable</span></td>
+                <td>ă, â, î, ș, ț</td>
+                <td>30+</td>
+              </tr>
+              <tr>
+                <td>German</td>
+                <td><code>de</code></td>
+                <td><span style="color: var(--color-success);">Stable</span></td>
+                <td>ü, ö, ä, ß</td>
+                <td>20+</td>
+              </tr>
+              <tr>
+                <td>French</td>
+                <td><code>fr</code></td>
+                <td><span style="color: var(--color-success);">Stable</span></td>
+                <td>é, è, ê, ë, à, â, ù, û, ç</td>
+                <td>60+</td>
+              </tr>
+              <tr>
+                <td>Spanish</td>
+                <td><code>es</code></td>
+                <td><span style="color: var(--color-success);">Stable</span></td>
+                <td>á, é, í, ó, ú, ñ, ¿, ¡</td>
+                <td>100+</td>
+              </tr>
+              <tr>
+                <td>Italian</td>
+                <td><code>it</code></td>
+                <td><span style="color: var(--text-muted);">Coming v1.1</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Portuguese</td>
+                <td><code>pt</code></td>
+                <td><span style="color: var(--text-muted);">Coming v1.1</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="installation">Installation</h2>
+        <ol>
+          <li>Open your OpenClaw workspace</li>
+          <li>Install via ClawHub:</li>
+        </ol>
+        <pre><code>clawhub install bloommediacorporation-lab/openclaw-i18n-skill</code></pre>
+        <p>Or clone manually and configure:</p>
+        <pre><code>git clone https://github.com/bloommediacorporation-lab/openclaw-i18n-skill.git
+cd openclaw-i18n-skill/processor
+pip install -r requirements.txt</code></pre>
+
+        <h2 id="configuration">Configuration</h2>
+        <h3>Setting Language</h3>
+        <p>To set your preferred language:</p>
+        <ul>
+          <li>Say: <code>"Set language to Romanian"</code></li>
+          <li>Or: <code>"Setează limba la română"</code></li>
+          <li>Or: <code>"Stelle Sprache auf Deutsch"</code></li>
+        </ul>
+        
+        <h3>Resetting to Auto-Detect</h3>
+        <p>Say: <code>"Reset language to auto-detect"</code></p>
+
+        <h3>Configuration Persistence</h3>
+        <p>Language preferences are stored in memory across sessions. The agent remembers your choice until you reset it.</p>
+
+        <h2 id="processor">Post-Processor</h2>
+        <p>The post-processor runs after the model generates output and before it reaches the user. It applies these fixes:</p>
+        
+        <h3>What It Fixes</h3>
+        <ul>
+          <li><strong>Missing diacritics:</strong> "vrau" → "vreau", "Mueller" → "Müller"</li>
+          <li><strong>Stray non-Latin characters:</strong> Removes Chinese/Cyrillic artifacts glued to Latin text</li>
+          <li><strong>Whitespace issues:</strong> Normalizes double spaces, removes trailing spaces</li>
+          <li><strong>Common typos:</strong> Fixes model-specific patterns like "trebuie sa" → "trebuie să"</li>
+        </ul>
+
+        <h3>What It Doesn't Fix</h3>
+        <ul>
+          <li>Grammar errors requiring context understanding</li>
+          <li>Wrong word choice (semantic errors)</li>
+          <li>Sentence structure problems</li>
+          <li>Intentional foreign text (proper names, quoted phrases)</li>
+        </ul>
+
+        <h2 id="detection">Language Detection</h2>
+        <p>When auto-detection is enabled, the system analyzes:</p>
+        <ul>
+          <li>Explicit language statements ("I speak Romanian", " vorbesc română")</li>
+          <li>User names and place references</li>
+          <li>Writing style and diacritic usage</li>
+        </ul>
+        <p>If confidence is below 80%, the agent will ask you to confirm the language.</p>
+
+        <h2 id="locale">Locale Formats</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Romanian</th>
+                <th>German</th>
+                <th>French</th>
+                <th>Spanish</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Date</td>
+                <td>15 martie 2026</td>
+                <td>15. März 2026</td>
+                <td>15 mars 2026</td>
+                <td>15 de marzo de 2026</td>
+              </tr>
+              <tr>
+                <td>Currency</td>
+                <td>150 lei / 29,99 €</td>
+                <td>29,99 € / 150 €</td>
+                <td>29,99 €</td>
+                <td>29,99 €</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>+40 734 270 188</td>
+                <td>+49 30 12345678</td>
+                <td>+33 1 23 45 67 89</td>
+                <td>+34 91 123 45 67</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        
+        <h3>Diacritics not being fixed</h3>
+        <p>Make sure the language is set correctly. Say "Set language to Romanian" or "Set language to German".</p>
+        
+        <h3>Wrong language detected</h3>
+        <p>Use explicit commands to set language. Say "Set language to [language]" to override auto-detection.</p>
+        
+        <h3>Legitimate foreign text removed</h3>
+        <p>If you have legitimate foreign text (proper names, technical terms), ensure there's a space before it. The post-processor only removes non-Latin characters glued directly to Latin text.</p>
+        
+        <h3>Double spaces appearing</h3>
+        <p>This is rare but can happen with certain input patterns. The normalize_whitespace function should fix this. If it persists, please report the issue.</p>
+        
+        <h3>False positives</h3>
+        <p>If you see text incorrectly modified, please report the issue. We maintain a conservative 95%+ confidence threshold to minimize false positives.</p>
+
+        <h2 id="faq">FAQ</h2>
+        
+        <h3>Does LocaleFlow work with all languages?</h3>
+        <p>Romanian, German, French, and Spanish are stable. Italian and Portuguese are planned for v1.1. English is supported as passthrough.</p>
+        
+        <h3>Can I use multiple languages in one conversation?</h3>
+        <p>The system detects and maintains one active language per conversation. You can switch languages using configuration commands.</p>
+        
+        <h3>Does it work with other OpenClaw skills?</h3>
+        <p>Yes! LocaleFlow is designed to work alongside other skills. It processes output just before it reaches the user.</p>
+        
+        <h3>What's the accuracy?</h3>
+        <p>We maintain a 95%+ confidence threshold. When uncertain, we leave text unchanged to avoid introducing errors.</p>
+        
+        <h3>Can I contribute?</h3>
+        <p>Yes! Contributions are welcome. Check our GitHub repo for guidelines.</p>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <ul class="footer-links">
+          <li><a href="docs.html">Docs</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="https://github.com/bloommediacorporation-lab/openclaw-i18n-skill">GitHub</a></li>
+        </ul>
+        <p class="footer-copyright">Built by Bloom Media © 2026</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const io = new IntersectionObserver((e)=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add("is-visible");io.unobserve(el.target)}}),{threshold:0.1,rootMargin:"0px 0px -50px 0px"});
+    document.querySelectorAll("[data-animate]").forEach(el=>io.observe(el));
+    const nav=document.querySelector(".nav");
+    window.addEventListener("scroll",()=>{nav.classList.toggle("scrolled",window.pageYOffset>50);},{passive:true});
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "slug": "npc-dialogue-writer-skill",
+  "name": "NPC Dialogue Writer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "npc-dialogue-writer",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Writing",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-25",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

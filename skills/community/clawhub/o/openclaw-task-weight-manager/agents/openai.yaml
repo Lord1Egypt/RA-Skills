@@ -1,0 +1,10 @@
+interface:
+  display_name: "Task Weight Manager"
+  short_description: "Split one chat into focused weighted threads"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $task_weight_manager to classify this chat into threads, lock the mainline, and keep distractions parked unless they become urgent."
+
+policy:
+  allow_implicit_invocation: true

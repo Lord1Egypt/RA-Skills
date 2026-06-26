@@ -1,0 +1,12 @@
+{
+  "name": "ohmytoken-tracker",
+  "version": "1.0.0",
+  "description": "Track your LLM token consumption with a colorful pixel bead board",
+  "author": "ohmytoken",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entry": "instructions.md",
+  "tags": ["observability", "tokens", "cost-tracking", "developer-tools", "monitoring"],
+  "models": ["*"],
+  "minOpenClawVersion": "0.8.0"
+}

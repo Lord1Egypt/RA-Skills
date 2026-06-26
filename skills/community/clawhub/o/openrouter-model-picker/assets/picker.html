@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>OpenRouter 模型选择器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scrollbar-color:#333 #0f0f10;scrollbar-width:thin}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0f0f10}
+::-webkit-scrollbar-thumb{background:#2e2e36;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#444}
+html{height:100%;min-height:520px;margin:0;padding:0}body{min-height:520px;height:auto;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f10;color:#e8e8ea;display:flex;flex-direction:column;min-height:520px}
+.header{padding:14px 16px 0;position:sticky;top:0;z-index:100;background:#0f0f10}
+.header h1{font-size:16px;font-weight:600;color:#fff;margin-bottom:10px}
+.search-row{display:flex;gap:8px;margin-bottom:8px}
+.search-row input{flex:1;background:#1e1e21;border:1px solid #2e2e33;border-radius:8px;padding:7px 11px;color:#e8e8ea;font-size:13px;outline:none}
+.search-row input:focus{border-color:#6c6cff}
+.search-row input::placeholder{color:#555}
+.refresh-btn{background:#1e1e21;border:1px solid #2e2e33;border-radius:8px;padding:7px 10px;cursor:pointer;color:#aaa;font-size:15px}
+.refresh-btn:hover{color:#fff}
+.tabs{display:flex;gap:2px;overflow-x:auto;padding-bottom:6px}
+.tabs::-webkit-scrollbar{height:0}
+.tab{padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap;color:#888;background:none;border:none;outline:none}
+.tab.active{color:#7c7cff;background:#1a1a2e;font-weight:600}
+.tab:hover:not(.active){color:#ccc}
+.divider{height:1px;background:#1e1e23}
+.content{flex:1;padding:0 16px 8px}
+.group-header{display:flex;align-items:center;justify-content:space-between;padding:10px 0 6px;cursor:pointer;user-select:none}
+.group-left{display:flex;align-items:center;gap:6px}
+.group-name{font-size:13px;font-weight:600;color:#bbb}
+.badge{font-size:11px;background:#1e1e23;color:#777;padding:1px 6px;border-radius:8px}
+.badge.sel{background:#12122a;color:#7c7cff}
+.sel-all{font-size:12px;color:#7c7cff;cursor:pointer;background:none;border:none;padding:3px 7px;border-radius:5px}
+.sel-all:hover{background:#1a1a2e}
+.chevron{color:#444;font-size:11px;transition:transform 0.15s}
+.chevron.open{transform:rotate(0)}
+.chevron.closed{transform:rotate(-90deg)}
+.model-row{display:flex;align-items:center;padding:8px 8px;border-radius:7px;gap:8px;cursor:pointer}
+.model-row:hover{background:#181820}
+.model-row.selected{background:#10102a}
+.micon{width:22px;height:22px;border-radius:5px;background:#222;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.minfo{flex:1;min-width:0}
+.mname{font-size:13px;color:#ccc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mid{font-size:11px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.caps{display:flex;gap:3px;flex-shrink:0}
+.cap{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;border:1px solid}
+.cap-vision{border-color:#1e5c2e;color:#4ec26a}
+.cap-reasoning{border-color:#3e2060;color:#9060c0}
+.cap-free{border-color:#5c4010;color:#c09030;font-size:8px;font-weight:700;letter-spacing:-0.5px}
+.pbadge{font-size:10px;background:#0e2040;color:#5090e0;padding:1px 5px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+.vbadge{font-size:10px;background:#1a2a1a;color:#5a9a5a;padding:1px 5px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+.action-btn{width:22px;height:22px;border-radius:50%;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;background:none;flex-shrink:0;line-height:1}
+.add-btn{border-color:#2e2e33;color:#555}
+.add-btn:hover{border-color:#7c7cff;color:#7c7cff}
+.rem-btn{border-color:#3a3a7a;color:#7070cc}
+.rem-btn:hover{border-color:#ff4444;color:#ff4444}
+.footer{padding:12px 16px;border-top:1px solid #1e1e23;position:sticky;bottom:0;background:#0a0a0c}
+.plabel{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px}
+select.psel{background:#1a1a1e;border:1px solid #2a2a30;border-radius:7px;padding:7px 10px;color:#e8e8ea;font-size:13px;width:100%;outline:none;cursor:pointer;margin-bottom:8px}
+select.psel:focus{border-color:#6c6cff}
+.fstats{font-size:12px;color:#555;margin-bottom:8px}
+.fstats span{color:#999;font-weight:600}
+.fbtns{display:flex;gap:8px}
+.btn{padding:8px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none}
+.btn-p{background:#5555ee;color:#fff;flex:1}
+.btn-p:hover{background:#6666ff}
+.btn-c{background:#1e1e23;color:#888;padding:8px 14px}
+.btn-c:hover{background:#2a2a30}
+.state-msg{text-align:center;padding:40px 20px;color:#444;font-size:14px}
+.content:empty:after{content:'';display:block;min-height:200px}
+.state-msg.err{color:#cc4444}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#2a1010;color:#ff8888;padding:7px 14px;border-radius:7px;font-size:12px;z-index:9999;border:1px solid #441818;pointer-events:none}
+.virt-group-name{color:#5a8a5a}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>OpenRouter 模型</h1>
+  <div class="search-row">
+    <input id="searchInput" type="text" placeholder="搜索模型..." autocomplete="off"/>
+    <button class="refresh-btn" id="clearBtn" title="清空输入">✕</button>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="divider"></div>
+</div>
+
+<div class="content" id="content">
+  <div class="state-msg" id="initMsg">正在加载模型列表...</div>
+</div>
+
+<div class="footer" id="footer" style="display:none">
+  <div class="plabel">主模型(Primary)</div>
+  <select class="psel" id="primarySel"></select>
+  <div class="fstats" id="fstats"></div>
+  <div class="fstats-hint" style="color:#666;font-size:11px;margin-top:2px;text-align:center">💡 应用后会自动刷新页面</div>
+  <div class="fbtns">
+    <button class="btn btn-c" id="cancelBtn">取消</button>
+    <button class="btn btn-p" id="applyBtn">应用选择</button>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+var MY_PICKER_TS = '__PICKER_TS__';
+var allData = null;
+var selectedIds = new Set();
+var originalPrimary = '';
+var currentFilter = 'all';
+var searchQuery = '';
+var collapsed = {};
+var aliases = {};
+
+var FILTERS = [
+  {id:'all',       label:'全部'},
+  {id:'reasoning', label:'推理'},
+  {id:'vision',    label:'视觉'},
+  {id:'free',      label:'免费'},
+  {id:'selected',  label:'已选'},
+];
+
+var PICONS = {openai:'🤖',google:'🔵',anthropic:'🟠',meta:'🦙',mistralai:'🌊',
+  deepseek:'🦋',qwen:'🔶',xai:'⚡',cohere:'🟣',microsoft:'🪟',
+  nvidia:'🟩',amazon:'🔶',perplexity:'🔍','01-ai':'🔢',openrouter:'✦'};
+
+function picon(p){ return PICONS[p] || '✦'; }
+
+// ── Normalize ──────────────────────────────────────────────────────────────
+function normalizeId(id){
+  return (id && id.startsWith('openrouter/')) ? id.slice(11) : id;
+}
+
+// ── Server health poll ─────────────────────────────────────────────────────
+var HEALTH_URL = 'http://127.0.0.1:18790/health';
+var _healthInterval = null;
+
+function checkHealthNow(){
+  console.log('[picker:health] pinging http://127.0.0.1:18790/health ...');
+  fetch('http://127.0.0.1:18790/health')
+    .then(function(r){
+      console.log('[picker:health] response status:', r.status);
+      if(!r.ok) throw new Error('gone');
+      console.log('[picker:health] server alive ✓');
+    })
+    .catch(function(err){
+      console.warn('[picker:health] server GONE:', err.message || err);
+      if (_healthInterval) { clearInterval(_healthInterval); _healthInterval = null; }
+      if (!document.getElementById('applied-banner') && !document.getElementById('gone-banner')) {
+        console.log('[picker:health] no existing banner, showing gone-banner');
+        lockUI();
+        showServerGoneBanner();
+      } else {
+        console.log('[picker:health] banner already exists, skipping');
+      }
+    });
+}
+
+function startHealthPoll(){
+  console.log('[picker:health] startHealthPoll, intervalState:', !!_healthInterval);
+  if (_healthInterval) clearInterval(_healthInterval);
+  checkHealthNow(); // immediate first check
+  _healthInterval = setInterval(checkHealthNow, 10000);
+  console.log('[picker:health] polling started with 10s interval, id:', _healthInterval);
+}
+
+// ── Bootstrap ──────────────────────────────────────────────────────────────
+function initWithData(data){
+  console.log('[picker:init] initWithData called, ts:', MY_PICKER_TS);
+  // Register this picker as the active one (newest wins)
+  // localStorage may throw in sandboxed iframes without allow-same-origin
+  if (MY_PICKER_TS !== '__PICKER_TS__') {
+    try {
+      localStorage.setItem('picker-active-ts', MY_PICKER_TS);
+      console.log('[picker] registered as active, ts:', MY_PICKER_TS);
+    } catch(e) {
+      console.warn('[picker] localStorage unavailable (sandboxed), skipping active registration');
+    }
+  }
+  allData = JSON.parse(JSON.stringify(data)); // deep copy
+  originalPrimary = normalizeId(data.current.primary || 'auto');
+  startHealthPoll();
+
+  var rawEnabled = (data.current.enabled || []).map(normalizeId);
+  selectedIds = new Set(rawEnabled);
+  if(originalPrimary) selectedIds.add(originalPrimary);
+
+  aliases = {};
+  var aliasMap = data.current.aliases || {};
+  Object.keys(aliasMap).forEach(function(k){
+    aliases[normalizeId(k)] = aliasMap[k];
+  });
+
+  // Inject config-only models (in selected but not in API) as virtual group
+  var apiIds = new Set();
+  data.groups.forEach(function(g){ g.models.forEach(function(m){ apiIds.add(m.id); }); });
+  var missing = [];
+  selectedIds.forEach(function(id){ if(!apiIds.has(id)) missing.push(id); });
+  if(missing.length){
+    var virtModels = missing.map(function(id){
+      return {id:id, name:aliases[id]||id, caps:[], context:0, pricing:{prompt:'0',completion:'0'}, _virtual:true};
+    });
+    allData.groups = [{provider:'_config', models:virtModels}].concat(allData.groups);
+  }
+
+  buildTabs();
+  render();
+  syncPrimarySelect();
+  updateStats();
+  document.getElementById('footer').style.display = '';
+  var msg = document.getElementById('initMsg');
+  if(msg) msg.remove();
+}
+
+// ── Tabs ───────────────────────────────────────────────────────────────────
+function buildTabs(){
+  var con = document.getElementById('tabs');
+  var html = '';
+  FILTERS.forEach(function(f){
+    var cls = 'tab' + (f.id === currentFilter ? ' active' : '');
+    html += '<button class="' + cls + '" data-filter="' + f.id + '">' + f.label + '</button>';
+  });
+  con.innerHTML = html;
+  con.querySelectorAll('.tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentFilter = btn.dataset.filter;
+      con.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      render();
+    });
+  });
+}
+
+// ── Filter ─────────────────────────────────────────────────────────────────
+function getVisible(models){
+  var q = searchQuery;
+  return models.filter(function(m){
+    var ms = !q || m.id.toLowerCase().indexOf(q) >= 0 || m.name.toLowerCase().indexOf(q) >= 0;
+    var mf = currentFilter === 'all'      ? true
+           : currentFilter === 'selected' ? selectedIds.has(m.id)
+           : m.caps.indexOf(currentFilter) >= 0;
+    return ms && mf;
+  });
+}
+
+// ── Cap HTML ───────────────────────────────────────────────────────────────
+function capHtml(caps){
+  var icons = {vision:'👁', reasoning:'✦', free:'FREE'};
+  return caps.map(function(c){
+    return '<span class="cap cap-' + c + '" title="' + c + '">' + (icons[c]||c) + '</span>';
+  }).join('');
+}
+
+// ── Row HTML ───────────────────────────────────────────────────────────────
+function rowHtml(m){
+  var sel  = selectedIds.has(m.id);
+  var prim = m.id === document.getElementById('primarySel').value;
+  var rc   = 'model-row' + (sel ? ' selected' : '');
+  var ab   = sel
+    ? '<button class="action-btn rem-btn" data-id="' + m.id + '" title="移除">-</button>'
+    : '<button class="action-btn add-btn" data-id="' + m.id + '" title="添加">+</button>';
+  var alias = aliases[m.id];
+  var displayName = alias ? m.name + ' <span style="color:#7c7cff;font-size:11px">(' + alias + ')</span>' : m.name;
+  var primBadge = prim ? '<span class="pbadge">主模型</span>' : '';
+  var virtBadge = m._virtual ? '<span class="vbadge">已配置</span>' : '';
+
+  return '<div class="' + rc + '" data-id="' + m.id + '">'
+    + '<div class="micon">' + picon(m.id.split('/')[0]) + '</div>'
+    + '<div class="minfo">'
+      + '<div class="mname">' + displayName + '</div>'
+      + '<div class="mid">' + m.id + '</div>'
+    + '</div>'
+    + '<div class="caps">' + capHtml(m.caps) + '</div>'
+    + virtBadge
+    + primBadge
+    + ab
+  + '</div>';
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function render(){
+  if(!allData) return;
+  var content = document.getElementById('content');
+  var html = '';
+
+  allData.groups.forEach(function(g){
+    var vis = getVisible(g.models);
+    if(!vis.length) return;
+
+    var selN = g.models.filter(function(m){ return selectedIds.has(m.id); }).length;
+    var col = !!collapsed[g.provider];
+    var allSel = vis.length > 0 && vis.every(function(m){ return selectedIds.has(m.id); });
+
+    var chevronClass = col ? 'closed' : 'open';
+    var bodyStyle = col ? 'display:none' : '';
+    var selBtnLabel = allSel ? '取消全选' : '全选';
+    var selBadge = selN ? '<span class="badge sel">' + selN + ' 已选</span>' : '';
+    var isVirt = g.provider === '_config';
+    var providerLabel = isVirt ? '已配置(非 API 模型)' : g.provider;
+    var nameClass = isVirt ? 'group-name virt-group-name' : 'group-name';
+
+    html += '<div class="group" data-provider="' + g.provider + '">';
+    html += '<div class="group-header" data-toggle="' + g.provider + '">';
+    html += '<div class="group-left">';
+    html += '<span class="chevron ' + chevronClass + '">▾</span>';
+    html += '<span class="' + nameClass + '">' + providerLabel + '</span>';
+    html += '<span class="badge">' + vis.length + '</span>';
+    html += selBadge;
+    html += '</div>';
+    html += '<button class="sel-all" data-selall="' + g.provider + '">' + selBtnLabel + '</button>';
+    html += '</div>';
+    html += '<div class="group-body" id="gb-' + g.provider + '" style="' + bodyStyle + '">';
+    vis.forEach(function(m){ html += rowHtml(m); });
+    html += '</div></div>';
+  });
+
+  if(!html) html = '<div class="state-msg">没有匹配的模型</div>';
+  content.innerHTML = html;
+
+  // Bind events
+  content.querySelectorAll('[data-toggle]').forEach(function(el){
+    el.addEventListener('click', function(){ toggleGroup(el.dataset.toggle); });
+  });
+  content.querySelectorAll('[data-selall]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.stopPropagation(); toggleAllInGroup(el.dataset.selall); });
+  });
+  content.querySelectorAll('.action-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggleModel(btn.dataset.id); });
+  });
+  content.querySelectorAll('.model-row').forEach(function(row){
+    row.addEventListener('click', function(){ toggleModel(row.dataset.id); });
+  });
+}
+
+// ── Toggle model ───────────────────────────────────────────────────────────
+function toggleModel(id){
+  if(selectedIds.has(id)){
+    var prim = document.getElementById('primarySel').value;
+    if(id === prim){ toast('主模型不能移除,请先切换主模型'); return; }
+    selectedIds.delete(id);
+  } else {
+    selectedIds.add(id);
+  }
+  render();
+  syncPrimarySelect();
+  updateStats();
+}
+
+function toggleAllInGroup(provider){
+  if(!allData) return;
+  var g = null;
+  allData.groups.forEach(function(x){ if(x.provider === provider) g = x; });
+  if(!g) return;
+  var vis = getVisible(g.models);
+  var allSel = vis.length > 0 && vis.every(function(m){ return selectedIds.has(m.id); });
+  var prim = document.getElementById('primarySel').value;
+  if(allSel){
+    vis.forEach(function(m){ if(m.id !== prim) selectedIds.delete(m.id); });
+  } else {
+    vis.forEach(function(m){ selectedIds.add(m.id); });
+  }
+  render();
+  syncPrimarySelect();
+  updateStats();
+}
+
+function toggleGroup(provider){
+  collapsed[provider] = !collapsed[provider];
+  render();
+}
+
+// ── Primary select ─────────────────────────────────────────────────────────
+function syncPrimarySelect(){
+  var sel = document.getElementById('primarySel');
+  var prev = sel.value || originalPrimary;
+  sel.innerHTML = '';
+  var sorted = Array.from(selectedIds).sort();
+  sorted.forEach(function(id){
+    var o = document.createElement('option');
+    o.value = id;
+    o.textContent = (aliases[id] ? aliases[id] + ' - ' : '') + id;
+    sel.appendChild(o);
+  });
+  if(sorted.indexOf(prev) >= 0) sel.value = prev;
+  else if(sorted.length) sel.value = sorted[0];
+  updateStats();
+}
+
+function updateStats(){
+  var p = document.getElementById('primarySel').value || originalPrimary;
+  document.getElementById('fstats').innerHTML =
+    '已选 <span>' + selectedIds.size + '</span> 个模型 · 主模型: <span>' + p + '</span>';
+}
+
+// ── Apply ──────────────────────────────────────────────────────────────────
+function applySelection(){
+  // Check active picker - only the newest picker can apply
+  var ACTIVE_KEY = 'picker-active-ts';
+  var currentActive = 0;
+  try {
+    currentActive = parseInt(localStorage.getItem(ACTIVE_KEY) || '0', 10);
+  } catch(e) {
+    console.warn('[picker] localStorage unavailable, skipping stale check');
+  }
+  if (MY_PICKER_TS !== '__PICKER_TS__' && MY_PICKER_TS < currentActive) {
+    console.log('[picker] STALE - my ts:', MY_PICKER_TS, 'active ts:', currentActive);
+    document.getElementById('applyBtn').disabled = true;
+    document.getElementById('applyBtn').textContent = '已过期';
+    document.getElementById('applyBtn').style.background = '#444';
+    toast('请使用最新的模型选择器操作');
+    return;
+  }
+
+  var primary   = document.getElementById('primarySel').value;
+  var enabled   = Array.from(selectedIds);
+  var fallbacks = enabled.filter(function(id){ return id !== primary; });
+  var btn = document.getElementById('applyBtn');
+  console.log('[picker] apply', {primary:primary, count:enabled.length});
+  btn.textContent = '应用中...';
+  btn.disabled = true;
+  fetch('http://127.0.0.1:18790/apply', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ primary: primary, enabled: enabled, fallbacks: fallbacks, _picker_ts: MY_PICKER_TS })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(resp){
+    console.log('[picker] result:', resp);
+    if(resp.success){
+      lockUI();
+      showAppliedBanner();
+      // Reload the parent page so the chat header reflects the new config
+      setTimeout(function(){ window.parent.location.reload(); }, 3000);
+    } else { throw new Error(resp.error || 'Unknown error'); }
+  })
+  .catch(function(e){
+    console.error('[picker] error:', e.message);
+    btn.textContent = '✗ 失败';
+    btn.style.background = '#882222';
+    setTimeout(function(){ btn.disabled=false; btn.textContent='应用选择'; btn.style.background=''; }, 5000);
+  });
+}
+// ── Locked states ──────────────────────────────────────────────────────────
+function lockUI(){
+  var all = document.querySelectorAll('button:not(#gotItBtn), input, select, .model-row, .group-header, .tab, .sel-all');
+  all.forEach(function(el){ el.style.pointerEvents = 'none'; el.style.opacity = '0.35'; });
+  document.getElementById('applyBtn').disabled = true;
+  document.getElementById('applyBtn').style.background = '#444';
+  document.getElementById('cancelBtn').textContent = '关闭';
+}
+
+function showAppliedBanner(){
+  console.log('[picker:banner] showAppliedBanner called, clearing health poll');
+  if (_healthInterval) { clearInterval(_healthInterval); _healthInterval = null; }
+  var b = document.createElement('div');
+  b.id = 'applied-banner';
+  b.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);';
+  b.innerHTML = '<div style="background:#1a1a1e;border:1px solid #2e2e33;border-radius:12px;padding:32px 40px;text-align:center;max-width:360px">'
+    + '<div style="font-size:48px;margin-bottom:12px">✅</div>'
+    + '<div style="font-size:15px;color:#ccc;line-height:1.6">配置已生效,选择器已关闭。<br><span style="color:#888">需要再次调整?重新触发 <span style="color:#7c7cff">「选择模型」</span> 即可。</span></div>'
+    + '</div>';
+  document.body.appendChild(b);
+}
+
+function showServerGoneBanner(){
+  console.log('[picker:banner] showServerGoneBanner called');
+  var b = document.createElement('div');
+  b.id = 'gone-banner';
+  b.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);';
+  b.innerHTML = '<div style="background:#1a1a1e;border:1px solid #332;border-radius:12px;padding:32px 40px;text-align:center;max-width:360px">'
+    + '<div style="font-size:48px;margin-bottom:12px">⏳</div>'
+    + '<div style="font-size:15px;color:#ccc;line-height:1.6">选择器已超时,无法提交。<br><span style="color:#888">重新触发 <span style="color:#7c7cff">「选择模型」</span> 即可打开新的选择器。</span></div>'
+    + '</div>';
+  document.body.appendChild(b);
+}
+// ── Toast ──────────────────────────────────────────────────────────────────
+function toast(msg){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.remove(); }, 3000);
+}
+
+// ── Wire events ────────────────────────────────────────────────────────────
+document.getElementById('searchInput').addEventListener('input', function(){
+  searchQuery = this.value.toLowerCase();
+  render();
+});
+
+document.getElementById('clearBtn').addEventListener('click', function(){
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  render();
+});
+
+document.getElementById('cancelBtn').addEventListener('click', function(){
+  window.parent.postMessage({type:'PICKER_CANCEL'}, '*');
+});
+
+document.getElementById('applyBtn').addEventListener('click', applySelection);
+
+document.getElementById('primarySel').addEventListener('change', function(){
+  render();
+  updateStats();
+});
+
+window.addEventListener('message', function(e){
+  if(e.data && e.data.type === 'PICKER_DATA') initWithData(e.data.data);
+});
+
+// Boot - data injected below by build script
+</script>
+</body>
+</html>

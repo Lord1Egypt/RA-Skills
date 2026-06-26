@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* 温暖柔和风格封面 */
+.card-cover-warm {
+  box-shadow: 0 10px 30px rgba(255, 178, 138, 0.3);
+  background: linear-gradient(135deg, #fff8f5 0%, #ffeae0 100%);
+}
+
+.card-cover-warm .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 126, 79, 0.1),
+    rgba(255, 126, 79, 0.7)
+  );
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-warm .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 248, 245, 0.95),
+    rgba(255, 248, 245, 0.7) 50%,
+    rgba(255, 248, 245, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-warm .cover-content {
+  background: linear-gradient(135deg, #fff8f5 0%, #ffeae0 100%);
+  padding: calc(var(--spacing) * 5);
+  border-top: none;
+}
+
+.card-cover-warm .cover-title {
+  color: #ff7e4f;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.card-cover-warm .cover-description {
+  color: #666;
+}
+
+.card-cover-warm .cover-tag {
+  background-color: #ffd3bc;
+  color: #ff7e4f;
+  transition: all 0.3s ease;
+}
+
+.card-cover-warm .cover-tag:hover {
+  background-color: #ffbea0;
+  transform: translateY(-2px);
+}
+
+.card-cover-warm .cover-date {
+  color: #ff9d7c;
+}
+
+.card-cover-warm:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 5);
+  right: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 15);
+  height: calc(var(--spacing) * 15);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff9d7c" width="60" height="60"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>')
+    no-repeat;
+  opacity: 0.8;
+  transform: rotate(15deg);
+  z-index: 20;
+}
+/* ===== 温暖柔和风格 ===== */
+.card-warm {
+  width: 100%;
+  background: linear-gradient(135deg, #fff8f5 0%, #ffeae0 100%);
+  box-shadow: 0 10px 30px rgba(255, 178, 138, 0.2);
+  padding: calc(var(--spacing) * 7);
+  --highlight-color: #ff7e4f;
+  --highlight-bg-color: #fff0e8;
+}
+
+.card-warm .card-content {
+  position: relative;
+  height: calc(var(--card-height) - calc(var(--spacing) * 20));
+}
+
+/* 段落样式 */
+.card-warm p {
+  color: #666;
+  font-size: inherit;
+}
+
+.card-warm strong {
+  color: #ff7e4f;
+  font-weight: 600;
+}
+
+.card-warm em {
+  color: #ff9d7c;
+  font-style: italic;
+}
+
+.card-warm p a {
+  color: #ff7e4f;
+  text-decoration: none;
+  border-bottom: 1px dashed #ffd3bc;
+  transition: all 0.3s ease;
+}
+
+.card-warm p a:hover {
+  color: #ff6a3d;
+  border-bottom: 1px solid #ff9d7c;
+}
+
+.card-warm h1 {
+  font-size: calc(var(--spacing) * 6.5);
+  color: #ff7e4f;
+  margin-bottom: calc(var(--spacing) * 2);
+  font-weight: 600;
+}
+
+.card-warm h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #ff9d7c;
+  margin: calc(var(--spacing) * 5) 0;
+  font-weight: 400;
+}
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 9);
+}
+.card-warm ol > li {
+  position: relative;
+  list-style: none;
+  margin: calc(var(--spacing) * 5) 0;
+  color: #666;
+  font-size: inherit;
+}
+
+.card-warm ul > li {
+  position: relative;
+  list-style: none;
+  margin: calc(var(--spacing) * 5) 0;
+  color: #666;
+  font-size: inherit;
+}
+
+.card-warm li::before {
+  position: absolute;
+  left: calc(var(--spacing) * -8);
+  top: calc(var(--spacing) * 0);
+}
+
+.card-warm ol > li:before {
+  content: attr(data-index);
+  background: #ff9d7c;
+  color: white;
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  border-radius: 50%;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6);
+  font-weight: bold;
+}
+
+.card-warm h3 {
+  display: block;
+  color: #ff7e4f;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4.25);
+}
+
+.card-warm:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5);
+  right: calc(var(--spacing) * -2.5);
+  width: calc(var(--spacing) * 20);
+  height: calc(var(--spacing) * 20);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff9d7c" width="80" height="80"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>')
+    no-repeat;
+  opacity: 0.2;
+  transform: rotate(15deg);
+}
+/* 表格样式 */
+.card-warm table {
+  box-shadow: 0 4px 15px rgba(255, 178, 138, 0.1);
+}
+
+.card-warm th {
+  background-color: #fff0e8;
+  color: #ff7e4f;
+  border-bottom: 2px solid #ffd3bc;
+}
+
+.card-warm td {
+  color: #666;
+}
+
+.card-warm tr {
+  border-bottom-color: #ffeae0;
+}
+
+.card-warm tr:nth-child(even) {
+  background-color: #fff8f5;
+}
+
+/* 代码块样式 */
+.card-warm pre {
+  border: 1px solid #ff9d7c;
+  box-shadow: 0 4px 15px rgba(255, 178, 138, 0.1);
+}
+
+.card-warm code:not(pre code) {
+  background-color: #fff0e8;
+  color: #ff7e4f;
+}
+
+/* 引用块样式 */
+.card-warm blockquote {
+  background-color: #fff8f5;
+  border-left: 4px solid #ff9d7c;
+  color: #ff7e4f;
+}
+
+/* 无序列表样式 */
+.card-warm ul > li:before {
+  content: "";
+  top: calc(var(--spacing) * 2);
+  left: calc(var(--spacing) * -6);
+  width: calc(var(--spacing) * 2.5);
+  height: calc(var(--spacing) * 2.5);
+  background-color: #ff9d7c;
+  border-radius: 50%;
+}
+
+/* 水平线样式 */
+.card-warm hr {
+  background: linear-gradient(to right, transparent, #ff9d7c, transparent);
+}
+
+.card-warm .card-footer {
+  text-align: right;
+}
+
+.card-warm .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-warm">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

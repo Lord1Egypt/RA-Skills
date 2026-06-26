@@ -1,0 +1,145 @@
+# 伏笔条目字段定义
+
+## 伏笔注册表格式 (registry.yaml)
+
+```yaml
+foreshadows:
+  - id: fs-001
+    description: "林凡在古墓中发现的残破玉简，上面的文字看不懂"
+    status: planted             # planted | ready | harvested | abandoned
+
+    plant:
+      chapter: vol-01/ch-003
+      context: "林凡翻检古墓遗物时，发现一块残破玉简，上面刻着从未见过的符文"
+      hint_strength: weak       # weak | medium | strong
+      reader_visibility: "读者知道林凡发现了一件神秘物品，但不知道其用途"
+
+    expected_harvest:
+      volume: 2
+      chapter_hint: "vol-02/ch-XXX"
+      hint: "玉简文字与上古功法有关"
+      expected_reveal: "玉简是上古太极剑仙的传承信物，可解锁完整太极剑法"
+
+    harvest:
+      chapter: null
+      how: null
+      actual_reveal: null
+      consistency_check: null   # 回收时校验结果
+
+    abandon:
+      reason: null
+      date: null
+
+    related_settings: [@item:残破玉简, @char:林凡, @power:太极剑法]
+    related_arcs: [arc-001]
+    tags: [古墓线, 功法线]
+
+    metadata:
+      created_at: 2026-01-01
+      last_updated: 2026-01-01
+```
+
+## 伏笔操作日志格式 (log.yaml)
+
+```yaml
+logs:
+  - timestamp: 2026-01-01T10:30:00
+    action: plant               # plant | harvest | abandon | revise
+    foreshadow_id: fs-001
+    operator: user|auto         # 人工操作还是自动识别
+    detail: "在 vol-01/ch-003 中埋设伏笔"
+    context_snippet: "林凡翻检古墓遗物时..."
+
+  - timestamp: 2026-03-15T14:20:00
+    action: harvest
+    foreshadow_id: fs-001
+    operator: user
+    detail: "在 vol-02/ch-008 中回收伏笔"
+    consistency_check: pass     # pass | fail | warning
+    note: "回收方式与埋设点自洽"
+```
+
+## 伏笔状态机
+
+```
+          plant()
+  [不存在] ──────→ [planted]
+                     │  │
+          ready()    │  │  abandon()
+         (预期卷到)  │  │
+                     ↓  ↓
+                  [ready]  [abandoned]
+                     │
+          harvest()  │
+                     ↓
+                 [harvested]
+
+  特殊转换：
+  - planted → abandoned：作者决定放弃此伏笔
+  - ready → abandoned：预期回收但决定放弃
+  - harvested → planted：回收后重新埋设（新伏笔层）
+  - 任何状态 → revised：涟漪修改伏笔内容
+```
+
+## 伏笔自动识别模式
+
+章节生成后，扫描正文识别以下伏笔模式：
+
+### P1: 悬念句
+```
+特征：以疑问、未解释的异常、或"他知道"式信息差结尾
+标记：<!--foreshadow:type=suspense,desc=描述-->
+示例：
+"但他不知道的是，就在他转身的瞬间，那双紧闭的眼睛缓缓睁开了。"
+→ foreshadow: 古墓中的存在并未真正死去
+```
+
+### P2: 物品强调
+```
+特征：对看似普通的物品给予超出必要的描写（外观、触感、来源）
+标记：<!--foreshadow:type=item,ref=@item:XXX-->
+示例：
+"那块残玉在月光下泛起微弱的荧光，仿佛有生命般一明一灭。"
+→ foreshadow: 残玉有特殊能力
+```
+
+### P3: 人物异样
+```
+特征：角色的反常行为、表情、或未解释的知晓
+标记：<!--foreshadow:type=character,ref=@char:XXX-->
+示例：
+"苏晴听到'古墓'二字时，指尖不易察觉地颤了一下。"
+→ foreshadow: 苏晴与古墓有隐情
+```
+
+### P4: 信息差
+```
+特征：读者已知但角色未知的信息，或角色知道但未说出口的信息
+标记：<!--foreshadow:type=info-gap,desc=描述-->
+示例：
+"（读者已知玉简与太极剑法有关，但林凡尚不知晓）"
+→ foreshadow: 林凡即将发现玉简秘密
+```
+
+## 伏笔密度规范
+
+| 指标 | 标准 | 警告触发 |
+|------|------|---------|
+| 每章新伏笔数 | 1-3个 | 连续2章无新伏笔 |
+| 伏笔回收节奏 | 每3-5章回收1个 | 连续5章无回收 |
+| 待回收伏笔数 | ≤15个 | 超过15个未回收 |
+| 逾期伏笔 | ≤3个 | 超过预期回收卷1卷以上 |
+
+## 伏笔回收校验规则
+
+回收伏笔时，系统校验以下一致性：
+
+1. **信息不创造原则**：回收揭示的内容必须是埋设时已隐含的，不能凭空创造新设定
+2. **因果链闭合**：回收方式与埋设时的暗示方向一致，不能南辕北辙
+3. **角色知情链**：如果回收涉及某角色知晓信息，必须确认该角色有获取此信息的合理途径
+4. **时间线合理**：回收的时间点与埋设之间的时间间隔有合理解释
+
+校验结果：
+- ✅ pass：全部通过
+- ⚠️ warning：可能合理但不完全确定
+- ❌ fail：明显矛盾

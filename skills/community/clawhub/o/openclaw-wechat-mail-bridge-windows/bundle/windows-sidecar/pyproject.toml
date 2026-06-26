@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oc-wx-sidecar"
+version = "0.1.0"
+description = "Windows sidecar for OpenClaw WeChat-Mail bridge"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "requests>=2.32.0",
+  "pydantic>=2.10.0"
+]
+
+[project.optional-dependencies]
+pywinauto = ["pywinauto>=0.6.8"]
+uiautomation = ["uiautomation>=2.0.20"]
+visual = ["pillow>=10.4.0", "pytesseract>=0.3.10"]
+all = ["pywinauto>=0.6.8", "uiautomation>=2.0.20", "pillow>=10.4.0", "pytesseract>=0.3.10"]
+
+[project.scripts]
+oc-wx-sidecar = "oc_wx_bridge.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

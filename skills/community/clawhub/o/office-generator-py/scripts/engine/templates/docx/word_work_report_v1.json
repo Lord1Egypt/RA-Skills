@@ -1,0 +1,14 @@
+{
+  "documentType": "docx",
+  "templateId": "word_work_report_v1",
+  "title": "工作汇报",
+  "purpose": "用于阶段性工作汇报",
+  "contentSpec": {
+    "sections": [
+      {"heading": "一、工作概览", "paragraphs": ["请在这里填写工作概览。"]},
+      {"heading": "二、已完成事项", "bullets": ["事项1", "事项2"]},
+      {"heading": "三、风险与问题", "paragraphs": ["请在这里填写当前风险。"]},
+      {"heading": "四、下一步计划", "bullets": ["计划1", "计划2"]}
+    ]
+  }
+}

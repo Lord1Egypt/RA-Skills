@@ -1,35 +1,47 @@
 ---
-name: "Openclaw Receipt Manager"
-description: "Manage personal receipts by extracting data from images, storing records, and providing expense searches and monthly financial summaries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-receipt-manager"
-sourceUrl: "https://clawhub.ai/skills/openclaw-receipt-manager"
+name: receipt-manager
+description: Receipt management skill. Use when: (1) User sends a receipt image, (2) User asks about expenses or receipts, (3) User wants monthly spending summary.
 ---
 
-# Openclaw Receipt Manager
+# Receipt Manager
 
-> Manage personal receipts by extracting data from images, storing records, and providing expense searches and monthly financial summaries.
+Store and query receipt data locally.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-receipt-manager`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-receipt-manager](https://clawhub.ai/skills/openclaw-receipt-manager)
+## Trigger
 
-## Overview
+- receipt, expense, invoice, spending, claim
 
+## How to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Initialize (first time)
+
 ```bash
-hermes skills install clawhub/openclaw-receipt-manager
+python3 scripts/receipt_db.py init
 ```
+
+### 2. Add Receipt
+
+After OpenClaw recognizes the receipt image, the data is saved automatically via handler.
+
+### 3. Query
+
+```bash
+# List all
+python3 scripts/receipt_db.py list
+
+# Search
+python3 scripts/receipt_db.py search --q "walmart"
+
+# Monthly summary
+python3 scripts/receipt_db.py summary --month 2026-02
+```
+
+## Files
+
+- `scripts/receipt_db.py` - Main CLI tool
+- `scripts/handler.py` - Receives JSON from OpenClaw, saves to DB
+- `data/receipts/` - Local SQLite DB and images
+
+## Privacy
+
+All data stored locally on your machine. No cloud upload.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw Memory"
+  short_description: "Search and update shared OpenClaw memory"
+  default_prompt: "Use $openclaw-memory to check remembered local servers, services, paths, workflow notes, and shared preferences before acting. Search markdown memory first, fall back to SQLite chunk text when needed, and append new durable facts to OpenClaw memory when appropriate."
+
+policy:
+  allow_implicit_invocation: true

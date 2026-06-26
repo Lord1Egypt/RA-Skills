@@ -1,0 +1,469 @@
+
+=== Page 7 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+7 
+ PTP is the Fastest Way to Move ........................................................................................... 124 
+ Speed of PTP Motion ............................................................................................................ 124 
+ Plan for PTP Movement ........................................................................................................ 125 
+ PTP Smart Pose Choosing.................................................................................................... 125 
+ Line ............................................................................................................................................. 126 
+ Line Moves the Shortest Distance ......................................................................................... 126 
+ Speed of Line Motion ............................................................................................................ 126 
+ Plan for Line Movement ........................................................................................................ 127 
+ Two-Steps Motion (WayPoint) ...................................................................................................... 128 
+ WayPoint ............................................................................................................................... 128 
+ Plan for WayPoint Movement ................................................................................................ 129 
+ Blending ...................................................................................................................................... 129 
+ Blending in Movement ........................................................................................................... 130 
+ Blending Speed Change Chart .............................................................................................. 130 
+ Set the Blending Percentage ................................................................................................. 130 
+ Set the Blending by Radius ................................................................................................... 131 
+ Motion Nodes .............................................................................................................................. 132 
+ Point Node ............................................................................................................................ 133 
+ Generation Method of Point node ................................................................................... 133 
+ Point Node Setting .......................................................................................................... 134 
+ F-Point Node ......................................................................................................................... 134 
+ Move Node ............................................................................................................................ 136 
+ Plan for the Move Node .................................................................................................. 137 
+ Circle Node ........................................................................................................................... 137 
+ Circle Node Setting ......................................................................................................... 137 
+ Reach End Point ............................................................................................................. 138 
+ Target Central Angle ....................................................................................................... 138 
+ Path Node ............................................................................................................................. 139 
+ Path and PLine ............................................................................................................... 139 
+ Path Node Se
+
+=== Page 14 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+14 
+Figure 121: Speed of Line Motion ............................................................................................... 126 
+Figure 122: Link to Project Speed............................................................................................... 127 
+Figure 123: Line Application Example ........................................................................................ 128 
+Figure 124: WayPoint Motion Status .......................................................................................... 128 
+Figure 125: WayPoint Setting ..................................................................................................... 129 
+Figure 126: WayPoint Application Examples .............................................................................. 129 
+Figure 127: Blending in Space .................................................................................................... 130 
+Figure 128: Blending Speed Change Chart ................................................................................ 130 
+Figure 129: Set the Blending Percentage or Set the Blending by Radius.................................... 131 
+Figure 130: Motion Nodes Support Variable as the Inputs .......................................................... 132 
+Figure 131: Speed Adjust and Speed Indication on the Node. .................................................... 133 
+Figure 132: Point Node ............................................................................................................... 133 
+Figure 133: Point Node Setting ................................................................................................... 134 
+Figure 134: F-Point Node ........................................................................................................... 135 
+Figure 135: F-Point Node Setting ............................................................................................... 135 
+Figure 136: Adjust F-Point Parameter during Project Running .................................................... 136 
+Figure 137: Move Node Setting .................................................................................................. 136 
+Figure 138: Plan for the Move Node ........................................................................................... 137 
+Figure 139: The Circle Node Plans Arc Path with 3-Point Setting Circle ..................................... 137 
+Figure 140: Circle Node Setting .................................................................................................. 138 
+Figure 141: The Circle Motion Status of Reach End Point Setting .............................................. 138 
+Figure 142: The Circle Motion Status of Set Angle =270° ........................................................... 139 
+Figure 143: PLine Blending Relationship Chart .......................................................................... 139 
+Figure 144: Path Node Setting ................................................................................................... 140 
+Figure 145: Pallet Node (1/2) ...................................................................................................... 141 
+Figure 146: Pallet Node (2/2) ...................................................................................................... 142 
+Figure 147: Pallet Patterns ......................................................................................................... 142 
+Figure 148: Listen Node ............................................................................................................. 143 
+Figure 149: Variable System ...................................................................................................... 145 
+Figure 150: Global Variable Setting ............................................................................................ 147 
+Figure 151: Global Variables after Pro
+
+=== Page 89 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+89 
+the Modbus slave encoding definition file. 
+ 
+To use TM Ethernet Slave, click 
+ on the top to turn on/off the mode. Once turned on, 
+the system works as a socket server for users to configure clients with IP filtered and permissions 
+to access robot data. TM Ethernet Slave follows the protocol introduced in the manual 
+Expression Editor and Listen Node. 
+ 
+To use EtherNet/IP Adapter or Profinet IO Device, click 
+ on the top to turn on/off the 
+mode. Once turned on, the system works as a server for EtherNet/IP Adapter or Profinet 
+supported devices to access robot data. The context after STATUS denotes the current 
+EtherNet/IP Adapter or Profinet IO Device status. For Endianness, users can click on the 
+respective bullet to place the most significant byte first and the least significant byte last with 
+Big-endian or the opposite with Little-endian. To check the data table, click the Code Table 
+button. 
+ 
+To use the EtherNet/IP Adapter or Profinet functions in Expression Editor Setting: 
+1. 
+Click the right field of the expression. 
+2. 
+Click the Connection tab, and select EtherNet/IP Adapter or Profinet in Protocol 
+dropdown. 
+3. 
+Select the desired item in the Function dropdown. 
+ 
+ 
+NOTE: 
+When turning on EtherNet/IP Adapter or Profinet IO Device, if a message prompts users  
+ 
+for the listed field bus is enabled, please disable the current activated field bus 
+before changing the setting. 
+ 
+for rebooting the robot, please power cycle the robot to change the firmware of the 
+field bus device and manually enable the target field bus in the setting again. 
+ 
+for failed to activate device, please check the device and the driver are both installed 
+correctly. 
+ 
+ Posture Setting 
+Posture Setting provides a convenient tool for users to quickly move the robot to a commonly 
+used pose. They are Packing Pose, Normal Pose, and Home Pose from top to bottom. 
+Packing Pose can reduce the space occupied by the robot to help users pack and transport the 
+robot. Normal Pose is the most common work starting pose of the TM Robot, and Home Pose is 
+the pose with all joint rotation angles are 0 degrees. 
+ 
+
+
+=== Page 131 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+131 
+ 
+Figure 129: Set the Blending Percentage or Set the Blending by Radius 
+ 
+ Set the Blending by Radius 
+In Line mode, users can click By Radius to set the Blending by radius. Line is a commonly used 
+motion mode in Point Nodes. For details, refer to the sections with corresponding titles of this 
+manual. 
+ 
+ 
+IMPORTANT: 
+As shown in the table below, blending can improve the smooth running of robot, but when the 
+Blending radius has been set by Line motion, blending with Circle and PTP cannot be used. 
+ 
+P2 
+P1 
+PLine 
+Line 
+PTP 
+Waypoint 
+Circle 
+Pallet 
+Path 
+% 
+Radius 
+PLine 
+◯ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Line 
+% 
+ 
+◯ 
+◯ 
+◯ 
+✕ 
+◯ 
+◯ 
+◯ 
+Radius 
+ 
+◯ 
+◯ 
+✕ 
+✕ 
+✕ 
+✕ 
+◯ 
+PTP 
+ 
+◯ 
+✕ 
+◯ 
+✕ 
+◯ 
+◯ 
+◯ 
+Waypoint 
+ 
+◯ 
+◯ 
+◯ 
+✕ 
+◯ 
+◯ 
+◯ 
+Circle 
+ 
+◯ 
+◯ 
+◯ 
+✕ 
+◯ 
+◯ 
+◯ 
+Pallet 
+ 
+◯ 
+◯ 
+◯ 
+✕ 
+◯ 
+- 
+◯ 
+Path 
+ 
+✕ 
+✕ 
+✕ 
+✕ 
+✕ 
+✕ 
+✕ 
+Notice: 
+ 
+Blending is available in the insertion of IF nodes and unavailable in the insertion of the Wait For node insertion as well as the 
+connection of the Listen Node. 
+ 
+Set DO while moving is unavailable to move blending and go back to the previous subflow. 
+Table 7: Valid Blending Setting (Moving from P1 to P2) 
+ 
+ 
+NOTE: 
+Once the calculated trajectory is less than 10 ㎜, and the angle between the two lines is less 
+than 90°, the system refers to it as a sharp turn and voids the radius blending between the 
+two lines. 
+ 
+
+
+=== Page 143 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+143 
+ 
+IMPORTANT: 
+Pallet needs to work with a Loop in order to move to the next position of the Pallet. 
+ 
+ 
+ Listen Node 
+In the Listen Node, a socket server can be established and be connected by an external device to 
+communicate according to the defined protocol. All the functions available in Expression Editor 
+can also be executed in Listen Node. 
+ 
+ 
+Figure 148: Listen Node 
+ 
+ 
+Send Message: 
+When entering this node, it will initiate a message 
+Print Log: Enable Communication Log (shown on the right) 
+Connection Timeout: When entering this node, if more than the Connection Timeout 
+(milliseconds) passes without connecting, it will timeout. If <= 0, no timeout 
+Data Timeout: When connected, the timeout will be exceeded if no communication packet 
+arrives in Data Timeout milliseconds. If <= 0, no timeout 
+ 
+Socket Server is set up after the project is running and closed after the project is stopped. When 
+the Socket Server is successfully established, the IP and Port will be displayed in the Notice Log 
+window on the right. 
+ 
+IP  
+Human-Machine Interface  System  Network  IP Address 
+Port 
+5890 
+
+
+=== Page 144 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+144 
+ 
+When the process enters the Listen Node, it stays in the Listen Node until it triggers and leaves 
+with the exit condition. 
+ 
+Pass: 
+Executes ScriptExit() or item stopped 
+Fail: 
+1. 
+Connection Timeout 
+2. 
+Data Timeout  
+3. 
+Before the Socket Server been established successfully, the flow process has 
+entered the Listen Node 
+ 
+The commands received by the listen node will be executed in order. If the command is not valid, 
+an error message will be returned carrying the line number with errors. If the command is valid, it 
+will be executed. 
+ 
+The commands can be divided into two categories. The first category is commands which can be 
+accomplished in instance, like assigning variable value. The second category is commands that 
+need to be executed in sequence, like motion commands and IO value assignment. The second 
+category command will be placed in the queue and executed in order. Refer to the manual 
+Expression Editor and Listen Node for details on commands and communication format.
+
+
+=== Page 150 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+150 
+ 
+NOTE: 
+Point, Base, TCP, VPoint, IO, Robot, and FTSensor in the flows are now parameterized, 
+and users can write variables as parameters to the objects and read from the parameters 
+for calculations or applications with their types, Name/IDs, and attributes. For more details, 
+Refer to the manual of Expression Editor and Listen Node. 
+ 
+ 
+Figure 154: Expression Editor Parameters (1/2) 
+ 
+ 
+NOTE: 
+1. 
+Using parameterized objects is the same as using user defined variables. 
+Parameterized objects can be used without declarations to get or modify point data 
+through the syntax in the project operations and make the robot move with more 
+flexibility. The expression comes with three parts: item, index, and attribute. 
+2. 
+A base index is added to the base parameters to act as the choice of the bases, eg. 
+Base[“(base name) ”,(base index) ].value[ ]. The default value is 0 if there is no 
+number assigned to base index. 
+3. 
+Writing to the bases parameters is added with the same syntax as shown above. Only 
+the value is writable, and other properties are read only. 
+ 
+If there are multiple equations in Expression Editor, users can click on the equation to move, 
+and use the triangles to move the equation up and down for the process sequence. 
+ 
+
+
+=== Page 368 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+368 
+2. Do not close the execution windows during process 
+3. Do not close or restart the system manually during process 
+ErrorSuggestion00045101 Please contact the original purchase of the manufacturer or a third party designated maintenance unit. 
+ErrorSuggestion00048000 [Cause]HMI detected an array assignment error. 
+[Caution]Check if any array has been assigned with the different data type variables 
+[Additional Explanation] This error usually appears as a popped up message in HMI 
+[Additional Explanation] This error usually happens because the user assign ( "=" ) the mismatching 
+data type to array in the flow.  
+i.e. int[]/ var_arrayA = bool[]/var_arrayB 
+i.e. int[]/ var_arrayA = bool/var_b 
+i.e. bool[]/ var_arrayB = int[]/ var_arrayA 
+i.e. bool[]/ var_arrayB = int/var_i 
+[Solution]To restore the robot from Error Status :  
+1. Click on the OK button on the pop up windows. 
+ 
+Make sure all arrays are assigned correctly by data type, such as 
+(1) int[]/ var_arrayA = int[]/var_arrayB  
+==> (arrayA == arrayB) 
+(2) int[]/ var_arrayA = int[]/var_arrayB[0] 
+==> (arrayA == arrayB[0]) 
+ErrorSuggestion00048001 [Cause]Value assigned is in invalid number format 
+[Caution]Check if the value assigned to a variable is valid format type. 
+[Additional Explanation] For number format, 
+Incorrect: 
+ErrorSuggestion12CG // Hex includes values(0-9, A-F).「G」is invalid. 
+0b1212 // Binary includes values(0, 1). 「2」is invalid. 
+Correct: 
+ErrorSuggestion12CF  // Hex value is valid. 
+0b1110  // Binary value is valid. 
+[Additional Explanation]  
+This error usually appears in 
+1. The project file is generated by 3rd party flow editor 
+2. The input format error in Listen Node 
+3. In flow editing, it usually appears with a pop-up windows with warning message「Invalid Value」 
+[Solution]To restore the robot from error status:  
+1. Press the STOP button on the robot stick, or 
+2. Press the FREE button 
+3. Input the valid number format 
+if it appears the pop-up windows with warning message「Invalid Value」, click OK to close it 
+Make sure the variables used are with a valid number format. 
+ErrorSuggestion00048002 [Cause]There are repeated cases in the conditional expression in project. 
+[Caution]Check if this error is triggered in the following items 
+1. SET Node 
+2. Listen Node 
+[Additional Explanation]  
+This error usually appears if 
+1. The project file is generated by 3rd party flow editor 
+2. The input format to Listen Node is incorrect 
+[Solution]1. Click Stop on the robot stick to restore the error status 
+2. Remove the repeated cases in the conditional expression 
+
+
+=== Page 369 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+369 
+Make sure there is no repeated cases in the conditional expressions in the project. 
+ErrorSuggestion00048003 [Cause]There are variables created with the repeated name in project. 
+[Caution]Check if there are variables with the same name. 
+[Additional Explanation]  
+This error usually appears if 
+1. The project file is generated by 3rd party flow editor 
+2. The input format to Listen Node is incorrect 
+3. In flow editing, it usually appears with a pop-up windows with warning message「Variable Name 
+Repeat」 
+[Solution]1. Press the STOP button on the robot stick, or 
+2. if this error appears as a pop-up windows with the error message「Variable Name Repeat」, click OK 
+to close it 
+3. Remove the variable with repeated name 
+Make sure there is no repeated variables in the project. 
+ErrorSuggestion00048004 [Cause]An invalid expression is found within the current Project 
+[Caution]1. Check the description with this error, which shows the error node and the expression with it 
+2. Check if that expression is invalid or not 
+[Additional Explanation] This error would be shown on either pop out window on HMI or Notice Log 
+[Solution]To restore the robot from Error Status :  
+1. Click on the OK button on the pop up windows. 
+2. Correct the expression 
+1. Have fully understanding on expression functions before programming 
+2. Make sure all expressions are correct 
+3. Make sure the variables used in expressions would not set to invalid value during project run 
+ErrorSuggestion00048005 Please check variable manager, this variable is undefined. 
+ErrorSuggestion00048006 [Cause]Undefined functions in the expression editor 
+[Caution]1. Follow the description on the log and check to see if the variable names and function syntax 
+are correct 
+2. Check to see if any variables used in the expression editor have been deleted from the Variable 
+Manager 
+[Additional Explanation] This error usually appears as a popped up message in  HMI 
+[Solution]Confirm that the variables used in the expression editor exist and that the proper function 
+syntax has been followed 
+1. Make sure to use proper variable names and syntax within the expression editor according to the 
+current HMI version  
+2. Avoid deleting variables that are still in use 
+ErrorSuggestion00048007 [Cause]Invalid expression 
+[Caution]In SET node, 
+It is invalid in the expression with the form: 
+int\var_i= GetNow()+=10 
+(Functions with the following operands： 
+「+=」、「 -=」、「 *=」、「 /=」) 
+[Additional Explanation]  
+This error usually appears in 
+1. The project file is generated by 3rd party flow editor 
+2. In flow editing, it usually appears with a pop-up windows with warning message「Function operation 
+is not allowed」 
+[Solution]1. Press the STOP button on the robot stick, or 
+2. if this error appears as pop-up windows with the error message「Function operation is not allowed」, 
+click OK to close it 

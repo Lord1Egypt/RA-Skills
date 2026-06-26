@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-mindkeeper",
+  "version": "0.1.0",
+  "description": "Mindkeeper turns a day of memory into clarity.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "brief": "node src/index.js",
+    "validate": "bash ./scripts/validate.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

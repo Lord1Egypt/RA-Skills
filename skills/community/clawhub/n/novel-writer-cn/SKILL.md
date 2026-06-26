@@ -1,35 +1,182 @@
 ---
-name: "小说创作框架"
-description: "创建小说创作框架，包括人物设定、人物关系、剧情发展和多版本结局。Use when users ask to write novels, create story plots, design characters, or develop fiction narratives."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/novel-writer-cn"
-sourceUrl: "https://clawhub.ai/skills/novel-writer-cn"
+name: novel-writer
+description: 创建小说创作框架，包括人物设定、人物关系、剧情发展和多版本结局。Use when users ask to write novels, create story plots, design characters, or develop fiction narratives.
 ---
 
-# 小说创作框架
+# Novel Writer - 小说创作框架生成器
 
-> 创建小说创作框架，包括人物设定、人物关系、剧情发展和多版本结局。Use when users ask to write novels, create story plots, design characters, or develop fiction narratives.
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/novel-writer-cn`
-- **Source URL:** [https://clawhub.ai/skills/novel-writer-cn](https://clawhub.ai/skills/novel-writer-cn)
+本skill帮助用户创建完整的小说创作框架，涵盖以下核心模块：
 
-## Overview
+### 1. 人物设定 (Character Design)
 
+**主角 (Protagonist)**
+- 姓名、年龄、外貌特征
+- 性格特点与优缺点
+- 背景故事与动机
+- 成长弧线
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/novel-writer-cn
+**核心配角 (Supporting Cast)**
+- 盟友/伙伴
+- 导师角色
+- 情报提供者
+- 每个配角的独特功能
+
+**反派/对立角色 (Antagonist)**
+- 主反派设定
+- 反派动机与背景
+- 与主角的对立点
+
+### 2. 人物关系图 (Character Relationships)
+
+| 角色A | 关系类型 | 角色B | 关系描述 |
+|------|---------|------|---------|
+| - | - | - | - |
+
+**关系类型选项**：
+- 血缘关系（父母、兄弟姐妹、子女）
+- 爱情关系（恋人、前任、单相思）
+- 友情关系（挚友、普通朋友）
+- 师徒关系（师父、徒弟）
+- 对立关系（敌人、竞争对手）
+- 工作关系（上司下属、同事）
+- 偶然关系（陌生人、救命恩人）
+
+### 3. 关键剧情节点 (Key Plot Points)
+
+**第一幕 - 铺垫 (Setup)**
+- 世界观设定
+- 主角的日常生活
+- 激励事件
+- 拒绝改变/拒绝冒险
+
+**第二幕 - 对抗 (Confrontation)**
+- 新的挑战与障碍
+- 中点转折
+- 反派逼近
+- 一切尽失（低谷）
+
+**第三幕 - 解决 (Resolution)**
+- 最终决战前的准备
+- 高潮对决
+- 结局呈现
+
+### 4. 多版本结局 (Alternative Endings)
+
+**结局A - 经典圆满结局**
+- 主角达成目标
+- 主要冲突解决
+- 开放式/封闭式收尾
+
+**结局B - 悲剧结局**
+- 主角付出代价
+- 目标部分达成或完全失败
+- 情感冲击
+
+**结局C - 开放结局**
+- 留下悬念
+- 读者想象空间
+- 续作伏笔
+
+**结局D - 反转结局**
+- 出人意料的转折
+- 角色身份揭示
+- 主题升华
+
+## 输出格式
+
+生成的完整小说框架将包含：
+
 ```
+# [小说类型] 创作框架
+
+## 一、作品概述
+- 类型：[用户指定的小说类型]
+- 风格：[风格描述]
+- 目标读者：[目标群体]
+
+## 二、人物设定
+
+### 2.1 主角
+[详细主角设定]
+
+### 2.2 核心配角
+[配角阵容]
+
+### 2.3 反派/对立角色
+[反派设定]
+
+## 三、人物关系图
+[关系表格和描述]
+
+## 四、剧情发展
+
+### 4.1 第一幕：铺垫
+[关键场景和事件]
+
+### 4.2 第二幕：对抗
+[高潮和转折]
+
+### 4.3 第三幕：解决
+[结局铺垫]
+
+## 五、多版本结局
+
+### 结局A：[名称]
+[详细结局]
+
+### 结局B：[名称]
+[详细结局]
+
+### 结局C：[名称]
+[详细结局]
+
+### 结局D：[名称]
+[详细结局]
+
+## 六、创作建议
+- [类型特定建议]
+- [写作技巧提示]
+```
+
+## 使用场景
+
+适用的小说类型包括但不限于：
+- 言情小说
+- 悬疑推理
+- 玄幻修仙
+- 都市异能
+- 科幻未来
+- 武侠江湖
+- 历史穿越
+- 恐怖惊悚
+- 校园青春
+- 军事战争
+
+## 定制化选项
+
+用户可以指定：
+1. **小说类型**：选择或混合多种类型
+2. **主角数量**：单主角/双主角/群像
+3. **情感基调**：轻松幽默/深沉虐心/热血激昂
+4. **结局偏好**：明确偏好的结局类型
+5. **篇幅长度**：短篇/中篇/长篇框架
+6. **特定元素**：添加用户想要的特定元素（如宠物、异能、组织等）
+
+## 输出质量标准
+
+生成的内容将：
+- 保持类型特征和惯例
+- 人物设定有内在逻辑和冲突
+- 剧情发展符合三幕式结构
+- 提供真正多样化的结局选项
+- 包含创意性的独特设定
+
+## 注意事项
+
+1. **创意优先**：提供新颖而非套路化的设定
+2. **逻辑自洽**：确保设定和剧情前后一致
+3. **情感共鸣**：人物动机真实可信
+4. **悬念设置**：关键节点设置适当的悬念和伏笔
+5. **灵活性**：框架可随用户反馈调整

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Billable Hours</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #30d158;
+    --accent-dim: rgba(48,209,88,0.12);
+    --gold: #c8a44e;
+    --gold-dim: rgba(200,164,78,0.12);
+    --red: #ff453a;
+    --blue: #4a9eff;
+    --radius: 16px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    min-height: 100vh;
+  }
+  .container { max-width:520px; margin:0 auto; padding:20px 16px 80px; }
+
+  .header { text-align:center; padding:20px 0 8px; }
+  .header h1 { font-size:28px; font-weight:700; }
+  .header .sub { font-size:14px; color:var(--text-muted); margin-top:4px; }
+
+  /* Summary bar */
+  .summary { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:20px 0; }
+  .summary-card { background:var(--surface); border-radius:var(--radius); padding:14px; text-align:center; }
+  .summary-value { font-size:24px; font-weight:300; margin-bottom:2px; font-variant-numeric:tabular-nums; }
+  .summary-value.money { color:var(--gold); }
+  .summary-label { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px; }
+
+  /* Active timer */
+  .active-timer {
+    background:var(--surface); border-radius:var(--radius); padding:20px;
+    margin-bottom:20px; display:none;
+  }
+  .active-timer.visible { display:block; }
+  .active-timer .timer-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .active-timer .client-name { font-size:18px; font-weight:600; }
+  .active-timer .live-dot { width:10px; height:10px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .active-timer .timer-display {
+    font-size:40px; font-weight:200; text-align:center; letter-spacing:-1px;
+    font-variant-numeric:tabular-nums; margin:16px 0;
+  }
+  .active-timer .stop-btn {
+    width:100%; padding:14px; background:var(--red); color:#fff;
+    border:none; border-radius:12px; font-size:16px; font-weight:600;
+    cursor:pointer; font-family:inherit;
+  }
+  .active-timer .stop-btn:active { opacity:0.7; }
+
+  /* New entry */
+  .new-entry { background:var(--surface); border-radius:var(--radius); padding:20px; margin-bottom:20px; }
+  .new-entry-title { font-size:13px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .new-entry input, .new-entry select {
+    width:100%; background:var(--surface-2); border:1px solid var(--surface-2);
+    border-radius:12px; padding:12px 16px; font-size:16px; color:var(--text);
+    outline:none; font-family:inherit; margin-bottom:10px;
+  }
+  .new-entry input:focus, .new-entry select:focus { border-color:var(--accent); }
+  .new-entry input::placeholder { color:var(--text-dim); }
+  .new-entry select { appearance:none; }
+  .new-entry .row { display:flex; gap:10px; }
+  .new-entry .row input { flex:1; }
+  .start-btn {
+    width:100%; padding:14px; background:var(--accent); color:#000;
+    border:none; border-radius:12px; font-size:16px; font-weight:600;
+    cursor:pointer; font-family:inherit; margin-top:4px;
+  }
+  .start-btn:active { opacity:0.7; }
+
+  /* Entries list */
+  .entries { background:var(--surface); border-radius:var(--radius); padding:16px 20px; margin-bottom:20px; }
+  .entries-title { font-size:13px; font-weight:600; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .entry-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid var(--surface-2);
+  }
+  .entry-row:last-child { border-bottom:none; }
+  .entry-info { flex:1; }
+  .entry-client { font-size:15px; font-weight:600; margin-bottom:2px; }
+  .entry-meta { font-size:12px; color:var(--text-dim); }
+  .entry-hours { text-align:right; }
+  .entry-duration { font-size:16px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .entry-cost { font-size:13px; color:var(--gold); }
+  .entry-delete {
+    background:none; border:none; color:var(--text-dim); font-size:16px;
+    cursor:pointer; padding:4px 0 4px 12px;
+  }
+  .entry-delete:hover { color:var(--red); }
+  .entries-empty { text-align:center; padding:16px; font-size:14px; color:var(--text-dim); }
+
+  /* Clients */
+  .client-chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .client-chip {
+    background:var(--surface-2); border:1px solid var(--surface-2);
+    border-radius:20px; padding:6px 14px; font-size:13px; color:var(--text-muted);
+    cursor:pointer;
+  }
+  .client-chip:active, .client-chip.selected { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); }
+
+  .clear-btn {
+    width:100%; padding:10px; background:none; border:1px solid var(--surface-2);
+    border-radius:10px; color:var(--text-dim); font-size:13px; cursor:pointer;
+    font-family:inherit;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>⏱️ Billable Hours</h1>
+    <div class="sub">Track time by client and project</div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card">
+      <div class="summary-value" id="todayHours">0.0</div>
+      <div class="summary-label">Today (hrs)</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-value" id="weekHours">0.0</div>
+      <div class="summary-label">This Week</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-value money" id="weekEarnings">$0</div>
+      <div class="summary-label">Earnings</div>
+    </div>
+  </div>
+
+  <div class="active-timer" id="activeTimer">
+    <div class="timer-header">
+      <span class="client-name" id="activeClient"></span>
+      <div class="live-dot"></div>
+    </div>
+    <div class="timer-display" id="activeDisplay">00:00:00</div>
+    <button class="stop-btn" onclick="stopTimer()">Stop & Save</button>
+  </div>
+
+  <div class="new-entry" id="newEntry">
+    <div class="new-entry-title">Start Tracking</div>
+    <div class="client-chips" id="clientChips"></div>
+    <div class="row">
+      <input type="text" id="clientInput" placeholder="Client or project name">
+      <input type="number" id="rateInput" placeholder="$/hr" style="max-width:90px" min="0" step="5">
+    </div>
+    <button class="start-btn" onclick="startTimer()">Start Timer</button>
+  </div>
+
+  <div class="entries">
+    <div class="entries-title">Today's Entries</div>
+    <div id="entriesList"></div>
+    <button class="clear-btn" onclick="clearEntries()">Clear All Entries</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'openpot_billable_hours';
+let entries = [];
+let clients = [];
+let active = null; // { client, rate, startTime }
+let tickInterval = null;
+
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (d) {
+      entries = d.entries || [];
+      clients = d.clients || [];
+      if (d.active) {
+        active = d.active;
+        active.startTime = new Date(active.startTime).getTime();
+      }
+    }
+  } catch(e) {}
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    entries, clients,
+    active: active ? { ...active, startTime: new Date(active.startTime).toISOString() } : null
+  }));
+}
+
+function todayKey() { return new Date().toISOString().split('T')[0]; }
+
+function startOfWeek() {
+  const d = new Date();
+  d.setDate(d.getDate() - d.getDay());
+  d.setHours(0,0,0,0);
+  return d;
+}
+
+function startTimer() {
+  const client = document.getElementById('clientInput').value.trim();
+  if (!client) return;
+  const rate = parseFloat(document.getElementById('rateInput').value) || 0;
+
+  // Add to known clients
+  if (!clients.find(c => c.name === client)) {
+    clients.push({ name: client, rate: rate });
+    if (clients.length > 20) clients = clients.slice(-20);
+  } else {
+    const existing = clients.find(c => c.name === client);
+    if (rate > 0) existing.rate = rate;
+  }
+
+  active = { client, rate, startTime: Date.now() };
+  save();
+  renderActive();
+  renderChips();
+
+  tickInterval = setInterval(updateActiveDisplay, 1000);
+}
+
+function stopTimer() {
+  if (!active) return;
+  clearInterval(tickInterval);
+
+  const elapsed = (Date.now() - active.startTime) / 1000;
+  const hours = elapsed / 3600;
+
+  entries.unshift({
+    id: Date.now().toString(),
+    client: active.client,
+    rate: active.rate,
+    date: todayKey(),
+    seconds: Math.round(elapsed),
+    hours: parseFloat(hours.toFixed(2)),
+    cost: parseFloat((hours * active.rate).toFixed(2)),
+    startedAt: new Date(active.startTime).toISOString(),
+    stoppedAt: new Date().toISOString()
+  });
+
+  active = null;
+  save();
+  renderActive();
+  renderEntries();
+  renderSummary();
+}
+
+function updateActiveDisplay() {
+  if (!active) return;
+  const elapsed = (Date.now() - active.startTime) / 1000;
+  const h = Math.floor(elapsed / 3600);
+  const m = Math.floor((elapsed % 3600) / 60);
+  const s = Math.floor(elapsed % 60);
+  document.getElementById('activeDisplay').textContent =
+    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
+function selectClient(name) {
+  const c = clients.find(cl => cl.name === name);
+  document.getElementById('clientInput').value = name;
+  if (c && c.rate) document.getElementById('rateInput').value = c.rate;
+  renderChips();
+}
+
+function deleteEntry(id) {
+  entries = entries.filter(e => e.id !== id);
+  save();
+  renderEntries();
+  renderSummary();
+}
+
+function renderActive() {
+  const el = document.getElementById('activeTimer');
+  const form = document.getElementById('newEntry');
+  if (active) {
+    el.classList.add('visible');
+    form.style.display = 'none';
+    document.getElementById('activeClient').textContent = active.client;
+    updateActiveDisplay();
+    if (!tickInterval) tickInterval = setInterval(updateActiveDisplay, 1000);
+  } else {
+    el.classList.remove('visible');
+    form.style.display = 'block';
+    document.getElementById('clientInput').value = '';
+  }
+}
+
+function renderChips() {
+  const el = document.getElementById('clientChips');
+  const currentInput = document.getElementById('clientInput').value;
+  if (clients.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = clients.slice(-8).reverse().map(c =>
+    `<div class="client-chip ${c.name === currentInput ? 'selected' : ''}"
+      onclick="selectClient('${c.name.replace(/'/g,"\\'")}')">
+      ${c.name}${c.rate ? ' · $' + c.rate : ''}
+    </div>`
+  ).join('');
+}
+
+function renderEntries() {
+  const list = document.getElementById('entriesList');
+  const today = todayKey();
+  const todayEntries = entries.filter(e => e.date === today);
+
+  if (todayEntries.length === 0) {
+    list.innerHTML = '<div class="entries-empty">No entries today. Start a timer above.</div>';
+    return;
+  }
+
+  list.innerHTML = todayEntries.map(e => {
+    const h = Math.floor(e.seconds / 3600);
+    const m = Math.floor((e.seconds % 3600) / 60);
+    const timeStr = h > 0 ? `${h}h ${m}m` : `${m}m`;
+    const start = new Date(e.startedAt);
+    const startStr = start.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    return `<div class="entry-row">
+      <div class="entry-info">
+        <div class="entry-client">${e.client}</div>
+        <div class="entry-meta">${startStr}${e.rate ? ' · $' + e.rate + '/hr' : ''}</div>
+      </div>
+      <div class="entry-hours">
+        <div class="entry-duration">${timeStr}</div>
+        ${e.cost > 0 ? `<div class="entry-cost">$${e.cost.toFixed(2)}</div>` : ''}
+      </div>
+      <button class="entry-delete" onclick="deleteEntry('${e.id}')">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function renderSummary() {
+  const today = todayKey();
+  const weekStart = startOfWeek();
+
+  let todayHrs = 0, weekHrs = 0, weekEarn = 0;
+
+  // Include active timer in today's count
+  if (active) {
+    const activeHrs = (Date.now() - active.startTime) / 3600000;
+    todayHrs += activeHrs;
+    weekHrs += activeHrs;
+    weekEarn += activeHrs * (active.rate || 0);
+  }
+
+  entries.forEach(e => {
+    const eDate = new Date(e.date + 'T12:00:00');
+    if (e.date === today) todayHrs += e.hours;
+    if (eDate >= weekStart) {
+      weekHrs += e.hours;
+      weekEarn += e.cost;
+    }
+  });
+
+  document.getElementById('todayHours').textContent = todayHrs.toFixed(1);
+  document.getElementById('weekHours').textContent = weekHrs.toFixed(1);
+  document.getElementById('weekEarnings').textContent = '$' + Math.round(weekEarn);
+}
+
+function clearEntries() {
+  if (confirm('Clear all time entries?')) {
+    entries = [];
+    save();
+    renderEntries();
+    renderSummary();
+  }
+}
+
+load();
+renderActive();
+renderChips();
+renderEntries();
+renderSummary();
+
+// Update summary every 30s if timer is active
+setInterval(() => { if (active) renderSummary(); }, 30000);
+</script>
+</body>
+</html>

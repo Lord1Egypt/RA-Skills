@@ -1,0 +1,19 @@
+verdict: pass
+strategy_results:
+  - strategy_type: review
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "`packages/core/src/types.ts` 的 `Task` interface 包含契约要求的新字段 `acp_session_key`、`acp_stream_log`、`started_at`、`completed_at`、`eval_result_path`、`base_commit`、`last_error`；这些字段都使用 `?` 声明为可选类型。契约来源见 `docs/nexum/contracts/NX2-001.yaml`。"
+      - id: C2
+        result: pass
+        evidence: "`packages/core/src/types.ts` 的 `TaskStatus` 枚举包含 `Evaluating = 'evaluating'` 和 `Cancelled = 'cancelled'`。"
+      - id: C3
+        result: pass
+        evidence: "`packages/core/src/tasks.ts` 中 `updateTask(projectDir, taskId, patch)` 的签名是 `patch: Partial<Task>`；函数内部直接展开 `...patch` 合并，没有用类型断言绕过 patch 参数类型。"
+  - strategy_type: unit
+    criteria_results:
+      - id: C4
+        result: pass
+        evidence: "2026-03-29 运行根目录 `pnpm build && pnpm test`，命令退出码为 0。Turbo 输出显示 build 阶段 2/2 successful，test 阶段 4/4 successful；`@nexum/prompts` 25 个测试通过，`@nexum/core` 6 个测试通过。"
+feedback: "四项 criteria 均通过，整体评估为 pass。"

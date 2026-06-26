@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Risk Profile",
+  "description": "策略风控硬约束。所有字段必填。Backtest Agent 逐项校验。",
+  "type": "object",
+  "required": [
+    "max_position_size_pct", "stop_loss_pct", "take_profit_pct",
+    "max_drawdown_pct", "max_daily_loss_pct", "gas_budget_usd",
+    "slippage_tolerance_pct", "max_concurrent_positions", "market_conditions"
+  ],
+  "properties": {
+    "max_position_size_pct": { "type": "number", "description": "单笔最大仓位占比 %", "minimum": 0.1, "maximum": 100 },
+    "stop_loss_pct": { "type": "number", "description": "止损触发 %", "minimum": 0.1 },
+    "take_profit_pct": { "type": "number", "description": "止盈触发 %", "minimum": 0.1 },
+    "max_drawdown_pct": { "type": "number", "description": "最大回撤 %", "minimum": 1 },
+    "max_daily_loss_pct": { "type": "number", "description": "单日最大亏损 %", "minimum": 0.5 },
+    "gas_budget_usd": { "type": "number", "description": "每日 Gas 预算 USD", "minimum": 1 },
+    "slippage_tolerance_pct": { "type": "number", "description": "滑点容忍度 %", "minimum": 0.01 },
+    "max_concurrent_positions": { "type": "integer", "description": "最大同时持仓数", "minimum": 1 },
+    "market_conditions": {
+      "type": "object",
+      "required": ["applicable", "not_applicable"],
+      "properties": {
+        "applicable": { "type": "array", "items": { "type": "string" } },
+        "not_applicable": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

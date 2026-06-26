@@ -1,0 +1,24 @@
+{
+  "name": "龙虾安全卫士",
+  "id": "openclaw-safe-guard",
+  "version": "1.0.9",
+  "description": "静态安全扫描工具 - 扫描已安装Skills的权限风险",
+  "author": "ansengu11",
+  "license": "MIT-0",
+  "requirements": {
+    "binaries": ["curl", "jq", "git", "grep", "find"],
+    "filesystem": {
+      "read": ["~/.openclaw/skills", "~/.openclaw/workspace/skills"],
+      "write": ["/tmp"]
+    },
+    "network": {
+      "domains": ["api.github.com", "github.com"]
+    }
+  },
+  "security": {
+    "risk_level": "medium",
+    "warning": "读取 ~/.openclaw/skills 目录可能暴露其他技能中的敏感信息",
+    "isolate_recommended": true,
+    "always_enabled": false
+  }
+}

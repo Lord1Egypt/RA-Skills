@@ -1,0 +1,59 @@
+id: NX-005
+name: "nexum CLI — 整合命令行工具"
+type: coding
+created_at: "2026-03-29T04:00:00Z"
+
+scope:
+  files:
+    - packages/cli/package.json
+    - packages/cli/tsconfig.json
+    - packages/cli/src/commands/spawn.ts
+    - packages/cli/src/commands/status.ts
+    - packages/cli/src/commands/eval.ts
+    - packages/cli/src/commands/complete.ts
+    - packages/cli/src/index.ts
+    - packages/cli/src/__tests__/spawn.test.ts
+  boundaries:
+    - packages/core/
+    - packages/spawn/
+    - packages/prompts/
+    - packages/notify/
+  conflicts_with: []
+
+deliverables:
+  - "packages/cli/src/index.ts：入口，使用 commander 定义 nexum CLI，注册 spawn/status/eval/complete 子命令，设置 bin 字段"
+  - "packages/cli/src/commands/spawn.ts：nexum spawn <taskId> [--project <dir>]，读取 contract YAML，渲染 generator prompt，调用 @nexum/spawn 的 spawnAcpSession，更新 active-tasks.json（status=running, acp_session_key），发送 Telegram dispatch 通知"
+  - "packages/cli/src/commands/status.ts：nexum status [--project <dir>]，读取 active-tasks.json，查询各 running task 的 ACP session 状态，输出格式化进度表格"
+  - "packages/cli/src/commands/eval.ts：nexum eval <taskId> [--project <dir>]，构建 evaluator prompt，spawnAcpSession 派 evaluator，更新 status=evaluating"
+  - "packages/cli/src/commands/complete.ts：nexum complete <taskId> <verdict> [--project <dir>]，处理 evaluator 结果：pass→done+通知+解锁下游、fail→retry（iteration+1，重派 generator）、escalated→通知人工介入；发送对应 Telegram 通知"
+  - "spawn.test.ts：mock @nexum/spawn 和 @nexum/notify，测试 spawn 命令正确读取 contract 并调用 spawnAcpSession"
+  - "pnpm build 通过，nexum --help 输出所有子命令"
+
+eval_strategy:
+  type: integration
+  criteria:
+    - id: C1
+      desc: "nexum --help 输出包含 spawn/status/eval/complete 四个子命令"
+      method: "integration: 运行 node packages/cli/dist/index.js --help"
+      threshold: pass
+    - id: C2
+      desc: "nexum spawn 正确读取 contract YAML 并调用 spawnAcpSession（mock ACP）"
+      method: "unit: mock @nexum/spawn，验证调用参数包含正确 agentId 和 prompt"
+      threshold: pass
+    - id: C3
+      desc: "nexum complete <taskId> pass 更新任务状态为 done 并解锁下游任务"
+      method: "unit: 构造有下游依赖的 tasks，完成后验证下游变为 pending"
+      threshold: pass
+    - id: C4
+      desc: "nexum complete <taskId> fail（iteration < max_iterations）触发 retry，重新 spawn generator"
+      method: "unit: mock spawnAcpSession，验证 retry 调用"
+      threshold: pass
+    - id: C5
+      desc: "pnpm build 无报错"
+      method: "integration: 运行 pnpm build"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX-001, NX-002, NX-003, NX-004]

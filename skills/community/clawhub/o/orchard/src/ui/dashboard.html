@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OrchardOS</title>
+  <style>
+    @import url("data:text/css,"); /* no CDN deps — system fonts only */
+  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff5c5c'><path d='M12 2L8 6h3v4H7l5 5 5-5h-4V6h3L12 2zM4 18h16v2H4v-2z'/></svg>">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    :root, [data-theme="dark"] {
+      --bg: #0e1015; --bg-accent: #13151b; --bg-elevated: #191c24; --bg-hover: #1f2330;
+      --card: #161920; --text: #d4d4d8; --text-strong: #f4f4f5; --muted: #52525b;
+      --border: #1e2028; --border-strong: #2e3040;
+      --accent: #ff5c5c; --accent-hover: #ff7070; --accent-subtle: rgba(255,92,92,0.12);
+      --ok: #22c55e; --warn: #f59e0b; --danger: #ef4444; --info: #3b82f6; --teal: #14b8a6;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    [data-theme="light"] {
+      --bg: #f5f6fa; --bg-accent: #ffffff; --bg-elevated: #eef0f6; --bg-hover: #e8eaf2;
+      --card: #ffffff; --text: #374151; --text-strong: #111827; --muted: #9ca3af;
+      --border: #e5e7eb; --border-strong: #d1d5db;
+      --accent: #e03131; --accent-hover: #c92a2a; --accent-subtle: rgba(224,49,49,0.08);
+      --ok: #16a34a; --warn: #d97706; --danger: #dc2626; --info: #2563eb; --teal: #0d9488;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    [data-theme="bits"] {
+      --bg: #05060d; --bg-accent: #080d18; --bg-elevated: #0d1425; --bg-hover: #121b30;
+      --card: #0a0f1e; --text: #8ab4d4; --text-strong: #d4eeff; --muted: #3a5570;
+      --border: #162035; --border-strong: #1e2f4a;
+      --accent: #00cfff; --accent-hover: #33d9ff; --accent-subtle: rgba(0,207,255,0.1);
+      --ok: #00ff88; --warn: #ffaa00; --danger: #ff3366; --info: #4488ff; --teal: #00ffcc;
+      --shadow: 0 0 8px rgba(0,207,255,0.1), 0 1px 3px rgba(0,0,0,0.6);
+    }
+    [data-theme="bits"] .card { box-shadow: 0 0 0 1px var(--border), inset 0 1px 0 rgba(0,207,255,0.05); }
+    [data-theme="bits"] .sidebar { background: linear-gradient(180deg, #080d18 0%, #05060d 100%); }
+    [data-theme="bits"] body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background: radial-gradient(ellipse at 15% 50%, rgba(0,207,255,0.04) 0%, transparent 55%),
+                  radial-gradient(ellipse at 85% 20%, rgba(0,255,136,0.02) 0%, transparent 45%);
+    }
+    [data-theme="bits"] .topbar { border-bottom-color: rgba(0,207,255,0.15); }
+    [data-theme="bits"] .sidebar { border-right-color: rgba(0,207,255,0.12); }
+    [data-theme="bits"] .brand-name { color: var(--accent); text-shadow: 0 0 20px rgba(0,207,255,0.4); }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+      overflow: hidden;
+    }
+    h1, h2, h3 { color: var(--text-strong); }
+    .font-mono { font-family: var(--mono); }
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .badge { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 500; border: 1px solid; letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0; }
+    .badge-pending { border-color: #6b7280; color: #9ca3af; background: rgba(156,163,175,0.08); }
+    .badge-ready { border-color: #2563eb; color: #60a5fa; background: rgba(59,130,246,0.08); }
+    .badge-running { border-color: #d97706; color: #fbbf24; background: rgba(245,158,11,0.08); }
+    .badge-review { border-color: #0d9488; color: #2dd4bf; background: rgba(20,184,166,0.08); }
+    .badge-done { border-color: #16a34a; color: #4ade80; background: rgba(34,197,94,0.08); }
+    .badge-failed { border-color: #dc2626; color: #f87171; background: rgba(239,68,68,0.08); }
+    .badge-blocked { border-color: #9f1239; color: #fb7185; background: rgba(244,63,94,0.08); }
+    .badge-critical { border-color: #dc2626; color: #f87171; background: rgba(239,68,68,0.08); }
+    .badge-high { border-color: #d97706; color: #fbbf24; background: rgba(245,158,11,0.08); }
+    .badge-medium { border-color: #2563eb; color: #60a5fa; background: rgba(59,130,246,0.08); }
+    .badge-low { border-color: #6b7280; color: #9ca3af; background: rgba(156,163,175,0.08); }
+
+    .app-shell { display: flex; flex-direction: column; height: 100vh; }
+    .titlebar {
+      height: 52px; flex-shrink: 0; display: flex; align-items: center;
+      padding: 0 14px; gap: 10px;
+      background: var(--bg-accent); border-bottom: 1px solid var(--border); z-index: 30;
+    }
+    .titlebar-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .titlebar-divider { width: 1px; height: 20px; background: var(--border); flex-shrink: 0; margin: 0 2px; }
+    .brand-name { font-weight: 700; font-size: 15px; color: var(--text-strong); }
+    .brand-tag { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .titlebar-breadcrumb { flex: 1; min-width: 0; display: flex; align-items: center; }
+    .titlebar-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .last-updated {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .body-shell { flex: 1; min-height: 0; display: flex; overflow: hidden; }
+    .sidebar {
+      width: 200px; flex-shrink: 0; display: flex; flex-direction: column;
+      background: var(--bg-accent); border-right: 1px solid var(--border);
+      transition: width 0.2s ease; overflow: hidden;
+    }
+    .sidebar.collapsed { width: 0; }
+    .collapse-btn, .icon-btn, .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .collapse-btn:hover, .icon-btn:hover, .theme-btn:hover, .btn:hover { background: var(--bg-hover); border-color: var(--border-strong); }
+    .collapse-btn, .icon-btn { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+
+    .sidebar-section { padding: 14px; display: flex; flex-direction: column; gap: 10px; min-height: 0; flex: 1; }
+    .sidebar-heading { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .sidebar-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; min-height: 0; }
+    .sidebar-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 9px 10px; border-radius: 10px; cursor: pointer; border: 1px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--bg-hover); }
+    .sidebar-item.active { background: var(--accent-subtle); border-color: var(--accent); border-left: 2px solid var(--accent); padding-left: 8px; }
+    .sidebar-item-main { min-width: 0; }
+    .sidebar-item-title { color: var(--text-strong); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-item-meta { color: var(--muted); font-size: 11px; }
+    .sidebar-footer { padding: 14px; border-top: 1px solid var(--border); }
+    .sidebar.collapsed .sidebar-section,
+    .sidebar.collapsed .sidebar-footer { opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+
+    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .content { flex: 1; overflow-y: auto; padding: 20px; }
+
+    .breadcrumb { display: flex; align-items: center; gap: 6px; color: var(--muted); min-width: 0; font-size: 13px; }
+    .breadcrumb .crumb { cursor: pointer; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+    .breadcrumb .crumb:hover { color: var(--text-strong); }
+    .breadcrumb .crumb.active { color: var(--text-strong); font-weight: 600; cursor: default; }
+    .breadcrumb .sep { color: var(--border-strong); font-size: 11px; }
+
+    .theme-switcher { display: flex; align-items: center; gap: 6px; margin-left: 4px; }
+    .theme-btn { width: 32px; height: 32px; }
+    .theme-btn.active { border-color: var(--accent); background: var(--accent-subtle); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 34px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--bg-elevated); color: var(--text); cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .btn-ghost { background: transparent; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .section { display: flex; flex-direction: column; gap: 16px; }
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .page-title { font-size: 24px; font-weight: 700; }
+    .page-subtitle { color: var(--muted); max-width: 900px; }
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { padding: 20px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease; }
+    .project-card:hover { transform: translateY(-2px); border-color: var(--border-strong); background: var(--bg-elevated); }
+    .project-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .project-card-top > div:first-child { min-width: 0; flex: 1; }
+    .project-card h3 { font-size: 15px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .line-clamp-2 {
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      color: var(--muted); min-height: 40px; word-break: break-word;
+    }
+    .progress-wrap { display: flex; flex-direction: column; gap: 6px; }
+    .progress-meta { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 11px; }
+    .progress-bar { height: 8px; background: var(--bg-elevated); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: inherit; }
+
+    .project-header { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .project-summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+    .project-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--muted); }
+    .project-goal { color: var(--text); white-space: pre-wrap; }
+    .tabs { display: flex; gap: 0; padding: 0 18px; border-top: 1px solid var(--border); margin-top: 12px; }
+    .tab-btn {
+      height: 38px; padding: 0 16px; border: none; border-bottom: 2px solid transparent;
+      background: transparent; color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 500;
+      transition: color 0.15s, border-color 0.15s; margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--text-strong); border-bottom-color: var(--accent); font-weight: 600; }
+
+    .filters { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-accent); color: var(--muted); cursor: pointer;
+    }
+    .chip.active { background: var(--accent-subtle); border-color: var(--accent); color: var(--text-strong); }
+    select, input, textarea {
+      width: 100%; background: var(--bg-accent); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .task-list { display: flex; flex-direction: column; gap: 10px; }
+    .task-row {
+      display: grid; grid-template-columns: 4px minmax(0, 1fr) auto auto; gap: 12px; align-items: center;
+      padding: 12px 16px; cursor: pointer; border-radius: var(--radius-md);
+    }
+    .task-row:hover { background: var(--bg-elevated); }
+    .task-row-priority { align-self: stretch; border-radius: 999px; }
+    .priority-critical { background: var(--danger); }
+    .priority-high { background: var(--warn); }
+    .priority-medium { background: var(--info); }
+    .priority-low { background: #6b7280; }
+    .task-title { color: var(--text-strong); font-weight: 600; }
+    .task-desc { color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .task-retry { color: var(--muted); font-size: 12px; min-width: 54px; text-align: right; }
+
+    .kanban-board { overflow-x: auto; }
+    .kanban-columns { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 16px; }
+    .kanban-column {
+      min-width: 200px; max-width: 280px; flex-shrink: 0; width: 240px; display: flex; flex-direction: column; gap: 10px;
+      background: var(--bg-accent); border: 1px solid var(--border); border-radius: 14px; padding: 14px;
+    }
+    .kanban-column-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .kanban-cards { display: flex; flex-direction: column; gap: 8px; min-height: 120px; }
+    .kanban-card { padding: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    .kanban-card:hover { border-color: var(--border-strong); background: var(--bg-hover); }
+    .kanban-card-title { color: var(--text-strong); font-size: 13px; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; word-break: break-word; }
+
+    .knowledge-list { display: flex; flex-direction: column; gap: 10px; }
+    .knowledge-item { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .knowledge-meta { color: var(--muted); font-size: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .prewrap { white-space: pre-wrap; word-break: break-word; }
+
+    .task-detail { display: flex; flex-direction: column; gap: 16px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .meta-card { padding: 14px; }
+    .meta-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .meta-value { margin-top: 6px; color: var(--text-strong); font-weight: 600; }
+    .inline-controls { display: flex; gap: 10px; flex-wrap: wrap; }
+    .inline-controls > div { min-width: 180px; flex: 1; }
+    .history-list, .comment-list { display: flex; flex-direction: column; gap: 10px; }
+    details.run-item { padding: 12px 14px; }
+    details.run-item summary { cursor: pointer; color: var(--text-strong); font-weight: 600; }
+    .run-body { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .comment { padding: 12px 14px; }
+    .comment-meta { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .activity-line { display:flex; align-items:flex-start; gap:8px; padding:8px 0; border-bottom:1px solid var(--border); font-size:12px; line-height:1.4; }
+    .activity-line:last-child { border-bottom:none; }
+    .activity-icon { flex-shrink:0; width:16px; }
+    .activity-title { font-weight:500; color:var(--text-strong); flex-shrink:0; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .activity-meta { color:var(--muted); font-size:11px; }
+    .activity-output { color:var(--muted); font-size:11px; flex:1; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .activity-line.running .activity-title { color:var(--accent); }
+    .activity-line.failed .activity-title { color:var(--danger, #e05); }
+
+    .empty { padding: 28px; text-align: center; color: var(--muted); }
+    .skeleton-card { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .skeleton-line {
+      height: 12px; border-radius: 999px; background: linear-gradient(90deg, var(--bg-elevated), var(--bg-hover), var(--bg-elevated));
+      background-size: 200% 100%; animation: pulse 1.2s infinite linear;
+    }
+    @keyframes pulse { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+    .panel-root { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+    .panel-root.open { pointer-events: auto; }
+    .panel-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.2s ease;
+    }
+    .panel {
+      position: absolute; top: 0; right: 0; width: min(520px, 100%); height: 100%; background: var(--bg-accent); border-left: 1px solid var(--border);
+      transform: translateX(100%); transition: transform 0.2s ease; display: flex; flex-direction: column;
+    }
+    .panel-root.open .panel-overlay { opacity: 1; }
+    .panel-root.open .panel { transform: translateX(0); }
+    .panel-header { height: 56px; padding: 0 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .panel-content { padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+    .panel-footer { padding: 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { color: var(--muted); font-size: 12px; }
+
+    .toast-stack {
+      position: fixed; right: 18px; bottom: 18px; display: flex; flex-direction: column-reverse; gap: 8px; z-index: 60; pointer-events: none;
+    }
+    .toast {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--bg-elevated); color: var(--text-strong);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      opacity: 0; transform: translateX(20px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: auto; max-width: 320px; font-size: 13px; line-height: 1.4;
+    }
+    .toast.show { opacity: 1; transform: translateX(0); }
+    .toast.toast-success { border-color: var(--ok); }
+    .toast.toast-error   { border-color: var(--danger, #e05); }
+    .toast.toast-warning { border-color: var(--warn, #f90); }
+    .toast.toast-info    { border-color: var(--accent); }
+    .toast-icon { font-size: 15px; flex-shrink: 0; }
+    .toast-msg  { flex: 1; }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+    * { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+    .sidebar-list::-webkit-scrollbar { width: 3px; }
+    .sidebar-list::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-list::-webkit-scrollbar-thumb { background: var(--border); }
+    .sidebar-list { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+    @media (max-width: 980px) {
+      .sidebar { position: absolute; top: 52px; bottom: 0; left: 0; z-index: 30; width: 200px !important; }
+      .sidebar.collapsed { transform: translateX(-100%); width: 200px !important; }
+      .topbar { padding-inline: 12px; }
+      .content { padding: 14px; }
+      .task-row { grid-template-columns: 5px minmax(0, 1fr); }
+      .task-row > :nth-child(n+3) { justify-self: start; }
+    }
+
+    /* ── Sessions page ─────────────────────────────────────────────────────── */
+    .session-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 99px; cursor: pointer;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+      border: 1px solid var(--border); background: var(--bg-elevated);
+      color: var(--muted); transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .session-pill:hover { background: var(--bg-hover); border-color: var(--border-strong); color: var(--text); }
+    .session-pill.has-active {
+      border-color: var(--warn); color: var(--warn); background: rgba(245,158,11,0.08);
+    }
+    .session-pip {
+      width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0;
+    }
+    .session-pill.has-active .session-pip { animation: session-pip-pulse 1.4s ease-in-out infinite; }
+    @keyframes session-pip-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .session-card {
+      padding: 16px; display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .session-card:hover { border-color: var(--border-strong); background: var(--bg-elevated); }
+
+    .session-live-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+      background: var(--warn); box-shadow: 0 0 7px var(--warn);
+      animation: session-pip-pulse 1.4s ease-in-out infinite;
+    }
+    .session-done-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--ok);
+    }
+    .session-failed-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; background: var(--danger);
+    }
+
+    .session-ticker {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      overflow: hidden; white-space: nowrap;
+      height: 27px; line-height: 17px;
+      position: relative;
+    }
+    .session-ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .session-ticker-inner.scrolling {
+      animation: ticker-scroll 22s linear infinite;
+    }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; } 50% { opacity: 0; }
+    }
+    .session-waiting {
+      color: var(--muted); display: inline-flex; align-items: center; gap: 5px;
+    }
+    .session-waiting-dot {
+      display: inline-block; animation: session-pip-pulse 0.9s ease-in-out infinite;
+    }
+    .session-waiting-dot:nth-child(2) { animation-delay: 0.3s; }
+    .session-waiting-dot:nth-child(3) { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="titlebar">
+      <div class="titlebar-brand">
+        <button id="sidebar-toggle" class="collapse-btn" title="Toggle sidebar">☰</button>
+        <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
+          <circle cx="13" cy="16" r="9" fill="var(--accent)" opacity="0.15" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M13 7C13 7 15 3 19 4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M13 7C11 5 8 5.5 7.5 7.5" stroke="var(--ok)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="13" cy="16" r="5" fill="var(--accent)" opacity="0.25"/>
+        </svg>
+        <div class="brand-name">Orchard</div>
+      </div>
+      <div class="titlebar-divider"></div>
+      <div class="titlebar-breadcrumb">
+        <div id="breadcrumb" class="breadcrumb"></div>
+      </div>
+      <div class="titlebar-actions">
+        <div id="session-pill" class="session-pill" onclick="navigate('#sessions')" title="View active sessions">
+          <span class="session-pip"></span>
+          <span id="session-pill-text">0 active</span>
+        </div>
+        <div id="last-updated" class="last-updated" title="Last silent refresh">Last updated: —</div>
+        <div id="topbar-actions" class="header-actions"></div>
+        <div class="theme-switcher">
+          <button class="theme-btn" data-theme="dark" title="Dark">🌙</button>
+          <button class="theme-btn" data-theme="light" title="Light">☀️</button>
+          <button class="theme-btn" data-theme="bits" title="Bits">⚡</button>
+        </div>
+        <button class="icon-btn" onclick="openPanel('settings')" title="Settings" style="font-size:15px">⚙</button>
+      </div>
+    </div>
+    <div class="body-shell">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-heading">Projects</div>
+          <div id="sidebar-projects" class="sidebar-list"></div>
+        </div>
+        <div class="sidebar-footer" style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn" onclick="navigate('#sessions')" id="sessions-nav-btn" style="justify-content:flex-start;gap:6px;position:relative">
+            ⚡ Sessions
+            <span id="sessions-nav-badge" style="margin-left:auto;display:none;font-size:10px;font-weight:700;color:var(--warn);background:rgba(245,158,11,0.15);border:1px solid var(--warn);border-radius:99px;padding:1px 5px"></span>
+          </button>
+          <button class="btn" onclick="navigate('#watchdog')" id="watchdog-nav-btn" style="justify-content:flex-start;gap:6px">🛡 Watchdog</button>
+          <button class="btn" onclick="navigate('#activity')" id="activity-nav-btn" style="justify-content:flex-start;gap:6px">📋 Run Log</button>
+          <button class="btn btn-primary" onclick="openPanel('new-project')"><span>＋</span> <span class="btn-label">New Project</span></button>
+          ${AUTH_INJECTED ? '' : `<button class="btn" onclick="clearStoredToken();location.reload()" style="font-size:11px;color:var(--muted);justify-content:flex-start;gap:6px">🔓 Change token</button>`}
+        </div>
+      </aside>
+      <main class="main">
+        <section id="content" class="content"></section>
+      </main>
+    </div>
+  </div>
+
+  <div id="panel-root" class="panel-root">
+    <div class="panel-overlay" onclick="closePanel()"></div>
+    <aside class="panel">
+      <div class="panel-header">
+        <div>
+          <h3 id="panel-title">Panel</h3>
+          <div id="panel-subtitle" class="page-subtitle"></div>
+        </div>
+        <button class="icon-btn" onclick="closePanel()" title="Close">✕</button>
+      </div>
+      <div id="panel-content" class="panel-content"></div>
+      <div id="panel-footer" class="panel-footer"></div>
+    </aside>
+  </div>
+
+  <div id="toast-stack" class="toast-stack"></div>
+
+  <script>
+    // AUTH is injected by the server when using the embedded gateway route.
+    // When empty (standalone UI server), the token is read from localStorage
+    // or the user is prompted to enter it.
+    const AUTH_INJECTED = '';
+    const API_BASE = '/orchard';
+
+    function getStoredToken() {
+      return AUTH_INJECTED || localStorage.getItem('orchard-token') || '';
+    }
+    function setStoredToken(t) {
+      localStorage.setItem('orchard-token', t.trim());
+    }
+    function clearStoredToken() {
+      localStorage.removeItem('orchard-token');
+    }
+    const state = {
+      projects: [],
+      currentProject: null,
+      currentTasks: [],
+      statusFilter: 'all',
+      priorityFilter: '',
+      searchQuery: '',
+      sortBy: 'priority',
+      sortDir: 'asc',
+      taskCounts: {},
+      currentTab: 'tasks',
+      currentTask: null,
+      knowledge: [],
+      kbSearchQuery: '',
+      taskRuns: [],
+      comments: [],
+      activityData: null,
+      debugState: null,
+      sidebarCollapsed: false,
+      panel: null,
+      theme: localStorage.getItem('orchard-theme') || 'dark',
+      settingsSnapshot: {},
+      loading: { projects: false, page: false },
+    };
+
+    const els = {
+      content: document.getElementById('content'),
+      breadcrumb: document.getElementById('breadcrumb'),
+      topbarActions: document.getElementById('topbar-actions'),
+      lastUpdated: document.getElementById('last-updated'),
+      sidebarProjects: document.getElementById('sidebar-projects'),
+      sidebar: document.getElementById('sidebar'),
+      panelRoot: document.getElementById('panel-root'),
+      panelTitle: document.getElementById('panel-title'),
+      panelSubtitle: document.getElementById('panel-subtitle'),
+      panelContent: document.getElementById('panel-content'),
+      panelFooter: document.getElementById('panel-footer'),
+      toastStack: document.getElementById('toast-stack'),
+    };
+
+    async function api(path, opts = {}) {
+      const token = getStoredToken();
+      const res = await fetch(`${API_BASE}${path}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+          ...(opts.headers || {}),
+        },
+        ...opts,
+      });
+      if (res.status === 401 || res.status === 403) {
+        clearStoredToken();
+        showLoginScreen('Token rejected — please re-enter your gateway token.');
+        throw new Error('unauthorized');
+      }
+      const text = await res.text();
+      let data = null;
+      try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+      if (!res.ok) throw new Error(data?.error || `Request failed: ${res.status}`);
+      return data;
+    }
+
+    function showLoginScreen(msg) {
+      document.body.innerHTML = `
+        <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f1117;font-family:system-ui,sans-serif">
+          <div style="background:#1a1d27;border:1px solid #2a2d3a;border-radius:16px;padding:40px;width:380px;display:flex;flex-direction:column;gap:20px">
+            <div>
+              <div style="font-size:22px;font-weight:700;color:#f1f3f5">OrchardOS</div>
+              <div style="font-size:13px;color:#7c8597;margin-top:4px">Enter your OpenClaw gateway token to continue</div>
+            </div>
+            ${msg ? `<div style="font-size:12px;color:#ef4444;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:10px 12px">${escapeHtml(msg)}</div>` : ''}
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.06em">Gateway Token</label>
+              <input id="login-token" type="password" placeholder="Paste token here…"
+                style="background:#0f1117;border:1px solid #2a2d3a;border-radius:8px;padding:10px 14px;font-size:14px;color:#f1f3f5;font-family:monospace;outline:none;width:100%;box-sizing:border-box"
+                onkeydown="if(event.key==='Enter')doLogin()">
+              <div style="font-size:11px;color:#4b5563">Find it in <code style="color:#7c8597">~/.openclaw/openclaw.json</code> → <code style="color:#7c8597">gateway.auth.token</code></div>
+            </div>
+            <button onclick="doLogin()" style="background:#6366f1;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;width:100%">Connect</button>
+          </div>
+        </div>`;
+      document.getElementById('login-token')?.focus();
+    }
+
+    function doLogin() {
+      const t = document.getElementById('login-token')?.value?.trim();
+      if (!t) return;
+      setStoredToken(t);
+      location.reload();
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    function slugify(name) {
+      return String(name || 'project').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 48) || `project-${Date.now()}`;
+    }
+
+    function formatDate(value) {
+      if (!value) return '—';
+      const date = new Date(value.includes('T') ? value : `${value}Z`);
+      return Number.isNaN(date.getTime()) ? value : date.toLocaleString();
+    }
+
+    function percent(value) {
+      const num = Number(value || 0);
+      return Math.max(0, Math.min(100, Math.round(num * 100)));
+    }
+
+    function titleCase(value) {
+      return String(value || '').replace(/[_-]/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+    }
+
+    function badge(status) {
+      const key = (status || 'pending').toLowerCase();
+      return `<span class="badge badge-${key}">${escapeHtml(titleCase(key))}</span>`;
+    }
+
+    function badgePriority(priority) {
+      const key = (priority || 'medium').toLowerCase();
+      return `<span class="badge badge-${key}">${escapeHtml(titleCase(key))}</span>`;
+    }
+
+    function skeleton(count = 3) {
+      return Array.from({ length: count }, () => `
+        <div class="card skeleton-card">
+          <div class="skeleton-line" style="width: 58%;"></div>
+          <div class="skeleton-line" style="width: 100%;"></div>
+          <div class="skeleton-line" style="width: 84%;"></div>
+          <div class="skeleton-line" style="width: 42%; height: 8px;"></div>
+        </div>
+      `).join('');
+    }
+
+    function formatRunField(value) {
+      if (!value) return '—';
+      try {
+        const parsed = JSON.parse(value);
+        if (parsed && typeof parsed === 'object') {
+          // Show task title + description if present, else pretty-print
+          const parts = [];
+          if (parsed.title) parts.push(`Task: ${parsed.title}`);
+          if (parsed.description) parts.push(`\n${parsed.description}`);
+          if (parts.length) return parts.join('');
+          return JSON.stringify(parsed, null, 2);
+        }
+      } catch {}
+      return String(value);
+    }
+
+    function navigate(hash) {
+      if (location.hash === hash) {
+        route();
+      } else {
+        location.hash = hash;
+      }
+    }
+
+    const TOAST_ICONS = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️', dispatch: '🚀', complete: '🎉' };
+    function showToast(message, type) {
+      type = type || 'info';
+      const icon = TOAST_ICONS[type] || TOAST_ICONS.info;
+      const el = document.createElement('div');
+      el.className = 'toast toast-' + type;
+      el.innerHTML = '<span class="toast-icon">' + icon + '</span><span class="toast-msg">' + escapeHtml(String(message)) + '</span>';
+      els.toastStack.appendChild(el);
+      requestAnimationFrame(() => el.classList.add('show'));
+      const timer = setTimeout(() => {
+        el.classList.remove('show');
+        setTimeout(() => el.remove(), 220);
+      }, 3000);
+      el.addEventListener('click', () => { clearTimeout(timer); el.classList.remove('show'); setTimeout(() => el.remove(), 220); });
+    }
+
+    function setTheme(theme) {
+      state.theme = theme;
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('orchard-theme', theme);
+      document.querySelectorAll('.theme-btn').forEach((btn) => btn.classList.toggle('active', btn.dataset.theme === theme));
+    }
+
+    function closePanel() {
+      stopOutputPoller();
+      state.panel = null;
+      els.panelRoot.classList.remove('open');
+      els.panelContent.innerHTML = '';
+      els.panelFooter.innerHTML = '';
+      els.panelTitle.textContent = 'Panel';
+      els.panelSubtitle.textContent = '';
+    }
+
+    async function refreshDebugState() {
+      try {
+        state.debugState = await api('/debug/state');
+      } catch (error) {
+        console.warn('debug state fetch failed', error);
+      }
+    }
+
+    async function saveSettings() {
+      try {
+        const panel = document.getElementById('settings-panel');
+        if (!panel) throw new Error('Settings panel is not open');
+        const inputs = Array.from(panel.querySelectorAll('[data-key]'));
+        const updates = [];
+
+        inputs.forEach((el) => {
+          const key = el.dataset.key;
+          if (!key) return;
+          let value;
+          if (el.type === 'checkbox') value = el.checked;
+          else if (el.type === 'number') value = Number(el.value);
+          else value = el.value;
+
+          const previous = state.settingsSnapshot ? state.settingsSnapshot[key] : undefined;
+          if (JSON.stringify(previous) !== JSON.stringify(value)) {
+            updates.push({ key, value });
+          }
+        });
+
+        await Promise.all(updates.map((item) => api('/settings', {
+          method: 'PUT',
+          body: JSON.stringify(item),
+        })));
+
+        state.settingsSnapshot = Object.assign({}, state.settingsSnapshot, Object.fromEntries(updates.map((item) => [item.key, item.value])));
+        await refreshDebugState();
+        showToast('Settings saved', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    function renderSidebar() {
+      const activeProjectId = state.currentProject?.id;
+      els.sidebarProjects.innerHTML = state.projects.length ? state.projects.map((project) => `
+        <div class="sidebar-item ${activeProjectId === project.id ? 'active' : ''}" onclick="navigate('#project/${encodeURIComponent(project.id)}')">
+          <div class="sidebar-item-main">
+            <div class="sidebar-item-title">${escapeHtml(project.name)}</div>
+            <div class="sidebar-item-meta">${percent(project.completion_score)}% complete</div>
+          </div>
+          ${badge(projectStatus(project))}
+        </div>
+      `).join('') : '<div class="empty">No projects yet.</div>';
+    }
+
+    function renderBreadcrumb(items) {
+      els.breadcrumb.innerHTML = items.map((item, index) => {
+        const crumb = item.hash ? `<span class="crumb ${index === items.length - 1 ? 'active' : ''}" onclick="navigate('${item.hash}')">${escapeHtml(item.label)}</span>` : `<span class="crumb active">${escapeHtml(item.label)}</span>`;
+        return `${index ? '<span class="sep">/</span>' : ''}${crumb}`;
+      }).join('');
+    }
+
+    function renderTopbarActions(actions = []) {
+      els.topbarActions.innerHTML = actions.map((action) => `
+        <button class="btn ${action.primary ? 'btn-primary' : ''}" onclick="${action.onclick}">${action.label}</button>
+      `).join('');
+    }
+
+    function updateLastUpdated(value = new Date()) {
+      if (!els.lastUpdated) return;
+      els.lastUpdated.textContent = `Last updated: ${value.toLocaleTimeString()}`;
+    }
+
+    function projectTaskCount(projectId) {
+      const counts = state.taskCounts?.[projectId];
+      if (!counts) return null;
+      return counts;
+    }
+
+    function projectStatus(project) {
+      if (project.status && project.status !== 'active') return project.status;
+      const c = projectTaskCount(project.id);
+      if (c && c.total > 0) {
+        if (c.done === c.total) return 'done';
+        if (c.running > 0) return 'running';
+        if (c.ready > 0) return 'ready';
+        return 'blocked';
+      }
+      const score = Number(project.completion_score || 0);
+      if (score >= 1) return 'done';
+      if (score > 0.6) return 'running';
+      return 'ready';
+    }
+
+    function renderProjectsPage() {
+      renderBreadcrumb([{ label: 'Projects', hash: '#projects' }]);
+      renderTopbarActions([{ label: '＋ New Project', primary: true, onclick: `openPanel('new-project')` }]);
+      els.content.innerHTML = `
+        <div class="section">
+
+          ${(() => {
+            const dbg = state.debugState || {};
+            return `
+              <div class="card" style="margin-bottom:16px;padding:14px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--border)">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div>
+                    <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Global Debug Controls</div>
+                    <div style="font-size:12px;color:var(--text)">Observe-only: ${escapeHtml(Boolean(dbg.debug?.logOnly || dbg.debug?.dryRun))} · Queue paused: ${escapeHtml(Boolean(dbg.queuePaused))}</div>
+                  </div>
+                  <div class="header-actions" style="margin:0">
+                    <button class="btn" onclick="wakeQueue()">Wake Queue</button>
+                    <button class="btn" onclick="sendDebugControl('cleanupSessions', {})">Close Stale Runs</button>
+                    <button class="btn" onclick="sendDebugControl('pauseQueue')">Pause Queue</button>
+                    <button class="btn btn-primary" onclick="sendDebugControl('resumeQueue')">Resume Queue</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          })()}
+
+          <div class="projects-grid">
+            ${state.loading.projects ? skeleton(6) : state.projects.map((project) => `
+              <article class="card project-card" onclick="navigate('#project/${encodeURIComponent(project.id)}')">
+                <div class="project-card-top">
+                  <div>
+                    <h3>${escapeHtml(project.name)}</h3>
+                    <div class="project-meta">ID <span class="font-mono">${escapeHtml(project.id)}</span></div>
+                  </div>
+                  ${badge(projectStatus(project))}
+                </div>
+                <p class="line-clamp-2">${escapeHtml(project.goal || 'No goal recorded.')}</p>
+                <div class="progress-wrap">
+                  ${(() => {
+                    const c = projectTaskCount(project.id);
+                    const pct = c && c.total > 0 ? Math.round((c.done / c.total) * 100) : percent(project.completion_score);
+                    const label = c && c.total > 0 ? `${c.done} / ${c.total} done` : `${pct}%`;
+                    return `
+                      <div class="progress-meta"><span>Progress</span><span>${label}</span></div>
+                      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                    `;
+                  })()}
+                </div>
+                <div class="project-meta">
+                  ${(() => {
+                    const c = projectTaskCount(project.id);
+                    if (!c) return '<span style="color:var(--muted);font-size:11px">Loading tasks…</span>';
+                    const parts = [];
+                    if (c.running > 0) parts.push(`<span style="color:var(--accent)">${c.running} running</span>`);
+                    if (c.ready > 0) parts.push(`<span style="color:var(--ok)">${c.ready} ready</span>`);
+                    parts.push(`<span>${c.total} total</span>`);
+                    return parts.join('<span style="color:var(--border-strong)"> · </span>');
+                  })()}
+                  <span style="margin-left:auto;color:var(--muted)">Updated ${escapeHtml(formatDate(project.updated_at))}</span>
+                </div>
+                ${(() => {
+                  const dbgProject = (state.debugState?.projects || []).find((p) => p.id === project.id) || {};
+                  const runtime = dbgProject.runtime || {};
+                  return `
+                    <div style="margin-top:8px;font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
+                      <div>Last architect: ${escapeHtml(runtime.lastArchitectWakeAt || 'never')}</div>
+                      <div>Architect skip: ${escapeHtml(runtime.lastArchitectSkipReason || 'none')}</div>
+                      <div>Queue skip: ${escapeHtml(runtime.lastQueueSkipReason || 'none')}</div>
+                    </div>
+                  `;
+                })()}
+              </article>
+            `).join('') || '<div class="card empty">No projects found. Create one to get started.</div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProjectDetail() {
+      const project = state.currentProject;
+      if (!project) {
+        els.content.innerHTML = '<div class="card empty">Project not found.</div>';
+        return;
+      }
+      renderBreadcrumb([
+        { label: 'Projects', hash: '#projects' },
+        { label: project.name, hash: `#project/${project.id}` },
+        ...(state.currentTab !== 'tasks' ? [{ label: titleCase(state.currentTab) }] : []),
+      ]);
+      renderTopbarActions([
+        { label: 'Wake Queue', onclick: 'wakeQueue()' },
+        { label: 'Debug Controls', onclick: `openPanel('debug-controls')` },
+        { label: '＋ New Task', primary: true, onclick: `openPanel('new-task')` },
+        { label: '⚙ Settings', onclick: `openPanel('project-settings')` },
+      ]);
+      els.content.innerHTML = `
+        <div class="section">
+          <section class="card project-header">
+            <div class="project-summary">
+              <div>
+                <div class="page-title">${escapeHtml(project.name)}</div>
+                <div class="project-meta">
+                  ${badge(projectStatus(project))}
+                  <span class="font-mono">${escapeHtml(project.id)}</span>
+                  <span>Temp ${escapeHtml(project.completion_temperature ?? 0.7)}</span>
+                </div>
+              </div>
+              <div class="tabs">
+                <button class="tab-btn ${state.currentTab === 'tasks' ? 'active' : ''}" onclick="switchTab('tasks')">Tasks</button>
+                <button class="tab-btn ${state.currentTab === 'board' ? 'active' : ''}" onclick="switchTab('board')">Board</button>
+                <button class="tab-btn ${state.currentTab === 'knowledge' ? 'active' : ''}" onclick="switchTab('knowledge')">Knowledge Base</button>
+                <button class="tab-btn ${state.currentTab === 'activity' ? 'active' : ''}" onclick="switchTab('activity')">Run Log</button>
+              </div>
+            </div>
+            <div class="project-goal">${escapeHtml(project.goal || '')}</div>
+            <div class="progress-wrap">
+              ${(() => {
+                const c = projectTaskCount(project.id);
+                const pct = c && c.total > 0 ? Math.round((c.done / c.total) * 100) : percent(project.completion_score);
+                const label = c && c.total > 0 ? `${c.done} / ${c.total} done` : `${pct}%`;
+                return `<div class="progress-meta"><span>Progress</span><span>${label}</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+              })()}
+            </div>
+            ${(() => {
+              const dbg = state.debugState || {};
+              const dbgProject = (dbg.projects || []).find((p) => p.id === project.id) || {};
+              const runtime = dbgProject.runtime || {};
+              return `
+                <div class="card" style="margin-top:14px;padding:14px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--border)">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <div>
+                      <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Debug Controls</div>
+                      <div style="font-size:12px;color:var(--text)">Observe-only: ${escapeHtml(Boolean(dbg.debug?.logOnly || dbg.debug?.dryRun))} · Queue paused: ${escapeHtml(Boolean(dbg.queuePaused))}</div>
+                      <div style="font-size:11px;color:var(--muted);margin-top:6px;display:flex;flex-direction:column;gap:4px">
+                        <div>Last architect: ${escapeHtml(runtime.lastArchitectWakeAt || 'never')}</div>
+                        <div>Last architect decision: ${escapeHtml(runtime.lastArchitectDecisionAt || 'never')}</div>
+                        <div>Architect skip reason: ${escapeHtml(runtime.lastArchitectSkipReason || 'none')}</div>
+                        <div>Last queue tick: ${escapeHtml(runtime.lastQueueTickAt || 'never')}</div>
+                        <div>Queue skip reason: ${escapeHtml(runtime.lastQueueSkipReason || 'none')}</div>
+                      </div>
+                    </div>
+                    <div class="header-actions" style="margin:0">
+                      <button class="btn" data-project-id="${escapeHtml(project.id)}" onclick="debugControlFromEl(this, 'tickProject')">Tick This Project</button>
+                      <button class="btn" onclick="sendDebugControl('cleanupSessions', {})">Close Stale Runs</button>
+                      <button class="btn" onclick="sendDebugControl('pauseQueue')">Pause Queue</button>
+                      <button class="btn btn-primary" onclick="sendDebugControl('resumeQueue')">Resume Queue</button>
+                    </div>
+                  </div>
+                </div>
+              `;
+            })()}
+            <div id="tab-content"></div>
+          </section>
+        </div>
+      `;
+      renderTabContent();
+    }
+
+    const PRIORITY_RANK = { critical: 0, high: 1, medium: 2, low: 3 };
+
+    function filteredTasks() {
+      const filtered = state.currentTasks.filter((t) => {
+        if (state.statusFilter !== 'all' && t.status !== state.statusFilter) return false;
+        if (state.priorityFilter && t.priority !== state.priorityFilter) return false;
+        if (state.searchQuery && !t.title.toLowerCase().includes(state.searchQuery) && !(t.description || '').toLowerCase().includes(state.searchQuery)) return false;
+        return true;
+      });
+      return sortedTasks(filtered);
+    }
+
+    function setSort(by) {
+      if (state.sortBy === by) { state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc'; }
+      else { state.sortBy = by; state.sortDir = 'asc'; }
+      renderTaskRows();
+    }
+
+    function setBoardSort(by) {
+      if (state.sortBy === by) { state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc'; }
+      else { state.sortBy = by; state.sortDir = 'asc'; }
+      renderTabContent();
+    }
+
+    function filterTasks(status) {
+      state.statusFilter = status;
+      renderTaskRows();
+    }
+
+    function filterTasksByPriority(priority) {
+      state.priorityFilter = priority;
+      renderTaskRows();
+    }
+
+    function searchTasks(query) {
+      state.searchQuery = query.toLowerCase();
+      renderTaskRows();
+    }
+
+    function renderTaskRows() {
+      const list = document.getElementById('task-list');
+      const rows = filteredTasks();
+      if (!list) return;
+      list.innerHTML = rows.length ? rows.map((task) => `
+        <div class="card task-row" onclick="navigate('#task/${task.id}')">
+          <div class="task-row-priority priority-${escapeHtml((task.priority || 'medium').toLowerCase())}"></div>
+          <div>
+            <div class="task-title">${escapeHtml(task.title)}</div>
+            <div class="task-desc">${escapeHtml(task.description || 'No description provided.')}</div>
+          </div>
+          ${badge(task.status)}
+          ${badgePriority(task.priority)}
+          ${(task.retry_count ?? 0) > 0 ? `<div class="task-retry" title="${task.retry_count} retries">🔄 ${task.retry_count}</div>` : '<div></div>'}
+        </div>
+      `).join('') : '<div class="card empty">No tasks match the current filters.</div>';
+      document.querySelectorAll('.chip[data-status]').forEach((chip) => chip.classList.toggle('active', chip.dataset.status === state.statusFilter));
+      const prioritySelect = document.getElementById('priority-filter');
+      if (prioritySelect) prioritySelect.value = state.priorityFilter;
+      const sortSelect = document.getElementById('sort-by');
+      if (sortSelect) sortSelect.value = state.sortBy;
+    }
+
+    function sortedTasks(tasks) {
+      const dir = state.sortDir === 'desc' ? -1 : 1;
+      return [...tasks].sort((a, b) => {
+        switch (state.sortBy) {
+          case 'priority': return dir * ((PRIORITY_RANK[a.priority] ?? 2) - (PRIORITY_RANK[b.priority] ?? 2));
+          case 'status':   return dir * (a.status || '').localeCompare(b.status || '');
+          case 'title':    return dir * (a.title || '').localeCompare(b.title || '');
+          case 'updated':  return dir * ((a.updated_at || '') < (b.updated_at || '') ? -1 : 1);
+          case 'created':  return dir * ((a.created_at || '') < (b.created_at || '') ? -1 : 1);
+          default: return 0;
+        }
+      });
+    }
+
+    function renderBoardTab() {
+      const statuses = ['pending', 'ready', 'running', 'review', 'blocked', 'done', 'failed'];
+      return `
+        <div class="section">
+          <div class="filters">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+              <select id="board-sort-by" onchange="setBoardSort(this.value)" style="width:150px">
+                <option value="priority" ${state.sortBy==='priority'?'selected':''}>Sort: Priority</option>
+                <option value="title"    ${state.sortBy==='title'?'selected':''}>Sort: Title</option>
+                <option value="updated"  ${state.sortBy==='updated'?'selected':''}>Sort: Updated</option>
+                <option value="created"  ${state.sortBy==='created'?'selected':''}>Sort: Created</option>
+              </select>
+              <button class="btn btn-ghost" onclick="setBoardSort(state.sortBy)" title="Toggle sort direction" style="padding:0 10px;height:36px;min-width:36px;">
+                ${state.sortDir === 'asc' ? '↑' : '↓'}
+              </button>
+            </div>
+          </div>
+          <div class="kanban-board">
+            <div class="kanban-columns">
+              ${statuses.map((status) => {
+                const tasks = sortedTasks(state.currentTasks.filter((task) => task.status === status));
+                if (tasks.length === 0 && !['ready','running','done'].includes(status)) return '';
+                return `
+                  <div class="kanban-column">
+                    <div class="kanban-column-header">
+                      <strong>${escapeHtml(titleCase(status))}</strong>
+                      <span class="badge badge-${status}" style="font-variant-numeric:tabular-nums">${tasks.length}</span>
+                    </div>
+                    <div class="kanban-cards">
+                      ${tasks.map((task) => `
+                        <div class="kanban-card" onclick="navigate('#task/${task.id}')">
+                          <div class="kanban-card-title">${escapeHtml(task.title)}</div>
+                          <div class="project-meta">
+                            ${badgePriority(task.priority)}
+                            ${(task.retry_count ?? 0) > 0 ? `<span style="color:var(--muted);font-size:11px">🔄 ${task.retry_count}</span>` : ''}
+                          </div>
+                        </div>
+                      `).join('') || '<div style="color:var(--muted);font-size:12px;padding:8px 0">Empty</div>'}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderKnowledgeTab() {
+      const query = (state.kbSearchQuery || '').toLowerCase();
+      const filtered = query
+        ? state.knowledge.filter(e => e.content.toLowerCase().includes(query))
+        : state.knowledge;
+      return `
+        <div class="section">
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input id="kb-search" placeholder="Search knowledge base…" oninput="searchKb(this.value)" value="${escapeHtml(state.kbSearchQuery || '')}" style="flex:1;min-width:200px">
+            <button class="btn btn-primary" onclick="openPanel('new-knowledge')">＋ Add Knowledge</button>
+          </div>
+          ${query ? `<div style="color:var(--muted);font-size:12px">${filtered.length} of ${state.knowledge.length} entries match</div>` : ''}
+          <div class="knowledge-list">
+            ${filtered.length ? filtered.map((entry) => {
+              const content = escapeHtml(entry.content);
+              const highlighted = query
+                ? content.replace(new RegExp('(' + escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<mark style="background:var(--accent-subtle);color:var(--text-strong);border-radius:2px">$1</mark>')
+                : content;
+              return `
+                <article class="card knowledge-item">
+                  <div class="knowledge-meta">
+                    <span>#${entry.id}</span>
+                    <span>Source ${escapeHtml(entry.source || 'user')}</span>
+                    <span>${escapeHtml(formatDate(entry.created_at))}</span>
+                    <button class="btn btn-ghost" style="height:22px;padding:0 8px;font-size:11px;margin-left:auto" onclick="deleteKnowledge(${entry.id})">🗑</button>
+                  </div>
+                  <div class="prewrap">${highlighted}</div>
+                </article>
+              `;
+            }).join('') : '<div class="card empty">No knowledge entries match.</div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function searchKb(query) {
+      state.kbSearchQuery = query;
+      renderTabContent();
+    }
+
+    async function deleteKnowledge(id) {
+      if (!confirm(`Delete knowledge entry #${id}?`)) return;
+      try {
+        await api(`/knowledge/${id}`, { method: 'DELETE' });
+        state.knowledge = state.knowledge.filter(e => e.id !== id);
+        renderTabContent();
+        showToast('Entry deleted', 'success');
+      } catch (e) {
+        showToast(e.message, 'error');
+      }
+    }
+
+    function renderTasksTab() {
+      const statuses = ['all', 'pending', 'ready', 'running', 'review', 'done', 'failed', 'blocked'];
+      return `
+        <div class="section">
+          <div class="filters">
+            <div class="chips">
+              ${statuses.map((status) => `<button class="chip ${state.statusFilter === status ? 'active' : ''}" data-status="${status}" onclick="filterTasks('${status}')">${escapeHtml(titleCase(status))}</button>`).join('')}
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+              <select id="priority-filter" onchange="filterTasksByPriority(this.value)" style="width:150px">
+                <option value="">All priorities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+              <select id="sort-by" onchange="setSort(this.value)" style="width:150px">
+                <option value="priority" ${state.sortBy==='priority'?'selected':''}>Sort: Priority</option>
+                <option value="status"   ${state.sortBy==='status'?'selected':''}>Sort: Status</option>
+                <option value="title"    ${state.sortBy==='title'?'selected':''}>Sort: Title</option>
+                <option value="updated"  ${state.sortBy==='updated'?'selected':''}>Sort: Updated</option>
+                <option value="created"  ${state.sortBy==='created'?'selected':''}>Sort: Created</option>
+              </select>
+              <button class="btn btn-ghost" onclick="setSort(state.sortBy)" title="Toggle sort direction" style="padding:0 10px;height:36px;min-width:36px;">
+                ${state.sortDir === 'asc' ? '↑' : '↓'}
+              </button>
+            </div>
+          </div>
+          <input id="task-search" placeholder="Search tasks..." oninput="searchTasks(this.value)" style="margin-bottom:4px">
+          <div id="task-list" class="task-list"></div>
+        </div>
+      `;
+    }
+
+    async function loadActivityForProject(projectId) {
+      try {
+        // Fetch all task runs for all tasks in this project
+        const tasks = state.currentTasks.length ? state.currentTasks
+          : await api(`/projects/${encodeURIComponent(projectId)}/tasks`).catch(() => []);
+        const runPromises = tasks.slice(0, 30).map(t =>
+          api(`/tasks/${t.id}/runs`).then(runs => runs.map(r => ({ ...r, taskTitle: t.title, taskId: t.id }))).catch(() => [])
+        );
+        const runSets = await Promise.all(runPromises);
+        state.projectRuns = runSets.flat().sort((a, b) => {
+          const at = a.started_at || a.ended_at || '';
+          const bt = b.started_at || b.ended_at || '';
+          return bt.localeCompare(at);
+        });
+      } catch {
+        state.projectRuns = [];
+      }
+    }
+
+    function renderActivityTab() {
+      const runs = state.projectRuns || [];
+      const statusColors = { done: 'var(--ok)', failed: 'var(--danger)', running: 'var(--warn)', pending: 'var(--muted)' };
+      return `
+        <div class="section">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <div style="color:var(--muted);font-size:12px">${runs.length} run records (most recent first)</div>
+            <button class="btn" onclick="refreshActivityTab()">↺ Refresh</button>
+          </div>
+          ${runs.length ? `
+            <div style="display:flex;flex-direction:column;gap:8px">
+              ${runs.map(run => {
+                const statusColor = statusColors[(run.status || 'pending').toLowerCase()] || 'var(--muted)';
+                const output = (run.output || '');
+                let outputPreview = '';
+                try {
+                  const parsed = JSON.parse(output);
+                  outputPreview = parsed.description || parsed.title || JSON.stringify(parsed).slice(0, 200);
+                } catch {
+                  outputPreview = output.slice(-300).replace(/\n/g, ' ').trim();
+                }
+                return `
+                  <details class="card run-item" style="cursor:pointer">
+                    <summary style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                      <span style="color:${statusColor};font-weight:600;min-width:56px">${escapeHtml(titleCase(run.status || 'pending'))}</span>
+                      <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-strong)">${escapeHtml(run.taskTitle || `Task #${run.task_id}`)}</span>
+                      <span style="color:var(--muted);font-size:11px;flex-shrink:0">${escapeHtml(run.role || 'executor')} · ${escapeHtml(formatDate(run.started_at))}</span>
+                    </summary>
+                    <div class="run-body" style="margin-top:12px">
+                      <div style="display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:11px">
+                        <span>Model: ${escapeHtml(run.model || 'default')}</span>
+                        <span>Session: ${escapeHtml(run.session_key || '—')}</span>
+                        ${run.ended_at ? `<span>Ended: ${escapeHtml(formatDate(run.ended_at))}</span>` : ''}
+                      </div>
+                      ${outputPreview ? `
+                        <div>
+                          <div style="font-size:12px;font-weight:600;margin-bottom:4px">Output preview</div>
+                          <div style="font-size:12px;font-family:var(--mono);background:var(--bg);padding:10px;border-radius:8px;border:1px solid var(--border);white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto">${escapeHtml(outputPreview)}</div>
+                        </div>
+                      ` : ''}
+                      <div><a class="btn btn-ghost" style="font-size:12px;height:28px;padding:0 10px" onclick="navigate('#task/${run.task_id || run.taskId}')">→ View task #${run.task_id || run.taskId}</a></div>
+                    </div>
+                  </details>
+                `;
+              }).join('')}
+            </div>
+          ` : '<div class="card empty">No run history for this project.</div>'}
+        </div>
+      `;
+    }
+
+    async function refreshActivityTab() {
+      if (!state.currentProject) return;
+      await loadActivityForProject(state.currentProject.id);
+      renderTabContent();
+    }
+
+    function renderTabContent() {
+      const target = document.getElementById('tab-content');
+      if (!target) return;
+      if (state.currentTab === 'board') {
+        target.innerHTML = renderBoardTab();
+        return;
+      }
+      if (state.currentTab === 'knowledge') {
+        target.innerHTML = renderKnowledgeTab();
+        return;
+      }
+      if (state.currentTab === 'activity') {
+        target.innerHTML = renderActivityTab();
+        return;
+      }
+      target.innerHTML = renderTasksTab();
+      renderTaskRows();
+    }
+
+    function switchTab(tab) {
+      state.searchQuery = '';
+      state.kbSearchQuery = '';
+      state.currentTab = tab;
+      const projectId = state.currentProject?.id;
+      if (!projectId) return;
+      const nextHash = tab === 'tasks' ? `#project/${projectId}` : `#project/${projectId}/${tab}`;
+      history.replaceState(null, '', nextHash);
+      renderBreadcrumb([
+        { label: 'Projects', hash: '#projects' },
+        { label: state.currentProject.name, hash: `#project/${projectId}` },
+        ...(tab !== 'tasks' ? [{ label: titleCase(tab === 'activity' ? 'Run Log' : tab) }] : []),
+      ]);
+      renderProjectDetailTopTabs();
+      if (tab === 'activity') {
+        loadActivityForProject(projectId).then(() => renderTabContent());
+      } else {
+        renderTabContent();
+      }
+    }
+
+    function renderProjectDetailTopTabs() {
+      const tabs = els.content.querySelector('.project-summary .tabs');
+      if (!tabs) return;
+      tabs.innerHTML = `
+        <button class="tab-btn ${state.currentTab === 'tasks' ? 'active' : ''}" onclick="switchTab('tasks')">Tasks</button>
+        <button class="tab-btn ${state.currentTab === 'board' ? 'active' : ''}" onclick="switchTab('board')">Board</button>
+        <button class="tab-btn ${state.currentTab === 'knowledge' ? 'active' : ''}" onclick="switchTab('knowledge')">Knowledge Base</button>
+        <button class="tab-btn ${state.currentTab === 'activity' ? 'active' : ''}" onclick="switchTab('activity')">Run Log</button>
+      `;
+    }
+
+    function renderTaskDetail() {
+      const task = state.currentTask;
+      if (!task) {
+        els.content.innerHTML = '<div class="card empty">Task not found.</div>';
+        return;
+      }
+      const project = state.currentProject;
+      renderBreadcrumb([
+        { label: 'Projects', hash: '#projects' },
+        ...(project ? [{ label: project.name, hash: `#project/${project.id}` }] : []),
+        { label: `Task #${task.id}` },
+      ]);
+      renderTopbarActions([
+        { label: '⚙ Task Settings', onclick: `openPanel('task-settings')` },
+      ]);
+      els.content.innerHTML = `
+        <div class="section task-detail">
+          <div class="page-header">
+            <div>
+              <div class="page-title">${escapeHtml(task.title)}</div>
+              <div class="project-meta">
+                ${badge(task.status)}
+                ${badgePriority(task.priority)}
+                <span>Task #${task.id}</span>
+              </div>
+            </div>
+            ${project ? `<button class="btn" onclick="navigate('#project/${project.id}${state.currentTab === 'tasks' ? '' : `/${state.currentTab}`}')">← Back to project</button>` : ''}
+          </div>
+
+          <div class="meta-grid">
+            <div class="card meta-card"><div class="meta-label">Status</div><div class="meta-value">${escapeHtml(titleCase(task.status))}</div></div>
+            <div class="card meta-card"><div class="meta-label">Priority</div><div class="meta-value">${escapeHtml(titleCase(task.priority))}</div></div>
+            <div class="card meta-card"><div class="meta-label">Role</div><div class="meta-value">${escapeHtml(task.assigned_role || 'executor')}</div></div>
+            <div class="card meta-card"><div class="meta-label">Retries</div><div class="meta-value">${escapeHtml(task.retry_count ?? 0)}</div></div>
+            <div class="card meta-card"><div class="meta-label">Model</div><div class="meta-value font-mono">${escapeHtml(task.model_override || 'default')}</div></div>
+          </div>
+
+          <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:14px;">
+            <h3>Update task</h3>
+            <div class="inline-controls">
+              <div>
+                <label>Status</label>
+                <select id="task-status-select" onchange="updateTaskField('status', this.value)">
+                  ${['pending','ready','running','review','done','failed','blocked'].map((value) => `<option value="${value}" ${task.status === value ? 'selected' : ''}>${titleCase(value)}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label>Priority</label>
+                <select id="task-priority-select" onchange="updateTaskField('priority', this.value)">
+                  ${['critical','high','medium','low'].map((value) => `<option value="${value}" ${task.priority === value ? 'selected' : ''}>${titleCase(value)}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+            <h3>Description</h3>
+            <div class="prewrap">${escapeHtml(task.description || 'No description provided.')}</div>
+          </div>
+
+          <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+            <h3>Acceptance criteria</h3>
+            <div class="prewrap">${escapeHtml(task.acceptance_criteria || 'No acceptance criteria provided.')}</div>
+          </div>
+
+          <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+            <h3>Run history</h3>
+            <div class="history-list">
+              ${state.taskRuns.length ? state.taskRuns.map((run) => `
+                <details class="card run-item">
+                  <summary>${escapeHtml(run.role || 'run')} · ${escapeHtml(titleCase(run.status || 'running'))} · ${escapeHtml(formatDate(run.started_at))}</summary>
+                  <div class="run-body">
+                    <div class="project-meta"><span>Model ${escapeHtml(run.model || 'default')}</span><span>Session ${escapeHtml(run.session_key || '—')}</span></div>
+                    <div><strong>Input</strong><div class="prewrap" style="font-size:12px;font-family:var(--mono);background:var(--bg);padding:10px;border-radius:8px;border:1px solid var(--border);max-height:300px;overflow-y:auto">${escapeHtml(formatRunField(run.input))}</div></div>
+                    <div><strong>Output</strong><div class="prewrap" style="font-size:12px;font-family:var(--mono);background:var(--bg);padding:10px;border-radius:8px;border:1px solid var(--border);max-height:300px;overflow-y:auto">${escapeHtml(formatRunField(run.output))}</div></div>
+                    ${run.qa_notes || run.qa_verdict ? `<div><strong>QA</strong><div class="prewrap">${escapeHtml(run.qa_notes || run.qa_verdict)}</div></div>` : ''}
+                  </div>
+                </details>
+              `).join('') : '<div class="empty">No run history yet.</div>'}
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px; display:flex; flex-direction:column; gap:12px;">
+            <h3>Comments</h3>
+            <div class="comment-list">
+              ${state.comments.length ? state.comments.map((comment) => `
+                <div class="card comment">
+                  <div class="comment-meta">${escapeHtml(comment.author || 'user')} · ${escapeHtml(formatDate(comment.created_at))}</div>
+                  <div class="prewrap">${escapeHtml(comment.content)}</div>
+                </div>
+              `).join('') : '<div class="empty">No comments yet.</div>'}
+            </div>
+            <div class="field">
+              <label>Add comment</label>
+              <textarea id="comment-input" placeholder="Add context, blockers, or review notes..."></textarea>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-primary" onclick="submitComment()">Post Comment</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openPanel(kind) {
+      state.panel = kind;
+      els.panelRoot.classList.add('open');
+      let title = 'Panel';
+      let subtitle = '';
+      let body = '';
+      let footer = '';
+
+      if (kind === 'settings') {
+        title = 'Settings';
+        subtitle = 'Runtime-editable config & preferences';
+        body = `
+          <div id="settings-panel" style="display:flex;flex-direction:column;gap:16px">
+            <div class="field">
+              <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Theme</div>
+              <div class="theme-switcher" style="gap:8px;margin-top:4px">
+                <button class="theme-btn ${state.theme === 'dark' ? 'active' : ''}" data-theme="dark" title="Dark" onclick="setTheme('dark')">🌙</button>
+                <button class="theme-btn ${state.theme === 'light' ? 'active' : ''}" data-theme="light" title="Light" onclick="setTheme('light')">☀️</button>
+                <button class="theme-btn ${state.theme === 'bits' ? 'active' : ''}" data-theme="bits" title="Bits" onclick="setTheme('bits')">⚡</button>
+              </div>
+            </div>
+            <div id="settings-form"><div class="field-hint" style="color:var(--muted)">Loading settings…</div></div>
+          </div>
+        `;
+        footer = '<button class="btn" onclick="closePanel()">Close</button><button class="btn btn-primary" id="settings-save-btn" onclick="saveSettings()">Save</button>';
+
+        Promise.all([api('/settings'), api('/models'), api('/config'), refreshDebugState().then(() => state.debugState)]).then(function(results) {
+          const settings = results[0] || {};
+          const models = results[1] || [];
+          const config = results[2] || {};
+          state.debugState = results[3] || state.debugState;
+          const allowModelOverride = config.allowModelOverride === true;
+          const el = document.getElementById('settings-form');
+          if (!el) return;
+          state.settingsSnapshot = settings;
+
+          const modelOptions = '<option value="">(system default)</option>' + models.map(function(m) {
+            return '<option value="' + escapeHtml(m.id) + '">' + escapeHtml(m.name) + '</option>';
+          }).join('');
+
+          const modelFieldDisabledHint = '<div class="field-hint" style="color:var(--muted);font-size:11px">Set <code>subagent.allowModelOverride: true</code> in openclaw.json to enable</div>';
+
+          const groups = [
+            {
+              title: 'Executor',
+              fields: [
+                { key: 'executor.model', label: 'Model', type: 'model' },
+                { key: 'executor.timeoutSeconds', label: 'Timeout (seconds)', type: 'number' },
+                { key: 'executor.retryLimit', label: 'Retry limit', type: 'number' },
+              ],
+            },
+            {
+              title: 'Architect',
+              fields: [
+                { key: 'architect.enabled', label: 'Enabled', type: 'checkbox' },
+                { key: 'architect.model', label: 'Model', type: 'model' },
+                { key: 'architect.wakeEvery', label: 'Wake every (e.g. 6h)', type: 'text' },
+              ],
+            },
+            {
+              title: 'QA',
+              fields: [
+                { key: 'qa.enabled', label: 'Enabled', type: 'checkbox' },
+                { key: 'qa.model', label: 'Model', type: 'model' },
+                { key: 'qa.autoApproveThreshold', label: 'Auto-approve threshold (0–1)', type: 'number', min: '0', max: '1', step: '0.01' },
+              ],
+            },
+            {
+              title: 'Reporter',
+              fields: [
+                { key: 'reporter.enabled', label: 'Enabled', type: 'checkbox' },
+                { key: 'reporter.channel', label: 'Channel name', type: 'text' },
+                { key: 'reporter.channelId', label: 'Channel ID', type: 'text' },
+              ],
+            },
+            {
+              title: 'Limits',
+              fields: [
+                { key: 'limits.enabled', label: 'Enabled', type: 'checkbox' },
+                { key: 'limits.maxConcurrentExecutors', label: 'Max concurrent executors', type: 'number' },
+                { key: 'limits.maxTasksPerHour', label: 'Max tasks per hour', type: 'number' },
+                { key: 'limits.maxSubagentsPerProject', label: 'Max subagents per project', type: 'number' },
+                { key: 'limits.cooldownOnFailureMs', label: 'Cooldown on failure (ms)', type: 'number' },
+              ],
+            },
+            {
+              title: 'Debug',
+              fields: [
+                { key: 'debug.enabled', label: 'Enable debug mode', type: 'checkbox' },
+                { key: 'debug.verbose', label: 'Verbose logging', type: 'checkbox' },
+                { key: 'debug.logOnly', label: 'Log only (no spawns)', type: 'checkbox' },
+                { key: 'debug.disableAllSpawns', label: 'Disable all spawns', type: 'checkbox' },
+                { key: 'debug.disableExecutorSpawns', label: 'Disable executor spawns', type: 'checkbox' },
+                { key: 'debug.disableQaSpawns', label: 'Disable QA spawns', type: 'checkbox' },
+                { key: 'debug.disableArchitectSpawns', label: 'Disable architect spawns', type: 'checkbox' },
+                { key: 'debug.preserveSessions', label: 'Preserve spawned sessions', type: 'checkbox' },
+                { key: 'debug.circuitBreaker.enabled', label: 'Enable circuit breaker', type: 'checkbox' },
+                { key: 'debug.circuitBreaker.failureThreshold', label: 'Circuit failure threshold', type: 'number' },
+                { key: 'debug.circuitBreaker.cooldownMs', label: 'Circuit cooldown (ms)', type: 'number' },
+              ],
+            },
+            {
+              title: 'Queue',
+              fields: [
+                { key: 'queue.intervalMs', label: 'Poll interval (ms)', type: 'number' },
+              ],
+            },
+          ];
+
+          const renderField = function(field) {
+            const rawValue = settings[field.key];
+            if (field.type === 'checkbox') {
+              return '<label class="field" style="flex-direction:row;align-items:center;gap:10px"><span>' + escapeHtml(field.label) + '</span><input type="checkbox" data-key="' + escapeHtml(field.key) + '"' + (rawValue ? ' checked' : '') + '></label>';
+            }
+            if (field.type === 'model') {
+              if (!allowModelOverride) {
+                return '<div class="field"><span style="font-size:12px;color:var(--muted)">' + escapeHtml(field.label) + '</span>' + modelFieldDisabledHint + '</div>';
+              }
+              const currentVal = rawValue === undefined || rawValue === null ? '' : String(rawValue);
+              return '<label class="field"><span>' + escapeHtml(field.label) + '</span><select data-key="' + escapeHtml(field.key) + '" data-current="' + escapeHtml(currentVal) + '">' + modelOptions + '</select></label>';
+            }
+            const attrs = [];
+            if (field.min !== undefined) attrs.push(' min="' + field.min + '"');
+            if (field.max !== undefined) attrs.push(' max="' + field.max + '"');
+            if (field.step !== undefined) attrs.push(' step="' + field.step + '"');
+            const value = rawValue === undefined || rawValue === null ? '' : String(rawValue);
+            return '<label class="field"><span>' + escapeHtml(field.label) + '</span><input type="' + field.type + '" data-key="' + escapeHtml(field.key) + '" value="' + escapeHtml(value) + '"' + attrs.join('') + '></label>';
+          };
+
+          const debugState = state.debugState || {};
+          const debugHtml = debugState && Object.keys(debugState).length ?
+            '<div style="display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg-accent)">' +
+              '<div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Live Debug State</div>' +
+              '<div style="font-size:12px;color:var(--text)">Running: ' + escapeHtml(debugState.runningCount || 0) + ' · Dispatches/hour: ' + escapeHtml(debugState.dispatchesLastHour || 0) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Wake registered: ' + escapeHtml(Boolean(debugState.wakeRegistered)) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Last tick dispatched: ' + escapeHtml(debugState.lastTickSummary?.dispatched || 0) + ' · ready seen: ' + escapeHtml(debugState.lastTickSummary?.readyTasksSeen || 0) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Cooldown-skipped ready tasks: ' + escapeHtml(debugState.lastTickSummary?.skippedReadyDueToCooldown || 0) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Observe-only: ' + escapeHtml(Boolean(debugState.debug?.logOnly || debugState.debug?.dryRun)) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Limits: concurrency ' + escapeHtml(debugState.lastTickSummary?.limits?.maxConcurrent || 0) + ' · hourly ' + escapeHtml(debugState.lastTickSummary?.limits?.maxPerHour || 0) + ' · dispatched/hr ' + escapeHtml(debugState.lastTickSummary?.limits?.dispatchedLastHour || 0) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Timeout records: ' + escapeHtml((debugState.timeouts || []).length) + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Last queue tick: ' + escapeHtml(debugState.runtimeState?.queue?.lastTickStartedAt || 'never') + '</div>' +
+              '<div style="font-size:12px;color:var(--text)">Last queue skip: ' + escapeHtml(debugState.runtimeState?.queue?.lastTickSkippedReason || 'none') + '</div>' +
+              '<div style="font-size:12px;color:var(--muted)">Circuit: ' + escapeHtml(debugState.circuitBreaker?.global?.open ? 'OPEN' : 'closed') + (debugState.circuitBreaker?.global?.state?.open_until ? ' until ' + escapeHtml(debugState.circuitBreaker.global.state.open_until) : '') + '</div>' +
+            '</div>' : '';
+
+          el.innerHTML = debugHtml + groups.map(function(group) {
+            return '<div style="display:flex;flex-direction:column;gap:10px">' +
+              '<div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">' + escapeHtml(group.title) + '</div>' +
+              group.fields.map(renderField).join('') +
+              '</div>';
+          }).join('');
+
+          // Set current values on selects after render
+          el.querySelectorAll('select[data-key]').forEach(function(sel) {
+            const currentVal = sel.getAttribute('data-current') || '';
+            sel.value = currentVal; // '' = system default option
+          });
+        }).catch(function() {
+          const el = document.getElementById('settings-form');
+          if (el) el.innerHTML = '<div class="field-hint" style="color:var(--muted)">Could not load settings.</div>';
+        });
+      }
+
+
+      if (kind === 'new-project') {
+        title = 'New Project';
+        subtitle = 'Create a project and drop it straight into the Orchard queue.';
+        body = `
+          <div class="field"><label>Name</label><input id="project-name" placeholder="Project name"></div>
+          <div class="field"><label>Project ID</label><input id="project-id" placeholder="auto-from-name"></div>
+          <div class="field"><label>Goal</label><textarea id="project-goal" placeholder="What does done look like?"></textarea></div>
+          <div class="field"><label>Completion temperature</label><input id="project-temp" type="number" min="0" max="2" step="0.1" value="0.7"></div>
+        `;
+        footer = `<button class="btn" onclick="closePanel()">Cancel</button><button class="btn btn-primary" onclick="createProject()">Create Project</button>`;
+      }
+
+      if (kind === 'new-task') {
+        title = 'New Task';
+        subtitle = state.currentProject ? `Create a task inside ${state.currentProject.name}.` : '';
+        body = `
+          <div class="field"><label>Title</label><input id="task-title" placeholder="Implement feature / fix bug"></div>
+          <div class="field"><label>Description</label><textarea id="task-description" placeholder="Task details"></textarea></div>
+          <div class="field"><label>Acceptance criteria</label><textarea id="task-criteria" placeholder="Definition of done"></textarea></div>
+          <div class="field"><label>Priority</label>
+            <select id="task-priority"><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option><option value="critical">Critical</option></select>
+          </div>
+          <div class="field"><label>Model override</label><input id="task-model" placeholder="optional model"></div>
+        `;
+        footer = `<button class="btn" onclick="closePanel()">Cancel</button><button class="btn btn-primary" onclick="createTask()">Create Task</button>`;
+      }
+
+      if (kind === 'project-settings' && state.currentProject) {
+        title = 'Project Settings';
+        subtitle = `Update metadata for ${state.currentProject.name}.`;
+        body = `
+          <div class="field"><label>Project ID</label><input value="${escapeHtml(state.currentProject.id)}" disabled></div>
+          <div class="field"><label>Name</label><input value="${escapeHtml(state.currentProject.name)}" disabled></div>
+          <div class="field"><label>Goal</label><textarea id="edit-project-goal">${escapeHtml(state.currentProject.goal || '')}</textarea></div>
+          <div class="field"><label>Completion score</label><input id="edit-project-score" type="number" min="0" max="1" step="0.01" value="${escapeHtml(state.currentProject.completion_score ?? 0)}" disabled></div>
+        `;
+        footer = `<button class="btn" onclick="closePanel()">Close</button>`;
+      }
+
+      if (kind === 'task-settings' && state.currentTask) {
+        title = 'Task Settings';
+        subtitle = `Inspect task #${state.currentTask.id}.`;
+        body = `
+          <div class="field"><label>Task ID</label><input value="${escapeHtml(state.currentTask.id)}" disabled></div>
+          <div class="field"><label>Title</label><input value="${escapeHtml(state.currentTask.title)}" disabled></div>
+          <div class="field"><label>Description</label><textarea id="edit-task-description">${escapeHtml(state.currentTask.description || '')}</textarea></div>
+          <div class="field"><label>Acceptance criteria</label><textarea id="edit-task-criteria">${escapeHtml(state.currentTask.acceptance_criteria || '')}</textarea></div>
+        `;
+        footer = `<button class="btn" onclick="closePanel()">Cancel</button><button class="btn btn-primary" onclick="saveTaskTextFields()">Save</button>`;
+      }
+
+      if (kind === 'new-knowledge') {
+        title = 'Add Knowledge';
+        subtitle = state.currentProject ? `Store a new knowledge entry for ${state.currentProject.name}.` : '';
+        body = `<div class="field"><label>Knowledge content</label><textarea id="knowledge-content" placeholder="Notes, findings, decisions, references..."></textarea></div>`;
+        footer = `<button class="btn" onclick="closePanel()">Cancel</button><button class="btn btn-primary" onclick="createKnowledge()">Add Knowledge</button>`;
+      }
+
+      if (kind === 'debug-controls') {
+        const dbg = state.debugState || {};
+        const globalCircuit = dbg.circuitBreaker?.global || {};
+        title = 'Debug Controls';
+        subtitle = state.currentProject ? `Live controls for ${state.currentProject.name}` : 'Live Orchard queue controls';
+        body = `
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Queue</div>
+              <div style="font-size:12px;color:var(--text)">Paused: ${escapeHtml(Boolean(dbg.queuePaused))}</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn" onclick="sendDebugControl('pauseQueue')">Pause Queue</button>
+                <button class="btn btn-primary" onclick="sendDebugControl('resumeQueue')">Resume Queue</button>
+                <button class="btn" data-project-id="${escapeHtml(state.currentProject?.id || '')}" onclick="debugControlFromEl(this, 'tickProject')" ${state.currentProject ? '' : 'disabled'}>Tick Current Project</button>
+                <button class="btn" onclick="sendDebugControl('cleanupSessions', {})">Mark Stale Orchard Runs Closed</button>
+              </div>
+            </div>
+            <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Global Circuit Breaker</div>
+              <div style="font-size:12px;color:var(--text)">Open: ${escapeHtml(Boolean(globalCircuit.open))}</div>
+              <div style="font-size:12px;color:var(--muted)">Until: ${escapeHtml(globalCircuit.state?.open_until || '—')}</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn" onclick="sendDebugControl('openCircuit', { scope: 'global', reason: 'manual open from UI' })">Open Global Circuit</button>
+                <button class="btn" onclick="sendDebugControl('closeCircuit', { scope: 'global' })">Close Global Circuit</button>
+                <button class="btn btn-primary" onclick="sendDebugControl('resetCircuit', { scope: 'global' })">Reset Global Circuit</button>
+              </div>
+            </div>
+            ${state.currentProject ? `
+            <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Project Circuit Breaker</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn" data-project-id="${escapeHtml(state.currentProject.id)}" onclick="circuitControlFromEl(this, 'openCircuit', 'manual project open from UI')">Open Project Circuit</button>
+                <button class="btn" data-project-id="${escapeHtml(state.currentProject.id)}" onclick="circuitControlFromEl(this, 'closeCircuit')">Close Project Circuit</button>
+                <button class="btn btn-primary" data-project-id="${escapeHtml(state.currentProject.id)}" onclick="circuitControlFromEl(this, 'resetCircuit')">Reset Project Circuit</button>
+              </div>
+            </div>` : ''}
+          </div>
+        `;
+        footer = `<button class="btn" onclick="closePanel()">Close</button><button class="btn btn-primary" onclick="refreshDebugState().then(() => openPanel('debug-controls'))">Refresh</button>`;
+      }
+
+      els.panelTitle.textContent = title;
+      els.panelSubtitle.textContent = subtitle;
+      els.panelContent.innerHTML = body;
+      els.panelFooter.innerHTML = footer;
+    }
+
+    async function createProject() {
+      try {
+        const name = document.getElementById('project-name').value.trim();
+        const inputId = document.getElementById('project-id').value.trim();
+        const goal = document.getElementById('project-goal').value.trim();
+        const completion_temperature = Number(document.getElementById('project-temp').value || 0.7);
+        const id = inputId || slugify(name);
+        if (!name || !goal) throw new Error('Name and goal are required');
+        await api('/projects', { method: 'POST', body: JSON.stringify({ id, name, goal, completion_temperature }) });
+        closePanel();
+        await loadProjects();
+        navigate(`#project/${id}`);
+        showToast('Project created', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function createTask() {
+      try {
+        if (!state.currentProject) throw new Error('No active project');
+        const title = document.getElementById('task-title').value.trim();
+        const description = document.getElementById('task-description').value.trim();
+        const acceptance_criteria = document.getElementById('task-criteria').value.trim();
+        const priority = document.getElementById('task-priority').value;
+        const model_override = document.getElementById('task-model').value.trim();
+        if (!title) throw new Error('Title is required');
+        await api(`/projects/${encodeURIComponent(state.currentProject.id)}/tasks`, {
+          method: 'POST',
+          body: JSON.stringify({ title, description, acceptance_criteria, priority, model_override: model_override || null }),
+        });
+        closePanel();
+        await loadProjectContext(state.currentProject.id, state.currentTab);
+        renderProjectDetail();
+        showToast('Task created', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function createKnowledge() {
+      try {
+        if (!state.currentProject) throw new Error('No active project');
+        const content = document.getElementById('knowledge-content').value.trim();
+        if (!content) throw new Error('Knowledge content is required');
+        await api(`/projects/${encodeURIComponent(state.currentProject.id)}/knowledge`, {
+          method: 'POST',
+          body: JSON.stringify({ content }),
+        });
+        closePanel();
+        await loadKnowledge(state.currentProject.id);
+        if (state.currentTab === 'knowledge') renderTabContent();
+        showToast('Knowledge added', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function saveTaskTextFields() {
+      try {
+        if (!state.currentTask) throw new Error('No task loaded');
+        const description = document.getElementById('edit-task-description').value;
+        const acceptance_criteria = document.getElementById('edit-task-criteria').value;
+        await api(`/tasks/${state.currentTask.id}`, { method: 'PUT', body: JSON.stringify({ description, acceptance_criteria }) });
+        closePanel();
+        await loadTaskDetail(state.currentTask.id);
+        renderTaskDetail();
+        showToast('Task updated', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function updateTaskField(field, value) {
+      try {
+        if (!state.currentTask) return;
+        await api(`/tasks/${state.currentTask.id}`, { method: 'PUT', body: JSON.stringify({ [field]: value }) });
+        state.currentTask[field] = value;
+        const idx = state.currentTasks.findIndex((task) => task.id === state.currentTask.id);
+        if (idx >= 0) state.currentTasks[idx][field] = value;
+        renderTaskDetail();
+        showToast('Task updated', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function submitComment() {
+      try {
+        if (!state.currentTask) throw new Error('No task loaded');
+        const content = document.getElementById('comment-input').value.trim();
+        if (!content) throw new Error('Comment cannot be empty');
+        await api(`/tasks/${state.currentTask.id}/comments`, { method: 'POST', body: JSON.stringify({ author: 'user', content }) });
+        await loadTaskDetail(state.currentTask.id);
+        renderTaskDetail();
+        showToast('Comment posted', 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function wakeQueue() {
+      try {
+        const res = await api('/wake', { method: 'POST' });
+        await refreshDebugState();
+        showToast(res.triggered ? 'Queue wake triggered' : (res.message || 'Queue not available'), res.triggered ? 'dispatch' : 'warning');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    // Safe wrappers that read project IDs from data-* attributes instead of onclick strings
+    function debugControlFromEl(el, action, extraFn) {
+      const projectId = el.dataset.projectId || '';
+      sendDebugControl(action, extraFn ? extraFn(projectId) : { projectId });
+    }
+    function circuitControlFromEl(el, action, reason) {
+      const projectId = el.dataset.projectId || '';
+      const scope = `project:${projectId}`;
+      sendDebugControl(action, reason ? { scope, reason } : { scope });
+    }
+
+    async function sendDebugControl(action, extra = {}) {
+      try {
+        const res = await api('/debug/control', {
+          method: 'POST',
+          body: JSON.stringify({ action, ...extra }),
+        });
+        await refreshDebugState();
+        if (state.panel === 'debug-controls') openPanel('debug-controls');
+        showToast(res.note || `Debug action: ${action}`, 'success');
+      } catch (error) {
+        showToast(error.message, 'error');
+      }
+    }
+
+    async function loadProjects() {
+      state.loading.projects = true;
+      renderProjectsPage();
+      try {
+        state.projects = await api('/projects');
+      } catch (error) {
+        showToast(error.message, 'error');
+        state.projects = [];
+      } finally {
+        state.loading.projects = false;
+        renderSidebar();
+        renderProjectsPage();
+      }
+      // Background: fetch counts for project cards — non-blocking
+      if (state.projects.length) {
+        Promise.all(state.projects.map(async (p) => {
+          try {
+            const tasks = await api(`/projects/${encodeURIComponent(p.id)}/tasks`);
+            const arr = Array.isArray(tasks) ? tasks : [];
+            state.taskCounts[p.id] = {
+              total: arr.length,
+              ready:   arr.filter(t => t.status === 'ready').length,
+              running: arr.filter(t => t.status === 'running').length,
+              done:    arr.filter(t => t.status === 'done').length,
+            };
+          } catch { state.taskCounts[p.id] = null; }
+        })).then(() => { renderProjectsPage(); renderSidebar(); });
+      }
+    }
+
+    async function loadKnowledge(projectId) {
+      try {
+        state.knowledge = await api(`/projects/${encodeURIComponent(projectId)}/knowledge`);
+      } catch {
+        state.knowledge = [];
+      }
+    }
+
+    async function loadProjectContext(projectId, tab = 'tasks') {
+      state.loading.page = true;
+      try {
+        const [project, tasks] = await Promise.all([
+          api(`/projects/${encodeURIComponent(projectId)}`),
+          api(`/projects/${encodeURIComponent(projectId)}/tasks`),
+        ]);
+        state.currentProject = project;
+        state.currentTasks = Array.isArray(tasks) ? tasks : [];
+        // Compute counts from already-fetched tasks — no extra request
+        const arr = state.currentTasks;
+        state.taskCounts[projectId] = {
+          total: arr.length,
+          ready:   arr.filter(t => t.status === 'ready').length,
+          running: arr.filter(t => t.status === 'running').length,
+          done:    arr.filter(t => t.status === 'done').length,
+        };
+        state.currentTask = null;
+        state.statusFilter = 'all';
+        state.priorityFilter = '';
+        state.currentTab = tab;
+        state.projectRuns = [];
+        state.kbSearchQuery = '';
+        if (tab === 'knowledge') await loadKnowledge(projectId); else state.knowledge = [];
+        renderSidebar();
+      } finally {
+        state.loading.page = false;
+      }
+    }
+
+    async function loadTaskDetail(taskId) {
+      const task = await api(`/tasks/${taskId}`);
+      state.currentTask = task;
+      if (!state.currentProject || state.currentProject.id !== task.project_id) {
+        try {
+          state.currentProject = await api(`/projects/${encodeURIComponent(task.project_id)}`);
+          state.currentTasks = await api(`/projects/${encodeURIComponent(task.project_id)}/tasks`);
+        } catch {}
+      }
+      const [runs, comments] = await Promise.all([
+        api(`/tasks/${taskId}/runs`).catch(() => []),
+        api(`/tasks/${taskId}/comments`).catch(() => []),
+      ]);
+      state.taskRuns = runs;
+      state.comments = comments;
+      renderSidebar();
+    }
+
+    // ── Sessions page ─────────────────────────────────────────────────────────
+    let sessionsAutoRefresh = null;
+    let elapsedTickerHandle = null;
+    let outputPollerHandle = null;
+
+    function stopOutputPoller() {
+      if (outputPollerHandle) { clearInterval(outputPollerHandle); outputPollerHandle = null; }
+    }
+
+    function formatElapsed(isoOrDate) {
+      const since = isoOrDate instanceof Date ? isoOrDate : new Date(String(isoOrDate).includes('T') ? isoOrDate : isoOrDate + 'Z');
+      if (isNaN(since.getTime())) return '?';
+      const ms = Date.now() - since.getTime();
+      const s = Math.floor(ms / 1000);
+      if (s < 60) return `${s}s`;
+      const m = Math.floor(s / 60);
+      if (m < 60) return `${m}m ${s % 60}s`;
+      const h = Math.floor(m / 60);
+      return `${h}h ${m % 60}m`;
+    }
+
+    function updateSessionPill(count) {
+      const pill = document.getElementById('session-pill');
+      const text = document.getElementById('session-pill-text');
+      const badge = document.getElementById('sessions-nav-badge');
+      if (text) text.textContent = `${count} active`;
+      if (pill) pill.classList.toggle('has-active', count > 0);
+      if (badge) {
+        badge.textContent = String(count);
+        badge.style.display = count > 0 ? 'inline' : 'none';
+      }
+    }
+
+    function startElapsedTickers() {
+      if (elapsedTickerHandle) clearInterval(elapsedTickerHandle);
+      elapsedTickerHandle = setInterval(() => {
+        document.querySelectorAll('[data-elapsed]').forEach(el => {
+          const since = el.dataset.elapsed;
+          if (since) el.textContent = '⏱ ' + formatElapsed(since);
+        });
+      }, 1000);
+    }
+
+    function stopSessionsAutoRefresh() {
+      if (sessionsAutoRefresh) { clearInterval(sessionsAutoRefresh); sessionsAutoRefresh = null; }
+      if (elapsedTickerHandle) { clearInterval(elapsedTickerHandle); elapsedTickerHandle = null; }
+    }
+
+    function renderSessionCard(r) {
+      const model = escapeHtml(r.model || 'default');
+      const sessionKey = escapeHtml(r.sessionKey || '—');
+      const timeout = r.timeoutAt ? escapeHtml(formatDate(r.timeoutAt)) : '—';
+      const taskTitle = escapeHtml(r.title || 'Unknown task');
+      const projId = escapeHtml(r.projectId || '');
+      // parse task prompt from input JSON
+      let promptPreview = '';
+      try {
+        const inp = JSON.parse(r.inputJson || '{}');
+        promptPreview = inp.title ? escapeHtml(inp.title) : '';
+      } catch {}
+
+      return `
+        <div class="card session-card" onclick="openSessionOutput(${r.taskId}, '${escapeHtml(r.sessionKey || '')}', ${r.runId || 'null'}, '${escapeHtml(r.title || '')}')">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+            <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+              <span class="session-live-dot"></span>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${taskTitle}</div>
+                <div style="color:var(--muted);font-size:11px;margin-top:2px">
+                  <span>Project: ${projId}</span>
+                  ${sessionKey !== '—' ? `<span style="margin-left:8px;font-family:var(--mono)">${sessionKey}</span>` : ''}
+                </div>
+              </div>
+            </div>
+            <span class="badge badge-running" style="flex-shrink:0">Running</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span class="badge" style="border-color:var(--info);color:var(--info);background:rgba(59,130,246,0.08)">⚡ ${model}</span>
+            <span style="color:var(--muted);font-size:11px" data-elapsed="${escapeHtml(r.startedAt || '')}">⏱ ${escapeHtml(formatElapsed(r.startedAt || new Date()))}</span>
+            <span style="color:var(--muted);font-size:11px">⏳ Timeout: ${timeout}</span>
+          </div>
+
+          <div class="session-ticker">
+            <span class="session-waiting">
+              <span class="session-waiting-dot">●</span>
+              <span class="session-waiting-dot">●</span>
+              <span class="session-waiting-dot">●</span>
+              <span style="margin-left:4px">waiting for output</span>
+            </span>
+          </div>
+        </div>`;
+    }
+
+    function renderRecentSessionCard(r) {
+      const isDone = r.status === 'done';
+      const dotClass = isDone ? 'session-done-dot' : 'session-failed-dot';
+      const output = String(r.output || '');
+      // Build a double-copy for seamless ticker scroll if long enough
+      const ticker = output.replace(/\s+/g, ' ').trim().slice(-300);
+      const doScroll = ticker.length > 80;
+      const tickerContent = doScroll ? escapeHtml(ticker) + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + escapeHtml(ticker) : escapeHtml(ticker);
+
+      return `
+        <div class="card session-card" onclick="openSessionOutput(${r.taskId}, '${escapeHtml(r.sessionKey || '')}', null, '${escapeHtml(r.title || '')}')">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="${dotClass}"></span>
+            <div style="flex:1;min-width:0">
+              <span style="font-weight:600;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block">${escapeHtml(r.title || 'Unknown task')}</span>
+              <span style="color:var(--muted);font-size:11px">Project: ${escapeHtml(r.projectId || '')} · ${escapeHtml(r.model || 'default')} · ${escapeHtml(formatDate(r.endedAt))}</span>
+            </div>
+            ${badge(r.status)}
+          </div>
+          ${ticker ? `
+            <div class="session-ticker">
+              <span class="session-ticker-inner ${doScroll ? 'scrolling' : ''}">${tickerContent}</span>
+            </div>
+          ` : ''}
+        </div>`;
+    }
+
+    async function openSessionOutput(taskId, sessionKey, runId, title) {
+      stopOutputPoller();
+      els.panelTitle.textContent = title || `Session #${taskId}`;
+      els.panelSubtitle.textContent = sessionKey || `task-${taskId}`;
+      els.panelContent.innerHTML = '<div class="section">' + skeleton(3) + '</div>';
+      els.panelFooter.innerHTML = '';
+      els.panelRoot.classList.add('open');
+      state.panel = 'session-output';
+
+      async function loadAndRender() {
+        const runs = await api(`/tasks/${taskId}/runs`);
+        const run = runs[0];
+        const output = run?.output || '';
+        const isRunning = run?.status === 'running';
+
+        // Update output box in-place if it already exists (polling refresh)
+        const existingBox = document.getElementById('session-output-box');
+        if (existingBox) {
+          const atBottom = existingBox.scrollHeight - existingBox.scrollTop <= existingBox.clientHeight + 40;
+          existingBox.textContent = output || '';
+          if (!output) existingBox.innerHTML = '<span style="color:var(--muted)">No output yet — session still running…</span>';
+          if (atBottom) existingBox.scrollTop = existingBox.scrollHeight;
+          // Update live indicator
+          const liveEl = document.getElementById('session-live-label');
+          if (liveEl) liveEl.style.display = isRunning ? '' : 'none';
+          if (!isRunning) stopOutputPoller();
+          return;
+        }
+
+        els.panelContent.innerHTML = `
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              ${badge(run?.status || 'running')}
+              <span class="badge" style="border-color:var(--info);color:var(--info);background:rgba(59,130,246,0.08)">⚡ ${escapeHtml(run?.model || 'default')}</span>
+              ${run?.started_at ? `<span style="color:var(--muted);font-size:11px">Started: ${escapeHtml(formatDate(run.started_at))}</span>` : ''}
+              ${run?.ended_at ? `<span style="color:var(--muted);font-size:11px">Ended: ${escapeHtml(formatDate(run.ended_at))}</span>` : ''}
+              ${sessionKey ? `<span style="color:var(--muted);font-size:11px;font-family:var(--mono)">${escapeHtml(sessionKey)}</span>` : ''}
+            </div>
+
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">
+                Output <span id="session-live-label" style="color:var(--warn);${isRunning ? '' : 'display:none'}">● live</span>
+              </div>
+              <div id="session-output-box" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;white-space:pre-wrap;word-break:break-word;min-height:120px;max-height:55vh;overflow-y:auto;color:var(--text);line-height:1.6">
+                ${output ? escapeHtml(output) : '<span style="color:var(--muted)">No output yet — session still running…</span>'}
+              </div>
+            </div>
+
+            ${run?.input ? `
+              <details>
+                <summary style="cursor:pointer;color:var(--muted);font-size:12px;padding:6px 0">▶ Input prompt</summary>
+                <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:11px;white-space:pre-wrap;word-break:break-word;max-height:30vh;overflow-y:auto;color:var(--muted);margin-top:8px">
+                  ${escapeHtml(formatRunField(run.input))}
+                </div>
+              </details>
+            ` : ''}
+          </div>`;
+
+        els.panelFooter.innerHTML = `
+          <button class="btn" onclick="navigate('#task/${taskId}')">View Task →</button>`;
+
+        if (isRunning) {
+          outputPollerHandle = setInterval(async () => {
+            if (state.panel !== 'session-output') { stopOutputPoller(); return; }
+            try { await loadAndRender(); } catch { /* non-fatal */ }
+          }, 10000);
+        }
+      }
+
+      try {
+        await loadAndRender();
+      } catch (e) {
+        els.panelContent.innerHTML = `<div class="card empty">${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    function renderCapacityPanel(cap, runningCount) {
+      if (!cap) return '';
+      const { maxConcurrent, maxPerHour, maxPerProject, limitsEnabled, spawnsEnabled, queuePaused, logOnly, disableAllSpawns, disableExecutorSpawns, spreadTasksOverPeriod, minNextDelayMs, spreadIntervalMs } = cap;
+      const atConcurrencyLimit = limitsEnabled && runningCount >= maxConcurrent;
+      const concurrencyPct = limitsEnabled ? Math.min(100, Math.round((runningCount / maxConcurrent) * 100)) : 0;
+      const concurrencyColor = atConcurrencyLimit ? 'var(--danger)' : runningCount > 0 ? 'var(--warn)' : 'var(--ok)';
+
+      // Build status flags
+      const flags = [];
+      if (!spawnsEnabled) {
+        if (logOnly) flags.push({ label: 'Log-only mode', color: 'var(--warn)', icon: '⚠' });
+        if (disableAllSpawns) flags.push({ label: 'All spawns disabled', color: 'var(--danger)', icon: '⛔' });
+        else if (disableExecutorSpawns) flags.push({ label: 'Executor spawns disabled', color: 'var(--danger)', icon: '⛔' });
+        if (queuePaused) flags.push({ label: 'Queue paused', color: 'var(--warn)', icon: '⏸' });
+      }
+      if (atConcurrencyLimit) flags.push({ label: `At concurrency limit (${runningCount}/${maxConcurrent})`, color: 'var(--danger)', icon: '🔴' });
+
+      // Format spread interval for display
+      function fmtMs(ms) {
+        if (!ms) return null;
+        if (ms < 60000) return `${Math.round(ms/1000)}s`;
+        if (ms < 3600000) return `${Math.round(ms/60000)}m`;
+        return `${(ms/3600000).toFixed(1)}h`;
+      }
+      const pacingLabel = spreadTasksOverPeriod && spreadIntervalMs
+        ? `${fmtMs(spreadIntervalMs)} between slots`
+        : minNextDelayMs > 0
+          ? `${fmtMs(minNextDelayMs)} min delay`
+          : null;
+
+      return `
+        <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div style="font-size:13px;font-weight:600;color:var(--text-strong)">Capacity</div>
+            <span style="font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid;${spawnsEnabled ? 'border-color:var(--ok);color:var(--ok);background:rgba(34,197,94,0.08)' : 'border-color:var(--danger);color:var(--danger);background:rgba(239,68,68,0.08)'}">
+              ${spawnsEnabled ? '● Spawning enabled' : '○ Spawning disabled'}
+            </span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
+            <div class="card meta-card" style="padding:12px">
+              <div class="meta-label">Concurrent sessions</div>
+              <div style="margin-top:6px;display:flex;align-items:baseline;gap:6px">
+                <span style="font-size:22px;font-weight:700;color:${concurrencyColor}">${runningCount}</span>
+                <span style="color:var(--muted);font-size:13px">/ ${limitsEnabled ? maxConcurrent : '∞'}</span>
+              </div>
+              ${limitsEnabled ? `
+                <div style="margin-top:6px;height:4px;background:var(--bg-elevated);border-radius:99px;overflow:hidden">
+                  <div style="height:100%;width:${concurrencyPct}%;background:${concurrencyColor};border-radius:inherit;transition:width 0.3s"></div>
+                </div>
+              ` : ''}
+            </div>
+            <div class="card meta-card" style="padding:12px">
+              <div class="meta-label">Per-project max</div>
+              <div style="margin-top:6px;font-size:22px;font-weight:700;color:var(--text-strong)">${limitsEnabled ? maxPerProject : '∞'}</div>
+              <div style="color:var(--muted);font-size:11px;margin-top:2px">subagents / project</div>
+            </div>
+            <div class="card meta-card" style="padding:12px">
+              <div class="meta-label">Hourly rate limit</div>
+              <div style="margin-top:6px;font-size:22px;font-weight:700;color:var(--text-strong)">${limitsEnabled ? maxPerHour : '∞'}</div>
+              <div style="color:var(--muted);font-size:11px;margin-top:2px">dispatches / hour</div>
+            </div>
+            <div class="card meta-card" style="padding:12px">
+              <div class="meta-label">Task pacing</div>
+              <div style="margin-top:6px;font-size:${pacingLabel ? '15px' : '22px'};font-weight:700;color:${pacingLabel ? 'var(--accent)' : 'var(--muted)'}">
+                ${pacingLabel ? escapeHtml(pacingLabel) : '—'}
+              </div>
+              <div style="color:var(--muted);font-size:11px;margin-top:2px">
+                ${spreadTasksOverPeriod ? 'spread evenly' : minNextDelayMs > 0 ? 'min next delay' : 'none'}
+              </div>
+            </div>
+          </div>
+
+          ${flags.length ? `
+            <div style="display:flex;flex-direction:column;gap:6px">
+              ${flags.map(f => `
+                <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:rgba(0,0,0,0.15);border:1px solid ${f.color}33">
+                  <span>${f.icon}</span>
+                  <span style="color:${f.color};font-weight:600;font-size:12px">${escapeHtml(f.label)}</span>
+                  ${f.label.includes('Log-only') ? `<button class="btn" style="margin-left:auto;height:26px;padding:0 10px;font-size:11px" onclick="quickToggleSetting('debug.logOnly',false)">Disable log-only</button>` : ''}
+                  ${f.label.includes('paused') ? `<button class="btn" style="margin-left:auto;height:26px;padding:0 10px;font-size:11px" onclick="quickControlAction('resumeQueue')">Resume queue</button>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>`;
+    }
+
+    async function quickToggleSetting(key, value) {
+      try {
+        await api('/settings', { method: 'PUT', body: JSON.stringify({ key, value }) });
+        showToast(`${key} → ${value}`, 'success');
+        renderSessionsPage();
+      } catch (e) { showToast(e.message, 'error'); }
+    }
+
+    async function quickControlAction(action, opts = {}) {
+      try {
+        await api('/debug/control', { method: 'POST', body: JSON.stringify({ action, ...opts }) });
+        showToast(`${action} ok`, 'success');
+        renderSessionsPage();
+      } catch (e) { showToast(e.message, 'error'); }
+    }
+
+    async function renderSessionsPage() {
+      stopSessionsAutoRefresh();
+      renderBreadcrumb([{ label: 'Sessions', hash: '#sessions' }]);
+      renderTopbarActions([{ label: '↺ Refresh', onclick: 'renderSessionsPage()' }]);
+      document.getElementById('sessions-nav-btn')?.classList.add('active');
+
+      let data = { running: [], recent: [], counts: { running: 0, total: 0 }, capacity: null };
+      try { data = await api('/activity'); } catch (e) { showToast(e.message, 'error'); }
+
+      updateSessionPill(data.counts.running);
+      const running = data.running || [];
+      const recent = data.recent || [];
+      const cap = data.capacity || null;
+
+      els.content.innerHTML = `
+        <div class="section">
+          <div class="page-header">
+            <div>
+              <div class="page-title">
+                Sessions
+                ${running.length > 0 ? `<span style="font-size:16px;font-weight:500;color:var(--warn);margin-left:10px">${running.length} active</span>` : ''}
+              </div>
+              <div class="page-subtitle">Live executor sessions · auto-refreshes every 5s</div>
+            </div>
+          </div>
+
+          ${renderCapacityPanel(cap, running.length)}
+
+          ${running.length ? `
+            <div style="display:flex;flex-direction:column;gap:12px">
+              ${running.map(r => renderSessionCard(r, cap)).join('')}
+            </div>
+          ` : `
+            <div class="card empty" style="padding:28px;text-align:center">
+              <div style="font-size:28px;margin-bottom:8px">○</div>
+              <div style="color:var(--muted)">No active sessions right now.</div>
+            </div>
+          `}
+
+          ${recent.length ? `
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px">Recent completions · last 30 min</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                ${recent.map(r => renderRecentSessionCard(r)).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>`;
+
+      startElapsedTickers();
+
+      // Auto-refresh every 5s while on sessions page
+      sessionsAutoRefresh = setInterval(() => {
+        if (location.hash === '#sessions') {
+          renderSessionsPage();
+        } else {
+          stopSessionsAutoRefresh();
+        }
+      }, 5000);
+    }
+
+    // ── Global Activity / Run Log page ────────────────────────────────────────
+    async function renderGlobalActivityPage() {
+      renderBreadcrumb([{ label: 'Run Log', hash: '#activity' }]);
+      renderTopbarActions([{ label: '↺ Refresh', onclick: 'renderGlobalActivityPage()' }]);
+      document.getElementById('activity-nav-btn')?.classList.add('active');
+
+      els.content.innerHTML = `<div class="section">${skeleton(6)}</div>`;
+
+      let data = { running: [], recent: [], counts: { running: 0, total: 0 } };
+      try { data = await api('/activity'); } catch (e) { showToast(e.message, 'error'); }
+
+      const statusColors = { done: 'var(--ok)', failed: 'var(--danger)', running: 'var(--warn)' };
+
+      els.content.innerHTML = `
+        <div class="section">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <div class="card meta-card" style="flex:1;min-width:140px"><div class="meta-label">Running Now</div><div class="meta-value" style="color:var(--warn)">${data.counts.running}</div></div>
+            <div class="card meta-card" style="flex:1;min-width:140px"><div class="meta-label">Total Tasks</div><div class="meta-value">${data.counts.total}</div></div>
+          </div>
+
+          ${data.running.length ? `
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text-strong)">⚡ Currently Running</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                ${data.running.map(r => `
+                  <div class="card" style="padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="navigate('#task/${r.taskId}')">
+                    <span style="width:8px;height:8px;border-radius:50%;background:var(--warn);flex-shrink:0;box-shadow:0 0 6px var(--warn)"></span>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-weight:600;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(r.title)}</div>
+                      <div style="color:var(--muted);font-size:11px">Project: ${escapeHtml(r.projectId)} · Started: ${escapeHtml(formatDate(r.startedAt))} · ${escapeHtml(r.model || 'default model')}</div>
+                    </div>
+                    <span class="badge badge-running">Running</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text-strong)">🕐 Recent Completions (last 30 min)</div>
+            ${data.recent.length ? `
+              <div style="display:flex;flex-direction:column;gap:8px">
+                ${data.recent.map(r => {
+                  const color = statusColors[r.status] || 'var(--muted)';
+                  return `
+                    <div class="card" style="padding:12px 16px;cursor:pointer" onclick="navigate('#task/${r.taskId}')">
+                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+                        <span style="color:${color};font-weight:600;min-width:48px">${escapeHtml(titleCase(r.status))}</span>
+                        <span style="flex:1;font-weight:500;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(r.title)}</span>
+                        <span style="color:var(--muted);font-size:11px">${escapeHtml(formatDate(r.endedAt))}</span>
+                      </div>
+                      ${r.output ? `<div style="color:var(--muted);font-size:11px;font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(r.output)}</div>` : ''}
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            ` : '<div class="card empty">No recent completions in the last 30 minutes.</div>'}
+          </div>
+        </div>
+      `;
+    }
+    // ──────────────────────────────────────────────────────────────────────────
+
+    // ── Watchdog panel ──────────────────────────────────────────────
+    let watchdogRefreshTimer = null;
+
+    async function wdogFetch(path, opts) {
+      const res = await fetch(path, opts || {});
+      if (!res.ok) throw new Error(await res.text());
+      return res.json();
+    }
+
+    async function renderWatchdogPage() {
+      renderBreadcrumb([{ label: 'Watchdog', hash: '#watchdog' }]);
+      renderTopbarActions([{ label: '↺ Refresh', onclick: 'renderWatchdogPage()' }]);
+      document.getElementById('watchdog-nav-btn')?.classList.add('active');
+
+      els.content.innerHTML = `
+        <div class="section">
+          <div id="wdog-status-card" class="card" style="padding:16px">${skeleton(2)}</div>
+          <div id="wdog-log-card" class="card" style="padding:16px;margin-top:0">${skeleton(5)}</div>
+        </div>`;
+
+      let status = {}, log = { lines: [] };
+      try { status = await wdogFetch('/wdog/status'); } catch (e) { status = { error: e.message }; }
+      try { log = await wdogFetch('/wdog/log?lines=25'); } catch (e) { log = { lines: [] }; }
+
+      const healthy = status.healthy;
+      const healthColor = status.error ? 'var(--muted)' : (healthy ? 'var(--ok)' : '#e05252');
+      const healthLabel = status.error ? '⚠ unreachable' : (healthy ? '✓ healthy' : '✗ unhealthy');
+      const lastSnapshot = status.lastSnapshot || '—';
+      const backupCount = status.backupCount ?? '—';
+      const lastCheck = status.lastCheck ? new Date(status.lastCheck).toLocaleTimeString() : '—';
+      const failures = status.consecutiveFailures ?? 0;
+
+      document.getElementById('wdog-status-card').innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-size:15px;font-weight:600">🛡 Gateway Watchdog</div>
+          <span style="color:${healthColor};font-weight:600;font-size:14px">${escapeHtml(healthLabel)}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px">
+          <div class="card meta-card"><div class="meta-label">Last Check</div><div class="meta-value">${escapeHtml(lastCheck)}</div></div>
+          <div class="card meta-card"><div class="meta-label">Failures</div><div class="meta-value">${escapeHtml(String(failures))}</div></div>
+          <div class="card meta-card"><div class="meta-label">Backups</div><div class="meta-value">${escapeHtml(String(backupCount))}</div></div>
+          <div class="card meta-card"><div class="meta-label">Last Snapshot</div><div class="meta-value font-mono" style="font-size:11px;word-break:break-all">${escapeHtml(lastSnapshot)}</div></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="wdogSafeRestart(this)">⟳ Safe Restart</button>
+          <button class="btn" onclick="wdogSnapshot(this)">📸 Snapshot Now</button>
+        </div>
+      `;
+
+      const logLines = (log.lines || []);
+      document.getElementById('wdog-log-card').innerHTML = `
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px">Recent Log</div>
+        <pre style="font-size:11px;line-height:1.6;overflow-x:auto;white-space:pre-wrap;color:var(--text);margin:0;padding:10px;background:var(--bg-hover);border-radius:6px;max-height:320px;overflow-y:auto">${
+          logLines.length ? escapeHtml(logLines.join('\n')) : '(no log entries)'
+        }</pre>
+      `;
+
+      if (watchdogRefreshTimer) clearTimeout(watchdogRefreshTimer);
+      watchdogRefreshTimer = setTimeout(() => {
+        if (location.hash === '#watchdog') renderWatchdogPage();
+      }, 15000);
+    }
+
+    async function wdogSafeRestart(btn) {
+      if (!confirm('Trigger a safe gateway restart? Active sessions will be saved first.')) return;
+      btn.disabled = true; btn.textContent = '⟳ Restarting…';
+      try {
+        const result = await wdogFetch('/wdog/safe-restart', { method: 'POST' });
+        alert(`Restart complete.\nState saved: ${result.stateSaved}\nRestarted: ${result.restarted}\nRespawned: ${result.respawned}\nTook: ${result.tookMs}ms`);
+      } catch (e) {
+        alert('Safe restart failed: ' + e.message);
+      } finally {
+        btn.disabled = false; btn.textContent = '⟳ Safe Restart';
+        renderWatchdogPage();
+      }
+    }
+
+    async function wdogSnapshot(btn) {
+      btn.disabled = true; btn.textContent = '📸 Saving…';
+      try {
+        const result = await wdogFetch('/wdog/snapshot', { method: 'POST' });
+        alert('Snapshot saved: ' + (result.file || JSON.stringify(result)));
+      } catch (e) {
+        alert('Snapshot failed: ' + e.message);
+      } finally {
+        btn.disabled = false; btn.textContent = '📸 Snapshot Now';
+        renderWatchdogPage();
+      }
+    }
+    // ──────────────────────────────────────────────────────────────────────
+
+    async function route() {
+      if (!state.projects.length && !state.loading.projects) await loadProjects();
+      const hash = location.hash || '#projects';
+      const path = hash.slice(1).split('/').filter(Boolean);
+      // Stop sessions auto-refresh when leaving the sessions page
+      if (path[0] !== 'sessions') stopSessionsAutoRefresh();
+      // Clear active state on nav buttons
+      document.getElementById('sessions-nav-btn')?.classList.remove('active');
+      document.getElementById('activity-nav-btn')?.classList.remove('active');
+      document.getElementById('watchdog-nav-btn')?.classList.remove('active');
+      try {
+        if (!path.length || path[0] === 'projects') {
+          state.currentProject = null;
+          state.currentTask = null;
+          renderSidebar();
+          renderProjectsPage();
+          return;
+        }
+        if (path[0] === 'project' && path[1]) {
+          const projectId = decodeURIComponent(path[1]);
+          const tab = path[2] === 'board' || path[2] === 'knowledge' || path[2] === 'activity' ? path[2] : 'tasks';
+          const needsReload = !state.currentProject || state.currentProject.id !== projectId || state.currentTab !== tab;
+          if (needsReload) await loadProjectContext(projectId, tab);
+          if (tab === 'activity') await loadActivityForProject(projectId);
+          renderProjectDetail();
+          return;
+        }
+        if (path[0] === 'task' && path[1]) {
+          await loadTaskDetail(Number(path[1]));
+          renderTaskDetail();
+          return;
+        }
+        if (path[0] === 'watchdog') {
+          state.currentProject = null;
+          state.currentTask = null;
+          renderSidebar();
+          await renderWatchdogPage();
+          return;
+        }
+        if (path[0] === 'activity') {
+          state.currentProject = null;
+          state.currentTask = null;
+          renderSidebar();
+          await renderGlobalActivityPage();
+          return;
+        }
+        if (path[0] === 'sessions') {
+          state.currentProject = null;
+          state.currentTask = null;
+          renderSidebar();
+          await renderSessionsPage();
+          return;
+        }
+        navigate('#projects');
+      } catch (error) {
+        renderTopbarActions([]);
+        renderBreadcrumb([{ label: 'Error' }]);
+        els.content.innerHTML = `<div class="card empty">${escapeHtml(error.message || 'Failed to load page.')}</div>`;
+      }
+    }
+
+    const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+    function updateSidebarToggle() {
+      sidebarToggleBtn.textContent = state.sidebarCollapsed ? '☰' : '✕';
+      sidebarToggleBtn.title = state.sidebarCollapsed ? 'Show sidebar' : 'Hide sidebar';
+    }
+    sidebarToggleBtn.addEventListener('click', () => {
+      state.sidebarCollapsed = !state.sidebarCollapsed;
+      els.sidebar.classList.toggle('collapsed', state.sidebarCollapsed);
+      localStorage.setItem('orchard-sidebar', state.sidebarCollapsed ? '1' : '0');
+      updateSidebarToggle();
+    });
+
+    document.querySelectorAll('.theme-btn').forEach((btn) => {
+      btn.addEventListener('click', () => setTheme(btn.dataset.theme));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closePanel();
+    });
+
+    window.addEventListener('hashchange', route);
+
+    async function refreshDashboardDataSilently() {
+      try {
+        const currentProjectId = state.currentProject?.id;
+        if (currentProjectId) {
+          await loadProjectContext(currentProjectId, state.currentTab || 'tasks');
+          if (state.currentTask?.id) {
+            await loadTaskDetail(state.currentTask.id);
+            renderTaskDetail();
+          } else if (location.hash.startsWith('#project/')) {
+            renderProjectDetail();
+          }
+        } else if (location.hash.startsWith('#activity')) {
+          await renderGlobalActivityPage();
+        } else if (location.hash.startsWith('#watchdog')) {
+          await renderWatchdogPage();
+        } else if (location.hash.startsWith('#sessions')) {
+          // sessions page has its own 5s poller — skip the 30s poll
+        } else {
+          await loadProjects();
+        }
+        // Always refresh the session pill count in the background
+        try {
+          const activitySnap = await api('/activity');
+          updateSessionPill(activitySnap?.counts?.running ?? 0);
+        } catch {}
+        updateLastUpdated();
+      } catch (error) {
+        console.warn('auto-refresh failed', error);
+      }
+    }
+
+    // 30-second auto-refresh: silently refresh dashboard data in place
+    setInterval(() => {
+      refreshDashboardDataSilently();
+    }, 30000);
+    state.sidebarCollapsed = localStorage.getItem('orchard-sidebar') === '1';
+    setTheme(state.theme);
+    els.sidebar.classList.toggle('collapsed', state.sidebarCollapsed);
+    updateSidebarToggle();
+    if (!getStoredToken()) {
+      showLoginScreen('');
+    } else {
+      route();
+      updateLastUpdated();
+    }
+  </script>
+</body>
+</html>

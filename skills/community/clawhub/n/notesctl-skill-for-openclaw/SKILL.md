@@ -1,35 +1,52 @@
 ---
-name: "Notesctl"
-description: "Manage Apple Notes via deterministic local scripts (create, append, list, search, export, and edit). Use when a user asks OpenClaw to add a note, list notes, search notes, or manage note folders."
-category: "other"
-source: "ClawHub"
-tags: [v0.1.0]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notesctl-skill-for-openclaw"
-sourceUrl: "https://clawhub.ai/skills/notesctl-skill-for-openclaw"
+name: notesctl
+description: Manage Apple Notes via deterministic local scripts (create, append, list, search, export, and edit). Use when a user asks OpenClaw to add a note, list notes, search notes, or manage note folders.
+metadata:
+  {
+    "openclaw": {
+      "emoji": "📝",
+      "os": ["darwin"],
+      "requires": { "bins": ["memo", "python3", "osascript"] }
+    }
+  }
 ---
 
-# Notesctl
+# notesctl (Apple Notes, low-token)
 
-> Manage Apple Notes via deterministic local scripts (create, append, list, search, export, and edit). Use when a user asks OpenClaw to add a note, list notes, search notes, or manage note folders.
+## Goal
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notesctl-skill-for-openclaw`
-- **Source URL:** [https://clawhub.ai/skills/notesctl-skill-for-openclaw](https://clawhub.ai/skills/notesctl-skill-for-openclaw)
+Minimize token usage and avoid fragile quoting by routing Apple Notes operations through bundled scripts.
 
-## Overview
+## Quick start
 
+### Create a new note (deterministic title/body)
 
-## Installation
-To install this skill, run the following command in your terminal:
+- JSON stdin (recommended):
+
 ```bash
-hermes skills install clawhub/notesctl-skill-for-openclaw
+echo '{"title":"Title","body":"Line 1\nLine 2","folder":"Notes"}' | {baseDir}/scripts/notes_post.sh
 ```
+
+- Direct args:
+
+```bash
+{baseDir}/scripts/notes_new.sh "Title" $'Body line 1\nBody line 2' "Notes"
+```
+
+### List/search/export
+
+```bash
+{baseDir}/scripts/notes_list.sh "Notes"
+{baseDir}/scripts/notes_search.sh "query" "Notes"
+{baseDir}/scripts/notes_export.sh "query" "Notes" "/tmp"  # interactive select then export
+```
+
+## Output conventions
+
+- Keep receipts short: `Wrote to Notes: <title>`. 
+
+## Notes on editing
+
+Editing existing notes is inherently more fragile:
+- Prefer append workflows or create a new note with a reference.
+- If the user explicitly wants interactive editing, use `memo notes -e` (manual selection + editor).

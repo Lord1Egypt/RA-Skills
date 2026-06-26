@@ -1,0 +1,49 @@
+/*
+ * Theme: Warm Dark
+ * 暖调学院深色 — 深灰绿底，暖白文字，琥珀强调，知性沉稳
+ * 适合：AI 研究分享、技术深度演讲、产品战略、沉浸式叙事
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #f0efe8;
+  --color-secondary: #9b9891;
+  --color-accent: #d4845a;
+  --color-bg: #1a1915;
+  --color-bg-alt: #2a2820;
+  --color-surface: #2a2820;
+  --color-text: #f0efe8;
+  --color-text-secondary: #9b9891;
+  --color-text-on-primary: #1a1915;
+  --color-border: #3d3b33;
+
+  /* --- 字体 --- */
+  --font-heading: 'Tiempos Headline', 'Georgia', 'Noto Serif SC', serif;
+  --font-body: 'Soehne', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Soehne Mono', 'Fira Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.7rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.27rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.62rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 2.25rem;
+  --spacing-lg: 3.38rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+  --shadow-lg: 0 8px 28px rgba(0,0,0,0.45);
+  --transition-speed: 0.3s;
+  --transition-easing: ease;
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

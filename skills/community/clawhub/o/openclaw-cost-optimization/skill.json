@@ -1,0 +1,8 @@
+{
+  "name": "openclaw-cost-optimization",
+  "version": "1.0.0",
+  "description": "OpenClaw成本优化 - 降低AI API支出技巧",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["openclaw", "cost", "optimization", "省钱", "成本", "API"]
+}

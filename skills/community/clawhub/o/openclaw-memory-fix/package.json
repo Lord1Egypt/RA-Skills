@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-memory-fix",
+  "version": "1.0.0",
+  "description": "OpenClaw记忆系统优化方案 - 四层架构 + 动态衰减 + 智能检索",
+  "main": "scripts/memory.js",
+  "bin": {
+    "memory-fix": "scripts/memory.js"
+  },
+  "keywords": ["openclaw", "memory", "ai", "agent", "cognitive"],
+  "author": "Odin for Mantouge",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw"
+}

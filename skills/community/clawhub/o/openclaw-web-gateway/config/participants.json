@@ -1,0 +1,23 @@
+[
+  
+  {
+    "key": "romain",
+    "display_name": "Romain",
+    "aliases": ["romain"]
+  },
+  {
+    "key": "amelie",
+    "display_name": "Amélie",
+    "aliases": ["amelie"]
+  },
+  {
+    "key": "theo",
+    "display_name": "Théo",
+    "aliases": ["theo"]
+  },
+  {
+    "key": "malik",
+    "display_name": "Malik",
+    "aliases": ["malik"]
+  }
+]

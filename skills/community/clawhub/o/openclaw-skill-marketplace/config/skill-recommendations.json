@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "description": "Skill Marketplace 技能推荐配置 - 基于场景/行业/身份推荐技能组合",
+  
+  "基础必装技能": {
+    "description": "所有用户都应该安装的基础技能",
+    "skills": [
+      {
+        "name": "auto-backup",
+        "displayName": "自动备份",
+        "rating": 4.9,
+        "downloads": 5000,
+        "reason": "保护配置安全，防止数据丢失",
+        "priority": "⭐⭐⭐⭐⭐"
+      },
+      {
+        "name": "model-switch",
+        "displayName": "模型切换",
+        "rating": 4.8,
+        "downloads": 4500,
+        "reason": "灵活切换不同 AI 模型，适应不同场景",
+        "priority": "⭐⭐⭐⭐⭐"
+      },
+      {
+        "name": "memory-enhancer",
+        "displayName": "记忆增强",
+        "rating": 4.7,
+        "downloads": 3800,
+        "reason": "让 AI 记住重要信息，不再遗漏",
+        "priority": "⭐⭐⭐⭐⭐"
+      },
+      {
+        "name": "search-pro",
+        "displayName": "搜索增强",
+        "rating": 4.6,
+        "downloads": 3500,
+        "reason": "获取最新信息，扩展 AI 知识",
+        "priority": "⭐⭐⭐⭐"
+      },
+      {
+        "name": "clawhub-publish",
+        "displayName": "ClawHub 发布",
+        "rating": 4.5,
+        "downloads": 2000,
+        "reason": "发布技能到 ClawHub，分享你的创作",
+        "priority": "⭐⭐⭐⭐"
+      }
+    ]
+  },
+  
+  "场景推荐": {
+    "日常办公": {
+      "description": "提高日常办公效率",
+      "skills": ["auto-backup", "memory-enhancer", "search-pro", "skill-scaffold"]
+    },
+    "开发编程": {
+      "description": "辅助代码开发和调试",
+      "skills": ["model-switch", "search-pro", "skill-scaffold", "clawhub-publish"]
+    },
+    "内容创作": {
+      "description": "写作、设计、创意工作",
+      "skills": ["webnovel-writer", "ui-designer", "memory-enhancer", "search-pro"]
+    },
+    "数据分析": {
+      "description": "数据处理和分析",
+      "skills": ["search-pro", "memory-enhancer", "multi-agent-orchestrator"]
+    },
+    "学习研究": {
+      "description": "学术研究和知识学习",
+      "skills": ["search-pro", "memory-enhancer", "model-switch"]
+    },
+    "自动化运维": {
+      "description": "系统自动化和监控",
+      "skills": ["auto-backup", "multi-agent-orchestrator", "memory-enhancer"]
+    }
+  },
+  
+  "行业推荐": {
+    "互联网/IT": {
+      "description": "互联网和技术行业",
+      "skills": ["model-switch", "search-pro", "skill-scaffold", "clawhub-publish", "multi-agent-orchestrator"]
+    },
+    "金融/投资": {
+      "description": "金融分析和投资决策",
+      "skills": ["search-pro", "memory-enhancer", "auto-backup"]
+    },
+    "教育/培训": {
+      "description": "教育教学和培训",
+      "skills": ["memory-enhancer", "search-pro", "webnovel-writer"]
+    },
+    "媒体/传播": {
+      "description": "媒体创作和传播",
+      "skills": ["webnovel-writer", "ui-designer", "search-pro"]
+    },
+    "设计/创意": {
+      "description": "平面设计和创意设计",
+      "skills": ["ui-designer", "webnovel-writer", "memory-enhancer"]
+    },
+    "医疗/健康": {
+      "description": "医疗健康领域",
+      "skills": ["search-pro", "memory-enhancer", "auto-backup"]
+    },
+    "法律/咨询": {
+      "description": "法律咨询和专业服务",
+      "skills": ["memory-enhancer", "search-pro", "auto-backup"]
+    },
+    "电商/零售": {
+      "description": "电商运营和零售",
+      "skills": ["search-pro", "ui-designer", "memory-enhancer"]
+    }
+  },
+  
+  "身份推荐": {
+    "开发者": {
+      "description": "软件开发者/工程师",
+      "skills": ["model-switch", "skill-scaffold", "clawhub-publish", "search-pro", "multi-agent-orchestrator"]
+    },
+    "产品经理": {
+      "description": "产品规划和设计",
+      "skills": ["ui-designer", "memory-enhancer", "search-pro"]
+    },
+    "设计师": {
+      "description": "UI/UX设计师",
+      "skills": ["ui-designer", "memory-enhancer", "search-pro"]
+    },
+    "作家/编辑": {
+      "description": "内容创作和编辑",
+      "skills": ["webnovel-writer", "memory-enhancer", "search-pro"]
+    },
+    "研究员/学者": {
+      "description": "学术研究和科研",
+      "skills": ["search-pro", "memory-enhancer", "auto-backup"]
+    },
+    "学生": {
+      "description": "在校学生学习",
+      "skills": ["memory-enhancer", "search-pro", "model-switch"]
+    },
+    "教师/讲师": {
+      "description": "教育教学工作",
+      "skills": ["memory-enhancer", "search-pro", "webnovel-writer"]
+    },
+    "创业者": {
+      "description": "创业和公司运营",
+      "skills": ["auto-backup", "search-pro", "memory-enhancer", "multi-agent-orchestrator"]
+    },
+    "自由职业者": {
+      "description": "自由职业和远程工作",
+      "skills": ["auto-backup", "model-switch", "memory-enhancer", "search-pro"]
+    },
+    "数据分析师": {
+      "description": "数据分析和商业智能",
+      "skills": ["search-pro", "memory-enhancer", "multi-agent-orchestrator"]
+    }
+  }
+}

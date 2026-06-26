@@ -1,0 +1,44 @@
+# 默认配置文件
+# 复制到 ~/.openclaw/workspace/notice-monitor-config.yaml 后修改使用
+
+tasks:
+  # 示例任务 1：黑龙江省教育采购
+  - name: 黑龙江教育采购
+    url: https://hljcg.hlj.gov.cn/maincms-web/procurementNotice
+    levels:
+      - name: 省级
+        selector: "省级"
+      - name: 市级
+        selector: "市级"
+      - name: 县区级
+        selector: "县 (区)"
+    keywords:
+      - 教育
+      - 学校
+      - 学院
+      - 大学
+      - 中学
+      - 小学
+      - 幼儿园
+      - 培训
+      - 教学
+      - 科研
+      - 实验室
+      - 医院
+    schedule: "0 8 * * *"
+    notify:
+      type: dingtalk
+      target: "01254349410626385789"
+
+  # 示例任务 2：北京医疗招标（示例）
+  # - name: 北京医疗招标
+  #   url: https://bphc.beijing.gov.cn/notice
+  #   keywords:
+  #     - 医院
+  #     - 医疗
+  #     - 药品
+  #     - 器械
+  #   schedule: "0 9 * * *"
+  #   notify:
+  #     type: dingtalk
+  #     target: "01254349410626385789"

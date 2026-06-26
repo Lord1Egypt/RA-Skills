@@ -1,35 +1,55 @@
----
-name: "OEE Knowledge Base RAG"
-description: "Semantic knowledge base allowing ingest, search, and retrieval of saved texts, URLs, and files using embeddings and SQLite."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oee-knowledge-base"
-sourceUrl: "https://clawhub.ai/skills/oee-knowledge-base"
----
+# 🐾 Knowledge Base (RAG) — Your Second Brain
 
-# OEE Knowledge Base RAG
+> by Odin's Eye Enterprises — Ancient Wisdom. Modern Intelligence.
 
-> Semantic knowledge base allowing ingest, search, and retrieval of saved texts, URLs, and files using embeddings and SQLite.
+Save anything, recall it semantically. Personal RAG-powered knowledge base with SQLite + embeddings.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oee-knowledge-base`
-- **Source URL:** [https://clawhub.ai/skills/oee-knowledge-base](https://clawhub.ai/skills/oee-knowledge-base)
+## What It Does
 
-## Overview
+1. **Ingest** — Save text, URLs, files, notes into your knowledge base
+2. **Query** — Semantic search across everything you've saved
+3. **Retrieve** — Get relevant context for any question
 
+## Trigger Phrases
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "remember this"
+- "save this to the knowledge base"
+- "what do I know about"
+- "search my notes"
+- "KB query"
+
+## Usage
+
 ```bash
-hermes skills install clawhub/oee-knowledge-base
+# Ingest text
+python ingest.py "The key insight from today's meeting was..."
+
+# Ingest from a file
+python ingest.py --file notes.md
+
+# Query the knowledge base
+python query.py "What did we discuss about pricing?"
+
+# Full KB management
+python kb.py stats
+python kb.py search "topic"
 ```
+
+## Files
+
+- `kb.py` — core KB engine (embeddings, storage, retrieval)
+- `ingest.py` — CLI for adding content
+- `query.py` — CLI for searching
+- `kb.db` — SQLite database (auto-created)
+
+## Requirements
+
+- Python 3.10+
+- `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` for embeddings
+
+## For Agents
+
+Save context: `python ingest.py "TEXT"`
+Retrieve context: `python query.py "QUESTION"`
+
+<!-- 🐾 Muninn never forgets -->

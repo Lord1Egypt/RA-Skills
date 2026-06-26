@@ -1,0 +1,213 @@
+# 研究领域定义表
+# Phase A sub-agent 根据 topic 关键词匹配最相关的领域
+# 匹配规则：统计 topic 中命中的关键词数量，最多的领域获胜
+# 如果都不匹配，默认 ml
+
+domains:
+  ml:
+    name: "Machine Learning / AI"
+    keywords:
+      - machine learning
+      - deep learning
+      - neural network
+      - transformer
+      - reinforcement learning
+      - LLM
+      - language model
+      - computer vision
+      - NLP
+      - representation learning
+      - self-supervised
+      - federated learning
+      - meta-learning
+      - continual learning
+      - few-shot
+      - knowledge distillation
+      - attention mechanism
+      - fine-tuning
+      - RLHF
+      - agent
+      - RAG
+      - retrieval augmented
+      - prompt
+      - diffusion model
+      - GAN
+      - multimodal
+    top_venues: "NeurIPS, ICML, ICLR, ACL, EMNLP, AAAI"
+    review_preferences: |
+      - 重视实验可复现性（代码 + 数据公开）
+      - 需要与 SOTA 基线的公平对比
+      - 消融实验必须完整
+      - 统计显著性检验（p < 0.05，多随机种子）
+      - 计算成本分析受欢迎
+
+  physics:
+    name: "Physics"
+    keywords:
+      - quantum
+      - thermodynamic
+      - electrodynamic
+      - particle physics
+      - condensed matter
+      - statistical mechanics
+      - cosmology
+      - astrophysics
+      - PDE
+      - PINN
+      - physics-informed
+      - Navier-Stokes
+      - Schrödinger
+      - scientific computing
+      - operator learning
+      - neural operator
+    top_venues: "Physical Review Letters, Nature Physics, JHEP"
+    review_preferences: |
+      - 理论推导的严谨性是第一位
+      - 实验验证需要与物理定律一致
+      - 数值精度和稳定性分析
+      - 与解析解的对比
+
+  chemistry:
+    name: "Chemistry / Drug Discovery"
+    keywords:
+      - molecular
+      - catalysis
+      - polymer
+      - organic chemistry
+      - electrochemistry
+      - drug discovery
+      - protein folding
+      - computational chemistry
+      - DFT
+      - force field
+      - molecular dynamics
+      - binding affinity
+    top_venues: "JACS, Nature Chemistry, Angewandte Chemie"
+    review_preferences: |
+      - 分子性质预测需要与 DFT/实验值对比
+      - 数据集偏差分析（scaffold split vs random split）
+      - 可解释性：模型学到了什么化学规律？
+
+  economics:
+    name: "Economics / Finance"
+    keywords:
+      - econometric
+      - macroeconomic
+      - microeconomic
+      - game theory
+      - market
+      - behavioral economics
+      - causal inference
+      - panel data
+      - regression discontinuity
+      - instrumental variable
+      - supply chain
+      - auction
+      - portfolio
+    top_venues: "AER, Econometrica, QJE, Review of Economic Studies"
+    review_preferences: |
+      - 因果推断的识别策略必须清晰
+      - 外部有效性讨论
+      - 稳健性检验（多种模型规格）
+
+  mathematics:
+    name: "Mathematics"
+    keywords:
+      - theorem
+      - proof
+      - prove
+      - conjecture
+      - topology
+      - algebra
+      - number theory
+      - combinatorics
+      - differential equation
+      - stochastic process
+      - functional analysis
+      - manifold
+      - convergence theorem
+      - measure theory
+      - Hilbert space
+      - Banach space
+      - variational
+      - Euler-Lagrange
+    top_venues: "Annals of Mathematics, Inventiones Mathematicae, JAMS"
+    review_preferences: |
+      - 证明的正确性和完整性
+      - 与已知结果的关系（推广/特化/独立）
+      - 构造性证明优于存在性证明
+    theoretical_intent_words:
+      - derive
+      - prove
+      - mathematical formulation
+      - mathematical proof
+      - formal proof
+
+  engineering:
+    name: "Engineering / Robotics"
+    keywords:
+      - robotics
+      - control system
+      - signal processing
+      - FPGA
+      - embedded system
+      - autonomous driving
+      - SLAM
+      - fluid dynamics
+      - CFD
+      - finite element
+      - mechatronics
+      - sensor fusion
+    top_venues: "IEEE Transactions, ASME Journals, ICRA, IROS"
+    review_preferences: |
+      - 实际系统的可部署性
+      - 实时性能指标（延迟、吞吐）
+      - 与工业标准的对比
+      - 安全性和鲁棒性分析
+
+  biology:
+    name: "Biology / Neuroscience"
+    keywords:
+      - genomics
+      - proteomics
+      - transcriptomics
+      - CRISPR
+      - single-cell
+      - phylogenetic
+      - ecology
+      - neuroscience
+      - bioinformatics
+      - gene expression
+      - epigenetic
+      - connectome
+      - brain imaging
+      - fMRI
+    top_venues: "Nature, Science, Cell, PNAS"
+    review_preferences: |
+      - 生物学意义优先于算法创新
+      - 实验验证（wet lab / 独立数据集）
+      - 与已知生物学知识的一致性
+      - 伦理审查（人类数据/动物实验）
+
+  security:
+    name: "Security / Privacy"
+    keywords:
+      - adversarial
+      - jailbreak
+      - red teaming
+      - alignment
+      - safety
+      - privacy
+      - differential privacy
+      - cryptography
+      - malware
+      - vulnerability
+      - attack
+      - defense
+      - robustness
+    top_venues: "IEEE S&P, USENIX Security, CCS, NDSS"
+    review_preferences: |
+      - 威胁模型必须清晰定义
+      - 攻防对抗的公平性
+      - 真实场景的可利用性评估
+      - 负责任披露

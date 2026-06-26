@@ -1,0 +1,80 @@
+# 大纲模板
+
+## 总纲模板 (master.yaml)
+
+```yaml
+title: <书名>
+premise: <一句话核心设定，如"废柴少年偶获上古传承，逆天改命">
+main_conflict: <核心矛盾，如"人族与魔族的千年宿命">
+ending_vision: <预期结局方向，如"主角证道成仙，但代价是失去记忆">
+
+themes:
+  - <主题1，如"成长">
+  - <主题2，如"牺牲">
+  - <主题3，如"选择">
+
+arcs:
+  - id: arc-001
+    name: <主线名称>
+    type: main              # main=主线 | sub=支线 | hidden=暗线
+    start_volume: 1
+    end_volume: <N>
+    summary: <一句话概括>
+    key_events:
+      - <关键事件1>
+      - <关键事件2>
+
+volumes:
+  - id: vol-01
+    title: <卷名>
+    arcs: [arc-001]          # 本卷涉及的剧情线ID
+    summary: <本卷核心事件概要>
+    tone: <本卷情感基调>
+    key_turning_points:
+      - description: <转折描述>
+        chapter_range: "ch-001~ch-010"
+    character_arcs:
+      - character: @char:XXX
+        arc: <本卷角色发展弧线>
+```
+
+## 卷大纲模板 (vol-XX.yaml)
+
+```yaml
+volume: 1
+title: <卷名>
+time_range: <时间范围，如"青云历1034年春~夏">
+tone: <情感基调>
+
+chapters:
+  - id: ch-001
+    title: <章名>
+    pov: @char:XXX           # 视角角色
+    time: <章节内时间>
+    summary: <100字本章概要>
+    arcs: [arc-001]          # 涉及的剧情线
+    key_events:
+      - <本章关键事件>
+    sections:
+      - id: sec-001-1
+        title: <节标题>
+        summary: <50字概要>
+        scenes:
+          - id: scene-001-1-1
+            location: <场景地点>
+            characters: [@char:XXX]
+            action: <场景核心动作>
+            emotion: <情感基调>
+            foreshadows_plant: [<伏笔ID>]    # 本场景埋设
+            foreshadows_harvest: [<伏笔ID>]  # 本场景回收
+            settings_involved: [@item:XXX]    # 涉及的设定
+            timeline_events: [evt-XXX]       # 时间线事件
+```
+
+## 大纲编写指南
+
+1. **总纲先行**：先写总纲确定主线和卷结构，再逐卷细化
+2. **每卷3-5个转折点**：太多读者疲软，太少节奏平淡
+3. **章概要100字以内**：概要是写作指引，不是正文
+4. **场景是基本写作单元**：每个场景有明确的地点、人物、动作、情感
+5. **伏笔标注在大纲中**：埋设和回收都在场景级别标注，确保不遗漏

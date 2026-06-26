@@ -1,0 +1,65 @@
+# ClawHub Skill Configuration
+# https://clawhub.ai
+
+name: nutricoach
+version: 2.0.0
+description: |
+  Personal health data management and intelligent diet recommendation system.
+  Track body metrics, log meals, analyze nutrition, manage pantry inventory,
+  and receive smart recipe recommendations.
+
+author: RainbowLion0320
+license: MIT
+repository: https://github.com/RainbowLion0320/nutricoach-skill
+homepage: https://github.com/RainbowLion0320/nutricoach-skill
+
+# Categories
+categories:
+  - health
+  - fitness
+  - nutrition
+  - productivity
+
+# Tags
+tags:
+  - health-tracking
+  - diet
+  - nutrition
+  - weight-loss
+  - meal-planning
+  - pantry-management
+  - ocr
+  - web-dashboard
+
+# Requirements
+requirements:
+  bins:
+    - python3
+    - sqlite3
+  python_packages:
+    - flask
+
+# Features
+features:
+  - Body metrics tracking (weight, BMI, body fat)
+  - Daily meal logging with automatic nutrition calculation
+  - 570 Chinese foods database with complete nutrition data
+  - Pantry inventory management with expiration tracking
+  - Smart recipe recommendations based on available ingredients
+  - OCR food recognition from packaging photos
+  - Web dashboard with luxury refined UI design
+  - Multi-user data isolation
+  - Data export (JSON/CSV)
+
+# Screenshots (add these before publishing)
+screenshots:
+  - screenshots/overview.png
+  - screenshots/pantry.png
+  - screenshots/edit-modal.png
+
+# Documentation
+documentation:
+  - README.md
+  - SKILL.md
+  - CHANGELOG.md
+  - LUXURY_DESIGN.md

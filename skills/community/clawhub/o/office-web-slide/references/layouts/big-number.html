@@ -1,0 +1,66 @@
+<!--
+  Layout: big-number
+  大数字页 — 1-3 个核心数据，强视觉冲击
+  Agent 根据数据量调整 stat 数量
+-->
+<section class="slide slide--big-number" data-slide="{{N}}">
+  <h2 class="bignum-title">{{页面标题}}</h2>
+  <div class="bignum-grid">
+    <div class="stat">
+      <span class="stat-value">{{数字，如 98%}}</span>
+      <span class="stat-label">{{标签，如"客户满意度"}}</span>
+      <span class="stat-desc">{{简短说明（可选）}}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">{{数字}}</span>
+      <span class="stat-label">{{标签}}</span>
+      <span class="stat-desc">{{简短说明}}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">{{数字}}</span>
+      <span class="stat-label">{{标签}}</span>
+      <span class="stat-desc">{{简短说明}}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+.slide--big-number {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slide--big-number .bignum-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-xl);
+}
+.slide--big-number .bignum-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+.slide--big-number .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 200px;
+}
+.slide--big-number .stat-value {
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.slide--big-number .stat-label {
+  font-size: var(--font-size-subheading);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.slide--big-number .stat-desc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+</style>

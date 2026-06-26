@@ -1,0 +1,8 @@
+{
+  "name": "openclaw-troubleshooter",
+  "version": "1.0.0",
+  "slug": "openclaw-troubleshooter",
+  "license": "MIT-0",  // 声明使用 MIT-0 协议
+  "acceptLicenseTerms": true,  // 核心：同意协议条款
+  "confirmOwnership": true     // 确认拥有技能版权
+}

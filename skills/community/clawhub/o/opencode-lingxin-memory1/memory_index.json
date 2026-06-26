@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "created": "2026-04-30T00:00:00.000Z",
+  "lastUpdated": "2026-04-30T00:00:00.000Z",
+  "description": "OpenCode灵芯派记忆索引",
+  "files": [
+    "README.md",
+    "MEMORY.md",
+    "INDEX.md",
+    "2026-04-30.md"
+  ]
+}

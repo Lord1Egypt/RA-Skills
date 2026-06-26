@@ -1,0 +1,8 @@
+interface:
+  display_name: "OpenClaw Capture"
+  short_description: "Dispatch local capture jobs with modular STT and multi-channel results."
+  default_prompt: "Use $openclaw-capture to send a capture payload into the local workflow with the right STT and output modules."
+
+policy:
+  allow_implicit_invocation: true
+

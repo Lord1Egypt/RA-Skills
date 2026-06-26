@@ -1,0 +1,21 @@
+{
+  "name": "one-person-company-os",
+  "display_name": "One Person Company OS",
+  "version": "1.0.3",
+  "description": "A planning manifest for a supported Copilot integration that builds a visual operating cockpit for AI-native solo founders.",
+  "publisher": "living-hi",
+  "homepage_url": "https://github.com/living-hi/one-person-company-os",
+  "implementation_note": "Do not submit through the retired GitHub App Copilot Extension route. Rebuild as a VS Code Copilot Extension or another currently supported Copilot integration.",
+  "capabilities": [
+    "chat",
+    "repository_context",
+    "workspace_guidance"
+  ],
+  "required_backend_or_extension_runtime": true,
+  "tools": [
+    "init_business",
+    "update_focus",
+    "generate_artifact_document",
+    "validate_release"
+  ]
+}

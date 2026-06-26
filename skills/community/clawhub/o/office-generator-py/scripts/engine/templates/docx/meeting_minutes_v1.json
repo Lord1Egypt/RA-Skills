@@ -1,0 +1,14 @@
+{
+  "documentType": "docx",
+  "templateId": "meeting_minutes_v1",
+  "title": "会议纪要",
+  "purpose": "记录会议结论、行动项与待办",
+  "contentSpec": {
+    "sections": [
+      {"heading": "一、会议基本信息", "paragraphs": ["时间：", "地点：", "参会人："]},
+      {"heading": "二、讨论要点", "bullets": ["要点1", "要点2"]},
+      {"heading": "三、结论", "bullets": ["结论1", "结论2"]},
+      {"heading": "四、行动项", "table": [["事项", "负责人", "截止时间"], ["", "", ""]]}
+    ]
+  }
+}

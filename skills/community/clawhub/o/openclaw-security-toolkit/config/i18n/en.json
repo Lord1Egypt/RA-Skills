@@ -1,0 +1,109 @@
+{
+  "title": "OpenClaw Security Guard",
+  "version": "v1.0.0",
+  "description": "Security tool for OpenClaw users",
+
+  "commands": {
+    "audit": "Run security audit",
+    "scan": "Scan for secrets",
+    "access": "Manage access control",
+    "token": "Manage tokens",
+    "report": "Generate security report",
+    "harden": "Apply security hardening",
+    "status": "Quick security status"
+  },
+
+  "severity": {
+    "critical": "CRITICAL",
+    "high": "HIGH",
+    "medium": "MEDIUM",
+    "low": "LOW",
+    "info": "INFO"
+  },
+
+  "status": {
+    "excellent": "Excellent",
+    "good": "Good",
+    "warning": "Warning",
+    "poor": "Poor",
+    "critical": "Critical"
+  },
+
+  "messages": {
+    "no_issues": "No security issues found",
+    "fix_available": "Auto-fix available",
+    "run_harden": "Run with --fix to auto-fix issues",
+    "scan_complete": "Scan complete",
+    "audit_complete": "Audit complete",
+    "report_generated": "Report generated",
+    "no_config": "OpenClaw config not found",
+    "restart_gateway": "Restart gateway for changes to take effect"
+  },
+
+  "categories": {
+    "config": "Configuration",
+    "secrets": "Secrets",
+    "access": "Access Control",
+    "network": "Network"
+  },
+
+  "findings": {
+    "CFG001": {
+      "title": "Gateway Bind Address",
+      "description": "Gateway binding configuration"
+    },
+    "CFG002": {
+      "title": "Authentication Mode",
+      "description": "Authentication configuration"
+    },
+    "CFG003": {
+      "title": "Token Strength",
+      "description": "Token security strength"
+    },
+    "CFG004": {
+      "title": "Tailscale VPN",
+      "description": "VPN configuration"
+    },
+    "CFG005": {
+      "title": "Plugin Allowlist",
+      "description": "Plugin restrictions"
+    },
+    "ACC001": {
+      "title": "Paired Devices",
+      "description": "Device pairing status"
+    },
+    "ACC002": {
+      "title": "Channel Permissions",
+      "description": "Channel access control"
+    },
+    "ACC003": {
+      "title": "Execution Approvals",
+      "description": "Command approval system"
+    },
+    "SEC001": {
+      "title": "OpenAI API Key",
+      "description": "OpenAI API key detected"
+    },
+    "SEC002": {
+      "title": "Feishu App Secret",
+      "description": "Feishu app secret detected"
+    }
+  },
+
+  "recommendations": {
+    "change_bind": "Change bind to 'loopback' for local access only",
+    "enable_auth": "Enable token-based authentication",
+    "rotate_token": "Generate a stronger token (32+ characters)",
+    "use_tailscale": "Consider using Tailscale for secure remote access",
+    "review_plugins": "Configure plugin allowlist to limit plugins",
+    "review_devices": "Review paired devices and remove unused ones",
+    "use_env_vars": "Use environment variables for sensitive values"
+  },
+
+  "help": {
+    "usage": "Usage",
+    "options": "Options",
+    "examples": "Examples",
+    "more_info": "Run '%(prog)s <command> --help' for more information"
+  }
+}

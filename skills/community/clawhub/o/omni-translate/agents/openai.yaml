@@ -1,0 +1,4 @@
+interface:
+  display_name: "OmniTranslate"
+  short_description: "High-fidelity structured translation."
+  default_prompt: "Use $omni-translate to translate this artifact while preserving structure, layout, placeholders, encoding, and behavior."

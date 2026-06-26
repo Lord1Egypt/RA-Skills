@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* 颜色变量定义 */
+.card-pop-art {
+  /* 基础颜色 */
+  --pop-primary: #ff2e63;
+  --pop-secondary: #51bafa;
+  --pop-bg: #fde041;
+  --pop-text: #252a34;
+  --pop-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23d3b000'/%3E%3C/svg%3E");
+  --pop-white: #fff;
+  --pop-code-bg: #252a34;
+
+  /* 装饰元素颜色 */
+  --pop-accent1: var(--pop-primary);
+  --pop-accent2: var(--pop-secondary);
+  --pop-accent3: rgb(255, 98, 90);
+  --pop-border: var(--pop-text);
+  --pop-shadow: rgba(37, 42, 52, 0.8);
+
+  /* 高亮颜色 */
+  --highlight-color: var(--pop-primary);
+  --highlight-bg-color: rgba(255, 46, 99, 0.1);
+}
+
+/* 小红书粉蓝主题 */
+.card-pop-art.pink-blue-mode {
+  --pop-primary: #ff4e79;
+  --pop-secondary: #7fd1ae;
+  --pop-bg: #a6dcef;
+  --pop-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%238ac6d0'/%3E%3C/svg%3E");
+
+  --pop-accent1: #ff4e79;
+  --pop-accent2: #7fd1ae;
+  --pop-accent3: #ffd666;
+}
+
+/* 小红书薄荷糖主题 */
+.card-pop-art.mint-mode {
+  --pop-primary: #7fd1ae;
+  --pop-secondary: #ff4e79;
+  --pop-bg: #e0f7fa; /* 改为更浅的薄荷蓝背景 */
+  --pop-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23b2ebf2'/%3E%3C/svg%3E");
+  --pop-accent1: #7fd1ae;
+  --pop-accent2: #ff4e79;
+  --pop-accent3: #51bafa;
+  --pop-border: #4db6ac; /* 添加薄荷绿边框色 */
+  --pop-shadow: rgba(77, 182, 172, 0.3); /* 调整阴影颜色 */
+  --highlight-bg-color: rgba(127, 209, 174, 0.1);
+}
+
+/* 紫色星空主题 */
+.card-pop-art.purple-mode {
+  --pop-primary: #ff4e79;
+  --pop-secondary: #ffab40;
+  --pop-bg: #3a1f75; /* 调整为较亮的紫色背景 */
+  --pop-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23a87fff'/%3E%3C/svg%3E"); /* 更亮的点 */
+  --pop-accent1: #9c27b0;
+  --pop-accent2: #ffab40;
+  --pop-accent3: #64b5f6;
+  --pop-border: #673ab7; /* 紫色边框 */
+  --pop-shadow: rgba(156, 39, 176, 0.4); /* 紫色阴影 */
+  --pop-text: #2e0f54; /* 深紫色文本，在白色背景上清晰可见 */
+  --pop-white: #f8f9fa; /* 稍微调整白色，增加温暖感 */
+  --pop-code-bg: #311b92; /* 深紫色代码背景 */
+}
+
+/* 波普艺术风格 */
+/* 卡片内容样式 */
+.card-pop-art .wavy-underline {
+  text-decoration-color: var(--pop-primary);
+}
+
+.card-pop-art {
+  background-color: var(--pop-bg);
+  background-image: var(--pop-dots);
+  background-size: 24px 24px;
+  background-position: 12px 12px;
+  color: var(--pop-text);
+  font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+  padding: calc(var(--spacing) * 7.5);
+  position: relative;
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* 添加波普艺术装饰元素 */
+.card-pop-art::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * 0);
+  right: calc(var(--spacing) * 0);
+  width: calc(var(--spacing) * 20);
+  height: calc(var(--spacing) * 20);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 10C60 10 70 15 75 25C80 35 80 45 75 55C70 65 60 70 50 70C40 70 30 65 25 55C20 45 20 35 25 25C30 15 40 10 50 10Z' fill='%2351bafa' stroke='%23252a34' stroke-width='3'/%3E%3Ctext x='50' y='50' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle' dominant-baseline='middle' fill='%23252a34'%3EPOP!%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  background-position: 20px -20px;
+  z-index: 1;
+}
+
+.card-pop-art::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * 0);
+  left: calc(var(--spacing) * 0);
+  width: 100%;
+  height: 100%;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5L47.8 27.1H71.7L52.3 40.8L60.1 62.9L40 49.2L19.9 62.9L27.7 40.8L8.3 27.1H32.2L40 5Z' fill='%2351bafa' stroke='%23333' stroke-width='3' /%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5L47.8 27.1H71.7L52.3 40.8L60.1 62.9L40 49.2L19.9 62.9L27.7 40.8L8.3 27.1H32.2L40 5Z' fill='%23ff2e63' stroke='%23333' stroke-width='3' /%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 5L47.8 27.1H71.7L52.3 40.8L60.1 62.9L40 49.2L19.9 62.9L27.7 40.8L8.3 27.1H32.2L40 5Z' fill='%23ff2e63' stroke='%23333' stroke-width='3' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size:
+    80px 80px,
+    80px 80px,
+    80px 80px;
+  background-position:
+    -20px 100%,
+    -20px 0%,
+    105% 100%;
+  z-index: 1;
+}
+
+.card-pop-art .card-content {
+  position: relative;
+  z-index: 2;
+  padding: calc(var(--spacing) * 3);
+  border: 2px solid var(--pop-border);
+  height: 100%;
+  background: var(--pop-white);
+  box-shadow: 10px 10px 0 var(--pop-shadow);
+}
+
+/* 标题样式 */
+.card-pop-art h1 strong {
+  color: var(--pop-primary);
+  background-color: var(--pop-white);
+  padding: 0 calc(var(--spacing) * 1.25);
+  border: 3px solid var(--pop-border);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.card-pop-art h1 {
+  font-size: calc(var(--spacing) * 8);
+  font-weight: 800;
+  color: var(--pop-text);
+  margin-top: calc(var(--spacing) * 5);
+  margin-bottom: calc(var(--spacing) * 5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 0 var(--pop-primary);
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+}
+
+.card-pop-art h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--spacing) * 1.5);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--pop-primary),
+    var(--pop-primary) 10px,
+    var(--pop-text) 10px,
+    var(--pop-text) 20px
+  );
+}
+
+.card-pop-art h2 {
+  font-size: calc(var(--spacing) * 6);
+  font-weight: 700;
+  color: var(--pop-text);
+  margin-top: calc(var(--spacing) * 6);
+  margin-bottom: calc(var(--spacing) * 4);
+  background-color: var(--pop-accent2);
+  padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.5);
+  transform: rotate(-2deg);
+}
+
+.card-pop-art h3 {
+  font-size: calc(var(--spacing) * 5);
+  font-weight: 700;
+  color: var(--pop-text);
+  margin-top: calc(var(--spacing) * 5);
+  margin-bottom: calc(var(--spacing) * 3);
+  background-color: var(--pop-accent3);
+  padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.5);
+  border-radius: 4px;
+}
+
+/* 段落样式 */
+.card-pop-art p {
+  color: var(--pop-text);
+}
+
+/* 列表样式 */
+.card-pop-art ul,
+.card-pop-art ol {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 3.75)
+    calc(var(--spacing) * 3.75) calc(var(--spacing) * 9);
+  border: 2px solid var(--pop-border);
+  border-radius: 8px;
+}
+
+.card-pop-art ul li {
+  position: relative;
+  margin: calc(var(--spacing) * 2.5) 0;
+}
+
+.card-pop-art li::before {
+  position: absolute;
+  top: calc(var(--spacing) * -0.75);
+  left: calc(var(--spacing) * -7);
+}
+.card-pop-art ul > li::before {
+  content: "★";
+  color: var(--pop-primary);
+  font-size: calc(var(--spacing) * 4.5);
+}
+
+.card-pop-art ol li {
+  position: relative;
+  margin: calc(var(--spacing) * 2.5) 0;
+  counter-increment: item;
+}
+
+.card-pop-art ol > li::before {
+  content: attr(data-index);
+  background-color: var(--pop-primary);
+  color: var(--pop-white);
+  font-weight: 700;
+  top: 0;
+  width: calc(var(--spacing) * 6.25);
+  height: calc(var(--spacing) * 6.25);
+  border-radius: 50%;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6.25);
+  border: 2px solid var(--pop-border);
+}
+
+/* 引用样式 */
+.card-pop-art blockquote {
+  border-left: 8px solid var(--pop-primary);
+  color: var(--pop-text);
+  font-style: italic;
+  font-weight: 600;
+  background-color: rgba(var(--pop-primary-rgb), 0.1);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.card-pop-art blockquote::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -5);
+  left: calc(var(--spacing) * 2.5);
+  font-size: calc(var(--spacing) * 15);
+  color: var(--pop-primary);
+  font-family: Georgia, serif;
+}
+
+/* 代码块样式 */
+.card-pop-art pre {
+  background-color: var(--pop-code-bg);
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 3.75);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: calc(var(--spacing) * 3.5);
+  overflow-x: auto;
+  color: var(--pop-white);
+  border: 2px solid var(--pop-primary);
+  box-shadow: 5px 5px 0 var(--pop-accent2);
+}
+
+.card-pop-art code:not(pre code) {
+  background-color: var(--pop-code-bg);
+  padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1.5);
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: calc(var(--spacing) * 3.6);
+  color: var(--pop-white);
+  border: 1px solid var(--pop-primary);
+}
+
+/* 表格样式 */
+.card-pop-art table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: calc(var(--spacing) * 5) 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 3px solid var(--pop-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--pop-primary);
+}
+
+.card-pop-art th {
+  background-color: var(--pop-code-bg);
+  color: var(--pop-white);
+  padding: calc(var(--spacing) * 3);
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-pop-art td {
+  border-bottom: 2px solid var(--pop-border);
+  padding: calc(var(--spacing) * 2.5);
+  position: relative;
+}
+
+.card-pop-art tr:nth-child(odd) td {
+  background-color: rgba(var(--pop-accent2-rgb), 0.2);
+}
+
+/* 水平线样式 */
+.card-pop-art hr {
+  border: 0;
+  height: calc(var(--spacing) * 1.5);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--pop-primary),
+    var(--pop-primary) 10px,
+    var(--pop-text) 10px,
+    var(--pop-text) 20px
+  );
+  margin: calc(var(--spacing) * 6.25) 0;
+  border-radius: 3px;
+}
+
+/* 图片样式 */
+.card-pop-art img {
+  max-width: 100%;
+  border: 5px solid var(--pop-border);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 var(--pop-primary);
+  transform: rotate(-1deg);
+}
+
+/* 链接样式 */
+.card-pop-art a {
+  color: var(--pop-primary);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 3px solid var(--pop-border);
+  padding: 0 calc(var(--spacing) * 0.75);
+  transition: all 0.3s ease;
+}
+
+.card-pop-art a:hover {
+  background-color: var(--pop-primary);
+  color: var(--pop-white);
+  border-radius: 4px;
+}
+
+/* 添加波普艺术特有的语音气泡效果 */
+.card-pop-art .speech-bubble {
+  position: relative;
+  background: var(--pop-white);
+  border-radius: 10px;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  border: 3px solid var(--pop-border);
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 5px 5px 0 var(--pop-primary);
+}
+
+.card-pop-art .speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -5);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: var(--pop-border);
+}
+
+.card-pop-art .speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -3.5);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--pop-white);
+}
+
+.card-pop-art .card-footer {
+  position: relative;
+}
+
+.card-pop-art .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  position: absolute;
+  right: calc(var(--spacing) * 2);
+  top: calc(var(--spacing) * -6);
+  z-index: 100;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-pop-art">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

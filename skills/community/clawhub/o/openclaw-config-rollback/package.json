@@ -1,0 +1,9 @@
+{
+  "name": "openclaw-config-rollback",
+  "version": "1.0.2",
+  "description": "OpenClaw 配置回滚管理 - 备份、超时保护、自动回滚",
+  "main": "SKILL.md",
+  "keywords": ["openclaw", "skill", "config", "rollback"],
+  "author": "小麦",
+  "license": "MIT"
+}

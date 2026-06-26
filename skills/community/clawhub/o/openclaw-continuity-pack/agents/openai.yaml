@@ -1,0 +1,8 @@
+interface:
+  display_name: "OpenClaw全自动新对话续接"
+  short_description: "一键安装 continuity 模板或静默 same-thread rollover 补丁"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $openclaw-continuity-pack 帮用户选择最短且安全的安装路线，并优先使用 scripts/install_continuity_pack.py 完成 workspace-only、continuity-only 或基于匹配源码树的 full continuity 安装；如用户需要完整 runtime continuity，说明当前补丁采用 silent continuity 准备、同一 thread UX、hidden handoff、80/85/88/90 阈值策略。"
+
+policy:
+  allow_implicit_invocation: true

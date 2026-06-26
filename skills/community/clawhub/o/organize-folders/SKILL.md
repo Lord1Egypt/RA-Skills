@@ -1,35 +1,178 @@
 ---
-name: "Folder Organizer"
-description: "扫描、分析、设计并文档化文件夹整理体系，支持存量整理和新文件增量归档，包括目录分类、IRK/PARA/时间模型、编号英文目录命名、文件归类规则、命名规范、执行日志、目录说明表和 Markdown 文档。用于帮助 Codex 整理文件夹、磁盘、下载目录、个人资料库、工作区或混乱文件集合。"
-category: "productivity"
-source: "ClawHub"
-tags: [file-management, organization, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/organize-folders"
-sourceUrl: "https://clawhub.ai/skills/organize-folders"
+name: organize-folders
+description: 扫描、分析、设计并文档化文件夹整理体系，支持存量整理和新文件增量归档，包括目录分类、IRK/PARA/时间模型、编号英文目录命名、文件归类规则、命名规范、执行日志、目录说明表和 Markdown 文档。用于帮助 Codex 整理文件夹、磁盘、下载目录、个人资料库、工作区或混乱文件集合。
 ---
 
-# Folder Organizer
+# 文件夹整理
 
-> 扫描、分析、设计并文档化文件夹整理体系，支持存量整理和新文件增量归档，包括目录分类、IRK/PARA/时间模型、编号英文目录命名、文件归类规则、命名规范、执行日志、目录说明表和 Markdown 文档。用于帮助 Codex 整理文件夹、磁盘、下载目录、个人资料库、工作区或混乱文件集合。
+使用此 skill 帮助用户整理磁盘、文件夹、下载目录、个人资料库、项目工作区和长期保存的文档集合。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/organize-folders`
-- **Source URL:** [https://clawhub.ai/skills/organize-folders](https://clawhub.ai/skills/organize-folders)
+## 核心定位
 
-## Overview
+把此 skill 作为“文件夹治理顾问”，而不是自动清理工具。目标是帮助用户建立并维护一套长期可执行的文件秩序。
 
+支持两种工作模式：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/organize-folders
+1. 存量整理：扫描现有目录，诊断问题，设计规则，生成整理计划。
+2. 增量归档：扫描新下载、新接收、新产生的文件，根据既有规则生成归档建议，并在确认后移动文件、记录日志。
+
+三条铁律：
+
+```text
+规则先于搬迁
+扫描只读优先
+执行必须确认
 ```
+
+默认只扫描、分析、规划和文档化。除非用户明确要求执行，否则不要移动、删除或重命名文件。
+
+## 报告位置规则
+
+开始生成任何扫描清单、体检报告、整理计划、迁移清单、待确认清单、执行日志或目录说明表之前，先确认用户希望把报告放在哪里。
+
+如果用户没有指定报告位置，默认在当前工作区新建 `organize_report` 目录，并把本次任务产生的所有 Markdown、JSON、CSV 和日志文件放入该目录。不要把报告散落在工作区根目录、被整理目录根目录或用户磁盘根目录。
+
+在回复中明确说明报告目录路径。后续同一任务产生的新报告继续写入同一个报告目录。
+
+## 完整执行流程
+
+按以下 11 步执行：
+
+1. 明确目标
+2. 安全扫描
+3. 现状诊断
+4. 分类建模
+5. 规则设计
+6. 生成整理计划
+7. 用户确认
+8. 执行操作
+9. 记录日志
+10. 输出新目录说明表
+11. 复查与维护建议
+
+详细流程见 `references/workflow.md`。
+
+## 分类建模
+
+分类建模回答“这个东西是什么，应该怎么组织”，不要把安全风险混入分类模型。风险控制放到执行阶段处理。
+
+分类建模由三部分组成：
+
+- 场景模型：个人电脑、学习资料、开发者工作区、家庭/NAS、混合磁盘等。
+- 方法模型：IRK、PARA、时间模型、自定义混合模型。
+- 生命周期模型：收件箱、使用中、已完成、归档、备份、待删除。
+
+建模原则：
+
+```text
+场景模型决定顶层形态
+IRK 决定内容处理方式
+PARA 决定行动状态
+时间模型决定归档和批次命名
+生命周期模型决定文件流转
+```
+
+分类模型细节见 `references/taxonomy-patterns.md`。
+
+## 默认目录命名策略
+
+默认使用“编号 + 英文”目录名，并附中文说明。除非用户明确选择中文目录名，否则方案中使用英文目录名。
+
+推荐顶层模板：
+
+```text
+00.inbox        收件箱
+01.projects     项目
+02.areas        领域
+03.resources    资源
+04.knowledge    知识
+10.documents    文档
+20.media        媒体
+30.software     软件
+90.archive      归档
+99.backup       备份
+```
+
+## 内置工具
+
+使用 `scripts/scan_folder.py` 生成只读目录清单：
+
+```bash
+python scripts/scan_folder.py <文件夹或磁盘> --format markdown
+python scripts/scan_folder.py <文件夹或磁盘> --format json --output inventory.json
+python scripts/scan_folder.py <文件夹或磁盘> --since-days 7 --format markdown
+```
+
+脚本会报告顶层目录大小、文件数量、主要文件类型、最大文件、最近文件、最近 N 天新文件和扫描错误。默认排除回收站、系统卷信息、`.git`、`node_modules`、`__pycache__` 等目录。
+
+可以重复使用 `--exclude <名称>` 跳过其他目录。使用 `--top-limit`、`--recent-limit` 和 `--new-limit` 控制输出长度。
+
+执行过程涉及的脚本和命令能力，见 `references/tooling-design.md`。当前已实现扫描、分类、计划生成、计划校验、执行日志、查重候选、目录说明表、报告导出和回滚计划脚本。
+
+## 规则设计
+
+必须输出一套长期规则，而不是一次性搬迁建议。
+
+规则至少包括：
+
+- 顶层目录职责
+- 新文件进入规则
+- 工作区退出规则
+- IRK 判断规则
+- PARA 判断规则
+- 时间命名规则
+- 命名和版本规则
+- 归档和备份规则
+- 删除和重复文件规则
+- 冲突处理规则
+- 维护周期
+
+详细规则见 `references/folder-rules.md`。
+
+## 输出要求
+
+快速建议通常包含：
+
+- 当前观察
+- 主要问题
+- 建议规则
+- 推荐目录结构
+- 当前目录映射表
+- 风险提示
+- 分阶段执行计划
+
+需要文档时，按 `references/output-templates.md` 生成：
+
+- 文件夹管理规则.md
+- 目录体检报告.md
+- 目录整理计划.md
+- 迁移清单.md
+- 待确认清单.md
+- 执行日志.md
+- 新目录说明表.md
+
+## 执行要求
+
+任何实际改动前必须给出 dry-run，并让用户确认。
+
+首次整理优先建议使用“沙盒整理模式”：新建一个单独目录承接整理结果，待用户熟悉和确认后，再迁移到实际环境。是否使用沙盒整理模式必须由用户确认。
+
+只要执行实际改动，就必须记录日志。日志至少记录：
+
+- 执行时间
+- 操作类型
+- 原始路径
+- 目标路径
+- 操作结果
+- 跳过原因
+- 错误信息
+
+整理完成后必须输出新目录说明表，说明每个目录的中文名称、用途、放什么、不放什么和维护周期。
+
+默认禁止执行：
+
+- 删除文件
+- 覆盖文件
+- 清空目录
+- 去重删除
+- 移动系统目录

@@ -1,0 +1,49 @@
+{
+  "id": "openclaw-feishu-base",
+  "name": "Feishu Base",
+  "version": "0.2.7",
+  "description": "Unified Feishu Base/Bitable management plugin for OpenClaw: resolve links, inspect schema, manage tables/fields, and query/create/update/delete records using existing Feishu credentials.",
+  "entry": "./index.js",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "allowDelete": {
+        "type": "boolean",
+        "default": false
+      },
+      "maxPageSize": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 500,
+        "default": 500
+      },
+      "maxBatchWrite": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000,
+        "default": 100
+      },
+      "maxBatchDelete": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000,
+        "default": 20
+      },
+      "defaultAccountId": {
+        "type": "string"
+      },
+      "debug": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

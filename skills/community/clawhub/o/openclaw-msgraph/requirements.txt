@@ -1,0 +1,12 @@
+# No external dependencies required
+# This skill uses only Python standard library modules:
+#   - urllib (HTTP requests)
+#   - json (JSON parsing)
+#   - datetime (date/time handling)
+#   - hashlib (PKCE challenge hashing)
+#   - base64 (PKCE encoding)
+#   - configparser (config file parsing)
+#   - argparse (CLI argument parsing)
+#   - http.server (local callback server for OAuth redirect)
+#
+# For development and testing, see requirements-test.txt

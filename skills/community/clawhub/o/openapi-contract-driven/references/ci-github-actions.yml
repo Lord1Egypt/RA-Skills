@@ -1,0 +1,82 @@
+# ═══════════════════════════════════════════════════════════════
+# CI: OpenAPI Contract Check — GitHub Actions 工作流模板
+#
+# 使用方法:
+#   1. 复制本文件到项目的 .github/workflows/ 目录
+#      cp references/ci-github-actions.yml ../../.github/workflows/openapi-check.yml
+#   2. 确保 standards/ 目录下已有 *.yaml 的 OpenAPI 规范文件
+#   3. 确保 references/check-api-rules.sh 已存在于项目中
+#      （如果你把 skills/ 目录整体纳入了仓库，路径就是 skills/openapi-contract-driven/references/check-api-rules.sh）
+#   4. 提交并推送到 main，GitHub Actions 将自动运行
+#
+# 效果:
+#   - 每次 push 到 main 或 PR 到 main 时自动检查
+#   - 如果 check-api-rules.sh 返回非 0，CI 标记为失败，PR 不可合并
+#   - 通过后可在 PR 中看到 ✅ 全部通过 或 ⚠️ 有 warn
+# ═══════════════════════════════════════════════════════════════
+
+name: OpenAPI Contract Check
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "standards/*.yaml"
+      - "standards/*.yml"
+      - "skills/openapi-contract-driven/references/check-api-rules.sh"
+  pull_request:
+    branches: [main, master]
+    paths:
+      - "standards/*.yaml"
+      - "standards/*.yml"
+      - "skills/openapi-contract-driven/references/check-api-rules.sh"
+
+jobs:
+  openapi-check:
+    runs-on: ubuntu-latest
+    name: OpenAPI 规则检查
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 列出 OpenAPI 规范文件
+        run: |
+          echo ">>> 发现的 OpenAPI YAML 文件:"
+          find standards/ -maxdepth 1 \( -name "*.yaml" -o -name "*.yml" \) -type f | sort
+          echo ""
+
+      - name: 运行 check-api-rules.sh (全体)
+        run: |
+          set -euo pipefail
+
+          CHECK_SCRIPT="skills/openapi-contract-driven/references/check-api-rules.sh"
+
+          if [ ! -f "$CHECK_SCRIPT" ]; then
+            echo "❌ 找不到检查脚本: $CHECK_SCRIPT"
+            echo "   请确认 skills/ 目录已纳入仓库，或调整路径。"
+            exit 1
+          fi
+
+          # 赋予执行权限
+          chmod +x "$CHECK_SCRIPT"
+
+          # 检查所有 standards/*.yaml 文件
+          HAS_FILE=false
+          OVERALL_EXIT=0
+
+          for yaml in standards/*.yaml standards/*.yml; do
+            if [ -f "$yaml" ]; then
+              HAS_FILE=true
+              echo ""
+              bash "$CHECK_SCRIPT" "$yaml" || OVERALL_EXIT=$?
+            fi
+          done
+
+          if [ "$HAS_FILE" = false ]; then
+            echo "❌ 未在 standards/ 目录下找到任何 YAML/YML 文件"
+            echo "   请先在 standards/ 下创建 OpenAPI 规范文件"
+            exit 1
+          fi
+
+          exit $OVERALL_EXIT

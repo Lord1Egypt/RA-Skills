@@ -1,0 +1,20 @@
+{
+  "name": "@ghostprotocol/openclaw-ghost-pay",
+  "private": true,
+  "version": "1.5.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "requirements": "node ./bin/get-payment-requirements.mjs",
+    "x402:call": "node ./bin/call-x402.mjs",
+    "x402:report": "node ./bin/report-x402-settlement.mjs",
+    "wire:quote": "node ./bin/get-wire-quote.mjs",
+    "wire:create": "node ./bin/create-wire-job-from-quote.mjs",
+    "wire:status": "node ./bin/get-wire-job-status.mjs"
+  },
+  "dependencies": {
+    "viem": "^2.21.0",
+    "x402": "^1.1.0",
+    "x402-fetch": "^1.1.0"
+  }
+}

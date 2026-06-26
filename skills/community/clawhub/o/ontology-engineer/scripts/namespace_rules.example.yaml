@@ -1,0 +1,20 @@
+# 命名空间规则配置（可选）
+# 无此文件时，脚本按目录结构自动推断命名空间
+# 有此文件时，匹配的顶层目录使用自定义映射，其余仍自动推断
+
+namespace_map:
+  # 格式: 顶层目录名 → 命名空间
+  Projects: work
+  GitHub: work/github
+  Documents: work/documents
+  MyFiles: work/myfiles
+  Notes: personal/notes
+  AI: personal/ai
+  Writing: personal/writing
+  Downloads: external/downloads
+  Reference: external/reference
+
+# 这些目录的子目录应展开为独立项目（如 Projects/my-app → work/my-app）
+expand_children:
+  - Projects
+  - GitHub

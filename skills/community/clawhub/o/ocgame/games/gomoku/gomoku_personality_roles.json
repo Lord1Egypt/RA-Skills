@@ -1,0 +1,26 @@
+{
+  "steady": {
+    "attack_style": "steady",
+    "defense_style": "flexible",
+    "risk_like": 0.5,
+    "creativity": 0.5
+  },
+  "aggressive": {
+    "attack_style": "aggressive",
+    "defense_style": "passive",
+    "risk_like": 0.8,
+    "creativity": 0.6
+  },
+  "defensive": {
+    "attack_style": "slow",
+    "defense_style": "rigid",
+    "risk_like": 0.2,
+    "creativity": 0.4
+  },
+  "creative": {
+    "attack_style": "unpredictable",
+    "defense_style": "adaptive",
+    "risk_like": 0.7,
+    "creativity": 0.9
+  }
+}

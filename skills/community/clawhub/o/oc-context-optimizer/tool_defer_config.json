@@ -1,0 +1,249 @@
+{
+  "always_load": [
+    "exec",
+    "read",
+    "write",
+    "edit",
+    "web_search",
+    "web_fetch",
+    "message",
+    "session_status",
+    "sessions_spawn",
+    "sessions_send"
+  ],
+  "deferred_categories": {
+    "feishu_doc": {
+      "description": "飞书文档管理工具",
+      "tools": [
+        "feishu_create_doc",
+        "feishu_update_doc",
+        "feishu_fetch_doc",
+        "feishu_doc_comments",
+        "feishu_doc_media"
+      ],
+      "keywords": [
+        "文档",
+        "doc",
+        "document",
+        "wiki",
+        "知识库",
+        "笔记"
+      ]
+    },
+    "feishu_sheet": {
+      "description": "飞书电子表格工具",
+      "tools": [
+        "feishu_sheet"
+      ],
+      "keywords": [
+        "表格",
+        "sheet",
+        "excel",
+        "spreadsheet",
+        "数据表"
+      ]
+    },
+    "feishu_bitable": {
+      "description": "飞书多维表格工具",
+      "tools": [
+        "feishu_bitable_app",
+        "feishu_bitable_app_table",
+        "feishu_bitable_app_table_field",
+        "feishu_bitable_app_table_record",
+        "feishu_bitable_app_table_view"
+      ],
+      "keywords": [
+        "多维表格",
+        "bitable",
+        "数据表",
+        "字段",
+        "记录",
+        "视图"
+      ]
+    },
+    "feishu_calendar": {
+      "description": "飞书日历与日程管理",
+      "tools": [
+        "feishu_calendar_calendar",
+        "feishu_calendar_event",
+        "feishu_calendar_event_attendee",
+        "feishu_calendar_freebusy"
+      ],
+      "keywords": [
+        "日历",
+        "calendar",
+        "日程",
+        "会议",
+        "日程表",
+        "忙闲",
+        "安排"
+      ]
+    },
+    "feishu_task": {
+      "description": "飞书任务管理",
+      "tools": [
+        "feishu_task_task",
+        "feishu_task_tasklist",
+        "feishu_task_comment",
+        "feishu_task_subtask"
+      ],
+      "keywords": [
+        "任务",
+        "task",
+        "待办",
+        "to-do",
+        "清单",
+        "任务列表"
+      ]
+    },
+    "feishu_chat": {
+      "description": "飞书群聊管理",
+      "tools": [
+        "feishu_chat",
+        "feishu_chat_members",
+        "feishu_im_user_message",
+        "feishu_im_user_get_messages",
+        "feishu_im_user_search_messages",
+        "feishu_im_user_get_thread_messages",
+        "feishu_im_bot_image",
+        "feishu_im_user_fetch_resource"
+      ],
+      "keywords": [
+        "群聊",
+        "聊天",
+        "chat",
+        "消息",
+        "message",
+        "对话"
+      ]
+    },
+    "feishu_drive": {
+      "description": "飞书云空间文件管理",
+      "tools": [
+        "feishu_drive_file",
+        "feishu_search_doc_wiki"
+      ],
+      "keywords": [
+        "云盘",
+        "文件",
+        "drive",
+        "文件夹",
+        "上传",
+        "下载"
+      ]
+    },
+    "feishu_wiki": {
+      "description": "飞书知识库管理",
+      "tools": [
+        "feishu_wiki_space",
+        "feishu_wiki_space_node"
+      ],
+      "keywords": [
+        "知识库",
+        "wiki",
+        "知识空间",
+        "节点"
+      ]
+    },
+    "feishu_user": {
+      "description": "飞书用户管理",
+      "tools": [
+        "feishu_get_user",
+        "feishu_search_user"
+      ],
+      "keywords": [
+        "用户",
+        "user",
+        "员工",
+        "搜索用户",
+        "查找用户"
+      ]
+    },
+    "feishu_oauth": {
+      "description": "飞书授权管理",
+      "tools": [
+        "feishu_oauth",
+        "feishu_oauth_batch_auth"
+      ],
+      "keywords": [
+        "授权",
+        "oauth",
+        "登录",
+        "认证",
+        "token"
+      ]
+    },
+    "browser": {
+      "description": "浏览器自动化工具",
+      "tools": [
+        "browser"
+      ],
+      "keywords": [
+        "浏览器",
+        "browser",
+        "网页",
+        "页面",
+        "web页面",
+        "点击",
+        "打开"
+      ]
+    },
+    "image_analysis": {
+      "description": "图像分析工具",
+      "tools": [
+        "image"
+      ],
+      "keywords": [
+        "图片",
+        "image",
+        "图像",
+        "看图",
+        "分析图片"
+      ]
+    },
+    "pdf_analysis": {
+      "description": "PDF文档分析工具",
+      "tools": [
+        "pdf"
+      ],
+      "keywords": [
+        "pdf",
+        "PDF",
+        "文档分析",
+        "读取PDF"
+      ]
+    },
+    "tts": {
+      "description": "语音合成工具",
+      "tools": [
+        "tts"
+      ],
+      "keywords": [
+        "语音",
+        "tts",
+        "说话",
+        "朗读",
+        "声音"
+      ]
+    },
+    "canvas": {
+      "description": "画布展示工具",
+      "tools": [
+        "canvas"
+      ],
+      "keywords": [
+        "画布",
+        "canvas",
+        "展示",
+        "渲染",
+        "UI"
+      ]
+    }
+  },
+  "search_weights": {
+    "tool_name_match": 10,
+    "keyword_match": 7,
+    "description_match": 5,
+    "category_match": 3
+  }
+}

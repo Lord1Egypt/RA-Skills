@@ -1,0 +1,22 @@
+[
+  {
+    "query": "我要买燃气调压箱 居民用",
+    "should_trigger": true,
+    "expected_intent": "推理选型"
+  },
+  {
+    "query": "100户居民调压箱如何选型",
+    "should_trigger": true,
+    "expected_intent": "推理选型"
+  },
+  {
+    "query": "燃气报警器 选型",
+    "should_trigger": true,
+    "expected_intent": "推理选型"
+  },
+  {
+    "query": "今天天气怎么样",
+    "should_trigger": false,
+    "expected_intent": "闲聊"
+  }
+]

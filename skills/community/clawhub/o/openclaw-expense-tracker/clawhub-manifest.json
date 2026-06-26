@@ -1,0 +1,58 @@
+{
+  "name": "openclaw-expense-tracker",
+  "slug": "openclaw-expense-tracker",
+  "version": "1.0.0",
+  "description": "智能记账本 - 基于 OpenClaw 的个人财务管理助手",
+  "author": "GlorySunshine",
+  "license": "MIT",
+  "tags": ["记账", "财务", "个人管理", "openclaw"],
+  "category": "实用工具",
+  "keywords": ["记账", "财务管理", "个人理财", "OpenClaw"],
+  "repository": "https://github.com/GlorySunshine/openclaw-expense-tracker",
+  "homepage": "https://clawhub.com/skill/openclaw-expense-tracker",
+  "bugs": "https://github.com/GlorySunshine/openclaw-expense-tracker/issues",
+  "files": [
+    "index.js",
+    "README.md",
+    "SKILL.md",
+    "skill.json"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node demo.js"
+  },
+  "dependencies": {
+    "@openclaw/sdk": "^2026.3.2"
+  },
+  "devDependencies": {},
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "contributors": [],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/GlorySunshine"
+  },
+  "changelog": "## v1.0.0 (2026-03-08)\n\n### Features\n- 自然语言记账功能\n- 智能分类识别\n- 多维度统计分析\n- 本地数据存储",
+  "readme": "# OpenClaw 智能记账本\n\n一个基于 OpenClaw 框架的个人财务管理技能，支持自然语言输入、自动分类和数据分析。\n\n## 🎯 功能特性\n\n- ✅ 自然语言记账：支持中文输入（\"今天午饭花了35元\"）\n- ✅ 智能分类：自动识别餐饮、交通、购物、娱乐等类别\n- ✅ 统计分析：日/周/月支出统计和趋势分析\n- ✅ 本地存储：数据安全保存在本地JSON文件\n\n## 🚀 快速开始\n\n### 安装\n\n```bash\nskillhub install openclaw-expense-tracker\n```\n\n### 使用示例\n\n```\n记账：今天午饭花了35元\n记录：打车花了25元\n查询：这个月花了多少钱\n统计：本月支出\n```\n\n## 📊 技术实现\n\n- 基于 OpenClaw 2026.3.2 SDK\n- 轻量级 Node.js 实现\n- 本地 JSON 数据存储\n- 响应式消息处理\n\n## 💡 使用场景\n\n- 个人财务管理\n- 旅行记账\n- 家庭理财\n- 创业记账\n- 学习统计\n\n## 🔧 开发者文档\n\n详细文档请查看 SKILL.md\n\n## 📝 许可证\n\nMIT License - 详见 LICENSE 文件",
+  "skill": {
+    "type": "openclaw",
+    "version": "2026.3.2",
+    "capabilities": [
+      "expense-tracking",
+      "natural-language",
+      "data-analysis",
+      "local-storage"
+    ],
+    "permissions": [],
+    "security": {
+      "localStorage": true,
+      "networkAccess": false,
+      "dataCollection": false
+    }
+  }
+}

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenCron — Cron Job Dashboard</title>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<style>
+  :root {
+    --card: transparent; --card-hover: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.12); --border-hover: rgba(255,255,255,0.22);
+    --text: #f5f5f7; --text-secondary: rgba(255,255,255,0.82); --text-dim: rgba(255,255,255,0.55);
+    --neon-green: #c8ff00; --neon-green-dim: rgba(200,255,0,0.18); --neon-green-border: rgba(200,255,0,0.35);
+    --neon-red: #ff4477; --neon-red-dim: rgba(255,68,119,0.18); --neon-red-border: rgba(255,68,119,0.35);
+    --neon-yellow: #ffdd33; --neon-yellow-dim: rgba(255,221,51,0.18); --neon-yellow-border: rgba(255,221,51,0.35);
+    --neon-blue: #33ddff; --neon-blue-dim: rgba(51,221,255,0.15); --neon-blue-border: rgba(51,221,255,0.3);
+    --neon-purple: #bb88ff; --neon-purple-dim: rgba(187,136,255,0.15);
+    --radius: 10px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :focus-visible { outline: 2px solid var(--neon-green); outline-offset: 2px; }
+  body {
+    font-family: var(--font); color: var(--text); padding: 24px; max-width: 960px; margin: 0 auto; min-height: 100vh;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(180deg,
+      #000000 0%, #020208 8%, #04041a 18%,
+      #06062e 30%, #0a0a4a 45%, #0e0e5c 60%,
+      #111170 75%, #141488 90%, #16169a 100%);
+    background-attachment: fixed;
+  }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .tab { padding: 10px 20px; font-size: 11px; font-weight: 400; color: var(--text-dim); cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; transition: color 200ms cubic-bezier(0.23, 1, 0.32, 1), border-color 200ms cubic-bezier(0.23, 1, 0.32, 1); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font); }
+  .tab.active { color: var(--text); border-bottom-color: var(--neon-green); font-weight: 500; }
+  .tab-content {
+    opacity: 0; transform: translateY(4px);
+    pointer-events: none; position: absolute; width: 100%; visibility: hidden;
+    transition: none;
+  }
+  .tab-content.active {
+    opacity: 1; transform: translateY(0);
+    pointer-events: auto; position: relative; visibility: visible;
+    transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .next-run-banner-wrap {
+    display: grid; grid-template-rows: 0fr; margin-bottom: 0;
+    transition: grid-template-rows 400ms cubic-bezier(0.23, 1, 0.32, 1), margin-bottom 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .next-run-banner-wrap > * { overflow: hidden; }
+  .next-run-banner-wrap.visible { grid-template-rows: 1fr; margin-bottom: 24px; }
+  .next-run-banner {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+    opacity: 0; transform: translateY(4px); transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .next-run-banner-wrap.visible .next-run-banner { opacity: 1; transform: translateY(0); }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .next-run-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+  .next-run-name { font-size: 16px; font-weight: 400; margin-top: 4px; color: var(--text); letter-spacing: -0.3px; }
+  .next-run-right { text-align: right; }
+  .countdown {
+    font-size: 36px; font-weight: 300; font-variant-numeric: tabular-nums; letter-spacing: -2px;
+    font-family: var(--font); color: var(--text);
+    transition: color 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .countdown.soon { color: var(--neon-yellow); }
+  .countdown.imminent { color: var(--neon-red); animation: pulse 1s infinite; }
+  .countdown-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; font-family: var(--mono); }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .header h1 { font-size: 20px; font-weight: 500; display: flex; align-items: center; gap: 10px; letter-spacing: -0.3px; }
+  .logo circle { animation: logoPulse 3s ease-in-out infinite; }
+  .logo circle:nth-child(2) { animation-delay: 0.4s; }
+  .logo circle:nth-child(3) { animation-delay: 0.8s; }
+  .logo circle:nth-child(4) { animation-delay: 1.2s; }
+  @keyframes logoPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  .braille-feedback { font-family: var(--mono); font-size: 14px; color: var(--neon-green); letter-spacing: 1px; min-width: 70px; display: inline-block; text-shadow: 0 0 8px rgba(200,255,0,0.4); transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .braille-loading { font-family: var(--mono); color: var(--neon-green); font-size: 14px; display: inline-block; min-width: 18px; text-shadow: 0 0 8px rgba(200,255,0,0.4); transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+  .pill-btn {
+    font-size: 13px; cursor: pointer; padding: 8px 20px; font-family: var(--font); font-weight: 600;
+    border: none; border-radius: 100px;
+    background: var(--neon-green); color: #000000;
+    transition: background 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 160ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: -0.2px;
+  }
+  .pill-btn:active { transform: scale(0.97); }
+  .pill-btn.loading { opacity: 0.85; pointer-events: none;
+    background: linear-gradient(90deg, var(--neon-green) 0%, #e8ff80 40%, var(--neon-green) 60%);
+    background-size: 200% 100%; animation: btnShimmer 1.5s ease-in-out infinite;
+  }
+  @keyframes btnShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  .btn {
+    font-size: 11px; cursor: pointer; padding: 6px 14px; font-family: var(--font); font-weight: 500;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: transparent; color: var(--text-secondary);
+    transition: border-color 150ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms cubic-bezier(0.23, 1, 0.32, 1), transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: 0.3px;
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .job-card {
+    border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; background: var(--card);
+    transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1), background 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    animation: cardIn 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--i, 0) * 50ms);
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(6px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .job-row { display: grid; grid-template-columns: 8px 1fr auto auto auto auto; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; user-select: none; }
+  .indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; transition: background 250ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 250ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .indicator.live { background: var(--neon-green); box-shadow: 0 0 8px var(--neon-green); animation: indicatorBreathe 3s ease-in-out infinite; }
+  @keyframes indicatorBreathe { 0%,100% { box-shadow: 0 0 8px var(--neon-green); } 50% { box-shadow: 0 0 14px var(--neon-green), 0 0 4px var(--neon-green); } }
+  .indicator.paused { background: var(--neon-yellow); box-shadow: 0 0 6px rgba(255,204,0,0.4); }
+  .indicator.error { background: var(--neon-red); box-shadow: 0 0 8px var(--neon-red); }
+  .job-name { font-size: 13px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+  .job-meta { font-size: 11px; color: var(--text-dim); white-space: nowrap; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+  .job-timer { font-size: 12px; font-weight: 400; font-variant-numeric: tabular-nums; font-family: var(--mono); color: var(--text); white-space: nowrap; min-width: 56px; text-align: right; }
+
+  /* Badges — with countdown fill indicator */
+  .badge {
+    font-size: 10px; padding: 3px 14px; border-radius: 20px; min-width: 58px; text-align: center; font-weight: 400; white-space: nowrap;
+    letter-spacing: 0.5px; text-transform: uppercase; font-family: var(--mono);
+    --fill: 0;
+    background: var(--badge-bg, transparent);
+    position: relative; overflow: hidden;
+    transition: color 250ms cubic-bezier(0.23, 1, 0.32, 1), border-color 250ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .badge::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: calc(var(--fill, 0) * 1%);
+    background: var(--badge-fill, transparent);
+    z-index: -1;
+  }
+  .badge.ok { --badge-fill: var(--neon-green); --badge-bg: var(--neon-green-dim); color: var(--neon-green); border: 1px solid var(--neon-green-border); }
+  .badge.error { --badge-fill: var(--neon-red); --badge-bg: var(--neon-red-dim); color: var(--neon-red); border: 1px solid var(--neon-red-border); }
+  .badge.pending { --badge-fill: var(--neon-yellow); --badge-bg: var(--neon-yellow-dim); color: var(--neon-yellow); border: 1px solid var(--neon-yellow-border); }
+  .badge.scheduled { --badge-fill: var(--neon-blue); --badge-bg: var(--neon-blue-dim); color: var(--neon-blue); border: 1px solid var(--neon-blue-border); }
+  .badge.disabled { --badge-fill: transparent; --badge-bg: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .badge.fill-high { color: #000000; }
+
+  .chevron { color: var(--text-dim); font-size: 12px; transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1), color 200ms cubic-bezier(0.23, 1, 0.32, 1); width: 16px; text-align: center; }
+  .job-card.open .chevron { transform: rotate(90deg); color: var(--neon-green); }
+  .job-detail { display: grid; grid-template-rows: 0fr; padding: 0 16px 0 36px; font-size: 12px; transition: grid-template-rows 300ms cubic-bezier(0.23, 1, 0.32, 1), padding 300ms cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden; }
+  .job-detail > * { overflow: hidden; }
+  .job-card.open .job-detail { grid-template-rows: 1fr; padding: 0 16px 16px 36px; }
+  .bi { font-family: var(--mono); font-size: 12px; opacity: 0.6; display: inline-block; min-width: 14px; }
+  .detail-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin-bottom: 14px; }
+  .detail-grid .label {
+    color: var(--text-dim); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px; font-weight: 400; font-family: var(--font);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .detail-grid .value { color: var(--text); font-family: var(--mono); font-size: 12px; font-weight: 400; }
+  /* Collapsible prompt — shadcn-style disclosure */
+  .prompt-collapsible { margin-top: 10px; }
+  .prompt-trigger {
+    display: flex; align-items: center; gap: 6px; padding: 7px 12px; width: 100%;
+    font-size: 11px; color: var(--text-secondary); cursor: pointer;
+    font-family: var(--mono); letter-spacing: 0.3px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: var(--radius);
+    transition: background 200ms cubic-bezier(0.23, 1, 0.32, 1), border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .prompt-trigger .prompt-chevron {
+    font-size: 10px; color: var(--text-dim);
+    transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+  }
+  .prompt-collapsible.open .prompt-trigger { border-color: var(--border-hover); background: rgba(255,255,255,0.05); border-radius: var(--radius) var(--radius) 0 0; }
+  .prompt-collapsible.open .prompt-chevron { transform: rotate(90deg); }
+  .prompt-body {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .prompt-body > * { overflow: hidden; }
+  .prompt-collapsible.open .prompt-body { grid-template-rows: 1fr; }
+  .prompt-box {
+    background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius); padding: 12px;
+    font-family: var(--mono); font-size: 11px; line-height: 1.6;
+    color: var(--text-secondary); white-space: pre-wrap; max-height: 200px; overflow-y: auto;
+    margin-top: 0;
+  }
+  .section-label { font-size: 10px; color: var(--text-dim); margin-top: 12px; margin-bottom: 4px; font-weight: 400; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 5px; }
+  .desc-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cal-header h2 { font-size: 18px; font-weight: 300; min-width: 180px; text-align: center; letter-spacing: -0.5px; }
+  .cal-nav { display: flex; gap: 4px; align-items: center; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .cal-dow { font-size: 10px; color: var(--text-dim); text-align: center; padding: 8px 0; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 400; font-family: var(--font); }
+  .cal-day { min-height: 80px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 6px; font-size: 11px; overflow: hidden; transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1); animation: cardIn 300ms cubic-bezier(0.23, 1, 0.32, 1) both; animation-delay: calc(var(--i, 0) * 15ms); }
+  .cal-day.other-month { opacity: 0.2; }
+  .cal-day.today { border-color: var(--neon-green); box-shadow: 0 0 12px rgba(200,255,0,0.08), inset 0 0 20px rgba(200,255,0,0.03); animation: cardIn 300ms cubic-bezier(0.23, 1, 0.32, 1) both, todayGlow 1.5s cubic-bezier(0.23, 1, 0.32, 1) 400ms both; animation-delay: calc(var(--i, 0) * 15ms); }
+  @keyframes todayGlow { 0% { box-shadow: 0 0 0 rgba(200,255,0,0); } 100% { box-shadow: 0 0 12px rgba(200,255,0,0.08), inset 0 0 20px rgba(200,255,0,0.03); } }
+  .cal-day-num { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 400; font-family: var(--mono); }
+  .cal-day.today .cal-day-num { color: var(--neon-green); font-weight: 500; }
+  .cal-event { font-size: 9px; padding: 2px 5px; border-radius: 4px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--mono); font-weight: 400; }
+  .cal-event.ok { background: rgba(200,255,0,0.22); color: #d4ff44; border: 1px solid rgba(200,255,0,0.4); }
+  .cal-event.error { background: rgba(255,68,119,0.22); color: #ff6699; border: 1px solid rgba(255,68,119,0.4); }
+  .cal-event.scheduled { background: rgba(51,221,255,0.2); color: #66eeff; border: 1px solid rgba(51,221,255,0.35); }
+
+  .run-card {
+    border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; background: var(--card);
+    overflow: hidden;
+    transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation: cardIn 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--i, 0) * 50ms);
+  }
+  .run-row { display: grid; grid-template-columns: 8px 1fr auto auto; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; user-select: none; }
+  .run-card.open .run-detail { grid-template-rows: 1fr; padding: 0 16px 14px 30px; }
+  .run-detail { display: grid; grid-template-rows: 0fr; padding: 0 16px 0 30px; transition: grid-template-rows 300ms cubic-bezier(0.23, 1, 0.32, 1), padding 300ms cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden; }
+  .run-detail > * { overflow: hidden; }
+  .run-summary { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; font-size: 12px; line-height: 1.7; color: var(--text-secondary); white-space: pre-wrap; max-height: 300px; overflow-y: auto; font-family: var(--mono); }
+  .run-meta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; font-size: 11px; color: var(--text-dim); font-family: var(--mono); }
+  .run-meta-row span { display: flex; align-items: center; gap: 4px; }
+
+  .footer {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding-top: 24px; padding-bottom: 8px; font-size: 12px; color: var(--text-dim); font-family: var(--mono);
+  }
+  .footer-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 14px; border-radius: 100px;
+    background: none; border: none;
+    font-size: 11px; color: var(--text-dim); font-weight: 400; font-family: var(--mono);
+  }
+  .footer-dot { display: none; }
+  .footer-status.degraded { color: var(--text-dim); }
+  .footer-meta { font-size: 11px; color: var(--text-dim); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  @media (max-width: 600px) {
+    body { padding: 14px; }
+    .tab, .btn { min-height: 44px; display: inline-flex; align-items: center; }
+    .job-row { grid-template-columns: 8px 1fr auto auto; gap: 8px; padding: 10px 12px; }
+    .cal-day { min-height: 52px; }
+    .cal-event { font-size: 8px; }
+  }
+  /* Hover states — gated behind pointer media query (Emil) */
+  @media (hover: hover) and (pointer: fine) {
+    .tab:hover { color: var(--text-secondary); }
+    .pill-btn:hover { background: #d4ff33; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(200,255,0,0.25); }
+    .btn:hover { border-color: var(--border-hover); color: var(--text); }
+    .job-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+    .run-card:hover { border-color: var(--border-hover); }
+    .cal-day:hover { border-color: var(--border-hover); }
+    .prompt-trigger:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.05); }
+  }
+
+  /* Footer status — fade in */
+  .footer-status { animation: fadeInUp 400ms cubic-bezier(0.23, 1, 0.32, 1) 200ms both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .braille-feedback, .braille-loading { display: none; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8ff00'/%3E%3Ccircle cx='12' cy='12' r='3' fill='black'/%3E%3Ccircle cx='20' cy='12' r='3' fill='black'/%3E%3Ccircle cx='12' cy='20' r='3' fill='black'/%3E%3Ccircle cx='20' cy='20' r='3' fill='black'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="header">
+  <h1><svg class="logo" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="1.8" fill="white"/><circle cx="10" cy="4" r="1.8" fill="white"/><circle cx="4" cy="10" r="1.8" fill="white"/><circle cx="10" cy="10" r="1.8" fill="white"/></svg>OpenCron</h1>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="braille-loading" id="refresh-spinner"></span>
+    <button class="pill-btn" id="refresh-btn">Refresh</button>
+  </div>
+</div>
+<div id="next-run-banner-wrap" class="next-run-banner-wrap"><div id="next-run-banner" class="next-run-banner"></div></div>
+<div class="tabs">
+  <button class="tab active" data-tab="list">Jobs</button>
+  <button class="tab" data-tab="runs">Runs</button>
+  <button class="tab" data-tab="calendar">Calendar</button>
+</div>
+<div style="position:relative">
+<div id="tab-list" class="tab-content active"><div id="jobs"></div></div>
+<div id="tab-runs" class="tab-content"><div id="runs"></div></div>
+<div id="tab-calendar" class="tab-content">
+  <div class="cal-header">
+    <div class="cal-nav"><button class="btn" id="cal-prev">&larr;</button></div>
+    <h2 id="cal-title"></h2>
+    <div class="cal-nav"><button class="btn" id="cal-today">Today</button><button class="btn" id="cal-next">&rarr;</button></div>
+  </div>
+  <div id="cal-grid" class="cal-grid"></div>
+</div>
+</div>
+<div class="footer" id="footer">
+  <div class="footer-status" id="footer-status"><span class="footer-dot"></span>All systems normal</div>
+  <span class="footer-meta" id="footer-meta"></span>
+</div>
+<script>
+(function() {
+  'use strict';
+
+  // ── Mock data ──────────────────────────────────────────────
+  var NOW = Date.now();
+  var HOUR = 3600000;
+  var MIN = 60000;
+  var DAY = 86400000;
+
+  var MOCK_JOBS = {
+    jobs: [
+      {
+        id: 'daily-inventory-sync', name: 'Daily inventory sync', enabled: true,
+        description: 'Sync Shopify inventory levels with warehouse API, update stock counts, flag discrepancies above 5% threshold.',
+        schedule: { expr: '0 7 * * *', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Sync inventory from warehouse API to Shopify. Compare stock levels, update any items with >5% discrepancy. Post summary to #ops-alerts on Slack.' },
+        state: { lastRunAtMs: NOW - 2*HOUR, lastRunStatus: 'ok', lastDurationMs: 45200, nextRunAtMs: NOW + 18*HOUR, lastDeliveryStatus: 'slack:ok' }
+      },
+      {
+        id: 'supplier-namer', name: 'Supplier price monitor', enabled: true,
+        description: 'Check supplier catalogs for price changes, compare with current cost basis, alert on margins below 30%.',
+        schedule: { expr: '0 8 * * 1,3,5', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Fetch latest supplier price lists. Compare each SKU cost vs our current Shopify cost. Flag any items where margin drops below 30%. Send report to #procurement.' },
+        state: { lastRunAtMs: NOW - 26*HOUR, lastRunStatus: 'ok', lastDurationMs: 32100, nextRunAtMs: NOW + 42*MIN, lastDeliveryStatus: 'slack:ok' }
+      },
+      {
+        id: 'overdue-po-checker', name: 'Overdue PO checker', enabled: true,
+        description: 'Scan open purchase orders past their expected delivery date and notify the ops team.',
+        schedule: { expr: '0 16 * * *', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Check all open POs in the system. Find any where expected_delivery < today. For each overdue PO, lookup supplier contact and compose a follow-up email draft. Post summary to #ops-alerts.' },
+        state: { lastRunAtMs: NOW - 19*HOUR, lastRunStatus: 'error', lastDurationMs: 8900, nextRunAtMs: NOW + 5*HOUR, lastDeliveryStatus: 'slack:failed', consecutiveErrors: 2, lastError: 'Supplier API returned 503 — catalog endpoint down' }
+      },
+      {
+        id: 'biweekly-quarterly-report', name: 'Biweekly revenue digest', enabled: true,
+        description: 'Generate a revenue and margin summary for the past 2 weeks, broken down by product category.',
+        schedule: { expr: '0 9 1,15 * *', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Pull Shopify revenue data for the last 14 days. Break down by product category, calculate margins using current COGS. Generate a summary table and email to founders@company.com.' },
+        state: { lastRunAtMs: NOW - 2*DAY, lastRunStatus: 'ok', lastDurationMs: 67400, nextRunAtMs: NOW + 12*DAY, lastDeliveryStatus: 'email:ok' }
+      },
+      {
+        id: 'weekly-seo-audit', name: 'Weekly SEO audit', enabled: false,
+        description: 'Crawl top 50 product pages, check meta tags, broken links, and Core Web Vitals.',
+        schedule: { expr: '0 6 * * 1', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Audit top 50 product pages for SEO health. Check title tags, meta descriptions, canonical URLs, broken links, image alt text. Report Core Web Vitals scores.' },
+        state: { lastRunAtMs: NOW - 10*DAY, lastRunStatus: 'ok', lastDurationMs: 124000 }
+      },
+      {
+        id: 'slack-digest', name: 'Morning Slack digest', enabled: true,
+        description: 'Summarize overnight Slack messages across key channels and post a morning briefing.',
+        schedule: { expr: '30 7 * * 1-5', tz: 'Europe/Amsterdam' },
+        payload: { message: 'Read all messages from #general, #ops-alerts, #dev since 18:00 yesterday. Create a concise morning briefing with action items highlighted. Post to #morning-standup.' },
+        state: { lastRunAtMs: NOW - 3*HOUR, lastRunStatus: 'ok', lastDurationMs: 18300, nextRunAtMs: NOW + 21*HOUR, lastDeliveryStatus: 'slack:ok' }
+      }
+    ]
+  };
+
+  // Mock run history
+  var MOCK_RUNS = {};
+  MOCK_JOBS.jobs.forEach(function(job) {
+    var runs = [];
+    for (var i = 0; i < 8; i++) {
+      var ts = NOW - (i * DAY) - Math.random() * 2 * HOUR;
+      var isErr = job.id === 'overdue-po-checker' && i < 2;
+      runs.push({
+        action: 'finished', ts: ts, runAtMs: ts, status: isErr ? 'error' : 'ok',
+        durationMs: Math.floor(10000 + Math.random() * 80000),
+        model: ['claude-sonnet-4-5-20250514', 'claude-haiku-4-5-20251001', 'claude-sonnet-4-5-20250514'][Math.floor(Math.random() * 3)],
+        deliveryStatus: isErr ? 'slack:failed' : 'slack:ok',
+        usage: { total_tokens: Math.floor(800 + Math.random() * 4000) },
+        error: isErr ? 'Supplier API returned 503 — catalog endpoint down' : undefined,
+        summary: isErr ? undefined : [
+          'Synced 342 SKUs. 3 discrepancies found (>5%): SKU-1042 (+12%), SKU-2281 (-8%), SKU-3390 (+6%). Updated Shopify. Notified #ops-alerts.',
+          'Checked 24 supplier catalogs. 2 price increases detected: Widget-A up 8% (margin now 28% — below threshold), Gadget-X up 3% (margin 41% — ok). Alert sent to #procurement.',
+          'Scanned 12 open POs. 2 overdue: PO-4421 (3 days late, SupplierCo) and PO-4455 (1 day late, PackagingInc). Follow-up emails drafted. Summary posted to #ops-alerts.',
+          'Revenue digest: €47,230 total (+12% vs prior period). Top category: Electronics (€18,400, 34% margin). Lowest margin: Accessories (22%). Email sent to founders.',
+          'Summarized 47 messages across 3 channels. Key items: deployment scheduled for Thursday, new supplier contract pending review, 2 customer escalations resolved. Posted to #morning-standup.',
+          'Processed 89 line items across 6 orders. All stock levels within tolerance. No action required.'
+        ][Math.floor(Math.random() * 6)]
+      });
+    }
+    MOCK_RUNS[job.id] = runs;
+  });
+
+  // ── App logic (identical to production, but with mock data) ──
+
+  var currentData = null;
+  var runHistory = {};
+  var calMonth = new Date().getMonth();
+  var calYear = new Date().getFullYear();
+  var countdownInterval = null;
+  var nextJob = null;
+
+  var BRAILLE_SPINNER = ['\u2808','\u2818','\u2830','\u2860','\u28C0','\u2840','\u2844','\u2846','\u280E','\u281A','\u2832','\u2864','\u28C8','\u2890','\u2821','\u2803'];
+  var BRAILLE_PROGRESS = [
+    '\u2800\u2800\u2800\u2800\u2800','\u2840\u2800\u2800\u2800\u2800','\u28C0\u2800\u2800\u2800\u2800',
+    '\u28E0\u2800\u2800\u2800\u2800','\u28F0\u2840\u2800\u2800\u2800','\u28F8\u28C0\u2800\u2800\u2800',
+    '\u28FC\u28E0\u2800\u2800\u2800','\u28FE\u28F0\u2840\u2800\u2800','\u28FF\u28F8\u28C0\u2800\u2800',
+    '\u28BF\u28FC\u28E0\u2800\u2800','\u289F\u28FE\u28F0\u2840\u2800','\u288F\u28FF\u28F8\u28C0\u2800',
+    '\u2847\u28BF\u28FC\u28E0\u2800','\u2803\u289F\u28FE\u28F0\u2840','\u2801\u288F\u28FF\u28F8\u28C0',
+    '\u2800\u2847\u28BF\u28FC\u28E0','\u2800\u2803\u289F\u28FE\u28F0','\u2800\u2801\u288F\u28FF\u28F8',
+    '\u2800\u2800\u2847\u28BF\u28FC','\u2800\u2800\u2803\u289F\u28FE','\u2800\u2800\u2801\u288F\u28FF',
+    '\u2800\u2800\u2800\u2847\u28BF','\u2800\u2800\u2800\u2803\u289F','\u2800\u2800\u2800\u2801\u288F',
+    '\u2800\u2800\u2800\u2800\u2847','\u2800\u2800\u2800\u2800\u2803','\u2800\u2800\u2800\u2800\u2801'
+  ];
+  var brailleTimers = {};
+
+  function startBraille(id, frames, intervalMs) {
+    var elem = document.getElementById(id);
+    if (!elem) return;
+    elem.style.opacity = '1';
+    var i = 0;
+    if (brailleTimers[id]) clearInterval(brailleTimers[id]);
+    brailleTimers[id] = setInterval(function() {
+      var e = document.getElementById(id);
+      if (!e) { clearInterval(brailleTimers[id]); return; }
+      e.textContent = frames[i % frames.length];
+      i++;
+    }, intervalMs || 80);
+  }
+  function stopBraille(id, text) {
+    if (brailleTimers[id]) { clearInterval(brailleTimers[id]); delete brailleTimers[id]; }
+    var e = document.getElementById(id);
+    if (e) {
+      e.style.opacity = '0';
+      setTimeout(function() { if (e) e.textContent = text || ''; }, 200);
+    }
+  }
+
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function(k) {
+      if (k === 'className') node.className = attrs[k];
+      else if (k === 'textContent') node.textContent = attrs[k];
+      else if (k.indexOf('on') === 0) node.addEventListener(k.slice(2), attrs[k]);
+      else node.setAttribute(k, attrs[k]);
+    });
+    if (children) children.forEach(function(c) {
+      if (typeof c === 'string') node.appendChild(document.createTextNode(c));
+      else if (c) node.appendChild(c);
+    });
+    return node;
+  }
+  function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
+
+  document.querySelectorAll('.tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  function timeAgo(ms) {
+    if (!ms) return '';
+    var diff = Date.now() - ms;
+    var mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    var hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    return Math.floor(hrs / 24) + 'd ago';
+  }
+  function fmtDate(ms) {
+    if (!ms) return '';
+    return new Date(ms).toLocaleString('en-GB', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
+  }
+  function fmtDuration(ms) {
+    if (!ms) return '';
+    if (ms < 1000) return ms + 'ms';
+    var s = Math.floor(ms / 1000);
+    if (s < 60) return s + 's';
+    return Math.floor(s / 60) + 'm ' + (s % 60) + 's';
+  }
+  function fmtCountdown(diffMs) {
+    if (diffMs <= 0) return 'now';
+    var s = Math.floor(diffMs / 1000);
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    if (h > 0) return h + 'h ' + String(m).padStart(2, '0') + 'm';
+    if (m > 0) return m + 'm ' + String(sec).padStart(2, '0') + 's';
+    return sec + 's';
+  }
+  function cronToHuman(expr, tz) {
+    var p = expr.split(' ');
+    if (p.length !== 5) return expr;
+    var dm = {0:'Sun',1:'Mon',2:'Tue',3:'Wed',4:'Thu',5:'Fri',6:'Sat'};
+    var s;
+    if (p[2] !== '*' && p[2].indexOf(',') !== -1) s = 'day ' + p[2] + ' at ' + p[1] + ':' + p[0].padStart(2,'0');
+    else if (p[2] !== '*' && p[2].indexOf('/') !== -1) s = 'every ' + p[2].split('/')[1] + ' days at ' + p[1] + ':' + p[0].padStart(2,'0');
+    else if (p[4] !== '*') { var days = p[4].split('-').map(function(d){return dm[d]||d;}).join('-'); s = days + ' at ' + p[1] + ':' + p[0].padStart(2,'0'); }
+    else s = 'daily at ' + p[1] + ':' + p[0].padStart(2,'0');
+    if (tz) s += ' (' + tz.replace('Europe/','') + ')';
+    return s;
+  }
+
+  function updateBanner(jobs) {
+    var banner = document.getElementById('next-run-banner');
+    var wrap = document.getElementById('next-run-banner-wrap');
+    var upcoming = jobs.filter(function(j){ return j.enabled && j.state && j.state.nextRunAtMs; })
+      .sort(function(a,b){ return a.state.nextRunAtMs - b.state.nextRunAtMs; });
+    if (!upcoming.length) { wrap.classList.remove('visible'); return; }
+    wrap.classList.add('visible'); nextJob = upcoming[0];
+    var diff = nextJob.state.nextRunAtMs - Date.now();
+    var cls = diff < 300000 ? 'imminent' : diff < 3600000 ? 'soon' : '';
+    clear(banner);
+    banner.appendChild(el('div', {}, [
+      el('div', { className: 'next-run-label', textContent: 'Next run' }),
+      el('div', { className: 'next-run-name', textContent: nextJob.name })
+    ]));
+    var progressEl = el('div', { className: 'braille-feedback', id: 'braille-countdown' });
+    var rightChildren = [
+      el('div', { className: 'countdown ' + cls, id: 'countdown', textContent: fmtCountdown(diff) }),
+      progressEl,
+      el('div', { className: 'countdown-sub', textContent: fmtDate(nextJob.state.nextRunAtMs) })
+    ];
+    banner.appendChild(el('div', { className: 'next-run-right' }, rightChildren));
+    startBraille('braille-countdown', BRAILLE_PROGRESS, 60);
+    if (countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(function() {
+      var cd = document.getElementById('countdown');
+      if (!cd || !nextJob) return;
+      var d = nextJob.state.nextRunAtMs - Date.now();
+      cd.textContent = fmtCountdown(d);
+      cd.className = 'countdown ' + (d < 300000 ? 'imminent' : d < 3600000 ? 'soon' : '');
+    }, 1000);
+  }
+  function updateJobTimers(jobs) {
+    jobs.forEach(function(job) {
+      var s = job.state;
+      if (!s) return;
+      var t = document.getElementById('timer-' + job.id);
+      if (t && s.nextRunAtMs) {
+        var d = s.nextRunAtMs - Date.now();
+        t.textContent = d <= 0 ? 'now' : fmtCountdown(d);
+      }
+      // Update badge fill
+      var badge = document.getElementById('badge-' + job.id);
+      if (badge && s.nextRunAtMs && s.lastRunAtMs && job.enabled) {
+        var total = s.nextRunAtMs - s.lastRunAtMs;
+        var remaining = s.nextRunAtMs - Date.now();
+        var pct = total > 0 ? Math.max(0, Math.min(100, 100 - (remaining / total) * 100)) : 0;
+        badge.style.setProperty('--fill', pct);
+        badge.classList.toggle('fill-high', pct > 50);
+      }
+    });
+  }
+
+  var footerTextNode = null;
+  function updateFooter(jobs) {
+    var statusEl = document.getElementById('footer-status');
+    var metaEl = document.getElementById('footer-meta');
+    var enabled = jobs.filter(function(j) { return j.enabled; });
+    var errCount = enabled.filter(function(j) {
+      return j.state && (j.state.lastRunStatus === 'error' || j.state.consecutiveErrors > 0);
+    }).length;
+    var okCount = enabled.length - errCount;
+    var isDegraded = errCount > 0;
+    var text = isDegraded ? ('\u2836 ' + okCount + ' ok \u00b7 \u283B ' + errCount + ' failing') : ('\u2834 ' + enabled.length + ' jobs running');
+    if (!footerTextNode) {
+      clear(statusEl);
+      statusEl.appendChild(el('span', { className: 'footer-dot' }));
+      footerTextNode = document.createTextNode(text);
+      statusEl.appendChild(footerTextNode);
+    } else {
+      footerTextNode.textContent = text;
+    }
+    statusEl.classList.toggle('degraded', isDegraded);
+    metaEl.textContent = new Date().toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'});
+  }
+
+  function renderJobs(data) {
+    var c = document.getElementById('jobs'); clear(c);
+    var jobs = (data.jobs || []).slice().sort(function(a,b){
+      return (a.state && a.state.nextRunAtMs || Infinity) - (b.state && b.state.nextRunAtMs || Infinity);
+    });
+    jobs.forEach(function(job) {
+      var s = job.state || {};
+      var status = s.lastRunStatus || s.lastStatus || 'pending';
+      var ic = !job.enabled ? 'paused' : (status === 'error' ? 'error' : 'live');
+      var sc = status === 'ok' ? 'ok' : (status === 'error' ? 'error' : 'pending');
+      // Calculate badge fill: ratio of time remaining vs total cycle
+      var fillPct = 0;
+      if (s.nextRunAtMs && s.lastRunAtMs && job.enabled) {
+        var total = s.nextRunAtMs - s.lastRunAtMs;
+        var remaining = s.nextRunAtMs - Date.now();
+        fillPct = total > 0 ? Math.max(0, Math.min(100, 100 - (remaining / total) * 100)) : 0;
+      }
+      var badgeClass = !job.enabled ? 'disabled' : sc;
+      var badge = el('div', { className: 'badge ' + badgeClass + (fillPct > 50 ? ' fill-high' : ''), textContent: !job.enabled ? 'disabled' : status });
+      badge.id = 'badge-' + job.id;
+      badge.style.setProperty('--fill', fillPct);
+      var row = el('div', { className: 'job-row' }, [
+        el('div', { className: 'indicator ' + ic }),
+        el('div', { className: 'job-name', textContent: job.name || job.id }),
+        el('div', { className: 'job-meta', textContent: timeAgo(s.lastRunAtMs) }),
+        el('div', { className: 'job-timer', id: 'timer-' + job.id, textContent: s.nextRunAtMs ? fmtCountdown(s.nextRunAtMs - Date.now()) : '' }),
+        badge,
+        el('div', { className: 'chevron', textContent: '\u2812' })
+      ]);
+      var grid = el('div', { className: 'detail-grid' });
+      var schedule = cronToHuman(job.schedule && job.schedule.expr || '?', job.schedule && job.schedule.tz);
+      var BI = { Schedule:'\u283E', 'Last run':'\u2810\u2803', Duration:'\u2810\u2803', 'Next run':'\u2812', Delivered:'\u2836', Errors:'\u283B', Error:'\u283B' };
+      [['Schedule', schedule], ['Last run', fmtDate(s.lastRunAtMs)], ['Duration', fmtDuration(s.lastDurationMs)],
+       ['Next run', fmtDate(s.nextRunAtMs)], ['Delivered', s.lastDeliveryStatus || '']].forEach(function(f) {
+        grid.appendChild(el('span', { className: 'label' }, [el('span',{className:'bi',textContent:BI[f[0]]||''}), document.createTextNode(f[0])]));
+        grid.appendChild(el('span', { className: 'value', textContent: f[1] }));
+      });
+      if (s.consecutiveErrors) { grid.appendChild(el('span',{className:'label'},[el('span',{className:'bi',textContent:'\u283B'}),document.createTextNode('Errors')])); var ev=el('span',{className:'value',textContent:s.consecutiveErrors+' consecutive'}); ev.style.color='var(--neon-red)'; grid.appendChild(ev); }
+      if (s.lastError) { grid.appendChild(el('span',{className:'label'},[el('span',{className:'bi',textContent:'\u283B'}),document.createTextNode('Error')])); var ee=el('span',{className:'value',textContent:s.lastError}); ee.style.color='var(--neon-red)'; grid.appendChild(ee); }
+      var promptText = job.payload && job.payload.message || '';
+      var promptCollapsible = el('div', { className: 'prompt-collapsible' });
+      var promptTrigger = el('button', { className: 'prompt-trigger' }, [
+        el('span', { className: 'prompt-chevron', textContent: '\u2812' }),
+        el('span', { className: 'bi', textContent: '\u2837' }),
+        document.createTextNode('Prompt')
+      ]);
+      var promptInner = el('div', {}, [el('pre', { className: 'prompt-box', textContent: promptText })]);
+      var promptBody = el('div', { className: 'prompt-body' }, [promptInner]);
+      promptTrigger.addEventListener('click', function(e) { e.stopPropagation(); promptCollapsible.classList.toggle('open'); });
+      promptCollapsible.appendChild(promptTrigger);
+      promptCollapsible.appendChild(promptBody);
+      var descLabel = el('div',{className:'section-label'},[el('span',{className:'bi',textContent:'\u283F'}),document.createTextNode('Description')]);
+      var detailInner = el('div', {}, [grid, descLabel, el('div',{className:'desc-text',textContent:job.description||''}), promptText ? promptCollapsible : null].filter(Boolean));
+      var detail = el('div', { className: 'job-detail' }, [detailInner]);
+      var card = el('div', { className: 'job-card' }, [row, detail]);
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-expanded', 'false');
+      row.addEventListener('click', function() { var open = card.classList.toggle('open'); row.setAttribute('aria-expanded', open); });
+      row.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); var open = card.classList.toggle('open'); row.setAttribute('aria-expanded', open); } });
+      c.appendChild(card);
+    });
+    var cards = c.querySelectorAll('.job-card');
+    for (var ci = 0; ci < cards.length; ci++) cards[ci].style.setProperty('--i', ci);
+    updateBanner(jobs);
+    updateFooter(jobs);
+  }
+
+  function renderRuns() {
+    var c = document.getElementById('runs'); clear(c);
+    var allRuns = [];
+    var jobNames = {};
+    if (currentData && currentData.jobs) currentData.jobs.forEach(function(j){ jobNames[j.id] = j.name || j.id; });
+    Object.keys(runHistory).forEach(function(jobId) {
+      runHistory[jobId].forEach(function(run) {
+        if (run.action === 'finished') allRuns.push({ jobId: jobId, jobName: jobNames[jobId] || jobId, run: run });
+      });
+    });
+    allRuns.sort(function(a,b){ return (b.run.ts || 0) - (a.run.ts || 0); });
+    if (!allRuns.length) { c.appendChild(el('div',{textContent:'No run history available',style:'text-align:center;color:var(--text-dim);padding:40px'})); return; }
+    allRuns.slice(0, 20).forEach(function(item) {
+      var r = item.run;
+      var sc = r.status === 'ok' ? 'ok' : (r.status === 'error' ? 'error' : 'pending');
+      var ic = r.status === 'error' ? 'error' : 'live';
+      var row = el('div', { className: 'run-row' }, [
+        el('div', { className: 'indicator ' + ic }),
+        el('div', { className: 'job-name', textContent: item.jobName }),
+        el('div', { className: 'job-meta', textContent: fmtDate(r.runAtMs || r.ts) }),
+        el('div', { className: 'badge ' + sc, textContent: r.status || 'unknown' })
+      ]);
+      var metaRow = el('div', { className: 'run-meta-row' });
+      if (r.durationMs) metaRow.appendChild(el('span', { textContent: 'Duration: ' + fmtDuration(r.durationMs) }));
+      if (r.model) metaRow.appendChild(el('span', { textContent: 'Model: ' + r.model }));
+      if (r.deliveryStatus) metaRow.appendChild(el('span', { textContent: 'Delivery: ' + r.deliveryStatus }));
+      if (r.usage && r.usage.total_tokens) metaRow.appendChild(el('span', { textContent: 'Tokens: ' + r.usage.total_tokens.toLocaleString() }));
+      var detailChildren = [metaRow];
+      if (r.error) {
+        var errBox = el('div', { className: 'run-summary', textContent: r.error });
+        errBox.style.borderColor = 'var(--neon-red-border)'; errBox.style.color = 'var(--neon-red)';
+        detailChildren.push(el('div', { className: 'section-label', textContent: 'Error' }));
+        detailChildren.push(errBox);
+      }
+      if (r.summary) {
+        detailChildren.push(el('div', { className: 'section-label', textContent: 'Output' }));
+        detailChildren.push(el('div', { className: 'run-summary', textContent: r.summary }));
+      }
+      var detailInner = el('div', {}, detailChildren);
+      var detail = el('div', { className: 'run-detail' }, [detailInner]);
+      var card = el('div', { className: 'run-card' }, [row, detail]);
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-expanded', 'false');
+      row.addEventListener('click', function() { var open = card.classList.toggle('open'); row.setAttribute('aria-expanded', open); });
+      row.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); var open = card.classList.toggle('open'); row.setAttribute('aria-expanded', open); } });
+      c.appendChild(card);
+    });
+    var rcards = c.querySelectorAll('.run-card');
+    for (var ri = 0; ri < rcards.length; ri++) rcards[ri].style.setProperty('--i', ri);
+  }
+
+  function getNextCronRuns(expr, year, month) {
+    var p = expr.split(' ');
+    if (p.length !== 5) return [];
+    var runs = [], dim = new Date(year, month + 1, 0).getDate();
+    for (var d = 1; d <= dim; d++) {
+      var dow = new Date(year, month, d).getDay();
+      if (p[3] !== '*' && p[3].split(',').map(Number).indexOf(month+1) === -1) continue;
+      var domOk = p[2] === '*';
+      if (!domOk) { if (p[2].indexOf('/')!==-1) { domOk=(d-1)%parseInt(p[2].split('/')[1])===0; } else if (p[2].indexOf(',')!==-1) { domOk=p[2].split(',').map(Number).indexOf(d)!==-1; } else { domOk=parseInt(p[2])===d; } }
+      var dowOk = p[4] === '*';
+      if (!dowOk) { if (p[4].indexOf('-')!==-1){var rr=p[4].split('-').map(Number);dowOk=dow>=rr[0]&&dow<=rr[1];}else{dowOk=p[4].split(',').map(Number).indexOf(dow)!==-1;} }
+      if (p[2]!=='*'&&p[4]!=='*'){if(!domOk&&!dowOk) continue;}else{if(!domOk||!dowOk) continue;}
+      runs.push({ day: d, hour: parseInt(p[1])||0, minute: parseInt(p[0])||0 });
+    }
+    return runs;
+  }
+  function buildRunStatusMap() {
+    var map = {};
+    Object.keys(runHistory).forEach(function(jobId) {
+      runHistory[jobId].forEach(function(r) {
+        if (r.action !== 'finished' || !r.runAtMs) return;
+        var d = new Date(r.runAtMs);
+        var key = jobId + ':' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+        map[key] = r.status;
+      });
+    });
+    return map;
+  }
+  function renderCalendar() {
+    var grid = document.getElementById('cal-grid');
+    var title = document.getElementById('cal-title');
+    var mn = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    title.textContent = mn[calMonth] + ' ' + calYear;
+    clear(grid);
+    ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(function(d){ grid.appendChild(el('div',{className:'cal-dow',textContent:d})); });
+    var sd = new Date(calYear,calMonth,1).getDay(); sd = sd===0?6:sd-1;
+    var dim = new Date(calYear,calMonth+1,0).getDate();
+    var pmd = new Date(calYear,calMonth,0).getDate();
+    var today = new Date();
+    var statusMap = buildRunStatusMap();
+    var eventMap = {};
+    if (currentData && currentData.jobs) currentData.jobs.forEach(function(job) {
+      if (!job.enabled) return;
+      getNextCronRuns(job.schedule&&job.schedule.expr||'',calYear,calMonth).forEach(function(run) {
+        if (!eventMap[run.day]) eventMap[run.day] = [];
+        var runDate = new Date(calYear,calMonth,run.day,run.hour,run.minute);
+        var st = 'scheduled';
+        if (runDate < today) {
+          var key = job.id+':'+calYear+'-'+calMonth+'-'+run.day;
+          st = statusMap[key] === 'error' ? 'error' : 'ok';
+        }
+        eventMap[run.day].push({ name: job.name, time: String(run.hour).padStart(2,'0')+':'+String(run.minute).padStart(2,'0'), status: st });
+      });
+    });
+    for (var i = sd-1; i >= 0; i--) grid.appendChild(el('div',{className:'cal-day other-month'},[el('div',{className:'cal-day-num',textContent:String(pmd-i)})]));
+    for (var d = 1; d <= dim; d++) {
+      var isT = d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
+      var dn = el('div',{className:'cal-day'+(isT?' today':'')},[el('div',{className:'cal-day-num',textContent:String(d)})]);
+      (eventMap[d]||[]).sort(function(a,b){return a.time.localeCompare(b.time);}).forEach(function(ev){
+        dn.appendChild(el('div',{className:'cal-event '+ev.status,title:ev.name+' at '+ev.time,textContent:ev.time+' '+ev.name}));
+      });
+      grid.appendChild(dn);
+    }
+    var tc = sd + dim, rem = (7-(tc%7))%7;
+    for (var j = 1; j <= rem; j++) grid.appendChild(el('div',{className:'cal-day other-month'},[el('div',{className:'cal-day-num',textContent:String(j)})]));
+    var calDays = grid.querySelectorAll('.cal-day');
+    for (var ci2 = 0; ci2 < calDays.length; ci2++) calDays[ci2].style.setProperty('--i', ci2);
+  }
+  document.getElementById('cal-prev').addEventListener('click', function(){ calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(); });
+  document.getElementById('cal-next').addEventListener('click', function(){ calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); });
+  document.getElementById('cal-today').addEventListener('click', function(){ calMonth=new Date().getMonth(); calYear=new Date().getFullYear(); renderCalendar(); });
+
+  // Load mock data instantly
+  currentData = MOCK_JOBS;
+  runHistory = MOCK_RUNS;
+  renderJobs(MOCK_JOBS);
+  renderRuns();
+  renderCalendar();
+
+  document.getElementById('refresh-btn').addEventListener('click', function() {
+    var btn = document.getElementById('refresh-btn');
+    btn.classList.add('loading');
+    btn.textContent = 'Loading...';
+    startBraille('refresh-spinner', BRAILLE_SPINNER, 80);
+    setTimeout(function() {
+      stopBraille('refresh-spinner', '');
+      btn.classList.remove('loading');
+      btn.textContent = 'Refresh';
+      renderJobs(MOCK_JOBS);
+      renderRuns();
+      renderCalendar();
+    }, 1200);
+  });
+
+  setInterval(function(){ if(currentData&&currentData.jobs) updateJobTimers(currentData.jobs); }, 1000);
+})();
+</script>
+</body>
+</html>

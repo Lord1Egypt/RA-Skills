@@ -1,0 +1,33 @@
+🚀 启动 Claude Code + DashScope 代理...
+✅ 代理服务器已在端口 3458 运行
+🎯 启动 Claude Code...
+   API: http://localhost:3458 -> https://coding.dashscope.aliyuncs.com/apps/anthropic
+
+## Claude Code 工具系统技术分析
+
+**1. 架构设计**
+- **中心化注册**：所有工具在 `tools.ts` 集中声明，通过 `getAllBaseTools()` 统一导出
+- **三层结构**：`getTools()` → `getAllBaseTools()` → `assembleToolPool()` 逐层过滤（权限、模式、MCP）
+- **去重策略**：`uniqBy` 保证内置工具优先于 MCP 工具（第363行）
+
+**2. 注册与发现机制**
+- **静态导入**：核心工具（1-13行）通过 ES6 import 固定加载
+- **懒加载**：循环依赖工具（63-72行）通过函数封装延迟 require
+- **MCP 集成**：通过 `assembleToolPool()` 与外部工具合并，内置工具前缀保证缓存稳定性（第354-358行）
+
+**3. 条件加载机制**
+- **环境变量**：`process.env.USER_TYPE === 'ant'`（第17/21行）、`CLAUDE_CODE_SIMPLE`（第273行）
+- **Feature Flags**：`feature('PROACTIVE')`（第26行）、`feature('AGENT_TRIGGERS')`（第29行）
+- **动态过滤**：`isEnabled()` 二次检查（第181/325行）、权限上下文过滤（第268行）
+
+**4. 与 OpenClaw 对比**
+| 维度 | Claude Code | OpenClaw |
+|------|-------------|----------|
+| **注册方式** | 静态中心化 | 分布式文件扫描（Glob/Grep） |
+| **条件加载** | 编译时死代码消除（feature flags） | 运行时动态判断 |
+| **工具分类** | 内置+MCP 严格分离 | 统一工具池 |
+| **权限过滤** | 声明式规则（`getDenyRuleForTool`） | 命令式 Hooks |
+
+**关键设计**：通过 `feature()` 和环境变量在编译期消除未使用代码，减少 bundle 体积；`assembleToolPool` 确保提示词缓存稳定性（第354-358行注释）。
+
+

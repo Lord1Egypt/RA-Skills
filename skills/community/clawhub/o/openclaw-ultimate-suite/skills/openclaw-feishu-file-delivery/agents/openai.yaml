@@ -1,0 +1,4 @@
+version: 1
+display_name: Feishu File Delivery
+short_description: Auto-deliver generated local office files into Feishu as real attachments.
+default_prompt: Use this skill whenever a Feishu task produces a local office file that should be delivered back to the chat.

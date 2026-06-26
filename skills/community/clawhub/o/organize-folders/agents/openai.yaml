@@ -1,0 +1,7 @@
+interface:
+  display_name: "文件夹整理"
+  short_description: "扫描文件夹，设计规则，并归档新文件。"
+  default_prompt: "使用 $organize-folders 帮我把这个文件夹或磁盘整理成清晰、可长期维护的结构，并给出新文件归档规则。"
+
+policy:
+  allow_implicit_invocation: true

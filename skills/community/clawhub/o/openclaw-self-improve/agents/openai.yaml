@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Self-Improve"
+  short_description: "Approval-gated, metrics-first OpenClaw improvement loop"
+  default_prompt: "Run proposal-only OpenClaw improvement with dry-run scaffold check, playbook-driven metrics, approval package, artifact validation, and required JSON validation for automation-ready outputs"

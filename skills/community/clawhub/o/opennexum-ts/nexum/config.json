@@ -1,0 +1,49 @@
+{
+  "agents": {
+    "plan": {
+      "cli": "claude",
+      "model": "claude-opus-4-6"
+    },
+    "codex-1": {
+      "cli": "codex",
+      "model": "gpt-5.4",
+      "reasoning": "high"
+    },
+    "codex-frontend": {
+      "cli": "codex",
+      "model": "gpt-5.4",
+      "reasoning": "medium"
+    },
+    "cc-frontend": {
+      "cli": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "cc-writer": {
+      "cli": "claude",
+      "model": "claude-sonnet-4-6"
+    },
+    "eval": {
+      "cli": "codex",
+      "model": "gpt-5.4",
+      "reasoning": "high"
+    },
+    "gardener": {
+      "cli": "claude",
+      "model": "claude-sonnet-4-6"
+    }
+  },
+  "notify": {
+    "verbose_dispatch": true,
+    "target": "8449051145"
+  },
+  "harvest": {
+    "auto_trigger": true
+  },
+  "eval": {
+    "default_local_url": "http://localhost:3000"
+  },
+  "project": {
+    "name": "nexum-ts",
+    "dir": "/Users/tongyaojin/code/nexum-ts"
+  }
+}

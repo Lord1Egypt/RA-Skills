@@ -1,35 +1,22 @@
 ---
-name: "NotebookLM Auth Bypass"
-description: "Programmatic NotebookLM control with auto-recovery for authentication errors."
-category: "research"
-source: "ClawHub"
-tags: [bypass, notebook, notebooklm, notebooklm bypass, research, stleath]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notebooklm-bypass"
-sourceUrl: "https://clawhub.ai/skills/notebooklm-bypass"
+name: notebooklm
+description: Programmatic NotebookLM control with auto-recovery for authentication errors.
 ---
 
-# NotebookLM Auth Bypass
+# NotebookLM CLI
 
-> Programmatic NotebookLM control with auto-recovery for authentication errors.
-
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notebooklm-bypass`
-- **Source URL:** [https://clawhub.ai/skills/notebooklm-bypass](https://clawhub.ai/skills/notebooklm-bypass)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
 ```bash
-hermes skills install clawhub/notebooklm-bypass
+notebooklm list                                    # List all notebooks + IDs
+notebooklm create "Name"                           # Create notebook → returns ID
+notebooklm source add "<url_or_file>" -n <ID>      # Add URL/PDF/YouTube to notebook
+notebooklm source add "<url>" -n <ID> --wait       # Add + wait for processing
+notebooklm source list -n <ID>                     # List sources in notebook
+notebooklm ask "Question" -n <ID>                  # Query AI against sources
 ```
+
+## Rules
+1. **No playlists.** Extract individual YouTube URLs and add one by one.
+2. **Max 50 sources** per notebook.
+3. **Use `--wait`** when adding sources in scripts to ensure processing completes.
+4. **Auth Recovery:** If `notebooklm` fails with "Authentication expired", you MUST ask the user for explicit permission before recovering. Propose running `python {WORKSPACE_DIR}/skills/notebooklm-bypass/scripts/auto_playwright.py`. If and only if they approve, run the script. This script steals fresh cookies and automatically injects them into your Windows Environment Variables. Once complete, retry your command.

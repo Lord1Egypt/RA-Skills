@@ -1,0 +1,14 @@
+Slug:
+opc-essentials
+
+Display name:
+OPC Essentials
+
+Version:
+1.5.0
+
+Tags:
+solopreneur, founder-ops, productivity, client-management, sales, email, proposals, follow-up, cashflow, business-operations
+
+Changelog:
+Took OPC Essentials to the next level with Priority Stack, Revenue Protection Check, Relationship Heatmap, and Founder End-of-Day Close. Also strengthened operating principles, escalation logic, and control-system style routing.

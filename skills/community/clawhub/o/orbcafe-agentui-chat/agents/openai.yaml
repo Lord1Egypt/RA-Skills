@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE AgentUI"
+  short_description: "Build StdChat and Copilot with official patterns"
+  default_prompt: "Use $orbcafe-agentui-chat to build an ORBCAFE chat page or copilot panel with public APIs only."

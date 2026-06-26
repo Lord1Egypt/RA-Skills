@@ -1,35 +1,45 @@
 ---
-name: "OCR with python"
-description: "Extract Chinese and English text from images and scanned PDFs, including documents like invoices and contracts, using PaddleOCR in Python."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ocr-python"
-sourceUrl: "https://clawhub.ai/skills/ocr-python"
+name: ocr
+description: Optical Character Recognition (OCR) tool, supports Chinese and English text extraction from PDFs and images. Use cases: (1) extract text from scanned PDFs, (2) recognize text from images, (3) extract text content from invoices, contracts, and other documents
 ---
 
-# OCR with python
+# OCR Text Recognition
 
-> Extract Chinese and English text from images and scanned PDFs, including documents like invoices and contracts, using PaddleOCR in Python.
+This skill uses PaddleOCR for text recognition, supporting both Chinese and English.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ocr-python`
-- **Source URL:** [https://clawhub.ai/skills/ocr-python](https://clawhub.ai/skills/ocr-python)
+## Quick Start
 
-## Overview
+### Basic Usage
 
+Perform OCR recognition directly on image or PDF files:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ocr-python
+```python
+from paddleocr import PaddleOCR
+
+ocr = PaddleOCR(lang='ch')
+result = ocr.predict("file_path.jpg")
 ```
+
+## Dependency Installation
+
+Install dependencies before first use:
+
+```bash
+pip3 install paddlepaddle paddleocr
+```
+
+## Output Format
+
+Recognition results return JSON containing:
+- `rec_texts`: List of recognized text
+- `rec_scores`: Confidence score for each text
+
+## Typical Use Cases
+
+1. **PDF Scans**: Use PyMuPDF to extract images first, then OCR
+2. **Image Text Recognition**: Perform OCR directly on images
+3. **Multi-page PDFs**: Process page by page
+
+## Scripts
+
+Common scripts are located in the `scripts/` directory.

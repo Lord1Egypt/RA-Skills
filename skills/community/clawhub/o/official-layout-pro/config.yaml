@@ -1,0 +1,15 @@
+name: official_layout_pro
+version: "2.8.0"
+description: "支持多模板与中西文分设的高级公文排版工具"
+entry_point: "main.py"
+functions:
+  - name: format_pro
+    description: "按照国家标准公文格式排版，支持自定义模板、发文字号和红头。标题自动设为小标宋，红头设为大标宋。"
+    parameters:
+      type: object
+      properties:
+        input_path: {type: string}
+        output_path: {type: string}
+        template_name: {type: string, description: "templates文件夹下的模板名，不含后缀"}
+        file_code: {type: string, description: "发文字号，如：国办发〔2026〕1号"}
+        org_name: {type: string, description: "发文机关标志名称"}

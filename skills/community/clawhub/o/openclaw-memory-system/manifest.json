@@ -1,0 +1,51 @@
+{
+  "name": "openclaw-memory-system",
+  "version": "1.0.0",
+  "description": "OpenClaw 多模态记忆系统",
+  "author": "刘哈娜",
+  "license": "MIT",
+  "skills": [
+    {
+      "id": "multimodal-memory",
+      "name": "多模态记忆",
+      "path": "skills/multimodal-memory/",
+      "description": "图片和工具调用记忆管理"
+    },
+    {
+      "id": "project-memory-isolation",
+      "name": "项目记忆隔离",
+      "path": "skills/project-memory-isolation/",
+      "description": "项目/Agent/用户记忆隔离"
+    },
+    {
+      "id": "memory-feedback",
+      "name": "记忆反馈修正",
+      "path": "skills/memory-feedback/",
+      "description": "自然语言记忆修正和版本控制"
+    }
+  ],
+  "configs": [
+    {
+      "name": "multimodal-config",
+      "path": "configs/multimodal-config.json",
+      "description": "多模态记忆配置"
+    },
+    {
+      "name": "memory-namespaces",
+      "path": "configs/memory-namespaces.json",
+      "description": "记忆命名空间配置"
+    }
+  ],
+  "tests": [
+    {
+      "name": "multimodal-test",
+      "command": "node skills/multimodal-memory/test-multimodal.js",
+      "description": "多模态记忆测试"
+    },
+    {
+      "name": "feedback-parser-test",
+      "command": "node skills/memory-feedback/feedback-parser.js \"不对，我不喜欢健身\"",
+      "description": "反馈解析测试"
+    }
+  ]
+}

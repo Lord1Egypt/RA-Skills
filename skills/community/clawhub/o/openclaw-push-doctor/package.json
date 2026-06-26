@@ -1,0 +1,19 @@
+{
+  "name": "openclaw-push-doctor",
+  "version": "1.0.0",
+  "description": "Self-diagnostic skill for openclaw: checks Feishu/Telegram/WeChat connectivity and cron task health",
+  "keywords": [
+    "openclaw", "healthcheck", "feishu", "telegram", "wechat", "cron", "自检", "通讯诊断"
+  ],
+  "author": "jiajiaoy",
+  "license": "MIT",
+  "scripts": {
+    "check": "node scripts/check-all.js",
+    "check:feishu": "node scripts/check-feishu.js",
+    "check:telegram": "node scripts/check-telegram.js",
+    "check:wechat": "node scripts/check-wechat.js",
+    "check:crons": "node scripts/check-crons.js",
+    "fix:feishu": "node scripts/fix-feishu.js",
+    "fix:crons": "node scripts/fix-crons.js"
+  }
+}

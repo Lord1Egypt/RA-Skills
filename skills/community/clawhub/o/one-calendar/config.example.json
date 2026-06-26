@@ -1,0 +1,9 @@
+{
+  "feishu": {
+    "userId": "ou_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "settings": {
+    "timezone": "Asia/Shanghai",
+    "baseUrl": "https://img.owspace.com/Public/uploads/Download"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "notilens",
+  "name": "notilens",
+  "description": "Send real-time alerts to NotiLens from any script, app, or AI agent.",
+  "entry": "src/notilens.js",
+  "exports": {
+    "genRunId": "src/notilens.js",
+    "notify": "src/notilens.js",
+    "track": "src/notilens.js",
+    "taskQueued": "src/notilens.js",
+    "taskStarted": "src/notilens.js",
+    "taskProgress": "src/notilens.js",
+    "taskPaused": "src/notilens.js",
+    "taskWaiting": "src/notilens.js",
+    "taskResumed": "src/notilens.js",
+    "taskRetry": "src/notilens.js",
+    "taskLoop": "src/notilens.js",
+    "taskError": "src/notilens.js",
+    "taskCompleted": "src/notilens.js",
+    "taskFailed": "src/notilens.js",
+    "taskTimeout": "src/notilens.js",
+    "taskCancelled": "src/notilens.js",
+    "taskStopped": "src/notilens.js",
+    "taskTerminated": "src/notilens.js",
+    "inputRequired": "src/notilens.js",
+    "inputApproved": "src/notilens.js",
+    "inputRejected": "src/notilens.js",
+    "outputGenerated": "src/notilens.js",
+    "outputFailed": "src/notilens.js"
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "description": "NotiLens topic token. Found in your topic settings at notilens.com."
+      },
+      "secret": {
+        "type": "string",
+        "description": "NotiLens topic secret. Found in your topic settings at notilens.com."
+      }
+    },
+    "required": ["token", "secret"]
+  }
+}

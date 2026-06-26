@@ -1,35 +1,44 @@
 ---
-name: "Omnipublisher"
-description: "Omni 内容发布器：一篇文章适配公众号/小红书/知乎/抖音，批量生成多平台版本"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/omnipublisher"
-sourceUrl: "https://clawhub.ai/skills/omnipublisher"
+name: omnipublisher
+description: Omni 内容发布器：一篇文章适配公众号/小红书/知乎/抖音，批量生成多平台版本
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔄",
+        "requires": { "python": "3.7+" },
+      },
+  }
 ---
 
-# Omnipublisher
+# omnipublisher - 多平台内容发布器
 
-> Omni 内容发布器：一篇文章适配公众号/小红书/知乎/抖音，批量生成多平台版本
+一次写作，到处发布。自动将同一文章转换成不同平台的格式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/omnipublisher`
-- **Source URL:** [https://clawhub.ai/skills/omnipublisher](https://clawhub.ai/skills/omnipublisher)
+## 平台支持
 
-## Overview
+- 公众号（wechat）
+- 小红书（xiaohongshu）
+- 知乎（zhihu）
+- 抖音（douyin）
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/omnipublisher
+omnipublisher article.md --platforms wechat,xiaohongshu
 ```
+
+输出：
+- `article_wechat.md`
+- `article_xiaohongshu.md`
+- ...
+
+详细文档见完整版（集成到 social-publisher 或独立文档）。
+
+## 特点
+
+- 纯 Python，无依赖
+- 毫秒级转换
+- 自动适配格式和风格
+
+MIT 许可证.

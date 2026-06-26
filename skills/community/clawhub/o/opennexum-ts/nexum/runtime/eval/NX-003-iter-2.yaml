@@ -1,0 +1,31 @@
+verdict: fail
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "直接调用构建产物 `packages/prompts/dist/index.js` 的 `renderGeneratorPrompt()`，终端输出依次为 `NO_PLACEHOLDER`、`true`、`true`、`true`、`true`、`true`、`true`，分别对应无残留 `{{...}}`、任务名、scope files、deliverables、criteria、git commit 命令、lessons 均已落入结果。实现上 `packages/prompts/src/renderer.ts:35-51` 先组装变量表，再对模板做 `replaceAll`；测试 `packages/prompts/src/__tests__/renderer.test.ts:37-67` 与 `packages/prompts/src/__tests__/renderer.test.ts:98-110` 也覆盖了无占位符和关键变量替换。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "`packages/prompts/src/renderer.ts:47-50` 在 `contract.type === 'creative'` 时选择 `generator-writing.md`，否则落到 `generator-coding.md`。直接调用构建产物后，三次输出首行分别为 `# Coding Task: Prompt Renderer`、`# Creative Writing Task: Prompt Renderer`、`# Coding Task: Prompt Renderer`，证明 `creative` 切到 writing 模板，`task` 仍使用 coding 模板。测试 `packages/prompts/src/__tests__/renderer.test.ts:76-95` 也验证了该分支行为。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "`packages/prompts/src/renderer.ts:62-85` 在 generator prompt 后追加 retry block，并写入 `Verdict`、`Feedback`、`Failed Criteria`。直接调用构建产物 `renderRetryPrompt()` 时，终端输出为 `true true true true NO_PLACEHOLDER`，分别命中 `**Verdict:** fail`、`**Feedback:** fix the retry block`、`- C1`、`- C3`，且无残留占位符。测试 `packages/prompts/src/__tests__/renderer.test.ts:132-158` 也逐项断言了这些内容。"
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: "在仓库根目录执行 `pnpm build` 与 `pnpm test` 均返回 exit code 0。`pnpm build` 日志显示 turbo 对 `@nexum/core` 和 `@nexum/prompts` 的 build 均成功，`Tasks: 2 successful, 2 total`；`pnpm test` 日志显示两包的 build/test 全部成功，`@nexum/prompts` 为 `24 passed`，`@nexum/core` 为 `5 pass`，总计 `Tasks: 4 successful, 4 total`。"
+        detail: null
+        score: null
+feedback: |
+  虽然 C1-C4 都满足，但合同交付仍未完全达标，不能判定为 pass。
+
+  具体问题在构建产物的 evaluator 模板：`packages/prompts/package.json:14-16` 的 build 脚本使用 `cp -r src/templates dist/templates`，在 `dist/templates` 已存在时会留下旧文件并额外生成 `dist/templates/templates/*`。当前实际被导出包读取的是 `packages/prompts/dist/templates/evaluator.md:20-30`，其内容仍要求“以 JSON 格式写入”；而源模板 `packages/prompts/src/templates/evaluator.md:20-30` 和本次合同都要求 YAML。`renderEvaluatorPrompt()` 通过 `packages/prompts/src/renderer.ts:54-58` 加载的正是这个顶层 `dist/templates/evaluator.md`，因此导出包的 evaluator 行为与合同不一致。
+
+  期望行为：构建后的导出包应输出要求 YAML 的 evaluator prompt。实际行为：构建后的导出包仍输出要求 JSON 的 evaluator prompt。修复建议：在 build 前清理 `dist` 或至少清理 `dist/templates`，避免旧模板残留；同时补一个针对构建产物 `renderEvaluatorPrompt()` 的断言测试。当前测试 `packages/prompts/src/__tests__/renderer.test.ts:114-129` 只检查 criteria/path，没有覆盖构建产物 evaluator 模板的输出格式。

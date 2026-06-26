@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 梦幻渐变风格 ===== */
+/* 封面样式 */
+.card-cover-dreamy {
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+  box-shadow: 0 15px 35px rgba(149, 175, 255, 0.2);
+  position: relative;
+}
+
+.card-cover-dreamy:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -12.5);
+  right: calc(var(--spacing) * -12.5);
+  width: calc(var(--spacing) * 37.5);
+  height: calc(var(--spacing) * 37.5);
+  background: linear-gradient(
+    135deg,
+    rgba(190, 205, 255, 0.5),
+    rgba(190, 205, 255, 0)
+  );
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.card-cover-dreamy:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -7.5);
+  left: calc(var(--spacing) * -7.5);
+  width: calc(var(--spacing) * 25);
+  height: calc(var(--spacing) * 25);
+  background: linear-gradient(
+    135deg,
+    rgba(190, 205, 255, 0.5),
+    rgba(190, 205, 255, 0)
+  );
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.card-cover-dreamy .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(124, 141, 255, 0.1),
+    rgba(124, 141, 255, 0.6)
+  );
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-dreamy .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(245, 247, 255, 0.95),
+    rgba(245, 247, 255, 0.8) 50%,
+    rgba(245, 247, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 17.5);
+  z-index: 20;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-dreamy .cover-content {
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+  padding: calc(var(--spacing) * 6);
+  z-index: 20;
+}
+
+.card-cover-dreamy .cover-title {
+  font-size: calc(var(--spacing) * 7);
+  color: #5e6fff;
+  margin-bottom: calc(var(--spacing) * 3);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(124, 141, 255, 0.2);
+}
+
+.card-cover-dreamy .cover-description {
+  color: #666;
+}
+
+.card-cover-dreamy .cover-tag {
+  background: linear-gradient(135deg, #a5b4ff, #7c8dff);
+  color: white;
+  padding: calc(var(--spacing) * 1.25) calc(var(--spacing) * 3.5);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(124, 141, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card-cover-dreamy .cover-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(124, 141, 255, 0.4);
+}
+
+.card-cover-dreamy .cover-date {
+  color: #8c9eff;
+}
+
+.card-dreamy {
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+  box-shadow: 0 15px 35px rgba(149, 175, 255, 0.2);
+  padding: calc(var(--spacing) * 7.5);
+  position: relative;
+  --highlight-color: #5e6fff;
+  --highlight-bg-color: rgba(94, 111, 255, 0.1);
+}
+
+.card-dreamy:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -12.5);
+  right: calc(var(--spacing) * -12.5);
+  width: calc(var(--spacing) * 37.5);
+  height: calc(var(--spacing) * 37.5);
+  background: linear-gradient(
+    135deg,
+    rgba(190, 205, 255, 0.3),
+    rgba(190, 205, 255, 0)
+  );
+  border-radius: 50%;
+}
+
+.card-dreamy:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -7.5);
+  left: calc(var(--spacing) * -7.5);
+  width: calc(var(--spacing) * 25);
+  height: calc(var(--spacing) * 25);
+  background: linear-gradient(
+    135deg,
+    rgba(190, 205, 255, 0.3),
+    rgba(190, 205, 255, 0)
+  );
+  border-radius: 50%;
+}
+
+.card-dreamy .card-content {
+  position: relative;
+  z-index: 1;
+  height: calc(var(--card-height) - calc(var(--spacing) * 25));
+}
+/* 段落样式 */
+.card-dreamy p {
+  color: #666;
+  font-size: inherit;
+}
+
+.card-dreamy strong {
+  color: #5e6fff;
+  font-weight: 600;
+}
+
+.card-dreamy em {
+  color: #8c9eff;
+  font-style: italic;
+}
+
+.card-dreamy p a {
+  color: #7c8dff;
+  text-decoration: none;
+  border-bottom: 1px dashed #d8e1ff;
+  transition: all 0.3s ease;
+}
+
+.card-dreamy p a:hover {
+  color: #5e6fff;
+  border-bottom: 1px solid #a5b4ff;
+}
+
+.card-dreamy h1 {
+  font-size: calc(var(--spacing) * 7);
+  color: #5e6fff;
+  margin-bottom: calc(var(--spacing) * 2);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.card-dreamy h2 {
+  font-size: calc(var(--spacing) * 4.5);
+  color: #8c9eff;
+  margin-bottom: calc(var(--spacing) * 7);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.card-dreamy li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin: calc(var(--spacing) * 4) 0;
+  color: #666;
+  font-size: inherit;
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 9);
+}
+
+.card-dreamy ol > li:before {
+  top: 0;
+  content: attr(data-index);
+  background: linear-gradient(135deg, #a5b4ff, #7c8dff);
+  color: white;
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7);
+  border-radius: 50%;
+  text-align: center;
+  line-height: calc(var(--spacing) * 7);
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(124, 141, 255, 0.3);
+}
+
+.card-dreamy h3 {
+  display: block;
+  color: #5e6fff;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4.25);
+}
+/* 表格样式 */
+.card-dreamy table {
+  box-shadow: 0 4px 15px rgba(149, 175, 255, 0.15);
+}
+
+.card-dreamy th {
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+  color: #7c8dff;
+  border-bottom: 2px solid #d8e1ff;
+}
+
+.card-dreamy td {
+  color: #666;
+}
+
+.card-dreamy tr {
+  border-bottom-color: #e8f0ff;
+}
+
+.card-dreamy tr:nth-child(even) {
+  background-color: #f9faff;
+}
+
+/* 代码块样式 */
+.card-dreamy pre {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(149, 175, 255, 0.15);
+}
+
+.card-dreamy code:not(pre code) {
+  background-color: #e8f0ff;
+  color: #5e6fff;
+}
+
+/* 引用块样式 */
+.card-dreamy blockquote {
+  background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+  border-left: 4px solid #7c8dff;
+  color: #7c8dff;
+}
+
+.card-dreamy li:before {
+  position: absolute;
+  left: calc(var(--spacing) * -9);
+  top: calc(var(--spacing) * 2);
+}
+
+/* 无序列表样式 */
+.card-dreamy ul > li:before {
+  left: calc(var(--spacing) * -7);
+  content: "";
+  width: calc(var(--spacing) * 2.5);
+  height: calc(var(--spacing) * 2.5);
+  background: linear-gradient(135deg, #a5b4ff, #7c8dff);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(124, 141, 255, 0.3);
+}
+
+/* 水平线样式 */
+.card-dreamy hr {
+  background: linear-gradient(to right, transparent, #7c8dff, transparent);
+}
+
+.card-dreamy .card-footer {
+  text-align: right;
+}
+
+.card-dreamy .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-dreamy">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

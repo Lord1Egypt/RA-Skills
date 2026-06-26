@@ -1,0 +1,19 @@
+{
+  "name": "openclaw-security-toolkit",
+  "version": "1.0.0",
+  "description": "Comprehensive security tool for OpenClaw users. Audit configs, scan secrets, manage access control.",
+  "features": [
+    "security-audit",
+    "secret-scanner",
+    "access-control",
+    "token-manager",
+    "security-report"
+  ],
+  "requires_api_key": false,
+  "min_openclaw_version": "2026.1.0",
+  "languages": ["en", "zh"],
+  "categories": ["security", "admin"],
+  "author": "hkall",
+  "license": "MIT",
+  "repository": "https://github.com/hkall/openclaw-security-toolkit"
+}

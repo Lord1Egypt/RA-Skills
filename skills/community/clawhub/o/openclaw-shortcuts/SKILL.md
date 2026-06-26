@@ -1,35 +1,45 @@
 ---
-name: "OpenClaw Shortcuts"
-description: "OpenClaw plugin providing a config-driven /shortcuts command with safe placeholder defaults. Use when you want a /shortcuts command that lists your local com..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-shortcuts"
-sourceUrl: "https://clawhub.ai/skills/openclaw-shortcuts"
+name: openclaw-shortcuts
+description: OpenClaw plugin providing a config-driven /shortcuts command with safe placeholder defaults. Use when you want a /shortcuts command that lists your local commands and project shortcuts without leaking private info to public repos.
 ---
 
-# OpenClaw Shortcuts
+# openclaw-shortcuts
 
-> OpenClaw plugin providing a config-driven /shortcuts command with safe placeholder defaults. Use when you want a /shortcuts command that lists your local com...
+Registers `/shortcuts` in your OpenClaw agent.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-shortcuts`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-shortcuts](https://clawhub.ai/skills/openclaw-shortcuts)
+## What it does
 
-## Overview
+- `/shortcuts` → prints configured sections (projects, commands, model switching, etc.)
+- Ships with generic placeholder defaults — real shortcuts stay in local config
+- `requireAuth: false` — gateway `commands.allowFrom` handles authorization
 
+## Configure
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-shortcuts
+Inject your shortcuts via `openclaw.json`:
+
+```json5
+{
+  "plugins": {
+    "entries": {
+      "openclaw-shortcuts": {
+        "enabled": true,
+        "config": {
+          "includeTips": false,
+          "sections": [
+            {
+              "title": "📁 Projects",
+              "lines": ["/myproject   - My project shortcut"]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
 ```
+
+## OPSEC
+
+Never commit personal shortcuts to the repo. Local config only.
+
+**Version:** 0.1.0

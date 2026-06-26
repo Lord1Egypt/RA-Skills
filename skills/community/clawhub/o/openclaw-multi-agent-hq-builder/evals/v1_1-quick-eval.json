@@ -1,0 +1,89 @@
+{
+  "skill_name": "openclaw-multi-agent-hq-builder",
+  "eval_version": "v1.1-quick",
+  "method": "manual_quick_eval",
+  "overall": {
+    "result": "soft-pass",
+    "usable_as_formal_version": true,
+    "confidence": "medium",
+    "summary": "Skill direction is correct and trigger fit is strong across all 3 prompts. Current docs are sufficient for high-quality HQ setup guidance, but not yet fully hard-edged for newcomer-perfect replication or for packaging scattered existing materials into a reusable skill.",
+    "critical_gaps": [
+      "No minimum directory scaffold example",
+      "Weak bridge from scattered docs to skill/package structure",
+      "No explicit minimum runnable demo definition"
+    ],
+    "recommended_v1_1_improvements": [
+      "Add a minimum directory tree example to references/install-guide.md",
+      "Add a 5-step migration guide for converting scattered docs into a skill structure",
+      "Add minimum runnable demo requirements to references/acceptance-checklist.md",
+      "Explicitly separate HQ build output vs skill/package output in SKILL.md",
+      "Provide short examples for task card, blackboard entry, and review record"
+    ]
+  },
+  "cases": [
+    {
+      "id": 1,
+      "should_trigger": true,
+      "support_sufficiency": "strong",
+      "strengths": [
+        "Very clear trigger fit",
+        "Default build order maps well to the request",
+        "Install guide and acceptance checklist support newcomer-oriented output"
+      ],
+      "risks": [
+        "May produce a good plan without a concrete directory scaffold",
+        "Four-file kit may remain too abstract for a newcomer"
+      ],
+      "gaps": [
+        "Missing minimum directory tree example",
+        "Missing first live task card example",
+        "Missing stronger milestone definition"
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": 2,
+      "should_trigger": true,
+      "support_sufficiency": "medium",
+      "strengths": [
+        "Description explicitly covers reusable skill/package packaging",
+        "Publish checklist and test prompts provide basic release support",
+        "Can guide toward teaching docs and acceptance structure"
+      ],
+      "risks": [
+        "May answer with generic HQ docs instead of true packaging/migration guidance",
+        "May not clarify how to split content between SKILL.md and references"
+      ],
+      "gaps": [
+        "No migration bridge from scattered docs to skill structure",
+        "No explicit content-boundary rule for SKILL.md vs references",
+        "No minimum deliverable definition for a reusable package"
+      ],
+      "verdict": "soft-pass"
+    },
+    {
+      "id": 3,
+      "should_trigger": true,
+      "support_sufficiency": "strong",
+      "strengths": [
+        "Strong alignment with anti-patterns and core sentence",
+        "L5 operations layer is directly relevant",
+        "Install guide and checklist support the final answer well"
+      ],
+      "risks": [
+        "Blackboard/review parts may stay conceptual without templates"
+      ],
+      "gaps": [
+        "No short template hints for blackboard and review mechanism",
+        "No explicit minimum runnable system definition"
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "low_risk_changes": [
+    {
+      "file": "skills/openclaw-multi-agent-hq-builder/SKILL.md",
+      "change": "Added explicit references to references/test-prompts.md and references/publish-checklist.md in Bundled resources"
+    }
+  ]
+}

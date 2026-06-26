@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Karpathy Wiki"
+  short_description: "Operate an Obsidian vault as a living LLM wiki."
+  default_prompt: "Use this skill to ingest raw notes, maintain source summaries, compile formal wiki pages, write back valuable query outputs, and run heartbeat maintenance for an Obsidian knowledge base."

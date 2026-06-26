@@ -1,0 +1,82 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.45" stop-color="#13243F"/>
+      <stop offset="1" stop-color="#1B3358"/>
+    </linearGradient>
+
+    <radialGradient id="glowL" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 140) rotate(45) scale(380 220)">
+      <stop stop-color="#7CC2FF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#7CC2FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 510) rotate(-25) scale(420 250)">
+      <stop stop-color="#FF9A56" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FF9A56" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="panel" x1="56" y1="72" x2="1224" y2="568" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121D33"/>
+      <stop offset="1" stop-color="#0D172A"/>
+    </linearGradient>
+
+    <linearGradient id="stroke" x1="100" y1="110" x2="1180" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A4A76"/>
+      <stop offset="1" stop-color="#355F8E"/>
+    </linearGradient>
+
+    <filter id="shadow" x="0" y="0" width="1280" height="640" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+
+    <linearGradient id="lineGrad" x1="330" y1="0" x2="950" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6FB5FF"/>
+      <stop offset="1" stop-color="#9DD0FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#glowL)"/>
+  <rect width="1280" height="640" fill="url(#glowR)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="56" y="72" width="1168" height="496" rx="30" fill="url(#panel)" stroke="url(#stroke)" stroke-width="2"/>
+  </g>
+
+  <text x="100" y="144" fill="#9ED2FF" font-size="32" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700">OpenClaw Skill</text>
+  <text x="100" y="210" fill="white" font-size="54" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800">Obsidian / Markdown → Cloudflare Pages</text>
+  <text x="100" y="252" fill="#AFC3E4" font-size="23" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="500">Publish web clippings and markdown folders as a static site (optional basic auth)</text>
+
+  <!-- Flow cards -->
+  <g>
+    <rect x="94" y="318" width="306" height="182" rx="24" fill="#0F1B30" stroke="#5D99FF" stroke-width="3"/>
+    <circle cx="160" cy="383" r="34" fill="#5D99FF"/>
+    <text x="160" y="396" text-anchor="middle" fill="white" font-size="33" font-family="Segoe UI Emoji, Apple Color Emoji, Inter, Segoe UI, Arial" font-weight="700">🦞</text>
+    <text x="248" y="386" text-anchor="middle" fill="white" font-size="34" font-family="Inter, Segoe UI, Arial" font-weight="700">OpenClaw</text>
+    <text x="248" y="424" text-anchor="middle" fill="#A9C7F7" font-size="18" font-family="Inter, Segoe UI, Arial" font-weight="500">Skill orchestration</text>
+  </g>
+
+  <g>
+    <rect x="487" y="318" width="306" height="182" rx="24" fill="#121B33" stroke="#8A77FF" stroke-width="3"/>
+    <circle cx="553" cy="383" r="34" fill="#8A77FF"/>
+    <text x="553" y="396" text-anchor="middle" fill="white" font-size="30" font-family="Segoe UI Emoji, Apple Color Emoji, Inter, Segoe UI, Arial" font-weight="700">🪨</text>
+    <text x="641" y="386" text-anchor="middle" fill="white" font-size="34" font-family="Inter, Segoe UI, Arial" font-weight="700">Obsidian</text>
+    <text x="641" y="424" text-anchor="middle" fill="#C2B8FF" font-size="18" font-family="Inter, Segoe UI, Arial" font-weight="500">Markdown source</text>
+  </g>
+
+  <g>
+    <rect x="880" y="318" width="306" height="182" rx="24" fill="#20172B" stroke="#FF984A" stroke-width="3"/>
+    <circle cx="946" cy="383" r="34" fill="#FF984A"/>
+    <text x="946" y="396" text-anchor="middle" fill="white" font-size="30" font-family="Segoe UI Emoji, Apple Color Emoji, Inter, Segoe UI, Arial" font-weight="700">☁️</text>
+    <text x="1034" y="386" text-anchor="middle" fill="white" font-size="34" font-family="Inter, Segoe UI, Arial" font-weight="700">Cloudflare</text>
+    <text x="1034" y="424" text-anchor="middle" fill="#FFD0AE" font-size="18" font-family="Inter, Segoe UI, Arial" font-weight="500">Pages deploy</text>
+  </g>
+
+  <!-- connecting arrows -->
+  <line x1="402" y1="409" x2="478" y2="409" stroke="url(#lineGrad)" stroke-width="8" stroke-linecap="round"/>
+  <polygon points="478,409 462,398 462,420" fill="#8EC6FF"/>
+
+  <line x1="795" y1="409" x2="871" y2="409" stroke="url(#lineGrad)" stroke-width="8" stroke-linecap="round"/>
+  <polygon points="871,409 855,398 855,420" fill="#8EC6FF"/>
+</svg>

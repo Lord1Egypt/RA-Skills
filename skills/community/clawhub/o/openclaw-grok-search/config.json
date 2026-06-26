@@ -1,0 +1,8 @@
+{
+  "base_url": "https://ai.huan666.de",
+  "api_key": "sk-cp-Ck3CeOGn00yzhmKmBR08J9asu3e3crdSscSijWwc-FbJlrkeonURBq-CtAaMk0onaD_QEMFYm3IqxB8kOt8QvKwZOAWDwxKzyg_p2YegSmwfWLRejUXa0Zo",
+  "model": "grok-4.20-beta",
+  "timeout_seconds": 60,
+  "extra_body": {},
+  "extra_headers": {}
+}

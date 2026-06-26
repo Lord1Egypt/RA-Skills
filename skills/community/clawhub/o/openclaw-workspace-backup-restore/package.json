@@ -1,0 +1,54 @@
+{
+  "name": "openclaw-backup-restore",
+  "version": "1.5.4",
+  "description": "This skill should be used when the user asks for OpenClaw backup, restore, rollback, validation, GitHub backup, off-machine backup, workspace recovery, or protection of OpenClaw state files and optional config backups.",
+  "type": "module",
+  "main": "scripts/backup.mjs",
+  "bin": {
+    "openclaw-backup": "scripts/backup.mjs",
+    "openclaw-restore": "scripts/restore.mjs",
+    "openclaw-backup-list": "scripts/list.mjs",
+    "openclaw-backup-validate": "scripts/validate.mjs",
+    "openclaw-backup-push": "scripts/backup-and-push.mjs"
+  },
+  "scripts": {
+    "backup": "node scripts/backup.mjs",
+    "restore": "node scripts/restore.mjs",
+    "list": "node scripts/list.mjs",
+    "validate": "node scripts/validate.mjs",
+    "backup:push": "node scripts/backup-and-push.mjs",
+    "test": "node tests/test.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "backup",
+    "restore",
+    "daily-backup",
+    "github-backup",
+    "recovery",
+    "rollback",
+    "workspace",
+    "soul",
+    "agent",
+    "ai"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/X-RayLuan/openclaw-backup-restore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/X-RayLuan/openclaw-backup-restore/issues"
+  },
+  "homepage": "https://github.com/X-RayLuan/openclaw-backup-restore#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

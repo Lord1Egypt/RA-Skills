@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw ShrimpCard"
+  short_description: "Turn agent evidence into a validated share card and final HTML selfie card."
+  default_prompt: "Use openclaw-shrimpcard to derive an evidence-backed self-intro, validate the JSON, attach a real 8-bit character image, and render the final HTML card."

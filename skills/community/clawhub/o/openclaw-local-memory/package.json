@@ -1,0 +1,13 @@
+{
+  "name": "@local/openclaw-local-memory",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Local vector memory plugin for OpenClaw — no external service required",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.1.29"
+  }
+}

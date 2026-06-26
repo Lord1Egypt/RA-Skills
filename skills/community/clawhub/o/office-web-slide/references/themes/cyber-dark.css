@@ -1,0 +1,49 @@
+/*
+ * Theme: Cyber Dark
+ * 赛博霓虹深色 — 深蓝黑底，蓝紫光弧渐变，未来科技感
+ * 适合：AI/SaaS 产品发布、技术演讲、黑客松展示、极客风格
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #f0f4ff;
+  --color-secondary: #8b95ad;
+  --color-accent: #818cf8;
+  --color-bg: #0b0f19;
+  --color-bg-alt: #141928;
+  --color-surface: #1a2035;
+  --color-text: #f0f4ff;
+  --color-text-secondary: #8b95ad;
+  --color-text-on-primary: #0b0f19;
+  --color-border: #2a3150;
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.81rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.24rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.06rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 1.97rem;
+  --spacing-lg: 3.09rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 10px;
+  --shadow-sm: 0 1px 4px rgba(129,140,248,0.08);
+  --shadow-md: 0 4px 16px rgba(129,140,248,0.12);
+  --shadow-lg: 0 8px 32px rgba(129,140,248,0.18);
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

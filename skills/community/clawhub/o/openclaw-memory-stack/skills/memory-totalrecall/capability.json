@@ -1,0 +1,15 @@
+{
+  "capability_version": 1,
+  "backend": "totalrecall",
+  "supported_modes": ["timeline", "decision", "exact"],
+  "requires_credentials": false,
+  "requires_external_service": false,
+  "cold_start_ms": 50,
+  "probe": {
+    "l1_install": "true",
+    "l2_runtime": "[ -d \"${OPENCLAW_REPO_ROOT:-.}/memory\" ]",
+    "l3_functional": "find \"${OPENCLAW_REPO_ROOT:-.}/memory\" -name '*.md' -type f 2>/dev/null | head -1 | grep -q .",
+    "l3_deep": null
+  },
+  "install_hint": "mkdir -p \"${INSTALL_ROOT:-$HOME/.openclaw/memory-stack}/memory\""
+}

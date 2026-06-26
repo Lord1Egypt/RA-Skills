@@ -1,0 +1,61 @@
+verdict: fail
+system_errors: []
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: fail
+        evidence: |
+          Temp-project integration run with `node /Users/tongyaojin/code/nexum-ts/packages/cli/dist/index.js callback NX2-007-task --project <tmp>` returned `{"ok":true,"taskId":"NX2-007-task","status":"generator_done"}`. The resulting `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.GJNoJKLdqg/nexum/active-tasks.json` changed the task status from `running` to `generator_done` and added `updated_at`.
+
+          A second temp-project integration run with a fake `openclaw` on `PATH` and `nexum/config.json` containing `notify.target=orchestrator-chat` returned `{"ok":true,"taskId":"NX2-007-notify","status":"generator_done"}` and wrote `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.8mV5hNiS6g/openclaw.log`:
+          `message`
+          `send`
+          `--channel`
+          `telegram`
+          `--target`
+          `orchestrator-chat`
+          `-m`
+          `✅ Generator 完成`
+          `━━━━━━━━━━━━━━━`
+          `📋 任务内容: Notify path test`
+          `🆔 任务ID: NX2-007-notify`
+          `📊 进度: 0/1`
+          `💬 等待编排者触发 eval`
+        detail: |
+          Expected per contract: after updating `active-tasks.json`, `nexum callback <taskId>` must notify the orchestrator through `@nexum/notify.sendMessage` with the exact 5-line message `✅ Generator 完成 / ━━━━━━━━━━━━━━━ / 📋 任务内容: <name> / 🆔 任务ID: <id> / 💬 等待编排者触发 eval`.
+
+          Actual: [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L1) imports `spawnSync`, and [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L22) through [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L42) shell out to `openclaw message send` instead of calling `@nexum/notify.sendMessage`. [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L25) through [packages/cli/src/commands/callback.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/callback.ts#L35) also add an extra `📊 进度` line that is not allowed by the contract. The status update works, but the callback deliverable is not implemented as contracted.
+        score: null
+      - id: C3
+        result: fail
+        evidence: |
+          Temp-project integration run with `node /Users/tongyaojin/code/nexum-ts/packages/cli/dist/index.js init --project <tmp>` created `CLAUDE.md` containing one `<!-- nexum:callback:start --> ... <!-- nexum:callback:end -->` block. A second run printed `nexum already initialized, nothing to do.` and `rg -c "nexum:callback:start" <tmp>/CLAUDE.md` returned `1`, so the `CLAUDE.md` dedupe path works.
+
+          However, a temp-project integration run with a pre-existing `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.iM5Zvlv3ye/AGENTS.md` containing `# Existing agent instructions` still printed `created CLAUDE.md`. The resulting `AGENTS.md` stayed unchanged, and the callback protocol block appeared only in `/var/folders/z0/_3wzy3_s1152xb6yt6qzkzn00000gn/T/tmp.iM5Zvlv3ye/CLAUDE.md`.
+        detail: |
+          Expected per contract: `nexum init` must write or update `CLAUDE.md` or `AGENTS.md`; if `AGENTS.md` already exists, append the `nexum:callback` block there and avoid creating a separate `CLAUDE.md`.
+
+          Actual: [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L57) hardcodes `CLAUDE.md` in `upsertClaudeCallbackProtocol`. [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L57) through [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L79) never inspect `AGENTS.md`, and [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L106) through [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L108) always report `CLAUDE.md`. The marker dedupe logic passes for `CLAUDE.md`, but the required `AGENTS.md` branch is missing.
+        score: null
+      - id: C4
+        result: pass
+        evidence: |
+          Running `pnpm --filter @nexum/cli build` exited with code 0 and printed:
+          `> @nexum/cli@0.1.0 build /Users/tongyaojin/code/nexum-ts/packages/cli`
+          `> node_modules/.bin/tsc -p tsconfig.json`
+        detail: null
+        score: null
+  - strategy_type: review
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: |
+          [packages/core/src/types.ts](/Users/tongyaojin/code/nexum-ts/packages/core/src/types.ts#L37) defines `TaskStatus.GeneratorDone = "generator_done"` at line 41.
+        detail: null
+        score: null
+feedback: |
+  `callback` 需要改为直接使用 `@nexum/notify` 的 `sendMessage`，不要再调用 `spawnSync('openclaw', ...)`。消息内容必须严格收敛到合同给出的 5 行，去掉 `📊 进度`。
+
+  `init` 需要把协议区块写入目标改成“优先 `AGENTS.md`，否则 `CLAUDE.md`”，并复用现有的 marker 去重逻辑，保证二次运行仍只保留一个 `nexum:callback` 区块。
+artifacts: []

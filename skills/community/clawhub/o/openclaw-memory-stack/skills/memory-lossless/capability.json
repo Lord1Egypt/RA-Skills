@@ -1,0 +1,15 @@
+{
+  "capability_version": 1,
+  "backend": "lossless",
+  "supported_modes": ["decision", "timeline", "semantic", "expand"],
+  "requires_credentials": false,
+  "requires_external_service": false,
+  "cold_start_ms": 200,
+  "probe": {
+    "l1_install": "command -v openclaw && openclaw plugins list 2>/dev/null | grep -q lossless-claw",
+    "l2_runtime": "[ -f \"${OPENCLAW_LCM_DB:-$HOME/.openclaw/lcm/lcm.sqlite}\" ]",
+    "l3_functional": "python3 -c \"import sqlite3; c=sqlite3.connect('${OPENCLAW_LCM_DB:-$HOME/.openclaw/lcm/lcm.sqlite}'); c.execute('SELECT count(*) FROM nodes'); print('ok')\" 2>/dev/null",
+    "l3_deep": null
+  },
+  "install_hint": "command -v openclaw &>/dev/null && openclaw plugins install @martian-engineering/lossless-claw || echo 'openclaw CLI not in PATH — install lossless-claw after PATH is set'"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "memory-dream",
+  "name": "Memory Dream",
+  "description": "Auto-consolidates agent memory files after sessions — like REM sleep for AI agents",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "minSessions": { "type": "number", "default": 5 },
+      "minHours": { "type": "number", "default": 24 },
+      "intervalHours": { "type": "number", "default": 24, "description": "Alias for minHours — minimum hours between consolidations" },
+      "memoryFiles": { "type": "array", "items": { "type": "string" }, "default": ["MEMORY.md"] },
+      "model": { "type": "string", "description": "Model override for consolidation (defaults to agent default)" },
+      "captureModel": { "type": "string", "description": "Model override for capture phase (defaults to claude-haiku-4-5-20251001)" },
+      "enableCapture": { "type": "boolean", "default": true, "description": "Enable in-session auto-capture of corrections and preferences" },
+      "enabled": { "type": "boolean", "default": true }
+    }
+  }
+}

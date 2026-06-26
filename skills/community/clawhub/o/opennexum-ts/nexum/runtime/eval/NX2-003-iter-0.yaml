@@ -1,0 +1,18 @@
+verdict: pass
+strategy_results:
+  - strategy_type: review
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "packages/cli/src/commands/spawn.ts:17-25 defines SpawnPayload.agentCli; runSpawn loads config and sets agentCli via resolveAgentCli(config, contract.generator) at lines 75-83."
+  - strategy_type: unit
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: "packages/core/src/config.ts:35-36 resolves config.agents?.[agentId]?.cli ?? 'codex'; packages/cli/src/commands/spawn.ts:131-139 applies it to contract.evaluator; packages/cli/src/__tests__/spawn.test.ts:206-233 verifies eval -> codex."
+  - strategy_type: build
+    criteria_results:
+      - id: C3
+        result: pass
+        evidence: "2026-03-29 ran pnpm --filter @nexum/cli build successfully; TypeScript compilation for @nexum/cli exited with code 0."
+feedback: "NX2-003 满足评审标准：SpawnPayload 已携带 agentCli，生成/评估路径均通过 resolveAgentCli 解析，且 @nexum/cli 构建通过。"

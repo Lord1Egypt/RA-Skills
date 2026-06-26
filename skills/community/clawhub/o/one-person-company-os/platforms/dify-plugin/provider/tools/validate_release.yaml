@@ -1,0 +1,10 @@
+identity:
+  name: validate_release
+  label:
+    en_US: Validate Release
+    zh_Hans: 校验发布包
+description:
+  human:
+    en_US: Run release validation for the canonical package.
+    zh_Hans: 运行规范发布包校验。
+parameters: []

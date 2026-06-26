@@ -1,0 +1,23 @@
+{
+  "name": "openclaw-user-data-pack",
+  "version": "1.0.5",
+  "description": "OpenClaw skill: Pack user data to zip with manifest; apply zip to a new OpenClaw home/workspace (gated optional layers).",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "backup",
+    "export",
+    "import",
+    "restore",
+    "migration"
+  ],
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README_CN.md",
+    "scripts",
+    "requirements.txt",
+    "publish_npm.py"
+  ]
+}

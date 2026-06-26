@@ -1,35 +1,34 @@
 ---
-name: "Openclaw Guardian"
-description: "一键安装包含配置安全、容灾、监控和上下文优化的 OpenClaw 系统全链路守护套件。"
-category: "devops"
-source: "ClawHub"
-tags: [bundle, guardian, monitoring, stability, system]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-guardian-suite"
-sourceUrl: "https://clawhub.ai/skills/openclaw-guardian-suite"
+skill_id: openclaw-guardian
+name: OpenClaw 全能守护包
+version: 1.0.0
+author: halfmoon82
+triggers:
+  - 安装守护包
+  - install guardian
+  - 系统保护套件
+  - openclaw guardian
+  - 全能守护
+  - 稳定性套件
+  - 运维套件
 ---
 
-# Openclaw Guardian
+# OpenClaw 全能守护包
 
-> 一键安装包含配置安全、容灾、监控和上下文优化的 OpenClaw 系统全链路守护套件。
+一键安装 7 个系统守护技能，覆盖配置安全、模型容灾、健康监控、上下文优化全链路。
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-guardian-suite`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-guardian-suite](https://clawhub.ai/skills/openclaw-guardian-suite)
+## 触发条件
 
-## Overview
+当用户表达以下意图时触发本技能：
+- 需要提升 OpenClaw 系统稳定性
+- 安装守护包 / guardian suite
+- 需要配置保护、自动回滚
+- 需要模型故障自动修复
+- 需要上下文压缩代理
 
+## 安装方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-guardian-suite
+OC_PAY_SERVER=https://skill.socialmore.net \
+  bash ~/.openclaw/workspace/skills/openclaw-guardian/install.sh
 ```

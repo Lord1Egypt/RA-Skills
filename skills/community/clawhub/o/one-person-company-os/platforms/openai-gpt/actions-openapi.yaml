@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: One Person Company OS API Bridge
+  version: 1.0.3
+  description: Optional API bridge for Custom GPT Actions. The hosted service should wrap the canonical repository scripts and enforce approved workspace boundaries.
+servers:
+  - url: https://YOUR_HOST.example.com
+paths:
+  /preflight:
+    post:
+      operationId: preflight
+      summary: Check runtime and workspace readiness.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  default: create-company
+                company_dir:
+                  type: string
+      responses:
+        "200":
+          description: Runtime report.
+  /init-business:
+    post:
+      operationId: initBusiness
+      summary: Create an approved one-person-company workspace.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [company_name, workspace_path, product_name, target_user, core_problem, product_pitch, language, confirmed]
+              properties:
+                company_name:
+                  type: string
+                workspace_path:
+                  type: string
+                product_name:
+                  type: string
+                target_user:
+                  type: string
+                core_problem:
+                  type: string
+                product_pitch:
+                  type: string
+                language:
+                  type: string
+                  enum: [zh-CN, en-US]
+                confirmed:
+                  type: boolean
+      responses:
+        "200":
+          description: Workspace creation report.
+  /update-focus:
+    post:
+      operationId: updateFocus
+      summary: Update the current primary goal, bottleneck, arena, and shortest action.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [company_dir, primary_goal, primary_bottleneck, primary_arena, today_action]
+              properties:
+                company_dir:
+                  type: string
+                primary_goal:
+                  type: string
+                primary_bottleneck:
+                  type: string
+                primary_arena:
+                  type: string
+                  enum: [sales, product, delivery, cash, asset]
+                today_action:
+                  type: string
+                week_outcome:
+                  type: string
+      responses:
+        "200":
+          description: Updated focus report.
+  /generate-artifact:
+    post:
+      operationId: generateArtifact
+      summary: Generate a numbered DOCX-ready formal artifact.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [company_dir, title, category, summary]
+              properties:
+                company_dir:
+                  type: string
+                title:
+                  type: string
+                category:
+                  type: string
+                  enum: [business, delivery, product, operations]
+                summary:
+                  type: string
+                evidence:
+                  type: string
+      responses:
+        "200":
+          description: Artifact generation report.

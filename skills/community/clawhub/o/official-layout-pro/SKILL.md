@@ -1,35 +1,26 @@
----
-name: "Official Layout Pro(公文专业排版技能包 )"
-description: "Provides professional Chinese official document formatting using specified fonts and styles for titles, red headings, body text, and alphanumeric characters."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/official-layout-pro"
-sourceUrl: "https://clawhub.ai/skills/official-layout-pro"
----
-
-# Official Layout Pro(公文专业排版技能包 )
-
-> Provides professional Chinese official document formatting using specified fonts and styles for titles, red headings, body text, and alphanumeric characters.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/official-layout-pro`
-- **Source URL:** [https://clawhub.ai/skills/official-layout-pro](https://clawhub.ai/skills/official-layout-pro)
-
-## Overview
+\# 技能：专业公文排版专家
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/official-layout-pro
-```
+
+\## 触发场景
+
+当用户上传文档并要求：
+
+\- "使用\[模板名]排版这份公文"
+
+\- "把文件标题改成小标宋，红头改成大标宋"
+
+\- "修正文档里的数字和字母字体"
+
+
+
+\## 逻辑规则
+
+\- \*\*红头\*\*：方正大标宋简体，红色。
+
+\- \*\*标题\*\*：方正小标宋简体，二号。
+
+\- \*\*西文/数字\*\*：Times New Roman。
+
+\- \*\*正文\*\*：仿宋\_GB2312，三号，固定行距28磅。
+

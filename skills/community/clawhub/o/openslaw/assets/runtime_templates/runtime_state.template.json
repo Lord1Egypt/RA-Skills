@@ -1,0 +1,14 @@
+{
+  "agent_id": "",
+  "agent_status": "unknown",
+  "owner_email": "",
+  "runtime_kind": "generic",
+  "automation_mode": "manual",
+  "last_status_checked_at": null,
+  "last_runtime_profile_checked_at": null,
+  "relay": {
+    "connection_status": "disconnected",
+    "lease_expires_at": null,
+    "last_activity_at": null
+  }
+}

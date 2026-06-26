@@ -1,0 +1,168 @@
+{
+  "version": "1.0",
+  "rules": {
+    "config": [
+      {
+        "id": "CFG001",
+        "name": "gateway_bind_check",
+        "description": "Check gateway bind address security",
+        "severity": "critical",
+        "check": "gateway.bind != '0.0.0.0'",
+        "auto_fixable": false
+      },
+      {
+        "id": "CFG002",
+        "name": "auth_mode_check",
+        "description": "Check authentication mode",
+        "severity": "high",
+        "check": "gateway.auth.mode == 'token'",
+        "auto_fixable": true
+      },
+      {
+        "id": "CFG003",
+        "name": "token_strength_check",
+        "description": "Check token strength (length >= 32)",
+        "severity": "medium",
+        "check": "len(gateway.auth.token) >= 32",
+        "auto_fixable": true
+      },
+      {
+        "id": "CFG004",
+        "name": "tailscale_check",
+        "description": "Check Tailscale VPN configuration",
+        "severity": "low",
+        "check": "gateway.tailscale.mode != 'off'",
+        "auto_fixable": false
+      },
+      {
+        "id": "CFG005",
+        "name": "plugin_allowlist_check",
+        "description": "Check plugin allowlist configuration",
+        "severity": "medium",
+        "check": "plugins.allow is not empty",
+        "auto_fixable": false
+      }
+    ],
+    "access": [
+      {
+        "id": "ACC001",
+        "name": "device_count_check",
+        "description": "Check number of paired devices",
+        "severity": "medium",
+        "check": "device_count <= 5",
+        "warning": "Too many paired devices may increase risk"
+      },
+      {
+        "id": "ACC002",
+        "name": "channel_allowlist_check",
+        "description": "Check channel user allowlist",
+        "severity": "medium",
+        "check": "channel.allowFrom is not empty",
+        "auto_fixable": false
+      },
+      {
+        "id": "ACC003",
+        "name": "exec_approval_check",
+        "description": "Check execution approval system",
+        "severity": "low",
+        "check": "exec-approvals.json exists",
+        "auto_fixable": false
+      }
+    ],
+    "secrets": [
+      {
+        "id": "SEC001",
+        "name": "openai_api_key",
+        "description": "OpenAI API key exposure",
+        "severity": "critical",
+        "pattern": "sk-[a-zA-Z0-9]{20,}",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC002",
+        "name": "feishu_app_secret",
+        "description": "Feishu app secret exposure",
+        "severity": "critical",
+        "pattern": "\"appSecret\"\\s*:\\s*\"([a-zA-Z0-9]{16,})\"",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC003",
+        "name": "feishu_app_id",
+        "description": "Feishu app ID exposure",
+        "severity": "medium",
+        "pattern": "\"appId\"\\s*:\\s*\"(cli_[a-zA-Z0-9]+)\"",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC004",
+        "name": "generic_api_key",
+        "description": "Generic API key exposure",
+        "severity": "high",
+        "pattern": "[aA]pi[Kk]ey[\"']?\\s*[:=]\\s*[\"']?([a-zA-Z0-9_\\-]{20,})",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC005",
+        "name": "token_exposure",
+        "description": "Token exposure in config",
+        "severity": "high",
+        "pattern": "\"token\"\\s*:\\s*\"([a-zA-Z0-9]{16,})\"",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC006",
+        "name": "password_exposure",
+        "description": "Password in configuration",
+        "severity": "high",
+        "pattern": "[pP]assword[\"']?\\s*[:=]\\s*[\"']?([^\\s\"']{8,})",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC007",
+        "name": "private_key",
+        "description": "Private key exposure",
+        "severity": "critical",
+        "pattern": "-----BEGIN\\s+[A-Z]+\\s+PRIVATE\\s+KEY-----",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC008",
+        "name": "aws_access_key",
+        "description": "AWS access key exposure",
+        "severity": "critical",
+        "pattern": "AKIA[0-9A-Z]{16}",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC009",
+        "name": "generic_secret",
+        "description": "Generic secret exposure",
+        "severity": "high",
+        "pattern": "\"secret\"\\s*:\\s*\"([a-zA-Z0-9_\\-]{16,})\"",
+        "auto_fixable": false
+      },
+      {
+        "id": "SEC010",
+        "name": "tavily_api_key",
+        "description": "Tavily API key exposure",
+        "severity": "high",
+        "pattern": "tvly-dev-[a-zA-Z0-9]+",
+        "auto_fixable": false
+      }
+    ]
+  },
+  "scoring": {
+    "weights": {
+      "critical": 25,
+      "high": 15,
+      "medium": 8,
+      "low": 3,
+      "info": 0
+    },
+    "base_score": 100,
+    "passing_score": 50,
+    "good_score": 75,
+    "excellent_score": 90
+  }
+}

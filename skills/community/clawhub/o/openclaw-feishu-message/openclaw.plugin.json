@@ -1,0 +1,23 @@
+{
+  "id": "openclaw-feishu-message",
+  "name": "Feishu Message",
+  "version": "0.1.0",
+  "description": "Feishu/Lark messaging plugin for OpenClaw with contact lookup, caching, direct messaging, and follow-up actions.",
+  "entry": "./index.js",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": { "type": "boolean", "default": true },
+      "defaultAccountId": { "type": "string" },
+      "allowSend": { "type": "boolean", "default": true },
+      "defaultReceiveIdType": {
+        "type": "string",
+        "enum": ["open_id", "user_id", "union_id", "email", "chat_id"],
+        "default": "open_id"
+      },
+      "debug": { "type": "boolean", "default": false }
+    }
+  }
+}

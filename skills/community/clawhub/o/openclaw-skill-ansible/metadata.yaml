@@ -1,0 +1,27 @@
+name: meshops-control-plane
+version: 0.1.6
+owner: mac-jane
+contact: @jared
+description: Secure mesh control-plane operations skill covering plugin bootstrap, invite/join auth flow, capability contract lifecycle, delegation/execution skill-pair deployment, and tightly gated maintenance execution.
+repository: https://github.com/likesjx/openclaw-skill-ansible
+license: MIT
+runtime: python3
+required_env:
+  - OPENCLAW_ALLOWED_CALLERS
+  - OPENCLAW_ALLOW_HIGH_RISK
+  - OPENCLAW_ALLOW_RUN_CMD
+  - OPENCLAW_ALLOW_DEPLOY_SKILL
+  - OPENCLAW_RUN_CMD_ALLOWLIST
+  - OPENCLAW_ARTIFACT_ROOT
+required_bins:
+  - openclaw
+  - jq
+  - curl
+  - tar
+  - sha256sum-or-shasum
+  - timeout
+  - git
+permissions:
+  network: conditional
+  billing: false
+risk_level: medium

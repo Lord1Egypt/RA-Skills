@@ -1,0 +1,9 @@
+{
+  "name": "nowpayments-integration",
+  "version": "1.0.0",
+  "description": "Accept crypto payments in your AI agent's store. NowPayments API integration with IPN callbacks and security hardening.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "keywords": ["payments", "crypto", "nowpayments", "store", "ecommerce"],
+  "repository": "https://github.com/TalonForgeHQ/talonforge"
+}

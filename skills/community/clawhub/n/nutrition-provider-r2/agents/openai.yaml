@@ -1,0 +1,3 @@
+interface:
+  display_name: "Nutrition Provider R2"
+  short_description: "crawl raw provider pages and upload each page to R2"

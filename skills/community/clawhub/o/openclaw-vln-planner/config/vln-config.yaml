@@ -1,0 +1,30 @@
+planner:
+  confidence_threshold: 0.55
+  fallback_on_parse_error: true
+  fallback_on_invalid_action: true
+  max_history_frames: 5
+
+model:
+  provider: openai_compatible
+  base_url: https://your-openai-compatible-gateway.example.com/v1
+  api_key: YOUR_API_KEY
+  model_id: YOUR_MODEL_ID
+  timeout_seconds: 60
+
+input:
+  source_type: single_image_sequence
+  current_frame_key: current_frame
+  history_frames_key: history_frames
+  instruction_key: user_instruction
+  robot_state_key: robot_state
+  safety_flags_key: safety_flags
+
+subscriptions:
+  current_frame_topic: /camera/current_frame
+  history_frames_topic: /camera/history_frames
+  robot_state_topic: /robot/state
+  safety_flags_topic: /robot/safety
+
+executor:
+  type: python_function
+  dry_run: true

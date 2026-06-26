@@ -1,0 +1,23 @@
+{
+  "id": "opentangl",
+  "name": "OpenTangl",
+  "description": "Autonomous multi-repo development engine. Proposes tasks, runs autopilot cycles, executes workflows, reviews wiring across repos, and manages the merge pipeline — all from chat.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "workdir": {
+        "type": "string",
+        "description": "Absolute path to your OpenTangl workspace root (where projects.yaml and tasks/ live). Defaults to the current working directory."
+      },
+      "bin": {
+        "type": "string",
+        "description": "Path to the opentangl binary or tsx entry point. Defaults to auto-detect (tries 'opentangl' in PATH, then 'npx tsx src/cli.ts' in workdir)."
+      },
+      "timeout": {
+        "type": "number",
+        "description": "Timeout in milliseconds for CLI commands. Defaults to 120000 (2 minutes). Autopilot runs may need more."
+      }
+    }
+  }
+}

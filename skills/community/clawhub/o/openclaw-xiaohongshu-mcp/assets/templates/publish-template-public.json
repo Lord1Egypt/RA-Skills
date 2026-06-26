@@ -1,0 +1,7 @@
+{
+  "title": "这里改标题",
+  "content": "这里改正文内容。确认无误后再公开发布。",
+  "images": ["/images/demo.png"],
+  "visibility": "公开可见",
+  "tags": ["OpenClaw", "AI工具"]
+}

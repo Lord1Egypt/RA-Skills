@@ -1,0 +1,44 @@
+{
+  "name": "ghost-cms-skill",
+  "version": "1.0.0",
+  "description": "Comprehensive Ghost CMS development skill for OpenClaw - theme development, CLI commands, API integration, and best practices",
+  "main": "SKILL.md",
+  "keywords": [
+    "ghost",
+    "ghost-cms",
+    "cms",
+    "theming",
+    "handlebars",
+    "blogging",
+    "web-development",
+    "publishing",
+    "content-api",
+    "admin-api"
+  ],
+  "categories": [
+    "web-development",
+    "cms",
+    "theming",
+    "publishing"
+  ],
+  "author": {
+    "name": "Themeix",
+    "email": "support@themeix.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/themeix/ghost-cms-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/themeix/ghost-cms-skill/issues"
+  },
+  "homepage": "https://clawhub.com/ghost-cms",
+  "openclaw": {
+    "version": "1.0.0",
+    "compatibility": ">=2026.1.0"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  }
+}

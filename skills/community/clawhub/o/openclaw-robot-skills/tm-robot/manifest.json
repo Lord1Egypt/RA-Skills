@@ -1,0 +1,73 @@
+{
+  "name": "tm-robot",
+  "version": "1.1.0",
+  "description": "OMRON TM 协作机器人控制技能 - 状态监控、运动控制、安全功能、相机支持",
+  "author": "RobotQu",
+  "license": "MIT",
+  "repository": "https://github.com/RobotQu/openclaw-robot-skills",
+  "homepage": "https://robotqu.com/tm-robot",
+  "keywords": ["robot", "tm", "omron", "collaborative", "cobot"],
+  "platforms": ["tm5", "tm12", "tm14", "tm5m", "tm12m"],
+  "tmflow_versions": ["1.80+"],
+  "dependencies": {
+    "techmanpy": ">=1.0.0",
+    "asyncio": "*"
+  },
+  "entry": "tm_robot.py",
+  "skills": {
+    "main": "TMRobot",
+    "camera": "TMCamera",
+    "parser": "SVRParser"
+  },
+  "features": {
+    "state_monitoring": true,
+    "motion_control": true,
+    "safety": true,
+    "camera": true,
+    "io_control": true,
+    "force_control": false
+  },
+  "motion_types": {
+    "ptp": true,
+    "line": true,
+    "circle": true,
+    "pvt": false
+  },
+  "examples": [
+    "examples/basic_examples.py",
+    "examples/complete_demo.py"
+  ],
+  "scripts": [
+    "scripts/test_connection.py",
+    "scripts/get_robot_state.py",
+    "scripts/move_all_joints_zero.py"
+  ],
+  "tests": [
+    "tests/test_svr_parser.py"
+  ],
+  "changelog": {
+    "1.1.0": {
+      "date": "2026-03-31",
+      "changes": [
+        "✅ 完整的状态监控（关节、位姿、力矩、错误码）",
+        "✅ 运动控制（关节 PTP、直线 LIN、圆弧 ARC）",
+        "✅ 安全功能（急停、报警复位）",
+        "✅ 相机支持（手眼相机位姿）",
+        "✅ IO 控制（DI 读取）",
+        "✅ 100% 类型注解",
+        "✅ 完整的日志系统",
+        "✅ 单元测试（9 个用例全部通过）",
+        "✅ 现场测试（17/17 通过）"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-30",
+      "changes": [
+        "初始版本",
+        "基础连接功能",
+        "状态读取",
+        "关节运动"
+      ]
+    }
+  }
+}

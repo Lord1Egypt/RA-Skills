@@ -1,35 +1,27 @@
----
-name: "Openclaw Echo Agent"
-description: "Processes text input using a tool to return deterministic output, serving as a reference example for OpenClaw agent development."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-echo-agent"
-sourceUrl: "https://clawhub.ai/skills/openclaw-echo-agent"
----
+# EchoAgent
 
-# Openclaw Echo Agent
+EchoAgent is a minimal OpenClaw-compatible skill.
 
-> Processes text input using a tool to return deterministic output, serving as a reference example for OpenClaw agent development.
+## What it does
+- Accepts text input
+- Uses a tool to process it
+- Returns deterministic output
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-echo-agent`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-echo-agent](https://clawhub.ai/skills/openclaw-echo-agent)
+## Use case
+This skill is intended as a reference example for building
+and publishing OpenClaw agents.
 
-## Overview
+## Entry point
+agent.py
 
+## Interoperability
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-echo-agent
-```
+This skill is designed to be used by other OpenClaw agents.
+
+### Input
+- text (string)
+
+### Output
+- result (string)
+
+This agent can be safely chained inside multi-agent workflows.

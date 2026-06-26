@@ -1,0 +1,26 @@
+# OpenClaw RPA — Python 依赖（「全量」= 本文件所列全部包装进同一 venv / 同一 python3）
+# OpenClaw RPA — Python dependencies (full stack = install everything listed here into one venv / one python3)
+#
+# | 包名           | 用途 |
+# |----------------|------|
+# | playwright     | 有界面录制（Chromium）、生成脚本里的浏览器自动化 |
+# | httpx          | record-step「api_call」及生成脚本中的异步 HTTP |
+# | openpyxl       | record-step「excel_write」读写 .xlsx（无需安装 Microsoft Excel） |
+# | python-docx    | record-step「word_write」读写 .docx（import 名为 docx；无需安装 Word） |
+#
+# | Package        | Purpose |
+# |----------------|---------|
+# | playwright     | GUI recording (Chromium), browser automation in generated scripts |
+# | httpx          | record-step “api_call” and async HTTP in generated scripts |
+# | openpyxl       | record-step “excel_write” read/write .xlsx (no Microsoft Excel required) |
+# | python-docx    | record-step “word_write” read/write .docx (import name: docx; no Word required) |
+#
+# Chromium 浏览器二进制由 `playwright install chromium` 安装，不在 PyPI 上。
+# Chromium binaries are installed via `playwright install chromium`, not from PyPI.
+# 一键全量：./scripts/install.sh（venv + pip -r 本文件 + playwright install chromium）
+# One-shot full install: ./scripts/install.sh (venv + pip -r this file + playwright install chromium)
+#
+playwright>=1.40.0,<2
+httpx>=0.27.0,<1
+openpyxl>=3.1.0,<4
+python-docx>=1.1.0,<2

@@ -1,0 +1,120 @@
+{
+  "name": "gateway-manager",
+  "displayName": {
+    "en": "OpenClaw Gateway Manager",
+    "zh": "OpenClaw 网关管理器"
+  },
+  "version": "1.0.2",
+  "description": {
+    "en": "🦞 Cross-platform unified OpenClaw gateway manager - supports macOS/Linux/Windows, auto-detect all distributions (Official/JVS/QClaw/Cloud)",
+    "zh": "🦞 跨平台统一 OpenClaw 网关管理器 - 支持 macOS/Linux/Windows，自动检测所有发行版"
+  },
+  "author": "seastaradmin",
+  "license": "MIT",
+  "repository": "https://github.com/seastaradmin/openclaw-gateway-manager",
+  "os": ["darwin", "linux", "win32"],
+  "platform": {
+    "required": ["darwin", "linux", "win32"],
+    "autoDetect": true
+  },
+  "dependencies": {
+    "required": ["jq", "node", "openclaw"],
+    "optional": ["systemd"],
+    "systemProvided": ["lsof", "netstat"],
+    "platformSpecific": {
+      "darwin": ["plutil", "launchctl"],
+      "linux": ["systemctl"],
+      "win32": ["powershell"]
+    }
+  },
+  "tags": {
+    "en": ["openclaw", "gateway", "port-manager", "cross-platform", "macos", "linux", "windows", "multi-cloud", "qclaw", "jvs-claw"],
+    "zh": ["openclaw", "网关", "端口管理", "跨平台", "macos", "linux", "windows", "多云", "qclaw", "jvs-claw"]
+  },
+  "category": "System Tools",
+  "featured": true,
+  "philosophy": {
+    "en": "Users deploy OpenClaw across multiple platforms and clouds. This tool provides unified management for all distributions through automatic configuration path detection and cross-platform service management.",
+    "zh": "用户在多平台、多云端部署 OpenClaw。本工具通过自动检测配置路径和跨平台服务管理，统一管理所有发行版。"
+  },
+  "supports": {
+    "en": "Supports macOS (LaunchAgent), Linux (systemd), Windows (manual). Auto-detects OpenClaw, JVS Claw, QClaw, Cloud Claw, and custom instances.",
+    "zh": "支持 macOS (LaunchAgent)、Linux (systemd)、Windows (手动)。自动检测 OpenClaw、JVS Claw、QClaw、Cloud Claw 和自定义实例。"
+  },
+  "configPaths": [
+    "~/.openclaw/openclaw.json",
+    "~/.jvs/.openclaw/openclaw.json",
+    "~/.qclaw/openclaw.json",
+    "~/.claw-cloud/openclaw.json",
+    "~/.openclaw-cloud/openclaw.json",
+    "~/.config/openclaw/openclaw.json",
+    "~/.openclaw-<name>/openclaw.json",
+    "%USERPROFILE%/.openclaw/openclaw.json",
+    "%APPDATA%/openclaw/openclaw.json"
+  ],
+  "security": {
+    "reviewed": true,
+    "response": "SECURITY_RESPONSE.md",
+    "measures": [
+      "Triple confirmation for deletion",
+      "Automatic backup before deletion",
+      "User-level services only (no sudo)",
+      "Transparent configuration files",
+      "Path security (uses $HOME)",
+      "Dependency checker included",
+      "Cross-platform support"
+    ],
+    "warnings": [
+      {
+        "type": "destructive_operation",
+        "message": {
+          "en": "Delete operation uses rm -rf with triple confirmation and automatic backup. Use with caution.",
+          "zh": "删除操作使用 rm -rf，有三重确认和自动备份。请谨慎使用。"
+        }
+      },
+      {
+        "type": "persistent_execution",
+        "message": {
+          "en": "Creates user-level services (LaunchAgent/systemd) for auto-start. Can be uninstalled anytime.",
+          "zh": "创建用户级服务（LaunchAgent/systemd）实现自启动。可以随时卸载。"
+        }
+      }
+    ]
+  },
+  "installation": {
+    "en": "git clone https://github.com/seastaradmin/openclaw-gateway-manager.git ~/openclaw-gateway-manager && cd ~/openclaw-gateway-manager",
+    "zh": "git clone https://github.com/seastaradmin/openclaw-gateway-manager.git ~/openclaw-gateway-manager && cd ~/openclaw-gateway-manager"
+  },
+  "usage": {
+    "en": "Run gateway-status.sh to auto-detect OS, scan all OpenClaw instances across platforms and clouds",
+    "zh": "运行 gateway-status.sh 自动检测操作系统，扫描跨平台、跨云端的所有 OpenClaw 实例"
+  },
+  "highlights": {
+    "en": [
+      "🌍 Cross-platform support (macOS/Linux/Windows)",
+      "🔍 Auto-detect all OpenClaw distributions",
+      "☁️ Multi-cloud support (Local/JVS/QClaw/Cloud)",
+      "🎯 Unified management interface",
+      "🔒 Triple confirmation + automatic backup",
+      "🛡️ User-level services (no sudo required)",
+      "📊 Statistics and port scanning",
+      "✅ Dependency checker included"
+    ],
+    "zh": [
+      "🌍 跨平台支持（macOS/Linux/Windows）",
+      "🔍 自动检测所有 OpenClaw 发行版",
+      "☁️ 多云支持（本地/JVS/QClaw/云端）",
+      "🎯 统一管理接口",
+      "🔒 三重确认 + 自动备份",
+      "🛡️ 用户级服务（不需要 sudo）",
+      "📊 统计信息和端口扫描",
+      "✅ 包含依赖检查"
+    ]
+  },
+  "scripts": {
+    "preInstall": null,
+    "postInstall": "scripts/check-dependencies.sh",
+    "preUninstall": null,
+    "postUninstall": null
+  }
+}

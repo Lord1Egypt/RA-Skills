@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriCoach - {{ user }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-luxury.css') }}?v=1">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>NutriCoach</h1>
+                <span class="user-badge">{{ user }}</span>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">概览</button>
+            <button class="tab" onclick="showTab('pantry')">食材</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <!-- 体重趋势 - 单独占一整行 -->
+            <div class="card weight-trend-card">
+                <h2>体重趋势 (最近30天)</h2>
+                <div class="chart-container-large"><canvas id="weightChart"></canvas></div>
+            </div>
+            
+            <!-- 营养趋势 - 单独占一整行 -->
+            <div class="card nutrition-trend-card">
+                <h2>营养趋势 (最近7天)</h2>
+                <div class="chart-container-large"><canvas id="nutritionChart"></canvas></div>
+            </div>
+            
+            <div class="grid two-col">
+                <div class="card">
+                    <h2>今日概览</h2>
+                    <div id="daily-summary"><div class="loading">加载中...</div></div>
+                </div>
+                <div class="card">
+                    <h2>身体数据</h2>
+                    <div id="profile"><div class="loading">加载中...</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantry Tab -->
+        <div id="pantry" class="tab-content">
+            <button class="add-btn" onclick="openAddModal()">添加食材</button>
+            <div class="pantry-filters">
+                <button class="filter-tab active" onclick="showPantryView('location')">按位置</button>
+                <button class="filter-tab" onclick="showPantryView('category')">按分类</button>
+            </div>
+            <div id="pantry-content"><div class="loading">加载中...</div></div>
+            <div id="success-msg" class="success-msg"></div>
+        </div>
+
+    </div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h3>添加食材</h3>
+            <input type="text" id="addFoodName" placeholder="食材名称">
+            <input type="number" id="addQuantity" placeholder="重量 (g)" min="1">
+            <input type="date" id="addExpiry">
+            <select id="addLocation">
+                <option value="auto">自动检测</option>
+                <option value="冰箱">冰箱</option>
+                <option value="冷冻">冷冻</option>
+                <option value="干货区">干货区</option>
+                <option value="台面">台面</option>
+            </select>
+            <div class="modal-buttons">
+                <button class="confirm" onclick="confirmAdd()">添加</button>
+                <button class="cancel" onclick="closeModal('addModal')">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑食材</h3>
+            </div>
+            <p id="editModalItemName"></p>
+            
+            <div class="category-location-row">
+                <div class="form-field">
+                    <label>食材分类</label>
+                    <select id="editCategory">
+                        <option value="protein">🥩 蛋白质</option>
+                        <option value="vegetable">🥬 蔬菜</option>
+                        <option value="carb">🍚 碳水</option>
+                        <option value="fruit">🍎 水果</option>
+                        <option value="dairy">🥛 乳制品</option>
+                        <option value="fat">🥑 脂肪</option>
+                        <option value="other">📦 其他</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>储存位置</label>
+                    <select id="editLocation">
+                        <option value="冰箱">❄️ 冰箱</option>
+                        <option value="冷冻">🧊 冷冻</option>
+                        <option value="干货区">📦 干货区</option>
+                        <option value="台面">🌡️ 台面</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="use-section">
+                <div class="use-inputs">
+                    <input type="number" id="editUseAmount" placeholder="使用重量 (g)" min="1">
+                    <button class="confirm" onclick="confirmUseFromEdit()">使用</button>
+                </div>
+            </div>
+
+            <div class="date-shelf-row">
+                <div class="form-field">
+                    <label>生产日期</label>
+                    <input type="date" id="editPurchase">
+                </div>
+                <div class="form-field">
+                    <label>保质期（天）</label>
+                    <input type="number" id="editShelfLife" placeholder="天数" min="1">
+                </div>
+            </div>
+            <div class="expiry-preview">
+                过期日期: <span id="editCalculatedExpiry">-</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="confirm" onclick="confirmEdit()">保存</button>
+                <button class="cancel" onclick="closeModal('editModal')">取消</button>
+            </div>
+            
+            <div class="delete-section">
+                <button class="delete-btn" onclick="confirmDelete()">🗑️ 删除食材</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

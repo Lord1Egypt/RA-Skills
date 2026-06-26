@@ -1,0 +1,4 @@
+version: 1
+display_name: GitHub Repo Commander
+short_description: Audit, clean, and upgrade repositories before you publish, pitch, or submit them.
+default_prompt: Use this skill when a repository needs privacy checks, README polish, metadata cleanup, model-agnostic refactoring, or curated-list submission prep.

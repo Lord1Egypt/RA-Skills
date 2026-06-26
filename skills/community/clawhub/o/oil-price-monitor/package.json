@@ -1,0 +1,9 @@
+{
+  "name": "oil-price-monitor",
+  "version": "1.0.0",
+  "description": "监测国内成品油价格调整窗口，在调价前提醒用户提前加油",
+  "author": "jeffrey",
+  "license": "MIT",
+  "keywords": ["油价", "成品油", "监控", "提醒", "国内油价"],
+  "main": "SKILL.md"
+}

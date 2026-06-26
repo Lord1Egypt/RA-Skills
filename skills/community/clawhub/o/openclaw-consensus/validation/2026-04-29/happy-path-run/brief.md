@@ -1,0 +1,5 @@
+# Brief
+
+- label: validation-happy-path
+
+Compare the tradeoffs of postponing a database migration by one quarter versus doing it now for a small SaaS team with limited engineering capacity. Focus on delivery risk, tech debt, operational risk, and what narrow questions still need human validation.

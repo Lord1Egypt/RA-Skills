@@ -1,0 +1,9 @@
+[
+  {
+    "account_id": "main",
+    "platform": "feishu",
+    "open_id": "请替换为你的飞书open_id",
+    "user_id": "owner_001",
+    "bound_at": "2026-01-01T00:00:00Z"
+  }
+]

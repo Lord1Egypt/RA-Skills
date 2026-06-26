@@ -1,35 +1,70 @@
----
-name: "Openclaw Onboarding"
-description: "Guide new users to quickly learn and use OpenClaw features, including setup, skill discovery, memory, self-learning, and group chat summary."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-onboarding"
-sourceUrl: "https://clawhub.ai/skills/openclaw-onboarding"
----
+# OpenClaw 快速上手技能
 
-# Openclaw Onboarding
+引导新用户快速了解OpenClaw龙虾的能力，学会基本用法，5-10分钟即可上手。
 
-> Guide new users to quickly learn and use OpenClaw features, including setup, skill discovery, memory, self-learning, and group chat summary.
+## 功能特点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-onboarding`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-onboarding](https://clawhub.ai/skills/openclaw-onboarding)
+- ✅ **直白易懂**：没有隐喻，直接告诉你能做什么
+- ✅ **即学即用**：每一步都是立即可用的能力
+- ✅ **自主扩展**：学会自己找技能、装技能
+- ✅ **记忆功能**：说"记住"就自动永久保存
+- ✅ **群聊总结**：不需要拉进群，直接问就行
 
-## Overview
+## 使用方法
 
+### 启动上手引导
 
-## Installation
-To install this skill, run the following command in your terminal:
+```
+开始上手
+```
+
+或
+
+```
+启动培训班
+```
+
+### 引导流程
+
+1. **基础配置**（2分钟）- 设置姓名、工作、偏好
+2. **发现能力**（2分钟）- 问"你都能做什么"查看技能
+3. **学会记忆**（1分钟）- 说"记住XXX"体验永久记忆
+4. **自己学技能**（2分钟）- 说"自己学习找技能"安装find-skills
+5. **群聊能力**（2分钟）- 问"总结XX群"体验群聊分析
+
+## 核心指令
+
+| 指令 | 功能 |
+|------|------|
+| "你都能做什么" | 查看当前所有能力 |
+| "记住XXX" | 永久记住重要信息 |
+| "自己学习找技能" | 安装技能查找器 |
+| "帮我找XXX技能" | 搜索并安装新技能 |
+| "总结一下XX群昨天说了什么" | 群聊总结 |
+
+## 文件说明
+
+```
+openclaw-onboarding/
+├── SKILL.md                          # 技能入口
+├── README.md                         # 安装教程
+└── references/
+    └── training/
+        └── quickstart.md             # 上手培训班内容
+```
+
+## 触发关键词
+
+- "开始上手"
+- "启动培训班"
+- "新手教程"
+- "怎么使用"
+- "不会用"
+
+## 安装方法
+
+本地安装：
+
 ```bash
-hermes skills install clawhub/openclaw-onboarding
+clawhub install ./openclaw-onboarding --local
 ```

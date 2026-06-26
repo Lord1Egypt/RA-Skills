@@ -1,0 +1,77 @@
+{
+  "name": "智能数据采集器",
+  "slug": "data-harvester",
+  "description": "自动化数据采集、处理和导出工具，支持多种数据源和导出格式",
+  "version": "1.0.0",
+  "author": "dxg852621787",
+  "homepage": "https://gitee.com/du-xuegong/openclaw-wealth-guide",
+  "license": "MIT",
+  "category": "data-collection",
+  "subcategory": "automation",
+  "tags": ["data", "collection", "analysis", "automation", "web-scraping", "openclaw", "china"],
+  "min_claw_version": "0.8.0",
+  "python_version": ">=3.12",
+  "dependencies": [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "pandas>=2.0.0",
+    "APScheduler>=3.10.0",
+    "pydantic>=2.0.0",
+    "cryptography>=42.0.0",
+    "SQLAlchemy>=2.0.0"
+  ],
+  "entrypoint": "src.data_harvester.openclaw_integration.skill_wrapper:OpenClawSkillWrapper",
+  "config_schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "data_sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["web", "api", "database", "file"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "auth": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "processing_rules": {
+        "type": "object"
+      },
+      "export_format": {
+        "type": "string",
+        "enum": ["json", "csv", "excel", "sqlite"]
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/du-xuegong/openclaw-wealth-guide.git"
+  },
+  "documentation": "https://gitee.com/du-xuegong/openclaw-wealth-guide/blob/main/README.md",
+  "bugs": {
+    "url": "https://gitee.com/du-xuegong/openclaw-wealth-guide/issues"
+  },
+  "keywords": ["data", "harvester", "openclaw", "automation", "china", "web-scraping"],
+  "pricing": {
+    "basic": 299,
+    "pro": 899,
+    "enterprise": 2999
+  },
+  "features": [
+    "多数据源适配器",
+    "智能数据处理管道",
+    "多种导出格式",
+    "定时任务调度",
+    "OpenClaw无缝集成",
+    "中文界面和文档"
+  ]
+}

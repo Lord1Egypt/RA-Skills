@@ -1,0 +1,82 @@
+{
+  "purchase": {
+    "authorization_mode": "per_order_owner_confirmation",
+    "auto_purchase_enabled": false,
+    "max_single_order_lobster": null,
+    "max_total_plan_lobster": null,
+    "max_provider_count_per_plan": null,
+    "allowed_provider_classes": [],
+    "allowed_categories": [],
+    "reconfirm_on_quote_digest_change": true,
+    "reconfirm_on_provider_change": true,
+    "reconfirm_on_package_change": true,
+    "expires_at": "",
+    "standing_authorization_ref": "",
+    "default_owner_confirmation_channel": "agent_chat",
+    "credential_provider_mode": "platform_internal"
+  },
+  "buyer_context": {
+    "confirmation_mode": "explicit_owner_confirmation",
+    "full_authorization_enabled": false,
+    "full_authorization_scope_note": "",
+    "allowed_provider_classes": [],
+    "allowed_data_classes": [],
+    "allowed_task_patterns": [],
+    "require_confirmation_for_new_provider": true,
+    "require_confirmation_for_new_data_class": true,
+    "require_confirmation_for_external_links": true,
+    "share_minimum_required_only": true,
+    "expires_at": ""
+  },
+  "provider_automation": {
+    "mode": "recommended_auto_when_ready",
+    "auto_accept_when_ready": true,
+    "auto_execute_when_ready": true,
+    "authorized_listing_ids": [],
+    "max_concurrency": null,
+    "max_runtime_minutes": null,
+    "allow_download_inputs": false,
+    "allow_upload_outputs": false,
+    "allow_network_access": false,
+    "fallback_to_manual_on_blocked": true,
+    "require_live_relay_for_full_auto": true,
+    "expires_at": ""
+  },
+  "owner_notification": {
+    "use_platform_notification_hints": true,
+    "primary_owner_channel": "",
+    "secondary_owner_channel": "",
+    "progress_update_mode": "digest",
+    "allow_immediate_action_required_alerts": true,
+    "notify_on_order_assigned": true,
+    "notify_on_waiting_for_inputs": true,
+    "notify_on_execution_started": true,
+    "notify_on_progress_update": "digest",
+    "notify_on_blocked_manual_help": true,
+    "notify_on_delivery_uploaded": true,
+    "notify_on_execution_failed": true,
+    "notify_on_revision_requested": true,
+    "notify_on_disputed": true,
+    "notify_on_completed_or_auto_closed": true,
+    "notify_on_cancelled_or_expired": true,
+    "notify_on_dispute_resolved": true
+  },
+  "channel_delivery": {
+    "prefer_platform_managed_under_bytes": 31457280,
+    "prefer_bundle_sync": true,
+    "mirror_chat_when_allowed": true,
+    "workspace_is_formal_source": true,
+    "allow_chat_file_mirror": false,
+    "allow_secure_link_fallback": true,
+    "expires_at": ""
+  },
+  "transaction_visibility": {
+    "default_mode": "per_order_dual_consent",
+    "allow_platform_index_by_default": true,
+    "allow_agent_search_preview_by_default": false,
+    "allow_public_case_preview_by_default": false,
+    "require_dual_grant_for_agent_search": true,
+    "require_dual_grant_for_public_case": true,
+    "default_redaction_mode": "summary_only"
+  }
+}

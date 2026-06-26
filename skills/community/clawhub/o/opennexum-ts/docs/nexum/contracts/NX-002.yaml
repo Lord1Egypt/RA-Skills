@@ -1,0 +1,54 @@
+id: NX-002
+name: "@nexum/spawn — ACP dispatch 层"
+type: coding
+created_at: "2026-03-29T04:00:00Z"
+
+scope:
+  files:
+    - packages/spawn/package.json
+    - packages/spawn/tsconfig.json
+    - packages/spawn/src/types.ts
+    - packages/spawn/src/spawn.ts
+    - packages/spawn/src/status.ts
+    - packages/spawn/src/index.ts
+    - packages/spawn/src/__tests__/spawn.test.ts
+  boundaries:
+    - packages/core/
+    - packages/prompts/
+    - packages/notify/
+    - packages/cli/
+  conflicts_with: []
+
+deliverables:
+  - "packages/spawn/src/types.ts：SpawnOptions（taskId, agentId, promptFile, cwd, mode, label）、SessionRecord（taskId, sessionKey, agentId, startedAt, status）类型定义"
+  - "packages/spawn/src/spawn.ts：spawnAcpSession(options: SpawnOptions): Promise<SessionRecord>，通过 execa 调用 openclaw CLI（openclaw sessions spawn --runtime acp --agent <agentId> --mode run --cwd <cwd> --label <label>），解析返回的 sessionKey，写入 active-tasks.json 的 acp_session_key 字段"
+  - "packages/spawn/src/spawn.ts：buildPromptArgs(promptFilePath) 将 prompt 文件路径转换为 openclaw 命令参数"
+  - "packages/spawn/src/status.ts：getSessionStatus(sessionKey): Promise<'running'|'done'|'failed'|'unknown'>，通过 execa 调用 openclaw sessions list --json，解析并返回指定 session 的状态"
+  - "packages/spawn/src/status.ts：pollUntilDone(sessionKey, opts?: {timeoutMs?, intervalMs?}): Promise<void>，轮询直到 session done 或超时"
+  - "spawn.test.ts：mock execa，测试 spawnAcpSession 正确构造 openclaw 命令参数；测试 getSessionStatus 解析 done/running/unknown 状态"
+  - "pnpm build 和 pnpm test 均通过"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "spawnAcpSession 调用 openclaw 时命令参数正确：--runtime acp、--agent、--mode、--label 均存在"
+      method: "unit: mock execa，验证调用参数"
+      threshold: pass
+    - id: C2
+      desc: "getSessionStatus 正确解析 openclaw sessions list --json 输出中的 status 字段"
+      method: "unit: mock execa 返回不同状态，验证解析结果"
+      threshold: pass
+    - id: C3
+      desc: "pollUntilDone 超时时抛出 TimeoutError，不会无限等待"
+      method: "unit: mock status 始终 running，验证超时抛出"
+      threshold: pass
+    - id: C4
+      desc: "pnpm build 无报错，pnpm test 全部通过"
+      method: "unit: 运行 pnpm build && pnpm test"
+      threshold: pass
+
+generator: codex-1
+evaluator: eval
+max_iterations: 3
+depends_on: []

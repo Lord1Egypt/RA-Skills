@@ -1,0 +1,93 @@
+{
+  "1": {
+    "inputs": {
+      "model_name": "ZImageTurbo/realistic/intorealism_zitV10.safetensors",
+      "weight_dtype": "default",
+      "compute_dtype": "default",
+      "patch_cublaslinear": true,
+      "sage_attention": "auto",
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "DiffusionModelLoaderKJ",
+    "_meta": {"title": "Diffusion Model Loader KJ"}
+  },
+  "2": {
+    "inputs": {
+      "clip_name": "mlabonne_Qwen3-4B-abliterated-Q4_K_M.gguf",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "ClipLoaderGGUF",
+    "_meta": {"title": "GGUF CLIP Loader"}
+  },
+  "3": {
+    "inputs": {
+      "vae_name": "ae.sft"
+    },
+    "class_type": "VAELoader",
+    "_meta": {"title": "Load VAE"}
+  },
+  "4": {
+    "inputs": {
+      "width": 720,
+      "height": 1248,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {"title": "EmptySD3LatentImage"}
+  },
+  "6": {
+    "inputs": {
+      "text": "test prompt",
+      "clip": ["2", 0]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {"title": "CLIP Text Encode (Prompt)"}
+  },
+  "7": {
+    "inputs": {
+      "seed": -1,
+      "steps": 9,
+      "cfg": 1,
+      "sampler_name": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": ["10", 0],
+      "positive": ["6", 0],
+      "negative": ["11", 0],
+      "latent_image": ["4", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": {"title": "KSampler"}
+  },
+  "8": {
+    "inputs": {
+      "samples": ["7", 0],
+      "vae": ["3", 0]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {"title": "VAE Decode"}
+  },
+  "9": {
+    "inputs": {
+      "images": ["8", 0]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {"title": "Preview Image"}
+  },
+  "10": {
+    "inputs": {
+      "shift": 3,
+      "model": ["1", 0]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {"title": "ModelSamplingAuraFlow"}
+  },
+  "11": {
+    "inputs": {
+      "conditioning": ["6", 0]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {"title": "ConditioningZeroOut"}
+  }
+}

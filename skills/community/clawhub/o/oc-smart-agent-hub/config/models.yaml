@@ -1,0 +1,247 @@
+# 用户自定义模型提供商配置
+# 创建日期：2026-03-04
+# 版本：v3.0 - 完全开放架构
+# 
+# 说明：
+# 1. 用户可以添加任意厂商，不限制预定义
+# 2. 支持本地部署的大模型（Ollama、LM Studio、vLLM 等）
+# 3. 所有配置通过 YAML 完成，无需修改代码
+# 4. ⚠️ 重要：请将此文件添加到 .gitignore，不要提交到 Git！
+
+providers:
+  # ========== 示例：阿里云百炼 ==========
+  # 使用方法：取消注释并填写你的 API Key
+  # bailian:
+  #   name: 阿里云百炼
+  #   type: openai-compatible
+  #   enabled: true
+  #   priority: 1
+  #   base_url: https://coding.dashscope.aliyuncs.com/v1
+  #   api_key_env: BAILIAN_API_KEY
+  #   api_key: sk-sp-your-api-key-here  # ⚠️ 替换为你的 API Key
+  #   timeout: 30
+  #   retry_count: 3
+  #   models:
+  #     - id: bailian/qwen3.5-plus
+  #       name: 通义千问 3.5 Plus
+  #       context_window: 1000000
+  #       max_tokens: 65536
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [text, image]
+  #
+  #     - id: bailian/qwen3-max-2026-01-23
+  #       name: 通义千问 Max
+  #       context_window: 262144
+  #       max_tokens: 65536
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [text]
+  #
+  #     - id: bailian/qwen3-coder-plus
+  #       name: 通义千问代码 Plus
+  #       context_window: 1000000
+  #       max_tokens: 65536
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [code]
+  #
+  #     - id: bailian/glm-5
+  #       name: 智谱 GLM-5
+  #       context_window: 202752
+  #       max_tokens: 16384
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [text, agent]
+  #
+  #     - id: bailian/kimi-k2.5
+  #       name: 月之暗面 Kimi K2.5
+  #       context_window: 262144
+  #       max_tokens: 32768
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [text, image]
+
+  # ========== 示例：OpenAI ==========
+  # 使用方法：取消注释并填写你的 API Key
+  # openai:
+  #   name: OpenAI
+  #   type: openai-compatible
+  #   enabled: true
+  #   priority: 2
+  #   base_url: https://api.openai.com/v1
+  #   api_key_env: OPENAI_API_KEY
+  #   api_key: sk-your-api-key-here  # ⚠️ 替换为你的 OpenAI API Key
+  #   timeout: 30
+  #   models:
+  #     - id: openai/gpt-4
+  #       name: GPT-4
+  #       context_window: 128000
+  #       max_tokens: 32768
+  #       cost_input: 0.03
+  #       cost_output: 0.06
+  #       capabilities: [text, image, code]
+  #
+  #     - id: openai/gpt-4-turbo
+  #       name: GPT-4 Turbo
+  #       context_window: 128000
+  #       max_tokens: 32768
+  #       cost_input: 0.01
+  #       cost_output: 0.03
+  #       capabilities: [text, image, code]
+  #
+  #     - id: openai/gpt-3.5-turbo
+  #       name: GPT-3.5 Turbo
+  #       context_window: 16385
+  #       max_tokens: 4096
+  #       cost_input: 0.0005
+  #       cost_output: 0.0015
+  #       capabilities: [text]
+
+  # ========== 示例：本地 Ollama ==========
+  # 使用方法：取消注释，确保 Ollama 正在运行
+  # ollama:
+  #   name: Ollama (本地)
+  #   type: openai-compatible
+  #   enabled: true
+  #   priority: 10
+  #   base_url: http://localhost:11434/v1
+  #   api_key: ""  # Ollama 不需要 API Key
+  #   timeout: 120
+  #   models:
+  #     - id: ollama/llama3
+  #       name: Llama 3 (本地)
+  #       context_window: 8192
+  #       max_tokens: 4096
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [text]
+  #       local: true
+  #
+  #     - id: ollama/codellama
+  #       name: CodeLlama (本地)
+  #       context_window: 16384
+  #       max_tokens: 4096
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       capabilities: [code]
+  #       local: true
+
+  # ========== 示例：LM Studio ==========
+  # 使用方法：取消注释，确保 LM Studio 正在运行
+  # lmstudio:
+  #   name: LM Studio (本地)
+  #   type: openai-compatible
+  #   enabled: true
+  #   priority: 10
+  #   base_url: http://localhost:1234/v1
+  #   api_key: ""
+  #   timeout: 120
+  #   models:
+  #     - id: lmstudio/local-model
+  #       name: 本地模型
+  #       context_window: 4096
+  #       max_tokens: 2048
+  #       cost_input: 0.0
+  #       cost_output: 0.0
+  #       local: true
+
+  # ========== 示例：Anthropic ==========
+  # anthropic:
+  #   name: Anthropic
+  #   type: anthropic
+  #   enabled: true
+  #   priority: 2
+  #   base_url: https://api.anthropic.com
+  #   api_key_env: ANTHROPIC_API_KEY
+  #   api_key: your-api-key-here  # ⚠️ 替换为你的 Anthropic API Key
+  #   models:
+  #     - id: anthropic/claude-sonnet-4
+  #       name: Claude Sonnet 4
+  #       context_window: 200000
+  #       max_tokens: 64000
+  #       cost_input: 0.03
+  #       cost_output: 0.15
+
+  # ========== 示例：智谱 AI ==========
+  # zhipu:
+  #   name: 智谱 AI
+  #   type: zhipu
+  #   enabled: true
+  #   priority: 3
+  #   base_url: https://open.bigmodel.cn/api/paas/v4
+  #   api_key_env: ZHIPU_API_KEY
+  #   api_key: your-api-key-here  # ⚠️ 替换为你的智谱 AI API Key
+  #   models:
+  #     - id: zhipu/glm-4
+  #       name: GLM-4
+  #       context_window: 128000
+  #       max_tokens: 32768
+  #       cost_input: 0.0001
+  #       cost_output: 0.0001
+
+# ========== 本地模型自动发现 ==========
+local_discovery:
+  enabled: true
+  scan_interval: 300
+  endpoints:
+    - name: Ollama
+      url: http://localhost:11434/api/tags
+      type: ollama
+    - name: LM Studio
+      url: http://localhost:1234/v1/models
+      type: openai-compatible
+    - name: vLLM
+      url: http://localhost:8000/v1/models
+      type: openai-compatible
+
+# ========== 智能体模型配置（示例） ==========
+# agents:
+#   Agent_Coordinator:  # ⚠️ 请替换为您的智能体名称
+#     models:
+#       primary: bailian/glm-5
+#       fallback: bailian/qwen3.5-plus
+#     preferences:
+#       cost_optimize: false
+#       latency_optimize: true
+#
+#   Agent_Frontend_Dev:  # ⚠️ 请替换为您的智能体名称
+#     models:
+#       primary: bailian/qwen3-coder-plus
+#       fallback: ollama/codellama
+#     preferences:
+#       code_quality: true
+
+# ========== 全局路由策略 ==========
+routing:
+  default_provider: bailian
+  fallback_enabled: true
+  auto_failover: true
+  failover_timeout: 10
+  failover_max_retries: 3
+  
+  cost_optimize: false
+  latency_optimize: false
+  quality_optimize: false
+  local_first: false
+  
+  task_routing:
+    coding: bailian/qwen3-coder-plus
+    reasoning: bailian/qwen3-max-2026-01-23
+    long_text: bailian/kimi-k2.5
+    agent: bailian/glm-5
+    daily: bailian/qwen3.5-plus
+
+# ========== 成本统计 ==========
+cost_tracking:
+  enabled: true
+  currency: CNY
+  budget_monthly: 100.0
+  alert_threshold: 0.8
+
+# ========== 性能监控 ==========
+performance_monitoring:
+  enabled: true
+  track_latency: true
+  track_success_rate: true
+  track_token_usage: true

@@ -1,0 +1,3 @@
+interface:
+  display_name: "OmniMemory Full Onboarding"
+  short_description: "Register, get API key, install, configure, and verify OmniMemory for OpenClaw"

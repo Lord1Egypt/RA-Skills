@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* <div className="terminal">
+bash
+</div>
+
+<div className="data-panel">
+12121
+</div>   */
+
+/* ===== 暗黑科技风格 ===== */
+/* 为暗黑科技风格自定义波浪线颜色 */
+.card-darktech .wavy-underline {
+  text-decoration-color: #00e6ff;
+}
+/* 封面样式 */
+.card-cover-darktech {
+  background: #0f1218;
+  box-shadow:
+    0 0 30px rgba(0, 230, 255, 0.15),
+    0 0 10px rgba(0, 230, 255, 0.1) inset;
+  position: relative;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+/* 背景网格效果 */
+.card-cover-darktech:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 230, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 230, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+}
+
+/* 顶部装饰线 */
+.card-cover-darktech:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+  animation: scanline 3s linear infinite;
+  z-index: 30;
+}
+
+.card-cover-darktech .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 2;
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-darktech .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(15, 18, 24, 0.95),
+    rgba(15, 18, 24, 0.8) 50%,
+    rgba(15, 18, 24, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  z-index: 10;
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-darktech .cover-content {
+  background: rgba(15, 18, 24, 0.9);
+  border-top: 1px solid rgba(0, 230, 255, 0.2);
+  padding: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 10;
+}
+
+.card-cover-separate.card-cover-darktech .cover-content:before {
+  content: "// SYSTEM DATA";
+  position: absolute;
+  top: calc(var(--spacing) * 2.5);
+  right: calc(var(--spacing) * 5);
+  font-size: calc(var(--spacing) * 2.5);
+  color: #00e6ff;
+
+  opacity: 0.7;
+}
+
+.card-cover-darktech .cover-title {
+  color: #00e6ff;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+}
+
+.card-cover-darktech .cover-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--spacing) * 0.25);
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+}
+
+.card-cover-darktech .cover-description {
+  color: #a4b1cd;
+
+  font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-cover-darktech .cover-tag {
+  background: rgba(0, 230, 255, 0.1);
+  color: #00e6ff;
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+
+  font-size: calc(var(--spacing) * 3);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 230, 255, 0.2);
+}
+
+.card-cover-darktech .cover-tag:hover {
+  background: rgba(0, 230, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 230, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.card-cover-darktech .cover-date {
+  color: #7fdbff;
+
+  font-size: calc(var(--spacing) * 3);
+  opacity: 0.8;
+}
+
+/* 卡片样式 */
+.card-darktech {
+  width: 100%;
+  background: #0f1218;
+  box-shadow:
+    0 0 30px rgba(0, 230, 255, 0.15),
+    0 0 10px rgba(0, 230, 255, 0.1) inset;
+  padding: calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  position: relative;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  --highlight-color: #00e6ff;
+  --highlight-bg-color: rgba(0, 230, 255, 0.1);
+}
+
+/* 背景网格效果 */
+.card-darktech:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 230, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 230, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 0;
+}
+
+/* 顶部装饰线 */
+.card-darktech:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--spacing) * 0.5);
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+  /* animation: scanline 3s linear infinite; */
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.card-darktech .card-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 18, 24, 0.7);
+  border: 1px solid rgba(0, 230, 255, 0.1);
+  padding: calc(var(--spacing) * 5);
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  color: #a4b1cd;
+}
+
+.card-darktech .card-content::before {
+  content: "// SYSTEM ONLINE";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5);
+  right: calc(var(--spacing) * 5);
+  font-size: calc(var(--spacing) * 2.5);
+  color: #00e6ff;
+
+  opacity: 0.7;
+}
+
+.card-darktech .card-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* 主标题样式 */
+.card-darktech h1 {
+  font-size: calc(var(--spacing) * 7);
+  color: #00e6ff;
+  margin-bottom: calc(var(--spacing) * 3.75);
+  letter-spacing: 1px;
+  font-weight: 600;
+
+  text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+}
+
+.card-darktech h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--spacing) * 0.25);
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+}
+
+/* 副标题样式 */
+.card-darktech h2 {
+  font-size: calc(var(--spacing) * 4);
+  color: #7fdbff;
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 400;
+  letter-spacing: 1px;
+
+  opacity: 0.8;
+}
+
+/* 段落样式 */
+.card-darktech p {
+  color: #a4b1cd;
+  font-size: inherit;
+  position: relative;
+}
+
+.card-darktech strong {
+  color: #00e6ff;
+  font-weight: 600;
+}
+
+.card-darktech em {
+  color: #ff00e6;
+  font-style: italic;
+}
+
+.card-darktech p a {
+  color: #00e6ff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 230, 255, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card-darktech p a:hover {
+  color: #7fdbff;
+  border-bottom: 1px solid #7fdbff;
+  text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+}
+
+/* 有序列表样式 */
+
+.card-darktech li {
+  position: relative;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 4);
+  color: #a4b1cd;
+  line-height: 1.6;
+  font-size: inherit;
+}
+
+/* 序号样式 */
+.card-darktech li:before {
+  content: attr(data-index);
+  position: absolute;
+  left: calc(var(--spacing) * -9);
+  top: calc(var(--spacing) * -0.75);
+  width: calc(var(--spacing) * 6.5);
+  height: calc(var(--spacing) * 6.5);
+  background: rgba(0, 230, 255, 0.1);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  color: #00e6ff;
+  text-align: center;
+  line-height: calc(var(--spacing) * 6);
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 230, 255, 0.2);
+}
+
+/* 小标题样式 */
+.card-darktech h3 {
+  display: block;
+  color: #00e6ff;
+  margin-bottom: calc(var(--spacing) * 1.5);
+  font-size: calc(var(--spacing) * 4);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 表格样式 */
+.card-darktech table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: calc(var(--spacing) * 5) 0;
+  background: rgba(15, 18, 24, 0.5);
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-darktech th {
+  background: rgba(0, 230, 255, 0.1);
+  color: #00e6ff;
+  border-bottom: 1px solid rgba(0, 230, 255, 0.2);
+  padding: calc(var(--spacing) * 2.5);
+  font-weight: 600;
+  text-align: left;
+}
+
+.card-darktech td {
+  color: #a4b1cd;
+  padding: calc(var(--spacing) * 2.5);
+  border-bottom: 1px solid rgba(0, 230, 255, 0.1);
+}
+
+.card-darktech tr:nth-child(even) {
+  background: rgba(0, 230, 255, 0.03);
+}
+
+/* 代码块样式 */
+.card-darktech pre {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 3.75);
+  overflow-x: auto;
+  position: relative;
+}
+
+.card-darktech pre:before {
+  content: "CODE";
+  position: absolute;
+  top: calc(var(--spacing) * 1);
+  right: calc(var(--spacing) * 2.5);
+  background: #0f1218;
+  color: #00e6ff;
+  font-size: calc(var(--spacing) * 2.5);
+  padding: 0 calc(var(--spacing) * 1.25);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+.card-darktech code:not(pre code) {
+  background: rgba(0, 230, 255, 0.05);
+  color: #00e6ff;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.25);
+  border-radius: 3px;
+
+  font-size: calc(var(--spacing) * 3.6);
+  border: 1px solid rgba(0, 230, 255, 0.1);
+}
+
+/* 引用块样式 */
+.card-darktech blockquote {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid #00e6ff;
+  color: #7fdbff;
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+}
+
+.card-darktech blockquote:before {
+  content: ">";
+  position: absolute;
+  left: calc(var(--spacing) * -3.75);
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00e6ff;
+  font-size: calc(var(--spacing) * 4.5);
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+}
+
+.card-content ol,
+.card-content ul {
+  padding-left: calc(var(--spacing) * 10);
+}
+.card-darktech ul > li {
+  position: relative;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 3);
+  line-height: 1.6;
+}
+
+.card-darktech ul > li:before {
+  content: ">";
+  position: absolute;
+  color: #00e6ff;
+  font-weight: bold;
+}
+
+/* 水平线样式 */
+.card-darktech hr {
+  border: 0;
+  height: calc(var(--spacing) * 0.25);
+  background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+  margin: calc(var(--spacing) * 6.25) 0;
+  opacity: 0.5;
+}
+
+/* 图片样式 */
+.card-darktech img {
+  max-width: 100%;
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  box-shadow:
+    0 0 15px rgba(0, 0, 0, 0.5),
+    0 0 5px rgba(0, 230, 255, 0.2);
+}
+
+/* 终端效果 */
+.card-darktech .terminal {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  color: #00ff00;
+  position: relative;
+}
+
+.card-darktech .terminal:before {
+  content: "$ ";
+  color: #00e6ff;
+}
+
+/* 数据面板效果 */
+.card-darktech .data-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  position: relative;
+}
+
+.card-darktech .data-panel:before {
+  content: "DATA";
+  position: absolute;
+  top: calc(var(--spacing) * -2);
+  left: calc(var(--spacing) * 2.5);
+  background: #0f1218;
+  color: #00e6ff;
+  font-size: calc(var(--spacing) * 2.5);
+  padding: 0 calc(var(--spacing) * 1.25);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 230, 255, 0.2);
+}
+
+.card-darktech .card-footer {
+  text-align: right;
+}
+
+.card-darktech .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-darktech">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

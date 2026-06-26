@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shrimp.cards/schema/share-card/1.0",
+  "title": "ShareCard",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "card_id",
+    "name",
+    "role",
+    "tagline",
+    "value_line",
+    "top_capabilities",
+    "best_for",
+    "proof_anchor",
+    "owner",
+    "visual_brief"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "share-card/1.0"
+    },
+    "card_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "name": { "type": "string" },
+    "role": { "type": "string" },
+    "tagline": { "type": "string" },
+    "value_line": { "type": "string" },
+    "top_capabilities": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "string" }
+    },
+    "best_for": { "type": "string" },
+    "proof_anchor": { "type": "string" },
+    "owner": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+    "visual_brief": { "type": "string" },
+    "character_style": {
+      "type": "string",
+      "enum": ["lobster", "agent-avatar", "tool-spirit", "minimal-badge"]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "data_url": { "type": "string" },
+        "placeholder": { "type": "string" }
+      }
+    },
+    "qr": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "data_url": { "type": "string" }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "background": { "type": "string" },
+        "border": { "type": "string" },
+        "accent": { "type": "string" },
+        "tag_colors": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "detail_url": { "type": "string" },
+    "selfie_prompt": { "type": "string" },
+    "image_strategy": {
+      "type": "string",
+      "enum": ["image-gen", "provided-image"]
+    },
+    "spread_line": { "type": "string" },
+    "memory_basis": { "type": "string" },
+    "share_keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_count": { "type": "integer", "minimum": 0 },
+    "poster_headline": { "type": "string" },
+    "poster_subline": { "type": "string" },
+    "persona_tags": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "string" }
+    },
+    "share_caption": { "type": "string" },
+    "i18n": {
+      "type": "object",
+      "properties": {
+        "zh": { "$ref": "#/$defs/localizedShareCard" },
+        "en": { "$ref": "#/$defs/localizedShareCard" }
+      }
+    }
+  },
+  "$defs": {
+    "localizedShareCard": {
+      "type": "object",
+      "required": [
+        "role",
+        "tagline",
+        "value_line",
+        "top_capabilities",
+        "best_for",
+        "proof_anchor",
+        "spread_line",
+        "memory_basis",
+        "selfie_prompt"
+      ],
+      "properties": {
+        "role": { "type": "string" },
+        "tagline": { "type": "string" },
+        "value_line": { "type": "string" },
+        "top_capabilities": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string" }
+        },
+        "best_for": { "type": "string" },
+        "proof_anchor": { "type": "string" },
+        "spread_line": { "type": "string" },
+        "memory_basis": { "type": "string" },
+        "selfie_prompt": { "type": "string" },
+        "poster_headline": { "type": "string" },
+        "poster_subline": { "type": "string" },
+        "persona_tags": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string" }
+        },
+        "share_caption": { "type": "string" },
+        "share_keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

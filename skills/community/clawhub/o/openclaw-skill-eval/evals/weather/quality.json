@@ -1,0 +1,43 @@
+{
+  "skill_name": "weather",
+  "skill_path": "/opt/homebrew/lib/node_modules/openclaw/skills/weather/SKILL.md",
+  "description": "Quality evaluation tests for weather skill",
+  "evals": [
+    {
+      "id": 1,
+      "name": "current-weather-sg",
+      "prompt": "What's the current weather in Singapore?",
+      "expected_output": "temperature, conditions (sunny/cloudy/rain), location confirmed",
+      "assertions": [
+        "mentions Singapore",
+        "includes temperature (number + unit)",
+        "includes current conditions",
+        "uses curl wttr.in command"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "forecast-london",
+      "prompt": "Give me a 3-day weather forecast for London",
+      "expected_output": "3-day forecast with daily conditions and temperatures",
+      "assertions": [
+        "mentions London",
+        "covers multiple days",
+        "includes temperature range",
+        "uses curl wttr.in with forecast format"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "rain-check",
+      "prompt": "Will it rain in Tokyo tomorrow?",
+      "expected_output": "tomorrow's precipitation info for Tokyo",
+      "assertions": [
+        "mentions Tokyo",
+        "addresses tomorrow specifically",
+        "mentions rain probability or conditions",
+        "gives a clear yes/no or probability"
+      ]
+    }
+  ]
+}

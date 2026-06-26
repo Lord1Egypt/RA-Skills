@@ -1,0 +1,124 @@
+{
+    "_comment": "用户健康档案配置模板 - 复制为 user_config.json 并填写真实值",
+    "_version": "2.0",
+    
+    "user_profile": {
+        "name": "用户名",
+        "gender": "男/女",
+        "age": 34,
+        "height_cm": 172,
+        "current_weight_kg": 65.2,
+        "target_weight_kg": 64,
+        "target_body_fat_percent": 15,
+        "condition": "胆结石",
+        "activity_level": 1.2,
+        "dietary_preferences": {
+            "dislike": ["不喜欢的食物 1", "不喜欢的食物 2"],
+            "allergies": ["过敏食物 1", "过敏食物 2"],
+            "favorite_fruits": ["喜欢的水果 1", "喜欢的水果 2"]
+        }
+    },
+    
+    "condition_standards": {
+        "胆结石": {
+            "fat_min_g": 40,
+            "fat_max_g": 50,
+            "fat_percent": "20-25%",
+            "protein_g_per_kg": 1.2,
+            "carb_percent": "50-55%",
+            "fiber_min_g": 25,
+            "water_min_ml": 2000,
+            "calorie_deficit_max": 500,
+            "weight_loss_max_per_week": 0.5,
+            "cooking_methods": ["蒸", "煮", "炖", "白灼"],
+            "avoid_methods": ["油炸", "红烧", "辛辣"],
+            "avoid_foods": ["动物内脏", "辛辣刺激", "海鲜"]
+        },
+        "糖尿病": {
+            "fat_min_g": 50,
+            "fat_max_g": 70,
+            "fat_percent": "25-30%",
+            "protein_g_per_kg": 1.0,
+            "carb_percent": "45-50%",
+            "fiber_min_g": 30,
+            "water_min_ml": 1500,
+            "calorie_deficit_max": 500,
+            "weight_loss_max_per_week": 0.5,
+            "cooking_methods": ["蒸", "煮", "炖", "凉拌"],
+            "avoid_methods": ["油炸", "糖醋", "勾芡"],
+            "avoid_foods": ["精制糖", "白米饭", "白面包"]
+        },
+        "高血压": {
+            "fat_min_g": 50,
+            "fat_max_g": 65,
+            "fat_percent": "25-30%",
+            "protein_g_per_kg": 1.0,
+            "carb_percent": "50-55%",
+            "fiber_min_g": 25,
+            "water_min_ml": 1500,
+            "sodium_max_mg": 2000,
+            "calorie_deficit_max": 500,
+            "weight_loss_max_per_week": 0.5,
+            "cooking_methods": ["蒸", "煮", "炖", "凉拌"],
+            "avoid_methods": ["腌制", "熏制", "高盐"],
+            "avoid_foods": ["咸菜", "腊肉", "高盐零食"]
+        },
+        "健身减脂": {
+            "fat_min_g": 50,
+            "fat_max_g": 70,
+            "fat_percent": "20-25%",
+            "protein_g_per_kg": 2.0,
+            "carb_percent": "40-45%",
+            "fiber_min_g": 30,
+            "water_min_ml": 3000,
+            "calorie_deficit_max": 500,
+            "weight_loss_max_per_week": 0.5,
+            "cooking_methods": ["蒸", "煮", "烤", "凉拌"],
+            "avoid_methods": ["油炸", "糖醋", "勾芡"],
+            "avoid_foods": ["精制糖", "油炸食品", "高糖饮料"]
+        }
+    },
+    
+    "exercise_standards": {
+        "min_days_per_week": 3,
+        "min_minutes_per_day": 20,
+        "preferred_types": ["散步", "骑车", "慢走", "瑜伽", "太极"],
+        "avoid_types": ["跑步", "HIIT", "举重", "剧烈运动"],
+        "weekly_target_minutes": 150,
+        "calorie_target_per_day": 300,
+        "weekly_cardio_days": 3,
+        "weekly_strength_days": 2
+    },
+    
+    "scoring_weights": {
+        "_comment": "评分权重配置 - 所有权重之和应为 1.0",
+        "diet": 0.35,
+        "water": 0.20,
+        "weight": 0.15,
+        "exercise": 0.30
+    },
+    
+    "scoring_standards": {
+        "diet": {
+            "fat_score_weight": 0.30,
+            "protein_score_weight": 0.25,
+            "fiber_score_weight": 0.25,
+            "avoid_food_penalty": 0.20
+        },
+        "water": {
+            "target_percentage_full": 1.0,
+            "target_percentage_partial": 0.5
+        },
+        "weight": {
+            "recorded_score": 0.50,
+            "trend_score": 0.50
+        },
+        "exercise": {
+            "duration_score_weight": 0.40,
+            "frequency_score_weight": 0.30,
+            "calorie_score_weight": 0.30,
+            "daily_calorie_target": 300,
+            "weekly_minutes_target": 150
+        }
+    }
+}

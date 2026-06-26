@@ -1,0 +1,21 @@
+{
+  "user_brief": "Example: a paper boat drifts from a quiet pond into an open sea at sunset.",
+  "global_style": "Cinematic, warm golden hour, 16:9, photorealistic, gentle camera moves",
+  "segments": [
+    {
+      "index": 1,
+      "title": "镜头一（0–10s）",
+      "prompt": "Shot 1/3: close-up on folded paper boat floating on still pond water, lily pads, soft ripples, late afternoon light, photoreal cinematic 16:9"
+    },
+    {
+      "index": 2,
+      "title": "镜头二（10–20s）",
+      "prompt": "Shot 2/3: same paper boat, wide shot as stream widens into river, trees recede, wind slightly stronger, continuous warm sunset palette, photoreal cinematic 16:9"
+    },
+    {
+      "index": 3,
+      "title": "镜头三（20–30s）",
+      "prompt": "Shot 3/3: same boat reaches open sea horizon, gentle waves, sun low on water, sense of journey completing, photoreal cinematic 16:9"
+    }
+  ]
+}

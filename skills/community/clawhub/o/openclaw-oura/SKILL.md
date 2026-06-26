@@ -1,35 +1,29 @@
 ---
-name: "Oura (API v2)"
-description: "Oura Ring data source for OpenClaw (Tier 1). Use to connect an Oura account using an Oura Personal Access Token, fetch Oura v2 usercollection data (sleep, re..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-oura"
-sourceUrl: "https://clawhub.ai/skills/openclaw-oura"
+name: openclaw-oura
+description: Oura Ring data source for OpenClaw (Tier 1). Use to connect an Oura account using an Oura Personal Access Token, fetch Oura v2 usercollection data (sleep, readiness, activity), normalize it into a stable daily JSON shape for the Wellness hub, and render a short summary message for any chat channel.
 ---
 
-# Oura (API v2)
+# Oura (Personal Access Token)
 
-> Oura Ring data source for OpenClaw (Tier 1). Use to connect an Oura account using an Oura Personal Access Token, fetch Oura v2 usercollection data (sleep, re...
+This is a **source** skill. It fetches Oura data and outputs normalized daily JSON + a human-readable digest. It does not hardcode the destination channel.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-oura`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-oura](https://clawhub.ai/skills/openclaw-oura)
+## Configuration
 
-## Overview
+Required env var:
+- `OURA_ACCESS_TOKEN`
 
+Optional:
+- `OURA_TZ` (default: `Asia/Shanghai`)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Fetch + normalize for a day
+
 ```bash
-hermes skills install clawhub/openclaw-oura
+python3 scripts/oura_fetch_daily.py --date today --out /tmp/oura_raw_today.json
+python3 scripts/oura_normalize_daily.py /tmp/oura_raw_today.json --out /tmp/oura_today.json
+python3 scripts/oura_render.py /tmp/oura_today.json --format markdown --channel generic
 ```
+
+## Notes
+
+- API reference: `references/oura_api.md`
+- Output schema: `references/output_schema.md`

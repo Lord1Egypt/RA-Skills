@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenCode Discord Thread"
+  short_description: "Run OpenCode and mirror progress into Discord."
+  default_prompt: "Use $opencode-discord-thread to run this coding task through OpenCode and mirror the live run into a Discord thread."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,1 @@
+Office Automation Toolkit - Comprehensive registry of CLI tools and Python packages for Excel/CSV, Word, PowerPoint, and PDF manipulation. Covers 20+ tools with install commands, capabilities, limitations, and examples. Includes existing Hermes skills (powerpoint, nano-pdf, ocr-and-documents, google-workspace) and recommends best tool for each task.

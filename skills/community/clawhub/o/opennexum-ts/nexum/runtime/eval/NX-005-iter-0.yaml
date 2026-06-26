@@ -1,0 +1,92 @@
+verdict: pass
+system_errors: []
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: |
+          Command: `node packages/cli/dist/index.js --help`
+          Exit code: 0
+          Output included:
+          - `spawn [options] <taskId>`
+          - `status [options]`
+          - `eval [options] <taskId>`
+          - `complete [options] <taskId> <verdict>`
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: |
+          Command: `pnpm --filter @nexum/cli test`
+          Exit code: 0
+          Passed test: `runSpawn reads contract and calls spawnAcpSession with correct agentId`
+
+          Direct verification via `pnpm dlx --package=tsx tsx` with mocked `__nexumCliSpawnAcpSession` produced:
+          {
+            "taskId": "TEST-001",
+            "agentId": "cc-frontend",
+            "promptFile": "TEST-001-gen-1774771402346.md",
+            "promptHasTaskName": true,
+            "updatedStatus": "running",
+            "sessionKey": "test-session-key"
+          }
+
+          The generated prompt file began with:
+          `# Coding Task: Test Task`
+          `## Scope`
+          `### Allowed Files`
+          `- src/foo.ts`
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: |
+          Command: `pnpm --filter @nexum/cli test`
+          Exit code: 0
+          Passed test: `runComplete with pass marks task done and unlocks blocked downstream tasks`
+
+          Direct verification via `pnpm dlx --package=tsx tsx` with a blocked downstream task produced:
+          `Task TEST-001 completed. Unlocked: TEST-002`
+
+          `nexum/active-tasks.json` after `runComplete('TEST-001', 'pass', projectDir)` contained:
+          - task `TEST-001` with `"status": "done"`
+          - downstream task `TEST-002` with `"status": "pending"`
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: |
+          Command: `pnpm --filter @nexum/cli test`
+          Exit code: 0
+          Passed test: `runComplete with fail and iteration < max_iterations triggers retry spawn`
+
+          Direct verification via `pnpm dlx --package=tsx tsx` with mocked `__nexumCliSpawnAcpSession` produced:
+          `Task TEST-001 failed. Retrying as iteration 1.`
+
+          Retry evidence:
+          {
+            "spawnCallCount": 1,
+            "retryAgentId": "cc-frontend",
+            "retryLabel": "nexum-test-001-cc-frontend-retry-1",
+            "retryPromptFile": "TEST-001-retry-1774771402327.md",
+            "updatedStatus": "running",
+            "updatedIteration": 1,
+            "sessionKey": "retry-session-key"
+          }
+        detail: null
+        score: null
+      - id: C5
+        result: pass
+        evidence: |
+          Command: `pnpm build`
+          Exit code: 0
+          Key output:
+          - `Running build in 2 packages`
+          - `@nexum/core:build`
+          - `@nexum/prompts:build`
+          - `Tasks: 2 successful, 2 total`
+        detail: null
+        score: null
+feedback: ""
+artifacts: []

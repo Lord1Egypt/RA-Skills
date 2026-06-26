@@ -1,0 +1,7 @@
+interface:
+  display_name: "Obsidian Note To Mind Map"
+  short_description: "Turn a user-provided Obsidian note or Markdown outline into a KMind mind map PNG by default, or an editable KMind map on request."
+  default_prompt: "Use $obsidian-note-to-mindmap to turn this Obsidian note or Markdown outline into a KMind mind map. Default to PNG unless I explicitly ask for an editable KMind map or SVG. If the audited KMind core skill is missing, ask before installing it."
+
+policy:
+  allow_implicit_invocation: false

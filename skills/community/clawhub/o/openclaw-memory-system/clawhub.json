@@ -1,0 +1,61 @@
+{
+  "name": "openclaw-memory-system",
+  "displayName": "OpenClaw 记忆系统",
+  "version": "1.0.0",
+  "description": "完整的多模态记忆系统，支持图片/工具记忆、项目/Agent/用户隔离、自然语言修正",
+  "author": "刘哈娜",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw-memory-system",
+  "repository": "https://github.com/openclaw/openclaw-memory-system",
+  "category": "memory",
+  "tags": [
+    "记忆",
+    "多模态",
+    "项目隔离",
+    "自然语言修正",
+    "版本控制"
+  ],
+  "features": [
+    "多模态记忆（图片 + 工具 + 文本）",
+    "细粒度项目隔离（项目/Agent/用户）",
+    "自然语言记忆修正",
+    "版本控制与回滚",
+    "飞书交互卡片"
+  ],
+  "requirements": {
+    "openclaw": ">=2026.2.26",
+    "node": ">=14.0.0"
+  },
+  "files": {
+    "skills": [
+      "skills/multimodal-memory/",
+      "skills/project-memory-isolation/",
+      "skills/memory-feedback/"
+    ],
+    "configs": [
+      "configs/multimodal-config.json",
+      "configs/memory-namespaces.json"
+    ],
+    "tests": [
+      "tests/jest.config.json",
+      "tests/image-memory.test.js",
+      "tests/project-memory.test.js"
+    ]
+  },
+  "scripts": {
+    "install": "node scripts/install.js",
+    "test": "node skills/multimodal-memory/test-multimodal.js"
+  },
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-17",
+      "changes": [
+        "✅ P1 多模态记忆系统完成",
+        "✅ P2 细粒度项目隔离完成",
+        "✅ P3 自然语言记忆修正完成",
+        "✅ 13 个问题修复",
+        "✅ 完整测试覆盖（70%）"
+      ]
+    }
+  }
+}

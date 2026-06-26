@@ -1,0 +1,63 @@
+{
+  "project": "双11大促活动",
+  "requirements": [
+    {
+      "name": "活动落地页",
+      "business_value": 5,
+      "urgency": 5,
+      "effort": 2,
+      "risk": 1,
+      "stakeholder": 5,
+      "score": 3.75,
+      "priority": "P0"
+    },
+    {
+      "name": "优惠券系统",
+      "business_value": 5,
+      "urgency": 4,
+      "effort": 3,
+      "risk": 2,
+      "stakeholder": 4,
+      "score": 3.35,
+      "priority": "P0"
+    },
+    {
+      "name": "数据看板",
+      "business_value": 4,
+      "urgency": 4,
+      "effort": 2,
+      "risk": 1,
+      "stakeholder": 5,
+      "score": 3.55,
+      "priority": "P0"
+    },
+    {
+      "name": "用户裂变",
+      "business_value": 4,
+      "urgency": 3,
+      "effort": 4,
+      "risk": 3,
+      "stakeholder": 3,
+      "score": 2.10,
+      "priority": "P1"
+    },
+    {
+      "name": "活动提醒",
+      "business_value": 3,
+      "urgency": 3,
+      "effort": 1,
+      "risk": 1,
+      "stakeholder": 3,
+      "score": 2.65,
+      "priority": "P1"
+    }
+  ],
+  "weights": {
+    "business_value": 0.35,
+    "urgency": 0.25,
+    "effort": -0.15,
+    "risk": -0.10,
+    "stakeholder": 0.15
+  },
+  "calculation_time": "2024-10-15T10:30:00Z"
+}

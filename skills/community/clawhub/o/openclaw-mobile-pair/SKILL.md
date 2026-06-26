@@ -1,35 +1,30 @@
 ---
-name: "OpenClaw Mobile Pair"
-description: "一键生成 OpenClaw 手机控制中心连接码（自动读取本机 gateway token）"
-category: "other"
-source: "ClawHub"
-tags: [mobile, openclaw, pairing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-mobile-pair"
-sourceUrl: "https://clawhub.ai/skills/openclaw-mobile-pair"
+name: openclaw-mobile-pair
+description: 一键生成 OpenClaw 手机控制中心连接码（自动读取本机 gateway token）
+user-invocable: true
 ---
 
 # OpenClaw Mobile Pair
 
-> 一键生成 OpenClaw 手机控制中心连接码（自动读取本机 gateway token）
+Use this skill to generate a mobile pairing code for OpenClaw control app users.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-mobile-pair`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-mobile-pair](https://clawhub.ai/skills/openclaw-mobile-pair)
+## Workflow
 
-## Overview
+1. Ask for `BFF` URL only if not provided by the user.
+2. Run `scripts/generate-mobile-pairing.ps1` to generate pairing code.
+3. Return:
+   - Pairing code
+   - Output file path
+   - Quick next step for mobile user
 
+## Command Template
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-mobile-pair
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/generate-mobile-pairing.ps1 -BffBaseUrl "<https://api.yourdomain.com/>" -CopyToClipboard
 ```
+
+## Response Style
+
+- Keep it short and actionable.
+- If generation fails, state exact reason and how to fix it.
+

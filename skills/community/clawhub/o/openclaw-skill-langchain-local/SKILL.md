@@ -1,35 +1,31 @@
----
-name: "Openclaw Skill Langchain Local"
-description: "Run LangChain AI pipelines locally and offline using Ollama and phi4-mini for coding, devops, chat, or document-based queries without requiring cloud or API..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-skill-langchain-local"
-sourceUrl: "https://clawhub.ai/skills/openclaw-skill-langchain-local"
----
+# LangChain Local — Offline AI Chains with Ollama
 
-# Openclaw Skill Langchain Local
+Run LangChain pipelines locally using Ollama and phi4-mini (or any local model).
+No API keys, no cloud, fully private and offline.
 
-> Run LangChain AI pipelines locally and offline using Ollama and phi4-mini for coding, devops, chat, or document-based queries without requiring cloud or API...
+## Requirements
+- Ollama installed and running (`ollama serve`)
+- phi4-mini pulled (`ollama pull phi4-mini`)
+- Python packages: `pip install langchain langchain-ollama langchain-community`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-skill-langchain-local`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-skill-langchain-local](https://clawhub.ai/skills/openclaw-skill-langchain-local)
+## Modes
+- `coding` — Python/Django code generation (low temperature, precise)
+- `devops` — Linux/Nginx/Docker shell commands
+- `chat` — General conversation
+- `rag` — Document-grounded answers (context-aware)
 
-## Overview
+## Usage Examples
+- "Ask langchain-local to write a Django REST API view"
+- "Use langchain-local in devops mode to show how to check disk usage"
+- "Run langchain-local chat mode: explain what is RAG"
+- "Use langchain-local coding mode to write a PostgreSQL backup script"
 
+## Implementation
+Execute: python3 ~/.openclaw/skills/langchain-local/main.py
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-skill-langchain-local
-```
+## Parameters
+- mode: coding | devops | chat | rag (default: coding)
+- query: Your question or instruction
+
+## Author
+Manoj — https://github.com/manoj

@@ -1,0 +1,210 @@
+# 文章转 Wiki 流水线
+
+> 将公众号/博客文章自动转化为结构化 Wiki 知识库页面
+
+## 元数据
+
+```yaml
+name: article-to-wiki
+version: 1.0.0
+description: 文章内容 → 结构化 Wiki 页面 → 知识库沉淀
+intent_type: knowledge_management
+author: openclaw-skill-compounder
+created: 2026-05-01
+trigger_keywords:
+  - "文章转wiki"
+  - "转成知识库"
+  - "沉淀成wiki"
+  - "文章结构化"
+```
+
+## 流水线定义
+
+### Step 1: 文章内容提取
+
+```yaml
+step: 1
+skill: web-content-fetcher
+trigger: 用户提供文章URL或文本
+timeout: 30s
+
+input:
+  source: "${user.article_source}"
+  fetch_options:
+    extract_main_content: true
+    remove_ads: true
+    normalize_whitespace: true
+
+output:
+  result_field: "raw_content"
+  metadata:
+    - title
+    - author
+    - publish_date
+    - source_url
+    - reading_time
+  confidence_weight: 0.95
+```
+
+### Step 2: 内容结构化分析
+
+```yaml
+step: 2
+skill: writing-agent
+trigger: step_1 完成
+timeout: 45s
+depends_on: step_1
+
+input:
+  action: structure_analysis
+  text: "${step_1.result.raw_content}"
+  context:
+    analysis_type: "wiki_conversion"
+    extract:
+      - concepts
+      - procedures
+      - examples
+      - references
+    output_format: structured_json
+
+output:
+  result_field: "structured_content"
+  metadata:
+    - sections
+    - key_concepts
+    - action_items
+    - prerequisites
+  confidence_weight: 0.85
+```
+
+### Step 3: Wiki 格式生成
+
+```yaml
+step: 3
+skill: epub-to-markdown
+trigger: step_2 完成
+timeout: 30s
+depends_on: step_2
+
+input:
+  action: convert_to_wiki_format
+  content: "${step_2.result.structured_content}"
+  format_options:
+    wiki_style: true
+    include_toc: true
+    add_metadata: true
+    link_concepts: true
+
+output:
+  result_field: "wiki_markdown"
+  metadata:
+    - file_path
+    - frontmatter
+    - section_count
+    - link_count
+  confidence_weight: 0.9
+```
+
+### Step 4: 知识库索引更新
+
+```yaml
+step: 4
+skill: epub-to-markdown
+trigger: step_3 完成
+timeout: 20s
+depends_on: step_3
+
+input:
+  action: update_knowledge_index
+  wiki_file: "${step_3.result.wiki_markdown}"
+  index_location: "wiki/index.md"
+  category: "${user.category || 'general'}"
+
+output:
+  result_field: "index_update"
+  metadata:
+    - new_entries
+    - updated_sections
+    - cross_links_added
+  confidence_weight: 0.8
+```
+
+### Step 5: 概念图谱更新（可选）
+
+```yaml
+step: 5
+skill: epub-to-markdown
+trigger: step_4 完成
+timeout: 30s
+depends_on: step_4
+optional: true
+
+input:
+  action: update_concept_graph
+  concepts: "${step_2.result.key_concepts}"
+  wiki_file: "${step_3.result.wiki_markdown}"
+
+output:
+  result_field: "graph_update"
+  metadata:
+    - new_nodes
+    - new_edges
+    - existing_links
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    raw_content → text
+    title → context.article_title
+
+  step_2_to_step_3:
+    structured_content → content
+    key_concepts → metadata
+
+  step_3_to_step_4:
+    wiki_markdown → wiki_file
+    file_path → wiki_file.path
+
+  step_4_to_step_5:
+    key_concepts → concepts
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: fallback
+    fallback_action: prompt_for_text_input
+    message: "无法抓取网页，请直接粘贴文章内容"
+
+  step_2_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "结构分析失败，尝试简化提取"
+
+  step_3_failure:
+    strategy: skip_optional
+    continue_with_basic_format: true
+    message: "格式转换失败，输出基础 Markdown"
+```
+
+## 适用场景
+
+- 将公众号文章沉淀为知识库
+- 技术博客转为 Wiki 文档
+- 整理学习笔记为结构化知识
+- 建立团队知识共享库
+
+## 触发词示例
+
+```
+"把这篇文章转成Wiki"
+"沉淀到知识库"
+"文章转知识库"
+"帮我整理成Wiki格式"
+"这篇文章太散了，帮我结构化"
+```

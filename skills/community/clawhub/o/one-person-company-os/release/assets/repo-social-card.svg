@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f6f3ec"/>
+  <rect x="100" y="92" width="1400" height="716" rx="34" fill="#fffdf8" stroke="#d8c9b8" stroke-width="3"/>
+  <text x="150" y="190" fill="#1f1a14" font-family="Arial, sans-serif" font-size="72" font-weight="800">One Person Company OS v1.0</text>
+  <text x="150" y="260" fill="#5f5448" font-family="Arial, sans-serif" font-size="34">A visual operating cockpit for AI-native solo founders</text>
+  <g font-family="Arial, sans-serif" font-size="30" font-weight="700">
+    <rect x="150" y="370" width="170" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="180" y="424" fill="#1f1a14">Promise</text>
+    <rect x="360" y="370" width="150" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="400" y="424" fill="#1f1a14">Buyer</text>
+    <rect x="550" y="370" width="170" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="590" y="424" fill="#1f1a14">Product</text>
+    <rect x="760" y="370" width="180" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="800" y="424" fill="#1f1a14">Delivery</text>
+    <rect x="980" y="370" width="140" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="1020" y="424" fill="#1f1a14">Cash</text>
+    <rect x="1160" y="370" width="170" height="86" rx="18" fill="#fff" stroke="#d8c9b8"/><text x="1192" y="424" fill="#1f1a14">Assets</text>
+  </g>
+  <path d="M320 413 H360 M510 413 H550 M720 413 H760 M940 413 H980 M1120 413 H1160" stroke="#b85c38" stroke-width="8"/>
+  <text x="150" y="620" fill="#2f7d5b" font-family="Arial, sans-serif" font-size="32" font-weight="700">HTML cockpit + SVG visuals + editable markdown + DOCX deliverables</text>
+  <text x="150" y="690" fill="#5f5448" font-family="Arial, sans-serif" font-size="26">Optional AI image prompts for launch and promotion. Exact data stays deterministic.</text>
+</svg>

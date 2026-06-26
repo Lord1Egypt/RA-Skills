@@ -1,0 +1,21 @@
+{
+  "run_id": "happy-path-run",
+  "label": "validation-happy-path",
+  "created_at": "2026-04-29T13:41:43.467Z",
+  "brief_path": "brief.md",
+  "selected_models": [
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.5"
+  ],
+  "orchestrator_model": "openai-codex/gpt-5.4",
+  "orchestrator_model_source": "explicit",
+  "round_count": 2,
+  "status": "completed",
+  "stop_reason": "STOP_AT_ROUND_2",
+  "artifacts": {
+    "round_1_dir": "round-1",
+    "round_2_dir": "round-2",
+    "final": "final.md"
+  },
+  "completed_at": "2026-04-29T13:46:39.061Z"
+}

@@ -1,0 +1,35 @@
+# OpenClaw Guard 配置文件
+
+# 守护超时时间（秒）
+# 在此时间后如果 AI 未主动停止守护，则执行回滚
+guard_timeout: 180
+
+# 备份目录
+backup_dir: ~/.openclaw/backups
+
+# Gateway 服务名（systemd 服务名）
+gateway_service: openclaw-gateway
+
+# 需要备份的文件（支持环境变量）
+backup_files:
+  - ~/.openclaw/openclaw.json
+  - $WORKSPACE/AGENTS.md
+  - $WORKSPACE/SOUL.md
+  - $WORKSPACE/USER.md
+  - $WORKSPACE/MEMORY.md
+  - $WORKSPACE/TOOLS.md
+
+# 告警配置（可选）
+alert:
+  enabled: false
+  # 飞书 webhook
+  # webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/xxx"
+  # 邮件告警
+  # email:
+  #   to: "user@example.com"
+
+# 备份保留天数
+backup_retention_days: 30
+
+# 日志级别
+log_level: INFO

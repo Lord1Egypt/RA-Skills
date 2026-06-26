@@ -1,0 +1,134 @@
+# 示例：智能体模型分配
+# Example: Agent Model Assignment
+#
+# 使用方法：
+# 1. 复制此配置到 config/models.yaml 的 agents 部分
+# 2. 根据实际情况调整智能体名称和模型选择
+# 3. ⚠️ 注意：示例中的智能体名称仅用于演示，请替换为您自己的智能体名称
+
+agents:
+  # ========== 示例：项目协调员智能体 ==========
+  # 请将 "Agent_Coordinator" 替换为您的智能体名称
+  Agent_Coordinator:
+    models:
+      primary: bailian/glm-5           # Agent 编排强
+      fallback: bailian/qwen3.5-plus   # 日常备用
+      backup: ollama/llama3           # 本地备用
+    preferences:
+      cost_optimize: false
+      latency_optimize: true
+      quality_over_cost: true
+      
+  # ========== 示例：前端开发智能体 ==========
+  # 请将 "Agent_Frontend_Dev" 替换为您的智能体名称
+  Agent_Frontend_Dev:
+    models:
+      primary: bailian/qwen3-coder-plus  # 代码专家
+      fallback: ollama/codellama        # 本地代码模型
+    preferences:
+      code_quality: true
+      local_first: false
+      
+  # ========== 示例：智能合约智能体 ==========
+  # 请将 "Agent_Smart_Contract" 替换为您的智能体名称
+  Agent_Smart_Contract:
+    models:
+      primary: bailian/qwen3-coder-plus  # 代码审查严格
+      fallback: openai/gpt-4            # 高质量备用
+    preferences:
+      security_first: true
+      code_quality: true
+      
+  # ========== 示例：数据库设计智能体 ==========
+  # 请将 "Agent_Database_Design" 替换为您的智能体名称
+  Agent_Database_Design:
+    models:
+      primary: bailian/qwen3.5-plus   # 均衡全面
+      fallback: ollama/llama3        # 本地备用
+    preferences:
+      cost_optimize: true
+      
+  # ========== 示例：测试审计智能体 ==========
+  # 请将 "Agent_Test_Audit" 替换为您的智能体名称
+  Agent_Test_Audit:
+    models:
+      primary: bailian/qwen3-max-2026-01-23  # 推理最强
+      fallback: openai/gpt-4                # 高质量备用
+    preferences:
+      quality_over_cost: true
+      bug_detection: true
+      
+  # ========== 示例：运营方案智能体 ==========
+  # 请将 "Agent_Operations" 替换为您的智能体名称
+  Agent_Operations:
+    models:
+      primary: bailian/kimi-k2.5      # 长文本强
+      fallback: bailian/qwen3.5-plus  # 备用
+    preferences:
+      long_context: true
+      
+  # ========== 示例：安全审计智能体 ==========
+  # 请将 "Agent_Security_Audit" 替换为您的智能体名称
+  Agent_Security_Audit:
+    models:
+      primary: bailian/qwen3-max-2026-01-23  # 深度推理
+      fallback: openai/gpt-4                # 高质量备用
+    preferences:
+      security_first: true
+      quality_over_cost: true
+      
+  # ========== 示例：数值策划智能体 ==========
+  # 请将 "Agent_Number_Planning" 替换为您的智能体名称
+  Agent_Number_Planning:
+    models:
+      primary: bailian/qwen3.5-plus   # 计算准确
+      fallback: ollama/llama3        # 本地备用
+    preferences:
+      cost_optimize: true
+      
+  # ========== 示例：美术设计智能体 ==========
+  # 请将 "Agent_Art_Design" 替换为您的智能体名称
+  Agent_Art_Design:
+    models:
+      primary: bailian/kimi-k2.5      # 创意理解强
+      fallback: bailian/qwen3.5-plus  # 备用
+    preferences:
+      creativity: true
+
+# ========== 全局路由策略 ==========
+routing:
+  # 默认提供商
+  default_provider: bailian
+  
+  # 启用备用模型
+  fallback_enabled: true
+  
+  # 自动故障转移
+  auto_failover: true
+  failover_timeout: 10
+  failover_max_retries: 3
+  
+  # 优化策略
+  cost_optimize: false
+  latency_optimize: false
+  quality_optimize: false
+  
+  # 本地优先（如启用，优先使用本地模型）
+  local_first: false
+  
+  # 任务类型路由
+  task_routing:
+    coding: bailian/qwen3-coder-plus
+    reasoning: bailian/qwen3-max-2026-01-23
+    long_text: bailian/kimi-k2.5
+    agent: bailian/glm-5
+    daily: bailian/qwen3.5-plus
+    security: bailian/qwen3-max-2026-01-23
+    creative: bailian/kimi-k2.5
+
+# ========== 敏感信息提示 ==========
+# ⚠️ 重要：
+# 1. 示例中的智能体名称（如 Agent_Coordinator）仅用于演示
+# 2. 请将其替换为您自己的智能体名称
+# 3. 不要将真实的智能体名称提交到公开仓库
+# 4. 建议将 config/models.yaml 添加到 .gitignore

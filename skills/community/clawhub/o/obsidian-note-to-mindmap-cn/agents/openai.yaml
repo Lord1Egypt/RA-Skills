@@ -1,0 +1,7 @@
+interface:
+  display_name: "Obsidian Note 转导图"
+  short_description: "将用户明确提供的 Obsidian 笔记或 Markdown 大纲默认转换为 KMind 导图 PNG，或在明确要求时输出可编辑的 KMind 导图。"
+  default_prompt: "使用 $obsidian-note-to-mindmap-cn 将这份 Obsidian 笔记或 Markdown 大纲转换为 KMind 导图。除非我明确要求可编辑导图或 SVG，否则默认输出 PNG；如果缺少已审核的 core skill，先征求确认后再安装。"
+
+policy:
+  allow_implicit_invocation: false

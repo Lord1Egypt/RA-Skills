@@ -1,0 +1,127 @@
+{
+  "name": "<tool-name>-quality",
+  "version": "1.0",
+  "description": "Quality comparison for <tool-name> skill. Replace <placeholders> with your values.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "happy-path-basic",
+      "prompt": "<common-task>",
+      "context": "User wants to perform the most common operation with this tool.",
+      "expected_output": "Agent should execute the command correctly and show results",
+      "assertions": [
+        {
+          "id": "a1-1",
+          "description": "Executes the correct command",
+          "type": "output_contains",
+          "value": "<command>",
+          "priority": true
+        },
+        {
+          "id": "a1-2",
+          "description": "Shows output or confirms completion",
+          "type": "conversation_contains_any",
+          "values": ["done", "complete", "result", "output", "here"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 2,
+      "name": "happy-path-with-args",
+      "prompt": "<common-task> with <common-argument>",
+      "context": "User specifies additional parameters.",
+      "expected_output": "Agent should pass the argument correctly to the command",
+      "assertions": [
+        {
+          "id": "a2-1",
+          "description": "Includes the specified argument",
+          "type": "output_contains",
+          "value": "<common-argument>",
+          "priority": true
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 3,
+      "name": "context-inference",
+      "conversation_history": [
+        {
+          "role": "user",
+          "content": "I'm working on <relevant-context>"
+        },
+        {
+          "role": "assistant",
+          "content": "Got it. What would you like to do?"
+        }
+      ],
+      "prompt": "Now <abbreviated-task>",
+      "context": "User gave context earlier, now uses shorthand.",
+      "expected_output": "Agent should infer full intent from conversation history",
+      "assertions": [
+        {
+          "id": "a3-1",
+          "description": "Connects to earlier context",
+          "type": "conversation_contains_any",
+          "values": ["<relevant-context>", "<inferred-detail>"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 4,
+      "name": "error-invalid-input",
+      "prompt": "<common-task> with <invalid-input>",
+      "context": "User provides invalid input that should fail gracefully.",
+      "expected_output": "Agent should report the error clearly and suggest fixes",
+      "assertions": [
+        {
+          "id": "a4-1",
+          "description": "Acknowledges the error",
+          "type": "conversation_contains_any",
+          "values": ["error", "invalid", "failed", "not found", "doesn't exist"]
+        },
+        {
+          "id": "a4-2",
+          "description": "Suggests a fix or alternative",
+          "type": "conversation_contains_any",
+          "values": ["try", "check", "make sure", "instead", "correct"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 5,
+      "name": "error-auth-missing",
+      "prompt": "<task-requiring-auth>",
+      "context": "Tool requires authentication that may not be configured.",
+      "expected_output": "Agent should detect auth issue and guide setup",
+      "assertions": [
+        {
+          "id": "a5-1",
+          "description": "Identifies auth/login requirement",
+          "type": "conversation_contains_any",
+          "values": ["auth", "login", "credential", "token", "sign in", "configure"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 6,
+      "name": "edge-unusual-format",
+      "prompt": "<unusual-but-valid-request>",
+      "context": "Valid but non-standard usage of the tool.",
+      "expected_output": "Agent should handle it correctly or explain limitations",
+      "assertions": [
+        {
+          "id": "a6-1",
+          "description": "Attempts to handle or explains why not",
+          "type": "conversation_contains_any",
+          "values": ["<expected-behavior>", "not supported", "alternative"]
+        }
+      ],
+      "timeout_seconds": 90
+    }
+  ]
+}

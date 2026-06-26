@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Profile",
+  "description": "AR-oriented client profile for invoice management. Stored in invoices/clients/{client-slug}.json.",
+  "type": "object",
+  "required": ["client_id", "client_name"],
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "Kebab-case slug identifier",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Full legal name of the client entity"
+    },
+
+    "billing_address": {
+      "type": ["object", "null"],
+      "properties": {
+        "line1": { "type": "string" },
+        "line2": { "type": ["string", "null"] },
+        "city": { "type": "string" },
+        "state": { "type": ["string", "null"] },
+        "postal_code": { "type": "string" },
+        "country": { "type": "string" }
+      },
+      "description": "Client billing address"
+    },
+    "contact_email": {
+      "type": ["string", "null"],
+      "description": "Primary business contact email"
+    },
+    "contact_name": {
+      "type": ["string", "null"],
+      "description": "Primary business contact name"
+    },
+
+    "accounts_payable_email": {
+      "type": ["string", "null"],
+      "description": "AP department email (often different from business contact)"
+    },
+    "billing_contact_name": {
+      "type": ["string", "null"],
+      "description": "AP department contact name"
+    },
+    "cc_emails": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional email recipients for invoices"
+    },
+    "po_required": {
+      "type": ["boolean", "null"],
+      "description": "Whether this client requires a PO number on invoices"
+    },
+    "po_number_format_notes": {
+      "type": ["string", "null"],
+      "description": "Notes on PO number format or how to obtain one"
+    },
+    "vendor_portal_url": {
+      "type": ["string", "null"],
+      "description": "URL of client's vendor/AP portal for invoice submission"
+    },
+    "submission_notes": {
+      "type": ["string", "null"],
+      "description": "Notes on how to submit invoices (portal steps, required attachments, etc.)"
+    },
+    "preferred_invoice_delivery_method": {
+      "type": ["string", "null"],
+      "enum": ["email", "portal", "mail", null],
+      "description": "How this client prefers to receive invoices"
+    },
+    "payment_method_preference": {
+      "type": ["string", "null"],
+      "description": "How this client typically pays (bank transfer, check, ACH, wire, etc.)"
+    },
+    "bank_reference_requirement": {
+      "type": ["string", "null"],
+      "description": "Required reference format for bank transfers"
+    },
+
+    "average_days_to_pay": {
+      "type": ["number", "null"],
+      "description": "Computed average days from invoice to payment"
+    },
+    "dispute_history_flag": {
+      "type": ["boolean", "null"],
+      "description": "Whether this client has a history of disputing invoices"
+    },
+    "credit_risk_level": {
+      "type": ["string", "null"],
+      "enum": ["low", "medium", "high", null],
+      "description": "Assessed credit risk based on payment history"
+    },
+    "reminder_tone_preference": {
+      "type": ["string", "null"],
+      "enum": ["formal", "friendly", "minimal", null],
+      "description": "Preferred tone for payment reminders and collections"
+    },
+
+    "default_currency": {
+      "type": ["string", "null"],
+      "description": "Default ISO 4217 currency code for this client"
+    },
+    "default_payment_terms_days": {
+      "type": ["integer", "null"],
+      "description": "Default payment terms in days"
+    },
+    "default_tax_rate": {
+      "type": ["string", "null"],
+      "description": "Default tax rate for this client (e.g., '10%')"
+    },
+    "tax_exempt": {
+      "type": ["boolean", "null"],
+      "description": "Whether this client is tax-exempt"
+    },
+    "tax_id": {
+      "type": ["string", "null"],
+      "description": "Client's tax identification number"
+    },
+
+    "contract_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Links to contracts in opc-contract-manager archive"
+    },
+    "invoice_history": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of invoice IDs issued to this client"
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-form notes about this client"
+    },
+    "created_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "updated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    }
+  }
+}

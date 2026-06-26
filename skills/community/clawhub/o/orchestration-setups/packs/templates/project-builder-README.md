@@ -1,0 +1,19 @@
+# Project Overview
+
+## What this project is
+...
+
+## Primary goal of the current run
+...
+
+## Main modules / areas
+- ...
+
+## How to validate success
+- ...
+
+## Important external dependencies
+- ...
+
+## Current status
+- ...

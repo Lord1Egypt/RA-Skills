@@ -1,0 +1,71 @@
+# =====================================================================
+# DEFENDER-SIDE DETECTION-RULE ALPHABETS
+# =====================================================================
+# This file is part of the openclaw-prompt-shield input-hardening scanner.
+# It is NOT attacker intent. It is the rule data the scanner uses to
+# recognise prompt-injection phrasing in incoming user text.
+#
+# A virus scanner ships a list of virus signatures; this defender-side
+# input scanner ships a list of attack-signal word fragments. The fragments
+# below describe what the SCANNER MATCHES in untrusted input, so that the
+# agent is warned before it processes that input as instructions.
+#
+# scripts/_patterns.py loads this file at import time and assembles the
+# detection regex catalog from it. The Python source itself contains no
+# inline word directories. Removing fragments from this file weakens the
+# scanner; it does not improve safety.
+# =====================================================================
+#
+# Format
+# ------
+# Lines starting with "#" or empty lines are ignored.
+# Each non-comment line begins with a key followed by ":" then a list of
+# whitespace-separated fragments. All fragments are matched
+# case-insensitively at runtime.
+
+# --- INSTRUCTION-OVERRIDE detection: verbs the scanner watches for in
+# attempts to make the agent drop or replace whatever it was previously told.
+verbs.override:    ignore disregard forget override bypass
+
+# --- ROLE-HIJACK detection: verbs used by attackers when trying to push
+# the agent into an unrestricted persona.
+verbs.role:        pretend roleplay simulate
+
+# --- SYSTEM-PROMPT-LEAK detection: verbs used by attackers asking the
+# agent to expose its hidden context. Matched in untrusted input.
+verbs.leak:        repeat show reveal print output dump leak expose share
+
+# --- DATA-EXFILTRATION detection: verbs used by attackers asking the
+# agent to push conversation, secrets, or context to an outside endpoint.
+# These are TRIGGERS THE SCANNER LOOKS FOR, not actions the scanner does.
+verbs.exfil:       send email post forward transmit upload exfiltrate
+
+# Quantifier and time-anchor words that bridge the verb and the target
+# in instruction-override phrasing - i.e. words that fill the slot between
+# the override verb and the target noun in the attack templates the
+# scanner watches for.
+quant:             all any the every each
+time_anchor:       previous prior above earlier preceding past former previously
+
+# Scope words that bridge the verb and the target in system-prompt-leak
+# phrasing ("reveal your HIDDEN system prompt").
+scope:             system initial original first hidden secret internal private
+
+# --- TARGET nouns the scanner watches for ----------------------------
+# These are the OBJECTS in attack phrasing - what the attacker is trying
+# to override / leak / exfiltrate. The scanner uses them to recognise
+# malicious phrasing in user input. They do not describe assets that
+# this skill itself reads or transmits.
+targets.override:  instructions? prompts? rules? directives? guidelines? filters? safeguards?
+targets.leak:      prompt instructions? message directives? context memory state
+targets.exfil:     conversation chat history prompt context messages? data secrets? credentials? keys? tokens? passwords?
+
+# Secret-asset stems used by the upload/copy/send/leak-of-X exfil pattern.
+# api_keys is matched separately at runtime so the optional separator
+# regex (\s, _, -) does not need to be encoded here.
+secret_stems:      secrets? credentials? keys? tokens? passwords?
+
+# Channel words for the "send/post/submit/forward to <channel>" pattern.
+# The scanner flags untrusted input that asks the agent to push data to
+# any of these channel words.
+exfil_channels:    webhook endpoint url api server

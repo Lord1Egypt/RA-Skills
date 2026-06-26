@@ -1,0 +1,131 @@
+<!--
+  Layout: cards
+  卡片页 — 多个并列概念，每个含图标+标题+描述
+  Agent 根据内容调整卡片数量：
+  - 带描述的卡片：≤ 4 个（硬上限），超出必须拆页
+  - 纯标题卡片（无描述）：≤ 6 个
+  - 5 个概念 + 描述？→ 拆为两页 cards 或转用 content/timeline 布局
+
+  安全区约束：
+  - 图标区：最小 40px 高度
+  - 标题：最多 2 行
+  - 描述：最多 3 行
+  - 超出则缩短文案，不要硬塞
+
+  ⚠️ 溢出红线：cards-grid 高度受页面约束，5+ 张带描述卡片必定溢出视口。
+
+  布局规则（CSS :has() 自动强制列数，Agent 无需干预）：
+  - 2 卡 → 2 列  |  3 卡 → 3 列
+  - 4 卡带描述 → 2×2  |  4 卡无描述 → 4 列
+  - 5 卡 → 3 列（上 3 下 2）  |  6 卡 → 3×2
+-->
+<section class="slide slide--cards" data-slide="{{N}}">
+  <h2 class="cards-title">{{页面标题}}</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">{{图标，如 emoji 或 SVG}}</div>
+      <h3 class="card-heading">{{卡片标题}}</h3>
+      <p class="card-desc">{{卡片描述}}</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">{{图标}}</div>
+      <h3 class="card-heading">{{卡片标题}}</h3>
+      <p class="card-desc">{{卡片描述}}</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">{{图标}}</div>
+      <h3 class="card-heading">{{卡片标题}}</h3>
+      <p class="card-desc">{{卡片描述}}</p>
+    </div>
+    <!-- Agent 根据内容增减 card -->
+  </div>
+</section>
+
+<style>
+.slide--cards {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* ❌ 不设 align-items: start — 保持默认 stretch 让 cards-grid 撑满剩余高度 */
+}
+.slide--cards .cards-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-md);
+}
+.slide--cards .cards-grid {
+  display: grid;
+  /* 默认 fallback：auto-fit，:has() 规则会按实际卡片数强制覆盖 */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  align-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+/* ── 卡片列数强制规则（:has() 自动检测，Agent 无需干预）── */
+.slide--cards .cards-grid:has(> .card:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);  /* 2 卡 → 2 列 */
+}
+.slide--cards .cards-grid:has(> .card:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr);  /* 3 卡 → 3 列 */
+}
+/* 4 卡带描述 → 2×2 */
+.slide--cards .cards-grid:has(> .card:nth-child(4):last-child):has(.card-desc:not(:empty)) {
+  grid-template-columns: repeat(2, 1fr);
+}
+/* 4 卡无描述 → 4 列 */
+.slide--cards .cards-grid:has(> .card:nth-child(4):last-child):not(:has(.card-desc:not(:empty))) {
+  grid-template-columns: repeat(4, 1fr);
+}
+/* 5 卡 → 6 列虚拟网格，上 3 下 2 居中 */
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) {
+  grid-template-columns: repeat(6, 1fr);
+}
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) > .card:nth-child(1) { grid-column: 1 / 3; }
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) > .card:nth-child(2) { grid-column: 3 / 5; }
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) > .card:nth-child(3) { grid-column: 5 / 7; }
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) > .card:nth-child(4) { grid-column: 2 / 4; }
+.slide--cards .cards-grid:has(> .card:nth-child(5):last-child) > .card:nth-child(5) { grid-column: 4 / 6; }
+/* 6 卡 → 3×2 */
+.slide--cards .cards-grid:has(> .card:nth-child(6):last-child) {
+  grid-template-columns: repeat(3, 1fr);
+}
+.slide--cards .card {
+  background: var(--color-surface);
+  padding: var(--spacing-sm) var(--spacing-md);  /* 上下紧凑(1rem)、左右宽松(2rem)，防止内容被 overflow:hidden 裁切 */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;     /* 内容垂直居中 */
+  gap: var(--spacing-xs);      /* 图标/标题/描述之间紧凑间距(0.5rem)，为内容留空间 */
+  border: 1px solid var(--color-border);
+  min-height: 160px;           /* 最小高度保证视觉存在感，避免卡片过小 */
+  /* 不设 overflow:hidden — 由 line-clamp 控制文字截断，避免裁剪卡片内容 */
+}
+.slide--cards .card-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  min-height: 40px;          /* 图标最小安全区 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide--cards .card-heading {
+  font-size: var(--font-size-subheading);
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;     /* 标题最多 2 行 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.slide--cards .card-desc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     /* 描述最多 3 行 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>

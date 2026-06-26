@@ -1,0 +1,36 @@
+# 测试鼠标和键盘
+# Usage: python3 scripts/main.py automation run --script examples/test_input.txt
+
+# 移动鼠标到屏幕中心
+mouse move 960 540
+wait 200
+
+# 点击
+mouse click
+wait 200
+
+# 双击测试
+mouse click 960 540 --clicks 2
+wait 500
+
+# 打开文本编辑器
+key press ctrl,alt,t
+wait 1000
+type "gedit &"
+key press return
+wait 2000
+
+# 输入测试文本
+type "Desktop Control Test"
+wait 200
+key press return
+wait 200
+type "Line 2: Mouse moved to (960, 540)"
+wait 200
+key press return
+wait 200
+type "Line 3: Testing complete!"
+wait 500
+
+# 截图
+screenshot

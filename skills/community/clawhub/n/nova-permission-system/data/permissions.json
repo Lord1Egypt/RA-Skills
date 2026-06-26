@@ -1,0 +1,25 @@
+{
+  "roles": {
+    "owner": {
+      "read": true,
+      "write": true,
+      "admin": true,
+      "execute": true
+    },
+    "friend": {
+      "read": true,
+      "write": false,
+      "admin": false,
+      "execute": true
+    },
+    "stranger": {
+      "read": false,
+      "write": false,
+      "admin": false,
+      "execute": false
+    }
+  },
+  "test_mode": false,
+  "whitelist": [],
+  "custom_rules": {}
+}

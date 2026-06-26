@@ -1,0 +1,68 @@
+/*
+ * Theme: Frost Light
+ * 磨砂玻璃浅色 — 经典 glassmorphism，强模糊、高饱和背景、清晰面板边界
+ * 适合：SaaS 产品介绍、技术方案展示、数据报告、企业内部分享
+ *
+ * 特性：强模糊半透明面板、鲜艳冷色调背景光斑、三层质感阴影
+ * 需要 base.html 的 backdrop-filter 支持（v1.1+）
+ *
+ * 增强记录：
+ * - v1.1: 初始版本 (blur 20px, saturate 150%)
+ * - v1.2: 增强质感 (blur 28px, saturate 180%, surface 更透明, bg-pattern 三光斑, 三层阴影)
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #3b82f6;
+  --color-secondary: #94a3b8;
+  --color-accent: #06b6d4;
+  --color-bg: #e8edf4;
+  --color-bg-alt: #dfe5ee;
+  --color-surface: rgba(255, 255, 255, 0.42);
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-on-primary: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.65);
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.81rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.27rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.06rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 2.25rem;
+  --spacing-lg: 3.38rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 16px;
+  --shadow-sm:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.60);
+  --shadow-md:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.50);
+  --shadow-lg:
+    0 8px 32px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- 玻璃/渐变扩展 --- */
+  --surface-blur: 28px;
+  --surface-saturate: 180%;
+  --bg-pattern:
+    radial-gradient(ellipse 75% 65% at 20% 40%, rgba(59, 130, 246, 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 55% at 80% 30%, rgba(6, 182, 212, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 55% 75%, rgba(139, 92, 246, 0.14) 0%, transparent 70%);
+}

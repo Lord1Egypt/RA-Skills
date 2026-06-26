@@ -1,0 +1,21 @@
+{
+  "budget": {
+    "total_budget": 500000,
+    "warning_threshold": 0.75,
+    "danger_threshold": 0.9,
+    "auto_compact_threshold": 0.85,
+    "continuation_budget": 200000,
+    "max_continuations": 5
+  },
+  "tracking": {
+    "state_file": "logs/token_budget_state.json",
+    "history_size": 100,
+    "log_dir": "logs/token_usage/"
+  },
+  "alerts": {
+    "warn_enabled": true,
+    "danger_enabled": true,
+    "auto_compact_enabled": true,
+    "notify_channel": null
+  }
+}

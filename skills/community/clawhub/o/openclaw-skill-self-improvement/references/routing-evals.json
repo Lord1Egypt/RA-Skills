@@ -1,0 +1,58 @@
+[
+  {
+    "id": "eval-001",
+    "input": "debug this production failure",
+    "shouldTrigger": ["investigate"],
+    "shouldNotTrigger": ["office-hours", "openclaw-office-hours"],
+    "note": "debug request should route to investigate, not brainstorming"
+  },
+  {
+    "id": "eval-002",
+    "input": "brainstorm whether this startup idea is worth building",
+    "shouldTrigger": ["office-hours"],
+    "shouldNotTrigger": ["investigate", "openclaw-investigate"],
+    "note": "brainstorm request should route to office-hours, not debug"
+  },
+  {
+    "id": "eval-003",
+    "input": "create a new skill from scratch",
+    "shouldTrigger": ["skill-creator"],
+    "shouldNotTrigger": ["investigate", "office-hours"],
+    "note": "skill creation should route to skill-creator"
+  },
+  {
+    "id": "eval-004",
+    "input": "update the docs after a PR is merged",
+    "shouldTrigger": ["document-release"],
+    "shouldNotTrigger": ["investigate", "office-hours"],
+    "note": "post-ship doc updates should route to document-release"
+  },
+  {
+    "id": "eval-005",
+    "input": "audit my content quality",
+    "shouldTrigger": ["content-quality-auditor"],
+    "shouldNotTrigger": ["content-writer"],
+    "note": "audit request should route to auditor, not writer"
+  },
+  {
+    "id": "eval-006",
+    "input": "write a blog post for ClawLite",
+    "shouldTrigger": ["content-writer"],
+    "shouldNotTrigger": ["content-quality-auditor"],
+    "note": "write request should route to writer, not auditor"
+  },
+  {
+    "id": "eval-007",
+    "input": "run the daily marketing pipeline",
+    "shouldTrigger": ["daily-marketing-operating-system"],
+    "shouldNotTrigger": ["openclaw-mark"],
+    "note": "daily marketing should route to canonical skill, not duplicate"
+  },
+  {
+    "id": "eval-008",
+    "input": "do a retro for this week",
+    "shouldTrigger": ["retro"],
+    "shouldNotTrigger": ["openclaw-retro"],
+    "note": "retro should route to canonical skill, not duplicate"
+  }
+]

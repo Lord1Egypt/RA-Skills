@@ -1,0 +1,6 @@
+# obscure-package-master: No 3rd-party runtime dependencies.
+# Requirement: Python 3.9+ (Standard Library only)
+# Requirement: 'pip' command available in PATH
+
+# Test dependencies
+pytest>=7.0

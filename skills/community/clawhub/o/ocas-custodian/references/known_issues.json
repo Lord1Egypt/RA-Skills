@@ -1,0 +1,137 @@
+{
+  "oc_cron_disabled_transient": {
+    "tier": 1,
+    "match_patterns": ["job.*disabled", "enabled.*false"],
+    "source": "cron_log",
+    "auto_fix": "openclaw cron edit {job_id} --enabled true",
+    "reversibility": "openclaw cron edit {job_id} --enabled false",
+    "description": "Cron job transiently disabled, likely from a failed run or timeout",
+    "technology_context": "Node.js launchd cron scheduler"
+  },
+  "oc_cron_stuck_missed": {
+    "tier": 1,
+    "match_patterns": ["missed.*schedule", "stuck.*cron", "overdue.*run"],
+    "source": "cron_log",
+    "auto_fix": "openclaw cron run {job_id}",
+    "reversibility": "No side effects -- run was already missed",
+    "description": "Cron job missed its scheduled run window",
+    "technology_context": "Node.js launchd cron scheduler"
+  },
+  "oc_intake_dir_missing": {
+    "tier": 1,
+    "match_patterns": ["ENOENT.*intake", "intake.*directory.*not found", "cannot write.*intake"],
+    "source": "skill_journal",
+    "auto_fix": "mkdir -p {intake_path}",
+    "reversibility": "rmdir {intake_path}",
+    "description": "Skill intake directory missing, blocking inter-skill signal delivery",
+    "technology_context": "filesystem POSIX directory"
+  },
+  "oc_journal_dir_missing": {
+    "tier": 1,
+    "match_patterns": ["ENOENT.*journals", "journal.*directory.*missing", "cannot write.*journal"],
+    "source": "skill_journal",
+    "auto_fix": "mkdir -p ~/openclaw/journals/{skill_name}",
+    "reversibility": "rmdir ~/openclaw/journals/{skill_name}",
+    "description": "Skill journal directory missing, blocking journal writes",
+    "technology_context": "filesystem POSIX directory"
+  },
+  "oc_skill_data_dir_missing": {
+    "tier": 1,
+    "match_patterns": ["ENOENT.*data/ocas-", "data directory.*missing", "config.json.*not found"],
+    "source": "ocas_data",
+    "auto_fix": "mkdir -p ~/openclaw/data/{skill_name} && write default config.json",
+    "reversibility": "Remove created directory and config.json",
+    "description": "Skill data directory or config.json missing, skill uninitialized",
+    "technology_context": "filesystem JSON configuration"
+  },
+  "oc_jsonl_oversized": {
+    "tier": 1,
+    "match_patterns": ["file size exceeded", "jsonl.*too large", "rotation needed"],
+    "source": "ocas_data",
+    "auto_fix": "mv {file}.jsonl {file}.{date}.jsonl && touch {file}.jsonl",
+    "reversibility": "mv {file}.{date}.jsonl {file}.jsonl",
+    "description": "JSONL log file exceeded max_records threshold, needs rotation",
+    "technology_context": "JSON Lines append-only log"
+  },
+  "oc_jsonl_malformed_lines": {
+    "tier": 1,
+    "match_patterns": ["JSON parse error", "malformed.*jsonl", "invalid JSON.*line"],
+    "source": "ocas_data",
+    "auto_fix": "Move malformed lines to {file}.error",
+    "reversibility": "Move .error lines back to original file",
+    "description": "JSONL file contains malformed JSON lines blocking parsing",
+    "technology_context": "JSON Lines parsing"
+  },
+  "oc_gateway_token_missing": {
+    "tier": 1,
+    "match_patterns": ["gateway token.*missing", "authentication.*gateway.*failed", "no gateway token"],
+    "source": "gateway_log",
+    "auto_fix": "openclaw doctor --generate-gateway-token",
+    "reversibility": "Remove generated token from config",
+    "description": "Gateway authentication token missing or invalid",
+    "technology_context": "Node.js HTTP authentication token"
+  },
+  "oc_oauth_token_expiring": {
+    "tier": 1,
+    "match_patterns": ["token.*expir", "oauth.*refresh needed", "token_state.*expiring"],
+    "source": "gateway_log",
+    "auto_fix": "OAuth refresh (only when token still valid, expiry <= 12h)",
+    "reversibility": "Token was valid before refresh -- no rollback needed",
+    "description": "OAuth token approaching expiry, proactive refresh needed",
+    "technology_context": "OAuth 2.0 token refresh"
+  },
+  "oc_background_task_missing": {
+    "tier": 1,
+    "match_patterns": ["missing.*cron.*job", "heartbeat.*entry.*missing", "background task.*not registered"],
+    "source": "ocas_data",
+    "auto_fix": "Register missing cron or heartbeat entry per SKILL.md declaration",
+    "reversibility": "Remove registered entry",
+    "description": "Declared background task not found in cron registry or HEARTBEAT.md",
+    "technology_context": "Node.js launchd cron scheduler"
+  },
+  "oc_skill_uninitialized": {
+    "tier": 1,
+    "match_patterns": ["skill.*uninitialized", "missing.*data directory.*config", "init required"],
+    "source": "ocas_data",
+    "auto_fix": "Create storage dirs, default config.json, empty JSONL files",
+    "reversibility": "Remove created files and directories",
+    "description": "Installed skill has no data directory, config, or journal directory",
+    "technology_context": "filesystem JSON configuration"
+  },
+  "oc_gateway_process_down": {
+    "tier": 4,
+    "match_patterns": ["gateway.*not running", "ECONNREFUSED.*18789", "gateway process.*dead"],
+    "source": "gateway_log",
+    "auto_fix": null,
+    "reversibility": null,
+    "description": "Gateway process is not running -- requires manual restart",
+    "technology_context": "Node.js HTTP server process"
+  },
+  "oc_port_collision": {
+    "tier": 4,
+    "match_patterns": ["EADDRINUSE.*18789", "port.*18789.*in use", "address already in use"],
+    "source": "gateway_log",
+    "auto_fix": null,
+    "reversibility": null,
+    "description": "Port 18789 in use by another process -- requires manual resolution",
+    "technology_context": "Node.js TCP port binding"
+  },
+  "oc_systemd_linger_disabled": {
+    "tier": 4,
+    "match_patterns": ["linger.*disabled", "systemd.*linger.*not enabled", "user service.*not persistent"],
+    "source": "doctor",
+    "auto_fix": null,
+    "reversibility": null,
+    "description": "systemd linger not enabled -- background services will not persist across logout",
+    "technology_context": "systemd loginctl linger"
+  },
+  "oc_node_version_mismatch": {
+    "tier": 4,
+    "match_patterns": ["node.*version.*mismatch", "unsupported.*node.*version", "requires node"],
+    "source": "doctor",
+    "auto_fix": null,
+    "reversibility": null,
+    "description": "Node.js version does not meet OpenClaw requirements",
+    "technology_context": "Node.js runtime version"
+  }
+}

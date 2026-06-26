@@ -1,0 +1,5 @@
+interface:
+  display_name: "OfferCatcher"
+  short_description: "Turn recruiting emails into native Apple Reminders"
+  icon_large: "./assets/banner.svg"
+  default_prompt: "Check my recent recruiting emails for interviews, coding tests, assessments, and deadlines. Create reminders for important events."

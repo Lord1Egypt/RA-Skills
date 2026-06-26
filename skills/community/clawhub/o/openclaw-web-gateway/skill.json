@@ -1,0 +1,14 @@
+{
+  "name": "openclaw-web-gateway",
+  "version": "1.0.0",
+  "description": "Flask web gateway for OpenClaw with multi-user support and memory",
+  "entrypoint": "app.py",
+  "author": "Romain Jeanneret",
+  "license": "MIT",
+  "repository": "https://github.com/jeanne0r/openclaw-web-gateway",
+  "install": {
+    "type": "pip",
+    "requirements": "requirements.txt"
+  },
+  "run": "python app.py"
+}

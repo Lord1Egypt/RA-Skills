@@ -1,0 +1,165 @@
+openapi: "3.0.3"
+info:
+  title: "{项目名} API"
+  description: >
+    本文件是前后端的**唯一 API 契约**。
+    所有后端实现和前端调用必须严格对应本规范。
+    修改接口前先改本文件，再同步到代码。
+  version: "1.0.0"
+  contact:
+    name: 小雨（OpenClaw Coordinator）
+
+servers:
+  - url: http://localhost
+    description: 本地开发
+
+# ── 安全方案 ──────────────────────────────────────────
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        登录后获取的 accessToken。
+        除 /auth/login 和 /auth/register 外，所有端点需要此 Token。
+
+  # ── 统一响应包装 ────────────────────────────────────
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: "200=成功, 4xx=客户端错误, 5xx=服务端错误"
+          example: 200
+        message:
+          type: string
+          example: "ok"
+        data:
+          type: object
+          description: "各端点的实际数据"
+
+    PageResult:
+      type: object
+      properties:
+        records:
+          type: array
+          items: {}
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        size:
+          type: integer
+          example: 20
+
+  # ── 通用参数 ────────────────────────────────────────
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+      description: 页码（从 1 开始）
+    SizeParam:
+      name: size
+      in: query
+      schema:
+        type: integer
+        default: 20
+      description: 每页条数
+    SortParam:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: 排序字段
+
+# ── 路径定义 ──────────────────────────────────────────
+# 每个服务用 tags 区分，服务名写在 tag name 里
+# 格式：{服务名} - {模块}
+# 示例：user-service - Auth、contract-service - Contract
+
+paths:
+  # ──────── user-service ──────────────────────────────
+  /api/v1/auth/health:
+    get:
+      tags: [user-service - Auth]
+      operationId: authHealth
+      summary: 认证服务健康检查
+      security: []  # 不需要认证
+      responses:
+        "200":
+          description: 服务正常
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+
+  # ──────── 以下为示例，按项目实际端点展开 ────────────
+  /api/v1/auth/login:
+    post:
+      tags: [user-service - Auth]
+      operationId: authLogin
+      summary: 用户登录
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+      responses:
+        "200":
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiResponse"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          accessToken:
+                            type: string
+                          refreshToken:
+                            type: string
+
+  /api/v1/auth/register:
+    post:
+      tags: [user-service - Auth]
+      operationId: authRegister
+      summary: 用户注册
+      security: []
+      requestBody:
+        $ref: "#/components/requestBodies/RegisterRequest"
+
+# ── Request Bodies ────────────────────────────────────
+# 将常用的 request body 定义放在这里，减少重复
+
+# ════════════════════════════════════════════════════════
+# 使用说明
+# ════════════════════════════════════════════════════════
+#
+# 1. 新项目启动：复制本文件，改 info.title 和 servers
+# 2. saas-arch-agent 设计 API 时：直接在本文件中追加路径定义
+# 3. legal-backend-agent 开发时：对照本文件实现端点
+# 4. legal-frontend-agent 开发时：从本文件生成 TS 类型
+# 5. saas-ops-agent 部署后：逐端点 curl 验证
+# 6. 小雨做契约审计时：本文件就是对照标准

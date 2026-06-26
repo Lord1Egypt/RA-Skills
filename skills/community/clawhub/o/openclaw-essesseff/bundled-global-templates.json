@@ -1,0 +1,56 @@
+[
+  {
+    "name": "essesseff-hello-world-fastapi-template",
+    "language": "python",
+    "description": "essesseff Hello World FastAPI app template",
+    "template_org_login": "essesseff-hello-world-fastapi-template",
+    "source_template_repo": "hello-world",
+    "is_global_template": true,
+    "replacement_string": "hello-world"
+  },
+  {
+    "name": "essesseff-hello-world-flask-template",
+    "language": "python",
+    "description": "essesseff Hello World Python Flask template",
+    "template_org_login": "essesseff-hello-world-flask-template",
+    "source_template_repo": "hello-world",
+    "is_global_template": true,
+    "replacement_string": "hello-world"
+  },
+  {
+    "name": "essesseff-hello-world-go-template",
+    "language": "go",
+    "description": "essesseff Hello World Go template",
+    "template_org_login": "essesseff-hello-world-go-template",
+    "source_template_repo": "hello-world",
+    "is_global_template": true,
+    "replacement_string": "hello-world"
+  },
+  {
+    "name": "essesseff-hello-world-nodejs-template",
+    "language": "node",
+    "description": "essesseff Hello World Node.js template",
+    "template_org_login": "essesseff-hello-world-nodejs-template",
+    "source_template_repo": "hello-world",
+    "is_global_template": true,
+    "replacement_string": "hello-world"
+  },
+  {
+    "name": "essesseff-hello-world-php-template",
+    "language": "php",
+    "description": "essesseff Hello World PHP template",
+    "template_org_login": "essesseff-hello-world-php-template",
+    "source_template_repo": "hello-world",
+    "is_global_template": true,
+    "replacement_string": "hello-world"
+  },
+  {
+    "name": "essesseff-helloworld-springboot-templat",
+    "language": "java",
+    "description": "essesseff Hello World Java Spring Boot template",
+    "template_org_login": "essesseff-helloworld-springboot-templat",
+    "source_template_repo": "helloworld",
+    "is_global_template": true,
+    "replacement_string": "helloworld"
+  }
+]

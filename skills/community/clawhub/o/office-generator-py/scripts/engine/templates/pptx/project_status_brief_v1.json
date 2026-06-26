@@ -1,0 +1,14 @@
+{
+  "documentType": "pptx",
+  "templateId": "project_status_brief_v1",
+  "title": "项目状态汇报",
+  "purpose": "用于阶段状态同步",
+  "contentSpec": {
+    "slides": [
+      {"title": "项目背景", "layout": "content", "bullets": ["背景1", "背景2"]},
+      {"title": "当前状态", "layout": "content", "bullets": ["状态1", "状态2"]},
+      {"title": "关键风险", "layout": "content", "bullets": ["风险1", "风险2"]},
+      {"title": "下一步计划", "layout": "content", "bullets": ["下一步1", "下一步2"]}
+    ]
+  }
+}

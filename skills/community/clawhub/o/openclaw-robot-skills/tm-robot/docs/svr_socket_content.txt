@@ -1,0 +1,1278 @@
+
+=== Page 40 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+40 
+      "joint6Torque": 15, 
+      "motionSpeed": 0, 
+      "ptpSpeed": 0, 
+      "minimumPossibleContactArea": 0.74, 
+      "gSensor": false, 
+      "decelerationTime": 150 
+    }, 
+    "others1": { 
+      "currentTime": "2021-4-6 17:25:48", 
+      "lastErrorTime": "0-0-0 0:0:0", 
+      "ipcConnectNumber": 48 
+    } 
+  } 
+] 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type 
+Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. 
+Use 1 for the target as a TM Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 22. 
+TMRobotNames 
+No 
+string array 
+TM Robot name list. If the field is 
+null, an empty array, or no field, it 
+returns every TM Robot in 
+connection. 
+ 
+Request 
+{ 
+  
+"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZG1pbiIsImp0aSI6IjUxOTQ2Nj
+MzLTM2NTgtNDYzNC1hZTYzLTQzNmRjMDIzMjFkNyIsInJvbGVzIjpbIkFkbWluIiwiVXNlcnMiXS
+wibmJmIjoxNjA3OTA4MDY0LCJleHAiOjE2MDc5MTE2NjQsImlhdCI6MTYwNzkwODA2NCwiaX
+NzIjoiVE1NIn0.YfbC4sa3ICavXHPCD82r2B3kcUFYRtZ2SOGH_k1tGH8", 
+  "ActionTarget":1, 
+  "TMRobotActionParameter":{ 
+    "RobotActionType":22, 
+
+
+=== Page 41 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+41 
+    "TMRobotNames":["TM000000"] 
+    } 
+} 
+ 
+Response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+    "RobotActionType": 22, 
+    "TMRobotInfosDetail": [ 
+      { 
+        "TMRobotInfo": { 
+          "TMRobotName": "TM000000", 
+          "IP": "192.168.132.200", 
+          "Mode": 1, 
+          "ControlBoxSN": "BC1924002", 
+          "Model": "TM5-700ACA", 
+          "EnabledHMIControl": true, 
+          "HasRightControl": true, 
+          "EnabledAutoRemoteMode": true, 
+          "EnabledSpeedControl": false, 
+          "TMRobotLIghtColor": 3, 
+          "TMRobotStatus": 3, 
+          "ProjectSpeed": 100, 
+          "HMIVersion": "1.80.5400", 
+          "DefaultProjectName": "API_Test_1_80", 
+          "StatusUpdateTime": "2021/4/6 銝
+?? 04:26:22", 
+          "ErrorCode": "" 
+        }, 
+        "RobotStatus2": { 
+          "AutoRemoteModeEnable": true, 
+          "AutoRemoteModeActive": true, 
+          "SpeedAdjustment": false 
+        }, 
+
+
+=== Page 42 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+42 
+        "ControlBoxDIO": { 
+          "DI0": false, 
+          "DI1": false, 
+          "DI2": false, 
+          "DI3": false, 
+          "DI4": false, 
+          "DI5": false, 
+          "DI6": false, 
+          "DI7": false, 
+          "DI8": false, 
+          "DI9": false, 
+          "DI10": false, 
+          "DI11": false, 
+          "DI12": false, 
+          "DI13": false, 
+          "DI14": false, 
+          "DI15": false 
+        }, 
+        "ControlBoxAIO": { 
+          "AO0": -10.0 
+        }, 
+        "RobotCoordinateCurrentBaseWithoutTool": { 
+          "XBasewithouttool": 184.00572, 
+          "YBasewithouttool": -376.85797, 
+          "ZBasewithouttool": 310.54944, 
+          "RxBasewithouttool": 177.61002, 
+          "RyBasewithouttool": -2.0264668, 
+          "RzBasewithouttool": -8.918276 
+        }, 
+        "RobotCoordinateTouchStopCurrentBaseWithoutTool": { 
+          "XBasewithouttool": 0.0, 
+          "YBasewithouttool": 0.0, 
+          "ZBasewithouttool": 0.0, 
+          "RxBasewithouttool": 0.0, 
+          "RyBasewithouttool": 0.0, 
+          "RzBasewithouttool": 0.0 
+
+
+=== Page 43 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+43 
+        }, 
+        "RobotCoordinateTouchStopCurrentBaseWithTool": { 
+          "XBasewithtool": 0.0, 
+          "YBasewithtool": 0.0, 
+          "ZBasewithtool": 0.0, 
+          "RxBasewithtool": 0.0, 
+          "RyBasewithtool": 0.0, 
+          "RzBasewithtool": 0.0 
+        }, 
+        "RobotCoordinateTouchStopJoint": { 
+          "Joint1": 0.0, 
+          "Joint2": 0.0, 
+          "Joint3": 0.0, 
+          "Joint4": 0.0, 
+          "Joint5": 0.0, 
+          "Joint6": 0.0 
+        }, 
+        "RobotCoordinateTouchStopRobotBaseWithoutTool": { 
+          "XBasewithtool": 0.0, 
+          "YBasewithtool": 0.0, 
+          "ZBasewithtool": 0.0, 
+          "RxBasewithtool": 0.0, 
+          "RyBasewithtool": 0.0, 
+          "RzBasewithtool": 0.0 
+        }, 
+        "RobotCoordinateTouchStopRobotBaseWithTool": { 
+          "XBasewithouttool": 0.0, 
+          "YBasewithouttool": 0.0, 
+          "ZBasewithouttool": 0.0, 
+          "RxBasewithouttool": 0.0, 
+          "RyBasewithouttool": 0.0, 
+          "RzBasewithouttool": 0.0 
+        }, 
+        "CollaborativeMode": { 
+          "TCPSpeed": 0.1, 
+          "TCPSpeedUnderHandGuideMode": 1.5, 
+
+
+=== Page 44 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+44 
+          "TCPForce": 130.0, 
+          "Joint1Speed": 190.0, 
+          "Joint2Speed": 190.0, 
+          "Joint3Speed": 190.0, 
+          "Joint4Speed": 235.0, 
+          "Joint5Speed": 235.0, 
+          "Joint6Speed": 235.0, 
+          "Joint1Torque": 65.0, 
+          "Joint2Torque": 65.0, 
+          "Joint3Torque": 65.0, 
+          "Joint4Torque": 15.0, 
+          "Joint5Torque": 15.0, 
+          "Joint6Torque": 15.0, 
+          "MotionSpeed": 180.0, 
+          "PTPSpeed": 8.1, 
+          "MinimumPossibleContactArea": 0.74, 
+          "GSensor": true, 
+          "DecelerationTime": 150 
+        }, 
+        "Others1": { 
+          "CurrentTime": "2021-4-6 16:30:54", 
+          "LastErrorTime": "2021-4-6 11:37:56", 
+          "IPCConnectNumber": 54 
+        } 
+      } 
+    ] 
+  } 
+} 
+ 
+ gRPC 
+Arguments 
+Name 
+Required Data Type 
+Description 
+TMRobotNames No 
+string array TM Robot name list. If the value is an empty 
+array, it will return all TM Robot custom 
+information. 
+ 
+Request 
+
+
+=== Page 45 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+45 
+Function Name /GrpcServerRobot/GetTMRobotsDetail 
+{ 
+  "TMRobotNames": [ 
+    "TM000000", 
+    "NEX613-20200518" 
+  ] 
+} 
+ 
+Response 
+[ 
+  { 
+    "tmRobotName": "NEX613-20200518", 
+    "ip": "192.168.132.70", 
+    "mode": 2, 
+    "controlBoxSN": "", 
+    "model": "TM5-700-CPR1-B", 
+    "enabledHMIControl": true, 
+    "hasRightControl": true, 
+    "enabledAutoRemoteMode": false, 
+    "enabledSpeedControl": false, 
+    "tmRobotLIghtColor": 5, 
+    "tmRobotStatus": 3, 
+    "projectSpeed": 5, 
+    "hmiVersion": "1.80.3300", 
+    "defaultProjectName": "Q123", 
+    "statusUpdateTime": "2021/4/6 下午 05:03:15", 
+    "errorCode": "" 
+  }, 
+  { 
+    "tmRobotName": "TM000000", 
+    "ip": "192.168.132.200", 
+    "mode": 1, 
+    "controlBoxSN": "BC1924002", 
+    "model": "TM5-700ACA", 
+    "enabledHMIControl": true, 
+    "hasRightControl": true, 
+
+
+=== Page 46 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+46 
+    "enabledAutoRemoteMode": true, 
+    "enabledSpeedControl": false, 
+    "tmRobotLIghtColor": 3, 
+    "tmRobotStatus": 3, 
+    "projectSpeed": 5, 
+    "hmiVersion": "1.80.5400", 
+    "defaultProjectName": "000_0", 
+    "statusUpdateTime": "2021/4/6 下午 05:08:57", 
+    "errorCode": "" 
+  } 
+] 
+ 
+ Search TM Robot Project Name 
+Check and obtain the project name list of the TM Robot in connection. Please confirm that TMmanager 
+in the robot's system setting is enabled and set the IP address to the one that Robot Management API 
+uses with port 9835. 
+ 
+ HTTPS 
+Arguments 
+Name 
+Required Data Type 
+Description 
+TMRobotName Yes 
+string 
+TM Robot name (stick serial number, unique 
+value). 
+ProjectNames 
+Yes 
+string array TM Robot project name list. If the value is an 
+empty array, it will returns all project names of 
+TM Robot. 
+ 
+Request 
+URL Path: /HttpServerRobot/GetTMRobotProjects/{TMRobotName} 
+Method: POST 
+Content 
+["000_0","0704_700_vision"] 
+ 
+Response 
+Typical success response 
+[ 
+  {"tmRobotName":"TM000000","projectName":"000_0"}, 
+  {"tmRobotName":"TM000000","projectName":"0704_700_vision"} 
+
+
+=== Page 47 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+47 
+] 
+ 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. Use 
+1 for the target as a TM Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 1. 
+TMRobotName 
+Yes 
+string 
+TM Robot name(stick serial number, 
+unique value). 
+ProjectNames 
+No 
+string 
+array 
+TM Robot project name list. If the 
+field is null, an empty array, or no 
+field, it returns TM Robot's all project 
+names. 
+ 
+Request 
+{ 
+  "Token": 
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBZG1pbiIsImp0aSI6IjUxOTQ2NjMzLTM2
+NTgtNDYzNC1hZTYzLTQzNmRjMDIzMjFkNyIsInJvbGVzIjpbIkFkbWluIiwiVXNlcnMiXSwibmJmIj
+oxNjA3OTA4MDY0LCJleHAiOjE2MDc5MTE2NjQsImlhdCI6MTYwNzkwODA2NCwiaXNzIjoiVE1
+NIn0.YfbC4sa3ICavXHPCD82r2B3kcUFYRtZ2SOGH_k1tGH8", 
+  "ActionTarget": 1, 
+  "TMRobotActionParameter": { 
+    "RobotActionType": 1, 
+   "TMRobotName":"TM000000", 
+   "ProjectNames":["000_0","0704_700_vision"] 
+  } 
+} 
+ 
+Response 
+ 
+Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+
+
+=== Page 48 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+48 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+    "RobotActionType": 1, 
+    "TMRobotProjects": [ 
+      { 
+        "TMRobotName": "TM000000", 
+        "ProjectName": "000_0" 
+      }, 
+      { 
+        "TMRobotName": "TM000000", 
+        "ProjectName": "0704_700_vision" 
+      } 
+    ] 
+} 
+ 
+ gRPC 
+Arguments 
+Name 
+Required Data Type 
+Description 
+TMRobotName Yes 
+string 
+TM Robot name(stick serial number, unique 
+value). 
+ProjectNames 
+No 
+string array TM Robot project name list. If the value is an 
+empty array, it returns TM Robot's all project 
+names. 
+ 
+Request 
+Function Name /GrpcServerRobot/GetTMRobotProjects 
+{ 
+    "TMRobotName":"TM000000", 
+    "ProjectNames":["000_0","0704_700_vision"] 
+} 
+ 
+Response 
+[ 
+  {"tmRobotName":"TM000000","projectName":"000_0"}, 
+  {"tmRobotName":"TM000000","projectName":"0704_700_vision"} 
+] 
+ 
+
+
+=== Page 49 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+49 
+ Search TM Robot Variable Property Infomation 
+Obtain the variable property information in connection. The variables include global variables and 
+project variables of the TM Robot in operation. 
+ 
+Prerequisites: 
+ 
+TMmanager in the robot's system setting is enabled and set the IP address to the one that 
+Robot Management API uses with port 9835. 
+ 
+Variables must deliver via TMflow Set nodes setting VarSync (retry times, wait time ms, 
+"variable") with Expression Editor in Variables. Please replace values with retry times and 
+wait time ms. 
+ 
+The robot project is in execution. 
+ 
+ HTTPS 
+Argument 
+Name 
+Required Data Type 
+Description 
+TMRobotName Yes 
+string 
+TM Robot names((stick serial number, unique 
+value)). 
+ProjectName 
+Yes 
+string 
+Project name 
+VariableNames No 
+string array TM Robot variable name list. If the value is an 
+empty array, it returns TM Robot's all project 
+names. 
+ 
+Request 
+URL Path: /HttpServerRobot/GetTMRobotVariables/{ TMRobotName }/{ProjectName} 
+HTTP method: POST 
+Headers 
+Content-Type 
+application/json 
+Authorization 
+Bearer {token} 
+Content 
+["var_a"] 
+ 
+Response 
+ 
+Typical success response 
+[ 
+  { 
+    "name": "var_a", 
+    "projectName": "Test", 
+    "isGlobalVariable": true, 
+
+
+=== Page 50 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+50 
+    "isSubscribed": false 
+  } 
+] 
+ 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. Use 
+1 for the target as a TM Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 2. 
+TMRobotName 
+Yes 
+string 
+TM Robot name 
+VariableNames 
+No 
+string 
+array 
+Variable name list. If the field is null, 
+an empty array, or no field, it returns 
+every TM Robot in connection. 
+ 
+Request 
+{ 
+  "Token": "123456", 
+  "ActionTarget": 1, 
+  "TMRobotActionParameter": { 
+    "RobotActionType": 2, 
+    "TMRobotName": "TM123456", 
+    "VariableNames": [ 
+        "var_a" 
+    ] 
+  } 
+} 
+ 
+Response 
+ 
+Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+
+
+=== Page 51 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+51 
+    "RobotActionType": 2, 
+    "TMRobotVariables": [ 
+      { 
+        "Name": "var_a", 
+        "ProjectName": "Test", 
+        "IsGlobalVariable": true, 
+        "IsSubscribed": false 
+      } 
+    ] 
+  } 
+} 
+ 
+ gRPC 
+Arguments 
+Name 
+Required Data Type 
+Description 
+TMRobotName Yes 
+string 
+TM Robot names((stick serial number, unique 
+value)). 
+ProjectName 
+Yes 
+string 
+Project name 
+VariableNames No 
+string array TM Robot variable name list. If the value is an 
+empty array, it returns TM Robot's all variables. 
+ 
+Request 
+Function Name /GrpcServerRobot/GetTMRobotVariables 
+{ 
+    "TMRobotName":"TM000000", 
+    "ProjectName":"Test", 
+    "VariableNames":["var_a"] 
+} 
+ 
+Response 
+[ 
+  { 
+    "name": "var_a", 
+    "projectName": "Test", 
+    "isGlobalVariable": true, 
+  } 
+] 
+ 
+
+
+=== Page 52 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+52 
+ Search TM Robot Variable Value 
+Obtain one or more variable values of the TM Robot in connection and in the project execution. The 
+content contains the current and the last value. 
+ 
+Prerequisites: 
+ 
+TMmanager in the robot's system setting is enabled and set the IP address to the one that 
+Robot Management API uses with port 9835. 
+ 
+Variables must deliver via TMflow Set nodes setting VarSync (retry times, wait time ms, 
+"variable") with Expression Editor in Variables. Please replace values with retry times and 
+wait time ms. 
+ 
+The robot project is in execution. 
+ 
+ HTTPS 
+Arguments 
+Name 
+Required Data Type 
+Description 
+TMRobotName Yes 
+string 
+TM Robot names(stick serial number, unique 
+value). 
+VariableName 
+No 
+string 
+array 
+Variable name 
+ 
+Request 
+URL Path: /HttpServerRobot/GetTMRobotVariablesValue/{TMRobotName} 
+Method: POST 
+Headers 
+Content-Type 
+application/json 
+Authorization 
+Bearer {token} 
+Content 
+["var_a"] 
+ 
+Response 
+ 
+Typical success response 
+[ 
+  { 
+    "tmRobotName": "TM123456", 
+    "projectName": "Test ", 
+    "vType": "string", 
+    "vName": "var_a", 
+
+
+=== Page 53 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+53 
+    "value": "Test", 
+    "pastValue": "" 
+  } 
+] 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. Use 
+1 for the target as the Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 3. 
+TMRobotName 
+Yes 
+string 
+TM Robot name 
+VariableNames 
+No 
+string 
+array 
+Variable name list. If the field is null, 
+an empty array, or no field, it returns 
+all project variables. 
+ 
+Request 
+{ 
+  "Token": "123456", 
+  "ActionTarget": 1, 
+  "TMRobotActionParameter": { 
+    "RobotActionType": 3, 
+    "TMRobotName": "TM123456", 
+    "VariableNames": [ 
+      "var_a" 
+    ] 
+  } 
+} 
+ 
+Response 
+ 
+Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+
+
+=== Page 54 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+54 
+    "RobotActionType": 3, 
+    "TMRobotVariableValues": [ 
+      { 
+        "TMRobotName": "TM123456", 
+        "ProjectName": "Test ", 
+        "vType": "string", 
+        "vName": "var_a", 
+        "Value": "Test", 
+        "PastValue": "" 
+      } 
+    ] 
+  } 
+} 
+ 
+ gRPC 
+Arguments 
+Name 
+Required Data Type Description 
+TMRobotName Yes 
+string 
+TM Robot name 
+VariableNames No 
+string 
+array 
+Variable name list. If the value is an empty 
+array, it returns all project variables. 
+ 
+Request 
+Function Name /GrpcServerRobot/GetTMRobotVariablesValue 
+{ 
+    "variableNames":["var_a"] 
+} 
+ 
+Response 
+[ 
+    { 
+        "TMRobotName": "TM123456", 
+        "ProjectName": "Test ", 
+        "vType": "string", 
+        "vName": "var_a", 
+        "Value": "Test", 
+        "PastValue": "" 
+      } 
+
+
+=== Page 55 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+55 
+] 
+ 
+ Read Modbus 
+Obtain the TM Robot Modbus Address value. For TM Robot Modbus Table, refer to the respective 
+version of TMflow user manual. 
+ 
+ HTTPS 
+Arguments 
+Name 
+Required Data Type 
+Description 
+ModbusFunction Yes 
+int 
+Modbus Read Function Code, refer to 
+ModbusFunction. 
+DeviceIP 
+Yes 
+string 
+TM Robot or other device IP address. 
+Port 
+Yes 
+int 
+Modbus port 502 
+SlaveAddress 
+Yes 
+int 
+Modbus slave id 
+StartAddress 
+Yes 
+int 
+Modbus register starting address 
+NumberOfPoint 
+Yes 
+int 
+Modbus address amount to read 
+ 
+Request 
+URL Path: /HttpServerModbus/ReadModbus 
+Method: POST 
+Headers 
+Content-Type 
+application/json 
+Authorization 
+Bearer {token} 
+Content 
+{ 
+  "ModbusFunction": 1, //  Refer to the second part of the Response for the response 
+result of 3 or 4. 
+  "DeviceIP": "192.168.132.169", 
+  "Port": 502, 
+  "SlaveAddress": 1, 
+  "StartAddress": 0, 
+  "NumberOfPoint": 3 
+} 
+ 
+Response 
+ 
+Request content is 1, Typical success response 
+[false,false,false] 
+ 
+Request content is 3 or 4, typical success respose. 
+
+
+=== Page 56 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+56 
+[15547,62248,33374] 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type 
+Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. Use 
+2 for the target as Modbus. 
+ModbusActionParameter  
+object 
+ 
+ModbusFunction 
+Yes 
+int 
+Modbus Read Function Code, refer to 
+ModbusFunction. 
+DeviceIP 
+Yes 
+string 
+Device IP address 
+Port 
+Yes 
+int 
+Modbus port 502 
+SlaveAddress 
+Yes 
+int 
+Modbus slave id 
+StartAddress 
+Yes 
+int 
+Modbus register starting address 
+NumberOfPoint 
+Yes 
+int 
+Modbus address amount to read 
+ 
+{ 
+  "Token": "123456", 
+  "ActionTarget": 2, 
+  "ModbusActionParameter": { 
+    "ModbusFunction": 1,  //  Refer to the second part of the Response for the response 
+result of 3 or 4. 
+    "DeviceIP": "192.168.132.169", 
+    "Port": 502, 
+    "SlaveAddress": 1, 
+    "StartAddress": 0, 
+    "NumberOfPoint": 3 
+  } 
+} 
+ 
+Response 
+ 
+Request content is 1, Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 2, 
+  "ModbusActionReturn": { 
+    "ModbusFunction": 1, 
+
+
+=== Page 57 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+57 
+    "ReadBools": [ 
+      false, 
+      false, 
+      false 
+    ] 
+  } 
+} 
+ 
+Request content is 3 or 4, typical success respose. 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 2, 
+  "ModbusActionReturn": { 
+    "ModbusFunction": 3, 
+    "ReadRegisters": [ 
+       15547,62248,33374 
+    ] 
+  } 
+} 
+ 
+ 
+ gRPC 
+Arguments 
+Name 
+Required Data Type 
+Description 
+ModbusFunction Yes 
+int 
+Modbus Read Function Code, refer to 
+ModbusFunction. 
+DeviceIP 
+Yes 
+string 
+TM Robot or other device IP address. 
+Port 
+Yes 
+int 
+Modbus port 502 
+SlaveAddress 
+Yes 
+int 
+Modbus slave id 
+StartAddress 
+Yes 
+int 
+Modbus register starting address 
+NumberOfPoint 
+Yes 
+int 
+Modbus address amount to read 
+ 
+Request 
+Function Name /GrpcServerRobot/ReadModbus 
+{ 
+  "ModbusFunction": 1, //  Refer to the second part of the Response for the response 
+result of 3 or 4. 
+  "DeviceIP": "192.168.132.169", 
+
+
+=== Page 58 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+58 
+  "Port": 502, 
+  "SlaveAddress": 1, 
+  "StartReadAddress": 0, 
+  "NumberOfPoint": 3 
+} 
+ 
+Response 
+ 
+Request content is 1, Typical success response 
+{ 
+    "ReadBools": [ 
+      false, 
+      false, 
+      false 
+    ] 
+} 
+ 
+Request content is 3 or 4, typical success respose. 
+{ 
+    "ReadRegisters": [ 
+       15547,62248,33374 
+    ] 
+} 
+ 
+ Subscribe TM Robot Information 
+Subscribe TM Robot information by the contents of the input arguments. When the connected TM 
+Robot information changes, the system actively publishes TM Robot information to subscribers. For TM 
+Robot information, refer to TMRobotInfo. 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type 
+Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. 
+Use 1 for the target as the Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 4. 
+TMRobotName 
+Yes 
+string 
+TM Robot name 
+ 
+
+
+=== Page 59 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+59 
+Request 
+{ 
+  "Token": "123456", 
+  "ActionTarget": 1, 
+  "TMRobotActionParameter": { 
+    "RobotActionType": 4, 
+    "TMRobotNames": [ 
+      "TM123456" 
+    ] 
+  } 
+} 
+ 
+Response 
+ 
+Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+    "RobotActionType": 4 
+  } 
+} 
+ 
+ Unsubscribe TM Robot Information 
+Unsubscribe TM Robot information by the contents of the input arguments. 
+ 
+ Sockets 
+Arguments 
+Name 
+Required Data Type 
+Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. 
+Use 1 for the target as the Robot. 
+TMRobotActionParameter  
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 5. 
+TMRobotNames 
+Yes 
+string array 
+TM Robot names 
+ 
+Request 
+
+
+=== Page 60 ===
+ 
+TM Robot Management API User Manual Software Ver. 1.04 
+ 
+Document. Ver. 1.02  
+ 
+ 
+ 
+60 
+{ 
+  "Token": "123456", 
+  "ActionTarget": 1, 
+  "TMRobotActionParameter": { 
+    "RobotActionType": 5, 
+    "TMRobotNames": [ 
+      "TM123456" 
+    ] 
+  } 
+} 
+ 
+Response 
+ 
+Typical success response 
+{ 
+  "Success": true, 
+  "Message": "", 
+  "ActionTarget": 1, 
+  "TMRobotActionReturn": { 
+    "RobotActionType": 5 
+  } 
+} 
+ 
+ Subscribe TM Robot Variable 
+Subscribe TM Robot variables by the contents of the input arguments. When the connected TM Robot 
+variables change, the system actively publishes TM Robot information to subscribers. Please confirm 
+that TMmanager in the robot's system setting is enabled and set the IP address to the one that Robot 
+Management API uses with port 9835. 
+ 
+ Sockets  
+Arguments 
+Name 
+Required 
+Data Type Description 
+Token 
+Yes 
+string 
+API access token 
+ActionTarget 
+Yes 
+int 
+Socket command target in effect. 
+Use 1 for the target as the Robot. 
+TMRobotActionParameter 
+ 
+object 
+ 
+RobotActionType 
+Yes 
+int 
+Robot action type ID. The method 
+brings in the value 6. 
+TMRobotName 
+Yes 
+string 
+TM Robot name 

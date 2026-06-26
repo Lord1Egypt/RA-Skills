@@ -1,35 +1,167 @@
 ---
-name: "Opportunity Deep Dive"
-description: "对一个业务方向进行全面深入的调研分析，产出完整报告和商业计划书。当用户说"我对XX方向感兴趣"、"帮我深入调研XX"、"XX值得做吗"、"帮我分析这个方向"时触发。输入一个业务方向，自动执行市场研究、竞品分析、风险评估、商业模式设计，最终产出商业计划书并上传到飞书知识库。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opportunity-deep-dive"
-sourceUrl: "https://clawhub.ai/skills/opportunity-deep-dive"
+name: opportunity-deep-dive
+description: 对一个业务方向进行全面深入的调研分析，产出完整报告和商业计划书。当用户说"我对XX方向感兴趣"、"帮我深入调研XX"、"XX值得做吗"、"帮我分析这个方向"时触发。输入一个业务方向，自动执行市场研究、竞品分析、风险评估、商业模式设计，最终产出商业计划书并上传到飞书知识库。
 ---
 
-# Opportunity Deep Dive
+# 商机深入调研
 
-> 对一个业务方向进行全面深入的调研分析，产出完整报告和商业计划书。当用户说"我对XX方向感兴趣"、"帮我深入调研XX"、"XX值得做吗"、"帮我分析这个方向"时触发。输入一个业务方向，自动执行市场研究、竞品分析、风险评估、商业模式设计，最终产出商业计划书并上传到飞书知识库。
+对感兴趣的业务方向进行全面调研，产出完整报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opportunity-deep-dive`
-- **Source URL:** [https://clawhub.ai/skills/opportunity-deep-dive](https://clawhub.ai/skills/opportunity-deep-dive)
+## 输入
 
-## Overview
+用户提供一个感兴趣的业务方向，例如：
+- "我对AI小说创作感兴趣"
+- "帮我深入调研AI短剧制作"
+- "自媒体自动化运营值得做吗"
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opportunity-deep-dive
+### 第一步：确认方向
+
+与用户确认调研方向：
+- 具体的业务领域是什么？
+- 目标市场（国内/国外）？
+- 有没有特别关注的点？
+
+### 第二步：执行调研
+
+依次调用以下技能：
+
+**2.1 商机评分（opportunity-scout）**
 ```
+读取技能：/root/.openclaw/workspace/skills/opportunity-scout/SKILL.md
+执行：对该方向进行评分，输出需求/竞争/可行性/变现四个维度得分
+```
+
+**2.2 市场研究（market-research）**
+```
+读取技能：/root/.openclaw/workspace/skills/market-research/SKILL.md
+执行：市场规模估算、客户验证、数据来源
+```
+
+**2.3 竞品分析（competitive-analysis）**
+```
+读取技能：/root/.openclaw/workspace/skills/competitive-analysis/SKILL.md
+执行：识别竞品、分析优劣势、找差距和切入点
+```
+
+**2.4 风险评估（opportunity-assessment）**
+```
+读取技能：/root/.openclaw/workspace/skills/opportunity-assessment/SKILL.md
+执行：风险分级、待确认事项、是否建议投入
+```
+
+**2.5 商业模式设计（business-model-canvas）**
+```
+读取技能：/root/.openclaw/workspace/skills/business-model-canvas/SKILL.md
+执行：设计商业模式画布，验证商业逻辑
+```
+
+**2.6 商业计划书（business-plan）**
+```
+读取技能：/root/.openclaw/workspace/skills/business-plan/SKILL.md
+执行：撰写完整商业计划书（12个部分）
+```
+
+### 第三步：产出报告
+
+生成以下文档：
+
+| 文档 | 内容 |
+|------|------|
+| 01-商机评分报告 | 评分结果和建议 |
+| 02-市场研究报告 | 市场规模、趋势、客户分析 |
+| 03-竞品分析报告 | 竞品对比、差距分析、切入点 |
+| 04-风险评估报告 | 风险分级、待确认事项 |
+| 05-调研结论报告 | 最终建议和替代方向 |
+
+---
+
+### 第四步：上传飞书知识库
+
+**知识库ID：** 7293072412831481884
+
+#### 步骤1：检查知识库权限
+
+```bash
+feishu_wiki action=spaces
+```
+
+确认能看到知识库列表，如果没有权限，提示用户添加机器人到知识库。
+
+#### 步骤2：创建一级目录
+
+```bash
+feishu_wiki action=create space_id=7293072412831481884 obj_type=docx title="[业务方向名称]"
+```
+
+返回 node_token 和 obj_token。
+
+**注意：** 一级目录的文档内容应该是概要+目录索引，不是完整报告！
+
+#### 步骤3：创建子文档
+
+```bash
+feishu_wiki action=create space_id=7293072412831481884 parent_node_token=[一级目录node_token] obj_type=docx title="01-商机评分报告"
+```
+
+为每个报告创建一个子文档，获取各自的 obj_token。
+
+#### 步骤4：写入文档内容
+
+```bash
+feishu_doc action=write doc_token=[文档token] content="[报告内容]"
+```
+
+**重要：**
+- 一级目录文档：写概要+目录索引
+- 各子文档：写对应的完整报告内容
+
+#### 最终目录结构
+
+```
+知识库：商业化部门 (7293072412831481884)
+└── [业务方向名称]/（概要+目录索引）
+    ├── 01-商机评分报告（完整内容）
+    ├── 02-市场研究报告（完整内容）
+    ├── 03-竞品分析报告（完整内容）
+    ├── 04-风险评估报告（完整内容）
+    └── 05-调研结论报告（完整内容）
+```
+
+---
+
+## 输出格式
+
+### 报告模板
+
+**注意：飞书消息不支持 markdown 表格，报告内容使用纯文本格式！**
+
+每份报告包含：
+- 标题
+- 执行摘要
+- 详细内容
+- 结论和建议
+
+### 最终汇报
+
+调研完成后，向用户汇报：
+1. 该方向的评分结果
+2. 主要发现和结论
+3. 是否建议投入
+4. 飞书知识库链接
+
+---
+
+## 注意事项
+
+- 每个技能调用前先读取其 SKILL.md
+- 报告要求数据支撑，不要空泛
+- 风险评估要诚实，不要回避问题
+- 商业计划书要适合一人公司，关注自动化可行性
+- 如果某步骤发现方向不可行，及时告知用户，不必继续后续步骤
+
+**飞书知识库操作要点：**
+- 一级目录文档写概要+索引，不是完整报告
+- 各子文档写对应的完整报告内容
+- 创建文档后立即写入内容，不要等所有文档创建完再写

@@ -1,0 +1,9 @@
+{
+  "name": "flight-tracker",
+  "tagline": "Track live aircraft positions and see what's flying overhead",
+  "description": "CLI skill for real-time flight tracking using the OpenSky Network API. No API key required.",
+  "category": "utilities",
+  "tags": ["aviation", "flights", "tracking", "opensky"],
+  "version": "0.1.0",
+  "support": "https://github.com/javi23ruiz/flight-tracker-cli/issues"
+}

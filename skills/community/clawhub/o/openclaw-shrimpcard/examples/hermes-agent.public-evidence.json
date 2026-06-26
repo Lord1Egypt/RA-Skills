@@ -1,0 +1,134 @@
+{
+  "schema_version": "agent-evidence/1.0",
+  "agent": {
+    "name": "Hermes Agent",
+    "product_type": "agent-framework",
+    "species": "software-agent",
+    "positioning_hint": "self-improving autonomous agent with persistent memory and multi-platform reach",
+    "visual_hint": "terminal-native agent with messaging gateway and memory cues"
+  },
+  "owner": {
+    "name": "Nous Research",
+    "contact": "https://nousresearch.com"
+  },
+  "evidence_window": {
+    "summary": "Public evidence compiled on May 13, 2026 from official Hermes Agent documentation, the Hermes Agent GitHub repository, and the Nous Research GitHub organization page.",
+    "from": "2025-01-01",
+    "to": "2026-05-13",
+    "source_types": [
+      "memory_note",
+      "tool_trace",
+      "output_artifact",
+      "saved_preference"
+    ]
+  },
+  "evidence_items": [
+    {
+      "id": "hermes-001",
+      "type": "memory_note",
+      "summary": "The official docs describe Hermes Agent as a self-improving AI agent with a built-in learning loop and a deepening model of the user across sessions.",
+      "keywords": [
+        "self-improving",
+        "learning loop",
+        "persistent memory"
+      ],
+      "workflow_traits": [
+        "learns from experience",
+        "persists knowledge across sessions"
+      ],
+      "value_signals": [
+        "gets more useful over time",
+        "retains user context"
+      ],
+      "confidence": 0.97,
+      "source_ref": "https://hermes-agent.nousresearch.com/docs/"
+    },
+    {
+      "id": "hermes-002",
+      "type": "tool_trace",
+      "summary": "Feature overview and tooling docs show Hermes using toolsets for web search, terminal execution, file editing, memory, delegation, and more.",
+      "keywords": [
+        "toolsets",
+        "terminal",
+        "delegation"
+      ],
+      "tools_used": [
+        "web search",
+        "terminal execution",
+        "file editing",
+        "memory",
+        "delegation"
+      ],
+      "workflow_traits": [
+        "tool-using",
+        "multi-step execution"
+      ],
+      "value_signals": [
+        "acts beyond chat",
+        "handles practical workflows"
+      ],
+      "confidence": 0.95,
+      "source_ref": "https://hermes-agent.nousresearch.com/docs/user-guide/features/overview/"
+    },
+    {
+      "id": "hermes-003",
+      "type": "output_artifact",
+      "summary": "The docs and README emphasize that Hermes can live in CLI and messaging platforms such as Telegram, Discord, Slack, WhatsApp, Signal, and Email from one gateway.",
+      "outputs": [
+        "CLI sessions",
+        "gateway conversations",
+        "scheduled automations"
+      ],
+      "workflow_traits": [
+        "multi-platform delivery",
+        "remote operation"
+      ],
+      "value_signals": [
+        "reachable in existing user channels",
+        "not tied to one interface"
+      ],
+      "confidence": 0.95,
+      "source_ref": "https://github.com/NousResearch/hermes-agent/blob/main/README.md"
+    },
+    {
+      "id": "hermes-004",
+      "type": "saved_preference",
+      "summary": "Feature docs say Hermes automatically loads project context files and keeps bounded memory for preferences, projects, environment details, and learned behavior.",
+      "keywords": [
+        "context files",
+        "preferences",
+        "bounded memory"
+      ],
+      "workflow_traits": [
+        "context-aware",
+        "project-shaped behavior"
+      ],
+      "value_signals": [
+        "adapts to each environment",
+        "stays consistent across sessions"
+      ],
+      "confidence": 0.92,
+      "source_ref": "https://hermes-agent.nousresearch.com/docs/user-guide/features/overview/"
+    },
+    {
+      "id": "hermes-005",
+      "type": "memory_note",
+      "summary": "Official repository and docs present Hermes Agent as built by Nous Research, with community links and open-source distribution through the Nous Research organization.",
+      "keywords": [
+        "Nous Research",
+        "open source",
+        "community"
+      ],
+      "workflow_traits": [
+        "publicly maintained",
+        "community distributed"
+      ],
+      "value_signals": [
+        "clear organizational ownership",
+        "public maintenance surface"
+      ],
+      "confidence": 0.94,
+      "source_ref": "https://github.com/nousresearch"
+    }
+  ]
+}

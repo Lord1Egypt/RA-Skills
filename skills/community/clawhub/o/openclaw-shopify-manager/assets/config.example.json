@@ -1,0 +1,21 @@
+{
+  "shop": "example.myshopify.com",
+  "apiVersion": "2026-01",
+  "scopes": [
+    "read_products",
+    "write_products",
+    "read_content",
+    "write_content",
+    "read_orders"
+  ],
+  "redirectUri": "https://YOUR-TAILSCALE-OR-DOMAIN/shopify-manager/shopify/callback",
+  "publicBaseUrl": "https://YOUR-TAILSCALE-OR-DOMAIN/shopify-manager",
+  "serverHost": "127.0.0.1",
+  "serverPort": 8787,
+  "mode": "require-confirmation-for-mutations",
+  "allowedMutations": [
+    "productUpdate",
+    "articleCreate",
+    "articleUpdate"
+  ]
+}

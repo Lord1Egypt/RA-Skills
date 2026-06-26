@@ -1,0 +1,13 @@
+{
+  "id": "computer-vision-automation",
+  "name": "通用电脑视觉自动化 Skill 体系",
+  "description": "基于图像识别+OCR的电脑自动化技能框架，包含多个可独立调用的最小执行单元，支持自由组合成复杂自动化任务，可拆分使用。",
+  "version": "1.0.0",
+  "author": "Nick",
+  "license": "MIT",
+  "type": "automation",
+  "tags": ["automation", "vision", "ocr", "computer-control", "desktop-automation"],
+  "dependencies": ["opencv-python", "pyautogui", "pytesseract", "pillow"],
+  "main": "all_skills.py",
+  "readme": "SKILL.md"
+}

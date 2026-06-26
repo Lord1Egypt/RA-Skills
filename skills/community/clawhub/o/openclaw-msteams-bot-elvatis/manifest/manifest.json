@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.17",
+  "version": "1.0.1",
+  "id": "8cbe4777-69c7-4e5c-b25d-2938e9f30e3d",
+  "developer": {
+    "name": "Elvatis GmbH",
+    "websiteUrl": "https://elvatis.com",
+    "privacyUrl": "https://elvatis.com/#impressum",
+    "termsOfUseUrl": "https://elvatis.com/#impressum"
+  },
+  "name": {
+    "short": "Akido",
+    "full": "Akido - Elvatis AI Assistant"
+  },
+  "description": {
+    "short": "Internal AI assistant for the Elvatis team.",
+    "full": "Internal AI assistant by Elvatis. Supports the team with research, writing tasks, strategy, file access, and knowledge questions around Elvatis Shield, Defense, and Blueprint."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#1a1a2e",
+  "bots": [
+    {
+      "botId": "8cbe4777-69c7-4e5c-b25d-2938e9f30e3d",
+      "scopes": ["personal", "team", "groupchat"],
+      "supportsFiles": true,
+      "isNotificationOnly": false,
+      "commandLists": [
+        {
+          "scopes": ["personal", "team", "groupchat"],
+          "commands": [
+            {
+              "title": "Help",
+              "description": "Shows available commands"
+            },
+            {
+              "title": "Status",
+              "description": "Shows the current status of the assistant"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["elvatis.com", "teams-bot.elvatis.com", "shield.elvatis.com"]
+}

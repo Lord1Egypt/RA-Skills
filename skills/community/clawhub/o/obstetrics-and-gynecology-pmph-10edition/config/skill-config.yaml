@@ -1,0 +1,70 @@
+# 妇产科学 Obstetrics-and-Gynecology-PMPH-10edition 技能配置
+# 分类与元数据配置
+
+project:
+  name: Obstetrics-and-Gynecology-PMPH-10edition
+  version: 1.0.0
+  textbook: 人民卫生出版社《妇产科学》第10版
+  total_skills: 187
+
+categories:
+  - id: pregnancy-obstetrics
+    name: 妊娠与产科管理
+    icon: 🤰
+    count: 41
+  - id: high-risk-pregnancy
+    name: 高危妊娠与并发症
+    icon: ⚠️
+    count: 19
+  - id: delivery-postpartum
+    name: 分娩与产后管理
+    icon: 🛏️
+    count: 9
+  - id: gynecologic-oncology
+    name: 妇科肿瘤
+    icon: 🧬
+    count: 22
+  - id: reproductive-endocrinology
+    name: 生殖内分泌与不孕不育
+    icon: 💊
+    count: 17
+  - id: endometriosis-fibroids
+    name: 子宫内膜异位症与子宫肌瘤
+    icon: 🔴
+    count: 5
+  - id: gynecologic-infection
+    name: 妇科感染与炎症
+    icon: 🦠
+    count: 9
+  - id: vulvar-vaginal
+    name: 外阴与阴道疾病
+    icon: 🔵
+    count: 7
+  - id: pelvic-floor
+    name: 盆底与泌尿妇科
+    icon: 🩺
+    count: 4
+  - id: adolescent-menopausal
+    name: 青春期、围绝经期与老年妇科
+    icon: 🌸
+    count: 5
+  - id: genetics-prenatal
+    name: 遗传、产前筛查与诊断
+    icon: 🧪
+    count: 11
+  - id: sexual-health
+    name: 女性性健康与心理
+    icon: 💕
+    count: 4
+  - id: anatomy-physiology
+    name: 解剖、生理与基础医学
+    icon: 🫀
+    count: 8
+  - id: surgical-techniques
+    name: 手术与操作技术
+    icon: 🔪
+    count: 3
+  - id: teaching-qc
+    name: 教学、资源与质控
+    icon: 📚
+    count: 23

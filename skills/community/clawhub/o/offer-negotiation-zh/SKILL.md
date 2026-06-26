@@ -1,35 +1,37 @@
 ---
-name: "Offer Negotiation Zh"
-description: "专为求职者与HR设计的Offer谈判全场景助手，覆盖薪资谈判、假期协商、岗位级别争取、 股权期权沟通等核心议题。提供专业谈判话术、邮件模板与回应策略，帮助用户在offer 谈判、涨薪申请、薪资协商、待遇争取等场景中清晰表达诉求、把握谈判节奏、提升 最终录用条件。适用于应届生首次谈薪、跳槽薪资对标、竞争性offer..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/offer-negotiation-zh"
-sourceUrl: "https://clawhub.ai/skills/offer-negotiation-zh"
+name: offer-negotiation-zh
+description: >
+  专为求职者与HR设计的Offer谈判全场景助手，覆盖薪资谈判、假期协商、岗位级别争取、
+  股权期权沟通等核心议题。提供专业谈判话术、邮件模板与回应策略，帮助用户在offer
+  谈判、涨薪申请、薪资协商、待遇争取等场景中清晰表达诉求、把握谈判节奏、提升
+  最终录用条件。适用于应届生首次谈薪、跳槽薪资对标、竞争性offer对比等真实职场情境。
+tags: [offer谈判, 薪资谈判, salary-negotiation, 求职, 人力资源, 涨薪, offer邮件, 职场沟通]
 ---
 
-# Offer Negotiation Zh
+# Offer 谈判话术与邮件模板
 
-> 专为求职者与HR设计的Offer谈判全场景助手，覆盖薪资谈判、假期协商、岗位级别争取、 股权期权沟通等核心议题。提供专业谈判话术、邮件模板与回应策略，帮助用户在offer 谈判、涨薪申请、薪资协商、待遇争取等场景中清晰表达诉求、把握谈判节奏、提升 最终录用条件。适用于应届生首次谈薪、跳槽薪资对标、竞争性offer...
+专为求职者和HR提供Offer谈判全场景的话术指导、邮件模板与策略建议，助你在薪资、假期、级别等关键条款上争取最优结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/offer-negotiation-zh`
-- **Source URL:** [https://clawhub.ai/skills/offer-negotiation-zh](https://clawhub.ai/skills/offer-negotiation-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "我收到了一个offer，base 18k，我期望 22k，帮我写一封谈薪邮件，语气要专业但不强硬"
+- "HR口头问我期望薪资，我现在月薪15k，怎么回答才不会压低自己的底牌"
+- "我手上有两个offer，想用A公司的offer去撬B公司涨薪，帮我设计一套谈判话术"
+- "公司给的年假只有5天，我想争取到10天，应该怎么跟HR提"
+- "对方给的职级比我预期低一级，薪资还可以，如何谈判升级或争取对等补偿"
 
+## Examples
+输入：收到offer，薪资20k，期望25k，如何写谈判邮件？
+输出：
+主题：关于【岗位名称】录用条件的进一步沟通
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/offer-negotiation-zh
-```
+您好，
+
+非常感谢贵司发来正式offer，我对这个机会非常期待，也认可团队的发展方向。
+
+结合我在[核心技能/年限]方面的背景，以及当前市场同类岗位的薪资水平，我希望就base薪资作进一步探讨——我的期望区间在 **25,000元/月**。我相信这一调整能够更好地匹配岗位价值，也让我以更充分的状态全力投入工作。
+
+如方便，期待与您或招聘负责人进一步沟通，谢谢！

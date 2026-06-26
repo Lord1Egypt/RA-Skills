@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.19/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.19",
+  "version": "1.0.3",
+  "id": "REPLACE-WITH-APP-ID",
+  "developer": {
+    "name": "living-hi",
+    "websiteUrl": "https://github.com/living-hi/one-person-company-os",
+    "privacyUrl": "https://github.com/living-hi/one-person-company-os",
+    "termsOfUseUrl": "https://github.com/living-hi/one-person-company-os"
+  },
+  "name": {
+    "short": "One Person Company OS",
+    "full": "One Person Company OS"
+  },
+  "description": {
+    "short": "Visual operating cockpit for AI-native solo founders.",
+    "full": "Build and advance a visual operating cockpit across promise, buyer, product, delivery, cash, learning, and assets."
+  },
+  "accentColor": "#2F6BFF",
+  "bots": [],
+  "composeExtensions": [],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["YOUR_HOST.example.com"]
+}

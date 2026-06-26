@@ -1,0 +1,60 @@
+{
+  "title": "数字化转型与国际化战略",
+  "meeting_info": {
+    "time": "2026年3月28日 14:00-16:00",
+    "location": "International Conference Room",
+    "host": "张三 (Zhang San)",
+    "recorder": "李四 (Li Si)",
+    "attendees": ["王五 (Wang Wu)", "赵六 (Zhao Liu)", "孙七 (Sun Qi)"],
+    "absentees": ["周八 (Zhou Ba)"]
+  },
+  "topics": [
+    "数字化转型工作方案讨论 (Digital Transformation Work Plan Discussion)",
+    "技术平台选型 (Technology Platform Selection)",
+    "国际化战略实施 (Internationalization Strategy Implementation)",
+    "AI技术应用规划 (AI Technology Application Planning)"
+  ],
+  "contents": [
+    {
+      "topic": "数字化转型工作方案讨论",
+      "points": [
+        "分析了当前数字化发展形势 (Analyzed current digital development situation)",
+        "讨论了数字化转型的必要性 (Discussed the necessity of digital transformation)",
+        "明确了数字化转型的目标 (Clarified digital transformation goals)",
+        "评估了技术风险和技术债务 (Assessed technical risks and technical debt)"
+      ]
+    },
+    {
+      "topic": "国际化战略实施",
+      "points": [
+        "Review of international market analysis report",
+        "讨论本地化策略和跨文化沟通 (Discussion on localization strategy and cross-cultural communication)",
+        "评估海外团队建设方案 (Evaluation of overseas team building plan)",
+        "制定国际市场进入策略 (Develop international market entry strategy)"
+      ]
+    }
+  ],
+  "resolutions": [
+    {
+      "content": "原则通过《数字化转型工作方案》 (Principles approved \"Digital Transformation Work Plan\")",
+      "responsible": "技术部 (Technology Department)",
+      "deadline": "2026年4月15日前 (Before April 15, 2026)"
+    },
+    {
+      "content": "批准国际化战略试点项目 (Approve internationalization strategy pilot project)",
+      "responsible": "国际业务部 (International Business Department)",
+      "deadline": "2026年6月30日前 (Before June 30, 2026)"
+    }
+  ],
+  "next_steps": [
+    "技术部负责完善方案细节 (Technology Department responsible for improving plan details)",
+    "人力资源部负责人员培训安排 (HR Department arranges training)",
+    "财务部负责预算编制 (Finance Department prepares budget)",
+    "国际业务部启动试点项目 (International Business Department launches pilot project)"
+  ],
+  "other_matters": [
+    "下次会议时间：2026年4月15日 (Next meeting: April 15, 2026)",
+    "会议材料需提前3天分发 (Meeting materials need to be distributed 3 days in advance)",
+    "Action items will be tracked in JIRA project management system"
+  ]
+}

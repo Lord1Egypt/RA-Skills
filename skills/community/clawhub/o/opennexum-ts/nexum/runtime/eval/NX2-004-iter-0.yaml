@@ -1,0 +1,16 @@
+verdict: fail
+strategy_results:
+  - strategy_type: integration
+    criteria_results:
+      - id: C1
+        result: fail
+        evidence: "在 `/Users/tongyaojin/code/nexum-ts/nexum` 运行 `node ../packages/cli/dist/index.js status --json`，命令以 exit code 1 失败并输出 `error: unknown option '--json'`。进一步检查可执行产物 `packages/cli/dist/commands/status.js`，确认当前发布的 `status` 命令只注册了 `--project`，未注册 `--json`，因此无法输出要求的 JSON 数组。"
+      - id: C3
+        result: pass
+        evidence: "在 `/Users/tongyaojin/code/nexum-ts` 运行 `pnpm build` 返回 exit code 0。输出显示 turbo 成功执行了 `@nexum/core` 和 `@nexum/prompts` 两个构建任务，结果为 `2 successful, 2 total`。"
+  - strategy_type: review
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: "`packages/core/src/errors.ts` 中 `NexumError` 明确定义了 `code: string` 字段，并在构造函数中接收 `code: ErrorCode` 赋值；同文件 `ErrorCode` 枚举包含当前定义的全部错误码：`TASK_NOT_FOUND`、`CONTRACT_NOT_FOUND`、`INVALID_VERDICT`、`CONFIG_INVALID`、`GIT_ERROR`、`SESSION_TIMEOUT`。"
+feedback: "总体结论为 fail。C2 与 C3 满足，但 C1 未满足：当前可执行的 CLI 产物不支持 `status --json`，无法按要求输出合法 JSON 数组。源码中的 `--json` 分支没有反映到实际可运行的命令上，因此任务尚未完成交付。"

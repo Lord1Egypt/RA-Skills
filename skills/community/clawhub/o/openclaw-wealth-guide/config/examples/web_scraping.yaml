@@ -1,0 +1,110 @@
+# Web数据采集配置示例
+name: "Web数据采集示例"
+version: "1.0.0"
+description: "演示Web页面数据采集配置"
+log_level: "INFO"
+
+sources:
+  news_site:
+    name: "新闻网站示例"
+    type: "web"
+    url: "https://example-news.com/latest"
+    enabled: true
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+      Accept-Language: "zh-CN,zh;q=0.9,en;q=0.8"
+    timeout: 60
+    retry_count: 3
+    wait_time: 2
+    extract_rules:
+      articles: "//article"
+      titles: "//article//h2/text()"
+      links: "//article//a/@href"
+      dates: "//article//time/@datetime"
+    pagination:
+      enabled: true
+      pattern: "?page={page}"
+      start_page: 1
+      max_pages: 10
+      delay: 1.5
+      
+  ecommerce_site:
+    name: "电商网站示例"
+    type: "web"
+    url: "https://example-shop.com/products/{category}"
+    enabled: true
+    headers:
+      User-Agent: "智能数据采集器/1.0.0"
+      Referer: "https://example-shop.com"
+    timeout: 45
+    extract_rules:
+      products: "//div[@class='product-item']"
+      name: ".//h3[@class='product-name']/text()"
+      price: ".//span[@class='product-price']/text()"
+      rating: ".//div[@class='product-rating']/@data-rating"
+      reviews: ".//span[@class='review-count']/text()"
+    dynamic_content: true  # 支持JavaScript渲染
+    wait_for_element: ".product-item"
+    wait_timeout: 30
+
+processing:
+  enabled: true
+  strategy: ["clean", "transform", "validate"]
+  clean_options:
+    remove_null: true
+    trim_whitespace: true
+    normalize_text: true
+    fix_encoding: true
+  transform_options:
+    price_to_number: true
+    date_standardize: "%Y-%m-%d"
+    url_complete: true  # 补全相对URL
+  validate_options:
+    required_fields: ["name", "price"]
+    price_range: [0, 1000000]
+    date_format: "%Y-%m-%d"
+
+exports:
+  - name: "news_csv"
+    format: "csv"
+    output_path: "output/news_articles.csv"
+    encoding: "utf-8-sig"
+    write_header: true
+    columns: ["title", "link", "date", "summary"]
+    enabled: true
+    
+  - name: "products_excel"
+    format: "excel"
+    output_path: "output/products_data.xlsx"
+    sheet_name: "产品列表"
+    write_header: true
+    columns: ["name", "price", "rating", "reviews", "category"]
+    freeze_panes: "A2"
+    enabled: true
+    
+  - name: "json_export"
+    format: "json"
+    output_path: "output/web_data.json"
+    indent: 2
+    ensure_ascii: false
+    sort_keys: true
+    enabled: true
+
+scheduler:
+  enabled: true
+  timezone: "Asia/Shanghai"
+  max_workers: 4
+  job_store: "sqlite"
+  tasks:
+    - name: "每日新闻采集"
+      schedule: "0 8 * * *"  # 每天上午8点
+      source: "news_site"
+      enabled: true
+      
+    - name: "每小时价格监控"
+      schedule: "0 * * * *"  # 每小时
+      source: "ecommerce_site"
+      enabled: true
+      params:
+        category: "electronics"

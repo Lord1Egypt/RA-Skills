@@ -1,0 +1,29 @@
+workflow_id: deep-research
+goal: Parallel research with synthesis and critique
+entry_conditions:
+  - question is broad enough to split into angles
+phases:
+  - id: plan
+    agent: planner
+    output: research_plan
+  - id: parallel_research
+    agent: researcher
+    parallelism: 3-6
+    output: angle_memos
+  - id: synthesize
+    agent: synthesizer
+    output: draft_synthesis
+  - id: critique
+    agent: critic
+    output: critique
+  - id: targeted_second_pass
+    optional_if: critique_identifies_major_gaps
+retry_modes:
+  missing_evidence: targeted-research-pass
+  weak_synthesis: re-synthesis
+retry_targets:
+  missing_evidence: parallel_research
+  weak_synthesis: synthesize
+completion_conditions:
+  - final_synthesis_exists
+  - critique_resolved_or_accepted

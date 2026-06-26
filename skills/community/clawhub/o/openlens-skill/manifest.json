@@ -1,0 +1,94 @@
+{
+  "name": "openlens-skill",
+  "version": "1.0.7",
+  "description": "AI image/video generation skill — T2I, T2V, I2V, V2V via any OpenAI-compatible API. Files saved locally. One-command Streamlit GUI included.",
+  "author": "openclawrr",
+  "license": "MIT",
+  "homepage": "https://github.com/openclawrr/openlens-skill",
+  "repository": "https://github.com/openclawrr/openlens-skill.git",
+  
+  "skill": {
+    "entry": "skill_main.py",
+    "function": "run_openlens_task",
+    "tool_definition": "tool_definition.json",
+    "doc": "SKILL.md"
+  },
+  
+  "config_schema": {
+    "video_api_url": {
+      "type": "string",
+      "default": "https://api.onlypixai.com/v1",
+      "description": "Video Generation API Base URL"
+    },
+    "video_api_key": {
+      "type": "string",
+      "default": "",
+      "description": "API Key for video generation"
+    },
+    "text_api_url": {
+      "type": "string",
+      "default": "https://api.onlypixai.com/v1",
+      "description": "Text/LLM API Base URL"
+    },
+    "text_api_key": {
+      "type": "string",
+      "default": "",
+      "description": "API Key for text/chat generation"
+    },
+    "text_model": {
+      "type": "string",
+      "default": "pa/grok-4-1-fast-non-reasoning",
+      "description": "Text model ID for prompt enhancement"
+    },
+    "default_video_model": {
+      "type": "string",
+      "default": "video/wan2.6-t2v",
+      "description": "Default video model ID"
+    },
+    "default_save_path": {
+      "type": "string",
+      "default": "./outputs",
+      "description": "Default local path to save generated media"
+    }
+  },
+  
+  "entrypoints": {
+    "gui": "streamlit run skill_main.py",
+    "cli": "python3 skill_main.py --help",
+    "web": "cd openlens-web && streamlit run app.py"
+  },
+  
+  "dependencies": {
+    "streamlit": ">=1.32.0",
+    "requests": ">=2.31.0",
+    "pillow": ">=10.0.0"
+  },
+  
+  "platform": ["darwin", "linux", "windows"],
+  
+  "tags": [
+    "video", 
+    "image", 
+    "ai-generation", 
+    "t2v", 
+    "t2i", 
+    "i2v", 
+    "multimodal",
+    "openlens",
+    "onlypix",
+    "wan"
+  ],
+  
+  "features": [
+    "Text-to-Video (T2V)",
+    "Text-to-Image (T2I)", 
+    "Image-to-Video (I2V)",
+    "Video-to-Video (V2V)",
+    "Text-to-Text (T2T) prompt enhancement",
+    "Local file auto-saving",
+    "Dual mode: CLI + Streamlit GUI",
+    "OpenAI-compatible API support",
+    "Raw transparency / no content filtering",
+    "GitHub + ClawHub ready"
+  ]
+}

@@ -1,35 +1,45 @@
 ---
-name: "OpenClaw Safe Ops"
-description: "Guards high-risk OpenClaw operations with preflight backups, post-change health checks, and rollback guidance. Use when running gateway restart/start/stop, c..."
-category: "other"
-source: "ClawHub"
-tags: [backup, openclaw, operations, safety]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-safe-ops"
-sourceUrl: "https://clawhub.ai/skills/openclaw-safe-ops"
+name: openclaw-safe-ops
+description: Guards high-risk OpenClaw operations with preflight backups, post-change health checks, and rollback guidance. Use when running gateway restart/start/stop, config set/unset, plugin install/update/uninstall, or editing openclaw.json.
 ---
 
 # OpenClaw Safe Ops
 
-> Guards high-risk OpenClaw operations with preflight backups, post-change health checks, and rollback guidance. Use when running gateway restart/start/stop, c...
+## When To Apply
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-safe-ops`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-safe-ops](https://clawhub.ai/skills/openclaw-safe-ops)
+Apply this skill before any high-risk OpenClaw operation:
 
-## Overview
+- `openclaw gateway restart|start|stop|install|uninstall|run|status`
+- `openclaw config set|unset`
+- `openclaw plugins install|update|uninstall|enable|disable`
+- Manual edits to `~/.openclaw/openclaw.json`
 
+## Safety Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-safe-ops
-```
+1. Capture a backup before change:
+   - `cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.manual.$(date +%Y%m%d-%H%M%S).bak`
+2. Run the intended command.
+3. Validate immediately:
+   - `openclaw channels status --probe`
+   - `openclaw status --deep`
+4. If checks fail, rollback:
+   - `cp ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json`
+   - `openclaw gateway restart`
+   - `openclaw status --deep`
+
+## Preferred Command Wrapper
+
+For local terminal operations, prefer:
+
+- `./scripts/openclaw-safe.sh <openclaw args...>`
+
+This wrapper auto-backs up config for risky actions, runs health checks, and rolls back on failure.
+
+## Output Requirements
+
+When completing a risky operation, report:
+
+- Command executed
+- Backup path used
+- Health check results
+- Whether rollback was needed

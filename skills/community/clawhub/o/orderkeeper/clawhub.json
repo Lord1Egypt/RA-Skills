@@ -1,0 +1,24 @@
+{
+  "name": "orderkeeper",
+  "version": "1.0.0",
+  "description": "收货总管 - 购物后链路管家，管理订单、签收、退换货、价保、保修和客服话术，帮用户在买完之后不吃亏。",
+  "keywords": [
+    "orderkeeper",
+    "post-purchase",
+    "after-sales",
+    "refund",
+    "exchange",
+    "reshipment",
+    "compensation",
+    "price-protection",
+    "warranty",
+    "customer-service-script",
+    "receipt",
+    "invoice",
+    "order-management",
+    "shopping",
+    "delivery"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

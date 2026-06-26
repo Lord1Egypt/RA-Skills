@@ -1,35 +1,25 @@
----
-name: "Operator Skill"
-description: "Orchestrates collaborative agent sessions with secure, fault-tolerant CRDT persistence and instant crash-proof state recovery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/operator-skill"
-sourceUrl: "https://clawhub.ai/skills/operator-skill"
----
+# Skill Operator (PassDeck)
 
-# Operator Skill
+The Skill Operator serves as the orchestration and orchestration engine for collaborative agent sessions. It provides high-performance persistence using Loro-CRDT with an append-only log architecture, ensuring that data is never lost and remains consistent across all agents.
 
-> Orchestrates collaborative agent sessions with secure, fault-tolerant CRDT persistence and instant crash-proof state recovery.
+## 💾 Core Actions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/operator-skill`
-- **Source URL:** [https://clawhub.ai/skills/operator-skill](https://clawhub.ai/skills/operator-skill)
+### `team.create`
+- **Description**: Initializes a new persistent collaborative session on disk. Creates the initial snapshot and metadata.
+- **Parameters**: `{ taskName: string }`
+- **Output**: `{ sessionId: string, status: 'Persisted' }`
 
-## Overview
+### `team.sync`
+- **Description**: Securely appends an incremental CRDT update to the session log. Every update is verified using Ed25519 signatures from the originating agent before persistence.
+- **Parameters**: `{ sessionId: string, updatePayload: base64, publicKeyHex: string, signatureHex: string }`
+- **Output**: `{ success: true, version: string }`
 
+### `team.load`
+- **Description**: Recovers the full state of a collaborative session by merging the base snapshot with the incremental update log. Provides a "crash-proof" state recovery mechanism.
+- **Parameters**: `{ sessionId: string }`
+- **Output**: `{ payload: base64, format: 'full-merged-snapshot' }`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/operator-skill
-```
+## 🛡️ Key Features
+- **Performance**: O(1) incremental sync performance.
+- **Fault-Tolerance**: Instant crash recovery via Snapshot + WAL (Write-Ahead Logging).
+- **Security**: Built-in Ed25519 signature verification for every sync operation.

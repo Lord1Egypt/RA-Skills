@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - 人物关系图谱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans SC', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); min-height: 100vh; }
+        .title-font { font-family: 'Ma Shan Zheng', cursive; }
+        .glow { text-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 40px rgba(255, 107, 107, 0.4); }
+        .character-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(10px); }
+        .character-card:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .relation-line { stroke-dasharray: 5, 5; animation: dash 2s linear infinite; }
+        @keyframes dash { to { stroke-dashoffset: -20; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .tab-active { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+    </style>
+</head>
+<body class="text-white p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- 标题区域 -->
+        <div class="text-center mb-12">
+            <h1 class="title-font text-6xl md:text-8xl glow text-orange-400 mb-4">{{TITLE}}</h1>
+            <p class="text-xl text-gray-300">{{SUBTITLE}}</p>
+        </div>
+        <!-- 标签页切换 -->
+        <div class="flex justify-center gap-4 mb-8 flex-wrap">
+            <button onclick="showTab('graph')" id="tab-graph" class="tab-active px-6 py-3 rounded-full font-bold transition-all duration-300">🕸️ 关系图谱</button>
+            <button onclick="showTab('characters')" id="tab-characters" class="bg-gray-700/50 hover:bg-gray-600/50 px-6 py-3 rounded-full font-bold transition-all duration-300">👤 人物介绍</button>
+            <button onclick="showTab('world')" id="tab-world" class="bg-gray-700/50 hover:bg-gray-600/50 px-6 py-3 rounded-full font-bold transition-all duration-300">🌍 势力格局</button>
+            <button onclick="showTab('comic')" id="tab-comic" class="bg-gray-700/50 hover:bg-gray-600/50 px-6 py-3 rounded-full font-bold transition-all duration-300">🎨 漫画设定</button>
+        </div>
+        <!-- 内容面板占位 -->
+        <div id="content-graph" class="content-panel">
+            <div class="bg-gray-800/30 rounded-3xl p-8 backdrop-blur-lg border border-gray-700/50">
+                <h2 class="title-font text-4xl text-center text-orange-400 mb-8">核心人物关系网</h2>
+                <!-- SVG图谱位置 -->
+                <div class="flex justify-center">
+                    <!-- CHARACTER_GRAPH_SVG -->
+                </div>
+            </div>
+        </div>
+        <div id="content-characters" class="content-panel hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- CHARACTER_CARDS -->
+            </div>
+        </div>
+        <div id="content-world" class="content-panel hidden">
+            <!-- WORLD_VIEW -->
+        </div>
+        <div id="content-comic" class="content-panel hidden">
+            <!-- COMIC_SETTINGS -->
+        </div>
+    </div>
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.content-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('[id^="tab-"]').forEach(t => {
+                t.classList.remove('tab-active');
+                t.classList.add('bg-gray-700/50', 'hover:bg-gray-600/50');
+            });
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.add('tab-active');
+            document.getElementById('tab-' + tabName).classList.remove('bg-gray-700/50', 'hover:bg-gray-600/50');
+        }
+    </script>
+</body>
+</html>

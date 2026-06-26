@@ -1,35 +1,495 @@
 ---
-name: "OpenClaw Diary Insights"
-description: "日记洞察提取与可视化系统。从日记中提取思维卡片、情绪轨迹和成长维度，生成可交互的本地可视化页面。 **立即触发当**：用户说「分析日记」「生成洞察」「我的思考花园」「insights」「提取笔记」「/note-extractor」。 **主动建议当**：用户连续记录日记超过 7 天，或月末时主动提醒用户可以生成本..."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, diary, insights, knowledge-management]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-diary-insights"
-sourceUrl: "https://clawhub.ai/skills/openclaw-diary-insights"
+name: note-extractor
+description: |
+  日记洞察提取与可视化系统。从日记中提取思维卡片、情绪轨迹和成长维度，生成可交互的本地可视化页面。
+
+  **立即触发当**：用户说「分析日记」「生成洞察」「我的思考花园」「insights」「提取笔记」「/note-extractor」。
+  **主动建议当**：用户连续记录日记超过 7 天，或月末时主动提醒用户可以生成本月洞察。
+
+  读取 ~/write_me/00inbox/journal/ 下的日记文件，提取结构化洞察，生成本地 HTML 可视化页面。
+
+metadata:
+  clawdbot:
+    requires:
+      env: []  # 不需要环境变量
+    files: ["demo/insights.html", "demo/data.js"]
+    homepage: "https://github.com/openclaw-community/diary-system"
 ---
 
-# OpenClaw Diary Insights
+# Note Extractor Skill - 日记洞察提取与可视化
 
-> 日记洞察提取与可视化系统。从日记中提取思维卡片、情绪轨迹和成长维度，生成可交互的本地可视化页面。 **立即触发当**：用户说「分析日记」「生成洞察」「我的思考花园」「insights」「提取笔记」「/note-extractor」。 **主动建议当**：用户连续记录日记超过 7 天，或月末时主动提醒用户可以生成本...
+## 前置检查
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-diary-insights`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-diary-insights](https://clawhub.ai/skills/openclaw-diary-insights)
+**第一步：确定配置文件路径**
 
-## Overview
+读取 `~/.openclaw/workspace/diary/config/diary-config.json`。
 
+注意：
+- 展开 `~` 为完整的用户主目录路径
+- 使用 `echo $HOME` 获取主目录
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-diary-insights
+如果配置文件不存在，告诉用户：
 ```
+看起来你还没有初始化日记系统。请先运行 onboarding skill 来完成设置：
+
+在对话中说：setup my journal
+```
+
+**第二步：确认日记数据存在**
+
+从配置中获取 `storage.path`，展开 `~`，检查目录下是否有 `.md` 文件。
+
+如果没有日记文件：
+```
+还没有日记记录。先用 diary skill 记录一些想法吧！
+
+在对话中说：记一下
+```
+
+**第三步：确认输出目录**
+
+输出目录：`~/write_me/02notes/insights/`
+
+如果目录不存在，创建它：
+```bash
+mkdir -p ~/write_me/02notes/insights
+```
+
+---
+
+## 核心流程
+
+### 1. 读取日记原文
+
+使用 Read 工具读取 `storage.path` 下的日记文件。
+
+**确定目标文件**：
+
+- 如果用户说「分析本月日记」或未指定范围：
+  1. 获取当前日期和时间
+  2. 根据配置中的 `time_boundary`（默认 06:00）判断：如果当前时间 < 边界，使用昨天的日期
+  3. 根据 `date_format`（默认 YYYY-MM）生成文件名，如 `2026-03.md`
+  4. 只读取该文件
+
+- 如果用户说「分析所有日记」：
+  1. 使用 Glob 工具查找所有日记文件：`{展开后的storage.path}/*.md`
+  2. 逐个读取每个文件
+
+**读取用户身份**（如果启用）：
+
+如果配置中 `user_identity.enabled` 为 true，读取 `{user_identity.path}/identity.md` 获取用户名和角色。如果文件不存在，使用默认值：name = "用户"，role = ""。
+
+### 2. 解析日记条目
+
+日记文件格式（由 diary skill 生成）：
+
+```markdown
+# 日记 2026-03
+
+## 14:30 [主动记录] - 项目进展
+
+**事实**：
+和同事讨论了项目方案。
+
+**用户说**：
+"他提出要改设计风格，我觉得有道理但工作量会增加。"
+
+**AI观察**：
+用户对设计变更持开放态度。
+```
+
+解析规则：
+- `## HH:MM [tag] - 标题` → 一条日记条目的开始
+- `**用户说**：` / `**用户观点**：` 后面的内容 → 用户原话（最重要，这是"人味儿"）
+- `**事实**：` 后面的内容 → 客观事实
+- `**文章**：` 后面的内容 → 文章标题/链接
+- `**讨论**：` 后面的内容 → 对话记录（区分用户发言和 AI 发言）
+- `**决定**：` 后面的内容 → 决策记录
+- `**AI观察**：` 后面的内容 → AI 的补充（次要权重）
+- 文件名中的日期 → 条目所属月份
+
+**重要**：严格区分用户原话和 AI 观察。提取洞察时，只从「用户说」和「事实」中提取，不要把 AI 的观察当作用户的想法。
+
+### 3. 提取四类结构化数据
+
+对读取到的所有日记内容，执行以下四个提取任务。
+
+#### 3.1 思维卡片提取
+
+从日记中提取用户的核心洞察和金句。
+
+**提取标准**：
+- 只提取用户自己说的话或明确表达的观点
+- 具有独立价值，脱离上下文也能理解
+- 体现用户的独特思考，不是常识或 AI 的补充
+- 每条洞察应该简洁有力，1-2 句话
+
+**分类体系**（根据用户实际内容动态生成，以下为参考）：
+- 职业/行业洞察
+- 产品/技术思考
+- 个人成长/人生智慧
+- 投资/商业判断
+- 创作/表达方法论
+- 其他（根据用户实际关注领域）
+
+**输出格式**（JSON 数组）：
+```json
+[
+  {
+    "id": 1,
+    "insight": "用户的原话或提炼的核心观点",
+    "source_date": "2026-03-14",
+    "category": "分类名称",
+    "importance": 4
+  }
+]
+```
+
+- `importance`：1-5 分，5 分最高。判断标准：原创性、可复用性、对用户的长期价值
+- 每月提取 5-15 条，不要贪多，只留真正有价值的
+
+#### 3.2 每日情绪标签
+
+为每个有日记记录的日期标注情绪。
+
+**情绪判断依据**：
+- 优先看「用户说」的内容中的情绪词和语气
+- 其次看「事实」中描述的事件性质
+- 不要用 AI 观察来判断情绪
+
+**情绪分类**：
+- positive（积极）：开心、自豪、兴奋、感恩、自信、充沛、心流……
+- neutral（中性）：专注、平静、好奇、分析、思考、坚定……
+- low（低落）：疲惫、焦虑、低落、迷茫、自我怀疑……
+
+**输出格式**（JSON 对象）：
+```json
+{
+  "2026-03-14": {
+    "mood": "positive",
+    "label": "自豪",
+    "entries": [
+      {
+        "time": "14:30",
+        "type": "主动记录",
+        "content": "用户说的原话或事实摘要（简短）"
+      }
+    ]
+  }
+}
+```
+
+- `label`：用中文，2-3 个字的情绪词
+- `entries`：当天的条目摘要，每条不超过 50 字
+- `content` 中只放用户说的话和事实，不放 AI 观察
+
+#### 3.3 成长维度打分
+
+按月对用户在以下六个维度的关注度和成长进行打分。
+
+**六个维度**：
+1. 职业技能 — 工作能力、专业知识、行业理解
+2. 学习成长 — 阅读、课程、新知识获取
+3. 投资理财 — 财务决策、投资思考、理财规划
+4. 社交关系 — 人际互动、社交活动、关系维护
+5. 健康平衡 — 身体健康、情绪管理、作息平衡
+6. 创造输出 — 写作、创作、公开分享、项目产出
+
+**打分规则**：
+- 0-100 分，基于该维度在当月日记中的出现频率和深度
+- 只出现 1-2 次且浅层提及 → 20-40 分
+- 多次出现且有深入思考 → 60-80 分
+- 频繁出现且有明确行动和成果 → 80-100 分
+- 完全没提及 → 10-20 分（给个基础分，不要给 0）
+
+**输出格式**（JSON 对象）：
+```json
+{
+  "一月": {
+    "职业技能": 75,
+    "学习成长": 80,
+    "投资理财": 40,
+    "社交关系": 50,
+    "健康平衡": 30,
+    "创造输出": 45
+  }
+}
+```
+
+#### 3.4 知识图谱提取
+
+从日记中提取实体和关联，生成 2D 知识关联图谱的数据。
+
+**节点提取规则**：
+
+从日记中识别三类实体：
+
+1. **主题领域**（group: "topic"）
+   - 用户反复提及的领域和话题
+   - 例如：AI Agent、投资理财、个人品牌
+   - 提取标准：在日记中出现 2 次以上的主题词
+
+2. **概念/框架**（group: "concept"）
+   - 用户提到的具体理论、方法论、框架
+   - 例如：杠杆理论、PARA方法论、第一性原理
+   - 提取标准：用户明确讨论过的概念
+
+3. **人物**（group: "person"）
+   - 日记中提到的人（同事、朋友、作者、公众人物）
+   - 例如：团队成员名字、书籍作者
+   - 提取标准：在日记中被提及且与某个主题相关
+
+**连线生成规则**：
+
+当两个节点在同一天的日记中共同出现，或存在明确的因果/关联关系时，生成一条连线。
+
+**输出格式**：
+
+`nodeData` 数组：
+```json
+[
+  {"id": "AI Agent", "group": "topic", "desc": "从日记中提取的简短描述", "size": 22}
+]
+```
+
+`linkData` 数组：
+```json
+[
+  {"s": "Vivi", "t": "AI Agent"}
+]
+```
+
+- `size`：节点大小，基于在日记中的出现频率。范围 12-28。
+- `desc`：从日记中提取的关于该节点的简短描述，不超过 20 字。
+- 用户自己的名字应作为 person 节点加入，size 设为最大值 28。
+
+### 4. 生成可视化页面
+
+HTML 模板通过 `<script src="data.js">` 加载外部数据文件，Claude 只需要生成 `data.js` 并复制 HTML 模板，不需要读取或修改 HTML。
+
+**生成步骤**：
+
+1. 生成 `data.js` 数据文件（见下方格式）
+2. 将 `data.js` 写入输出目录：`~/write_me/02notes/insights/data.js`
+3. 将 HTML 模板复制到输出目录（使用 Bash 的 `cp` 命令）：
+   ```bash
+   cp {skill目录}/demo/insights.html ~/write_me/02notes/insights/insights-{YYYY-MM}.html
+   ```
+
+**data.js 文件格式**：
+
+```javascript
+// 此文件由 note-extractor skill 自动生成
+const thoughtCards = [
+  {id:1,insight:"用户原话",date:"2026-03-14",cat:"分类名",imp:4},
+  // ...
+];
+
+const catStyles = {"分类名":"brand", ...};
+
+const diaryEntries = {
+  "2026-03-14":{mood:"positive",label:"自豪",entries:[
+    {time:"14:30",type:"主动记录",content:"用户说的话或事实摘要"}
+  ]},
+  // ...
+};
+
+const moodPositive = ["inspired","energetic","eureka","confident","proud","validated","excited","hopeful","enlightened","accomplished","flow","refreshed","grateful","warm","creative","optimistic","reinforced"];
+const moodNeutral = ["curious","focused","analytical","reflective","philosophical","strategic","calm","productive","wise","determined","persistent","satisfied","mind-blown"];
+
+const dimensionScores = {
+  "一月":{职业技能:75,学习成长:80,投资理财:40,社交关系:50,健康平衡:30,创造输出:45},
+  // ...
+};
+
+const nodeData = [
+  {id:"用户名",group:"person",desc:"简短描述",size:28},
+  // ...
+];
+
+const linkData = [
+  {s:"节点A",t:"节点B"},
+  // ...
+];
+```
+
+**字段名映射**：
+
+提取时使用完整字段名（便于理解），写入 data.js 时需转换为缩写格式：
+
+| 提取输出 | data.js 变量 |
+|---|---|
+| `source_date` | `date` |
+| `category` | `cat` |
+| `importance` | `imp` |
+
+**分类与样式映射**：
+
+HTML 模板支持以下 CSS 样式类：`brand`（玫瑰粉）、`product`（鼠尾草绿）、`ai`（薰衣草紫）、`life`（沙金）、`invest`（暖金）。
+
+生成 `catStyles` 时，将每个动态分类映射到最接近的样式类。例如：
+```json
+{
+  "职业洞察": "brand",
+  "产品思考": "product",
+  "AI 认知": "ai",
+  "人生智慧": "life",
+  "投资理财": "invest",
+  "创作方法论": "product"
+}
+```
+
+如果分类无法明确归类，默认使用 `"life"`。
+
+**输出文件**：
+- 数据文件：`~/write_me/02notes/insights/data.js`（固定文件名，每次覆盖）
+- HTML 页面：`~/write_me/02notes/insights/insights-{YYYY-MM}.html`
+- 如果用户要求分析所有日记（跨月），HTML 文件名为：`insights-all.html`
+
+### 5. 生成结构化 JSON 备份
+
+同时将提取的原始数据保存为 JSON，方便其他 skill 或工具使用。
+
+**输出文件路径**：`~/write_me/02notes/insights/data-{YYYY-MM}.json`
+
+**JSON 结构**：
+```json
+{
+  "generated_at": "2026-03-15T10:30:00",
+  "source_files": ["2026-01.md", "2026-02.md", "2026-03.md"],
+  "user_profile": {
+    "name": "从 identity.md 读取",
+    "role": "从 identity.md 读取"
+  },
+  "thought_cards": [],
+  "diary_entries": {},
+  "dimension_scores": {},
+  "knowledge_graph": {
+    "nodes": [],
+    "links": []
+  }
+}
+```
+
+### 6. 通知用户
+
+生成完成后，告诉用户：
+
+```
+✓ 洞察已生成！
+
+- 可视化页面：~/write_me/02notes/insights/insights-2026-03.html
+- 数据文件：~/write_me/02notes/insights/data-2026-03.json
+
+在浏览器中打开 HTML 文件即可查看你的思考花园。
+
+本次提取了 {N} 张思维卡片，覆盖 {M} 天的日记记录。
+```
+
+然后询问用户是否要立即打开：
+```
+要我帮你打开看看吗？
+```
+
+如果用户同意，使用 Bash 工具执行：
+```bash
+open {HTML文件的完整路径}
+```
+
+---
+
+## 用户交互场景
+
+### 场景 1：分析本月日记
+
+用户说：「分析日记」「生成洞察」
+
+1. 读取当月日记文件
+2. 执行完整提取流程
+3. 生成 HTML 和 JSON
+4. 通知用户
+
+### 场景 2：分析所有日记
+
+用户说：「分析所有日记」「全部洞察」
+
+1. 读取所有日记文件
+2. 执行完整提取流程
+3. 生成 insights-all.html
+4. 通知用户
+
+### 场景 3：只看思维卡片
+
+用户说：「提取金句」「思维卡片」
+
+1. 只执行思维卡片提取
+2. 直接在对话中展示卡片列表
+3. 询问是否要生成完整可视化
+
+### 场景 4：月末主动提醒
+
+当检测到当前日期是月末（28-31日），且本月有日记记录时：
+
+```
+这个月你记录了 {N} 天的日记，要不要生成本月的思考花园？
+
+我会从日记中提取你的核心洞察、情绪轨迹和成长维度，生成一个可视化页面。
+```
+
+---
+
+---
+
+## 错误处理
+
+### 日记文件为空或格式异常
+
+如果日记文件存在但内容为空或格式不符合预期：
+- 跳过该文件
+- 在最终报告中说明：「跳过了 {文件名}（内容为空或格式异常）」
+
+### 日记数据太少
+
+如果总共只有 1-2 条日记记录：
+- 仍然生成可视化，但在页面上提示：「数据较少，持续记录后洞察会更丰富」
+- 成长雷达图可能不够有意义，可以隐藏或标注「数据不足」
+
+### 输出目录写入失败
+
+- 检查目录权限
+- 尝试创建父目录
+- 如果仍然失败，将 HTML 内容直接输出到对话中，让用户手动保存
+
+### HTML 模板不存在
+
+如果 `demo/insights.html` 模板文件不存在：
+- 仍然生成 `data.js` 和 JSON 备份
+- 告知用户模板文件缺失，建议重新安装：`bash install.sh`
+
+---
+
+## 实现注意事项
+
+### 路径处理
+- 所有包含 `~` 的路径都要展开为完整路径
+- 使用 `echo $HOME` 获取主目录
+- 使用 `mkdir -p` 创建目录
+
+### 数据质量
+- 思维卡片：宁缺毋滥，只提取真正有价值的洞察
+- 情绪标签：基于用户原话判断，不要过度解读
+- 维度打分：基于实际内容，不要凭空给高分
+
+### 隐私保护
+- 所有数据都在本地处理和存储
+- 不要在 HTML 中包含敏感信息（如 API key、密码等）
+- 如果日记中包含明显的隐私信息（身份证号、银行卡号等），在提取时脱敏
+
+### 与 Diary Skill 的协作
+- 本 skill 只读取日记文件，不修改
+- 输出到 `02notes/insights/`，不影响 `00inbox/journal/`
+- 读取 `01studio/me/identity.md` 获取用户基本信息（如果存在）
+
+---
+
+最后更新：2026-03-15

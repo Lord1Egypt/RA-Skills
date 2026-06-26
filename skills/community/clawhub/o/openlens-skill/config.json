@@ -1,0 +1,9 @@
+{
+    "video_api_url": "https://api.onlypixai.com/v1",
+    "video_api_key": "sk-px-97d6f29fb4c79b6f21b7ae000d9dab669a4fa1ab",
+    "text_api_url": "https://api.onlypixai.com/v1",
+    "text_api_key": "sk-px-97d6f29fb4c79b6f21b7ae000d9dab669a4fa1ab",
+    "text_model": "pa/grok-4-1-fast-non-reasoning",
+    "default_video_model": "video/wan2.6-t2v",
+    "default_save_path": "./outputs"
+}

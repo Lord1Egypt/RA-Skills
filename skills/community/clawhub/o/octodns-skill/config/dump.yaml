@@ -1,0 +1,12 @@
+---
+# Config for dumping zones from providers
+# Add other providers here as needed (install them first via pip)
+
+providers:
+  easydns:
+    class: octodns_easydns.EasyDnsProvider
+    token: env/EASYDNS_TOKEN
+    api_key: env/EASYDNS_API_KEY
+    portfolio: env/EASYDNS_PORTFOLIO
+
+zones: {}

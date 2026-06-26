@@ -1,0 +1,75 @@
+# 示例：配置本地 Ollama
+# Example: Configure Local Ollama
+#
+# 前提条件：
+# 1. 安装 Ollama: https://ollama.ai
+# 2. 拉取模型：ollama pull llama3
+# 3. 确保 Ollama 服务正在运行
+#
+# 使用方法：
+# 1. 复制此配置到 config/models.yaml
+# 2. 运行：python scripts/provider_manager.py scan
+# 3. 运行：python scripts/provider_manager.py list-models
+
+providers:
+  ollama:
+    name: Ollama (本地)
+    type: openai-compatible
+    enabled: true
+    priority: 10  # 本地模型优先级高
+    base_url: http://localhost:11434/v1
+    api_key: ""  # Ollama 不需要 API Key
+    timeout: 120  # 本地模型超时时间长一些
+    retry_count: 3
+    models:
+      - id: ollama/llama3
+        name: Llama 3 (本地)
+        context_window: 8192
+        max_tokens: 4096
+        cost_input: 0.0  # 本地模型免费
+        cost_output: 0.0
+        capabilities: [text]
+        speed_rating: 5  # 本地速度快
+        quality_rating: 4
+        local: true
+        
+      - id: ollama/codellama
+        name: CodeLlama (本地)
+        context_window: 16384
+        max_tokens: 4096
+        cost_input: 0.0
+        cost_output: 0.0
+        capabilities: [code]
+        speed_rating: 5
+        quality_rating: 4
+        local: true
+        
+      - id: ollama/mistral
+        name: Mistral (本地)
+        context_window: 8192
+        max_tokens: 4096
+        cost_input: 0.0
+        cost_output: 0.0
+        capabilities: [text]
+        speed_rating: 5
+        quality_rating: 4
+        local: true
+
+# 本地模型自动发现
+local_discovery:
+  enabled: true
+  scan_interval: 300
+  endpoints:
+    - name: Ollama
+      url: http://localhost:11434/api/tags
+      type: ollama
+
+# 智能体使用示例（优先使用本地模型）
+# ⚠️ 注意：请将 Agent_Frontend_Dev 替换为您自己的智能体名称
+agents:
+  Agent_Frontend_Dev:  # ⚠️ 请替换为您的智能体名称
+    models:
+      primary: ollama/codellama      # 本地代码模型
+      fallback: bailian/qwen3-coder-plus  # 云端备用
+    preferences:
+      local_first: true  # 优先本地

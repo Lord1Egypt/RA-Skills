@@ -1,0 +1,8 @@
+{
+  "query": "Patient with acute dyspnea and chest pain. Build a strict differential diagnosis with first-line tests.",
+  "channel": "feishu",
+  "doctor_id": "dr-li",
+  "callback_url": "",
+  "use_case": "diagnosis",
+  "require_citations": true
+}

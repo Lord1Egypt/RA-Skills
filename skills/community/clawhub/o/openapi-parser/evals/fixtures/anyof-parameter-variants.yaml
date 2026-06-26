@@ -1,0 +1,33 @@
+/v2/images/{image_id}:
+  get:
+    operationId: getImage
+    parameters:
+      - name: image_id
+        in: path
+        required: true
+        schema:
+          anyOf:
+            - type: integer
+            - type: string
+    responses:
+      '200':
+        description: A single image
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+      '404':
+        description: Not found
+
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+      required: [id, slug, name]

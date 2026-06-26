@@ -1,0 +1,19 @@
+{
+    "blocked_modules": [
+        "child_process",
+        "cluster"
+    ],
+    "blocked_functions": [
+        "exec",
+        "spawn",
+        "execSync"
+    ],
+    "allowed_permissions": [
+        "network",
+        "memory"
+    ],
+    "blocked_permissions": [
+        "shell",
+        "process"
+    ]
+}

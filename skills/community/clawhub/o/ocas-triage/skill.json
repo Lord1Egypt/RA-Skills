@@ -1,0 +1,9 @@
+{
+  "name": "ocas-triage",
+  "version": "1.2.0",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "visibility": "private",
+  "type": "system",
+  "description": "System scheduler and priority queue manager. Determines what gets attention next across all pending work. Use when you need to prioritize competing tasks, check what is queued or active, preempt active work with something more urgent, or understand the current execution order. Handles debouncing, duplicate detection, queue aging, and task checkpointing. Does not route tasks, select skills, or decompose work."
+}

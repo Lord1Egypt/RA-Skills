@@ -1,0 +1,12 @@
+{
+  "name": "OlaXBT Nexus Data",
+  "tagline": "Real-time crypto data, news, KOL tracking & market analysis for OpenClaw",
+  "description": "Official OlaXBT Nexus Data API skill for OpenClaw. Requires NEXUS_JWT (obtain via Nexus auth flow; no private key in skill). Real-time crypto data, news, KOL tracking, technical indicators, and market analysis.",
+  "category": "data",
+  "tags": ["olaxbt", "crypto", "trading", "api", "market-data", "nexus", "official"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/olaxbt/olaxbt-nexus-data/issues",
+  "homepage": "https://github.com/olaxbt/olaxbt-nexus-data"
+}

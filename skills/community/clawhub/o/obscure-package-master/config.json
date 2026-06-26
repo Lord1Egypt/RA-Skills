@@ -1,0 +1,13 @@
+{
+    "_comment_provider": "Set 'provider' to one of: claude, gemini, codex, cursor, openai, openclaw, cline. Omit to auto-detect from environment variables.",
+    "_comment_skills_path": "Set 'skills_path' to override where skills are installed. Omit to use the provider default or '.skills/' in the current directory.",
+    "provider_defaults": {
+        "claude":   "~/.claude/skills",
+        "gemini":   "~/.gemini/skills",
+        "codex":    "~/.copilot/skills",
+        "cursor":   "~/.cursor/skills",
+        "openai":   "~/.openai/skills",
+        "openclaw": "~/.openclaw/skills",
+        "cline":    "~/.cline/skills"
+    }
+}

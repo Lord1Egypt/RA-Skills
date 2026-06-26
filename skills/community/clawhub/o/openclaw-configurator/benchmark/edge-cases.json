@@ -1,0 +1,71 @@
+{
+  "suite": "edge",
+  "description": "边界场景：空输入、部分需求、超长描述、多语言混合、特殊字符",
+  "cases": [
+    {
+      "id": "E-001",
+      "prompt": "",
+      "assertions": {
+        "must_ask_clarification": true,
+        "must_not_generate_files_immediately": true,
+        "multi_round": true
+      }
+    },
+    {
+      "id": "E-002",
+      "prompt": "助手",
+      "assertions": {
+        "must_ask_clarification": true,
+        "must_not_generate_files_immediately": true,
+        "multi_round": true
+      }
+    },
+    {
+      "id": "E-003",
+      "prompt": "我要一个助手，但我不确定要什么样的。",
+      "assertions": {
+        "must_ask_clarification": true,
+        "must_ask_topics": ["性格", "用途"],
+        "must_not_generate_files_immediately": true,
+        "multi_round": true
+      }
+    },
+    {
+      "id": "E-004",
+      "prompt": "我要个助手，只要 SOUL.md 和 IDENTITY.md，其他不要。",
+      "assertions": {
+        "must_contain_all_files": ["SOUL.md", "IDENTITY.md"],
+        "must_not_contain_files": ["BOOTSTRAP.md", "AGENTS.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "multi_round": false
+      }
+    },
+    {
+      "id": "E-005",
+      "prompt": "我想要一个助手，性格是既非常冷酷无情又超级温柔体贴的，说话要正式又随意，帮我写代码又做情感支持。",
+      "assertions": {
+        "must_ask_clarification": true,
+        "must_ask_topics": ["性格矛盾", "用途矛盾"],
+        "multi_round": true
+      }
+    },
+    {
+      "id": "E-006",
+      "prompt": "帮偶配置一个助手啦~ 人家想要那种说话超可爱的捏~ 用🐰emoji~ 人家是做手作的博主哟~ 叫我小兔叽~",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["🐰", "小兔叽", "手作"],
+        "tone": "可爱",
+        "multi_round": false
+      }
+    },
+    {
+      "id": "E-007",
+      "prompt": "I need 助手 to manage my 日程 and handle emails. Personality should be 効率的 but friendly. Call me 田中.",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["田中"],
+        "multi_round": false
+      }
+    }
+  ]
+}

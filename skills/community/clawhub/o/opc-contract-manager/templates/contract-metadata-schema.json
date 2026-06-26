@@ -1,0 +1,301 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contract Metadata",
+  "description": "Schema for contract archive metadata files. Used by index_builder.py and deadline_checker.py.",
+  "type": "object",
+  "required": [
+    "contract_id",
+    "counterparty_name",
+    "contract_type",
+    "effective_date",
+    "review_status"
+  ],
+  "properties": {
+    "contract_id": {
+      "type": "string",
+      "description": "Unique ID in format: YYYY-MM-DD_counterparty-slug_type",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}_[a-z0-9-]+_[a-z-]+$"
+    },
+    "archive_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this contract was archived"
+    },
+    "contract_type": {
+      "type": "string",
+      "enum": [
+        "nda",
+        "msa",
+        "service-agreement",
+        "contractor-agreement",
+        "sow",
+        "saas-subscription",
+        "license",
+        "partnership",
+        "lease",
+        "vendor",
+        "referral",
+        "reseller",
+        "other"
+      ],
+      "description": "Category of contract"
+    },
+    "counterparty_name": {
+      "type": "string",
+      "description": "Full legal name of the counterparty"
+    },
+    "counterparty_slug": {
+      "type": "string",
+      "description": "URL-safe lowercase slug of counterparty name",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "effective_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date the contract takes effect"
+    },
+    "signature_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date the contract was signed"
+    },
+    "term_start": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Start of the contract term"
+    },
+    "term_end": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "End of the contract term. null if perpetual or unknown."
+    },
+    "auto_renewal": {
+      "type": ["boolean", "null"],
+      "description": "Whether the contract auto-renews. null if unknown."
+    },
+    "renewal_notice_deadline": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Last date to give notice to prevent auto-renewal"
+    },
+    "governing_law": {
+      "type": ["string", "null"],
+      "description": "Jurisdiction / governing law (e.g., 'State of Delaware, USA')"
+    },
+    "currency": {
+      "type": ["string", "null"],
+      "description": "ISO 4217 currency code (e.g., 'USD', 'EUR')"
+    },
+    "contract_value": {
+      "type": ["string", "null"],
+      "description": "Total contract value as string to preserve exact figures. null if not determinable."
+    },
+    "payment_terms_days": {
+      "type": ["integer", "null"],
+      "description": "Payment terms in days (e.g., 30 for net-30). null if not extractable."
+    },
+    "payment_trigger": {
+      "type": ["string", "null"],
+      "description": "What triggers payment (e.g., 'invoice', 'milestone', 'monthly', 'upon-delivery')"
+    },
+    "owner_entity": {
+      "type": ["string", "null"],
+      "description": "Your entity name as it appears in the contract"
+    },
+    "signatory": {
+      "type": ["string", "null"],
+      "description": "Name of the person who signed on your behalf"
+    },
+
+    "overall_risk_level": {
+      "type": ["string", "null"],
+      "enum": ["critical", "high", "medium", "low", null],
+      "description": "Overall risk assessment from review"
+    },
+    "key_risks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of key risk findings from review"
+    },
+    "tfc_present": {
+      "type": ["boolean", "null"],
+      "description": "Whether a Termination for Convenience clause exists"
+    },
+    "tfc_one_sided": {
+      "type": ["boolean", "null"],
+      "description": "Whether TFC is one-sided (only counterparty can invoke)"
+    },
+    "liability_cap_type": {
+      "type": ["string", "null"],
+      "enum": ["fixed", "proportional", "uncapped", "mutual", null],
+      "description": "Type of liability cap"
+    },
+    "liability_cap_amount": {
+      "type": ["string", "null"],
+      "description": "Liability cap amount or formula as string"
+    },
+    "uncapped_liabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of liability categories that are uncapped"
+    },
+    "ip_ownership_model": {
+      "type": ["string", "null"],
+      "enum": ["work-for-hire", "assignment", "license-back", "retained", "shared", null],
+      "description": "How IP ownership is structured"
+    },
+    "exclusivity_present": {
+      "type": ["boolean", "null"],
+      "description": "Whether exclusivity provisions exist"
+    },
+    "non_compete_present": {
+      "type": ["boolean", "null"],
+      "description": "Whether non-compete provisions exist"
+    },
+    "insurance_required": {
+      "type": ["boolean", "null"],
+      "description": "Whether insurance requirements are imposed"
+    },
+    "data_processing_addendum_required": {
+      "type": ["boolean", "null"],
+      "description": "Whether a DPA is required or referenced"
+    },
+
+    "next_action": {
+      "type": ["string", "null"],
+      "description": "Next required action (e.g., 'sign', 'negotiate', 'renew', 'cancel')"
+    },
+    "next_action_due_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Deadline for the next action"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "under-review", "reviewed", "needs-revision"],
+      "description": "Current review status"
+    },
+    "signed_status": {
+      "type": "string",
+      "enum": ["unsigned", "partially-signed", "fully-signed", "expired", "terminated"],
+      "description": "Signing status"
+    },
+    "source_file_paths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Relative paths to source files (original contract, amendments, etc.)"
+    },
+    "last_reviewed_at": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date of most recent review"
+    },
+    "archive_warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Issues encountered during metadata extraction (e.g., 'payment_terms_days: not extractable from contract text')"
+    },
+    "extraction_confidence": {
+      "type": ["string", "null"],
+      "enum": ["high", "medium", "low", null],
+      "description": "Overall confidence in extracted metadata accuracy"
+    },
+
+    "summary_keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords for full-text search support"
+    },
+    "risk_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Structured risk tags (e.g., 'uncapped-liability', 'one-sided-tfc', 'no-ip-carveout')"
+    },
+    "clause_flags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Flags for structural features present (e.g., 'tfc', 'auto-renewal', 'non-compete', 'exclusivity')"
+    },
+    "normalized_dates": {
+      "type": "object",
+      "properties": {
+        "earliest_obligation": { "type": ["string", "null"], "format": "date" },
+        "next_renewal": { "type": ["string", "null"], "format": "date" },
+        "next_payment": { "type": ["string", "null"], "format": "date" },
+        "expiry": { "type": ["string", "null"], "format": "date" }
+      },
+      "description": "Normalized key dates for deadline tracking"
+    },
+    "field_confidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["high", "medium", "low", "not_extractable", "needs_manual_review"]
+      },
+      "description": "Per-field confidence ratings for extracted values"
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-form notes about this contract"
+    },
+
+    "billing_model": {
+      "type": ["string", "null"],
+      "enum": ["fixed", "milestone", "hourly", "retainer", "subscription", null],
+      "description": "How billing is structured under this contract. Used by opc-invoice-manager for auto-inference."
+    },
+    "billing_trigger": {
+      "type": ["string", "null"],
+      "description": "What triggers invoicing rights (e.g., 'monthly on 1st', 'upon milestone acceptance', 'upon delivery')"
+    },
+    "milestone_definitions": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "milestone_name": { "type": "string" },
+          "amount": { "type": "string", "description": "Amount as string for decimal safety" },
+          "trigger": { "type": "string", "description": "What triggers this milestone payment" },
+          "status": {
+            "type": ["string", "null"],
+            "enum": ["pending", "completed", "invoiced", "paid", null]
+          }
+        }
+      },
+      "description": "Milestone payment schedule with amounts and triggers"
+    },
+    "deposit_required": {
+      "type": ["boolean", "null"],
+      "description": "Whether a deposit is required before work begins"
+    },
+    "deposit_amount": {
+      "type": ["string", "null"],
+      "description": "Deposit amount as string for decimal safety"
+    },
+    "final_payment_rule": {
+      "type": ["string", "null"],
+      "description": "Rule for final payment (e.g., 'upon project completion and acceptance')"
+    },
+    "reimbursable_expenses_allowed": {
+      "type": ["boolean", "null"],
+      "description": "Whether the contract allows reimbursable expense invoicing"
+    },
+    "client_po_required": {
+      "type": ["boolean", "null"],
+      "description": "Whether a purchase order number is required on invoices"
+    },
+    "invoice_submission_method": {
+      "type": ["string", "null"],
+      "enum": ["email", "portal", "mail", null],
+      "description": "How invoices must be submitted to this client"
+    },
+    "late_fee_clause": {
+      "type": ["string", "null"],
+      "description": "Description of late fee rights in the contract (e.g., '1.5% per month on overdue amounts')"
+    },
+    "payment_dispute_window": {
+      "type": ["string", "null"],
+      "description": "Time window for client to dispute an invoice (e.g., '15 days from receipt')"
+    }
+  }
+}

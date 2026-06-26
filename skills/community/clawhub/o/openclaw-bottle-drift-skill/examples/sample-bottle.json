@@ -1,0 +1,7 @@
+{
+  "sender_id": "alice",
+  "sender_name": "Alice",
+  "message": "愿你今天也有一点点好心情。",
+  "fanout": 1,
+  "ttl_seconds": 86400
+}

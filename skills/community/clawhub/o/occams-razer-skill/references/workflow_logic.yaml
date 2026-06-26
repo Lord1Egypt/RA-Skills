@@ -1,0 +1,43 @@
+workflow:
+  name: "Parsimony_Engine"
+  steps:
+    - step: 1
+      action: "Input_Parsing"
+      description: "Ingest scenario, hypotheses list, and mode."
+      
+    - step: 2
+      action: "Constraint_Mapping"
+      description: "Identify 'Knowns' (Constraints) vs 'Unknowns' (Assumptions)."
+      
+    - step: 3
+      action: "Hypothesis_Decomposition"
+      loop: "For each hypothesis in list"
+      sub_steps:
+        - "List all logical steps required for hypothesis to be true."
+        - "Flag steps that are NOT supported by 'Knowns'."
+        - "Calculate complexity_score = count(Flagged steps)."
+        
+    - step: 4
+      action: "Comparative_Analysis"
+      logic: |
+        IF (hypothesis_A.complexity_score < hypothesis_B.complexity_score) AND (hypothesis_A covers all observations):
+            Prefer hypothesis_A
+        ELSE IF (scores are equal):
+            Analyze 'Bayesian Likelihood' of assumptions (Forensic) or 'Theoretical Elegance' (Academic).
+            If still equal, report 'Indistinguishable by Parsimony'.
+
+    - step: 5
+      action: "Fallacy_Check"
+      description: |
+        Check for 'Simplistic Fallacy' (ignoring evidence to force simplicity).
+        Check for 'Ad Hoc Rescue' (adding assumptions to save a preferred theory).
+        If found, penalize the score of the offending hypothesis.
+        
+    - step: 6
+      action: "Output_Generation"
+      format: "JSON"
+      fields:
+        - preferred_hypothesis: "Name of winning hypothesis"
+        - complexity_analysis: "Object detailing assumption counts per hypothesis"
+        - logic_rationale: "Step-by-step justification"
+        - confidence_score: "0.0 - 1.0 based on the margin of complexity difference"

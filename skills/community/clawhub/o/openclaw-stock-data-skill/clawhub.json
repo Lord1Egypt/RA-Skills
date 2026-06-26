@@ -1,0 +1,19 @@
+{
+  "slug": "stock-data-api-v1",
+  "name": "股票数据API",
+  "tagline": "A股市场数据API - 股票行情、财务、实时数据一站式获取",
+  "description": "提供完整的 A 股市场数据访问功能，包括日K线、分时数据、财务指标、估值数据、可转债、ETF、港股等。使用前请先访问 https://data.diemeng.chat/ 注册并获取 API Key。",
+  "category": "finance",
+  "tags": ["stock", "股票", "finance", "financial data", "market data", "A股", "行情数据", "K线", "可转债", "ETF", "港股"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "repository": "https://github.com/1018466411/openclaw-stock-data-skill",
+  "homepage": "https://data.diemeng.chat/",
+  "support": {
+    "email": "support@diemeng.chat",
+    "website": "https://data.diemeng.chat/"
+  },
+  "screenshots": [],
+  "demo_video": ""
+}

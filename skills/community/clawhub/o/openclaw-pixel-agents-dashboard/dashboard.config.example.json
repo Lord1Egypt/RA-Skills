@@ -1,0 +1,84 @@
+{
+  // ── Server ────────────────────────────────────────────
+  // Port the dashboard serves on. Default: 5070
+  "server": {
+    "port": 5070
+  },
+
+  // ── Gateway ───────────────────────────────────────────
+  // Your OpenClaw gateway URL and auth token.
+  // Use ${ENV_VAR} syntax to read secrets from environment variables.
+  "gateway": {
+    "url": "http://localhost:18789",
+    "token": "${OPENCLAW_GATEWAY_TOKEN}"
+  },
+
+  // ── OpenClaw ──────────────────────────────────────────
+  // Where your agent session directories live.
+  // ~ expands to your home directory.
+  "openclaw": {
+    "agentsDir": "~/.openclaw/agents"
+  },
+
+  // ── Agents ────────────────────────────────────────────
+  // Define every agent you want to see on the dashboard.
+  //
+  //   id:            Agent directory name (matches ~/.openclaw/agents/<id>/)
+  //   name:          Display name shown above the character sprite
+  //   emoji:         Emoji shown next to the name
+  //   palette:       Character skin color (0-5). Each number is a different sprite.
+  //   alwaysPresent: true = always visible on the map. false = only appears when active.
+  //
+  "agents": [
+    {
+      "id": "main",
+      "name": "Earl",
+      "emoji": "🥧",
+      "palette": 0,
+      "alwaysPresent": true
+    },
+    {
+      "id": "assistant",
+      "name": "Helper",
+      "emoji": "🤖",
+      "palette": 2,
+      "alwaysPresent": false
+    }
+  ],
+
+  // ── Spawnable Agents ──────────────────────────────────
+  // Which agents can be spawned from the + Agent button.
+  // Must match an agent id from the agents array above.
+  // Leave empty [] to disable the spawn feature.
+  "spawnable": ["assistant"],
+
+  // ── Remote Agents (optional) ──────────────────────────
+  // Agents running on remote machines, synced via SSH.
+  // Omit this section if all your agents are local.
+  //
+  // "remoteAgents": [
+  //   {
+  //     "id": "remote-agent",
+  //     "host": "192.168.1.100",
+  //     "user": "openclaw",
+  //     "password": "${REMOTE_SSH_PASS}",
+  //     "agentsDir": "/home/openclaw/.openclaw/agents"
+  //   }
+  // ],
+
+  // ── Features ──────────────────────────────────────────
+  // Toggle dashboard features on/off.
+  // All default to true except nickDesk (Station House-specific).
+  "features": {
+    "fireAlarm": true,
+    "breakerPanel": true,
+    "hamRadio": true,
+    "serverRack": true,
+    "nickDesk": false,
+    "dayNightCycle": true,
+    "conversationHeat": true,
+    "channelBadges": true,
+    "sounds": true,
+    "door": true
+  }
+}

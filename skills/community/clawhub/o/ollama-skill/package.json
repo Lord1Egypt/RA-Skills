@@ -1,0 +1,16 @@
+{
+  "name": "ollama-runtime-skill-examples",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Examples for Ollama local/cloud and compatibility integrations",
+  "scripts": {
+    "chat": "node examples/javascript_chat.mjs",
+    "structured": "node examples/javascript_structured.mjs"
+  },
+  "dependencies": {
+    "ollama": "^0.5.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.3"
+  }
+}

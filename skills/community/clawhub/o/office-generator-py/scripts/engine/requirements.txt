@@ -1,0 +1,6 @@
+python-docx
+docxtpl
+openpyxl
+XlsxWriter
+python-pptx
+pydantic

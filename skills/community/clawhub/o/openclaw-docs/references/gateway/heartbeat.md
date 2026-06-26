@@ -1,0 +1,402 @@
+# Heartbeat
+
+Source: https://docs.openclaw.ai/gateway/heartbeat
+
+[Skip to main content](#content-area)OpenClaw home pageEnglishSearch...⌘KSearch...NavigationConfiguration and operationsHeartbeatGet startedInstallChannelsAgentsToolsModelsPlatformsGateway & OpsReferenceHelpGateway
+Gateway RunbookConfiguration and operations
+ConfigurationConfiguration ReferenceConfiguration ExamplesAuthenticationTrusted proxy authHealth ChecksHeartbeatDoctorLoggingGateway LockBackground Exec and Process ToolMultiple GatewaysTroubleshooting
+Security and sandboxingProtocols and APIsNetworking and discovery
+Remote access
+Remote AccessRemote Gateway SetupTailscale
+Security
+Formal Verification (Security Models)
+Web interfaces
+WebControl UIDashboardWebChatTUI
+On this page
+- [Heartbeat (Gateway)](#heartbeat-gateway)
+- [Quick start (beginner)](#quick-start-beginner)
+- [Defaults](#defaults)
+- [What the heartbeat prompt is for](#what-the-heartbeat-prompt-is-for)
+- [Response contract](#response-contract)
+- [Config](#config)
+- [Scope and precedence](#scope-and-precedence)
+- [Per-agent heartbeats](#per-agent-heartbeats)
+- [Active hours example](#active-hours-example)
+- [Multi account example](#multi-account-example)
+- [Field notes](#field-notes)
+- [Delivery behavior](#delivery-behavior)
+- [Visibility controls](#visibility-controls)
+- [What each flag does](#what-each-flag-does)
+- [Per-channel vs per-account examples](#per-channel-vs-per-account-examples)
+- [Common patterns](#common-patterns)
+- [HEARTBEAT.md (optional)](#heartbeat-md-optional)
+- [Can the agent update HEARTBEAT.md?](#can-the-agent-update-heartbeat-md)
+- [Manual wake (on-demand)](#manual-wake-on-demand)
+- [Reasoning delivery (optional)](#reasoning-delivery-optional)
+- [Cost awareness](#cost-awareness)
+
+​Heartbeat (Gateway)
+
+**Heartbeat vs Cron?** See [Cron vs Heartbeat](/automation/cron-vs-heartbeat) for guidance on when to use each.
+
+Heartbeat runs **periodic agent turns** in the main session so the model can
+surface anything that needs attention without spamming you.
+Troubleshooting: [/automation/troubleshooting](/automation/troubleshooting)
+​Quick start (beginner)
+
+- Leave heartbeats enabled (default is `30m`, or `1h` for Anthropic OAuth/setup-token) or set your own cadence.
+
+- Create a tiny `HEARTBEAT.md` checklist in the agent workspace (optional but recommended).
+
+- Decide where heartbeat messages should go (`target: "last"` is the default).
+
+- Optional: enable heartbeat reasoning delivery for transparency.
+
+- Optional: restrict heartbeats to active hours (local time).
+
+Example config:
+Copy```
+{
+  agents: {
+    defaults: {
+      heartbeat: {
+        every: "30m",
+        target: "last",
+        // activeHours: { start: "08:00", end: "24:00" },
+        // includeReasoning: true, // optional: send separate `Reasoning:` message too
+      },
+    },
+  },
+}
+
+```
+
+​Defaults
+
+- Interval: `30m` (or `1h` when Anthropic OAuth/setup-token is the detected auth mode). Set `agents.defaults.heartbeat.every` or per-agent `agents.list[].heartbeat.every`; use `0m` to disable.
+
+- Prompt body (configurable via `agents.defaults.heartbeat.prompt`):
+`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
+
+- The heartbeat prompt is sent **verbatim** as the user message. The system
+prompt includes a “Heartbeat” section and the run is flagged internally.
+
+- Active hours (`heartbeat.activeHours`) are checked in the configured timezone.
+Outside the window, heartbeats are skipped until the next tick inside the window.
+
+​What the heartbeat prompt is for
+The default prompt is intentionally broad:
+
+- **Background tasks**: “Consider outstanding tasks” nudges the agent to review
+follow-ups (inbox, calendar, reminders, queued work) and surface anything urgent.
+
+- **Human check-in**: “Checkup sometimes on your human during day time” nudges an
+occasional lightweight “anything you need?” message, but avoids night-time spam
+by using your configured local timezone (see [/concepts/timezone](/concepts/timezone)).
+
+If you want a heartbeat to do something very specific (e.g. “check Gmail PubSub
+stats” or “verify gateway health”), set `agents.defaults.heartbeat.prompt` (or
+`agents.list[].heartbeat.prompt`) to a custom body (sent verbatim).
+​Response contract
+
+- If nothing needs attention, reply with **`HEARTBEAT_OK`**.
+
+- During heartbeat runs, OpenClaw treats `HEARTBEAT_OK` as an ack when it appears
+at the **start or end** of the reply. The token is stripped and the reply is
+dropped if the remaining content is **≤ `ackMaxChars`** (default: 300).
+
+- If `HEARTBEAT_OK` appears in the **middle** of a reply, it is not treated
+specially.
+
+- For alerts, **do not** include `HEARTBEAT_OK`; return only the alert text.
+
+Outside heartbeats, stray `HEARTBEAT_OK` at the start/end of a message is stripped
+and logged; a message that is only `HEARTBEAT_OK` is dropped.
+​Config
+Copy```
+{
+  agents: {
+    defaults: {
+      heartbeat: {
+        every: "30m", // default: 30m (0m disables)
+        model: "anthropic/claude-opus-4-6",
+        includeReasoning: false, // default: false (deliver separate Reasoning: message when available)
+        target: "last", // last | none | <channel id> (core or plugin, e.g. "bluebubbles")
+        to: "+15551234567", // optional channel-specific override
+        accountId: "ops-bot", // optional multi-account channel id
+        prompt: "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
+        ackMaxChars: 300, // max chars allowed after HEARTBEAT_OK
+      },
+    },
+  },
+}
+
+```
+
+​Scope and precedence
+
+- `agents.defaults.heartbeat` sets global heartbeat behavior.
+
+- `agents.list[].heartbeat` merges on top; if any agent has a `heartbeat` block, **only those agents** run heartbeats.
+
+- `channels.defaults.heartbeat` sets visibility defaults for all channels.
+
+- `channels.<channel>.heartbeat` overrides channel defaults.
+
+- `channels.<channel>.accounts.<id>.heartbeat` (multi-account channels) overrides per-channel settings.
+
+​Per-agent heartbeats
+If any `agents.list[]` entry includes a `heartbeat` block, **only those agents**
+run heartbeats. The per-agent block merges on top of `agents.defaults.heartbeat`
+(so you can set shared defaults once and override per agent).
+Example: two agents, only the second agent runs heartbeats.
+Copy```
+{
+  agents: {
+    defaults: {
+      heartbeat: {
+        every: "30m",
+        target: "last",
+      },
+    },
+    list: [
+      { id: "main", default: true },
+      {
+        id: "ops",
+        heartbeat: {
+          every: "1h",
+          target: "whatsapp",
+          to: "+15551234567",
+          prompt: "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
+        },
+      },
+    ],
+  },
+}
+
+```
+
+​Active hours example
+Restrict heartbeats to business hours in a specific timezone:
+Copy```
+{
+  agents: {
+    defaults: {
+      heartbeat: {
+        every: "30m",
+        target: "last",
+        activeHours: {
+          start: "09:00",
+          end: "22:00",
+          timezone: "America/New_York", // optional; uses your userTimezone if set, otherwise host tz
+        },
+      },
+    },
+  },
+}
+
+```
+
+Outside this window (before 9am or after 10pm Eastern), heartbeats are skipped. The next scheduled tick inside the window will run normally.
+​Multi account example
+Use `accountId` to target a specific account on multi-account channels like Telegram:
+Copy```
+{
+  agents: {
+    list: [
+      {
+        id: "ops",
+        heartbeat: {
+          every: "1h",
+          target: "telegram",
+          to: "12345678",
+          accountId: "ops-bot",
+        },
+      },
+    ],
+  },
+  channels: {
+    telegram: {
+      accounts: {
+        "ops-bot": { botToken: "YOUR_TELEGRAM_BOT_TOKEN" },
+      },
+    },
+  },
+}
+
+```
+
+​Field notes
+
+- `every`: heartbeat interval (duration string; default unit = minutes).
+
+- `model`: optional model override for heartbeat runs (`provider/model`).
+
+- `includeReasoning`: when enabled, also deliver the separate `Reasoning:` message when available (same shape as `/reasoning on`).
+
+`session`: optional session key for heartbeat runs.
+
+- `main` (default): agent main session.
+
+- Explicit session key (copy from `openclaw sessions --json` or the [sessions CLI](/cli/sessions)).
+
+- Session key formats: see [Sessions](/concepts/session) and [Groups](/channels/groups).
+
+`target`:
+
+- `last` (default): deliver to the last used external channel.
+
+- explicit channel: `whatsapp` / `telegram` / `discord` / `googlechat` / `slack` / `msteams` / `signal` / `imessage`.
+
+- `none`: run the heartbeat but **do not deliver** externally.
+
+- `to`: optional recipient override (channel-specific id, e.g. E.164 for WhatsApp or a Telegram chat id).
+
+- `accountId`: optional account id for multi-account channels. When `target: "last"`, the account id applies to the resolved last channel if it supports accounts; otherwise it is ignored. If the account id does not match a configured account for the resolved channel, delivery is skipped.
+
+- `prompt`: overrides the default prompt body (not merged).
+
+- `ackMaxChars`: max chars allowed after `HEARTBEAT_OK` before delivery.
+
+- `suppressToolErrorWarnings`: when true, suppresses tool error warning payloads during heartbeat runs.
+
+`activeHours`: restricts heartbeat runs to a time window. Object with `start` (HH:MM, inclusive), `end` (HH:MM exclusive; `24:00` allowed for end-of-day), and optional `timezone`.
+
+- Omitted or `"user"`: uses your `agents.defaults.userTimezone` if set, otherwise falls back to the host system timezone.
+
+- `"local"`: always uses the host system timezone.
+
+- Any IANA identifier (e.g. `America/New_York`): used directly; if invalid, falls back to the `"user"` behavior above.
+
+- Outside the active window, heartbeats are skipped until the next tick inside the window.
+
+​Delivery behavior
+
+- Heartbeats run in the agent’s main session by default (`agent:<id>:<mainKey>`),
+or `global` when `session.scope = "global"`. Set `session` to override to a
+specific channel session (Discord/WhatsApp/etc.).
+
+- `session` only affects the run context; delivery is controlled by `target` and `to`.
+
+- To deliver to a specific channel/recipient, set `target` + `to`. With
+`target: "last"`, delivery uses the last external channel for that session.
+
+- If the main queue is busy, the heartbeat is skipped and retried later.
+
+- If `target` resolves to no external destination, the run still happens but no
+outbound message is sent.
+
+- Heartbeat-only replies do **not** keep the session alive; the last `updatedAt`
+is restored so idle expiry behaves normally.
+
+​Visibility controls
+By default, `HEARTBEAT_OK` acknowledgments are suppressed while alert content is
+delivered. You can adjust this per channel or per account:
+Copy```
+channels:
+  defaults:
+    heartbeat:
+      showOk: false # Hide HEARTBEAT_OK (default)
+      showAlerts: true # Show alert messages (default)
+      useIndicator: true # Emit indicator events (default)
+  telegram:
+    heartbeat:
+      showOk: true # Show OK acknowledgments on Telegram
+  whatsapp:
+    accounts:
+      work:
+        heartbeat:
+          showAlerts: false # Suppress alert delivery for this account
+
+```
+
+Precedence: per-account → per-channel → channel defaults → built-in defaults.
+​What each flag does
+
+- `showOk`: sends a `HEARTBEAT_OK` acknowledgment when the model returns an OK-only reply.
+
+- `showAlerts`: sends the alert content when the model returns a non-OK reply.
+
+- `useIndicator`: emits indicator events for UI status surfaces.
+
+If **all three** are false, OpenClaw skips the heartbeat run entirely (no model call).
+​Per-channel vs per-account examples
+Copy```
+channels:
+  defaults:
+    heartbeat:
+      showOk: false
+      showAlerts: true
+      useIndicator: true
+  slack:
+    heartbeat:
+      showOk: true # all Slack accounts
+    accounts:
+      ops:
+        heartbeat:
+          showAlerts: false # suppress alerts for the ops account only
+  telegram:
+    heartbeat:
+      showOk: true
+
+```
+
+​Common patterns
+GoalConfigDefault behavior (silent OKs, alerts on)*(no config needed)*Fully silent (no messages, no indicator)`channels.defaults.heartbeat: { showOk: false, showAlerts: false, useIndicator: false }`Indicator-only (no messages)`channels.defaults.heartbeat: { showOk: false, showAlerts: false, useIndicator: true }`OKs in one channel only`channels.telegram.heartbeat: { showOk: true }`
+​HEARTBEAT.md (optional)
+If a `HEARTBEAT.md` file exists in the workspace, the default prompt tells the
+agent to read it. Think of it as your “heartbeat checklist”: small, stable, and
+safe to include every 30 minutes.
+If `HEARTBEAT.md` exists but is effectively empty (only blank lines and markdown
+headers like `# Heading`), OpenClaw skips the heartbeat run to save API calls.
+If the file is missing, the heartbeat still runs and the model decides what to do.
+Keep it tiny (short checklist or reminders) to avoid prompt bloat.
+Example `HEARTBEAT.md`:
+Copy```
+# Heartbeat checklist
+
+- Quick scan: anything urgent in inboxes?
+- If it’s daytime, do a lightweight check-in if nothing else is pending.
+- If a task is blocked, write down _what is missing_ and ask Peter next time.
+
+```
+
+​Can the agent update HEARTBEAT.md?
+Yes — if you ask it to.
+`HEARTBEAT.md` is just a normal file in the agent workspace, so you can tell the
+agent (in a normal chat) something like:
+
+- “Update `HEARTBEAT.md` to add a daily calendar check.”
+
+- “Rewrite `HEARTBEAT.md` so it’s shorter and focused on inbox follow-ups.”
+
+If you want this to happen proactively, you can also include an explicit line in
+your heartbeat prompt like: “If the checklist becomes stale, update HEARTBEAT.md
+with a better one.”
+Safety note: don’t put secrets (API keys, phone numbers, private tokens) into
+`HEARTBEAT.md` — it becomes part of the prompt context.
+​Manual wake (on-demand)
+You can enqueue a system event and trigger an immediate heartbeat with:
+Copy```
+openclaw system event --text "Check for urgent follow-ups" --mode now
+
+```
+
+If multiple agents have `heartbeat` configured, a manual wake runs each of those
+agent heartbeats immediately.
+Use `--mode next-heartbeat` to wait for the next scheduled tick.
+​Reasoning delivery (optional)
+By default, heartbeats deliver only the final “answer” payload.
+If you want transparency, enable:
+
+- `agents.defaults.heartbeat.includeReasoning: true`
+
+When enabled, heartbeats will also deliver a separate message prefixed
+`Reasoning:` (same shape as `/reasoning on`). This can be useful when the agent
+is managing multiple sessions/codexes and you want to see why it decided to ping
+you — but it can also leak more internal detail than you want. Prefer keeping it
+off in group chats.
+​Cost awareness
+Heartbeats run full agent turns. Shorter intervals burn more tokens. Keep
+`HEARTBEAT.md` small and consider a cheaper `model` or `target: "none"` if you
+only want internal state updates.Health ChecksDoctor⌘I

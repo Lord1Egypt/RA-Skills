@@ -1,0 +1,8 @@
+interface:
+  display_name: "OpenLayers Maps"
+  short_description: "Build and debug projection-aware web maps with OpenLayers."
+  default_prompt: "Use $openlayers to build, debug, or explain an OpenLayers map, including layers, sources, GeoJSON overlays, projection handling, feature picking, and frontend integration."
+
+policy:
+  allow_implicit_invocation: true
+

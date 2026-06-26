@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{og_title}}">
+  <meta property="og:description" content="{{og_description}}">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="https://yourdomain.com/og-image.png"> -->
+  <!-- <meta property="og:url" content="https://yourdomain.com"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{og_title}}">
+  <meta name="twitter:description" content="{{og_description}}">
+
+  <!-- Favicon placeholder -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Colors — replace with selected palette */
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+
+      /* Typography */
+      --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+      /* Spacing */
+      --section-padding: 5rem 2rem;
+      --section-padding-mobile: 3rem 1.25rem;
+      --max-w: 1200px;
+      --max-w-text: 680px;
+    }
+
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; }
+    a { color: var(--primary); text-decoration: none; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); }
+    .section { padding: var(--section-padding); }
+    .section-alt { background: var(--bg-alt); }
+
+    /* ===== SKIP NAV (accessibility) ===== */
+    .skip-nav {
+      position: absolute; left: -9999px; top: auto;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-nav:focus {
+      position: fixed; top: 0; left: 0;
+      width: auto; height: auto;
+      background: var(--primary); color: white;
+      padding: 0.75rem 1.5rem; z-index: 9999;
+      font-size: 1rem;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-align: center;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover { background: var(--primary); color: white; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 5rem 2rem 4rem;
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-cta .sub-cta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      display: block;
+      width: 100%;
+    }
+    .hero-credibility {
+      background: var(--bg-alt);
+      border-radius: 1rem;
+      padding: 3rem;
+      text-align: center;
+    }
+    .hero-credibility .stat {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-credibility .stat-label {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+    /* Replace with: founder photo (400x400px), or leave as stat display */
+    .hero-credibility .founder-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.875rem;
+    }
+
+    /* ===== CREDIBILITY SECTION ===== */
+    .credibility { text-align: center; }
+    .credibility h2 { font-size: 2rem; margin-bottom: 2rem; }
+    .credibility-content {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      align-items: start;
+    }
+    .credibility-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.875rem;
+    }
+    .credibility-bio h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .credibility-bio .title {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .credibility-bio p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .credibility-highlights {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .credibility-highlights .highlight {
+      background: var(--bg-alt);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .client-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      opacity: 0.5;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ===== METHODOLOGY / HOW WE WORK ===== */
+    .methodology { text-align: center; }
+    .methodology h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .methodology .lead {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      max-width: var(--max-w-text);
+      margin: 0 auto 3rem;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .process-step {
+      padding: 2rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      position: relative;
+    }
+    .process-step .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .process-step h3 { font-size: 1.0625rem; margin-bottom: 0.5rem; }
+    .process-step p { font-size: 0.9375rem; color: var(--text-muted); }
+
+    /* ===== SCOPE SECTION ===== */
+    .scope h2 { font-size: 2rem; text-align: center; margin-bottom: 2.5rem; }
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .scope-column {
+      padding: 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+    }
+    .scope-column h3 {
+      font-size: 1.125rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .scope-column.included h3 { border-bottom-color: var(--success); }
+    .scope-column.excluded h3 { border-bottom-color: var(--text-muted); }
+    .scope-column ul {
+      list-style: none;
+    }
+    .scope-column ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.75rem;
+      position: relative;
+      font-size: 0.9375rem;
+    }
+    .scope-column.included ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .scope-column.excluded ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+    }
+    .testimonial-card blockquote {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .testimonial-card .author { font-weight: 600; font-size: 0.9375rem; }
+    .testimonial-card .role { color: var(--text-muted); font-size: 0.875rem; }
+
+    /* ===== CASE STUDIES ===== */
+    .case-studies h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .case-study-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+    }
+    .case-study-card .client-name {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .case-study-card .result {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .case-study-card p { font-size: 0.9375rem; color: var(--text-muted); }
+
+    /* ===== FAQ ===== */
+    .faq h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+    .faq-list { max-width: var(--max-w-text); margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 1.0625rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::after { content: '+'; font-size: 1.5rem; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: '\2212'; }
+    .faq-item p { margin-top: 0.75rem; color: var(--text-muted); }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: var(--primary);
+      color: white;
+    }
+    .final-cta h2 { font-size: 2.25rem; margin-bottom: 1rem; color: white; }
+    .final-cta p.lead { font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.9; }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-form {
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-form .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .contact-form label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+      color: white;
+      opacity: 0.9;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(255,255,255,0.7);
+    }
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .contact-form button {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .final-cta .sub-cta { margin-top: 1rem; font-size: 0.875rem; opacity: 0.8; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .footer a { color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.25rem; }
+      .hero p { margin: 0 auto 2rem; }
+      .hero-cta { justify-content: center; }
+      .hero-credibility { margin-top: 2rem; }
+      .credibility-content { grid-template-columns: 1fr; text-align: center; }
+      .credibility-photo { margin: 0 auto; }
+      .credibility-highlights { justify-content: center; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .scope-grid { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .case-study-grid { grid-template-columns: 1fr; }
+      .section { padding: var(--section-padding-mobile); }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .nav, .final-cta .btn, .contact-form { display: none; }
+      body { font-size: 12pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip Navigation (Accessibility) -->
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">{{product_name}}</a>
+      <a href="#contact" class="btn btn-primary" style="padding: 0.625rem 1.5rem; font-size: 0.9375rem;">{{cta_primary_text}}</a>
+      <!-- Default: "Get in Touch" or "Request a Quote" -->
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1>{{headline}}</h1>
+          <p>{{subheadline}}</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">{{cta_primary_text}}</a>
+            <!-- <a href="#methodology" class="btn btn-secondary">{{cta_secondary_text}}</a> -->
+            <span class="sub-cta">{{risk_reversal_text}}</span>
+          </div>
+        </div>
+        <div class="hero-credibility">
+          <!-- Option A: Founder photo -->
+          <div class="founder-photo" role="img" aria-label="Founder photo">
+            <!-- Replace with: founder headshot, 160x160px -->
+            <span>Photo</span>
+          </div>
+          <!-- Option B: Key stat (uncomment and use instead of photo if preferred) -->
+          <!--
+          <div class="stat">{{years_experience}}+</div>
+          <div class="stat-label">Years of Experience</div>
+          -->
+          <p class="text-muted">{{founder_brief_credential}}</p>
+          <!-- e.g., "10+ years helping SaaS companies grow" -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Credibility Section -->
+    <section class="section credibility" aria-label="About the founder">
+      <div class="container">
+        <h2>{{credibility_headline}}</h2>
+        <!-- e.g., "Who You'll Be Working With" or "Why Trust Me With This" -->
+        <div class="credibility-content">
+          <div class="credibility-photo" role="img" aria-label="Founder photo">
+            <!-- Replace with: founder photo, 200x200px -->
+            <span>Photo</span>
+          </div>
+          <div class="credibility-bio">
+            <h3>{{founder_name}}</h3>
+            <p class="title">{{founder_title}}</p>
+            <p>{{founder_bio_paragraph_1}}</p>
+            <p>{{founder_bio_paragraph_2}}</p>
+            <div class="credibility-highlights">
+              <span class="highlight">{{highlight_1}}</span>
+              <span class="highlight">{{highlight_2}}</span>
+              <span class="highlight">{{highlight_3}}</span>
+              <!-- e.g., "50+ clients served", "10 years experience", "Featured in Forbes" -->
+            </div>
+          </div>
+        </div>
+        <!-- Notable client logos (uncomment if applicable) -->
+        <!--
+        <div class="client-logos">
+          <span>Client 1</span>
+          <span>Client 2</span>
+          <span>Client 3</span>
+          <span>Client 4</span>
+        </div>
+        -->
+      </div>
+    </section>
+
+    <!-- Methodology / How We Work -->
+    <section class="section section-alt methodology" id="methodology" aria-label="How we work">
+      <div class="container">
+        <h2>How We Work</h2>
+        <p class="lead">{{methodology_intro}}</p>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3>{{process_step_1_title}}</h3>
+            <p>{{process_step_1_description}}</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3>{{process_step_2_title}}</h3>
+            <p>{{process_step_2_description}}</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3>{{process_step_3_title}}</h3>
+            <p>{{process_step_3_description}}</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3>{{process_step_4_title}}</h3>
+            <p>{{process_step_4_description}}</p>
+          </div>
+          <!-- Default steps: Discovery → Proposal → Engagement → Delivery -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Scope Section -->
+    <section class="section scope" aria-label="What's included">
+      <div class="container">
+        <h2>{{scope_headline}}</h2>
+        <div class="scope-grid">
+          <div class="scope-column included">
+            <h3>What's Included</h3>
+            <ul>
+              <li>{{included_1}}</li>
+              <li>{{included_2}}</li>
+              <li>{{included_3}}</li>
+              <li>{{included_4}}</li>
+              <li>{{included_5}}</li>
+            </ul>
+          </div>
+          <div class="scope-column excluded">
+            <h3>What's Not Included</h3>
+            <ul>
+              <li>{{excluded_1}}</li>
+              <li>{{excluded_2}}</li>
+              <li>{{excluded_3}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies / Results (uncomment if you have case studies) -->
+    <!--
+    <section class="section section-alt case-studies" aria-label="Case studies">
+      <div class="container">
+        <h2>Results We've Delivered</h2>
+        <div class="case-study-grid">
+          <div class="case-study-card">
+            <div class="client-name">{{case_study_1_client}}</div>
+            <div class="result">{{case_study_1_result}}</div>
+            <p>{{case_study_1_description}}</p>
+          </div>
+          <div class="case-study-card">
+            <div class="client-name">{{case_study_2_client}}</div>
+            <div class="result">{{case_study_2_result}}</div>
+            <p>{{case_study_2_description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- Testimonials (uncomment if you have real testimonials) -->
+    <!--
+    <section class="section testimonials" aria-label="Testimonials">
+      <div class="container">
+        <h2>What Clients Say</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_1_quote}}"</blockquote>
+            <div class="author">{{testimonial_1_name}}</div>
+            <div class="role">{{testimonial_1_title}}</div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_2_quote}}"</blockquote>
+            <div class="author">{{testimonial_2_name}}</div>
+            <div class="role">{{testimonial_2_title}}</div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"{{testimonial_3_quote}}"</blockquote>
+            <div class="author">{{testimonial_3_name}}</div>
+            <div class="role">{{testimonial_3_title}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- FAQ -->
+    <section class="section section-alt faq" aria-label="Frequently asked questions">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>{{faq_1_question}}</summary>
+            <p>{{faq_1_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_2_question}}</summary>
+            <p>{{faq_2_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_3_question}}</summary>
+            <p>{{faq_3_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_4_question}}</summary>
+            <p>{{faq_4_answer}}</p>
+          </details>
+          <details class="faq-item">
+            <summary>{{faq_5_question}}</summary>
+            <p>{{faq_5_answer}}</p>
+          </details>
+          <!-- Default service FAQs:
+            1. How long does an engagement take?
+            2. What if it's not a good fit?
+            3. How do you charge?
+            4. What does the process look like?
+            5. Can you work with my existing team/tools?
+          -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA / Contact -->
+    <section class="final-cta" id="contact" aria-label="Get in touch">
+      <h2>{{final_cta_headline}}</h2>
+      <p class="lead">{{final_cta_subtext}}</p>
+      <form class="contact-form" action="#" method="post">
+        <div class="form-group">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">How can I help?</label>
+          <textarea id="contact-message" name="message" placeholder="Tell me about your project or what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">{{cta_primary_text}}</button>
+      </form>
+      <p class="sub-cta">{{risk_reversal_text}}</p>
+      <!-- Or use a calendar booking link instead of the form:
+      <a href="{{booking_url}}" class="btn btn-primary">Book a Free Call</a>
+      -->
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="mailto:{{contact_email}}">Contact</a>
+      <!-- <a href="/privacy">Privacy Policy</a> -->
+      <!-- <a href="/terms">Terms of Service</a> -->
+    </div>
+    <p>&copy; {{year}} {{product_name}}. All rights reserved.</p>
+  </footer>
+
+  <!-- Analytics placeholder -->
+  <!--
+  <script>
+    // Replace with your analytics script (e.g., Plausible, Fathom, GA)
+  </script>
+  -->
+
+</body>
+</html>

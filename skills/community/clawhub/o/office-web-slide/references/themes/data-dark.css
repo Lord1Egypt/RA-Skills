@@ -1,0 +1,49 @@
+/*
+ * Theme: Data Dark
+ * 数据仪表盘深色 — 深蓝黑底，青绿/琥珀双强调色，仪表盘质感
+ * 适合：数据仪表盘展示、趋势分析演讲、技术指标汇报、实时数据演示
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #e6edf3;
+  --color-secondary: #7d8590;
+  --color-accent: #10d48e;
+  --color-bg: #0d1117;
+  --color-bg-alt: #161b22;
+  --color-surface: #1c2129;
+  --color-text: #e6edf3;
+  --color-text-secondary: #7d8590;
+  --color-text-on-primary: #0d1117;
+  --color-border: #30363d;
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
+  --font-size-title: 3.6rem;
+  --font-size-heading: 2.7rem;
+  --font-size-subheading: 1.57rem;
+  --font-size-body: 1.24rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.06rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 1.97rem;
+  --spacing-lg: 3.09rem;
+  --spacing-xl: 4.22rem;
+
+  /* --- 效果 --- */
+  --border-radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 28px rgba(0,0,0,0.5);
+  --transition-speed: 0.25s;
+  --transition-easing: ease-out;
+
+  /* --- 玻璃/渐变扩展（非玻璃主题保持默认值，零渲染开销） --- */
+  --surface-blur: 0px;
+  --surface-saturate: 100%;
+  --bg-pattern: none;
+}

@@ -1,0 +1,16 @@
+{
+  "capability_version": 1,
+  "backend": "vertex",
+  "supported_modes": ["semantic", "timeline"],
+  "requires_credentials": true,
+  "requires_external_service": true,
+  "optional": true,
+  "cold_start_ms": 1000,
+  "probe": {
+    "l1_install": "command -v openclaw && openclaw plugins list 2>/dev/null | grep -q vertexai-memorybank",
+    "l2_runtime": "[ -n \"${GOOGLE_APPLICATION_CREDENTIALS:-}\" ] || gcloud auth application-default print-access-token >/dev/null 2>&1",
+    "l3_functional": "openclaw plugins run openclaw-vertexai-memorybank memorybank-stats 2>/dev/null | grep -q 'count'",
+    "l3_deep": null
+  },
+  "install_hint": "openclaw plugins install openclaw-vertexai-memorybank (requires GCP project)"
+}

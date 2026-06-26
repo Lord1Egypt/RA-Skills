@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-knowledge",
+  "version": "1.0.0",
+  "description": "OpenClaw documentation knowledge base with search and sync capabilities",
+  "main": "scripts/search.js",
+  "type": "module",
+  "scripts": {
+    "search": "node scripts/search.js",
+    "sync": "node scripts/sync.js",
+    "reindex": "node scripts/search.js --reindex",
+    "update": "node scripts/sync.js && node scripts/search.js --reindex"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

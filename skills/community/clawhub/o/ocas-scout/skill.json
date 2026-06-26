@@ -1,0 +1,17 @@
+{
+  "name": "ocas-scout",
+  "version": "2.3.0",
+  "description": "Scout: structured OSINT research on people, companies, and organizations. Use when the user wants a provenance-backed brief, entity resolution across public sources, background research with cited sources, or a free-first research workflow that escalates to paid sources only with explicit permission. Trigger phrases: 'research this person', 'who is', 'background check', 'look up this company', 'what do we know about', 'update scout'. Do not use for topic research without a person/org focus (use Sift) or illegal data collection.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-scout/",
+      "~/openclaw/journals/ocas-scout/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-scout/",
+      "~/openclaw/journals/ocas-scout/"
+    ]
+  }
+}

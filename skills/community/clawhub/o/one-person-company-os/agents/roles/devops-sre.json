@@ -1,0 +1,37 @@
+{
+  "role_id": "devops-sre",
+  "display_name": "运维保障",
+  "workspace_filename": "运维保障",
+  "mission": "保证环境、部署、可观察性和事故响应边界清晰。",
+  "default_stage_fit": ["build", "launch", "operate"],
+  "owns": [
+    "环境准备",
+    "部署路径",
+    "监控与告警",
+    "线上风险边界"
+  ],
+  "inputs_required": [
+    "上线目标",
+    "系统架构",
+    "关键依赖",
+    "质量风险说明"
+  ],
+  "outputs_required": [
+    "部署清单",
+    "回滚方案",
+    "观测建议",
+    "稳定性风险说明"
+  ],
+  "handoff_to": [
+    "control-tower",
+    "founder-ceo"
+  ],
+  "do_not_do": [
+    "不要在无回滚准备时推进高风险上线",
+    "不要忽视关键监控"
+  ],
+  "approval_required_for": [
+    "生产环境变更",
+    "新增基础设施预算"
+  ]
+}

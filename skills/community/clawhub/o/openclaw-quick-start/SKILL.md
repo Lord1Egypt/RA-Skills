@@ -1,35 +1,29 @@
----
-name: "Openclaw Quick Start"
-description: "OpenClaw 5 分钟快速开始 - 最简化的入门教程。适合：完全新手、想快速体验的用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-quick-start"
-sourceUrl: "https://clawhub.ai/skills/openclaw-quick-start"
----
+# OpenClaw Quick Start - 5分钟上手指南
 
-# Openclaw Quick Start
+快速配置 OpenClaw，开始 AI 自动化之旅。
 
-> OpenClaw 5 分钟快速开始 - 最简化的入门教程。适合：完全新手、想快速体验的用户。
+## 用途
+- 新手 5 分钟配置 OpenClaw
+- 自动检测系统环境
+- 一键安装常用 Skills
+- 配置基础模型（DeepSeek/GLM）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-quick-start`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-quick-start](https://clawhub.ai/skills/openclaw-quick-start)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-quick-start
+## 使用方法
 ```
+/openclaw-quick-start
+```
+
+## 功能
+1. 检测 macOS/Linux 环境
+2. 安装 OpenClaw（如未安装）
+3. 配置基础模型
+4. 安装 5 个必备 Skills
+5. 运行验证测试
+
+## 适用场景
+- 第一次使用 OpenClaw
+- 快速部署到新机器
+- 给朋友安装 OpenClaw
+
+---
+价格：¥49 | 包含：配置脚本 + 视频教程 + 微信支持

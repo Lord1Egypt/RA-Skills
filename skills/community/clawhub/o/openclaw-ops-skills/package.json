@@ -1,0 +1,55 @@
+{
+  "name": "openclaw-ops-skills",
+  "version": "1.0.0",
+  "description": "Production-ready skills for OpenClaw autonomous agent operations",
+  "author": "Eric Jie <jxmerich@mail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Erich1566/openclaw-ops-skills.git"
+  },
+  "keywords": [
+    "openclaw",
+    "autonomous-agent",
+    "agent-operations",
+    "skills",
+    "productivity",
+    "automation"
+  ],
+  "openclaw": {
+    "skillPack": {
+      "name": "Ops Skills Pack",
+      "version": "1.0.0",
+      "category": "Operations",
+      "skills": [
+        "model-routing",
+        "execution-discipline",
+        "docs-first",
+        "scope-control",
+        "task-autonomy",
+        "progress-logging",
+        "memory-persistence",
+        "security-hardening",
+        "cron-orchestration",
+        "error-recovery",
+        "cost-optimization",
+        "testing-protocol",
+        "communication",
+        "integration-guide"
+      ],
+      "dependencies": {},
+      "compatibility": ">=2.0.0"
+    }
+  },
+  "scripts": {
+    "install": "node scripts/install.js",
+    "verify": "node scripts/verify.js",
+    "test": "node scripts/test.js"
+  },
+  "files": [
+    "skills/*.md",
+    "templates/*.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

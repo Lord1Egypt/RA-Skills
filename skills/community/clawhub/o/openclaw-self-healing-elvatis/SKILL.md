@@ -1,35 +1,26 @@
----
-name: "Openclaw Self Healing Elvatis"
-description: "OpenClaw plugin that applies guardrails and auto-fixes reversible failures (rate limits, disconnects, stuck session pins)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-self-healing-elvatis"
-sourceUrl: "https://clawhub.ai/skills/openclaw-self-healing-elvatis"
+﻿---
+name: openclaw-self-healing-elvatis
+description: OpenClaw plugin that applies guardrails and auto-fixes reversible failures (rate limits, disconnects, stuck session pins).
 ---
 
-# Openclaw Self Healing Elvatis
+# openclaw-self-healing-elvatis
 
-> OpenClaw plugin that applies guardrails and auto-fixes reversible failures (rate limits, disconnects, stuck session pins).
+Self-healing extension for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-self-healing-elvatis`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-self-healing-elvatis](https://clawhub.ai/skills/openclaw-self-healing-elvatis)
+## What it does
 
-## Overview
+- Detects common reversible failures (rate limits, auth errors, stuck session model pins)
+- Applies guardrails (e.g. avoid breaking config)
+- Can auto-recover WhatsApp disconnects (when enabled)
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-self-healing-elvatis
+clawhub install openclaw-self-healing-elvatis
 ```
+
+## Notes
+
+Keep repository content public-safe (no private identifiers).
+
+**Version:** 0.2.12

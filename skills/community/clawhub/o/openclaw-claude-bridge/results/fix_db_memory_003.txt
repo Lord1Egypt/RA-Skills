@@ -1,0 +1,8 @@
+🚀 启动 Claude Code + DashScope 代理...
+✅ 代理服务器已在端口 3458 运行
+🎯 启动 Claude Code...
+   API: http://localhost:3458 -> https://coding.dashscope.aliyuncs.com/apps/anthropic
+
+
+
+

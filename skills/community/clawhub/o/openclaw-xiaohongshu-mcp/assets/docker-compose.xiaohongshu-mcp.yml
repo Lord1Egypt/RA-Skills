@@ -1,0 +1,16 @@
+services:
+  xiaohongshu-mcp:
+    image: xpzouying/xiaohongshu-mcp
+    container_name: xiaohongshu-mcp
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18060:18060"
+    environment:
+      TZ: Asia/Shanghai
+      ROD_BROWSER_BIN: /usr/bin/google-chrome
+    volumes:
+      - ./data/xiaohongshu-mcp/cookies.json:/app/cookies.json
+      - ./data/xiaohongshu-mcp/chrome:/root/.config/google-chrome
+      - ./data/xiaohongshu-mcp/pki:/root/.pki
+      - ./data/xiaohongshu-mcp/rod-user-data:/tmp/rod/user-data
+      - ./data/xiaohongshu-mcp/images:/images

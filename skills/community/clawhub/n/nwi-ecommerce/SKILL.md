@@ -1,35 +1,135 @@
 ---
-name: "NWi跨境电商数据分析"
-description: "NWi诺舟智数提供的跨境电商数据洞察（Amazon/Shopee/Lazada/TikTok）。触发词：电商数据、销量、销额、品类分布、品牌排行、店铺排行、东南亚市场"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nwi-ecommerce"
-sourceUrl: "https://clawhub.ai/skills/nwi-ecommerce"
+name: nwi-ecommerce
+version: 0.0.7
+description: NWi诺舟智数提供的跨境电商数据洞察（Amazon/Shopee/Lazada/TikTok）。触发词：电商数据、销量、销额、品类分布、品牌排行、店铺排行、东南亚市场
 ---
 
-# NWi跨境电商数据分析
+# NWi跨境电商数据洞察
 
-> NWi诺舟智数提供的跨境电商数据洞察（Amazon/Shopee/Lazada/TikTok）。触发词：电商数据、销量、销额、品类分布、品牌排行、店铺排行、东南亚市场
+## 基础信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nwi-ecommerce`
-- **Source URL:** [https://clawhub.ai/skills/nwi-ecommerce](https://clawhub.ai/skills/nwi-ecommerce)
+- **API 域名**: `https://asia-test-private.nint.hk`
+- **认证**: URL参数 `api_key`
+- **响应格式**: JSON，`code: 0` 成功，`code: 1` 失败
+- **月份格式**: `yyyy-MM`（支持跨月范围查询）
+- **ID参数**: `platform_ids`、`brand_ids`、`cid_ids` 均为可重复参数
+- **请求方式**: 所有接口使用 **POST** 请求，参数以 JSON body 传递；优先使用 `curl` 命令工具
 
-## Overview
+## api_key 管理
 
+1. **检查现有 key**: 读取 `references/api_key.txt`，存在则直接使用
+2. **获取新 key**（无 key 或失效时）:
+   - **选项1**：自动申请临时 key（`generate-normal-api-key`，权限受限）
+   - **选项2**：用户手动提供
+   - **选项3**：在NWi诺舟智数官网申请试用，等待客服联系(申请试用链接：`https://nexus.nint.hk/register?origin_id=22`)
+3. **保存 key**: 获取后写入 `references/api_key.txt`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nwi-ecommerce
+## 工作流
+
+### 步骤 1：加载资源
+- 读取 `references/api.md` 获取接口规范
+- 读取 `references/platform_ids.md` 获取平台 ID 速查表
+
+### 步骤 2：获取权限范围
+调用前置接口（无需月份参数）：
+- `get-platform-list` → 有权限的站点列表
+- `get-top-category-list` → 一级品类列表
+- `get-all-category-list-by-name` → 按关键词搜索品类（支持中英文，返回多层级）
+- `get-current-api-key-allow-range` → 可查询时间范围
+
+### 步骤 3：匹配用户意图
+
+#### 用户意图 → 接口映射表
+
+| 用户需求 | 推荐接口 | 必选参数 | 说明 |
+|---------|---------|---------|------|
+| 查某品类在各站点销售分布 | C7 | cid_ids | 品类分站详情 |
+| 查某品类 Top 品牌/店铺 | C8/C9 | cid_ids | 品类排行 |
+| 查某品牌在各站点表现 | B6 | brand_ids, cid_ids | 品牌分站详情+热销品 |
+| 查某品牌总体概况 | B5 | brand_ids, cid_ids | 品牌汇总数据 |
+| 查某站点品类销售占比 | A1 | platform_ids（可选） | 类目分布 |
+| 查某站点 Top 品牌/店铺/商品 | A2/A3/A4 | platform_ids | 全站排行 |
+
+#### 品牌匹配流程
 ```
+1. 调用 get-brand-list?brand_like=xxx
+2. 若结果为空 → 提示用户换关键词或确认品牌名
+3. 若多个结果 → 按优先级排序：
+   - 精确名称匹配 > 包含匹配
+   - sales 参考销额高的优先
+4. 展示 TOP 3 供用户确认（自动选择第一名时也需告知）
+```
+
+#### 品类匹配流程
+```
+1. 调用 get-all-category-list-by-name?category_like=xxx 按关键词搜索品类
+2. 支持中英文关键词搜索，返回多层级品类（含层级路径）
+3. 若结果为空 → 换关键词或调用 get-top-category-list 展示所有一级品类供选择
+4. 若多个结果 → 展示给用户确认（注意区分 level，告知不同层级的品类范围不同）
+5. 自动选择时优先取精确匹配结果；一级品类范围更广，子品类更精确
+```
+
+### 步骤 4：构造请求
+- 检查必选参数是否齐全
+- 缺失时询问用户或使用默认值（如时间范围使用权限内最新月份）
+- 构造 curl 请求
+
+### 步骤 5：解析响应
+根据接口类型解包 `data`，详见 `references/api.md` 中的响应结构表。
+
+### 步骤 6：数据校验与异常上报
+
+#### 异常检测标准
+
+| 异常类型 | 检测条件 | 告警级别 |
+|---------|---------|---------|
+| 量级异常 | 知名品牌单月单站 < 10万 CNY | 🔴 高 |
+| 数据缺失 | 知名品牌在人口大国（印尼/泰国等）无数据 | 🔴 高 |
+| 趋势异常 | 同比/环比波动 > 50% 且无合理解释 | 🟡 中 |
+| 品牌匹配存疑 | 模糊匹配且多个相似结果 | 🟡 中 |
+
+#### 异常上报流程
+
+检测到异常时，在结果中用⚠标注️， 并询问用户是否上传异常。获得用户授权后调用 `record-openclawd-anomaly` 接口上报。
+
+### 步骤 7：整理结果
+- 汇总为表格或报告形式
+- 确保统计正确（注意字符串类型字段需转换）
+- 发送给用户
+
+## 权限受限处理
+
+| 错误类型 | 处理方式 |
+|---------|---------|
+| 时间超限 | 调用 `get-current-api-key-allow-range` 告知可查范围 |
+| key 过期/无效 | 按 api_key 管理流程重新获取 |
+| 权限不足 | 提示用户，并发送申请试用链接(`https://nexus.nint.hk/register?origin_id=22`)给用户,提示申请试用可获取更多权限 |
+
+## 常见问题 FAQ
+
+**Q: 查询某品牌时返回空数据怎么办？**
+A: 1) 检查品牌名是否正确匹配 2) 确认该品类是否有销售 3) 确认时间范围内有数据
+
+**Q: 为什么 B6 必须传 cid_ids？**
+A: 品牌可能跨多个品类销售，需指定品类范围才能准确统计
+
+**Q: 临时 api_key 有什么限制？**
+A: 权限范围较小，可能只支持部分站点/时间，建议到NWi诺舟智数官网申请试用获取完整权限
+
+**Q: 如何查看品牌在各站点的热销商品？**
+A: 使用 B6 接口，返回的 `top_items` 包含各站点 Top 商品
+
+**Q: A4 Top 商品接口为什么不支持品牌筛选？**
+A: 该接口设计为全站商品排行，品牌筛选请使用 B6 接口。支持通过 `cid_ids` 按品类筛选
+
+## 关键规则速查
+
+- **站点** = 电商平台 + 国家（如 亚马逊@美国 ≠ 亚马逊@新加坡）
+- 非必选参数不传 = 不限制该维度
+- **A4**: `platform_ids` 实际必选；支持 `cid_ids` 可选筛选品类；不支持 `brand_ids`
+- **B5/B6**: `brand_ids` 和 `cid_ids` 均为必选
+- **C7/C8/C9**: `cid_ids` 为必选
+- **A1 无 platform_ids**: 返回所有有权限市场的汇总
+- **B6 多 brand_ids**: 返回合并数据，不区分品牌
+- **cid_ids 支持多层级**: 可传入任意层级品类ID（一级/二级/三级）
+- **sales_total/percentage**: 字符串类型，需 `float()` 转换

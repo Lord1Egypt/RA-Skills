@@ -1,0 +1,13 @@
+{
+  "documentType": "pptx",
+  "templateId": "ppt_business_brief_v1",
+  "title": "业务汇报",
+  "purpose": "用于管理层或团队内部汇报",
+  "contentSpec": {
+    "slides": [
+      {"title": "背景", "layout": "content", "bullets": ["背景点1", "背景点2"]},
+      {"title": "进展", "layout": "content", "bullets": ["进展点1", "进展点2"]},
+      {"title": "下一步", "layout": "content", "bullets": ["下一步1", "下一步2"]}
+    ]
+  }
+}

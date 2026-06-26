@@ -1,0 +1,17 @@
+{
+  "opik": {
+    "apiKey": "I5xMCUAO14m4EyckFWfqQla3O",
+    "workspace": "default",
+    "project": "openclaw",
+    "apiUrl": "https://www.comet.com/opik/api"
+  },
+  "discord": {
+    "channel": "discord",
+    "to": "channel:1481801666851373138"
+  },
+  "reportSchedule": {
+    "hourly": true,
+    "daily": true,
+    "onError": true
+  }
+}

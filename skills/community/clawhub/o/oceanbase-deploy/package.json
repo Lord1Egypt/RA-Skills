@@ -1,0 +1,28 @@
+{
+  "name": "oceanbase-deploy",
+  "version": "2.0.0",
+  "description": "OceanBase OBD deploy & ops overview skill — routes to cluster-management, tenant-management, seekdb, testing-and-benchmark",
+  "keywords": [
+    "oceanbase",
+    "obd",
+    "deploy",
+    "cursor",
+    "agent",
+    "skill",
+    "instructions"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "cluster-management/",
+    "tenant-management/",
+    "seekdb/",
+    "testing-and-benchmark/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oceanbase/oceanbase-skills.git",
+    "directory": "skills/oceanbase-deploy"
+  },
+  "license": "MIT"
+}

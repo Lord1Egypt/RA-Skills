@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-recovery-drill",
+  "version": "0.1.0",
+  "description": "This skill should be used when the user asks to test OpenClaw recovery readiness, rehearse backup/restore, run a disaster-recovery drill, validate operator recovery playbooks, check restore confidence before upgrades, or prove that backups are actually restorable instead of merely existing.",
+  "type": "module",
+  "bin": {
+    "openclaw-recovery-drill": "./scripts/recovery-drill.mjs"
+  },
+  "scripts": {
+    "check": "node scripts/recovery-drill.mjs --workspace /Users/m1/.openclaw/workspace",
+    "test": "node tests/test.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "recovery",
+    "backup",
+    "restore",
+    "drill",
+    "disaster-recovery",
+    "reliability",
+    "operator-readiness"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

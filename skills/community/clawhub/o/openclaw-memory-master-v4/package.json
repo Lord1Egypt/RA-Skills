@@ -1,0 +1,58 @@
+{
+  "name": "memory-master",
+  "version": "4.2.0",
+  "description": "Local memory system with layered storage (L0/L1/L2), AAAK compression, knowledge graph, and multi-path retrieval",
+  "main": "src/memory-manager.js",
+  "type": "module",
+  "scripts": {
+    "init": "node scripts/init.js",
+    "detect": "node scripts/detect.js",
+    "test": "node src/memory-manager.js",
+    "test:layered": "node test/layered-test.js",
+    "test:classifier": "node src/memory-classifier.js",
+    "test:time-tree": "node src/time-tree.js",
+    "test:query": "node src/query-classifier.js",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": [
+    "memory",
+    "recall",
+    "indexing",
+    "context",
+    "openclaw",
+    "skill",
+    "ai-agent",
+    "layered-storage",
+    "knowledge-graph"
+  ],
+  "author": "李哲 × Jake",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "SKILL.md",
+    "SKILL-zh.md",
+    "README.md",
+    "ROADMAP.md",
+    "DESIGN_v4.2.md",
+    "src/",
+    "scripts/",
+    "templates/",
+    "config/",
+    "test/",
+    "package.json",
+    "_meta.json"
+  ],
+  "clawdhub": {
+    "initScript": "scripts/init.js",
+    "requiresNode": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cp3d1455926-svg/memory-master.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cp3d1455926-svg/memory-master/issues"
+  },
+  "homepage": "https://cp3d1455926-svg.github.io/openclaw-memory/"
+}

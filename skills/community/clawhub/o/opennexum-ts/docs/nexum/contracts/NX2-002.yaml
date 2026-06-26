@@ -1,0 +1,49 @@
+id: NX2-002
+name: "nexum init 命令 + nexum.config.ts 配置加载"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - packages/cli/src/commands/init.ts
+    - packages/cli/src/index.ts
+    - packages/core/src/config.ts
+    - packages/core/src/index.ts
+    - packages/core/src/__tests__/config.test.ts
+  boundaries:
+    - packages/spawn/
+    - packages/prompts/
+    - packages/notify/
+  conflicts_with: [NX2-003, NX2-004]
+
+deliverables:
+  - "packages/core/src/config.ts：NexumConfig 类型定义（notify.target、notify.botToken、agents 映射表 agentId→{cli:'codex'|'claude', model?:string}）；loadConfig(projectDir) 读取 nexum/config.json，返回 NexumConfig；resolveAgentCli(config, agentId) 返回对应的 CLI 类型"
+  - "packages/cli/src/commands/init.ts：nexum init 命令，在当前目录创建：nexum/active-tasks.json（空 tasks 数组）、nexum/config.json（含默认 agents 映射：codex→{cli:'codex'}、claude→{cli:'claude'}、eval→{cli:'codex'}）、docs/nexum/contracts/.gitkeep、nexum/runtime/eval/.gitkeep；如果目录已存在跳过并提示"
+  - "packages/cli/src/index.ts：注册 init 命令"
+  - "config.test.ts：测试 loadConfig 读取合法配置、缺失文件时返回默认值、resolveAgentCli 正确映射"
+  - "pnpm build && pnpm test 通过"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "nexum init 在新目录创建所有必要文件和目录"
+      method: "unit: 在临时目录运行 init，验证文件存在"
+      threshold: pass
+    - id: C2
+      desc: "nexum init 在已初始化目录幂等运行（不报错，不覆盖）"
+      method: "unit: 二次运行 init，验证已有文件未被修改"
+      threshold: pass
+    - id: C3
+      desc: "resolveAgentCli 对未知 agentId 返回默认 codex"
+      method: "unit: 传入 'unknown-agent'，验证返回 'codex'"
+      threshold: pass
+    - id: C4
+      desc: "pnpm build && pnpm test 通过"
+      method: "unit: 运行构建和测试"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX2-001]

@@ -1,35 +1,68 @@
 ---
-name: "Openclaw Cc Contrib"
+name: extract-memories
+version: 1.0.2
 description: "对话结束后自动提炼本轮对话关键记忆 / 触发词：提取记忆、提炼记忆 / 命令：/extract-memories（自动+手动）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-cc-contrib"
-sourceUrl: "https://clawhub.ai/skills/openclaw-cc-contrib"
+license: MIT
+triggers:
+  - 提取记忆
+  - 提炼记忆
+  - extract-memories
+  - "/extract-memories"
 ---
 
-# Openclaw Cc Contrib
+# extract-memories — 自动记忆提炼
 
-> 对话结束后自动提炼本轮对话关键记忆 / 触发词：提取记忆、提炼记忆 / 命令：/extract-memories（自动+手动）
+对话结束后自动提炼本轮对话中的关键信息，写入 `memory/` 目录持久化存储，让 AI 在下一次对话时可以读取记忆，不用重复说背景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-cc-contrib`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-cc-contrib](https://clawhub.ai/skills/openclaw-cc-contrib)
+## 何时使用
 
-## Overview
+- **自动触发**：每次对话结束（模型产出最终回复后）自动后台执行
+- 手动触发：`/extract-memories` 手动触发一次提炼
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-cc-contrib
+### 核心目标
+
+从本轮对话中提炼出值得持久保存的信息：
+- 用户明确做出的**决策**
+- 用户表达的**偏好**（工具选择、代码风格、沟通风格）
+- 项目新增/更新的**关键约定**（API 地址、构建命令、目录结构）
+- 解决的**技术问题**和最终方案
+
+### 执行步骤
+
+1. **读取上下文**：获取本轮对话完整内容
+2. **提炼要点**：按分类提取值得记住的信息，每条不超过 100 字
+3. **写入文件**：追加到 `memory/{{date}}.md` 文件（`date` 格式 `YYYY-MM-DD`）
+   - 文件不存在 → 新建
+   - 文件已存在 → 追加到末尾
+4. **通知主会话**：在主会话输出一条简短通知，说明提炼了几条记忆写入哪里，不打扰用户正常交互
+
+## 输出格式
+
+直接写入文件即可，格式要求：
+
+```markdown
+### {{YYYY-MM-DD}} 记忆提炼
+
+#### 决策
+- ... (每条决策一行)
+
+#### 偏好
+- ... (每条偏好一行)
+
+#### 项目约定
+- ... (每条约定一行)
+
+#### 技术方案
+- ... (每条问题+方案一行)
 ```
+
+## 权限要求
+
+- 需要 `FileWrite` 权限
+- 需要 `sessions_spawn` 能力（fork 子 Agent）
+
+## 参考 CC 原始设计
+
+本 Skill 提取自 CC 源码的 `extractMemories` 模块，遵循其设计思想适配 OpenClaw。

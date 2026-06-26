@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenCode Session Reader"
+  short_description: "Query local OpenCode SQLite sessions safely."
+  default_prompt: "Use $opencode-session-reader to list recent OpenCode sessions, then inspect message JSON for a target directory."
+
+policy:
+  allow_implicit_invocation: true

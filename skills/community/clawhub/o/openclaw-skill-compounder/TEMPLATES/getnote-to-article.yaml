@@ -1,0 +1,237 @@
+# Get笔记文章分析→公众号流水线
+
+> 分析 Get笔记 内容 → 提取精华 → 生成高质量公众号文章
+
+## 元数据
+
+```yaml
+name: getnote-to-article
+version: 1.0.0
+description: Get笔记文章分析 → 核心观点提取 → 结构化公众号创作
+intent_type: content_creation
+author: openclaw-skill-compounder
+created: 2026-05-01
+trigger_keywords:
+  - "get笔记分析"
+  - "getnote转文章"
+  - "笔记转公众号"
+  - "get转公众号"
+```
+
+## 流水线定义
+
+### Step 1: Get笔记内容获取
+
+```yaml
+step: 1
+skill: web-content-fetcher
+trigger: 用户提供 Get笔记 文章URL或内容
+timeout: 30s
+
+input:
+  source: "${user.getnote_source}"
+  fetch_options:
+    extract_main_content: true
+    preserve_formatting: true
+    include_annotations: true
+
+output:
+  result_field: "getnote_content"
+  metadata:
+    - title
+    - author
+    - note_count
+    - tag_list
+    - original_url
+  confidence_weight: 0.95
+```
+
+### Step 2: 内容深度分析
+
+```yaml
+step: 2
+skill: writing-agent
+trigger: step_1 完成
+timeout: 60s
+depends_on: step_1
+
+input:
+  action: deep_content_analysis
+  text: "${step_1.result.getnote_content}"
+  context:
+    analysis_type: "getnote_extraction"
+    extract:
+      - main_thesis
+      - supporting_points
+      - practical_tips
+      - case_examples
+      - action_items
+    preserve_style: true
+
+output:
+  result_field: "analysis_result"
+  metadata:
+    - core_message
+    - key_insights
+    - examples_used
+    - audience_level
+    - complexity
+  confidence_weight: 0.85
+```
+
+### Step 3: 公众号文章结构设计
+
+```yaml
+step: 3
+skill: writing-agent
+trigger: step_2 完成
+timeout: 45s
+depends_on: step_2
+
+input:
+  action: design_article_structure
+  analysis: "${step_2.result.analysis_result}"
+  context:
+    platform: wechat
+    target_audience: "${user.audience || '技术从业者'}"
+    article_length: "${user.length || 'medium'}"
+    tone: "${user.tone || '专业有深度'}"
+    include_examples: true
+    include_call_to_action: true
+
+output:
+  result_field: "article_outline"
+  metadata:
+    - sections
+    - estimated_read_time
+    - hook_strategies
+    - content_distribution
+  confidence_weight: 0.8
+```
+
+### Step 4: 文章撰写
+
+```yaml
+step: 4
+skill: writing-agent
+trigger: step_3 完成
+timeout: 90s
+depends_on: step_3
+
+input:
+  action: write_article
+  outline: "${step_3.result.article_outline}"
+  core_content: "${step_2.result.analysis_result}"
+  context:
+    platform: wechat
+    style: "${user.writing_style || '娓娓道来有深度'}"
+    title_hook: "${step_2.result.core_message}"
+    examples: "${step_2.result.examples_used}"
+
+output:
+  result_field: "draft_article"
+  metadata:
+    - word_count
+    - sections_count
+    - has_cover_image
+    - estimated_read_time
+  confidence_weight: 0.85
+```
+
+### Step 5: 微信排版发布
+
+```yaml
+step: 5
+skill: wechat-mp-upload
+trigger: step_4 完成
+timeout: 30s
+depends_on: step_4
+
+input:
+  text: "${step_4.result.draft_article}"
+  context:
+    title: "${user.custom_title || step_1.result.title}"
+    author: "${user.author_name || '善人'}"
+    need_cover: true
+    cover_image: "${user.cover_image || 'auto_generate'}"
+    auto_publish: "${user.auto_publish || false}"
+    source_url: "${step_1.result.original_url}"
+
+output:
+  result_field: "formatted_article"
+  metadata:
+    - html_preview
+    - image_list
+    - estimated_read_time
+  confidence_weight: 0.9
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    getnote_content → text
+    title → context.original_title
+
+  step_2_to_step_3:
+    analysis_result → analysis
+    core_message → context.title_hook
+
+  step_2_to_step_4:
+    analysis_result → core_content
+    examples_used → context.examples
+
+  step_3_to_step_4:
+    article_outline → outline
+
+  step_4_to_step_5:
+    draft_article → text
+    title → context.title
+
+  step_1_to_step_5:
+    original_url → context.source_url
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: fallback
+    fallback_action: prompt_for_getnote_content
+    message: "无法获取Get笔记内容，请直接粘贴内容"
+
+  step_2_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "内容分析失败，尝试简化提取维度"
+
+  step_4_failure:
+    strategy: retry
+    max_attempts: 2
+    fallback_skill: article-writing
+    message: "文章生成失败，降级使用简单模板"
+
+  step_5_failure:
+    strategy: skip_optional
+    continue_with_markdown: true
+    message: "微信排版失败，输出 Markdown 版本"
+```
+
+## 适用场景
+
+- 将 Get笔记 碎片化内容整合为深度文章
+- 把读书/学习笔记转化为公众号内容
+- 将思考灵感整理成结构化文章
+- 把课程笔记改编为教程文章
+
+## 触发词示例
+
+```
+"分析这个Get笔记写篇公众号"
+"帮我把这个笔记转成文章"
+"getnote转公众号"
+"这篇笔记太散了，帮我整合成文章"
+"把这个学习笔记改写成公众号风格"
+```

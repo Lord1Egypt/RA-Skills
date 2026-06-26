@@ -1,0 +1,21 @@
+{
+  "name": "openclaw-tool-audit",
+  "displayName": "OpenClaw Tool Audit",
+  "version": "0.1.2",
+  "summary": "Audit OpenClaw tool exposure using a trusted local openclaw-tool-audit installation.",
+  "repo": "https://github.com/pfrederiksen/openclaw-tool-audit",
+  "homepage": "https://github.com/pfrederiksen/openclaw-tool-audit",
+  "license": "MIT-0",
+  "keywords": [
+    "openclaw",
+    "audit",
+    "tools",
+    "security",
+    "exposure"
+  ],
+  "prerequisites": {
+    "binaries": [
+      "openclaw-tool-audit"
+    ]
+  }
+}

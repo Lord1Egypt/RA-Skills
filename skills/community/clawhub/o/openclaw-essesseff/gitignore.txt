@@ -1,0 +1,25 @@
+# essesseff config files contain secrets — never commit them
+.essesseff
+.essesseff.*
+!essesseff-example.txt
+
+# Cloned template repos (created during --non-essesseff-subscriber-mode)
+# These land in the current working directory during app creation.
+# Uncomment the lines below if you want git to ignore them automatically,
+# or just delete the folders after verifying the push succeeded.
+# *-config-dev/
+# *-config-qa/
+# *-config-staging/
+# *-config-prod/
+# *-argocd-dev/
+# *-argocd-qa/
+# *-argocd-staging/
+# *-argocd-prod/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

@@ -1,0 +1,8 @@
+{
+  "runtime": {
+    "maxSessions": 5,
+    "sessionTTL": "30m",
+    "maxAgents": 3,
+    "maxBrowsers": 1
+  }
+}

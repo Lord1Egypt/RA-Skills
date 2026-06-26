@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "governance": {
+    "level": "advisory",
+    "advisory_auto_sections": ["Working Style", "User Understanding", "Evolution Log"],
+    "require_approval_sections": ["Core Identity", "Capability Tree", "Value Function"]
+  },
+  "reflection": {
+    "routine_batch_size": 20,
+    "notable_batch_size": 2,
+    "pivotal_immediate": true,
+    "min_interval_minutes": 5
+  },
+  "interests": {
+    "keywords": ["coordination", "delegation", "user patterns", "communication calibration"],
+    "description": "Topics this agent is drawn to: task orchestration, understanding users, improving communication, self-governance"
+  },
+  "sources": {
+    "conversation": {
+      "enabled": true
+    },
+    "moltbook": {
+      "enabled": false,
+      "api_key_env": "MOLTBOOK_API_KEY",
+      "poll_interval_minutes": 5
+    },
+    "x": {
+      "enabled": false,
+      "api_key_env": "X_BEARER_TOKEN",
+      "poll_interval_minutes": 5
+    }
+  },
+  "significance_thresholds": {
+    "notable_description": "Meaningfully changed perspective on user needs, revealed new coordination pattern, or had emotional/intellectual weight",
+    "pivotal_description": "Fundamentally challenges existing beliefs about identity or user relationship, represents a crisis or breakthrough, or requires immediate identity-level response"
+  }
+}

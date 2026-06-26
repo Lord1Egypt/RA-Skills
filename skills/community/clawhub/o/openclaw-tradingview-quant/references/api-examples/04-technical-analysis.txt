@@ -1,0 +1,147 @@
+curl --request GET \
+	--url https://tradingview-data1.p.rapidapi.com/api/ta/NASDAQ:TSLA/indicators \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+  {
+  "success": true,
+  "data": {
+    "ADX": 25.794226845855604,
+    "ADX+DI": 15.644728352653825,
+    "ADX+DI[1]": 17.36697789706467,
+    "ADX-DI": 32.28459881253533,
+    "ADX-DI[1]": 28.85405898341529,
+    "AO": -18.289297058823593,
+    "AO[1]": -18.772827941176615,
+    "AO[2]": -19.177151470588342,
+    "BBPower": -26.686345878305076,
+    "CCI20": -123.07351460473542,
+    "CCI20[1]": -105.78499831872135,
+    "EMA10": 403.24873288275415,
+    "EMA100": 418.7355827651569,
+    "EMA20": 408.57779503251464,
+    "EMA200": 395.75389676133494,
+    "EMA30": 413.5478978000722,
+    "EMA50": 420.0013360005748,
+    "HullMA9": 399.5886666666667,
+    "Ichimoku.BLine": 410.64,
+    "MACD.macd": -7.354222027844457,
+    "MACD.signal": -7.326942962677083,
+    "Mom": -1.1499999999999773,
+    "Mom[1]": -15.089999999999975,
+    "Pivot.M.Camarilla.Middle": 408.7969666666666,
+    "Pivot.M.Camarilla.R1": 406.98508416666664,
+    "Pivot.M.Camarilla.R2": 411.46016833333334,
+    "Pivot.M.Camarilla.R3": 415.9352525,
+    "Pivot.M.Camarilla.S1": 398.03491583333334,
+    "Pivot.M.Camarilla.S2": 393.55983166666664,
+    "Pivot.M.Camarilla.S3": 389.0847475,
+    "Pivot.M.Classic.Middle": 408.7969666666666,
+    "Pivot.M.Classic.R1": 430.06303333333324,
+    "Pivot.M.Classic.R2": 457.61606666666665,
+    "Pivot.M.Classic.R3": 506.4351666666667,
+    "Pivot.M.Classic.S1": 381.2439333333332,
+    "Pivot.M.Classic.S2": 359.97786666666656,
+    "Pivot.M.Classic.S3": 311.1587666666665,
+    "Pivot.M.Demark.Middle": 403.48044999999996,
+    "Pivot.M.Demark.R1": 419.42999999999995,
+    "Pivot.M.Demark.S1": 370.6108999999999,
+    "Pivot.M.Fibonacci.Middle": 408.7969666666666,
+    "Pivot.M.Fibonacci.R1": 427.44586286666663,
+    "Pivot.M.Fibonacci.R2": 438.96717046666663,
+    "Pivot.M.Fibonacci.R3": 457.61606666666665,
+    "Pivot.M.Fibonacci.S1": 390.1480704666666,
+    "Pivot.M.Fibonacci.S2": 378.6267628666666,
+    "Pivot.M.Fibonacci.S3": 359.97786666666656,
+    "Pivot.M.Woodie.Middle": 401.270225,
+    "Pivot.M.Woodie.R1": 415.00955,
+    "Pivot.M.Woodie.R2": 450.08932500000003,
+    "Pivot.M.Woodie.R3": 463.82865000000004,
+    "Pivot.M.Woodie.S1": 366.19044999999994,
+    "Pivot.M.Woodie.S2": 352.45112499999993,
+    "Pivot.M.Woodie.S3": 317.3713499999999,
+    "RSI": 42.276792903953805,
+    "RSI[1]": 41.052681625562236,
+    "Rec.BBPower": 0,
+    "Rec.HullMA9": -1,
+    "Rec.Ichimoku": 0,
+    "Rec.Stoch.RSI": 0,
+    "Rec.UO": 0,
+    "Rec.VWMA": -1,
+    "Rec.WR": 0,
+    "Recommend.All": -0.3787878787878788,
+    "Recommend.MA": -0.6666666666666666,
+    "Recommend.Other": -0.09090909090909091,
+    "SMA10": 404.05200000000025,
+    "SMA100": 434.24240000000003,
+    "SMA20": 409.55699999999996,
+    "SMA200": 392.3726500000003,
+    "SMA30": 413.12566666666646,
+    "SMA50": 426.27219999999977,
+    "Stoch.D": 40.03617674203693,
+    "Stoch.D[1]": 45.717089102096736,
+    "Stoch.K": 42.98525057468451,
+    "Stoch.K[1]": 49.642346208869895,
+    "Stoch.RSI.K": 51.77279904925837,
+    "UO": 61.96576114917157,
+    "VWMA": 409.2387116779008,
+    "W.R": -55.624036979969105,
+    "close": 398.68
+  },
+  "msg": "Success"
+}
+
+
+curl --request GET \
+	--url https://tradingview-data1.p.rapidapi.com/api/ta/NASDAQ:AAPL \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+  {
+  "success": true,
+  "data": {
+    "1": {
+      "Other": -0.182,
+      "All": -0.09,
+      "MA": 0
+    },
+    "5": {
+      "Other": 0.546,
+      "All": 1.072,
+      "MA": 1.6
+    },
+    "15": {
+      "Other": 0.182,
+      "All": 0.624,
+      "MA": 1.066
+    },
+    "60": {
+      "Other": 0.182,
+      "All": 0.224,
+      "MA": 0.266
+    },
+    "240": {
+      "Other": -0.182,
+      "All": -0.89,
+      "MA": -1.6
+    },
+    "1D": {
+      "Other": 0.364,
+      "All": -0.352,
+      "MA": -1.066
+    },
+    "1W": {
+      "Other": 0,
+      "All": 0.134,
+      "MA": 0.266
+    },
+    "1M": {
+      "Other": 0.364,
+      "All": 0.982,
+      "MA": 1.6
+    }
+  },
+  "msg": "Success"
+}
+
+

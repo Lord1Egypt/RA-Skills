@@ -1,0 +1,65 @@
+id: NX-001
+name: "@nexum/core — Contract 类型 + Tasks 读写 + Git 封装"
+type: coding
+created_at: "2026-03-29T04:00:00Z"
+
+scope:
+  files:
+    - pnpm-workspace.yaml
+    - turbo.json
+    - package.json
+    - tsconfig.base.json
+    - packages/core/package.json
+    - packages/core/tsconfig.json
+    - packages/core/src/contract.ts
+    - packages/core/src/tasks.ts
+    - packages/core/src/git.ts
+    - packages/core/src/types.ts
+    - packages/core/src/index.ts
+    - packages/core/src/__tests__/contract.test.ts
+    - packages/core/src/__tests__/tasks.test.ts
+  boundaries:
+    - packages/spawn/
+    - packages/prompts/
+    - packages/notify/
+    - packages/cli/
+  conflicts_with: []
+
+deliverables:
+  - "pnpm-workspace.yaml 定义 packages/* 工作区，turbo.json 配置 build/test pipeline"
+  - "packages/core/src/types.ts：完整 TypeScript 类型定义，包含 Contract（含 scope/deliverables/eval_strategy/criteria 等所有字段）、Task（含 status/iteration/commit_hash 等运行态字段）、ActiveTasksFile、EvalResult、TaskStatus 枚举"
+  - "packages/core/src/contract.ts：parseContract(filePath) 读取并解析 Contract YAML，返回类型化 Contract 对象；validateContract(contract) 校验必填字段，返回校验错误列表"
+  - "packages/core/src/tasks.ts：readTasks(projectDir)、writeTasks(projectDir, tasks)（原子写，tmpfile + rename）、updateTask(projectDir, taskId, patch)、getTask(projectDir, taskId)、getUnlockedTasks(projectDir, completedTaskId) 返回 depends_on 已满足且 status=pending 的任务"
+  - "packages/core/src/git.ts：getHeadCommit(projectDir)、getChangedFiles(projectDir, baseCommit, headCommit)、commitFiles(projectDir, files, message)；所有函数返回 Promise，错误统一抛出 GitError"
+  - "packages/core/src/__tests__/contract.test.ts：测试解析合法 contract、缺字段校验错误、未知 eval_strategy.type 校验错误"
+  - "packages/core/src/__tests__/tasks.test.ts：测试 updateTask 原子写（模拟并发写）、getUnlockedTasks 正确识别 depends_on 满足的任务"
+  - "pnpm build 和 pnpm test 均通过，无 TypeScript 编译错误"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "types.ts 包含完整类型：Contract/Task/ActiveTasksFile/EvalResult/TaskStatus，与现有 bash 版 active-tasks.json 格式兼容"
+      method: "review: 检查类型定义覆盖完整性"
+      threshold: pass
+    - id: C2
+      desc: "parseContract 正确解析 INFRA-001.yaml 等现有 contract 文件"
+      method: "unit: 用现有 contract 文件测试解析，确认字段正确映射"
+      threshold: pass
+    - id: C3
+      desc: "updateTask 是原子写操作（tmpfile + rename），不会损坏 active-tasks.json"
+      method: "review: 检查写入实现，确认使用临时文件 + rename"
+      threshold: pass
+    - id: C4
+      desc: "getUnlockedTasks 正确找到 depends_on 已全部 done 的 pending 任务"
+      method: "unit: 构造 tasks 数组，完成某任务后验证返回值"
+      threshold: pass
+    - id: C5
+      desc: "pnpm build 无报错，pnpm test 全部通过"
+      method: "unit: 运行 pnpm build && pnpm test"
+      threshold: pass
+
+generator: codex-1
+evaluator: eval
+max_iterations: 3
+depends_on: []

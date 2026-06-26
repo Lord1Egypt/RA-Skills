@@ -1,0 +1,136 @@
+<!--
+  Layout: pyramid
+  层级/金字塔页 — 3-5 层递进/金字塔/漏斗结构
+  Agent 根据层数增减 pyramid-level，每层包含标题和可选描述。
+  梯形通过 clip-path 实现，各层间无间距，构成连续的金字塔轮廓。
+
+  🔴 适用性判断（必须在选择此布局前确认）：
+  pyramid 仅适用于层间有明确的"包含/递进/从属"关系的内容，例如：
+  ✅ 马斯洛需求层次（生理→安全→社交→尊重→自我实现）
+  ✅ 组织架构层级（董事会→管理层→执行层）
+  ✅ 数据漏斗（访客→注册→付费→续费）
+
+  ❌ 以下内容禁止使用 pyramid，应选 cards 或 comparison：
+  ❌ 多种平级选择/模式（如"容器沙箱 vs 云桌面 vs 本地运行"）
+  ❌ 多种方案的优劣权衡（如"安全性 vs 能力"的 tradeoff）
+  ❌ 并列的分类/类型（如"三种部署模式"、"三种执行环境"）
+
+  判断口诀：如果把顶层和底层互换位置，内容语义是否被破坏？
+  - 被破坏 → 有层级关系 → 可用 pyramid
+  - 不被破坏 → 是平级选择 → 用 cards 或 comparison
+-->
+<section class="slide slide--pyramid" data-slide="{{N}}">
+  <h2 class="pyramid-title">{{页面标题}}</h2>
+  <div class="pyramid-container">
+    <div class="pyramid-level pyramid-level--1">
+      <span class="pyramid-label">{{顶层标题}}</span>
+      <span class="pyramid-desc">{{可选：顶层简短描述}}</span>
+    </div>
+    <div class="pyramid-level pyramid-level--2">
+      <span class="pyramid-label">{{第二层标题}}</span>
+      <span class="pyramid-desc">{{可选：第二层简短描述}}</span>
+    </div>
+    <div class="pyramid-level pyramid-level--3">
+      <span class="pyramid-label">{{第三层标题}}</span>
+      <span class="pyramid-desc">{{可选：第三层简短描述}}</span>
+    </div>
+    <div class="pyramid-level pyramid-level--4">
+      <span class="pyramid-label">{{底层标题}}</span>
+      <span class="pyramid-desc">{{可选：底层简短描述}}</span>
+    </div>
+    <!-- Agent 根据实际层数增减 pyramid-level（3-5 层） -->
+  </div>
+</section>
+
+<style>
+.slide--pyramid {
+  justify-content: flex-start;
+  align-items: center;       /* 水平居中所有子元素 */
+  text-align: center;        /* 兜底：确保所有文字居中 */
+  padding-top: var(--spacing-lg);
+}
+.slide--pyramid .pyramid-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  width: 100%;
+}
+.slide--pyramid .pyramid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;            /* 双保险居中：align-items + margin auto */
+  /* 层间无间距，靠 clip-path 的斜边形成视觉分隔 */
+}
+.slide--pyramid .pyramid-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* 水平 padding 基于 clip-path inset 动态计算，确保文字在梯形安全区内 */
+  padding: var(--spacing-sm) calc(var(--inset-top) + 5%);
+  min-height: 72px;
+  text-align: center;
+  position: relative;
+  /* 梯形：上窄下宽 */
+  clip-path: polygon(
+    var(--inset-top) 0%,
+    calc(100% - var(--inset-top)) 0%,
+    calc(100% - var(--inset-bottom)) 100%,
+    var(--inset-bottom) 100%
+  );
+}
+/* 层级宽度和梯形内缩 — 3 层 */
+.slide--pyramid .pyramid-level--1 {
+  width: 100%;
+  --inset-top: 32%;
+  --inset-bottom: 22%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+.slide--pyramid .pyramid-level--2 {
+  width: 100%;
+  --inset-top: 22%;
+  --inset-bottom: 12%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  opacity: 0.82;
+}
+.slide--pyramid .pyramid-level--3 {
+  width: 100%;
+  --inset-top: 12%;
+  --inset-bottom: 4%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  opacity: 0.66;
+}
+.slide--pyramid .pyramid-level--4 {
+  width: 100%;
+  --inset-top: 4%;
+  --inset-bottom: 0%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  opacity: 0.52;
+}
+.slide--pyramid .pyramid-level--5 {
+  width: 100%;
+  --inset-top: 0%;
+  --inset-bottom: 0%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  opacity: 0.4;
+}
+.slide--pyramid .pyramid-label {
+  font-weight: 700;
+  font-size: var(--font-size-small);  /* 缩小：顶层梯形窄，body 字号易溢出 */
+  line-height: 1.3;
+}
+.slide--pyramid .pyramid-desc {
+  font-size: var(--font-size-small);
+  opacity: 0.85;
+  margin-top: 2px;
+  font-weight: 400;
+}
+</style>

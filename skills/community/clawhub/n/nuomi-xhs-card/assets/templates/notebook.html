@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* ===== 笔记本uD83DuDCD2风格 ===== */
+/* 封面样式 */
+.card-cover-notebook {
+  background: #f5f5f5;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* 笔记本顶部装饰 */
+.card-cover-notebook:after {
+  content: "uD83DuDCD2";
+  position: absolute;
+  top: calc(var(--spacing) * 2.5);
+  left: calc(var(--spacing) * 2.5);
+  font-size: calc(var(--spacing) * 6);
+  transform: rotate(-10deg);
+  z-index: 30;
+}
+
+.card-cover-notebook .cover-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(52, 73, 94, 0.1),
+    rgba(52, 73, 94, 0.5)
+  );
+}
+
+/* 覆盖式布局 */
+.card-cover-overlay.card-cover-notebook .cover-content {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding-top: calc(var(--spacing) * 15);
+  padding-left: calc(var(--spacing) * 10);
+}
+
+/* 分离式布局 */
+.card-cover-separate.card-cover-notebook .cover-content {
+  background: #fff;
+  padding: calc(var(--spacing) * 6) calc(var(--spacing) * 6)
+    calc(var(--spacing) * 6) calc(var(--spacing) * 10);
+  background-image: linear-gradient(#eee 1px, transparent 1px);
+  background-size: 100% 24px;
+  position: relative;
+}
+
+.card-cover-notebook .cover-title {
+  font-family: "Caveat", "Ma Shan Zheng", cursive;
+  color: #2c3e50;
+  position: relative;
+  letter-spacing: 1px;
+  text-align: center;
+  padding-bottom: calc(var(--spacing) * 1.25);
+  border-bottom: 2px dashed #3498db;
+}
+
+.card-cover-notebook .cover-title:before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  -webkit-text-stroke: 1px rgba(52, 152, 219, 0.5);
+  color: transparent;
+}
+
+.card-cover-notebook .cover-description {
+  color: #7f8c8d;
+  text-align: center;
+  font-style: italic;
+}
+
+.card-cover-notebook .cover-tag {
+  background-color: #f8f9fa;
+  color: #3498db;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.card-cover-notebook .cover-tag:hover {
+  background-color: #e8f4fc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+}
+
+.card-cover-notebook .cover-date {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* 卡片样式 */
+.card-notebook {
+  width: 100%;
+  background: #f5f5f5;
+  padding: calc(var(--spacing) * 6.25) calc(var(--spacing) * 6.25)
+    calc(var(--spacing) * 7.5) calc(var(--spacing) * 6.25);
+  position: relative;
+  --highlight-color: #3498db;
+  --highlight-bg-color: #f8f9fa;
+}
+
+/* 笔记本装订线效果 */
+.card-notebook:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 0.5);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 10px,
+    #e74c3c 10px,
+    #e74c3c 15px
+  );
+}
+
+/* 笔记本顶部装饰 */
+.card-notebook:after {
+  content: "uD83DuDCD2";
+  position: absolute;
+  top: calc(var(--spacing) * 0);
+  left: calc(var(--spacing) * 2.5);
+  font-size: calc(var(--spacing) * 6);
+  transform: rotate(-10deg);
+}
+
+.card-notebook .card-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.card-notebook .card-content {
+  position: relative;
+  background: #fff;
+  color: #34495e;
+  border: 1px solid #ddd;
+  padding: calc(var(--spacing) * 4);
+  height: 100%;
+  background-image: linear-gradient(#eee 1px, transparent 1px);
+  background-size: 100% 24px;
+}
+
+/* 主标题样式 - 手写风格字体 */
+.card-notebook h1 {
+  font-size: calc(var(--spacing) * 7);
+  line-height: 1.5;
+  position: relative;
+  color: #2c3e50;
+  margin-bottom: calc(var(--spacing) * 2);
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: calc(var(--spacing) * 1.25);
+  border-bottom: 2px dashed #3498db;
+}
+
+/* 副标题样式 - 常规字体 */
+.card-notebook h2 {
+  font-size: calc(var(--spacing) * 4);
+  color: #7f8c8d;
+  margin-bottom: calc(var(--spacing) * 6);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  font-style: italic;
+}
+
+.card-notebook h2:after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 0.5);
+  background: #3498db;
+}
+
+.card-notebook h3 {
+  color: #34495e;
+  font-weight: bold;
+}
+
+/* 段落样式 */
+.card-notebook p {
+  color: #34495e;
+  font-size: inherit;
+  line-height: calc(var(--spacing) * 6);
+  position: relative;
+  z-index: 1;
+}
+
+.card-notebook em {
+  color: #3498db;
+  font-style: italic;
+}
+
+.card-notebook p a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px dashed #3498db;
+  transition: all 0.3s ease;
+}
+
+.card-notebook p a:hover {
+  color: #2980b9;
+  border-bottom: 1px solid #2980b9;
+}
+
+/* 有序列表样式 - 带圆圈数字 */
+.card-notebook li {
+  position: relative;
+  counter-increment: item;
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 5);
+  color: #34495e;
+  line-height: calc(var(--spacing) * 6);
+  font-size: inherit;
+}
+
+/* 序号用带圆圈数字 */
+.card-notebook li:before {
+  content: attr(data-index);
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
+  border-radius: 50%;
+  border: 1px solid #3498db;
+  background: #f8f9fa;
+  color: #3498db;
+  text-align: center;
+  line-height: calc(var(--spacing) * 5.5);
+  font-weight: bold;
+  position: absolute;
+  left: calc(var(--spacing) * -8);
+  top: 0;
+}
+
+/* 小标题为加粗字体 */
+.card-notebook strong {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #e74c3c;
+  text-decoration-style: wavy;
+  text-underline-offset: 4px;
+}
+
+.card-notebook .wavy-underline {
+  text-decoration-color: #e74c3c;
+}
+
+/* 表格样式 */
+.card-notebook table {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: calc(var(--spacing) * 5) 0;
+  border-collapse: collapse;
+}
+
+.card-notebook th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding: calc(var(--spacing) * 2.5);
+  font-weight: 600;
+}
+
+.card-notebook td {
+  color: #34495e;
+  padding: calc(var(--spacing) * 2.5);
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.card-notebook tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* 代码块样式 */
+.card-notebook pre {
+  border: 1px solid #ecf0f1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: calc(var(--spacing) * 4);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: calc(var(--spacing) * 3.25);
+  overflow-x: auto;
+}
+
+.card-notebook code:not(pre code) {
+  background-color: #f8f9fa;
+  color: #e74c3c;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.25);
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: calc(var(--spacing) * 3.6);
+}
+
+/* 引用块样式 */
+.card-notebook blockquote {
+  background-color: #f8f9fa;
+  border-left: 4px solid #3498db;
+  color: #7f8c8d;
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 5) 0;
+  font-style: italic;
+  position: relative;
+}
+
+.card-notebook blockquote:before {
+  content: "“";
+  height: calc(var(--spacing) * 0.25);
+  transform: translate(0px, -16px);
+  display: block;
+  font-size: calc(var(--spacing) * 10);
+  color: rgba(52, 152, 219, 0.2);
+  font-family: Georgia, serif;
+}
+
+.card-notebook ul > li {
+  list-style: none;
+  margin-bottom: calc(var(--spacing) * 4);
+  line-height: calc(var(--spacing) * 6);
+}
+
+.card-notebook ul > li:before {
+  content: "✎";
+  color: #3498db;
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* 水平线样式 */
+.card-notebook hr {
+  border: 0;
+  height: calc(var(--spacing) * 0.25);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 5px,
+    #3498db 5px,
+    #3498db 10px
+  );
+  margin: calc(var(--spacing) * 6) 0;
+}
+
+/* 图片样式 */
+.card-notebook img {
+  max-width: 100%;
+  border: 1px solid #ecf0f1;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: calc(var(--spacing) * 1.25);
+  background: white;
+}
+
+/* 便签效果 */
+.card-notebook .note {
+  background: #fff9c4;
+  padding: calc(var(--spacing) * 3.75);
+  margin: calc(var(--spacing) * 5) 0;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+.card-notebook .note:before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -1.25);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 2.5);
+  background: rgba(231, 76, 60, 0.5);
+  border-radius: 3px;
+}
+
+/* 手写笔记效果 */
+.card-notebook .handwritten {
+  font-family: "Caveat", "Ma Shan Zheng", cursive;
+  color: #2c3e50;
+  font-size: calc(var(--spacing) * 4.5);
+  line-height: 1.5;
+  transform: rotate(-1deg);
+}
+
+.card-notebook .card-footer {
+  text-align: right;
+}
+
+.card-notebook .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-notebook">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

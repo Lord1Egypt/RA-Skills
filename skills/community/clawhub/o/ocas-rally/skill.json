@@ -1,0 +1,26 @@
+{
+  "name": "ocas-rally",
+  "version": "3.0.1",
+  "description": "Rally: governed portfolio research, scoring, allocation planning, and trade planning for public markets. Use for universe screening, signal scoring, constrained allocation, rebalance planning, and auditable investment decisions. Trigger phrases: 'portfolio', 'allocation', 'rebalance', 'trade plan', 'research stocks', 'daily report', 'market signals', 'update rally'. Do not use for meme-stock speculation, margin trading, or budget planning.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "requires": {
+    "credentials": [
+      {
+        "name": "QUIVERQUANT_API_KEY",
+        "description": "QuiverQuant API key for congressional trading data",
+        "required": false
+      }
+    ]
+  },
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-rally/",
+      "~/openclaw/journals/ocas-rally/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-rally/",
+      "~/openclaw/journals/ocas-rally/"
+    ]
+  }
+}

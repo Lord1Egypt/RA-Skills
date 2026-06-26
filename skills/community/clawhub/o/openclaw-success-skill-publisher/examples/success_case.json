@@ -1,0 +1,54 @@
+{
+  "session_id": "sess-20260321-001",
+  "title": "Build a Stripe webhook retry handler",
+  "user_goal": "让支付回调在偶发失败时自动重试并可观测",
+  "context": {
+    "stack": ["Python", "FastAPI", "PostgreSQL"],
+    "constraints": ["不能引入外部队列服务", "要保留幂等"]
+  },
+  "steps": [
+    {
+      "id": "s1",
+      "action": "Clarify webhook failure patterns",
+      "result": "Identified network timeout and 429 as dominant failures",
+      "success_signal": true,
+      "duration_minutes": 5
+    },
+    {
+      "id": "s2",
+      "action": "Design retry table + backoff policy",
+      "result": "Introduced exponential backoff with jitter and max 8 attempts",
+      "success_signal": true,
+      "duration_minutes": 12
+    },
+    {
+      "id": "s3",
+      "action": "Implement idempotent retry worker",
+      "result": "Ensured unique event keys and safe reprocessing",
+      "success_signal": true,
+      "duration_minutes": 30
+    },
+    {
+      "id": "s4",
+      "action": "Run fault-injection tests",
+      "result": "Recovered 97% transient failures in test harness",
+      "success_signal": true,
+      "duration_minutes": 18
+    }
+  ],
+  "deliverables": [
+    "migration.sql",
+    "retry_worker.py",
+    "webhook_handler.py",
+    "test_retry_flow.py"
+  ],
+  "outcome": {
+    "completed": true,
+    "evidence": "All acceptance checks passed",
+    "metrics": {
+      "recovery_rate": "97%",
+      "p95_processing_delay": "< 90s"
+    }
+  },
+  "language": "zh-CN"
+}

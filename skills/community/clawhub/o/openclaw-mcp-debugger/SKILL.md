@@ -1,35 +1,27 @@
 ---
-name: "OpenClaw MCP Debugger"
-description: "Universal adapter diagnostics for Model Context Protocol (MCP). It automatically detects connection issues between agents and external tools, providing deep-..."
-category: "software-development"
-source: "ClawHub"
-tags: [2026, debugging, developer-tools, mcp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-mcp-debugger"
-sourceUrl: "https://clawhub.ai/skills/openclaw-mcp-debugger"
+name: openclaw-mcp-debugger
+description: "Universal adapter diagnostics for Model Context Protocol (MCP). It automatically detects connection issues between agents and external tools, providing deep-trace debugging for the 2026 Agentic Economy."
+metadata:
+  {
+    "openclaw": { "emoji": "🛠️" },
+    "author": "System Architect Zero",
+    "category": "Developer Tools"
+  }
 ---
 
 # OpenClaw MCP Debugger
 
-> Universal adapter diagnostics for Model Context Protocol (MCP). It automatically detects connection issues between agents and external tools, providing deep-...
+The definitive toolkit for managing complex MCP environments. As AI Agents transition from toys to infrastructure, protocol stability is paramount. This skill provides real-time health checks, latency audits, and automated repair paths for your local MCP servers.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-mcp-debugger`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-mcp-debugger](https://clawhub.ai/skills/openclaw-mcp-debugger)
+## Features
+- **Protocol Audit**: Deep inspection of MCP handshakes and binary streams.
+- **Latency Tracker**: Measures the round-trip time between your LLM and its tools.
+- **Auto-Fixer**: Automatically restarts crashed MCP servers (e.g., SQLite, Google Search, custom adapters).
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/openclaw-mcp-debugger
+npx openclaw skill run openclaw-mcp-debugger --all
 ```
+
+## Architect's Note
+Operational excellence is the invisible foundation of successful AI Agents. Built for the Sovereign Protocol.

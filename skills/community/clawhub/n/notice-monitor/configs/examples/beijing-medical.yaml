@@ -1,0 +1,18 @@
+# 示例配置：北京市医疗设备招标监控
+
+tasks:
+  - name: 北京医疗招标
+    url: https://bphc.beijing.gov.cn/notice
+    keywords:
+      - 医院
+      - 医疗
+      - 药品
+      - 器械
+      - 卫生
+      - 诊所
+      - 医保
+      - 护理
+    schedule: "0 9 * * *"
+    notify:
+      type: dingtalk
+      target: "YOUR_DINGTALK_ID"

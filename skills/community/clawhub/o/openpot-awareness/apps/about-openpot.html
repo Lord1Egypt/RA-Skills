@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>About OpenPot</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #c8a44e;
+    --accent-glow: rgba(200, 164, 78, 0.15);
+    --green: #30d158;
+    --blue: #4a9eff;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 0 32px;
+  }
+
+  .hero-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--accent), #a07830);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    box-shadow: 0 8px 32px var(--accent-glow);
+  }
+
+  .hero h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .hero .version { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+  .hero .tagline { font-size: 17px; color: var(--text-muted); max-width: 320px; margin: 0 auto; line-height: 1.5; }
+
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; padding-left: 4px; }
+
+  .card { background: var(--surface); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; }
+  .card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .card h3 .icon { font-size: 20px; width: 28px; text-align: center; }
+  .card p { font-size: 15px; color: var(--text-muted); line-height: 1.55; padding-left: 38px; }
+
+  .tab-list { background: var(--surface); border-radius: var(--radius); overflow: hidden; }
+  .tab-item { padding: 14px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--surface-2); }
+  .tab-item:last-child { border-bottom: none; }
+  .tab-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .tab-icon.chat { background: rgba(74, 158, 255, 0.15); }
+  .tab-icon.pulse { background: rgba(200, 164, 78, 0.15); }
+  .tab-icon.calendar { background: rgba(48, 209, 88, 0.15); }
+  .tab-icon.apps { background: rgba(175, 82, 222, 0.15); }
+  .tab-icon.terminal { background: rgba(255, 159, 10, 0.15); }
+  .tab-icon.agents { background: rgba(255, 69, 58, 0.15); }
+  .tab-info { flex: 1; min-width: 0; }
+  .tab-name { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .tab-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+  .story { background: var(--surface); border-radius: var(--radius); padding: 24px 20px; }
+  .story p { font-size: 15px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+  .story p:last-child { margin-bottom: 0; }
+  .story em { color: var(--text); font-style: italic; }
+  .story .quote { border-left: 3px solid var(--accent); padding-left: 16px; margin: 20px 0; font-size: 16px; color: var(--text); font-style: italic; line-height: 1.5; }
+
+  .req-card { background: var(--surface); border-radius: var(--radius); padding: 20px; }
+  .req-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--surface-2); }
+  .req-item:last-child { border-bottom: none; }
+  .req-check { color: var(--green); font-size: 16px; margin-top: 2px; }
+  .req-text { font-size: 15px; color: var(--text-muted); line-height: 1.4; }
+  .req-text strong { color: var(--text); }
+
+  .footer { text-align: center; padding: 32px 0 16px; color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media (min-width: 768px) {
+    .container { padding: 40px 32px 80px; }
+    .hero h1 { font-size: 38px; }
+    .hero .tagline { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-icon">🫕</div>
+    <h1>OpenPot</h1>
+    <div class="version">Version 1.0</div>
+    <div class="tagline">Your agent, in your pocket. The native iOS command center for self-hosted AI agents.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Origin</div>
+    <div class="story">
+      <p>OpenPot started with a simple frustration: powerful self-hosted AI agents trapped behind chat apps that were never designed for them. Telegram threads, Slack channels, terminal windows — none of them could show you what your agent <em>knows</em>, what it's <em>done</em>, or what you should <em>do next</em>.</p>
+      <div class="quote">"This app navigates the user so the user does not need to navigate the app."</div>
+      <p>OpenPot is the native iOS interface that self-hosted agents deserve. Not a wrapper around a web view. Not a chatbot skin. A real app with purpose-built surfaces for every dimension of your relationship with your agent.</p>
+      <p>It connects to any agent running on the OpenClaw framework via secure WebSocket, with Ed25519 device authentication. Your data stays on your server. Nothing passes through a cloud service. The app talks directly to your agent over your network.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Your Tabs</div>
+    <div class="tab-list">
+      <div class="tab-item">
+        <div class="tab-icon chat">💬</div>
+        <div class="tab-info">
+          <div class="tab-name">Chat</div>
+          <div class="tab-desc">Real-time conversation with streaming responses, markdown rendering, voice input and output, and full message persistence.</div>
+        </div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon pulse">📡</div>
+        <div class="tab-info">
+          <div class="tab-name">Pulse</div>
+          <div class="tab-desc">Your agent's proactive outbound — morning briefs, health checks, alerts, and reports delivered as notification cards you triage from a single stream.</div>
+        </div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon calendar">📅</div>
+        <div class="tab-info">
+          <div class="tab-name">Calendar</div>
+          <div class="tab-desc">Your schedule rendered from your agent's perspective. Multi-source calendar integration with month and agenda views. Your agent reads your calendar but never modifies it without your permission.</div>
+        </div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon apps">🧩</div>
+        <div class="tab-info">
+          <div class="tab-name">Apps</div>
+          <div class="tab-desc">Custom web applications your agent built for you — calculators, trackers, dashboards. Browse by category, tap to open full-screen. Ask your agent to build you something new anytime.</div>
+        </div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon terminal">⌨️</div>
+        <div class="tab-info">
+          <div class="tab-name">Terminal</div>
+          <div class="tab-desc">Full SSH access to your agent's server. GPU-accelerated terminal with secure key-based authentication. Run commands, launch Claude Code, manage your infrastructure.</div>
+        </div>
+      </div>
+      <div class="tab-item">
+        <div class="tab-icon agents">🤖</div>
+        <div class="tab-info">
+          <div class="tab-name">Agents</div>
+          <div class="tab-desc">Manage multiple agents with independent connections, health monitoring, and route configuration. Switch between agents instantly from the dock.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">What You Need</div>
+    <div class="req-card">
+      <div class="req-item">
+        <div class="req-check">✓</div>
+        <div class="req-text"><strong>An OpenClaw agent</strong> running on any hardware — Mac Mini, Linux VM, cloud VPS. OpenClaw is the agent framework. OpenPot is the mobile client.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-check">✓</div>
+        <div class="req-text"><strong>The OpenClaw gateway</strong> running on port 18789. This is the WebSocket server that OpenPot connects to. It comes with every OpenClaw installation.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-check">✓</div>
+        <div class="req-text"><strong>Network access</strong> to your server. On your home WiFi, use your server's LAN address. Away from home, use Tailscale for secure remote access. OpenPot supports both with automatic failover.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-check">✓</div>
+        <div class="req-text"><strong>The OpenPot Awareness Skill</strong> installed on your agent. This teaches your agent how to serve content to each tab — Pulse cards, calendar events, web apps, and more.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Getting Started</div>
+    <div class="card">
+      <h3><span class="icon">🔌</span> Connect</h3>
+      <p>In the Agents tab, add your agent's gateway address. OpenPot connects via WebSocket on port 18789. Add both LAN and Tailscale routes for automatic failover.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">📦</span> Install the Skill</h3>
+      <p>Tell your agent: "Install the OpenPot Awareness Skill." Then say "OpenPot sync." Your agent configures itself for all the features it can support.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">🗣️</span> Start Talking</h3>
+      <p>Chat, use voice, ask your agent to build you an app, check your calendar, browse your Pulse cards. The app is your agent's home screen.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Building Apps</div>
+    <div class="card">
+      <h3><span class="icon">💬</span> Just Ask</h3>
+      <p>Tell your agent what you need: "Build me a unit converter" or "I need a medication tracker." Your agent confirms the details and creates it. It appears in your Apps tab automatically.</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon">⌨️</span> Claude Code</h3>
+      <p>For more sophisticated apps, open the Terminal tab and launch Claude Code. Your agent will brief Claude Code on the app standard so it integrates properly with OpenPot.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by Al Menard<br>
+    <a href="https://openpot.app">openpot.app</a> · <a href="https://github.com/AlMnotAi/openpot-agent">GitHub</a><br>
+    <br>
+    OpenPot is free and open source.<br>
+    Powered by OpenClaw.
+  </div>
+
+</div>
+</body>
+</html>

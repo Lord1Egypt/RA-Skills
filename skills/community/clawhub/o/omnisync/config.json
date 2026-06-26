@@ -1,0 +1,9 @@
+{
+  "omnisync": {
+    "security": {
+      "buffer_size_limit_kb": 2048,
+      "enable_pattern_watchdog": true,
+      "max_delta_growth_ratio": 0.85
+    }
+  }
+}

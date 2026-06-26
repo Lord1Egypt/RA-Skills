@@ -1,0 +1,1 @@
+Use $skill-installer to install the skill from https://github.com/Rycen7822/obclip-skill/tree/main/skills/obclip and then restart Codex to pick up the new skill.

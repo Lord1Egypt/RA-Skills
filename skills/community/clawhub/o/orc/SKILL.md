@@ -1,35 +1,27 @@
 ---
-name: "Orc"
-description: "Apache ORC columnar storage format reference. File structure with stripes and indexes, schema types with evolution rules, compression codecs (ZLIB/SNAPPY/ZST..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/orc"
-sourceUrl: "https://clawhub.ai/skills/orc"
+name: "orc"
+version: "1.0.0"
+description: "Apache ORC columnar storage format reference. File structure with stripes and indexes, schema types with evolution rules, compression codecs (ZLIB/SNAPPY/ZSTD), orc-tools CLI, Python/Java writer APIs, Hive ACID transactions, Spark integration, and performance tuning with bloom filters."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [orc, columnar, hadoop, hive, spark, data, analytics]
+category: "data"
 ---
 
-# Orc
+# Apache ORC
 
-> Apache ORC columnar storage format reference. File structure with stripes and indexes, schema types with evolution rules, compression codecs (ZLIB/SNAPPY/ZST...
+Apache ORC columnar storage format reference.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/orc`
-- **Source URL:** [https://clawhub.ai/skills/orc](https://clawhub.ai/skills/orc)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/orc
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | ORC overview, file structure, vs Parquet |
+| `schema` | Types, complex types, schema evolution |
+| `compression` | ZLIB/SNAPPY/LZO/ZSTD codecs, ratios |
+| `read` | orc-tools CLI, Python/Java read APIs |
+| `write` | Writer APIs, stripe/buffer sizing |
+| `hive` | Hive integration, ACID transactions |
+| `spark` | Spark ORC read/write, pushdown |
+| `performance` | Bloom filters, indexes, vectorized reads |

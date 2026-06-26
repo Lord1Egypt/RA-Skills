@@ -1,0 +1,21 @@
+---
+# Example octoDNS configuration for easyDNS
+
+providers:
+  config:
+    class: octodns.provider.yaml.YamlProvider
+    directory: ./config
+    default_ttl: 300
+  
+  easydns:
+    class: octodns_easydns.EasyDnsProvider
+    token: env/EASYDNS_TOKEN
+    api_key: env/EASYDNS_API_KEY
+    portfolio: env/EASYDNS_PORTFOLIO
+
+zones:
+  example.com.:
+    sources:
+      - config
+    targets:
+      - easydns

@@ -1,0 +1,16 @@
+# OfferCatcher 配置文件
+# 放置位置: ~/.openclaw/offercatcher.yaml
+# 配置优先级: 命令行 > 环境变量 > 此文件 > 默认值
+
+# Apple Mail 账号名（在 Mail.app 中显示的名称）
+# 示例: "谷歌", "Gmail", "iCloud"
+mail_account: ""
+
+# 邮箱目录
+mailbox: INBOX
+
+# 扫描最近 N 天
+days: 2
+
+# 最多扫描 N 封邮件
+max_results: 60

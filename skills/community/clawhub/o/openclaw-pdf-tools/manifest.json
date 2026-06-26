@@ -1,0 +1,9 @@
+{
+  "name": "pdf-toolkit",
+  "version": "1.0.0",
+  "description": "PDF工具箱 - 合并、拆分、压缩、转换PDF文件。支持批量处理，无需联网，本地执行",
+  "author": "newaiguy",
+  "tags": ["pdf", "document", "tool", "utility", "merge", "split"],
+  "main": "SKILL.md",
+  "license": "MIT"
+}

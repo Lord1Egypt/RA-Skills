@@ -1,0 +1,34 @@
+identity:
+  name: init_business
+  label:
+    en_US: Init Business Workspace
+    zh_Hans: 创建经营工作区
+description:
+  human:
+    en_US: Create a founder-approved local workspace with an operating cockpit.
+    zh_Hans: 在创始人批准的路径创建经营驾驶舱工作区。
+parameters:
+  - name: company_name
+    type: string
+    required: true
+  - name: workspace_path
+    type: string
+    required: true
+  - name: product_name
+    type: string
+    required: true
+  - name: target_user
+    type: string
+    required: true
+  - name: core_problem
+    type: string
+    required: true
+  - name: product_pitch
+    type: string
+    required: true
+  - name: language
+    type: select
+    required: true
+    options:
+      - zh-CN
+      - en-US

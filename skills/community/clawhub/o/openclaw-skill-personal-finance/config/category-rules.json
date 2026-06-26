@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Groceries",
+    "keywords": ["grocer", "grocery", "mart", "supermarket", "market"]
+  },
+  {
+    "category": "Dining",
+    "keywords": ["restaurant", "bistro", "dining", "eatery", "dinner"]
+  },
+  {
+    "category": "Coffee & Snacks",
+    "keywords": ["coffee", "cafe", "starbucks", "dunkin", "espresso"]
+  },
+  {
+    "category": "Utilities",
+    "keywords": ["utility", "utilities", "electric", "water", "internet", "gas bill"]
+  },
+  {
+    "category": "Transportation",
+    "keywords": ["uber", "lyft", "metro", "transit", "pass", "gas station"]
+  },
+  {
+    "category": "Income",
+    "keywords": ["payroll", "salary", "direct deposit", "deposit"]
+  }
+]

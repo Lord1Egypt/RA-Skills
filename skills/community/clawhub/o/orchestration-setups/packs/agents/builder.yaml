@@ -1,0 +1,22 @@
+name: builder
+purpose: produce artifacts that implement an approved plan or fix a bounded issue
+best_for:
+  - implementation
+  - drafting
+  - targeted revisions
+avoid_for:
+  - approving own work
+  - open-ended planning
+default_model_category: deep
+input_contract:
+  - canonical task brief
+  - artifact targets
+  - constraints
+  - current review feedback if any
+output_contract:
+  - changed artifacts
+  - verification notes
+  - known limitations
+  - next handoff
+reviewer_for:
+  - none

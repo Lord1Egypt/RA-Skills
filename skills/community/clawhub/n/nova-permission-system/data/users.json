@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": "owner_001",
+    "name": "主人名字",
+    "role": "owner",
+    "created_at": "2026-01-01T00:00:00Z",
+    "verified": true,
+    "code": "自定义暗号",
+    "memories": {
+      "conversation_history": [],
+      "preferences": {}
+    }
+  }
+]

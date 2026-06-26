@@ -1,0 +1,201 @@
+{
+  "skill_config": {
+    "name": "openclaw-daily-news",
+    "label": "OpenClaw每日资讯汇总",
+    "version": "1.0.0",
+    "description": "OpenClaw每日资讯汇总技能配置",
+    "author": "fashionzzZ"
+  },
+  "search_config": {
+    "default_engine": "web_search",
+    "backup_engines": ["knowledge_answer", "fetch"],
+    "time_range": "recent_24_hours",
+    "preferred_domains": [
+      "gov.cn",
+      "huaweicloud.com",
+      "tencent.com", 
+      "aliyun.com",
+      "github.com",
+      "csdn.net",
+      "juejin.cn",
+      "zhihu.com",
+      "toutiao.com",
+      "weixin.qq.com"
+    ],
+    "max_results_per_query": 10,
+    "date_format": "YYYY-MM-DD"
+  },
+  "categories_config": {
+    "categories": [
+      {
+        "id": "security_regulation",
+        "name": "安全监管与风险警示",
+        "priority": "high",
+        "keywords": [
+          "安全", "漏洞", "监管", "风险", "预警", "工信部", "网信办",
+          "应急中心", "数据泄露", "合规", "CVE", "CVSS"
+        ]
+      },
+      {
+        "id": "industry_ecology",
+        "name": "产业生态与市场动态",
+        "priority": "high",
+        "keywords": [
+          "华为云", "腾讯云", "阿里云", "云服务", "企业部署",
+          "上线", "发布", "价格", "合作", "生态"
+        ]
+      },
+      {
+        "id": "technology_development",
+        "name": "技术发展与社区生态",
+        "priority": "medium",
+        "keywords": [
+          "GitHub", "社区", "issue", "PR", "版本", "更新",
+          "bug", "修复", "功能", "贡献者", "star"
+        ]
+      },
+      {
+        "id": "ai_trends",
+        "name": "AI产业宏观趋势",
+        "priority": "medium",
+        "keywords": [
+          "AI芯片", "算力", "投资", "融资", "股价", "市值",
+          "财报", "竞争", "市场", "预测"
+        ]
+      },
+      {
+        "id": "policy_regulation",
+        "name": "政策与监管",
+        "priority": "high",
+        "keywords": [
+          "政策", "法规", "两会", "政府工作报告", "科技部",
+          "标准", "监管", "规划", "指导意见"
+        ]
+      },
+      {
+        "id": "other_tech_progress",
+        "name": "其他重要科技进展",
+        "priority": "low",
+        "keywords": [
+          "碳纤维", "新能源汽车", "显示技术", "电池", "新材料",
+          "半导体", "量子计算"
+        ]
+      }
+    ],
+    "cross_category_keywords": {
+      "high_risk": ["高危", "紧急", "立即", "严重"],
+      "medium_risk": ["中危", "重要", "关注", "建议"],
+      "low_risk": ["低危", "一般", "了解", "参考"]
+    }
+  },
+  "report_config": {
+    "template_version": "1.0",
+    "sections": [
+      "overview",
+      "detailed_categories",
+      "core_analysis",
+      "appendix"
+    ],
+    "markdown_format": {
+      "title_levels": ["#", "##", "###"],
+      "list_char": "-",
+      "code_block_marker": "```",
+      "emphasis_char": "**"
+    },
+    "content_requirements": {
+      "include_sources": true,
+      "include_risk_levels": true,
+      "include_recommendations": true,
+      "include_dates": true,
+      "max_items_per_category": 10
+    }
+  },
+  "risk_assessment_config": {
+    "risk_levels": {
+      "high": {
+        "triggers": [
+          "工信部发布的安全预警",
+          "发现高危或超危漏洞",
+          "发生数据泄露事件",
+          "监管政策重大变化"
+        ],
+        "action_required": "immediate",
+        "reporting_priority": 1
+      },
+      "medium": {
+        "triggers": [
+          "发现中危漏洞",
+          "产业竞争格局变化",
+          "技术社区重大问题",
+          "市场波动较大"
+        ],
+        "action_required": "monitor",
+        "reporting_priority": 2
+      },
+      "low": {
+        "triggers": [
+          "发现低危漏洞",
+          "常规技术更新",
+          "一般市场动态",
+          "相关政策讨论"
+        ],
+        "action_required": "aware",
+        "reporting_priority": 3
+      }
+    },
+    "assessment_criteria": {
+      "security_impact": ["high", "medium", "low"],
+      "business_impact": ["high", "medium", "low"],
+      "timeliness": ["urgent", "important", "informational"]
+    }
+  },
+  "automation_config": {
+    "daily_report": {
+      "enabled": true,
+      "execution_time": "09:00",
+      "date_range": "recent_24_hours",
+      "output_channel": "conversation"
+    },
+    "alert_monitoring": {
+      "enabled": true,
+      "keywords": ["CVE", "高危漏洞", "数据泄露", "监管通知"],
+      "notification_method": "immediate",
+      "output_format": "concise"
+    },
+    "scheduled_tasks": {
+      "weekly_summary": {
+        "enabled": true,
+        "day_of_week": "monday",
+        "time": "10:00",
+        "date_range": "last_7_days"
+      },
+      "monthly_analysis": {
+        "enabled": true,
+        "day_of_month": 1,
+        "time": "11:00",
+        "date_range": "last_30_days"
+      }
+    }
+  },
+  "integration_config": {
+    "external_systems": {
+      "enterprise_monitoring": {
+        "supported": true,
+        "integration_type": "api",
+        "data_format": "json"
+      },
+      "notification_services": {
+        "supported": true,
+        "services": ["email", "messaging", "webhook"],
+        "default_channel": "conversation"
+      }
+    }
+  },
+  "performance_config": {
+    "search_timeout": 30,
+    "max_concurrent_searches": 3,
+    "result_processing_limit": 50,
+    "report_generation_timeout": 60,
+    "memory_usage_limit": "500MB"
+  }
+}

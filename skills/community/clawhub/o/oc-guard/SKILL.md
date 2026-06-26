@@ -1,35 +1,26 @@
 ---
-name: "OC Guard"
-description: "Safe OpenClaw config planning/apply workflow with bilingual execution receipts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-guard"
-sourceUrl: "https://clawhub.ai/skills/oc-guard"
+name: oc_guard
+description: Safe OpenClaw config planning/apply workflow with bilingual execution receipts.
+metadata: {"openclaw":{"requires":{"bins":["python3","openclaw","opencode"]}}}
 ---
 
-# OC Guard
+# oc-guard Skill
 
-> Safe OpenClaw config planning/apply workflow with bilingual execution receipts.
+## Purpose
+All config-changing requests must go through `oc-guard`.
+Do not directly edit `~/.openclaw/openclaw.json`.
+When possible, invoke the bundled CLI at `{baseDir}/scripts/oc-guard.py`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-guard`
-- **Source URL:** [https://clawhub.ai/skills/oc-guard](https://clawhub.ai/skills/oc-guard)
+## Hard Rules
+1. Use `oc-guard plan` before apply.
+2. High-risk changes require `oc-guard apply --confirm`.
+3. Always return execution receipt first.
+4. If command is not executed, return `【模型说明-未执行】`.
+5. Never claim success without a real `oc-guard` receipt.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-guard
-```
+## Common Commands
+- `{baseDir}/scripts/oc-guard.py --help`
+- `{baseDir}/scripts/oc-guard.py plan "<requirement>"`
+- `{baseDir}/scripts/oc-guard.py apply --confirm "<requirement>"`
+- `{baseDir}/scripts/oc-guard.py plan --proposal <file>`
+- `{baseDir}/scripts/oc-guard.py apply --confirm --proposal <file>`

@@ -1,0 +1,10 @@
+{
+  "name": "nexum-ts",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "pnpm dlx turbo run build --filter=@nexum/core --filter=@nexum/prompts --filter=@nexum/spawn --filter=@nexum/notify --filter=@nexum/cli",
+    "test": "pnpm dlx turbo run test --filter=@nexum/core --filter=@nexum/prompts --filter=@nexum/spawn --filter=@nexum/notify",
+    "release": "pnpm build && echo Release ready"
+  }
+}

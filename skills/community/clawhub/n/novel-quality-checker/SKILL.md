@@ -1,35 +1,92 @@
 ---
-name: "Novel Quality Checker - 质量审核"
-description: "检查小说章节质量：33 维质量审核（字数、AI标记、模板化结尾、重复率、大纲符合度等）， 支持单章和批量检查、跨章衔接检查，输出 5 层审核报告。 使用场景：用户说"检查第X章质量"、"审核一下"、"看看这章行不行"、"批量检查所有章节"。 NOT for: 创作、修改内容——只审核不写作。"
-category: "creative"
-source: "ClawHub"
-tags: [checker, chinese, novel, quality, review, batch, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/novel-quality-checker"
-sourceUrl: "https://clawhub.ai/skills/novel-quality-checker"
+name: novel-quality-checker
+description: >
+  检查小说章节质量：33 维质量审核（字数、AI标记、模板化结尾、重复率、大纲符合度等），
+  支持单章和批量检查、跨章衔接检查，输出 5 层审核报告。
+  使用场景：用户说"检查第X章质量"、"审核一下"、"看看这章行不行"、"批量检查所有章节"。
+  NOT for: 创作、修改内容——只审核不写作。
 ---
 
-# Novel Quality Checker - 质量审核
+# Novel Quality Checker — 小说 33 维质量审核
 
-> 检查小说章节质量：33 维质量审核（字数、AI标记、模板化结尾、重复率、大纲符合度等）， 支持单章和批量检查、跨章衔接检查，输出 5 层审核报告。 使用场景：用户说"检查第X章质量"、"审核一下"、"看看这章行不行"、"批量检查所有章节"。 NOT for: 创作、修改内容——只审核不写作。
+## 快速检查（5项核心）
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/novel-quality-checker`
-- **Source URL:** [https://clawhub.ai/skills/novel-quality-checker](https://clawhub.ai/skills/novel-quality-checker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/novel-quality-checker
+python3 scripts/quality_check.py --file <章节文件> --quick
 ```
+
+- 字数达标（≥12000）
+- 中文纯度（>95%汉字）
+- AI标记检测
+- 模板化结尾检测
+- 段落长度
+
+## 全量审核（33 维度）
+
+```bash
+python3 scripts/quality_check.py --file <章节文件> --full
+# 跨章检查（检查与前章衔接）
+python3 scripts/quality_check.py --file <章节文件> --full --prev <前章文件>
+# 或批量扫描整个目录
+python3 scripts/quality_check.py --dir <目录> --full
+```
+
+## 5 层审核体系
+
+### 第一层：基础指标（5 项）
+| 维度 | 标准 |
+|------|------|
+| 字数达标 | ≥12,000字 |
+| 中文纯度 | >95%汉字 |
+| AI标记词 | 0个 |
+| 模板化结尾 | 0个 |
+| 段落长度 | 最长<3000字 |
+
+### 第二层：文风与结构（8 项）
+| 维度 | 标准 |
+|------|------|
+| 重复率 | <10% |
+| 对话比例 | 25-55% |
+| 标点密度 | 每百字25-65个 |
+| 段落节奏 | 变异系数0.3-1.5 |
+| 句长 | 均8-25字/句 |
+| 场景转换 | 每段0.3-2.0次 |
+| 情感词密度 | 千字2-15 |
+| 无高频重复词 | 前20词无过度使用 |
+
+### 第三层：内容与大纲（7 项）
+| 维度 | 标准 |
+|------|------|
+| 情节推进 | 有新事件/新信息 |
+| 主角出现密度 | 千字0.5-15次 |
+| 动作词密度 | 千字2-10 |
+| 内心独白适度 | 千字1-8 |
+| 场景描写适当 | 千字3-20 |
+| 冲突张力 | 千字5-25 |
+| 金手指提及 | 千字>1 |
+
+### 第四层：格式与规范（5 项）
+| 维度 | 标准 |
+|------|------|
+| 无阿拉伯数字 | 0处 |
+| 无英文单词 | 0个 |
+| 格式一致性 | 异常短行<10 |
+| 无特殊字符 | <5个 |
+
+### 第五层：高级分析（8 项）
+| 维度 | 标准 |
+|------|------|
+| 开头有吸引力 | ≥1个勾子词 |
+| 结尾完整 | 末段≥100字 |
+| 段落长短交替 | 相邻差异均值>50字 |
+| 角色一致性 | 名称不混乱 |
+| 词汇丰富度 | 不重复比>0.1 |
+| 第三人称一致 | 第一人称代词<5% |
+| 场景完整(对话+动作+环境) | 三者俱全 |
+| 跨章衔接 | 与前章4字词组重复<20 |
+
+## 脚本
+
+- `scripts/quality_check.py` — 33 维审核脚本（纯Python标准库，无需安装）
+- `--prev` 参数：指定前章文件做跨章衔接检查
+- 自动分层输出：每层独立 ✅/❌ 标记

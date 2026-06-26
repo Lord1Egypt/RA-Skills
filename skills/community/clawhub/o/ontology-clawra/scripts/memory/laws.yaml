@@ -1,0 +1,52 @@
+# 规律/法则库 (Laws)
+# 物理世界规律 + 业务世界规律
+
+laws:
+  # 商业战略规律
+  red_ocean_avoidance:
+    name: "红海规避法则"
+    domain: "商业战略"
+    statement: "当市场存在强劲竞争对手时，应寻找差异化方向"
+    conditions:
+      - "市场存在已知竞品"
+      - "竞品市场份额 > 20%"
+    effects:
+      - "推荐垂直领域"
+      - "推荐技术创新"
+      - "避免直接竞争"
+      
+  # AI行业规律
+  ai_vertical_domain:
+    name: "AI垂直领域法则"
+    domain: "AI行业"
+    statement: "通用AI平台竞争激烈，垂直领域有差异化优势"
+    conditions:
+      - "市场包含通用AI平台"
+      - "存在未满足的垂直需求"
+    effects:
+      - "推荐垂直领域Agent"
+      - "推荐细分场景"
+      
+  # 本体论价值规律
+  ontology_value:
+    name: "本体论价值法则"
+    domain: "AI技术"
+    statement: "本体论可将业务知识结构化，消除幻觉"
+    conditions:
+      - "业务场景需要可靠性"
+      - "存在复杂决策流程"
+    effects:
+      - "推荐知识图谱"
+      - "推荐规则引擎"
+      
+  # 学习进化规律
+  learning_evolution:
+    name: "学习进化法则"
+    domain: "AI自身"
+    statement: "持续反思和优化可以提升AI能力"
+    conditions:
+      - "存在反思机会"
+      - "反馈可用"
+    effects:
+      - "触发自我进化"
+      - "更新知识网络"

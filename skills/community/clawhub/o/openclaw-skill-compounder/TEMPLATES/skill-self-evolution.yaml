@@ -1,0 +1,202 @@
+# Skill 自进化流水线
+
+> 基于 Claude.md 最佳实践，自动分析Skill问题并生成优化版本
+
+## 元数据
+
+```yaml
+name: skill-self-evolution
+version: 1.0.0
+description: 自动化 Skill 质量改进流水线 — 分析问题 → 生成优化 → 验证迭代
+intent_type: skill_improvement
+author: openclaw-skill-compounder
+created: 2026-05-01
+trigger_keywords:
+  - "优化这个skill"
+  - "改进技能"
+  - "skill需要改进"
+  - "自进化"
+```
+
+## 流水线定义
+
+### Step 1: Skill 现状分析
+
+```yaml
+step: 1
+skill: skill-self-evolution-enhancer
+trigger: 用户指定待优化的Skill路径
+timeout: 60s
+
+input:
+  target_skill_path: "${user.skill_path}"
+  analysis_depth: "comprehensive"
+  check_areas:
+    - code_quality
+    - documentation
+    - edge_cases
+    - consistency
+
+output:
+  result_field: "analysis_report"
+  metadata:
+    - issues_found
+    - complexity_score
+    - test_coverage
+  confidence_weight: 0.9
+```
+
+### Step 2: 最佳实践匹配
+
+```yaml
+step: 2
+skill: skill-self-evolution-enhancer
+trigger: step_1 完成
+timeout: 45s
+depends_on: step_1
+
+input:
+  context:
+    skill_name: "${step_1.result.skill_name}"
+    issues: "${step_1.result.issues_found}"
+    domain: "${user.domain || 'general'}"
+  reference:
+    - claude_best_practices
+    - skill_creation_standards
+
+output:
+  result_field: "best_practices"
+  metadata:
+    - applicable_patterns
+    - improvement_suggestions
+    - priority_order
+  confidence_weight: 0.85
+```
+
+### Step 3: 生成优化版本
+
+```yaml
+step: 3
+skill: skill-self-evolution-enhancer
+trigger: step_2 完成
+timeout: 90s
+depends_on: step_2
+
+input:
+  action: generate_improved_version
+  original_skill: "${user.skill_path}"
+  issues: "${step_1.result.issues_found}"
+  improvements: "${step_2.result.applicable_patterns}"
+  preserve_user_content: true
+
+output:
+  result_field: "improved_skill"
+  metadata:
+    - files_changed
+    - new_features
+    - breaking_changes
+  confidence_weight: 0.8
+```
+
+### Step 4: 验证测试
+
+```yaml
+step: 4
+skill: skill-self-evolution-enhancer
+trigger: step_3 完成
+timeout: 60s
+depends_on: step_3
+
+input:
+  action: validate_improved_version
+  improved_skill: "${step_3.result.improved_skill}"
+  test_cases:
+    - basic_functionality
+    - error_handling
+    - edge_cases
+
+output:
+  result_field: "validation_report"
+  metadata:
+    - tests_passed
+    - tests_failed
+    - coverage_improvement
+  confidence_weight: 0.9
+```
+
+### Step 5: 生成 Diff 报告
+
+```yaml
+step: 5
+skill: skill-self-evolution-enhancer
+trigger: step_4 完成
+timeout: 30s
+depends_on: step_4
+
+input:
+  action: generate_diff_report
+  original: "${user.skill_path}"
+  improved: "${step_3.result.improved_skill}"
+
+output:
+  result_field: "diff_report"
+  metadata:
+    - lines_added
+    - lines_removed
+    - files_changed
+```
+
+## 数据流转
+
+```yaml
+data_flow:
+  step_1_to_step_2:
+    issues_found → context.issues
+    skill_name → context.skill_name
+
+  step_2_to_step_3:
+    applicable_patterns → improvements
+    priority_order → implementation_sequence
+
+  step_3_to_step_4:
+    improved_skill → improved_skill
+
+  step_4_to_step_5:
+    validation_report → validation_status
+```
+
+## 异常处理
+
+```yaml
+error_handling:
+  step_1_failure:
+    strategy: fallback
+    fallback_action: manual_review
+    message: "自动分析失败，请手动描述待优化问题"
+
+  step_3_failure:
+    strategy: retry
+    max_attempts: 2
+    message: "优化版本生成失败，尝试简化改进"
+
+  step_4_failure:
+    strategy: skip_optional
+    continue_with_warning: true
+    message: "验证未通过，请人工审核改进版本"
+```
+
+## 适用场景
+
+- Skill 运行报错需要修复
+- 现有 Skill 功能需要扩展
+- Skill 文档不完善需要补充
+- 多个 Skill 需要整合优化
+
+## 触发词示例
+
+```
+"优化这个Skill"
+"这个skill有问题，帮我修复"
+"自进化这个技能"
+"改进skills/openclaw-skill-compounder/"
+```

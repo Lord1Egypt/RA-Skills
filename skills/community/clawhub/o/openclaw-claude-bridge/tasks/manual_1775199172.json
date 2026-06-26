@@ -1,0 +1,8 @@
+{
+  "id": "manual_1775199172",
+  "prompt": "分析解构 OpenClaw 新版本的架构和代码实现。检查 ~/.openclaw/workspace/ 目录下的核心代码结构，分析架构设计模式，提取关键模块，识别与之前版本的差异和新功能。生成详细架构分析报告。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T14:52:52.607003",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/manual_1775199172.json"
+}

@@ -1,0 +1,53 @@
+﻿{
+    "description":  "OpenClaw双重清理系统 v1.3.0 - 按杜要求优化的智能清理策略:>10个文件触发,只在周一9:00自动清理,不干扰研究专注度",
+    "skills":  {
+                   "platforms":  [
+                                     "windows",
+                                     "macos",
+                                     "linux"
+                                 ],
+                   "triggers":  [
+                                    "清理旧会话",
+                                    "清理会话",
+                                    "清理会话缓存",
+                                    "清理旧会话和缓存",
+                                    "双重清理",
+                                    "openclaw dual cleanup"
+                                ],
+                   "language":  "zh-CN",
+                   "tags":  [
+                                "system",
+                                "maintenance",
+                                "cleanup", 
+                                "automation",
+                                "optimization",
+                                "chinese",
+                                "dual-cleanup",
+                                "smart-maintenance",
+                                "周一清理",
+                                "网关补偿",
+                                "杜优化"
+                            ]
+               },
+    "version":  "1.3.0",
+    "author":  "ltap266",
+    "engines":  {
+                    "openclaw":  "\u003e=2026.3.0"
+                },
+    "name":  "openclaw-dual-cleanup",
+    "keywords":  [
+                     "openclaw",
+                     "cleanup",
+                     "sessions",
+                     "maintenance",
+                     "optimization",
+                     "automation",
+                     "chinese",
+                     "triple-protection",
+                     "monday-cleanup",
+                     "gateway-hook",
+                     "smart-trigger"
+                 ],
+    "readme":  "SKILL.md",
+    "license":  "MIT"
+}

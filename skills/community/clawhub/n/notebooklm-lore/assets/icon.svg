@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Lore icon">
+  <rect width="128" height="128" rx="24" fill="#2563EB"/>
+  <path d="M34 28h48c8.8 0 16 7.2 16 16v56H46c-6.6 0-12-5.4-12-12V28z" fill="#FFFFFF"/>
+  <path d="M46 28h40c6.6 0 12 5.4 12 12v60H46V28z" fill="#DBEAFE"/>
+  <path d="M52 50h34M52 64h34M52 78h24" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="34" cy="88" r="10" fill="#FACC15"/>
+</svg>

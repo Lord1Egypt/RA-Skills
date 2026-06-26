@@ -1,0 +1,19 @@
+{
+  "name": "ocas-mentor",
+  "version": "2.3.0",
+  "description": "Mentor: self-improving orchestration and evaluation engine. Manages long-running multi-skill workflows, analyzes journals from all skills, evaluates champion vs challenger variants, and proposes skill improvements to Forge. Trigger phrases: 'manage this project', 'coordinate a multi-step analysis', 'evaluate skill performance', 'run a heartbeat', 'how are skills performing', 'update mentor'. Do not use for web research (use Sift), skill building (use Forge), or user communication (use Dispatch).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-mentor/",
+      "~/openclaw/journals/ocas-mentor/",
+      "~/openclaw/journals/*/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-mentor/",
+      "~/openclaw/journals/ocas-mentor/",
+      "~/openclaw/data/ocas-forge/intake/"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "memory-dream",
+  "version": "1.1.0",
+  "description": "Auto-consolidates agent memory files after sessions — like REM sleep for AI agents",
+  "type": "module",
+  "main": "./index.ts",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "memory",
+    "agent"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "openclaw": "^2026.3.23-2",
+    "typescript": "^6.0.2"
+  }
+}

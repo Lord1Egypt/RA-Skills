@@ -1,35 +1,38 @@
 ---
-name: "Openclaw Master Skills Clawhub Pkg"
-description: "A curated collection of 1709+ best OpenClaw skills — AI tools, productivity, marketing, frontend, mobile, backend, DevOps and more. Weekly updated by MyClaw...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-master-skills"
-sourceUrl: "https://clawhub.ai/skills/openclaw-master-skills"
+name: openclaw-master-skills
+description: "A curated collection of 2009+ best OpenClaw skills — AI tools, productivity, marketing, frontend, mobile, backend, DevOps and more. Weekly updated by MyClaw.ai — Powered by MyClaw.ai"
+metadata:
+  openclaw: {}
 ---
 
-# Openclaw Master Skills Clawhub Pkg
+# OpenClaw Master Skills
 
-> A curated collection of 1709+ best OpenClaw skills — AI tools, productivity, marketing, frontend, mobile, backend, DevOps and more. Weekly updated by MyClaw....
+A curated, weekly-updated collection of **11211+ best skills** for OpenClaw agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-master-skills`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-master-skills](https://clawhub.ai/skills/openclaw-master-skills)
+## Categories
 
-## Overview
+- 🤖 AI & LLM Tools — Gemini, OpenAI, Whisper, image generation, browser automation
+- 🔍 Search & Web — Brave, Tavily, Baidu, DuckDuckGo, Firecrawl, scraping
+- 📋 Productivity & Office — Notion, Obsidian, Trello, Calendar, PDF, Excel, Word
+- 💻 Development & DevOps — GitHub, Docker, React, Vue, Next.js, Python, Git
+- 📈 Marketing & Growth — SEO, copywriting, CRO, email sequences, analytics
+- 🎨 Media & Creative — YouTube, video, audio, art generation
+- 💰 Finance & Trading — Stock analysis, Yahoo Finance, crypto, trading
+- 💬 Communication — Slack, Discord, Telegram, Gmail, Feishu
+- 🏠 Smart Home & IoT — Sonos, Hue, Home Assistant, desktop control
+- 🧠 Memory & Agent — Self-improving, proactive agents, memory management
+- 🔒 Security — Auditing, healthcheck, skill vetting
+- 📊 Data & Analytics — Data analysis, web performance
+- 📱 Social & Content — Twitter/X, Reddit, Xiaohongshu, LinkedIn
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-master-skills
+clawhub install openclaw-master-skills
 ```
+
+## Source
+
+- GitHub: https://github.com/LeoYeAI/openclaw-master-skills
+- ClawHub: https://clawhub.com/skills/openclaw-master-skills
+- Powered by: https://myclaw.ai

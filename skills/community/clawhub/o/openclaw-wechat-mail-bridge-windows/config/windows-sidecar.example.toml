@@ -1,0 +1,35 @@
+sidecar_id = "winbox-01"
+adapter = "mock"
+allow_groups = ["Ops Group", "Mail Group"]
+watch_poll_interval_sec = 1.0
+
+[bridge]
+base_url = "http://127.0.0.1:8787"
+shared_secret = "dev-bridge-secret"
+auth_mode = "bearer" # bearer | hmac
+request_timeout_sec = 10
+claim_batch_size = 5
+send_poll_interval_sec = 2
+heartbeat_interval_sec = 15
+
+[webhook_proxy]
+enabled = false
+host = "127.0.0.1"
+port = 28761
+shared_secret = "dev-bridge-secret"
+inbound_secret = "local-webhook-secret" # set "" to disable local inbound secret checks
+
+[diagnostics]
+enabled = true
+host = "127.0.0.1"
+port = 28762
+
+[visual]
+enabled = true
+mode = "auto" # off | ocr | vlm | auto
+sample_interval_sec = 2
+ocr_lang = "chi_sim+eng"
+ocr_max_chars = 160
+vlm_base_url = "https://api.openai.com/v1"
+vlm_api_key = "" # when empty and base_url is OpenAI, VLM fallback is skipped
+vlm_model = "gpt-4.1-mini"

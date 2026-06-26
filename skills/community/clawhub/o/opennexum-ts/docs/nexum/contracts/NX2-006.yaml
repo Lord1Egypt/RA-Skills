@@ -1,0 +1,52 @@
+id: NX2-006
+name: "发布校验 + package.json 版本 + bin 入口"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - package.json
+    - packages/cli/package.json
+    - packages/core/package.json
+    - packages/spawn/package.json
+    - packages/prompts/package.json
+    - packages/notify/package.json
+    - .npmignore
+  boundaries:
+    - packages/cli/src/
+    - packages/core/src/
+    - SKILL.md
+    - README.md
+  conflicts_with: []
+
+deliverables:
+  - "packages/cli/package.json：bin 字段设置 'nexum': './dist/index.js'；version 改为 '0.1.0'；engines 字段 node >= 20"
+  - "所有 packages 的 package.json：version 统一为 '0.1.0'；确保 main/exports 指向 dist/"
+  - ".npmignore：排除 src/、**/__tests__/、nexum/、*.md（除 README.md）、.turbo/"
+  - "根 package.json：新增 'release' script：pnpm build && pnpm test && echo Release ready"
+  - "pnpm build 全量通过；node packages/cli/dist/index.js --help 输出正常；nexum init 在临时目录可成功运行"
+
+eval_strategy:
+  type: integration
+  criteria:
+    - id: C1
+      desc: "packages/cli/package.json 有正确的 bin 入口指向 dist/index.js"
+      method: "review: 检查 bin 字段"
+      threshold: pass
+    - id: C2
+      desc: "所有 packages 版本统一为 0.1.0"
+      method: "review: 检查各 package.json version 字段"
+      threshold: pass
+    - id: C3
+      desc: "node packages/cli/dist/index.js --help 输出包含所有命令"
+      method: "integration: 运行命令验证输出"
+      threshold: pass
+    - id: C4
+      desc: "pnpm build 全量通过"
+      method: "integration: 运行 pnpm build"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX2-005]

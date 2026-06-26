@@ -1,0 +1,49 @@
+{
+  "skill_name": "open-source-license",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我在做一个给企业客户集成的开源 TypeScript SDK，希望尽可能降低采用门槛，但团队也担心专利授权问题。请帮我在 MIT、Apache-2.0 和 BSD-3-Clause 之间做选择，并说明理由。如果你认为最合适的不是这三个，也请明确说出来。",
+      "expected_output": "给出面向企业 SDK 的许可证推荐，并解释专利授权、采用门槛和保留义务之间的取舍。",
+      "files": [],
+      "expectations": [
+        "输出明确比较 MIT、Apache-2.0 和 BSD-3-Clause",
+        "输出提到 Apache-2.0 的显式专利授权价值",
+        "输出给出最终推荐而不是只做泛泛介绍"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "请帮我 review 一个仓库的开源许可证风险：项目主许可证想用 GPL-2.0，但我们打算直接集成一个 Apache-2.0 的依赖。请说明这样做有没有兼容性问题，风险等级是什么，以及如果要继续推进有哪些替代方案。",
+      "expected_output": "识别 Apache-2.0 与 GPL-2.0 的兼容性冲突，说明风险等级并给出替代路径。",
+      "files": [],
+      "expectations": [
+        "输出指出 Apache-2.0 与 GPL-2.0 不兼容",
+        "输出包含风险分级或严重程度判断",
+        "输出给出可执行的替代方案，如改用 GPL-3.0、替换依赖或调整边界"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我想把新项目发布成木兰宽松许可证第 2 版。请先用简洁语言解释它和 Apache-2.0、MIT 的关键区别，然后告诉我落地时需要做哪些事。如果可以，请顺便给我 LICENSE 文件和源文件头该怎么准备。",
+      "expected_output": "解释 Mulan PSL v2 的关键特征、与 MIT 和 Apache-2.0 的差异，并给出官方应用步骤与文件准备建议。",
+      "files": [],
+      "expectations": [
+        "输出提到 Mulan PSL v2 是宽松许可证且包含显式专利授权",
+        "输出提到中英文文本具有同等法律效力且中文优先",
+        "输出给出 LICENSE 文件与源文件头的准备方式"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "请帮我生成 Apache-2.0 项目的 LICENSE 和 NOTICE 准备说明。我不是要你发明新文本，而是要你明确告诉我应该用什么正式文本、哪些占位符能替换、NOTICE 在什么情况下必须保留。",
+      "expected_output": "基于 canonical text 说明 LICENSE 与 NOTICE 的生成方式，强调不能改写标准许可证正文，并说明 Apache-2.0 NOTICE 保留要求。",
+      "files": [],
+      "expectations": [
+        "输出强调必须使用标准 canonical license text",
+        "输出说明只应替换年份、版权人等占位符",
+        "输出说明 Apache-2.0 依赖中的 NOTICE 文件在适用时必须保留"
+      ]
+    }
+  ]
+}

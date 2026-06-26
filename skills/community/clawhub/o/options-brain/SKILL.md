@@ -1,35 +1,18 @@
 ---
-name: "Options Trading Brain"
-description: "Deep analysis of unusual options activity and walls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/options-brain"
-sourceUrl: "https://clawhub.ai/skills/options-brain"
+name: options-brain
+description: Deep analysis of unusual options activity and walls.
+compatibility: OpenClaw, Zo Computer
+metadata:
+  author: ssidharHubble
 ---
-
 # Options Trading Brain
 
-> Deep analysis of unusual options activity and walls.
+Deep analysis of unusual options activity and walls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/options-brain`
-- **Source URL:** [https://clawhub.ai/skills/options-brain](https://clawhub.ai/skills/options-brain)
+## Usage
+This skill connects to the Calls are free for basic health, but premium signals require a 402 payment proof.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/options-brain
+```javascript
+import { execute } from "options-brain";
+const signal = await execute({ ticker: "BTC" });
 ```

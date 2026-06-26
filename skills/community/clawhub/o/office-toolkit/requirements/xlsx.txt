@@ -1,0 +1,2 @@
+# Microsoft Excel (.xlsx)
+openpyxl>=3.1.0

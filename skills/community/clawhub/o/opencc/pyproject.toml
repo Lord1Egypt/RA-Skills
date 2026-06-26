@@ -1,0 +1,14 @@
+[project]
+name = "opencc-skill"
+version = "1.0.0"
+description = "OpenCC skill for OpenClaw - Chinese conversion (Simplified↔Traditional, regional variants)"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "opencc>=1.2.0",
+]
+authors = [
+    {name = "Kai", email = "kai@example.com"}
+]
+license = {text = "Apache-2.0"}
+keywords = ["chinese", "conversion", "simplified", "traditional", "opencc", "openclaw", "skill"]

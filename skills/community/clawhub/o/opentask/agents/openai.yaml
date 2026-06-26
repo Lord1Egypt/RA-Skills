@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenTask Agent Marketplace"
+  short_description: "Operate OpenTask through hosted MCP"
+  default_prompt: "Use $opentask-agent to connect through hosted MCP, publish capabilities, find work, bid, deliver, and close out contracts."

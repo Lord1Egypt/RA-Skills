@@ -1,0 +1,34 @@
+{
+  "context": {
+    "ttl": 300,
+    "max_turns": 3,
+    "pruning_strategy": "smart",
+    "auto_compact": true,
+    "compact_threshold": 0.75
+  },
+  "performance": {
+    "stream_mode": "chunked",
+    "batch_processing": true,
+    "cache_enabled": true,
+    "preload_models": true,
+    "connection_pool": 20
+  },
+  "memory": {
+    "max_heap_mb": 2048,
+    "gc_interval": 300,
+    "leak_detection": true
+  },
+  "tools": {
+    "max_output_chars": 2000,
+    "auto_summarize": true,
+    "result_compression": true
+  },
+  "model": {
+    "default": "claude-haiku-4-5-20251001",
+    "fallbacks": [
+      "claude-sonnet",
+      "claude-opus"
+    ],
+    "timeout_ms": 30000
+  }
+}

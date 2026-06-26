@@ -1,0 +1,19 @@
+name: synthesizer
+purpose: merge parallel findings into a coherent, decision-ready document
+best_for:
+  - synthesis
+  - comparison
+  - drafting conclusions
+avoid_for:
+  - raw source collection
+  - approving own synthesis
+default_model_category: brain
+input_contract:
+  - source memos
+  - target structure
+output_contract:
+  - merged synthesis
+  - gaps
+  - claims_with_support
+reviewer_for:
+  - researcher

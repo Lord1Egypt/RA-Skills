@@ -1,0 +1,10 @@
+{
+  "slug": "openclaw-issue",
+  "name": "OpenClaw Issue Creator",
+  "version": "1.0.0",
+  "summary": "专为 OpenClaw/ClawHub 创建 GitHub Issue - 支持 Skill 申诉、Bug 报告、功能请求，内置模板一键生成。",
+  "category": "productivity",
+  "tags": ["openclaw", "clawhub", "github", "issue", "appeal", "bug-report"],
+  "license": "MIT",
+  "author": "ning"
+}

@@ -1,35 +1,91 @@
----
-name: "Heartbeat Monitor"
-description: "监控邮箱、日历、天气等检查项的最新执行时间，提醒异常并生成状态健康报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-heartbeat-monitor"
-sourceUrl: "https://clawhub.ai/skills/openclaw-heartbeat-monitor"
+# heartbeat-monitor
+
+心跳状态监控技能 - 跟踪检查 AI 记忆/状态的新鲜度与有效性。
+
 ---
 
-# Heartbeat Monitor
+## 📖 描述
 
-> 监控邮箱、日历、天气等检查项的最新执行时间，提醒异常并生成状态健康报告。
+基于 OpenClaw 70 用例中的"心跳状态监控器"设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-heartbeat-monitor`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-heartbeat-monitor](https://clawhub.ai/skills/openclaw-heartbeat-monitor)
+**核心功能：**
+- 记录上次检查时间（邮箱、日历、天气等）
+- 检测超过阈值未检查的项目
+- 主动提醒需要关注的内容
+- 生成健康度报告
 
-## Overview
+---
 
+## 🎯 能力
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 能力 | 说明 |
+|------|------|
+| 状态追踪 | 记录各检查项的最后执行时间 |
+| 阈值告警 | 超过设定时间未检查时提醒 |
+| 健康报告 | 生成监控状态摘要 |
+| 自动修复 | 触发遗漏的检查任务 |
+
+---
+
+## 🚀 使用方法
+
+### 检查状态
+
 ```bash
-hermes skills install clawhub/openclaw-heartbeat-monitor
+openclaw agent --message "检查心跳状态"
 ```
+
+### 生成报告
+
+```bash
+openclaw agent --message "生成心跳健康报告"
+```
+
+---
+
+## 📋 状态文件
+
+`~/.openclaw/workspace/memory/heartbeat-state.json`
+
+```json
+{
+  "lastChecks": {
+    "email": 1703275200,
+    "calendar": 1703260800,
+    "weather": 1703250000,
+    "todo": 1703240000
+  },
+  "thresholds": {
+    "email": 3600,
+    "calendar": 7200,
+    "weather": 14400,
+    "todo": 86400
+  }
+}
+```
+
+---
+
+## ⚙️ 配置参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `email_interval` | 3600 | 邮箱检查间隔（秒） |
+| `calendar_interval` | 7200 | 日历检查间隔 |
+| `weather_interval` | 14400 | 天气检查间隔 |
+| `todo_interval` | 86400 | 待办检查间隔 |
+
+---
+
+## 🔧 依赖
+
+- `cron` - 定时任务调度
+- `message` - 发送提醒
+
+---
+
+## 📝 变更记录
+
+| 日期 | 版本 | 说明 |
+|------|------|------|
+| 2026-03-27 | 1.0.0 | 初始版本 |

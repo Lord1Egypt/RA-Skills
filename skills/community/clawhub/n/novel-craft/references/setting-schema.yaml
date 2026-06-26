@@ -1,0 +1,195 @@
+# 设定条目字段定义
+
+## 通用字段（所有类型共有）
+
+```yaml
+- id: @<type>:<name>         # 唯一ID，格式：@类型:名称
+  name: string                # 显示名称
+  type: string                # 类型：character|faction|item|power|world|custom
+  status: string              # 状态：active|deprecated|revised
+  first_appear: string        # 首次出现：vol-XX/ch-XXX
+  description: string        # 详细描述（支持多行）
+  tags: [string]              # 标签
+  revised_from: string|null   # 修订来源（涟漪修改时记录原条目ID）
+  last_updated: date          # 最后更新日期
+```
+
+## 人物设定 (characters.yaml)
+
+```yaml
+- id: @char:林凡
+  name: 林凡
+  type: character
+  status: active
+  first_appear: vol-01/ch-001
+  description: |
+    青云宗外门弟子，出身寒微却意志坚定。
+    十六岁因意外获得上古残玉，从此踏上修仙之路。
+  attributes:
+    age: 18
+    gender: 男
+    cultivation: 练气三层
+    personality: 坚韧隐忍，外冷内热
+    appearance: 中等身材，面色略显苍白，眼神锐利
+    background: 出身凡人村落，父母早亡，由村长抚养长大
+  abilities:
+    - id: @power:太极剑法
+      proficiency: 初窥门径
+      note: 从残玉中领悟的残缺剑法
+  inventory:
+    - id: @item:残破玉简
+      note: 古墓中发现，上面的符文尚未解读
+  faction: @faction:青云宗
+  relations:
+    - target: @char:苏晴
+      type: 师兄妹
+      note: 同期入门，互有好感
+    - target: @char:叶寒
+      type: 对手
+      note: 同门竞争，叶寒天赋更高但心机深
+  character_arc: |
+    第一卷：从凡人到踏入修仙之门，经历考核、初战、师门争斗
+    第二卷：（待定）
+  tags: [主角, 青云宗, 剑修]
+  revised_from: null
+  last_updated: 2026-01-01
+```
+
+## 势力设定 (factions.yaml)
+
+```yaml
+- id: @faction:青云宗
+  name: 青云宗
+  type: faction
+  status: active
+  first_appear: vol-01/ch-001
+  description: |
+    东域三大宗门之一，以剑道闻名。
+    开山祖师为上古剑仙青云子，传承已逾千年。
+  attributes:
+    rank: 一流宗门
+    location: 东域·青云山脉
+    leader: @char:掌门陆远
+    member_count: "外门三百，内门五十，核心弟子十人"
+    specialty: 剑道
+    allies: [@faction:天机阁]
+    enemies: [@faction:血魔宗]
+  tags: [宗门, 东域, 剑道]
+  revised_from: null
+  last_updated: 2026-01-01
+```
+
+## 物品设定 (items.yaml)
+
+```yaml
+- id: @item:残破玉简
+  name: 残破玉简
+  type: item
+  status: active
+  first_appear: vol-01/ch-003
+  description: |
+    林凡在古墓中发现的残破玉简，材质非金非玉，
+    上面刻着从未见过的符文，触碰时会微微发热。
+  attributes:
+    rarity: 不明
+    owner: @char:林凡
+    origin: 古墓遗迹
+    abilities:
+      - "触碰时微微发热"
+      - "（待揭示）与上古功法有关"
+    limitations:
+      - "符文尚未解读"
+      - "似乎需要特定条件才能激活"
+  related_foreshadows: [fs-001]
+  tags: [道具, 古墓线, 功法线]
+  revised_from: null
+  last_updated: 2026-01-01
+```
+
+## 能力体系设定 (power-system.yaml)
+
+```yaml
+- id: @power:太极剑法
+  name: 太极剑法
+  type: power
+  status: active
+  first_appear: vol-01/ch-005
+  description: |
+    从残破玉简中领悟的残缺剑法，招式看似柔和，
+    实则暗含阴阳转换之理，以柔克刚。
+  attributes:
+    type: 剑法
+    rank: 不明（残缺版疑似地阶）
+    prerequisite: 练气三层以上
+    stages:
+      - name: 初窥门径
+        description: "仅能施展前三式，威力有限"
+      - name: 小成
+        description: "领悟阴阳转换之理，可攻可守"
+      - name: 大成
+        description: "（未知）"
+    current_stage: 初窥门径
+    limitations:
+      - "残缺版，缺失后半段心法"
+      - "消耗灵力较大"
+    side_effects:
+      - "修炼过度可能导致经脉受损"
+  known_by: [@char:林凡]
+  related_items: [@item:残破玉简]
+  tags: [剑法, 残缺功法]
+  revised_from: null
+  last_updated: 2026-01-01
+```
+
+## 世界观设定 (world.yaml)
+
+```yaml
+- id: @world:修炼体系
+  name: 修炼体系
+  type: world
+  status: active
+  first_appear: vol-01/ch-001
+  description: |
+    本世界修炼体系分为九大境界：
+    练气→筑基→金丹→元婴→化神→合体→大乘→渡劫→真仙
+    每个大境界分为初期、中期、后期、巅峰四个小境界。
+  attributes:
+    realms:
+      - name: 练气期
+        stages: [一层~九层]
+        lifespan: "100~150年"
+        note: "凡人踏入修仙的起点"
+      - name: 筑基期
+        stages: [初期, 中期, 后期, 巅峰]
+        lifespan: "200~300年"
+        note: "真正踏入修仙之门"
+    rules:
+      - "修炼需要灵根，灵根品质决定修炼速度上限"
+      - "突破境界有瓶颈，需悟性或机缘"
+      - "越级战斗极为罕见，除非有特殊手段"
+  tags: [世界观, 修炼体系]
+  revised_from: null
+  last_updated: 2026-01-01
+```
+
+## 引用标记语法
+
+正文中引用设定时使用双花括号：
+
+```
+林凡握紧手中的{{@item:残破玉简}}，那温热的触感让他确信，
+这绝非普通之物。他运转{{@power:太极剑法}}的残缺心法，
+试图从玉简中获取更多信息。
+```
+
+渲染后（供阅读的版本）可自动替换为设定摘要或隐藏标记。
+
+## 设定变更触发规则
+
+| 变更类型 | 触发涟漪 | 说明 |
+|---------|---------|------|
+| 新增设定 | 否 | 新增不矛盾，不触发 |
+| 修改设定属性 | 是 | 属性变更可能影响引用该设定的章节 |
+| 删除设定 | 是 | 引用该设定的章节会出现"悬空引用" |
+| 修改设定关系 | 是 | 关系变更可能影响角色互动描写 |
+| 修改世界观规则 | 是 | 影响范围最广，通常触发深度2+的涟漪 |

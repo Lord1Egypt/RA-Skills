@@ -1,0 +1,7 @@
+date,description,merchant,amount,account_number
+2025-01-03,Salary payment,Acme Corp,4200.00,CHK-123456789
+2025-01-05,Whole Foods Market #104,Whole Foods,-128.67,CHK-123456789
+2025-01-06,Starbucks Store 879,Starbucks,-6.28,CHK-123456789
+2025-01-07,Underground Bistro dinner,Underground Bistro,-82.50,CHK-123456789
+2025-01-11,City Utilities Bill,City Utilities,-72.33,CHK-123456789
+2025-01-12,Metro Transit pass,Metro Transit,-54.00,CHK-123456789

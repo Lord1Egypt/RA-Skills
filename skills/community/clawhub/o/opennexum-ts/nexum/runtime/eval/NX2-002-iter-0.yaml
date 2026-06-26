@@ -1,0 +1,17 @@
+verdict: pass
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "实测在临时新目录首次执行 `node packages/cli/dist/index.js init --project <tmp>` 退出码为 0，并输出创建了 `nexum/active-tasks.json`、`nexum/config.json`、`docs/nexum/contracts/.gitkeep`、`nexum/runtime/eval/.gitkeep`；源码 [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L45) 到 [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L68) 也明确写入这四个目标路径。"
+      - id: C2
+        result: pass
+        evidence: "同一临时目录第二次执行 `init` 退出码仍为 0，stdout 为 `nexum already initialized, nothing to do.`；四个目标文件在两次运行前后的内容完全一致，`mtimeMs` 也未变化。幂等逻辑对应 [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L26) 到 [packages/cli/src/commands/init.ts](/Users/tongyaojin/code/nexum-ts/packages/cli/src/commands/init.ts#L42) 的 `writeIfNotExists` / `ensureGitkeep`。"
+      - id: C3
+        result: pass
+        evidence: "`resolveAgentCli` 在实现中直接返回 `config.agents?.[agentId]?.cli ?? \"codex\"`，见 [packages/core/src/config.ts](/Users/tongyaojin/code/nexum-ts/packages/core/src/config.ts#L35)；单测 [packages/core/src/__tests__/config.test.ts](/Users/tongyaojin/code/nexum-ts/packages/core/src/__tests__/config.test.ts#L47) 到 [packages/core/src/__tests__/config.test.ts](/Users/tongyaojin/code/nexum-ts/packages/core/src/__tests__/config.test.ts#L54) 已覆盖未知 agentId 回退到 `codex`，并且实际运行 `packages/core/dist/config.js` 时对 `unknown-agent` 输出也是 `codex`。"
+      - id: C4
+        result: pass
+        evidence: "按要求实际执行 `pnpm --filter @nexum/core build`，命令退出码为 0，输出 `> @nexum/core@0.0.0 build /Users/tongyaojin/code/nexum-ts/packages/core`，随后运行 `../prompts/node_modules/.bin/tsc -p tsconfig.json` 成功结束，无编译报错。"
+feedback: "四项验收标准均满足，本次提交可判定为 pass。补充观察：`nexum init` 当前写入的默认 `config.json` 只包含 `codex` 和 `claude` 两个 agent，未包含任务描述里提到的 `eval` 默认映射；这不影响本次四个 criteria，但建议后续与契约文本保持一致。"

@@ -1,0 +1,55 @@
+<!--
+  Layout: title
+  标题页 — 首页，主标题 + 副标题 + 可选元信息
+  Agent 替换 {{...}} 占位符。
+  禁止在 .title-content 外层额外包裹带 border/shadow/background 的卡片容器。
+  标题页的内容直接落在 .slide 背景上，不需要"卡片"装饰。
+
+  🔴 元信息红线（title-meta 区域）：
+  - 仅填写用户明确提供的作者/机构名称和日期
+  - 如果用户没有提供作者或日期 → 删除整个 .title-meta div，不要留空
+  - ❌ 禁止填入：素材来源（"基于 N 份材料生成"）、生成日期、文件名、
+    工作上下文、受众描述、写作策略等 Agent 工作信息
+  - 这些是 Agent 的内部上下文，不是给观众看的内容
+-->
+<section class="slide slide--title" data-slide="{{N}}">
+  <div class="title-content">
+    <h1 class="title-main">{{主标题}}</h1>
+    <p class="title-sub">{{副标题}}</p>
+    <!-- ⚠️ 如果用户未提供作者/日期，删除整个 title-meta div -->
+    <div class="title-meta">
+      <span class="title-author">{{作者/机构，用户未提供则删除整个 title-meta}}</span>
+      <span class="title-date">{{日期，用户未提供则删除整个 title-meta}}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+.slide--title {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slide--title .title-content {
+  max-width: 92%;  /* 放宽：中文标题在 80% 宽度下容易换行 */
+}
+.slide--title .title-main {
+  font-size: var(--font-size-title);
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.15;
+}
+.slide--title .title-sub {
+  font-size: var(--font-size-subheading);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 400;
+}
+.slide--title .title-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+</style>

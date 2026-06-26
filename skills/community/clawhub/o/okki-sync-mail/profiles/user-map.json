@@ -1,0 +1,14 @@
+{
+  "_comment": "企业微信用户 ID → 邮箱 profile 映射",
+  "_usage": "NANA 根据企业微信 sender ID 自动查找对应的邮箱 profile",
+  "mappings": [
+    {
+      "wecom_userid": "example_user_id",
+      "profile": "default",
+      "name": "公共账号",
+      "email": "user@example.com",
+      "note": "默认账号，不指定 profile 时使用 .env"
+    }
+  ],
+  "_instructions": "添加新业务员：1) 在 profiles/ 创建 <name>.env 2) 在这里添加映射"
+}

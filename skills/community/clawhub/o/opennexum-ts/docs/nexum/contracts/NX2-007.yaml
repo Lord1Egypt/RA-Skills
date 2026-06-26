@@ -1,0 +1,50 @@
+id: NX2-007
+name: "nexum callback 命令 + nexum init 写入 CLAUDE.md 回调协议"
+type: coding
+created_at: "2026-03-29T14:00:00Z"
+
+scope:
+  files:
+    - packages/cli/src/commands/callback.ts
+    - packages/cli/src/commands/init.ts
+    - packages/cli/src/index.ts
+    - packages/core/src/types.ts
+  boundaries:
+    - packages/core/src/config.ts
+    - packages/core/src/tasks.ts
+    - packages/notify/
+    - packages/spawn/
+    - packages/prompts/
+  conflicts_with: []
+
+deliverables:
+  - "packages/cli/src/commands/callback.ts：nexum callback <taskId> 命令，执行：1）读取 active-tasks.json 找到任务；2）将 status 改为 'generator_done'（新增 TaskStatus.GeneratorDone = 'generator_done'）；3）通过 @nexum/notify 的 sendMessage 发 Telegram 通知给编排者，消息格式：'✅ Generator 完成\\n━━━━━━━━━━━━━━━\\n📋 任务内容: <name>\\n🆔 任务ID: <id>\\n💬 等待编排者触发 eval'；4）输出 JSON { ok: true, taskId, status: 'generator_done' }"
+  - "packages/core/src/types.ts：TaskStatus 枚举新增 GeneratorDone = 'generator_done'"
+  - "packages/cli/src/commands/init.ts：init 命令完成文件创建后，额外写入/更新 CLAUDE.md（或 AGENTS.md，若存在则追加，若不存在则创建），在文件末尾追加 Nexum 回调协议区块（使用 <!-- nexum:callback:start --> 和 <!-- nexum:callback:end --> 标记，避免重复写入）。内容为：每完成一个 nexum 任务后必须执行 `nexum callback <taskId> --project <projectDir>`，说明这是触发评估流程和 Telegram 通知的必要步骤，不可跳过"
+  - "packages/cli/src/index.ts：注册 callback 命令"
+  - "pnpm --filter @nexum/cli build 通过"
+
+eval_strategy:
+  type: integration
+  criteria:
+    - id: C1
+      desc: "nexum callback <taskId> 将任务 status 更新为 generator_done"
+      method: "integration: 构造一个 running 状态的测试任务，运行 callback，验证 active-tasks.json 中 status 变为 generator_done"
+      threshold: pass
+    - id: C2
+      desc: "TaskStatus.GeneratorDone = 'generator_done' 已定义"
+      method: "review: 检查 types.ts"
+      threshold: pass
+    - id: C3
+      desc: "nexum init 写入 CLAUDE.md 包含 nexum:callback 标记区块，二次运行不重复写入"
+      method: "integration: 运行 init 两次，验证标记区块只出现一次"
+      threshold: pass
+    - id: C4
+      desc: "pnpm --filter @nexum/cli build 通过"
+      method: "integration: 运行构建"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: []

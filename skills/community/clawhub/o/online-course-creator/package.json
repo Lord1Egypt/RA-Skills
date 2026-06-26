@@ -1,0 +1,20 @@
+{
+  "name": "online-course-creator",
+  "version": "1.0.0",
+  "description": "AI 驱动的课程创作技能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "online-course",
+    "course-creator",
+    "education",
+    "e-learning"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

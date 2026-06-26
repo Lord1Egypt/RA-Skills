@@ -1,0 +1,49 @@
+{
+  "name": "obsidian-master-skill",
+  "version": "1.0.0",
+  "description": "Skill completa para controle do Obsidian via API REST - CRUD de notas, Canvas, Busca, Templates, Dataview, Zettelkasten e Muito Mais",
+  "type": "module",
+  "main": "SKILL.md",
+  "author": "Claude Code",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "obsidian",
+    "pkm",
+    "knowledge-management",
+    "zettelkasten",
+    "second-brain",
+    "note-taking",
+    "canvas",
+    "dataview",
+    "templates"
+  ],
+  "categories": [
+    "productivity",
+    "knowledge-management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/obsidian-master"
+  },
+  "config": {
+    "required_env": [
+      "OBSIDIAN_API_KEY",
+      "OBSIDIAN_URL"
+    ],
+    "optional_env": [
+      "OBSIDIAN_VAULT",
+      "OBSIDIAN_INBOX",
+      "OBSIDIAN_DAILY",
+      "OBSIDIAN_TEMPLATES",
+      "OBSIDIAN_CANVAS"
+    ]
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

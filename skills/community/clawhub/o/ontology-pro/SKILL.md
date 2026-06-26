@@ -1,35 +1,193 @@
----
-name: "ontology-pro"
-description: "基于文本构建并持续更新知识图谱，支持多步推理和因果分析，输出可执行的最优策略与行动建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ontology-pro"
-sourceUrl: "https://clawhub.ai/skills/ontology-pro"
+# ontology-pro — 认知本体引擎技能
+
+> 一个具备"知识建模 + 推理 + 决策输出"的认知引擎，AI Agent 的认知中枢插件。
+
 ---
 
-# ontology-pro
+## 触发条件
 
-> 基于文本构建并持续更新知识图谱，支持多步推理和因果分析，输出可执行的最优策略与行动建议。
+当用户的请求涉及以下场景时，自动加载此技能：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ontology-pro`
-- **Source URL:** [https://clawhub.ai/skills/ontology-pro](https://clawhub.ai/skills/ontology-pro)
+1. **知识建模**：需要从文本中提取实体、概念、关系，构建知识图谱
+2. **深度分析**：涉及因果推理、变量识别、路径探索等认知推理
+3. **决策支持**：需要基于分析生成可执行策略（最优路径 + 风险 + 行动建议）
+4. **持续学习**：需要跨会话积累知识、增量更新认知模型
+5. **领域本体**：需要为特定领域构建专业化的知识体系（医疗、能源、AI 等）
+6. **显式触发**：用户提及 "ontology"、"知识图谱"、"认知建模"、"推理"、"本体" 等关键词
 
-## Overview
+---
 
+## 四大核心特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ontology-pro
+| 特性 | 说明 |
+|------|------|
+| 🧠 Cognitive Graph | 从输入中抽取实体-概念-关系三元组，构建动态知识图谱 |
+| 🔁 Dynamic Memory | 持久化存储知识图谱，跨会话持续积累，越用越懂 |
+| 🔍 Reasoning Engine | 多步推理：因果分析 → 变量识别 → 路径探索，输出推理链 |
+| 🎯 Strategy Output | 推理结果映射为可执行策略：最优路径 + 风险点 + 行动建议 |
+
+---
+
+## 工作流（Workflow）
+
+### 命令映射
+
+用户可以通过自然语言触发以下能力，AI 根据意图自动路由：
+
+| 用户意图 | 对应命令 | 参考文档 |
+|----------|---------|---------|
+| "分析这段内容"、"提取关键概念"、"构建知识图谱" | `analyze` | `references/cognitive-graph.md` |
+| "深入推理"、"分析因果关系"、"评估路径" | `think` | `references/reasoning-engine.md` |
+| "给我决策建议"、"应该怎么做"、"策略分析" | `strategy` | `references/strategy-output.md` |
+| "记住这个"、"查看已学知识"、"更新记忆" | `memory` | `references/memory-protocol.md` |
+
+### 完整流程
+
 ```
+输入 → analyze（知识抽取）→ graph（图谱构建/更新）→ think（推理）→ strategy（决策输出）→ memory（持久化）
+```
+
+#### Step 1: ANALYZE — 认知建模
+
+1. 接收用户输入（文本、文档、对话）
+2. 使用 `references/cognitive-graph.md` 中的协议进行三元组抽取
+3. 抽取结果：实体列表 + 关系列表 + 三元组集合
+4. 输出格式：结构化 JSON
+
+#### Step 2: GRAPH — 图谱构建/更新
+
+1. 如果是首次分析：创建新图谱
+2. 如果已有历史图谱（通过 memory 协议加载）：增量更新
+3. 去重合并：相同实体合并属性，新增关系追加
+4. 保存到记忆层
+5. 可选：使用 `scripts/graph_visualize.py` 生成 Mermaid 可视化
+
+#### Step 3: THINK — 推理
+
+1. 加载当前知识图谱作为上下文
+2. 使用 `references/reasoning-engine.md` 中的推理模板
+3. 执行多步推理：
+   - 因果关系识别
+   - 关键变量提取
+   - 潜在路径探索
+4. 输出推理链（可追溯的推理过程）
+
+#### Step 4: STRATEGY — 决策输出
+
+1. 基于推理结果，使用 `references/strategy-output.md` 中的模板
+2. 生成可执行策略：
+   - 最优路径（推荐方案）
+   - 风险点（潜在问题）
+   - 行动建议（具体步骤）
+3. 策略分级：P0 紧急 / P1 重要 / P2 可选
+
+#### Step 5: MEMORY — 持久化
+
+1. 使用 `references/memory-protocol.md` 中的协议
+2. 将本次分析的增量知识保存到持久存储
+3. 更新图谱版本号和变更日志
+4. 下次会话可加载历史知识继续推理
+
+---
+
+## 知识图谱数据格式
+
+图谱以 JSON 格式存储，核心结构如下：
+
+```json
+{
+  "version": "1.0.0",
+  "domain": "general",
+  "updated_at": "2026-03-30T16:00:00+08:00",
+  "entities": [
+    {
+      "id": "e001",
+      "name": "储能系统",
+      "type": "concept",
+      "attributes": { "category": "能源", "aliases": ["ESS", "储能"] }
+    }
+  ],
+  "relations": [
+    {
+      "source": "e001",
+      "target": "e002",
+      "type": "includes",
+      "weight": 0.8,
+      "evidence": "储能系统包含电池管理系统"
+    }
+  ],
+  "metadata": {
+    "total_entities": 42,
+    "total_relations": 67,
+    "sessions_analyzed": 8
+  }
+}
+```
+
+---
+
+## 参考文档
+
+| 文件 | 用途 |
+|------|------|
+| `references/cognitive-graph.md` | 认知图谱构建协议：三元组抽取规则、实体类型分类、关系类型定义 |
+| `references/reasoning-engine.md` | 推理引擎 prompt 模板：因果分析、变量识别、路径探索、推理链输出 |
+| `references/strategy-output.md` | 决策输出模板：策略生成、风险评估、行动项格式化 |
+| `references/memory-protocol.md` | 持久记忆协议：存储格式、增量更新、上下文注入、版本管理 |
+
+## 脚本工具
+
+| 文件 | 用途 |
+|------|------|
+| `scripts/graph_visualize.py` | JSON 图谱 → Mermaid 图生成（可渲染为可视化图谱） |
+| `scripts/memory_manager.py` | 知识持久化管理：创建/加载/更新/查询图谱、会话历史管理 |
+
+---
+
+## 使用示例
+
+### 示例 1：领域知识建模
+
+```
+用户: 帮我梳理一下储能产业链的知识结构
+
+AI: 好的，我来对储能产业链进行认知建模。
+
+[analyze] 正在抽取实体和关系...
+  实体: 储能电池、BMS、PCS、EMS、锂电池、液流电池、压缩空气储能...
+  关系: 储能系统-包含-BMS, 储能系统-包含-PCS, 锂电池-属于-储能电池...
+
+[graph] 知识图谱已构建，包含 23 个实体、34 条关系。
+
+[think] 基于图谱进行产业链推理...
+  因果链: 政策补贴 → 市场需求 ↑ → 产能扩张 → 价格下降 → 渗透率 ↑
+  关键变量: 电池成本、政策力度、技术迭代速度
+
+[strategy] 决策建议:
+  P0: 关注磷酸铁锂成本曲线，已进入下降通道
+  P1: 液流电池在长时储能领域有结构性机会
+  P2: 压缩空气储能适合大规模电网侧应用
+```
+
+### 示例 2：持续学习
+
+```
+用户: 记住，浙江的电力现货市场规则是日前+实时两阶段
+
+AI: [memory] 已更新知识图谱：
+  + 实体: 浙江电力现货市场
+  + 关系: 浙江-采用-两阶段现货(日前+实时)
+  + 属性: market_type=spot, region=浙江, phases=[日前, 实时]
+
+  当前图谱: 45 实体, 72 关系, 10 次分析记录
+```
+
+---
+
+## 设计哲学
+
+1. **推理 > 检索**：不只是搜索已有知识，而是能进行多步推理，发现隐含关系
+2. **记忆 > 遗忘**：每次交互的知识都持久化积累，避免重复分析
+3. **决策 > 分析**：最终目标是给出可执行策略，而非停留在分析层面
+4. **轻量 > 重量**：JSON 存储 + Mermaid 可视化，无需外部数据库依赖
+5. **透明 > 黑箱**：推理链完整可追溯，每个结论都有证据支撑

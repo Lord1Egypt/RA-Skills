@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-history-viewer",
+  "version": "1.1.1",
+  "description": "Web-based viewer for browsing and viewing OpenClaw chat history with modern chat-style interface",
+  "author": "lengyhua",
+  "license": "MIT",
+  "keywords": ["openclaw", "history", "chat", "viewer", "skill"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "changelog": "v1.1.1: 新增刷新按钮（保持阅读位置），添加 favicon 图标，优化界面布局"
+}

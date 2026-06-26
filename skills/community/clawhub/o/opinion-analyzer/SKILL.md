@@ -1,35 +1,106 @@
 ---
-name: "Opinion Analyzer — 多视角舆情分析助手"
-description: "多视角舆情分析助手。当用户需要分析某个话题/事件/人物/品牌的舆情时使用。 参考 BettaFish 多 Agent 协作机制，从多个视角还原舆情原貌，打破信息茧房，输出结构化分析报告。 触发词：舆情分析、话题分析、品牌声誉、网络讨论、分析XX事件、XX话题怎么看、公众对XX的看法"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, opinion, research, sentiment]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opinion-analyzer"
-sourceUrl: "https://clawhub.ai/skills/opinion-analyzer"
+name: opinion-analyzer
+description: >
+  多视角舆情分析助手。当用户需要分析某个话题/事件/人物/品牌的舆情时使用。
+  参考 BettaFish 多 Agent 协作机制，从多个视角还原舆情原貌，打破信息茧房，输出结构化分析报告。
+  触发词：舆情分析、话题分析、品牌声誉、网络讨论、分析XX事件、XX话题怎么看、公众对XX的看法
+author: antonia-sz
+version: 1.0.0
 ---
 
 # Opinion Analyzer — 多视角舆情分析助手
 
-> 多视角舆情分析助手。当用户需要分析某个话题/事件/人物/品牌的舆情时使用。 参考 BettaFish 多 Agent 协作机制，从多个视角还原舆情原貌，打破信息茧房，输出结构化分析报告。 触发词：舆情分析、话题分析、品牌声誉、网络讨论、分析XX事件、XX话题怎么看、公众对XX的看法
+灵感来源：[BettaFish/微舆](https://github.com/666ghj/BettaFish) ⭐ trending
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opinion-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/opinion-analyzer](https://clawhub.ai/skills/opinion-analyzer)
+输入一个话题或事件，获得多视角的深度舆情分析报告，打破信息茧房。
 
-## Overview
+---
 
+## 分析架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opinion-analyzer
+参考 BettaFish 的多 Agent 协作机制，本 skill 模拟以下四个分析维度：
+
+### 🔍 Query Agent — 广度信息搜索
+搜索该话题在各平台的公开讨论，收集不同来源的信息
+
+### 📊 Insight Agent — 深度模式识别
+识别情感倾向、核心争议点、关键意见领袖观点
+
+### 🗣️ Forum Engine — 多视角碰撞
+模拟不同立场（支持/反对/中立/专业人士）的观点，通过"论坛辩论"揭示被忽视的角度
+
+### 📝 Report Agent — 结构化报告生成
+整合多角度分析，生成可操作的洞察报告
+
+---
+
+## 使用方式
+
+直接说出你想分析的话题：
+> "分析一下'AI替代程序员'这个话题的舆情"
+> "分析某品牌最近的品牌声誉"
+> "XX事件公众怎么看"
+
+---
+
+## 执行流程
+
+收到分析请求后，执行以下步骤：
+
+### Step 1：广度搜索（Query Agent 模式）
+用 web 搜索（或 EdgeBrowser_Web_Search skill）搜索：
+- `{话题} 讨论`、`{话题} 评论`、`{话题} 争议`
+- 覆盖：新闻媒体、社交媒体评论、专业论坛
+- 收集 10-15 个代表性观点
+
+### Step 2：情感与立场分析（Insight Agent 模式）
+对收集的信息进行：
+- **情感倾向分布**：正面/负面/中立各占比（估算）
+- **核心争议点**：提炼 3-5 个主要分歧
+- **意见领袖观点**：识别有代表性的声音
+
+### Step 3：多视角论坛（Forum Engine 模式）
+模拟 4 种立场进行观点碰撞：
+- 🔴 **反对方**：核心反对理由、情感诉求
+- 🟢 **支持方**：核心支持理由、逻辑基础
+- 🟡 **中立观察者**：客观分析、被双方忽视的事实
+- 🔵 **领域专家**：专业视角下的评估
+
+### Step 4：综合报告（Report Agent 模式）
+输出结构化报告：
+
 ```
+## 📊 {话题} 舆情分析报告
+
+### 一句话概括
+{核心结论}
+
+### 情感分布
+正面 ██████░░░░ 60% | 负面 ████░░░░░░ 40%
+
+### 核心争议
+1. {争议点1}：支持方认为...，反对方认为...
+2. {争议点2}：...
+
+### 各立场观点
+🔴 反对声音：...
+🟢 支持声音：...
+🟡 中立视角：...
+🔵 专业评估：...
+
+### 被忽视的角度
+{论坛碰撞中发现的非主流但有价值的观点}
+
+### 趋势预判
+{基于当前舆情走向的发展预测}
+
+### 建议
+{如果你是相关方，可以采取的行动建议}
+```
+
+---
+
+## 注意事项
+- 本工具呈现多元视角，不代表任何单一立场
+- 分析基于公开信息，存在信息不完整的局限
+- 预测部分为辅助参考，不构成决策依据

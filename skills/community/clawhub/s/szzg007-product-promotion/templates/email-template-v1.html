@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PRODUCT_TITLE}}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8f9fa;">
+  
+  <!-- Preheader -->
+  <div style="display: none; max-height: 0; overflow: hidden;">
+    ✨ {{PRODUCT_TITLE}} - Special Offer Inside!
+  </div>
+
+  <!-- Container -->
+  <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f8f9fa;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        
+        <!-- Email Body -->
+        <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+          
+          <!-- Header -->
+          <tr>
+            <td align="center" style="padding: 32px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">{{BRAND_NAME}}</h1>
+              <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 400;">{{BRAND_TAGLINE}}</p>
+            </td>
+          </tr>
+
+          <!-- Main Product Image -->
+          <tr>
+            <td align="center" style="padding: 0; background-color: #ffffff;">
+              <img src="{{MAIN_IMAGE}}" alt="{{PRODUCT_TITLE}}" style="width: 100%; max-width: 600px; height: auto; display: block;">
+            </td>
+          </tr>
+
+          <!-- Product Info -->
+          <tr>
+            <td style="padding: 40px 40px 30px 40px;">
+              
+              <!-- Badge -->
+              <table role="presentation" style="margin: 0 auto 20px auto;">
+                <tr>
+                  <td align="center" style="background-color: #f0fdf4; padding: 8px 20px; border-radius: 20px;">
+                    <span style="color: #16a34a; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">✨ New Arrival</span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Title -->
+              <h2 style="margin: 0 0 16px 0; color: #1a1a1a; font-size: 26px; font-weight: 700; line-height: 1.3; text-align: center;">
+                {{PRODUCT_TITLE}}
+              </h2>
+
+              <!-- Price -->
+              <table role="presentation" style="margin: 0 auto 24px auto;">
+                <tr>
+                  <td align="center">
+                    <span style="color: #9ca3af; font-size: 18px; text-decoration: line-through; margin-right: 12px;">{{ORIGINAL_PRICE}}</span>
+                    <span style="color: #dc2626; font-size: 32px; font-weight: 700;">{{SALE_PRICE}}</span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Save Badge -->
+              <table role="presentation" style="margin: 0 auto 30px auto;">
+                <tr>
+                  <td align="center" style="background-color: #fef2f2; padding: 10px 24px; border-radius: 8px; border: 1px solid #fecaca;">
+                    <span style="color: #dc2626; font-size: 15px; font-weight: 600;">💰 Save {{SAVE_AMOUNT}} ({{DISCOUNT_PERCENT}}% OFF)</span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider -->
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+
+              <!-- Features -->
+              <h3 style="margin: 0 0 20px 0; color: #1a1a1a; font-size: 18px; font-weight: 600;">Why You'll Love It</h3>
+              
+              {{FEATURES}}
+
+            </td>
+          </tr>
+
+          <!-- CTA Button -->
+          <tr>
+            <td align="center" style="padding: 0 40px 40px 40px;">
+              <table role="presentation" style="border-collapse: collapse;">
+                <tr>
+                  <td align="center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px;">
+                    <a href="{{PRODUCT_URL}}" style="display: inline-block; padding: 16px 48px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: 0.3px;">Shop Now →</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Gallery Section -->
+          <tr>
+            <td style="padding: 0 40px 40px 40px; background-color: #fafbfc;">
+              <h3 style="margin: 0 0 20px 0; color: #1a1a1a; font-size: 18px; font-weight: 600; text-align: center;">See It In Action</h3>
+              {{IMAGE_GALLERY}}
+            </td>
+          </tr>
+
+          <!-- Use Cases -->
+          <tr>
+            <td style="padding: 40px 40px 30px 40px; background-color: #ffffff;">
+              <h3 style="margin: 0 0 20px 0; color: #1a1a1a; font-size: 18px; font-weight: 600; text-align: center;">Perfect For</h3>
+              
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td width="25%" align="center" style="padding: 10px 5px;">
+                    <span style="font-size: 32px;">💄</span>
+                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 13px;">Vanity</p>
+                  </td>
+                  <td width="25%" align="center" style="padding: 10px 5px;">
+                    <span style="font-size: 32px;">🖊️</span>
+                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 13px;">Desk</p>
+                  </td>
+                  <td width="25%" align="center" style="padding: 10px 5px;">
+                    <span style="font-size: 32px;">🍴</span>
+                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 13px;">Kitchen</p>
+                  </td>
+                  <td width="25%" align="center" style="padding: 10px 5px;">
+                    <span style="font-size: 32px;">🧴</span>
+                    <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 13px;">Bathroom</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Final CTA -->
+          <tr>
+            <td align="center" style="padding: 0 40px 50px 40px;">
+              <p style="margin: 0 0 20px 0; color: #6b7280; font-size: 15px; line-height: 1.6;">Ready to transform your space?</p>
+              <table role="presentation" style="border-collapse: collapse;">
+                <tr>
+                  <td align="center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px;">
+                    <a href="{{PRODUCT_URL}}" style="display: inline-block; padding: 16px 48px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: 0.3px;">Get Yours Today →</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 32px 40px; background-color: #f3f4f6; border-top: 1px solid #e5e7eb;">
+              
+              <p style="margin: 0 0 16px 0; color: #6b7280; font-size: 14px; line-height: 1.6; text-align: center;">
+                Questions? We're here to help!<br>
+                <a href="mailto:hello@{{BRAND_NAME|lower}}.com" style="color: #667eea; text-decoration: none;">hello@{{BRAND_NAME|lower}}.com</a>
+              </p>
+
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 24px 0;">
+
+              <p style="margin: 0 0 12px 0; color: #9ca3af; font-size: 12px; text-align: center;">
+                © 2026 {{BRAND_NAME}}. All rights reserved.
+              </p>
+              
+              <p style="margin: 0; color: #9ca3af; font-size: 12px; text-align: center;">
+                <a href="{{PRODUCT_URL}}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a> | 
+                <a href="#" style="color: #9ca3af; text-decoration: underline;">Privacy Policy</a>
+              </p>
+
+            </td>
+          </tr>
+
+        </table>
+        <!-- End Email Body -->
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

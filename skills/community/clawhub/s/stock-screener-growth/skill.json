@@ -1,0 +1,8 @@
+{
+  "name": "Stock Screener",
+  "description": "A comprehensive growth stock screening and analysis skill. Combines quantitative financial screening with qualitative trend analysis to deliver institutional-grade growth stock research.",
+  "version": "1.0.0",
+  "identifier": "stock-screener",
+  "author": "theepan",
+  "category": "finance"
+}

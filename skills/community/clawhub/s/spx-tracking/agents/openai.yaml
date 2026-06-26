@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPX Express Tracking"
+  short_description: "Query SPX Express shipment tracking by tracking number (CNMY...)"
+  default_prompt: "Use $spx-tracking to check the delivery status of an SPX Express package."

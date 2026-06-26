@@ -1,35 +1,23 @@
 ---
-name: "Structured Workflow"
-description: "默认启用：中文输出、结构化流程、简洁优先。适用于所有任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/structured-workflow"
-sourceUrl: "https://clawhub.ai/skills/structured-workflow"
+name: structured-workflow
+description: 默认启用：中文输出、结构化流程、简洁优先。适用于所有任务。
+license: MIT
 ---
 
-# Structured Workflow
+# 结构化工作流（轻量版）
 
-> 默认启用：中文输出、结构化流程、简洁优先。适用于所有任务。
+默认规则（始终生效）：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/structured-workflow`
-- **Source URL:** [https://clawhub.ai/skills/structured-workflow](https://clawhub.ai/skills/structured-workflow)
+1. 全部使用简体中文。
+2. 先结论，后要点；最小充分输出，避免冗余。
+3. 执行顺序：构思方案 → 提请审核 → 分解任务。
+4. 编码前先调研并澄清疑点。
+5. 保持 KISS：优先简单、可维护方案，避免过度工程化。
+6. 以事实为准；发现错误时直接指出并修正。
+7. 所有输出（包括 Implementation Plan、Task List、Thought）必须使用中文。
 
-## Overview
+按需读取（不要默认加载）：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/structured-workflow
-```
+- 复杂架构与权衡：`references/architecture.md`
+- 多步实施模板：`references/workflow.md`
+- 质量门禁清单：`references/quality-gates.md`

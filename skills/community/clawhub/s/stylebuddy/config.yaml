@@ -1,0 +1,49 @@
+# StyleBuddy 配置文件
+
+# 数据存储路径
+data_path: "./assets/data"
+image_path: "./assets/images"
+
+# 数据库配置
+database:
+  path: "./assets/data/wardrobe.db"
+
+# 用户偏好
+user_preferences:
+  gender: "female"  # female/male/unisex
+  style_preference: ["简约", "优雅", "舒适"]
+  color_preference: ["黑白灰", "大地色", "莫兰迪"]
+
+# API 配置（可选，无配置时使用降级策略）
+api:
+  # 天气 API (Open-Meteo 免费无需 key)
+  weather:
+    enabled: true
+    provider: "open-meteo"
+  
+  # 图片搜索 API (Serper.dev)
+  image_search:
+    enabled: false
+    provider: "serper"
+    api_key: ""  # 用户自行配置
+  
+  # AI 图片生成 (SiliconFlow)
+  image_generation:
+    enabled: false
+    provider: "siliconflow"
+    api_key: ""  # 用户自行配置
+    model: "Kwai-Kolors/Kolors"
+
+# 功能开关
+features:
+  weather_integration: true
+  calendar_integration: false  # 暂时关闭
+  image_search: false  # 需要 API key
+  ai_generation: false  # 需要 API key
+  backup_auto: true
+
+# 降级策略（当外部服务不可用时）
+fallback:
+  use_local_images: true
+  use_templates: true
+  use_pil_visualization: true

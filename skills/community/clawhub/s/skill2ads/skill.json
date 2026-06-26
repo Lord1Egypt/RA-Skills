@@ -1,0 +1,25 @@
+{
+  "name": "website-to-ads",
+  "version": "1.0.1",
+  "author": "ashutoshchapagain",
+  "description": "Scrape a business website and generate 5 Meta-ready ad variants with optional Civic-gated export.",
+  "entryPoint": "typescript",
+  "permissions": ["network"],
+  "install": {
+    "commands": ["npm install", "npm run build"]
+  },
+  "runtime": {
+    "node": ">=22.12.0"
+  },
+  "env": {
+    "required": ["APIFY_TOKEN", "OPENAI_API_KEY"],
+    "optional": [
+      "OPENAI_MODEL",
+      "CIVIC_AUTH_ENABLED",
+      "CIVIC_CLIENT_ID",
+      "CIVIC_ACCESS_TOKEN",
+      "CIVIC_GATEWAY_KEY",
+      "CIVIC_VERIFY_URL"
+    ]
+  }
+}

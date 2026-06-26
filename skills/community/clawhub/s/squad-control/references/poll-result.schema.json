@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://squadcontrol.ai/schemas/poll-result.schema.json",
+  "title": "Squad Control Poll Result Envelope",
+  "type": "object",
+  "required": ["generatedAt", "pending", "review", "stuck", "counts"],
+  "properties": {
+    "generatedAt": { "type": "integer", "minimum": 0 },
+    "pending": {
+      "type": "object",
+      "required": ["tasks"],
+      "properties": {
+        "workspace": { "type": ["object", "null"] },
+        "tasks": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": true
+    },
+    "review": {
+      "type": "object",
+      "required": ["tasks"],
+      "properties": {
+        "tasks": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": true
+    },
+    "stuck": {
+      "type": "object",
+      "required": ["tasks"],
+      "properties": {
+        "tasks": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": true
+    },
+    "counts": {
+      "type": "object",
+      "required": ["pending", "review", "stuck"],
+      "properties": {
+        "pending": { "type": "integer", "minimum": 0 },
+        "review": { "type": "integer", "minimum": 0 },
+        "stuck": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

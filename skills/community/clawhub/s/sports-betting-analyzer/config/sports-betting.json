@@ -1,0 +1,23 @@
+{
+  "risk_level": "moderate",
+  "default_bet_percentage": 2,
+  "preferred_leagues": ["NBA", "Premier League", "La Liga", "Serie A", "Bundesliga", "World Cup"],
+  "data_sources": ["official", "free_api"],
+  "min_confidence": 0.6,
+  "max_daily_bets": 3,
+  "model_settings": {
+    "use_ensemble": false,
+    "num_ensemble_models": 3,
+    "use_monte_carlo": false,
+    "monte_carlo_simulations": 1000
+  },
+  "notification": {
+    "enabled": false,
+    "channels": []
+  },
+  "advanced_features": {
+    "live_betting": false,
+    "arbitrage_detection": false,
+    "line_movement_tracking": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "skill-vetter",
+  "version": "1.2.0",
+  "description": "Security-first skill vetting for AI agents. Auto-scans skills for dangerous patterns before installation.",
+  "main": "skill_vetter.ps1",
+  "scripts": {
+    "test": "powershell -ExecutionPolicy Bypass -File skill_vetter.ps1 -skillPath . -skillSource test"
+  },
+  "keywords": [
+    "security",
+    "vetting",
+    "skill",
+    "scanner",
+    "safety",
+    "clawhub"
+  ],
+  "author": "十三香小精灵",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://github.com/openclaw/skills#readme"
+}

@@ -1,0 +1,35 @@
+# 图生图 - MiniMax 开放平台文档中心
+
+图生图 - MiniMax 开放平台文档中心
+🎉 MiniMax-M2.7 全新发布！订阅 Token Plan，尽享全模态模型。 立即体验  ➔
+MiniMax 开放平台文档中心 home page
+Anthropic API 兼容（推荐）
+OpenAI API 兼容
+文本对话（Anthropic API 兼容）
+文本对话（OpenAI API 兼容）
+https://api.minimaxi.com/v1/image_generation
+HTTP: Bearer Auth
+HTTP Authorization Scheme: Bearer API_key，用于验证账户信息，可在  账户管理>接口密钥  中查看。
+请求体的媒介类型，请设置为   application/json
+可用选项:   application/json
+模型名称。可选值：  image-01
+可用选项:   image-01 ,
+图像的文本描述，最长 1500 字符
+人物主体参考，用于图生图
+画风设置，仅当   model
+图像宽高比，默认为   1:1
+可用选项:   1:1 ,
+生成图片的宽度（像素）。仅当 model 为   image-01
+生成图片的高度（像素）。仅当 model 为   image-01
+返回图片的形式，默认为 url。可选值：url, base64。
+⚠️ 注意：url 的有效期为 24 小时
+可用选项:   url ,
+随机种子。使用相同的 seed 和参数，可以生成内容相近的图片，用于复现结果。如未提供，算法会对 n 张图单独生成随机种子
+单次请求生成的图片数量，取值范围[1, 9]，默认为 1
+必填范围:  1 <= x <= 9
+是否开启 prompt 自动优化，默认为   false
+是否在生成的图片中添加水印，默认为   false
+因内容安全检查失败而未返回的图片数量
+生成任务的 ID，用于后续查询任务状态
+此页面对您有帮助吗？
+是        否

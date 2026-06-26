@@ -1,35 +1,91 @@
 ---
-name: "Story Video Generator"
-description: "从图片或文字描述自动生成完整视频故事。支持灵活输入（1-N张图片/纯文字/混合），可选时长和风格。当用户要求生成视频故事、视频短片、图片转视频、文字转视频时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/story-video-generator"
-sourceUrl: "https://clawhub.ai/skills/story-video-generator"
+name: story-video-generator
+version: "1.0.0"
+description: 从图片或文字描述自动生成完整视频故事。支持灵活输入（1-N张图片/纯文字/混合），可选时长和风格。当用户要求生成视频故事、视频短片、图片转视频、文字转视频时使用。
 ---
 
-# Story Video Generator
+# 故事视频生成助手
 
-> 从图片或文字描述自动生成完整视频故事。支持灵活输入（1-N张图片/纯文字/混合），可选时长和风格。当用户要求生成视频故事、视频短片、图片转视频、文字转视频时使用。
+从用户提供的图片或文字描述自动生成完整的视频故事。完整流程：脚本生成 → 主体参考图 → 首帧图片 → 视频片段 → 背景音乐 → 最终合成。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/story-video-generator`
-- **Source URL:** [https://clawhub.ai/skills/story-video-generator](https://clawhub.ai/skills/story-video-generator)
+## 快速开始
 
-## Overview
+### 输入要求
+- **图片模式**：1-N 张图片（不强制分类，AI 自动识别）
+- **文字模式**：纯文字描述故事
+- **混合模式**：图片 + 文字补充
 
+### 可选参数
+- **时长**：24秒（4段）/ 48秒（默认，8段）/ 72秒（12段）
+- **风格**（纯文字时）：吉卜力 / 赛博朋克 / 写实 / 水彩 / 像素 / 动漫 / 油画 / 极简 / AI推荐
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/story-video-generator
+### 输出格式
+生成视频后用以下格式输出：
 ```
+<deliver_assets>
+<item>
+<path>视频路径</path>
+</item>
+</deliver_assets>
+```
+
+## 执行流程
+
+### Step 0: 环境检查
+1. 检查 FFmpeg 是否可用，不可用则安装
+2. 接收用户输入（图片/文字）
+3. 确定时长（未指定默认 48 秒）
+4. 纯文字时确定风格（未指定则 AI 推荐）
+
+### Step 1: 生成故事脚本
+- **有图片** → 用 `images_understand` 分析图片，生成脚本
+- **纯文字** → 用 LLM 生成脚本
+- 输出：`output/story_script.json`
+
+### Step 1.5: 主体参考图生成
+- 基于 `analysis.subject` 生成主体参考图
+- 作为整个视频视觉一致性的锚点
+- 输出：`output/subject_reference.png`
+
+### Step 2: 首帧图片生成（串联）
+- **必须逐帧生成**，每帧用主体参考图 + 上一帧作为双重参考
+- 禁止并行生成
+- 输出：`output/frames/frame_01.png` - `frame_N.png`
+
+### Step 3: 视频片段生成
+- 从首帧图片生成视频片段
+- 参数：duration=6秒，resolution=768P
+- 输出：`output/videos/segment_01.mp4` - `segment_N.mp4`
+
+### Step 4: 背景音乐生成（可与 Step 3 并行）
+- 生成无歌词 BGM，时长等于视频总时长
+- 输出：`output/bgm.mp3`
+
+### Step 5: 视频拼接与音乐合成
+- 使用 FFmpeg 拼接视频片段并叠加 BGM
+- 输出：`output/final_video.mp4`
+
+## 关键约束
+
+| 参数 | 值 |
+|------|-----|
+| 每段时长 | 6秒（固定） |
+| 视频分辨率 | 768P |
+| 背景音乐 | 无歌词纯音乐 |
+
+## 常用工具
+
+| 工具 | 用途 |
+|------|------|
+| images_understand | 分析图片生成脚本 |
+| gen_images | 生成首帧图片 |
+| gen_videos | 生成视频片段 |
+| gen_music | 生成背景音乐 |
+| exec + FFmpeg | 拼接视频与合成音频 |
+
+## 常见错误
+
+1. 首帧并行生成 → 角色一致性无法保证
+2. 每段未重复主体特征 → 角色长相漂移
+3. BGM 带歌词 → 必须强调 instrumental, no vocals
+4. 跳过主体参考图 → 视觉一致性无法保证

@@ -1,0 +1,142 @@
+# Copy this template to:
+#   ~/.openclaw/workspace/audiobook-library/voice-library.yaml
+#
+# Scope of this file:
+# - library-level paths and switches
+# - shared LLM settings
+# - clone asset metadata and explicit paid-clone intent
+#
+# Do NOT put final descriptive clone profiles here.
+# Human-reviewed clone descriptions belong in:
+#   voice-reviews.yaml -> clones.<asset_id>.manual
+#
+# Generated files such as effective library / candidate pool / official cache
+# are written under .audiobook/ by the scripts and should not be edited directly.
+
+version: "2"
+
+meta:
+  library_name: "audiobook-library" # Human-readable label only.
+  clone_selection_mode: "explicit_opt_in" # Paid clone happens only when selected_for_clone=true.
+
+# All paths are relative to the directory containing voice-library.yaml.
+paths:
+  inbox_dir: "voices/inbox" # Drop raw candidate audio here before ingest.
+  references_dir: "voices/references" # Long-lived asset store: <asset_id>/raw.<ext> and reference.wav.
+  review_file: "voice-reviews.yaml" # Human review file; manual clone profiles live here.
+  effective_library_file: ".audiobook/effective-voice-library.yaml" # Generated clone-effective view.
+  candidate_pool_file: ".audiobook/voice-candidate-pool.yaml" # Generated official + clone unified pool.
+  previews_dir: ".audiobook/voice-previews" # Generated preview wavs for ready cloned voices.
+  analysis_dir: ".audiobook/voice-analysis" # Generated step-audio-r1.1 analysis archive.
+  registry_file: ".audiobook/voice-registry.json" # Generated ready clone registry with voice_id/file_id.
+  official_cache_file: ".audiobook/official-voices-cache.json" # Generated Step official voice cache.
+
+# Behavior used by sync_voice_library.py and run_audiobook.py.
+sync:
+  refresh_official_on_load: true # Refresh official voices into official cache when syncing.
+  analyze_clones_on_load: true # Analyze newly ingested user audio into review/effective files.
+  auto_clone_on_load: false # Keep false; paid clone must stay an explicit user action.
+  mark_stale_on_hash_change: true # Re-ingest if source audio content changes.
+
+official:
+  enabled: true # Keep official Step voices in the casting pool.
+  seed_source: "bundled" # Use bundled seed data when API is unavailable or incomplete.
+  api_model: "step-tts-2" # Model name used by the Step official voices API.
+  refresh_via_api: true # Try API first, then merge/backfill with bundled seed.
+  overrides: {} # Optional manual patches keyed by official asset_id or voice_id.
+
+# Shared LLM settings.
+# For Step 3.5 reasoning models, the recommended base URL is:
+#   https://api.stepfun.com/step_plan/v1
+llm:
+  defaults:
+    provider: "openai_compatible"
+    api_key_env: "STEP_API_KEY"
+    base_url: "https://api.stepfun.com/step_plan/v1"
+    temperature: 0.2
+    max_tokens: 6000
+  tasks:
+    script_generation:
+      model: "step-3.5-flash"
+      timeout_seconds: 180 # Network timeout for each overview/chunk/finalize LLM call.
+      chunk_chars: 2600 # Requested chunk size before adaptive adjustments.
+      overview_chars: 12000 # Max chars used for the upfront story overview prompt.
+      chapter_split_enabled: true # Split by recognized chapter headings before paragraph chunking when possible.
+      chapter_heading_max_chars: 60 # Ignore suspiciously long heading-like lines.
+      adaptive_chunking: true # Use smaller chunks automatically for reasoning models on step_plan.
+      reasoning_target_chunk_chars: 1800 # Preferred chunk size once adaptive chunking kicks in.
+      reasoning_min_chunk_chars: 900 # Lower bound for adaptive chunk sizing.
+      finalize_max_input_chars: 50000 # Skip the final reconciliation pass when provisional JSON grows past this.
+    casting_role_extraction:
+      model: "step-3.5-flash"
+    casting_selection:
+      model: "step-3.5-flash"
+
+# Casting reads only the generated candidate pool.
+# It should not match directly against voice-library.yaml or voice-reviews.yaml.
+casting:
+  source_of_truth: "candidate_pool_only"
+  role_extraction_mode: "llm"
+  selection_mode: "llm"
+  output:
+    top_candidates_per_role: 5
+    save_intermediate_json: true
+
+# Library-level clone asset metadata.
+# Typical flow:
+# 1) Put audio into voices/inbox/ or call sync_voice_library.py --input ...
+# 2) Let sync_voice_library.py populate clones.<asset_id> automatically
+# 3) Edit voice-reviews.yaml -> clones.<asset_id>.manual if needed
+# 4) Confirm clone need from clone-review.yaml and sync it back with recommend_casting.py --refresh-only
+# 5) Run clone_selected_voices.py only after selected_for_clone=true
+#
+# Minimal fields that matter here:
+# - enabled: library switch
+# - status: usually managed by scripts; common values are draft / ready_for_clone_decision / ready
+# - display_name: human-facing label shown in reviews and casting outputs
+# - source_file: reference wav path relative to references_dir; required for paid clone
+# - raw_file: original uploaded audio path relative to references_dir
+# - clone_model: clone API model name
+# - transcript / sample_text: optional hints for the paid clone request
+# - selected_for_clone: explicit opt-in gate for paid clone
+clones: {}
+
+# Example A: pre-register a clone asset before ingesting audio.
+# This is useful when you want a stable asset_id and want to prepare transcript/sample_text first.
+# Later ingest the real audio with:
+#   python3 scripts/sync_voice_library.py --library "$VOICE_LIBRARY" --asset-id narrator_warm_male --input /abs/path/demo.m4a
+#
+# clones:
+#   narrator_warm_male:
+#     enabled: true
+#     status: "draft"
+#     selected_for_clone: false
+#     display_name: "叙事男声备选"
+#     source_file: ""
+#     raw_file: ""
+#     clone_model: "step-tts-2"
+#     transcript: ""
+#     sample_text: "这是一段用于克隆音色校验的示例文本。"
+#
+# Example B: audio has already been ingested and the asset is waiting for manual review or paid clone.
+# In this state, source_file/raw_file are usually written by sync_voice_library.py.
+#
+# clones:
+#   sample_voice_20260413:
+#     enabled: true
+#     status: "ready_for_clone_decision"
+#     selected_for_clone: false
+#     display_name: "sample_voice_20260413"
+#     source_file: "sample_voice_20260413/reference.wav"
+#     raw_file: "sample_voice_20260413/raw.m4a"
+#     clone_model: "step-tts-2"
+#     transcript: ""
+#     sample_text: ""
+#
+# To trigger a paid clone, do NOT edit generated files under .audiobook/.
+# Preferred order:
+# 1) review voice-reviews.yaml -> clones.<asset_id>.manual
+# 2) if this asset is selected by a story, review <base>.clone-review.yaml
+# 3) run recommend_casting.py --refresh-only to sync decision back to selected_for_clone
+# 4) confirm clones.<asset_id>.selected_for_clone=true here
+# 5) run clone_selected_voices.py --dry-run, then the real clone command

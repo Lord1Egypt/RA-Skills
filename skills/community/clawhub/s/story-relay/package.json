@@ -1,0 +1,34 @@
+{
+  "name": "story-relay",
+  "version": "1.0.0",
+  "description": "故事接龙 - 多人协作创作，AI智能续写，支持图文生成",
+  "main": "index.js",
+  "bin": {
+    "story-relay": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js start",
+    "write": "node index.js write",
+    "continue": "node index.js continue",
+    "view": "node index.js view",
+    "list": "node index.js list"
+  },
+  "keywords": [
+    "story",
+    "writing",
+    "ai",
+    "collaboration",
+    "fiction",
+    "novel"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "categories": [
+      "productivity",
+      "entertainment",
+      "writing"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: sdi-app
+    volumes:
+      - ./data:/data
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MPLBACKEND=Agg
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null

@@ -1,35 +1,37 @@
 ---
-name: "Subskill Generation Rule"
-description: "Define project rules for subskill generation by organizing artifacts in data/, feature scripts in subskills/<feature>/, and optional SKILL.md per feature fol..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/subskill-generation-rule"
-sourceUrl: "https://clawhub.ai/skills/subskill-generation-rule"
+name: subskill-generation-rule
+description: Define and enforce project orgnization rules for generating subskills. put generated recommendation outputs under data/, place new feature scripts under subskills/<feature>/, and optionally add SKILL.md inside each feature folder to keep main skill root clean.
 ---
 
-# Subskill Generation Rule
+# Subskill Generate Rule
 
-> Define project rules for subskill generation by organizing artifacts in data/, feature scripts in subskills/<feature>/, and optional SKILL.md per feature fol...
+Apply these rules for future updates:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/subskill-generation-rule`
-- **Source URL:** [https://clawhub.ai/skills/subskill-generation-rule](https://clawhub.ai/skills/subskill-generation-rule)
+1. Store newly generated recommendation/result artifacts in `data/`.
+2. Place newly generated code scripts in `subskills/<feature>/`.
+3. Use one folder per feature under `subskills/`.
+4. Add `SKILL.md` inside the feature folder when behavior/usage needs instructions.
+5. Avoid adding one-off scripts and generated files in the main skill root.
 
-## Overview
+Recommended layout:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/subskill-generation-rule
+```text
+<skill>/
+  SKILL.md
+  config.json
+  data/
+  subskills/
+    <feature-a>/
+      SKILL.md
+      *.py
+    <feature-b>/
+      SKILL.md
+      *.py
 ```
+
+## When to Use
+
+- Creating new subskills
+- Organizing existing features
+- Enforcing file placement conventions
+- Keeping skill root clean

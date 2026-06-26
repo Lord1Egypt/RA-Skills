@@ -1,0 +1,79 @@
+{
+  "sources": [
+    {
+      "name": "Spotify Engineering Blog",
+      "type": "rss",
+      "url": "https://engineering.atspotify.com/feed/",
+      "language": "en",
+      "category": "official"
+    },
+    {
+      "name": "Spotify Newsroom",
+      "type": "rss",
+      "url": "https://newsroom.spotify.com/feed/",
+      "language": "en",
+      "category": "official"
+    },
+    {
+      "name": "Spotify Research",
+      "type": "rss",
+      "url": "https://research.atspotify.com/feed/",
+      "language": "en",
+      "category": "research"
+    },
+    {
+      "name": "Spotify Design",
+      "type": "rss",
+      "url": "https://spotify.design/feed",
+      "language": "en",
+      "category": "design"
+    },
+    {
+      "name": "TechCrunch Spotify",
+      "type": "rss",
+      "url": "https://techcrunch.com/tag/spotify/feed/",
+      "language": "en",
+      "category": "media"
+    },
+    {
+      "name": "The Verge Spotify",
+      "type": "rss",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "language": "en",
+      "category": "media",
+      "keyword_filter": "spotify"
+    },
+    {
+      "name": "Hacker News Spotify",
+      "type": "hn_api",
+      "url": "https://hn.algolia.com/api/v1/search?query=spotify&tags=story&hitsPerPage=20",
+      "language": "en",
+      "category": "community"
+    },
+    {
+      "name": "Music Business Worldwide",
+      "type": "rss",
+      "url": "https://www.musicbusinessworldwide.com/feed/",
+      "language": "en",
+      "category": "industry",
+      "keyword_filter": "spotify",
+      "_disabled": true
+    },
+    {
+      "name": "Pitchfork",
+      "type": "rss",
+      "url": "https://pitchfork.com/feed/feed-news/json",
+      "language": "en",
+      "category": "industry",
+      "keyword_filter": "spotify",
+      "_disabled": true
+    }
+  ],
+  "settings": {
+    "max_news_per_source": 15,
+    "final_output_count": 20,
+    "similarity_threshold": 0.65,
+    "timeout": 12,
+    "keyword_filter_default": "spotify"
+  }
+}

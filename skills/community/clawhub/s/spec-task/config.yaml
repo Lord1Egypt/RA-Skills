@@ -1,0 +1,45 @@
+# spec-task 内置默认配置
+# 项目级覆盖：spec-task/config.yaml（onboarding 生成，可选）
+# 读取优先级：项目 config > skill 内置默认
+
+context: ""
+
+runtime:
+  task_timeout: 60                    # 单个原子任务超时（分钟），仅作参考值
+  depth_alert: 5                       # 嵌套深度告警阈值（不限制嵌套）
+  max_retries: 2                       # 失败自动重试次数
+  allow_agent_self_delegation: true    # 是否允许 agent 自行创建子任务
+
+failure_policy:
+  verify_failed:
+    strategy: adaptive                 # retry | escalate | adaptive
+    max_retries: 2
+    on_exhausted: escalate             # escalate | fail
+  execution_blocked:
+    soft_block:
+      strategy: retry                  # retry | escalate
+      max_retries: 3
+      backoff: exponential             # linear | exponential
+    hard_block:
+      strategy: adapt                  # adapt | fail
+      adapt_modifies: [plan, checklist, spec]  # auto_adapt 时允许修改的构件（不包含 brief）
+      on_adapt_failed: fail            # fail | escalate
+
+archive:
+  per_agent_archive: true              # 每个参与的 agent 各自归档
+  record_history: true                 # 写入 memory/task-history/YYYY-MM-DD/<task>.md
+  generate_lessons: true               # 写入 memory/task-lessons/<capability-keywords>.md
+  auto_archive: false                  # true = 验收通过后自动归档，false = 需确认
+
+rules:
+  brief:
+    - 简报必须包含明确的成功标准
+    - 简报必须标注预期执行时间
+  spec:
+    - 每个场景必须有 GIVEN/WHEN/THEN
+    - 至少覆盖一个异常场景
+  plan:
+    - 必须列出所需的工具或 API
+  checklist:
+    - 每个步骤必须有可验证的产出物
+    - 单个步骤不超过 15 分钟执行时间

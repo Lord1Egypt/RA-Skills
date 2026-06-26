@@ -1,0 +1,17 @@
+name: xiaohongshu-expert
+version: 1.0.1
+description: 小红书文案专家 —— 支持产品种草、生活分享、爆款改写三种模式，用真实聊天语气生成高点击率小红书文案，杜绝套话和AI味。完整规则见 references/xiaohongshu-rules.md。
+author: slfcys
+keywords:
+  - 小红书
+  - 种草
+  - 爆款文案
+  - 文案改写
+  - 生活分享
+  - xiaohongshu
+  - copywriting
+maintainers:
+  - name: slfcys
+    email: ""
+repository: ""
+license: MIT

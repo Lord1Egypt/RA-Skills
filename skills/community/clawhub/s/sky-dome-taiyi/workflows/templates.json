@@ -1,0 +1,64 @@
+{
+  "skill-release": {
+    "name": "Skill Release Workflow",
+    "steps": [
+      "Inspect source skill directory",
+      "Run quality and doctor checks",
+      "Stage clean publish directory",
+      "Generate ship checklist",
+      "Confirm external publish with user",
+      "Publish version",
+      "Inspect published metadata and page",
+      "Record release facts and next improvement"
+    ]
+  },
+  "project-execution": {
+    "name": "Project Execution Workflow",
+    "steps": [
+      "Define mission and success gate",
+      "Inspect current files/state/sources",
+      "Create short plan with active step",
+      "Execute active step",
+      "Verify result with concrete evidence",
+      "Adapt plan based on evidence",
+      "Deliver concise status",
+      "Consolidate reusable lessons"
+    ]
+  },
+  "research-synthesis": {
+    "name": "Research Synthesis Workflow",
+    "steps": [
+      "Define research question",
+      "Collect primary sources",
+      "Cross-check surprising claims",
+      "Extract facts and uncertainties",
+      "Synthesize recommendation",
+      "Cite sources",
+      "Store safe reusable findings"
+    ]
+  },
+  "debug-diagnosis": {
+    "name": "Debug Diagnosis Workflow",
+    "steps": [
+      "Capture exact symptom or error",
+      "Inspect simplest configuration first",
+      "Reproduce or run minimal check",
+      "Change one variable",
+      "Run smoke test",
+      "Document root cause only after evidence",
+      "Add prevention checklist or memory"
+    ]
+  },
+  "persona-evolution": {
+    "name": "Persona Evolution Workflow",
+    "steps": [
+      "Collect user friction or request",
+      "Classify whether it needs persona, workflow, script, or memory change",
+      "Patch the smallest useful part",
+      "Run quality/doctor checks",
+      "Generate review note",
+      "Run dream consolidation if useful",
+      "Store safe durable lesson"
+    ]
+  }
+}

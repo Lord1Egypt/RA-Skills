@@ -1,35 +1,56 @@
 ---
-name: "WooCommerce Stock Monitor"
-description: "Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Run daily via cron."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-woocommerce-stock-monitor"
-sourceUrl: "https://clawhub.ai/skills/skill-woocommerce-stock-monitor"
+name: skill-woocommerce-stock-monitor
+version: 1.0.0
+description: Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Run daily via cron.
+metadata:
+  openclaw:
+    requires: { bins: ["node"] }
 ---
 
-# WooCommerce Stock Monitor
+# skill-woocommerce-stock-monitor v1.0.0
 
-> Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Run daily via cron.
+Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Tracks instock → outofstock transitions and alerts your team daily.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-woocommerce-stock-monitor`
-- **Source URL:** [https://clawhub.ai/skills/skill-woocommerce-stock-monitor](https://clawhub.ai/skills/skill-woocommerce-stock-monitor)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/skill-woocommerce-stock-monitor
+node scripts/stock-monitor.js
 ```
+
+## Configuration
+
+Set via environment variables:
+
+| Variable | Default | Description |
+|---|---|---|
+| `WOO_API_PATH` | `~/woo-api.json` | Path to WooCommerce API credentials JSON |
+| `TELEGRAM_BOT_TOKEN` | — | Telegram bot token for alerts |
+| `TELEGRAM_CHAT_ID` | — | Telegram chat/group ID to send alerts to |
+
+### woo-api.json format
+
+```json
+{
+  "url": "https://your-store.com",
+  "consumer_key": "ck_...",
+  "consumer_secret": "cs_..."
+}
+```
+
+## Cron setup
+
+```bash
+# Run daily at 07:00 UTC
+0 7 * * * TELEGRAM_BOT_TOKEN=xxx TELEGRAM_CHAT_ID=yyy node /path/to/scripts/stock-monitor.js
+```
+
+## Behavior
+
+- **First run:** Sends a baseline report of all currently OOS products
+- **Subsequent runs:** Only alerts on new instock → outofstock transitions
+- **State file:** Saved to `memory/stock-state.json` (tracks previous run)
+
+## Alerts
+
+- `📦 Stock Monitor — Baseline Report` — first run summary
+- `⚠️ Stock Alert — Out of Stock` — when products go OOS

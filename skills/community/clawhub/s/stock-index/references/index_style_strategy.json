@@ -1,0 +1,710 @@
+{
+  "category": "风格策略",
+  "description": "理财通风格策略指数名单",
+  "count": 117,
+  "indices": [
+    {
+      "code": "000015.SH",
+      "name": "上证红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000015"
+    },
+    {
+      "code": "000021.SH",
+      "name": "上证180公司治理指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000021"
+    },
+    {
+      "code": "000029.SH",
+      "name": "上证180价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000029"
+    },
+    {
+      "code": "000048.SH",
+      "name": "上证社会责任指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000048"
+    },
+    {
+      "code": "000151.SH",
+      "name": "上证国有企业红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000151"
+    },
+    {
+      "code": "000690.SH",
+      "name": "上证科创板成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000690"
+    },
+    {
+      "code": "000821.CSI",
+      "name": "沪深300红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000821"
+    },
+    {
+      "code": "000824.CSI",
+      "name": "中证国有企业红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000824"
+    },
+    {
+      "code": "000825.CSI",
+      "name": "中证中央企业红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000825"
+    },
+    {
+      "code": "000846.CSI",
+      "name": "中证财通中国可持续发展100(ECPI ESG)指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000846"
+    },
+    {
+      "code": "000901.SH",
+      "name": "中证南方小康产业指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000901"
+    },
+    {
+      "code": "000918.CSI",
+      "name": "沪深300成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000918"
+    },
+    {
+      "code": "000919.CSI",
+      "name": "沪深300价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000919"
+    },
+    {
+      "code": "000922.CSI",
+      "name": "中证红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000922",
+      "miniapp_link": "#小程序://腾讯理财通/BCuhbiSEKKYrmfd"
+    },
+    {
+      "code": "000925.CSI",
+      "name": "中证锐联基本面50 指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000925"
+    },
+    {
+      "code": "000964.CSI",
+      "name": "中证新兴产业指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000964"
+    },
+    {
+      "code": "399295.SZ",
+      "name": "创业板低波价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399295"
+    },
+    {
+      "code": "399296.SZ",
+      "name": "创业板动量成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399296"
+    },
+    {
+      "code": "399324.SZ",
+      "name": "深证红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399324"
+    },
+    {
+      "code": "399326.SZ",
+      "name": "深证成长40指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399326"
+    },
+    {
+      "code": "399348.SZ",
+      "name": "深证300价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399348"
+    },
+    {
+      "code": "399372.SZ",
+      "name": "国证大盘成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399372"
+    },
+    {
+      "code": "399373.SZ",
+      "name": "国证大盘价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399373"
+    },
+    {
+      "code": "399378.SZ",
+      "name": "国证ESG 300指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399378"
+    },
+    {
+      "code": "399550.SZ",
+      "name": "央视财经50指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399550"
+    },
+    {
+      "code": "399667.SZ",
+      "name": "创业板成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399667"
+    },
+    {
+      "code": "399701.SZ",
+      "name": "深证基本面60指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399701"
+    },
+    {
+      "code": "399702.SZ",
+      "name": "深证基本面120指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399702"
+    },
+    {
+      "code": "399992.SZ",
+      "name": "中证万得并购重组指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399992"
+    },
+    {
+      "code": "707717L.MI",
+      "name": "MSCI中国A股国际质量指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=707717L"
+    },
+    {
+      "code": "707918.MI",
+      "name": "MSCI中国A股国际低波指数(美元)",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=707918"
+    },
+    {
+      "code": "714032.MI",
+      "name": "MSCI香港价值增强指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=714032"
+    },
+    {
+      "code": "721638.MI",
+      "name": "MSCI CHINA A RMB ESG UNIVERSAL INDEX",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=721638"
+    },
+    {
+      "code": "888888.FI",
+      "name": "富时中国A股自由现金流聚焦指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=888888"
+    },
+    {
+      "code": "930734.CSI",
+      "name": "中证360互联网+大数据100指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930734"
+    },
+    {
+      "code": "930740.CSI",
+      "name": "沪深300红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930740"
+    },
+    {
+      "code": "930782.CSI",
+      "name": "中证500行业中性低波动指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930782"
+    },
+    {
+      "code": "930839.CSI",
+      "name": "中证港股通高股息精选指数(HKD)",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930839"
+    },
+    {
+      "code": "930914.CSI",
+      "name": "中证港股通高股息投资指数(HKD)",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930914"
+    },
+    {
+      "code": "930915.CSI",
+      "name": "中证港股通高股息投资指数(CNY)",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930915"
+    },
+    {
+      "code": "930917.CSI",
+      "name": "中证沪港深高股息指数(人民币)",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930917"
+    },
+    {
+      "code": "930939.CSI",
+      "name": "中证500质量成长指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930939"
+    },
+    {
+      "code": "930955.CSI",
+      "name": "中证红利低波动100指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930955"
+    },
+    {
+      "code": "931052.CSI",
+      "name": "中证国信价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931052"
+    },
+    {
+      "code": "931069.CSI",
+      "name": "中证中金优选300指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931069"
+    },
+    {
+      "code": "931088.CSI",
+      "name": "中证180 ESG指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931088"
+    },
+    {
+      "code": "931132.CSI",
+      "name": "中证诚通央企红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931132"
+    },
+    {
+      "code": "931134.CSI",
+      "name": "中证华夏AH经济蓝筹股票指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931134"
+    },
+    {
+      "code": "931142.CSI",
+      "name": "中证东方红竞争力指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931142"
+    },
+    {
+      "code": "931157.CSI",
+      "name": "中证沪港深红利成长低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931157"
+    },
+    {
+      "code": "931159.CSI",
+      "name": "中证研发创新100指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931159"
+    },
+    {
+      "code": "931231.CSI",
+      "name": "中证央企红利50指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931231"
+    },
+    {
+      "code": "931233.CSI",
+      "name": "中证港股通央企红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931233"
+    },
+    {
+      "code": "931243.CSI",
+      "name": "中证诚通央企ESG指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931243"
+    },
+    {
+      "code": "931268.CSI",
+      "name": "中证可持续发展100指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931268"
+    },
+    {
+      "code": "931375.CSI",
+      "name": "沪深300质量成长低波动指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931375"
+    },
+    {
+      "code": "931446.CSI",
+      "name": "中证东方红红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931446"
+    },
+    {
+      "code": "931463.CSI",
+      "name": "沪深300 ESG基准指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931463"
+    },
+    {
+      "code": "931468.CSI",
+      "name": "中证红利质量指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931468"
+    },
+    {
+      "code": "931476.CSI",
+      "name": "中证ESG 120策略指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931476"
+    },
+    {
+      "code": "931526.CSI",
+      "name": "中证企业核心竞争力50指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931526"
+    },
+    {
+      "code": "931579.CSI",
+      "name": "中证东方红优势成长指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931579"
+    },
+    {
+      "code": "931586.CSI",
+      "name": "中证智选300价值稳健策略指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931586"
+    },
+    {
+      "code": "931587.CSI",
+      "name": "中证智选500价值稳健策略指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931587"
+    },
+    {
+      "code": "931588.CSI",
+      "name": "中证智选1000价值稳健策略指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931588"
+    },
+    {
+      "code": "931589.CSI",
+      "name": "中证智选300成长创新策略指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931589"
+    },
+    {
+      "code": "931590.CSI",
+      "name": "中证智选500成长创新策略指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931590"
+    },
+    {
+      "code": "931591.CSI",
+      "name": "中证智选1000成长创新策略指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931591"
+    },
+    {
+      "code": "931648.CSI",
+      "name": "中证500 ESG基准指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931648"
+    },
+    {
+      "code": "931722.CSI",
+      "name": "中证国新港股通央企红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931722"
+    },
+    {
+      "code": "931722CNY100.CSI",
+      "name": "中证国新港股通央企红利人民币中间价指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931722CNY100"
+    },
+    {
+      "code": "931802.CSI",
+      "name": "中证龙头企业指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931802"
+    },
+    {
+      "code": "931848.CSI",
+      "name": "中证800红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931848"
+    },
+    {
+      "code": "932061.CSI",
+      "name": "中证智选均衡配置指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932061"
+    },
+    {
+      "code": "932305.CSI",
+      "name": "中证智选高股息策略指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932305"
+    },
+    {
+      "code": "932315.CSI",
+      "name": "中证全指红利质量指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932315"
+    },
+    {
+      "code": "932365.CSI",
+      "name": "中证全指自由现金流指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932365"
+    },
+    {
+      "code": "932366.CSI",
+      "name": "沪深300自由现金流指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932366"
+    },
+    {
+      "code": "932367.CSI",
+      "name": "中证500自由现金流指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932367"
+    },
+    {
+      "code": "932368.CSI",
+      "name": "中证800自由现金流指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932368"
+    },
+    {
+      "code": "932422.CSI",
+      "name": "中证A500红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932422"
+    },
+    {
+      "code": "950090.CSI",
+      "name": "上证50AH优选指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950090"
+    },
+    {
+      "code": "950228.SH",
+      "name": "上证智选科创板价值50策略指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950228"
+    },
+    {
+      "code": "950333.CSI",
+      "name": "上证智选科创板创新价值指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950333"
+    },
+    {
+      "code": "980080.CNI",
+      "name": "国证成长100指数",
+      "sub_category": "成长",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980080"
+    },
+    {
+      "code": "980081.CNI",
+      "name": "国证价值100指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980081"
+    },
+    {
+      "code": "980092.CNI",
+      "name": "国证自由现金流指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980092"
+    },
+    {
+      "code": "987016.CNI",
+      "name": "国证港股通红利低波动率指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=987016"
+    },
+    {
+      "code": "989016.CNI",
+      "name": "新华中诚信红利价值指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=989016"
+    },
+    {
+      "code": "995017.SSI",
+      "name": "华证沪深港长期竞争力指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995017"
+    },
+    {
+      "code": "995067.SSI",
+      "name": "华证价值优选50指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995067"
+    },
+    {
+      "code": "995082.SSI",
+      "name": "华证龙头红利50指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995082"
+    },
+    {
+      "code": "995127.SSI",
+      "name": "华证沪港深红利100指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995127"
+    },
+    {
+      "code": "995128.SSI",
+      "name": "华证沪深港红利50指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995128"
+    },
+    {
+      "code": "999102.SSI",
+      "name": "华证ESG领先指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=999102"
+    },
+    {
+      "code": "CESFHY.CSI",
+      "name": "中华交易服务预期高股息指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CESFHY"
+    },
+    {
+      "code": "CSPSADRP.CI",
+      "name": "标普中国A股红利机会指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CSPSADRP"
+    },
+    {
+      "code": "h30089.CSI",
+      "name": "中证红利潜力指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30089"
+    },
+    {
+      "code": "h30124.CSI",
+      "name": "沪深300安中动态策略指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30124"
+    },
+    {
+      "code": "h30263.CSI",
+      "name": "中证腾讯济安价值100A股指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30263"
+    },
+    {
+      "code": "h30269.CSI",
+      "name": "中证红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30269"
+    },
+    {
+      "code": "h30270.CSI",
+      "name": "中证红利价值指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30270"
+    },
+    {
+      "code": "h30352.CSI",
+      "name": "中证500价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30352"
+    },
+    {
+      "code": "h30356.CSI",
+      "name": "中证800价值指数",
+      "sub_category": "价值",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30356"
+    },
+    {
+      "code": "h30366.CSI",
+      "name": "中证高股息策略指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30366"
+    },
+    {
+      "code": "h30373.CSI",
+      "name": "中证百度百发策略100指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30373"
+    },
+    {
+      "code": "h30537.CSI",
+      "name": "中证淘金大数据100指数",
+      "sub_category": "多因子",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30537"
+    },
+    {
+      "code": "h50040.CSI",
+      "name": "上证红利低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h50040"
+    },
+    {
+      "code": "HSCAIT.HI",
+      "name": "恒生A股行业龙头指数",
+      "sub_category": "质量",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCAIT"
+    },
+    {
+      "code": "HSHYLV.HI",
+      "name": "恒生港股通高股息低波动指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSHYLV"
+    },
+    {
+      "code": "HSMCHYI.HI",
+      "name": "恒生中国内地企业高股息率指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSMCHYI"
+    },
+    {
+      "code": "HSSCHKY.HI",
+      "name": "恒生港股通高股息率指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCHKY"
+    },
+    {
+      "code": "HSSCSOY.HI",
+      "name": "恒生港股通中国央企红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCSOY"
+    },
+    {
+      "code": "SPACEVCP.SPI",
+      "name": "标普沪港深中国增强价值指数(人民币)",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPACEVCP"
+    },
+    {
+      "code": "SPAHLVCP.SPI",
+      "name": "标普港股通低波红利指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPAHLVCP"
+    },
+    {
+      "code": "SPAHLVHP.SPI",
+      "name": "标普港股通低波红利港币指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPAHLVHP"
+    },
+    {
+      "code": "SPCLLHCP.SPI",
+      "name": "标普中国A股大盘红利低波50指数",
+      "sub_category": "红利",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPCLLHCP"
+    }
+  ]
+}

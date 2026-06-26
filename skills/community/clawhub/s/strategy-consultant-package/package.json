@@ -1,0 +1,41 @@
+{
+  "name": "strategy-consultant",
+  "version": "1.0.0",
+  "description": "战略顾问技能 - 提供外部洞察、战略分析、商业文档、专家库支持",
+  "author": "Damon + OpenClaw",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "index": "README.md",
+  "commands": [
+    "interview",
+    "insights",
+    "market",
+    "compete",
+    "business",
+    "benchmark",
+    "bp",
+    "finance"
+  ],
+  "agents": [
+    "strategy-consultant"
+  ],
+  "templates": [
+    "external-interview",
+    "benchmark",
+    "bp",
+    "financial-model"
+  ],
+  "keywords": [
+    "strategy",
+    "consultant",
+    "business",
+    "plan",
+    "benchmark",
+    "market",
+    "research",
+    "expert"
+  ],
+  "engines": {
+    "openclaw": ">=2026.2.0"
+  }
+}

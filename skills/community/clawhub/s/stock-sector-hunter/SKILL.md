@@ -1,35 +1,87 @@
 ---
-name: "stock sector hunter"
-description: "沪深强势板块个股探测器。通过联网搜索实时获取A股当日活跃板块、涨停龙头股， 支持按代码前缀过滤（00开头深证、60开头沪市），输出结构化板块+龙头个股列表。 触发词：强势板块、涨停龙头、今日热门、热点板块、个股探测"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-sector-hunter"
-sourceUrl: "https://clawhub.ai/skills/stock-sector-hunter"
+name: stock-sector-hunter
+description: >
+  沪深强势板块个股探测器。通过联网搜索实时获取A股当日活跃板块、涨停龙头股，
+  支持按代码前缀过滤（00开头深证、60开头沪市），输出结构化板块+龙头个股列表。
+  触发词：强势板块、涨停龙头、今日热门、热点板块、个股探测
 ---
 
-# stock sector hunter
+# 沪深强势板块个股探测器
 
-> 沪深强势板块个股探测器。通过联网搜索实时获取A股当日活跃板块、涨停龙头股， 支持按代码前缀过滤（00开头深证、60开头沪市），输出结构化板块+龙头个股列表。 触发词：强势板块、涨停龙头、今日热门、热点板块、个股探测
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-sector-hunter`
-- **Source URL:** [https://clawhub.ai/skills/stock-sector-hunter](https://clawhub.ai/skills/stock-sector-hunter)
+通过联网搜索获取A股当日（截至当前交易日）沪深两市活跃板块及对应龙头个股，
+支持按股票代码前缀过滤：
 
-## Overview
+| 前缀 | 市场 |
+|------|------|
+| 00 | 深圳主板/创业板 |
+| 60 | 上海主板 |
+| 00+60 | 沪深全部（默认） |
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-sector-hunter
+### 方式一：直接发送指令
+
+发送以下指令之一即可触发：
+- "找今日强势板块" / "今日热点板块"
+- "涨停龙头有哪些" / "今日涨停股"
+- "帮我探测强势板块个股"
+- "沪深强势板块"
+
+### 方式二：带过滤条件
+
+- "00开头的涨停龙头" → 只返回 00 开头个股
+- "60开头的热门板块" → 只返回 60 开头个股
+- "今日强势板块只要60开头" → 同上
+
+### 方式三：指定板块
+
+- "机器人概念龙头有哪些" → 返回机器人板块个股
+- "半导体板块今日强势股" → 返回半导体板块个股
+
+## 输出格式
+
+```
+📊 【今日强势板块】2026年5月15日
+
+━━ 🤖 机器人概念 ━━━
+🏆 巨轮智能  | 002031 | 涨停 | 80万手封单，RV减速器打破国外垄断
+   雷赛智能  | —      | 涨停 | 电机龙头
+   科力尔    | —      | 涨停 | 微特电机
+   中马传动  | —      | 涨停 | 传动装置
+   ...
+
+━━ 🧪 氟化工概念 ━━━
+🏆 滨化股份  | 601678 | 一字涨停 | 氟化工龙头
+   中欣氟材 | 002915 | 一字涨停 | 氟化工
+   多氟多   | —      | 涨停     | 氟化盐
+   ...
+
+⚠️ 免责声明：以上内容仅供参考，不构成投资建议。
+```
+
+## 技术实现
+
+- **搜索工具**：byted-web-search（火山引擎联网搜索）
+- **搜索词模板**：
+  - 默认：`[日期] A股 强势板块 涨停龙头`
+  - 过滤00：`[日期] A股 00开头 涨停龙头 强势板块`
+  - 过滤60：`[日期] A股 60开头 涨停龙头 强势板块`
+  - 指定板块：`[日期] [板块名] 概念 涨停龙头 强势股`
+- **过滤逻辑**：从搜索结果中提取提及 00/60 开头代码的股票，优先提取涨停、一字涨停等关键词
+- **排序规则**：涨停 > 一字涨停 > 大涨 > 跟涨
+
+## 依赖
+
+- byted-web-search skill（需已配置 `WEB_SEARCH_API_KEY`）
+- Python3
+
+## 文件结构
+
+```
+stock-sector-hunter/
+├── SKILL.md
+└── scripts/
+    └── sector_hunter.py    # 搜索+解析+格式化脚本
 ```

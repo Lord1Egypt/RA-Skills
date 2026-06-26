@@ -1,35 +1,27 @@
 ---
-name: "Sysinfo Tool"
-description: "Display comprehensive system hardware and software information. Use for diagnostics, inventory, and system profiling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sysinfo-tool"
-sourceUrl: "https://clawhub.ai/skills/sysinfo-tool"
+name: sysinfo-tool
+description: Display comprehensive system hardware and software information. Use for diagnostics, inventory, and system profiling.
 ---
+# Sysinfo - System Information Reporter
 
-# Sysinfo Tool
+Gather and display detailed system information including CPU model and cores, memory capacity, disk layout, OS version, kernel, uptime, and network configuration. Useful for system documentation and troubleshooting.
 
-> Display comprehensive system hardware and software information. Use for diagnostics, inventory, and system profiling.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sysinfo-tool`
-- **Source URL:** [https://clawhub.ai/skills/sysinfo-tool](https://clawhub.ai/skills/sysinfo-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sysinfo-tool
+sysinfo-tool [options]
+```
+
+## Options
+
+- `--cpu`: Show CPU details only
+- `--memory`: Show memory details only
+- `--disk`: Show disk information
+- `--os`: Show OS information
+
+## Examples
+
+```bash
+sysinfo-tool
+sysinfo-tool --cpu --memory
+sysinfo-tool --disk
 ```

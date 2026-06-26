@@ -1,0 +1,25 @@
+{
+  "service": {
+    "url": "https://jup.ag",
+    "name": "Jupiter Swap",
+    "category": "dex"
+  },
+  "amount": {
+    "value": "0.5",
+    "currency": "USDC",
+    "chain": "solana"
+  },
+  "tx_hash": "test_tx_$(date +%s)",
+  "idempotency_key": "test_$(date +%s)",
+  "receipt_url": "https://explorer.solana.com/tx/test123",
+  "confirmation_id": "conf_$(date +%s)",
+  "context": {
+    "skill": "solana-wallet",
+    "user_request": "Test USDC transaction for spend-ledger",
+    "input_hash": "test_hash_$(date +%s)",
+    "tool_name": "solana_transfer",
+    "tool_args_summary": "Send 0.5 USDC to test address"
+  },
+  "execution_time_ms": 250,
+  "status": "confirmed"
+}

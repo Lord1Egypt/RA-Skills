@@ -1,0 +1,37 @@
+{
+  "slug": "support-macro-crafter",
+  "title": "客服模板工匠",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "批量生成客服回复模板，统一同理句、行动句、边界句与升级提示。",
+  "inputHint": "问题类型、品牌语气、禁止说法",
+  "sections": [
+    "模板目录",
+    "标准结构",
+    "同理句",
+    "行动句",
+    "升级句",
+    "风险提示"
+  ],
+  "useCases": [
+    "客服提效",
+    "话术统一",
+    "帮助中心"
+  ],
+  "positiveExamples": [
+    "给我一套客服回复模板",
+    "统一语气和升级提示"
+  ],
+  "negativeExamples": [
+    "不要承诺做不到的事情",
+    "不要输出攻击性文案"
+  ],
+  "risk": "只输出模板，正式上线前需人工审校。",
+  "tags": [
+    "support",
+    "macros",
+    "customer-service",
+    "templates"
+  ]
+}

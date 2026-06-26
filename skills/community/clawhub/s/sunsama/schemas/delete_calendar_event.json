@@ -1,0 +1,14 @@
+{
+  "name": "delete_calendar_event",
+  "description": "DESTRUCTIVE: Permanently deletes a calendar event from the user's calendar. This cannot be undone. Confirm the event title, date, and ID with the user before executing.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "eventId": {
+        "type": "string",
+        "description": "The ID of the calendar event"
+      }
+    },
+    "required": ["eventId"]
+  }
+}

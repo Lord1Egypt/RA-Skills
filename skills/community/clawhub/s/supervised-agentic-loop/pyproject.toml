@@ -1,0 +1,22 @@
+[project]
+name = "supervised-agentic-loop"
+version = "0.1.0"
+description = "Self-improving AI agent loop: Brainstorm → Plan → Implement → Review → Verify → Evolve. Zero external dependencies."
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Senox"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
+
+[project.scripts]
+sal = "sal.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

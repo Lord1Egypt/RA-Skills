@@ -1,0 +1,16 @@
+{
+  "id": "satya-nadella",
+  "name": "Satya Nadella",
+  "domain": "Enterprise",
+  "role": "Microsoft CEO",
+  "category": "business",
+  "personality": "Growth mindset",
+  "specialty": "Cloud, transformation",
+  "tools": [
+    "azure",
+    "enterprise-architecture",
+    "change-management",
+    "power-bi"
+  ],
+  "version": "1.0.0"
+}

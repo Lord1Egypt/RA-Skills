@@ -1,0 +1,42 @@
+{
+  "name": "logistics-tracker",
+  "version": "1.0.0",
+  "description": "物流跟踪 Skill — 对接 17Track 批量 API，自动跟踪运单状态，向客户发送邮件通知，并在异常时告警",
+  "main": "scripts/scheduler.js",
+  "scripts": {
+    "start": "node scripts/scheduler.js",
+    "dry-run": "node scripts/scheduler.js --dry-run",
+    "detect": "node scripts/anomaly-detector.js",
+    "detect:dry": "node scripts/anomaly-detector.js --dry-run",
+    "extract": "node scripts/tracking-extractor.js",
+    "status": "node -e \"const s = require('./scripts/scheduler'); s.getSchedulerStatus().then(r => console.log(JSON.stringify(r, null, 2)));\"",
+    "quota": "node -e \"const a = require('./scripts/tracking-api'); a.getQuotaStatus().then(r => console.log(JSON.stringify(r, null, 2)));\"",
+    "test:config": "node -e \"const c = JSON.parse(require('fs').readFileSync('./config/logistics-config.json','utf8')); console.log('✅ Config valid, carriers:', c.carriers.length);\""
+  },
+  "keywords": [
+    "logistics",
+    "tracking",
+    "17track",
+    "shipping",
+    "ecommerce",
+    "openclaw",
+    "skill"
+  ],
+  "author": "WILSON (Evolution System)",
+  "license": "MIT",
+  "dependencies": {
+    "node-cron": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "dependsOn": [
+      "order-tracker",
+      "imap-smtp-email"
+    ],
+    "cronSuggestion": "0 */6 * * *",
+    "configFile": "config/logistics-config.json"
+  }
+}

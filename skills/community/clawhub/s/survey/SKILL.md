@@ -1,35 +1,58 @@
 ---
-name: "Survey"
+name: survey
+version: "2.0.0"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [survey, tool, utility]
 description: "Build surveys, collect responses, and analyze results. Use when creating forms, checking responses, converting data, analyzing trends, generating reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/survey"
-sourceUrl: "https://clawhub.ai/skills/survey"
 ---
 
 # Survey
 
-> Build surveys, collect responses, and analyze results. Use when creating forms, checking responses, converting data, analyzing trends, generating reports.
+Survey builder — create questionnaires, collect responses, analyze results, export data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/survey`
-- **Source URL:** [https://clawhub.ai/skills/survey](https://clawhub.ai/skills/survey)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `survey help` | Show usage info |
+| `survey run` | Run main task |
+| `survey status` | Check current state |
+| `survey list` | List items |
+| `survey add <item>` | Add new item |
+| `survey export <fmt>` | Export data |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/survey
+survey help
+survey run
+survey status
 ```
+
+## Examples
+
+```bash
+# Get started
+survey help
+
+# Run default task
+survey run
+
+# Export as JSON
+survey export json
+```
+
+## Output
+
+Results go to stdout. Save with `survey run > output.txt`.
+
+## Configuration
+
+Set `SURVEY_DIR` to change data directory. Default: `~/.local/share/survey/`
+
+---
+*Powered by BytesAgain | bytesagain.com*
+*Feedback & Feature Requests: https://bytesagain.com/feedback*

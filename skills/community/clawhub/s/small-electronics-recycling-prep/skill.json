@@ -1,0 +1,35 @@
+{
+  "name": "small-electronics-recycling-prep",
+    "slug": "small-electronics-recycling-prep",
+  "displayName": "Small Electronics Recycling Prep Card",
+  "version": "1.0.1",
+  "description": "Create a sort list and prep checklist for safely bundling small electronics for recycling, with reminders to remove personal data without handling credentials or promising data recovery.",
+  "triggerKeywords": [
+    "electronics recycling prep checklist",
+    "small gadget recycling",
+    "recycle old electronics",
+    "device wipe checklist",
+    "old cables and chargers sort",
+    "battery removal reminder",
+    "e-waste drop off prep",
+    "electronics drawer cleanup"
+  ],
+  "tags": [
+    "recycling",
+    "electronics",
+    "home-admin",
+    "decluttering",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Household electronics recycling prep only. Remind users to remove personal data, but do not request passwords, PINs, recovery keys, private files, account details, or credential handling. Do not promise secure erasure, certified destruction, data recovery, repair, resale, or recycler acceptance."
+}

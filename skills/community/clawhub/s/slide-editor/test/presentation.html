@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide Editor 测试演示</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #fff; overflow: hidden; }
+    .slides { width: 100vw; height: 100vh; position: relative; }
+    .slide { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px; }
+    .slide:nth-child(1) { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .slide:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .slide:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    h1 { font-size: 72px; font-weight: 700; margin-bottom: 30px; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    h2 { font-size: 48px; font-weight: 600; margin-bottom: 20px; text-align: center; }
+    p { font-size: 28px; line-height: 1.6; text-align: center; max-width: 800px; }
+    .subtitle { font-size: 32px; opacity: 0.9; text-align: center; }
+    .feature-list { list-style: none; font-size: 24px; line-height: 2; }
+    .feature-list li { padding: 10px 0; }
+    .highlight { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; }
+    .note { position: absolute; bottom: 40px; font-size: 18px; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <div class="slides">
+    <div class="slide" id="slide-0">
+      <h1>Slide Editor</h1>
+      <p class="subtitle">HTML 演示文稿可视化编辑器</p>
+      <p class="note">双击文字可编辑 | 点击选中可拖拽 | 拖拽角落可调整大小</p>
+    </div>
+    <div class="slide" id="slide-1">
+      <h2>主要功能</h2>
+      <ul class="feature-list">
+        <li>点击选中元素，<span class="highlight">拖拽移动</span></li>
+        <li>拖拽 8 个角点<span class="highlight">调整大小</span></li>
+        <li>双击文字<span class="highlight">编辑内容</span></li>
+        <li>支持<span class="highlight">撤销/重做</span></li>
+      </ul>
+    </div>
+    <div class="slide" id="slide-2">
+      <h2>测试区域</h2>
+      <p>测试文字框，选中后在右侧属性面板修改字体大小</p>
+    </div>
+  </div>
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    function showSlide(i) {
+      slides.forEach((s, idx) => s.style.display = idx === i ? 'flex' : 'none');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (window.__openclawEditor?.isEnabled()) return;
+      if (document.activeElement?.contentEditable === 'true') return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+    });
+    showSlide(0);
+  </script>
+
+
+
+<script>
+// Auto-enable editor when ?edit=1 is in URL
+if (new URLSearchParams(location.search).get('edit') === '1') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      window.__openclawEditor && window.__openclawEditor.enable();
+    });
+  } else {
+    window.__openclawEditor && window.__openclawEditor.enable();
+  }
+}
+</script>
+
+
+<!-- SLIDE_EDITOR_START -->
+<script>
+// SLIDE_EDITOR_BUNDLE
+"use strict";var SlideEditor=(()=>{var P=Object.defineProperty;var O=Object.getOwnPropertyDescriptor;var X=Object.getOwnPropertyNames;var Y=Object.prototype.hasOwnProperty;var U=(p,e)=>{for(var t in e)P(p,t,{get:e[t],enumerable:!0})},F=(p,e,t,i)=>{if(e&&typeof e=="object"||typeof e=="function")for(let r of X(e))!Y.call(p,r)&&r!==t&&P(p,r,{get:()=>e[r],enumerable:!(i=O(e,r))||i.enumerable});return p};var K=p=>F(P({},"__esModule",{value:!0}),p);var V={};U(V,{SlideEditor:()=>k});var b=class{state;onSelectionChange=null;constructor(e){this.state=e}setOnSelectionChange(e){this.onSelectionChange=e}select(e,t=!1){t||this.state.selectedIds.clear(),this.state.selectedIds.add(e),this.updateVisualSelection(),this.notifyChange()}deselect(e){this.state.selectedIds.delete(e),this.updateVisualSelection(),this.notifyChange()}deselectAll(){this.state.selectedIds.clear(),this.updateVisualSelection(),this.notifyChange()}isSelected(e){return this.state.selectedIds.has(e)}getSelectedIds(){return Array.from(this.state.selectedIds)}hasSelection(){return this.state.selectedIds.size>0}updateVisualSelection(){document.querySelectorAll("[data-editor-id]").forEach(e=>{e.classList.remove("slide-editor-selected")}),this.state.selectedIds.forEach(e=>{let t=document.querySelector(`[data-editor-id="${e}"]`);t&&t.classList.add("slide-editor-selected")})}notifyChange(){if(this.onSelectionChange){let e=this.getSelectedIds().map(t=>this.getElementInfo(t)).filter(t=>t!==null);this.onSelectionChange(e)}}getElementInfo(e){let t=document.querySelector(`[data-editor-id="${e}"]`);if(!t)return null;let i=t.getBoundingClientRect(),o=t.closest(".slide")?.getBoundingClientRect()||{left:0,top:0};return{id:e,type:this.getElementType(t),x:i.left-o.left,y:i.top-o.top,width:i.width,height:i.height,content:t.textContent||void 0,src:t.src||void 0,styles:this.extractStyles(t)}}getElementType(e){let t=e.tagName.toLowerCase();return t==="img"?"image":["h1","h2","h3","h4","h5","h6","p","span","div"].includes(t)?e.querySelector("img")?"unknown":"text":["rect","circle","ellipse","path","svg"].includes(t)?"shape":"unknown"}extractStyles(e){let t=window.getComputedStyle(e),i={};return["fontSize","fontFamily","fontWeight","color","backgroundColor","textAlign","lineHeight","opacity","borderRadius"].forEach(o=>{let s=t.getPropertyValue(this.camelToKebab(o));s&&(i[o]=s)}),i}camelToKebab(e){return e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase()}};var x=class{state;isDragging=!1;dragStartX=0;dragStartY=0;elementStartPositions=new Map;historyPush;onDragEnd=null;constructor(e,t){this.state=e,this.historyPush=t}setOnDragEnd(e){this.onDragEnd=e}startDrag(e,t){if(!this.state.selectedIds.has(t))return;this.isDragging=!0,this.dragStartX=e.clientX,this.dragStartY=e.clientY,this.elementStartPositions.clear(),this.state.selectedIds.forEach(r=>{let o=document.querySelector(`[data-editor-id="${r}"]`);o&&this.elementStartPositions.set(r,{x:parseFloat(o.style.left)||o.offsetLeft,y:parseFloat(o.style.top)||o.offsetTop})}),e.target.setPointerCapture(e.pointerId),e.preventDefault(),e.stopPropagation()}handleMove(e){if(!this.isDragging)return;let t=e.clientX-this.dragStartX,i=e.clientY-this.dragStartY;this.elementStartPositions.forEach((r,o)=>{let s=document.querySelector(`[data-editor-id="${o}"]`);if(s){let n=r.x+t,l=r.y+i;s.style.left=`${n}px`,s.style.top=`${l}px`}})}endDrag(e){if(!this.isDragging)return;let t=e.clientX-this.dragStartX,i=e.clientY-this.dragStartY;(Math.abs(t)>2||Math.abs(i)>2)&&this.elementStartPositions.forEach((r,o)=>{document.querySelector(`[data-editor-id="${o}"]`)&&this.historyPush({type:"move",elementId:o,from:{x:r.x,y:r.y},to:{x:r.x+t,y:r.y+i}})}),this.isDragging=!1,this.elementStartPositions.clear(),this.onDragEnd&&this.onDragEnd()}isActive(){return this.isDragging}};var E=class{state;historyPush;handles=new Map;isResizing=!1;activeHandle=null;resizeTarget=null;startX=0;startY=0;startWidth=0;startHeight=0;startLeft=0;startTop=0;onResizeEnd=null;cursors={nw:"nwse-resize",n:"ns-resize",ne:"nesw-resize",e:"ew-resize",se:"nwse-resize",s:"ns-resize",sw:"nesw-resize",w:"ew-resize"};constructor(e,t){this.state=e,this.historyPush=t}setOnResizeEnd(e){this.onResizeEnd=e}createHandles(e){this.removeHandles(e);let t=document.querySelector(`[data-editor-id="${e}"]`);if(!t)return;let i=t.parentElement;i&&getComputedStyle(i).position==="static"&&(i.style.position="relative");let r=["nw","n","ne","e","se","s","sw","w"],o=[];r.forEach(s=>{let n=document.createElement("div");n.className="slide-editor-resize-handle",n.dataset.handlePosition=s,n.style.cssText=`
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border: 2px solid var(--editor-accent, #00ffcc);
+        border-radius: 2px;
+        cursor: ${this.cursors[s]};
+        z-index: 10000;
+        pointer-events: auto;
+      `,this.positionHandle(n,s,t),n.addEventListener("pointerdown",l=>this.startResize(l,e,s)),t.parentElement?.appendChild(n),o.push({position:s,element:n,cursor:this.cursors[s]})}),this.handles.set(e,o)}removeHandles(e){let t=this.handles.get(e);t&&(t.forEach(i=>i.element.remove()),this.handles.delete(e))}removeAllHandles(){this.handles.forEach(e=>{e.forEach(t=>t.element.remove())}),this.handles.clear()}updateHandlePositions(e){let t=this.handles.get(e),i=document.querySelector(`[data-editor-id="${e}"]`);t&&i&&t.forEach(r=>this.positionHandle(r.element,r.position,i))}positionHandle(e,t,i){let r=i.getBoundingClientRect(),o=i.parentElement?.getBoundingClientRect()||{left:0,top:0},s=r.left-o.left,n=r.top-o.top,l=r.width,c=r.height,a=5;switch(t){case"nw":e.style.left=`${s-a}px`,e.style.top=`${n-a}px`;break;case"n":e.style.left=`${s+l/2-a}px`,e.style.top=`${n-a}px`;break;case"ne":e.style.left=`${s+l-a}px`,e.style.top=`${n-a}px`;break;case"e":e.style.left=`${s+l-a}px`,e.style.top=`${n+c/2-a}px`;break;case"se":e.style.left=`${s+l-a}px`,e.style.top=`${n+c-a}px`;break;case"s":e.style.left=`${s+l/2-a}px`,e.style.top=`${n+c-a}px`;break;case"sw":e.style.left=`${s-a}px`,e.style.top=`${n+c-a}px`;break;case"w":e.style.left=`${s-a}px`,e.style.top=`${n+c/2-a}px`;break}}startResize(e,t,i){e.preventDefault(),e.stopPropagation(),this.isResizing=!0,this.activeHandle=i,this.resizeTarget=t;let r=document.querySelector(`[data-editor-id="${t}"]`);r&&(this.startX=e.clientX,this.startY=e.clientY,this.startWidth=r.offsetWidth,this.startHeight=r.offsetHeight,this.startLeft=parseFloat(r.style.left)||0,this.startTop=parseFloat(r.style.top)||0,e.target.setPointerCapture(e.pointerId))}handleMove(e){if(!this.isResizing||!this.resizeTarget||!this.activeHandle)return;let t=document.querySelector(`[data-editor-id="${this.resizeTarget}"]`);if(!t)return;let i=e.clientX-this.startX,r=e.clientY-this.startY,o=this.startWidth,s=this.startHeight,n=this.startLeft,l=this.startTop;this.activeHandle.includes("e")&&(o=Math.max(20,this.startWidth+i)),this.activeHandle.includes("w")&&(o=Math.max(20,this.startWidth-i),n=this.startLeft+(this.startWidth-o)),this.activeHandle.includes("s")&&(s=Math.max(20,this.startHeight+r)),this.activeHandle.includes("n")&&(s=Math.max(20,this.startHeight-r),l=this.startTop+(this.startHeight-s)),t.style.width=`${o}px`,(t.tagName.toLowerCase()==="img"||t.style.height)&&(t.style.height=`${s}px`),t.style.left=`${n}px`,t.style.top=`${l}px`,this.updateHandlePositions(this.resizeTarget)}endResize(){if(!this.isResizing||!this.resizeTarget)return;let e=document.querySelector(`[data-editor-id="${this.resizeTarget}"]`);e&&this.historyPush({type:"resize",elementId:this.resizeTarget,from:{width:this.startWidth,height:this.startHeight,x:this.startLeft,y:this.startTop},to:{width:e.offsetWidth,height:e.offsetHeight,x:e.offsetLeft,y:e.offsetTop}}),this.isResizing=!1,this.activeHandle=null,this.resizeTarget=null,this.onResizeEnd&&this.onResizeEnd()}isActive(){return this.isResizing}};var S=class{state;historyPush;activeElement=null;originalContent="";onEditEnd=null;constructor(e,t){this.state=e,this.historyPush=t}setOnEditEnd(e){this.onEditEnd=e}startEditing(e){let t=document.querySelector(`[data-editor-id="${e}"]`);if(!t||t.tagName.toLowerCase()==="img")return;this.activeElement=e,this.originalContent=t.innerHTML,t.contentEditable="true",t.classList.add("slide-editor-editing"),t.focus();let i=window.getSelection(),r=document.createRange();r.selectNodeContents(t),i?.removeAllRanges(),i?.addRange(r),t.addEventListener("blur",this.handleBlur),t.addEventListener("keydown",this.handleKeydown)}endEditing(e=!0){if(!this.activeElement)return;let t=this.activeElement,i=document.querySelector(`[data-editor-id="${t}"]`);if(!i){this.activeElement=null;return}i.removeEventListener("blur",this.handleBlur),i.removeEventListener("keydown",this.handleKeydown);let r=i.innerHTML;i.contentEditable="false",i.classList.remove("slide-editor-editing"),e&&r!==this.originalContent?this.historyPush({type:"text",elementId:t,from:this.originalContent,to:r}):e||(i.innerHTML=this.originalContent),this.activeElement=null,this.originalContent="",this.onEditEnd&&this.onEditEnd()}isEditing(){return this.activeElement!==null}getActiveElement(){return this.activeElement}handleBlur=()=>{this.endEditing(!0)};handleKeydown=e=>{if(e.key==="Escape")this.endEditing(!1);else if(e.key==="Enter"&&!e.shiftKey){let t=document.querySelector(`[data-editor-id="${this.activeElement}"]`);t&&!this.isMultiline(t)&&(e.preventDefault(),t.blur())}};isMultiline(e){let t=e.tagName.toLowerCase();return["p","div","li","td","th"].includes(t)||e.style.whiteSpace==="pre-wrap"}};var L=class{state;maxHistory=100;constructor(e){this.state=e}push(e){this.state.historyIndex<this.state.historyStack.length&&(this.state.historyStack=this.state.historyStack.slice(0,this.state.historyIndex)),this.state.historyStack.push(e),this.state.historyStack.length>this.maxHistory?this.state.historyStack.shift():this.state.historyIndex++}canUndo(){return this.state.historyIndex>0}canRedo(){return this.state.historyIndex<this.state.historyStack.length}undo(){return this.canUndo()?(this.state.historyIndex--,this.state.historyStack[this.state.historyIndex]):null}redo(){if(!this.canRedo())return null;let e=this.state.historyStack[this.state.historyIndex];return this.state.historyIndex++,e}getHistoryLength(){return this.state.historyStack.length}};function N(){return typeof navigator<"u"&&navigator.language.toLowerCase().startsWith("zh")?"zh":"en"}var R=N(),D={en:{"properties.title":"Properties","properties.noSelection":"Select an element to edit","properties.position":"Position","properties.size":"Size","properties.text":"Text","properties.fontSize":"Font Size","properties.color":"Color","properties.fontWeight":"Weight","properties.fontWeight.normal":"Normal","properties.fontWeight.bold":"Bold","properties.fontWeight.light":"Light","properties.fontWeight.semibold":"Semi-Bold","properties.textAlign":"Align","properties.textAlign.left":"Left","properties.textAlign.center":"Center","properties.textAlign.right":"Right","properties.image":"Image","properties.cropImage":"Crop Image","properties.opacity":"Opacity","properties.bringToFront":"Bring to Front","properties.sendToBack":"Send to Back","toolbar.addText":"Add Text","toolbar.addImage":"Add Image","toolbar.delete":"Delete","toolbar.undo":"Undo (Ctrl+Z)","toolbar.redo":"Redo (Ctrl+Shift+Z)","toolbar.toggleTheme":"Toggle Dark/Light Mode (T)","toolbar.togglePanel":"Toggle Properties Panel (P)","toolbar.export":"Export","toolbar.switchLang":"Switch Language","navigator.addSlide":"Add Slide","navigator.duplicateSlide":"Duplicate Slide","navigator.deleteSlide":"Delete Slide","navigator.elements":"elements","navigator.element":"element","placeholder.fontSize":"e.g. 24px"},zh:{"properties.title":"\u5C5E\u6027","properties.noSelection":"\u9009\u62E9\u4E00\u4E2A\u5143\u7D20\u8FDB\u884C\u7F16\u8F91","properties.position":"\u4F4D\u7F6E","properties.size":"\u5927\u5C0F","properties.text":"\u6587\u5B57","properties.fontSize":"\u5B57\u4F53\u5927\u5C0F","properties.color":"\u989C\u8272","properties.fontWeight":"\u7C97\u7EC6","properties.fontWeight.normal":"\u6B63\u5E38","properties.fontWeight.bold":"\u7C97\u4F53","properties.fontWeight.light":"\u7EC6\u4F53","properties.fontWeight.semibold":"\u534A\u7C97","properties.textAlign":"\u5BF9\u9F50","properties.textAlign.left":"\u5DE6\u5BF9\u9F50","properties.textAlign.center":"\u5C45\u4E2D","properties.textAlign.right":"\u53F3\u5BF9\u9F50","properties.image":"\u56FE\u7247","properties.cropImage":"\u88C1\u526A\u56FE\u7247","properties.opacity":"\u4E0D\u900F\u660E\u5EA6","properties.bringToFront":"\u79FB\u5230\u6700\u524D","properties.sendToBack":"\u79FB\u5230\u6700\u540E","toolbar.addText":"\u6DFB\u52A0\u6587\u5B57","toolbar.addImage":"\u6DFB\u52A0\u56FE\u7247","toolbar.delete":"\u5220\u9664","toolbar.undo":"\u64A4\u9500 (Ctrl+Z)","toolbar.redo":"\u91CD\u505A (Ctrl+Shift+Z)","toolbar.toggleTheme":"\u5207\u6362\u6DF1\u8272/\u6D45\u8272\u6A21\u5F0F","toolbar.togglePanel":"\u5207\u6362\u5C5E\u6027\u9762\u677F","toolbar.export":"\u5BFC\u51FA","toolbar.switchLang":"\u5207\u6362\u8BED\u8A00","navigator.addSlide":"\u6DFB\u52A0\u5E7B\u706F\u7247","navigator.duplicateSlide":"\u590D\u5236\u5E7B\u706F\u7247","navigator.deleteSlide":"\u5220\u9664\u5E7B\u706F\u7247","navigator.elements":"\u4E2A\u5143\u7D20","navigator.element":"\u4E2A\u5143\u7D20","placeholder.fontSize":"\u5982 24px"}};function A(p){R=p}function q(){return R}function d(p,e){let t=D[R][p]||D.en[p]||p;return e&&Object.entries(e).forEach(([i,r])=>{t=t.replace(`{${i}}`,r)}),t}function B(){return N()}var T=class{container;editor;onExport;onAddText;onAddImage;onTogglePanel;onToggleTheme;onLocaleChange=null;isDarkMode=!0;constructor(e,t){this.editor=e,this.onExport=t.onExport,this.onAddText=t.onAddText,this.onAddImage=t.onAddImage,this.onTogglePanel=t.onTogglePanel,this.onToggleTheme=t.onToggleTheme,this.container=this.createToolbar()}setOnLocaleChange(e){this.onLocaleChange=e}createToolbar(){let e=document.createElement("div");return e.id="slide-editor-toolbar",e.innerHTML=`
+      <div class="slide-editor-toolbar-group">
+        <button class="slide-editor-btn" data-action="add-text" title="Add Text">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn" data-action="add-image" title="Add Image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </button>
+      </div>
+      <div class="slide-editor-toolbar-group">
+        <button class="slide-editor-btn" data-action="delete" title="Delete">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="slide-editor-toolbar-group">
+        <button class="slide-editor-btn" data-action="undo" title="Undo (Ctrl+Z)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 7v6h6M3 13c0-4.97 4.03-9 9-9a9 9 0 019 9 9 9 0 01-9 9c-2.5 0-4.74-1-6.4-2.6"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn" data-action="redo" title="Redo (Ctrl+Shift+Z)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 7v6h-6M21 13c0-4.97-4.03-9-9-9a9 9 0 00-9 9 9 9 0 009 9c2.5 0 4.74-1 6.4-2.6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="slide-editor-toolbar-spacer"></div>
+      <div class="slide-editor-toolbar-group">
+        <button class="slide-editor-btn" data-action="toggle-theme" title="Toggle Dark/Light Mode (T)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="theme-icon-dark">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="theme-icon-light" style="display:none;">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn" data-action="toggle-panel" title="Toggle Properties Panel (P)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M9 3v18"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn slide-editor-lang-btn" data-action="toggle-lang" title="${d("toolbar.switchLang")}">
+          <span class="lang-label">${q()==="zh"?"\u4E2D":"EN"}</span>
+        </button>
+      </div>
+      <div class="slide-editor-toolbar-group">
+        <button class="slide-editor-btn slide-editor-btn-primary" data-action="export" title="Export HTML">
+          Export
+        </button>
+      </div>
+    `,e.addEventListener("click",t=>{let i=t.target.closest("[data-action]");if(!i)return;switch(i.dataset.action){case"add-text":this.onAddText();break;case"add-image":this.onAddImage();break;case"delete":this.editor.deleteSelected();break;case"undo":this.editor.undo();break;case"redo":this.editor.redo();break;case"toggle-panel":this.onTogglePanel();break;case"toggle-theme":this.toggleThemeIcon(),this.onToggleTheme();break;case"toggle-lang":this.toggleLanguage();break;case"export":this.onExport();break}}),e}toggleThemeIcon(){this.isDarkMode=!this.isDarkMode;let e=this.container.querySelector(".theme-icon-dark"),t=this.container.querySelector(".theme-icon-light");e&&t&&(e.style.display=this.isDarkMode?"block":"none",t.style.display=this.isDarkMode?"none":"block")}toggleLanguage(){let e=q()==="zh"?"en":"zh";A(e);let t=this.container.querySelector(".lang-label");t&&(t.textContent=e==="zh"?"\u4E2D":"EN"),this.onLocaleChange&&this.onLocaleChange(e)}mount(e){e.appendChild(this.container)}unmount(){this.container.remove()}updateUndoRedoState(){let e=this.container.querySelector('[data-action="undo"]'),t=this.container.querySelector('[data-action="redo"]');e&&(e.disabled=!this.editor.canUndo(),e.classList.toggle("slide-editor-btn-disabled",!this.editor.canUndo())),t&&(t.disabled=!this.editor.canRedo(),t.classList.toggle("slide-editor-btn-disabled",!this.editor.canRedo()))}};var M=class{container;editor;currentElement=null;constructor(e){this.editor=e,this.container=this.createPanel()}createPanel(){let e=document.createElement("div");return e.id="slide-editor-properties",e.innerHTML=`
+      <div class="slide-editor-panel-header">${d("properties.title")}</div>
+      <div class="slide-editor-panel-content">
+        <div class="slide-editor-no-selection">${d("properties.noSelection")}</div>
+        <div class="slide-editor-properties-form" style="display: none;">
+          <div class="slide-editor-field-group">
+            <label>${d("properties.position")}</label>
+            <div class="slide-editor-field-row">
+              <div class="slide-editor-field">
+                <span class="slide-editor-field-label">X</span>
+                <input type="number" id="prop-x" step="1">
+              </div>
+              <div class="slide-editor-field">
+                <span class="slide-editor-field-label">Y</span>
+                <input type="number" id="prop-y" step="1">
+              </div>
+            </div>
+          </div>
+          <div class="slide-editor-field-group">
+            <label>${d("properties.size")}</label>
+            <div class="slide-editor-field-row">
+              <div class="slide-editor-field">
+                <span class="slide-editor-field-label">W</span>
+                <input type="number" id="prop-w" step="1" min="1">
+              </div>
+              <div class="slide-editor-field">
+                <span class="slide-editor-field-label">H</span>
+                <input type="number" id="prop-h" step="1" min="1">
+              </div>
+            </div>
+          </div>
+          <div class="slide-editor-field-group" id="text-properties" style="display: none;">
+            <label>${d("properties.text")}</label>
+            <div class="slide-editor-field">
+              <span class="slide-editor-field-label">${d("properties.fontSize")}</span>
+              <input type="text" id="prop-font-size" placeholder="${d("placeholder.fontSize")}">
+            </div>
+            <div class="slide-editor-field">
+              <span class="slide-editor-field-label">${d("properties.color")}</span>
+              <input type="color" id="prop-color">
+            </div>
+            <div class="slide-editor-field">
+              <span class="slide-editor-field-label">${d("properties.fontWeight")}</span>
+              <select id="prop-font-weight">
+                <option value="normal">${d("properties.fontWeight.normal")}</option>
+                <option value="bold">${d("properties.fontWeight.bold")}</option>
+                <option value="300">${d("properties.fontWeight.light")}</option>
+                <option value="600">${d("properties.fontWeight.semibold")}</option>
+              </select>
+            </div>
+            <div class="slide-editor-field">
+              <span class="slide-editor-field-label">${d("properties.textAlign")}</span>
+              <select id="prop-text-align">
+                <option value="left">${d("properties.textAlign.left")}</option>
+                <option value="center">${d("properties.textAlign.center")}</option>
+                <option value="right">${d("properties.textAlign.right")}</option>
+              </select>
+            </div>
+          </div>
+          <div class="slide-editor-field-group" id="image-properties" style="display: none;">
+            <label>${d("properties.image")}</label>
+            <div class="slide-editor-field">
+              <button class="slide-editor-btn slide-editor-btn-full" id="prop-crop">${d("properties.cropImage")}</button>
+            </div>
+            <div class="slide-editor-field">
+              <span class="slide-editor-field-label">${d("properties.opacity")}</span>
+              <input type="range" id="prop-opacity" min="0" max="100" value="100">
+            </div>
+          </div>
+          <div class="slide-editor-field-group">
+            <div class="slide-editor-field-row">
+              <button class="slide-editor-btn" id="prop-bring-front">${d("properties.bringToFront")}</button>
+              <button class="slide-editor-btn" id="prop-send-back">${d("properties.sendToBack")}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,this.setupEventListeners(e),e}setupEventListeners(e){let t=e.querySelector("#prop-x"),i=e.querySelector("#prop-y"),r=e.querySelector("#prop-w"),o=e.querySelector("#prop-h");[t,i].forEach(h=>{h?.addEventListener("change",()=>{this.currentElement&&this.editor.moveElement(this.currentElement.id,parseFloat(t.value)||0,parseFloat(i.value)||0)})}),[r,o].forEach(h=>{h?.addEventListener("change",()=>{this.currentElement&&this.editor.resizeElement(this.currentElement.id,parseFloat(r.value)||100,parseFloat(o.value)||100)})});let s=e.querySelector("#prop-font-size"),n=e.querySelector("#prop-color"),l=e.querySelector("#prop-font-weight"),c=e.querySelector("#prop-text-align");s?.addEventListener("change",()=>{if(this.currentElement&&s.value.trim()){let h=s.value.trim();/^\d+(\.\d+)?(px|em|rem|%|pt|vw|vh)?$/.test(h)?this.editor.setStyle(this.currentElement.id,{fontSize:h}):s.value=this.currentElement.styles.fontSize||""}}),s?.addEventListener("keydown",h=>{h.key==="Enter"&&(h.preventDefault(),s.blur())}),n?.addEventListener("input",()=>{this.currentElement&&n.value&&this.editor.setStyle(this.currentElement.id,{color:n.value})}),l?.addEventListener("change",()=>{this.currentElement&&this.editor.setStyle(this.currentElement.id,{fontWeight:l.value})}),c?.addEventListener("change",()=>{this.currentElement&&this.editor.setStyle(this.currentElement.id,{textAlign:c.value})});let a=e.querySelector("#prop-opacity");a?.addEventListener("input",()=>{if(this.currentElement){let h=parseFloat(a.value)/100;this.editor.setStyle(this.currentElement.id,{opacity:h.toString()})}}),e.querySelector("#prop-crop")?.addEventListener("click",()=>{this.currentElement&&this.currentElement.type==="image"&&this.editor.startCropImage(this.currentElement.id)}),e.querySelector("#prop-bring-front")?.addEventListener("click",()=>{this.currentElement&&this.editor.bringToFront(this.currentElement.id)}),e.querySelector("#prop-send-back")?.addEventListener("click",()=>{this.currentElement&&this.editor.sendToBack(this.currentElement.id)})}mount(e){e.appendChild(this.container)}unmount(){this.container.remove()}refreshLocale(){let e=this.container.parentElement,t=this.currentElement;this.container.remove(),this.container=this.createPanel(),e&&e.appendChild(this.container),this.updateSelection(t)}updateSelection(e){this.currentElement=e;let t=this.container.querySelector(".slide-editor-no-selection"),i=this.container.querySelector(".slide-editor-properties-form"),r=this.container.querySelector("#text-properties"),o=this.container.querySelector("#image-properties");if(!e){t?.classList.remove("slide-editor-hidden"),i.style.display="none";return}if(t?.classList.add("slide-editor-hidden"),i.style.display="block",this.container.querySelector("#prop-x").value=Math.round(e.x).toString(),this.container.querySelector("#prop-y").value=Math.round(e.y).toString(),this.container.querySelector("#prop-w").value=Math.round(e.width).toString(),this.container.querySelector("#prop-h").value=Math.round(e.height).toString(),r.style.display=e.type==="text"?"block":"none",o.style.display=e.type==="image"?"block":"none",e.type==="text"&&(this.container.querySelector("#prop-font-size").value=e.styles.fontSize||"",this.container.querySelector("#prop-color").value=this.rgbToHex(e.styles.color)||"#000000",this.container.querySelector("#prop-font-weight").value=e.styles.fontWeight||"normal",this.container.querySelector("#prop-text-align").value=e.styles.textAlign||"left"),e.type==="image"){let s=parseFloat(e.styles.opacity||"1")*100;this.container.querySelector("#prop-opacity").value=s.toString()}}rgbToHex(e){if(!e)return"#000000";if(e.startsWith("#"))return e;let t=e.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);if(!t)return"#000000";let i=parseInt(t[1]).toString(16).padStart(2,"0"),r=parseInt(t[2]).toString(16).padStart(2,"0"),o=parseInt(t[3]).toString(16).padStart(2,"0");return`#${i}${r}${o}`}};var w=class{container;editor;thumbnails=new Map;onSlideChange=null;constructor(e){this.editor=e,this.container=this.createNavigator()}setOnSlideChange(e){this.onSlideChange=e}createNavigator(){let e=document.createElement("div");return e.id="slide-editor-navigator",e.innerHTML=`
+      <div class="slide-editor-nav-controls">
+        <button class="slide-editor-btn slide-editor-nav-btn" id="nav-add-slide" title="${d("navigator.addSlide")}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn slide-editor-nav-btn" id="nav-duplicate-slide" title="${d("navigator.duplicateSlide")}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+        </button>
+        <button class="slide-editor-btn slide-editor-nav-btn" id="nav-delete-slide" title="${d("navigator.deleteSlide")}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="slide-editor-thumbnails" id="slide-thumbnails"></div>
+    `,this.setupEventListeners(e),e}setupEventListeners(e){e.querySelector("#nav-add-slide")?.addEventListener("click",()=>{this.editor.addSlide(),this.refresh()}),e.querySelector("#nav-duplicate-slide")?.addEventListener("click",()=>{let t=this.editor.getCurrentSlide();t&&(this.editor.duplicateSlide(t.index),this.refresh())}),e.querySelector("#nav-delete-slide")?.addEventListener("click",()=>{let t=this.editor.getCurrentSlide();t&&(this.editor.deleteSlide(t.index),this.refresh())})}mount(e){e.appendChild(this.container),this.refresh()}unmount(){this.container.remove(),this.thumbnails.clear()}refreshLocale(){this.refresh()}refresh(){let e=this.container.querySelector("#slide-thumbnails");if(!e)return;e.innerHTML="",this.thumbnails.clear();let t=this.editor.getSlides(),r=this.editor.getCurrentSlide()?.index??0;t.forEach((o,s)=>{let n=this.createThumbnail(o,s);s===r&&n.classList.add("slide-editor-thumbnail-active"),e.appendChild(n),this.thumbnails.set(s,n)}),this.setupDragAndDrop()}createThumbnail(e,t){let i=document.createElement("div");i.className="slide-editor-thumbnail",i.dataset.slideIndex=t.toString();let o=document.querySelectorAll(".slide")[t],s=document.createElement("div");s.className="slide-editor-thumbnail-number",s.textContent=`${t+1}`;let n=document.createElement("div");if(n.className="slide-editor-thumbnail-preview",o){let l=o.querySelectorAll("[data-editor-id]").length,c=l===1?d("navigator.element"):d("navigator.elements");n.innerHTML=`<span class="slide-editor-element-count">${l} ${c}</span>`}return i.appendChild(s),i.appendChild(n),i.addEventListener("click",()=>{this.selectSlide(t)}),i}selectSlide(e){this.thumbnails.forEach((t,i)=>{t.classList.toggle("slide-editor-thumbnail-active",i===e)}),this.editor.setCurrentSlide(e),this.onSlideChange&&this.onSlideChange(e)}setupDragAndDrop(){let e=this.container.querySelector("#slide-thumbnails");if(!e)return;let t=null;e.addEventListener("dragstart",i=>{let r=i.target.closest(".slide-editor-thumbnail");r&&(t=parseInt(r.dataset.slideIndex||"0"),r.classList.add("slide-editor-dragging"),i.dataTransfer.effectAllowed="move")}),e.addEventListener("dragend",i=>{i.target.closest(".slide-editor-thumbnail")?.classList.remove("slide-editor-dragging"),t=null}),e.addEventListener("dragover",i=>{i.preventDefault(),i.dataTransfer.effectAllowed="move"}),e.addEventListener("drop",i=>{i.preventDefault();let r=i.target.closest(".slide-editor-thumbnail");if(!r||t===null)return;let o=parseInt(r.dataset.slideIndex||"0");t!==o&&(this.editor.moveSlide(t,o),this.refresh())}),this.thumbnails.forEach(i=>{i.draggable=!0})}setActiveSlide(e){this.thumbnails.forEach((t,i)=>{t.classList.toggle("slide-editor-thumbnail-active",i===e)})}};var H=class{exportClean(){let e=document.documentElement.cloneNode(!0);return e.querySelectorAll("#slide-editor-toolbar").forEach(t=>t.remove()),e.querySelectorAll("#slide-editor-properties").forEach(t=>t.remove()),e.querySelectorAll("#slide-editor-navigator").forEach(t=>t.remove()),e.querySelectorAll("#slide-editor-styles").forEach(t=>t.remove()),e.querySelectorAll(".slide-editor-resize-handle").forEach(t=>t.remove()),e.querySelectorAll(".slide-editor-crop-overlay").forEach(t=>t.remove()),e.querySelectorAll(".slide-editor-selected").forEach(t=>{t.classList.remove("slide-editor-selected")}),e.querySelectorAll(".slide-editor-editing").forEach(t=>{t.classList.remove("slide-editor-editing")}),e.querySelectorAll("[data-editor-id]").forEach(t=>{t.removeAttribute("data-editor-id")}),e.querySelectorAll("[contenteditable]").forEach(t=>{t.removeAttribute("contenteditable")}),e.querySelectorAll("script").forEach(t=>{t.textContent?.includes("__openclawEditor")&&t.remove()}),e.querySelectorAll('[style*="position: absolute"]').forEach(t=>{}),`<!DOCTYPE html>
+`+e.outerHTML}exportWithEditor(e){let t=document.documentElement.outerHTML;if(!t.includes("__openclawEditor")){let i=t.lastIndexOf("</body>");if(i>-1){let r=`<script>${e}<\/script>`;return`<!DOCTYPE html>
+`+t.slice(0,i)+r+`
+<script>window.__openclawEditor.enable();<\/script>
+`+t.slice(i)}}return`<!DOCTYPE html>
+`+t}getSlides(){let e=[];return document.querySelectorAll(".slide").forEach((i,r)=>{let o=this.getSlideElements(i);e.push({index:r,id:i.id||`slide-${r}`,elements:o})}),e}getSlideElements(e){let t=[];return e.querySelectorAll("[data-editor-id]").forEach(r=>{let o=this.getElementInfo(r,e);o&&t.push(o)}),t}getElementInfo(e,t){let i=e.getAttribute("data-editor-id");if(!i)return null;let r=e.getBoundingClientRect(),o=t.getBoundingClientRect();return{id:i,type:this.getElementType(e),x:r.left-o.left,y:r.top-o.top,width:r.width,height:r.height,content:e.textContent||void 0,src:e.src||void 0,styles:this.extractStyles(e)}}getElementType(e){let t=e.tagName.toLowerCase();return t==="img"?"image":["h1","h2","h3","h4","h5","h6","p","span","div","a","label"].includes(t)?e.querySelector("img")?"unknown":"text":t==="svg"||e.closest("svg")?"shape":"unknown"}extractStyles(e){let t=window.getComputedStyle(e),i={};return["fontSize","fontFamily","fontWeight","color","backgroundColor","textAlign","lineHeight","opacity","borderRadius","padding","margin"].forEach(o=>{let s=t.getPropertyValue(this.camelToKebab(o));s&&s!=="none"&&s!=="normal"&&(i[o]=s)}),i}camelToKebab(e){return e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase()}},I=class{overlay=null;cropArea=null;targetElement=null;targetElementId=null;onStart=null;onCancel=null;handles=new Map;containerRect=null;startCrop(e,t,i){this.targetElement=document.querySelector(`[data-editor-id="${e}"]`),!(!this.targetElement||this.targetElement.tagName.toLowerCase()!=="img")&&(this.targetElementId=e,this.onStart=t,this.onCancel=i,this.createCropOverlay())}createCropOverlay(){if(!this.targetElement)return;this.overlay=document.createElement("div"),this.overlay.className="slide-editor-crop-overlay",this.overlay.innerHTML=`
+      <div class="slide-editor-crop-controls">
+        <button class="slide-editor-btn slide-editor-btn-primary" id="crop-apply">Apply Crop</button>
+        <button class="slide-editor-btn" id="crop-cancel">Cancel</button>
+      </div>
+    `,this.cropArea=document.createElement("div"),this.cropArea.className="slide-editor-crop-area";let e=this.targetElement.getBoundingClientRect();this.containerRect=e,this.overlay.style.cssText=`
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;let t=document.createElement("div");t.style.cssText=`
+      position: relative;
+      width: ${e.width}px;
+      height: ${e.height}px;
+    `;let i=this.targetElement.cloneNode(!0);i.style.cssText=`
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    `,this.cropArea.style.cssText=`
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      border: 2px dashed var(--editor-accent, #00ffcc);
+      background: transparent;
+      cursor: move;
+    `,t.appendChild(i),t.appendChild(this.cropArea),this.createCropHandles(),this.overlay.appendChild(t),document.body.appendChild(this.overlay),this.overlay.querySelector("#crop-apply")?.addEventListener("click",()=>this.applyCrop()),this.overlay.querySelector("#crop-cancel")?.addEventListener("click",()=>this.cancelCrop()),this.setupCropDrag()}createCropHandles(){if(!this.cropArea)return;let e=["nw","n","ne","e","se","s","sw","w"],t={nw:"nwse-resize",n:"ns-resize",ne:"nesw-resize",e:"ew-resize",se:"nwse-resize",s:"ns-resize",sw:"nesw-resize",w:"ew-resize"};e.forEach(i=>{let r=document.createElement("div");r.className="slide-editor-crop-handle",r.dataset.handlePosition=i,r.style.cssText=`
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: white;
+        border: 2px solid var(--editor-accent, #00ffcc);
+        border-radius: 2px;
+        cursor: ${t[i]||"pointer"};
+        z-index: 100002;
+      `,this.positionHandle(r,i),this.cropArea.appendChild(r),this.handles.set(i,r),this.setupHandleDrag(r,i)})}positionHandle(e,t){switch(t){case"nw":e.style.top="-6px",e.style.left="-6px";break;case"n":e.style.top="-6px",e.style.left="50%",e.style.transform="translateX(-50%)";break;case"ne":e.style.top="-6px",e.style.right="-6px";break;case"e":e.style.top="50%",e.style.right="-6px",e.style.transform="translateY(-50%)";break;case"se":e.style.bottom="-6px",e.style.right="-6px";break;case"s":e.style.bottom="-6px",e.style.left="50%",e.style.transform="translateX(-50%)";break;case"sw":e.style.bottom="-6px",e.style.left="-6px";break;case"w":e.style.top="50%",e.style.left="-6px",e.style.transform="translateY(-50%)";break}}setupHandleDrag(e,t){let i=!1,r=0,o=0,s=0,n=0,l=0,c=0;e.addEventListener("pointerdown",a=>{a.stopPropagation(),i=!0,r=a.clientX,o=a.clientY,this.cropArea&&(s=this.cropArea.offsetLeft,n=this.cropArea.offsetTop,l=this.cropArea.offsetWidth,c=this.cropArea.offsetHeight),e.setPointerCapture(a.pointerId)}),document.addEventListener("pointermove",a=>{if(!i||!this.cropArea||!this.containerRect)return;let h=a.clientX-r,u=a.clientY-o,g=20,$=this.containerRect.width,z=this.containerRect.height,m=s,f=n,v=l,y=c;t.includes("w")&&(v=Math.max(g,l-h),m=Math.min(s+l-g,s+h),m<0&&(v+=m,m=0)),t.includes("e")&&(v=Math.max(g,l+h),m+v>$&&(v=$-m)),t.includes("n")&&(y=Math.max(g,c-u),f=Math.min(n+c-g,n+u),f<0&&(y+=f,f=0)),t.includes("s")&&(y=Math.max(g,c+u),f+y>z&&(y=z-f)),this.cropArea.style.left=`${m}px`,this.cropArea.style.top=`${f}px`,this.cropArea.style.width=`${v}px`,this.cropArea.style.height=`${y}px`}),document.addEventListener("pointerup",()=>{i=!1})}setupCropDrag(){if(!this.cropArea)return;let e=!1,t=0,i=0,r=0,o=0;this.cropArea.addEventListener("pointerdown",s=>{s.target.classList.contains("slide-editor-crop-handle")||(e=!0,t=s.clientX,i=s.clientY,r=this.cropArea.offsetLeft,o=this.cropArea.offsetTop,s.target.setPointerCapture(s.pointerId))}),document.addEventListener("pointermove",s=>{if(!e||!this.cropArea||!this.containerRect)return;let n=s.clientX-t,l=s.clientY-i,c=this.containerRect.width-this.cropArea.offsetWidth,a=this.containerRect.height-this.cropArea.offsetHeight,h=r+n,u=o+l;h=Math.max(0,Math.min(c,h)),u=Math.max(0,Math.min(a,u)),this.cropArea.style.left=`${h}px`,this.cropArea.style.top=`${u}px`}),document.addEventListener("pointerup",()=>{e=!1})}applyCrop(){if(!this.cropArea||!this.targetElement||!this.onStart||!this.containerRect)return;let e=this.containerRect.width,t=this.containerRect.height,i=this.cropArea.offsetLeft,r=this.cropArea.offsetTop,o=this.cropArea.offsetWidth,s=this.cropArea.offsetHeight,n={x:i/e*100,y:r/t*100,width:o/e*100,height:s/t*100},l=n.y,c=100-n.x-n.width,a=100-n.y-n.height,h=n.x;this.targetElement.style.clipPath=`inset(${l}% ${c}% ${a}% ${h}%)`;let u=this.onStart;this.cleanup(),u&&u(n)}cancelCrop(){this.onCancel&&this.onCancel(),this.cleanup()}cleanup(){this.handles.forEach(e=>e.remove()),this.handles.clear(),this.overlay?.remove(),this.overlay=null,this.cropArea=null,this.containerRect=null,this.onStart=null,this.onCancel=null}};var W=`
+/* Light theme (default) */
+:root {
+  --editor-accent: #0891b2;
+  --editor-bg: #ffffff;
+  --editor-surface: #f8fafc;
+  --editor-text: #1e293b;
+  --editor-text-muted: #64748b;
+  --editor-border: #e2e8f0;
+  --editor-hover: #f1f5f9;
+  --editor-selected-bg: rgba(8, 145, 178, 0.1);
+  --editor-handle-bg: #ffffff;
+}
+
+/* Dark theme - matches system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --editor-accent: #22d3ee;
+    --editor-bg: #0f172a;
+    --editor-surface: #1e293b;
+    --editor-text: #f1f5f9;
+    --editor-text-muted: #94a3b8;
+    --editor-border: #334155;
+    --editor-hover: #334155;
+    --editor-selected-bg: rgba(34, 211, 238, 0.15);
+    --editor-handle-bg: #ffffff;
+  }
+}
+
+/* Manual theme override classes */
+.slide-editor-light {
+  --editor-accent: #0891b2;
+  --editor-bg: #ffffff;
+  --editor-surface: #f8fafc;
+  --editor-text: #1e293b;
+  --editor-text-muted: #64748b;
+  --editor-border: #e2e8f0;
+  --editor-hover: #f1f5f9;
+  --editor-selected-bg: rgba(8, 145, 178, 0.1);
+  --editor-handle-bg: #ffffff;
+}
+
+.slide-editor-dark {
+  --editor-accent: #22d3ee;
+  --editor-bg: #0f172a;
+  --editor-surface: #1e293b;
+  --editor-text: #f1f5f9;
+  --editor-text-muted: #94a3b8;
+  --editor-border: #334155;
+  --editor-hover: #334155;
+  --editor-selected-bg: rgba(34, 211, 238, 0.15);
+  --editor-handle-bg: #ffffff;
+}
+
+.slide-editor-selected {
+  outline: 2px solid var(--editor-accent) !important;
+  outline-offset: 2px !important;
+}
+
+.slide-editor-editing {
+  outline: 2px dashed var(--editor-accent) !important;
+  cursor: text !important;
+}
+
+.slide-editor-resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--editor-handle-bg) !important;
+  border: 2px solid var(--editor-accent) !important;
+  border-radius: 2px !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Toolbar */
+#slide-editor-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: var(--editor-bg);
+  border-bottom: 1px solid var(--editor-border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  z-index: 99999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.slide-editor-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.slide-editor-toolbar-spacer {
+  flex: 1;
+}
+
+.slide-editor-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--editor-surface);
+  color: var(--editor-text);
+  border: 1px solid var(--editor-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.slide-editor-btn:hover {
+  background: var(--editor-hover);
+  border-color: var(--editor-accent);
+}
+
+.slide-editor-btn:active {
+  transform: scale(0.98);
+}
+
+.slide-editor-btn-primary {
+  background: var(--editor-accent);
+  color: #000;
+  border-color: var(--editor-accent);
+}
+
+.slide-editor-btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.slide-editor-btn-disabled,
+.slide-editor-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slide-editor-btn-full {
+  width: 100%;
+}
+
+/* Properties Panel */
+#slide-editor-properties {
+  position: fixed;
+  top: 48px;
+  right: 0;
+  width: 280px;
+  height: calc(100vh - 48px - 80px);
+  background: var(--editor-bg);
+  border-left: 1px solid var(--editor-border);
+  z-index: 99998;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+#slide-editor-properties.slide-editor-panel-hidden {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slide-editor-panel-header {
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--editor-accent);
+  border-bottom: 1px solid var(--editor-border);
+  background: var(--editor-surface);
+}
+
+.slide-editor-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.slide-editor-no-selection {
+  color: var(--editor-text-muted);
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+}
+
+.slide-editor-hidden {
+  display: none !important;
+}
+
+.slide-editor-properties-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.slide-editor-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slide-editor-field-group > label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--editor-text-muted);
+}
+
+.slide-editor-field-row {
+  display: flex;
+  gap: 8px;
+}
+
+.slide-editor-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slide-editor-field-label {
+  font-size: 10px;
+  color: var(--editor-text-muted);
+}
+
+.slide-editor-field input,
+.slide-editor-field select {
+  padding: 8px;
+  background: var(--editor-surface);
+  border: 1px solid var(--editor-border);
+  border-radius: 4px;
+  color: var(--editor-text);
+  font-size: 13px;
+}
+
+.slide-editor-field input:focus,
+.slide-editor-field select:focus {
+  outline: none;
+  border-color: var(--editor-accent);
+}
+
+.slide-editor-field input[type="color"] {
+  padding: 4px;
+  height: 32px;
+}
+
+.slide-editor-field input[type="range"] {
+  padding: 0;
+  -webkit-appearance: none;
+  background: var(--editor-border);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.slide-editor-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--editor-accent);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Slide Navigator */
+#slide-editor-navigator {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--editor-bg);
+  border-top: 1px solid var(--editor-border);
+  z-index: 99998;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 0 24px 12px 24px;
+  gap: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.slide-editor-nav-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--editor-surface);
+  border-radius: 10px;
+  border: 1px solid var(--editor-border);
+}
+
+.slide-editor-nav-controls .slide-editor-btn {
+  min-width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--editor-bg);
+  border: 1px solid var(--editor-border);
+  transition: all 0.2s ease;
+}
+
+.slide-editor-nav-controls .slide-editor-btn:hover {
+  background: var(--editor-hover);
+  border-color: var(--editor-accent);
+  transform: translateY(-1px);
+}
+
+.slide-editor-nav-controls .slide-editor-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.slide-editor-nav-controls .slide-editor-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.5;
+}
+
+.slide-editor-thumbnails {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 0;
+  flex-direction: row;
+}
+
+.slide-editor-thumbnail {
+  flex-shrink: 0;
+  width: 100px;
+  height: 56px;
+  background: var(--editor-surface);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.slide-editor-thumbnail:hover {
+  border-color: var(--editor-border);
+}
+
+.slide-editor-thumbnail-active {
+  border-color: var(--editor-accent) !important;
+  background: var(--editor-selected-bg);
+}
+
+.slide-editor-thumbnail-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--editor-text);
+}
+
+.slide-editor-thumbnail-preview {
+  font-size: 10px;
+  color: var(--editor-text-muted);
+}
+
+.slide-editor-element-count {
+  font-size: 9px;
+  color: var(--editor-text-muted);
+}
+
+.slide-editor-dragging {
+  opacity: 0.5;
+}
+
+/* Crop Overlay */
+.slide-editor-crop-overlay {
+  z-index: 100000 !important;
+}
+
+.slide-editor-crop-controls {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100001;
+}
+
+.slide-editor-crop-area {
+  z-index: 100001 !important;
+}
+
+/* Toast notification */
+.slide-editor-toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--editor-accent);
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 100001;
+  animation: slide-editor-toast-in 0.3s ease;
+}
+
+@keyframes slide-editor-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Adjust page content for editor */
+body.slide-editor-active {
+  padding-top: 48px !important;
+  padding-bottom: 80px !important;
+}
+
+body.slide-editor-active .slides {
+  transition: padding-right 0.25s ease;
+}
+
+body.slide-editor-active:not(.panel-hidden) .slides {
+  padding-right: 280px !important;
+}
+
+body.slide-editor-active.panel-hidden .slides {
+  padding-right: 0 !important;
+}
+`;var k=class{state;selectionManager;dragManager;resizeManager;textEditor;historyManager;toolbar;propertiesPanel;slideNavigator;exporter;imageCropper;styleElement=null;idCounter=0;panelVisible=!0;originalFilePath=null;currentTheme="auto";constructor(){A(B()),this.state={enabled:!1,selectedIds:new Set,currentSlideIndex:0,historyStack:[],historyIndex:0},this.historyManager=new L(this.state),this.selectionManager=new b(this.state),this.dragManager=new x(this.state,e=>this.pushHistory(e)),this.resizeManager=new E(this.state,e=>this.pushHistory(e)),this.textEditor=new S(this.state,e=>this.pushHistory(e)),this.exporter=new H,this.imageCropper=new I,this.toolbar=new T(this,{onExport:()=>this.handleExport(),onAddText:()=>this.handleAddText(),onAddImage:()=>this.handleAddImage(),onTogglePanel:()=>this.togglePanel(),onToggleTheme:()=>this.toggleTheme()}),this.propertiesPanel=new M(this),this.slideNavigator=new w(this),this.toolbar.setOnLocaleChange(e=>{this.propertiesPanel.refreshLocale(),this.slideNavigator.refreshLocale()}),this.setupCallbacks(),this.setupGlobalListeners()}setupCallbacks(){this.selectionManager.setOnSelectionChange(e=>{this.propertiesPanel.updateSelection(e.length===1?e[0]:null),this.toolbar.updateUndoRedoState(),this.resizeManager.removeAllHandles(),e.length===1&&this.resizeManager.createHandles(e[0].id)}),this.dragManager.setOnDragEnd(()=>{let e=this.selectionManager.getSelectedIds();e.length===1&&this.resizeManager.updateHandlePositions(e[0])}),this.resizeManager.setOnResizeEnd(()=>{this.toolbar.updateUndoRedoState()}),this.textEditor.setOnEditEnd(()=>{let e=this.selectionManager.getSelectedIds();if(e.length===1){let t=this.getElementInfo(e[0]);t&&this.propertiesPanel.updateSelection(t)}else this.propertiesPanel.updateSelection(null)}),this.slideNavigator.setOnSlideChange(e=>{this.state.currentSlideIndex=e,this.selectionManager.deselectAll()})}setupGlobalListeners(){document.addEventListener("pointermove",e=>{this.dragManager.isActive()?this.dragManager.handleMove(e):this.resizeManager.isActive()&&this.resizeManager.handleMove(e)}),document.addEventListener("pointerup",e=>{this.dragManager.endDrag(e),this.resizeManager.endResize()}),document.addEventListener("keydown",e=>{if(this.textEditor.isEditing()){if(e.key==="Escape")return;if(e.ctrlKey||e.metaKey){if(!(e.key==="z"||e.key==="s"))return}else return}if((e.ctrlKey||e.metaKey)&&e.key==="z"){e.preventDefault(),e.shiftKey?this.redo():this.undo();return}if((e.ctrlKey||e.metaKey)&&e.key==="s"){e.preventDefault(),this.handleSave();return}if(e.key==="p"){e.preventDefault(),this.togglePanel();return}if(e.key==="t"){e.preventDefault(),this.toggleTheme();return}if(e.key==="Delete"||e.key==="Backspace"){let t=document.activeElement;!(t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.getAttribute("contenteditable")==="true"))&&this.state.selectedIds.size>0&&(e.preventDefault(),this.deleteSelected())}e.key==="Escape"&&this.selectionManager.deselectAll()})}togglePanel(){this.panelVisible=!this.panelVisible;let e=document.getElementById("slide-editor-properties");e&&e.classList.toggle("slide-editor-panel-hidden",!this.panelVisible),document.body.classList.toggle("panel-hidden",!this.panelVisible)}toggleTheme(){this.currentTheme==="auto"?(this.currentTheme="light",document.body.classList.remove("slide-editor-dark"),document.body.classList.add("slide-editor-light")):this.currentTheme==="light"?(this.currentTheme="dark",document.body.classList.remove("slide-editor-light"),document.body.classList.add("slide-editor-dark")):(this.currentTheme="auto",document.body.classList.remove("slide-editor-light","slide-editor-dark"))}enable(){if(this.state.enabled)return;this.state.enabled=!0,this.styleElement=document.createElement("style"),this.styleElement.id="slide-editor-styles",this.styleElement.textContent=W,document.head.appendChild(this.styleElement);let e=document.body;e.classList.add("slide-editor-active"),this.panelVisible||e.classList.add("panel-hidden"),this.toolbar.mount(e),this.propertiesPanel.mount(e),this.slideNavigator.mount(e),this.setupEditableElements(),this.slideNavigator.refresh(),this.showSlide(this.state.currentSlideIndex),this.toolbar.updateUndoRedoState()}showSlide(e){document.querySelectorAll(".slide").forEach((i,r)=>{i.style.display=r===e?"flex":"none"})}disable(){this.state.enabled&&(this.state.enabled=!1,this.styleElement?.remove(),this.styleElement=null,document.body.classList.remove("slide-editor-active"),document.body.classList.remove("panel-hidden"),this.toolbar.unmount(),this.propertiesPanel.unmount(),this.slideNavigator.unmount(),this.resizeManager.removeAllHandles(),this.selectionManager.deselectAll(),this.removeEditableListeners())}isEnabled(){return this.state.enabled}setupEditableElements(){let e=[".slide h1",".slide h2",".slide h3",".slide h4",".slide h5",".slide h6",".slide p",".slide span",'.slide div:not(.slide):not([class*="slide"])',".slide img",".slide li",".slide a",".slide blockquote"];console.log("[SlideEditor] setupEditableElements: Starting..."),console.log("[SlideEditor] Selectors:",e),console.log("[SlideEditor] Total slides found:",document.querySelectorAll(".slide").length);let t=document.querySelectorAll(".slide"),i=[];t.forEach((r,o)=>{let s=r;i.push(s.style.display),console.log(`[SlideEditor] Slide ${o} initial display: "${s.style.display}"`),s.style.display="flex"}),e.forEach(r=>{document.querySelectorAll(r).forEach(o=>{let s=o;if(s.hasAttribute("data-editor-id")||s.parentElement?.closest("[data-editor-id]"))return;let n=s.getBoundingClientRect();if(n.width<10||n.height<10)return;let l=`editor-el-${++this.idCounter}`;s.setAttribute("data-editor-id",l);let c=s.closest(".slide");if(!c)return;let a=c.getBoundingClientRect(),h=s.getBoundingClientRect(),u=h.left-a.left,g=h.top-a.top;getComputedStyle(s).position==="static"&&(s.style.position="absolute",s.style.left=`${u}px`,s.style.top=`${g}px`,s.style.width=`${h.width}px`,s.tagName.toLowerCase()==="img"&&(s.style.height=`${h.height}px`)),this.addElementListeners(s,l)})}),t.forEach((r,o)=>{let s=r,n=i[o];n!=null&&(s.style.display=n)})}elementListeners=new Map;addElementListeners(e,t){let i=new Map,r=n=>{if(!this.state.enabled)return;n.stopPropagation();let c=n.shiftKey;this.selectionManager.select(t,c)},o=n=>{this.state.enabled&&(n.stopPropagation(),this.textEditor.startEditing(t))},s=n=>{if(!this.state.enabled)return;let l=n;if(this.selectionManager.isSelected(t)&&!this.textEditor.isEditing()){let c=l.target;c&&(c.tagName==="SPAN"||c.tagName==="A"||c.closest('[contenteditable="true"]'))||this.dragManager.startDrag(l,t)}};e.addEventListener("click",r,!0),e.addEventListener("dblclick",o,!0),e.addEventListener("pointerdown",s),i.set("click",r),i.set("dblclick",o),i.set("pointerdown",s),this.elementListeners.set(e,i)}removeEditableListeners(){this.elementListeners.forEach((e,t)=>{e.forEach((i,r)=>{t.removeEventListener(r,i)})}),this.elementListeners.clear()}getSlides(){return this.exporter.getSlides()}getSelectedElement(){let e=this.selectionManager.getSelectedIds();return e.length===0?null:this.getElementInfo(e[0])}getSelectedElements(){return this.selectionManager.getSelectedIds().map(e=>this.getElementInfo(e)).filter(e=>e!==null)}getElementAt(e,t){let i=document.elementFromPoint(e,t);if(!i)return null;let r=i.closest("[data-editor-id]");return r?this.getElementInfo(r.getAttribute("data-editor-id")||""):null}getElementById(e){return this.getElementInfo(e)}getElementInfo(e){let t=document.querySelector(`[data-editor-id="${e}"]`);if(!t)return null;let r=t.closest(".slide")?.getBoundingClientRect()||{left:0,top:0},o=t.getBoundingClientRect();return{id:e,type:this.getElementType(t),x:o.left-r.left,y:o.top-r.top,width:o.width,height:o.height,content:t.textContent||void 0,src:t.src||void 0,styles:{}}}getElementType(e){let t=e.tagName.toLowerCase();return t==="img"?"image":["h1","h2","h3","h4","h5","h6","p","span","a"].includes(t)?"text":t==="svg"||e.closest("svg")?"shape":"unknown"}addSlide(e){let t=document.querySelectorAll(".slide"),i=e??t.length,r=document.createElement("div");r.className="slide",r.id=`slide-${i}`,r.innerHTML='<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">New Slide</div>';let o=document.querySelector(".slides")||document.body;return i<t.length?t[i].before(r):o.appendChild(r),this.pushHistory({type:"slide",from:null,to:{action:"add",index:i}}),this.slideNavigator.refresh(),{index:i,id:r.id,elements:[]}}deleteSlide(e){let t=document.querySelectorAll(".slide");if(e<0||e>=t.length)return;t[e].remove(),this.pushHistory({type:"slide",from:{index:e},to:null}),this.slideNavigator.refresh(),this.state.currentSlideIndex>=t.length-1&&(this.state.currentSlideIndex=Math.max(0,t.length-2))}moveSlide(e,t){let i=document.querySelectorAll(".slide");if(e<0||e>=i.length||t<0||t>=i.length)return;let r=i[e],o=i[t];e<t?o.after(r):o.before(r),this.pushHistory({type:"slide",from:{index:e},to:{index:t}}),this.slideNavigator.refresh()}duplicateSlide(e){let t=document.querySelectorAll(".slide");if(e<0||e>=t.length)return this.addSlide();let i=t[e],r=i.cloneNode(!0);return r.querySelectorAll("[data-editor-id]").forEach(o=>{o.setAttribute("data-editor-id",`editor-el-${++this.idCounter}`)}),i.after(r),this.pushHistory({type:"slide",from:{index:e},to:{action:"duplicate"}}),this.slideNavigator.refresh(),{index:e+1,id:r.id||`slide-${e+1}`,elements:[]}}getCurrentSlide(){let t=document.querySelectorAll(".slide")[this.state.currentSlideIndex];return t?{index:this.state.currentSlideIndex,id:t.id||`slide-${this.state.currentSlideIndex}`,elements:[]}:null}setCurrentSlide(e){let t=document.querySelectorAll(".slide");e>=0&&e<t.length&&(this.state.currentSlideIndex=e,this.slideNavigator.setActiveSlide(e),this.showSlide(e),this.selectionManager.deselectAll())}addText(e){let t=this.getCurrentSlideElement();if(!t)throw new Error("No slide found");let i=`editor-el-${++this.idCounter}`,r=document.createElement("div");return r.setAttribute("data-editor-id",i),r.style.cssText=`
+      position: absolute;
+      left: ${e.x??100}px;
+      top: ${e.y??100}px;
+      width: ${e.width??300}px;
+      font-size: ${e.fontSize??"24px"};
+      color: ${e.color??"#333"};
+      font-weight: ${e.fontWeight??"normal"};
+      text-align: ${e.textAlign??"left"};
+      cursor: default;
+    `,r.textContent=e.content??"New Text",t.appendChild(r),this.addElementListeners(r,i),this.pushHistory({type:"add",elementId:i,to:{type:"text",options:e}}),this.selectionManager.select(i),this.getElementInfo(i)}addImage(e){let t=this.getCurrentSlideElement();if(!t)throw new Error("No slide found");let i=`editor-el-${++this.idCounter}`,r=document.createElement("img");return r.setAttribute("data-editor-id",i),r.src=e.src,r.alt=e.alt??"",r.style.cssText=`
+      position: absolute;
+      left: ${e.x??100}px;
+      top: ${e.y??100}px;
+      width: ${e.width??200}px;
+      height: ${e.height??"auto"};
+      cursor: default;
+    `,t.appendChild(r),this.addElementListeners(r,i),this.pushHistory({type:"add",elementId:i,to:{type:"image",options:e}}),this.selectionManager.select(i),this.getElementInfo(i)}getCurrentSlideElement(){let e=document.querySelectorAll(".slide");return this.state.currentSlideIndex>=0&&this.state.currentSlideIndex<e.length?e[this.state.currentSlideIndex]:e[0]||null}deleteElement(e){let t=document.querySelector(`[data-editor-id="${e}"]`);t&&(this.pushHistory({type:"delete",elementId:e,from:this.getElementInfo(e)}),this.resizeManager.removeHandles(e),this.selectionManager.deselect(e),t.remove())}deleteSelected(){this.selectionManager.getSelectedIds().forEach(t=>this.deleteElement(t))}moveElement(e,t,i){let r=document.querySelector(`[data-editor-id="${e}"]`);if(!r)return;let o=r.offsetLeft,s=r.offsetTop;r.style.left=`${t}px`,r.style.top=`${i}px`,this.pushHistory({type:"move",elementId:e,from:{x:o,y:s},to:{x:t,y:i}}),this.resizeManager.updateHandlePositions(e)}resizeElement(e,t,i){let r=document.querySelector(`[data-editor-id="${e}"]`);if(!r)return;let o=r.offsetWidth,s=r.offsetHeight;r.style.width=`${t}px`,r.style.height=`${i}px`,this.pushHistory({type:"resize",elementId:e,from:{width:o,height:s},to:{width:t,height:i}}),this.resizeManager.updateHandlePositions(e)}setTextContent(e,t){let i=document.querySelector(`[data-editor-id="${e}"]`);if(!i)return;let r=i.innerHTML;i.innerHTML=t,this.pushHistory({type:"text",elementId:e,from:r,to:t})}setStyle(e,t){let i=document.querySelector(`[data-editor-id="${e}"]`);if(!i)return;let r=n=>n.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase(),o={};if(Object.entries(t).forEach(([n,l])=>{l!=null&&l.trim()!==""&&(o[n]=l)}),Object.keys(o).length===0)return;let s={};Object.keys(o).forEach(n=>{let l=r(n);s[n]=i.style.getPropertyValue(l),i.style.setProperty(l,o[n])}),this.pushHistory({type:"style",elementId:e,from:s,to:o}),this.resizeManager.updateHandlePositions(e)}cropImage(e,t){let i=document.querySelector(`[data-editor-id="${e}"]`);!i||i.tagName.toLowerCase()!=="img"||(i.style.clipPath=`inset(${t.y}% ${100-t.x-t.width}% ${100-t.y-t.height}% ${t.x}%)`,this.pushHistory({type:"crop",elementId:e,to:t}))}startCropImage(e){this.imageCropper.startCrop(e,t=>{this.cropImage(e,t),this.selectionManager.select(e),this.resizeManager.removeAllHandles(),this.resizeManager.createHandles(e)},()=>{this.selectionManager.select(e),this.resizeManager.removeAllHandles(),this.resizeManager.createHandles(e)})}bringToFront(e){let t=document.querySelector(`[data-editor-id="${e}"]`);!t||!t.parentElement||(t.parentElement.appendChild(t),this.resizeManager.updateHandlePositions(e))}sendToBack(e){let t=document.querySelector(`[data-editor-id="${e}"]`);!t||!t.parentElement||(t.parentElement.insertBefore(t,t.parentElement.firstChild),this.resizeManager.updateHandlePositions(e))}selectElement(e,t=!1){this.selectionManager.select(e,t)}deselectAll(){this.selectionManager.deselectAll()}pushHistory(e){this.historyManager.push(e),this.toolbar.updateUndoRedoState()}undo(){let e=this.historyManager.undo();e&&(this.applyUndo(e),this.toolbar.updateUndoRedoState())}redo(){let e=this.historyManager.redo();e&&(this.applyRedo(e),this.toolbar.updateUndoRedoState())}applyUndo(e){if(!e.elementId)return;let t=document.querySelector(`[data-editor-id="${e.elementId}"]`);if(!t)return;let i=r=>r.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase();switch(e.type){case"move":e.from&&(t.style.left=`${e.from.x}px`,t.style.top=`${e.from.y}px`);break;case"resize":if(e.from){let r=e.from;t.style.width=`${r.width}px`,t.style.height=`${r.height}px`,r.x!==void 0&&(t.style.left=`${r.x}px`),r.y!==void 0&&(t.style.top=`${r.y}px`)}break;case"text":e.from!==void 0&&(t.innerHTML=e.from);break;case"style":e.from&&Object.entries(e.from).forEach(([r,o])=>{t.style.setProperty(i(r),o)});break}this.resizeManager.updateHandlePositions(e.elementId)}applyRedo(e){if(!e.elementId)return;let t=document.querySelector(`[data-editor-id="${e.elementId}"]`);if(!t)return;let i=r=>r.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase();switch(e.type){case"move":e.to&&(t.style.left=`${e.to.x}px`,t.style.top=`${e.to.y}px`);break;case"resize":if(e.to){let r=e.to;t.style.width=`${r.width}px`,t.style.height=`${r.height}px`,r.x!==void 0&&(t.style.left=`${r.x}px`),r.y!==void 0&&(t.style.top=`${r.y}px`)}break;case"text":e.to!==void 0&&(t.innerHTML=e.to);break;case"style":e.to&&Object.entries(e.to).forEach(([r,o])=>{t.style.setProperty(i(r),o)});break}this.resizeManager.updateHandlePositions(e.elementId)}canUndo(){return this.historyManager.canUndo()}canRedo(){return this.historyManager.canRedo()}export(){return this.exporter.exportClean()}exportWithEditor(){return this.exporter.exportWithEditor("")}setOriginalFilePath(e){this.originalFilePath=e}handleExport(){let e=this.export(),t=new Blob([e],{type:"text/html"}),i=URL.createObjectURL(t),r=document.createElement("a");r.href=i,r.download=this.originalFilePath?.split("/").pop()||"presentation.html",r.click(),URL.revokeObjectURL(i)}handleSave(){let e=this.export(),t=new Blob([e],{type:"text/html"}),i=URL.createObjectURL(t),r=document.createElement("a");r.href=i;let o=this.originalFilePath?.split("/").pop()||"presentation.html";r.download=o,r.click(),URL.revokeObjectURL(i),this.showToast(`Saved: ${o}`)}showToast(e){let t=document.createElement("div");t.className="slide-editor-toast",t.textContent=e,t.style.cssText=`
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22c55e;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 100001;
+      animation: slide-editor-toast-in 0.3s ease;
+    `,document.body.appendChild(t),setTimeout(()=>{t.style.opacity="0",t.style.transition="opacity 0.3s ease",setTimeout(()=>t.remove(),300)},2e3)}handleAddText(){this.addText({x:100,y:100,width:300,content:"New Text Block",fontSize:"32px"})}handleAddImage(){let e=document.createElement("input");e.type="file",e.accept="image/*",e.style.display="none",e.addEventListener("change",t=>{let i=t.target.files?.[0];if(!i)return;let r=new FileReader;r.onload=()=>{let o=r.result;this.addImage({x:100,y:100,src:o})},r.readAsDataURL(i),e.remove()}),document.body.appendChild(e),e.click()}},C=new k;window.__openclawEditor=C;typeof window<"u"&&(new URLSearchParams(window.location.search).get("edit")==="1"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",()=>C.enable()):C.enable()),window.addEventListener("message",e=>{e.data?.type==="OPENCLAW_EDITOR_ENABLE"?C.enable():e.data?.type==="OPENCLAW_EDITOR_DISABLE"&&C.disable()}));return K(V);})();
+
+</script>
+<!-- SLIDE_EDITOR_END -->
+
+<script>
+// Auto-enable editor (opened directly)
+(function() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      window.__openclawEditor && window.__openclawEditor.enable();
+    });
+  } else {
+    window.__openclawEditor && window.__openclawEditor.enable();
+  }
+})();
+</script>
+
+</body>
+</html>

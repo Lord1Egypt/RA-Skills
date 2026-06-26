@@ -1,0 +1,97 @@
+# ─── Advanced Gates: Structured Input, Identity, Short IDs ────────────
+#
+# Demonstrates all gate features:
+# - Structured input fields (form data, not just approve/reject)
+# - Required approvers (identity-based access control)
+# - Self-approval prevention
+# - Short approval IDs (for Telegram/Discord/Slack buttons)
+#
+# Usage:
+#   squid run squid-pipeline/examples/advanced-gates.yaml \
+#     --args-json '{"app": "myapp", "version": "2.1.0"}'
+
+name: advanced-gates
+description: Deployment pipeline with structured approval gates
+
+args:
+  app:
+    description: Application name
+    required: true
+  version:
+    description: Version to deploy
+    required: true
+
+steps:
+  - id: build
+    type: run
+    description: Build the application
+    run: echo '{"image":"${args.app}:${args.version}","size_mb":85}'
+
+  # ─── Gate with structured input ─────────────────────────
+  # Approver must provide deployment config, not just yes/no
+  - id: deploy-config
+    type: gate
+    description: Configure deployment parameters
+    gate:
+      prompt: "Configure deployment for ${args.app} v${args.version}"
+      preview: $build.json
+      input:
+        - name: environment
+          type: select
+          label: Target environment
+          options: ["staging", "production"]
+        - name: replicas
+          type: number
+          label: Number of replicas
+          description: "How many pod replicas? (1-10)"
+          default: 2
+        - name: canary_percent
+          type: number
+          label: Canary traffic percentage
+          default: 10
+        - name: notify_channel
+          type: string
+          label: Slack channel for notifications
+          validation: "^#[a-z-]+$"
+          default: "#deployments"
+        - name: run_migrations
+          type: boolean
+          label: Run database migrations?
+          default: false
+
+      # Identity controls
+      requiredApprovers:
+        - platform-lead
+        - sre-oncall
+      allowSelfApproval: false
+
+  # ─── Use structured input from the gate ─────────────────
+  - id: deploy
+    type: run
+    description: Deploy with config from gate
+    run: |
+      echo '{"status":"deployed","env":"${deploy-config.json.input.environment}","replicas":${deploy-config.json.input.replicas}}'
+    when: $deploy-config.approved
+
+  - id: canary
+    type: run
+    description: Set canary traffic
+    run: echo "Canary at ${deploy-config.json.input.canary_percent}%"
+    when: $deploy-config.approved
+
+  # ─── Simple gate with short ID (chat-friendly) ─────────
+  - id: promote
+    type: gate
+    description: Promote canary to full rollout
+    gate:
+      prompt: |
+        ${args.app} v${args.version} canary is running.
+        Promote to 100% traffic?
+        Reply with the short approval ID shown below.
+    when: $deploy-config.approved
+
+  - id: full-rollout
+    type: run
+    description: Full rollout
+    run: echo '{"status":"live","version":"${args.version}"}'
+    when: $promote.approved

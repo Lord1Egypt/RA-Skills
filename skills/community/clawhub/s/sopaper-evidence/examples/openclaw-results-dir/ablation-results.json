@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "run_id": "oclh-ablation-001",
+      "benchmark": "CALVIN",
+      "task": "long-horizon manipulation",
+      "metric": "success_rate",
+      "baseline": "without planner-memory ablation",
+      "score": 0.66
+    },
+    {
+      "run_id": "oclh-ablation-002",
+      "benchmark": "CALVIN",
+      "task": "long-horizon manipulation",
+      "metric": "success_rate",
+      "baseline": "full system",
+      "score": 0.74
+    }
+  ]
+}

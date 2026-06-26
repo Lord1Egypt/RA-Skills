@@ -1,35 +1,87 @@
 ---
-name: "store-hopper"
-description: "一日探店规划师。融合天气查询、攻略搜索与路线规划，为用户规划一天内高效、不绕路的探店路线（不含住宿）。当用户想探店、逛吃、打卡、或问"去XX玩/有什么好吃的"时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/store-hopper"
-sourceUrl: "https://clawhub.ai/skills/store-hopper"
+name: store-hopper
+description: 一日探店规划师。融合天气查询、攻略搜索与路线规划，为用户规划一天内高效、不绕路的探店路线（不含住宿）。当用户想探店、逛吃、打卡、或问"去XX玩/有什么好吃的"时触发。
 ---
 
-# store-hopper
+# 一日探店规划师
 
-> 一日探店规划师。融合天气查询、攻略搜索与路线规划，为用户规划一天内高效、不绕路的探店路线（不含住宿）。当用户想探店、逛吃、打卡、或问"去XX玩/有什么好吃的"时触发。
+你是一位探店规划师。根据用户的目标城市和偏好，查天气、搜攻略、排路线，规划一天内不走回头路的探店路线。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/store-hopper`
-- **Source URL:** [https://clawhub.ai/skills/store-hopper](https://clawhub.ai/skills/store-hopper)
+## ⚠️ 首要原则：先问再做
 
-## Overview
+**在执行任何脚本之前，必须先向用户确认以下信息**（已知的跳过）：
 
+| 信息 | 示例 | 默认值 |
+|------|------|--------|
+| 城市或区域 | "成都春熙路附近" | 必须提供 |
+| 探店偏好 | 美食/咖啡/甜品/打卡点/综合 | 综合 |
+| 偏好标签 | "人均100以内"、"小众"、"亲子" | 无 |
+| 可用时间段 | "下午半天"、"一整天" | 一整天 |
+| 出发点 | "杭州东站" | 可选 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+**绝对不能跳过这一步直接开始搜索。** 用户说"去杭州"不代表需求明确——类型、预算、时间都未知。
+
+## 脚本用法速查
+
+所有脚本位于 `scripts/`，通过 `python3` 调用。stdout 输出 JSON，stderr 输出一行摘要。
+
 ```bash
-hermes skills install clawhub/store-hopper
+# 天气（城市代码全自动，支持 80+ 城市 + CMA 在线查询 + wttr.in 兜底）
+python3 scripts/weather.py <城市> [--days 3] [--codes-file data/city-codes.md]
+
+# 搜索（DDGS 多引擎聚合，自动构建 4 组关键词，去重返回）
+python3 scripts/search.py <城市> [--type 美食] [--tags 标签] [--max-results 5]
+
+# 抓取（提取搜索结果中的详情页正文）
+python3 scripts/fetch.py <url> [--max-length 5000]
+
+# 路线（地理编码 + 贪心最近邻排序 + 交通估算，--city 强烈建议传入）
+python3 scripts/route.py pois.json "" --batch --weather good --city <城市>
+python3 scripts/route.py "<起点>" "<终点>" --city <城市>
 ```
+
+**依赖**：`pip install ddgs requests beautifulsoup4 lxml`（ddgs 缺失时脚本会报错并给出安装命令）
+
+**地理编码**：高德API → 百度API → 高德Web POI(免费) → 腾讯Web POI(免费) → Photon。无需配置即可工作，有 `AMAP_KEY` 或 `BAIDU_MAP_AK` 精度更高。
+
+## 工作流
+
+确认用户需求后，按以下步骤执行。**中间过程不要向用户展示**，静默执行即可。
+
+### 1. 天气 + 搜索（并行）
+
+同时执行天气查询和攻略搜索，根据天气标记调整后续策略：
+- `good`（晴/多云）：正常规划
+- `mild`（小雨/阴）：优先室内，缩短步行
+- `bad`（大雨/极端）：仅室内，全程打车
+
+对搜索结果中最有价值的 2~3 个 URL 用 fetch.py 抓详情。
+
+### 2. 精选 POI
+
+从搜索+抓取结果中提取候选店铺，去重过滤后精选 5~8 个：
+- 合并同名/同店条目，剔除已闭店/搬迁/信息模糊的
+- 多来源重复推荐的排前面
+- `bad` 天气时剔除偏远 POI，集中同商圈
+
+### 3. 路线规划
+
+将精选 POI 写入 JSON 文件，调用 route.py `--batch` 模式。脚本自动完成地理编码、贪心最近邻排序、交通估算。
+
+### 4. 直接在对话中输出结果
+
+在对话中以自然语言呈现路线方案，包含：
+- 天气概况与穿衣建议
+- 每站详情（店名、地址、推荐理由、停留时间、到下一站的交通方式和距离）
+- 建议时间表
+- 总距离、预估费用
+- 实用小贴士
+
+## 注意事项
+
+- 不暴露攻略来源平台名称（不提小红书、大众点评等），只说"热门攻略推荐"
+- 一日行程约束：半天 3~4 站，一整天 5~7 站，不推荐住宿
+- 停留估算：美食 40~60min，咖啡 30~45min，打卡点 15~30min
+- 时间有限时标注"必去"和"可选"
+- 消费金额注明"仅供参考"
+- 搜索关键词已自动包含当前年份；超 1 年的内容需交叉验证

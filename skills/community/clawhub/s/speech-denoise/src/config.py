@@ -1,0 +1,28 @@
+GPU_TYPE = "L4"
+PYTHON_VERSION = "3.11"
+
+VOLUME_DATA_NAME = "speech2srt-data"
+VOLUME_MODELS_NAME = "speech2srt-models"
+
+MOUNT_DATA = "/mnt/data"
+MOUNT_MODELS = "/mnt/models"
+
+DIR_UPLOAD = "upload"
+DIR_OUTPUT = "output"
+
+TMP_PREFIX_DENOISE = "/tmp/speech2srt-denoise"
+
+APP_NAME = "speech2srt.com"
+
+ENHANCED_SUFFIX = "_enhanced.wav"
+FLAC_EXTENSION = ".flac"
+
+AUDIO_SAMPLE_RATE = 48000
+AUDIO_CHANNELS = 1
+AUDIO_FORMAT = "WAV"
+AUDIO_SUBTYPE = "PCM_24"
+AUDIO_STEREO_NDIM = 2
+
+TIMEOUT_DENOISE = 1800
+FFMPEG_TIMEOUT = 300
+FFPROBE_TIMEOUT = 30

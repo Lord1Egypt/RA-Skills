@@ -1,35 +1,178 @@
 ---
-name: "Stock Macro Market Analysis"
-description: "分析A股/美股/港股大盘走势、市场情绪、资金流向、宏观经济、政策影响、板块轮动，生成市场全景分析报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-macro-market-analysis"
-sourceUrl: "https://clawhub.ai/skills/stock-macro-market-analysis"
+name: stock_macro_market_analysis
+description: 分析A股/美股/港股大盘走势、市场情绪、资金流向、宏观经济、政策影响、板块轮动，生成市场全景分析报告
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🌍",
+      "version": "1.0.0",
+      "requires": {
+        "bins": ["python3"],
+        "env": ["STOCK_DATA_API_KEY"]
+      },
+      "primaryEnv": "STOCK_DATA_API_KEY"
+    }
+  }
 ---
 
-# Stock Macro Market Analysis
+# 宏观与市场分析技能
 
-> 分析A股/美股/港股大盘走势、市场情绪、资金流向、宏观经济、政策影响、板块轮动，生成市场全景分析报告
+## 触发条件
+- "今天大盘怎么样" / "大盘分析"
+- "市场情绪如何" / "现在是牛市还是熊市"
+- "北向资金流向" / "主力资金怎么看"
+- "最近什么板块强" / "板块轮动分析"
+- "降息/加息对股市什么影响"
+- "美股大跌A股会怎样"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-macro-market-analysis`
-- **Source URL:** [https://clawhub.ai/skills/stock-macro-market-analysis](https://clawhub.ai/skills/stock-macro-market-analysis)
+## 六维市场分析框架
 
-## Overview
+Agent 必须按以下六个维度逐一分析，最后综合研判。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 维度一：大盘技术面（权重 20%）
 ```bash
-hermes skills install clawhub/stock-macro-market-analysis
+python3 {baseDir}/tools/index_tracker.py --indices 上证指数,深证成指,创业板指,沪深300,中证500 --period daily
 ```
+分析要点:
+- 各主要指数涨跌幅、成交量变化
+- 指数技术形态（均线、MACD、支撑阻力）
+- 多指数共振 vs 分化（大盘股 vs 小盘股、成长 vs 价值）
+输出:
+```json
+{
+  "indices": [...],
+  "market_structure": "共振上涨 | 分化 | 共振下跌",
+  "key_levels": {"上证支撑": 3200, "上证阻力": 3400}
+}
+```
+
+### 维度二：市场广度与微观结构（权重 15%）
+```bash
+python3 {baseDir}/tools/market_breadth.py --market A
+```
+核心指标:
+| 指标 | 多头信号 | 空头信号 |
+|------|---------|---------|
+| 涨跌家数比 | >2:1 | <1:2 |
+| 涨停/跌停数 | 涨停>50，跌停<10 | 涨停<10，跌停>50 |
+| 上涨家数占比 | >60% | <40% |
+| 涨幅>5%家数 | >200 | <50 |
+| 新高/新低家数 | 新高>新低 | 新低>新高 |
+
+额外指标:
+- 腾落线 (Advance-Decline Line)
+- 新高新低差
+- 均线上方个股占比（站上MA20/MA60的比例）
+
+### 维度三：资金流向（权重 20%）
+```bash
+python3 {baseDir}/tools/capital_flow_analyzer.py --date today
+```
+追踪资金:
+1. **北向资金**: 沪股通 + 深股通净买入/卖出金额
+   - 近1日/5日/20日净流入趋势
+   - 重点加仓/减仓行业和个股
+2. **主力资金**: 超大单+大单净流入/流出
+   - 行业资金流向排名
+   - 个股主力资金Top10
+3. **融资融券**: 融资余额变化、融券卖出变化
+   - 融资余额持续增加 → 杠杆多头加仓
+   - 融券余额急增 → 做空力量增强
+4. **ETF资金**: 重点ETF份额变化（沪深300ETF、创业板ETF、科创50ETF）
+5. **新基金发行**: 近期新发基金规模（增量资金观察）
+
+资金综合判断:
+```json
+{
+  "north_bound": {"net_flow": "+45亿", "trend": "连续3日流入", "signal": "偏多"},
+  "main_force": {"net_flow": "-80亿", "top_sectors": ["AI", "半导体"], "signal": "分化"},
+  "margin": {"balance_change": "+0.3%", "signal": "中性偏多"},
+  "overall": "资金面中性偏多，北向持续流入但主力分歧较大"
+}
+```
+
+### 维度四：市场情绪（权重 15%）
+```bash
+python3 {baseDir}/tools/sentiment_gauge.py
+```
+情绪指标体系:
+
+| 指标 | 数据源 | 极度恐慌 | 恐慌 | 中性 | 贪婪 | 极度贪婪 |
+|------|-------|---------|------|------|------|---------|
+| 换手率(全A) | 交易数据 | <0.6% | 0.6-0.8% | 0.8-1.2% | 1.2-1.8% | >1.8% |
+| 涨停家数 | 交易数据 | <10 | 10-30 | 30-60 | 60-100 | >100 |
+| 封板成功率 | 交易数据 | <30% | 30-45% | 45-55% | 55-70% | >70% |
+| 两融余额变化 | 融资融券 | 连降5日 | 连降3日 | 波动 | 连增3日 | 连增5日 |
+| 新股上市首日涨幅 | 新股数据 | <50% | 50-100% | 100-200% | 200-400% | >400% |
+
+综合情绪指数: 0-100 (0=极度恐慌, 100=极度贪婪)
+
+经典反向指标逻辑:
+- 情绪指数 < 20 → 极度恐慌，往往是底部区域 → 🟢 可能是买入机会
+- 情绪指数 > 80 → 极度贪婪，往往是顶部区域 → 🔴 需要警惕风险
+
+### 维度五：宏观经济（权重 15%）
+```bash
+python3 {baseDir}/tools/macro_data_fetcher.py --indicators GDP,CPI,PMI,M2,LPR,社融
+```
+核心宏观指标及对股市的影响:
+
+| 宏观指标 | 利多股市 | 利空股市 |
+|---------|---------|---------|
+| GDP增速 | 超预期 | 低于预期 |
+| PMI | >50且上升 | <50且下降 |
+| CPI | 温和(1-3%) | 过高(>3%)或通缩(<0) |
+| M2增速 | 加速增长 | 增速放缓 |
+| 社融 | 超预期放量 | 低于预期 |
+| LPR | 下调 | 上调 |
+| 美联储利率 | 降息周期 | 加息周期 |
+
+宏观周期判断:
+- **复苏期**: GDP↑ PMI>50 CPI↑ → 股市上涨概率高
+- **过热期**: GDP高位 CPI↑↑ 货币收紧 → 注意风险
+- **衰退期**: GDP↓ PMI<50 → 股市下行压力
+- **萧条期**: GDP低位 CPI↓ 货币宽松 → 底部可能出现
+
+### 维度六：政策与全球联动（权重 15%）
+```bash
+python3 {baseDir}/tools/policy_analyzer.py --recent 7d
+python3 {baseDir}/tools/global_linkage.py --markets US,HK,A
+```
+政策分析:
+- 近期重大政策/会议/讲话解读
+- 产业政策：哪些行业受益/利空
+- 货币政策：降准降息预期
+- 财政政策：基建投资、消费刺激
+
+全球联动:
+- 隔夜美股表现 → A股开盘预判
+- 美债10Y收益率变化 → 成长股压力
+- 美元指数 → 人民币汇率 → 北向资金
+- 大宗商品价格 → 周期板块
+
+## 综合市场研判
+
+将六维度分数加权汇总:
+```
+市场综合评分 = 
+  技术面(20%) + 市场广度(15%) + 资金流向(20%) + 
+  情绪(15%) + 宏观(15%) + 政策联动(15%)
+```
+
+| 综合评分 | 市场状态 | 操作建议 |
+|---------|---------|---------|
+| 80-100 | 🟢 强势多头 | 可积极做多，注意控制仓位 |
+| 60-79 | 🟢 偏多 | 适度参与，精选个股 |
+| 45-59 | ⚪ 震荡 | 降低仓位，高抛低吸 |
+| 25-44 | 🔴 偏空 | 轻仓观望，等待企稳信号 |
+| 0-24 | 🔴 强势空头 | 空仓或极轻仓，但关注超跌反弹机会 |
+
+## 每日盘前/盘后报告自动生成
+按模板 `{baseDir}/templates/daily_market_report.md` 输出完整报告
+
+## 输出规范
+- 必须包含⚠️免责声明
+- 数据标注来源和时间
+- 关键结论标注置信度

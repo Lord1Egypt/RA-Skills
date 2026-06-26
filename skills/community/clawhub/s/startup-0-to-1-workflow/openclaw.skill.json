@@ -1,0 +1,220 @@
+{
+  "id": "startup-0-to-1-workflow",
+  "name": "Startup 0 to 1 Workflow",
+  "description": "从 0 到 1 创业完整工作流，整合 founder、business-model-canvas、market-research-reports、competitive-analysis、business-plan、pitch-deck-visuals 等技能，提供从创意验证到融资路演的完整创业流程。包含 6 阶段创业流程，支持 Pre-PMF 和 Post-PMF 阶段感知决策。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "创业",
+      "startup",
+      "从 0 到 1",
+      "创业流程",
+      "创业指导",
+      "founder",
+      "entrepreneurship"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_stage": "pre-pmf",
+    "supported_stages": ["idea", "pre-pmf", "pmf", "post-pmf", "scaling"],
+    "workflow_stages": 6,
+    "core_framework": "lean-startup"
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "创意验证",
+        "description": "问题验证、用户访谈、MVP 设计",
+        "duration": "2-4 周",
+        "skills": ["founder", "business-model-canvas"],
+        "key_questions": [
+          "问题是否真实存在？",
+          "用户是否愿意付费？",
+          "市场是否足够大？"
+        ],
+        "deliverables": [
+          "问题验证报告",
+          "用户访谈记录 (20+)",
+          "商业模式画布",
+          "MVP 设计方案"
+        ]
+      },
+      {
+        "name": "市场调研",
+        "description": "市场规模、竞争格局、市场趋势",
+        "duration": "2-3 周",
+        "skills": ["market-research-reports", "competitive-analysis"],
+        "key_questions": [
+          "TAM/SAM/SOM 是多少？",
+          "主要竞争对手是谁？",
+          "市场趋势如何？"
+        ],
+        "deliverables": [
+          "市场调研报告 (50+ 页)",
+          "竞争对手分析",
+          "市场定位策略"
+        ]
+      },
+      {
+        "name": "商业规划",
+        "description": "商业计划书、财务预测、运营计划",
+        "duration": "2-3 周",
+        "skills": ["business-plan", "business-model-canvas"],
+        "key_questions": [
+          "商业模式是否可行？",
+          "单位经济是否健康？",
+          "财务预测是否合理？"
+        ],
+        "deliverables": [
+          "商业计划书",
+          "财务预测 (3 年)",
+          "运营计划"
+        ]
+      },
+      {
+        "name": "产品开发",
+        "description": "MVP 开发、用户测试、迭代优化",
+        "duration": "4-8 周",
+        "skills": ["startup"],
+        "key_questions": [
+          "MVP 是否解决核心问题？",
+          "用户留存率如何？",
+          "40% 用户会非常失望吗？"
+        ],
+        "deliverables": [
+          "MVP 产品",
+          "用户测试报告",
+          "产品迭代计划"
+        ]
+      },
+      {
+        "name": "产品市场匹配",
+        "description": "PMF 验证、增长指标、用户反馈",
+        "duration": "4-12 周",
+        "skills": ["founder", "founder-coach"],
+        "key_questions": [
+          "40% 用户非常失望？",
+          "用户留存率达标？",
+          "自然增长是否可持续？"
+        ],
+        "deliverables": [
+          "PMF 验证报告",
+          "增长指标仪表板",
+          "用户反馈分析"
+        ]
+      },
+      {
+        "name": "融资路演",
+        "description": "融资材料、投资者对接、路演准备",
+        "duration": "4-8 周",
+        "skills": ["pitch-deck-visuals", "business-plan"],
+        "key_questions": [
+          "融资金额是否合理？",
+          "资金使用计划是否清晰？",
+          "投资者是否匹配？"
+        ],
+        "deliverables": [
+          "融资路演 PPT (12 页)",
+          "财务模型",
+          "投资者名单"
+        ]
+      }
+    ]
+  },
+
+  "skills": {
+    "required": [
+      "founder",
+      "founder-coach",
+      "startup",
+      "business-model-canvas",
+      "business-plan",
+      "pitch-deck-visuals"
+    ],
+    "optional": [
+      "market-research-reports",
+      "competitive-analysis",
+      "market-research-reports",
+      "data-analysis-workflow"
+    ]
+  },
+
+  "stages": {
+    "idea": {
+      "name": "创意阶段",
+      "focus": "问题验证",
+      "metrics": ["用户访谈数", "问题验证度"],
+      "duration": "2-4 周",
+      "priority": "学习速度"
+    },
+    "pre-pmf": {
+      "name": "产品市场匹配前",
+      "focus": "PMF 验证",
+      "metrics": ["留存率", "40% 阈值", "用户反馈"],
+      "duration": "3-6 个月",
+      "priority": "学习速度"
+    },
+    "pmf": {
+      "name": "产品市场匹配",
+      "focus": "增长验证",
+      "metrics": ["月增长率", "LTV/CAC", "推荐率"],
+      "duration": "2-3 个月",
+      "priority": "增长效率"
+    },
+    "post-pmf": {
+      "name": "产品市场匹配后",
+      "focus": "规模化",
+      "metrics": ["收入增长", "市场份额", "团队效率"],
+      "duration": "6-12 个月",
+      "priority": "规模化效率"
+    },
+    "scaling": {
+      "name": "规模化阶段",
+      "focus": "市场扩张",
+      "metrics": ["市场份额", "利润率", "组织效率"],
+      "duration": "12+ 个月",
+      "priority": "可持续增长"
+    }
+  },
+
+  "frameworks": {
+    "lean_startup": {
+      "name": "精益创业",
+      "core_loop": "构建 - 测量 - 学习",
+      "key_concept": "MVP + 快速迭代"
+    },
+    "business_model_canvas": {
+      "name": "商业模式画布",
+      "blocks": 9,
+      "key_concept": "价值创造 + 价值捕获"
+    },
+    "four_ps": {
+      "name": "4Ps 框架",
+      "elements": ["Persona", "Problem", "Promise", "Product"],
+      "key_concept": "摆脱困境"
+    },
+    "pmf_measurement": {
+      "name": "PMF 测量",
+      "metric": "40% 用户非常失望",
+      "survey": "Sean Ellis Test"
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "创业阶段评估",
+      "阶段任务清单",
+      "关键指标跟踪",
+      "风险预警",
+      "下一步建议",
+      "资源推荐"
+    ]
+  }
+}

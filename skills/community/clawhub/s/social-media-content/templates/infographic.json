@@ -1,0 +1,14 @@
+{
+  "headline": "{{HEADLINE}}",
+  "data_points": [
+    {
+      "num": "1",
+      "text": "{{TIP_1}}"
+    },
+    {
+      "num": "2",
+      "text": "{{TIP_2}}"
+    }
+  ],
+  "cta": "{{CTA_TEXT}}"
+}

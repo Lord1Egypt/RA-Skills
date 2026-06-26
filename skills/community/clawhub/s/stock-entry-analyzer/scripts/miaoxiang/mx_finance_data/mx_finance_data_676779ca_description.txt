@@ -1,0 +1,8 @@
+金融数据查询结果说明
+========================================
+查询内容: 00981.HK EMA 均线
+数据文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_676779ca.xlsx
+描述文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_676779ca_description.txt
+数据行数: 10
+表数量: 2
+Sheet 列表: 中芯国际(00981.HK)的5日MA简单移动平均、10日MA, 中芯国际(688981.SH)的5日MA简单移动平均、10日M

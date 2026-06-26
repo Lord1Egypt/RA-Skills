@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Integration guide
+    url: https://github.com/<your-org>/<your-repo>/blob/main/docs/integration.md
+    about: Read integration and validation guidance before filing issues.

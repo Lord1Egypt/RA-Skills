@@ -1,0 +1,17 @@
+{
+  "slug": "skillminer",
+  "name": "Skill Miner",
+  "version": "0.5.3",
+  "description": "Production-hardened local memory scan that suggests reusable skills, adds richer reporting, manual trigger commands, atomic state writes, flock locking, memory-as-data framing, and wrapper-dispatch cron scheduling.",
+  "tags": [
+    "productivity",
+    "meta",
+    "skills",
+    "automation"
+  ],
+  "author": "Robby (HiFi Team Graz)",
+  "license": "MIT",
+  "repository": "https://github.com/robbyczgw-cla/skillminer",
+  "homepage": "https://github.com/robbyczgw-cla/skillminer#readme",
+  "emoji": "⚒️"
+}

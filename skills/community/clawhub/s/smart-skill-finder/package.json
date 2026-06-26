@@ -1,0 +1,20 @@
+{
+  "name": "smart-skill-finder",
+  "version": "1.0.0",
+  "description": "Smart skill discovery across multiple AI agent ecosystems using OpenClaw's semantic understanding capabilities.",
+  "author": "CoPilot AI Assistant",
+  "license": "MIT",
+  "keywords": ["skill-discovery", "skill-finder", "ai-agents", "openclaw", "skills-cli", "clawhub", "smart-skill-finder"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edkuo7/smart-skill-finder.git"
+  },
+  "homepage": "https://clawhub.ai/skills/smart-skill-finder",
+  "bugs": {
+    "url": "https://github.com/edkuo7/smart-skill-finder/issues"
+  },
+  "main": "scripts/skill_finder.py",
+  "scripts": {
+    "test": "python scripts/test_skill_finder.py"
+  }
+}

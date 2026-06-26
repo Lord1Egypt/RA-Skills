@@ -1,0 +1,23 @@
+{
+  "name": "social-card",
+  "version": "0.2.1",
+  "description": "Generate beautiful social card images (OG, Twitter, GitHub) with a builder API",
+  "author": "Humanjava Enterprises",
+  "license": "MIT",
+  "language": "python",
+  "install": "pip install social-card",
+  "keywords": [
+    "og-image",
+    "social-card",
+    "opengraph",
+    "twitter-card",
+    "image-generation"
+  ],
+  "repository": "https://github.com/HumanjavaEnterprises/huje.socialcard.OC-python.src",
+  "homepage": "https://huje.tools",
+  "dependencies": {
+    "Pillow": ">=10.0,<12.0"
+  },
+  "python_requires": ">=3.10",
+  "env": {}
+}

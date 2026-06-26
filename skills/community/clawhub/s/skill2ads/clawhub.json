@@ -1,0 +1,9 @@
+{
+  "name": "website-to-ads",
+  "tagline": "Turn any business website into Meta-ready ad variants",
+  "description": "Scrape any business website and generate 5 Meta-ready ad variants that match the brand's voice. Uses Apify for scraping, OpenAI for brand analysis/ad copywriting, and optional Civic identity verification before campaign export.",
+  "category": "creative",
+  "tags": ["ads", "meta", "instagram", "facebook", "apify", "copywriting", "marketing", "civic", "identity", "auth"],
+  "version": "1.0.0",
+  "license": "MIT"
+  }

@@ -1,0 +1,13 @@
+{
+  "token_budget": {
+    "DeepSeek": 0.85,
+    "qwen-plus": 0.05,
+    "豆包": 0.10
+  },
+  "swarm_settings": {
+    "consensus_threshold": 0.7,
+    "message_ttl": 300,
+    "max_retries": 3
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,20 @@
+{
+  "resource": "email-template",
+  "endpoint": "POST /api/protected/templates/post-email-template",
+  "backendSource": "TemplateModels/Email.mjs (EmailTemplateSchema)",
+  "createScript": "scripts/create-email-template.sh",
+  "fields": {
+    "title": { "type": "string", "required": true },
+    "content": { "type": "object", "required": false },
+    "projectData": { "type": "object", "required": false },
+    "description": { "type": "string", "required": false },
+    "tags": { "type": "array", "required": false },
+    "parent": { "type": "ObjectId", "required": false, "notes": "ref email_templates" },
+    "snapShot": { "type": "string", "required": false },
+    "createdBy": { "type": "ObjectId", "required": false, "notes": "Set by backend" },
+    "companyId": { "type": "ObjectId", "required": false },
+    "global": { "type": "boolean", "required": false, "notes": "default false" },
+    "standardTemplateType": { "type": "string", "required": false, "notes": "enum: project, calendar, invitation" },
+    "dynamicText": { "type": "array", "required": false, "notes": "default []" }
+  }
+}

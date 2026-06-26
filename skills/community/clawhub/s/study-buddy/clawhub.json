@@ -1,0 +1,9 @@
+{
+  "name": "study-buddy",
+  "version": "1.2.0",
+  "description": "Local-first study planning, check-ins, progress tracking, reports, and wrong-question management for middle/high-school families.",
+  "keywords": ["learning", "study-plan", "progress-tracking", "parents", "local-first"],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/study-buddy"
+}

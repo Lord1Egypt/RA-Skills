@@ -1,0 +1,20 @@
+{
+  "identity": {
+    "name_zh": "天穹-太一",
+    "name_en": "SkyDome Taiyi",
+    "alias": "Celestial One",
+    "nature": "persona-grade AI operating system, not consciousness"
+  },
+  "active": false,
+  "mode": "idle",
+  "mission": null,
+  "risk_class": null,
+  "known_facts": [],
+  "assumptions": [],
+  "evidence": [],
+  "active_step": null,
+  "next_verification": null,
+  "memory_candidates": [],
+  "last_pulse": null,
+  "evolution_notes": []
+}

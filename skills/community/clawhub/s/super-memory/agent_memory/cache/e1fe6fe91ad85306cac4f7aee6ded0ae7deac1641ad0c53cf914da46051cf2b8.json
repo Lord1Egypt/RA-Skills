@@ -1,0 +1,72 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [
+        {
+          "name": "How",
+          "type": "unknown",
+          "role": "queried"
+        }
+      ],
+      "expanded": false
+    },
+    "query": "How long is my daily commute to work?",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_d11ddf19d07b",
+      "query": "How long is my daily commute to work?",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786376.889629
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786376.889629
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=100)",
+          "timestamp": 1779786376.889629
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786376.889629
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786376.889629
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786376.889629
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786376.889629
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786436.889629,
+  "created_at": 1779786376.889629,
+  "_hmac": "c8abe058500d73031e6309f656cbf0018820f34c76149a9f59b9e9aa24d639c6"
+}

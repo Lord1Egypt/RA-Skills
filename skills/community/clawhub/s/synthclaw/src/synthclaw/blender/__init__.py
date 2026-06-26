@@ -1,0 +1,1 @@
+# synthclaw.blender package

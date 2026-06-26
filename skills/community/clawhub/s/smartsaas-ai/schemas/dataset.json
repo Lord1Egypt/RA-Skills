@@ -1,0 +1,29 @@
+{
+  "resource": "dataset",
+  "endpoint": "POST /api/protected/data/folders",
+  "backendSource": "DataSchema/Data.mjs (UserDataSchema)",
+  "createScript": "scripts/create-dataset.sh",
+  "fields": {
+    "dataTitle": { "type": "string", "required": true, "notes": "Name of the dataset" },
+    "dataSchema": { "type": "object", "required": "when adding content later", "notes": "Schema for items; required for POST .../folders/:id/items" },
+    "dataTags": { "type": "array", "required": false, "notes": "default []" },
+    "dataType": { "type": "string", "required": false },
+    "description": { "type": "string", "required": false },
+    "dataLocation": { "type": "object", "required": false },
+    "departments": { "type": "array", "required": false },
+    "companyId": { "type": "ObjectId", "required": false },
+    "shared": { "type": "boolean", "required": false, "notes": "default true" },
+    "permissions": { "type": "object", "required": false },
+    "public": { "type": "boolean", "required": false, "notes": "default false" },
+    "profileCapture": { "type": "boolean", "required": false },
+    "reveal": { "type": "object", "required": false, "notes": "{ request, response }" },
+    "parentId": { "type": "ObjectId", "required": false, "notes": "If API supports nesting" }
+  },
+  "notes": "userId, createdBy are set by backend from API key.",
+  "createResponseShape": {
+    "success": true,
+    "message": "Data posted",
+    "data": { "_id": "...", "dataTitle": "...", "userId": "...", "..." },
+    "_id": "<string ObjectId — use this as folderId in add-to-dataset.sh>"
+  }
+}

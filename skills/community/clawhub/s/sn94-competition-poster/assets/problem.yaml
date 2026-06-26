@@ -1,0 +1,18 @@
+slug: example-frontier
+title: Example Frontier
+version: 1
+hardware: cpu
+allowed_patch_paths:
+  - submission/**
+setup_command: ./scripts/setup.sh
+benchmark_command: ./scripts/benchmark.sh
+result_path: results/result.json
+max_patch_bytes: 65536
+timeout_seconds: 300
+objective:
+  metric_name: score
+  higher_is_better: true
+  acceptance_floor: 0.0
+  tie_breakers:
+    - artifact_size_bytes
+    - runtime_seconds

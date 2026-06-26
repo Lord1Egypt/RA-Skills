@@ -1,0 +1,92 @@
+{
+  "models": {
+    "providers": {
+      "spectyra": {
+        "baseUrl": "http://127.0.0.1:4111/v1",
+        "apiKey": "SPECTYRA_LOCAL",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "spectyra/smart",
+            "name": "Spectyra Smart",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/fast",
+            "name": "Spectyra Fast",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/quality",
+            "name": "Spectyra Quality",
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "spectyra/openai/smart",
+            "name": "Spectyra · OpenAI · smart",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/openai/fast",
+            "name": "Spectyra · OpenAI · fast",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/openai/quality",
+            "name": "Spectyra · OpenAI · quality",
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "spectyra/anthropic/smart",
+            "name": "Spectyra · Anthropic · smart",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/anthropic/fast",
+            "name": "Spectyra · Anthropic · fast",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/anthropic/quality",
+            "name": "Spectyra · Anthropic · quality",
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "spectyra/groq/smart",
+            "name": "Spectyra · Groq · smart",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/groq/fast",
+            "name": "Spectyra · Groq · fast",
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "spectyra/groq/quality",
+            "name": "Spectyra · Groq · quality",
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "spectyra/smart"
+      }
+    }
+  }
+}

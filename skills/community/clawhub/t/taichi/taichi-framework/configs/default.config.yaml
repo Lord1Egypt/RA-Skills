@@ -1,0 +1,27 @@
+workspace:
+  path: ${TAICHI_WORKSPACE:-./workspace}
+
+communication:
+  default_backend: "redis"
+  redis_url: "redis://localhost:6379"
+  permissions_config: "configs/communication.yaml"
+
+worker_pool:
+  min_size: 2
+  max_size: 20
+  idle_timeout_sec: 300
+  heartbeat_interval_sec: 5
+
+skills:
+  manifest_path: "configs/skills/manifest.yaml"
+  sandbox:
+    enabled: false
+    allowed_paths: ["/tmp", "./workspace/temp"]
+    allowed_commands: ["cat", "grep", "echo", "ls", "python3"]
+
+mode_selector:
+  config_path: "configs/mode_selector.yaml"
+
+logging:
+  level: "INFO"
+  file: "./workspace/logs/taichi.log"

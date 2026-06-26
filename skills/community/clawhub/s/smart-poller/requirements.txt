@@ -1,0 +1,11 @@
+# Smart Poller — Python dependencies
+# Uses Python standard library only — no pip install required
+
+# Standard library modules used:
+# - json
+# - urllib.request
+# - urllib.error
+# - datetime
+# - typing
+# - time
+# - sys

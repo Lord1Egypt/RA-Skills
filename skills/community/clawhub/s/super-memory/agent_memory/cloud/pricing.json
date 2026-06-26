@@ -1,0 +1,32 @@
+{
+  "plans": {
+    "free": {
+      "monthly_fee": 0,
+      "per_remember": 0,
+      "per_recall": 0,
+      "per_gb": 0,
+      "monthly_credits": 100
+    },
+    "starter": {
+      "monthly_fee": 29,
+      "per_remember": 0.0001,
+      "per_recall": 0.0002,
+      "per_gb": 0.5,
+      "monthly_credits": 10000
+    },
+    "pro": {
+      "monthly_fee": 99,
+      "per_remember": 0.00005,
+      "per_recall": 0.0001,
+      "per_gb": 0.3,
+      "monthly_credits": 100000
+    },
+    "enterprise": {
+      "monthly_fee": 499,
+      "per_remember": 0.00002,
+      "per_recall": 0.00005,
+      "per_gb": 0.1,
+      "monthly_credits": 1000000
+    }
+  }
+}

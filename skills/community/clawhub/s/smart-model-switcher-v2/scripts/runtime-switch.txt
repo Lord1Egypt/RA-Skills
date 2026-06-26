@@ -1,0 +1,178 @@
+# Smart Model Switcher V2 - Runtime Zero-Latency Switching
+param(
+    [string]$Task = "",
+    [string]$ConfigPath = "$env:USERPROFILE\.openclaw\openclaw.json"
+)
+
+$StartTime = Get-Date
+
+# Model Registry (Preloaded at startup)
+$ModelRegistry = @{
+    "bailian/qwen3.5-plus" = @{
+        Tasks = @("writing", "analysis", "translation", "long-context")
+        Context = 1000000
+        Priority = 1
+        Status = "ready"
+    }
+    "bailian/qwen3-coder-plus" = @{
+        Tasks = @("coding", "debug")
+        Context = 100000
+        Priority = 1
+        Status = "ready"
+    }
+    "bailian/qwen3-max-2026-01-23" = @{
+        Tasks = @("reasoning", "math")
+        Context = 100000
+        Priority = 1
+        Status = "ready"
+    }
+    "bailian/qwen3.5-397b-a17b" = @{
+        Tasks = @("writing", "analysis", "general")
+        Context = 262144
+        Priority = 2
+        Status = "ready"
+    }
+    "bailian/qwen-plus" = @{
+        Tasks = @("general", "chat")
+        Context = 131072
+        Priority = 3
+        Status = "ready"
+    }
+}
+
+# Task Keyword Mapping
+$TaskKeywords = @{
+    "coding" = @("浠ｇ爜", "缂栫▼", "python", "js", "javascript", "鍑芥暟", "绫?, "debug", "bug", "淇", "閿欒", "寮傚父", "鐖櫕", "api", "json", "sql", "鍐欑▼搴?, "寮€鍙?, "绠楁硶", "鏁版嵁缁撴瀯")
+    "writing" = @("灏忚", "鏁呬簨", "鏂囩珷", "鍐欎綔", "鍒涗綔", "鍐欎功", "绔犺妭", "鐣寗", "浣滃", "鏂囧", "鏁ｆ枃", "璇楁瓕", "鍓ф湰")
+    "reasoning" = @("鎺ㄧ悊", "鏁板", "閫昏緫", "璇佹槑", "璁＄畻", "鐗╃悊", "鍖栧", "鏅哄姏", "鎬濊€?, "璋滈", "闅鹃")
+    "analysis" = @("鍒嗘瀽", "鏁版嵁", "缁熻", "鎶ュ憡", "鎬荤粨", "瀵规瘮", "鐮旂┒", "璋冩煡", "璇勪及", "瀹℃煡")
+    "translation" = @("缈昏瘧", "translate", "鑻辨枃", "涓枃", "鏃ヨ", "闊╄", "璇█", "english", "chinese")
+    "long-context" = @("闀挎枃妗?, "涓囧瓧", "10 涓?, "100 涓?, "1m", "1000k", "闀跨瘒", "瀹屾暣", "鍏ㄩ儴")
+    "debug" = @("璋冭瘯", "bug", "閿欒", "寮傚父", "fix", "repair", "闂", "鏁呴殰")
+}
+
+# Model Selection Mapping
+$ModelMapping = @{
+    "coding" = "bailian/qwen3-coder-plus"
+    "writing" = "bailian/qwen3.5-plus"
+    "reasoning" = "bailian/qwen3-max-2026-01-23"
+    "analysis" = "bailian/qwen3.5-plus"
+    "translation" = "bailian/qwen3.5-plus"
+    "long-context" = "bailian/qwen3.5-plus"
+    "debug" = "bailian/qwen3-coder-plus"
+}
+
+$ModelReasons = @{
+    "bailian/qwen3.5-plus" = "Best for writing & long context (1M tokens)"
+    "bailian/qwen3-coder-plus" = "Best for coding & debugging"
+    "bailian/qwen3-max-2026-01-23" = "Best for reasoning & math"
+    "bailian/qwen3.5-397b-a17b" = "Best for general tasks"
+    "bailian/qwen-plus" = "Best for chat & quick tasks"
+}
+
+function Get-TaskType {
+    param([string]$Text)
+    
+    $scores = @{}
+    $textLower = $Text.ToLower()
+    
+    foreach ($type in $TaskKeywords.Keys) {
+        $score = 0
+        foreach ($keyword in $TaskKeywords[$type]) {
+            if ($textLower -match $keyword) {
+                $score++
+            }
+        }
+        $scores[$type] = $score
+    }
+    
+    # Get type with highest score
+    $bestType = $scores.GetEnumerator() | Sort-Object Value -Descending | Select-Object -First 1
+    
+    if ($bestType.Value -gt 0) {
+        return $bestType.Key
+    } else {
+        return "writing" # Default
+    }
+}
+
+function Get-BestModel {
+    param([string]$TaskType)
+    
+    if ($ModelMapping.ContainsKey($TaskType)) {
+        return $ModelMapping[$TaskType]
+    } else {
+        return "bailian/qwen3.5-plus" # Default
+    }
+}
+
+function Get-FallbackModel {
+    param([string]$PrimaryModel)
+    
+    # Fallback chain
+    $fallbacks = @(
+        "bailian/qwen3.5-397b-a17b",
+        "bailian/qwen-plus",
+        "bailian/qwen3.5-plus"
+    )
+    
+    foreach ($fallback in $fallbacks) {
+        if ($fallback -ne $PrimaryModel) {
+            return $fallback
+        }
+    }
+    
+    return "bailian/qwen3.5-plus"
+}
+
+# Main execution
+Write-Host "`n========================================" -ForegroundColor Cyan
+Write-Host "馃 Smart Model Switcher V2" -ForegroundColor Cyan
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "鈿?Zero-Latency 鈥?No Restart Required" -ForegroundColor Green
+Write-Host "========================================`n" -ForegroundColor Cyan
+
+if ($Task) {
+    # Analyze task
+    Write-Host "馃摑 Analyzing task..." -ForegroundColor Yellow
+    $taskType = Get-TaskType -Task $Task
+    Write-Host "   Task Type: $taskType" -ForegroundColor White
+    
+    # Select best model
+    $selectedModel = Get-BestModel -TaskType $taskType
+    Write-Host "   Selected Model: $selectedModel" -ForegroundColor White
+    Write-Host "   Reason: $($ModelReasons[$selectedModel])" -ForegroundColor White
+    
+    # Check availability
+    if ($ModelRegistry.ContainsKey($selectedModel)) {
+        $status = $ModelRegistry[$selectedModel].Status
+        if ($status -eq "ready") {
+            Write-Host "   Status: 鉁?Ready" -ForegroundColor Green
+        } else {
+            Write-Host "   Status: 鈿狅笍  Unavailable, using fallback" -ForegroundColor Yellow
+            $selectedModel = Get-FallbackModel -PrimaryModel $selectedModel
+            Write-Host "   Fallback Model: $selectedModel" -ForegroundColor White
+        }
+    }
+    
+    # Calculate latency
+    $EndTime = Get-Date
+    $Latency = [math]::Round(($EndTime - $StartTime).TotalMilliseconds, 2)
+    
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host "鉁?Model Selected" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host "Model: $selectedModel" -ForegroundColor White
+    Write-Host "Latency: ${Latency}ms" -ForegroundColor White
+    Write-Host "Restart Required: No" -ForegroundColor Green
+    Write-Host "========================================`n" -ForegroundColor Cyan
+} else {
+    Write-Host "Usage: .\runtime-switch.ps1 -Task 'your task description'" -ForegroundColor Yellow
+    Write-Host "Example: .\runtime-switch.ps1 -Task '甯垜鍐欎竴鏈骞诲皬璇?`n" -ForegroundColor Gray
+    
+    Write-Host "Available Task Types:" -ForegroundColor Cyan
+    foreach ($type in $TaskKeywords.Keys) {
+        Write-Host "  - $type ($($TaskKeywords[$type].Count) keywords)" -ForegroundColor White
+    }
+    Write-Host ""
+}

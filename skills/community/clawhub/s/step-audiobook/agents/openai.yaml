@@ -1,0 +1,7 @@
+interface:
+  display_name: "Audiobook"
+  short_description: "显式调用；需 STEP_API_KEY 与 ffmpeg/ffprobe 的有声书工作流"
+  default_prompt: "使用 $audiobook 从音色库维护、角色选角到 TTS 合成，逐步完成一本有声书。"
+
+policy:
+  allow_implicit_invocation: false

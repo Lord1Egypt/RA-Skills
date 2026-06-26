@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1200" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- 泳道1: 群众/申请人 -->
+    <mxCell id="swimlane1" value="群众/申请人" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="1400" height="200" as="geometry" />
+    </mxCell>
+    
+    <!-- 泳道2: 窗口受理 -->
+    <mxCell id="swimlane2" value="窗口受理" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+      <mxGeometry x="0" y="200" width="1400" height="250" as="geometry" />
+    </mxCell>
+    
+    <!-- 泳道3: 部门审批 -->
+    <mxCell id="swimlane3" value="部门审批" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+      <mxGeometry x="0" y="450" width="1400" height="300" as="geometry" />
+    </mxCell>
+    
+    <!-- 泳道4: 系统自动处理 -->
+    <mxCell id="swimlane4" value="系统自动处理" style="swimlane;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+      <mxGeometry x="0" y="750" width="1400" height="150" as="geometry" />
+    </mxCell>
+    
+    <!-- ========== 泳道1节点 ========== -->
+    <!-- 开始节点 -->
+    <mxCell id="node_start" value="" style="ellipse;fillColor=#82b366;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="swimlane1">
+      <mxGeometry x="60" y="60" width="40" height="40" as="geometry" />
+    </mxCell>
+    
+    <!-- 提交申请 -->
+    <mxCell id="node_submit" value="填写并提交&#xa;申请材料" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane1">
+      <mxGeometry x="150" y="50" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 接收材料（跨泳道箭头目标） -->
+    <mxCell id="node_receive" value="补充材料&#xa;（如需要）" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane1">
+      <mxGeometry x="580" y="50" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ========== 泳道2节点 ========== -->
+    <!-- 接收材料-窗口 -->
+    <mxCell id="node_window_receive" value="收取材料&#xa;出具收件回执" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane2">
+      <mxGeometry x="130" y="60" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 材料审核 -->
+    <mxCell id="node_review" value="材料完整性&#xa;与规范性审核" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane2">
+      <mxGeometry x="310" y="60" width="130" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 材料是否齐全判断 -->
+    <mxCell id="node_judge1" value="材料&#xa;齐全?" style="rhombus;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="swimlane2">
+      <mxGeometry x="500" y="50" width="100" height="80" as="geometry" />
+    </mxCell>
+    
+    <!-- 转报部门 -->
+    <mxCell id="node_transfer" value="受理登记&#xa;转报审批部门" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane2">
+      <mxGeometry x="650" y="60" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ========== 泳道3节点 ========== -->
+    <!-- 初审 -->
+    <mxCell id="node_approve1" value="初审" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="swimlane3">
+      <mxGeometry x="130" y="50" width="80" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 复核 -->
+    <mxCell id="node_approve2" value="复核" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="swimlane3">
+      <mxGeometry x="260" y="50" width="80" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 审批决策判断 -->
+    <mxCell id="node_judge2" value="审批&#xa;通过?" style="rhombus;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="swimlane3">
+      <mxGeometry x="400" y="40" width="100" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- 审批通过-签发结果 -->
+    <mxCell id="node_sign" value="签发审批&#xa;决定文件" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane3">
+      <mxGeometry x="560" y="40" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 退回补正 -->
+    <mxCell id="node_return" value="退回补正&#xa;告知单" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane3">
+      <mxGeometry x="130" y="150" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ========== 泳道4节点 ========== -->
+    <!-- 自动通知 -->
+    <mxCell id="node_auto_notify" value="短信/APP&#xa;自动通知" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane4">
+      <mxGeometry x="730" y="40" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 发放结果 -->
+    <mxCell id="node_result" value="领取&#xa;审批结果" style="rounded=1;fillColor=#82b366;strokeColor=#333333;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane4">
+      <mxGeometry x="880" y="40" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 结束节点 -->
+    <mxCell id="node_end" value="" style="ellipse;fillColor=#d9574a;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="swimlane4">
+      <mxGeometry x="1030" y="50" width="40" height="40" as="geometry" />
+    </mxCell>
+    
+    <!-- 结束节点文字 -->
+    <mxCell id="node_end_label" value="流程结束" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=12;fontColor=#333333;" vertex="1" parent="swimlane4">
+      <mxGeometry x="1075" y="60" width="70" height="20" as="geometry" />
+    </mxCell>
+    
+    <!-- 一次性告知 -->
+    <mxCell id="node_notify_all" value="一次性告知&#xa;补正内容" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;whiteSpace=wrap;align=center;verticalAlign=middle;" vertex="1" parent="swimlane4">
+      <mxGeometry x="290" y="40" width="110" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ========== 连接线 ========== -->
+    <!-- 开始 → 提交申请 -->
+    <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_start" target="node_submit">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 提交申请 → 窗口接收 -->
+    <mxCell id="edge2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_submit" target="node_window_receive">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="210" y="130" />
+          <mxPoint x="210" y="130" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 窗口接收 → 材料审核 -->
+    <mxCell id="edge3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_window_receive" target="node_review">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 材料审核 → 判断1 -->
+    <mxCell id="edge4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_review" target="node_judge1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 判断1是 → 转报部门 -->
+    <mxCell id="edge5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#82b366;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="node_judge1" target="node_transfer">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint as="offset" />
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 判断1是标签 -->
+    <mxCell id="edge5_label" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="620" y="80" width="30" height="20" as="geometry" />
+    </mxCell>
+    
+    <!-- 转报部门 → 初审 -->
+    <mxCell id="edge6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_transfer" target="node_approve1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="710" y="90" />
+          <mxPoint x="170" y="90" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 初审 → 复核 -->
+    <mxCell id="edge7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_approve1" target="node_approve2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 复核 → 判断2 -->
+    <mxCell id="edge8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_approve2" target="node_judge2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 判断2是 → 签发 -->
+    <mxCell id="edge9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#82b366;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="node_judge2" target="node_sign">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 判断2是标签 -->
+    <mxCell id="edge9_label" value="是" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="55" width="30" height="20" as="geometry" />
+    </mxCell>
+    
+    <!-- 判断2否 → 退回补正 -->
+    <mxCell id="edge10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#d9574a;strokeColor=#d9574a;strokeWidth=2;dashed=1;" edge="1" parent="1" source="node_judge2" target="node_return">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="400" y="130" />
+          <mxPoint x="180" y="130" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 判断2否标签 -->
+    <mxCell id="edge10_label" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;fontColor=#d9574a;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="320" y="100" width="30" height="20" as="geometry" />
+    </mxCell>
+    
+    <!-- 退回补正 → 一次性告知 -->
+    <mxCell id="edge11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#d9574a;strokeColor=#d9574a;strokeWidth=2;" edge="1" parent="1" source="node_return" target="node_notify_all">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="230" y="320" />
+          <mxPoint x="345" y="320" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 一次性告知 → 群众补充材料 -->
+    <mxCell id="edge12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#d9574a;strokeColor=#d9574a;strokeWidth=2;dashed=1;" edge="1" parent="1" source="node_notify_all" target="node_receive">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="345" y="20" />
+          <mxPoint x="630" y="20" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 判断1否 → 一次性告知 -->
+    <mxCell id="edge13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#d9574a;strokeColor=#d9574a;strokeWidth=2;dashed=1;" edge="1" parent="1" source="node_judge1" target="node_notify_all">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="550" y="200" />
+          <mxPoint x="550" y="340" />
+          <mxPoint x="345" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 判断1否标签 -->
+    <mxCell id="edge13_label" value="否" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;fontColor=#d9574a;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="545" y="130" width="30" height="20" as="geometry" />
+    </mxCell>
+    
+    <!-- 群众补充材料 → 窗口接收 -->
+    <mxCell id="edge14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_receive" target="node_window_receive">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="630" y="150" />
+          <mxPoint x="190" y="150" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 签发 → 自动通知 -->
+    <mxCell id="edge15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_sign" target="node_auto_notify">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 自动通知 → 领取结果 -->
+    <mxCell id="edge16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_auto_notify" target="node_result">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 领取结果 → 结束 -->
+    <mxCell id="edge17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=2;" edge="1" parent="1" source="node_result" target="node_end">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+  </root>
+</mxGraphModel>

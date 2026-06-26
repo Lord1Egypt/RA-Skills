@@ -1,0 +1,97 @@
+# OpenClaw Skill Manifest
+name: social-media-marketing-hub
+version: 8.3.0
+vendor: social-hub
+runtime:
+  interpreter: node
+  dependencies: []
+  entryPoint: scripts/marketing_hub.js
+env:
+  required:
+    - TIKHUB_TOKEN      # 抖音数据 API (https://user.tikhub.io/register?ref=teKGFLs1)
+    - DEEPSEEK_KEY      # DeepSeek AI 分析 (https://platform.deepseek.com/)
+  optional: []
+
+permissions:
+  network_mode: allowlist
+  allowed_hosts:
+    - www.douyin.com
+    - douyin.com
+    - api.tikhub.io
+    - api.deepseek.com
+  filesystem:
+    read_roots:
+      - "${WORKSPACE_ROOT}"
+      - "${SKILL_DIR}"
+    write_roots:
+      - "${WORKSPACE_ROOT}"
+      - "${SKILL_DIR}/scripts"
+  allowed_commands:
+    # 核心依赖
+    - node
+    # 视频下载 + API 请求
+    - curl
+    # 音视频处理（口播转写）
+    - ffmpeg
+    # 本地语音识别（需提前安装 whisper CLI）
+    - whisper
+    # 浏览器模式（可选，无头 Chromium）
+    - google-chrome
+    - chrome
+    - chromium
+    - chromium-browser
+    # 进程清理
+    - pkill
+
+schemaVersion: 1
+skill:
+  id: social-media-marketing-hub
+  author: 0xbigbig
+  category: 社交媒体
+  tags:
+    - 抖音
+    - 爆款分析
+    - AI营销
+    - 带货脚本
+    - 标题生成
+  summary: >-
+    社交媒体营销中心：输入关键词，AI 自动分析抖音爆款规律，
+    生成爆款标题和口播脚本，支持选品分析、竞品账号分析、记忆学习系统。交流微信：without-dream
+  skillDoc: SKILL.md
+
+credentials:
+  model: none
+  doNotCommitToVcs:
+    - scripts/memory/
+    - scripts/.env
+
+clientPermissions:
+  network:
+    httpsOutbound: true
+    documentedHosts:
+      - api.tikhub.io
+      - api.deepseek.com
+  filesystem:
+    read:
+      - "${SKILL_DIR}/scripts"
+    write:
+      - "${SKILL_DIR}/scripts"
+      - "${SKILL_DIR}/scripts/memory"
+  subprocess:
+    allowedPatterns:
+      - node
+      - "curl *"
+      - "ffmpeg *"
+      - "whisper *"
+      - "google-chrome *"
+      - "chrome *"
+      - "chromium *"
+      - "pkill *"
+
+metadata:
+  openclaw:
+    homepage: https://github.com/0xbigbig/social-media-marketing-hub
+
+agentPolicy:
+  alwaysSkill: false
+  modifiesOtherSkillsOrGlobalAgent: false

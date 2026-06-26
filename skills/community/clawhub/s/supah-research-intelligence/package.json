@@ -1,0 +1,25 @@
+{
+  "name": "supah-research-intelligence",
+  "version": "1.0.0",
+  "description": "Professional web research with source verification for AI agents",
+  "main": "index.js",
+  "bin": {
+    "research": "./index.js",
+    "supah-research": "./index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "research",
+    "fact-checking",
+    "web-intelligence",
+    "source-verification",
+    "universal"
+  ],
+  "author": "SUPAH",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supah-based/supah-research-intelligence.git"
+  }
+}

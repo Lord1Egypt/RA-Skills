@@ -1,0 +1,2831 @@
+[
+  {
+    "namespace": {
+      "name": "ListInternal",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "List",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "String",
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "Transfer": [
+              "address",
+              "address",
+              "int"
+            ]
+          },
+          {
+            "Allowance": [
+              "address",
+              "address",
+              "int"
+            ]
+          },
+          {
+            "Burn": [
+              "address",
+              "int"
+            ]
+          },
+          {
+            "Mint": [
+              "address",
+              "int"
+            ]
+          },
+          {
+            "Swap": [
+              "address",
+              "int"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [],
+          "name": "aex9_extensions",
+          "payable": false,
+          "returns": {
+            "list": [
+              "string"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "decimals",
+              "type": "int"
+            },
+            {
+              "name": "symbol",
+              "type": "string"
+            },
+            {
+              "name": "initial_owner_balance",
+              "type": {
+                "option": [
+                  "int"
+                ]
+              }
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "FungibleTokenFull.state",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "meta_info",
+          "payable": false,
+          "returns": "FungibleTokenFull.meta_info",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "total_supply",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "owner",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "balances",
+          "payable": false,
+          "returns": "FungibleTokenFull.balances",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "balance",
+          "payable": false,
+          "returns": {
+            "option": [
+              "int"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "swapped",
+          "payable": false,
+          "returns": {
+            "map": [
+              "address",
+              "int"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "allowances",
+          "payable": false,
+          "returns": "FungibleTokenFull.allowances",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "allowance_accounts",
+              "type": "FungibleTokenFull.allowance_accounts"
+            }
+          ],
+          "name": "allowance",
+          "payable": false,
+          "returns": {
+            "option": [
+              "int"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "from_account",
+              "type": "address"
+            }
+          ],
+          "name": "allowance_for_caller",
+          "payable": false,
+          "returns": {
+            "option": [
+              "int"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "from_account",
+              "type": "address"
+            },
+            {
+              "name": "to_account",
+              "type": "address"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "name": "transfer_allowance",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "for_account",
+              "type": "address"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "name": "create_allowance",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "for_account",
+              "type": "address"
+            },
+            {
+              "name": "value_change",
+              "type": "int"
+            }
+          ],
+          "name": "change_allowance",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "for_account",
+              "type": "address"
+            }
+          ],
+          "name": "reset_allowance",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "to_account",
+              "type": "address"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "name": "transfer",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "name": "burn",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "account",
+              "type": "address"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "name": "mint",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "swap",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "check_swap",
+          "payable": false,
+          "returns": "int",
+          "stateful": true
+        }
+      ],
+      "kind": "contract_child",
+      "name": "FungibleTokenFull",
+      "payable": false,
+      "state": {
+        "record": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "total_supply",
+            "type": "int"
+          },
+          {
+            "name": "balances",
+            "type": "FungibleTokenFull.balances"
+          },
+          {
+            "name": "meta_info",
+            "type": "FungibleTokenFull.meta_info"
+          },
+          {
+            "name": "allowances",
+            "type": "FungibleTokenFull.allowances"
+          },
+          {
+            "name": "swapped",
+            "type": {
+              "map": [
+                "address",
+                "int"
+              ]
+            }
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "meta_info",
+          "typedef": {
+            "record": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "symbol",
+                "type": "string"
+              },
+              {
+                "name": "decimals",
+                "type": "int"
+              }
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "allowance_accounts",
+          "typedef": {
+            "record": [
+              {
+                "name": "from_account",
+                "type": "address"
+              },
+              {
+                "name": "for_account",
+                "type": "address"
+              }
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "balances",
+          "typedef": {
+            "map": [
+              "address",
+              "int"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "allowances",
+          "typedef": {
+            "map": [
+              "FungibleTokenFull.allowance_accounts",
+              "int"
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "token_contract",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "sale_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "buy",
+          "payable": true,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "address"
+            }
+          ],
+          "name": "buy_with_affiliation",
+          "payable": true,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "address"
+            }
+          ],
+          "name": "set_beneficiary",
+          "payable": false,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "beneficiary",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "address"
+            }
+          ],
+          "name": "set_owner",
+          "payable": false,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "owner",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "TokenSale",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "Option",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "Pair",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "Set",
+      "typedefs": [
+        {
+          "name": "set",
+          "typedef": {
+            "record": [
+              {
+                "name": "to_map",
+                "type": {
+                  "map": [
+                    "'a",
+                    "unit"
+                  ]
+                }
+              }
+            ]
+          },
+          "vars": [
+            {
+              "name": "'a"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "ChangeMinimumTokenThreshold": [
+              "int"
+            ]
+          },
+          {
+            "AddModerator": [
+              "address"
+            ]
+          },
+          {
+            "DeleteModerator": [
+              "address"
+            ]
+          },
+          {
+            "MuteUserId": [
+              "string"
+            ]
+          },
+          {
+            "UnmuteUserId": [
+              "string"
+            ]
+          },
+          {
+            "SetOwner": [
+              "address"
+            ]
+          },
+          {
+            "ChangedMetaInfo": []
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "initial_moderator",
+              "type": "address"
+            },
+            {
+              "name": "minimum_token_threshold",
+              "type": "int"
+            },
+            {
+              "name": "is_private",
+              "type": "bool"
+            },
+            {
+              "name": "meta_info",
+              "type": "CommunityManagement.meta_info"
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "CommunityManagement.state",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "CommunityManagement.state",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "moderator_accounts",
+          "payable": false,
+          "returns": {
+            "Set.set": [
+              "address"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "muted_user_ids",
+          "payable": false,
+          "returns": {
+            "Set.set": [
+              "string"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "minimum_token_threshold",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "owner",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "meta_info",
+          "payable": false,
+          "returns": "CommunityManagement.meta_info",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "minimum_token_threshold",
+              "type": "int"
+            }
+          ],
+          "name": "change_minimum_token_threshold",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "moderator",
+              "type": "address"
+            }
+          ],
+          "name": "add_moderator",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "moderator",
+              "type": "address"
+            }
+          ],
+          "name": "delete_moderator",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "user_id",
+              "type": "string"
+            }
+          ],
+          "name": "mute_user_id",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "user_id",
+              "type": "string"
+            }
+          ],
+          "name": "unmute_user_id",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "meta_info",
+              "type": "CommunityManagement.meta_info"
+            }
+          ],
+          "name": "change_meta_info",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "owner",
+              "type": "address"
+            }
+          ],
+          "name": "set_owner",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        }
+      ],
+      "kind": "contract_child",
+      "name": "CommunityManagement",
+      "payable": false,
+      "state": {
+        "record": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "minimum_token_threshold",
+            "type": "int"
+          },
+          {
+            "name": "is_private",
+            "type": "bool"
+          },
+          {
+            "name": "moderator_accounts",
+            "type": {
+              "Set.set": [
+                "address"
+              ]
+            }
+          },
+          {
+            "name": "muted_user_ids",
+            "type": {
+              "Set.set": [
+                "string"
+              ]
+            }
+          },
+          {
+            "name": "meta_info",
+            "type": "CommunityManagement.meta_info"
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "meta_info",
+          "typedef": {
+            "map": [
+              "string",
+              "string"
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [],
+          "name": "is_dao",
+          "payable": false,
+          "returns": "bool",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_community_management",
+          "payable": false,
+          "returns": {
+            "option": [
+              "CommunityManagement"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "address"
+            },
+            {
+              "name": "_2",
+              "type": "int"
+            }
+          ],
+          "name": "record_sale_transaction",
+          "payable": true,
+          "returns": "unit",
+          "stateful": true
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "ReplaceableDAO",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "VoteSubjects",
+      "typedefs": [
+        {
+          "name": "subject",
+          "typedef": {
+            "variant": [
+              {
+                "VotePayout": [
+                  "address"
+                ]
+              },
+              {
+                "VotePayoutAmount": [
+                  "address",
+                  "int"
+                ]
+              },
+              {
+                "ChangeDAO": [
+                  "address"
+                ]
+              },
+              {
+                "ChangeMetaInfo": [
+                  {
+                    "map": [
+                      "string",
+                      "string"
+                    ]
+                  }
+                ]
+              },
+              {
+                "ChangeMinimumTokenThreshold": [
+                  "int"
+                ]
+              },
+              {
+                "AddModerator": [
+                  "address"
+                ]
+              },
+              {
+                "DeleteModerator": [
+                  "address"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "Vote": [
+              "address",
+              "DAOVote.vote_option",
+              "DAOVote.amount"
+            ]
+          },
+          {
+            "RevokeVote": [
+              "address",
+              "DAOVote.vote_option",
+              "DAOVote.amount"
+            ]
+          },
+          {
+            "Withdraw": [
+              "address",
+              "DAOVote.amount"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "metadata",
+              "type": "DAOVote.metadata"
+            },
+            {
+              "name": "token",
+              "type": "FungibleTokenFull"
+            },
+            {
+              "name": "author",
+              "type": "address"
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "DAOVote.state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "option",
+              "type": "DAOVote.vote_option"
+            },
+            {
+              "name": "amount",
+              "type": "DAOVote.amount"
+            }
+          ],
+          "name": "vote",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "revoke_vote",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "withdraw",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "DAOVote.state",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "close_height",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "metadata",
+          "payable": false,
+          "returns": "DAOVote.metadata",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "subject",
+          "payable": false,
+          "returns": "VoteSubjects.subject",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "token",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "vote_accounts",
+          "payable": false,
+          "returns": "DAOVote.vote_accounts",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "current_vote_state",
+          "payable": false,
+          "returns": "DAOVote.vote_state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "voter",
+              "type": "address"
+            }
+          ],
+          "name": "has_voted",
+          "payable": false,
+          "returns": "bool",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "is_closed",
+          "payable": false,
+          "returns": "bool",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "voter",
+              "type": "address"
+            }
+          ],
+          "name": "has_withdrawn",
+          "payable": false,
+          "returns": {
+            "option": [
+              "bool"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "final_vote_state",
+          "payable": false,
+          "returns": {
+            "option": [
+              "DAOVote.vote_state"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "voter",
+              "type": "address"
+            }
+          ],
+          "name": "voted_option",
+          "payable": false,
+          "returns": {
+            "option": [
+              "DAOVote.vote_option"
+            ]
+          },
+          "stateful": false
+        }
+      ],
+      "kind": "contract_child",
+      "name": "DAOVote",
+      "payable": false,
+      "state": {
+        "record": [
+          {
+            "name": "metadata",
+            "type": "DAOVote.metadata"
+          },
+          {
+            "name": "close_height",
+            "type": "int"
+          },
+          {
+            "name": "create_height",
+            "type": "int"
+          },
+          {
+            "name": "vote_state",
+            "type": "DAOVote.vote_state"
+          },
+          {
+            "name": "vote_accounts",
+            "type": "DAOVote.vote_accounts"
+          },
+          {
+            "name": "token",
+            "type": "FungibleTokenFull"
+          },
+          {
+            "name": "author",
+            "type": "address"
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "vote_option",
+          "typedef": "bool",
+          "vars": []
+        },
+        {
+          "name": "amount",
+          "typedef": "int",
+          "vars": []
+        },
+        {
+          "name": "vote_state",
+          "typedef": {
+            "map": [
+              "DAOVote.vote_option",
+              "DAOVote.amount"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "vote_accounts",
+          "typedef": {
+            "map": [
+              "address",
+              {
+                "tuple": [
+                  "DAOVote.amount",
+                  "DAOVote.vote_option",
+                  "bool"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "metadata",
+          "typedef": {
+            "record": [
+              {
+                "name": "subject",
+                "type": "VoteSubjects.subject"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "link",
+                "type": "string"
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "TokenSale"
+            }
+          ],
+          "name": "get_community_management",
+          "payable": false,
+          "returns": "CommunityManagement",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "Factory",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "VoteAdded": [
+              "DAOVote",
+              "int"
+            ]
+          },
+          {
+            "AppliedVoteSubject": [
+              "DAOVote",
+              "int"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "token_sale",
+              "type": {
+                "option": [
+                  "TokenSale"
+                ]
+              }
+            },
+            {
+              "name": "factory_address",
+              "type": "address"
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "DAO.state",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_token",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "votes",
+          "payable": false,
+          "returns": "DAO.votes",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "vote_timeout",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "factory",
+          "payable": false,
+          "returns": "Factory",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "DAO.state",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_token_sale",
+          "payable": false,
+          "returns": "TokenSale",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "name": "buy_price",
+              "type": "int"
+            }
+          ],
+          "name": "record_sale_transaction",
+          "payable": true,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_community_management",
+          "payable": false,
+          "returns": {
+            "option": [
+              "CommunityManagement"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "is_dao",
+          "payable": false,
+          "returns": "bool",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "token_sale",
+              "type": "TokenSale"
+            }
+          ],
+          "name": "set_token_sale",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "metadata",
+              "type": "DAOVote.metadata"
+            }
+          ],
+          "name": "add_vote",
+          "payable": true,
+          "returns": {
+            "tuple": [
+              "int",
+              "DAOVote"
+            ]
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "vote_seq_id",
+              "type": "int"
+            }
+          ],
+          "name": "apply_vote_subject",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        }
+      ],
+      "kind": "contract_child",
+      "name": "DAO",
+      "payable": true,
+      "state": {
+        "record": [
+          {
+            "name": "token_sale",
+            "type": {
+              "option": [
+                "TokenSale"
+              ]
+            }
+          },
+          {
+            "name": "votes",
+            "type": "DAO.votes"
+          },
+          {
+            "name": "vote_timeout",
+            "type": "int"
+          },
+          {
+            "name": "factory",
+            "type": "Factory"
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "votes",
+          "typedef": {
+            "map": [
+              "int",
+              {
+                "tuple": [
+                  "bool",
+                  "DAOVote"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "namespace": {
+      "name": "Frac",
+      "typedefs": [
+        {
+          "name": "frac",
+          "typedef": {
+            "variant": [
+              {
+                "Pos": [
+                  "int",
+                  "int"
+                ]
+              },
+              {
+                "Zero": []
+              },
+              {
+                "Neg": [
+                  "int",
+                  "int"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [],
+          "name": "supported_decimals",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "curve_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "sell_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_sell_return",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "buy_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "sell_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "BondingCurve",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "UserInvited": [
+              "address",
+              "address"
+            ]
+          },
+          {
+            "RewardAdded": [
+              "address",
+              "int"
+            ]
+          },
+          {
+            "Withdrawn": [
+              "address",
+              "int"
+            ]
+          },
+          {
+            "InvitationRegistered": [
+              "address",
+              "address",
+              "int"
+            ]
+          },
+          {
+            "InvitationRedeemed": [
+              "address",
+              "address",
+              "address"
+            ]
+          },
+          {
+            "InvitationRevoked": [
+              "address",
+              "address"
+            ]
+          },
+          {
+            "RecordSaleTransaction": [
+              "address",
+              "int"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [],
+          "name": "init",
+          "payable": false,
+          "returns": "AffiliationTreasury.state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "get_direct_inviter",
+          "payable": false,
+          "returns": {
+            "option": [
+              "address"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_affiliation_fee_percentage",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "get_accumulated_rewards",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_affiliation_fee_precision",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_affiliation_fee_percentages",
+          "payable": false,
+          "returns": {
+            "list": [
+              "int"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "payout_periods",
+          "payable": false,
+          "returns": {
+            "map": [
+              "int",
+              {
+                "map": [
+                  "address",
+                  "int"
+                ]
+              }
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "unique_invitees",
+          "payable": false,
+          "returns": {
+            "map": [
+              "address",
+              "AffiliationTreasury.unique_invitees_state"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "affiliation_tree",
+          "payable": false,
+          "returns": {
+            "map": [
+              "address",
+              "address"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "invitation_codes",
+          "payable": false,
+          "returns": {
+            "map": [
+              "address",
+              {
+                "tuple": [
+                  "address",
+                  "int",
+                  "bool"
+                ]
+              }
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "AffiliationTreasury.state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "address",
+              "type": "address"
+            }
+          ],
+          "name": "get_affiliation_tree",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "address",
+              "type": "address"
+            }
+          ],
+          "name": "get_invitation_code",
+          "payable": false,
+          "returns": {
+            "tuple": [
+              "address",
+              "int",
+              "bool"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "address",
+              "type": "address"
+            }
+          ],
+          "name": "get_unique_invitee",
+          "payable": false,
+          "returns": "AffiliationTreasury.unique_invitees_state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "invitation_addresses",
+              "type": {
+                "list": [
+                  "address"
+                ]
+              }
+            },
+            {
+              "name": "redemption_fee_cover",
+              "type": "int"
+            },
+            {
+              "name": "invitation_amount",
+              "type": "int"
+            }
+          ],
+          "name": "register_invitation_code",
+          "payable": true,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "invitation_address",
+              "type": "address"
+            }
+          ],
+          "name": "revoke_invitation_code",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "invitee_address",
+              "type": "address"
+            }
+          ],
+          "name": "redeem_invitation_code",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "inviter_address",
+              "type": "address"
+            }
+          ],
+          "name": "register_invitation",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "name": "transaction_value",
+              "type": "int"
+            }
+          ],
+          "name": "record_sale_transaction",
+          "payable": true,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_payout_period",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "withdraw",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        }
+      ],
+      "kind": "contract_child",
+      "name": "AffiliationTreasury",
+      "payable": true,
+      "state": {
+        "record": [
+          {
+            "name": "payout_periods",
+            "type": {
+              "map": [
+                "int",
+                {
+                  "map": [
+                    "address",
+                    "int"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "affiliation_tree",
+            "type": {
+              "map": [
+                "address",
+                "address"
+              ]
+            }
+          },
+          {
+            "name": "invitation_codes",
+            "type": {
+              "map": [
+                "address",
+                {
+                  "tuple": [
+                    "address",
+                    "int",
+                    "bool"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "unique_invitees",
+            "type": {
+              "map": [
+                "address",
+                "AffiliationTreasury.unique_invitees_state"
+              ]
+            }
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "unique_invitees_state",
+          "typedef": {
+            "variant": [
+              {
+                "ThresholdReached": []
+              },
+              {
+                "WaitingForInvitations": [
+                  {
+                    "Set.set": [
+                      "address"
+                    ]
+                  },
+                  {
+                    "map": [
+                      "address",
+                      "int"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "address"
+            }
+          ],
+          "name": "mint_protocol_dao_token",
+          "payable": false,
+          "returns": "unit",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "ICommunityFactory",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "Buy": [
+              "int",
+              "int",
+              "int"
+            ]
+          },
+          {
+            "Sell": [
+              "int",
+              "int"
+            ]
+          },
+          {
+            "PriceChange": [
+              "int",
+              "int"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "beneficiary",
+              "type": "address"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "decimals",
+              "type": "int"
+            },
+            {
+              "name": "symbol",
+              "type": "string"
+            },
+            {
+              "name": "bonding_curve",
+              "type": "BondingCurve"
+            },
+            {
+              "name": "overwrite_owner",
+              "type": {
+                "option": [
+                  "address"
+                ]
+              }
+            },
+            {
+              "name": "affiliation_treasury",
+              "type": "AffiliationTreasury"
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "AffiliationBondingCurveTokenSale.state",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "AffiliationBondingCurveTokenSale.state",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "token_contract",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "owner",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "beneficiary",
+          "payable": false,
+          "returns": "address",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "bonding_curve",
+          "payable": false,
+          "returns": "BondingCurve",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "sale_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "count",
+              "type": "int"
+            }
+          ],
+          "name": "price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "count",
+              "type": "int"
+            }
+          ],
+          "name": "sell_return",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "count",
+              "type": "int"
+            }
+          ],
+          "name": "buy",
+          "payable": true,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "count",
+              "type": "int"
+            },
+            {
+              "name": "affiliation_rewardee",
+              "type": "address"
+            }
+          ],
+          "name": "buy_with_affiliation",
+          "payable": true,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "count",
+              "type": "int"
+            },
+            {
+              "name": "minimal_return_required",
+              "type": "int"
+            }
+          ],
+          "name": "sell",
+          "payable": false,
+          "returns": "int",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "beneficiary",
+              "type": "address"
+            }
+          ],
+          "name": "set_beneficiary",
+          "payable": false,
+          "returns": "unit",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "owner",
+              "type": "address"
+            }
+          ],
+          "name": "set_owner",
+          "payable": false,
+          "returns": "unit",
+          "stateful": true
+        }
+      ],
+      "kind": "contract_child",
+      "name": "AffiliationBondingCurveTokenSale",
+      "payable": false,
+      "state": {
+        "record": [
+          {
+            "name": "token_contract",
+            "type": "FungibleTokenFull"
+          },
+          {
+            "name": "bonding_curve",
+            "type": "BondingCurve"
+          },
+          {
+            "name": "affiliation_treasury",
+            "type": "AffiliationTreasury"
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "factory",
+            "type": "ICommunityFactory"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address"
+          },
+          {
+            "name": "dao_contract",
+            "type": "ReplaceableDAO"
+          }
+        ]
+      },
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [],
+          "name": "get_k",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_initial_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_minimum_count",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_sell_return_percentage",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_sell_return_precision",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "curve_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "supported_decimals",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            }
+          ],
+          "name": "buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            }
+          ],
+          "name": "sell_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            },
+            {
+              "name": "count",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            },
+            {
+              "name": "sell_tokens",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_sell_return",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "name": "buy_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "name": "sell_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_child",
+      "name": "BondingCurveExponential",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "event": {
+        "variant": [
+          {
+            "CreateCommunity": [
+              "string",
+              "DAO",
+              "TokenSale",
+              "CommunityManagement"
+            ]
+          },
+          {
+            "CreateCollection": [
+              "string",
+              "address"
+            ]
+          }
+        ]
+      },
+      "functions": [
+        {
+          "arguments": [
+            {
+              "name": "protocol_token_name",
+              "type": "string"
+            }
+          ],
+          "name": "init",
+          "payable": false,
+          "returns": "CommunityFactory.state",
+          "stateful": true
+        },
+        {
+          "arguments": [],
+          "name": "get_state",
+          "payable": false,
+          "returns": "CommunityFactory.state",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            }
+          ],
+          "name": "allowed_name_length",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            }
+          ],
+          "name": "allowed_name_chars",
+          "payable": false,
+          "returns": {
+            "list": [
+              "CommunityFactory.allowedNameChars"
+            ]
+          },
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            }
+          ],
+          "name": "token_sale_registry",
+          "payable": false,
+          "returns": "CommunityFactory.token_sale_registry",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "community_management",
+          "payable": false,
+          "returns": "CommunityFactory.community_management",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "affiliation_treasury",
+          "payable": false,
+          "returns": "AffiliationTreasury",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "fee_percentage",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "fee_precision",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "bonding_curve",
+          "payable": false,
+          "returns": "BondingCurve",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "token_sale",
+              "type": "TokenSale"
+            }
+          ],
+          "name": "get_community_management",
+          "payable": false,
+          "returns": "CommunityManagement",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "get_token_sale",
+          "payable": false,
+          "returns": "TokenSale",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "token_contract",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "has_community",
+          "payable": false,
+          "returns": "bool",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "factory_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "protocol_dao_token",
+          "payable": false,
+          "returns": "FungibleTokenFull",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "version",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "buy_value",
+              "type": "int"
+            },
+            {
+              "name": "receiver",
+              "type": "address"
+            }
+          ],
+          "name": "mint_protocol_dao_token",
+          "payable": false,
+          "returns": {
+            "tuple": []
+          },
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            },
+            {
+              "name": "allowed_name_length",
+              "type": "int"
+            },
+            {
+              "name": "allowed_name_chars",
+              "type": {
+                "list": [
+                  "CommunityFactory.allowedNameChars"
+                ]
+              }
+            }
+          ],
+          "name": "create_collection",
+          "payable": true,
+          "returns": "string",
+          "stateful": true
+        },
+        {
+          "arguments": [
+            {
+              "name": "collection_name",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "initial_buy_count",
+              "type": "int"
+            },
+            {
+              "name": "is_private",
+              "type": "bool"
+            },
+            {
+              "name": "meta_info",
+              "type": "CommunityManagement.meta_info"
+            }
+          ],
+          "name": "create_community",
+          "payable": true,
+          "returns": {
+            "tuple": [
+              "DAO",
+              "TokenSale",
+              "CommunityManagement"
+            ]
+          },
+          "stateful": true
+        }
+      ],
+      "kind": "contract_main",
+      "name": "CommunityFactory",
+      "payable": false,
+      "state": {
+        "record": [
+          {
+            "name": "collection_registry",
+            "type": "CommunityFactory.collection_registry"
+          },
+          {
+            "name": "known_token_sales",
+            "type": "CommunityFactory.known_token_sales"
+          },
+          {
+            "name": "community_management",
+            "type": "CommunityFactory.community_management"
+          },
+          {
+            "name": "affiliation_treasury",
+            "type": "AffiliationTreasury"
+          },
+          {
+            "name": "bonding_curve",
+            "type": "BondingCurve"
+          },
+          {
+            "name": "protocol_dao_token",
+            "type": "FungibleTokenFull"
+          }
+        ]
+      },
+      "typedefs": [
+        {
+          "name": "token_sale_registry",
+          "typedef": {
+            "map": [
+              "string",
+              "TokenSale"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "known_token_sales",
+          "typedef": {
+            "Set.set": [
+              "address"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "community_management",
+          "typedef": {
+            "map": [
+              "TokenSale",
+              "CommunityManagement"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "collection_data",
+          "typedef": {
+            "record": [
+              {
+                "name": "allowed_name_chars",
+                "type": {
+                  "list": [
+                    "CommunityFactory.allowedNameChars"
+                  ]
+                }
+              },
+              {
+                "name": "allowed_name_length",
+                "type": "int"
+              },
+              {
+                "name": "token_sale_registry",
+                "type": "CommunityFactory.token_sale_registry"
+              }
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "collection_registry",
+          "typedef": {
+            "map": [
+              "string",
+              "CommunityFactory.collection_data"
+            ]
+          },
+          "vars": []
+        },
+        {
+          "name": "allowedNameChars",
+          "typedef": {
+            "variant": [
+              {
+                "SingleChar": [
+                  "int"
+                ]
+              },
+              {
+                "CharRangeFromTo": [
+                  "int",
+                  "int"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  }
+]

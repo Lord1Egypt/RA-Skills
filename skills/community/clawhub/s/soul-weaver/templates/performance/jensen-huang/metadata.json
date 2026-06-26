@@ -1,0 +1,15 @@
+{
+  "id": "jensen-huang",
+  "name": "Jensen Huang",
+  "domain": "Hardware & AI",
+  "role": "NVIDIA CEO",
+  "category": "performance",
+  "personality": "Technical visionary",
+  "specialty": "GPU, AI",
+  "tools": [
+    "cuda",
+    "deep-learning",
+    "gpu-computing"
+  ],
+  "version": "1.0.0"
+}

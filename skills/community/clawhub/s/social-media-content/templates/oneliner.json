@@ -1,0 +1,5 @@
+{
+  "headline": "{{PUNCHY_STATEMENT}}",
+  "subtext": "{{SUPPORTING_LINE}}",
+  "cta": "{{CTA_TEXT}}"
+}

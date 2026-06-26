@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "a-share-short-decision",
+    "name": "A股短线决策",
+    "installs": 8520,
+    "stars": 342,
+    "star_density": 0.0401,
+    "tags": ["finance", "stock", "trading"],
+    "security_score": "A",
+    "last_updated": "2026-03-01",
+    "description": "A股短线决策辅助工具，提供市场情绪分析和交易信号"
+  },
+  {
+    "slug": "web-search",
+    "name": "Web Search",
+    "installs": 125000,
+    "stars": 6800,
+    "star_density": 0.0544,
+    "tags": ["search", "web", "productivity"],
+    "security_score": "A",
+    "last_updated": "2026-03-10",
+    "description": "Universal web search skill for AI agents"
+  },
+  {
+    "slug": "code-review",
+    "name": "Code Review Assistant",
+    "installs": 45000,
+    "stars": 3200,
+    "star_density": 0.0711,
+    "tags": ["development", "code", "review"],
+    "security_score": "A",
+    "last_updated": "2026-03-08",
+    "description": "Automated code review with best practices analysis"
+  },
+  {
+    "slug": "file-manager",
+    "name": "File Manager",
+    "installs": 89000,
+    "stars": 4100,
+    "star_density": 0.0461,
+    "tags": ["filesystem", "productivity", "utility"],
+    "security_score": "A",
+    "last_updated": "2026-03-05",
+    "description": "Advanced file operations and management"
+  },
+  {
+    "slug": "data-analysis",
+    "name": "Data Analysis",
+    "installs": 67000,
+    "stars": 3800,
+    "star_density": 0.0567,
+    "tags": ["data", "analytics", "visualization"],
+    "security_score": "A",
+    "last_updated": "2026-03-07",
+    "description": "Data analysis and visualization with pandas and matplotlib"
+  },
+  {
+    "slug": "markdown-editor",
+    "name": "Markdown Editor",
+    "installs": 52000,
+    "stars": 2600,
+    "star_density": 0.05,
+    "tags": ["writing", "markdown", "editor"],
+    "security_score": "A",
+    "last_updated": "2026-03-06",
+    "description": "Rich markdown editing and preview"
+  },
+  {
+    "slug": "git-assistant",
+    "name": "Git Assistant",
+    "installs": 78000,
+    "stars": 5100,
+    "star_density": 0.0654,
+    "tags": ["development", "git", "version-control"],
+    "security_score": "A",
+    "last_updated": "2026-03-09",
+    "description": "Git operations assistant for branch management and commit analysis"
+  },
+  {
+    "slug": "api-tester",
+    "name": "API Tester",
+    "installs": 34000,
+    "stars": 1800,
+    "star_density": 0.0529,
+    "tags": ["development", "api", "testing"],
+    "security_score": "A",
+    "last_updated": "2026-03-04",
+    "description": "HTTP API testing and documentation tool"
+  },
+  {
+    "slug": "image-processor",
+    "name": "Image Processor",
+    "installs": 41000,
+    "stars": 2200,
+    "star_density": 0.0537,
+    "tags": ["media", "image", "processing"],
+    "security_score": "A",
+    "last_updated": "2026-03-03",
+    "description": "Image manipulation, conversion and optimization"
+  },
+  {
+    "slug": "text-translator",
+    "name": "Text Translator",
+    "installs": 95000,
+    "stars": 5600,
+    "star_density": 0.0589,
+    "tags": ["language", "translation", "productivity"],
+    "security_score": "A",
+    "last_updated": "2026-03-10",
+    "description": "Multi-language text translation with context awareness"
+  },
+  {
+    "slug": "database-query",
+    "name": "Database Query",
+    "installs": 28000,
+    "stars": 1500,
+    "star_density": 0.0536,
+    "tags": ["database", "sql", "data"],
+    "security_score": "B+",
+    "last_updated": "2026-03-02",
+    "description": "SQL query builder and database management"
+  },
+  {
+    "slug": "task-scheduler",
+    "name": "Task Scheduler",
+    "installs": 19000,
+    "stars": 980,
+    "star_density": 0.0516,
+    "tags": ["automation", "scheduling", "productivity"],
+    "security_score": "A",
+    "last_updated": "2026-02-28",
+    "description": "Automated task scheduling and workflow management"
+  },
+  {
+    "slug": "pdf-processor",
+    "name": "PDF Processor",
+    "installs": 56000,
+    "stars": 2900,
+    "star_density": 0.0518,
+    "tags": ["document", "pdf", "processing"],
+    "security_score": "A",
+    "last_updated": "2026-03-08",
+    "description": "PDF reading, creation, and manipulation"
+  },
+  {
+    "slug": "email-assistant",
+    "name": "Email Assistant",
+    "installs": 31000,
+    "stars": 1400,
+    "star_density": 0.0452,
+    "tags": ["communication", "email", "productivity"],
+    "security_score": "A",
+    "last_updated": "2026-03-01",
+    "description": "Email drafting, scheduling and management"
+  },
+  {
+    "slug": "weather-query",
+    "name": "Weather Query",
+    "installs": 72000,
+    "stars": 3500,
+    "star_density": 0.0486,
+    "tags": ["utility", "weather", "api"],
+    "security_score": "A",
+    "last_updated": "2026-03-05",
+    "description": "Global weather forecast and historical data"
+  }
+]

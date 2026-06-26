@@ -1,35 +1,94 @@
----
-name: "Stainless Steel Sop"
-description: "自动生成不锈钢行业客户拜访的标准作业程序，涵盖交通规划、客户核实、天气预警、产业链分析及后勤保障。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stainless-steel-sop"
-sourceUrl: "https://clawhub.ai/skills/stainless-steel-sop"
----
+# stainless-steel-sop - 不锈钢客户拜访 SOP 生成器
 
-# Stainless Steel Sop
+## 技能描述
 
-> 自动生成不锈钢行业客户拜访的标准作业程序，涵盖交通规划、客户核实、天气预警、产业链分析及后勤保障。
+为不锈钢行业商务拓展人员自动生成完整的客户拜访行程 SOP（标准作业程序）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stainless-steel-sop`
-- **Source URL:** [https://clawhub.ai/skills/stainless-steel-sop](https://clawhub.ai/skills/stainless-steel-sop)
+## 核心功能
 
-## Overview
+### 1️⃣ 交通规划
+- **高铁/航班查询**：调用 12306 API 获取实时余票
+- **自驾路线**：高德地图 API 计算距离/时间/过路费
+- **本地交通**：租车/打车建议
 
+### 2️⃣ 客户信息核实
+- **地址验证**：网络搜索核实客户注册地址/经营地址
+- **置信度标注**：标注信息来源和可靠性
+- **联系方式**：电话/邮箱/联系人
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stainless-steel-sop
+### 3️⃣ 天气预警
+- **行程期间天气预报**：温度/降水/风力
+- **出行建议**：根据天气调整行程
+
+### 4️⃣ 产业链分析
+- **客户类型识别**：封头/压力容器/造纸设备/化工设备等
+- **上下游关联度**：评级（高/中/低）
+- **产品匹配度**：推荐不锈钢牌号（304/316L/2205 等）
+
+### 5️⃣ 后勤保障
+- **酒店推荐**：商务型/舒适型/经济型
+- **餐饮建议**：当地特色 + 商务宴请
+- **费用预估**：交通/住宿/餐饮/礼品
+
+### 6️⃣ 风险预案
+- **备选方案**：交通延误/客户临时取消
+- **紧急联系人**：本地同事/供应商
+
+## 输入格式
+
+```json
+{
+  "出发地": "无锡",
+  "客户列表": [
+    {
+      "名称": "新乡七里营封头厂",
+      "地址": "河南省新乡市新乡县七里营镇",
+      "类型": "封头制造",
+      "优先级": "高"
+    }
+  ],
+  "出行日期": "2026-03-30",
+  "返程日期": "2026-03-31"
+}
 ```
+
+## 输出格式
+
+完整的 Markdown SOP 文档，包含：
+- 行程概览
+- 每日详细安排
+- 客户背景资料
+- 交通方案
+- 天气预警
+- 费用预算
+- 检查清单
+
+## 使用示例
+
+```javascript
+// 调用示例
+const sop = await generateSOP({
+  出发地："无锡",
+  客户列表：[...],
+  出行日期："2026-03-30"
+});
+```
+
+## 依赖技能
+
+- `12306` - 火车票查询
+- `amap` - 高德地图路径规划
+- `weather-forecast` - 天气预报
+- `jisu-enterprise` - 企业工商信息（可选）
+
+## 版本历史
+
+- **v1.0.0** (2026-03-26) - 初始版本
+  - 基础 SOP 框架
+  - 集成 12306/高德/天气 API
+  - 产业链分析模板
+
+---
+
+**作者**: 商务拓展专家 👔  
+**适用场景**: 不锈钢行业客户拜访、出差规划、行程管理

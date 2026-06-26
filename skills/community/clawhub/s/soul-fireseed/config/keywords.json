@@ -1,0 +1,27 @@
+{
+  "dimension_1_bio_physical": {
+    "energy_level": ["精力充沛", "累了", "困了", "疲惫", "精神好", "没睡好", "乏力"],
+    "schedule": ["熬夜", "早起", "失眠", "午睡", "通宵", "作息", "生物钟"],
+    "health": ["健康", "锻炼", "运动", "头疼", "不舒服", "健身", "跑步"]
+  },
+  "dimension_2_autobiographical": {
+    "past_indicators": ["以前", "过去", "曾经", "小时候", "之前", "记得", "回想"],
+    "value_indicators": ["改变了我", "让我明白", "领悟到", "最难忘", "关键", "转折点"]
+  },
+  "dimension_3_cognitive": {
+    "decision_style": ["分析", "评估", "权衡", "直觉", "决定", "选择", "判断"],
+    "risk_preference": ["冒险", "稳妥", "谨慎", "尝试", "保守", "风险"]
+  },
+  "dimension_4_affective": {
+    "positive": ["开心", "高兴", "兴奋", "满意", "喜欢", "快乐"],
+    "negative": ["难过", "生气", "焦虑", "担心", "失望", "沮丧"]
+  },
+  "dimension_5_social": {
+    "social_interaction": ["朋友", "同事", "家人", "团队", "社交", "交流", "沟通"],
+    "relationship": ["关系", "信任", "合作", "冲突", "支持", "依赖"]
+  },
+  "dimension_6_meta_cognitive": {
+    "self_awareness": ["我意识到", "我发现", "我明白", "反思", "觉察"],
+    "growth_mindset": ["学习", "进步", "成长", "改进", "提升", "发展"]
+  }
+}

@@ -1,35 +1,103 @@
 ---
-name: "Spec Coding"
-description: "规格驱动编程工作流。根据用户需求生成 Spec 文档（功能/API/组件），或为现有代码逆向生成规格文档。使用场景：(1) 新项目启动时先写规格，(2) 老项目补规格文档，(3) 需求评审时生成规格草稿，(4) 代码审查时对照规格验收。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spec-coding"
-sourceUrl: "https://clawhub.ai/skills/spec-coding"
+name: spec-coding
+description: 规格驱动编程工作流。根据用户需求生成 Spec 文档（功能/API/组件），或为现有代码逆向生成规格文档。使用场景：(1) 新项目启动时先写规格，(2) 老项目补规格文档，(3) 需求评审时生成规格草稿，(4) 代码审查时对照规格验收。
 ---
 
-# Spec Coding
+# Spec Coding 规格驱动编程
 
-> 规格驱动编程工作流。根据用户需求生成 Spec 文档（功能/API/组件），或为现有代码逆向生成规格文档。使用场景：(1) 新项目启动时先写规格，(2) 老项目补规格文档，(3) 需求评审时生成规格草稿，(4) 代码审查时对照规格验收。
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spec-coding`
-- **Source URL:** [https://clawhub.ai/skills/spec-coding](https://clawhub.ai/skills/spec-coding)
+### 场景 1：新项目生成规格文档
 
-## Overview
+当用户提出新需求时：
 
+1. **判断规格类型**
+   - 功能需求 → 使用 `feature-spec.md` 模板
+   - API 接口 → 使用 `api-spec.md` 模板
+   - UI 组件 → 使用 `component-spec.md` 模板
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/spec-coding
+2. **生成规格草稿**
+   - 读取对应模板（见 `assets/templates/`）
+   - 根据用户需求填充各章节
+   - 重点明确：输入/输出规格、边界情况、验收标准
+
+3. **输出格式**
+   ```markdown
+   # [功能名称] 规格文档
+   
+   **状态**: `draft`
+   **创建日期**: YYYY-MM-DD
+   
+   [完整规格内容]
+   ```
+
+4. **后续流程**
+   - 用户评审 → 修改 → 批准
+   - 状态改为 `approved` 后交付开发
+   - 开发完成后对照规格验收
+
+### 场景 2：老项目逆向生成规格
+
+当用户需要为现有代码补规格文档时：
+
+1. **读取源代码**
+   - 功能代码 → 分析输入/输出/行为
+   - API 代码 → 提取路由/参数/响应格式
+   - 组件代码 → 分析 Props/状态/交互
+
+2. **生成规格文档**
+   - 对照模板填充已知信息
+   - 标注「待确认」章节（需要用户补充）
+   - 输出 `review` 状态文档
+
+3. **输出示例**
+   ```markdown
+   ## 2.1 输入规格（已分析代码得出）
+   
+   | 输入项 | 类型 | 必填 | 约束条件 |
+   |--------|------|------|----------|
+   | userId | string | 是 | UUID 格式 |
+   
+   ## 1.1 问题描述（待用户补充）
+   > ⚠️ 待确认：这个功能要解决什么问题？
+   ```
+
+## 模板使用说明
+
+读取模板文件前，先判断需求类型：
+
+| 模板文件 | 适用场景 |
+|----------|----------|
+| `assets/templates/feature-spec.md` | 业务功能、用户故事 |
+| `assets/templates/api-spec.md` | REST API、GraphQL、Webhook |
+| `assets/templates/component-spec.md` | React/Vue 组件、UI 控件 |
+
+## 规格状态流转
+
 ```
+draft → review → approved → in-progress → done
+```
+
+- `draft`: 草稿，待用户补充信息
+- `review`: 待评审，等待用户确认
+- `approved`: 已批准，可交付开发
+- `in-progress`: 开发中
+- `done`: 已完成验收
+
+## 输出原则
+
+1. **结构化优先** - 使用表格、代码块、列表
+2. **明确边界** - 必须列出所有边界情况和错误处理
+3. **可验收** - 每条规格都可被验证（是/否）
+4. **简洁** - 避免冗长描述，用示例代替解释
+
+## 与子代理协作
+
+- **研究员**: 搜集竞品规格、行业标准
+- **文案师**: 润色用户提示文案、错误消息
+- **落地执行**: 根据规格实现代码、编写测试
+
+## 参考文档
+
+- 详细模板说明：`assets/templates/README.md`
+- 规格示例：`assets/examples/`

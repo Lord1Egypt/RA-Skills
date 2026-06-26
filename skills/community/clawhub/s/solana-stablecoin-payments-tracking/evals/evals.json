@@ -1,0 +1,29 @@
+{
+  "skill_name": "stablecoin-payments",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Stream Solana USDC and USDT transfers in real time using Bitquery. I want sender, receiver, amount, and transaction signature.",
+      "expected_output": "Uses Bitquery WebSocket (stream_stablecoin_payments.py or inline gql), subscribes to Solana.Transfers with MintAddress in USDT and USDC mints and Instruction.Program.Method notIncludesCaseInsensitive swap, and presents Transfer (Sender, Receiver, Amount, AmountInUSD, Currency) and Transaction (Signature, Fee, FeeInUSD, FeePayer) for each event.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a live feed of stablecoin payments on Solana — only USDC and USDT SPL tokens.",
+      "expected_output": "Connects with gql websockets to streaming.bitquery.io, subscription filters Currency.MintAddress in the two USDT/USDC mints and excludes swap in Instruction.Program.Method (notIncludesCaseInsensitive), streams formatted rows including Block.Time, Transfer.Currency.Symbol, and Instruction.Program.Method.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Subscribe to Bitquery for Solana stablecoin transfers and show block slot and fee in USD when available.",
+      "expected_output": "Runs or describes Solana { Transfers(...) } subscription; output includes Block.Slot (and Height if present), Transaction.Fee, Transaction.FeeInUSD, and stablecoin transfer details.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Monitor real-time USDC and USDT movement on Solana for treasury alerts.",
+      "expected_output": "Uses stablecoin-payments skill: BITQUERY_API_KEY, no logging of full WebSocket URL, Solana.Transfers with mint filter for Es9vM... (USDT) and EPjFW... (USDC) and notIncludesCaseInsensitive swap on program method, with optional --timeout on the streaming script.",
+      "files": []
+    }
+  ]
+}

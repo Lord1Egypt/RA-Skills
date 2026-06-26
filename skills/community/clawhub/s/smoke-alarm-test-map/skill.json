@@ -1,0 +1,33 @@
+{
+  "slug": "smoke-alarm-test-map",
+  "name": "smoke-alarm-test-map",
+  "displayName": "Smoke Alarm Test Map",
+  "version": "1.0.1",
+  "license": "MIT-0",
+  "description": "Build a room-by-room smoke alarm map, test route, recurring test log, and follow-up checklist from user-provided home details without electrical repair advice.",
+  "triggerKeywords": [
+    "smoke alarm checklist",
+    "smoke detector test",
+    "alarm test log",
+    "home safety map",
+    "smoke alarm map",
+    "detector maintenance",
+    "fire safety checklist",
+    "battery date"
+  ],
+  "tags": [
+    "home",
+    "safety",
+    "smoke-alarm",
+    "checklist",
+    "test-log",
+    "maintenance",
+    "fire-safety",
+    "household"
+  ],
+  "healthSafety": "This skill creates a test map and checklist only. It does not provide electrical repair advice, disable alarms, certify code compliance, or replace manufacturer instructions or local fire-safety guidance.",
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false
+}

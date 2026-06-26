@@ -1,0 +1,440 @@
+{
+  "category": "宽基",
+  "description": "理财通宽基指数名单",
+  "count": 72,
+  "indices": [
+    {
+      "code": "000001.SH",
+      "name": "上证综合指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000001"
+    },
+    {
+      "code": "000009.SH",
+      "name": "上证380指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000009"
+    },
+    {
+      "code": "000010.SH",
+      "name": "上证180指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000010"
+    },
+    {
+      "code": "000016.SH",
+      "name": "上证50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000016"
+    },
+    {
+      "code": "000043.SH",
+      "name": "上证超级大盘指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000043"
+    },
+    {
+      "code": "000044.SH",
+      "name": "上证中盘指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000044"
+    },
+    {
+      "code": "000300.SH",
+      "name": "沪深300指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000300",
+      "miniapp_link": "#小程序://腾讯理财通/cyfvJbHcajFfG8B"
+    },
+    {
+      "code": "000510.SH",
+      "name": "中证A500指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000510"
+    },
+    {
+      "code": "000680.SH",
+      "name": "上证科创板综合指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000680"
+    },
+    {
+      "code": "000681.SH",
+      "name": "上证科创板综合价格指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000681"
+    },
+    {
+      "code": "000688.SH",
+      "name": "上证科创板50成份指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000688"
+    },
+    {
+      "code": "000698.SH",
+      "name": "上证科创板100指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000698"
+    },
+    {
+      "code": "000699.SH",
+      "name": "上证科创板200指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000699"
+    },
+    {
+      "code": "000852.SH",
+      "name": "中证1000指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000852"
+    },
+    {
+      "code": "000888.SH",
+      "name": "上证综合全收益指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000888"
+    },
+    {
+      "code": "000903.SH",
+      "name": "中证A100指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000903"
+    },
+    {
+      "code": "000904.CSI",
+      "name": "中证中盘200指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000904"
+    },
+    {
+      "code": "000905.SH",
+      "name": "中证小盘500指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000905"
+    },
+    {
+      "code": "000906.SH",
+      "name": "中证800指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000906"
+    },
+    {
+      "code": "000971.CSI",
+      "name": "中证等权重90指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000971"
+    },
+    {
+      "code": "000982.SH",
+      "name": "中证500等权重指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000982"
+    },
+    {
+      "code": "000984.CSI",
+      "name": "沪深300等权重指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000984"
+    },
+    {
+      "code": "000985.CSI",
+      "name": "中证全指指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000985"
+    },
+    {
+      "code": "133333.CSI",
+      "name": "MSCI中国A股指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=133333"
+    },
+    {
+      "code": "399001.SZ",
+      "name": "深证成份指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399001"
+    },
+    {
+      "code": "399004.SZ",
+      "name": "深证100全收益指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399004"
+    },
+    {
+      "code": "399005.SZ",
+      "name": "中小企业100指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399005"
+    },
+    {
+      "code": "399006.SZ",
+      "name": "创业板指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399006"
+    },
+    {
+      "code": "399007.SZ",
+      "name": "深证300指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399007"
+    },
+    {
+      "code": "399012.SZ",
+      "name": "创业板300指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399012"
+    },
+    {
+      "code": "399019.SZ",
+      "name": "创业板中盘200指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399019"
+    },
+    {
+      "code": "399102.SZ",
+      "name": "创业板综合指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399102"
+    },
+    {
+      "code": "399291.SZ",
+      "name": "创精选88指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399291"
+    },
+    {
+      "code": "399293.SZ",
+      "name": "创业板大盘指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399293"
+    },
+    {
+      "code": "399303.SZ",
+      "name": "国证2000指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399303"
+    },
+    {
+      "code": "399310.SZ",
+      "name": "国证A50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399310"
+    },
+    {
+      "code": "399313.SZ",
+      "name": "巨潮100指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399313"
+    },
+    {
+      "code": "399330.SZ",
+      "name": "深证100指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399330"
+    },
+    {
+      "code": "399624.SZ",
+      "name": "中小创业企业400指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399624"
+    },
+    {
+      "code": "399673.SZ",
+      "name": "创业板50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399673"
+    },
+    {
+      "code": "399750.SZ",
+      "name": "深证主板50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399750"
+    },
+    {
+      "code": "399850.SZ",
+      "name": "深证50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399850"
+    },
+    {
+      "code": "704843.MI",
+      "name": "MSCI中国A股国际指数(美元)",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=704843"
+    },
+    {
+      "code": "716567.CSI",
+      "name": "MSCI中国A股国际通实时指数(人民币)",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=716567"
+    },
+    {
+      "code": "716567.MI",
+      "name": "MSCI中国A股国际通指数(美元)",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=716567"
+    },
+    {
+      "code": "716567L.MI",
+      "name": "MSCI中国A股国际通指数(人民币)",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=716567L"
+    },
+    {
+      "code": "718711L.MI",
+      "name": "MSCI中国A股人民币指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=718711L"
+    },
+    {
+      "code": "746059.MI",
+      "name": "MSCI中国A50互联互通指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=746059"
+    },
+    {
+      "code": "830009.XI",
+      "name": "富时中国A50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=830009"
+    },
+    {
+      "code": "899050.BJ",
+      "name": "北证50成份指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=899050"
+    },
+    {
+      "code": "930050.CSI",
+      "name": "中证A50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930050"
+    },
+    {
+      "code": "930903.CSI",
+      "name": "中证A股指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930903"
+    },
+    {
+      "code": "930930.CSI",
+      "name": "中证港股通综合指数(HKD)",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930930"
+    },
+    {
+      "code": "930931.CSI",
+      "name": "中证港股通50指数(HKD)",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930931"
+    },
+    {
+      "code": "930957.CSI",
+      "name": "中证港股通中国100指数(HKD)",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930957"
+    },
+    {
+      "code": "931395.CSI",
+      "name": "中证沪港深300指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931395"
+    },
+    {
+      "code": "931643.CSI",
+      "name": "中证科创创业50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931643"
+    },
+    {
+      "code": "932000.CSI",
+      "name": "中证2000指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932000"
+    },
+    {
+      "code": "950580.CSI",
+      "name": "上证580指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950580"
+    },
+    {
+      "code": "CES100.CSI",
+      "name": "中华交易服务港股通精选100指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CES100"
+    },
+    {
+      "code": "CES300.CSI",
+      "name": "中华交易服务沪深港300指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CES300"
+    },
+    {
+      "code": "DJCN88.GI",
+      "name": "道中88指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=DJCN88"
+    },
+    {
+      "code": "h30455.CSI",
+      "name": "中证沪港深500指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30455"
+    },
+    {
+      "code": "h50069CNY10.CSI",
+      "name": "港股通人民币中间价指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h50069CNY10"
+    },
+    {
+      "code": "HSCEI.HI",
+      "name": "恒生中国企业指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCEI"
+    },
+    {
+      "code": "HSFML25.HI",
+      "name": "恒生中国(香港上市)30指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSFML25"
+    },
+    {
+      "code": "HSI.HI",
+      "name": "恒生指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSI"
+    },
+    {
+      "code": "HSISC.HI",
+      "name": "恒指港股通指数",
+      "sub_category": "综合",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSISC"
+    },
+    {
+      "code": "HSMI.HI",
+      "name": "恒生综合中型股指数",
+      "sub_category": "中盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSMI"
+    },
+    {
+      "code": "HSSC50.HI",
+      "name": "恒生港股通50指数",
+      "sub_category": "大盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSC50"
+    },
+    {
+      "code": "HSSI.HI",
+      "name": "恒生综合小型股指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSI"
+    },
+    {
+      "code": "SPHCMSHP.SPI",
+      "name": "标普香港上市中国中小盘精选指数",
+      "sub_category": "小盘",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPHCMSHP"
+    }
+  ]
+}

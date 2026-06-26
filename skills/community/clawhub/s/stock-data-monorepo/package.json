@@ -1,0 +1,6 @@
+{
+  "name": "stock-data-monorepo",
+  "version": "1.2.4",
+  "description": "A 股数据查询技能集合（成交量/涨幅排名/题材/事件分析）",
+  "license": "MIT"
+}

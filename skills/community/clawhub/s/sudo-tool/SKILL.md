@@ -1,35 +1,26 @@
 ---
-name: "Sudo Tool"
-description: "Execute commands with superuser privileges. Use for system administration tasks requiring elevated permissions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sudo-tool"
-sourceUrl: "https://clawhub.ai/skills/sudo-tool"
+name: sudo-tool
+description: Execute commands with superuser privileges. Use for system administration tasks requiring elevated permissions.
 ---
+# Sudo - Superuser Do
 
-# Sudo Tool
+Execute commands with root or other user privileges. Requires proper authorization through /etc/sudoers configuration.
 
-> Execute commands with superuser privileges. Use for system administration tasks requiring elevated permissions.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sudo-tool`
-- **Source URL:** [https://clawhub.ai/skills/sudo-tool](https://clawhub.ai/skills/sudo-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sudo-tool
+sudo-tool [options] <command>
+```
+
+## Options
+
+- `-u user`: Run as specified user (default: root)
+- `-k`: Reset timestamp timeout
+- `-l`: List allowed commands
+
+## Examples
+
+```bash
+sudo-tool apt update
+sudo-tool -u www-data whoami
+sudo-tool -l
 ```

@@ -1,35 +1,149 @@
----
-name: "SPSS Data Cleaning Assistant"
-description: "提供SPSS数据缺失值检测与处理、异常值识别、数据类型诊断、变量重编码、重复值处理和验证，生成清洗报告。"
-category: "data-science"
-source: "ClawHub"
-tags: [cleaning, data, research, spss, statistics]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spss-data-cleaning"
-sourceUrl: "https://clawhub.ai/skills/spss-data-cleaning"
----
-
 # SPSS Data Cleaning Assistant
 
-> 提供SPSS数据缺失值检测与处理、异常值识别、数据类型诊断、变量重编码、重复值处理和验证，生成清洗报告。
+## Name
+`spss-cleaner`
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spss-data-cleaning`
-- **Source URL:** [https://clawhub.ai/skills/spss-data-cleaning](https://clawhub.ai/skills/spss-data-cleaning)
+## Description
+辅助用户进行 SPSS 数据清洗的 AI 工作搭子。支持：缺失值检测与处理、异常值识别、数据类型转换、变量重编码、重复值处理、数据验证、结果导出。适用于问卷调查、实验数据、舆情数据等常见研究场景。
 
-## Overview
+---
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 缺失值检测与处理
+- 检测各变量的缺失值数量和比例
+- 提供多种填补策略：均值填充、中位数填充、众数填充、回归填充、多重插补、冷拔出（cold-deck）、热拔出（hot-deck）
+- 建议删除缺失比例过高的变量或样本
+
+### 2. 异常值检测与处理
+- 基于 Z-score（|Z| > 2/3/2 可选）
+- 基于 IQR（1.5倍 IQR 规则）
+- 基于描述统计（超出均值±3SD）
+- 提供：删除、替换（Winsorize）、保留选项
+
+### 3. 数据类型诊断
+- 识别数值型、字符型、日期型变量
+- 检测格式错误（如日期格式不一致）
+- 自动转换数据类型
+
+### 4. 重复值检测与处理
+- 全记录重复检测
+- 关键字段重复检测
+- 保留第一条/最后一条/询问用户
+
+### 5. 变量重编码
+- 连续变量→类别变量（指定切分点）
+- 逆向编码（5点/7点量表）
+- 自定义编码映射
+
+### 6. 数据验证规则
+- 范围检验（数值必须在指定区间）
+- 逻辑检验（如：年龄与学历逻辑一致性）
+- 唯一性检验（ID 字段不能重复）
+- 自定义 Python 验证脚本生成
+
+### 7. 数据清洗报告
+- 生成完整的清洗日志
+- 记录所有处理操作及理由
+- 汇总清洗前后的样本量变化
+
+---
+
+## Input Requirements
+
+上传以下任一格式的数据文件：
+- `.sav`（SPSS 原生格式）— 需本地上传
+- `.csv`（逗号分隔）
+- `.xlsx` / `.xls`（Excel）
+- `.tsv`
+
+并说明研究背景和清洗目标。
+
+---
+
+## Output
+
+### 清洗后的数据文件
+- SPSS `.sav` 格式
+- CSV 格式（通用兼容）
+
+### 清洗报告（Markdown）
+```
+# 数据清洗报告
+
+## 1. 数据概况
+- 原始样本量：N = XXX
+- 变量数量：K = XX
+- 清洗日期：YYYY-MM-DD
+
+## 2. 缺失值处理
+| 变量 | 缺失数 | 缺失率 | 处理方式 |
+|------|--------|--------|---------|
+| XX   | XX     | XX%   | 删除/填补 |
+
+## 3. 异常值处理
+| 变量 | 检测方法 | 异常数 | 处理方式 |
+
+## 4. 重复值处理
+- 全记录重复：X条 → 保留X条
+- 关键字段重复：X条 → 已处理
+
+## 5. 变量重编码
+| 原变量 | 重编码方式 | 新变量 |
+
+## 6. 数据验证结果
+- 通过 / 未通过（附具体问题）
+
+## 7. 清洗后数据
+- 最终样本量：N = XXX（较原始减少XX条）
+- 最终变量数：K = XX
+
+## 8. 处理操作日志
+[时间戳] 操作描述
+```
+
+---
+
+## Workflow
+
+### Step 1：上传数据
+用户上传数据文件，说明研究背景、核心变量、清洗目标。
+
+### Step 2：初步诊断
+Agent 读取数据，生成：
+- 数据概况（样本量、变量数、变量类型）
+- 缺失值报告
+- 异常值初筛
+- 重复值检测
+
+### Step 3：方案确认
+Agent 提出清洗方案，列出每个问题的处理建议，用户确认或修改。
+
+### Step 4：执行清洗
+Agent 执行清洗操作，记录日志。
+
+### Step 5：验证与报告
+验证清洗后数据，生成报告，用户下载结果。
+
+---
+
+## Limitations
+
+- `.sav` 文件需用户上传到工作区
+- 复杂的多重插补建议使用专业 SPSS 插件（如 MICE）
+- 逻辑检验规则需要用户明确定义
+- 不支持权重变量的自动处理
+
+## Dependencies
+
+- Python 3.8+
+- `pandas`（数据处理）
+- `scipy`（统计检验）
+- `openpyxl`（读取 Excel）
+- `pyreadstat`（读取 SPSS .sav）
+- `statsmodels`（可选：回归填充）
+
+安装命令：
 ```bash
-hermes skills install clawhub/spss-data-cleaning
+pip install pandas scipy openpyxl pyreadstat statsmodels
 ```

@@ -1,0 +1,150 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 1,
+    "primary": [
+      {
+        "memory_id": "mem_2a948084f896",
+        "time_id": "T1780734553",
+        "time_ts": 1780734553,
+        "person_id": "_system",
+        "nature_id": "note",
+        "content": "API recall test memory",
+        "content_hash": "44b9f3b0bc430173144091ef85270f762d203c37fff981ad0935c4c91ff25611",
+        "importance": "medium",
+        "is_aggregated": 0,
+        "source_count": 1,
+        "owner_agent_id": "_system",
+        "visibility": "private",
+        "tenant_id": "default",
+        "valence": 0.0,
+        "arousal": 0.2,
+        "dominance": 0.5,
+        "significance": "notable",
+        "confidence": 0.5,
+        "primary_emotions": "{}",
+        "compound_emotions": "[]",
+        "source": "agent_memory",
+        "source_id": "",
+        "deleted": 0,
+        "deleted_at": null,
+        "custom_ttl": null,
+        "valid_from": null,
+        "valid_until": null,
+        "occurrence_time": null,
+        "mention_time": null,
+        "last_accessed_ts": 1780734555.0352871,
+        "created_at": 1780734553,
+        "topics": [],
+        "tools": [],
+        "knowledge": [],
+        "_sources": {
+          "structured": true,
+          "semantic": false,
+          "bm25": true,
+          "entity": false,
+          "causal": false
+        },
+        "_structured_rrf": 0.01639344262295082,
+        "_bm25_rrf": 0.01639344262295082,
+        "_semantic_rrf": 0.0,
+        "_entity_rrf": 0.0,
+        "_causal_rrf": 0.0,
+        "_structured_rank": 1,
+        "_bm25_rank": 1,
+        "_semantic_rank": 0,
+        "_entity_rank": 0,
+        "_causal_rank": 0,
+        "_hit_count": 2,
+        "_rrf_score": 0.03278688524590164,
+        "_rank_score": 0.8317497268985083,
+        "_rank_breakdown": {
+          "importance": 0.06521739130434782,
+          "time": 0.0869562354287266,
+          "structured": 0.12829650748396296,
+          "semantic": 0.0,
+          "entity": 0.0,
+          "causal": 0.0,
+          "quality": 0.023913043478260874,
+          "multi_hit": 0.004347826086956523,
+          "recency_bias": 0.1304347525461067
+        },
+        "temporal_context": {
+          "is_valid": true,
+          "status": "active"
+        },
+        "_rerank_score": 1.0,
+        "_quality_score": 0.275,
+        "_quality_grade": "D"
+      }
+    ],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [],
+      "expanded": false
+    },
+    "query": "recall test",
+    "intent": "general",
+    "suggestions": [],
+    "hint": "仅找到1条相关记忆，尝试更宽泛的关键词可能发现更多",
+    "_trace": {
+      "trace_id": "tr_46ae63c3910c",
+      "query": "recall test",
+      "result_summary": "found 1 results via tempr_4way, top_score=0.832",
+      "confidence": 0.9158748634492542,
+      "sources_consulted": [
+        "mem_2a948084f896"
+      ],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=True, strategy=auto",
+          "timestamp": 1780734553.9496698
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 1 results",
+          "timestamp": 1780734553.9642656
+        },
+        {
+          "step_type": "bm25_search",
+          "detail": "BM25 found 1 results",
+          "timestamp": 1780734553.9642656
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=10)",
+          "timestamp": 1780734554.9878283
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1780734554.9883358
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1780734554.9913461
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 1 results (hits: {'structured': 1, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 1}, multi: 1)",
+          "timestamp": 1780734554.9913461
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 1 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1780734553.9496698
+    },
+    "status": "ok"
+  },
+  "expires_at": 1780738155.0403159,
+  "created_at": 1780734555.0403159,
+  "_hmac": "e7ebdab9fd773933c8a70175ccbb498d12e64b69334079fa7b8b6e05f958356c"
+}

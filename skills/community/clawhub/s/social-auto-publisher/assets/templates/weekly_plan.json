@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "week": "2026-W19",
+  "createdAt": "2026-05-04",
+  "posts": [
+    {
+      "topic": "How AI tools are changing the content creation workflow",
+      "platforms": [
+        "xiaohongshu",
+        "weibo"
+      ],
+      "tone": "practical",
+      "contentType": "tutorial",
+      "schedule": "2026-05-05 20:00",
+      "hashtags": {
+        "xiaohongshu": [
+          "AI tools",
+          "productivity boost",
+          "content creation",
+          "AI writing",
+          "workplace efficiency"
+        ],
+        "weibo": [
+          "AI creation",
+          "productivity tools"
+        ]
+      },
+      "imageDescription": "A tidy desk with a laptop showing an AI writing interface, warm lighting",
+      "notes": "First post in the AI tools series"
+    },
+    {
+      "topic": "Why 2026 is the breakthrough year for AI applications",
+      "platforms": [
+        "xiaohongshu",
+        "twitter"
+      ],
+      "tone": "opinion",
+      "contentType": "opinion",
+      "schedule": "2026-05-06 12:00",
+      "hashtags": {
+        "xiaohongshu": [
+          "AI trends",
+          "2026 predictions",
+          "tech frontier",
+          "AI applications",
+          "the future is here"
+        ],
+        "twitter": [
+          "AITrends",
+          "2026Tech",
+          "AIFuture"
+        ]
+      },
+      "imageDescription": "Futuristic tech illustration, AI neural network visualization, blue-purple tones",
+      "notes": "Riding the industry trend wave"
+    },
+    {
+      "topic": "Build your personal AI workflow from scratch in 3 steps",
+      "platforms": [
+        "xiaohongshu",
+        "weibo",
+        "twitter"
+      ],
+      "tone": "professional yet approachable",
+      "contentType": "tutorial",
+      "schedule": "2026-05-07 20:00",
+      "hashtags": {
+        "xiaohongshu": [
+          "AI workflow",
+          "personal productivity",
+          "beginner-friendly",
+          "getting started with AI",
+          "productivity boost"
+        ],
+        "weibo": [
+          "AI workflow",
+          "productivity"
+        ],
+        "twitter": [
+          "AIWorkflow",
+          "ProductivityHacks"
+        ]
+      },
+      "imageDescription": "Hand-drawn style flowchart, three steps from zero to AI workflow, fresh color palette",
+      "notes": "Practical tutorial, anticipating high saves"
+    },
+    {
+      "topic": "My real story of saving 80 hours in a month using AI",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "tone": "storytelling",
+      "contentType": "story",
+      "schedule": "2026-05-09 12:00",
+      "hashtags": {
+        "xiaohongshu": [
+          "AI productivity",
+          "time management",
+          "authentic sharing",
+          "disciplined life",
+          "double your efficiency"
+        ]
+      },
+      "imageDescription": "A monthly calendar view with AI-saved hours highlighted, bullet journal style",
+      "notes": "Authentic storytelling piece, emotional resonance"
+    },
+    {
+      "topic": "5 AI open-source projects worth paying attention to",
+      "platforms": [
+        "twitter",
+        "weibo"
+      ],
+      "tone": "professional",
+      "contentType": "resource",
+      "schedule": "2026-05-10 20:00",
+      "hashtags": {
+        "twitter": [
+          "OpenSource",
+          "AI",
+          "DevTools",
+          "GitHub"
+        ],
+        "weibo": [
+          "open-source projects",
+          "AI development"
+        ]
+      },
+      "imageDescription": "GitHub contribution heatmap style, collage of 5 project logos",
+      "notes": "Resource recommendation to encourage saves"
+    }
+  ]
+}

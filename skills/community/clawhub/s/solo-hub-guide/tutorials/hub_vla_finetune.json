@@ -1,0 +1,242 @@
+{
+  "tutorial_id": "hub_vla_finetune",
+  "title": "Fine-tune a VLA Robotics Policy on Solo Hub",
+  "description": "From a recorded LeRobot dataset on HuggingFace to a trained VLA policy in your Hub org. Requires Plus or Pro plan. Can be started directly after solo_cli_guide dataset recording.",
+  "domains_used": ["account", "credits", "finetune_vla", "finetune_llm", "monitoring"],
+  "entry_point": "check_plan",
+
+  "nodes": {
+    "check_plan": {
+      "type": "branch",
+      "instruction": "VLA fine-tuning requires Plus or Pro plan. What plan are you on? (Check Settings → Billing)",
+      "branches": {
+        "plus_or_pro": "check_credits",
+        "basic_free": "upgrade_plan_required",
+        "unsure": "check_plan_in_billing"
+      }
+    },
+
+    "check_plan_in_billing": {
+      "type": "action",
+      "action": "view_usage_history",
+      "instruction": "Go to Settings → Billing. Your current plan is shown at the top of this page.",
+      "on_success": "check_plan",
+      "on_failure": { "recovery": "If you can't access billing, your role may not be Admin — ask your org Admin to check" }
+    },
+
+    "upgrade_plan_required": {
+      "type": "action",
+      "action": "choose_plan",
+      "instruction": "VLA fine-tuning is locked on the Basic plan. Go to Pricing in the Hub navbar and upgrade to Plus ($20/mo) or Pro ($100/mo). After upgrading, return here.",
+      "on_success": "check_credits",
+      "on_failure": { "recovery": "Confirm upgrade in Settings → Billing before proceeding. If it hasn't reflected after 2 minutes, refresh the page." }
+    },
+
+    "check_credits": {
+      "type": "branch",
+      "instruction": "Check your credit balance in the Hub navbar. VLA jobs run longer than LLM — do you have enough credits? (A 50k-step job on H100 can take several hours at ~12 credits/hr)",
+      "branches": {
+        "yes_enough_credits": "check_dataset",
+        "no_or_low_credits": "buy_more_credits"
+      }
+    },
+
+    "buy_more_credits": {
+      "type": "action",
+      "action": "buy_credits",
+      "instruction": "Go to Settings → Billing → Buy Credits. For a full 50k-step VLA run, the Gold pack ($50, 275 credits) gives you comfortable headroom.",
+      "on_success": "check_dataset",
+      "on_failure": {
+        "error": "Billing page not accessible",
+        "recovery": "You need Admin role on your org. Or email may not be verified — check both."
+      }
+    },
+
+    "check_dataset": {
+      "type": "branch",
+      "instruction": "Do you have a LeRobot-compatible dataset on HuggingFace? You need: the repo ID (owner/dataset-name) and the exact camera count in your dataset.",
+      "branches": {
+        "yes_have_dataset": "verify_camera_count",
+        "no_use_solo_example": "use_vla_example",
+        "need_to_create_with_cli": "create_dataset_guidance"
+      }
+    },
+
+    "use_vla_example": {
+      "type": "informational",
+      "instruction": "Solo provides example VLA datasets:\n- GetSoloTech/Candy-Pick — pick task, 2 cameras\n- GetSoloTech/Juice-Serving — pour task, 2 cameras\n- GetSoloTech/FoodStack — stacking task, 2 cameras\n\nFor your first VLA fine-tune, use GetSoloTech/Candy-Pick with camera_feeds = 2.",
+      "on_ready": "wizard_step1_type"
+    },
+
+    "create_dataset_guidance": {
+      "type": "informational",
+      "instruction": "To create a VLA dataset from scratch, use solo robo --record via the CLI. This creates a LeRobot-compatible dataset automatically. After recording, push it to HuggingFace. Then come back and start this tutorial from verify_camera_count.",
+      "cross_reference": "solo_cli_guide skill — record_dataset action",
+      "on_ready": "verify_camera_count"
+    },
+
+    "verify_camera_count": {
+      "type": "validation",
+      "instruction": "Open your dataset on HuggingFace and check meta/info.json. Look in the 'features' section and count keys that start with 'observation.images' (e.g. observation.images.top, observation.images.wrist). This number MUST match the Camera Feeds value you set in the wizard.",
+      "validation_prompt": "How many camera keys are in your dataset's meta/info.json features section?",
+      "on_success": "wizard_step1_type",
+      "on_failure": {
+        "error": "Can't find meta/info.json",
+        "recovery": "Navigate to your HuggingFace dataset page → Files tab → meta/info.json. If this file is missing, the dataset may not be LeRobot-compatible."
+      }
+    },
+
+    "wizard_step1_type": {
+      "type": "action",
+      "action": "finetune_vla_step1_type",
+      "instruction": "Open the fine-tuning wizard in Solo Hub. Click 'VLA' (camera icon). If you see a 'locked' overlay, your plan upgrade hasn't reflected yet — refresh the page.",
+      "on_success": "wizard_step1_model",
+      "on_failure": {
+        "error": "VLA locked",
+        "recovery": "Check Settings → Billing to confirm your plan is Plus/Pro. Refresh the page and try again."
+      }
+    },
+
+    "wizard_step1_model": {
+      "type": "branch",
+      "instruction": "Which VLA policy do you want to fine-tune? Choose based on your task type and hardware budget.",
+      "branches": {
+        "act": "select_act",
+        "smolvla": "select_smolvla",
+        "pi05": "select_pi05",
+        "groot_n15": "select_groot"
+      },
+      "guidance": {
+        "act": "Best for bimanual / fine manipulation. A100 40GB is fine.",
+        "smolvla": "Compact and efficient. Great for limited data and edge deployment. A100 40GB is fine.",
+        "pi05": "Open-world generalization. Recommend A100 80GB or H100 80GB.",
+        "groot_n15": "Strong language following, humanoid tasks. Recommend A100 80GB or H100 80GB."
+      }
+    },
+
+    "select_act": {
+      "type": "action",
+      "action": "finetune_vla_step1_model",
+      "params": { "model": "act" },
+      "instruction": "Select ACT. Good for manipulation tasks. A100 40GB is sufficient for most camera counts.",
+      "on_success": "wizard_step2_gpu_small_model",
+      "on_failure": { "recovery": "Ensure VLA type is selected first — model cards only appear after VLA is chosen" }
+    },
+
+    "select_smolvla": {
+      "type": "action",
+      "action": "finetune_vla_step1_model",
+      "params": { "model": "smolvla" },
+      "instruction": "Select SmolVLA. Compact, efficient, good on limited data. A100 40GB is sufficient.",
+      "on_success": "wizard_step2_gpu_small_model",
+      "on_failure": { "recovery": "Ensure VLA type is selected first" }
+    },
+
+    "select_pi05": {
+      "type": "action",
+      "action": "finetune_vla_step1_model",
+      "params": { "model": "pi05" },
+      "instruction": "Select Pi0.5. Open-world generalization. Use A100 80GB or H100 80GB for best results.",
+      "on_success": "wizard_step2_gpu_large_model",
+      "on_failure": { "recovery": "Ensure VLA type is selected first" }
+    },
+
+    "select_groot": {
+      "type": "action",
+      "action": "finetune_vla_step1_model",
+      "params": { "model": "groot_n15" },
+      "instruction": "Select GR00T N1.5. Strong language conditioning and humanoid support. Use A100 80GB or H100 80GB.",
+      "on_success": "wizard_step2_gpu_large_model",
+      "on_failure": { "recovery": "Ensure VLA type is selected first" }
+    },
+
+    "wizard_step2_gpu_small_model": {
+      "type": "action",
+      "instruction": "Select A100 40GB or H100 80GB. ACT and SmolVLA work well on 40GB VRAM for up to 4 cameras. H100 finishes faster and burns fewer total credits.",
+      "on_success": "wizard_step3_params",
+      "on_failure": { "recovery": "Do not select A10 24GB — Insufficient VRAM badge means the job will fail at provisioning" }
+    },
+
+    "wizard_step2_gpu_large_model": {
+      "type": "action",
+      "instruction": "Select A100 80GB or H100 80GB. Pi0.5 and GR00T N1.5 strongly recommend 80GB VRAM. Using 40GB with 3+ cameras will likely fail at provisioning.",
+      "on_success": "wizard_step3_params",
+      "on_failure": { "recovery": "If you must use A100 40GB, limit camera_feeds to 1 or 2 and use a smaller batch size" }
+    },
+
+    "wizard_step3_params": {
+      "type": "action",
+      "action": "finetune_vla_step3_params",
+      "instruction": "Set VLA parameters:\n- Max Steps: 50000 (recommended for a full run; use 10000–20000 for a quick test)\n- Batch Size: 16 (recommended)\n- Camera Feeds: MUST exactly match your dataset's actual camera count (from meta/info.json)",
+      "validation_prompt": "Confirm: the Camera Feeds value matches the number of camera keys you counted in meta/info.json?",
+      "on_success": "wizard_step4_data",
+      "on_failure": {
+        "error": "Unsure about camera count",
+        "recovery": "Go back to verify_camera_count — open your HuggingFace dataset's meta/info.json and count the observation.images.* keys before proceeding"
+      }
+    },
+
+    "wizard_step4_data": {
+      "type": "action",
+      "action": "finetune_vla_step4_data",
+      "instruction": "Enter your HuggingFace dataset repo ID (format: owner/dataset-name). For example datasets: GetSoloTech/Candy-Pick. Camera Feeds must already be set correctly in Step 3.",
+      "validation_prompt": "Is the repo ID in owner/dataset-name format? Does Camera Feeds in Step 3 match your dataset?",
+      "on_success": "wizard_step5_integrations",
+      "on_failure": {
+        "error": "Wrong dataset format",
+        "recovery": "VLA requires LeRobot-format datasets. If using CLI-recorded data: ensure it was recorded with solo robo --record and pushed to HuggingFace."
+      }
+    },
+
+    "wizard_step5_integrations": {
+      "type": "branch",
+      "instruction": "Do you want to configure optional integrations (HuggingFace Hub push or W&B tracking)?",
+      "branches": {
+        "skip_integrations": "wizard_step6_launch",
+        "enable_integrations": "configure_integrations"
+      }
+    },
+
+    "configure_integrations": {
+      "type": "action",
+      "action": "finetune_llm_step5_integrations",
+      "instruction": "For HF Hub push: toggle on, enter token (hf_xxx format, write access) and repo name (username/model-name). For W&B: toggle on and enter your W&B API token. You can skip either or both.",
+      "on_success": "wizard_step6_launch",
+      "on_failure": { "recovery": "Verify HF token has write scope at huggingface.co/settings/tokens. Ensure W&B project exists before launching." }
+    },
+
+    "wizard_step6_launch": {
+      "type": "action",
+      "action": "finetune_llm_step6_launch",
+      "instruction": "Review the cost estimate. VLA jobs run longer than LLM — a 50k-step job can take several hours. Confirm you have enough credits (check max_runtime shown). Click 'Start Training'.",
+      "validation_prompt": "After clicking Start Training: do you see a results card with a Job ID and status = QUEUED?",
+      "on_success": "monitor_vla_job",
+      "on_failure": {
+        "error_map": {
+          "Insufficient credits": "VLA jobs consume more credits than LLM. Add more via Settings → Billing → Buy Credits. Or reduce Max Steps for a test run.",
+          "Job already exists": "Change the Output Model Name — it must be unique within your org",
+          "VLA locked": "Plan downgraded or not applied yet — check Settings → Billing and refresh"
+        }
+      }
+    },
+
+    "monitor_vla_job": {
+      "type": "action",
+      "action": "monitor_pipeline",
+      "instruction": "Click the model link in the results card → open the Diagnostics tab. VLA jobs spend most time in the Training stage. Pipeline: QUEUED → Provisioning → Initializing → Training → Uploading → Completed. If it fails at Provisioning or Initializing, most likely cause is camera count mismatch or dataset format issue.",
+      "validation_prompt": "Is the job progressing through pipeline stages in the Diagnostics tab? What stage is it in now?",
+      "on_success": "tutorial_complete",
+      "on_failure": {
+        "error": "Fails at Provisioning or Initializing",
+        "recovery": "Check camera count matches dataset meta/info.json. Check dataset is LeRobot-compatible. Re-launch with corrected values."
+      }
+    },
+
+    "tutorial_complete": {
+      "type": "terminal",
+      "instruction": "VLA fine-tuning complete! Your trained policy is in your Solo Hub org. Download the model weights from the Files tab, then use with solo robo --inference on the CLI to run the policy on your robot.",
+      "cross_reference": "solo_cli_guide skill — run_inference action",
+      "next_tutorials": ["hub_llm_finetune_first_run"]
+    }
+  }
+}

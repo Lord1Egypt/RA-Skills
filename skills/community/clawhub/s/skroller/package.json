@@ -1,0 +1,26 @@
+{
+  "name": "skroller",
+  "version": "1.0.0",
+  "description": "Social media scrolling automation for content extraction and research",
+  "main": "scripts/skroller.js",
+  "scripts": {
+    "scroll": "node scripts/skroller.js",
+    "digest": "node scripts/feed-digest.js",
+    "export": "node scripts/export-to-notes.js"
+  },
+  "keywords": [
+    "social-media",
+    "scraper",
+    "automation",
+    "content-research",
+    "playwright"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

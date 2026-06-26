@@ -1,0 +1,15 @@
+{
+  "descript": "需用户配置：系统输出目录，qmt xtltClient.exe所在目录",
+  "base_path": "d:\\data\\",
+  "qmt_path": "D:\\QMT\\bin.x64",
+  "batch_size": 50,
+  "progress_interval": 1,
+  "min_push_interval_seconds": 30,
+  "download_days": 200,
+  "download_period": "1d",
+  "k_data_subdir": "k_data",
+  "host": "127.0.0.1",
+  "port": 5000,
+  "stock_list_filename": "stock_list.csv",
+  "index_list_filename": "index_list.csv"
+}

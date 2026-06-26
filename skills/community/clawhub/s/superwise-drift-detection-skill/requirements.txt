@@ -1,0 +1,11 @@
+# Core skill dependencies
+superwise-api
+requests
+pandas
+python-dotenv
+flask
+apscheduler
+
+# Example: Prophet/ETF (only needed if running examples/etf_prophet)
+# prophet
+# yfinance

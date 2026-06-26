@@ -1,0 +1,85 @@
+[
+  {
+    "id": "monitor_pipeline",
+    "domain": "monitoring",
+    "description": "Track the 6-stage training pipeline in real time",
+    "action_type": "ui_flow",
+    "steps": [
+      "From the job results card (or your org's model list), click the direct link to the model",
+      "Open the Diagnostics tab on the model's detail page",
+      "Read the pipeline stage indicator"
+    ],
+    "pipeline_stages": {
+      "queued": {
+        "color": "grey",
+        "meaning": "Job is waiting in the queue. No credits consumed yet.",
+        "credits_running": false
+      },
+      "provisioning": {
+        "color": "orange",
+        "meaning": "Hardware is being allocated and environment is being set up.",
+        "credits_running": true,
+        "note": "Credits BEGIN here"
+      },
+      "initializing": {
+        "color": "orange",
+        "meaning": "Model weights and dataset are being loaded. Still metered.",
+        "credits_running": true
+      },
+      "training": {
+        "color": "orange",
+        "meaning": "Active training loop. Loss, steps, and runtime metrics visible in Diagnostics.",
+        "credits_running": true
+      },
+      "uploading": {
+        "color": "deep-orange",
+        "meaning": "Trained weights being uploaded to Solo Hub org (and HuggingFace if enabled).",
+        "credits_running": true,
+        "cancel_blocked": true
+      },
+      "completed": {
+        "color": "green",
+        "meaning": "Job done. Final credit usage and runtime recorded. Model is now accessible.",
+        "credits_running": false,
+        "cancel_blocked": true
+      }
+    },
+    "expected_outcome": "You can read the current pipeline stage and understand what's happening",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Diagnostics tab shows a stage with a colored indicator and stage-specific detail text"
+    },
+    "docs_ref": "/monitoring/progress"
+  },
+  {
+    "id": "cancel_job",
+    "domain": "monitoring",
+    "description": "Cancel a running fine-tuning job",
+    "action_type": "ui_flow",
+    "steps": [
+      "Open the model's detail page while the job is running",
+      "Find the Cancel banner that appears during active jobs",
+      "Click Cancel and confirm"
+    ],
+    "cancellation_rules": {
+      "queued":       "ALLOWED",
+      "provisioning": "ALLOWED",
+      "initializing": "ALLOWED",
+      "training":     "ALLOWED",
+      "uploading":    "BLOCKED — cannot cancel during upload",
+      "completed":    "BLOCKED — job is done"
+    },
+    "explanation": "Credits already consumed are NOT refunded after cancellation. Always check the Diagnostics step statuses to confirm cancellation actually took effect — don't rely on the UI banner alone.",
+    "expected_outcome": "Pipeline status updates; job stops progressing",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Diagnostics tab shows 'Cancelled' status. Cancel banner no longer appears."
+    },
+    "common_errors": [
+      "Cancel request rejected — you are in Uploading or Completed stage; cancellation is blocked",
+      "UI still shows activity after cancel — pipeline may be mid-stage; check Diagnostics step statuses, not just the banner",
+      "Credits not refunded — consumed credits are never returned after cancellation"
+    ],
+    "docs_ref": "/monitoring/cancel"
+  }
+]

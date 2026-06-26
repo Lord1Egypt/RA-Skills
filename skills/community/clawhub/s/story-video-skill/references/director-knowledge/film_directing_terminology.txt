@@ -1,0 +1,126 @@
+FILM DIRECTING TERMINOLOGY
+==========================
+
+SHOT TYPES (by distance from subject):
+
+1. EXTREME WIDE SHOT (EWS) / EXTREME LONG SHOT (ELS)
+   - Shows vast landscape or crowd scene
+   - Establishes setting and scale
+   - Character often barely visible or absent
+
+2. WIDE SHOT (WS) / LONG SHOT (LS)
+   - Shows full subject from head to toe
+   - Establishes location and subject together
+   - Common for action and dance sequences
+
+3. FULL SHOT (FS)
+   - Entire figure in frame, slight buffer space
+   - Shows body language and movement
+   - Allows for action within frame
+
+4. MEDIUM SHOT (MS)
+   - Waist up or knee up
+   - Good for dialogue and character interaction
+   - Balance of expression and environment
+
+5. MEDIUM CLOSE-UP (MCU)
+   - Chest/shoulders up
+   - Slightly more intimate than medium shot
+   - Common for conversations
+
+6. CLOSE-UP (CU)
+   - Face fills frame
+   - Shows emotion, detail, importance
+   - Often used for key dramatic moments
+
+7. EXTREME CLOSE-UP (ECU/XCU)
+   - Single feature (eye, lips, hand)
+   - Maximum emotional intensity
+   - Reveals detail or creates tension
+
+CAMERA MOVEMENTS:
+
+1. PAN (Panorama)
+   - Horizontal rotation on fixed axis
+   - Sweeps across environment
+   - Follows moving subject
+
+2. TILT
+   - Vertical rotation on fixed axis
+   - Up/down movement
+   - Can reveal subjects or information
+
+3. ZOOM
+   - Lens focal length changes
+   - Subject appears closer/farther
+   - Note: Different from moving camera closer
+
+4. DOLLY SHOT
+   - Camera moves toward or away from subject
+   - Creates depth and focus changes
+   - Emotional: approaching = intimacy, retreating = isolation
+
+5. TRACKING SHOT / TRACK SHOT
+   - Camera follows alongside subject
+   - Shows movement through space
+   - Often on rails or with dolly
+
+6. CRANE SHOT
+   - Camera moves up or down via crane
+   - Sweeping vertical movement
+   - Often dramatic reveals
+
+7. HANDHELD
+   - Camera operated without stabilization
+   - Creates gritty, realistic feel
+   - Often used in documentary/horror/action
+
+8. STEADICAM
+   - Stabilized camera system
+   - Smooth movement while walking/running
+   - Allows tracking shots without dolly track
+
+CAMERA ANGLES:
+
+1. EYE LEVEL
+   - Neutral, balanced perspective
+   - Standard for dialogue and narrative
+
+2. LOW ANGLE
+   - Camera looks up at subject
+   - Makes subject appear powerful/dominant
+   - Often used for heroes or authority figures
+
+3. HIGH ANGLE
+   - Camera looks down at subject
+   - Makes subject appear weak/vulnerable
+   - Often used for villains or defeated characters
+
+4. BIRD'S EYE / OVERHEAD
+   - Camera directly above
+   - Creates abstract, voyeuristic feel
+   - Shows patterns and relationships
+
+5. DUTCH ANGLE / OBLIQUE
+   - Tilted horizon
+   - Creates unease, disorientation
+   - Common in thriller/horror
+
+DIRECTING COMMANDS:
+- "Action!" - Begin scene
+- "Cut!" - Stop recording/performance
+- "Roll cameras" - Start camera
+- "Marker" - Slate information
+- "Hold" - Wait, maintain position
+- "Picture up" - Fill frame with subject
+- "Background" - Note to background actors
+- "Copy" - Acknowledgment
+
+SCREENPLAY FORMAT:
+- FADE IN:
+- INTERIOR/EXTERIOR
+- LOCATION - TIME
+- Action description (present tense)
+- CHARACTER NAME (dialogue)
+- (parenthetical) - acting direction
+- FADE OUT / CUT TO:

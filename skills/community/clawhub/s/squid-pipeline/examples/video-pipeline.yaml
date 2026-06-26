@@ -1,0 +1,150 @@
+# Squid: Video Content Pipeline
+# Replaces content-video-v11 Bash orchestration with native sub-agents.
+#
+# Usage:
+#   squid run squid-pipeline/examples/video-pipeline.yaml \
+#     --args-json '{"topic": "AI agents explained", "style": "educational"}'
+
+name: video-pipeline
+description: End-to-end video content creation with agentic sub-steps
+version: "1.0"
+
+args:
+  topic:
+    description: Video topic
+    required: true
+  style:
+    default: educational
+    description: Video style (educational, tutorial, explainer)
+  duration:
+    default: 120
+    description: Target duration in seconds
+  outputDir:
+    default: ./output
+    description: Output directory
+
+steps:
+  # ─── Research ───────────────────────────────────────────
+  - id: research
+    type: spawn
+    description: Research the topic and gather source material
+    spawn:
+      task: |
+        Research the topic: "${args.topic}"
+        Style: ${args.style}
+        Target duration: ${args.duration}s
+
+        Output JSON with:
+        - key_points: array of main talking points
+        - sources: array of reference URLs
+        - audience_level: beginner/intermediate/advanced
+        - suggested_visuals: array of visual descriptions
+      model: claude-sonnet-4-6
+      thinking: high
+      timeout: 120
+
+  # ─── Script Writing ────────────────────────────────────
+  - id: script
+    type: spawn
+    description: Write the video script
+    input: $research.json
+    spawn:
+      task: |
+        Write a video script for: "${args.topic}"
+        Style: ${args.style}
+        Duration: ${args.duration}s
+        Research: ${research.json}
+
+        Output JSON with:
+        - scenes: array of { narration, visual_description, duration_seconds }
+        - title: string
+        - description: string
+      model: claude-sonnet-4-6
+      timeout: 180
+
+  # ─── Script Review Gate ────────────────────────────────
+  - id: script-review
+    type: gate
+    gate:
+      prompt: "Review the script for '${args.topic}'. Approve to generate visuals."
+      preview: $script.json
+
+  # ─── Parallel Asset Generation ─────────────────────────
+  - id: generate-assets
+    type: loop
+    description: Generate visual assets for each scene
+    loop:
+      over: $script.json.scenes
+      as: scene
+      maxConcurrent: 4
+      maxIterations: 50
+      collect: assets
+      steps:
+        - id: gen-image
+          type: spawn
+          spawn:
+            task: |
+              Generate a visual asset for this video scene:
+              Narration: ${item.narration}
+              Visual: ${item.visual_description}
+              Style: ${args.style}
+              Output the image path as JSON: { "path": "...", "scene_index": ${index} }
+            timeout: 120
+
+  # ─── Audio Generation ──────────────────────────────────
+  - id: generate-audio
+    type: loop
+    description: Generate narration audio for each scene
+    loop:
+      over: $script.json.scenes
+      as: scene
+      maxConcurrent: 2
+      collect: audio_files
+      steps:
+        - id: gen-audio
+          type: run
+          run: |
+            echo '${item.narration}' | \
+            tts-cli --output ${args.outputDir}/audio_${index}.mp3 \
+                     --voice narrator --format mp3
+
+  # ─── Assembly ──────────────────────────────────────────
+  - id: assemble
+    type: run
+    description: Assemble video from assets and audio
+    run: |
+      mkdir -p ${args.outputDir} && \
+      video-assembler \
+        --scenes '${script.json.scenes}' \
+        --assets '${generate-assets.json}' \
+        --audio '${generate-audio.json}' \
+        --output ${args.outputDir}/final.mp4
+    retry:
+      maxAttempts: 3
+      backoff: exponential
+      delayMs: 2000
+
+  # ─── Quality Check ────────────────────────────────────
+  - id: quality-check
+    type: spawn
+    description: AI quality review of the final video
+    spawn:
+      task: |
+        Review the assembled video at: ${args.outputDir}/final.mp4
+        Check for:
+        - Audio/visual sync
+        - Content accuracy vs script
+        - Pacing and engagement
+        Output JSON with: { score: number, issues: string[], recommendation: "publish" | "revise" }
+      timeout: 120
+
+  # ─── Publish Gate ──────────────────────────────────────
+  - id: publish-gate
+    type: gate
+    gate:
+      prompt: |
+        Video ready for '${args.topic}'.
+        Quality score: ${quality-check.json.score}/10
+        Issues: ${quality-check.json.issues}
+        Recommendation: ${quality-check.json.recommendation}
+        Approve to publish.

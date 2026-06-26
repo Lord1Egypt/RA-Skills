@@ -1,0 +1,24 @@
+name = "example-skill"
+slug = "example-skill"
+version = "0.1.0"
+description = "用于演示 SkillUp 发布流程的示例技能"
+category = "开发辅助"
+visibility = "public"
+
+[github]
+enabled = true
+repo = "owner/example-skill"
+
+[xiaping]
+enabled = true
+title = "示例技能"
+summary = "用于演示跨平台发布流程的示例技能。"
+trigger = "[\"example-skill\",\"示例技能\"]"
+category = "[\"开发辅助\"]"
+tags = "[\"automation\",\"skill\"]"
+
+[openclaw]
+enabled = true
+
+[clawhub]
+enabled = true

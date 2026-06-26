@@ -1,0 +1,17 @@
+{
+  "name": "supah-nft-intelligence",
+  "version": "1.0.0",
+  "description": "NFT collection tracking and whale monitoring for Base blockchain",
+  "main": "index.js",
+  "bin": {
+    "nfts": "./index.js",
+    "supah-nfts": "./index.js"
+  },
+  "keywords": ["openclaw", "skill", "nft", "base", "crypto", "collectibles"],
+  "author": "SUPAH",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supah-based/supah-nft-intelligence.git"
+  }
+}

@@ -1,35 +1,124 @@
 ---
-name: "smart-site-selection-skill"
-description: "专为实体商业选址设计，自动采集核心客群与经营策略，提取Top3优质地段坐标并生成宏观微观商业洞察报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-site-selection-skill"
-sourceUrl: "https://clawhub.ai/skills/smart-site-selection-skill"
+name: smart-site-selection-skill
+description: 专为实体商业打造的 AI 选址洞察专家。通过动态商业战略追问与高德 LBS 数据引擎，全自动生成包含「竞品雷达」、「客流推演」与「多维横评矩阵」的交互式可视化研报，让开店决策更科学。
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      skills:
+        - @AMap-Web/amap-lbs-skill
+        - searxng
+        - proactive-agent
 ---
 
-# smart-site-selection-skill
+# 智能门店选址引擎 (Smart Site Selection)
 
-> 专为实体商业选址设计，自动采集核心客群与经营策略，提取Top3优质地段坐标并生成宏观微观商业洞察报告。
+## 触发条件 (Triggers)
+当用户输入包含"选址"、"商业洞察"、"开店"等关键词时触发。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-site-selection-skill`
-- **Source URL:** [https://clawhub.ai/skills/smart-site-selection-skill](https://clawhub.ai/skills/smart-site-selection-skill)
+## 核心工作流 (State Machine)
+这是一个带有【物理阻断】的强制 SOP。
 
-## Overview
+### 阶段 0：环境自检
+确保环境变量 `AMAP_WEBSERVICE_KEY` 存在。静默安装 `matplotlib`, `requests`。确保依赖技能已安装。
 
+### 阶段 A：物理阻断与参数强制校验 (Hard Stop)
+1. 检查当前上下文中是否明确包含用户的【核心客群定位】和【门店经营战略】（例如：是主打外卖/快取的档口店，还是主打社交/体验的大型旗舰店？主要瞄准学生党、社区居民还是商务白领？）。严禁询问上下水、电力等无法通过地图 API 验证的工程物理条件。
+2. **如果缺失上述任何一项**：
+   - 立即调用 `message` 工具发送追问消息（或调用 `proactive-agent` 技能）
+   - 追问模板：
+     ```
+     📋 选址需求补充（必填项）
+     
+     为了给您生成精准的商业选址报告，请补充以下 2 项核心战略信息：
+     
+     ① 您的核心客群定位是什么？（如：学生党/商务白领/社区居民/高净值人群）
+     ② 您的门店经营战略是什么？（如：外卖为主/快取档口店/社交体验旗舰店/高端私教定制）
+     
+     💡 示例回复："商务白领为主，快取档口店" 或 "高净值人群，主打私教定制"
+     ```
+   - **必须在此结束当前对话回合（End Turn / Stop Generation）**。绝对严禁跳步向下执行！
+3. 只有当用户回复，且参数收集齐全后，方可进入阶段 B。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-site-selection-skill
+### 阶段 B：轻量级坐标猎取 (Coordinate Fetching Only)
+1. 仅调用高德 POI 插件，提取该区域符合条件的 **Top 3 最佳地段的名称和中心点经纬度坐标**。
+2. **【权力剥夺警告】**：绝对严禁你使用插件去查询交通站点、写字楼或竞品的具体数量！严禁你自己编造数据！你只需拿到 3 个纯粹的坐标点即可。
+
+### 阶段 C：商业洞察生成 (Text Generation)
+基于用户的业态和选出的 3 个地段，生成：
+1. 【宏观定调】：100 字市场前景定调。
+2. 【微观研判】：分别用 50 字点评这 3 个商圈的优劣势。
+
+### 阶段 D & E：移交中枢与终极交付
+准备好 Top 3 坐标、地段名称以及阶段 C 生成的文本洞察，等待移交给后端的 Python 计算引擎执行深度查证与排版。
+
+## 使用示例
+
 ```
+用户：我想在上海静安区开一家普拉提馆
+
+→ 阶段 A：物理阻断检查
+  检查：❌ 缺失核心客群定位
+  检查：❌ 缺失门店经营战略
+  
+  AI 追问（调用 proactive-agent）：
+  "📋 选址需求补充（必填项）
+   ① 您的核心客群定位是什么？（如：高净值贵妇/周边白领等）
+   ② 您的门店经营战略是什么？（如：主打私教定制/主打团课体验）"
+  
+  → 【物理阻断】对话回合结束，等待用户回复
+
+← 用户回复：主要针对高净值人群，主打私教定制服务
+
+→ 阶段 B：坐标猎取（仅坐标）
+  高德 POI → 南京西路 (121.450,31.228)、静安寺 (121.446,31.230)、苏河湾 (121.459,31.235)
+  ⚠️ 严禁查询交通/写字楼/竞品数量！
+
+→ 阶段 C：商业洞察生成
+  宏观定调："上海高端健身市场正处于精细化升级阶段..."
+  微观研判："南京西路：顶级流量，但租金高昂..."
+
+→ 阶段 D：移交 Python 引擎
+  传递：3 个坐标 + 3 个地段名 + 宏观文本 + 微观文本
+  Python 执行：交通/写字楼/竞品数据抓取 → 微观业态提取 → 评分计算 → HTML 生成
+
+→ 阶段 E：终极交付
+  输出报告路径 + 选址冠军建议
+```
+
+## 数据权限边界
+
+| 数据类型 | AI 权限 | 执行方 |
+|----------|---------|--------|
+| 地段名称 | ✅ 可获取 | AI |
+| 经纬度坐标 | ✅ 可获取 | AI |
+| 交通站点数量/明细 | ❌ 严禁查询 | Python |
+| 商务设施数量/明细 | ❌ 严禁查询 | Python |
+| 竞品数量/明细 | ❌ 严禁查询 | Python |
+| 综合评分计算 | ❌ 严禁计算 | Python |
+| 宏观/微观文本 | ✅ 必须生成 | AI |
+
+## 输出规范
+
+- **报告格式**：单文件 HTML（包含 ECharts 与静态地图）
+- **文件命名**：`[城市]_[区域]_[品类]_专业商业洞察报告.html`
+- **存储位置**：当前工作目录
+- **AI 职责**：逻辑阻断追问 + 坐标猎取 + 商业文本生成
+- **Python 职责**：并发限流数据抓取 + 评分计算 + 微观业态雷达生成 + 报告排版
+
+## 错误处理
+
+- **参数缺失**：阶段 A 强制阻断，追问后结束回合
+- **数据挂零**：Python 底层自动扩大搜索颗粒度并启动 Fallback 降级词
+
+## 依赖技能
+
+| 技能 | 用途 |
+|------|------|
+| `@AMap-Web/amap-lbs-skill` | 高德 POI 坐标猎取 |
+| `searxng` | 全网市场趋势搜索 |
+| `proactive-agent` | 参数阻断式战略追问 |
+
+## 版本历史
+
+- **v1.0.0**: SkillHub 正式发布版（含微观业态雷达与防并发引擎）

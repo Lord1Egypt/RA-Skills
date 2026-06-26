@@ -1,35 +1,40 @@
 ---
-name: "System Info"
+name: system-info
 description: "Quick system diagnostics: CPU, memory, disk, uptime"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/system-info"
-sourceUrl: "https://clawhub.ai/skills/system-info"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "💻",
+        "requires": { "bins": ["free"] },
+        "install": [],
+      },
+  }
 ---
 
 # System Info
 
-> Quick system diagnostics: CPU, memory, disk, uptime
+Quick system diagnostics covering CPU, memory, disk, and uptime. Uses standard Linux utilities that are always available.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/system-info`
-- **Source URL:** [https://clawhub.ai/skills/system-info](https://clawhub.ai/skills/system-info)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/system-info
+# Show all system info (CPU, memory, disk, uptime)
+system-info
+
+# Show CPU information
+system-info cpu
+
+# Show memory usage
+system-info mem
+
+# Show disk usage
+system-info disk
+
+# Show system uptime
+system-info uptime
 ```
+
+## Install
+
+No installation needed. `free` and related utilities are always present on the system.

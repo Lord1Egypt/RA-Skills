@@ -1,0 +1,45 @@
+{
+  "name": "smart-site-selection-skill",
+  "version": "2.1.0",
+  "description": "全自动智能商业选址洞察引擎。集成高德 LBS 与全网数据抓取，生成 SVG 矢量交互式 HTML 商业洞察报告。",
+  "main": "scripts/site_selection_engine.py",
+  "scripts": {
+    "start": "python3 scripts/site_selection_engine.py",
+    "test": "python3 -c \"import sys; print('Python OK')\""
+  },
+  "keywords": [
+    "site-selection",
+    "business-intelligence",
+    "amap-lbs",
+    "commercial-report",
+    "openclaw-skill"
+  ],
+  "author": "Proactive",
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.6",
+    "node": ">=14"
+  },
+  "dependencies": {
+    "matplotlib": "^3.5.0",
+    "requests": "^2.28.0"
+  },
+  "openclaw": {
+    "type": "skill",
+    "category": "business-intelligence",
+    "triggers": [
+      "选址",
+      "商业洞察",
+      "地段分析",
+      "开店位置",
+      "调查报告",
+      "摆摊",
+      "开店"
+    ],
+    "requires": {
+      "env": ["AMAP_WEBSERVICE_KEY"],
+      "skills": ["searxng", "proactive-agent"],
+      "bins": ["python3", "pip"]
+    }
+  }
+}

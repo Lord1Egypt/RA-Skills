@@ -1,0 +1,38 @@
+{
+  "name": "social-publish-safe",
+  "version": "2.0.0",
+  "description": "多平台视频发布助手 - 安全修复版。帮助用户在抖音、快手、B站、小红书等平台发布视频内容。",
+  "author": "security-fixed",
+  "tags": ["video", "publish", "douyin", "kuaishou", "bilibili", "xiaohongshu"],
+  "repository": "",
+  "license": "MIT",
+  "security": {
+    "validated": true,
+    "date": "2026-04-24",
+    "issues_fixed": [
+      "Removed ambiguous SSRF configuration instruction",
+      "Removed PowerShell arbitrary URL download",
+      "Removed account ID examples",
+      "Added user authorization for browser operations",
+      "Implemented transparent operation logging"
+    ]
+  },
+  "dependencies": {
+    "skills": ["xbrowser"],
+    "python": ">=3.7"
+  },
+  "platforms": ["windows", "macos", "linux"],
+  "capabilities": {
+    "browser_automation": true,
+    "file_validation": true,
+    "multi_platform": true,
+    "auto_login": false,
+    "credential_storage": false
+  },
+  "permissions": {
+    "network": false,
+    "filesystem_read": true,
+    "filesystem_write": false,
+    "browser": "user-controlled"
+  }
+}

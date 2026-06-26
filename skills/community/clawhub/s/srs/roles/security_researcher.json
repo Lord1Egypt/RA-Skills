@@ -1,0 +1,17 @@
+{
+  "name": "security_researcher",
+  "emoji": "\ud83d\udd34",
+  "description": "\u81ea\u52a8\u53d1\u73b0\u5e76\u521b\u5efa\u7684\u89d2\u8272: security_researcher",
+  "capabilities": [
+    "\u6f0f\u6d1e\u5206\u6790",
+    "\u5a01\u80c1\u8bc4\u4f30",
+    "\u98ce\u9669\u8bc4\u7ea7"
+  ],
+  "auto_tasks": [
+    "cve_scan",
+    "threat_analysis"
+  ],
+  "source": "auto_improve",
+  "source_file": "",
+  "created_at": "2026-03-04T09:43:52.331422"
+}

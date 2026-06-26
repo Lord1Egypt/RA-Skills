@@ -1,35 +1,177 @@
 ---
-name: "stock-monitor-lite"
-description: "全功能智能股票监控预警系统。支持成本百分比、均线金叉死叉、RSI超买超卖、成交量异动、跳空缺口、动态止盈等11大预警规则。符合中国投资者习惯（红涨绿跌）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-monitor-lite"
-sourceUrl: "https://clawhub.ai/skills/stock-monitor-lite"
+name: stock-monitor-lite
+description: 全功能智能股票监控预警系统。支持成本百分比、均线金叉死叉、RSI超买超卖、成交量异动、跳空缺口、动态止盈等11大预警规则。符合中国投资者习惯（红涨绿跌）。
 ---
 
-# stock-monitor-lite
+# Stock Monitor Lite- 全功能智能投顾系统
 
-> 全功能智能股票监控预警系统。支持成本百分比、均线金叉死叉、RSI超买超卖、成交量异动、跳空缺口、动态止盈等11大预警规则。符合中国投资者习惯（红涨绿跌）。
+## 🎯 核心特色
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-monitor-lite`
-- **Source URL:** [https://clawhub.ai/skills/stock-monitor-lite](https://clawhub.ai/skills/stock-monitor-lite)
+### 1. 十一大预警规则 (全都要!)
 
-## Overview
+| 规则 | 触发条件 | 权重 |
+|------|----------|------|
+| **成本百分比** | 盈利+15% / 亏损-12% | ⭐⭐⭐ |
+| **日内涨跌幅** | 个股±4% / ETF±2% / 黄金±2.5% | ⭐⭐ |
+| **成交量异动** | 放量>2倍均量 / 缩量<0.5倍 | ⭐⭐ |
+| **均线金叉/死叉** | MA5上穿/下穿MA10 | ⭐⭐⭐ |
+| **RSI超买超卖** | RSI>70超买 / RSI<30超卖 | ⭐⭐ |
+| **MACD金叉/死叉** | MACD线上穿/下穿信号线 | ⭐⭐⭐ |
+| **布林带突破** | 价格触及上轨/下轨 | ⭐⭐ |
+| **OBV能量潮** | 量能大幅变化>10% | ⭐⭐ |
+| **跳空缺口** | 向上/向下跳空>1% | ⭐⭐ |
+| **动态止盈** | 盈利10%+后回撤5%/10% | ⭐⭐⭐ |
+| **ATR波动率** | 价格波动幅度异常 | ⭐⭐ |
 
+### 2. 分级预警系统
+- **🚨 紧急级**: 多条件共振 (如: 放量+均线金叉+突破成本)
+- **⚠️ 警告级**: 2个条件触发 (如: RSI超卖+放量)
+- **📢 提醒级**: 单一条件触发
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-monitor-lite
+### 3. 中国习惯
+- **🔴 红色** = 上涨 / 盈利
+- **🟢 绿色** = 下跌 / 亏损
+
+## 📋 监控配置
+
+### 完整预警规则示例
+```python
+{
+    "code": "600362",
+    "name": "江西铜业",
+    "type": "individual",  # 个股
+    "market": "sh",
+    "cost": 57.00,          # 持仓成本
+    "alerts": {
+        # 1. 成本百分比
+        "cost_pct_above": 15.0,    # 盈利15%提醒 (¥65.55)
+        "cost_pct_below": -12.0,   # 亏损12%提醒 (¥50.16)
+        
+        # 2. 日内涨跌幅 (个股±4%)
+        "change_pct_above": 4.0,
+        "change_pct_below": -4.0,
+        
+        # 3. 成交量异动
+        "volume_surge": 2.0,       # 放量>2倍5日均量
+        
+        # 4-11. 技术指标 (默认开启)
+        "ma_monitor": True,        # 均线金叉死叉
+        "rsi_monitor": True,       # RSI超买超卖
+        "macd_monitor": True,      # MACD金叉死叉
+        "bollinger_monitor": True, # 布林带突破
+        "obv_monitor": True,       # OBV能量潮
+        "atr_monitor": True,       # ATR波动率
+        "gap_monitor": True,       # 跳空缺口
+        "trailing_stop": True      # 动态止盈
+    }
+}
 ```
+
+### 标的类型差异化
+| 类型 | 日内异动阈值 | 成交量阈值 | 适用标的 |
+|------|-------------|-----------|----------|
+| individual (个股) | ±4% | 2倍 | 江西铜业、中国平安 |
+| etf (ETF) | ±2% | 1.8倍 | 恒生医疗、创50等 |
+| gold (黄金) | ±2.5% | 无 | 伦敦金 |
+
+## 🚀 运行方式
+python3 stock_monitor.py
+
+## ⚡ 智能频率 
+需要在openclaw设置定时任务，每天9:30-15:00运行，每30分钟执行一次
+
+
+## 🔔 预警消息示例
+
+### 多条件共振 (紧急级)
+```
+🚨【紧急】🔴 江西铜业 (600362)
+━━━━━━━━━━━━━━━━━━━━
+💰 当前价格: ¥65.50 (+15.0%)
+📊 持仓成本: ¥57.00 | 盈亏: 🔴+14.9%
+
+🎯 触发预警 (5项):
+  • 🎯 盈利 15% (目标价 ¥65.55)
+  • 🌟 均线金叉 (MA5¥63.2上穿MA10¥62.8)
+  • 📈 MACD金叉 (MACD线¥0.8上穿信号线¥0.6)
+  • 📊 放量 2.5倍 (5日均量)
+  • 📊 OBV指标放量上涨 (+15.2%)
+
+📊 江西铜业 深度分析
+💰 价格异动:
+• 当前: 65.5 (+15.0%)
+• MA趋势: MA5>MA10>MA20 [多头排列]
+• RSI: 68 [接近超买]
+• MACD: 金叉，多头趋势
+• OBV: 量能配合，趋势确认
+
+💡 Kimi建议:
+🚀 多条件共振，趋势强劲，可考虑继续持有或分批减仓。
+```
+
+### RSI超卖 (警告级)
+```
+⚠️【警告】🟢 恒生医疗 (159892)
+━━━━━━━━━━━━━━━━━━━━
+💰 当前价格: ¥0.72 (-10.0%)
+📊 持仓成本: ¥0.80 | 盈亏: 🟢-10.0%
+
+🎯 触发预警 (2项):
+  • 📉 日内大跌 -10.0%
+  • ❄️ RSI超卖 (28.5)，可能反弹
+
+💡 Kimi建议:
+🔍 短期超跌严重，RSI进入超卖区，关注反弹机会但勿急于抄底。
+```
+
+### 动态止盈提醒
+```
+📢【提醒】🔴 中国平安 (601318)
+━━━━━━━━━━━━━━━━━━━━
+💰 当前价格: ¥70.50 (+6.8%)
+📊 持仓成本: ¥66.00 | 盈亏: 🔴+6.8%
+
+🎯 触发预警:
+  • 📉 利润回撤 5.2%，建议减仓保护利润
+  (最高盈利12%已回撤)
+```
+
+
+## ⚙️ 自定义配置
+
+### 修改成本价
+```python
+"cost": 55.50,  # 改成你的实际成本
+```
+
+### 调整预警阈值
+```python
+"cost_pct_above": 20.0,     # 盈利20%提醒
+"cost_pct_below": -15.0,    # 亏损15%提醒
+"change_pct_above": 5.0,    # 日内异动±5%
+"volume_surge": 3.0,        # 放量3倍提醒
+```
+
+### 开关技术指标
+```python
+"ma_monitor": False,     # 关闭均线
+"rsi_monitor": True,     # 开启RSI
+"macd_monitor": True,    # 开启MACD
+"bollinger_monitor": True, # 开启布林带
+"obv_monitor": True,     # 开启OBV
+"atr_monitor": True,     # 开启ATR
+"gap_monitor": True,     # 开启跳空
+"trailing_stop": True,   # 开启动态止盈
+```
+
+## ⚠️ 使用提示
+
+1. **技术指标有滞后性**: 均线、MACD等都是滞后指标，用于确认趋势而非预测
+2. **避免过度交易**: 预警只是参考，不要每个信号都操作
+3. **多条件共振更可靠**: 单一指标容易假信号，多条件共振更准确
+4. **动态止盈要灵活**: 回撤5%减仓、10%清仓是建议，根据市场灵活调整
+
+---
+
+**核心原则**: 
+> 预警系统目标是"不错过大机会，不犯大错误"，不是"抓住每一个波动"。

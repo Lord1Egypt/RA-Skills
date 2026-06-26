@@ -1,0 +1,186 @@
+{
+  "product_name": "8K-AOC-10M-DP-CABLE,8K-AOC-15M-DP-CABLE,8K-AOC-20M-DP-CABLE,8K-AOC-25M-DP-CABLE,8K-AOC-30M-DP-CABLE,8K-AOC-40M-DP-CABLE,8K-AOC-50M-DP-CABLE",
+  "length_mm": "10000,15000,20000,25000,30000,40000,50000",
+  "material_code": "599-053",
+  "packaging_spec": "BJ0599-0140,BJ0599-0141,BJ0599-0142,BJ0599-0143,BJ0599-0144,BJ0599-0145,BJ0599-0146",
+  "model_no": "OP-DP09",
+  "mold_info": "",
+  "mold_number": "内模,中模,外模",
+  "bom": [
+    {
+      "no": "①",
+      "part_name": "线材",
+      "spec": "FIBER*4C+MID)*1C+(19/0.06T+150D*2C+D+AL)*1C+19/0.08T*4C+30/0.08T*1C+41/0.08T*1C+F+AL 黑色 CMP OD4.8MM",
+      "quantity": "M"
+    },
+    {
+      "no": "②",
+      "part_name": "插头",
+      "spec": "DP M PIN:G/F 镀金+PCB(Source) (50/125um",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "③",
+      "part_name": "插头",
+      "spec": "DP M PIN:G/F 镀金+PCB(Display)",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "④",
+      "part_name": "外壳",
+      "spec": "DP M 锌合金哑光灰色(Source) Pantone 10394C",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "⑤",
+      "part_name": "外壳",
+      "spec": "DP M 锌合金哑光灰色(Display) Pantone 10394C",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "⑥",
+      "part_name": "外模",
+      "spec": "黑色TPE",
+      "quantity": "G"
+    },
+    {
+      "no": "⑦",
+      "part_name": "外模",
+      "spec": "SR 黄色",
+      "quantity": "G"
+    },
+    {
+      "no": "⑧",
+      "part_name": "铜箔",
+      "spec": "W:20MM 黑色",
+      "quantity": "MM"
+    },
+    {
+      "no": "⑨",
+      "part_name": "标签",
+      "spec": "二维码",
+      "quantity": "1PCS"
+    }
+  ],
+  "tolerances": [
+    {
+      "range": "0.5-3.0",
+      "hardware": "±0.05",
+      "plastic": "±0.1"
+    },
+    {
+      "range": "3.0-6.0",
+      "hardware": "±0.05",
+      "plastic": "±0.1"
+    },
+    {
+      "range": "6.0-30.0",
+      "hardware": "±0.05",
+      "plastic": "±0.2"
+    },
+    {
+      "range": "≥30",
+      "hardware": "±0.05",
+      "plastic": "±0.3"
+    }
+  ],
+  "pin_assignment": {
+    "connectors": [
+      "DPM"
+    ],
+    "description": "DPM to DPM, High Speed, Electric, Optic, Conversion IC, Fiber, GND"
+  },
+  "test_requirements": [
+    "100%开路、短路、错位瞬间短/断路测试",
+    "成品长度 0.1-5M 导通阻抗 ≤8",
+    "成品长度 5-10M 导通阻抗 ≤15",
+    "成品长度 10-20M 导通阻抗 ≤25",
+    "成品长度 20M以上 导通阻抗 ≤25",
+    "DC V/S 300/0.1S",
+    "绝缘阻抗 ≥5",
+    "通过8K@60HZ/48Gbps 测试"
+  ],
+  "dimensions": [
+    "11±0.3",
+    "150±20",
+    "57.3±1",
+    "35.7±0.3",
+    "4.4",
+    "2.5",
+    "21.3±0.3",
+    "16",
+    "13±0.5",
+    "11.2±0.3",
+    "16.11",
+    "11.4",
+    "2.61"
+  ],
+  "notes": [
+    "1、所有材质符合RoHS 2.0 和REACH 最新环保标准",
+    "2、符合加州65"
+  ],
+  "revision_history": [
+    {
+      "revision": "A0",
+      "date": "2025/12/24",
+      "description": ""
+    },
+    {
+      "revision": "A1",
+      "date": "2026/01/30",
+      "description": ""
+    }
+  ],
+  "company": "珠海福睿电子 FARREACH",
+  "drawing_date": "2021.07.15",
+  "drawn_by": "Kenny",
+  "checked_by": "X. J. C",
+  "approved_by": "Lin.",
+  "products": [
+    {
+      "customer_item": "8K-AOC-10M-DP-CABLE",
+      "length_mm": "10000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0140"
+    },
+    {
+      "customer_item": "8K-AOC-15M-DP-CABLE",
+      "length_mm": "15000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0141"
+    },
+    {
+      "customer_item": "8K-AOC-20M-DP-CABLE",
+      "length_mm": "20000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0142"
+    },
+    {
+      "customer_item": "8K-AOC-25M-DP-CABLE",
+      "length_mm": "25000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0143"
+    },
+    {
+      "customer_item": "8K-AOC-30M-DP-CABLE",
+      "length_mm": "30000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0144"
+    },
+    {
+      "customer_item": "8K-AOC-40M-DP-CABLE",
+      "length_mm": "40000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0145"
+    },
+    {
+      "customer_item": "8K-AOC-50M-DP-CABLE",
+      "length_mm": "50000",
+      "material_code": "",
+      "packaging_spec": "BJ0599-0146"
+    }
+  ],
+  "source_file": "e8100bff-ebdf-46f7-8ba4-a2ccd4b2ae75.pdf",
+  "extraction_method": "vision_openrouter",
+  "pages": 1
+}

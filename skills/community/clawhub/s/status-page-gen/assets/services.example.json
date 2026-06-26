@@ -1,0 +1,68 @@
+{
+  "services": [
+    {
+      "name": "Nginx / Web",
+      "url": "http://localhost:80",
+      "health_endpoint": "/",
+      "expected_status": 200,
+      "ping_host": "localhost",
+      "tags": ["web", "frontend"]
+    },
+    {
+      "name": "Grafana",
+      "url": "https://grafana.example.com",
+      "health_endpoint": "/api/health",
+      "expected_status": 200,
+      "ping_host": "grafana.example.com",
+      "tags": ["monitoring"]
+    },
+    {
+      "name": "Jellyfin",
+      "url": "https://jellyfin.example.com",
+      "health_endpoint": "/health",
+      "expected_status": 200,
+      "ping_host": "jellyfin.example.com",
+      "tags": ["media"]
+    },
+    {
+      "name": "Prometheus",
+      "url": "http://localhost:9090",
+      "health_endpoint": "/-/healthy",
+      "expected_status": 200,
+      "ping_host": "localhost",
+      "tags": ["monitoring"]
+    },
+    {
+      "name": "Portainer",
+      "url": "https://portainer.example.com",
+      "health_endpoint": "/api/status",
+      "expected_status": 200,
+      "ping_host": "portainer.example.com",
+      "tags": ["infra"]
+    },
+    {
+      "name": "Uptime Kuma",
+      "url": "https://uptime.example.com",
+      "health_endpoint": "/",
+      "expected_status": 200,
+      "ping_host": "uptime.example.com",
+      "tags": ["monitoring"]
+    },
+    {
+      "name": "Vaultwarden",
+      "url": "https://vault.example.com",
+      "health_endpoint": "/alive",
+      "expected_status": 200,
+      "ping_host": "vault.example.com",
+      "tags": ["security"]
+    },
+    {
+      "name": "Home Assistant",
+      "url": "http://homeassistant.local:8123",
+      "health_endpoint": "/api/",
+      "expected_status": 200,
+      "ping_host": "homeassistant.local",
+      "tags": ["iot", "home"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Sprint Release Notes Skill Configuration
+# Stored credentials for automated execution
+
+github:
+  # Add your GitHub PAT token here (must have repo, read:org, project scopes)
+  pat_token: "YOUR_PAT_TOKEN_HERE"
+  project_board_url: "https://github.com/orgs/OpenPecha/projects/128"
+
+discord:
+  # Add your Discord webhook URL here
+  webhook_url: "YOUR_DISCORD_WEBHOOK_URL"
+
+# Optional: Designate an issue to post summary comment
+# issue:
+#   repo: "OpenPecha/release-notes"
+#   number: 123

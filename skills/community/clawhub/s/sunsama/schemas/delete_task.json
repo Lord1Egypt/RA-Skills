@@ -1,0 +1,14 @@
+{
+  "name": "delete_task",
+  "description": "DESTRUCTIVE: Permanently delete a task from Sunsama. Confirm the task title and ID with the user before executing.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "taskId": {
+        "type": "string",
+        "description": "The ID of the task to delete"
+      }
+    },
+    "required": ["taskId"]
+  }
+}

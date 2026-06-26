@@ -1,0 +1,31 @@
+skills:
+  - name: "bash_executor"
+    description: "Execute a bash command"
+    input_schema:
+      type: object
+      properties:
+        command: { type: string }
+        timeout_sec: { type: integer, default: 30 }
+    output_schema:
+      type: object
+      properties:
+        stdout: { type: string }
+        stderr: { type: string }
+        exit_code: { type: integer }
+    executor:
+      type: "subprocess"
+      command: "{{command}}"
+      timeout_ms: 60000
+      allowed_paths: ["/tmp", "./workspace/temp"]
+      allowed_commands: ["cat", "grep", "echo", "ls", "python3"]
+
+  - name: "python_script"
+    description: "Run a Python script"
+    input_schema:
+      type: object
+      properties:
+        script_path: { type: string }
+        args: { type: array, items: { type: string } }
+    executor:
+      type: "subprocess"
+      command: "python3 {{script_path}}"

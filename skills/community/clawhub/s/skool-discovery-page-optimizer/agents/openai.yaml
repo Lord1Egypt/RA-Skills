@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skool Discovery Page Optimizer"
+  short_description: "Rewrite public Skool discovery copy safely"
+  default_prompt: "Use $skool-discovery-page-optimizer to improve my Skool community name, public About copy, hero text, membership questions, profile CTA, discovery keywords, and 7-day optimization checklist without promising joins or revenue."

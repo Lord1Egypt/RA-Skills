@@ -1,35 +1,37 @@
 ---
-name: "SuperClaw"
-description: "14 production-tested agent workflow skills for disciplined, high-quality AI coding and task execution. Covers TDD, debugging, code review, planning, brainsto..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/superclaw-skills"
-sourceUrl: "https://clawhub.ai/skills/superclaw-skills"
+name: superclaw
+description: "14 production-tested agent workflow skills for disciplined, high-quality AI coding and task execution. Covers TDD, debugging, code review, planning, brainstorming, verification, subagent dispatch, and more. Built by operators who run agents in production daily."
 ---
 
-# SuperClaw
+# SuperClaw by Kamir Labs
 
-> 14 production-tested agent workflow skills for disciplined, high-quality AI coding and task execution. Covers TDD, debugging, code review, planning, brainsto...
+A collection of 14 OpenClaw skills that enforce disciplined, verifiable agent workflows.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/superclaw-skills`
-- **Source URL:** [https://clawhub.ai/skills/superclaw-skills](https://clawhub.ai/skills/superclaw-skills)
+## What's Included
 
-## Overview
+| Skill | When to Use |
+|-------|------------|
+| **brainstorming** | Before creative or feature-design work |
+| **dispatching-parallel-agents** | 2+ independent tasks that can run in parallel |
+| **executing-plans** | Execute a written plan with checkpointed reviews |
+| **finishing-a-development-branch** | After implementation, choose merge/PR/cleanup path |
+| **receiving-code-review** | Processing review feedback, especially ambiguous comments |
+| **requesting-code-review** | Before merge to verify quality and requirements |
+| **subagent-driven-development** | Execute plans via independent subagent tasks |
+| **systematic-debugging** | Bugs and failures — root cause before fixes |
+| **test-driven-development** | Before writing implementation code |
+| **using-git-worktrees** | Feature work that needs workspace isolation |
+| **using-superpowers** | Session start — identify the right skill first |
+| **verification-before-completion** | Before any "done" claim — prove it works |
+| **writing-plans** | Multi-step tasks that need concrete execution plans |
+| **writing-skills** | Creating, editing, or validating skills |
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/superclaw-skills
+npx clawhub@latest install superclaw
 ```
+
+## Philosophy
+
+Stop guessing. Stop claiming "done" without evidence. Stop debugging by random changes. These skills enforce the patterns that separate reliable agent work from chaos.

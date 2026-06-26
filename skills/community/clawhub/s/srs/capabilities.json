@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "created_at": "2026-03-04T09:43:32.230423",
+  "last_updated": "2026-03-10T17:30:16.447081",
+  "roles": {
+    "security_researcher": {
+      "name": "security_researcher",
+      "emoji": "\ud83d\udd34",
+      "description": "\u81ea\u52a8\u53d1\u73b0\u5e76\u521b\u5efa\u7684\u89d2\u8272: security_researcher",
+      "capabilities": [
+        "\u6f0f\u6d1e\u5206\u6790",
+        "\u5a01\u80c1\u8bc4\u4f30",
+        "\u98ce\u9669\u8bc4\u7ea7"
+      ],
+      "auto_tasks": [
+        "cve_scan",
+        "threat_analysis"
+      ],
+      "source": "auto_improve",
+      "source_file": "",
+      "created_at": "2026-03-04T09:43:52.331422"
+    },
+    "secops": {
+      "name": "secops",
+      "emoji": "\ud83d\udee1\ufe0f",
+      "description": "\u81ea\u52a8\u53d1\u73b0\u5e76\u521b\u5efa\u7684\u89d2\u8272: secops",
+      "capabilities": [
+        "\u76d1\u63a7",
+        "\u544a\u8b66",
+        "\u54cd\u5e94"
+      ],
+      "auto_tasks": [
+        "monitor",
+        "alert",
+        "respond"
+      ],
+      "source": "auto_improve",
+      "source_file": "",
+      "created_at": "2026-03-04T09:43:52.331955"
+    },
+    "knowledge_manager": {
+      "name": "knowledge_manager",
+      "emoji": "\ud83d\udcd6",
+      "description": "\u81ea\u52a8\u53d1\u73b0\u5e76\u521b\u5efa\u7684\u89d2\u8272: knowledge_manager",
+      "capabilities": [
+        "\u6587\u6863\u6574\u7406",
+        "\u77e5\u8bc6\u6c89\u6dc0",
+        "\u62a5\u544a\u751f\u6210"
+      ],
+      "auto_tasks": [
+        "organize",
+        "document",
+        "report"
+      ],
+      "source": "auto_improve",
+      "source_file": "",
+      "created_at": "2026-03-04T09:43:52.334872"
+    },
+    "explorer": {
+      "name": "explorer",
+      "emoji": "\ud83d\ude80",
+      "description": "\u81ea\u52a8\u53d1\u73b0\u5e76\u521b\u5efa\u7684\u89d2\u8272: explorer",
+      "capabilities": [
+        "\u626b\u63cf",
+        "\u53d1\u73b0",
+        "\u8d8b\u52bf\u6d1e\u5bdf"
+      ],
+      "auto_tasks": [
+        "scan",
+        "discover",
+        "trend"
+      ],
+      "source": "auto_improve",
+      "source_file": "",
+      "created_at": "2026-03-04T09:43:52.335420"
+    }
+  },
+  "skills": {},
+  "improvements": [
+    {
+      "action": "create_role",
+      "role": "security_researcher",
+      "time": "2026-03-04T09:43:52.331708"
+    },
+    {
+      "action": "create_role",
+      "role": "secops",
+      "time": "2026-03-04T09:43:52.332191"
+    },
+    {
+      "action": "create_role",
+      "role": "knowledge_manager",
+      "time": "2026-03-04T09:43:52.335139"
+    },
+    {
+      "action": "create_role",
+      "role": "explorer",
+      "time": "2026-03-04T09:43:52.335648"
+    }
+  ],
+  "gaps": [],
+  "learned_patterns": []
+}

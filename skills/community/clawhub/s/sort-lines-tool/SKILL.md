@@ -1,35 +1,27 @@
 ---
-name: "Sort Lines Tool"
-description: "Sort lines of text alphabetically or numerically. Use for data organization, list management, and text file preparation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sort-lines-tool"
-sourceUrl: "https://clawhub.ai/skills/sort-lines-tool"
+name: sort-lines-tool
+description: Sort lines of text alphabetically or numerically. Use for data organization, list management, and text file preparation.
 ---
+# Sort Lines - Line Sorting Tool
 
-# Sort Lines Tool
+Arrange text lines in alphabetical or numerical order. Supports case-insensitive sorting, reverse order, and unique line filtering.
 
-> Sort lines of text alphabetically or numerically. Use for data organization, list management, and text file preparation.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sort-lines-tool`
-- **Source URL:** [https://clawhub.ai/skills/sort-lines-tool](https://clawhub.ai/skills/sort-lines-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sort-lines-tool
+sort-lines-tool [options] <file>
+```
+
+## Options
+
+- `-n`: Numeric sort (instead of alphabetical)
+- `-r`: Reverse order
+- `-u`: Unique lines only
+- `-f`: Case-insensitive sort
+
+## Examples
+
+```bash
+sort-lines-tool names.txt
+sort-lines-tool -n numbers.txt
+sort-lines-tool -r data.txt
 ```

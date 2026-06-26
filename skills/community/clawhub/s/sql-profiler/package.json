@@ -1,0 +1,8 @@
+{
+  "name": "sql-profiler",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for profiling and optimizing SQL queries across Databricks, PostgreSQL, and Spark SQL",
+  "author": "Nerikko",
+  "license": "MIT",
+  "keywords": ["sql", "databricks", "postgresql", "performance", "optimization", "data-engineering"]
+}

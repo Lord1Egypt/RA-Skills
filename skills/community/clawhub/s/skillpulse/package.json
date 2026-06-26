@@ -1,0 +1,46 @@
+{
+  "name": "@mike007jd/openclaw-skill-profiler",
+  "version": "1.0.0",
+  "description": "OpenClaw skill performance profiler with bottleneck analysis",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "skill-profiler": "./bin/skill-profiler.js"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "src",
+    "fixtures",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "profiler",
+    "performance",
+    "benchmark"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike007jd/openclaw-skills.git",
+    "directory": "skill-profiler"
+  },
+  "homepage": "https://github.com/mike007jd/openclaw-skills/tree/main/skill-profiler",
+  "bugs": {
+    "url": "https://github.com/mike007jd/openclaw-skills/issues"
+  },
+  "author": "mike007jd",
+  "engines": {
+    "node": ">=18"
+  }
+}

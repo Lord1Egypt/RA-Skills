@@ -1,0 +1,15 @@
+{
+  "purchased_at": "2026-05-09T00:00:00Z",
+  "query": "semantic search phrase that led to the buy",
+  "item_id": "00000000-0000-0000-0000-000000000000",
+  "title": "Artifact title",
+  "seller_username": "seller-handle",
+  "chain": "base",
+  "currency": "USDC",
+  "amount_smallest_unit": "1000000",
+  "payment_scheme": "exact",
+  "order_id": "00000000-0000-0000-0000-000000000000",
+  "local_cache_path": "/absolute/path/to/cache/order.zip",
+  "artifact_sha256": "hex-checksum",
+  "feedback_status": "not_submitted"
+}

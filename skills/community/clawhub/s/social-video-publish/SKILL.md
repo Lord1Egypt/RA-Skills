@@ -1,35 +1,91 @@
 ---
-name: "多平台视频图文发布助手"
-description: "多平台视频图文发布助手 — 支持抖音、快手、B站、小红书、微信视频号五大平台同步发布图文和视频内容。 触发场景："一键发布到小红书、抖音、快手、B站、视频号"、"帮我同步发多个平台"、"多平台发布视频"、"发布视频到抖音"等。 ⚠️ 本 skill 需要用户协助操作浏览器登录，所有发布操作均在用户本地浏览器中完成..."
-category: "media"
-source: "ClawHub"
-tags: [multi-platform, publish, video]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/social-video-publish"
-sourceUrl: "https://clawhub.ai/skills/social-video-publish"
+name: hitjcl-social-video-publish
+description: |
+  多平台视频图文发布助手 — 支持抖音、快手、B站、小红书、微信视频号五大平台同步发布图文和视频内容。
+  触发场景："一键发布到小红书、抖音、快手、B站、视频号"、"帮我同步发多个平台"、"多平台发布视频"、"发布视频到抖音"等。
+  ⚠️ 本 skill 需要用户协助操作浏览器登录，所有发布操作均在用户本地浏览器中完成，不会自动登录或存储任何账户凭证。
+keywords:
+  - "视频发布"
+  - "多平台发布"
+  - "抖音发布"
+  - "小红书发布"
+  - "快手发布"
+  - "B站发布"
+  - "视频号发布"
+  - "一键发布"
+  - "同步发布"
+  - "video publish"
+  - "multi-platform"
+metadata:
+  openclaw:
+    emoji: "🎬"
 ---
 
 # 多平台视频图文发布助手
 
-> 多平台视频图文发布助手 — 支持抖音、快手、B站、小红书、微信视频号五大平台同步发布图文和视频内容。 触发场景："一键发布到小红书、抖音、快手、B站、视频号"、"帮我同步发多个平台"、"多平台发布视频"、"发布视频到抖音"等。 ⚠️ 本 skill 需要用户协助操作浏览器登录，所有发布操作均在用户本地浏览器中完成...
+> **⚠️ 安全提示**：本 Skill 需要用户协助操作浏览器登录。所有发布操作均在用户本地浏览器中完成，不会自动登录或存储任何账户凭证。用户需自行承担账户操作责任。
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/social-video-publish`
-- **Source URL:** [https://clawhub.ai/skills/social-video-publish](https://clawhub.ai/skills/social-video-publish)
+## 功能说明
 
-## Overview
+帮助用户在多个视频平台（抖音、快手、B站、小红书、微信视频号）发布视频和图文内容。
 
+**重要限制**：
+- 本 Skill 提供操作指导，实际浏览器自动化需要用户授权
+- **不会自动登录任何账户**
+- 不会绕过任何平台的安全机制
+- 用户需已在浏览器中手动登录目标平台
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/social-video-publish
-```
+## 触发条件
+
+当用户说：
+- "帮我发布视频到[平台]"
+- "把视频发到抖音/快手/B站"
+- "多平台发布视频"
+- "一键发布到小红书、抖音、快手、B站、视频号"
+- "同步发多个平台"
+- 类似多平台视频发布需求
+
+## 使用前提
+
+- 用户已在浏览器中手动登录目标平台
+- 用户准备好要发布的视频文件
+- 用户了解各平台的发布规则
+
+## 技术实现
+
+本 Skill 使用 `xbrowser` skill 进行浏览器自动化。
+
+## 安全措施
+
+- **用户授权**：每次浏览器操作都需要用户确认
+- 会话隔离：使用用户自己的浏览器配置，不创建新会话
+- 无凭证存储：不记录或存储任何登录信息
+- 透明操作：所有操作步骤对用户可见
+
+## 工作流程
+
+1. 用户请求发布视频
+2. Agent 确认目标平台和视频文件
+3. Agent 使用 xbrowser skill 打开目标平台（使用用户已登录的浏览器）
+4. 引导用户完成发布流程（或自动化，需用户确认）
+
+## 支持的平台
+
+| 平台 | 说明 |
+|------|------|
+| 抖音 | 需要 PC 端创作者平台 |
+| 快手 | 支持 PC 端发布 |
+| B站 | 支持批量上传 |
+| 小红书 | 需要通过创作者平台 |
+| 微信视频号 | 需要微信扫码登录 |
+
+## 安全最佳实践
+
+- 使用测试账号先验证功能
+- 不要在主力账号上直接测试
+- 定期检查账户活动记录
+- 发现异常立即停止使用并检查账户
+
+---
+
+来源：https://clawhub.ai/hitjcl/social-publish

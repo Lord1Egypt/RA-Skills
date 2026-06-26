@@ -1,0 +1,22 @@
+{
+  "name": "source-to-architecture",
+  "version": "1.0.0",
+  "description": "将源代码转换为架构图和架构文档的专业技能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "source-code",
+    "architecture",
+    "diagram",
+    "analysis",
+    "openclaw"
+  ],
+  "author": "Vincent",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

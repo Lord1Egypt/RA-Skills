@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  agent-memory:
+    build: .
+    container_name: agent-memory
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - agent-memory-data:/data
+      - ./logs:/app/logs
+    environment:
+      - AGENT_MEMORY_DB_PATH=/data/memory.db
+      - AGENT_MEMORY_PORT=8080
+      - AGENT_MEMORY_HOST=0.0.0.0
+      - AGENT_MEMORY_JWT_SECRET=${AGENT_MEMORY_JWT_SECRET:-change-me-in-production}
+      - AGENT_MEMORY_LOG_LEVEL=INFO
+      - AGENT_MEMORY_MAX_MEMORY=100000
+      - AGENT_MEMORY_REQUIRE_AUTH=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # MCP Server sidecar
+  agent-memory-mcp:
+    build: .
+    container_name: agent-memory-mcp
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    volumes:
+      - agent-memory-data:/data:ro
+    environment:
+      - AGENT_MEMORY_DB_PATH=/data/memory.db
+      - AGENT_MEMORY_PORT=8765
+      - AGENT_MEMORY_HOST=0.0.0.0
+      - AGENT_MEMORY_JWT_SECRET=${AGENT_MEMORY_JWT_SECRET:-change-me-in-production}
+      - AGENT_MEMORY_MCP_MODE=true
+    depends_on:
+      agent-memory:
+        condition: service_healthy
+
+volumes:
+  agent-memory-data:
+    driver: local

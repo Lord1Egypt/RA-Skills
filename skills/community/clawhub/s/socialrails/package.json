@@ -1,0 +1,25 @@
+{
+  "name": "openclaw-socialrails",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for managing SocialRails via chat. Schedule posts, view analytics, generate AI content, and more.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "skill.json",
+    "README.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "socialrails",
+    "social-media",
+    "scheduling",
+    "ai-content"
+  ],
+  "author": "SocialRails",
+  "license": "MIT",
+  "homepage": "https://socialrails.com/documentation/openclaw-setup",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

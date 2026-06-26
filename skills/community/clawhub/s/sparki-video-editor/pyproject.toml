@@ -1,0 +1,15 @@
+# This skill no longer bundles Python sources. The install step runs:
+#   uv tool install --upgrade sparki-cli
+# which installs the latest sparki-cli from PyPI into uv's global tool bin.
+# This pyproject.toml is kept as a stub for tooling that expects its presence.
+
+[project]
+name = "sparki-video-editor-stub"
+version = "1.1.0"
+description = "Placeholder — sparki-cli is installed as a uv tool, not via this project."
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

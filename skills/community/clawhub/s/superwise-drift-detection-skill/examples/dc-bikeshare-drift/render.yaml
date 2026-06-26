@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dc-bikeshare-drift-inference
+    env: python
+    rootDir: examples/dc-bikeshare-drift
+    buildCommand: pip install -r requirements.txt && python collect_training_data.py --snapshots 10 && python train.py
+    startCommand: python app.py
+    envVars:
+      - key: PORT
+        value: "5001"

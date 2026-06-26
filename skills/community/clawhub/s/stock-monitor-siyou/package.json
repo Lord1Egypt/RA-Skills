@@ -1,0 +1,12 @@
+{
+  "name": "stock-monitor-skill",
+  "version": "1.1.0",
+  "description": "自动监控股票价格，突破阈值时自动发送飞书语音提醒",
+  "author": "司幼 (SiYou)",
+  "license": "MIT",
+  "tags": ["stock", "monitor", "feishu", "voice", "alert", "chinese"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/stock-monitor-skill"
+  }
+}

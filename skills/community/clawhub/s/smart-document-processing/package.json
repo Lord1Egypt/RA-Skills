@@ -1,0 +1,36 @@
+{
+  "name": "smart-document-processing",
+  "version": "1.0.0",
+  "description": "智能文档处理Skill - 提供文档解析、信息提取、内容分析、格式转换等智能处理功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "document-processing",
+    "text-analysis",
+    "ocr",
+    "nlp"
+  ],
+  "author": "hk001",
+  "license": "MIT",
+  "dependencies": {},
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["document", "processing", "text-analysis", "ocr", "nlp", "pdf", "deepseek-v4", "惠迈智能体", "智能文档"],
+    "compatibility": {
+      "openclaw": ">=2026.4.0",
+      "deepseek": ">=v4.0.0",
+      "huimai-agents": "三层架构"
+    },
+    "features": [
+      "DeepSeek v4文档智能",
+      "惠迈文档协作",
+      "智能体质量革命",
+      "全格式全能处理"
+    ]
+  }
+}

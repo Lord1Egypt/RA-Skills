@@ -1,35 +1,78 @@
----
-name: "social video -publish寒武纪视频发布"
-description: "一键多平台发布工具。支持小红书、抖音、快手、B站、视频号五大平台同步发布图文和视频。 用户只需提供一次内容，自动适配各平台格式并发布。 使用场景： - "一键发布到小红书、抖音、快手、B站、视频号" - "帮我同步发多个平台" - "多发几个平台" - "发布视频到抖音" - 内容营销、推广、招募等多平台曝光需求"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/social-publish"
-sourceUrl: "https://clawhub.ai/skills/social-publish"
----
+# 多平台视频发布助手
 
-# social video -publish寒武纪视频发布
+## 安全声明 ⚠️
 
-> 一键多平台发布工具。支持小红书、抖音、快手、B站、视频号五大平台同步发布图文和视频。 用户只需提供一次内容，自动适配各平台格式并发布。 使用场景： - "一键发布到小红书、抖音、快手、B站、视频号" - "帮我同步发多个平台" - "多发几个平台" - "发布视频到抖音" - 内容营销、推广、招募等多平台曝光需求
+- **本 skill 仅在用户明确请求时操作**
+- **所有操作都在用户本地的浏览器中进行**
+- **不会自动登录或存储任何账户凭证**
+- **用户对自己账户的操作负完全责任**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/social-publish`
-- **Source URL:** [https://clawhub.ai/skills/social-publish](https://clawhub.ai/skills/social-publish)
+## 功能说明
 
-## Overview
+帮助用户在多个视频平台（抖音、快手、B站、小红书等）发布视频内容。
 
+**重要限制：**
+- 本 skill 提供操作指导，实际浏览器自动化需要用户授权
+- 不会自动登录任何账户
+- 不会绕过任何平台的安全机制
+- 不会修改平台的任何安全设置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/social-publish
-```
+## 触发条件
+
+当用户说：
+- "帮我发布视频到[平台]"
+- "把视频发到抖音/快手/B站"
+- "多平台发布视频"
+- 类似的多平台视频发布需求
+
+## 使用前提
+
+1. 用户已在浏览器中手动登录目标平台
+2. 用户准备好要发布的视频文件
+3. 用户了解各平台的发布规则
+
+## 技术实现
+
+本 skill 使用 **xbrowser skill** 进行浏览器自动化，这是一个安全的、受控的浏览器控制方案。
+
+### 安全措施
+
+1. **用户授权**：每次浏览器操作都需要用户确认
+2. **会话隔离**：使用用户自己的浏览器配置，不创建新会话
+3. **无凭证存储**：不记录或存储任何登录信息
+4. **透明操作**：所有操作步骤对用户可见
+
+## 工作流程
+
+1. 用户请求发布视频
+2. Agent 确认目标平台和视频文件
+3. Agent 使用 xbrowser skill 打开目标平台（使用用户已登录的浏览器）
+4. 引导用户完成发布流程（或自动化，需用户确认）
+
+## 支持的平台
+
+| 平台 | 说明 |
+|------|------|
+| 抖音 | 需要 PC 端创作者平台 |
+| 快手 | 支持 PC 端发布 |
+| B站 | 支持批量上传 |
+| 小红书 | 需要通过创作者平台 |
+| 微信视频号 | 需要微信扫码登录 |
+
+## 脚本说明
+
+- `video-publish.py` - 发布辅助脚本（提供操作指引）
+- `platform-helper.py` - 平台特定操作辅助
+
+## 安全最佳实践
+
+- 使用测试账号先验证功能
+- 不要在主力账号上直接测试
+- 定期检查账户活动记录
+- 发现异常立即停止使用并检查账户
+
+## 版本信息
+
+- 版本: 2.0.0
+- 更新日期: 2026-04-24
+- 安全修复: 移除 SSRF 相关指令，改进下载脚本安全性，删除账户示例

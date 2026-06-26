@@ -1,35 +1,33 @@
 ---
-name: "Strategy Voting"
-description: "多策略投票交易系统。当用户说"投票策略"、"多策略"、"策略投票"、"综合信号"时触发。整合突破、RSI均值回归、MACD金叉、布林带四个策略，加权投票决定交易信号。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/strategy-voting"
-sourceUrl: "https://clawhub.ai/skills/strategy-voting"
+name: strategy-voting
+description: 多策略投票交易系统。当用户说"投票策略"、"多策略"、"策略投票"、"综合信号"时触发。整合突破、RSI均值回归、MACD金叉、布林带四个策略，加权投票决定交易信号。
 ---
 
-# Strategy Voting
+# 多策略投票系统
 
-> 多策略投票交易系统。当用户说"投票策略"、"多策略"、"策略投票"、"综合信号"时触发。整合突破、RSI均值回归、MACD金叉、布林带四个策略，加权投票决定交易信号。
+综合多个技术指标策略，加权投票做出交易决策。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/strategy-voting`
-- **Source URL:** [https://clawhub.ai/skills/strategy-voting](https://clawhub.ai/skills/strategy-voting)
+## 策略组成
 
-## Overview
+| 策略 | 权重 | 说明 |
+|------|------|------|
+| 突破 | 1.5x | 价格突破20日高点+成交量放大（回测最佳） |
+| RSI均值回归 | 1.0x | RSI超卖(<30)买入，超买(>70)卖出 |
+| MACD金叉 | 1.0x | MACD线上穿/下穿信号线 |
+| 布林带 | 1.0x | 价格触及上下轨 |
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/strategy-voting
+python3 /root/.openclaw/workspace/skills/strategy-voting/scripts/voter.py
 ```
+
+## 决策规则
+
+- 综合得分 ≥ 1.5 → 做多
+- 综合得分 ≤ -1.5 → 平仓/做空
+- 其他 → 观望
+
+## 集成
+
+可与现有交易机器人配合，作为信号过滤器。

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1200" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- ==================== 用户层 ==================== -->
+    <!-- 用户层标签 -->
+    <mxCell id="layer_user_label" value="用户层" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#82b366;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="30" width="80" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- PC端 -->
+    <mxCell id="app_pc" value="PC端门户" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="120" y="20" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 移动端 -->
+    <mxCell id="app_mobile" value="移动端APP" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="260" y="20" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 微信小程序 -->
+    <mxCell id="app_wechat" value="微信小程序" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="400" y="20" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 自助终端 -->
+    <mxCell id="app_kiosk" value="自助终端" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="540" y="20" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 应用层 ==================== -->
+    <!-- 应用层标签 -->
+    <mxCell id="layer_app_label" value="应用层" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#6c8ebf;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="110" width="80" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- 统一受理 -->
+    <mxCell id="app_accept" value="统一受理&#xa;平台" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="120" y="100" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 审批管理 -->
+    <mxCell id="app_approve" value="审批管理&#xa;系统" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="260" y="100" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 电子证照 -->
+    <mxCell id="app_license" value="电子证照&#xa;系统" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="400" y="100" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 数据共享 -->
+    <mxCell id="app_share" value="数据共享&#xa;交换平台" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="540" y="100" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 服务层 ==================== -->
+    <!-- 服务层标签 -->
+    <mxCell id="layer_svc_label" value="服务层" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#d6b656;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="210" width="80" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- 统一身份认证 -->
+    <mxCell id="svc_auth" value="统一身份&#xa;认证服务" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="40" y="200" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 消息中心 -->
+    <mxCell id="svc_msg" value="消息通知&#xa;中心" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="180" y="200" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 流程引擎 -->
+    <mxCell id="svc_flow" value="流程引擎" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="320" y="200" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- AI辅助审批 -->
+    <mxCell id="svc_ai" value="AI辅助&#xa;审批服务" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="460" y="200" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 电子签章 -->
+    <mxCell id="svc_sign" value="电子签章&#xa;服务" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="600" y="200" width="100" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 数据层 ==================== -->
+    <!-- 数据层标签 -->
+    <mxCell id="layer_data_label" value="数据层" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#9673a6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="320" width="80" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- 人口库 -->
+    <mxCell id="db_person" value="人口库" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=20;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="60" y="310" width="80" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- 法人库 -->
+    <mxCell id="db_corp" value="法人库" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=20;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="180" y="310" width="80" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- 证照库 -->
+    <mxCell id="db_license" value="证照库" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=20;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="300" y="310" width="80" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- 事项库 -->
+    <mxCell id="db_item" value="事项库" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=20;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="420" y="310" width="80" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- 材料库 -->
+    <mxCell id="db_material" value="材料库" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=20;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="540" y="310" width="80" height="70" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 基础设施层 ==================== -->
+    <!-- 基础设施层标签 -->
+    <mxCell id="layer_infra_label" value="基础设施层" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#666666;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="10" y="430" width="90" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- 云平台 -->
+    <mxCell id="infra_cloud" value="云平台" style="rounded=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="40" y="420" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 网络安全 -->
+    <mxCell id="infra_security" value="网络安全" style="rounded=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="180" y="420" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 运维监控 -->
+    <mxCell id="infra_monitor" value="运维监控" style="rounded=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="320" y="420" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- 容器编排 -->
+    <mxCell id="infra_k8s" value="容器编排&#xa;(K8s)" style="rounded=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="460" y="420" width="100" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 外部系统 ==================== -->
+    <!-- 外部系统标签 -->
+    <mxCell id="layer_ext_label" value="外部系统" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1;fontColor=#999999;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="520" width="90" height="30" as="geometry" />
+    </mxCell>
+    
+    <!-- 第三方系统 -->
+    <mxCell id="ext_3party" value="第三方业务&#xa;系统" style="rounded=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=2;dashed=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="40" y="510" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 银行系统 -->
+    <mxCell id="ext_bank" value="银行支付&#xa;系统" style="rounded=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=2;dashed=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="200" y="510" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- 物流系统 -->
+    <mxCell id="ext_logistics" value="物流跟踪&#xa;系统" style="rounded=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=2;dashed=1;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="360" y="510" width="120" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== 连接线 ==================== -->
+    
+    <!-- 用户层 → 应用层 -->
+    <mxCell id="edge_user_app1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app_pc" target="app_accept">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_user_app2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_mobile" target="app_accept">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="170" y="100" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    
+    <mxCell id="edge_user_app3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_wechat" target="app_accept">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="190" y="100" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    
+    <mxCell id="edge_user_app4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_kiosk" target="app_accept">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="200" y="100" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 应用层 → 服务层 -->
+    <mxCell id="edge_app_svc1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_accept" target="svc_auth">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_app_svc2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_accept" target="svc_msg">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_app_svc3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_approve" target="svc_flow">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_app_svc4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_approve" target="svc_ai">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_app_svc5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_license" target="svc_sign">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 服务层 → 数据层 -->
+    <mxCell id="edge_svc_db1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="svc_auth" target="db_person">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_svc_db2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="svc_auth" target="db_corp">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_svc_db3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_license" target="db_license">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_svc_db4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_accept" target="db_item">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_svc_db5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="app_accept" target="db_material">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 数据层 → 基础设施层 -->
+    <mxCell id="edge_db_infra1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="db_person" target="infra_cloud">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_db_infra2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="db_corp" target="infra_cloud">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_db_infra3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="db_license" target="infra_cloud">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_db_infra4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#333333;strokeColor=#333333;strokeWidth=1.5;" edge="1" parent="1" source="db_item" target="infra_cloud">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 应用层 → 外部系统 -->
+    <mxCell id="edge_app_ext1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#999999;strokeColor=#999999;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="app_share" target="ext_3party">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="590" y="180" />
+          <mxPoint x="590" y="350" />
+          <mxPoint x="100" y="350" />
+          <mxPoint x="100" y="510" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <mxCell id="edge_app_ext2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#999999;strokeColor=#999999;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="app_accept" target="ext_bank">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="170" y="180" />
+          <mxPoint x="170" y="380" />
+          <mxPoint x="260" y="380" />
+          <mxPoint x="260" y="510" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 同层连接（服务层内部） -->
+    <mxCell id="edge_svc_svc1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#666666;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" parent="1" source="svc_auth" target="svc_msg">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_svc_svc2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#666666;strokeColor=#666666;strokeWidth=1;dashed=1;" edge="1" parent="1" source="svc_flow" target="svc_ai">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- 同层连接（数据层内部） -->
+    <mxCell id="edge_db_db1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#888888;strokeColor=#888888;strokeWidth=1;dashed=1;" edge="1" parent="1" source="db_person" target="db_corp">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="140" y="380" />
+          <mxPoint x="180" y="380" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <mxCell id="edge_db_db2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#888888;strokeColor=#888888;strokeWidth=1;dashed=1;" edge="1" parent="1" source="db_corp" target="db_license">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="260" y="380" />
+          <mxPoint x="300" y="380" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- 数据共享平台到各数据库 -->
+    <mxCell id="edge_share_db" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;arrowColor=#6c8ebf;strokeColor=#6c8ebf;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="app_share" target="db_person">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="590" y="130" />
+          <mxPoint x="590" y="345" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+  </root>
+</mxGraphModel>

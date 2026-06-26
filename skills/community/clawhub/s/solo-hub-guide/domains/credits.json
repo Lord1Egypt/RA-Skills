@@ -1,0 +1,110 @@
+[
+  {
+    "id": "check_credit_balance",
+    "domain": "credits",
+    "description": "Check your organization's current credit balance",
+    "action_type": "ui_flow",
+    "steps": [
+      "Look at the top navigation bar — the org's credit balance is always shown there",
+      "Switch orgs via the org switcher to see a different org's balance"
+    ],
+    "explanation": "Credits belong to your organization, not individual accounts. Every team member draws from the same pool. Credits never expire when purchased.",
+    "expected_outcome": "Credit balance number visible in navbar",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Navbar shows a number representing current org credit balance"
+    },
+    "common_errors": [
+      "Seeing wrong balance — check which org is selected in the org switcher"
+    ],
+    "docs_ref": "/credits/overview"
+  },
+  {
+    "id": "buy_credits",
+    "domain": "credits",
+    "description": "Purchase a credit pack for your organization",
+    "action_type": "ui_flow",
+    "prerequisite": "role: Admin",
+    "steps": [
+      "Go to Settings → Billing → Buy Credits",
+      "Choose a credit pack",
+      "Complete the Stripe checkout"
+    ],
+    "credit_packs": {
+      "Bronze":   { "credits": 50,   "bonus": 0,   "total": 50,   "price": "$10" },
+      "Gold":     { "credits": 250,  "bonus": 25,  "total": 275,  "price": "$50" },
+      "Platinum": { "credits": 1000, "bonus": 200, "total": 1200, "price": "$200" }
+    },
+    "expected_outcome": "Credit balance increases immediately after payment. Credits never expire.",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Navbar credit balance increased by the purchased amount within 2-3 minutes"
+    },
+    "common_errors": [
+      "Billing page not accessible — only Admins can access it; check your role",
+      "Payment processed but credits not appearing — wait 2-3 minutes (Stripe webhook). If still not showing after 10 minutes, contact support with payment confirmation number.",
+      "Can't access billing — email may not be verified; verify email first"
+    ],
+    "docs_ref": "/credits/billing"
+  },
+  {
+    "id": "choose_plan",
+    "domain": "credits",
+    "description": "Select or upgrade your Hub subscription plan",
+    "action_type": "ui_flow",
+    "prerequisite": "role: Admin",
+    "steps": [
+      "Click 'Pricing' in the Hub navbar",
+      "Toggle Monthly / Yearly billing (yearly saves ~20%)",
+      "Click a plan to go to Stripe checkout",
+      "Plan and credits update automatically after payment"
+    ],
+    "plans": {
+      "Basic": {
+        "price_monthly": "Free",
+        "features": ["Full catalog browsing", "Public model access", "Personal workspace"],
+        "vla_finetune": false,
+        "note": "VLA fine-tuning locked on Basic"
+      },
+      "Plus": {
+        "price_monthly": "$20/mo",
+        "price_yearly": "$200/yr",
+        "features": ["Higher usage limits", "Private model capacity", "Team features"],
+        "vla_finetune": true
+      },
+      "Pro": {
+        "price_monthly": "$100/mo",
+        "price_yearly": "$1,000/yr",
+        "features": ["Everything in Plus", "Priority support", "Advanced analytics"],
+        "vla_finetune": true
+      }
+    },
+    "expected_outcome": "Plan reflected immediately in your Hub account",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Settings → Billing shows updated plan name; VLA option unlocked in fine-tuning wizard if on Plus/Pro"
+    },
+    "common_errors": [
+      "Upgrade not reflecting — wait up to 2 minutes and refresh. Contact support after 5 minutes.",
+      "Upgrade/downgrade timing — upgrades apply immediately; other changes take effect at next billing cycle"
+    ],
+    "docs_ref": "/credits/plans"
+  },
+  {
+    "id": "view_usage_history",
+    "domain": "credits",
+    "description": "View breakdown of how credits have been consumed",
+    "action_type": "ui_flow",
+    "prerequisite": "role: Admin",
+    "steps": [
+      "Go to Settings → Billing",
+      "Scroll to the usage history table"
+    ],
+    "expected_outcome": "Table showing credit consumption over time, itemized by metered feature",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Usage history table visible with timestamped rows of credit spend"
+    },
+    "docs_ref": "/credits/billing"
+  }
+]

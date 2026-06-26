@@ -1,0 +1,67 @@
+ESTABLISHING SHOT - DEFINITION AND USAGE
+=========================================
+
+DEFINITION:
+An establishing shot sets up a scene by showing the location and context before the main action. 
+It typically appears at the beginning of a scene to orient the audience.
+
+PURPOSE:
+- Orient the audience to a new location
+- Establish setting (urban, rural, interior, exterior)
+- Set mood and tone for the scene
+- Establish spatial relationships between locations
+- Signal transition between scenes
+
+TYPES OF ESTABLISHING SHOTS:
+
+1. LOCATION ESTABLISHING SHOT
+   - Shows general surroundings
+   - Could be a city skyline, building exterior, or room overview
+   - Often a wide or extreme wide shot
+
+2. AERIAL SHOTS
+   - Drone or helicopter shots
+   - Sweeping vistas that set grand scale
+   - Often used in film openings
+
+3. CITYSCAPE/TOWNSCAPE
+   - Urban environments
+   - Shows time period and setting
+   - Dawn/dusk for mood
+
+4. INTERIOR ESTABLISHING SHOT
+   - Shows room layout before tighter shots
+   - Establishes where characters will interact
+   - Helps audience understand spatial relationships
+
+5. JUMP CUT ESTABLISHING
+   - Quick series of shots showing key elements
+   - Modern alternative to single establishing shot
+   - Often used in action sequences
+
+CONVENTIONS BY GENRE:
+
+ACTION FILMS:
+- Fast cuts between locations
+- Dramatic aerial shots
+- Maps/locations overlaid on footage
+
+DRAMA:
+- Slower, contemplative establishing shots
+- Weather and lighting establish mood
+- Extended shots before characters enter
+
+COMEDY:
+- Quick establishment, often with visual gags
+- Exaggerated or unusual angles
+
+HORROR:
+- Isolated locations
+- Ominous framing
+- Slow pushes toward buildings/locations
+
+TECHNICAL NOTES:
+- Typically a wide shot or extreme wide shot
+- May hold for 3-8 seconds
+- Often uses natural lighting to establish time of day
+- May include establishing sound before dialogue begins

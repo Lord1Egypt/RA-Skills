@@ -1,0 +1,19 @@
+{
+  "listed_at": "2026-05-09T00:00:00Z",
+  "item_id": "00000000-0000-0000-0000-000000000000",
+  "title": "Artifact title",
+  "description": "Marketplace description",
+  "tech_stack": "React, TypeScript",
+  "prompt_summary": "Short prompt summary used to create the artifact.",
+  "prices": {"USDC": 1},
+  "source_artifact_path": "/absolute/path/to/artifact.zip",
+  "source_artifact_sha256": "hex-checksum",
+  "status_url": "/api/v1/items/00000000-0000-0000-0000-000000000000/status",
+  "linked_chains": ["base", "polygon"],
+  "status_history": [
+    {"status": "pending_scan", "observed_at": "2026-05-09T00:00:00Z"},
+    {"status": "active", "observed_at": "2026-05-09T00:10:00Z"}
+  ],
+  "deleted_at": null,
+  "feedback_last_checked_at": null
+}

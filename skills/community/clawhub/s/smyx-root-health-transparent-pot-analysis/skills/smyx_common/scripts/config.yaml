@@ -1,0 +1,16 @@
+ApiEnum:
+  api-key: null
+  api-secret-key: null
+  base-url-health: https://lifeemergence.com/jeecg-boot-xzgz
+  base-url-open-api: https://open.lifeemergence.com/smyx-open-api
+  base-url-open-h5: http://livemonitor.lifeemergence.com
+  database-url: null
+ConstantEnum:
+  app--id: x1a3s4nwy1s2r4se
+  current--tentant-code: XIAN_ZHAO_GAN_ZHI
+  default--skill-platform-name: ARK_CLAW
+  feishu-app--id: cli_a93d769369badcb1
+  feishu-app--secret: null
+  is-debug: false
+api-key: ak_d5SUcPkfRHabvy72KZKNLhETdN1qdO1XCzhHcxroaWM
+env: prod

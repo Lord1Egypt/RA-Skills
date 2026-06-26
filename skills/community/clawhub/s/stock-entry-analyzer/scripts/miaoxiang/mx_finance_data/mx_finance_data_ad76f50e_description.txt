@@ -1,0 +1,8 @@
+金融数据查询结果说明
+========================================
+查询内容: 09988.HK EMA 均线
+数据文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_ad76f50e.xlsx
+描述文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_ad76f50e_description.txt
+数据行数: 2
+表数量: 1
+Sheet 列表: 阿里巴巴-W(09988.HK)等的EXPMA指数平均数

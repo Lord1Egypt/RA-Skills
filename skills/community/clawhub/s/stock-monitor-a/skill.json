@@ -1,0 +1,8 @@
+{
+  "name": "stock-monitor-v3",
+  "displayName": "股票交易监控系统",
+  "version": "3.0.0",
+  "description": "A股实时行情监控，支持价格/涨跌幅预警，零AI token消耗",
+  "tags": ["stock", "monitor", "a-share", "china"],
+  "license": "MIT-0"
+}

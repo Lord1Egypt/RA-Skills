@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Square SVG cover template</title>
+  <desc id="desc">Starter layout with centered title and poster-style framing.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#171311"/>
+      <stop offset="100%" stop-color="#2B1A13"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect x="70" y="70" width="940" height="940" rx="28" fill="none" stroke="#F3EBDD" stroke-width="3" opacity="0.7"/>
+
+  <g id="motif">
+    <circle cx="820" cy="260" r="150" fill="#D96C3D" opacity="0.18"/>
+    <circle cx="300" cy="820" r="110" fill="#F3EBDD" opacity="0.08"/>
+    <path d="M180 240 H900" stroke="#F3EBDD" stroke-width="2" opacity="0.35"/>
+    <path d="M180 820 H900" stroke="#F3EBDD" stroke-width="2" opacity="0.35"/>
+  </g>
+
+  <g id="content" fill="#F7F1E7" text-anchor="middle" font-family="'Avenir Next', 'Segoe UI', sans-serif">
+    <text x="540" y="250" font-size="24" font-weight="600" letter-spacing="6" opacity="0.72">SERIES</text>
+    <text x="540" y="480" font-size="120" font-weight="800">Cover</text>
+    <text x="540" y="600" font-size="120" font-weight="800">Title</text>
+    <text x="540" y="700" font-size="34" font-weight="500" opacity="0.86">Subtitle or short description</text>
+    <text x="540" y="860" font-size="24" font-weight="600" opacity="0.72">Brand / Author</text>
+  </g>
+</svg>

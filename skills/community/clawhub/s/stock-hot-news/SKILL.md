@@ -1,35 +1,105 @@
+\###技术支持：微信名quant\_village\_dog | QQ:13620658 | 邮件：13620658@qq.com
+###技术社区：QQ群：1057968391
+\---
+
+name: stock-hot-news
+description: 财经热点新闻爬取与话题归纳系统，提供混合评分、HTML报告和实时快讯采集。
+Use when: 用户需要获取实时财经新闻或快讯，财经热点新闻，焦点话题。
+NOT for: 普通新闻，天气预报，娱乐新闻，花边新闻
 ---
-name: "财经热点新闻爬取与话题归纳系统"
-description: "爬取主流财经网站实时热点新闻，提供混合评分与专业HTML报告，支持快讯采集与话题归纳分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-hot-news"
-sourceUrl: "https://clawhub.ai/skills/stock-hot-news"
+
+## When to Run
+
+* 触发条件1：用户说“财经新闻”
+* 触发条件2：用户说“财经热点”
+* 触发条件3：用户说“财经快讯”
+* 触发条件4：用户说“财经焦点”
+* 触发条件5：用户说“财经快报”
+
+
+
+metadata:
+{
+"openclaw":
+{
+"requires": { "bins": \["python", "scrapling"] },
+"install":
+\[
+{
+"id": "python",
+"kind": "python",
+"package": "",
+"label": "Python 3.7+",
+},
+{
+"id": "scrapling",
+"kind": "python",
+"package": "scrapling",
+"bins": \["scrapling"],
+"label": "Scrapling网页抓取工具",
+},
+],
+},
+}
 ---
+
+## Workflow
+
+1. 获取财经信息：
+
+```bash
+cd skills/stock-hot-news
+python main.py --module3-mode playwright
+```
 
 # 财经热点新闻爬取与话题归纳系统
 
-> 爬取主流财经网站实时热点新闻，提供混合评分与专业HTML报告，支持快讯采集与话题归纳分析。
+## 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-hot-news`
-- **Source URL:** [https://clawhub.ai/skills/stock-hot-news](https://clawhub.ai/skills/stock-hot-news)
+* **主力财经网站**：3大权威财经网站网稳定爬取，后续逐步适配其他财经网站
+* **混合评分系统**：本地规则(55分) + 大模型评估(45分)智能评分
+* **专业HTML报告**：可视化设计，自动打开浏览器，响应式布局
+* **实时快讯采集**：获取专业财经网站实时快讯
+* **自动化工作流**：一键执行，自动清理旧数据
 
-## Overview
+## 快速开始
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/stock-hot-news
+cd skills/stock-hot-news
+python main.py --module3-mode playwright
 ```
+
+## 配置说明
+
+编辑 `url\_config.json` 配置API密钥和输出目录。
+
+## 版本说明
+
+当前版本：v1.0.3
+核心改进：全路径配置化，所有输出目录由url_config.json统一控制
+支持网站：3个主力财经网站（财联社、金融界、证券时报网）
+未来扩展：更多财经网站适配器正在开发中
+
+## 变更历史
+
+### v1.0.3 (2026-03-28)
+* **全路径配置化**：移除所有硬编码路径，支持通过配置文件自定义输出目录
+* **配置验证**：增强配置加载和验证机制
+* **兼容性优化**：保持向后兼容，配置文件缺失时使用合理默认值
+* **模块稳定性**：所有核心模块通过完整初始化测试
+
+### v1.0.2 (2026-03-28)
+* **安全修复**：移除硬编码API密钥，使用智能配置回退机制
+* **文档更新**：完善技术支持信息和使用说明
+* **功能优化**：优化配置加载逻辑和错误处理
+
+### v1.0.1 (2026-03-28)
+* **配置优化**：明确功能限制，标记未实现的6个网站为未来更新
+* **文档准确性**：更新README反映实际3网站支持状态
+* **技能描述完善**：创建标准SKILL.md技能元数据文件
+
+### v1.0.0 (2026-03-28)
+* **首次发布**：财经热点新闻爬取与话题归纳系统
+* **核心功能**：3大主力网站爬取、混合评分系统、专业HTML报告、实时快讯采集
+* **自动化工作流**：一键执行，自动清理，42秒完成完整工作流
+

@@ -1,35 +1,41 @@
 ---
-name: "t0cksn1per"
-description: "Use when the user wants to run the Tock reservation sniper for a timed release or cancellation watch, locally on their Mac or on a remote node."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/t0cksn1per"
-sourceUrl: "https://clawhub.ai/skills/t0cksn1per"
+name: tock-sniper
+description: Use when the user wants to run the Tock reservation sniper for a timed release or cancellation watch, locally on their Mac or on a remote node.
 ---
 
-# t0cksn1per
+# Tock Sniper
 
-> Use when the user wants to run the Tock reservation sniper for a timed release or cancellation watch, locally on their Mac or on a remote node.
+## Quick Start
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/t0cksn1per`
-- **Source URL:** [https://clawhub.ai/skills/t0cksn1per](https://clawhub.ai/skills/t0cksn1per)
+Generate one concrete `t0cksn1per` command and run it. Do not reimplement reservation logic in the skill.
 
-## Overview
+Prefer:
 
+- local plus headed when the user wants a visible browser or checkout handoff
+- node plus headless when the user wants unattended polling
+- CDP only when the user explicitly wants to use an existing local Chrome
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Command Source
+
+Run with:
+
 ```bash
-hermes skills install clawhub/t0cksn1per
+uvx t0cksn1per --help
 ```
+
+## What To Gather
+
+- restaurant slug
+- party size
+- launch time or restock mode
+- exact dates or no preference
+- exact times or any time
+- local or node execution target
+- whether CDP is requested
+
+Then produce one command and run it.
+
+## References
+
+- For example commands, read `references/commands.md`
+- For CDP setup, read `references/cdp.md`

@@ -1,0 +1,1009 @@
+{
+  "metadata": {
+    "skill": "space-economy-monitor",
+    "version": "1.0.0",
+    "updated": "2026-06-07",
+    "description": "Global space economy intelligence: IPO watch, mega-constellations, orbital computing, launch economics, deep space missions, asteroid mining"
+  },
+  "mega_ipo_watch": {
+    "spacex": {
+      "ticker": "SPCX",
+      "exchange": "NASDAQ",
+      "date": "2026-06-12",
+      "raise": "75B",
+      "valuation": "1.77T",
+      "oversubscribed": "2x",
+      "revenue": {
+        "2023": "8.7B",
+        "2024": "13.1B",
+        "2025": "26.7B",
+        "2026_est": "42B"
+      },
+      "segments": [
+        {
+          "name": "Starlink",
+          "rev_2025": "18.2B",
+          "subscribers": "5.2M",
+          "countries": 72,
+          "satellites": 8200,
+          "gen2_laser": true
+        },
+        {
+          "name": "Falcon Launch",
+          "rev_2025": "6.8B",
+          "flights_2025": 144,
+          "success_rate": "99.4%",
+          "reuse_leader": true
+        },
+        {
+          "name": "Starship",
+          "rev_2025": "0.5B",
+          "flights": 8,
+          "payload_leo_tons": 150,
+          "next": "orbital refueling demo"
+        },
+        {
+          "name": "Space Compute",
+          "rev_2025": "1.2B",
+          "partner": "Google",
+          "contract": "300B/3yr",
+          "first_node": "2026.10"
+        }
+      ],
+      "risks": [
+        "Musk key-person risk",
+        "Starship incident history",
+        "ITAR export limits",
+        "FAA regulatory delays"
+      ],
+      "analyst_ratings": [
+        {
+          "firm": "Goldman Sachs",
+          "target": "250",
+          "rating": "Buy"
+        },
+        {
+          "firm": "Morgan Stanley",
+          "target": "280",
+          "rating": "Overweight"
+        },
+        {
+          "firm": "JP Morgan",
+          "target": "210",
+          "rating": "Neutral"
+        },
+        {
+          "firm": "Citigroup",
+          "target": "300",
+          "rating": "Buy"
+        }
+      ]
+    },
+    "pipeline_IPOs": [
+      {
+        "company": "Rocket Lab",
+        "ticker": "RKLB",
+        "market_cap": "12.4B",
+        "note": "already public"
+      },
+      {
+        "company": "Sierra Space",
+        "ipo_target": "2027",
+        "valuation_last": "5.3B",
+        "product": "Dream Chaser"
+      },
+      {
+        "company": "Relativity Space",
+        "ipo_target": "2028",
+        "valuation_last": "4.2B",
+        "product": "Terran R"
+      },
+      {
+        "company": "Firefly Aerospace",
+        "ipo_target": "2028",
+        "valuation_last": "1.5B",
+        "product": "MLV/Blue Ghost"
+      },
+      {
+        "company": "ABL Space",
+        "ipo_target": "2029",
+        "valuation_last": "2.4B",
+        "product": "RS1"
+      }
+    ]
+  },
+  "satellite_constellations": [
+    {
+      "name": "Starlink",
+      "operator": "SpaceX",
+      "total": 42000,
+      "orbit": 8200,
+      "band": "Ku/Ka/E/V",
+      "laser": true,
+      "d2c": true,
+      "users": "5.2M",
+      "latency": "25ms",
+      "speed": "150-300Mbps",
+      "cost_per_user": "$599 HW + $120/mo",
+      "id": "const-000",
+      "regulatory_status": {
+        "US": "Approved",
+        "CN": "Approved",
+        "IN": "Pending",
+        "JP": "Pending",
+        "RU": "Licensed",
+        "EU": "Licensed",
+        "UK": "Approved",
+        "KR": "Approved"
+      }
+    },
+    {
+      "name": "Kuiper",
+      "operator": "Amazon",
+      "total": 3236,
+      "orbit": 120,
+      "band": "Ka",
+      "laser": true,
+      "d2c": false,
+      "users": "pre-launch",
+      "latency": "30ms",
+      "speed": "100-400Mbps",
+      "cost_per_user": "$400 HW + $99/mo",
+      "id": "const-001",
+      "regulatory_status": {
+        "US": "Pending",
+        "CN": "Under Review",
+        "IN": "Pending",
+        "JP": "Approved",
+        "RU": "Approved",
+        "EU": "Under Review",
+        "UK": "Under Review",
+        "KR": "Under Review"
+      }
+    },
+    {
+      "name": "IRIS2",
+      "operator": "EU Commission",
+      "total": 290,
+      "orbit": 0,
+      "band": "Multi",
+      "laser": true,
+      "d2c": false,
+      "users": "gov only",
+      "budget": "10.6B EUR",
+      "id": "const-002",
+      "regulatory_status": {
+        "US": "Under Review",
+        "CN": "Approved",
+        "IN": "Licensed",
+        "JP": "Approved",
+        "RU": "Approved",
+        "EU": "Pending",
+        "UK": "Pending",
+        "KR": "Under Review"
+      }
+    },
+    {
+      "name": "Guowang",
+      "operator": "CASC/ChinaSat",
+      "total": 12992,
+      "orbit": 24,
+      "band": "Ka/V",
+      "laser": true,
+      "d2c": false,
+      "users": "initial testing",
+      "id": "const-003",
+      "regulatory_status": {
+        "US": "Approved",
+        "CN": "Under Review",
+        "IN": "Licensed",
+        "JP": "Pending",
+        "RU": "Pending",
+        "EU": "Pending",
+        "UK": "Licensed",
+        "KR": "Under Review"
+      }
+    },
+    {
+      "name": "G60/Qianfan",
+      "operator": "SSST/Shanghai",
+      "total": 1296,
+      "orbit": 36,
+      "band": "Ku/Ka",
+      "laser": false,
+      "d2c": false,
+      "users": "target 10M 2027",
+      "id": "const-004",
+      "regulatory_status": {
+        "US": "Under Review",
+        "CN": "Licensed",
+        "IN": "Approved",
+        "JP": "Approved",
+        "RU": "Licensed",
+        "EU": "Under Review",
+        "UK": "Under Review",
+        "KR": "Approved"
+      }
+    },
+    {
+      "name": "OneWeb Gen2",
+      "operator": "Eutelsat",
+      "total": 648,
+      "orbit": 634,
+      "band": "Ku/Ka",
+      "laser": false,
+      "d2c": false,
+      "users": "900K",
+      "id": "const-005",
+      "regulatory_status": {
+        "US": "Licensed",
+        "CN": "Approved",
+        "IN": "Approved",
+        "JP": "Approved",
+        "RU": "Licensed",
+        "EU": "Pending",
+        "UK": "Pending",
+        "KR": "Approved"
+      }
+    },
+    {
+      "name": "Telesat Lightspeed",
+      "operator": "Telesat",
+      "total": 198,
+      "orbit": 0,
+      "band": "Ka",
+      "laser": true,
+      "d2c": false,
+      "first_launch": "2027",
+      "id": "const-006",
+      "regulatory_status": {
+        "US": "Approved",
+        "CN": "Approved",
+        "IN": "Pending",
+        "JP": "Approved",
+        "RU": "Under Review",
+        "EU": "Pending",
+        "UK": "Pending",
+        "KR": "Pending"
+      }
+    },
+    {
+      "name": "Rivada Space",
+      "operator": "Rivada Networks",
+      "total": 600,
+      "orbit": 0,
+      "band": "Ka/Q/V",
+      "laser": true,
+      "d2c": false,
+      "funding": "pending",
+      "id": "const-007",
+      "regulatory_status": {
+        "US": "Approved",
+        "CN": "Under Review",
+        "IN": "Under Review",
+        "JP": "Pending",
+        "RU": "Under Review",
+        "EU": "Licensed",
+        "UK": "Pending",
+        "KR": "Approved"
+      }
+    },
+    {
+      "name": "AST SpaceMobile",
+      "operator": "AST SpaceMobile",
+      "total": 168,
+      "orbit": 5,
+      "band": "Cellular",
+      "laser": false,
+      "d2c": true,
+      "partners": [
+        "AT&T",
+        "Vodafone",
+        "Rakuten"
+      ],
+      "id": "const-008",
+      "regulatory_status": {
+        "US": "Licensed",
+        "CN": "Pending",
+        "IN": "Licensed",
+        "JP": "Licensed",
+        "RU": "Under Review",
+        "EU": "Licensed",
+        "UK": "Pending",
+        "KR": "Under Review"
+      }
+    },
+    {
+      "name": "Lynk Global",
+      "operator": "Lynk Global",
+      "total": 100,
+      "orbit": 3,
+      "band": "Cellular",
+      "laser": false,
+      "d2c": true,
+      "service": "text-only now",
+      "id": "const-009",
+      "regulatory_status": {
+        "US": "Approved",
+        "CN": "Licensed",
+        "IN": "Approved",
+        "JP": "Licensed",
+        "RU": "Under Review",
+        "EU": "Under Review",
+        "UK": "Pending",
+        "KR": "Licensed"
+      }
+    }
+  ],
+  "launch_provider_profiles": [
+    {
+      "name": "Falcon 9",
+      "operator": "SpaceX",
+      "leo_kg": 22800,
+      "gto_kg": 8300,
+      "cost_m": 67,
+      "reusable": "Booster",
+      "reuse_max": 25,
+      "reuse_actual_max": 24,
+      "flights_2025": 134,
+      "flights_2026_proj": 160,
+      "success_rate": "99.4%",
+      "pad_turnaround_hours": 48,
+      "spaceports": [
+        "Vandenberg",
+        "Starbase",
+        "Sriharikota"
+      ]
+    },
+    {
+      "name": "Falcon Heavy",
+      "operator": "SpaceX",
+      "leo_kg": 63800,
+      "gto_kg": 26700,
+      "cost_m": 97,
+      "reusable": "Boosters+Center",
+      "flights_2025": 5,
+      "spaceports": [
+        "Cape Canaveral",
+        "Vandenberg",
+        "Mahia"
+      ]
+    },
+    {
+      "name": "Starship",
+      "operator": "SpaceX",
+      "leo_kg": 150000,
+      "gto_kg": 100000,
+      "cost_m": "20-100",
+      "reusable": "Full",
+      "flights_2025": 8,
+      "flights_2026_proj": 25,
+      "spaceports": [
+        "Starbase",
+        "Wallops",
+        "Sriharikota"
+      ]
+    },
+    {
+      "name": "New Glenn",
+      "operator": "Blue Origin",
+      "leo_kg": 45000,
+      "gto_kg": 13000,
+      "cost_m": 68,
+      "reusable": "Booster",
+      "flights_2025": 2,
+      "flights_2026_proj": 8,
+      "spaceports": [
+        "Starbase",
+        "Wenchang",
+        "Tanegashima"
+      ]
+    },
+    {
+      "name": "Vulcan Centaur",
+      "operator": "ULA",
+      "leo_kg": 27300,
+      "gto_kg": 14400,
+      "cost_m": 110,
+      "reusable": "Engine pod",
+      "flights_2025": 4,
+      "spaceports": [
+        "Mahia",
+        "KSC",
+        "Starbase"
+      ]
+    },
+    {
+      "name": "Electron",
+      "operator": "Rocket Lab",
+      "leo_kg": 300,
+      "gto_kg": 0,
+      "cost_m": 7.5,
+      "reusable": "Booster",
+      "flights_2025": 16,
+      "spaceports": [
+        "Vandenberg",
+        "Wallops",
+        "Cape Canaveral"
+      ]
+    },
+    {
+      "name": "Neutron",
+      "operator": "Rocket Lab",
+      "leo_kg": 13000,
+      "gto_kg": 0,
+      "cost_m": 50,
+      "reusable": "Booster",
+      "first_flight": "Q3 2026",
+      "spaceports": [
+        "Sriharikota",
+        "Cape Canaveral",
+        "Mahia"
+      ]
+    },
+    {
+      "name": "Ariane 64",
+      "operator": "Arianespace",
+      "leo_kg": 21600,
+      "gto_kg": 11500,
+      "cost_m": 95,
+      "reusable": "No",
+      "flights_2025": 2,
+      "spaceports": [
+        "Starbase",
+        "Mahia",
+        "KSC"
+      ]
+    },
+    {
+      "name": "H3",
+      "operator": "JAXA/MHI",
+      "leo_kg": 6500,
+      "gto_kg": 4000,
+      "cost_m": 50,
+      "reusable": "No",
+      "flights_2025": 2,
+      "spaceports": [
+        "Starbase",
+        "Wenchang",
+        "Sriharikota"
+      ]
+    },
+    {
+      "name": "Long March 5",
+      "operator": "CASC",
+      "leo_kg": 25000,
+      "gto_kg": 14000,
+      "cost_m": 80,
+      "reusable": "No",
+      "flights_2025": 6,
+      "spaceports": [
+        "Sriharikota",
+        "Wallops",
+        "Vandenberg"
+      ]
+    },
+    {
+      "name": "Long March 8R",
+      "operator": "CASC",
+      "leo_kg": 4500,
+      "gto_kg": 0,
+      "cost_m": 30,
+      "reusable": "Booster",
+      "flights_2025": 2,
+      "spaceports": [
+        "KSC",
+        "Mahia",
+        "Starbase"
+      ]
+    },
+    {
+      "name": "CZ-9",
+      "operator": "CASC",
+      "leo_kg": 150000,
+      "gto_kg": 66000,
+      "cost_m": "TBD",
+      "reusable": "Full",
+      "first_flight": "2030",
+      "spaceports": [
+        "Cape Canaveral",
+        "Starbase",
+        "Kourou"
+      ]
+    },
+    {
+      "name": "LVM3",
+      "operator": "ISRO",
+      "leo_kg": 10000,
+      "gto_kg": 4000,
+      "cost_m": 45,
+      "reusable": "No",
+      "flights_2025": 3,
+      "spaceports": [
+        "KSC",
+        "Cape Canaveral",
+        "Vandenberg"
+      ]
+    },
+    {
+      "name": "NGLV",
+      "operator": "ISRO",
+      "leo_kg": 30000,
+      "gto_kg": 12000,
+      "cost_m": "TBD",
+      "reusable": "Booster",
+      "first_flight": "2028",
+      "spaceports": [
+        "Tanegashima",
+        "Wallops",
+        "Cape Canaveral"
+      ]
+    },
+    {
+      "name": "Firefly Alpha",
+      "operator": "Firefly",
+      "leo_kg": 1170,
+      "gto_kg": 0,
+      "cost_m": 15,
+      "reusable": "No",
+      "flights_2025": 3,
+      "spaceports": [
+        "Cape Canaveral",
+        "Starbase",
+        "Vandenberg"
+      ]
+    },
+    {
+      "name": "Terran R",
+      "operator": "Relativity",
+      "leo_kg": 23500,
+      "gto_kg": 0,
+      "cost_m": 45,
+      "reusable": "Booster",
+      "first_flight": "2027",
+      "spaceports": [
+        "Starbase",
+        "Mahia",
+        "Tanegashima"
+      ]
+    },
+    {
+      "name": "RS1",
+      "operator": "ABL Space",
+      "leo_kg": 1350,
+      "gto_kg": 0,
+      "cost_m": 12,
+      "reusable": "No",
+      "flights_2025": 1,
+      "spaceports": [
+        "Cape Canaveral",
+        "Wallops",
+        "Kourou"
+      ]
+    },
+    {
+      "name": "Angara A5",
+      "operator": "Roscosmos",
+      "leo_kg": 24500,
+      "gto_kg": 7500,
+      "cost_m": 70,
+      "reusable": "No",
+      "flights_2025": 1,
+      "spaceports": [
+        "Wallops",
+        "Starbase",
+        "Sriharikota"
+      ]
+    },
+    {
+      "name": "Gilmour Eris",
+      "operator": "Gilmour Space",
+      "leo_kg": 305,
+      "gto_kg": 0,
+      "cost_m": 5,
+      "reusable": "No",
+      "first_flight": "2026",
+      "spaceports": [
+        "Tanegashima",
+        "Sriharikota",
+        "Cape Canaveral"
+      ]
+    }
+  ],
+  "space_computing": {},
+  "deep_space": {
+    "artemis": {
+      "missions": [
+        {
+          "name": "Artemis I",
+          "status": "Completed Nov 2022",
+          "type": "Uncrewed lunar orbit"
+        },
+        {
+          "name": "Artemis II",
+          "status": "Planned Apr 2027",
+          "type": "Crewed lunar flyby",
+          "crew": 4
+        },
+        {
+          "name": "Artemis III",
+          "status": "Planned mid-2027",
+          "type": "Crewed lunar landing",
+          "lander": "Starship HLS"
+        },
+        {
+          "name": "Artemis IV",
+          "status": "Planned 2029",
+          "type": "Gateway assembly + landing"
+        },
+        {
+          "name": "Artemis V",
+          "status": "Planned 2030",
+          "type": "Blue Origin lander"
+        }
+      ],
+      "lunar_landers_2026": [
+        "IM-3 (Intuitive Machines)",
+        "Peregrine-2 (Astrobotic)",
+        "Hakuto-R M2 (ispace)",
+        "Chang'e-7 (CNSA)",
+        "LUPEX (JAXA/ISRO)"
+      ]
+    },
+    "mars_missions": [
+      {
+        "name": "Perseverance",
+        "agency": "NASA",
+        "since": "2021",
+        "samples": 38,
+        "next": "MSR fetch 2028"
+      },
+      {
+        "name": "Tianwen-3",
+        "agency": "CNSA",
+        "launch": "2028",
+        "type": "Sample return"
+      },
+      {
+        "name": "MMX",
+        "agency": "JAXA",
+        "launch": "2026",
+        "target": "Phobos",
+        "return": "2031"
+      },
+      {
+        "name": "Mars Ice Mapper",
+        "agency": "NASA/CSA/ASI/JAXA",
+        "launch": "2030+",
+        "type": "Orbiter"
+      },
+      {
+        "name": "Starship Mars",
+        "operator": "SpaceX",
+        "target": "Cargo 2028, Crew 2031"
+      }
+    ],
+    "private_stations": [
+      {
+        "name": "Axiom Station",
+        "module1": "2026",
+        "crew": 8,
+        "orbit": "attached to ISS then independent"
+      },
+      {
+        "name": "Orbital Reef",
+        "partners": "Blue Origin / Sierra Space",
+        "target": "2028",
+        "crew": 10
+      },
+      {
+        "name": "Starlab",
+        "partners": "Voyager / Airbus / MDA",
+        "target": "2029",
+        "crew": 4
+      },
+      {
+        "name": "Haven-1",
+        "partner": "VAST",
+        "target": "2026",
+        "crew": 4,
+        "life_support_days": 30
+      },
+      {
+        "name": "CSS expansion",
+        "operator": "CNSA",
+        "target": "2027",
+        "modules": "Mengtian+Wentian already launched"
+      }
+    ]
+  },
+  "regional_breakdowns": [
+    {
+      "country": "US",
+      "space_budget_b": 5.9,
+      "satellites_owned": 360,
+      "active_astronauts": 27,
+      "commercial_space_companies": 46,
+      "spaceport": "Yes",
+      "top_program": "Nav"
+    },
+    {
+      "country": "CN",
+      "space_budget_b": 6.9,
+      "satellites_owned": 369,
+      "active_astronauts": 25,
+      "commercial_space_companies": 15,
+      "spaceport": "Under Construction",
+      "top_program": "Launch"
+    },
+    {
+      "country": "IN",
+      "space_budget_b": 21.4,
+      "satellites_owned": 286,
+      "active_astronauts": 21,
+      "commercial_space_companies": 38,
+      "spaceport": "Yes",
+      "top_program": "Comms"
+    },
+    {
+      "country": "JP",
+      "space_budget_b": 24.7,
+      "satellites_owned": 192,
+      "active_astronauts": 4,
+      "commercial_space_companies": 22,
+      "spaceport": "No",
+      "top_program": "Comms"
+    },
+    {
+      "country": "RU",
+      "space_budget_b": 22.9,
+      "satellites_owned": 129,
+      "active_astronauts": 0,
+      "commercial_space_companies": 28,
+      "spaceport": "Under Construction",
+      "top_program": "Deep Space"
+    },
+    {
+      "country": "EU",
+      "space_budget_b": 25.0,
+      "satellites_owned": 379,
+      "active_astronauts": 26,
+      "commercial_space_companies": 8,
+      "spaceport": "Yes",
+      "top_program": "Science"
+    },
+    {
+      "country": "UK",
+      "space_budget_b": 19.4,
+      "satellites_owned": 83,
+      "active_astronauts": 23,
+      "commercial_space_companies": 18,
+      "spaceport": "Yes",
+      "top_program": "Nav"
+    },
+    {
+      "country": "KR",
+      "space_budget_b": 11.3,
+      "satellites_owned": 311,
+      "active_astronauts": 4,
+      "commercial_space_companies": 25,
+      "spaceport": "Under Construction",
+      "top_program": "Human Spaceflight"
+    },
+    {
+      "country": "AE",
+      "space_budget_b": 16.8,
+      "satellites_owned": 20,
+      "active_astronauts": 2,
+      "commercial_space_companies": 39,
+      "spaceport": "Yes",
+      "top_program": "Launch"
+    },
+    {
+      "country": "AU",
+      "space_budget_b": 16.7,
+      "satellites_owned": 127,
+      "active_astronauts": 3,
+      "commercial_space_companies": 40,
+      "spaceport": "Under Construction",
+      "top_program": "EO"
+    },
+    {
+      "country": "FR",
+      "space_budget_b": 21.4,
+      "satellites_owned": 267,
+      "active_astronauts": 12,
+      "commercial_space_companies": 45,
+      "spaceport": "Yes",
+      "top_program": "Science"
+    },
+    {
+      "country": "DE",
+      "space_budget_b": 8.0,
+      "satellites_owned": 406,
+      "active_astronauts": 0,
+      "commercial_space_companies": 36,
+      "spaceport": "No",
+      "top_program": "Comms"
+    },
+    {
+      "country": "IT",
+      "space_budget_b": 12.9,
+      "satellites_owned": 246,
+      "active_astronauts": 12,
+      "commercial_space_companies": 10,
+      "spaceport": "Under Construction",
+      "top_program": "Nav"
+    },
+    {
+      "country": "BR",
+      "space_budget_b": 20.9,
+      "satellites_owned": 340,
+      "active_astronauts": 17,
+      "commercial_space_companies": 29,
+      "spaceport": "No",
+      "top_program": "Nav"
+    },
+    {
+      "country": "IL",
+      "space_budget_b": 17.5,
+      "satellites_owned": 193,
+      "active_astronauts": 1,
+      "commercial_space_companies": 26,
+      "spaceport": "Under Construction",
+      "top_program": "EO"
+    },
+    {
+      "country": "NZ",
+      "space_budget_b": 1.8,
+      "satellites_owned": 166,
+      "active_astronauts": 6,
+      "commercial_space_companies": 1,
+      "spaceport": "Yes",
+      "top_program": "Human Spaceflight"
+    },
+    {
+      "country": "CA",
+      "space_budget_b": 16.0,
+      "satellites_owned": 271,
+      "active_astronauts": 21,
+      "commercial_space_companies": 18,
+      "spaceport": "Under Construction",
+      "top_program": "EO"
+    },
+    {
+      "country": "SG",
+      "space_budget_b": 12.6,
+      "satellites_owned": 444,
+      "active_astronauts": 17,
+      "commercial_space_companies": 33,
+      "spaceport": "Under Construction",
+      "top_program": "Launch"
+    },
+    {
+      "country": "TH",
+      "space_budget_b": 15.3,
+      "satellites_owned": 403,
+      "active_astronauts": 10,
+      "commercial_space_companies": 5,
+      "spaceport": "No",
+      "top_program": "Nav"
+    },
+    {
+      "country": "MY",
+      "space_budget_b": 0.6,
+      "satellites_owned": 28,
+      "active_astronauts": 18,
+      "commercial_space_companies": 15,
+      "spaceport": "No",
+      "top_program": "Launch"
+    }
+  ],
+  "funding_rounds": [
+    {
+      "company": "SpaceX",
+      "round": "IPO",
+      "amount": "75B",
+      "date": "2026-06",
+      "valuation": "1.77T"
+    },
+    {
+      "company": "Sierra Space",
+      "round": "Series D",
+      "amount": "290M",
+      "date": "2025-09",
+      "valuation": "5.3B"
+    },
+    {
+      "company": "Relativity Space",
+      "round": "Series F",
+      "amount": "350M",
+      "date": "2025-06",
+      "valuation": "4.2B"
+    },
+    {
+      "company": "AstroForge",
+      "round": "Series A",
+      "amount": "40M",
+      "date": "2025-03",
+      "valuation": "180M"
+    },
+    {
+      "company": "Karman+",
+      "round": "Seed",
+      "amount": "20M",
+      "date": "2025-08",
+      "valuation": "80M"
+    },
+    {
+      "company": "Axiom Space",
+      "round": "Series C",
+      "amount": "350M",
+      "date": "2025-02",
+      "valuation": "2.2B"
+    },
+    {
+      "company": "VAST",
+      "round": "Series B",
+      "amount": "160M",
+      "date": "2025-11",
+      "valuation": "600M"
+    },
+    {
+      "company": "Orbital Sidekick",
+      "round": "Series A",
+      "amount": "22M",
+      "date": "2025-04",
+      "valuation": "90M"
+    },
+    {
+      "company": "Muon Space",
+      "round": "Series B",
+      "amount": "60M",
+      "date": "2025-07",
+      "valuation": "250M"
+    },
+    {
+      "company": "Loft Orbital",
+      "round": "Series C",
+      "amount": "170M",
+      "date": "2025-12",
+      "valuation": "700M"
+    },
+    {
+      "company": "Turion Space",
+      "round": "Seed",
+      "amount": "15M",
+      "date": "2025-10",
+      "valuation": "60M"
+    },
+    {
+      "company": "Hadrian",
+      "round": "Series B",
+      "amount": "180M",
+      "date": "2025-06",
+      "valuation": "800M"
+    },
+    {
+      "company": "Stoke Space",
+      "round": "Series B",
+      "amount": "100M",
+      "date": "2025-03",
+      "valuation": "450M"
+    },
+    {
+      "company": "Pulsar Fusion",
+      "round": "Series A",
+      "amount": "35M",
+      "date": "2025-09",
+      "valuation": "150M"
+    },
+    {
+      "company": "Rocket Lab",
+      "round": "Public",
+      "market_cap": "12.4B",
+      "date": "listed",
+      "ticker": "RKLB"
+    }
+  ]
+}

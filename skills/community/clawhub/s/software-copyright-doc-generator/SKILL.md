@@ -1,35 +1,90 @@
 ---
-name: "software-copyright"
-description: "用于生成软件著作权申请相关文档的工具。当用户需要填写软件著作权登记表、生成软件说明书、创建技术文档、准备软著申请材料时使用。支持中国软件著作权登记所需的各类文档模板和信息收集。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/software-copyright-doc-generator"
-sourceUrl: "https://clawhub.ai/skills/software-copyright-doc-generator"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: "00000000000000000000000000000000"
+    PropagateID: "00000000000000000000000000000000"
+    ReservedCode1: 3045022100a70e78206634567e54fee9d619987355bdfcea327183788e464e47800ce855120220320e8d71db238ee5f5e8fb7d1a35d132ebb6a3b5427632ced482c8dd8e913b29
+    ReservedCode2: 3046022100c7fe6b9bcb083e2d49e8c2488f7eab567a2a90c31ea4f56d9897e6dc89f25044022100cecf3a7acb78b84bec8238819c483026073a589ebfb73f19c2f6ca4db57efeae
+description: 用于生成软件著作权申请相关文档的工具。当用户需要填写软件著作权登记表、生成软件说明书、创建技术文档、准备软著申请材料时使用。支持中国软件著作权登记所需的各类文档模板和信息收集。
+name: software-copyright-doc-generator
 ---
 
-# software-copyright
+# 软件著作权文档生成器
 
-> 用于生成软件著作权申请相关文档的工具。当用户需要填写软件著作权登记表、生成软件说明书、创建技术文档、准备软著申请材料时使用。支持中国软件著作权登记所需的各类文档模板和信息收集。
+本技能帮助用户根据用户提供的基础软件信息，按照最新的法律和行政规范，自动生成软著申请所需的“申请表核心信息”、“源代码鉴别材料（示例建议）”以及“用户手册/说明书文案”。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/software-copyright-doc-generator`
-- **Source URL:** [https://clawhub.ai/skills/software-copyright-doc-generator](https://clawhub.ai/skills/software-copyright-doc-generator)
+## 工作流程
 
-## Overview
+### 第一步：收集基本信息，完善申请表关键字段，生成软著申请表
 
+通过交互式表单收集以下必填信息：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/software-copyright-doc-generator
+1. **软件基本信息**
+   - 软件名称（全称）
+   - 软件简称（如有）
+   - 版本号
+   - 开发完成日期
+
+2. **软件技术信息**
+   - 编程语言
+   - 主要功能简介
+
+根据用户提供的零散信息，扩充并规范化以下内容，并生成软著申请表，内容包括：
+
+- 软件全称与简称： 建议符合行业习惯的名称。
+- 版本号： 默认为 V1.0（除非用户指定）。
+- 硬件环境： 规范描述（如：处理器、内存、硬盘要求）。
+- 软件环境： 操作系统、开发语言（如 Java 1.8）、数据库（如 MySQL 8.0）、中间件等。
+- 技术特点描述： 用专业术语描述软件的体系结构（如 B/S, C/S, 微服务）、创新点。
+
+### 第二步：撰写功能简述（重点）
+
+将用户提供的功能点扩充为一段 300-500 字的专业描述，包含：软件用途、主要功能逻辑、数据处理流程。
+
+### 第三步：生成说明书大纲与正文文案
+
+按照“安装指南 -> 登录说明 -> 核心功能操作 -> 退出/维护”的逻辑撰写。
+在每个功能点处，通过文字详细描述操作步骤，并预留 [此处请插入XX功能截图] 标记。
+
+### 第四步：源代码规范化建议
+
+根据软件类型，列出该软件最核心的 5-10 个类名或文件名。
+提示用户源代码在排版时必须删除空行、注释，且每页不少于 50 行。
+
+## 输出文件清单
+
+1. `软件著作权申请表_{软件名称}.docx`
+2. `软件说明书_{软件名称}.docx`
+3. `软件源代码_{软件名称}.md`
+
+## 使用示例
+
 ```
+用户：帮我生成"智能排课系统"的软件著作权申请材料
+助手：好的，我将引导您完成软件著作权申请材料的收集和生成过程。
+```
+
+## 约束与边界
+
+- 专业术语： 必须使用标准的计算机术语（如“异步处理”、“高并发”、“模块化设计”）。
+- 日期逻辑： 开发完成日期必须早于申请日期；若为合作开发，需提醒用户准备合作协议。
+- 字数限制： 功能简述需精炼，说明书文案需详尽。
+- 严禁虚构： 不得编造用户未提及的重大核心技术发明，仅在用户原有功能基础上进行文字润色。
+
+## 重复关键信息
+说明书文案必须包含具体的操作步骤，而非简单的功能罗列。
+提醒用户源代码鉴别材料需提供前、后各连续的 30 页。
+所有文字需保持客观、中立、专业的文档语气。
+## 防幻觉与准确性指令
+先思后答： 在撰写前，先分析该软件属于“应用软件”、“中间件”还是“嵌入式软件”，并按对应类别拟稿。
+明确未知： 如果用户没给开发环境，请列出常用的选项（如：Win10 + VS Code）让用户选择，不要直接默认。
+逻辑校验： 自动检查软件全称是否包含“系统”、“软件”、“平台”等必要字样。
+
+## 文档标准参考
+
+本技能参考以下标准：
+- 《计算机软件保护条例》
+- 《软件著作权登记申请表》填写说明
+- 中国版权保护中心软件著作权登记指南

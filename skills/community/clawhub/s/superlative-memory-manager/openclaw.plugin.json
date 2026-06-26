@@ -1,0 +1,20 @@
+{
+  "name": "superlative-memory-manager",
+  "version": "1.0.0",
+  "description": "Combines cognitive-memory, memory-tiering, context-compactor, and memory-on-demand into a unified, auto-compacting memory system with semantic recall. Prevents context overflow, optimizes token usage, and ensures long-term retention.",
+  "author": "Aisha (Lars's AI Assistant)",
+  "keywords": ["memory", "compaction", "tiering", "context-management", "openclaw", "semantic-recall", "self-improving"],
+  "license": "MIT",
+  "openclaw": {
+    "emoji": "🧠",
+    "provides": ["memory", "compaction", "tiering", "recall"],
+    "requires": {
+      "skills": [
+        "cognitive-memory",
+        "memory-tiering",
+        "context-compactor",
+        "memory-on-demand"
+      ]
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "version": "1",
+  "generated_at": "2026-04-12T18:55:05.116Z",
+  "base_name": "story-minimal",
+  "artifact_base_dir": "$EXAMPLES_ROOT",
+  "manifest_path": "$EXAMPLES_ROOT/story-minimal.artifacts.json",
+  "story_input_path": "",
+  "effective_story_input_path": "$EXAMPLES_ROOT/story-minimal.structured-script.yaml",
+  "casting_output_path": "$EXAMPLES_ROOT/story-minimal.casting-plan.yaml",
+  "tts_requests_path": "$EXAMPLES_ROOT/story-minimal.tts-requests.json",
+  "library_path": "",
+  "items": [
+    {
+      "id": "casting_plan",
+      "scope": "story",
+      "stage": "casting",
+      "visibility": "essential",
+      "label": "生效选角计划",
+      "path": "$EXAMPLES_ROOT/story-minimal.casting-plan.yaml",
+      "exists": true,
+      "description": "真正供下游使用的角色 -> 音色映射结果。",
+      "meta": {}
+    },
+    {
+      "id": "casting_review",
+      "scope": "story",
+      "stage": "casting",
+      "visibility": "essential",
+      "label": "角色选角审核",
+      "path": "$EXAMPLES_ROOT/story-minimal.casting-review.yaml",
+      "exists": false,
+      "description": "人工修正角色最终音色入口。",
+      "meta": {}
+    },
+    {
+      "id": "structured_script",
+      "scope": "story",
+      "stage": "script",
+      "visibility": "essential",
+      "label": "结构化剧本",
+      "path": "$EXAMPLES_ROOT/story-minimal.structured-script.yaml",
+      "exists": true,
+      "description": "角色、段落、speaker 的统一入口；后续 casting 与 TTS 都从这里继续。",
+      "meta": {}
+    },
+    {
+      "id": "tts_requests",
+      "scope": "story",
+      "stage": "synthesis",
+      "visibility": "essential",
+      "label": "TTS 请求清单",
+      "path": "$EXAMPLES_ROOT/story-minimal.tts-requests.json",
+      "exists": true,
+      "description": "真正可编辑、可 replay、可部分重跑的请求清单。",
+      "meta": {}
+    },
+    {
+      "id": "clone_review",
+      "scope": "story",
+      "stage": "casting",
+      "visibility": "review",
+      "label": "待付费 clone 审核",
+      "path": "$EXAMPLES_ROOT/story-minimal.clone-review.yaml",
+      "exists": false,
+      "description": "人工决定哪些 clone 值得进入真正付费复刻。",
+      "meta": {}
+    },
+    {
+      "id": "role_profiles",
+      "scope": "story",
+      "stage": "casting",
+      "visibility": "review",
+      "label": "角色画像",
+      "path": "$EXAMPLES_ROOT/.audiobook/story-minimal.casting-plan.role-profiles.json",
+      "exists": false,
+      "description": "LLM 为每个角色提炼出的音色需求与证据。",
+      "meta": {}
+    },
+    {
+      "id": "casting_selection_trace",
+      "scope": "story",
+      "stage": "casting",
+      "visibility": "review",
+      "label": "选角模型原始结果",
+      "path": "$EXAMPLES_ROOT/.audiobook/story-minimal.casting-plan.casting-selection.json",
+      "exists": false,
+      "description": "LLM 选角返回与归一化结果归档，适合排查。",
+      "meta": {}
+    },
+    {
+      "id": "script_generation_trace",
+      "scope": "story",
+      "stage": "script",
+      "visibility": "review",
+      "label": "结构化剧本生成轨迹",
+      "path": "$EXAMPLES_ROOT/story-minimal.structured-script.generation.json",
+      "exists": false,
+      "description": "txt -> structured-script 的 overview/chunks/finalize 调用归档。",
+      "meta": {}
+    },
+    {
+      "id": "segment_audio_dir",
+      "scope": "story",
+      "stage": "synthesis",
+      "visibility": "review",
+      "label": "分段音频目录",
+      "path": "$EXAMPLES_ROOT/story-minimal.segments",
+      "exists": false,
+      "description": "每段实际合成出来的音频产物；局部重放主要看这里。",
+      "meta": {}
+    },
+    {
+      "id": "script_runtime",
+      "scope": "story",
+      "stage": "synthesis",
+      "visibility": "review",
+      "label": "标准化剧本 runtime",
+      "path": "$EXAMPLES_ROOT/story-minimal.script-runtime.json",
+      "exists": true,
+      "description": "进入 build_tts_requests 前整理好的统一 runtime 结构。",
+      "meta": {}
+    },
+    {
+      "id": "suggested_final_output",
+      "scope": "story",
+      "stage": "export",
+      "visibility": "debug",
+      "label": "建议整本导出路径",
+      "path": "$RUN_ROOT/story-minimal/story-minimal.audiobook.wav",
+      "exists": false,
+      "description": "build_tts_requests 预先写入的默认整本导出位置。",
+      "meta": {}
+    }
+  ],
+  "counts": {
+    "essential": 4,
+    "review": 10,
+    "debug": 11
+  }
+}

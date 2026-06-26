@@ -1,0 +1,15 @@
+{
+  "name": "strict-father",
+  "version": "1.0.0",
+  "description": "> 紫微斗数12宫框架下的残酷真相诊断器 > 联系作者 @yongzhuan_bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "iztro": "^2.5.8"
+  }
+}

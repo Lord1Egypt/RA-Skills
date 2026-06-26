@@ -1,0 +1,44 @@
+{
+  "customer": {
+    "customerId": "CUST-E2E-001",
+    "customerName": "E2E Test Customer Ltd.",
+    "email": "test@e2ecustomer.com",
+    "okkiCompanyId": null
+  },
+  "complaint": {
+    "customerId": "CUST-E2E-001",
+    "customerName": "E2E Test Customer Ltd.",
+    "productId": "PROD-001",
+    "productName": "HDMI Cable 2.0",
+    "productModel": "HDMI-2.0-2M",
+    "type": "quality",
+    "description": "E2E Test: Cable stopped working after 1 week of use",
+    "severity": "medium",
+    "notes": "E2E 测试投诉记录"
+  },
+  "repeatOrder": {
+    "customerId": "CUST-E2E-001",
+    "customerName": "E2E Test Customer Ltd.",
+    "originalOrderId": "ORD-E2E-001",
+    "productModel": "HDMI-2.0-2M",
+    "quantity": 100,
+    "unitPrice": 5.50,
+    "amount": 550.00,
+    "notes": "E2E 测试返单报价"
+  },
+  "satisfaction": {
+    "customerId": "CUST-E2E-001",
+    "customerName": "E2E Test Customer Ltd.",
+    "orderId": "ORD-E2E-001",
+    "overallScore": 4,
+    "qualityScore": 4,
+    "serviceScore": 5,
+    "deliveryScore": 4,
+    "communicationScore": 5,
+    "feedback": "E2E 测试：整体满意，服务质量很好"
+  },
+  "dateRange": {
+    "start": "2026-03-01",
+    "end": "2026-03-31"
+  }
+}

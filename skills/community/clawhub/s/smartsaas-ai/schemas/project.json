@@ -1,0 +1,20 @@
+{
+  "resource": "project",
+  "endpoint": "POST /api/protected/projects",
+  "backendSource": "Projects.mjs (ProjectSchema)",
+  "createScript": "scripts/create-project.sh",
+  "fields": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "string", "required": true },
+    "status": { "type": "string", "required": true, "notes": "enum: active, inactive, completed, archived; default active" },
+    "start_date": { "type": "Date", "required": true },
+    "end_date": { "type": "Date", "required": false },
+    "tags": { "type": "array", "required": false },
+    "userId": { "type": "ObjectId", "required": false },
+    "companyId": { "type": "ObjectId", "required": false },
+    "dateRange": { "type": "string", "required": false },
+    "team": { "type": "array", "required": false, "notes": "ObjectIds ref user_stores" },
+    "createdBy": { "type": "ObjectId", "required": false, "notes": "Set by backend" },
+    "owner": { "type": "ObjectId", "required": false, "notes": "Set by backend" }
+  }
+}

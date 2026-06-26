@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statusline Setup"
+  short_description: "Set up Claude statusline UI"
+  default_prompt: "Inspect my shell prompt setup and configure Claude Code statusline to match it."

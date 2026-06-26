@@ -1,0 +1,28 @@
+{
+  "slug": "sv-script-builder",
+  "name": "Short Video Script Builder",
+  "description": "Builds structured short-video scripts using proven frameworks (hook-body-CTA, AIDA, PAS, story arc) with timing and visual notes.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "script",
+    "writing",
+    "storytelling",
+    "structure",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "video script",
+    "script template",
+    "script structure",
+    "write video",
+    "short video script",
+    "AIDA script",
+    "hook script"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

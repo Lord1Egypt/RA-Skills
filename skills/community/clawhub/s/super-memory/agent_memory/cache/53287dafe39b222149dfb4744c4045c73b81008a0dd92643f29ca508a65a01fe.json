@@ -1,0 +1,143 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 1,
+    "primary": [
+      {
+        "memory_id": "mem_bb8a6f83ab8c",
+        "time_id": "T1779793158",
+        "time_ts": 1779793158,
+        "person_id": "test",
+        "nature_id": "note",
+        "content": "V12综合审查修复验证",
+        "content_hash": "45f8585a2a32",
+        "importance": "high",
+        "is_aggregated": 0,
+        "source_count": 1,
+        "owner_agent_id": "test",
+        "visibility": "team",
+        "valence": 0.0,
+        "arousal": 0.2,
+        "dominance": 0.5,
+        "significance": "notable",
+        "confidence": 0.5,
+        "primary_emotions": "{}",
+        "compound_emotions": "[]",
+        "source": "agent_memory",
+        "source_id": "",
+        "deleted": 0,
+        "custom_ttl": null,
+        "valid_from": null,
+        "valid_until": null,
+        "occurrence_time": null,
+        "mention_time": null,
+        "created_at": 1779793158,
+        "_sources": {
+          "structured": true,
+          "semantic": false,
+          "entity": false,
+          "causal": false,
+          "bm25": true
+        },
+        "_structured_rrf": 0.01639344262295082,
+        "_bm25_rrf": 0.01639344262295082,
+        "_semantic_rrf": 0.0,
+        "_entity_rrf": 0.0,
+        "_causal_rrf": 0.0,
+        "_structured_rank": 1,
+        "_bm25_rank": 1,
+        "_semantic_rank": 0,
+        "_entity_rank": 0,
+        "_causal_rank": 0,
+        "_hit_count": 2,
+        "_rrf_score": 0.03278688524590164,
+        "_rank_score": 0.5316122665855904,
+        "_rank_breakdown": {
+          "importance": 0.15,
+          "time": 0.09999991403807881,
+          "structured": 0.14754098360655737,
+          "semantic": 0.0,
+          "entity": 0.0,
+          "causal": 0.0,
+          "quality": 0.04000000000000001,
+          "multi_hit": 0.005000000000000001,
+          "recency_bias": 0.14999999097399855
+        },
+        "last_accessed_ts": 1779793158.5198977,
+        "temporal_context": {
+          "is_valid": true,
+          "status": "active"
+        },
+        "_rerank_score": 0.5055,
+        "_quality_score": 0.4,
+        "_quality_grade": "C"
+      }
+    ],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [],
+      "expanded": false
+    },
+    "query": "审查修复",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_387ac4b38ee6",
+      "query": "审查修复",
+      "result_summary": "found 1 results via tempr_4way, top_score=0.532",
+      "confidence": 0.7658061332927952,
+      "sources_consulted": [
+        "mem_bb8a6f83ab8c"
+      ],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779793158.5112083
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 1 results",
+          "timestamp": 1779793158.5157604
+        },
+        {
+          "step_type": "bm25_search",
+          "detail": "BM25 found 1 results",
+          "timestamp": 1779793158.5198977
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=20)",
+          "timestamp": 1779793158.5198977
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779793158.5198977
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779793158.5198977
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 1 results (hits: {'structured': 1, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 1}, multi: 1)",
+          "timestamp": 1779793158.5198977
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 1 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779793158.5112083
+    },
+    "status": "ok"
+  },
+  "expires_at": 1779796758.53012,
+  "created_at": 1779793158.53012,
+  "_hmac": "9a66fff07ec7a1660dc13e286f81d51c52c077098d5e1a7c954300aff9aea265"
+}

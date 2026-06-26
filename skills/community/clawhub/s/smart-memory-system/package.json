@@ -1,0 +1,82 @@
+{
+  "name": "smart-memory-system",
+  "version": "1.0.0",
+  "description": "检索增强智能记忆系统 for OpenClaw",
+  "main": "index.js",
+  "scripts": {
+    "init": "node scripts/vectorizer.js init",
+    "load": "node scripts/vectorizer.js load",
+    "search": "node scripts/retriever.js search",
+    "enhance": "node scripts/integrator.js enhance",
+    "status": "node scripts/monitor.js status",
+    "test": "node scripts/test_runner.js",
+    "clean": "node scripts/cleanup.js",
+    "optimize": "node scripts/optimizer.js",
+    "backup": "node scripts/backup.js",
+    "restore": "node scripts/restore.js"
+  },
+  "keywords": [
+    "openclaw",
+    "smart-memory",
+    "rag",
+    "retrieval",
+    "embedding",
+    "semantic-search",
+    "ai",
+    "assistant"
+  ],
+  "author": "Bessent <xio9901>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openclaw-community/smart-memory-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-community/smart-memory-system/issues"
+  },
+  "homepage": "https://github.com/openclaw-community/smart-memory-system#readme",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "yargs": "^17.7.2",
+    "moment": "^2.29.4",
+    "crypto-js": "^4.2.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "config/",
+    "scripts/",
+    "templates/",
+    "examples/"
+  ],
+  "clawhub": {
+    "category": "memory",
+    "tags": [
+      "rag",
+      "retrieval",
+      "semantic-search",
+      "embedding",
+      "optimization"
+    ],
+    "compatibility": [
+      "openclaw>=2026.3.0"
+    ],
+    "install_hook": "node scripts/install.js",
+    "uninstall_hook": "node scripts/uninstall.js"
+  },
+  "directories": {
+    "example": "examples"
+  }
+}

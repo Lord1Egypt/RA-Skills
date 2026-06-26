@@ -1,0 +1,37 @@
+{
+  "slug": "source-trace-builder",
+  "title": "来源追踪构建器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "为分析稿建立引用索引和原始出处映射，区分一手与二手来源。",
+  "inputHint": "引用文本、出处线索、草稿",
+  "sections": [
+    "来源目录",
+    "一手/二手区分",
+    "引用映射",
+    "缺失出处",
+    "风险说明",
+    "维护建议"
+  ],
+  "useCases": [
+    "报告引用管理",
+    "审计留痕",
+    "研究整理"
+  ],
+  "positiveExamples": [
+    "帮我建立这篇分析的来源索引",
+    "区分一手与二手来源"
+  ],
+  "negativeExamples": [
+    "不要编造文献出处",
+    "不要替代正式文献管理软件"
+  ],
+  "risk": "会把无法核实的引用标为待确认。",
+  "tags": [
+    "sources",
+    "citations",
+    "research",
+    "traceability"
+  ]
+}

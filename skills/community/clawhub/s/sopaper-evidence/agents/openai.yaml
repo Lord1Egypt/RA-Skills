@@ -1,0 +1,4 @@
+version: 1
+display_name: Sopaper Evidence
+short_description: Search, verify, and organize real evidence for source-grounded research without fabricating results or citations.
+default_prompt: Build an evidence-first research brief for this project or topic. Generate a search plan when needed, search and fetch real papers, datasets, benchmarks, case studies, and project artifacts, verify what can be trusted, upgrade strong fetched sources into reviewed summaries when justified, ingest structured result artifacts, raw csv/json result files, or experiment result directories when available, map claims to evidence, identify gaps, ground outputs in verifiable sources, and avoid any fabricated results, citations, or unsupported conclusions.

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 - Star Search</title>
+<meta name="description" content="Star Search 隐私政策 - 我们如何收集、使用和保护您的数据">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0e0e10; color: #e8e8e8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; line-height: 1.7; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  h1 { color: #60a5fa; font-size: 2.2rem; margin-bottom: 0.5rem; }
+  h2 { color: #93c5fd; font-size: 1.4rem; margin: 2.5rem 0 1rem; border-bottom: 1px solid #2a2a2d; padding-bottom: 0.5rem; }
+  h3 { color: #e8e8e8; font-size: 1.15rem; margin: 1.5rem 0 0.8rem; }
+  p, li { font-size: 0.95rem; color: #c5c5c8; margin-bottom: 0.7rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  code { background: #1a1a2e; padding: 2px 6px; border-radius: 4px; color: #60a5fa; font-family: Menlo, monospace; font-size: 0.9em; }
+  .meta { color: #6b7280; font-size: 0.85rem; margin-bottom: 2rem; }
+  .back-link { color: #60a5fa; text-decoration: none; font-size: 0.9rem; }
+  .back-link:hover { text-decoration: underline; }
+  .update { background: rgba(96, 165, 250, 0.1); border-left: 3px solid #60a5fa; padding: 1rem; margin: 2rem 0; border-radius: 4px; }
+  .update strong { color: #60a5fa; }
+</style>
+</head>
+<body>
+
+<a href="/" class="back-link">← 返回首页</a>
+
+<h1>隐私政策</h1>
+<p class="meta">最后更新：2026-06-16 · 生效日期：2026-06-16</p>
+
+<div class="update">
+<strong>简明摘要：</strong>我们仅收集您主动提供的数据（手机号、搜索查询），不卖您的数据，<strong>30 天后自动匿名化</strong>，<strong>账号注销 7 天内彻底删除</strong>。
+</div>
+
+<h2>1. 数据收集原则</h2>
+<p>我们遵循 <strong>最小必要</strong> 原则：</p>
+<ul>
+  <li><strong>不收集</strong>任何与服务无关的数据</li>
+  <li><strong>不卖</strong>任何用户数据给第三方</li>
+  <li><strong>不存</strong>搜索内容的长期记录（30 天后自动匿名化）</li>
+  <li><strong>加密存储</strong>密码（bcrypt）+ 传输（HTTPS）</li>
+</ul>
+
+<h2>2. 我们收集的数据</h2>
+
+<h3>2.1 注册账号（必填）</h3>
+<ul>
+  <li><strong>手机号</strong>：用于账号标识 + 验证</li>
+  <li><strong>密码</strong>：使用 bcrypt 加盐哈希存储，明文不存</li>
+  <li><strong>邮箱（可选）</strong>：用于密码重置</li>
+</ul>
+
+<h3>2.2 使用过程（自动）</h3>
+<ul>
+  <li><strong>搜索查询</strong>：用于返回结果，30 天后自动匿名化（删除手机号关联）</li>
+  <li><strong>IP 地址</strong>：用于速率限制 + 反滥用，<strong>7 天后自动删除</strong></li>
+  <li><strong>User-Agent</strong>：用于兼容性问题诊断</li>
+</ul>
+
+<h3>2.3 支付（购买会员时）</h3>
+<ul>
+  <li><strong>订单号 + 金额 + 时间</strong>（支付宝返回）</li>
+  <li><strong>不收集银行卡 / 信用卡号</strong>（支付由支付宝处理）</li>
+</ul>
+
+<h2>3. 我们不收集的数据</h2>
+<ul>
+  <li>❌ 通讯录 / 短信 / 通话记录</li>
+  <li>❌ 精确地理位置（仅 IP 推断的城市级）</li>
+  <li>❌ 设备唯一标识符（IMEI/IDFA）</li>
+  <li>❌ 相册 / 麦克风（仅 OCR 多模态搜索时，用户主动上传）</li>
+</ul>
+
+<h2>4. 数据使用范围</h2>
+<p>我们<strong>仅</strong>将数据用于：</p>
+<ol>
+  <li>提供搜索服务（必需）</li>
+  <li>防止滥用（速率限制 + 反爬虫，必需）</li>
+  <li>改进服务质量（聚合统计，匿名化后）</li>
+  <li>响应您的客服请求（您主动联系时）</li>
+</ol>
+
+<h2>5. 数据共享</h2>
+<p>我们<strong>不卖、不交换、不出租</strong>您的个人数据给任何第三方。</p>
+<p>以下情况例外：</p>
+<ul>
+  <li><strong>法律要求</strong>：司法机关依法要求时</li>
+  <li><strong>您主动同意</strong>：您明确同意时</li>
+</ul>
+
+<h2>6. 第三方服务</h2>
+<p>我们使用以下第三方服务（仅接收返回结果，不发送您的个人数据）：</p>
+<ul>
+  <li><strong>搜索引擎</strong>：Bing CN / 搜狗 / 百度 / 头条 / 知乎 / 微信公众号 / GitHub / etc.</li>
+  <li><strong>LLM 服务</strong>：GLM-4-Flash（智谱）— 仅发送搜索结果 + 您的查询</li>
+  <li><strong>支付</strong>：支付宝 — 支付时跳转</li>
+  <li><strong>监控</strong>：Prometheus + Grafana（自部署，公网 HTTPS）</li>
+</ul>
+
+<h2>7. 数据安全</h2>
+<ul>
+  <li><strong>传输加密</strong>：全站 HTTPS（Let's Encrypt）</li>
+  <li><strong>存储加密</strong>：密码 bcrypt + 敏感字段 SHA-256</li>
+  <li><strong>访问控制</strong>：内部最小权限，外部不可访问数据库</li>
+  <li><strong>定期备份</strong>：每日异地备份，保留 30 天</li>
+</ul>
+
+<h2>8. 您的权利</h2>
+<p>您拥有以下权利（联系邮箱 <code>stardust@token-star.cn</code> 申请，7 天内响应）：</p>
+<ul>
+  <li><strong>查询</strong>：查看我们收集的您的所有数据</li>
+  <li><strong>更正</strong>：修改错误数据</li>
+  <li><strong>删除</strong>：注销账号（7 天内彻底删除）</li>
+  <li><strong>导出</strong>：导出您的搜索历史（JSON 格式）</li>
+  <li><strong>撤回同意</strong>：撤回注册时的数据使用同意</li>
+</ul>
+
+<h2>9. Cookie 与本地存储</h2>
+<ul>
+  <li><strong>localStorage</strong>：存储 <code>star_token</code>（HMAC token 12h 过期）+ 搜索历史</li>
+  <li><strong>Cookie</strong>：不使用第三方追踪 Cookie</li>
+  <li><strong>Service Worker</strong>：PWA 离线缓存（仅静态资源，不缓存搜索结果）</li>
+</ul>
+
+<h2>10. 儿童隐私</h2>
+<p>本服务<strong>不面向 14 岁以下儿童</strong>。如发现儿童注册，我们将主动删除账号。</p>
+
+<h2>11. 政策变更</h2>
+<p>如有重大变更，我们将：</p>
+<ol>
+  <li>提前 <strong>30 天</strong> 在 Web UI 公告</li>
+  <li>发送 <strong>邮件通知</strong>（如您已提供）</li>
+  <li>在变更生效前允许您<strong>导出 / 删除</strong>数据</li>
+</ol>
+
+<h2>12. 联系方式</h2>
+<ul>
+  <li><strong>邮箱</strong>：<code>stardust@token-star.cn</code></li>
+  <li><strong>GitHub</strong>：<a href="https://github.com/muchenhengxin/Star" style="color:#60a5fa">github.com/muchenhengxin/Star</a></li>
+  <li><strong>ClawHub</strong>：<code>star-search</code></li>
+</ul>
+
+<hr style="border: 1px solid #2a2a2d; margin: 3rem 0;">
+
+<p style="text-align: center; color: #6b7280; font-size: 0.85rem;">
+  本政策遵循《中华人民共和国个人信息保护法》(PIPL) 与《通用数据保护条例》(GDPR) 原则<br>
+  © 2026 Star Search · MIT-0 License
+</p>
+
+</body>
+</html>

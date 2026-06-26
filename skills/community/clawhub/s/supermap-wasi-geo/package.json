@@ -1,0 +1,37 @@
+{
+  "name": "supermap-wasi-geo",
+  "version": "1.0.0",
+  "description": "SuperMap WASM Geometry Analysis CLI - 使用SuperMap WebAssembly 进行几何分析，支持缓冲区、凸包、相交、合并等 20+ 种操作，openClaw Skill 包",
+  "bin": {
+    "wasi-geo": "./scripts/bin/supermap-wasi-geo.js"
+  },
+  "main": "./scripts/src/geometry-analysis.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node scripts/bin/supermap-wasi-geo.js --help",
+    "geo": "node scripts/bin/supermap-wasi-geo.js"
+  },
+  "keywords": [
+    "wasm",
+    "buffer",
+    "geojson",
+    "gis",
+    "geometry",
+    "spatial-analysis",
+    "convex-hull",
+    "intersection",
+    "union",
+    "openclaw",
+    "skill"
+  ],
+  "author": "NestOne",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "win32",
+    "linux",
+    "darwin"
+  ]
+}

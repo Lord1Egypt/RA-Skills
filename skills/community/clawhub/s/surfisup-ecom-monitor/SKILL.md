@@ -1,35 +1,14 @@
----
-name: "myskill"
-description: "Provides daily Shopify sales summaries, low stock alerts, and competitor price tracking using your Shopify API key."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/surfisup-ecom-monitor"
-sourceUrl: "https://clawhub.ai/skills/surfisup-ecom-monitor"
----
+# EcomMonitor Skill
 
-# myskill
+**Triggers**: "shopify monitor", "check sales", "stock alert"
 
-> Provides daily Shopify sales summaries, low stock alerts, and competitor price tracking using your Shopify API key.
+**What it does**:
+- Daily Shopify sales summary (revenue, top products)
+- Low stock alerts (<10 units) via Telegram/email
+- Competitor price tracking
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/surfisup-ecom-monitor`
-- **Source URL:** [https://clawhub.ai/skills/surfisup-ecom-monitor](https://clawhub.ai/skills/surfisup-ecom-monitor)
+**Setup needed**: Shopify API key (user provides)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/surfisup-ecom-monitor
-```
+**Example**:
+User: "Monitor my Shopify store daily"
+→ Agent: Fetches sales data → Sends report → Sets cron job

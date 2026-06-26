@@ -1,0 +1,42 @@
+{
+  "skill_name": "subscription-renewal-health",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our subscription churn jumped and Stripe shows a lot of expired_card and insufficient_funds on renewal. We use 3 dunning emails but recovery is weak. Need health view plus a better email series with sensible compensation — we can offer one free week or $5 credit after they update card.",
+      "expected_output": "Health table, failure tracking, 3+ emails with compensation psychology labels.",
+      "files": [],
+      "expectations": [
+        "Addresses rising churn and failed renewal charges",
+        "Includes structured payment failure tracking or table",
+        "Includes health or pool snapshot table (subs, churn, failures)",
+        "Includes multi-email dunning or retention series with subject lines",
+        "Explicitly uses compensation psychology (fairness, reciprocity, certainty, etc.) in framing",
+        "Mentions allowed make-good (free week or credit) tied to update card"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "MRR is flat but active subscriber count bounced down then up — feels volatile. Churn rate is up slightly. Give me monitoring framing and one voluntary-cancel win-back email using light compensation psychology.",
+      "expected_output": "Pool volatility framing + win-back email + psychology label.",
+      "files": [],
+      "expectations": [
+        "Discusses subscription pool or MRR volatility",
+        "Includes churn context",
+        "Provides at least one win-back style email with compensation or reciprocity angle",
+        "Recurrence billing focus — not generic ecommerce only"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Draft the shipping confirmation for order 8821 only.",
+      "expected_output": "Shipping confirmation; no full subscription dunning series (should-not-trigger).",
+      "files": [],
+      "expectations": [
+        "Does not output full subscription health dashboard and dunning series as primary output",
+        "Appropriate to one-off shipping confirmation",
+        "May skip mandatory churn table for unrelated transactional ask"
+      ]
+    }
+  ]
+}

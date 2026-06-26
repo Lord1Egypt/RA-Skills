@@ -1,0 +1,101 @@
+# ─── Observability Pipeline Example ────────────────────────────────────
+#
+# Demonstrates how events work with Squid pipelines.
+# Every step emits lifecycle events that can be captured for:
+# - Monitoring dashboards
+# - Audit trails
+# - Slack/Discord notifications
+# - OpenTelemetry integration
+#
+# Run with verbose output to see step lifecycle:
+#   squid run skills/squid-pipeline/examples/observability.yaml -v
+#
+# Programmatic usage with events:
+#
+#   import { createEventEmitter, runPipeline, parseFile } from "squid";
+#
+#   const events = createEventEmitter();
+#
+#   // Log all events
+#   events.on("*", (e) => {
+#     console.log(`[${e.type}] step=${e.stepId ?? "-"} trace=${e.traceId}`);
+#   });
+#
+#   // Notify on gate
+#   events.on("gate:waiting", (e) => {
+#     slack.send(`Approval needed: ${e.data?.prompt} (ID: ${e.data?.shortId})`);
+#   });
+#
+#   // Alert on failure
+#   events.on("step:error", (e) => {
+#     pagerduty.trigger(`Step ${e.stepId} failed: ${e.data?.error}`);
+#   });
+#
+#   // OTel spans
+#   events.on("step:complete", (e) => {
+#     tracer.startSpan(e.stepId, {
+#       traceId: e.traceId,
+#       spanId: e.spanId,
+#       duration: e.duration,
+#     });
+#   });
+#
+#   const result = await runPipeline(parseFile("observability.yaml"), { events });
+
+name: observability-demo
+description: Pipeline demonstrating lifecycle events and observability hooks
+
+args:
+  target:
+    default: staging
+    description: Deployment target
+
+steps:
+  # step:start + step:complete emitted
+  - id: build
+    type: run
+    description: Build the application
+    run: echo '{"artifact":"app.tar.gz","size_mb":42}'
+    timeout: 60
+
+  # step:start + step:complete emitted
+  - id: test
+    type: run
+    description: Run test suite
+    run: echo '{"passed":48,"failed":0,"coverage":87}'
+    timeout: 120
+
+  # step:skip emitted when condition is false
+  - id: skip-example
+    type: run
+    description: This step is skipped (demonstrates step:skip event)
+    run: echo "this never runs"
+    when: "false"
+
+  # gate:waiting emitted (with shortId for chat platforms)
+  # gate:approved or gate:rejected emitted on resume
+  - id: deploy-gate
+    type: gate
+    description: Approve deployment
+    gate:
+      prompt: "Deploy to ${args.target}? Build artifact: ${build.json.artifact}"
+      preview: $test.json
+      requiredApprovers:
+        - deployer
+      allowSelfApproval: false
+
+  # step:start + step:complete (or step:error on failure)
+  - id: deploy
+    type: run
+    description: Deploy to target
+    run: echo '{"deployed":true,"target":"${args.target}"}'
+    when: $deploy-gate.approved
+    retry:
+      maxAttempts: 2
+      backoff: fixed
+      delayMs: 1000
+
+  - id: summary
+    type: transform
+    description: Final summary
+    transform: '{"target":"${args.target}","artifact":"${build.json.artifact}","tests_passed":${test.json.passed}}'

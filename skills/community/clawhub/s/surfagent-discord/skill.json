@@ -1,0 +1,8 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "Discord platform skill for SurfAgent, covering route-aware state checks, extraction-first workflows, blockers, and when to use the Discord adapter over raw browser control.",
+  "author": "MoonstoneLabs",
+  "keywords": ["discord", "surfagent", "browser", "automation", "mcp", "adapter"],
+  "files": ["SKILL.md"]
+}

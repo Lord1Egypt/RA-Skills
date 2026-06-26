@@ -1,0 +1,43 @@
+{
+  "name": "slidev-ppt-generator",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill - 使用 Slidev 生成专业演示文稿",
+  "main": "scripts/generate.js",
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "init-project": "node scripts/init-project.js",
+    "export": "node scripts/export.js",
+    "dev": "cd ~/slidev-ppt && npm run dev",
+    "build": "cd ~/slidev-ppt && npm run build",
+    "test": "node scripts/generate.js --topic \"测试\" --output test-slides.md"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "slidev",
+    "ppt",
+    "presentation",
+    "markdown"
+  ],
+  "author": "闫志鹏 (laofahai)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laofahai/slidev-ppt-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/laofahai/slidev-ppt-generator/issues"
+  },
+  "homepage": "https://github.com/laofahai/slidev-ppt-generator#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/",
+    "templates/",
+    "examples/",
+    "README.md"
+  ]
+}

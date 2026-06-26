@@ -1,0 +1,183 @@
+{
+  "description": "AI-readable gift, artist story, hours, event, and lead handoff surface for an artisan gallery pilot in Stowe, Vermont.",
+  "name": "stowecraft-artisan-concierge",
+  "tools": [
+    {
+      "function": {
+        "description": "Use this when the user needs the public business profile, categories, location, website, data freshness, and verification limits. Do not use this to answer live stock, live hours, booking, or merchant-authenticated questions.",
+        "name": "get_business_profile",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {},
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user asks whether the business is open on a date or needs public hours. If hours are unknown or unverified, return that uncertainty instead of inferring hours.",
+        "name": "get_hours",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "date": {
+              "description": "Optional ISO date to check, for example 2026-06-15.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user asks for gift or inventory/category matches from the public profile. Do not use this as live stock lookup; unknown prices or availability must stay explicit in the response.",
+        "name": "search_inventory",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "in_stock_only": {
+              "description": "When true, exclude items with unknown availability.",
+              "type": "boolean"
+            },
+            "material": {
+              "description": "Optional material filter, for example silver, wood, ceramic, or glass.",
+              "type": "string"
+            },
+            "price_max": {
+              "description": "Optional maximum price. Unpriced inventory slices are excluded.",
+              "type": "number"
+            },
+            "query": {
+              "description": "Required search terms, for example jewelry, host gift, or home decor.",
+              "type": "string"
+            },
+            "recipient": {
+              "description": "Optional recipient or occasion phrase, for example host, traveler, or thank-you.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user asks for public events or trip-planning hooks tied to the business. If events are not integrated or verified, return that status instead of inventing events.",
+        "name": "list_events",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "date_from": {
+              "description": "Optional ISO start date for filtering events.",
+              "type": "string"
+            },
+            "date_to": {
+              "description": "Optional ISO end date for filtering events.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user wants the public story, selling context, or gift rationale for a known item id or category. Do not fabricate artist biographies, availability, or verified provenance.",
+        "name": "get_artist_story",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "description": "Optional public category, for example jewelry, gift, or home decor.",
+              "type": "string"
+            },
+            "item_id": {
+              "description": "Optional inventory item/category id, for example gift-jewelry-category.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user has explicitly consented to prepare a merchant contact handoff preview. This tool never submits, stores, emails, calls, or sends the lead externally; it only returns a confirmation-ready preview.",
+        "name": "preview_lead_handoff",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "consent_to_contact": {
+              "description": "Must be true only after explicit user consent.",
+              "type": "boolean"
+            },
+            "contact_method": {
+              "description": "Preferred contact path for a future handoff preview.",
+              "enum": [
+                "email",
+                "phone",
+                "merchant_form",
+                "none"
+              ],
+              "type": "string"
+            },
+            "contact_value": {
+              "description": "Optional user-approved email address or phone value for preview only.",
+              "type": "string"
+            },
+            "preferences": {
+              "description": "Gift, visit, or contact preferences the user wants included in the preview.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "contact_method",
+            "preferences",
+            "consent_to_contact"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Use this when the user wants a draft reply to a public review. Do not fabricate customer details, discounts, outcomes, or private follow-up.",
+        "name": "draft_review_reply",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "review_text": {
+              "description": "The review text to answer. The draft will only use details present here.",
+              "type": "string"
+            },
+            "sentiment": {
+              "description": "Optional sentiment label to shape the draft tone.",
+              "enum": [
+                "positive",
+                "neutral",
+                "negative",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "review_text"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ]
+}

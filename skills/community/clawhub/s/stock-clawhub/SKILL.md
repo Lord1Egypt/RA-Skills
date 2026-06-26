@@ -1,35 +1,105 @@
 ---
-name: "Stock Clawhub"
-description: "提供股票查询和分析功能，支持 A 股、港股、美股和 ETF 查询，包括实时价格查询、基本面分析、技术指标分析、高潜力股推荐等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-clawhub"
-sourceUrl: "https://clawhub.ai/skills/stock-clawhub"
+name: stock-analyzer
+description: 提供股票查询和分析功能，支持 A 股、港股、美股和 ETF 查询，包括实时价格查询、基本面分析、技术指标分析、高潜力股推荐等。
+slug: shinewilzhang-stock-analyzer
 ---
 
-# Stock Clawhub
+# Stock Skill - 股票查询与分析技能
 
-> 提供股票查询和分析功能，支持 A 股、港股、美股和 ETF 查询，包括实时价格查询、基本面分析、技术指标分析、高潜力股推荐等。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-clawhub`
-- **Source URL:** [https://clawhub.ai/skills/stock-clawhub](https://clawhub.ai/skills/stock-clawhub)
+这个技能提供股票查询和分析功能，支持 A 股、港股、美股和 ETF 查询。
 
-## Overview
+## 功能
 
+### 实时股票价格查询
+- 查询 A 股、港股、美股的实时价格
+- 支持股票代码和名称查询
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-clawhub
+### 股票基本面分析
+- 市值、市盈率、市净率等财务指标
+- 股息率、ROE 等投资指标
+
+### 技术指标分析
+- K 线图、均线分析
+- MACD、RSI 等技术指标
+
+### ETF 数据查询
+- A 股市场可购买的 ETF 查询
+- 包括黄金、纳斯达克指数、标普消费、标普生物科技等 ETF
+
+### 高潜力股推荐
+- 基于基本面和技术面分析推荐高潜力股票
+- 提供详细的分析报告和投资理由
+
+### 关注股票管理
+- 允许用户添加和管理关注的股票列表
+- 定期分析关注股票的表现
+
+## 使用方法
+
+### 查询股票价格
 ```
+/股票 贵州茅台
+/股票 600519
+```
+
+### 查询 ETF 价格
+```
+/etf 纳斯达克
+/etf 黄金
+```
+
+### 添加关注股票
+```
+/关注 贵州茅台
+/关注 600519
+```
+
+### 查询关注股票
+```
+/关注列表
+```
+
+### 获取推荐股票
+```
+/推荐
+```
+
+## 技术实现
+
+### 数据源
+- **国内股票数据**：使用东方财富、同花顺等 API
+- **国际股票数据**：使用 Yahoo Finance、Bloomberg 等 API
+- **ETF 数据**：使用中证指数、华夏基金等 API
+
+### 分析方法
+- **基本面分析**：基于财务报表和经济数据
+- **技术分析**：基于价格走势和技术指标
+- **AI 分析**：使用机器学习模型预测股票走势
+
+## 配置
+
+### 数据更新频率
+- 实时价格：每分钟更新
+- 基本面数据：每日更新
+- 分析报告：每周更新
+
+### 通知设置
+- 价格提醒：当关注股票价格波动超过一定幅度时通知
+- 定期报告：每周发送关注股票的分析报告
+
+## 限制
+
+- 数据准确性受限于数据源的可靠性
+- 分析结果仅供参考，不构成投资建议
+- 投资有风险，入市需谨慎
+
+## 更新日志
+
+### v1.0.0 (2025-01-01)
+- 初始版本
+- 支持股票价格查询
+- 支持 ETF 价格查询
+- 支持关注股票管理
+- 支持高潜力股推荐

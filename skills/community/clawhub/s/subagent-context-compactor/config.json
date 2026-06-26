@@ -1,0 +1,96 @@
+{
+  "compaction_strategy": "hierarchical",
+  "tiers": {
+    "hot": {
+      "description": "热数据 - 最近的关键信息",
+      "retention_days": 1,
+      "max_items": 20,
+      "importance_threshold": 0.7,
+      "compression_method": "summarization",
+      "priority": 1
+    },
+    "warm": {
+      "description": "温数据 - 中等重要性的历史信息",
+      "retention_days": 7,
+      "max_items": 100,
+      "importance_threshold": 0.4,
+      "compression_method": "keyword_extraction",
+      "priority": 2
+    },
+    "cold": {
+      "description": "冷数据 - 长期存储的参考信息",
+      "retention_days": 30,
+      "max_items": 500,
+      "importance_threshold": 0.2,
+      "compression_method": "archival",
+      "priority": 3
+    }
+  },
+  "trigger_mechanisms": {
+    "memory_based": {
+      "enabled": true,
+      "token_usage_threshold": 0.7,
+      "message_count_threshold": 50,
+      "session_duration_threshold": 3600
+    },
+    "time_based": {
+      "enabled": true,
+      "interval_seconds": 3600,
+      "scheduled_times": ["09:00", "13:00", "18:00", "22:00"]
+    },
+    "event_based": {
+      "enabled": true,
+      "triggers": ["session_start", "session_end", "task_completion", "error_occurred"]
+    }
+  },
+  "compression_methods": {
+    "summarization": {
+      "enabled": true,
+      "max_length_ratio": 0.3,
+      "preserve_key_points": true,
+      "use_ai_assistance": true
+    },
+    "keyword_extraction": {
+      "enabled": true,
+      "max_keywords": 10,
+      "include_context": true,
+      "weight_by_frequency": true
+    },
+    "archival": {
+      "enabled": true,
+      "format": "jsonl",
+      "include_metadata": true,
+      "compress_storage": true
+    }
+  },
+  "retention_policies": {
+    "preserve_decisions": true,
+    "preserve_tasks": true,
+    "preserve_preferences": true,
+    "preserve_errors": true,
+    "remove_chitchat": true,
+    "remove_duplicates": true,
+    "remove_low_importance": true
+  },
+  "monitoring": {
+    "enable_realtime_monitoring": true,
+    "check_interval_seconds": 30,
+    "enable_logging": true,
+    "log_level": "INFO",
+    "enable_metrics": true,
+    "metrics_retention_days": 7
+  },
+  "performance": {
+    "max_processing_time_ms": 5000,
+    "batch_size": 10,
+    "parallel_processing": true,
+    "cache_enabled": true,
+    "cache_ttl_seconds": 300
+  },
+  "integration": {
+    "openclaw_integration": true,
+    "memory_system_integration": true,
+    "session_tracking": true,
+    "auto_start_with_openclaw": true
+  }
+}

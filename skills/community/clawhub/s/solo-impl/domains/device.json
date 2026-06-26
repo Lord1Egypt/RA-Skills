@@ -1,0 +1,92 @@
+[
+  {
+    "id": "setup_motors",
+    "domain": "device",
+    "description": "Assign motor IDs to leader and/or follower arm",
+    "command": "solo robo --motors <scope>",
+    "inputs": ["scope"],
+    "parameters": {
+      "scope": {
+        "type": "enum",
+        "values": ["all", "leader", "follower"],
+        "description": "Which arm(s) to configure"
+      }
+    },
+    "explanation": "Sets Dynamixel motor IDs on the arm. Solo Tech arms come pre-configured — skip unless you see a 'missing motor ids' error. Interactive: detects ports by prompting unplug/replug. RealMan uses network, not USB.",
+    "expected_output": "Motor IDs set successfully. Proceed to calibration.",
+    "validation": {
+      "type": "command_output",
+      "rule": "Success message must appear; no 'missing motor ids' error on subsequent calibration"
+    },
+    "common_errors": [
+      "missing motor ids — this is exactly when to run this command",
+      "Wrong port detected — follow unplug/replug prompts carefully",
+      "Multiple ports detected — choose correct one from the displayed list"
+    ],
+    "docs_ref": "/solobasic/motors"
+  },
+  {
+    "id": "calibrate_arm",
+    "domain": "device",
+    "description": "Calibrate joint limits and zero positions for arms",
+    "command": "solo robo --calibrate <scope>",
+    "inputs": ["scope"],
+    "parameters": {
+      "scope": {
+        "type": "enum",
+        "values": ["all", "leader", "follower"],
+        "description": "Which arm(s) to calibrate"
+      }
+    },
+    "explanation": "Teaches the software the physical limits and zero positions of each arm so commanded angles match real hardware. Required after motor ID setup or if arm was moved while powered off.",
+    "expected_output": "Calibration complete for selected arm(s)",
+    "validation": {
+      "type": "file_exists",
+      "rule": "Calibration config saved in ~/.solo/. Subsequent teleop should not error on calibration"
+    },
+    "common_errors": [
+      "Arm moved while powered off — recalibrate",
+      "Single arm failure — you can rerun calibration for just that arm",
+      "Ensure workspace is unobstructed and follow all on-screen prompts"
+    ],
+    "docs_ref": "/solobasic/calibrate"
+  },
+  {
+    "id": "scan_motors",
+    "domain": "device",
+    "description": "List motors visible on serial ports (diagnostic)",
+    "command": "solo robo --scan",
+    "inputs": [],
+    "parameters": {},
+    "explanation": "Non-destructive scan to see which motor IDs respond on connected serial ports. Use for troubleshooting connection/motor sync issues.",
+    "expected_output": "List of detected motor IDs and ports",
+    "validation": {
+      "type": "command_output",
+      "rule": "Output lists motor IDs; no error on port open"
+    },
+    "common_errors": [
+      "No motors found — check USB cable and power (12V follower / 5V leader on SO arms)",
+      "Permission denied on /dev/tty — run solo setup-usb on Linux"
+    ],
+    "docs_ref": "/solotrain/inference"
+  },
+  {
+    "id": "diagnose_arm",
+    "domain": "device",
+    "description": "Run deep diagnostics on arm connection and motors",
+    "command": "solo robo --diagnose",
+    "inputs": [],
+    "parameters": {},
+    "explanation": "Deeper diagnostic pass — checks serial communication, motor health, and sync state. Use after scan if scan shows partial results.",
+    "expected_output": "Diagnostic report with motor status",
+    "validation": {
+      "type": "command_output",
+      "rule": "Report shows no critical errors for connected arms"
+    },
+    "common_errors": [
+      "failed to sync — faulty board, loose power cable, or detached 3-pin motor cable",
+      "failed to read motor ids — check daisy chain integrity and USB cable"
+    ],
+    "docs_ref": "/hardware/common_issues"
+  }
+]

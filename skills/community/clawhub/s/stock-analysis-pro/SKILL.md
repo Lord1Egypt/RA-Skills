@@ -1,35 +1,158 @@
 ---
-name: "Stock Analysis Pro"
+name: "stock-analysis-pro"
+version: "1.0.0"
 description: "专业股票分析技能整合 akshare 数据 + 技术指标 + 板块轮动 + 持仓诊断。触发词：'分析股票'、'今日行情'、'持仓诊断'、'推荐股票'、'今日财经'。无需API密钥，直接调用 akshare 获取A股/基金/期货实时数据。"
-category: "domain"
-source: "ClawHub"
-tags: [china, finance, stock]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-analysis-pro"
-sourceUrl: "https://clawhub.ai/skills/stock-analysis-pro"
 ---
 
 # Stock Analysis Pro
 
-> 专业股票分析技能整合 akshare 数据 + 技术指标 + 板块轮动 + 持仓诊断。触发词：'分析股票'、'今日行情'、'持仓诊断'、'推荐股票'、'今日财经'。无需API密钥，直接调用 akshare 获取A股/基金/期货实时数据。
+专业股票分析技能，集成实时行情、技术指标、板块分析、持仓诊断。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-analysis-pro`
-- **Source URL:** [https://clawhub.ai/skills/stock-analysis-pro](https://clawhub.ai/skills/stock-analysis-pro)
+## 核心功能
 
-## Overview
+| 功能 | 命令 | 数据源 |
+|------|------|--------|
+| 实时行情 | `akshare` | akshare (tushare备份) |
+| 技术分析 | 内置TA指标 | 计算所得 |
+| 板块轮动 | 行业/概念板块 | akshare |
+| 持仓诊断 | 持仓股票分析 | akshare + 用户输入 |
+| 异动监控 | 涨跌/资金流 | akshare |
+| 财报简评 | 业绩预判 | 公开财报 |
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-analysis-pro
+当用户说以下内容时激活：
+- "分析股票"、"今日行情"、"帮我看股"
+- "持仓诊断"、"我的股票怎么样"
+- "推荐股票"、"买什么好"
+- "今日财经"、"财经分析报告"
+- "大盘怎么样"、"板块机会"
+
+## 使用方式
+
+### 实时行情查询
+
+```
+触发：用户问某只股票行情
+操作：
+1. 使用 akshare 技能获取实时数据
+2. 计算涨跌幅、换手率、量比
+3. 结合板块热度给出简单判断
+```
+
+### 持仓诊断报告
+
+```
+触发：用户提供持仓列表
+操作：
+1. 批量获取每只股票实时价格
+2. 计算持仓金额、盈亏比例
+3. 查询所属板块今日表现
+4. 查询主力资金流向
+5. 生成诊断结论和操作建议
+```
+
+### 今日财经报告
+
+```
+触发：用户说"今日财经分析报告"或"今日股票情况"
+操作：
+1. 获取上证/深证/创业板/北证50指数
+2. 获取涨跌家数对比
+3. 获取热门板块TOP10
+4. 获取概念板块异动
+5. 获取资金流向TOP10
+6. 输出格式化报告
+```
+
+## 持仓诊断表格式
+
+| 序号 | 股票 | 代码 | 股数 | 成本价 | 现价 | 盈亏% | 持股金额 | 做T次数 | 所属板块 | 板块热度 | 今日涨跌 | 主力资金 | 诊断结论 | 操作建议 | 止损位 | 目标位 |
+
+**字段说明：**
+- 持股金额 = 现价 × 股数
+- 做T次数 = 当日做T交易次数（用户告知）
+- 所属板块 = 同花顺所属板块
+- 板块热度 = 板块当日涨跌幅%
+- 主力资金 = 主力净流入（万）
+- 诊断结论：持有/加仓/减仓/卖出
+- 操作建议：具体仓位调整比例
+
+## 市场概况格式
+
+```
+大盘：上证/深证/创业板涨跌幅
+涨跌家数：上涨/下跌/平盘
+热门板块TOP5：板块名（涨跌幅%）
+资金流入TOP3：股票名（资金净额）
+```
+
+## 推荐股票格式
+
+| 股票 | 代码 | 现价 | 买入逻辑 | 目标价 | 止损位 |
+
+## 数据来源
+
+- **主数据源**：akshare（免费，无需API Key）
+- **备份数据源**：tushare（需Token，可选）
+- **实时行情**：新浪财经/东方财富
+
+## 常用 akshare 函数
+
+```python
+import akshare as ak
+
+# 实时行情
+ak.stock_zh_a_spot_em()  # 所有A股实时行情
+
+# 板块行情
+ak.stock_board_industry_name_em()  # 行业板块
+ak.stock_board_concept_name_em()    # 概念板块
+
+# 资金流向
+ak.stock_individual_fund_flow(stock="000001")  # 个股资金流
+
+# 期货
+ak.futures_zh_spot(symbol="螺纹钢")  # 商品期货现货
+```
+
+## 技术指标计算
+
+支持以下技术指标：
+- MA（均线）：5/10/20/60/120/250日
+- RSI（相对强弱指数）
+- MACD（指数平滑异同）
+- KDJ（随机指标）
+- BOLL（布林带）
+- 成交量对比
+
+## 注意事项
+
+1. **数据延迟**：新浪财经数据可能有3-5秒延迟
+2. **批量限制**：单次查询不超过50只股票
+3. **频率控制**：避免高频调用（>10次/分钟）
+4. **数据校验**：获取后验证数据合理性
+
+## 报告输出格式
+
+触发"今日财经分析报告"时使用以下格式：
+
+```
+# 📊 今日财经分析报告
+日期：YYYY-MM-DD HH:MM
+
+## 一、大盘概况
+[上证/深证/创业板/北证 涨跌幅]
+
+## 二、持仓诊断
+[诊断表格]
+
+## 三、今日机会
+[推荐板块 + 原因]
+
+## 四、操作建议
+[总体仓位建议]
+
+## 五、风险提示
+[需要注意的风险]
 ```

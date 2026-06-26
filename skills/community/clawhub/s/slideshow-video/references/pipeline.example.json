@@ -1,0 +1,137 @@
+{
+  "slug": "ai-agent-harness-01",
+  "caption": "The best AI coding agent is not the one with the best model. It is the one with the best harness.",
+  "hashtags": ["#AI", "#AICodingAgent", "#TikTokTech"],
+  "defaultImageQuery": "cinematic AI engineering workspace",
+  "video": {
+    "enabled": true,
+    "secondsPerSlide": 3,
+    "fps": 30,
+    "zoom": true,
+    "fade": 0.35
+  },
+  "audio": {
+    "path": "./audio/bed.mp3",
+    "volume": 0.2
+  },
+  "slides": [
+    {
+      "imagePath": "./images/gpt-image-2-slide-01.png",
+      "overlay": 96,
+      "text": [
+        {
+          "text": "The best AI coding agent",
+          "size": 86,
+          "bold": true,
+          "y": 700,
+          "maxWidth": 920
+        },
+        {
+          "text": "is NOT the one with the best model",
+          "size": 62,
+          "bold": true,
+          "y": 920,
+          "maxWidth": 900,
+          "color": "#FDE68A"
+        }
+      ]
+    },
+    {
+      "imagePath": "./images/gpt-image-2-slide-02.png",
+      "overlay": 96,
+      "text": [
+        {
+          "text": "More freedom beats more guardrails",
+          "size": 68,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 860
+        },
+        {
+          "text": "Great models win when they can explore context.",
+          "size": 50,
+          "y": 1070,
+          "maxWidth": 840
+        }
+      ]
+    },
+    {
+      "imagePath": "./images/gpt-image-2-slide-03.png",
+      "overlay": 98,
+      "text": [
+        {
+          "text": "Track keep rate",
+          "size": 76,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 840
+        },
+        {
+          "text": "If the code does not survive, the benchmark did not matter.",
+          "size": 50,
+          "y": 1080,
+          "maxWidth": 850
+        }
+      ]
+    },
+    {
+      "imagePath": "./images/gpt-image-2-slide-04.png",
+      "overlay": 98,
+      "text": [
+        {
+          "text": "Context rot kills sessions",
+          "size": 70,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 860
+        },
+        {
+          "text": "Bad tool errors linger and poison everything after.",
+          "size": 50,
+          "y": 1080,
+          "maxWidth": 850
+        }
+      ]
+    },
+    {
+      "imagePath": "./images/gpt-image-2-slide-05.png",
+      "overlay": 94,
+      "text": [
+        {
+          "text": "The future is multi-agent orchestration",
+          "size": 66,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 900
+        },
+        {
+          "text": "The harness becomes the glue and the moat.",
+          "size": 50,
+          "y": 1080,
+          "maxWidth": 840
+        }
+      ]
+    },
+    {
+      "imagePath": "./images/gpt-image-2-slide-06.png",
+      "overlay": 96,
+      "text": [
+        {
+          "text": "Visit",
+          "size": 88,
+          "bold": true,
+          "y": 760,
+          "maxWidth": 860
+        },
+        {
+          "text": "Clawlite.ai",
+          "size": 86,
+          "bold": true,
+          "y": 980,
+          "maxWidth": 820,
+          "color": "#FDE68A"
+        }
+      ]
+    }
+  ]
+}

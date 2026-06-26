@@ -1,0 +1,99 @@
+[INFO] ============================================================
+[INFO] subagent-archive v3.2 执行（通用化重构版，OpenClaw 6.1 适配）
+[INFO] ============================================================
+[INFO] 智能体: myagent
+[INFO] 模式: dry-run
+[INFO] OpenClaw 6.1 兼容: FixMissing=True, NoFixMissing=False, FixDmScope=False
+[INFO] ActiveKey: 
+[INFO] 时间: 2026-06-06 10:00:00
+[INFO] 
+[INFO] workspace（自动检测）: /home/user/.openclaw/workspace-myworkspace
+[INFO] 
+[INFO] ========== 第 1 步：原生清理预演（v3.1 集成 6.1 --fix-missing） ==========
+[INFO] [v3.1] 集成 6.1 --fix-missing（自动清理 orphan transcript）
+[INFO] 执行命令: openclaw sessions cleanup --agent myagent --dry-run --fix-missing
+[DEBUG] 原生清理输出（前 20 行）:
+[DEBUG] Session store: /home/user/.openclaw/agents/myagent/sessions/sessions.json
+[DEBUG] Maintenance mode: enforce
+[DEBUG] Entries: 7 -> 7 (remove 0)
+[DEBUG] Would prune missing transcripts: 0
+[DEBUG] Would retire stale direct DM sessions: 0
+[DEBUG] Would prune stale: 0
+[DEBUG] Would cap overflow: 0
+[DEBUG] Would prune unreferenced artifacts: 0
+[DEBUG] Would enforce disk budget: 10623708 -> 10623708 bytes (files 0, entries 0)
+[DEBUG] 
+[DEBUG] Planned session actions:
+[DEBUG] Action           Key                        Age       Model          Flags
+[DEBUG] keep             agent:myagent:main         6m ago    MiniMax-M3     think:high system id:0a9e4031-e569-44b1-bb29-5d3791218009
+[DEBUG] keep             agent:myagent...e42812     8h ago    MiniMax-M3     system id:2d0e2bda-90f2-4e20-b009-588103eb8689
+[DEBUG] keep             agent:myagent...8893b7     9h ago    MiniMax-M3     system
+[DEBUG] keep             agent:myagent...c537eb     11h ago   MiniMax-M3     system id:ec366384-5fc6-4890-ba1f-3c8f32fd0958
+[DEBUG] keep             agent:myagent...cdadda     12h ago   MiniMax-M3     system
+[DEBUG] keep             agent:myagent...1cf99e     13h ago   MiniMax-M3     system
+[DEBUG] keep             agent:myagent...317adf     23h ago   MiniMax-M3     system id:7f242723-af5a-4d5e-80fa-c76525785bb3
+[DEBUG] 
+[INFO] 原生清理将处理: 0 个 unreferenced artifacts（仅预演）
+[INFO] [v3.1] 6.1 --fix-missing 将在 enforce 模式自动清 orphan transcript
+[INFO] 
+[INFO] ========== 第 2 步：扫描 sessions.json 索引 ==========
+[SKIP] 主会话保护: agent:myagent:main
+[SKIP] cron 任务保护: agent:myagent:cron:13425869-c9aa-40a5-b255-2c67e8cdadda
+[SKIP] cron 任务保护: agent:myagent:cron:f6c14e1e-de03-41ac-936d-355cc51cf99e
+[SKIP] cron 任务保护: agent:myagent:cron:e2b09e48-3caa-48bd-8685-43a556317adf
+[INFO] dashboard 父会话 (done) 加入候选: agent:myagent:dashboard:142db18d-aec0-4192-a5f5-cf022ec537eb
+[SKIP] cron 任务保护: agent:myagent:cron:405aa9b9-053a-4888-adb8-580c178893b7
+[SKIP] cron 任务保护: agent:myagent:cron:15a07e1d-f0a7-4892-a634-4c9169e42812
+[DEBUG] 扫描磁盘上的 orphan 物理文件...
+[DEBUG] 归属被引用会话，跳过: 0a9e4031-e569-44b1-bb29-5d3791218009.trajectory.jsonl (baseId=0a9e4031-e569-44b1-bb29-5d3791218009)
+[DEBUG] 归属被引用会话，跳过: 2d0e2bda-90f2-4e20-b009-588103eb8689.trajectory.jsonl (baseId=2d0e2bda-90f2-4e20-b009-588103eb8689)
+[INFO] 未引用物理文件: 61299efd-d7c3-4da9-a686-b21b9bbaee29.jsonl (147 bytes, baseId=61299efd-d7c3-4da9-a686-b21b9bbaee29)
+[DEBUG] 归属被引用会话，跳过: 7f242723-af5a-4d5e-80fa-c76525785bb3.trajectory.jsonl (baseId=7f242723-af5a-4d5e-80fa-c76525785bb3)
+[INFO] 未引用物理文件: a1e2aba5-3570-4c20-beef-d40a41b58bb5.jsonl (147 bytes, baseId=a1e2aba5-3570-4c20-beef-d40a41b58bb5)
+[INFO] 未引用物理文件: dc10d08b-2b7d-4a58-a994-2586de311657.trajectory.jsonl (1842286 bytes, baseId=dc10d08b-2b7d-4a58-a994-2586de311657)
+[DEBUG] 归属被引用会话，跳过: ec366384-5fc6-4890-ba1f-3c8f32fd0958.trajectory.jsonl (baseId=ec366384-5fc6-4890-ba1f-3c8f32fd0958)
+[INFO] 
+[INFO] 汇总：
+[INFO]   - 受保护 key: 6 个
+[INFO]   - dashboard done 父会话: 1 个
+[INFO]   - 其他候选会话: 0 个
+[INFO]   - 磁盘孤儿物理文件: 3 个
+[INFO] 
+[INFO] ========== 第 3 步：dashboard 父会话归档（追加写入） ==========
+[SKIP] dashboard 归档已存在: /home/user/.openclaw/workspace-myworkspace/memory/dashboard-archives/2026-06-06-dashboard-142db18d-aec0-4192-a5f5-cf022ec537eb.md
+[INFO] 
+[INFO] ========== 第 4 步：当日归档日志（追加写入） ==========
+[OK] 日志已追加: /home/user/.openclaw/workspace-myworkspace/memory/2026-06-06-subagent-archive-v3.md
+[INFO] 
+[INFO] ========== 第 5 步：物理文件清理 ==========
+[ACT] [dry-run] 将删除孤儿: 61299efd-d7c3-4da9-a686-b21b9bbaee29.jsonl (147 bytes)
+[ACT] [dry-run] 将删除孤儿: a1e2aba5-3570-4c20-beef-d40a41b58bb5.jsonl (147 bytes)
+[ACT] [dry-run] 将删除孤儿: dc10d08b-2b7d-4a58-a994-2586de311657.trajectory.jsonl (1842286 bytes)
+[INFO] 
+[INFO] 物理文件汇总：
+[INFO]   - 处理文件数: 3
+[INFO]   - 释放空间: 1.76 MB (1842580 bytes)
+[INFO] 
+[INFO] ========== 第 6 步：清理 sessions.json 索引（v3.1 双保险） ==========
+[INFO] 
+[INFO] v3.2 第 6 步结果：
+[INFO]   - stale/orphan key: 0 个
+[INFO]   - abnormal key (status 缺失): 0 个（仅记录，不自动清）
+[WARN] [dry-run] 将清理 0 个 stale key（未执行）
+[INFO] 
+[INFO] ============================================================
+[INFO] v3.2 执行汇总
+[INFO] ============================================================
+[INFO] 智能体: myagent
+[INFO] 模式: dry-run
+[INFO] 版本: v3.2 (OpenClaw 6.1 适配 + 通用化重构)
+[INFO] workspace: /home/user/.openclaw/workspace-myworkspace
+[INFO] 受保护 key: 6
+[INFO] Dashboard done 父会话: 1
+[INFO] 其他候选会话: 0
+[INFO] 处理文件数: 3
+[INFO] 释放空间: 1.76 MB
+[INFO] Stale key: 0
+[INFO] Abnormal key: 0 (仅记录，不自动清)
+[INFO] 日志文件: /home/user/.openclaw/workspace-myworkspace/memory/2026-06-06-subagent-archive-v3.md
+[INFO] 

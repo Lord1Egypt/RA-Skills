@@ -1,0 +1,40 @@
+{
+  "skill_name": "sub-churn",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Renewal rate dropped 8% QoQ. Exit survey: 'Too expensive' went from 12% to 28%. We use Stripe Billing with 3 automatic retries. Need emails after each failed charge and a cheaper tier to push.",
+      "expected_output": "Churn snapshot; dunning blocks for attempts 1-3 with subjects and bodies; downgrade table 2+ rows; downsell email skeleton; price-sensitivity flow.",
+      "files": [],
+      "expectations": [
+        "Includes a dunning script library with three distinct sections for failed payment attempt 1, 2, and 3",
+        "Each dunning section includes timing guidance and copy skeleton with merge fields or placeholders",
+        "Includes downgrade subscription recommendation as a table with at least two rows mapping tiers and tradeoffs",
+        "Includes at least one email skeleton specifically for downgrade or downsell",
+        "Addresses 'too expensive' or renewal rate decline context",
+        "Mentions retention or compensation touches appropriate to price sensitivity"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're launching subscriptions next month. What should we pre-build for failed payments and churn?",
+      "expected_output": "Full template library for 1/2/3 fails; empty downgrade table; merge field list; no fake metrics.",
+      "files": [],
+      "expectations": [
+        "Provides dunning script templates for three failure attempts even without historical churn data",
+        "Provides downgrade recommendation framework or placeholder table",
+        "Does not invent specific churn percentages for the user's business without data"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Summarize the Wikipedia article on photosynthesis for my kid.",
+      "expected_output": "Educational summary only; no subscription dunning library.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory three-attempt dunning script library as the primary deliverable",
+        "Does not force subscription churn analysis for unrelated homework request"
+      ]
+    }
+  ]
+}

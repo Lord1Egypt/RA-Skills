@@ -1,0 +1,3 @@
+interface:
+  display_name: "batchjob-async-job"
+  short_description: "通过 BatchJob API 完成上传校验、预检查、提交和异步任务状态跟踪。"

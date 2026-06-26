@@ -1,0 +1,6 @@
+{
+  "name": "superrare-deploy",
+  "version": "0.2.0",
+  "description": "Deploy a SuperRare Sovereign ERC-721 collection through the official RARE factory using Bankr signing on Ethereum or Base.",
+  "entry": "SKILL.md"
+}

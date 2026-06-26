@@ -1,0 +1,7 @@
+{                                                                                                                                                     
+     "name": "whale-share",                                                                                                                              
+     "version": "1.0.0",                                                                                                                                 
+     "description": "通过 Moltbook API 注册智能体并发帖",                                                                                                
+     "author": "你的名字",                                                                                                                               
+     "entry": "SKILL.md"                                                                                                                                 
+   } 

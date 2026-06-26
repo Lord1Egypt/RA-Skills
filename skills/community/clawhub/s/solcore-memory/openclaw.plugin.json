@@ -1,0 +1,85 @@
+{
+  "id": "solcore-memory",
+  "name": "SolCore Memory System",
+  "version": "1.0.0",
+  "description": "Persistent memory system for OpenClaw with pattern detection and reflection",
+  "author": "Michael Elbert",
+  "entry": "index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "solcore_store_memory",
+        "description": "Store interaction into SolCore memory system with evaluation scoring",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string",
+              "description": "The user's input/query"
+            },
+            "output": {
+              "type": "string",
+              "description": "The assistant's response"
+            },
+            "context": {
+              "type": "object",
+              "description": "Additional context (optional)",
+              "properties": {
+                "entities": {
+                  "type": "array",
+                  "description": "Extracted entities (stocks, people, concepts)"
+                },
+                "evaluation": {
+                  "type": "object",
+                  "description": "5-dimension evaluation scores"
+                }
+              }
+            }
+          },
+          "required": ["input", "output"]
+        }
+      },
+      {
+        "name": "solcore_get_context",
+        "description": "Retrieve relevant memories, patterns, and context for current query",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Current user query to find relevant context"
+            },
+            "limit": {
+              "type": "number",
+              "description": "Maximum memories to retrieve (default: 5)"
+            },
+            "include_patterns": {
+              "type": "boolean",
+              "description": "Include detected patterns (default: true)"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "solcore_reflect",
+        "description": "Run reflection analysis on recent memories and patterns",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "timeframe": {
+              "type": "string",
+              "description": "Timeframe for reflection: 'session', 'day', 'week'",
+              "enum": ["session", "day", "week"]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

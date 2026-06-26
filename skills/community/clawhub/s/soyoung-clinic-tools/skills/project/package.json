@@ -1,0 +1,7 @@
+{
+  "name": "soyoung-clinic-project",
+  "version": "2.2.2",
+  "description": "新氧青春诊所项目与商品技能：项目库关键词检索、功效与适应症、C 端商品价格。 | Soyoung clinic project & product search OpenClaw sub-skill for Soyoung (soyoung) clinic: project_search, product_search, knowledge base, pricing. Keywords: Soyoung, soyoung, clinic, project, product, price, medical aesthetic.",
+  "keywords": ["soyoung", "clinic", "project", "product", "新氧", "诊所", "医美", "sy"],
+  "license": "MIT"
+}

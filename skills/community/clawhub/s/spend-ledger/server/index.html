@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>spend-ledger</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+  h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .header-right { display: flex; gap: 8px; align-items: center; }
+
+  .filters {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+    padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  }
+  .filters input, .filters select {
+    background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 10px; font-size: 0.85rem; font-family: var(--font);
+  }
+  .filters input:focus, .filters select:focus { outline: none; border-color: var(--accent); }
+  .filters label { font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+  .card-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .card-value { font-size: 1.6rem; font-weight: 600; font-family: var(--mono); margin-top: 4px; }
+
+  .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .tab {
+    padding: 8px 16px; cursor: pointer; font-size: 0.85rem; color: var(--text-muted);
+    border-bottom: 2px solid transparent; transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th {
+    text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 0.05em; position: sticky; top: 0; background: var(--bg);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: var(--surface); }
+  .mono { font-family: var(--mono); font-size: 0.8rem; }
+  .amount { text-align: right; white-space: nowrap; }
+  .status-confirmed { color: var(--green); }
+  .status-failed { color: var(--red); }
+  .status-pending { color: var(--orange); }
+  .status-unverified { color: var(--orange); }
+  .truncate { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tag-manual { background: #1f2d3d; color: var(--accent); padding: 1px 6px; border-radius: 3px; font-size: 0.7rem; margin-left: 4px; }
+  .tag-heuristic { background: #2d2100; color: var(--orange); padding: 1px 6px; border-radius: 3px; font-size: 0.7rem; margin-left: 4px; }
+
+  .breakdown-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .breakdown-name { width: 180px; font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .breakdown-bar-wrap { flex: 1; height: 20px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+  .breakdown-bar { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; }
+  .breakdown-amount { width: 100px; text-align: right; font-family: var(--mono); font-size: 0.85rem; }
+  .breakdown-count { width: 50px; text-align: right; font-size: 0.8rem; color: var(--text-muted); }
+
+  .btn {
+    background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;
+    font-family: var(--font); transition: border-color 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn-sm { padding: 3px 8px; font-size: 0.75rem; }
+  .btn-danger { border-color: var(--red); color: var(--red); }
+  .btn-danger:hover { background: #3d1318; }
+  .btn-accent { border-color: var(--accent); color: var(--accent); }
+  .btn-accent:hover { background: #1f2d3d; }
+
+  .chain-status { font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; }
+  .chain-ok { background: #0d2818; color: var(--green); }
+  .chain-broken { background: #3d1318; color: var(--red); }
+
+  .empty { text-align: center; padding: 48px; color: var(--text-muted); }
+
+  /* Forms */
+  .form-section {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 16px; margin-bottom: 16px;
+  }
+  .form-row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; align-items: flex-end; }
+  .form-row label { font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; }
+  .form-row input, .form-row select {
+    background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 10px; font-size: 0.85rem; font-family: var(--font);
+  }
+  .form-row input:focus { outline: none; border-color: var(--accent); }
+  .form-row input[type="checkbox"] { width: auto; margin-right: 4px; }
+  .checkbox-row {
+    display: flex; align-items: center; gap: 6px; margin-top: 8px;
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .checkbox-row input[type="checkbox"] { accent-color: var(--accent); }
+  .hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
+    background: var(--surface); border: 1px solid var(--green); color: var(--green);
+    border-radius: 6px; font-size: 0.85rem; opacity: 0; transition: opacity 0.3s;
+    pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+
+  /* Tracked tools list */
+  .tracked-list { margin-top: 12px; }
+  .tracked-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+  }
+  .tracked-item-info { display: flex; flex-direction: column; }
+  .tracked-item-pattern { font-family: var(--mono); font-size: 0.8rem; }
+  .tracked-item-desc { font-size: 0.75rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>spend-ledger</h1>
+    <span style="font-size:0.8rem;color:var(--text-muted)">Agent spending tracker</span>
+  </div>
+  <div class="header-right">
+    <span id="chainStatus" class="chain-status"></span>
+    <button class="btn" onclick="exportCSV()">Export CSV</button>
+    <button class="btn" onclick="exportJSON()">Export JSON</button>
+  </div>
+</div>
+
+<div class="filters">
+  <label>From <input type="date" id="filterFrom"></label>
+  <label>To <input type="date" id="filterTo"></label>
+  <label>Service <input type="text" id="filterService" placeholder="all"></label>
+  <label>Skill <input type="text" id="filterSkill" placeholder="all"></label>
+  <label>Status
+    <select id="filterStatus">
+      <option value="">all</option>
+      <option value="confirmed">confirmed</option>
+      <option value="unverified">unverified</option>
+      <option value="failed">failed</option>
+      <option value="pending">pending</option>
+    </select>
+  </label>
+  <label>&nbsp;<button class="btn" onclick="refresh()">Apply</button></label>
+</div>
+
+<div class="cards" id="summaryCards"></div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="transactions">Transactions</div>
+  <div class="tab" data-tab="by-service">By Service</div>
+  <div class="tab" data-tab="by-skill">By Skill</div>
+  <div class="tab" data-tab="daily">Daily</div>
+  <div class="tab" data-tab="track">Track Tools</div>
+</div>
+
+<div id="tab-transactions" class="tab-content active"></div>
+<div id="tab-by-service" class="tab-content"></div>
+<div id="tab-by-skill" class="tab-content"></div>
+<div id="tab-daily" class="tab-content"></div>
+<div id="tab-track" class="tab-content">
+  <!-- Manual transaction -->
+  <div class="form-section">
+    <h3>Log a transaction manually</h3>
+    <p class="hint" style="margin-bottom:10px">Use this for payments the auto-detection missed.</p>
+    <div class="form-row">
+      <label>Service name <input type="text" id="manualService" placeholder="e.g. AlphaClaw"></label>
+      <label>Service URL <input type="text" id="manualUrl" placeholder="https://..."></label>
+      <label>Amount <input type="number" id="manualAmount" step="0.0001" placeholder="0.05"></label>
+      <label>Currency <input type="text" id="manualCurrency" value="USDC" style="width:70px"></label>
+    </div>
+    <div class="form-row">
+      <label>Chain <input type="text" id="manualChain" placeholder="base" style="width:80px"></label>
+      <label>Tx Hash <input type="text" id="manualTxHash" placeholder="0x..."></label>
+      <label>Skill <input type="text" id="manualSkill" placeholder="what triggered it"></label>
+      <label>Status
+        <select id="manualStatus">
+          <option value="confirmed">confirmed</option>
+          <option value="unverified">unverified</option>
+          <option value="failed">failed</option>
+          <option value="pending">pending</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn btn-accent" onclick="logManualTransaction()">Log Transaction</button>
+  </div>
+
+  <!-- Track a tool -->
+  <div class="form-section">
+    <h3>Track a tool</h3>
+    <p class="hint" style="margin-bottom:10px">Tell spend-ledger to watch for a tool that makes payments. Any future calls to tools matching this pattern will be automatically logged.</p>
+    <div class="form-row">
+      <label>Tool name pattern
+        <input type="text" id="trackPattern" placeholder="e.g. stripe_charge or browser_checkout">
+      </label>
+      <label>Description
+        <input type="text" id="trackDesc" placeholder="What does this tool do?">
+      </label>
+      <label>Category
+        <input type="text" id="trackCategory" placeholder="e.g. research, commerce" style="width:130px">
+      </label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="trackSubmit">
+      <label for="trackSubmit">Send to spend-ledger maintainers so this can be built into future versions</label>
+    </div>
+    <div style="margin-top:10px">
+      <button class="btn btn-accent" onclick="addTrackedTool()">Track This Tool</button>
+    </div>
+    <p class="hint">Pattern can be a tool name (exact match) or a regex like <code>stripe_.*</code></p>
+  </div>
+
+  <!-- Currently tracked tools -->
+  <div class="form-section">
+    <h3>Currently tracked tools</h3>
+    <div id="trackedToolsList" class="tracked-list">
+      <div class="empty" style="padding:16px">No custom tool patterns tracked yet</div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const API = '';
+
+let transactions = [];
+let currentTab = 'transactions';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const now = new Date();
+  const ago = new Date(now);
+  ago.setDate(ago.getDate() - 30);
+  document.getElementById('filterFrom').value = ago.toISOString().slice(0, 10);
+  document.getElementById('filterTo').value = now.toISOString().slice(0, 10);
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentTab = tab.dataset.tab;
+      document.getElementById('tab-' + currentTab).classList.add('active');
+      if (currentTab === 'track') loadTrackedTools();
+    });
+  });
+
+  refresh();
+  checkChain();
+});
+
+function getFilters() {
+  const params = new URLSearchParams();
+  const from = document.getElementById('filterFrom').value;
+  const to = document.getElementById('filterTo').value;
+  const service = document.getElementById('filterService').value;
+  const skill = document.getElementById('filterSkill').value;
+  const status = document.getElementById('filterStatus').value;
+  if (from) params.set('from', from);
+  if (to) params.set('to', to);
+  if (service) params.set('service', service);
+  if (skill) params.set('skill', skill);
+  if (status) params.set('status', status);
+  return params.toString();
+}
+
+async function refresh() {
+  const qs = getFilters();
+  const [txRes, svcRes, skillRes, dailyRes] = await Promise.all([
+    fetch(`${API}/api/transactions?${qs}`).then(r => r.json()),
+    fetch(`${API}/api/summary/by-service?${qs}`).then(r => r.json()),
+    fetch(`${API}/api/summary/by-skill?${qs}`).then(r => r.json()),
+    fetch(`${API}/api/summary/daily?${qs}`).then(r => r.json()),
+  ]);
+  transactions = txRes.transactions || [];
+  renderSummaryCards(dailyRes);
+  renderTransactions(transactions);
+  renderBreakdown('tab-by-service', svcRes.groups || []);
+  renderBreakdown('tab-by-skill', skillRes.groups || []);
+  renderDaily(dailyRes);
+}
+
+async function checkChain() {
+  try {
+    const res = await fetch(`${API}/api/verify`).then(r => r.json());
+    const el = document.getElementById('chainStatus');
+    if (res.valid) {
+      el.className = 'chain-status chain-ok';
+      el.textContent = `Chain OK (${res.total} records)`;
+    } else {
+      el.className = 'chain-status chain-broken';
+      el.textContent = `Chain broken at record ${res.brokenAt}`;
+    }
+  } catch {}
+}
+
+function showToast(msg, isError) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.borderColor = isError ? 'var(--red)' : 'var(--green)';
+  el.style.color = isError ? 'var(--red)' : 'var(--green)';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// --- Renderers ---
+
+function renderSummaryCards(dailyData) {
+  const total = dailyData.grand_total || 0;
+  const count = dailyData.grand_count || 0;
+  const periods = Object.keys(dailyData.periods || {}).sort();
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const todayTotal = dailyData.periods?.[todayKey]?.total || 0;
+  const numDays = periods.length || 1;
+  const avgDaily = total / numDays;
+  const unverifiedCount = transactions.filter(t => t.status === 'unverified').length;
+
+  document.getElementById('summaryCards').innerHTML = `
+    <div class="card">
+      <div class="card-label">Total Spend</div>
+      <div class="card-value">$${total.toFixed(4)}</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Transactions</div>
+      <div class="card-value">${count}</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Today</div>
+      <div class="card-value">$${todayTotal.toFixed(4)}</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Avg Daily</div>
+      <div class="card-value">$${avgDaily.toFixed(4)}</div>
+    </div>
+    ${unverifiedCount ? `
+    <div class="card" style="border-color: var(--orange)">
+      <div class="card-label" style="color: var(--orange)">Unverified</div>
+      <div class="card-value" style="color: var(--orange); font-size: 1.2rem">${unverifiedCount} — <a href="#" style="color:var(--orange);font-size:0.85rem" onclick="filterUnverified()">review</a></div>
+    </div>` : ''}
+  `;
+}
+
+function renderTransactions(txns) {
+  const el = document.getElementById('tab-transactions');
+  if (!txns.length) {
+    el.innerHTML = '<div class="empty">No transactions found</div>';
+    return;
+  }
+  el.innerHTML = `
+    <table>
+      <thead><tr>
+        <th>Time</th><th>Service</th><th>Amount</th><th>Skill</th><th>Tool</th><th>Tx Hash</th><th>Time (ms)</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        ${txns.map(t => {
+          const sourceTag = t.source === 'manual' ? '<span class="tag-manual">manual</span>' : '';
+          const detectorTag = t._detector === 'heuristic' ? '<span class="tag-heuristic">heuristic</span>' : '';
+          const failTag = t.failure_type ? `<span class="tag-heuristic">${esc(t.failure_type)}</span>` : '';
+          return `
+          <tr>
+            <td class="mono">${fmtTime(t.timestamp)}</td>
+            <td class="truncate" title="${esc(t.service?.url || '')}">${esc(t.service?.name || 'unknown')}${sourceTag}${detectorTag}</td>
+            <td class="mono amount">${fmtAmount(t.amount)}</td>
+            <td>${esc(t.context?.skill || '-')}</td>
+            <td class="mono">${esc(t.context?.tool_name || '-')}</td>
+            <td class="mono truncate" title="${esc(t.tx_hash || '')}">${t.tx_hash ? esc(t.tx_hash.slice(0, 10)) + '...' : '-'}</td>
+            <td class="mono amount">${t.execution_time_ms != null ? t.execution_time_ms : '-'}</td>
+            <td class="status-${t.status}">${t.status}${failTag}</td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderBreakdown(containerId, groups) {
+  const el = document.getElementById(containerId);
+  if (!groups.length) {
+    el.innerHTML = '<div class="empty">No data</div>';
+    return;
+  }
+  const maxTotal = groups[0]?.total || 1;
+  el.innerHTML = groups.map(g => `
+    <div class="breakdown-row">
+      <div class="breakdown-name" title="${esc(g.name)}">${esc(g.name)}</div>
+      <div class="breakdown-bar-wrap">
+        <div class="breakdown-bar" style="width:${(g.total / maxTotal * 100).toFixed(1)}%"></div>
+      </div>
+      <div class="breakdown-amount">$${g.total.toFixed(4)}</div>
+      <div class="breakdown-count">${g.count}x</div>
+    </div>
+  `).join('');
+}
+
+function renderDaily(data) {
+  const el = document.getElementById('tab-daily');
+  const periods = Object.entries(data.periods || {}).sort((a, b) => b[0].localeCompare(a[0]));
+  if (!periods.length) {
+    el.innerHTML = '<div class="empty">No data</div>';
+    return;
+  }
+  el.innerHTML = `
+    <table>
+      <thead><tr><th>Date</th><th class="amount">Total</th><th class="amount">Transactions</th></tr></thead>
+      <tbody>
+        ${periods.map(([date, d]) => `
+          <tr>
+            <td class="mono">${esc(date)}</td>
+            <td class="mono amount">$${d.total.toFixed(4)}</td>
+            <td class="mono amount">${d.count}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+// --- Manual transaction ---
+
+async function logManualTransaction() {
+  const service = document.getElementById('manualService').value.trim();
+  const url = document.getElementById('manualUrl').value.trim();
+  if (!service && !url) { showToast('Service name or URL required', true); return; }
+
+  const data = {
+    service: { url: url || null, name: service || 'unknown', category: null },
+    amount: {
+      value: document.getElementById('manualAmount').value || '0',
+      currency: document.getElementById('manualCurrency').value || 'USDC',
+      chain: document.getElementById('manualChain').value || null,
+    },
+    tx_hash: document.getElementById('manualTxHash').value || null,
+    context: { skill: document.getElementById('manualSkill').value || null },
+    status: document.getElementById('manualStatus').value,
+  };
+
+  try {
+    const res = await fetch(`${API}/api/transactions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (res.ok) {
+      showToast('Transaction logged');
+      // Clear form
+      ['manualService','manualUrl','manualAmount','manualTxHash','manualSkill'].forEach(
+        id => document.getElementById(id).value = ''
+      );
+      refresh();
+      checkChain();
+    } else {
+      showToast(result.error || 'Failed', true);
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+// --- Tracked tools ---
+
+async function loadTrackedTools() {
+  try {
+    const res = await fetch(`${API}/api/tracked-tools`).then(r => r.json());
+    const tools = res.tools || [];
+    const el = document.getElementById('trackedToolsList');
+    if (!tools.length) {
+      el.innerHTML = '<div class="empty" style="padding:16px">No custom tool patterns tracked yet</div>';
+      return;
+    }
+    el.innerHTML = tools.map(t => `
+      <div class="tracked-item">
+        <div class="tracked-item-info">
+          <span class="tracked-item-pattern">${esc(t.tool_name_pattern)}</span>
+          <span class="tracked-item-desc">${esc(t.description || '')}${t.category ? ' [' + esc(t.category) + ']' : ''}</span>
+        </div>
+        <button class="btn btn-sm btn-danger" onclick="removeTrackedTool('${esc(t.tool_name_pattern)}')">Remove</button>
+      </div>
+    `).join('');
+  } catch {}
+}
+
+async function addTrackedTool() {
+  const pattern = document.getElementById('trackPattern').value.trim();
+  if (!pattern) { showToast('Tool name pattern required', true); return; }
+
+  const data = {
+    tool_name_pattern: pattern,
+    description: document.getElementById('trackDesc').value.trim(),
+    category: document.getElementById('trackCategory').value.trim() || null,
+    send_to_maintainers: document.getElementById('trackSubmit').checked,
+  };
+
+  try {
+    const res = await fetch(`${API}/api/tracked-tools`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (res.ok) {
+      const msg = result.submitted
+        ? 'Tool tracked + suggestion sent to maintainers'
+        : 'Tool tracked';
+      showToast(msg);
+      ['trackPattern','trackDesc','trackCategory'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('trackSubmit').checked = false;
+      loadTrackedTools();
+    } else {
+      showToast(result.error || 'Failed', true);
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+async function removeTrackedTool(pattern) {
+  try {
+    const res = await fetch(`${API}/api/tracked-tools/${encodeURIComponent(pattern)}`, {
+      method: 'DELETE',
+    });
+    if (res.ok) {
+      showToast('Tool pattern removed');
+      loadTrackedTools();
+    } else {
+      const result = await res.json();
+      showToast(result.error || 'Failed', true);
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+// --- Helpers ---
+
+function fmtTime(iso) {
+  if (!iso) return '-';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) +
+    ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+
+function fmtAmount(amount) {
+  if (!amount) return '$0';
+  const val = parseFloat(amount.value || '0');
+  const cur = amount.currency || '';
+  return `$${val.toFixed(4)} ${cur}`;
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function filterUnverified() {
+  document.getElementById('filterStatus').value = 'unverified';
+  refresh();
+}
+
+function exportCSV() {
+  window.open(`${API}/api/export?format=csv&${getFilters()}`);
+}
+
+function exportJSON() {
+  window.open(`${API}/api/export?format=json&${getFilters()}`);
+}
+</script>
+</body>
+</html>

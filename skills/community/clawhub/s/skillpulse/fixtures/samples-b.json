@@ -1,0 +1,6 @@
+[
+  { "sessionId": "s3", "skill": "baseline-kit", "latencyMs": 700, "cpuMs": 450, "memoryMb": 190 },
+  { "sessionId": "s3", "skill": "clawshield", "latencyMs": 1100, "cpuMs": 850, "memoryMb": 420 },
+  { "sessionId": "s4", "skill": "clawshield", "latencyMs": 1000, "cpuMs": 800, "memoryMb": 410 },
+  { "sessionId": "s4", "skill": "safe-install", "latencyMs": 850, "cpuMs": 560, "memoryMb": 230 }
+]

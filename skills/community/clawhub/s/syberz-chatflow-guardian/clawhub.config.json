@@ -1,0 +1,182 @@
+{
+  "name": "syberz-chatflow-guardian",
+  "displayName": "畅聊守护者 (ChatFlow Guardian)",
+  "version": "1.0.0",
+  "description": "Keep your conversations flowing smoothly! Intelligent dialog monitoring to ensure user messages are never the last. Supports multi-platform, predictive responses, and deep learning optimization.",
+  "description_zh": "确保你的对话永远不会中断！智能监控对话状态，确保用户的消息永远不会是最后一条。支持多平台、预测性响应和深度学习优化。",
+  
+  "author": {
+    "name": "syberZ",
+    "email": "969027040@qq.com",
+    "url": "https://github.com/syberZ"
+  },
+  
+  "license": "MIT",
+  
+  "icon": "assets/icon.png",
+  
+  "screenshots": [
+    {
+      "path": "assets/screenshot-dashboard.png",
+      "caption": "ChatFlow Guardian Main Dashboard",
+      "caption_zh": "畅聊守护者主控制面板"
+    },
+    {
+      "path": "assets/screenshot-intent-demo.png",
+      "caption": "Deep Learning Intent Recognition Demo",
+      "caption_zh": "深度学习意图识别演示"
+    },
+    {
+      "path": "assets/screenshot-platforms.png",
+      "caption": "Multi-platform Support Configuration",
+      "caption_zh": "多平台支持配置界面"
+    },
+    {
+      "path": "assets/screenshot-deeplearning.png",
+      "caption": "Neural Network Model Management",
+      "caption_zh": "神经网络模型管理界面"
+    }
+  ],
+  
+  "video": {
+    "url": "https://youtube.com/watch?v=demo-chatflow-guardian",
+    "thumbnail": "screenshots/video-thumbnail.jpg"
+  },
+  
+  "readme": "README.md",
+  "readme_zh": "README.md",
+  
+  "skill_readme": "SKILL.md",
+  
+  "tags": [
+    "conversation",
+    "monitoring",
+    "ai-assistant",
+    "predictive",
+    "deep-learning",
+    "multi-platform",
+    "chat",
+    "productivity"
+  ],
+  
+  "categories": [
+    "productivity",
+    "communication",
+    "ai-assistant"
+  ],
+  
+  "platforms": [
+    "qqbot",
+    "wecom",
+    "slack",
+    "dingtalk",
+    "wechat",
+    "discord",
+    "telegram",
+    "whatsapp"
+  ],
+  
+  "configuration": {
+    "monitoring": {
+      "check_interval": 180,
+      "response_threshold": 180,
+      "quiet_hours": ["23:00-07:00"]
+    },
+    "platforms": {
+      "enabled": true,
+      "supported": ["qqbot", "wecom", "slack", "dingtalk"]
+    },
+    "predictive": {
+      "enabled": true,
+      "prediction_threshold": 0.7
+    },
+    "deeplearning": {
+      "enabled": true,
+      "use_pretrained": true
+    }
+  },
+  
+  "requirements": {
+    "openclaw": ">=2026.3.0",
+    "node": ">=16.0.0",
+    "memory": ">=512MB",
+    "storage": ">=10MB"
+  },
+  
+  "dependencies": {
+    "node-cron": "^3.0.2",
+    "winston": "^3.11.0",
+    "lodash": "^4.17.21"
+  },
+  
+  "main": "src/index.js",
+  
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/run-tests.js",
+    "demo": "node scripts/enhanced-demo.js"
+  },
+  
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syberZ/chatflow-guardian"
+  },
+  
+  "homepage": "https://github.com/syberZ/chatflow-guardian",
+  
+  "bugs": {
+    "url": "https://github.com/syberZ/chatflow-guardian/issues"
+  },
+  
+  "keywords": [
+    "openclaw",
+    "skill",
+    "conversation",
+    "monitoring",
+    "ai",
+    "assistant",
+    "chat",
+    "guardian"
+  ],
+  
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  
+  "publishConfig": {
+    "registry": "https://registry.clawhub.com"
+  },
+  
+  "files": [
+    "src/",
+    "config/",
+    "assets/",
+    "scripts/",
+    "tests/",
+    "templates/",
+    "utils/",
+    "package.json",
+    "README.md",
+    "README_EN.md",
+    "SKILL.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "clawhub.config.json"
+  ],
+  
+  "skill_config": {
+    "name": "syberz-chatflow-guardian",
+    "type": "monitoring",
+    "model": "free",
+    "license": "MIT",
+    "premium_features": []
+  }
+}

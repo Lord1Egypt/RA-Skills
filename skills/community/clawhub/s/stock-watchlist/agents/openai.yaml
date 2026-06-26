@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Watchlist"
+  short_description: "Query real-time quotes and manage a Markdown watchlist"
+  default_prompt: "Use $stock-watchlist to query stock quotes and update a Markdown watchlist."

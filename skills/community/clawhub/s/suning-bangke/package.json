@@ -1,0 +1,9 @@
+{
+  "name": "suning-bangke",
+  "version": "1.0.0",
+  "description": "苏宁帮客预约服务，支持用户输入手机号和故障描述进行服务预约下单",
+  "openclaw": {
+    "skill": true,
+    "displayName": "苏宁帮客预约服务"
+  }
+}

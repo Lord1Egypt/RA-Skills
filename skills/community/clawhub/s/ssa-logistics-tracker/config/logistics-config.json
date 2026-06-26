@@ -1,0 +1,363 @@
+{
+  "version": "1.0.0",
+  "skill": "logistics-tracker",
+  "description": "物流跟踪配置：快递商、API、智能刷新、配额、异常检测、通知、状态机",
+
+  "carriers": [
+    {
+      "code": "dhl",
+      "name": "DHL Express",
+      "tracking_number_pattern": "^\\d{10,11}$",
+      "enabled": true
+    },
+    {
+      "code": "fedex",
+      "name": "FedEx",
+      "tracking_number_pattern": "^\\d{12,22}$",
+      "enabled": true
+    },
+    {
+      "code": "ups",
+      "name": "UPS",
+      "tracking_number_pattern": "^1Z[A-Z0-9]{16}$",
+      "enabled": true
+    },
+    {
+      "code": "sf",
+      "name": "SF Express (顺丰)",
+      "tracking_number_pattern": "^SF\\d{13}$",
+      "enabled": true
+    },
+    {
+      "code": "ems",
+      "name": "EMS / China Post",
+      "tracking_number_pattern": "^[A-Z]{2}\\d{9}[A-Z]{2}$",
+      "enabled": true
+    },
+    {
+      "code": "yanwen",
+      "name": "Yanwen Logistics",
+      "tracking_number_pattern": "^YW\\d+$",
+      "enabled": false
+    },
+    {
+      "code": "cne",
+      "name": "CNE Express",
+      "tracking_number_pattern": "^CNE\\d+$",
+      "enabled": false
+    },
+    {
+      "code": "4px",
+      "name": "4PX",
+      "tracking_number_pattern": "^4PX\\d+$",
+      "enabled": false
+    }
+  ],
+
+  "api": {
+    "primary": {
+      "provider": "17track",
+      "endpoint": "https://api.17track.net/track/v2.2",
+      "batch_endpoint": "/gettrackinfo",
+      "register_endpoint": "/register",
+      "method": "POST",
+      "batch_size": 40,
+      "api_key_env": "TRACK17_API_KEY",
+      "headers": {
+        "Content-Type": "application/json",
+        "17token": "${TRACK17_API_KEY}"
+      },
+      "request_format": {
+        "description": "每个请求体为 [{number, carrier}] 数组，最多 40 条",
+        "example": [
+          { "number": "SF1234567890123", "carrier": 0 }
+        ]
+      },
+      "response_parsing": {
+        "accepted_path": "data.accepted",
+        "rejected_path": "data.rejected",
+        "tracking_events_path": "track_info.tracking.providers[0].events"
+      },
+      "auto_detect_carrier": true,
+      "notes": "carrier=0 表示自动识别快递商"
+    },
+    "backup": {
+      "provider": "trackingmore",
+      "endpoint": "https://api.trackingmore.com/v4/trackings",
+      "api_key_env": "TRACKINGMORE_API_KEY",
+      "enabled": false,
+      "notes": "P2 阶段实现。当 17Track 配额耗尽或服务不可用时启用"
+    }
+  },
+
+  "refresh_strategy": {
+    "description": "智能刷新策略：根据运单所处阶段动态调整查询频率",
+    "stages": {
+      "new_shipment": {
+        "description": "新单（发货后前 3 天）",
+        "interval_hours": 6,
+        "max_age_days": 3
+      },
+      "in_transit": {
+        "description": "在途（发货 3 天后）",
+        "interval_hours": 24,
+        "max_age_days": null
+      },
+      "near_delivery": {
+        "description": "临近到达（触发加密刷新）",
+        "interval_hours": 6,
+        "trigger": "near_delivery_trigger"
+      },
+      "delivered": {
+        "description": "已签收",
+        "interval_hours": null,
+        "notes": "停止刷新"
+      },
+      "exception": {
+        "description": "异常状态（退回/丢失/拒收）",
+        "interval_hours": 12,
+        "notes": "保持监控直到人工处理"
+      }
+    },
+    "near_delivery_trigger": {
+      "description": "定义'临近到达'的触发条件（满足任一即触发）",
+      "conditions": [
+        {
+          "type": "status_keyword",
+          "keywords": ["out for delivery", "arrived at destination", "customs cleared", "派送中", "到达目的地"],
+          "description": "物流事件包含目的地相关关键词"
+        },
+        {
+          "type": "last_mile_carrier_scan",
+          "description": "检测到末端快递商扫描（最后一公里）"
+        }
+      ]
+    },
+    "batch_grouping": {
+      "description": "按刷新优先级分组批量查询，优先查询 new_shipment 和 near_delivery",
+      "priority_order": ["near_delivery", "new_shipment", "exception", "in_transit"]
+    }
+  },
+
+  "quota": {
+    "daily_limit": 100,
+    "warning_threshold": 0.8,
+    "critical_threshold": 0.95,
+    "quota_exhausted_behavior": "pause_non_critical",
+    "pause_non_critical_rules": {
+      "description": "配额耗尽时的降级策略",
+      "keep_active": ["near_delivery", "exception"],
+      "pause": ["new_shipment", "in_transit"],
+      "notes": "只保留异常检测和临近到达的刷新，暂停常规刷新"
+    },
+    "quota_reset_time": "00:00:00Z",
+    "alerts": {
+      "warning": {
+        "channel": "discord",
+        "message": "⚠️ 17Track API 配额使用达 {usage_percent}%（{used}/{limit}）"
+      },
+      "exhausted": {
+        "channel": "discord",
+        "message": "🚨 17Track API 配额已耗尽，已启用降级模式（pause_non_critical）"
+      }
+    }
+  },
+
+  "retry": {
+    "max_attempts": 3,
+    "backoff_type": "exponential",
+    "delays_minutes": [1, 5, 15],
+    "retryable_errors": [
+      "ETIMEDOUT",
+      "ECONNRESET",
+      "HTTP_429",
+      "HTTP_500",
+      "HTTP_502",
+      "HTTP_503"
+    ],
+    "non_retryable_errors": [
+      "HTTP_401",
+      "HTTP_403",
+      "INVALID_TRACKING_NUMBER"
+    ]
+  },
+
+  "anomaly": {
+    "no_update_threshold_days": 7,
+    "customs_hold_threshold_days": 5,
+    "return_detection": {
+      "enabled": true,
+      "keywords": ["returned", "return to sender", "退回", "拒收"]
+    },
+    "lost_detection": {
+      "enabled": true,
+      "no_update_days": 30,
+      "notes": "超过 30 天无更新标记为疑似丢失"
+    },
+    "alert_channels": {
+      "primary": "discord",
+      "secondary": "email",
+      "email_recipient": "wilson"
+    },
+    "alert_templates": {
+      "no_update": "⚠️ 运单 {tracking_number}（客户 {customer_name}）已 {days} 天无物流更新",
+      "customs_hold": "🛃 运单 {tracking_number} 疑似清关异常（已滞留 {days} 天）",
+      "returned": "📦↩️ 运单 {tracking_number} 检测到退回状态",
+      "lost": "🚨 运单 {tracking_number} 疑似丢失（{days} 天无更新），建议启动赔偿流程"
+    },
+    "compensation_reminder": {
+      "enabled": true,
+      "trigger_status": ["lost", "returned"],
+      "message": "💰 运单 {tracking_number} 状态为 {status_label}，建议联系 {carrier} 启动赔偿/索赔流程"
+    }
+  },
+
+  "notification": {
+    "default_events": ["shipped", "delivered"],
+    "opt_in_events": ["customs_cleared", "out_for_delivery", "exception"],
+    "dedup": {
+      "enabled": true,
+      "method": "event_id",
+      "description": "通知前检查 eventId 幂等性，同一事件不重复推送"
+    },
+    "channel": "email",
+    "smtp_skill": "imap-smtp-email",
+    "self_track_link": {
+      "enabled": true,
+      "template": "https://t.17track.net/en#nums={tracking_number}",
+      "label": "Track your shipment"
+    },
+    "templates": {
+      "shipped": {
+        "subject": "Your order has been shipped - Tracking #{tracking_number}",
+        "body_template": "templates/shipped.html",
+        "includes_tracking_link": true
+      },
+      "delivered": {
+        "subject": "Your order has been delivered - #{tracking_number}",
+        "body_template": "templates/delivered.html"
+      },
+      "exception": {
+        "subject": "Shipping update for your order - #{tracking_number}",
+        "body_template": "templates/exception.html"
+      }
+    },
+    "frequency_control": {
+      "max_notifications_per_shipment_per_day": 3,
+      "cooldown_minutes": 60,
+      "notes": "防止同一运单短时间内发送过多通知"
+    }
+  },
+
+  "state_machine": {
+    "description": "物流状态机定义：完整状态流转 + 异常分支",
+    "states": {
+      "pending_shipment": {
+        "label": "待发货",
+        "description": "订单已创建，等待发货",
+        "transitions": ["in_transit"]
+      },
+      "in_transit": {
+        "label": "运输中",
+        "description": "包裹已被快递商揽收",
+        "transitions": ["customs_clearance", "near_delivery", "delivered", "returning", "lost"]
+      },
+      "customs_clearance": {
+        "label": "清关中",
+        "description": "包裹在目的国海关处理中",
+        "transitions": ["in_transit", "near_delivery", "delivered", "returning", "lost"]
+      },
+      "near_delivery": {
+        "label": "派送中",
+        "description": "包裹已到达目的地，正在末端派送",
+        "transitions": ["delivered", "refused", "returning"]
+      },
+      "delivered": {
+        "label": "已签收",
+        "description": "包裹已签收，流程结束",
+        "transitions": [],
+        "terminal": true
+      },
+      "returning": {
+        "label": "退回中",
+        "description": "包裹正在退回发件人",
+        "transitions": ["returned"]
+      },
+      "returned": {
+        "label": "已退回",
+        "description": "包裹已退回发件人，可能需要重新发货或赔偿",
+        "transitions": [],
+        "terminal": true
+      },
+      "lost": {
+        "label": "已丢失",
+        "description": "包裹疑似丢失，需启动赔偿流程",
+        "transitions": [],
+        "terminal": true
+      },
+      "refused": {
+        "label": "客户拒收",
+        "description": "客户拒收包裹，进入退回流程",
+        "transitions": ["returning"]
+      }
+    },
+    "initial_state": "pending_shipment",
+    "terminal_states": ["delivered", "returned", "lost"],
+    "status_mapping": {
+      "description": "17Track API 状态码到内部状态的映射",
+      "mapping": {
+        "NotFound": "pending_shipment",
+        "InTransit": "in_transit",
+        "Expired": "lost",
+        "PickedUp": "in_transit",
+        "Undelivered": "returning",
+        "Delivered": "delivered",
+        "Alert": "customs_clearance"
+      }
+    }
+  },
+
+  "storage": {
+    "shipments_file": "data/shipments.json",
+    "events_dir": "data/events/",
+    "atomic_write": {
+      "enabled": true,
+      "method": "write_rename",
+      "description": "先写入临时文件，再 rename 到目标路径，防止并发损坏"
+    },
+    "event_dedup": {
+      "enabled": true,
+      "method": "event_id",
+      "description": "每个物流事件分配唯一 eventId，防止重复处理"
+    },
+    "backup": {
+      "enabled": true,
+      "interval_hours": 24,
+      "max_backups": 7,
+      "backup_dir": "data/backups/"
+    }
+  },
+
+  "integrations": {
+    "order_tracker": {
+      "skill": "order-tracker",
+      "description": "读取已发货订单自动创建跟踪任务",
+      "auto_create_tracking": true
+    },
+    "imap_smtp_email": {
+      "skill": "imap-smtp-email",
+      "description": "通过 SMTP 发送客户通知邮件"
+    },
+    "tracking_extractor": {
+      "module": "scripts/tracking-extractor.js",
+      "description": "从邮件正文自动提取运单号"
+    }
+  },
+
+  "scheduler": {
+    "cron_expression": "0 */6 * * *",
+    "description": "主调度器默认每 6 小时运行一次，实际查询频率由 refresh_strategy 控制",
+    "entry_point": "scripts/scheduler.js",
+    "timezone": "Asia/Shanghai"
+  }
+}

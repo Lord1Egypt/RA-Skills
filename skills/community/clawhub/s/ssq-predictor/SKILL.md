@@ -1,35 +1,80 @@
 ---
-name: "Ssq Predictor"
-description: "双色球彩票预测工具，基于历史数据分析生成区间平衡的号码推荐。使用冷热号分析、遗漏值追踪、区间分布优化等算法，生成符合历史统计规律的预测号码。当用户需要双色球号码预测、彩票号码分析、或历史开奖数据统计时使用此Skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ssq-predictor"
-sourceUrl: "https://clawhub.ai/skills/ssq-predictor"
+name: ssq-predictor
+description: 双色球彩票预测工具，基于历史数据分析生成区间平衡的号码推荐。使用冷热号分析、遗漏值追踪、区间分布优化等算法，生成符合历史统计规律的预测号码。当用户需要双色球号码预测、彩票号码分析、或历史开奖数据统计时使用此Skill。
+version: 1.0.0
 ---
 
-# Ssq Predictor
+# 双色球预测器 (SSQ Predictor)
 
-> 双色球彩票预测工具，基于历史数据分析生成区间平衡的号码推荐。使用冷热号分析、遗漏值追踪、区间分布优化等算法，生成符合历史统计规律的预测号码。当用户需要双色球号码预测、彩票号码分析、或历史开奖数据统计时使用此Skill。
+基于历史开奖数据的区间平衡预测工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ssq-predictor`
-- **Source URL:** [https://clawhub.ai/skills/ssq-predictor](https://clawhub.ai/skills/ssq-predictor)
+## 核心功能
 
-## Overview
+1. **特征工程分析** - 冷热号统计、遗漏值追踪、区间分布分析
+2. **区间平衡预测** - 确保红球在三区(01-11, 12-22, 23-33)合理分布
+3. **多组预测生成** - 提供6种不同分布模式的预测组合
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 生成预测
+
 ```bash
-hermes skills install clawhub/ssq-predictor
+cd ~/.openclaw/workspace/skills/ssq-predictor/scripts
+python3 ssq_predict.py
+```
+
+### 在Python中调用
+
+```python
+from ssq_predict import generate_predictions
+
+results = generate_predictions(csv_path='ssq_history_100.csv', n_groups=6)
+for r in results:
+    print(f"{r['name']}: 红球 {r['red']}, 蓝球 {r['blue']}")
+```
+
+## 预测策略
+
+### 区间分布模式
+
+| 模式 | 一区(01-11) | 二区(12-22) | 三区(23-33) | 说明 |
+|------|------------|------------|------------|------|
+| 均衡型(2-2-2) | 2个 | 2个 | 2个 | 最均衡分布 |
+| 偏态型(3-2-1) | 3个 | 2个 | 1个 | 偏小号 |
+| 偏态型(2-3-1) | 2个 | 3个 | 1个 | 偏中区 |
+| 偏态型(1-2-3) | 1个 | 2个 | 3个 | 偏大号 |
+| 偏态型(3-1-2) | 3个 | 1个 | 2个 | 偏一三区 |
+| 偏态型(2-1-3) | 2个 | 1个 | 3个 | 偏二三区 |
+
+### 算法特点
+
+1. **冷热号加权** - 近期热号增加权重
+2. **遗漏值补偿** - 长期未出号码适当增加概率
+3. **区间强制平衡** - 避免小号或大号过度集中
+4. **随机扰动** - 保留随机性，避免过度拟合
+
+## 数据文件
+
+需要双色球历史数据CSV文件，格式如下：
+
+```csv
+# 双色球近100期开奖结果
+# 数据来源：500彩票网
+期号,红球1,红球2,红球3,红球4,红球5,红球6,蓝球,开奖日期
+2026030,10,11,14,19,22,24,04,2026-03-19
+...
+```
+
+## 注意事项
+
+⚠️ **仅供娱乐参考** - 双色球是完全随机抽奖，任何算法都无法保证中奖。请理性购彩，量力而行。
+
+## 文件结构
+
+```
+ssq-predictor/
+├── SKILL.md
+└── scripts/
+    ├── ssq_features.py    # 特征工程模块
+    └── ssq_predict.py     # 预测算法
 ```

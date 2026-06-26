@@ -1,0 +1,4725 @@
+{
+  "tech-routines": {
+    "domains": {
+      "contains": [
+        "routines",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "cron",
+        "openclaw",
+        "workflow-rule"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw",
+        "ai-tech-daily-brief",
+        "UserA"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "根因",
+        "先查 memory",
+        "OpenClaw"
+      ],
+      "notContains": [
+        "报销",
+        "合同"
+      ]
+    }
+  },
+  "finance": {
+    "domains": {
+      "contains": [
+        "finance"
+      ],
+      "notContains": [
+        "legal",
+        "tech",
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ],
+      "notContains": [
+        "contract",
+        "cron"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "预算",
+        "发票"
+      ],
+      "notContains": [
+        "OpenClaw",
+        "context-engine"
+      ]
+    }
+  },
+  "legal": {
+    "domains": {
+      "contains": [
+        "legal"
+      ],
+      "notContains": [
+        "finance",
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ],
+      "notContains": [
+        "budget",
+        "cron"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "NDA",
+        "合同",
+        "合规"
+      ]
+    }
+  },
+  "organization-hr": {
+    "domains": {
+      "contains": [
+        "organization"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "recruiting"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "招聘",
+        "绩效",
+        "入职"
+      ]
+    }
+  },
+  "mixed-project": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "operations",
+        "tech"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "已查明",
+        "里程碑",
+        "客户"
+      ]
+    }
+  },
+  "taxonomy-discussion": {
+    "domains": {
+      "contains": [
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "memory-system"
+      ],
+      "notContains": [
+        "budget",
+        "contract",
+        "recruiting"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "structured-memory",
+        "UserA"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "精简",
+        "按需创建"
+      ],
+      "notContains": [
+        "报销",
+        "NDA"
+      ]
+    }
+  },
+  "internal-tuning-noise": {
+    "domains": {
+      "contains": [
+        "meta",
+        "routines"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "memory-system",
+        "workflow-rule",
+        "morning-brief"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "根因",
+        "先查 memory"
+      ],
+      "notContains": [
+        "精度打磨继续推进",
+        "分层选句策略"
+      ]
+    }
+  },
+  "personal-learning": {
+    "domains": {
+      "contains": [
+        "personal"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "preference",
+        "learning"
+      ],
+      "notContains": [
+        "budget",
+        "contract",
+        "cron"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "睡眠",
+        "作息",
+        "方法论"
+      ],
+      "notContains": [
+        "报销",
+        "NDA"
+      ]
+    }
+  },
+  "operations-handoff": {
+    "domains": {
+      "contains": [
+        "operations"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "故障",
+        "交接",
+        "follow-up"
+      ]
+    }
+  },
+  "project-risk-with-openclaw": {
+    "domains": {
+      "contains": [
+        "project",
+        "tech"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "openclaw"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "已查明",
+        "OpenClaw"
+      ]
+    }
+  },
+  "critical-fact-like-but-no-store": {
+    "domains": {
+      "contains": [
+        "meta"
+      ],
+      "notContains": [
+        "operations",
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "memory-system"
+      ],
+      "notContains": [
+        "budget",
+        "contract",
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "IP",
+        "账号",
+        "路径"
+      ],
+      "notContains": [
+        "具体值",
+        "付款"
+      ]
+    },
+    "critical_facts": {
+      "notContains": [
+        "10.0.0.12",
+        "/home/user/.openclaw"
+      ]
+    }
+  },
+  "legal-finance-mixed": {
+    "domains": {
+      "contains": [
+        "legal",
+        "finance"
+      ],
+      "notContains": [
+        "routines",
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract",
+        "budget"
+      ],
+      "notContains": [
+        "cron",
+        "preference"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "付款",
+        "合规"
+      ]
+    }
+  },
+  "entity-heavy": {
+    "domains": {
+      "contains": [
+        "tech",
+        "routines"
+      ],
+      "notContains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "morning-brief"
+      ],
+      "notContains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw",
+        "Feishu",
+        "ai-tech-daily-brief",
+        "UserA"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "Feishu",
+        "ai-tech-daily-brief"
+      ],
+      "notContains": [
+        "报销",
+        "NDA"
+      ]
+    }
+  },
+  "strategy-roadmap": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "business-product": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "需求",
+        "客户",
+        "定价"
+      ]
+    }
+  },
+  "company-meeting": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "finance-reimbursement": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "预算",
+        "付款"
+      ]
+    }
+  },
+  "legal-contract": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "合规"
+      ]
+    }
+  },
+  "organization-performance": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "recruiting"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "绩效",
+        "团队",
+        "招聘"
+      ]
+    }
+  },
+  "project-blocker": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "blocker",
+        "里程碑",
+        "风险"
+      ]
+    }
+  },
+  "operations-support": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "交接",
+        "follow-up"
+      ]
+    }
+  },
+  "tech-security": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "安全",
+        "脚本"
+      ]
+    }
+  },
+  "routines-weekly-report": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "weekly-report",
+        "cron"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "周报",
+        "cron",
+        "晨报"
+      ]
+    }
+  },
+  "personal-health": {
+    "domains": {
+      "contains": [
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "preference"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "作息",
+        "睡眠",
+        "健康"
+      ]
+    }
+  },
+  "meta-workflow": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "workflow"
+      ]
+    }
+  },
+  "misc-uncategorized": {
+    "domains": {
+      "contains": [
+        "misc"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "uncategorized"
+      ]
+    }
+  },
+  "business-customer-delivery": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "交付",
+        "需求"
+      ]
+    }
+  },
+  "finance-tax-invoice": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "发票",
+        "付款",
+        "税务"
+      ]
+    }
+  },
+  "legal-ip-approval": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "知识产权",
+        "授权",
+        "approval"
+      ]
+    }
+  },
+  "organization-onboarding": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "recruiting"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "入职",
+        "onboarding",
+        "账号"
+      ]
+    }
+  },
+  "project-owner-dependency": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "依赖",
+        "owner",
+        "milestone"
+      ]
+    }
+  },
+  "operations-incident": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "incident",
+        "follow-up",
+        "值守"
+      ]
+    }
+  },
+  "tech-architecture": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "context-engine",
+        "架构"
+      ]
+    }
+  },
+  "routines-reminder": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "提醒",
+        "提醒事项"
+      ]
+    }
+  },
+  "personal-mood": {
+    "domains": {
+      "contains": [
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "preference"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "状态",
+        "烦躁",
+        "休息"
+      ]
+    }
+  },
+  "meta-retrieval-limit": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "检索上限",
+        "daily memory",
+        "规则"
+      ]
+    }
+  },
+  "critical-facts-discussion": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "memory-system"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "critical-facts",
+        "IP",
+        "账号"
+      ]
+    },
+    "critical_facts": {
+      "notContains": [
+        "10.0.0.12",
+        "/home/user/.openclaw",
+        "https://ops.example.test:18789"
+      ]
+    }
+  },
+  "business-pricing": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "定价",
+        "转化率",
+        "销售"
+      ]
+    }
+  },
+  "finance-payment-approval": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "付款",
+        "预算",
+        "发票"
+      ]
+    }
+  },
+  "legal-compliance-data": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合规",
+        "合同",
+        "NDA"
+      ]
+    }
+  },
+  "organization-team-reporting": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "团队",
+        "reporting",
+        "会议"
+      ]
+    }
+  },
+  "project-change-request": {
+    "domains": {
+      "contains": [
+        "project",
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "change request",
+        "milestone",
+        "owner"
+      ]
+    }
+  },
+  "operations-workflow": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "workflow",
+        "步骤",
+        "follow-up"
+      ]
+    }
+  },
+  "tech-coding": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "coding",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "脚本",
+        "代码",
+        "OpenClaw"
+      ]
+    }
+  },
+  "personal-reading": {
+    "domains": {
+      "contains": [
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "learning"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "系统设计",
+        "方法论",
+        "周末"
+      ]
+    }
+  },
+  "meta-summary-quality": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "summary",
+        "事件核心",
+        "实现进展"
+      ]
+    }
+  },
+  "misc-short-note": {
+    "domains": {
+      "contains": [
+        "misc"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "uncategorized"
+      ]
+    }
+  },
+  "business-growth": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "增长",
+        "客户获取成本",
+        "市场"
+      ]
+    }
+  },
+  "finance-revenue": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "收入",
+        "revenue",
+        "报表"
+      ]
+    }
+  },
+  "legal-terms": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "条款",
+        "合同",
+        "法务"
+      ]
+    }
+  },
+  "organization-headcount": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "recruiting"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "headcount",
+        "招聘",
+        "人力"
+      ]
+    }
+  },
+  "project-progress": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "progress",
+        "blocker",
+        "里程碑"
+      ]
+    }
+  },
+  "operations-customer-followup": {
+    "domains": {
+      "contains": [
+        "operations",
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow",
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "follow-up",
+        "support"
+      ]
+    }
+  },
+  "tech-ai-model": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "ai",
+        "openclaw",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "AI 模型",
+        "agent",
+        "legacy"
+      ]
+    }
+  },
+  "routines-daily-report": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "daily-report"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "日报",
+        "提醒时间",
+        "周报"
+      ]
+    }
+  },
+  "strategy-batch-01": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-02": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-03": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-04": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-05": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-06": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-07": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-08": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-09": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "strategy-batch-10": {
+    "domains": {
+      "contains": [
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "目标",
+        "路线图",
+        "planning"
+      ]
+    }
+  },
+  "business-batch-01": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-02": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-03": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-04": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-05": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-06": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-07": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-08": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-09": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "business-batch-10": {
+    "domains": {
+      "contains": [
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "需求",
+        "定价"
+      ]
+    }
+  },
+  "organization-batch-01": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-02": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-03": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-04": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-05": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-06": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-07": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-08": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-09": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "organization-batch-10": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "例会",
+        "汇报",
+        "流程"
+      ]
+    }
+  },
+  "finance-batch-01": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-02": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-03": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-04": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-05": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-06": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-07": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-08": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-09": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "finance-batch-10": {
+    "domains": {
+      "contains": [
+        "finance"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "报销",
+        "发票",
+        "付款"
+      ]
+    }
+  },
+  "legal-batch-01": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-02": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-03": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-04": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-05": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-06": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-07": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-08": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-09": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "legal-batch-10": {
+    "domains": {
+      "contains": [
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "合同",
+        "NDA",
+        "法务"
+      ]
+    }
+  },
+  "project-batch-01": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-02": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-03": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-04": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-05": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-06": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-07": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-08": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-09": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "project-batch-10": {
+    "domains": {
+      "contains": [
+        "project"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "blocker",
+        "风险"
+      ]
+    }
+  },
+  "operations-batch-01": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-02": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-03": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-04": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-05": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-06": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-07": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-08": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-09": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "operations-batch-10": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "support",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "tech-batch-01": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-02": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-03": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-04": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-05": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-06": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-07": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-08": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-09": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "tech-batch-10": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "coding",
+        "architecture"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "代码",
+        "架构"
+      ]
+    }
+  },
+  "routines-batch-01": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-02": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-03": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-04": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-05": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-06": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-07": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-08": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-09": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "routines-batch-10": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "weekly-report",
+        "cron",
+        "reminder"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "晨报",
+        "cron",
+        "提醒事项"
+      ]
+    }
+  },
+  "meta-batch-01": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-02": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-03": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-04": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-05": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-06": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-07": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-08": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-09": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "meta-batch-10": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory",
+        "没查到记录",
+        "summary"
+      ]
+    }
+  },
+  "hard-taxonomy-with-real-signal": {
+    "domains": {
+      "contains": [
+        "business"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product"
+      ],
+      "notContains": [
+        "budget",
+        "contract",
+        "recruiting"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "交付",
+        "需求"
+      ]
+    }
+  },
+  "hard-critical-facts-example-only": {
+    "domains": {
+      "contains": [
+        "meta"
+      ],
+      "notContains": [
+        "operations",
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "memory-system"
+      ],
+      "notContains": [
+        "workflow",
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "critical-facts",
+        "IP",
+        "账号"
+      ],
+      "notContains": [
+        "具体值"
+      ]
+    },
+    "critical_facts": {
+      "notContains": [
+        "10.0.0.12",
+        "/home/user/.openclaw"
+      ]
+    }
+  },
+  "critical-facts-real": {
+    "critical_facts": {
+      "contains": [
+        "10.23.45.67",
+        "/home/user/.openclaw",
+        "https://ops.example.test:18789",
+        "d43e0eba-42be-4d88-9a72-5f288a91d55c",
+        "ou_example_open_id"
+      ],
+      "notContains": [
+        "OpenClaw"
+      ],
+      "types": [
+        "host",
+        "path",
+        "endpoint",
+        "identifier",
+        "service"
+      ],
+      "domains": [
+        "tech",
+        "organization"
+      ],
+      "modules": [
+        "openclaw",
+        "process"
+      ],
+      "related_entity": [
+        "数字公司服务器",
+        "OpenClaw",
+        "Feishu"
+      ]
+    }
+  },
+  "hard-structured-tech": {
+    "domains": {
+      "contains": [
+        "tech",
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "cron"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw",
+        "ai-tech-daily-brief"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-structured-mixed-project": {
+    "domains": {
+      "contains": [
+        "project",
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "客户",
+        "交付"
+      ]
+    }
+  },
+  "hard-long-mixed-log-01": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "已查明",
+        "里程碑",
+        "客户"
+      ],
+      "notContains": [
+        "分类示例"
+      ]
+    }
+  },
+  "hard-long-mixed-log-02": {
+    "domains": {
+      "contains": [
+        "routines",
+        "meta",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "workflow-rule",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "根因",
+        "先查 memory",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-ops-vs-meta-discussion": {
+    "domains": {
+      "contains": [
+        "meta"
+      ],
+      "notContains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "先查 memory"
+      ]
+    }
+  },
+  "hard-finance-legal-cross": {
+    "domains": {
+      "contains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "发票",
+        "付款",
+        "法务"
+      ]
+    }
+  },
+  "hard-org-personal-separation": {
+    "domains": {
+      "contains": [
+        "organization",
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "recruiting",
+        "preference"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "入职",
+        "休息",
+        "账号"
+      ]
+    }
+  },
+  "hard-project-change-request-zh": {
+    "domains": {
+      "contains": [
+        "project",
+        "business"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "owner"
+      ]
+    }
+  },
+  "hard-tech-ai-vs-routine-ai": {
+    "domains": {
+      "contains": [
+        "routines",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "morning-brief",
+        "openclaw",
+        "architecture"
+      ],
+      "notContains": [
+        "ai"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw",
+        "ai-tech-daily-brief"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "legacy"
+      ]
+    }
+  },
+  "hard-routines-reminder-vs-report": {
+    "domains": {
+      "contains": [
+        "routines"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "reminder",
+        "daily-report",
+        "weekly-report"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "提醒",
+        "提醒事项",
+        "周报"
+      ]
+    }
+  },
+  "hard-personal-learning-long": {
+    "domains": {
+      "contains": [
+        "personal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "learning"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "系统设计",
+        "方法论",
+        "周末"
+      ]
+    }
+  },
+  "hard-meta-summary-rule": {
+    "domains": {
+      "contains": [
+        "meta"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow-rule"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "summary",
+        "没查到记录",
+        "先查 memory"
+      ]
+    }
+  },
+  "hard-business-growth-pricing": {
+    "domains": {
+      "contains": [
+        "business",
+        "strategy"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "priority"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "增长",
+        "定价",
+        "销售"
+      ]
+    }
+  },
+  "hard-ops-incident-real": {
+    "domains": {
+      "contains": [
+        "operations"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "workflow"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "incident",
+        "follow-up",
+        "交接"
+      ]
+    }
+  },
+  "hard-tech-security-real": {
+    "domains": {
+      "contains": [
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "openclaw",
+        "security"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "OpenClaw",
+        "安全",
+        "权限"
+      ]
+    }
+  },
+  "hard-org-headcount-hiring": {
+    "domains": {
+      "contains": [
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "process",
+        "recruiting"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "headcount",
+        "招聘",
+        "人力"
+      ]
+    }
+  },
+  "hard-structured-finance-legal": {
+    "domains": {
+      "contains": [
+        "finance",
+        "legal"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "budget",
+        "contract"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "发票",
+        "付款",
+        "授权"
+      ]
+    }
+  },
+  "hard-noisy-mix-01": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-02": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-03": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-04": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-05": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-06": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-07": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-08": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-09": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-10": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-11": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-12": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-13": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-14": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-15": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-16": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-17": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-18": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-19": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-noisy-mix-20": {
+    "domains": {
+      "contains": [
+        "business",
+        "project",
+        "tech",
+        "meta"
+      ],
+      "notContains": [
+        "finance",
+        "legal",
+        "organization"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "product",
+        "risk",
+        "openclaw",
+        "workflow-rule"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "客户",
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-01": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-02": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-03": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-04": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-05": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-06": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-07": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-08": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-09": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  },
+  "hard-hybrid-10": {
+    "domains": {
+      "contains": [
+        "project",
+        "business",
+        "tech"
+      ]
+    },
+    "modules": {
+      "contains": [
+        "risk",
+        "product",
+        "openclaw"
+      ]
+    },
+    "entities": {
+      "contains": [
+        "OpenClaw"
+      ]
+    },
+    "summary": {
+      "contains": [
+        "里程碑",
+        "OpenClaw"
+      ]
+    }
+  }
+}

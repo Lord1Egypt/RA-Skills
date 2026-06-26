@@ -1,0 +1,14 @@
+id: growth_hunter
+display_name: Growth Hunter
+display_name_zh: 成长猎手
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: aggressive
+terminology_profile: mixed
+ensemble_weight: 1.0
+overlay:
+  conviction_scale: 1.05
+  conviction_bias: 0
+  eps_growth_weight: 1.15
+  high_rsi_penalty_extra: 0

@@ -1,0 +1,24 @@
+{
+  "name": "stdb_edit",
+  "description": "Updates an existing SpacetimeDB memory by ID.",
+  "command": "node ~/.openclaw/workspace/skills/spacetime-memory/tools/stdb_edit.js",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The ID of the memory to update."
+      },
+      "content": {
+        "type": "string",
+        "description": "The new text content for the memory."
+      },
+      "tags": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "The new array of tags for the memory."
+      }
+    },
+    "required": ["id", "content", "tags"]
+  }
+}

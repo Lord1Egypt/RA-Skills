@@ -1,0 +1,138 @@
+{
+  "product_name": "HDACFM",
+  "model_no": "AD1005-001",
+  "drawing_no": "599-002",
+  "packaging_spec": "BJ0599-0002",
+  "material_code": "599-000",
+  "length_mm": "",
+  "mold_info": "INNER MOLD: , OUTER MOLD: ",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "④",
+      "part_name": "外模",
+      "spec": "45P 黑色 PVC 成型",
+      "quantity": "g"
+    },
+    {
+      "no": "③",
+      "part_name": "内模",
+      "spec": "透明PE料",
+      "quantity": "g"
+    },
+    {
+      "no": "②",
+      "part_name": "接头",
+      "spec": "HDMI AF 19P PIN:G/F, SHELL:铜壳镀金",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "①",
+      "part_name": "接头",
+      "spec": "HDMI CM 19P PIN:G/F, SHELL:铜壳镀金",
+      "quantity": "1PCS"
+    }
+  ],
+  "tolerances": [
+    {
+      "range": "0.5-3.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.1mm"
+    },
+    {
+      "range": "3.0-6.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.1mm"
+    },
+    {
+      "range": "6.0-30.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.2mm"
+    },
+    {
+      "range": "30以上",
+      "hardware": "±0.05mm",
+      "plastic": "±0.3mm"
+    }
+  ],
+  "test_requirements": {
+    "table": [
+      {
+        "length_range": "0.1-5M",
+        "resistance": "≤5",
+        "insulation": "≥5",
+        "dc_vs": "300/0.1S"
+      },
+      {
+        "length_range": "5-10M",
+        "resistance": "≤10",
+        "insulation": "≥5",
+        "dc_vs": "300/0.1S"
+      },
+      {
+        "length_range": "10-20M",
+        "resistance": "≤20",
+        "insulation": "≥5",
+        "dc_vs": "250/0.1S"
+      },
+      {
+        "length_range": "20以上",
+        "resistance": "≥20",
+        "insulation": "≥5",
+        "dc_vs": "200/0.1S"
+      }
+    ],
+    "other_tests": [
+      "100%开路、短路、错位瞬间短/断路测试",
+      "通过4K*2K@60HZ测试"
+    ]
+  },
+  "pin_assignment": {
+    "connectors": [
+      "HDMI AF",
+      "HDMI CM"
+    ],
+    "description": "HDMI AF 1-19 PIN to HDMI CM 1-19 PIN, SHELL to SHELL"
+  },
+  "dimensions": [
+    "14.3±0.3",
+    "26.9±0.3",
+    "7.6±0.3",
+    "6.3±0.2",
+    "12.3±0.15"
+  ],
+  "notes": [
+    "承认样变更接头材质",
+    "所有材质符合RoHS 2.0 和REACH 最新环保标准"
+  ],
+  "revision_history": [
+    {
+      "revision": "A2",
+      "date": "2022/03/08",
+      "description": ""
+    },
+    {
+      "revision": "A1",
+      "date": "2022/02/12",
+      "description": ""
+    }
+  ],
+  "company": "珠海福睿电子 FARREACH",
+  "drawing_date": "2021 07 15",
+  "drawn_by": "YAN",
+  "checked_by": "YAN",
+  "approved_by": "",
+  "products": [
+    {
+      "customer_item": "HDACFM",
+      "length_mm": "",
+      "material_code": "599-002",
+      "packaging_spec": "BJ0599-0002"
+    }
+  ],
+  "extraction_method": "hybrid",
+  "source_file": "9ccf099c-735d-435b-9cea-4a5925f00296.pdf",
+  "pages": 1,
+  "warnings": [],
+  "confidence": 100.0
+}

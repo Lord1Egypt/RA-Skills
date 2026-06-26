@@ -1,35 +1,47 @@
 ---
-name: "super-github-s"
-description: "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.def listingep75 alert..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/super-github-s"
-sourceUrl: "https://clawhub.ai/skills/super-github-s"
+name: super-github
+description: "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.def listingep75 alert ion bugs receipts progress tonight"
 ---
 
-# super-github-s
+# GitHub Skill
 
-> Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.def listingep75 alert...
+Use the `gh` CLI to interact with GitHub. Always specify `--repo owner/repo` when not in a git directory, or use URLs directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/super-github-s`
-- **Source URL:** [https://clawhub.ai/skills/super-github-s](https://clawhub.ai/skills/super-github-s)
+## Pull Requests
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Check CI status on a PR:
 ```bash
-hermes skills install clawhub/super-github-s
+gh pr checks 55 --repo owner/repo
+```
+
+List recent workflow runs:
+```bash
+gh run list --repo owner/repo --limit 10
+```
+
+View a run and see which steps failed:
+```bash
+gh run view <run-id> --repo owner/repo
+```
+
+View logs for failed steps only:
+```bash
+gh run view <run-id> --repo owner/repo --log-failed
+```
+
+## API for Advanced Queries
+
+The `gh api` command is useful for accessing data not available through other subcommands.
+
+Get PR with specific fields:
+```bash
+gh api repos/owner/repo/pulls/55 --jq '.title, .state, .user.login'
+```
+
+## JSON Output
+
+Most commands support `--json` for structured output.  You can use `--jq` to filter:
+
+```bash
+gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```

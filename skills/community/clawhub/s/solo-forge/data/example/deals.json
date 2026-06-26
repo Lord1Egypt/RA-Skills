@@ -1,0 +1,23 @@
+{
+  "deals": [
+    {
+      "id": 1,
+      "client": "示例公司",
+      "project": "企业官网",
+      "total_amount": 48000,
+      "paid": 19200,
+      "status": "进行中",
+      "billing_type": "fixed",
+      "due_date": "2026-06-30",
+      "milestones": [
+        {"label": "第1期", "pct": "40%", "amount": 19200},
+        {"label": "第2期", "pct": "30%", "amount": 14400},
+        {"label": "第3期", "pct": "30%", "amount": 14400}
+      ],
+      "notes": "",
+      "created_at": "2026-05-25",
+      "updated_at": "2026-05-25"
+    }
+  ],
+  "next_id": 2
+}

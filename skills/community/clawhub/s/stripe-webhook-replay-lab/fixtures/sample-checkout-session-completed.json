@@ -1,0 +1,28 @@
+{
+  "id": "evt_replay_lab_checkout_completed",
+  "object": "event",
+  "api_version": "2023-10-16",
+  "created": 1762406400,
+  "livemode": false,
+  "pending_webhooks": 1,
+  "request": {
+    "id": "req_replay_lab",
+    "idempotency_key": "replay-lab-seed"
+  },
+  "type": "checkout.session.completed",
+  "data": {
+    "object": {
+      "id": "cs_test_replay_lab",
+      "object": "checkout.session",
+      "mode": "subscription",
+      "payment_status": "paid",
+      "client_reference_id": "user_replay_lab",
+      "metadata": {
+        "user_id": "user_replay_lab"
+      },
+      "customer": "cus_replay_lab",
+      "customer_email": "replay@example.com",
+      "subscription": "sub_replay_lab"
+    }
+  }
+}

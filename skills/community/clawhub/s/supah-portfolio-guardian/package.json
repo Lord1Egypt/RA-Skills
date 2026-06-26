@@ -1,0 +1,14 @@
+{
+  "name": "supah-portfolio-guardian",
+  "version": "1.0.1",
+  "description": "Automated portfolio monitoring and risk alerts for Base blockchain",
+  "main": "index.js",
+  "bin": {
+    "supah-portfolio-guardian": "./index.js"
+  },
+  "keywords": ["base", "portfolio", "monitoring", "alerts", "risk-management", "supah"],
+  "author": "SUPAH",
+  "license": "MIT",
+  "repository": "https://github.com/supahonbase/supah-portfolio-guardian",
+  "dependencies": {}
+}

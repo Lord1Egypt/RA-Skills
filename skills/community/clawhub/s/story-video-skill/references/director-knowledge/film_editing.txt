@@ -1,0 +1,77 @@
+FILM EDITING - CONTINUITY EDITING
+==================================
+
+DEFINITION:
+Film editing is the process of selecting and combining shots into a coherent narrative. 
+Continuity editing specifically aims to maintain smooth, logical flow that doesn't draw 
+attention to itself.
+
+THE 180-DEGREE RULE:
+- Imaginary line between characters/objects in a scene
+- Camera stays on one side to maintain spatial consistency
+- Crossing the line confuses audience about positions
+
+THE 30-DEGREE RULE:
+- Camera angle should change by at least 30 degrees between shots
+- Prevents jump cuts (abrupt, jarring cuts)
+- Creates smooth visual flow
+
+MATCHING ON ACTION:
+- Cut occurs during movement
+- Hand reaches for door, next shot shows door opening
+- Hides the cut, makes transition seamless
+
+EYE-LINE MATCH:
+- Character looks at something off-screen
+- Next shot shows what they're looking at
+- Creates cause-and-effect relationship
+
+SHOT REVERSE SHOT:
+- Alternating shots of two characters in conversation
+- Each character on opposite sides of frame
+- Cut at natural pauses in dialogue
+
+JUMP CUTS:
+- Abrupt cut between similar shots
+- Removes time, creates unease
+- Sometimes used for stylistic effect (e.g., French New Wave)
+
+CROSS-CUTTING (PARALLEL EDITING):
+- Alternating between two concurrent storylines
+- Creates tension (e.g., rescue race against time)
+-montage sequences
+
+MONTAGE:
+- Series of short shots combined to convey information
+- Compresses time (training sequences, travel)
+- Soviet montage theory: editing creates meaning
+
+L-CUTS AND J-CUTS:
+- L-cut: Audio continues while video cuts
+- J-cut: Audio starts before corresponding video
+- Creates smoother audio/video integration
+
+RULE OF SIX:
+1. Screen direction must be consistent
+2. maintain spatial relationships
+3. Maintain temporal continuity
+4. Match eyelines properly
+5. maintain lighting continuity
+6. Maintain sound continuity
+
+MATCH CUT:
+- Cut based on compositional similarity
+- Object in one shot matches position in next
+- Creates visual rhyme/irony
+
+CONTINUITY ERRORS:
+- "Cheerleader effect" - errors audiences often miss
+- Wine glass moves between shots
+- Objects appear/disappear
+- Position changes without explanation
+
+CONTEMPORARY TECHNIQUES:
+- Quick cutting for fast-paced action
+- Long takes with minimal cuts
+- found footage style (intentionally rough)
+- Digital effects integration with live action

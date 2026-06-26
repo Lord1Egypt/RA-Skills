@@ -1,0 +1,39 @@
+{
+  "name": "Social Commerce Content Planner",
+  "slug": "social-commerce-content-planner",
+  "version": "1.0.0",
+  "description": "社交电商内容规划器：趋势分析、内容主题规划、创意生成、内容日历、直播脚本与短视频文案模板",
+  "category": "ecommerce",
+  "tags": [
+    "社交电商",
+    "内容规划",
+    "直播脚本",
+    "短视频文案",
+    "内容日历",
+    "电商运营",
+    "直播带货"
+  ],
+  "author": "Harry",
+  "language": "zh-CN",
+  "platform": "all",
+  "input": {
+    "platform": "string (抖音/快手/小红书/视频号/淘宝直播)",
+    "category": "string (美妆护肤/服饰/食品/家电/母婴/3C数码/宠物)",
+    "request": "string (topic/calendar/script/template/checklist/xhs/all)",
+    "month": "number (可选，用于日历生成)"
+  },
+  "output": {
+    "format": "JSON",
+    "structure": {
+      "success": "boolean",
+      "platform": "string",
+      "category": "string",
+      "request": "string",
+      "data": "object (根据request类型变化)"
+    }
+  },
+  "dependencies": [],
+  "runtime": "python3",
+  "skillhub": false,
+  "clawhub": false
+}

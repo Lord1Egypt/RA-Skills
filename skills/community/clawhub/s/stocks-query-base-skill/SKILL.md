@@ -1,35 +1,129 @@
 ---
 name: "A股-股市分析和投资顾问（安西军项目）"
-description: "中国 A 股/港股只读数据查询与分析技能。支持行情、基本面、指数、文本等数据内的检索，并且提供多种专业的分析方法和建议！ 支持自然语言需求映射到 stocks 接口，并输出结构化分析结果。 需 TAX_API_KEY 鉴权；仅用于公开历史数据查询，不支持交易下单，也不构成投资建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stocks-query-base-skill"
-sourceUrl: "https://clawhub.ai/skills/stocks-query-base-skill"
+version: 0.2.2
+description: >
+  中国 A 股/港股只读数据查询与分析技能。支持行情、基本面、指数、文本等数据内的检索，并且提供多种专业的分析方法和建议！
+  支持自然语言需求映射到 stocks 接口，并输出结构化分析结果。
+  需 TAX_API_KEY 鉴权；仅用于公开历史数据查询，不支持交易下单，也不构成投资建议。
+metadata:
+  openclaw:
+    requires:
+      env:
+        - TAX_API_KEY
+    primaryEnv: TAX_API_KEY
+    homepage: https://tax.yyyou.top/
 ---
 
-# A股-股市分析和投资顾问（安西军项目）
+## 目标与边界
 
-> 中国 A 股/港股只读数据查询与分析技能。支持行情、基本面、指数、文本等数据内的检索，并且提供多种专业的分析方法和建议！ 支持自然语言需求映射到 stocks 接口，并输出结构化分析结果。 需 TAX_API_KEY 鉴权；仅用于公开历史数据查询，不支持交易下单，也不构成投资建议。
+本 Skill 的目标是把用户自然语言问题转换为 /stocks/... 数据查询，并返回可复核的结构化分析结论。如需选股策略模板，可引导用户通过接口定义文档了解当前支持的财务指标与筛选字段。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stocks-query-base-skill`
-- **Source URL:** [https://clawhub.ai/skills/stocks-query-base-skill](https://clawhub.ai/skills/stocks-query-base-skill)
-
-## Overview
+## 主要流程
+1. 抓取数据 -> 技术分析/新闻检索 -> LLM 分析 -> 生成报告 -> 通知推送。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stocks-query-base-skill
+## **必须遵守**：
+
+1. 仅调用 /stocks/... 查询能力，不处理 /auth/*、/payment/* 等非股票查询路由。
+2. 仅提供数据与分析，不给出交易代下单、收益承诺或“保证上涨”类结论。
+3. 涉及投资建议时，始终加入风险提示与不构成投资建议声明。
+4. 不回显、索取、存储或输出用户的 `TAX_API_KEY`以及任何个人隐私或者敏感信息。
+
+## 能力范围
+
+| 类别 | 典型能力 |
+|------|----------|
+| 行情 | 日/周/月线、涨跌停、资金流向、复权因子、每日指标 |
+| 基本面 | 公司资料、三大报表、财务指标、分红、股东结构、质押回购 |
+| 指数 | 指数行情、成分股、权重、分类 |
+| 文本 | 利用llm的搜索功能。查询各类专业网站上的政策法规、研报元数据 |
+|讨论|利用llm的搜索功能去收集各大论坛，股吧等相关信息|
+
+## 路由触发
+
+当用户意图属于以下任一类时，触发本 Skill：
+
+- 股票代码、股票名称、上市公司（如"平安银行"、"600000"）
+- 行情、K线、涨跌、成交量、资金流向、股市分析
+- 财报、财务指标、分红、ROE
+- 指数、成分股、权重、大盘
+- 董秘问答、政策法规、研报元数据
+
+以下情况不触发（或先澄清）：
+
+- 与股票数据无关的问题
+- 要求代客交易、绕过风控或提供内幕信息
+- 输入信息不足且无法定位标的（需先确认股票代码/名称/时间区间）
+
+## 参数与鉴权规范
+
+1. 请求头必须包含：
+
+```http
+Header: TAX-API-Key: <你的授权码>
 ```
+
+2. 常用参数格式：
+
+| 参数 | 格式 | 说明 |
+|------|------|------|
+| ts_code | `600000` 或 `600000.SH` | 支持裸码与标准码 |
+| start_date | `YYYYMMDD` | 起始日期 |
+| end_date | `YYYYMMDD` | 结束日期 |
+
+3. 代码规则提醒：
+
+- 裸码自动识别交易所（如 `600000` -> `.SH`）
+- 前导 0 不可省略（`000001` 不能写成 `1`）
+
+## 主要流程
+默认是以下1,2,3,4,5步以子代理的方式进行处理，除非用户明确只要单点数据：
+
+1. **数据层** : 获取尽可能多的通过api获取具体的交易数据。
+2. **行情层**：通过api来看趋势与波动（`daily/weekly/monthly/daily-basic`）
+3. **基本面层**：验证质量与业绩（`fina-indicator/income/...`）
+4. **环境层**：指数或文本交叉验证（`index-*`、`irm-qa-*`、`research-report`）
+    如果任一步数据不足，应明确写出“当前结论置信度受限”。
+5. **新闻信息层** 通过网站搜索的能力 对相应的具体问询的股票进行新闻检索 。
+6. 对上述数据并且**集成**接口返回的提示，用LLM进行分析 。
+7. 生成报告。
+8. 通知推送。
+
+## 常用接口速查
+
+| 问题类型 | 推荐接口 |
+|----------|----------|
+| 个股走势 | `/stocks/daily` `/stocks/weekly` `/stocks/monthly` |
+| 估值与交易活跃度 | `/stocks/daily-basic` `/stocks/moneyflow` |
+| 财务质量 | `/stocks/fina-indicator` `/stocks/income` `/stocks/cashflow` |
+| 分红与股东结构 | `/stocks/dividend` `/stocks/top10-holders` |
+| 市场环境 | `/stocks/index-daily` `/stocks/index-member` `/stocks/index-weight` |
+| 公司互动信息 | `/stocks/irm-qa-sh` `/stocks/irm-qa-sz` |
+| 更多的数据接口 | 查看 skill_reference.md 文件|
+
+## 输出格式规范
+
+默认每次回复必须包含以下几段（仅当用户明确要求“简短回答”时可降级）：
+
+1. **数据概览**：说明查询标的、时间范围、核心指标
+2. **行情纵览**：分析相关股票所在的板块在最近几个交易日的行情简报。
+3. **基本面**：查看股票的基本面情况。
+4. **相关信息**：查看股票相关联的新闻，论坛等信息。
+5. **市场情绪**：用llm来分析金融，股票市场的交易情绪。
+6. **观察结论**：分点描述主要发现（行情/基本面/环境）
+7. **一致性与风险**：说明数据是否互相印证，给出不确定性
+8. **相关信息** : 通过收集网上的相关信息，来提供参考建议 
+9. **下一步建议查询**：给出 1-3 条可继续验证的接口或问题
+
+若查询失败，按以下顺序返回可执行修复建议：
+
+1. `401/403`：优先提示检查 `TAX_API_KEY` 是否已配置、是否过期或失效。
+2. `400` 或参数类错误：提示检查 `ts_code` 与日期格式（`YYYYMMDD`）及起止区间。
+3. `502/5xx`：说明上游服务临时异常，建议稍后重试，并给出可降级查询路径（如先查基础行情）。
+
+
+## 注意事项
+
+- 只提供公开历史数据查询，不保证实时性
+- 不支持交易下单或收益承诺
+- 本 Skill 输出仅供研究参考，不构成投资建议

@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Swarm Command Schema",
+  "description": "Standardized command format for multi-agent coordination",
+  "type": "object",
+  "required": ["command_id", "timestamp", "sender", "target", "command"],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "pattern": "^cmd_[a-f0-9]{8}$",
+      "description": "Unique command identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when command was created"
+    },
+    "sender": {
+      "type": "object",
+      "required": ["type", "id"],
+      "description": "Sender agent information",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["小小兵CEO", "豆包PM", "牢A", "牢B", "牢C", "牢D"],
+          "description": "Type of sender agent"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9]{3}$",
+          "description": "Agent ID (001-006)"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["type", "id"],
+      "description": "Target agent information",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["小小兵CEO", "豆包PM", "牢A", "牢B", "牢C", "牢D"],
+          "description": "Type of target agent"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9]{3}$",
+          "description": "Agent ID (001-006)"
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "description": "Command content",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Action to perform"
+        },
+        "module": {
+          "type": "string",
+          "description": "Target module or component"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of requirements"
+        },
+        "output_format": {
+          "type": "string",
+          "enum": ["python_code", "json", "markdown", "text", "html", "image"],
+          "description": "Expected output format"
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Command metadata",
+      "properties": {
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "default": "medium",
+          "description": "Command priority"
+        },
+        "token_budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000,
+          "default": 1000,
+          "description": "Maximum tokens allowed for this command"
+        },
+        "deadline": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional deadline for completion"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": [],
+          "description": "List of command IDs this command depends on"
+        }
+      }
+    },
+    "negotiation": {
+      "type": "object",
+      "description": "Negotiation settings",
+      "properties": {
+        "allowed": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether negotiation is allowed for this command"
+        },
+        "timeout": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600,
+          "default": 300,
+          "description": "Negotiation timeout in seconds"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "description": "Command status tracking",
+      "properties": {
+        "current": {
+          "type": "string",
+          "enum": ["pending", "assigned", "in_progress", "completed", "failed", "cancelled"],
+          "default": "pending",
+          "description": "Current status of the command"
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "Agent ID this command is assigned to"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the command execution started"
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the command was completed"
+        },
+        "result": {
+          "type": ["object", "null"],
+          "description": "Command execution result"
+        },
+        "error_message": {
+          "type": ["string", "null"],
+          "description": "Error message if command failed"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

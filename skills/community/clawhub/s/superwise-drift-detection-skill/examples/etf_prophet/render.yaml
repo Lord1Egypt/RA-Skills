@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: etf-prophet-inference
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PORT
+        value: "5001"

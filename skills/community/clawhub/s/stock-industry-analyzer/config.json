@@ -1,0 +1,22 @@
+{
+    "name": "股票行业分析",
+    "description": "通过新闻分析行业趋势，预测股票走势",
+    "version": "1.0.0",
+    "update_interval": 30,
+    "data_retention": {
+        "news": "永久",
+        "industry_trend": "永久",
+        "stock_kline": "永久",
+        "reports": "3年",
+        "logs": "1年"
+    },
+    "news_sources": {
+        "domestic": ["新浪财经", "东方财富", "同花顺", "腾讯财经"],
+        "international": ["Yahoo Finance", "Reuters", "CNBC", "Bloomberg"]
+    },
+    "analysis_weights": {
+        "technical": 40,
+        "fundamental": 30,
+        "sentiment": 30
+    }
+}

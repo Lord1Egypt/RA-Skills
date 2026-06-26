@@ -1,35 +1,133 @@
 ---
-name: "my skill"
+name: "a-stock"
 description: "获取A股股票实时行情数据并进行技术分析。适用于投资者查询股票价格、涨跌幅、成交量等行情信息，以及进行MA、RSI、MACD等技术指标分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-acquisition-analysis"
-sourceUrl: "https://clawhub.ai/skills/stock-acquisition-analysis"
 ---
 
-# my skill
+# A股股票数据获取与分析
 
-> 获取A股股票实时行情数据并进行技术分析。适用于投资者查询股票价格、涨跌幅、成交量等行情信息，以及进行MA、RSI、MACD等技术指标分析。
+本技能帮助用户从东方财富网获取A股股票实时行情数据，并提供技术分析功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-acquisition-analysis`
-- **Source URL:** [https://clawhub.ai/skills/stock-acquisition-analysis](https://clawhub.ai/skills/stock-acquisition-analysis)
+## 功能概述
 
-## Overview
+- 获取股票实时价格、涨跌幅、成交量等基础行情
+- 计算均线系统（MA5、MA10、MA20、MA60）
+- 计算RSI相对强弱指标
+- 计算MACD指数平滑异同移动平均线
+- 生成简单的技术分析报告
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-acquisition-analysis
+### 1. 获取股票实时行情
+
+当用户提供股票代码时（如600519、000001），自动构建东方财富网URL并抓取数据。
+
+**示例股票代码格式：**
+- 上证股票：600519（贵州茅台）、600000（浦发银行）
+- 深证股票：000001（平安银行）、300750（宁德时代）
+
+### 2. 数据来源
+
+使用东方财富网行情页面：
+- 实时行情：`https://quote.eastmoney.com/sh{股票代码}.html`（上证）
+- 实时行情：`https://quote.eastmoney.com/sz{股票代码}.html`（深证）
+
+## 数据字段
+
+| 字段 | 说明 |
+|------|------|
+| 股票名称 | 公司的简称 |
+| 当前价格 | 最新成交价 |
+| 涨跌额 | 相比昨日收盘价的变化 |
+| 涨跌幅 | 变化百分比 |
+| 成交量 | 当日成交股数 |
+| 成交额 | 当日成交金额 |
+| 最高价 | 当日最高价 |
+| 最低价 | 当日最低价 |
+| 开盘价 | 当日开盘价 |
+| 昨收 | 昨日收盘价 |
+| 市盈率 | P/E ratio |
+| 总市值 | 公司总市值 |
+
+## 技术分析
+
+### 均线系统（MA）
+
+| 指标 | 说明 |
+|------|------|
+| MA5 | 5日均线，短期趋势 |
+| MA10 | 10日均线 |
+| MA20 | 20日均线，中期趋势 |
+| MA60 | 60日均线，长期趋势 |
+
+**均线分析逻辑：**
+- 股价 > MA5 > MA10：强势上涨
+- 股价 < MA5 < MA10：弱势下跌
+- MA5 上穿 MA10：金叉买入信号
+- MA5 下穿 MA10：死叉卖出信号
+
+### RSI相对强弱指数
+
+| RSI值 | 市场状态 |
+|-------|----------|
+| RSI > 80 | 超买区，可能回调 |
+| RSI < 20 | 超卖区，可能反弹 |
+| RSI 40-60 | 中性区间 |
+
+### MACD指标
+
+| 指标 | 说明 |
+|------|------|
+| DIF | 快线（短期EMA - 长期EMA） |
+| DEA | 慢线（DIF的EMA） |
+| MACD柱 | (DIF - DEA) × 2 |
+
+**MACD信号：**
+- DIF上穿DEA：买入信号
+- DIF下穿DEA：卖出信号
+- MACD柱由负转正：强势信号
+- MACD柱由正转负：弱势信号
+
+## 使用示例
+
+### 示例1：查询股票行情
+
+**用户输入：**
 ```
+查询贵州茅台的股票数据，股票代码600519
+```
+
+**执行流程：**
+1. 构建URL：`https://quote.eastmoney.com/sh600519.html`
+2. 导航到页面
+3. 提取股票名称、当前价格、涨跌幅、成交量等数据
+4. 返回结构化数据
+
+### 示例2：技术分析
+
+**用户输入：**
+```
+分析招商银行600036的技术指标
+```
+
+**执行流程：**
+1. 获取招商银行基础行情数据
+2. 抓取历史K线数据用于计算技术指标
+3. 计算MA5、MA10、MA20、MA60
+4. 计算RSI指标
+5. 计算MACD指标
+6. 生成分析报告
+
+## 注意事项
+
+1. **股票代码识别**：自动识别上证（6开头）和深证（0、3开头）股票
+2. **数据更新**：东方财富数据实时更新，刷新页面即可获取最新数据
+3. **请求频率**：建议每次查询间隔至少3秒，避免被限制
+4. **数据验证**：获取数据后截图确认数据完整性
+
+## 错误处理
+
+| 错误 | 原因 | 解决方案 |
+|------|------|----------|
+| 股票代码不存在 | 代码输入错误 | 检查6位代码是否正确 |
+| 无法获取数据 | 网络或页面问题 | 重试或更换数据源 |
+| 数据不完整 | 页面结构变化 | 更新抓取逻辑 |

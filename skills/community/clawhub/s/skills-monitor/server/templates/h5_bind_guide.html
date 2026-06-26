@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Skills Monitor — 绑定引导</title>
+<link rel="stylesheet" href="/static/css/h5.css">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="header-icon">🔗</div>
+    <h1>绑定 Agent</h1>
+    <p class="subtitle">开始接收每日健康报告</p>
+  </header>
+
+  <section class="card">
+    <h2 class="card-title">📖 如何绑定？</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>安装 Skills Monitor</h3>
+          <code>pip install skills-monitor</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>生成绑定码</h3>
+          <code>skills-monitor bind --server</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>扫描二维码</h3>
+          <p>用微信扫描终端显示的二维码</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>完成 ✅</h3>
+          <p>开始接收每日推送</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">💡 也可以手动绑定</h2>
+    <p style="color:#999;margin-bottom:12px;">在公众号回复「绑定」获取操作指引</p>
+  </section>
+
+  <footer class="footer">
+    <p>Skills Monitor v0.4.0 · Powered by CodeBuddy</p>
+  </footer>
+</div>
+</body>
+</html>

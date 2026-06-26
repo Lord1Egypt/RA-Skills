@@ -1,0 +1,1 @@
+# Credits\n\n**stock-analysis (udiedrichsen/openclaw):** 8-dim Yahoo yfinance (MIT permissive). Full integration.\n\n**UZI (wbh604):** investor_criteria.py (panel 20 rules), self_review.py (gates), fin_models.py (DCF/Comps). Logic inspired/adapted (MIT).\n\nTuned Darwin 100/100 for ClawHub.

@@ -1,0 +1,33 @@
+name: stock_announcement
+version: 1.1.0
+description: Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement
+author: openclaw-workspace
+homepage: https://clawhub.ai
+changelog: |
+  - Fix: Gmail send now uses absolute token path resolved from script directory, preventing credential-not-found failures when run from different working directories
+  - Fix: Sonos announcement replaced unsupported `sonos say` command with TTS audio generation (gtts/espeak) + `sonos queue play` playback
+  - Fix: Added retry with exponential backoff for both Gmail send and Sonos announcement (3 retries, 5s base delay)
+  - Fix: Script exits with non-zero code when either critical step fails, enabling cron/monitoring detection
+tags:
+  - stocks
+  - finance
+  - gmail
+  - sonos
+  - announcement
+  - portfolio
+requires:
+  bins:
+    - sonos
+  python:
+    - yfinance
+    - pandas
+    - google-api-python-client
+    - google-auth-oauthlib
+    - gtts
+  env:
+    - RECIPIENT_EMAIL
+    - SONOS_SPEAKER
+files:
+  - scripts/daily_stock_announcement.py
+  - config/clawhub.json
+entry: scripts/daily_stock_announcement.py

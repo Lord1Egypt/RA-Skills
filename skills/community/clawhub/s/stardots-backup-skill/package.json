@@ -1,0 +1,31 @@
+{
+  "name": "stardots-backup-skill",
+  "version": "1.0.1",
+  "description": "Stardots.io 图像自动备份技能",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "package": "openclaw skill package",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "stardots",
+    "image-hosting",
+    "backup",
+    "cdn",
+    "openclaw-skill"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  }
+}

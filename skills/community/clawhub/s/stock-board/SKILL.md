@@ -1,35 +1,30 @@
----
-name: "股票打板筛选"
-description: "筛选A股市场中当日及昨日涨停和强势股票，并统计各板块涨停数量，支持创业板和科创板筛选。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-board"
-sourceUrl: "https://clawhub.ai/skills/stock-board"
----
+# Stock Board Skill - 股票打板筛选
 
-# 股票打板筛选
+筛选A股市场中的涨停板及强势股票。
 
-> 筛选A股市场中当日及昨日涨停和强势股票，并统计各板块涨停数量，支持创业板和科创板筛选。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-board`
-- **Source URL:** [https://clawhub.ai/skills/stock-board](https://clawhub.ai/skills/stock-board)
+- **涨停板股票**: 筛选当日涨停的股票（涨跌幅>=9.9%）
+- **接近涨停**: 筛选涨幅>=7%的强势股
+- **昨日涨停**: 筛选昨日涨停股今日表现
+- **板块涨停统计**: 统计各板块涨停数量
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/stock-board
+# 筛选当日涨停板
+board
+
+# 筛选强势股（涨幅>=7%）
+board strong
+
+# 筛选创业板涨停（涨跌幅>=19.9%）
+board cy
+
+# 筛选科创板涨停（涨跌幅>=19.9%）
+board kc
 ```
+
+## 数据来源
+
+使用新浪财经实时行情接口

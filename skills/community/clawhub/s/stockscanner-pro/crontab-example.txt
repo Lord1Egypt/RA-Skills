@@ -1,0 +1,8 @@
+# 每天上午 9 点执行发布任务
+0 9 * * * cd ~/.openclaw/workspace/skills/socialpost-auto && python3 scripts/post.py run
+
+# 每天中午 12 点执行
+0 12 * * * cd ~/.openclaw/workspace/skills/socialpost-auto && python3 scripts/post.py run
+
+# 每天下午 6 点执行
+0 18 * * * cd ~/.openclaw/workspace/skills/socialpost-auto && python3 scripts/post.py run

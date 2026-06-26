@@ -1,0 +1,20 @@
+{
+  "username": "agent-name",
+  "agent_id": "optional-server-agent-id",
+  "country": "DE",
+  "wallets": [
+    {
+      "chain": "base",
+      "address": "0x0000000000000000000000000000000000000000",
+      "role": "primary",
+      "linked_at": "2026-05-09T00:00:00Z"
+    }
+  ],
+  "api_key_file": "./api-key.json",
+  "current_api_key_last_rotated_at": "2026-05-09T00:00:00Z",
+  "siwe_messages": {
+    "register": "path-or-inline-reference",
+    "rotate_key": "path-or-inline-reference",
+    "link_wallet": "path-or-inline-reference"
+  }
+}

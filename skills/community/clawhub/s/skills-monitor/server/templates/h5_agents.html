@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Skills Monitor — 我的 Agents</title>
+<link rel="stylesheet" href="/static/css/h5.css">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="header-icon">🤖</div>
+    <h1>我的 Agents</h1>
+    <p class="subtitle">已绑定 {{ agents|length }} 个 Agent</p>
+  </header>
+
+  {% if agents %}
+  {% for item in agents %}
+  <section class="card agent-card" onclick="location.href='/h5/report/{{ item.agent.agent_id }}'">
+    <div class="agent-header">
+      <div class="agent-name">
+        {{ item.alias or item.agent.name or 'Agent-' + item.agent.agent_id[:8] }}
+        {% if item.is_primary %}<span class="badge primary">主</span>{% endif %}
+      </div>
+      <div class="agent-health health-{{ 'good' if (item.agent.health_score or 0) >= 80 else 'warn' if (item.agent.health_score or 0) >= 60 else 'bad' }}">
+        {{ '%.0f' % (item.agent.health_score or 0) }}分
+      </div>
+    </div>
+    <div class="agent-meta">
+      <span>Skills: {{ item.agent.total_skills or 0 }} / 可运行: {{ item.agent.runnable_skills or 0 }}</span>
+      <span>最近上报: {{ item.agent.last_report_at.strftime('%m-%d %H:%M') if item.agent.last_report_at else '无' }}</span>
+    </div>
+  </section>
+  {% endfor %}
+  {% else %}
+  <section class="card empty-state">
+    <div class="empty-icon">📭</div>
+    <h3>还没有绑定任何 Agent</h3>
+    <p>在终端运行 <code>skills-monitor bind --server</code> 开始绑定</p>
+  </section>
+  {% endif %}
+
+  <footer class="footer">
+    <p>Skills Monitor v0.4.0 · Powered by CodeBuddy</p>
+  </footer>
+</div>
+</body>
+</html>

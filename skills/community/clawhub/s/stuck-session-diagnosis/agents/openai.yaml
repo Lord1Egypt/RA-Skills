@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stuck Session Diagnosis"
+  short_description: "Diagnose frozen or slow agent sessions"
+  default_prompt: "Inspect this machine for stuck Claude sessions and prepare a clear diagnosis report."

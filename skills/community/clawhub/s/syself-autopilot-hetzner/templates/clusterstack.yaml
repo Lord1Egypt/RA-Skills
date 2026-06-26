@@ -1,0 +1,32 @@
+# SySelf Autopilot — ClusterStack release objects
+# Official-style starting point for the managed Autopilot workflow.
+# Apply this in the SySelf management cluster before applying cluster.yaml.
+# Replace the Kubernetes minor and resulting release names as needed.
+---
+apiVersion: clusterstack.x-k8s.io/v1alpha1
+kind: ClusterStack
+metadata:
+  name: hetzner-apalla-1-34
+spec:
+  provider: hetzner
+  name: apalla
+  kubernetesVersion: "1.34"
+  channel: stable
+  autoSubscribe: true
+  providerRef:
+    apiVersion: infrastructure.clusterstack.x-k8s.io/v1alpha1
+    kind: HetznerClusterStackReleaseTemplate
+    name: hetzner-apalla-1-34
+---
+apiVersion: infrastructure.clusterstack.x-k8s.io/v1alpha1
+kind: HetznerClusterStackReleaseTemplate
+metadata:
+  name: hetzner-apalla-1-34
+spec:
+  template:
+    spec:
+      # Official base example from SySelf docs.
+      # Bare metal workers are introduced via cluster topology and registered hosts.
+      nodeImages:
+        - controlplaneamd64hcloud
+        - workeramd64hcloud

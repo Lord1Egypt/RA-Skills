@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec to ADR"
+  short_description: "Convert execution plans into Architecture Decision Records"
+  default_prompt: "Use $spec-to-adr to create an ADR from the current plan."

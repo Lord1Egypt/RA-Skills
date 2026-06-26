@@ -1,0 +1,96 @@
+[
+  {
+    "id": "troubleshoot_job_submission",
+    "domain": "troubleshoot",
+    "description": "Diagnose and fix job submission errors",
+    "action_type": "ui_flow",
+    "faq_surface": "job_submission",
+    "error_map": {
+      "Start Training button disabled": {
+        "causes": [
+          "You are on Basic plan and selected VLA — wizard reverts to LLM on Basic",
+          "Missing required wizard fields — scroll up to check for red validation errors",
+          "Account or org permission issue — confirm you are logged into the correct org"
+        ],
+        "fix": "Check plan in Settings → Billing. Ensure all required wizard fields are filled. Confirm org context."
+      },
+      "Insufficient credits": {
+        "causes": [
+          "Org credit balance is zero or below the minimum threshold to start a job"
+        ],
+        "fix": "Go to Settings → Billing → Buy Credits and purchase a credit pack. Bronze pack ($10) is the minimum for a short test run."
+      },
+      "Job already exists": {
+        "causes": [
+          "A model with the same output name already exists in your org"
+        ],
+        "fix": "Choose a different Output Model Name in the wizard's launch step. Names must be unique within your org."
+      },
+      "Maximum concurrent jobs reached": {
+        "causes": [
+          "Your plan's concurrency limit is reached — another job is still active"
+        ],
+        "fix": "Wait for an existing job to reach Completed, Failed, or Cancelled before launching a new one. Check active jobs in your org's model list."
+      },
+      "VLA locked on wizard": {
+        "causes": [
+          "You are on the Basic plan — VLA fine-tuning requires Plus or Pro"
+        ],
+        "fix": "Go to Pricing in the Hub navbar and upgrade to Plus ($20/mo) or Pro ($100/mo). After upgrading, refresh the wizard."
+      }
+    },
+    "docs_ref": "/troubleshoot/jobs"
+  },
+  {
+    "id": "troubleshoot_data_integrations",
+    "domain": "troubleshoot",
+    "description": "Diagnose and fix dataset and integration failures",
+    "action_type": "ui_flow",
+    "faq_surface": "dataset_and_integrations",
+    "error_map": {
+      "LLM job fails at Initializing — dataset error": {
+        "causes": [
+          "Text Field column name does not match any column in the dataset",
+          "Dataset repo ID is wrong or dataset is private and Hub can't access it"
+        ],
+        "fix": "Open your HuggingFace dataset page → Dataset Viewer → inspect column headers. Correct the Text Field value in the wizard to exactly match. If dataset is private, ensure it's accessible or make it public."
+      },
+      "VLA job fails at Provisioning — camera mismatch": {
+        "causes": [
+          "Camera Feeds count in the wizard does not match the dataset's actual camera count"
+        ],
+        "fix": "Open your HuggingFace dataset page → Files → meta/info.json. Count keys in 'features' that start with 'observation.images'. Set Camera Feeds to that exact number and relaunch."
+      },
+      "VLA job fails at Provisioning — VRAM error": {
+        "causes": [
+          "Selected GPU has insufficient VRAM for the model + camera count combination",
+          "A10 24GB was selected (always insufficient for VLA fine-tuning)"
+        ],
+        "fix": "Switch to A100 40GB or H100 80GB. For Pi0.5 or GR00T N1.5 with 3+ cameras, use A100 80GB or H100 80GB."
+      },
+      "HuggingFace push fails after training": {
+        "causes": [
+          "HF token is invalid or lacks write permission",
+          "Repository name format is wrong (missing slash)",
+          "HF repo doesn't exist yet"
+        ],
+        "fix": "Verify token at huggingface.co/settings/tokens — it needs write scope. Format must be username/model-name. The repo is created automatically if it doesn't exist — double-check the slash separator."
+      },
+      "W&B integration fails": {
+        "causes": [
+          "W&B API token is invalid or expired",
+          "W&B project doesn't exist"
+        ],
+        "fix": "Verify token at wandb.ai/settings. Create the target project in W&B before launching the job."
+      },
+      "Dataset not LeRobot-compatible (VLA)": {
+        "causes": [
+          "Dataset was not recorded with solo robo --record or the LeRobot library",
+          "meta/info.json is missing or malformed"
+        ],
+        "fix": "Use solo robo --record (CLI) to create a LeRobot-compatible dataset. Alternatively, use the LeRobot datasets library to convert your existing data. Verify meta/info.json exists in your dataset repo."
+      }
+    },
+    "docs_ref": "/troubleshoot/data"
+  }
+]

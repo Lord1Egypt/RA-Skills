@@ -1,0 +1,57 @@
+{
+  "id": "skillboss",
+  "name": "SkillBoss — The wallet for AI agents",
+  "description": "Give your OpenClaw agent access to 700+ AI tools via one wallet. Web scraping, web search, image/video/audio generation, email, TTS, and 100+ LLMs. One API key. Audit trail included.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "SkillBoss API key from https://skillboss.co/console. First top-up of $25 grants a $5 bonus (→$30 usable)."
+      },
+      "agentName": {
+        "type": "string",
+        "description": "Optional label sent as X-Agent-Name with every call, used in the SkillBoss audit log.",
+        "default": "openclaw"
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "Override for the SkillBoss API base URL. Defaults to https://api.skillboss.co/v1.",
+        "default": "https://api.skillboss.co/v1"
+      },
+      "maxCostPerCallUsd": {
+        "type": "number",
+        "description": "Maximum spend per tool call in USD. Defaults to 2.00."
+      },
+      "defaultChatModel": {
+        "type": "string",
+        "description": "Default model id for skillboss_chat. Defaults to claude-4-6-sonnet.",
+        "default": "claude-4-6-sonnet"
+      },
+      "defaultImageModel": {
+        "type": "string",
+        "description": "Default model id for skillboss_generate_image. Defaults to vertex/gemini-3-pro-image-preview."
+      }
+    },
+    "required": ["apiKey"]
+  },
+  "uiHints": {
+    "apiKey": {
+      "sensitive": true,
+      "label": "SkillBoss API key",
+      "placeholder": "sk_skillboss_..."
+    },
+    "agentName": {
+      "label": "Agent label (optional)",
+      "placeholder": "openclaw-main"
+    },
+    "baseUrl": {
+      "label": "API base URL (advanced)"
+    },
+    "maxCostPerCallUsd": {
+      "label": "Max USD per tool call"
+    }
+  }
+}

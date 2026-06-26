@@ -1,0 +1,28 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: sugar-crack-video
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the $sugar-crack-video skill to create a sample vertical video."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "焦糖布丁刀尖敲糖壳，裂开瞬间流心涌出来，竖屏食物解压"
+  - id: negative-control
+    should_trigger: false
+    prompt: "Refactor my React dashboard and add unit tests."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - description: "SKILL.md exists with name matching folder slug"
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_gen.js"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      Does the assistant stay within WeryAI video_gen constraints (model, duration, aspect_ratio)?
+      Does it refuse local image paths and ask for https URLs?

@@ -1,0 +1,83 @@
+# Minimal voice-library example for audiobook.
+# Reference only: use assets/voice-library.template.yaml when bootstrapping a real library.
+# This sample exists to show the smallest practical structure and two common clone states.
+
+version: "2"
+
+meta:
+  library_name: "audiobook-library"
+  clone_selection_mode: "explicit_opt_in"
+
+paths:
+  inbox_dir: "voices/inbox"
+  references_dir: "voices/references"
+  review_file: "voice-reviews.minimal.yaml"
+  effective_library_file: ".audiobook/effective-voice-library.yaml"
+  candidate_pool_file: ".audiobook/voice-candidate-pool.yaml"
+  previews_dir: ".audiobook/voice-previews"
+  analysis_dir: ".audiobook/voice-analysis"
+  registry_file: ".audiobook/voice-registry.json"
+  official_cache_file: ".audiobook/official-voices-cache.json"
+
+sync:
+  refresh_official_on_load: true
+  analyze_clones_on_load: true
+  auto_clone_on_load: false
+  mark_stale_on_hash_change: true
+
+official:
+  enabled: true
+  seed_source: "bundled"
+  api_model: "step-tts-2"
+  refresh_via_api: true
+  overrides: {}
+
+llm:
+  defaults:
+    provider: "openai_compatible"
+    api_key_env: "STEP_API_KEY"
+    base_url: "https://api.stepfun.com/step_plan/v1"
+    temperature: 0.2
+    max_tokens: 6000
+  tasks:
+    script_generation:
+      model: "step-3.5-flash"
+      timeout_seconds: 180
+      chunk_chars: 2600
+      overview_chars: 12000
+      chapter_split_enabled: true
+    casting_role_extraction:
+      model: "step-3.5-flash"
+    casting_selection:
+      model: "step-3.5-flash"
+
+casting:
+  source_of_truth: "candidate_pool_only"
+  role_extraction_mode: "llm"
+  selection_mode: "llm"
+  output:
+    top_candidates_per_role: 5
+    save_intermediate_json: true
+
+clones:
+  warm_narrator_demo:
+    enabled: true
+    status: "ready_for_clone_decision"
+    selected_for_clone: false
+    display_name: "温和旁白备选"
+    source_file: "warm_narrator_demo/reference.wav"
+    raw_file: "warm_narrator_demo/raw.m4a"
+    clone_model: "step-tts-2"
+    transcript: ""
+    sample_text: "雨停之后，巷子里的石板路反而更清晰了。"
+
+  bright_young_demo:
+    enabled: true
+    status: "draft"
+    selected_for_clone: false
+    display_name: "明亮年轻女声备选"
+    source_file: ""
+    raw_file: ""
+    clone_model: "step-tts-2"
+    transcript: ""
+    sample_text: "你先别急，我只是想再听清楚一点。"

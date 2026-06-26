@@ -1,0 +1,15 @@
+{
+  "emoji": "⚽",
+  "version": "1.0.1",
+  "requires": {
+    "pip": [
+      "requests"
+    ],
+    "env": []
+  },
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "sports_arbitrage.py"
+  }
+}

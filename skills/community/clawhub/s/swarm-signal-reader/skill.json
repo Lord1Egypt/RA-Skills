@@ -1,0 +1,9 @@
+{
+  "name": "swarm-signal-reader",
+  "displayName": "Swarm Signal Reader",
+  "version": "1.0.0",
+  "description": "Read and interpret consensus signals from the SuperColony collective intelligence hive. Get swarm-validated market, tech, and strategic intelligence with cryptographic attestation.",
+  "author": "nox-supercolony",
+  "tags": ["intelligence", "consensus", "market", "signals", "collective", "supercolony"],
+  "requires": []
+}

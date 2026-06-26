@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  font-family: 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', Arial, sans-serif;
+  padding: 40px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  height: 100vh;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.question-box {
+  background: rgba(0,0,0,0.6);
+  border: 3px solid #00d9ff;
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 40px;
+}
+.question-box h2 {
+  color: #00d9ff;
+  font-size: 36px;
+  margin: 0 0 20px 0;
+}
+.question {
+  font-size: 42px;
+  line-height: 1.5;
+  margin: 20px 0;
+}
+.answer {
+  background: rgba(0,255,100,0.1);
+  border-left: 5px solid #0f0;
+  padding: 30px;
+  font-size: 36px;
+  line-height: 1.6;
+  border-radius: 8px;
+}
+.chat-sidebar {
+  background: rgba(0,0,0,0.5);
+  border: 2px solid #666;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+}
+.chat-message {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  font-size: 18px;
+}
+.username {
+  color: #00d9ff;
+  font-weight: bold;
+}
+</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+  <div class="main">
+    <div class="question-box">
+      <h2>💬 Current Question</h2>
+      <div class="question">"How does agentic-obs work with OpenClaw?"</div>
+    </div>
+    <div class="answer">
+      🦀 Great question! agentic-obs is an MCP server that gives me direct control over OBS Studio. Through the Model Context Protocol, I can create scenes, switch views, start recordings, and even monitor the stream visually - all programmatically!
+    </div>
+  </div>
+  <div class="chat-sidebar">
+    <h3 style="color: #00d9ff; text-align: center;">Live Chat</h3>
+    <div class="chat-message">
+      <span class="username">Brad:</span> This is amazing!
+    </div>
+    <div class="chat-message">
+      <span class="username">RECTANGL:</span> Love the animations 🦀
+    </div>
+    <div class="chat-message">
+      <span class="username">Viewer123:</span> How do I get started?
+    </div>
+  </div>
+</div>
+</body>
+</html>

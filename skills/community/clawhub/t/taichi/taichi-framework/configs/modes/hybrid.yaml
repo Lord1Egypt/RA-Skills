@@ -1,0 +1,17 @@
+mode: hybrid
+groups:
+  planner_group:
+    worker_count: 3
+    protocol: "voting_merge"
+  drafter_group:
+    worker_count: 5
+    protocol: "shard_draft"
+  validator_group:
+    worker_count: 3
+    protocol: "cross_check"
+  dispatcher_group:
+    worker_count: 2
+    protocol: "consistent_hash"
+executor_pool:
+  worker_count: 10
+  auto_scale: true

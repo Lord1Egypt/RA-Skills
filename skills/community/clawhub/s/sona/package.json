@@ -1,0 +1,22 @@
+{
+  "name": "@sona/openclaw",
+  "version": "1.0.1",
+  "description": "OpenClaw plugin adapter for SONA autonomous wallet agent",
+  "type": "module",
+  "main": "plugin.ts",
+  "homepage": "https://www.sonawallet.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ubuntu-Technologies/sona",
+    "directory": "packages/openclaw"
+  },
+  "license": "MIT-0",
+  "keywords": ["solana", "wallet", "autonomous", "ai-agent", "openclaw"],
+  "openclaw": {
+    "primaryEnv": "SONA_TOKEN",
+    "requiredEnv": ["SONA_TOKEN"],
+    "optionalEnv": ["SONA_API_URL"]
+  },
+  "scripts": {},
+  "dependencies": {}
+}

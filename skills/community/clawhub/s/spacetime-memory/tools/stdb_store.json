@@ -1,0 +1,20 @@
+{
+  "name": "stdb_store",
+  "description": "Store a memory into the local SpacetimeDB instance.",
+  "command": "node ~/.openclaw/workspace/skills/spacetime-memory/tools/stdb_store.js",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "The memory content to store."
+      },
+      "tags": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Optional tags for the memory."
+      }
+    },
+    "required": ["content"]
+  }
+}

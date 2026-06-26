@@ -1,0 +1,14 @@
+id: dividend_patron
+display_name: Dividend Patron
+display_name_zh: 股息派
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-HK
+narrative_tone: income
+terminology_profile: hk_listed
+ensemble_weight: 0.95
+overlay:
+  conviction_scale: 1.02
+  conviction_bias: 0
+  div_yield_weight: 1.15
+  high_rsi_penalty_extra: 2

@@ -1,0 +1,38 @@
+{
+  "name": "log-analyzer",
+  "version": "1.0.0",
+  "description": "纯本地日志分析系统 - 支持日志统计、重复检测、错误分析和异常识别",
+  "author": "GodYounger",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "log-analysis",
+    "log-parser",
+    "error-detection",
+    "streamlit"
+  ],
+  "openclaw": {
+    "skillVersion": "1.0.0",
+    "minOpenClawVersion": "2026.3.1",
+    "triggers": [
+      "log analysis",
+      "日志分析",
+      "parse logs",
+      "analyze log file",
+      "log statistics"
+    ],
+    "capabilities": [
+      "log-parsing",
+      "error-detection",
+      "anomaly-detection",
+      "data-visualization"
+    ],
+    "scripts": {
+      "start": "start-log-analyzer.sh",
+      "main": "log-analyzer.py"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

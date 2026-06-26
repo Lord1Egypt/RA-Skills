@@ -1,0 +1,9 @@
+{
+  "slug": "skills-auto-manager",
+  "name": "Skills Auto Manager",
+  "version": "1.0.0",
+  "description": "自动管理 OpenClaw skills 的智能助手",
+  "keywords": ["skills", "automation", "clawhub", "quantitative-trading"],
+  "changelog": "Initial release with auto-check, smart filtering, safe install",
+  "category": "automation"
+}

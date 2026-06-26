@@ -1,35 +1,141 @@
----
-name: "Spark Context Monitor"
-description: "查询当前会话的Token使用情况，显示已用、剩余数量、百分比及进度条，并在超过阈值时提供智能提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spark-context-monitor"
-sourceUrl: "https://clawhub.ai/skills/spark-context-monitor"
----
+# 上下文使用率查询 - Skill 说明
 
-# Spark Context Monitor
+## 🎯 功能
 
-> 查询当前会话的Token使用情况，显示已用、剩余数量、百分比及进度条，并在超过阈值时提供智能提醒。
+查询当前会话的上下文（Token）使用情况，包括：
+- 已使用的 Token 数量
+- 剩余 Token 数量
+- 使用率百分比
+- 进度条可视化
+- 智能建议（超过阈值时提醒）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spark-context-monitor`
-- **Source URL:** [https://clawhub.ai/skills/spark-context-monitor](https://clawhub.ai/skills/spark-context-monitor)
+## 🚀 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/spark-context-monitor
+### 命令触发
 ```
+/token
+```
+
+### 自然语言触发
+直接对话即可，支持多种说法：
+```
+查一下上下文使用率
+看看 token 用了多少
+上下文还剩多少
+查看 token 使用情况
+token usage
+```
+
+## 📊 输出示例
+
+### 正常状态（35%）
+```
+### 📊 上下文使用状态
+
+**状态：** 正常
+**模型：** qwen3.5-plus
+
+**使用率：** 35.2%
+`▓▓▓▓▓▓▓░░░░░░░░░░░░`
+
+**已使用：** 90,112 tokens
+**剩余：** 165,888 tokens
+**总计：** 256,000 tokens
+
+> ✅ 上下文使用正常，可以继续对话
+```
+
+### 警告状态（78%）
+```
+### ⚠️ 上下文使用状态
+
+**状态：** 警告
+**模型：** qwen3.5-plus
+
+**使用率：** 78.5%
+`▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░`
+
+**已使用：** 200,960 tokens
+**剩余：** 55,040 tokens
+**总计：** 256,000 tokens
+
+> 💡 **建议：** 使用 `/new` 开启新会话 或 `/compact` 压缩上下文
+```
+
+### 严重警告（92%）
+```
+### 🚨 上下文使用状态
+
+**状态：** 严重
+**模型：** qwen3.5-plus
+
+**使用率：** 92.3%
+`▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░`
+
+**已使用：** 236,288 tokens
+**剩余：** 19,712 tokens
+**总计：** 256,000 tokens
+
+> 🚨 **严重警告：** 上下文即将超限！建议立即使用 `/new` 开启新会话
+```
+
+## ⚙️ 配置
+
+### 阈值设置
+- **警告阈值：** 70%（显示⚠️）
+- **严重阈值：** 90%（显示🚨）
+
+### 支持的模型
+自动识别以下模型的上下文窗口：
+- `qwen3.5-plus`: 256,000 tokens
+- `qwen3.5`: 256,000 tokens
+- `qwen-max`: 32,000 tokens
+- `claude`: 200,000 tokens
+- `gpt-4`: 128,000 tokens
+- 其他模型：默认 128,000 tokens
+
+## 🔧 技术原理
+
+### Token 估算算法
+```
+中文字符：约 1.5 字符/token
+英文字符：约 4 字符/token
+```
+
+### 进度条生成
+- 总长度：20 个字符
+- 已使用：▓
+- 剩余：░
+
+## 📝 注意事项
+
+1. **估算误差：** Token 计算为估算值，实际以平台统计为准（误差±10%）
+2. **会话范围：** 仅统计当前会话的历史消息
+3. **性能影响：** 每次查询耗时 < 10ms
+
+## 🐛 常见问题
+
+**Q: 为什么显示的 Token 数和平台不一致？**  
+A: 本 Skill 使用字符数估算算法，实际 Token 数以平台为准。
+
+**Q: 可以修改阈值吗？**  
+A: 可以在 Skill 代码中修改 `WARNING_THRESHOLD` 和 `CRITICAL_THRESHOLD` 常量。
+
+**Q: 支持哪些平台？**  
+A: 支持所有 OpenClaw 集成的平台（飞书、Telegram、WhatsApp 等）。
+
+## 📄 许可证
+
+MIT License
+
+## 🔗 相关链接
+
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+- [GitHub 仓库](https://github.com/rfdiosuao/openclaw-skills)
+
+---
+
+**作者：** Spark ⚡  
+**版本：** 1.0.0  
+**最后更新：** 2026-04-06

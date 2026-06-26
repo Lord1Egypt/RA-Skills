@@ -1,0 +1,137 @@
+{
+  "name": "畅聊守护者",
+  "englishName": "ChatFlow Guardian",
+  "version": "1.0.0",
+  
+  "monitoring": {
+    "enabled": true,
+    "check_interval": 180,
+    "response_threshold": 180,
+    "min_interval": 60,
+    "quiet_hours": ["23:00-07:00"],
+    "working_hours": ["09:00-18:00"]
+  },
+  
+  "response_priority": {
+    "levels": {
+      "p0": { "max_wait": 180, "action": "immediate_response" },
+      "p1": { "max_wait": 300, "action": "quick_response" },
+      "p2": { "max_wait": 600, "action": "standard_response" },
+      "p3": { "max_wait": 1200, "action": "delayed_response" }
+    },
+    "intent_mapping": {
+      "question": "p0",
+      "task_request": "p1",
+      "feedback": "p2",
+      "social": "p3",
+      "unknown": "p1"
+    }
+  },
+  
+  "completeness": {
+    "enabled": true,
+    "threshold": 0.8,
+    "check_patterns": [
+      "incomplete_thought",
+      "missing_example",
+      "unfinished_step",
+      "partial_answer"
+    ]
+  },
+  
+  "token_optimization": {
+    "enabled": true,
+    "max_tokens_per_check": 1000,
+    "thinking_threshold": 0.7,
+    "cache_enabled": true,
+    "cache_ttl": 3600
+  },
+  
+  "progress_reporting": {
+    "enabled": true,
+    "interval": 300,
+    "min_progress": 0.1,
+    "templates": {
+      "started": "正在处理【{task}】，已开始执行...",
+      "progress": "正在处理【{task}】，已完成{percent}%，预计还需要{time_left}...",
+      "completed": "【{task}】已完成！这是结果摘要：{summary}",
+      "blocked": "执行【{task}】时遇到问题：{issue}，正在尝试解决方案..."
+    }
+  },
+  
+  "logging": {
+    "level": "info",
+    "file": "~/.openclaw/logs/dialog-manager.log",
+    "max_size": "10MB",
+    "retention": 7
+  },
+  
+  "learning": {
+    "enabled": true,
+    "response_time_learning": true,
+    "preference_learning": true,
+    "schedule_learning": true
+  },
+  
+  "platforms": {
+    "enabled": true,
+    "supported": ["qqbot", "wecom", "slack", "dingtalk", "wechat", "discord"],
+    "default_platform": "qqbot",
+    "broadcast_enabled": false,
+    "message_truncation": true,
+    "retry_on_failure": true,
+    "max_retries": 3
+  },
+  
+  "predictive": {
+    "enabled": true,
+    "history_size": 100,
+    "prediction_threshold": 0.7,
+    "learning_rate": 0.1,
+    "max_predictions": 5,
+    "cleanup_days": 30,
+    "features": [
+      "time_patterns",
+      "sequence_patterns", 
+      "context_patterns",
+      "weekday_patterns",
+      "urgency_patterns",
+      "task_patterns"
+    ]
+  },
+  
+  "deeplearning": {
+    "enabled": true,
+    "model_type": "hybrid",
+    "training_enabled": true,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "epochs": 50,
+    "validation_split": 0.2,
+    "early_stopping": true,
+    "use_pretrained": true,
+    "models": [
+      "intent-classifier",
+      "user-behavior-predictor",
+      "emotion-analyzer",
+      "conversation-quality"
+    ],
+    "features": [
+      "text_features",
+      "context_features",
+      "temporal_features",
+      "sequence_features",
+      "sentiment_features"
+    ]
+  },
+  
+  "advanced": {
+    "auto_scaling": true,
+    "fallback_strategy": "graceful",
+    "health_check": true,
+    "metrics_collection": true,
+    "performance_monitoring": true,
+    "backup_enabled": true,
+    "backup_interval": 86400
+  }
+}

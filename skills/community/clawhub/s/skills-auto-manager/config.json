@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "settings": {
+    "frequency": "weekly",
+    "frequency_cron": "0 20 * * 0",
+    "timezone": "Asia/Shanghai",
+    "auto_install_low_risk": true,
+    "auto_install_high_risk": false,
+    "max_recommendations": 10,
+    "backup_before_install": true,
+    "backup_retention": 3,
+    "notification_enabled": true,
+    "report_path": "memory/skills-auto-{date}.md",
+    "log_level": "info"
+  },
+  "user_profile": {
+    "focus_areas": [
+      "quantitative-trading",
+      "stock-analysis",
+      "data-analysis",
+      "automation",
+      "charting",
+      "finance"
+    ],
+    "risk_tolerance": "medium",
+    "capital": "14000",
+    "platform": "dmg-quant",
+    "language": "zh-CN"
+  },
+  "priorities": {
+    "quantitative-trading": 5,
+    "stock-analysis": 5,
+    "data-analysis": 4,
+    "automation": 4,
+    "charting": 3,
+    "finance": 3,
+    "general": 2
+  },
+  "risk_categories": {
+    "auto_install": [
+      "official",
+      "zero-dependency",
+      "community-verified",
+      "high-rating",
+      "pure-functional"
+    ],
+    "require_confirmation": [
+      "requires-api-key",
+      "financial-operations",
+      "experimental",
+      "beta",
+      "privacy-sensitive",
+      "external-service"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "customer-segmentation",
+  "version": "0.1.0",
+  "description": "客户分层：自动标签 + 生命周期管理 + 价值分析",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collect": "node scripts/customer-data-collector.js",
+    "collect:dry": "node scripts/customer-data-collector.js --dry-run",
+    "score": "node scripts/scoring-engine.js",
+    "score:sample": "node scripts/scoring-engine.js --sample",
+    "strategy": "node scripts/strategy-output.js",
+    "strategy:summary": "node scripts/strategy-output.js --format summary",
+    "tag-sync": "node scripts/tag-sync.js",
+    "tag-sync:confirm": "node scripts/tag-sync.js --confirm",
+    "run-all": "node scripts/customer-data-collector.js && node scripts/scoring-engine.js && node scripts/strategy-output.js && node scripts/tag-sync.js"
+  },
+  "dependencies": {}
+}

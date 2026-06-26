@@ -1,0 +1,43 @@
+{
+  "name": "ssh-lab",
+  "version": "0.1.0",
+  "description": "Remote server SSH workbench — GPU status, run commands, tail logs across multiple servers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ssh-lab": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "tsc -p tsconfig.test.json && node --test dist/test/*.test.js",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "ssh",
+    "gpu",
+    "nvidia",
+    "remote",
+    "server",
+    "monitoring",
+    "lab"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "!dist/test",
+    "!dist/tests",
+    "!dist/src",
+    "skill.json",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "typescript": "^5.9.3"
+  }
+}

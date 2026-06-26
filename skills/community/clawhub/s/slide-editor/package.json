@@ -1,0 +1,50 @@
+{
+  "name": "@dtacheng/slide-editor",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Visual editor for HTML slides - embeddable, offline-capable",
+  "main": "dist/editor.bundle.js",
+  "types": "src/types.ts",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --minify --outfile=dist/editor.bundle.js --format=iife --global-name=SlideEditor",
+    "dev": "esbuild src/index.ts --bundle --outfile=dist/editor.bundle.js --format=iife --global-name=SlideEditor --watch",
+    "typecheck": "tsc --noEmit",
+    "inject": "bun inject.ts",
+    "prepublishOnly": "bun run build"
+  },
+  "bin": {
+    "slide-editor": "./inject.ts"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "inject.ts",
+    "README.md",
+    "SKILL.md",
+    "skill.md"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.20.0",
+    "puppeteer": "^24.39.1",
+    "typescript": "^5.4.0"
+  },
+  "keywords": [
+    "slides",
+    "editor",
+    "visual",
+    "presentation",
+    "html",
+    "offline",
+    "embeddable"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DTacheng/slide-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DTacheng/slide-editor/issues"
+  },
+  "homepage": "https://github.com/DTacheng/slide-editor#readme"
+}

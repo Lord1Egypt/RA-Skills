@@ -1,0 +1,247 @@
+{
+  "category": "全球",
+  "description": "理财通全球指数名单",
+  "count": 40,
+  "indices": [
+    {
+      "code": "128456.MI",
+      "name": "MSCI US REIT INDEX",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=128456"
+    },
+    {
+      "code": "750108.MI",
+      "name": "MSCI美国50指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=750108"
+    },
+    {
+      "code": "930604.CSI",
+      "name": "中证海外中国互联网30指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930604"
+    },
+    {
+      "code": "930796.CSI",
+      "name": "中证全球中国互联网指数(人民币)",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930796"
+    },
+    {
+      "code": "931456.CSI",
+      "name": "中证全球中国教育主题指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931456"
+    },
+    {
+      "code": "931721.CSI",
+      "name": "中美互联网人民币中间价指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931721"
+    },
+    {
+      "code": "931790.CSI",
+      "name": "中证韩交所中韩半导体指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931790"
+    },
+    {
+      "code": "932307.CSI",
+      "name": "中证海外中国互联网人民币中间价指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932307"
+    },
+    {
+      "code": "ASIATECP.SG",
+      "name": "新交所泛东南亚科技指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=ASIATECP"
+    },
+    {
+      "code": "DJI.GI",
+      "name": "道琼斯工业平均指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=DJI"
+    },
+    {
+      "code": "DJSOEP.GI",
+      "name": "道琼斯美国石油开发与生产指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=DJSOEP"
+    },
+    {
+      "code": "DWRTF.GI",
+      "name": "道琼斯美国精选REIT指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=DWRTF"
+    },
+    {
+      "code": "EMASIAUP.SG",
+      "name": "新交所新兴亚洲精选50指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=EMASIAUP"
+    },
+    {
+      "code": "ERGLU.FI",
+      "name": "富时发达市场REITs价格指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=ERGLU"
+    },
+    {
+      "code": "FCHI.GI",
+      "name": "巴黎CAC40指数",
+      "sub_category": "欧洲",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=FCHI"
+    },
+    {
+      "code": "FTSE.GI",
+      "name": "伦敦富时100指数",
+      "sub_category": "欧洲",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=FTSE"
+    },
+    {
+      "code": "GDAXI.GI",
+      "name": "德国DAX指数",
+      "sub_category": "欧洲",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=GDAXI"
+    },
+    {
+      "code": "GPCSP006.FI",
+      "name": "富时亚太低碳精选指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=GPCSP006"
+    },
+    {
+      "code": "h30533.CSI",
+      "name": "中证海外中国互联网50指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30533"
+    },
+    {
+      "code": "IBOVESPA.GI",
+      "name": "巴西IBOVESPA指数",
+      "sub_category": "南美",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=IBOVESPA"
+    },
+    {
+      "code": "IXY.SPI",
+      "name": "标普可选消费品精选行业指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=IXY"
+    },
+    {
+      "code": "N225.GI",
+      "name": "东京日经225指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=N225"
+    },
+    {
+      "code": "NBI.GI",
+      "name": "纳斯达克生物技术指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=NBI"
+    },
+    {
+      "code": "NDX.GI",
+      "name": "纳斯达克100指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=NDX"
+    },
+    {
+      "code": "NDXTMC.GI",
+      "name": "纳斯达克科技市值加权指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=NDXTMC"
+    },
+    {
+      "code": "S5INFT.SPI",
+      "name": "标普500信息技术指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=S5INFT"
+    },
+    {
+      "code": "SP500EW-35.SPI",
+      "name": "标普500等权重医疗保健行业指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SP500EW-35"
+    },
+    {
+      "code": "SP5CSSUP.SPI",
+      "name": "标普500消费精选指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SP5CSSUP"
+    },
+    {
+      "code": "SPG120035.SPI",
+      "name": "标普全球1200医疗保健行业指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPG120035"
+    },
+    {
+      "code": "SPGLGUP.SPI",
+      "name": "标普全球高端消费品指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPGLGUP"
+    },
+    {
+      "code": "SPGOGUP.SPI",
+      "name": "标普全球石油指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPGOGUP"
+    },
+    {
+      "code": "SPNCSCHN.SPI",
+      "name": "标普中国新经济行业指数",
+      "sub_category": "中概",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPNCSCHN"
+    },
+    {
+      "code": "SPOEXEUP.SPI",
+      "name": "标普100等权重指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPOEXEUP"
+    },
+    {
+      "code": "SPSIBI.SPI",
+      "name": "标普生物技术精选行业指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPSIBI"
+    },
+    {
+      "code": "SPSIOP.SPI",
+      "name": "标普石油天然气勘探及生产精选行业指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPSIOP"
+    },
+    {
+      "code": "SPTR500N.SPI",
+      "name": "标普500净总回报指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPTR500N"
+    },
+    {
+      "code": "SPX.GI",
+      "name": "标准普尔500指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPX"
+    },
+    {
+      "code": "SPXEWTR.SPI",
+      "name": "标普500等权重指数",
+      "sub_category": "美国",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPXEWTR"
+    },
+    {
+      "code": "TPX.GI",
+      "name": "东京股价指数",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=TPX"
+    },
+    {
+      "code": "WISAUNT.FI",
+      "name": "富时沙特阿拉伯指数(里亚尔)(净总回报)",
+      "sub_category": "亚太",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=WISAUNT"
+    }
+  ]
+}

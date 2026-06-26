@@ -1,0 +1,156 @@
+# Minimal voice-reviews example for audiobook.
+# Reference only: this file demonstrates one manually confirmed profile
+# and one pending profile that still relies on archived_analysis.
+
+version: "1"
+generated_at: "2026-04-13T10:00:00Z"
+
+clones:
+  warm_narrator_demo:
+    display_name: "温和旁白备选"
+    manual:
+      description: "中低频稳定、叙述感强，整体温和沉稳，适合承担长段落旁白。"
+      tags:
+        - "旁白"
+        - "沉稳"
+        - "温和"
+      suitable_scenes:
+        - "日常叙述"
+        - "治愈片段"
+        - "轻悬疑旁白"
+      avoid_scenes:
+        - "激烈争吵"
+        - "极端少年感角色"
+      stable_instruction: "音色保持沉稳、温和、叙述感，不夸张表演，不过分拖长尾音。"
+      notes: "这是人工确认后的真实结果；后续选角优先使用 manual。"
+    model_analysis:
+      generated_at: "2026-04-13T09:40:00Z"
+      generated_by: "step-audio-r1.1"
+      response_mode: "text"
+      response_type: "text"
+      analysis_pipeline: "audio-r1.1 -> parser -> archived_analysis"
+      analysis_file: ".audiobook/voice-analysis/warm_narrator_demo.json"
+      raw_text: "声音偏沉稳，气息控制较稳，适合低刺激、连续叙述场景。"
+      raw_model_result: null
+      structured_result: null
+      structured_raw: null
+      normalization_note: "示例文件，仅用于说明结构。"
+      normalized_result:
+        description: "声音偏沉稳，气息控制较稳，适合低刺激、连续叙述场景。"
+        tags:
+          - "旁白"
+          - "沉稳"
+          - "控制力稳定"
+        suitable_scenes:
+          - "连续叙述"
+          - "轻悬疑"
+        avoid_scenes:
+          - "高喊"
+        stable_instruction: "保持低刺激、稳态叙述。"
+        voice_traits:
+          accent: "普通话"
+          gender_guess: "unknown"
+          age_band_guess: "adult"
+          speech_rate: "medium"
+          emotion_baseline: "calm"
+          confidence: 0.68
+    archived_analysis:
+      description: "中低频偏稳，整体温和克制，比较适合耐听的旁白与轻悬疑叙述。"
+      tags:
+        - "旁白"
+        - "温和"
+        - "耐听"
+      suitable_scenes:
+        - "日常叙述"
+        - "轻悬疑"
+      avoid_scenes:
+        - "高喊"
+        - "高能少年角色"
+      stable_instruction: "整体收住情绪，保持稳定、清晰、耐听的旁白状态。"
+      voice_traits:
+        accent: "普通话"
+        gender_guess: "unknown"
+        age_band_guess: "adult"
+        speech_rate: "medium"
+        emotion_baseline: "calm"
+        confidence: 0.68
+      generated_at: "2026-04-13T09:40:00Z"
+      generated_by: "step-audio-r1.1"
+      analysis_pipeline: "audio-r1.1 -> parser -> archived_analysis"
+      analysis_file: ".audiobook/voice-analysis/warm_narrator_demo.json"
+    review:
+      status: "confirmed_manual"
+      edit_target: "manual"
+      compare_against: "archived_analysis"
+      last_analysis_at: "2026-04-13T09:40:00Z"
+
+  bright_young_demo:
+    display_name: "明亮年轻女声备选"
+    manual:
+      description: ""
+      tags: []
+      suitable_scenes: []
+      avoid_scenes: []
+      stable_instruction: ""
+      notes: ""
+    model_analysis:
+      generated_at: "2026-04-13T09:45:00Z"
+      generated_by: "step-audio-r1.1"
+      response_mode: "text"
+      response_type: "text"
+      analysis_pipeline: "audio-r1.1 -> parser -> archived_analysis"
+      analysis_file: ".audiobook/voice-analysis/bright_young_demo.json"
+      raw_text: "整体明亮，年轻感明显，贴近耳语时依然清楚，适合亲近型对白。"
+      raw_model_result: null
+      structured_result: null
+      structured_raw: null
+      normalization_note: "示例文件，仅用于说明结构。"
+      normalized_result:
+        description: "整体明亮，年轻感明显，贴近耳语时依然清楚，适合亲近型对白。"
+        tags:
+          - "明亮"
+          - "年轻感"
+          - "亲近"
+        suitable_scenes:
+          - "日常对话"
+          - "轻悬疑耳语"
+        avoid_scenes:
+          - "年长角色"
+        stable_instruction: "保持轻声、近距离、自然呼吸感。"
+        voice_traits:
+          accent: "普通话"
+          gender_guess: "female"
+          age_band_guess: "young_adult"
+          speech_rate: "medium_fast"
+          emotion_baseline: "bright"
+          confidence: 0.71
+    archived_analysis:
+      description: "音色明亮、年轻感明显，贴近式对白清楚，适合亲近、敏感、略带紧张的角色。"
+      tags:
+        - "明亮"
+        - "年轻感"
+        - "亲近"
+      suitable_scenes:
+        - "日常对话"
+        - "贴耳低声"
+        - "轻悬疑"
+      avoid_scenes:
+        - "权威长者"
+        - "厚重播音腔"
+      stable_instruction: "整体保持轻快、自然、贴近，不做成熟厚重的发声。"
+      voice_traits:
+        accent: "普通话"
+        gender_guess: "female"
+        age_band_guess: "young_adult"
+        speech_rate: "medium_fast"
+        emotion_baseline: "bright"
+        confidence: 0.71
+      generated_at: "2026-04-13T09:45:00Z"
+      generated_by: "step-audio-r1.1"
+      analysis_pipeline: "audio-r1.1 -> parser -> archived_analysis"
+      analysis_file: ".audiobook/voice-analysis/bright_young_demo.json"
+    review:
+      status: "pending_manual_confirmation"
+      edit_target: "manual"
+      compare_against: "archived_analysis"
+      last_analysis_at: "2026-04-13T09:45:00Z"

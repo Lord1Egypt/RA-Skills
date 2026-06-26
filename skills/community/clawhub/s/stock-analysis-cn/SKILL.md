@@ -1,35 +1,303 @@
 ---
-name: "Stock Analysis CN"
+name: stock-analysis-cn
+version: 1.0.0
 description: "一键分析A股：技术面+估值+风险+基本面全覆盖，自动生成Word投资报告。基于腾讯财经API，内置行业专用估值基准。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, reporting, screening]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-analysis-cn"
-sourceUrl: "https://clawhub.ai/skills/stock-analysis-cn"
+author: "Shiming X"
+authorEmail: "xsm_1202@163.com"
+keywords: ["A股", "股票分析", "ETF", "技术面", "估值", "风险", "自动报告"]
+license: MIT
+repository: "https://github.com/jy02577302-ux/stock-analysis"
+publishedAt: "2026-03-18"
+tags: ["analysis", "reporting", "screening"]
 ---
 
-# Stock Analysis CN
+# Stock Analysis Skill
+**一键分析A股市场 · 自动生成投资报告**
 
-> 一键分析A股：技术面+估值+风险+基本面全覆盖，自动生成Word投资报告。基于腾讯财经API，内置行业专用估值基准。
+## 概述
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-analysis-cn`
-- **Source URL:** [https://clawhub.ai/skills/stock-analysis-cn](https://clawhub.ai/skills/stock-analysis-cn)
+这是一个**全功能A股分析技能**，提供技术面、估值、风险、基本面四大维度的自动化分析，并可直接生成专业的投资报告（Markdown/Word）。适合个人投资者、量化研究员、资产管理人等。
 
-## Overview
+**核心特点**:
+- ⚡ **一键分析**: 单条命令完成多维度分析
+- 📊 **数据驱动**: 基于腾讯财经API实时数据
+- 📄 **报告自动生成**: Markdown → Word，格式美观
+- 🎯 **因子选股**: 支持PE、ROE、动量等多因子筛选
+- 🇨🇳 **专为A股优化**: 银行、券商、军工等行业专用估值基准
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 🎯 核心功能
+
+### 1. 技术面分析
+判断趋势、找出买卖点、计算技术指标。
+
+**输出指标**:
+- 趋势方向（上涨/下跌/震荡）
+- 均线系统（MA20、MA60、MA250）
+- 动量指标：RSI、MACD、KDJ
+- 支撑位与阻力位
+- 近期涨跌幅（5日、20日、60日）
+
+**使用场景**:
+- "分析农业银行601288的技术面"
+- "招商银行600036的RSI是否超买？"
+- "找出最近突破MA20的股票"
+
+### 2. 估值分析
+评估股票是否高估或低估，纵向看历史，横向看行业。
+
+**输出指标**:
+- PE/PB 当前值及历史分位数
+- 5年PE/PB中位数
+- 行业PE/PB中位数对比
+- 估值评级：高估/正常/低估
+
+**行业基准库**:
+- 银行股专用（PE 5-8x，PB 0.6-1.0x）
+- 券商股专用
+- 军工股专用
+- 新能源、光伏、锂电池等
+
+**使用场景**:
+- "宁波银行002142当前PE处于历史什么位置？"
+- "对比招商银行和平安银行的估值水平"
+- "找出PE<10且PB<1的银行股"
+
+### 3. 风险分析
+量化波动性、回撤和风险调整收益。
+
+**输出指标**:
+- 年化波动率
+- 最大回撤（Max Drawdown）
+- 夏普比率（Sharpe Ratio）
+- 索提诺比率（Sortino Ratio）
+- Beta（与沪深300相关性）
+
+**使用场景**:
+- "计算贵州茅台最近1年的波动率和最大回撤"
+- "哪只银行股的夏普比率最高？"
+- "创业板ETF的风险指标怎么样？"
+
+### 4. 基本面分析
+评估公司财务健康度、盈利能力、成长性。
+
+**输出指标**:
+- 盈利能力：ROE、ROA、毛利率、净利率
+- 成长性：营收CAGR、净利润CAGR
+- 偿债能力：资产负债率、流动比率、速动比率
+- 运营效率：总资产周转率、存货周转率
+- 现金流：经营性现金流/净利润
+
+**数据来源**: 东方财富、同花顺等财经网站（需网络抓取）
+
+**使用场景**:
+- "分析宁德时代的基本面：ROE、负债率、现金流"
+- "对比五粮液和贵州茅台的营收增速"
+- "找出ROE>15%且负债率<50%的消费股"
+
+### 5. ETF专项分析
+针对交易所交易基金的专门功能。
+
+**额外指标**:
+- 跟踪误差（Tracking Error）
+- 流动性：日均成交量、买卖价差
+- 基金信息：管理费、托管费、成立日期、规模
+- 成分股覆盖度
+- 折溢价分析（QDII、港股ETF）
+
+**使用场景**:
+- "分析510300沪深300ETF的跟踪误差"
+- "哪只科创50ETF规模最大、流动性最好？"
+- "券商ETF（512880）的管理费和成交额是多少？"
+
+### 6. 因子筛选与选股
+多因子模型快速筛选投资标。
+
+**支持的因子**:
+- 价值因子：低PE、低PB、高股息率
+- 成长因子：高营收增长、高利润增长
+- 质量因子：高ROE、低负债、现金流好
+- 动量因子：价格动量、 earnings momentum
+- 低波动因子：低Beta、低波动率
+- 规模因子：市值暴露
+
+**筛选流程**:
+1. 定义因子条件（如：PE<15, ROE>15%）
+2. 选择股票池（A股、港股、ETF等）
+3. 执行筛选并评分
+4. 输出Top N标的+关键指标
+
+**使用场景**:
+- "筛选A股中PE<15且ROE>15%的股票"
+- "找出最近一个月涨幅最大的10只行业ETF"
+- "高股息低波动的红利ETF有哪些？"
+
+---
+
+## 📊 数据源与可靠性
+
+| 数据类型 | 来源 | 延迟 | 覆盖范围 |
+|----------|------|------|----------|
+| 实时行情 | 腾讯财经API | ~15分钟 | A股全市场 |
+| 历史K线 | 腾讯财经API | ~15分钟 | 约1年日线 |
+| 指数PE/PB | 中证指数公司 | 每日 | 主要指数 |
+| 个股财务 | 东方财富/同花顺 | 1天 | 最新财报 |
+
+⚠️ **局限性**:
+- 基本面数据为季度更新，非实时
+- 部分新上市公司历史数据不足
+- 如需实时Level-2数据，需要付费接口
+
+---
+
+## 🚀 快速开始
+
+### 安装
 ```bash
-hermes skills install clawhub/stock-analysis-cn
+# 从ClawHub安装
+clawhub install stock-analysis
+
+# 或手动安装
+cp -r stock-analysis.skill ~/.openclaw/skills/
 ```
+
+### 使用示例
+
+**单股综合分析**:
+```python
+from stock_analysis import analyze
+
+# 分析农业银行
+report = analyze('sh601288', name='农业银行')
+print(report['summary'])
+```
+
+**生成Word报告**:
+```bash
+python scripts/report_generator.py sh601288 --name "农业银行" > report.md
+pandoc report.md -o report.docx
+```
+
+**筛选高股息低PE股票**:
+```python
+from stock_analysis.screening import screen
+
+criteria = {
+    'pe': {'max': 15},
+    'dividend_yield': {'min': 0.03},
+    'roe': {'min': 0.10}
+}
+results = screen(universe='A股', criteria=criteria)
+```
+
+---
+
+## 📁 技能结构
+
+```
+stock-analysis/
+├── SKILL.md                 # 本文件
+├── scripts/
+│   ├── technical_analysis.py   # 技术分析
+│   ├── valuation_analysis.py   # 估值分析
+│   ├── risk_analysis.py        # 风险分析
+│   ├── fundamental_analysis.py # 基本面分析
+│   ├── screening.py            # 因子筛选
+│   ├── report_generator.py     # 报告生成
+│   └── utils.py                # 腾讯财经API封装
+├── references/
+│   ├── indicators.md      # 技术指标说明
+│   ├── factors.md         # 因子模型文档
+│   ├── valuation_benchmarks.md  # 行业估值基准
+│   └── api_usage.md       # API使用指南
+└── assets/
+    ├── templates/
+    │   ├── analysis_report.md      # 分析报告模板
+    │   └── screening_results.csv  # 筛选结果模板
+    └── example_asset.txt
+```
+
+---
+
+## 🎓 使用指南
+
+### 何时使用？
+
+- ✅ 研究一只股票是否值得买入
+- ✅ 需要快速生成投资分析报告
+- ✅ 批量筛选符合条件的股票
+- ✅ 追踪持仓股的技术状态
+- ✅ 对比不同股票的估值水平
+- ✅ 评估投资组合的风险指标
+
+### 何时不使用？
+
+- ❌ 需要实时Level-2行情（本技能使用延迟数据）
+- ❌ 复杂的DCF模型（本技能无完整财务预测）
+- ❌ 宏观策略研究（本技能聚焦个股）
+- ❌ 美股/港股深度分析（数据源以A股为主）
+
+---
+
+## 📈 典型工作流
+
+1. **输入股票代码**（如 `sh601288` 农业银行）
+2. **多维度分析**并行执行：
+   - 技术面：趋势、指标、支撑阻力
+   - 估值：PE/PB历史分位、行业对比
+   - 风险：波动率、最大回撤、夏普比率
+3. **生成综合评分**（0-10分）
+4. **输出建议**（买入/持有/卖出）
+5. **导出报告**（Markdown/Word）
+
+整个过程约10-30秒，无需人工干预。
+
+---
+
+## 🔧 定制与扩展
+
+### 添加自定义行业估值基准
+编辑 `references/valuation_benchmarks.md`，添加你关注的行业PE/PB中位数。
+
+### 集成新数据源
+修改 `scripts/utils.py`，接入其他财经API（如 Akshare、Baostock）。
+
+### 自定义报告模板
+修改 `assets/templates/analysis_report.md`，调整输出格式和内容。
+
+---
+
+## 📚 术语表
+
+| 术语 | 解释 |
+|------|------|
+| PE (TTM) | 滚动市盈率，最新12个月净利润的倒数 |
+| PB | 市净率，股价/每股净资产 |
+| 历史分位数 | 当前值在历史序列中的百分比位置 |
+| MA20 | 20日均线，短期趋势线 |
+| RSI | 相对强弱指标，0-100，>70超买，<30超卖 |
+| 夏普比率 | 每单位风险获得的超额收益，越高越好 |
+| 最大回撤 | 历史上从高点到低点的最大下跌幅度 |
+| 跟踪误差 | ETF净值相对于基准指数的偏离标准差 |
+
+---
+
+## 🤝 贡献与反馈
+
+- 报告Bug或提出建议：请提交Issue
+- 贡献代码：欢迎PR，特别是新指标、新数据源
+- 数据源扩展：如果你有可用的免费API，欢迎集成
+
+---
+
+## 📄 许可证
+
+MIT License - 自由使用、修改、分发。
+
+---
+
+**版本**: 1.0.0
+**最后更新**: 2026-03-18
+**作者**: 养虾佬徐小明 (jy02577302)
+**ClawHub**: 搜索 `stock-analysis` 下载

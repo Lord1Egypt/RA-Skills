@@ -1,0 +1,47 @@
+{
+  "name": "spielerplus-scraper",
+  "version": "1.0.0",
+  "description": "Generic SpielerPlus/TeamPlus scraper for team management data",
+  "main": "src/index.js",
+  "bin": {
+    "spielerplus": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "scrape": "node src/cli.js",
+    "teams": "node src/cli.js teams",
+    "events": "node src/cli.js events",
+    "event": "node src/cli.js event",
+    "team": "node src/cli.js team",
+    "absences": "node src/cli.js absences",
+    "finances": "node src/cli.js finances",
+    "participation": "node src/cli.js participation",
+    "profile": "node src/cli.js profile",
+    "roles": "node src/cli.js roles",
+    "benefits": "node src/cli.js benefits",
+    "all": "node src/cli.js all",
+    "test": "node --check src/index.js && node --check src/cli.js",
+    "lint": "echo 'No linter configured'",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch"
+  },
+  "keywords": ["spielerplus", "teamplus", "scraper", "team-management", "handball", "sports"],
+  "author": "draiwing",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/draiwing/spielerplus-scraper"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

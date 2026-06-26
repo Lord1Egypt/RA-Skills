@@ -1,0 +1,25 @@
+{
+  "environment": "production",
+  "app_version": "2.4.1",
+  "build_number": "8837",
+  "browser": "Chrome",
+  "browser_version": "122.0.6261.112",
+  "os": "macOS",
+  "region": "us-east-1",
+  "user_role": "workspace-admin",
+  "feature_flags": {
+    "new_export_engine": "true"
+  },
+  "error_codes": [],
+  "stack_trace": {
+    "language": "javascript",
+    "exception_type": "TypeError",
+    "exception_message": "Cannot read properties of undefined (reading 'map')",
+    "key_frames": [
+      {"file": "src/services/export.ts", "line": 142, "function": "ExportService.transform"},
+      {"file": "src/handlers/report.ts", "line": 87, "function": "handleExport"}
+    ]
+  },
+  "pii_count": 8,
+  "pii_types": ["email", "email", "email", "phone", "phone", "uuid", "api_key", "jwt"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ta-analyzer",
+  "version": "1.0.0",
+  "description": "Technical analysis skill with 20+ indicators using CCXT",
+  "main": "index.js",
+  "author": "Lucifer",
+  "license": "MIT"
+}

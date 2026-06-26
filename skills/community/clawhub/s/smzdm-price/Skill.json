@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "name": "smzdm-price",
+  "version": "1.0.0",
+  "description": "什么值得买价格爬取 - 从smzdm.com爬取NAS、电脑、手机等商品价格",
+  "trigger_keywords": [
+    "查询价格",
+    "什么值得买",
+    "smzdm",
+    "极空间",
+    "群晖",
+    "绿联",
+    "NAS价格"
+  ],
+  "capabilities": [
+    "web_scraping",
+    "price_query"
+  ]
+}

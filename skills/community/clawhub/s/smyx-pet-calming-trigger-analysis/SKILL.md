@@ -1,35 +1,161 @@
 ---
-name: "宠物安抚触发分析技能"
-description: "Automatically triggers soothing mechanisms (playing relaxing sounds, activating laser toys) when pet anxiety, howling, or prolonged loneliness is detected; a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smyx-pet-calming-trigger-analysis"
-sourceUrl: "https://clawhub.ai/skills/smyx-pet-calming-trigger-analysis"
+name: "pet-calming-trigger-analysis"
+description: "Automatically triggers soothing mechanisms (playing relaxing sounds, activating laser toys) when pet anxiety, howling, or prolonged loneliness is detected; a smart companion for pet care. | 宠物安抚触发技能，检测到宠物焦虑、嚎叫、长时间孤独时，自动触发安抚机制（播放舒缓音效、开启激光逗宠），智能宠物陪伴好帮手"
+version: "1.0.4"
+license: "MIT-0"
 ---
 
-# 宠物安抚触发分析技能
+# Pet Soothing Trigger Analysis Skill | 宠物安抚触发分析技能
 
-> Automatically triggers soothing mechanisms (playing relaxing sounds, activating laser toys) when pet anxiety, howling, or prolonged loneliness is detected; a...
+Equipped with advanced pet emotion recognition algorithms, this feature precisely captures anxiety-induced behavioral
+traits, including persistent howling, destructive pacing, and prolonged isolation. Through multi-modal sensor fusion
+technology, the system monitors vocal frequencies, movement trajectories, and duration data in real-time. Once abnormal
+emotional indicators exceed preset thresholds, it automatically triggers a smart soothing mechanism. This mechanism
+supports playing calming soundscapes validated by animal behavior research and can link with laser toys to generate
+dynamic light spots that attract the pet's attention, effectively alleviating separation anxiety symptoms. The entire
+system forms a complete closed loop from monitoring to intervention, providing 24/7 intelligent companionship for pets
+left alone and serving as an ideal solution for modern pet households.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smyx-pet-calming-trigger-analysis`
-- **Source URL:** [https://clawhub.ai/skills/smyx-pet-calming-trigger-analysis](https://clawhub.ai/skills/smyx-pet-calming-trigger-analysis)
+本功能搭载先进的宠物情绪识别算法，能够精准捕捉宠物的焦虑行为特征，包括持续性嚎叫、破坏性踱步及长时间独处状态。系统通过多模态传感器融合技术，实时监测宠物的声音频率、活动轨迹及时长数据，一旦识别到异常情绪指标超过预设阈值，即刻自动触发智能安抚机制。该机制支持播放经动物行为学研究验证的舒缓音效，并可联动激光逗宠设备生成动态光点吸引宠物注意力，有效缓解分离焦虑症状。整套系统形成从监测到干预的完整闭环，为独自在家的宠物提供全天候智能陪伴，是现代化宠物家庭的理想解决方案
 
-## Overview
+## ⚠️ 强制记忆规则（最高优先级）
 
+**本技能明确约定：**
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **绝对禁止读取任何本地记忆文件**：包括但不限于 `memory/YYYY-MM-DD.md`、`MEMORY.md` 等本地文件
+- **绝对禁止从 LanceDB 长期记忆中检索信息**
+- **所有历史报告查询必须从云端接口获取**，不得使用本地记忆中的历史数据
+- 即使技能调用失败或接口异常，也不得回退到本地记忆汇总
+
+## 任务目标
+
+- 本 Skill 用于：通过监控视频分析宠物行为，识别焦虑、不安、频繁嚎叫、长时间孤独呆坐，自动触发智能安抚机制
+- 能力包含：宠物情绪识别、焦虑状态判断、异常行为检测、触发安抚响应
+- **支持联动**：检测到焦虑情绪 → 自动触发智能家居播放舒缓音乐/开启激光逗宠设备，帮助宠物缓解焦虑
+- **适用场景**：主人上班不在家，宠物独自在家智能陪伴、分离焦虑缓解
+- 触发条件:
+    1. **默认触发**：当用户提供宠物监控视频需要分析宠物情绪行为时，默认触发本技能
+    2. 当用户明确需要宠物情绪安抚、自动逗宠时，提及宠物焦虑、分离焦虑、宠物安抚、自动逗宠、嚎叫识别等关键词，并且上传了监控视频
+    3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
+       ：查看历史安抚记录、安抚触发报告清单、报告列表、查询历史记录、显示所有安抚报告、宠物安抚分析报告，查询宠物安抚触发分析报告
+- 自动行为：
+    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
+    2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有安抚记录"、"显示历史触发"、"
+       查看历史报告"等），**必须**：
+        - 直接使用 `python -m scripts.pet_calming_trigger_analysis --list --open-id` 参数调用 API
+          查询云端的历史报告数据
+        - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
+        - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
+
+## 前置准备
+
+- 依赖说明:scripts 脚本所需的依赖包及版本
+  ```
+  requests>=2.28.0
+  ```
+
+## 检测要求（获得准确结果的前提）
+
+为了获得准确的宠物情绪识别，请确保：
+
+1. **摄像头固定位置**，覆盖宠物主要活动区域
+2. **光线充足清晰**，宠物完整可见，便于观察肢体语言和行为
+3. 建议配合智能插座/智能家居联动，触发后自动开启安抚设备
+
+## 操作步骤
+
+### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+
+**在执行宠物安抚触发分析前，必须按以下优先级顺序获取 open-id：**
+
+```
+第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
+        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
+        ↓ (未找到/未配置/api-key 为空)
+第 2 步：检查 workspace 公共目录的配置文件
+        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
+        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
+        ↓ (未找到/未配置)
+第 3 步：检查用户是否在消息中明确提供了 open-id
+        ↓ (未提供)
+第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
+```
+
+**⚠️ 关键约束：**
+
+- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、petcalming123、trigger456 等）
+- **禁止**跳过 open-id 验证直接调用 API
+- **必须**在获取到有效 open-id 后才能继续执行分析
+- 如果用户拒绝提供 open-id，说明用途（用于保存和查询安抚触发记录），并询问是否继续
+
+---
+
+- 标准流程:
+    1. **准备宠物监控视频输入**
+        - 提供本地视频文件路径或网络视频 URL
+        - 覆盖宠物主要活动区域
+    2. **获取 open-id（强制执行）**
+        - 按上述流程控制获取 open-id
+        - 如无法获取，必须提示用户提供用户名或手机号
+    3. **执行宠物安抚触发分析**
+        - 调用 `-m scripts.pet_calming_trigger_analysis` 处理视频（**必须在技能根目录下运行脚本**）
+        - 参数说明:
+            - `--input`: 本地视频文件路径
+            - `--url`: 网络视频 URL 地址（API 服务自动下载）
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
+            - `--list`: 显示历史宠物安抚触发分析报告列表清单（可以输入起始日期参数过滤数据范围）
+            - `--api-key`: API 访问密钥（可选）
+            - `--api-url`: API 服务地址（可选，使用默认值）
+            - `--detail`: 输出详细程度（basic/standard/json，默认 json）
+            - `--output`: 结果输出文件路径（可选）
+    4. **查看分析结果**
+        - 接收结构化的宠物安抚触发分析报告
+        - 包含：视频基本信息、宠物情绪状态、是否焦虑不安、是否需要触发安抚、建议安抚方式
+
+## 资源索引
+
+- 必要脚本：见 [scripts/pet_calming_trigger_analysis.py](scripts/pet_calming_trigger_analysis.py)(用途：调用 API
+  进行宠物安抚触发分析，本地文件上传，网络 URL 由 API 服务自动下载)
+- 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和格式限制)
+- 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
+
+## 注意事项
+
+- 仅在需要时读取参考文档，保持上下文简洁
+- 支持格式：mp4/avi/mov，最大 10MB
+- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
+- 本分析结果仅供智能触发参考，实际安抚效果因宠物个体差异有所不同
+- 禁止临时生成脚本，只能用技能本身的脚本
+- 传入的网路地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
+  表格格式输出，包含"
+  报告名称"、"宠物情绪"、"是否触发安抚"、"检测时间"、"点击查看"五列，其中"报告名称"列使用`宠物安抚触发报告-{记录id}`
+  形式拼接, "点击查看"列使用
+  `[🔗 查看报告](reportImageUrl)`
+  格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
+- 表格输出示例：
+  | 报告名称 | 宠物情绪 | 是否触发安抚 | 检测时间 | 点击查看 |
+  |----------|----------|--------------|----------|----------|
+  | 宠物安抚触发报告 -20260329002000001 | 焦虑不安 | 是（已开启激光逗宠） | 2026-03-29 00:
+  20 | [🔗 查看报告](https://example.com/report?id=xxx) |
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/smyx-pet-calming-trigger-analysis
+# 分析本地宠物监控视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
+python -m scripts.pet_calming_trigger_analysis --input /path/to/living_room.mp4 --open-id openclaw-control-ui
+
+# 分析网络监控视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
+python -m scripts.pet_calming_trigger_analysis --url https://example.com/petcam.mp4 --open-id openclaw-control-ui
+
+# 显示历史安抚记录/显示安抚报告清单列表/显示历史触发记录（自动触发关键词：查看历史安抚报告、历史报告、安抚报告清单等）
+python -m scripts.pet_calming_trigger_analysis --list --open-id openclaw-control-ui
+
+# 输出精简报告
+python -m scripts.pet_calming_trigger_analysis --input living_room.mp4 --open-id your-open-id --detail basic
+
+# 保存结果到文件
+python -m scripts.pet_calming_trigger_analysis --input living_room.mp4 --open-id your-open-id --output result.json
 ```

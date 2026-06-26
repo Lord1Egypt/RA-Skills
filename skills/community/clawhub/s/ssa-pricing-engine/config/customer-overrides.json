@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "老客户协议价覆盖。匹配规则：customer_id + sku 精确匹配，有效期内的协议价优先于公式计算价。",
+    "updated_at": "2026-03-25T01:40:00+08:00",
+    "updated_by": "iron",
+    "notes": [
+      "协议价直接使用，跳过公式计算",
+      "过期协议价自动忽略，回退到公式价",
+      "新增协议价需 Wilson 审批"
+    ]
+  },
+  "overrides": [
+    {
+      "customer_id": "CUST-ACME-001",
+      "customer_name": "Acme Electronics Ltd",
+      "sku": "HDMI-2.1-8K-2M",
+      "agreed_price_usd": 6.80,
+      "currency": "USD",
+      "valid_from": "2026-01-01",
+      "valid_until": "2026-06-30",
+      "min_qty": 1000,
+      "notes": "2025年签订的年度协议价，每季度Review",
+      "approved_by": "wilson",
+      "approved_at": "2025-12-20"
+    },
+    {
+      "customer_id": "CUST-ACME-001",
+      "customer_name": "Acme Electronics Ltd",
+      "sku": "DP-1.4-8K-2M",
+      "agreed_price_usd": 4.50,
+      "currency": "USD",
+      "valid_from": "2026-01-01",
+      "valid_until": "2026-06-30",
+      "min_qty": 500,
+      "notes": "搭配 HDMI 订单的DP线协议价",
+      "approved_by": "wilson",
+      "approved_at": "2025-12-20"
+    },
+    {
+      "customer_id": "CUST-GLOBALAV-002",
+      "customer_name": "Global AV Solutions GmbH",
+      "sku": "HDMI-2.1-AOC-10M",
+      "agreed_price_usd": 18.00,
+      "currency": "USD",
+      "valid_from": "2026-03-01",
+      "valid_until": "2026-12-31",
+      "min_qty": 200,
+      "notes": "AOC 大客户协议价，含定制包装",
+      "approved_by": "wilson",
+      "approved_at": "2026-02-28"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+	"evals": [
+		{
+			"eval_name": "active-churn-mitigation",
+			"expected_output": "Diagnoses the issue as 'pantry overload' (Active Churn). Recommends updating the customer portal to prominently feature 'Skip Delivery' or 'Adjust Frequency' options rather than 'Cancel'. Integrates RIJOY points as a save offer.",
+			"files": [
+			],
+			"id": 0,
+			"prompt": "My contact lens subscribers are canceling because they say they have too many boxes piling up. How do I stop this?"
+		},
+		{
+			"eval_name": "dunning-flow-setup",
+			"expected_output": "Identifies this as Passive Churn. Recommends implementing a comprehensive Dunning flow, including pre-dunning emails for expiring cards and a multi-day retry schedule with SMS alerts.",
+			"files": [
+			],
+			"id": 1,
+			"prompt": "I noticed I'm losing about 15 subscribers a month just because their credit cards decline. What's the best way to handle this?"
+		},
+		{
+			"eval_name": "rijoy-subscription-perks",
+			"expected_output": "Advises against deep discounting. Suggests integrating RIJOY to create a 'VIP Subscriber' tier, offering loyalty point multipliers, free shipping, or exclusive access to limited roasts as the primary value proposition.",
+			"files": [
+			],
+			"id": 2,
+			"prompt": "I want to launch a monthly coffee bean subscription, but I don't want to offer a massive 20% discount to get people to sign up. How else can I add value?"
+		}
+	],
+	"skill_name": "subscription-retention-marketing"
+}

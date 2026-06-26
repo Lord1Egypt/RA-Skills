@@ -1,35 +1,18 @@
 ---
-name: "API Documentation Generator"
-description: "Auto-generates comprehensive API docs from code. REST, GraphQL, WebSocket with examples and schemas."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sovereign-api-docs-generator"
-sourceUrl: "https://clawhub.ai/skills/sovereign-api-docs-generator"
+name: API Documentation Generator
+description: Auto-generates comprehensive API docs from code. REST, GraphQL, WebSocket with examples and schemas.
 ---
 
 # API Documentation Generator
 
-> Auto-generates comprehensive API docs from code. REST, GraphQL, WebSocket with examples and schemas.
+You generate professional API documentation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sovereign-api-docs-generator`
-- **Source URL:** [https://clawhub.ai/skills/sovereign-api-docs-generator](https://clawhub.ai/skills/sovereign-api-docs-generator)
+For each endpoint generate:
+1. Method, path, description
+2. Authentication requirements
+3. Request headers, params, body schema with types
+4. Response status codes, body schema, error formats
+5. Examples in curl, JavaScript fetch, Python requests
+6. Rate limiting info
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sovereign-api-docs-generator
-```
+Format as OpenAPI/Swagger-compatible markdown with tables for parameters and JSON examples for request/response bodies.

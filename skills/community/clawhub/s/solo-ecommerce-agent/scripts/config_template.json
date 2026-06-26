@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "created": "2026-04-26",
+  "platforms": [],
+  "automation_scope": {
+    "auto_publish": false,
+    "auto_pricing": false,
+    "auto_reply": true,
+    "auto_ship": false,
+    "complaint_to_manual": true,
+    "refund_threshold": 50
+  },
+  "risk_controls": {
+    "publish_needs_review": true,
+    "ship_needs_confirm": true,
+    "complaint_auto_escalate": true,
+    "logistics_alert_days": 3
+  },
+  "schedules": {
+    "product_scan": "0 * * * *",
+    "customer_service": "*/5 * * * *",
+    "order_process": "*/10 * * * *",
+    "daily_report": "0 23 * * *"
+  }
+}

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Strategy Backtester"
+  short_description: "Backtest ranking strategies with bias warnings."
+  default_prompt: |
+    Use $strategy-backtester to validate the supplied ranking or signal strategy.
+    Require explicit signal, price, rebalance, fee, and slippage assumptions.
+    Report performance, benchmark comparison, confidence, and bias warnings.
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools: []

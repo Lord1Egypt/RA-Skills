@@ -1,0 +1,55 @@
+{
+  "tutorial_id": "hub_account_setup",
+  "title": "Solo Hub Account Setup",
+  "description": "Minimal onboarding: create your Hub account and verify your email. Run this before any fine-tuning tutorial if you're new to Solo Hub.",
+  "domains_used": ["account"],
+  "entry_point": "check_existing_account",
+
+  "nodes": {
+    "check_existing_account": {
+      "type": "branch",
+      "instruction": "Do you already have a Solo Hub account at hub.getsolo.tech?",
+      "branches": {
+        "yes_have_account": "check_email_verified",
+        "no_need_account": "create_account"
+      }
+    },
+
+    "create_account": {
+      "type": "action",
+      "action": "create_account",
+      "instruction": "Go to hub.getsolo.tech and click Sign Up. Fill in your details and complete the profile onboarding — all fields are required before you can access anything.",
+      "on_success": "check_email_verified",
+      "on_failure": {
+        "error": "Stuck after signup or not redirected",
+        "recovery": "Refresh the page. If you signed up via a shared link, Hub auto-redirects back to that page after onboarding completes."
+      }
+    },
+
+    "check_email_verified": {
+      "type": "branch",
+      "instruction": "Is there a verification banner at the top of Hub? (This appears if your email isn't verified yet)",
+      "branches": {
+        "no_banner_all_good": "tutorial_complete",
+        "yes_banner_visible": "verify_email"
+      }
+    },
+
+    "verify_email": {
+      "type": "action",
+      "action": "verify_email",
+      "instruction": "Click 'Resend Verification Email' in the banner. Check your inbox and spam folder. Click the link in the email.",
+      "on_success": "tutorial_complete",
+      "on_failure": {
+        "error": "Email not arriving after 5 minutes",
+        "recovery": "Check that your email address is correct under Settings → Profile. Try resending from the banner once more. If still nothing, contact support on Discord: discord.gg/8kR5VvATUq"
+      }
+    },
+
+    "tutorial_complete": {
+      "type": "terminal",
+      "instruction": "Your Hub account is set up and email is verified. You now have access to billing, team features, and the full fine-tuning wizard. Ready to fine-tune?",
+      "next_tutorials": ["hub_llm_finetune_first_run", "hub_vla_finetune"]
+    }
+  }
+}

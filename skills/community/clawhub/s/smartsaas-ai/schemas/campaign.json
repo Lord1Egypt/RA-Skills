@@ -1,0 +1,32 @@
+{
+  "resource": "campaign",
+  "endpoint": "POST /api/protected/sales/create-campaign",
+  "backendSource": "SalesSchemas/Campaign.mjs (CampaignSchema)",
+  "createScript": "scripts/create-campaign.sh",
+  "fields": {
+    "campaign_title": { "type": "string", "required": false },
+    "createdBy": { "type": "ObjectId", "required": true, "notes": "Set by backend" },
+    "status": { "type": "string", "required": false, "notes": "enum: active, in-progress, inactive, completed, draft, pending; default inactive" },
+    "department": { "type": "string", "required": false },
+    "start_date": { "type": "Date", "required": false },
+    "end_date": { "type": "Date", "required": false },
+    "creative_concept": { "type": "string", "required": false },
+    "target_audience": { "type": "array", "required": false, "notes": "ObjectIds ref user_datas" },
+    "goals": { "type": "string", "required": false },
+    "bounce_list": { "type": "array", "required": false, "notes": "default []" },
+    "financial_projection": { "type": "string", "required": false },
+    "sales_target": { "type": "number", "required": false },
+    "budget": { "type": "number", "required": false },
+    "figures": { "type": "object", "required": false },
+    "tracker": { "type": "object", "required": false, "notes": "default {}" },
+    "team": { "type": "array", "required": false, "notes": "ObjectIds ref user_stores" },
+    "marketing_channels": { "type": "string", "required": false },
+    "marketing_scope": { "type": "string", "required": false },
+    "description": { "type": "string", "required": false },
+    "coordinator": { "type": "string", "required": false },
+    "tags": { "type": "array", "required": false },
+    "stages": { "type": "array", "required": false, "notes": "StageSchema[]: title, description, owner, category, when, headline, stage_action (ref templates)" },
+    "funnel_audience_data": { "type": "array", "required": false, "notes": "default []" },
+    "ownerId": { "type": "ObjectId", "required": false }
+  }
+}

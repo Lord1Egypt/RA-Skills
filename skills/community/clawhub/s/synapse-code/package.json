@@ -1,0 +1,12 @@
+{
+  "name": "synapse-code",
+  "version": "2.0.0",
+  "description": "Synapse Code — Pipeline + Synapse 整合工作流技能",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0 <25.0.0"
+  },
+  "dependencies": {
+    "gitnexus": "^1.5.3"
+  }
+}

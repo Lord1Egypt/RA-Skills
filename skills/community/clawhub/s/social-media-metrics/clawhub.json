@@ -1,0 +1,10 @@
+{
+  "slug": "social-metrics",
+  "name": "Social Media Metrics",
+  "version": "1.0.0",
+  "summary": "Fetch follower counts from 11+ social media platforms including YouTube, TikTok, Bilibili, Douyin, Instagram, and more.",
+  "category": "productivity",
+  "tags": ["social-media", "analytics", "followers", "metrics", "scraping"],
+  "license": "MIT",
+  "author": "Bright Guo"
+}

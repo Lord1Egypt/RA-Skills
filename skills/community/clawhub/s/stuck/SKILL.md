@@ -1,35 +1,128 @@
 ---
-name: "Stuck"
-description: "Generate a structured help-request document when stuck with AI coding. Scans specified conversation sessions, extracts errors and failed attempts, outputs a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stuck"
-sourceUrl: "https://clawhub.ai/skills/stuck"
+name: stuck
+description: Generate a structured help-request document when stuck with AI coding. Scans specified conversation sessions, extracts errors and failed attempts, outputs a clean HELP_REQUEST.md. Triggers on "stuck", "卡住了", "AI修不好", "生成求助文档", "help request".
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+    emoji: "🆘"
+    homepage: "https://github.com/buzuweidao/skills"
 ---
 
-# Stuck
+# stuck
 
-> Generate a structured help-request document when stuck with AI coding. Scans specified conversation sessions, extracts errors and failed attempts, outputs a...
+从 AI 对话记录中提取错误信息，生成一份结构化的求助文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stuck`
-- **Source URL:** [https://clawhub.ai/skills/stuck](https://clawhub.ai/skills/stuck)
+## 触发条件
 
-## Overview
+用户说 stuck、卡住了、AI 修不好、生成求助文档、help request。
 
+## 强制流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stuck
+这是一个引导式交互流程。每一步必须严格按顺序执行，不能跳过，不能合并，不能自动推进。每一步结束后必须停下来等用户响应，收到用户明确的回复后才能进入下一步。
+
+### 步骤 1：问问题
+
+问用户：
+
+> 你卡在什么问题上？一句话描述。
+
+**然后停下来。等用户回答。不做任何其他事情。**
+
+### 步骤 2：确定对话范围
+
+收到步骤 1 的回答后，运行以下命令列出最近的对话：
+
 ```
+python3 ~/.claude/skills/stuck/scripts/parse_conversations.py list-all <当前工作目录的绝对路径>
+```
+
+将结果加上编号展示给用户（如 [1] claude_code 2026-03-29 ..., [2] codex_cli 2026-03-28 ...），然后问：
+
+> 这个问题你在哪几个对话里处理的？请告诉我编号。
+
+**然后停下来。等用户选择。不做任何其他事情。**
+
+### 步骤 3：提取错误
+
+收到步骤 2 的回答后，对用户指定的每个对话文件，运行以下命令提取信息：
+
+```
+python3 ~/.claude/skills/stuck/scripts/parse_conversations.py summary <文件绝对路径>
+```
+
+注意：如果文件大于 10MB，提醒用户该文件较大，提取可能需要一些时间，并只提取最近 50 轮交互的内容。
+
+从提取结果中获取：
+
+- 报错信息（原文）
+- AI 尝试了哪些方案
+- 交互了多少轮
+- 哪些方案失败了，失败的表现是什么
+
+从提取结果中自动判断失败模式：
+
+- 同一个错反复出现 → 死循环
+- 修好 A 坏了 B → 退化
+- 每次方向完全不同 → 发散
+- AI 说修好了但错误还在 → 沉默失败
+
+提取完成后，把提取结果的摘要展示给用户，然后问：
+
+> 这些信息准确吗？有没有遗漏的关键错误或需要补充的上下文？
+
+**然后停下来。等用户确认。不做任何其他事情。**
+
+### 步骤 4：生成文档
+
+收到步骤 3 的确认后，生成 `HELP_REQUEST.md` 到项目目录，包含：
+
+```
+# 求助文档
+
+## 问题
+{用户在步骤1描述的一句话}
+
+## 环境
+- AI 工具: {从对话记录自动检测}
+- 技术栈: {从项目文件自动检测}
+- 持续时间: {从对话时间戳计算}
+- 交互轮数: {从对话记录统计}
+
+## 错误信息
+{从对话记录提取的关键报错，原文}
+
+## AI 尝试过的方案
+{按时间顺序列出，标注每个方案的结果}
+
+## 失败模式
+{工具自动判断的结果}
+
+## 已排除的方向
+{确认无效的方案，避免帮助者重复建议}
+
+## 相关代码
+{问题所在的文件和关键函数}
+```
+
+保存前自动脱敏：
+- API key 格式的字符串 → [REDACTED]
+- 包含用户名的绝对路径 → 相对路径
+- 邮箱地址 → [REDACTED]
+
+保存后展示给用户，然后问：
+
+> 文档已生成。你看一下有没有需要修改的地方？
+
+**然后停下来。等用户确认。**
+
+用户确认后，流程结束。
+
+## 绝对规则
+
+- **每一步之间必须停下来等用户回复。绝对不能跳步、合并步骤、或在用户没回复时自动推进。**
+- 只扫描用户指定的对话，不扫描全部
+- 失败模式由工具自动判断，不问用户选择
+- 错误信息保留原文，不总结不改写
+- 文档面向的读者是对项目零了解的人或 AI

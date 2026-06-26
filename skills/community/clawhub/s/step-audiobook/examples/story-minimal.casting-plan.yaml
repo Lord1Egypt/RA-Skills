@@ -1,0 +1,91 @@
+# Minimal casting-plan example for audiobook.
+# Reference only: this file shows the smallest practical downstream-ready shape.
+# All roles here use official ready voices so build_tts_requests.py can continue without clone blockers.
+
+version: "2"
+generated_at: "2026-04-13T10:20:00Z"
+source_input_path: "$EXAMPLES_ROOT/story-minimal.structured-script.yaml"
+candidate_pool_path: ""
+summary: "旁白使用男性旁白音色；林舟使用悬疑风格男声；小雨使用年轻女性声音。"
+roles:
+  - role_id: narrator
+    role_name: "旁白"
+    role_type: "narrator"
+    dialogue_count: 3
+    role_summary: "负责稳定叙述场景与动作，不抢对白情绪。"
+    desired_tags:
+      - "旁白"
+      - "稳定"
+      - "轻悬疑"
+    suitable_scenes:
+      - "场景交代"
+      - "动作叙述"
+    avoid_scenes:
+      - "激烈喊叫"
+    current_instruction: "中立清晰，轻微悬疑感，不抢角色情绪。"
+    sample_lines:
+      - "雨停后，巷口只剩水滴顺着屋檐往下落。"
+    selected_asset_id: "male_narrator"
+    selected_source: "official"
+    selected_display_name: "男性旁白音色"
+    selected_status: "ready"
+    selected_voice_id: "boyinnansheng"
+    selected_reason: "旁白优先选择稳定、耐听、长段落负担低的官方 ready 音色。"
+    stable_instruction: "保持中立清晰、轻微悬疑感、连续叙述稳定。"
+    notes: ""
+    review_status: "confirmed"
+
+  - role_id: linzhou
+    role_name: "林舟"
+    role_type: "character"
+    dialogue_count: 2
+    role_summary: "成年男性，警觉、收着说话，不夸张。"
+    desired_tags:
+      - "成年男性"
+      - "警觉"
+      - "克制"
+    suitable_scenes:
+      - "低声对白"
+      - "悬疑对话"
+    avoid_scenes:
+      - "喜剧夸张"
+    current_instruction: "成年男性，警觉但不夸张，句尾控制收住。"
+    sample_lines:
+      - "你听见没有？"
+      - "先别自己吓自己，我们继续走。"
+    selected_asset_id: "suspense"
+    selected_source: "official"
+    selected_display_name: "悬疑风格男声"
+    selected_status: "ready"
+    selected_voice_id: "cixingnansheng"
+    selected_reason: "需要压低声音时仍保留紧张感，悬疑男声更贴合。"
+    stable_instruction: "整体克制、压低、带轻微警觉，不做外放式表演。"
+    notes: ""
+    review_status: "confirmed"
+
+  - role_id: xiaoyu
+    role_name: "小雨"
+    role_type: "character"
+    dialogue_count: 1
+    role_summary: "年轻女性，轻声、敏感、略带迟疑。"
+    desired_tags:
+      - "年轻女性"
+      - "轻声"
+      - "敏感"
+    suitable_scenes:
+      - "贴耳低声"
+      - "日常对白"
+    avoid_scenes:
+      - "权威长者"
+    current_instruction: "年轻女性，轻声、敏感、略带迟疑。"
+    sample_lines:
+      - "像是有人，在后面学我们走路。"
+    selected_asset_id: "female_young"
+    selected_source: "official"
+    selected_display_name: "年轻女性声音"
+    selected_status: "ready"
+    selected_voice_id: "qingchunshaonv"
+    selected_reason: "需要明亮但不吵闹、近距离低声仍清楚的声音。"
+    stable_instruction: "保持轻声、敏感、略带迟疑，贴耳但保持清楚。"
+    notes: ""
+    review_status: "confirmed"

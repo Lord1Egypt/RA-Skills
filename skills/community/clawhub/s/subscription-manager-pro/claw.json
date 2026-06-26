@@ -1,0 +1,40 @@
+{
+  "name": "subscription-manager-pro",
+  "version": "1.0.0",
+  "description": "Track all your subscriptions, get alerts before renewals, identify forgotten services, and calculate total spend. Never pay for something you forgot to cancel again.",
+  "author": "openclaw-community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/skills/subscription-manager-pro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "skills/subscription-manager-pro"
+  },
+  "keywords": [
+    "subscriptions",
+    "recurring",
+    "billing",
+    "expense",
+    "tracker",
+    "money",
+    "budget",
+    "reminders",
+    "cancel",
+    "spending"
+  ],
+  "categories": [
+    "productivity",
+    "finance",
+    "personal"
+  ],
+  "clawdbot": {
+    "emoji": "💳",
+    "requires": {
+      "python": ">=3.8",
+      "files": [
+        "scripts/manager.py"
+      ]
+    },
+    "primaryCommand": "track subscriptions"
+  }
+}

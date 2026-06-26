@@ -1,0 +1,41 @@
+{
+  "id": "sql-memory",
+  "name": "sql-memory",
+  "version": "2.0.0",
+  "description": "Semantic memory layer for OpenClaw agents. Provides remember/recall/search with importance scoring, hierarchical rollups (daily→weekly→monthly→yearly), task queuing, activity logging, and todo management. Middle tier of the sql-connector → sql-memory → sql-dreamer stack. Requires sql-connector.",
+  "author": "High-Falootin",
+  "license": "MIT",
+  "repository": "https://github.com/High-Falootin/clawbot-sql-memory",
+  "homepage": "https://github.com/High-Falootin/clawbot-sql-memory",
+  "keywords": [
+    "openclaw",
+    "sql",
+    "memory",
+    "database",
+    "sql-memory",
+    "clawhub",
+    "semantic-memory",
+    "agent-memory",
+    "sql-server",
+    "memory-rollup",
+    "task-queue"
+  ],
+  "main": "sql-memory/sql_memory.py",
+  "dependencies": {
+    "sql-connector": ">=2.0.0"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0",
+    "python": ">=3.10"
+  },
+  "skill": {
+    "entrypoint": "sql-memory/sql_memory.py",
+    "config_file": ".env",
+    "setup_script": "setup_schema.py",
+    "skill_file": "SKILL.md"
+  },
+  "tags": ["openclaw", "sql", "memory", "database", "sql-memory", "clawhub"],
+  "category": "memory",
+  "tier": 2,
+  "stack": ["sql-connector", "sql-memory", "sql-dreamer"]
+}

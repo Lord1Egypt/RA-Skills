@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slow Down"
+  short_description: "Human-connection pacing and gentle prompts"
+  default_prompt: "Use $slow-down to keep my response slow, grounded, and human."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring Boot 升级"
+  short_description: "Spring Boot 2.7 升级到 3.5 的标准流程"
+  default_prompt: "使用 $springboot27-to-35-upgrade 执行当前仓库从 Spring Boot 2.7 到 3.5 的完整升级与验证。"

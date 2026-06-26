@@ -1,35 +1,158 @@
 ---
-name: "太几何交易"
-description: "融合东方智慧和几何数学的交易分析系统。使用几何结构分析，多周期MACD风洞结构共振、缩量短线进行技术分析，结合基本面分析、主流情绪分析和AI预测进行综合打分决策。当用户询问股票走势预测、买卖点分析、股票技术分析、股票评分等问题时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tai-geometry-trading"
-sourceUrl: "https://clawhub.ai/skills/tai-geometry-trading"
+name: tai-geometry-trading
+description: 融合东方智慧和几何数学的交易分析系统。使用几何结构分析，多周期MACD风洞结构共振、缩量短线进行技术分析，结合基本面分析、主流情绪分析和AI预测进行综合打分决策。当用户询问股票走势预测、买卖点分析、股票技术分析、股票评分等问题时触发此技能。
 ---
 
-# 太几何交易
+# 太几何交易 (tai-geometry-trading)
 
-> 融合东方智慧和几何数学的交易分析系统。使用几何结构分析，多周期MACD风洞结构共振、缩量短线进行技术分析，结合基本面分析、主流情绪分析和AI预测进行综合打分决策。当用户询问股票走势预测、买卖点分析、股票技术分析、股票评分等问题时触发此技能。
+**融合东方智慧与几何数学的交易分析系统**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tai-geometry-trading`
-- **Source URL:** [https://clawhub.ai/skills/tai-geometry-trading](https://clawhub.ai/skills/tai-geometry-trading)
+---
 
-## Overview
+## 核心理念
 
+### 东方智慧
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tai-geometry-trading
+| 智慧 | 内涵 | 应用 |
+|------|------|------|
+| **其大无外** | 宏观全局，涵盖一切 | 从月线、周线把握大势 |
+| **其小无内** | 微观精微，洞察细节 | 从日线、2日线捕捉节奏 |
+| **反者道之动** | 物极必反，阴阳转化 | MACD风洞：红极生绿、绿极生红 |
+| **弱者道之用** | 柔弱胜刚强，静待时机 | 缩量调整后必将爆发 |
+
+### 几何数学
+
+| 科学 | 内涵 | 应用 |
+|------|------|------|
+| **结构分析** | K线形态的几何构造 | 趋势线、三角形、头肩顶底 |
+| **多周期共振** | 不同周期的协同与验证 | 月线→周线→日线→2日线→8日线 |
+| **波动率变化** | 数学量化市场能量 | ATR、成交量收缩与发散 |
+
+---
+
+## 评分体系
+
+### 核心因子 (70分)
+| 因子 | 分值 | 说明 |
+|------|------|------|
+| 几何结构 | 25分 | K线形态的几何大结构趋势分析 |
+| 多周期MACD风洞共振 | 30分 | 多周期MACD风洞结构分析 |
+| 缩量短线 | 15分 | 成交量与波动率收敛分析 |
+
+### 辅助因子 (30分)
+
+| 因子 | 分值 | 说明 |
+|------|------|------|
+| 基本面分析 | 10分 | 营收增长、PEG、现金流、行业地位等 |
+| 主流情绪分析 | 10分 | 股价波动、概念题材、市场热点等 |
+| AI预测分析 | 10分 | 发散性预测，政策、资金面、技术形态等 |
+
+> **太几何交易的开放性**：辅助因子不设限，广泛吸纳基本面、情绪面、AI预测等各方智慧，体现"其大无外"的包容精神。
+
+---
+
+## 核心分析方法
+
+### 1. 几何结构分析 (25分)
+
+**其大无外 → 宏观趋势**
+
+分析K线形态的几何大结构：
+- 趋势线结构（上升/下降通道）
+- 形态结构（头肩顶/底、三角形、旗形等）
+- 支撑阻力位几何关系
+- 波浪结构位置
+
+### 2. 多周期MACD风洞结构共振 (30分)
+
+**反者道之动 → 物极必反**
+
+#### MACD风洞结构
+
+**风洞定义**：阴阳转化的临界点
+- **上涨风洞**：红柱持续扩大→缩小到绿柱→迅速变红（由阴转阳）
+- **下跌风洞**：绿柱持续扩大→缩小到红柱→迅速变绿（由阳转阴）
+
+#### 多周期共振
+
+**其大无外 + 其小无内**
+- 大周期：月线（8日线辅助）
+- 中周期：周线（2日线辅助）  
+- 小周期：日线
+
+多周期同时满足风洞条件 = 强共振
+
+### 3. 缩量短线 (15分)
+
+**弱者道之用 → 静待爆发**
+
+分析条件：
+- 多周期成交量收缩
+- 波动率收敛（ATR/标准差）
+- 缩量调整后必将迎来波动率发散
+
+---
+
+## 输出格式
+
 ```
+## 股票分析报告
+
+### 综合评分: XX/100分
+- 几何结构: XX/25分
+- MACD风洞共振: XX/30分
+- 缩量短线: XX/15分
+- 基本面: XX/10分
+- 情绪面: XX/10分
+- AI预测: XX/10分
+
+### 核心信号
+- [技术面信号]
+
+### 操作建议
+[强烈看涨/看涨/看跌/强烈看跌]
+```
+
+---
+
+## 使用方法
+
+### 配置文件
+
+首次使用前，请编辑 `scripts/config.py` 配置你的API Token：
+
+```python
+# ===== 数据源配置 =====
+# 方式1: Tushare (需要token)
+TUSHARE_TOKEN = "你的tushare token"
+
+# 方式2: AkShare (免费，默认)
+DATA_SOURCE = "akshare"
+
+# ===== 大模型配置 (完整版需要) =====
+MINIMAX_API_KEY = "你的MiniMax API Key"
+```
+
+**获取Token**:
+- Tushare: https://tushare.pro 注册后获取
+- MiniMax: https://www.minimax.chat 注册后获取
+
+### 两个版本
+
+#### 版本1: 核心版 (无需API Token)
+```bash
+cd /root/.openclaw/workspace/skills/tai-geometry-trading/scripts
+python3 analyze_stock_core.py 002378
+```
+- 只包含核心因子 (70分制)
+- 无需任何API Token
+- 使用AkShare获取数据 (免费)
+
+#### 版本2: 完整版 (需要API Token)
+```bash
+cd /root/.openclaw/workspace/skills/tai-geometry-trading/scripts
+python3 analyze_stock.py 002378
+```
+- 核心因子 + 大模型辅助因子 (100分制)
+- 需要配置 MINIMAX_API_KEY
+- 可选Tushare或AkShare获取数据

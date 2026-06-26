@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Office UI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+        h1 { font-size: 48px; margin-bottom: 20px; }
+        .status {
+            background: rgba(255,255,255,0.2);
+            padding: 20px 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        .status.ok { background: rgba(0,255,0,0.3); }
+        .agent {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .info {
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Star Office UI</h1>
+        <div class="status ok">
+            <h2>✅ 服务运行正常</h2>
+            <p id="timestamp">加载中...</p>
+        </div>
+        
+        <div id="agents">
+            <h3>当前在线 Agent</h3>
+            <div class="agent">🤖 龙虾 (idle)</div>
+        </div>
+        
+        <div class="info">
+            <p>📍 像素办公室看板</p>
+            <p>支持状态切换 | 多 Agent 协作 | 实时同步</p>
+            <p>部署于 Vercel Serverless</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = 
+            '更新时间: ' + new Date().toLocaleString('zh-CN');
+        
+        // 模拟状态更新
+        setInterval(() => {
+            document.getElementById('timestamp').textContent = 
+                '更新时间: ' + new Date().toLocaleString('zh-CN');
+        }, 30000);
+    </script>
+</body>
+</html>

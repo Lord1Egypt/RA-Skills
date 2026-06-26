@@ -1,0 +1,71 @@
+name: surf_query
+description: 台灣衝浪浪點查詢，支援依名稱/地區搜尋浪點資訊、附近浪點（座標）、以及附帶停車場查詢
+version: 1.0.0
+author: Harperbot
+
+triggers:
+  - pattern: "衝浪"
+    description: 查詢台灣衝浪浪點
+  - pattern: "浪點"
+    description: 查詢衝浪地點
+  - pattern: "surf"
+    description: Taiwan surf spot query (English)
+
+tools:
+  - name: query_surf_spot
+    description: 依浪點名稱或地區查詢衝浪資訊（難度、浪型、最佳季節），可選擇附帶附近停車查詢
+    script: ~/.openclaw/skills/surf_query/surf_query.py
+    args:
+      - name: query
+        flag: --query
+        description: 浪點名稱（中/英）或地區（宜蘭、花蓮、台東、北部、東部、南部等）
+        required: false
+      - name: mode
+        flag: --mode
+        description: "查詢模式：info（僅浪點資訊）/ parking（附停車查詢）/ all"
+        required: false
+        default: info
+
+  - name: nearby_surf_spots
+    description: 依 GPS 座標查詢附近衝浪浪點（30km 內），可選擇附帶停車查詢
+    script: ~/.openclaw/skills/surf_query/surf_query.py
+    args:
+      - name: lat
+        flag: --lat
+        description: 緯度
+        required: true
+      - name: lon
+        flag: --lon
+        description: 經度
+        required: true
+      - name: mode
+        flag: --mode
+        description: "查詢模式：info / parking / all"
+        required: false
+        default: info
+
+  - name: list_surf_spots
+    description: 列出所有台灣衝浪浪點清單（依地區分組）
+    script: ~/.openclaw/skills/surf_query/surf_query.py
+    args:
+      - name: list
+        flag: --list
+        description: 列出所有浪點
+        is_flag: true
+
+examples:
+  - input: "東河附近有哪些衝浪點"
+    tool: query_surf_spot
+    args: {query: "東河"}
+
+  - input: "宜蘭有哪些浪點"
+    tool: query_surf_spot
+    args: {query: "宜蘭"}
+
+  - input: "台東有衝浪點嗎，順便查停車"
+    tool: query_surf_spot
+    args: {query: "台東", mode: "parking"}
+
+  - input: "我在 25.033, 121.565 附近有浪嗎"
+    tool: nearby_surf_spots
+    args: {lat: 25.033, lon: 121.565}

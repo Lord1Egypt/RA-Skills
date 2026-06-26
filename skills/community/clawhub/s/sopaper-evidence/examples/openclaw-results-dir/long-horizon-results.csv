@@ -1,0 +1,3 @@
+run_id,benchmark,task,metric,baseline,success_rate
+oclh-001,CALVIN,long-horizon manipulation,success_rate,task-aligned planner baseline,0.71
+oclh-002,CALVIN,long-horizon manipulation,success_rate,reactive policy baseline,0.62

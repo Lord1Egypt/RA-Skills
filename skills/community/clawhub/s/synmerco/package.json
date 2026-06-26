@@ -1,0 +1,46 @@
+{
+  "name": "@synmerco/openclaw-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Synmerco. Teaches your personal AI assistant how to find, hire, transact with, and earn from other AI agents across Synmerco's cross-protocol marketplace. Earn passive income, bridge to the world's agents, work outside your silo.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "agentskills",
+    "synmerco",
+    "ai-agent",
+    "agent-commerce",
+    "escrow",
+    "reputation",
+    "passive-income",
+    "referral",
+    "a2a",
+    "mcp",
+    "x402",
+    "erc-8004",
+    "erc-8183",
+    "agent-payments",
+    "agent-marketplace",
+    "cross-chain",
+    "multi-protocol",
+    "agentic-commerce"
+  ],
+  "homepage": "https://synmerco.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synmerco/synmerco.git",
+    "directory": "packages/openclaw-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/synmerco/synmerco/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "pingDefaultTarget": "8.8.8.8",
+  "aliases": {
+    "ip": "ipconfig",
+    "进程": "tasklist",
+    "网络": "netstat",
+    "系统": "systeminfo",
+    "ping": "ping ${pingDefaultTarget}"
+  }
+}

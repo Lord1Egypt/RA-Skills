@@ -1,0 +1,115 @@
+# Sum2Slides 简化配置
+# 开箱即用的一键配置版本
+
+# 🎯 快速开始配置
+quick_start:
+  enabled: true
+  template: "default"      # 模板: default, business, academic
+  theme: "light"          # 主题: light, dark, colorful
+  max_slides: 8           # 推荐：会议演示6-8张，报告8-12张
+  font_size: 16           # 正文字体大小
+  title_size: 32          # 标题字体大小
+  output_dir: "./output"  # 输出目录
+
+# 🔧 智能预设
+presets:
+  # 会议演示预设
+  meeting:
+    template: "business"
+    theme: "light"
+    max_slides: 6
+    font_size: 14
+    bullet_style: "circle"
+  
+  # 商务报告预设
+  business_report:
+    template: "business"
+    theme: "light"
+    max_slides: 10
+    font_size: 16
+    title_size: 36
+  
+  # 学术报告预设
+  academic:
+    template: "academic"
+    theme: "light"
+    max_slides: 12
+    font_size: 14
+    title_size: 34
+  
+  # 技术分享预设
+  tech_share:
+    template: "default"
+    theme: "dark"
+    max_slides: 8
+    font_size: 16
+    title_size: 32
+
+# 🎨 常用模板配置
+templates:
+  default:
+    description: "默认模板 - 通用场景"
+    recommended_for: ["通用演示", "技术分享", "内部培训"]
+  
+  business:
+    description: "商务模板 - 专业商务场景"
+    recommended_for: ["商务汇报", "客户演示", "项目评审"]
+  
+  academic:
+    description: "学术模板 - 学术研究场景"
+    recommended_for: ["学术报告", "论文答辩", "研究分享"]
+
+# 🌈 主题配置
+themes:
+  light:
+    description: "浅色主题 - 明亮环境"
+    recommended_for: ["会议室", "教室", "白天演示"]
+  
+  dark:
+    description: "深色主题 - 暗光环境"
+    recommended_for: ["剧场", "夜晚演示", "创意展示"]
+  
+  colorful:
+    description: "彩色主题 - 创意展示"
+    recommended_for: ["产品发布", "创意分享", "品牌展示"]
+
+# ⚡ 性能优化配置
+optimization:
+  max_text_length: 5000    # 单次处理最大文本长度
+  auto_split: true         # 自动分割长文本
+  cache_enabled: true      # 启用模板缓存
+  memory_limit_mb: 100     # 内存使用限制
+
+# 📝 输入处理配置
+input_processing:
+  auto_detect_format: true  # 自动检测输入格式
+  encoding: "utf-8"         # 文件编码
+  strip_empty_lines: true   # 去除空行
+  normalize_spaces: true    # 规范化空格
+
+# 🎯 输出配置
+output:
+  format: "pptx"           # 输出格式
+  quality: "high"          # 输出质量
+  backup_previous: true    # 备份之前的输出
+  auto_open: false         # 生成后自动打开
+
+# 🆘 帮助配置
+help:
+  show_tips: true          # 显示使用提示
+  verbose_output: false    # 详细输出模式
+  examples_enabled: true   # 启用示例功能
+
+# 💡 智能功能
+smart_features:
+  auto_summarize: false    # 自动摘要（实验性）
+  keyword_highlight: true  # 关键词高亮
+  structure_analysis: true # 结构分析
+  readability_check: true  # 可读性检查
+
+# 🚀 高级功能（可选择性启用）
+advanced:
+  batch_processing: false  # 批量处理
+  api_mode: false          # API模式
+  web_interface: false     # Web界面
+  plugin_support: false    # 插件支持

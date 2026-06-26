@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<title>Star Search — 知你所问 · 思你所疑 · 答你所想</title>
+<meta name="description" content="博观约取 · 16 引擎实时中文搜索 · OpenAI 兼容 · 跨源验证">
+<!-- 实战 53: PWA (Progressive Web App) -->
+<link rel="manifest" href="/manifest.webmanifest">
+<!-- 实战 60: Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- 实战 55: 用户系统登录弹窗 -->
+  <style>
+    #auth-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+    #auth-modal.show { display: flex; }
+    .auth-card { background: #1a1a2e; border: 1px solid rgba(96,165,250,0.3); border-radius: 16px; padding: 2rem; max-width: 400px; width: 90%; }
+    .auth-input { background: rgba(0,0,0,0.4); border: 1px solid #3a3a3d; border-radius: 8px; padding: 10px 14px; color: #e8e8e8; width: 100%; margin-bottom: 12px; font-size: 14px; }
+    .auth-btn { background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%); color: white; border: none; border-radius: 8px; padding: 10px 20px; width: 100%; font-size: 14px; cursor: pointer; }
+    .auth-btn:hover { opacity: 0.9; }
+    .auth-link { color: #60a5fa; cursor: pointer; font-size: 13px; }
+    .auth-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #2a2a2d; }
+    .auth-tab { padding: 8px 0; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; }
+    .auth-tab.active { color: #60a5fa; border-bottom-color: #60a5fa; }
+    .auth-user-chip { display: none; align-items: center; gap: 6px; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #4a9eff; padding: 6px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+    .auth-user-chip.show { display: inline-flex; }
+  </style>
+<!-- 实战 56: Mermaid + Markdown 渲染 -->
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<meta name="theme-color" content="#0e0e10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Star Search">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* 实战 54: 移动端 UI 优化 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  html, body {
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+  }
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    user-select: none;
+  }
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  @media (max-width: 768px) {
+    .main-container { padding: 0 1rem; }
+    /* 顶栏按钮 (历史/收藏) 移动端隐藏文本 */
+    #history-btn span, #fav-btn span { display: none; }
+    /* 字号缩小 */
+    .text-7xl { font-size: 3rem; line-height: 1.1; }
+    .text-8xl { font-size: 4rem; line-height: 1.05; }
+    /* Session 侧栏移动端全屏化 */
+    #session-sidebar {
+      width: 85vw;
+      max-width: 320px;
+    }
+    /* 答案卡片内边距缩小 */
+    .answer-card-inner { padding: 1rem !important; }
+  }
+  @media (max-width: 480px) {
+    /* 进一步缩小 */
+    .text-7xl { font-size: 2.5rem; }
+    .text-3xl { font-size: 1.5rem; }
+    .text-4xl { font-size: 1.75rem; }
+  }
+  /* 长按选择禁用 (除 input) */
+  body:not(input):not(textarea) {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  body {
+    background: #0e0e10;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .star {
+    color: #4a9eff;
+    text-shadow: 0 0 32px rgba(74, 158, 255, 0.4);
+  }
+  .title-char {
+    color: #e8e8e8;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+  }
+  .title-char:nth-child(1) { animation-delay: 0.1s; }
+  .title-char:nth-child(2) { animation-delay: 0.3s; }
+  .title-char:nth-child(3) { animation-delay: 0.5s; }
+  .title-dot {
+    color: #6b6b6b;
+    font-weight: 200;
+  }
+  .seal {
+    color: #8b8b8b;
+    font-weight: 300;
+    letter-spacing: 0.6em;
+    padding-left: 0.6em; /* 视觉居中补偿字间距 */
+    opacity: 0;
+    animation: fadeIn 1s 0.9s forwards;
+  }
+  .search-box {
+    background: #1a1a1d;
+    border: 1px solid #2a2a2d;
+    transition: all 0.3s;
+  }
+  .search-box:focus-within {
+    border-color: #4a9eff;
+    box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.08);
+  }
+  .result-card {
+    background: #1a1a1d;
+    border: 1px solid #2a2a2d;
+    transition: all 0.2s;
+  }
+  .result-card:hover {
+    border-color: #3a3a3d;
+    background: #1e1e22;
+  }
+  .score-badge {
+    background: rgba(74, 158, 255, 0.1);
+    color: #4a9eff;
+    font-weight: 500;
+  }
+  .verified-3 { color: #22c55e; }
+  .verified-2 { color: #84cc16; }
+  .verified-1 { color: #8b8b8b; }
+  .footer-link {
+    color: #6b6b6b;
+    transition: color 0.2s;
+  }
+  .footer-link:hover {
+    color: #4a9eff;
+  }
+  .engine-tag {
+    background: #2a2a2d;
+    color: #8b8b8b;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, monospace;
+  }
+  .spinner {
+    border: 2px solid #2a2a2d;
+    border-top-color: #4a9eff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-card-anim {
+    animation: slideUp 0.4s forwards;
+  }
+  /* 隐藏滚动条但保持滚动 */
+  body::-webkit-scrollbar { width: 6px; }
+  body::-webkit-scrollbar-track { background: #0e0e10; }
+  body::-webkit-scrollbar-thumb { background: #2a2a2d; border-radius: 3px; }
+  body::-webkit-scrollbar-thumb:hover { background: #3a3a3d; }
+
+  /* v16.2.4 星空背景: 径向渐变深空 + 多层随机星点 + 蓝紫光晕 */
+  body {
+    background: #05060f;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(99,102,241,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(56,189,248,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.06) 0%, transparent 70%);
+  }
+  /* 星点层: box-shadow 模拟 80 颗星, 大小亮度随机 */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1.5px 1.5px at 50px 160px, #fff, transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 160px 120px, rgba(186,230,253,0.9), transparent),
+      radial-gradient(1px 1px at 200px 50px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 250px 140px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 30px, rgba(196,181,253,0.8), transparent),
+      radial-gradient(1px 1px at 350px 100px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 400px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 450px 130px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(1px 1px at 500px 20px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 550px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 600px 50px, rgba(186,230,253,0.8), transparent),
+      radial-gradient(1px 1px at 50px 250px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 150px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 250px 280px, rgba(196,181,253,0.9), transparent),
+      radial-gradient(1px 1px at 350px 220px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 450px 300px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 550px 250px, rgba(186,230,253,0.8), transparent),
+      radial-gradient(1px 1px at 80px 350px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 180px 380px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 280px 330px, rgba(196,181,253,0.9), transparent),
+      radial-gradient(1px 1px at 380px 400px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 480px 350px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 580px 380px, rgba(186,230,253,0.8), transparent);
+    background-size: 600px 450px;
+    background-repeat: repeat;
+    opacity: 0.85;
+  }
+  /* 流星层: 偶发流星 (CSS 动画) */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      linear-gradient(105deg, transparent 40%, rgba(186,230,253,0.6) 50%, transparent 60%) 200px -50px/120px 1.5px no-repeat;
+    animation: meteor 6s linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes meteor {
+    0%   { transform: translate(0, 0); opacity: 0; }
+    8%   { opacity: 0.9; }
+    20%  { transform: translate(-300px, 300px); opacity: 0; }
+    100% { transform: translate(-300px, 300px); opacity: 0; }
+  }
+
+  /* ===== v17.3 AI 答案卡片 ===== */
+  .answer-card-inner {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.85) 100%);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: slideUp 0.5s ease-out;
+  }
+  .answer-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+  }
+  .answer-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .answer-source-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    color: #93c5fd;
+    font-size: 11px;
+    border-radius: 999px;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .answer-source-chip:hover {
+    background: rgba(96, 165, 250, 0.2);
+    border-color: rgba(96, 165, 250, 0.5);
+    transform: translateY(-1px);
+  }
+  /* v17.7: 内联引用 [N] chip (青绿色, 区别于蓝色来源/紫色 followup) */
+  .answer-citation-chip {
+    display: inline-block;
+    padding: 1px 5px;
+    margin: 0 1px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86efac;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    vertical-align: super;
+    transition: all 0.15s;
+    line-height: 1.2;
+  }
+  .answer-citation-chip:hover {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.6);
+    color: #bbf7d0;
+    transform: translateY(-1px);
+  }
+
+  /* v17.4: 相关问题 chip (紫色系, 跟来源蓝色区别) */
+  .answer-followup-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    color: #d8b4fe;
+    font-size: 12px;
+    border-radius: 999px;
+    transition: all 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .answer-followup-chip:hover {
+    background: rgba(168, 85, 247, 0.2);
+    border-color: rgba(168, 85, 247, 0.6);
+    color: #f3e8ff;
+    transform: translateY(-1px);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+  }
+  /* shimmer: 答案加载中 */
+  .answer-shimmer {
+    background: linear-gradient(90deg, rgba(96,165,250,0.05) 25%, rgba(96,165,250,0.2) 50%, rgba(96,165,250,0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+    border-radius: 6px;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .answer-mode-on #answer-mode-icon { color: #60a5fa; }
+  .answer-mode-off #answer-mode-icon { color: #4b5563; }
+  .answer-mode-off #answer-mode-text { color: #4b5563; }
+  main, footer { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+<!-- 实战 39 多轮对话: 左侧 session 列表 -->
+<aside id="session-sidebar" class="fixed top-0 left-0 h-full w-64 bg-[#0a0a0d] border-r border-gray-800/60 z-50 flex flex-col">
+  <div class="p-4 border-b border-gray-800/60 flex items-center justify-between">
+    <span class="text-sm font-medium text-gray-300">对话历史</span>
+    <button id="new-chat-btn" class="text-xs px-3 py-1.5 bg-blue-500/20 text-blue-300 rounded-lg hover:bg-blue-500/30 transition" title="新建对话">+ 新建</button>
+  </div>
+  <div id="session-list" class="flex-1 overflow-y-auto p-2 space-y-1"></div>
+  <div class="p-3 border-t border-gray-800/60 text-xs text-gray-600">
+    <span id="session-count">0</span> 个对话
+  </div>
+</aside>
+<style>
+  /* 主内容区向左偏移, 给侧栏留位置 */
+  body { padding-left: 16rem; }
+  @media (max-width: 768px) {
+    body { padding-left: 0; }
+    #session-sidebar { display: none; }
+  }
+  .session-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: #9ca3af;
+    font-size: 13px;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .session-item:hover { background: #1a1a1d; color: #e5e7eb; }
+  .session-item.active { background: #1e293b; color: #60a5fa; }
+  .session-item .del-btn { opacity: 0; transition: opacity 0.15s; }
+  .session-item:hover .del-btn { opacity: 1; }
+  .session-item .del-btn:hover { color: #ef4444; }
+</style>
+<script>
+  // ===== 实战 39 多轮对话 JS =====
+  // Session 管理
+  function uuid() { return 'sess-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8); }
+  function getSessions() {
+    try { return JSON.parse(localStorage.getItem('star_sessions') || '{}'); } catch { return {}; }
+  }
+  function saveSessions(s) { localStorage.setItem('star_sessions', JSON.stringify(s)); }
+  function getCurrentSessionId() {
+    let id = localStorage.getItem('star_current_session');
+    if (!id) { id = uuid(); localStorage.setItem('star_current_session', id); }
+    return id;
+  }
+  function setCurrentSessionId(id) { localStorage.setItem('star_current_session', id); }
+  function getHistory(sid) {
+    try { return JSON.parse(localStorage.getItem('star_history:' + sid) || '[]'); } catch { return []; }
+  }
+  function saveHistory(sid, h) { localStorage.setItem('star_history:' + sid, JSON.stringify(h.slice(-20))); }
+  function getSessionName(sid) {
+    const s = getSessions();
+    return s[sid] || '新对话';
+  }
+  function setSessionName(sid, name) {
+    const s = getSessions();
+    s[sid] = name;
+    saveSessions(s);
+    renderSessionList();
+  }
+  function ensureSession(sid) {
+    const s = getSessions();
+    if (!s[sid]) {
+      s[sid] = '新对话';
+      saveSessions(s);
+    }
+  }
+  function renderSessionList() {
+    const list = document.getElementById('session-list');
+    if (!list) return;
+    const sessions = getSessions();
+    const currentId = getCurrentSessionId();
+    const ids = Object.keys(sessions).sort((a, b) => sessions[b].localeCompare(sessions[a])); // simple: keep insertion order via Object.keys actually no - use original
+    // better: sort by first message time (stored separately)
+    const items = ids.map(id => ({id, name: sessions[id]}));
+    list.innerHTML = '';
+    items.forEach(({id, name}) => {
+      const div = document.createElement('div');
+      div.className = 'session-item' + (id === currentId ? ' active' : '');
+      div.onclick = (e) => {
+        if (e.target.classList.contains('del-btn')) return;
+        switchSession(id);
+      };
+      const label = document.createElement('span');
+      label.textContent = name;
+      label.style.overflow = 'hidden';
+      label.style.textOverflow = 'ellipsis';
+      label.style.whiteSpace = 'nowrap';
+      label.style.flex = '1';
+      const del = document.createElement('span');
+      del.className = 'del-btn';
+      del.textContent = '×';
+      del.style.cursor = 'pointer';
+      del.onclick = (e) => {
+        e.stopPropagation();
+        deleteSession(id);
+      };
+      div.appendChild(label);
+      div.appendChild(del);
+      list.appendChild(div);
+    });
+    const cnt = document.getElementById('session-count');
+    if (cnt) cnt.textContent = items.length;
+  }
+  function switchSession(id) {
+    setCurrentSessionId(id);
+    ensureSession(id);
+    renderSessionList();
+    showHome();
+  }
+  function deleteSession(id) {
+    const sessions = getSessions();
+    delete sessions[id];
+    saveSessions(sessions);
+    localStorage.removeItem('star_history:' + id);
+    if (getCurrentSessionId() === id) {
+      // 切到第一个剩下的
+      const remaining = Object.keys(sessions);
+      if (remaining.length > 0) {
+        setCurrentSessionId(remaining[0]);
+      } else {
+        const newId = uuid();
+        setCurrentSessionId(newId);
+        ensureSession(newId);
+      }
+    }
+    renderSessionList();
+  }
+  // 初始化
+  const _initSid = getCurrentSessionId();
+  ensureSession(_initSid);
+  renderSessionList();
+  // 新建对话
+  const _newBtn = document.getElementById('new-chat-btn');
+  if (_newBtn) {
+    _newBtn.onclick = () => {
+      const newId = uuid();
+      setCurrentSessionId(newId);
+      ensureSession(newId);
+      renderSessionList();
+      showHome();
+    };
+  }
+</script>
+
+
+<!-- 主体 -->
+<main id="app" class="flex-1 flex flex-col">
+
+  <!-- 首页 -->
+  <section id="home-view" class="flex-1 flex flex-col items-center justify-center px-6">
+    <!-- v16.2.4 logo: 蓝色五角星 (大) + Star-Search 品牌字 (超大) 上下堆叠 -->
+    <div class="mb-16 flex flex-col items-center gap-6">
+      <svg class="w-28 h-28 md:w-32 md:h-32 drop-shadow-[0_0_35px_rgba(96,165,250,0.7)]" viewBox="0 0 32 32" fill="none">
+        <defs>
+          <linearGradient id="starGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#2563eb"/>
+          </linearGradient>
+        </defs>
+        <path d="M16 2 L19.29 11.47 L29.31 11.67 L21.33 17.73 L24.23 27.33 L16 21.6 L7.77 27.33 L10.67 17.73 L2.69 11.67 L12.71 11.47 Z"
+              fill="url(#starGrad)"
+              stroke="#93c5fd" stroke-width="0.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="text-7xl md:text-8xl font-extrabold tracking-tight drop-shadow-[0_0_20px_rgba(96,165,250,0.3)]">
+        <span class="text-white">Star</span><span class="text-white">-</span><span class="text-white">Search</span>
+      </div>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-light mb-16 flex items-center gap-8 md:gap-12">
+      <span class="title-char">知你所问</span>
+      <span class="title-dot">·</span>
+      <span class="title-char">思你所疑</span>
+      <span class="title-dot">·</span>
+      <span class="title-char">答你所想</span>
+    </h1>
+    <div class="w-full max-w-2xl search-box rounded-2xl flex items-center px-6 py-4">
+      <svg class="w-5 h-5 text-gray-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      <input
+        id="query-input"
+        type="search"
+        inputmode="search"
+        enterkeyhint="search"
+        placeholder="鸿蒙 PC vs Windows 12 生态对比..."
+        class="flex-1 bg-transparent outline-none text-lg placeholder-gray-600"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        style="font-size: 16px;"
+        autofocus
+      />
+      <button id="search-btn" class="ml-3 text-gray-500 hover:text-blue-400 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </button>
+    </div>
+    <div class="seal text-lg mt-10">博 观 约 取</div>
+  </section>
+
+  <!-- 结果页 -->
+  <section id="results-view" class="hidden flex-1 px-6 md:px-12 py-8 max-w-5xl mx-auto w-full">
+    <!-- 顶部: logo + 返回 + 搜索框 -->
+    <div class="flex items-center gap-4 mb-8">
+      <a href="#" id="back-home" class="flex items-center gap-2.5 text-white hover:text-blue-300 transition">
+        <svg class="w-9 h-9 drop-shadow-[0_0_12px_rgba(96,165,250,0.6)]" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="starGradR" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#60a5fa"/>
+              <stop offset="100%" stop-color="#2563eb"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 2 L19.29 11.47 L29.31 11.67 L21.33 17.73 L24.23 27.33 L16 21.6 L7.77 27.33 L10.67 17.73 L2.69 11.67 L12.71 11.47 Z"
+                fill="url(#starGradR)"/>
+        </svg>
+        <span class="text-3xl font-extrabold tracking-tight"><span class="text-white">Star</span><span class="text-white">-</span><span class="text-white">Search</span></span>
+      </a>
+      <div class="flex-1 ml-4 search-box rounded-xl flex items-center px-5 py-3">
+        <svg class="w-4 h-4 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          id="query-input-results"
+          type="search"
+          inputmode="search"
+          enterkeyhint="search"
+          class="flex-1 bg-transparent outline-none text-base placeholder-gray-600"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          style="font-size: 16px;"
+        <button id="clear-btn" class="text-gray-600 hover:text-gray-400 transition text-xl leading-none">&times;</button>
+      </div>
+    </div>
+
+    <!-- 状态栏 -->
+    <div id="status-bar" class="text-sm text-gray-500 mb-6 flex items-center gap-3">
+      <span id="status-text">准备搜索...</span>
+      <span id="answer-mode-toggle" class="ml-auto text-xs text-gray-600 hover:text-blue-400 cursor-pointer select-none transition flex items-center gap-1.5" title="v17.3: 关闭后只返蓝链 (省时间)">
+        <span id="answer-mode-icon">✦</span>
+        <span id="answer-mode-text">AI 答案</span>
+      </span>
+    </div>
+
+    <!-- v17.3 AI 答案卡片 -->
+    <div id="answer-card" class="hidden mb-8">
+      <div class="answer-card-inner rounded-2xl p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="answer-badge">✦ AI 答案</span>
+          <span id="answer-model" class="text-xs text-gray-400"></span>
+          <span id="answer-elapsed" class="text-xs text-gray-500 ml-auto"></span>
+        </div>
+        <!-- 实战 73: brain_info 小徽章 -->
+        <div id="answer-brain-info" class="hidden mb-4 flex flex-wrap gap-2 text-xs">
+        </div>
+        <!-- 实战 73: entity_card 知识卡片 (Wikipedia/Perplexity 风格) -->
+        <div id="answer-entity-card" class="hidden mb-5 p-4 rounded-xl border border-purple-500/30 bg-purple-500/5">
+        </div>
+        <div id="answer-text" class="text-gray-100 text-[15px] leading-relaxed mb-5 answer-text"></div>
+        <div class="border-t border-gray-700/50 pt-4">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="text-xs text-gray-500">来源</div>
+            <!-- 实战 73: cross_verify 一致度 -->
+            <div id="answer-consensus" class="hidden text-xs"></div>
+          </div>
+          <div id="answer-sources" class="flex flex-wrap gap-2 mb-3"></div>
+          <div id="answer-followups-wrap" class="hidden mt-4">
+            <div class="text-xs text-gray-500 mb-2">相关问题</div>
+            <div id="answer-followups" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+        <button id="answer-show-sources-btn" class="hidden mt-3 text-xs text-blue-400 hover:text-blue-300 transition">
+          ▼ 查看下方原始来源 (<span id="answer-sources-count">0</span> 条)
+        </button>
+      </div>
+    </div>
+
+    <!-- 结果列表 -->
+    <div id="results-list" class="space-y-4"></div>
+
+    <!-- 空状态 -->
+    <div id="empty-state" class="hidden text-center text-gray-600 mt-20">
+      <p class="text-lg">未找到结果</p>
+      <p class="text-sm mt-2">试试换个关键词</p>
+    </div>
+
+    <!-- 加载更多 -->
+    <div id="load-more" class="hidden text-center mt-8">
+      <button class="text-gray-500 hover:text-blue-400 transition text-sm">显示更多 ▼</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底栏 -->
+<footer class="text-center py-6 text-xs text-gray-600 tracking-wide">
+  16 引擎 · 跨源验证 · OpenAI 兼容 ·
+  <a href="https://github.com/muchenhengxin/Star" target="_blank" class="footer-link">GitHub</a> ·
+  <a href="https://clawhub.ai/skill/star-search" target="_blank" class="footer-link">ClawHub</a> ·
+  <a href="#" id="api-doc-link" class="footer-link">API 文档</a> ·
+  <a href="/pricing.html" class="footer-link">定价</a> ·
+  <a href="/terms.html" class="footer-link">条款</a> ·
+  <a href="/privacy.html" class="footer-link">隐私</a>
+</footer>
+
+<script>
+  // 录屏/GIF 演示用数据 (仅 ?demo=1 模式生效)
+  window.__demo_results = {
+    '上证指数': {
+      query: '上证指数',
+      count: 6,
+      elapsed_ms: 320,
+        followups: ['上证指数 历史走势', '上证指数 vs 纳斯达克', 'CPO 概念股龙头'],
+        citations: {
+          1: { title: '今日A股收评：上证指数缩量震荡_东方财富', url: 'https://quote.eastmoney.com/a/202511/1.html' },
+          2: { title: '上证指数 - 新浪财经', url: 'https://finance.sina.com.cn/realstock/company/sh000001' },
+          3: { title: '36kr 财经 - 今日财经热点', url: 'https://36kr.com/finance' },
+          4: { title: '上海证券交易所', url: 'https://www.sse.com.cn' },
+          5: { title: '百度股市通 - 上证指数', url: 'https://gupiao.baidu.com' }
+        },
+        answer: {
+          answer: '上证指数今日收报 4057.74 点, 跌幅 0.27%, 成交量约 2865 亿元。A 股三大指数涨跌不一, 深证成指 +0.18% 略涨, CPO 概念股领涨[1][3], 银行股表现疲软[2]。\n\n来源: quote.eastmoney.com / finance.sina.com.cn / 36kr.com',
+        model: 'DeepSeek-V4-Flash',
+        elapsed_ms: 2100,
+        tokens: 412,
+        sources: ['quote.eastmoney.com', 'finance.sina.com.cn', '36kr.com', 'finance.ifeng.com'],
+        category: 'finance',
+        followups: ['上证指数 历史走势', '上证指数 vs 纳斯达克', 'CPO 概念股龙头']
+      },
+      results: [
+        { title: '上证指数 (000001) 4057.74 (-0.27%) — 东方财富网', url: 'https://quote.eastmoney.com/zs000001.html', engine: 'eastmoney', score: 96, cross_verified: 4, source: 'quote.eastmoney.com', date: '2026-06-03', snippet: '今日收盘 4057.74 点, 跌幅 0.27%, 成交量 2865 亿' },
+        { title: '上证指数 4057.74 实时行情 — 新浪财经', url: 'https://finance.sina.com.cn/realstock/company/sh000001', engine: 'sina_finance', score: 94, cross_verified: 3, source: 'finance.sina.com.cn', date: '2026-06-03', snippet: '上证指数最新 4057.74, 涨跌 -10.97 (-0.27%)' },
+        { title: 'A 股三大指数集体收涨 CPO 概念领涨 — 36 氪', url: 'https://36kr.com/p/xxx', engine: 'rss_36kr', score: 90, cross_verified: 3, source: '36kr.com', date: '2026-06-03', snippet: '沪深两市成交 1.2 万亿, CPO 概念股涨幅榜' },
+        { title: '比亚迪 (002594) 96.76 (+3.32%) 实时行情', url: 'https://quote.eastmoney.com/sz002594.html', engine: 'eastmoney', score: 88, cross_verified: 2, source: 'quote.eastmoney.com', date: '2026-06-03', snippet: '比亚迪股价 96.76 元, 涨幅 3.32%' },
+        { title: '比亚迪股价突破 95 元阻力位 创近期新高', url: 'https://finance.sina.com.cn/realstock/company/sz002594', engine: 'sina_finance', score: 85, cross_verified: 2, source: 'finance.sina.com.cn', date: '2026-06-03', snippet: '比亚迪 (002594) 96.76 元 涨幅 3.32% 新能源车龙头' },
+        { title: '上证指数 4057 — 凤凰财经', url: 'https://finance.ifeng.com/c/8XYZ', engine: 'rss_woshipm', score: 82, cross_verified: 2, source: 'finance.ifeng.com', date: '2026-06-03', snippet: '今日 A 股收盘 上证 4057.74 -0.27% 深证 9678.5 +0.18%' }
+      ]
+    }
+  };
+
+  const API_BASE = window.location.origin;
+
+  const $ = (id) => document.getElementById(id);
+  const homeView = $('home-view');
+  const resultsView = $('results-view');
+  const queryInput = $('query-input');
+  const queryInputResults = $('query-input-results');
+  const searchBtn = $('search-btn');
+  const backHome = $('back-home');
+  const clearBtn = $('clear-btn');
+  const resultsList = $('results-list');
+  const statusBar = $('status-bar');
+  const statusText = $('status-text');
+  const emptyState = $('empty-state');
+  const apiDocLink = $('api-doc-link');
+
+  let currentQuery = '';
+  let currentResults = [];
+  let currentAnswer = null;  // v17.3: AI 答案
+  let showCount = 10;
+  let answerMode = true;  // v17.3: 默认开启 (Perplexity Mode)
+
+  // 路由
+  function showHome() {
+    homeView.classList.remove('hidden');
+    homeView.classList.add('flex');
+    resultsView.classList.add('hidden');
+    queryInput.value = '';
+    setTimeout(() => queryInput.focus(), 100);
+  }
+
+  function showResults(query) {
+    homeView.classList.add('hidden');
+    homeView.classList.remove('flex');
+    resultsView.classList.remove('hidden');
+    queryInputResults.value = query;
+    setTimeout(() => queryInputResults.focus(), 100);
+  }
+
+  // 搜索
+  async function doSearch(query) {
+    if (!query.trim()) return;
+    currentQuery = query.trim();
+    showResults(currentQuery);
+    resultsList.innerHTML = '';
+    emptyState.classList.add('hidden');
+    statusBar.innerHTML = '<div class="spinner mr-2"></div><span>搜索中...</span>';
+
+    // v17.3: 答案模式开启 → 显示 shimmer loading 卡片
+    const answerCard = $('answer-card');
+    if (answerMode) {
+      answerCard.classList.remove('hidden');
+      $('answer-text').innerHTML = '<div class="answer-shimmer h-4 w-3/4 mb-3"></div><div class="answer-shimmer h-4 w-full mb-3"></div><div class="answer-shimmer h-4 w-5/6 mb-3"></div><div class="answer-shimmer h-4 w-2/3"></div>';
+      $('answer-sources').innerHTML = '';
+      $('answer-model').textContent = '生成中...';
+      $('answer-elapsed').textContent = '';
+    } else {
+      answerCard.classList.add('hidden');
+    }
+
+    // demo 模式 (录屏/GIF): 用 ?demo=1 直接注入硬编码结果, 跳过 fetch
+    if (location.search.indexOf('demo=1') !== -1) {
+      const elapsed = 320;
+      const j = (window.__demo_results && window.__demo_results[currentQuery])
+        || {
+          query: currentQuery,
+          count: 6,
+          elapsed_ms: elapsed,
+          engines_used: ['eastmoney','sina_finance','rss_36kr','rss_woshipm'],
+          results: [
+            { title: `${currentQuery} 实时行情 — 东方财富网`, url: 'https://quote.eastmoney.com/', engine: 'eastmoney', snippet: `${currentQuery} 实时行情, 多源验证`, score: 95, cross_verified: 4, source: 'quote.eastmoney.com', date: '2026-06-03' },
+            { title: `${currentQuery} 走势分析 — 新浪财经`, url: 'https://finance.sina.com.cn/', engine: 'sina_finance', snippet: `${currentQuery} 今日数据, 资金流向`, score: 92, cross_verified: 3, source: 'finance.sina.com.cn', date: '2026-06-03' },
+            { title: `市场观察 — 36 氪`, url: 'https://36kr.com/', engine: 'rss_36kr', snippet: `${currentQuery} 相关行业新闻与解读`, score: 88, cross_verified: 2, source: '36kr.com', date: '2026-06-03' },
+            { title: `${currentQuery} 研报 — 凤凰财经`, url: 'https://finance.ifeng.com/', engine: 'rss_woshipm', snippet: `${currentQuery} 机构观点汇总`, score: 85, cross_verified: 2, source: 'finance.ifeng.com', date: '2026-06-03' }
+          ]
+        };
+      currentResults = j.results || [];
+      currentAnswer = j.answer || null;  // v17.3: demo 数据也支持答案
+      const verifiedCount = currentResults.filter(r => r.cross_verified >= 3).length;
+      statusText.innerHTML = `
+        ${currentResults.length} 条结果 ·
+        ${elapsed}ms ·
+        ${j.engines_used ? j.engines_used.length : 0} 引擎
+        ${verifiedCount > 0 ? ` · <span class="text-yellow-500">🌟🌟🌟</span>×${verifiedCount}` : ''}
+      `;
+      if (currentResults.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      renderAnswer();
+      renderResults();
+      return;
+    }
+
+    try {
+      // 实战 39 多轮对话: 拼 history
+      const _sid = getCurrentSessionId();
+      const _hist = getHistory(_sid);
+      const t0 = performance.now();
+      // 实战 36 P0-2: 流式输出 (SSE)
+      if (answerMode) {
+        // 走流式端点
+        currentResults = [];
+        currentAnswer = null;
+        $('answer-text').textContent = '';
+        $('answer-sources').innerHTML = '';
+        $('answer-model').textContent = '生成中...';
+        $('answer-elapsed').textContent = '';
+        resultsList.innerHTML = '';
+        $('answer-card').classList.remove('hidden');
+
+        const r = await fetch(`${API_BASE}/v1/search/stream`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: currentQuery, top: 20, answer: true, session_id: getCurrentSessionId(), history: getHistory(getCurrentSessionId()).slice(-6) })
+        });
+        if (!r.ok) {
+          statusText.textContent = `错误: ${r.status} ${r.statusText}`;
+          return;
+        }
+        const reader = r.body.getReader();
+        const dec = new TextDecoder();
+        let buf = '';
+        let finalAnswer = null;
+        let finalResults = null;
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          // 按 \n\n 切事件
+          const events = buf.split('\n\n');
+          buf = events.pop();  // 不完整部分留下
+          for (const ev of events) {
+            const lines = ev.split('\n');
+            let evt = '', data = '';
+            for (const ln of lines) {
+              if (ln.startsWith('event:')) evt = ln.slice(6).trim();
+              else if (ln.startsWith('data:')) data += ln.slice(5).trim();
+            }
+            if (!evt) continue;
+            try { data = JSON.parse(data); } catch (e) { continue; }
+            if (evt === 'search_done') {
+              finalResults = data.results || [];
+              currentResults = finalResults;
+              const verifiedCount = currentResults.filter(r => r.cross_verified >= 3).length;
+              const elapsed = Math.round(performance.now() - t0);
+              statusText.innerHTML = `
+                ${currentResults.length} 条结果 ·
+                ${elapsed}ms ·
+                跨源 ${verifiedCount}
+              `;
+              if (currentResults.length > 0) renderResults();
+            } else if (evt === 'answer_chunk') {
+              // 逐字追加
+              const txt = $('answer-text');
+              txt.textContent = (txt.textContent || '') + (data.delta || '');
+            } else if (evt === 'answer_done') {
+              finalAnswer = data;
+              currentAnswer = data;
+              $('answer-model').textContent = data.model || 'AI';
+              $('answer-elapsed').textContent = `${data.elapsed_ms || 0}ms · ${data.tokens || 0} tokens`;
+              // 来源
+              const sourcesEl = $('answer-sources');
+              sourcesEl.innerHTML = '';
+              if (data.sources && data.sources.length) {
+                data.sources.forEach(src => {
+                  const chip = document.createElement('a');
+                  chip.href = `https://${src}`;
+                  chip.target = '_blank';
+                  chip.rel = 'noopener noreferrer';
+                  chip.className = 'answer-source-chip';
+                  chip.textContent = src;
+                  sourcesEl.appendChild(chip);
+                });
+              }
+              // 实战 56: 根据 fmt 渲染 (table/mermaid/json/markdown)
+              const fmt = data.fmt || 'default';
+              const answerText = data.answer || '';
+              const answerEl = $('answer-text');
+              if (fmt === 'table') {
+                // 表格: 用 marked 渲染 Markdown 表格
+                answerEl.innerHTML = '<div class="overflow-x-auto">' +
+                  marked.parse(answerText) + '</div>';
+              } else if (fmt === 'mermaid') {
+                // Mermaid: 提取 ```mermaid 代码块
+                const m = answerText.match(/```mermaid\n([\s\S]*?)```/);
+                if (m) {
+                  const mermaidId = 'mmd-' + Date.now();
+                  answerEl.innerHTML = '<div class="mermaid" id="' + mermaidId + '">' +
+                    m[1] + '</div>';
+                  mermaid.run({ nodes: [document.getElementById(mermaidId)] });
+                } else {
+                  answerEl.innerHTML = renderAnswerTextWithCitations(answerText, data.citations || {});
+                }
+              } else if (fmt === 'json') {
+                // JSON: 提取 ```json 代码块
+                const m = answerText.match(/```json\n([\s\S]*?)```/);
+                if (m) {
+                  try {
+                    const obj = JSON.parse(m[1]);
+                    answerEl.innerHTML = '<pre class="bg-gray-900/50 p-4 rounded-lg overflow-x-auto text-xs text-green-300"><code>' +
+                      JSON.stringify(obj, null, 2).replace(/</g, '&lt;') + '</code></pre>';
+                  } catch (e) {
+                    answerEl.innerHTML = '<pre class="text-red-400">' + m[1] + '</pre>';
+                  }
+                } else {
+                  answerEl.innerHTML = renderAnswerTextWithCitations(answerText, data.citations || {});
+                }
+              } else {
+                // default: 实战 39 markdown 渲染 + 内联引用
+                answerEl.innerHTML = renderAnswerTextWithCitations(answerText, data.citations || {});
+              }
+              // followups
+              const fw = $('answer-followups-wrap');
+              const fe = $('answer-followups');
+              fe.innerHTML = '';
+              if (data.followups && data.followups.length) {
+                data.followups.forEach(q => {
+                  const c = document.createElement('a');
+                  c.href = '#'; c.className = 'answer-followup-chip';
+                  c.textContent = '→ ' + q;
+                  c.onclick = (e) => { e.preventDefault(); doSearch(q); };
+                  fe.appendChild(c);
+                });
+                fw.classList.remove('hidden');
+              } else {
+                fw.classList.add('hidden');
+              }
+              // 实战 39: 保存到 history + 自动命名 session
+              try {
+                const __sid = getCurrentSessionId();
+                const __h = getHistory(__sid);
+                __h.push({q: currentQuery, a: data.answer, ts: Date.now()});
+                saveHistory(__sid, __h);
+                // 自动命名 (首次 query)
+                const __name = getSessionName(__sid);
+                if (__name === '新对话') {
+                  setSessionName(__sid, currentQuery.slice(0, 20) + (currentQuery.length > 20 ? '...' : ''));
+                }
+                renderSessionList();
+              } catch (e) { console.error('history save fail', e); }
+              // 来源按钮
+              const btn = $('answer-show-sources-btn');
+              if (currentResults.length > 0) {
+                btn.classList.remove('hidden');
+                $('answer-sources-count').textContent = currentResults.length;
+                btn.onclick = () => $('results-list').scrollIntoView({behavior:'smooth',block:'start'});
+              } else {
+                btn.classList.add('hidden');
+              }
+            } else if (evt === 'answer_error' || evt === 'error') {
+              $('answer-text').textContent = '⚠️ 答案生成失败: ' + (data.error || '未知错误');
+            } else if (evt === 'done') {
+              // all done
+            }
+          }
+        }
+        return;
+      }
+      // 非流式 (仅蓝链模式)
+      const r = await fetch(`${API_BASE}/v1/search`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: currentQuery, top: 20, answer: false, session_id: getCurrentSessionId(), history: getHistory(getCurrentSessionId()).slice(-6) })
+      });
+      const elapsed = Math.round(performance.now() - t0);
+      const j = await r.json();
+      if (!r.ok) { statusText.textContent = `错误: ${j.detail || r.statusText}`; return; }
+      currentResults = j.results || [];
+      currentAnswer = null;
+      const verifiedCount = currentResults.filter(r => r.cross_verified >= 3).length;
+      statusText.innerHTML = `
+        ${currentResults.length} 条结果 ·
+        ${elapsed}ms ·
+        跨源 ${verifiedCount}
+      `;
+      if (currentResults.length === 0) { emptyState.classList.remove('hidden'); return; }
+      renderResults();
+    } catch (e) {
+      statusText.textContent = `请求失败: ${e.message}`;
+    }
+  }
+
+  // v17.7: 把 answer 里的 [N] 转成可点击 chip
+  function renderAnswerTextWithCitations(answer, citations) {
+    if (!answer) return '';
+    // 用 [N] split, 然后给 [N] 套 chip
+    const parts = answer.split(/(\[\d+\])/g);
+    return parts.map(part => {
+      const m = part.match(/^\[(\d+)\]$/);
+      if (m) {
+        const n = m[1];
+        const cite = citations && citations[n];
+        const title = cite ? cite.title : `来源 ${n}`;
+        const url = cite ? cite.url : '#';
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="answer-citation-chip" title="${title.replace(/"/g, '&quot;')}">[${n}]</a>`;
+      }
+      return part;
+    }).join('');
+  }
+
+  // v17.3: 渲染 AI 答案卡片
+  function renderAnswer() {
+    const answerCard = $('answer-card');
+    if (!currentAnswer || !currentAnswer.answer) {
+      answerCard.classList.add('hidden');
+      return;
+    }
+    const a = currentAnswer;
+    // v17.7: 用 citations 渲染
+    $('answer-text').innerHTML = renderAnswerTextWithCitations(a.answer, a.citations || {});
+    $('answer-model').textContent = a.model || 'AI';
+    const elapsedText = a.elapsed_ms ? `${a.elapsed_ms}ms · ${a.tokens || 0} tokens` : '';
+    $('answer-elapsed').textContent = elapsedText + (a.cached ? ' · ⚡cached' : '');
+
+    // 实战 73: brain_info 徽章 (entity + intent + category)
+    const brainInfoEl = $('answer-brain-info');
+    const brainInfo = a.brain_info || (currentResponse && currentResponse.brain_info);
+    if (brainInfo && brainInfo.entity) {
+      brainInfoEl.innerHTML = '';
+      const entityBadge = document.createElement('span');
+      entityBadge.className = 'px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 border border-blue-500/30';
+      entityBadge.textContent = '🏷️ ' + brainInfo.entity;
+      brainInfoEl.appendChild(entityBadge);
+      if (brainInfo.intent) {
+        const intentBadge = document.createElement('span');
+        const intentColor = brainInfo.intent === 'navigation' ? 'green' : brainInfo.intent === 'comparison' ? 'orange' : 'gray';
+        intentBadge.className = `px-2 py-0.5 rounded-md bg-${intentColor}-500/20 text-${intentColor}-300 border border-${intentColor}-500/30`;
+        intentBadge.textContent = '🎯 ' + brainInfo.intent;
+        brainInfoEl.appendChild(intentBadge);
+      }
+      if (brainInfo.category) {
+        const catBadge = document.createElement('span');
+        catBadge.className = 'px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30';
+        catBadge.textContent = '📂 ' + brainInfo.category;
+        brainInfoEl.appendChild(catBadge);
+      }
+      if (brainInfo.expected_info) {
+        const expBadge = document.createElement('span');
+        expBadge.className = 'px-2 py-0.5 rounded-md bg-yellow-500/20 text-yellow-300 border border-yellow-500/30';
+        expBadge.textContent = '✨ 期望: ' + brainInfo.expected_info;
+        brainInfoEl.appendChild(expBadge);
+      }
+      if (currentResponse && currentResponse.recency) {
+        const recBadge = document.createElement('span');
+        recBadge.className = 'px-2 py-0.5 rounded-md bg-red-500/20 text-red-300 border border-red-500/30';
+        recBadge.textContent = '⏱️ ' + currentResponse.recency;
+        brainInfoEl.appendChild(recBadge);
+      }
+      brainInfoEl.classList.remove('hidden');
+    } else {
+      brainInfoEl.classList.add('hidden');
+    }
+
+    // 实战 73: entity_card 知识卡片 (Wikipedia/Perplexity 风格)
+    const entityCardEl = $('answer-entity-card');
+    const entityCard = a.entity_card || (currentResponse && currentResponse.entity_card);
+    if (entityCard && entityCard.name) {
+      let cardHtml = '<div class="flex items-start gap-3">';
+      if (entityCard.logo) {
+        cardHtml += `<div class="text-3xl flex-shrink-0">${entityCard.logo}</div>`;
+      }
+      cardHtml += '<div class="flex-1 min-w-0">';
+      cardHtml += `<div class="flex items-center gap-2 mb-1">`;
+      cardHtml += `<span class="font-semibold text-white text-base">${entityCard.name}</span>`;
+      if (entityCard.type) {
+        cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded bg-gray-700/50 text-gray-300">${entityCard.type}</span>`;
+      }
+      if (entityCard.category) {
+        cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">${entityCard.category}</span>`;
+      }
+      cardHtml += '</div>';
+      if (entityCard.description) {
+        cardHtml += `<div class="text-sm text-gray-300 mb-2">${entityCard.description}</div>`;
+      }
+      if (entityCard.official_url) {
+        cardHtml += `<a href="${entityCard.official_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-cyan-400 hover:text-cyan-300 mb-2 break-all">`;
+        cardHtml += `🔗 ${entityCard.official_url}</a>`;
+      }
+      if (entityCard.tags && entityCard.tags.length) {
+        cardHtml += '<div class="flex flex-wrap gap-1 mt-2">';
+        entityCard.tags.forEach(tag => {
+          cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded-full bg-gray-700/40 text-gray-300">#${tag}</span>`;
+        });
+        cardHtml += '</div>';
+      }
+      cardHtml += '</div></div>';
+      entityCardEl.innerHTML = cardHtml;
+      entityCardEl.classList.remove('hidden');
+    } else {
+      entityCardEl.classList.add('hidden');
+    }
+
+    // 实战 73: cross_verify 一致度 + cross_verified 标注
+    const cv = a.cross_verify || (currentResponse && currentResponse.cross_verify);
+    const consensusEl = $('answer-consensus');
+    if (cv) {
+      const score = cv.consensus_score || 0;
+      let color = 'red';
+      if (score >= 20) color = 'orange';
+      if (score >= 40) color = 'yellow';
+      if (score >= 60) color = 'green';
+      consensusEl.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-${color}-500/20 text-${color}-300 border border-${color}-500/30">📊 一致度: ${score}/100 · ${cv.source_count || 0} 源</span>`;
+      consensusEl.classList.remove('hidden');
+    } else {
+      consensusEl.classList.add('hidden');
+    }
+
+    // 来源 chips
+    const sourcesEl = $('answer-sources');
+    sourcesEl.innerHTML = '';
+    if (a.sources && a.sources.length) {
+      a.sources.forEach(src => {
+        const chip = document.createElement('a');
+        chip.href = `https://${src}`;
+        chip.target = '_blank';
+        chip.rel = 'noopener noreferrer';
+        chip.className = 'answer-source-chip';
+        chip.textContent = src;
+        sourcesEl.appendChild(chip);
+      });
+    }
+
+    // v17.4: 相关问题 chips (点 chip 触发新搜索)
+    const followupsWrap = $('answer-followups-wrap');
+    const followupsEl = $('answer-followups');
+    followupsEl.innerHTML = '';
+    if (a.followups && a.followups.length) {
+      a.followups.forEach(q => {
+        const chip = document.createElement('a');
+        chip.href = '#';
+        chip.className = 'answer-followup-chip';
+        chip.textContent = '→ ' + q;
+        chip.title = '点击搜索: ' + q;
+        chip.onclick = (e) => {
+          e.preventDefault();
+          doSearch(q);  // 直接触发新搜索
+        };
+        followupsEl.appendChild(chip);
+      });
+      followupsWrap.classList.remove('hidden');
+    } else {
+      followupsWrap.classList.add('hidden');
+    }
+
+    // 查看下方来源按钮
+    const btn = $('answer-show-sources-btn');
+    if (currentResults.length > 0) {
+      btn.classList.remove('hidden');
+      $('answer-sources-count').textContent = currentResults.length;
+      btn.onclick = () => {
+        $('results-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    } else {
+      btn.classList.add('hidden');
+    }
+  }
+
+  // v17.3: AI 答案开关
+  function setAnswerMode(on) {
+    answerMode = on;
+    const statusBarEl = $('status-bar');
+    if (on) {
+      statusBarEl.classList.add('answer-mode-on');
+      statusBarEl.classList.remove('answer-mode-off');
+      $('answer-mode-text').textContent = 'AI 答案';
+    } else {
+      statusBarEl.classList.add('answer-mode-off');
+      statusBarEl.classList.remove('answer-mode-on');
+      $('answer-mode-text').textContent = '仅蓝链';
+      $('answer-card').classList.add('hidden');
+    }
+  }
+  setAnswerMode(true);  // 默认开
+
+  function renderResults() {
+    const to = Math.min(showCount, currentResults.length);
+    resultsList.innerHTML = '';
+
+    for (let i = 0; i < to; i++) {
+      const item = currentResults[i];
+      const card = document.createElement('a');
+      card.href = item.url;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+      card.className = 'result-card result-card-anim block rounded-xl p-5 cursor-pointer no-underline';
+      card.style.animationDelay = `${i * 50}ms`;
+
+      const verified = item.cross_verified || 0;
+      const verifiedClass = verified >= 3 ? 'verified-3' : verified >= 2 ? 'verified-2' : 'verified-1';
+      const verifiedText = verified >= 3 ? `✓ ${verified} 源验证 🌟` : verified >= 1 ? `✓ ${verified} 源验证` : '单源';
+
+      const dateStr = item.date || '';
+      const sourceStr = item.source || '';
+      const engineTag = item.engine ? `<span class="engine-tag">${item.engine}</span>` : '';
+
+      card.innerHTML = `
+        <div class="flex items-start gap-4">
+          <div class="score-badge text-sm px-2 py-1 rounded flex-shrink-0">${item.score || 0}</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-medium text-gray-100 mb-2 leading-snug hover:text-blue-400 transition">${escapeHtml(item.title || '无标题')}</h3>
+            <p class="text-sm text-gray-500 mb-2 line-clamp-2">${escapeHtml(item.snippet || '')}</p>
+            <div class="flex items-center gap-3 text-xs text-gray-600 flex-wrap">
+              ${engineTag}
+              <span>${escapeHtml(sourceStr || new URL(item.url).hostname)}</span>
+              ${dateStr ? `<span>· ${escapeHtml(dateStr)}</span>` : ''}
+              <span class="${verifiedClass}">${verifiedText}</span>
+            </div>
+          </div>
+          <button class="fav-btn text-lg" data-url="${escapeHtml(item.url)}" title="收藏" style="background:none;border:none;cursor:pointer;color:#6b7280;flex-shrink:0;align-self:center;padding:4px 8px;">☆</button>
+        </div>
+      `;
+      // 实战 43: ⭐ 按钮事件
+      const favBtn = card.querySelector('.fav-btn');
+      if (favBtn) {
+        favBtn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFav(item);
+        };
+      }
+      resultsList.appendChild(card);
+    }
+    renderFavButtons();  // 实战 43: 渲染收藏状态
+
+    if (to < currentResults.length) {
+      const loadMore = $('load-more');
+      loadMore.classList.remove('hidden');
+      loadMore.querySelector('button').onclick = () => {
+        showCount += 10;
+        renderResults();
+      };
+    } else {
+      $('load-more').classList.add('hidden');
+    }
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return s.replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  // 事件
+  searchBtn.onclick = () => doSearch(queryInput.value);
+  queryInput.onkeydown = (e) => { if (e.key === 'Enter') doSearch(queryInput.value); };
+  queryInputResults.onkeydown = (e) => { if (e.key === 'Enter') doSearch(queryInputResults.value); };
+  clearBtn.onclick = () => showHome();
+  backHome.onclick = (e) => { e.preventDefault(); showHome(); };
+  // v17.3: AI 答案开关 toggle
+  $('answer-mode-toggle').onclick = () => setAnswerMode(!answerMode);
+  apiDocLink.onclick = (e) => {
+    e.preventDefault();
+    alert(`OpenAI 兼容 API:
+
+POST ${API_BASE}/v1/search
+Content-Type: application/json
+
+{
+  "query": "你的问题",
+  "top": 10
+}
+
+返回:
+{
+  "query": "...",
+  "count": 10,
+  "elapsed_ms": 350,
+  "results": [{ "title", "url", "snippet", "engine", "score", "cross_verified", "date" }, ...]
+}
+
+文档: https://github.com/muchenhengxin/Star`);
+  };
+
+  // URL hash 路由（可选）
+  if (location.hash) {
+    const q = decodeURIComponent(location.hash.slice(1));
+    if (q) doSearch(q);
+  }
+  window.addEventListener('hashchange', () => {
+    const q = decodeURIComponent(location.hash.slice(1));
+    if (q) doSearch(q);
+  });
+
+  // ===== 实战 43 P0-6 历史/收藏 =====
+  // 收藏
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem('star_favs') || '[]'); } catch { return []; }
+  }
+  function saveFavs(f) { localStorage.setItem('star_favs', JSON.stringify(f)); }
+  function toggleFav(item) {
+    const favs = getFavs();
+    const idx = favs.findIndex(f => f.url === item.url);
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+    } else {
+      favs.unshift({
+        title: item.title,
+        url: item.url,
+        summary: item.summary || item.snippet || '',
+        engine: item.engine || '',
+        saved_at: Date.now(),
+        q: currentQuery
+      });
+    }
+    saveFavs(favs);
+    renderFavButtons();
+    return idx < 0;  // true=已收藏
+  }
+  function isFav(url) { return getFavs().some(f => f.url === url); }
+
+  function renderFavButtons() {
+    // 每个 result item 加 ⭐ 按钮
+    document.querySelectorAll('.fav-btn').forEach(btn => {
+      const url = btn.dataset.url;
+      btn.textContent = isFav(url) ? '⭐' : '☆';
+      btn.title = isFav(url) ? '取消收藏' : '收藏';
+      btn.style.color = isFav(url) ? '#facc15' : '#6b7280';
+    });
+  }
+
+  // 历史面板
+  function showHistoryPanel() {
+    const sessions = getSessions();
+    const historyList = [];
+    Object.keys(sessions).forEach(sid => {
+      const h = getHistory(sid);
+      h.forEach(item => {
+        historyList.push({
+          sid, q: item.q, a: item.a, ts: item.ts || 0, name: sessions[sid]
+        });
+      });
+    });
+    historyList.sort((a, b) => (b.ts || 0) - (a.ts || 0));
+    showListPanel('历史', historyList.slice(0, 50), item => {
+      switchSession(item.sid);
+      doSearch(item.q);
+    });
+  }
+
+  // 收藏面板
+  function showFavPanel() {
+    const favs = getFavs();
+    showListPanel('收藏', favs, item => {
+      window.open(item.url, '_blank');
+    });
+  }
+
+  function showListPanel(title, items, onClick) {
+    const existing = document.getElementById('list-panel-overlay');
+    if (existing) existing.remove();
+    const overlay = document.createElement('div');
+    overlay.id = 'list-panel-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);';
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#0a0a0d;border:1px solid #1f1f23;border-radius:16px;width:90%;max-width:720px;max-height:80vh;overflow-y:auto;padding:24px;';
+    let html = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #1f1f23;padding-bottom:12px;">
+      <h2 style="color:#e8e8e8;font-size:18px;font-weight:500;">${title} (${items.length})</h2>
+      <button id="close-panel" style="color:#9ca3af;background:none;border:none;cursor:pointer;font-size:20px;">×</button>
+    </div>`;
+    if (items.length === 0) {
+      html += `<p style="color:#6b7280;text-align:center;padding:32px;">暂无内容</p>`;
+    } else {
+      html += '<div style="display:flex;flex-direction:column;gap:8px;">';
+      items.forEach((item, i) => {
+        const preview = item.q ? `<div style="color:#e8e8e8;font-size:14px;font-weight:500;margin-bottom:4px;">${item.q}</div>` : '';
+        const meta = item.a ? `<div style="color:#9ca3af;font-size:12px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${(item.a || '').slice(0, 100)}</div>` : (item.summary ? `<div style="color:#9ca3af;font-size:12px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${item.summary}</div>` : '');
+        const tail = item.engine ? `<span style="color:#6b7280;font-size:11px;">[${item.engine}]</span>` : '';
+        html += `<div data-idx="${i}" style="padding:12px;background:#15151a;border-radius:8px;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.background='#1a1a1f'" onmouseout="this.style.background='#15151a'">
+          ${preview}${meta}${tail}
+        </div>`;
+      });
+      html += '</div>';
+    }
+    card.innerHTML = html;
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+    card.querySelector('#close-panel').onclick = () => overlay.remove();
+    card.querySelectorAll('[data-idx]').forEach(el => {
+      el.onclick = () => { onClick(items[el.dataset.idx]); overlay.remove(); };
+    });
+  }
+
+  // 顶栏 加按钮 (在搜索框旁边)
+  const __top = document.querySelector('.main-container') || document.body;
+  const __btns = document.createElement('div');
+  __btns.style.cssText = 'position:fixed;top:24px;right:24px;display:flex;gap:12px;z-index:40;';
+  __btns.innerHTML = `<button id="history-btn" style="background:rgba(74,158,255,0.15);border:1px solid rgba(74,158,255,0.3);color:#4a9eff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;backdrop-filter:blur(8px);">📚 历史</button>
+    <button id="fav-btn" style="background:rgba(250,204,21,0.15);border:1px solid rgba(250,204,21,0.3);color:#facc15;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;backdrop-filter:blur(8px);">⭐ 收藏</button>`;
+  document.body.appendChild(__btns);
+  document.getElementById('history-btn').onclick = showHistoryPanel;
+  document.getElementById('fav-btn').onclick = showFavPanel;
+</script>
+
+<!-- 实战 55: 登录弹窗 -->
+<div id="auth-modal">
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <div class="auth-tab active" data-mode="login">登录</div>
+      <div class="auth-tab" data-mode="register">注册</div>
+      <div style="margin-left:auto;cursor:pointer;color:#6b7280" onclick="closeAuth()">✕</div>
+    </div>
+    <input id="auth-phone" class="auth-input" placeholder="手机号" type="tel" maxlength="20">
+    <input id="auth-password" class="auth-input" placeholder="密码 (至少 6 位)" type="password">
+    <!-- 实战 60: Turnstile 验证码 (注册时) -->
+    <div id="turnstile-widget" class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-callback="onTurnstileToken" data-action="register" style="margin: 8px auto;"></div>
+    <div id="auth-error" style="color:#f87171;font-size:13px;margin-bottom:8px;display:none"></div>
+    <button class="auth-btn" id="auth-submit">登录</button>
+    <div style="margin-top:12px;text-align:center">
+      <span class="auth-link" onclick="showAuthHint()">免费用户: 100 次/天, 注册享 1000 次/月</span>
+    </div>
+  </div>
+</div>
+
+<!-- 实战 55: 用户认证 JS -->
+<script>
+let __authMode = 'login';  // or 'register'
+let __authToken = localStorage.getItem('star_token') || '';
+
+function openAuth(mode) {
+  __authMode = mode || 'login';
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === __authMode));
+  document.getElementById('auth-submit').textContent = __authMode === 'login' ? '登录' : '注册';
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-modal').classList.add('show');
+}
+function closeAuth() { document.getElementById('auth-modal').classList.remove('show'); }
+function showAuthHint() { openAuth('register'); }
+
+document.querySelectorAll('.auth-tab').forEach(t => {
+  t.addEventListener('click', () => openAuth(t.dataset.mode));
+});
+
+document.getElementById('auth-submit').addEventListener('click', async () => {
+  const phone = document.getElementById('auth-phone').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const errEl = document.getElementById('auth-error');
+  errEl.style.display = 'none';
+  if (!phone || !password) { errEl.textContent = '请输入手机号和密码'; errEl.style.display = 'block'; return; }
+  // 实战 60: 注册时拿 Turnstile token
+  let cfToken = '';
+  if (__authMode === 'register' && window.turnstile && window.turnstile.getResponse) {
+    cfToken = window.turnstile.getResponse();
+    if (!cfToken) { errEl.textContent = '请完成下方图形验证'; errEl.style.display = 'block'; return; }
+  }
+  try {
+    const r = await fetch('/v1/auth/' + __authMode, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ phone, password, cf_token: cfToken })
+    });
+    const d = await r.json();
+    if (d.error) {
+      errEl.textContent = d.error; errEl.style.display = 'block';
+      if (window.turnstile && window.turnstile.reset) window.turnstile.reset();
+      return;
+    }
+    __authToken = d.token;
+    localStorage.setItem('star_token', __authToken);
+    updateAuthChip();
+    closeAuth();
+    console.log('[auth] ' + __authMode + ' OK:', d.user_id, 'tier:', d.tier);
+  } catch (e) {
+    errEl.textContent = '网络错误: ' + e.message; errEl.style.display = 'block';
+  }
+});
+
+// 实战 60: Turnstile 回调
+function onTurnstileToken(token) {
+  console.log('[turnstile] token received:', token.substring(0, 20) + '...');
+}
+
+function updateAuthChip() {
+  // 顶栏可加 chip 显示登录状态 - 这里简化打 console
+  if (__authToken) {
+    fetch('/v1/auth/me?token=' + encodeURIComponent(__authToken))
+      .then(r => r.json())
+      .then(u => { if (u.user_id) console.log('[auth] logged in:', u.phone, 'tier:', u.tier); else clearAuth(); })
+      .catch(() => clearAuth());
+  }
+}
+function clearAuth() { __authToken = ''; localStorage.removeItem('star_token'); }
+function getAuthHeader() { return __authToken ? { 'Authorization': 'Bearer ' + __authToken } : {}; }
+
+// 启动时检查
+if (__authToken) updateAuthChip();
+</script>
+
+<!-- 实战 53: PWA Service Worker 注册 -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((reg) => console.log('[PWA] SW registered:', reg.scope))
+        .catch((err) => console.warn('[PWA] SW failed:', err));
+    });
+  }
+</script>
+</body>
+</html>

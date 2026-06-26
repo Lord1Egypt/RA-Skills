@@ -1,0 +1,334 @@
+{
+  "name": "stock-monitor-lite",
+  "version": "1.0.0",
+  "description": "股票监控预警技能 - 智能监控 + 深度分析",
+  "config": {
+    "user": {
+      "name": "stock-monitor",
+      "openId": "stock-monitor"
+    },
+    "watchlist": [
+      {
+          "code": "002050",
+          "name": "三花智控",
+          "market": "sz",
+          "type": "individual",
+          "cost": 48.59,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002196",
+          "name": "方正电机",
+          "market": "sz",
+          "type": "individual",
+          "cost": 14.97,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002896",
+          "name": "中大力德",
+          "market": "sz",
+          "type": "individual",
+          "cost": 81.26,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "600126",
+          "name": "杭钢股份",
+          "market": "sh",
+          "type": "individual",
+          "cost": 9.26,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "600410",
+          "name": "华胜天成",
+          "market": "sh",
+          "type": "individual",
+          "cost": 31.44,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002379",
+          "name": "宏创控股",
+          "market": "sz",
+          "type": "individual",
+          "cost": 32.53,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002709",
+          "name": "天赐材料",
+          "market": "sz",
+          "type": "individual",
+          "cost": 48.63,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "601138",
+          "name": "工业富联",
+          "market": "sh",
+          "type": "individual",
+          "cost": 0.00,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002261",
+          "name": "拓维信息",
+          "market": "sz",
+          "type": "individual",
+          "cost": 39.72,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002131",
+          "name": "利欧股份",
+          "market": "sz",
+          "type": "individual",
+          "cost": 8.02,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "002195",
+          "name": "岩山科技",
+          "market": "sz",
+          "type": "individual",
+          "cost": 10.48,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "601179",
+          "name": "中国西电",
+          "market": "sh",
+          "type": "individual",
+          "cost": 18.64,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0
+          }
+      },
+      {
+          "code": "000547",
+          "name": "航天发展",
+          "market": "sz",
+          "type": "individual",
+          "cost": 31.47,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      },
+      {
+          "code": "600219",
+          "name": "南山铝业",
+          "market": "sh",
+          "type": "individual",
+          "cost": 7.352,
+          "alerts": {
+              "cost_pct_above": 15.0,
+              "cost_pct_below": -12.0,
+              "change_pct_above": 4.0,
+              "change_pct_below": -4.0,
+              "volume_surge": 2.0,
+              "ma_monitor": true,
+              "rsi_monitor": true,
+              "macd_monitor": true,
+              "bollinger_monitor": true,
+              "obv_monitor": true,
+              "atr_monitor": true,
+              "gap_monitor": true,
+              "trailing_stop": true
+          }
+      }
+    ],
+    "schedule": {
+      "market_open": "09:30",
+      "market_close": "15:00",
+      "evening_summary": "18:00",
+      "enabled": true
+    }
+  },
+  "features": {
+    "real_time_monitor": true,
+    "alert_system": true,
+    "sentiment_analysis": true,
+    "fund_flow": true,
+    "ma_analysis": true,
+    "rsi_analysis": true,
+    "macd_analysis": true,
+    "bollinger_analysis": true,
+    "obv_analysis": true,
+    "atr_analysis": true,
+    "gap_analysis": true,
+    "trailing_stop": true,
+    "data_cache": true
+  }
+}

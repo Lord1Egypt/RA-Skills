@@ -1,35 +1,26 @@
 ---
-name: "Stat Tool"
-description: "Display detailed file or filesystem status information. Use for checking file permissions, sizes, timestamps, and metadata."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stat-tool"
-sourceUrl: "https://clawhub.ai/skills/stat-tool"
+name: stat-tool
+description: Display detailed file or filesystem status information. Use for checking file permissions, sizes, timestamps, and metadata.
 ---
+# Stat - File Status Utility
 
-# Stat Tool
+Show comprehensive file metadata including size, permissions, ownership, access/modification/change timestamps, and file type. Also supports filesystem statistics.
 
-> Display detailed file or filesystem status information. Use for checking file permissions, sizes, timestamps, and metadata.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stat-tool`
-- **Source URL:** [https://clawhub.ai/skills/stat-tool](https://clawhub.ai/skills/stat-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/stat-tool
+stat-tool [options] <file...>
+```
+
+## Options
+
+- `-c FORMAT`: Custom output format
+- `-f`: Show filesystem status instead of file status
+- `-t`: Terse output format
+
+## Examples
+
+```bash
+stat-tool file.txt
+stat-tool -f /
+stat-tool -c "%s %y" document.pdf
 ```

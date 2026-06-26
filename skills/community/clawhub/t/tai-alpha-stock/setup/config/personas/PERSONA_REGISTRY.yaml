@@ -1,0 +1,20 @@
+# Persona ecosystem registry — versioned schema for tai-alpha-stock.
+version: "1.0.0"
+schema: "persona_v1"
+personas:
+  - id: value_seeker
+    file: value_seeker.yaml
+  - id: growth_hunter
+    file: growth_hunter.yaml
+  - id: momentum_rider
+    file: momentum_rider.yaml
+  - id: macro_observer
+    file: macro_observer.yaml
+  - id: risk_sentinel
+    file: risk_sentinel.yaml
+  - id: event_scout
+    file: event_scout.yaml
+  - id: quality_steward
+    file: quality_steward.yaml
+  - id: dividend_patron
+    file: dividend_patron.yaml

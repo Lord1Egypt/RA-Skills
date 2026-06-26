@@ -1,35 +1,28 @@
 ---
-name: "StitchFlow Legacy Alias"
-description: "Legacy compatibility alias for StitchFlow. Use when a user explicitly references stitch-design-local, or when older prompts and setups still call that skill..."
-category: "creative"
-source: "ClawHub"
-tags: [deprecated, design, legacy, openclaw, stitch, ui, claude-code, codex, prompt-to-html, stitch-sdk, tailwind]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stitch-design-local"
-sourceUrl: "https://clawhub.ai/skills/stitch-design-local"
+name: stitch-design-local
+description: Legacy compatibility alias for StitchFlow. Use when a user explicitly references stitch-design-local, or when older prompts and setups still call that skill name.
+homepage: "https://github.com/yshishenya/stitchflow"
+category: "design"
+platforms: "codex, claude-code, openclaw, github-copilot, gemini-cli"
+install: "bash install.sh --target all"
+compatibility: "Deprecated alias for the StitchFlow skill."
 ---
 
-# StitchFlow Legacy Alias
+# Legacy Alias: stitch-design-local
 
-> Legacy compatibility alias for StitchFlow. Use when a user explicitly references stitch-design-local, or when older prompts and setups still call that skill...
+This skill name is kept only for backward compatibility.
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stitch-design-local`
-- **Source URL:** [https://clawhub.ai/skills/stitch-design-local](https://clawhub.ai/skills/stitch-design-local)
+Canonical skill:
 
-## Overview
+- `stitchflow`
 
+If this alias is invoked, follow the same workflow and rules as the canonical StitchFlow skill:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stitch-design-local
-```
+- Read [../stitchflow/SKILL.md](../stitchflow/SKILL.md)
+- Use the same toolkit at `${STITCH_STARTER_ROOT:-$HOME/.agents/stitch-starter}`
+- Prefer the `stitchflow` name in new prompts, docs, and examples
+
+## Migration note
+
+- old name: `stitch-design-local`
+- current name: `stitchflow`

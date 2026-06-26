@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  cassandra:
+    image: cassandra:4.1
+    container_name: cassandra
+    restart: unless-stopped
+    environment:
+      - MAX_HEAP_SIZE=1024M
+      - HEAP_NEWSIZE=256M
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    networks:
+      - thehive-cortex
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.24
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - thehive-cortex
+
+  thehive:
+    image: strangebee/thehive:5.4
+    container_name: thehive
+    restart: unless-stopped
+    depends_on:
+      - cassandra
+      - elasticsearch
+    ports:
+      - "9000:9000"
+    command:
+      - "--secret"
+      - "THEHIVE_SECRET_PLACEHOLDER"
+      - "--cql-hostnames"
+      - "cassandra"
+      - "--index-backend"
+      - "elasticsearch"
+      - "--es-hostnames"
+      - "elasticsearch"
+    networks:
+      - thehive-cortex
+
+  cortex:
+    image: thehiveproject/cortex:3.1.8-1
+    container_name: cortex
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    ports:
+      - "9001:9001"
+    environment:
+      - job_directory=/tmp/cortex-jobs
+    volumes:
+      - cortex-data:/var/run/cortex
+    networks:
+      - thehive-cortex
+
+volumes:
+  cassandra-data:
+  elasticsearch-data:
+  cortex-data:
+
+networks:
+  thehive-cortex:
+    driver: bridge

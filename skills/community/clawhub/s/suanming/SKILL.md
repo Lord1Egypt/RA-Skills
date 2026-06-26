@@ -1,35 +1,76 @@
 ---
-name: "Suanming"
-description: "六爻八卦算命术。根据用户提供的出生年月日时，运用六爻排盘系统进行命理分析。 适用于：(1) 用户询问算命 (2) 用户想知道命运/运势 (3) 用户提供生辰八字要求分析 (4) 六爻排盘"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/suanming"
-sourceUrl: "https://clawhub.ai/skills/suanming"
+name: suanming
+version: "1.0.0"
+description: |
+  六爻八卦算命术。根据用户提供的出生年月日时，运用六爻排盘系统进行命理分析。
+  适用于：(1) 用户询问算命 (2) 用户想知道命运/运势 (3) 用户提供生辰八字要求分析 (4) 六爻排盘
 ---
 
-# Suanming
+# 六爻八卦算命 Skill
 
-> 六爻八卦算命术。根据用户提供的出生年月日时，运用六爻排盘系统进行命理分析。 适用于：(1) 用户询问算命 (2) 用户想知道命运/运势 (3) 用户提供生辰八字要求分析 (4) 六爻排盘
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/suanming`
-- **Source URL:** [https://clawhub.ai/skills/suanming](https://clawhub.ai/skills/suanming)
+当用户提及以下关键词时激活：
+- 算命
+- 六爻
+- 八卦
+- 命理
+- 运势
+- 生辰八字
+- 算一算
 
-## Overview
+## 输入要求
 
+必须获取用户的完整信息：
+- 出生年份（如 1990）
+- 出生月份（如 8）
+- 出生日期（如 15）
+- 出生时辰（可选，如 子时、丑时、寅时 等）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/suanming
+## 排盘原理
+
+### 1. 确定用神
+
+根据用户出生年份计算：
+- 奇数年（尾数1,3,5,7,9）：阳爻为主
+- 偶数年（尾数0,2,4,6,8）：阴爻为主
+
+### 2. 八卦对应
+
+| 卦名 | 符号 | 五行 | 方位 |
+|------|------|------|------|
+| 乾 | ☰ | 金 | 西北 |
+| 兑 | ☱ | 金 | 西 |
+| 离 | ☲ | 火 | 南 |
+| 震 | ☳ | 木 | 东 |
+| 巽 | ☴ | 木 | 东南 |
+| 坎 | ☵ | 水 | 北 |
+| 艮 | ☶ | 土 | 东北 |
+| 坤 | ☷ | 土 | 西南 |
+
+### 3. 命理分析输出格式
+
 ```
+🎯 六爻八卦命理分析
+
+📅 生辰：{年}年{月}月{日}日
+🌟 主卦：{卦名}卦（{五行}属{方位}）
+
+💫 命理解读：
+{根据八卦五行给出性格分析}
+
+📊 运势预测：
+- 事业：{分析}
+- 财运：{分析}
+- 感情：{分析}
+- 健康：{分析}
+
+⚠️ 温馨提示：本分析仅供娱乐参考
+```
+
+## 注意事项
+
+- 必须先询问获取完整的出生信息
+- 每次分析都必须包含免责声明
+- 语气温和亲切，带有神秘感
+- 给出正向积极的建议为主

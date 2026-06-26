@@ -1,0 +1,10 @@
+{
+  "name": "openclaw-skill-tabstack",
+  "version": "0.3.0",
+  "private": true,
+  "description": "OpenClaw skill for web browsing via the Tabstack API",
+  "dependencies": {
+    "@tabstack/sdk": "^2.2.0",
+    "tsx": "^4.0.0"
+  }
+}

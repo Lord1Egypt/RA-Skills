@@ -1,35 +1,1033 @@
 ---
-name: "Ultimate Sleep Science"
-description: "Complete, self-contained sleep science knowledge base. Use this skill whenever a user asks anything related to sleep timing, sleep debt, naps, caffeine, circ..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sleep-science"
-sourceUrl: "https://clawhub.ai/skills/sleep-science"
+name: sleep-science
+description: Complete, self-contained sleep science knowledge base. Use this skill whenever a user asks anything related to sleep timing, sleep debt, naps, caffeine, circadian rhythms, sleep stages, chronotypes, or sleep optimization. An agent with this skill can answer questions like "what time should I sleep if I wake at 6am?", "how much sleep debt do I have?", or "when should I stop drinking coffee?" instantly using the formulas and rules contained here. No external tools needed.
+version: 1.0.1
+sources: Peer-reviewed sleep science literature, including research by Matthew Walker, Till Roenneberg, Charles Czeisler, Russell Foster, Nathaniel Kleitman, and the American Academy of Sleep Medicine (AASM).
 ---
 
-# Ultimate Sleep Science
+# Sleep Science — Complete Agent Knowledge Base
 
-> Complete, self-contained sleep science knowledge base. Use this skill whenever a user asks anything related to sleep timing, sleep debt, naps, caffeine, circ...
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sleep-science`
-- **Source URL:** [https://clawhub.ai/skills/sleep-science](https://clawhub.ai/skills/sleep-science)
+## SECTION 1 — Core Principles and Agent Usage Instructions
 
-## Overview
+### What This Skill Is For
 
+This skill enables an AI agent to answer any question about sleep timing, physiology, optimization, substances, disorders, chronotypes, and performance — using only the formulas, tables, and rules embedded in this document. No external tools, APIs, or sources are required.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sleep-science
+### How to Use This Skill
+
+1. **Read** the user's question carefully.
+2. **Identify** which formula, table, or rule applies using the decision tree below.
+3. **Apply** the formula or rule to the user's specific inputs.
+4. **Answer** with the result, the reasoning, and any relevant caveats from this document.
+
+All information in this document is empirically validated. Provide clear, direct guidance where strong evidence exists. Where evidence is qualified, ranges exist, or clinical matters are involved, include appropriate uncertainty, individual variation, and referral language. Do not omit safety qualifications or meaningful caveats on clinical topics.
+
+### Decision Tree
+
+| If the user asks about... | Go to Section |
+|---------------------------|---------------|
+| Sleep timing, bedtime, wake time | Section 6 (Formulas 1–2) |
+| Sleep stages, cycles, architecture | Section 2 |
+| Why they feel tired | Sections 2, 3, 10 |
+| Circadian rhythm, body clock | Sections 3, 4 |
+| Chronotype, night owl, morning person | Section 5 |
+| Sleep debt, recovery | Section 6 (Formula 3) |
+| Sleep quality, efficiency | Section 6 (Formula 4) |
+| Caffeine timing, cutoff | Section 6 (Formula 5) |
+| Naps | Section 6 (Formula 6) |
+| Social jetlag | Sections 5, 6 (Formula 7) |
+| Light, temperature, environment | Section 7 |
+| Hormones (GH, testosterone, cortisol) | Section 8 |
+| Sleep needs by age | Section 9 |
+| Sleep inertia, grogginess | Section 10 |
+| Alcohol, cannabis, nicotine, melatonin | Section 11 |
+| Exercise and sleep | Section 12 |
+| Sleep disorders | Section 13 |
+| Polyphasic sleep | Section 14 |
+| Memory, performance, cognition | Section 15 |
+| Sleep hygiene rules | Section 16 |
+| Quick formula reference | Section 17 |
+| Pre-built scenario answers | Section 18 |
+| Research citations | Section 19 |
+
+### Required Inputs
+
+Before applying any formula, confirm you have the user's:
+- **Target wake time** (or actual wake time)
+- **Current sleep time** (or target bedtime)
+- **Caffeine habits** (last caffeine intake, typical daily amount)
+- **Chronotype** (morning, intermediate, or evening preference)
+
+If any of these are missing and the formula requires them, ask for them before proceeding.
+
+---
+
+## SECTION 2 — Human Sleep Architecture (The Complete Map)
+
+### Sleep Stages
+
+**N1 (NREM Stage 1):** Light sleep characterized by theta waves (4–7 Hz). Duration: 1–7 minutes per episode. Comprises approximately 5% of total sleep. Hypnic jerks (sudden muscle contractions) are common. The sleeper is easily awakened. Represents the transition from wakefulness to sleep. No restorative value on its own.
+
+**N2 (NREM Stage 2):** Defined by sleep spindles (bursts of 12–15 Hz oscillations generated by the thalamus) and K-complexes (large, slow waveforms). Body temperature drops; heart rate slows. Comprises approximately 50% of total sleep across the night. Memory consolidation begins. The sleeper is harder to wake than in N1. Power naps target this stage.
+
+**N3 (NREM Stage 3 / Slow-Wave Sleep / Deep Sleep):** Defined by delta waves (0.5–4 Hz, high amplitude). Hardest stage to wake from; waking from N3 causes maximum **sleep inertia**. Physical repair occurs: growth hormone is released, immune cytokines are produced, cellular tissue is rebuilt. Declarative memory consolidation (facts, episodic memories) is consolidated. Comprises approximately 20–25% of total sleep in young adults. Decreases significantly with age (a 70-year-old has ~80% less N3 than a 25-year-old). Concentrated in the first two sleep cycles of the night.
+
+**REM (Rapid Eye Movement):** The brain is nearly as active as during wakefulness (high-frequency, low-amplitude EEG). Complete skeletal muscle atonia prevents acting out dreams. Vivid dreaming occurs. Functions: emotional memory processing and regulation, creative associative thinking, synaptic pruning, procedural memory consolidation. Comprises approximately 20–25% of total sleep. Concentrated in the last two cycles of the night (cycles 4–5). The last 90-minute cycle of an 8-hour night is almost entirely REM.
+
+### Sleep Cycle Architecture
+
+One complete sleep cycle = **N1 → N2 → N3 → N2 → REM**
+
+- Average cycle duration: **90 minutes** (range: 80–120 min; 90 min is the validated scheduling standard)
+- A typical adult night of 8 hours = approximately **5 full cycles** (5 × 90 min = 450 min = 7.5 hours) plus ~14 minutes average **Sleep Onset Latency (SOL)**
+
+**Cycles are NOT uniform across the night:**
+
+- Cycles 1–2: Dominated by N3 (deep sleep). REM is minimal (often 5–10 min).
+- Cycles 3–4+: N3 diminishes to near zero. REM expands to 45–60 min per cycle.
+
+**Critical implication:** Cutting sleep short does not proportionally reduce all stages. Losing the last 2 hours of an 8-hour window eliminates up to 60% of total REM sleep for that night, while barely touching N3.
+
+### Nightly Cycle Composition Table
+
+| Cycle | Clock Time (10 PM sleep) | Dominant Stage | Key Function |
+|-------|--------------------------|----------------|--------------|
+| 1 | 10:00 PM – 11:30 PM | N3 (Deep) | Physical repair, growth hormone release |
+| 2 | 11:30 PM – 1:00 AM | N3 (Deep) | Immune function, cellular restoration |
+| 3 | 1:00 AM – 2:30 AM | Mixed (N2 + early REM) | Memory consolidation |
+| 4 | 2:30 AM – 4:00 AM | REM | Emotional processing, creativity |
+| 5 | 4:00 AM – 5:30 AM | REM | Creativity, synaptic pruning, procedural memory |
+
+---
+
+## SECTION 3 — The Two-Process Model of Sleep Regulation
+
+The timing, duration, and quality of sleep are governed by the interaction of two independent biological processes: **Process S** (sleep pressure) and **Process C** (circadian rhythm). This model was formalized by Alexander Borbély (1982) and remains the foundational framework of sleep science.
+
+### Process S — Sleep Pressure (Adenosine Accumulation)
+
+**Adenosine** is a metabolic byproduct of neuronal energy use (ATP breakdown). It accumulates in the basal forebrain and striatum continuously from the moment you wake. As adenosine levels rise, it binds to A1 and A2A receptors in the brain, producing the sensation of sleepiness and slowing neural firing.
+
+- Sleep pressure is directly proportional to time awake.
+- After approximately 16 continuous hours awake, sleep pressure becomes overwhelming for most adults.
+- During sleep — primarily during N3 — adenosine is cleared from the brain.
+- The brain wakes feeling "fresh" because adenosine has been metabolized overnight.
+
+**How caffeine interacts with Process S:**
+Caffeine does NOT reduce adenosine. It blocks adenosine receptors (competitive antagonism at A1 and A2A receptors), masking the sensation of sleep pressure. When caffeine is metabolized and its receptor blockade ends, the accumulated adenosine (including adenosine that built up *while* caffeine was blocking perception of it) floods the receptors simultaneously — producing the characteristic "caffeine crash."
+
+### Process C — The Circadian Clock
+
+The **circadian clock** is an approximately 24.2-hour internal oscillator. It is entrained daily to 24 hours by environmental time cues, primarily light. The master clock is located in the **Suprachiasmatic Nucleus (SCN)** of the hypothalamus.
+
+The circadian clock drives two competing signals:
+1. An **alerting signal** during waking hours that actively opposes sleep pressure, keeping the brain awake despite rising adenosine.
+2. A **sleep-promoting signal** during habitual sleep hours, working in concert with high adenosine to facilitate and maintain sleep.
+
+**Primary zeitgeber (time-giver):** Light — specifically ~480 nm short-wavelength (blue-spectrum) light detected by **melanopsin-containing intrinsically photosensitive retinal ganglion cells (ipRGCs)**, which project directly to the SCN via the retinohypothalamic tract.
+
+**Secondary zeitgebers:** Meal timing, exercise, social interaction, ambient temperature.
+
+### The Interaction Between S and C
+
+- **Sleep quality** = Process S and Process C in alignment. Both must support sleep simultaneously.
+- **Wake maintenance zone:** The 1–2 hours before habitual bedtime represent the period of *maximum* circadian alerting signal — counterintuitively, it is hardest to fall asleep just before your normal bedtime window opens. This is why going to bed 30 minutes early often fails.
+- **Sleep gate:** When the circadian alerting signal begins to fall (at or after habitual sleep time) AND adenosine is high, sleep initiation becomes easy and rapid. This is the window for optimal sleep onset.
+- **Misalignment consequences:** Shift work, social jetlag, and jet lag all represent Process C and Process S out of phase — one or both are disrupted, producing fragmented, non-restorative sleep.
+
+---
+
+## SECTION 4 — Circadian Rhythm Physiology
+
+### Core Body Temperature (CBT) Rhythm
+
+The body's core temperature follows a reliable 24-hour sinusoidal rhythm.
+
+- **Peak:** Approximately 6–7 PM (late afternoon/early evening) — roughly 4–5 hours before typical sleep time.
+- **Minimum (CBT_min):** Approximately 4–5 AM — roughly 2 hours before habitual wake time for an intermediate chronotype.
+- **Sleep initiation requirement:** Core body temperature must **fall** by approximately 1–2°F (0.5–1.1°C) to initiate sleep. The body dissipates heat through peripheral vasodilation (hands, feet, face).
+- **Optimal sleep room temperature: 65–68°F (18–20°C).** Rooms above 70°F (21°C) measurably suppress N3; rooms below 60°F (15.5°C) increase metabolic arousal.
+
+**Warm bath/shower protocol:** A 10-minute warm bath at 104–108.5°F (40–42.2°C) taken 60–90 minutes before bed induces vasodilation. The resulting post-bath core temperature drop accelerates sleep onset (reduces SOL by ~10 minutes on average) and increases SWS by approximately 8%. The mechanism is counterintuitive: heat applied externally triggers heat dissipation, cooling the core.
+
+### Melatonin Rhythm
+
+Melatonin is produced by the **pineal gland** from serotonin (the serotonin → N-acetylserotonin → melatonin pathway).
+
+- **DLMO (Dim Light Melatonin Onset):** Melatonin secretion begins approximately 2 hours before habitual sleep time when in dim-light conditions.
+- **Peak:** Approximately 2–3 AM.
+- **Offset:** Approximately 30–60 minutes before natural wake time.
+- Melatonin is a **timing signal**, not a sedative. It signals the body that darkness has arrived, facilitating the transition to sleep, but does not directly generate sleep.
+- **Light suppression:** Any light >10 lux can suppress melatonin. Typical indoor lighting (~200 lux) suppresses melatonin by approximately 50%. Even a bedside lamp (~8 lux) can delay DLMO.
+- **Blue light (480 nm)** is the most potent melatonin suppressor due to its direct action on ipRGC melanopsin.
+
+### Cortisol Rhythm
+
+- **Cortisol Awakening Response (CAR):** Cortisol surges 50–100% above baseline in the 30–45 minutes after waking.
+- CAR functions: mobilizes energy stores, activates the immune system, primes the prefrontal cortex for executive function.
+- CAR is **circadian-dependent**, not alarm-dependent. Irregular sleep schedules blunt or distort the CAR.
+- Cortisol remains elevated through the morning and falls through the afternoon.
+- At habitual sleep time, cortisol should be near its daily minimum. Chronic sleep restriction elevates evening cortisol, which inhibits sleep quality — directly opposing melatonin and delaying sleep onset.
+
+### Alertness Rhythm (Two-Peak Model)
+
+For an **intermediate chronotype** (wake time ~7 AM):
+
+| Time | Alertness State |
+|------|-----------------|
+| 7–9 AM | Rising — cortisol awakening response |
+| 9–11 AM | **Primary alertness peak** — optimal for analytical, demanding cognitive work |
+| 1–3 PM | **Circadian trough** — genuine biological dip unrelated to lunch content |
+| 3–5 PM | Recovery from trough |
+| 5–7 PM | **Secondary alertness peak** — optimal for physical performance |
+| 8–10 PM | Alertness declining; melatonin rising |
+
+The post-lunch dip is a genuine circadian phenomenon driven by the SCN, not by carbohydrate intake. This is why the 1–3 PM window is the optimal nap window.
+
+---
+
+## SECTION 5 — Chronotypes
+
+**Chronotype** is the genetically influenced, individual preference for the timing of sleep and activity relative to the solar day. It is not a behavioral habit. It is not willpower. It is measurable via the **MCTQ (Munich Chronotype Questionnaire)**, which uses MSFsc (mid-sleep point on free days, corrected for sleep debt) as its primary metric.
+
+### Chronotype Classification
+
+| Chronotype | MSFsc | Typical Sleep Window | Population % |
+|------------|-------|----------------------|--------------|
+| Definite Morning (Early) | Before 2:30 AM | ~9 PM – 5 AM | ~12.5% |
+| Moderate Morning | 2:30–3:30 AM | ~10 PM – 6 AM | ~12.5% |
+| Intermediate | 3:30–5:00 AM | ~11 PM – 7 AM | ~50% |
+| Moderate Evening | 5:00–6:00 AM | ~12 AM – 8 AM | ~12.5% |
+| Definite Evening (Late) | 6:00 AM or later | ~1–3 AM – 9–11 AM | ~12.5% |
+
+### Chronotype Shifts Across the Lifespan
+
+- **Children:** Earlier chronotype (advanced phase).
+- **Teenagers:** Shift to the latest chronotype of any life stage. This is biologically driven by puberty-induced changes in melatonin timing — not laziness or habit. The American Academy of Pediatrics classifies school start times before 8:30 AM as harmful for adolescents.
+- **Adults (20–50):** Gradually shift earlier as age increases.
+- **Post-50:** Pronounced shift toward morning chronotype.
+
+### Social Jetlag Formula
+
 ```
+Social Jetlag (hours) = |MSF_sc − MSW|
+
+Where:
+  MSF_sc = mid-sleep point on free days (corrected for sleep debt)
+  MSW    = mid-sleep point on work/school days
+```
+
+**Interpretation:**
+
+| Social Jetlag | Health Implication |
+|---------------|--------------------|
+| < 1 hour | Minimal; low health risk |
+| 1–2 hours | Moderate; measurable metabolic and cognitive impairment |
+| > 2 hours | Severe; associated with obesity, diabetes, depression, cardiovascular disease |
+
+1 hour of social jetlag corresponds to approximately a 33% increase in obesity risk (Roenneberg et al., 2012).
+
+**Agent rule:** Never instruct an evening chronotype to simply "go to bed earlier." Their circadian clock cannot initiate sleep at a morning-type time without structured phase-shifting (light therapy, gradual schedule advancement, or low-dose melatonin timed appropriately). Attempting to force an earlier bedtime on an evening type produces: extended sleep onset latency, fragmented sleep, and residual sleep debt.
+
+---
+
+## SECTION 6 — Sleep Timing Formulas (Core Agent Toolkit)
+
+---
+
+### FORMULA 1: Optimal Bedtime from Target Wake Time
+
+```
+Bedtime = Wake Time − (N × 90 min) − SOL
+
+Where:
+  N   = number of complete sleep cycles desired (5 = recommended for adults)
+  SOL = Sleep Onset Latency = 14 minutes (validated population average)
+  90  = one sleep cycle in minutes
+```
+
+**Standard cycle options:**
+
+| Cycles | Total Sleep Duration | Appropriate For |
+|--------|----------------------|-----------------|
+| 4 | 6h 14min | Short-term minimum; not sustainable |
+| 5 | 7h 44min | **Optimal for most adults** |
+| 6 | 9h 14min | Recovery sleep, high athletic demand, illness |
+
+**Worked Example:**
+- Target wake time: 6:00 AM
+- Desired cycles: 5
+- Bedtime = 6:00 AM − (5 × 90 min) − 14 min
+- = 6:00 AM − 450 min − 14 min
+- = 6:00 AM − 464 min
+- = 6:00 AM − 7h 44min
+- **Bedtime = 10:16 PM**
+
+**Quick Reference Table — Wake Time → Optimal Bedtime:**
+
+| Wake Time | 4 Cycles (6h 14m) | 5 Cycles (7h 44m) | 6 Cycles (9h 14m) |
+|-----------|-------------------|-------------------|-------------------|
+| 5:00 AM | 10:46 PM | 9:16 PM | 7:46 PM |
+| 5:30 AM | 11:16 PM | 9:46 PM | 8:16 PM |
+| 6:00 AM | 11:46 PM | 10:16 PM | 8:46 PM |
+| 6:30 AM | 12:16 AM | 10:46 PM | 9:16 PM |
+| 7:00 AM | 12:46 AM | 11:16 PM | 9:46 PM |
+| 7:30 AM | 1:16 AM | 11:46 PM | 10:16 PM |
+| 8:00 AM | 1:46 AM | 12:16 AM | 10:46 PM |
+
+---
+
+### FORMULA 2: Optimal Wake Time from Known Bedtime
+
+```
+Wake Time = Bedtime + SOL + (N × 90 min)
+
+Where SOL = 14 min, N = 5 (default)
+```
+
+**Worked Example:**
+- Bedtime: 11:00 PM
+- Wake Time = 11:00 PM + 14 min + (5 × 90 min)
+- = 11:00 PM + 14 min + 450 min
+- = 11:00 PM + 464 min
+- = 11:00 PM + 7h 44min
+- **Wake Time = 6:44 AM**
+
+Agent rule: Round to the nearest 5 or 15 minutes for practical usability.
+
+---
+
+### FORMULA 3: Sleep Debt Calculation
+
+```
+Daily Sleep Debt = Sleep Need − Actual Sleep Obtained (TST)
+Cumulative Sleep Debt = Σ (Daily Sleep Debt) over tracking period
+
+Where:
+  Sleep Need = age-appropriate baseline (see Section 9; 8h for adults 26–64)
+  TST        = Total Sleep Time (actual minutes asleep, not time in bed)
+```
+
+**Worked Example:**
+- Adult (age 30), sleep need = 8 hours
+- Monday: 6h slept → debt = +2h
+- Tuesday: 6.5h → debt = +1.5h
+- Wednesday: 7h → debt = +1h
+- Thursday: 5.5h → debt = +2.5h
+- Friday: 9h → repaid = −1h
+- **Cumulative sleep debt = 2 + 1.5 + 1 + 2.5 − 1 = 6 hours**
+
+**Critical Rules for Sleep Debt:**
+
+- Sleep debt is NOT repaid 1:1. After chronic sleep restriction, objective cognitive performance deficits persist for up to 3 days after full recovery nights (Van Dongen et al., 2003).
+- Subjective sleepiness recovers faster than objective performance. People feel recovered before their brain function is restored.
+- Maximum productive single-night recovery: approximately 2 extra hours. Sleeping in more than 2 hours beyond normal wake time disrupts the subsequent night.
+- Acute sleep debt (1–2 nights): largely reversible within 2–3 recovery nights.
+- Chronic sleep debt (weeks to months): associated with lasting metabolic, immune, hormonal, and neurological consequences that are not fully reversed by short-term recovery.
+- The "I'll sleep on the weekend" strategy is scientifically insufficient for chronic debt.
+
+**Performance Impairment Thresholds:**
+
+| Duration of Wakefulness | Cognitive Equivalent |
+|-------------------------|----------------------|
+| 17–19 hours awake | 0.05% BAC (legally impaired in many jurisdictions) |
+| 24 hours awake | 0.10% BAC (legally drunk in most jurisdictions) |
+| 6 nights of 4h sleep | Performance = 48 hours total sleep deprivation |
+
+---
+
+### FORMULA 4: Sleep Efficiency
+
+```
+Sleep Efficiency (SE%) = (Total Sleep Time / Time in Bed) × 100
+
+Where:
+  TST = total minutes asleep
+  TIB = total minutes from lights-out to final wake
+```
+
+**Benchmarks (AASM):**
+
+| SE% | Classification |
+|-----|----------------|
+| ≥ 85% | Healthy |
+| 80–84% | Borderline |
+| < 80% | Poor; possible insomnia or sleep disorder |
+| 90–95% | Excellent |
+
+**Worked Example:**
+- In bed: 10:30 PM; final wake: 6:30 AM → TIB = 480 min
+- SOL = 20 min; WASO = 35 min
+- TST = 480 − 20 − 35 = 425 min
+- SE% = (425 / 480) × 100 = **88.5%** ✓
+
+**Key sleep quality metrics:**
+
+- **SOL (Sleep Onset Latency):** Time from lights-out to sleep onset. Normal: 10–20 min. <5 min = severely sleep-deprived. >30 min = possible insomnia.
+- **WASO (Wake After Sleep Onset):** Total wake time after first sleep onset. Normal: <20 min. >30 min = poor continuity.
+- **TST (Total Sleep Time):** Actual sleep. Target: 7–9 hours for adults.
+- **TIB (Time in Bed):** Should not grossly exceed TST. TIB >> TST = low SE%.
+
+---
+
+### FORMULA 5: Caffeine Cutoff Time
+
+```
+Caffeine Cutoff Time = Target Bedtime − (Half-Lives × Half-Life Duration)
+
+Standard rule  (2 half-lives): Cutoff = Bedtime − 12h
+Conservative rule (3 half-lives): Cutoff = Bedtime − 18h
+
+Caffeine half-life: 5–7 hours (use 6h as the standard)
+Caffeine quarter-life: ~12 hours (25% remains after 12h)
+```
+
+**Quick reference table:**
+
+| Target Bedtime | Standard Cutoff (Bedtime − 12h) | Conservative Cutoff (Bedtime − 18h) |
+|----------------|--------------------------------|--------------------------------------|
+| 9:00 PM | 9:00 AM | 3:00 AM (previous day) |
+| 10:00 PM | 10:00 AM | 4:00 AM |
+| 11:00 PM | 11:00 AM | 5:00 AM |
+| 12:00 AM | 12:00 PM (noon) | 6:00 AM |
+
+**Evidence-based cutoff guidance:** The minimum evidence-based cutoff is **Bedtime − 6 hours** (Drake et al., 2013: caffeine consumed 6 hours before bedtime significantly reduces TST). The pharmacokinetically derived 12-hour cutoff (Bedtime − 12h, leaving 25% at bedtime) provides a more conservative margin and better protects N3 depth. The commonly cited "no caffeine after 2 PM" social guideline maps to Bedtime − 8h for a 10 PM sleeper — better than the 6-hour floor, but less protective than the 12-hour formula. **Use Bedtime − 12h as the recommended cutoff. Use Bedtime − 6h as the absolute minimum. Apply the earlier cutoff for larger doses, slow metabolizers, or sleep-sensitive individuals.**
+
+**Caffeine pharmacokinetics (6-hour half-life):**
+
+| Time After Consumption | % Caffeine Remaining |
+|------------------------|---------------------|
+| 0h | 100% |
+| 6h | 50% |
+| 12h | 25% |
+| 18h | 12.5% |
+| 24h | 6.25% |
+
+**Beyond sleep latency:** Even when caffeine does not prevent sleep onset, it reduces N3 (slow-wave sleep) by up to 20% — the equivalent, in terms of deep sleep depth, of aging the brain 10–15 years (Walker, 2017). This effect occurs even when the person self-reports sleeping "fine" after caffeine.
+
+**Genetic variation (CYP1A2 gene, rs762551):**
+
+| Genotype | Metabolizer Type | Caffeine Half-Life | Note |
+|----------|------------------|--------------------|------|
+| AA | Faster | ~3–5 hours | Higher CYP1A2 inducibility |
+| AC or CC | Slower | ~6–9 hours | Lower CYP1A2 inducibility |
+
+Population frequencies vary substantially by ancestry — treat genotype as a directional modifier, not a deterministic predictor. Slow metabolizers require an earlier cutoff time than the standard formula suggests.
+
+**Caffeine dose reference:**
+
+| Source | Approximate Caffeine |
+|--------|---------------------|
+| Espresso (single shot, 30 ml) | 60–80 mg |
+| Drip coffee (240 ml) | 80–120 mg |
+| Filter coffee (240 ml) | 100–150 mg |
+| Cold brew (240 ml) | 150–240 mg |
+| Energy drink (250 ml) | 80–160 mg |
+| Black tea (240 ml) | 40–70 mg |
+| Green tea (240 ml) | 25–45 mg |
+| Dark chocolate (40 g) | 20–60 mg |
+| Decaf coffee (240 ml) | 2–15 mg |
+
+---
+
+### FORMULA 6: Nap Duration Rules
+
+Nap effectiveness is determined by which sleep stages are reached. Stage entry timing is predictable.
+
+```
+Stage entry timeline from sleep onset:
+  0–5 min:   N1 (hypnagogic state, transitional)
+  5–15 min:  N2 (light sleep; restorative; target for power naps)
+  15–30 min: N2 deepening
+  30–45 min: N3 entry begins
+  45–90 min: REM entry (after N3 completion)
+  90 min:    Completion of one full cycle
+```
+
+**The Four Evidence-Based Nap Types:**
+
+| Nap Type | Duration | Stages Reached | Benefits | Risks |
+|----------|----------|----------------|----------|-------|
+| Micro-nap | 1–5 min | N1 | Mild alertness boost | Minimal |
+| Power Nap | 10–20 min | N1, N2 | Alertness, motor performance, mood | Minimal sleep inertia |
+| SWS Nap | 45–60 min | N1, N2, N3 | Deep physical restoration, memory consolidation | Significant sleep inertia (15–30 min) |
+| Full Cycle Nap | 90 min | N1, N2, N3, REM | Complete cognitive and physical restoration | Minimal inertia; delays nighttime sleep onset |
+
+**The Nappuccino (Coffee Nap) — validated protocol:**
+
+1. Consume 200 mg caffeine (approximately 2 espresso shots or 1.5 cups drip coffee).
+2. Immediately lie down for a 20-minute nap.
+3. Wake as caffeine begins reaching peak blood concentration (absorption time: ~20–30 min).
+4. Mechanism: the nap clears adenosine; caffeine simultaneously blocks remaining adenosine receptors.
+5. Result: the coffee nap outperforms either caffeine alone or a nap alone on measures of alertness and performance.
+
+**Nap Cutoff Rule:**
+
+```
+Latest acceptable nap END time = Habitual Bedtime − 6 hours
+
+Example: 10:30 PM bedtime → last nap must END by 4:30 PM
+Example: 11:00 PM bedtime → last nap must END by 5:00 PM
+```
+
+**Optimal nap window:** 1:00 PM – 3:00 PM. This aligns with the circadian trough, minimizes disruption to nighttime sleep pressure, and is consistent with biphasic sleep patterns found in non-industrialized populations.
+
+Napping outside this window — particularly after 4 PM — measurably suppresses nighttime N3 depth and delays sleep onset.
+
+---
+
+### FORMULA 7: Social Jetlag and Schedule Alignment
+
+(Full social jetlag formula is in Section 5. Additional rules:)
+
+```
+Circadian Adjustment Rate:
+  Eastward phase advance (earlier):  1–1.5 hours per day maximum
+  Westward phase delay (later):      1.5–2 hours per day maximum
+
+Example: Shifting sleep from 2:00 AM to 11:00 PM requires 1–2 weeks of gradual adjustment.
+```
+
+**Practical Shifting Protocol (15-Minute Rule):**
+- Move bedtime and wake time earlier by **15 minutes every 2 days**.
+- Combine with morning bright light exposure (10,000 lux, 10–30 min within 30 min of wake time).
+- Avoid light in the 2 hours before the new target bedtime.
+- This protocol produces a circadian phase advance with minimal disruption.
+
+---
+
+## SECTION 7 — Light, Temperature, and Environmental Science
+
+### Light and Sleep
+
+**Morning bright light (within 30–60 min of waking):**
+- Dose: 10,000 lux for 10–30 minutes, or natural outdoor light (overcast sky ≈ 10,000 lux; direct sunlight ≈ 100,000 lux).
+- Effects: resets the circadian clock to an earlier phase; triggers the cortisol awakening response; suppresses melatonin carryover from the previous night.
+- Outcome: improves sleep quality and onset efficiency that same evening (Cajochen et al.).
+
+**Evening light avoidance (2–3 hours before bed):**
+- Any light >10 lux can suppress melatonin.
+- 200 lux (typical indoor lighting) = approximately 50% melatonin suppression.
+- Blue-spectrum light (450–500 nm) is most potent.
+- Screen brightness at arm's length: typically 50–300 lux depending on device and settings.
+- Red/amber light (>600 nm wavelength) has minimal melatonin-suppressing effect and is acceptable before bed.
+
+**Night-light rules:**
+- Darkness is the biological default for melatonin production.
+- Even brief light exposure at night (e.g., checking a phone for 30 seconds) resets the circadian clock phase.
+- Sleeping with a night-light on measurably increases obesity risk (Park et al., NIEHS, 2019).
+
+### Temperature Protocols
+
+**Warm bath/shower protocol:**
+- Timing: 60–90 minutes before bed.
+- Temperature: 104–108.5°F (40–42.2°C).
+- Duration: minimum 10 minutes.
+- Mechanism: vasodilation → rapid post-bath core temperature drop → accelerated sleep onset and deeper N3.
+- Validated effect: reduces SOL by ~10 minutes; increases SWS by ~8%.
+- **Safety note:** These temperatures may be unsafe for older adults, pregnant individuals, or those with hypertension, cardiovascular disease, or circulatory conditions. In these cases, use a lower temperature (100–104°F / 38–40°C), limit duration, and stop immediately if dizzy, overheated, or faint.
+
+**Bedroom temperature guidelines:**
+
+| Temperature | Sleep Effect |
+|-------------|--------------|
+| 65–68°F (18.3–20°C) | Optimal for N3 and REM depth |
+| 70–75°F (21–24°C) | Measurable N3 suppression |
+| >75°F (>24°C) | Significantly suppresses N3 and REM |
+| <60°F (<15.5°C) | Increases metabolic arousal; disrupts continuity |
+
+**Peripheral vasodilation tip:** Wearing socks to bed accelerates sleep onset by increasing blood flow to the feet, which dissipates core heat more rapidly.
+
+---
+
+## SECTION 8 — Hormones, Neurotransmitters, and Sleep
+
+### Growth Hormone (GH)
+
+- 50–75% of daily growth hormone release occurs during the **first N3 cycle** (approximately 10:30–11:30 PM for a 10:00 PM sleeper).
+- GH drives cellular repair, muscle protein synthesis, and fat metabolism.
+- Sleep deprivation dramatically suppresses GH pulse amplitude.
+- Daytime naps containing sufficient N3 can produce a GH pulse, but at substantially lower amplitude than the first nocturnal cycle (approximately 50–70% at best). Daytime naps do not fully substitute for nighttime first-cycle GH release.
+- **Practical rule:** The first sleep cycle before midnight carries the highest GH yield. Late bedtimes delay and reduce the first N3 cycle.
+
+### Testosterone
+
+- Testosterone production is concentrated during **REM sleep in the early morning hours** (cycles 4–5).
+- 1 week of sleeping less than 6 hours per night reduces testosterone levels by 10–15% in young men (Leproult & Van Cauter, 2011).
+- Testosterone concentration in blood is maximum upon waking.
+
+### Leptin and Ghrelin (Hunger Hormones)
+
+| Hormone | Role | Effect of <6h Sleep |
+|---------|------|---------------------|
+| Leptin | Satiety signal | Decreases ~18% |
+| Ghrelin | Hunger signal | Increases ~28% |
+
+Combined result: approximately +24% increase in appetite, preferentially for high-carbohydrate, calorie-dense foods. This is a direct biological mechanism linking sleep deprivation to weight gain and obesity.
+
+### Cortisol
+
+- Normal pattern: low at habitual bedtime → rises through the second half of sleep → peaks 30–45 min after waking (CAR).
+- Disrupted pattern (chronic sleep restriction): elevated evening cortisol → difficulty initiating sleep → reduced N3 → further cortisol elevation → self-reinforcing cycle.
+- Elevated cortisol during sleep suppresses immune function, tissue repair, and growth hormone.
+
+### Adenosine
+
+- Accumulates in the basal forebrain and striatum throughout waking hours.
+- Cleared primarily during N3 sleep.
+- The "caffeine crash": caffeine blocks adenosine receptors but does not clear adenosine. When the drug is metabolized, all accumulated adenosine (including what built up while caffeine masked it) floods the receptors simultaneously.
+
+### Serotonin → Melatonin Pathway
+
+- Serotonin is the direct precursor to melatonin (serotonin → N-acetylserotonin → melatonin, via AANAT and ASMT enzymes).
+- Serotonin is synthesized from dietary tryptophan (sources: turkey, eggs, cheese, nuts, seeds).
+- Daytime sunlight exposure increases serotonin synthesis, making more precursor available for melatonin production at night.
+- This is one mechanism by which daytime light exposure improves nighttime sleep quality.
+
+---
+
+## SECTION 9 — Sleep Needs by Age (AASM/NSF Validated Ranges)
+
+| Age Group | Age Range | Recommended Sleep | Acceptable Range |
+|-----------|-----------|-------------------|------------------|
+| Newborn | 0–3 months | 14–17 hours | 11–19 hours |
+| Infant | 4–11 months | 12–15 hours | 10–18 hours |
+| Toddler | 1–2 years | 11–14 hours | 9–16 hours |
+| Preschool | 3–5 years | 10–13 hours | 8–14 hours |
+| School-age | 6–13 years | 9–11 hours | 7–12 hours |
+| Teen | 14–17 years | 8–10 hours | 7–11 hours |
+| Young Adult | 18–25 years | 7–9 hours | 6–11 hours |
+| Adult | 26–64 years | 7–9 hours | 6–10 hours |
+| Older Adult | ≥65 years | 7–8 hours | 5–9 hours |
+
+**Critical notes:**
+
+- True "short sleepers" (fully functional on <6h) represent fewer than **1% of the population** and are linked to a specific mutation in the **DEC2 gene**. For all practical purposes, an individual claiming to need only 6 hours is experiencing accumulated, undetected cognitive deficit — their subjective alertness has recalibrated to their impaired baseline.
+- After chronic sleep restriction, people lose the ability to accurately assess their own impairment. This is documented in Van Dongen et al. (2003).
+- Teenagers' delayed sleep phase is **biological** (puberty-driven melatonin shift), not behavioral. School start times before 8:30 AM are classified by the American Academy of Pediatrics as harmful.
+
+---
+
+## SECTION 10 — Sleep Inertia
+
+**Sleep inertia** is the transitional state of cognitive impairment and subjective grogginess immediately upon waking. Caused by: (1) residual adenosine in the brain that has not been fully metabolized, and (2) residual delta-wave activity that persists briefly into wakefulness.
+
+**Duration:** 15 minutes to 2 hours, depending on the stage from which awakening occurred.
+
+| Wake-from Stage | Sleep Inertia Duration |
+|-----------------|----------------------|
+| N1 or REM | Minimal (5–15 min) |
+| N2 | Moderate (15–30 min) |
+| N3 | Severe (30 min – 2 hours) |
+
+**Why it matters:** During sleep inertia, decision-making ability, reaction time, and memory retrieval are impaired to a degree comparable to mild sleep deprivation. This is critical for surgeons, pilots, emergency responders, and anyone required to perform immediately upon waking.
+
+**Evidence-based mitigation strategies:**
+
+1. **Time wake for cycle end:** Use Formula 1/2 to wake during N1 or REM rather than N3. This is the most effective mitigation.
+2. **Morning bright light:** Triggers cortisol awakening response and suppresses residual melatonin.
+3. **Caffeine after 20–30 min:** Allow natural inertia clearance before caffeine is needed (it takes 20–30 min to act anyway).
+4. **Cold water face splash:** Activates sympathetic nervous system via the trigeminal nerve.
+5. **Do NOT use the snooze button:** The 9-minute interval between snooze alarms is insufficient to complete any sleep stage. The sleep obtained is non-restorative N1. Re-entering sleep only to be abruptly woken again restarts and extends sleep inertia.
+
+---
+
+## SECTION 11 — Substances and Sleep
+
+### Alcohol
+
+Alcohol is a **sedative (GABA-A receptor agonist)**, not a sleep aid. The distinction is critical: sedation is not sleep.
+
+**Effects on sleep architecture:**
+
+- **First half of night:** Accelerated sleep onset; REM severely suppressed (REM rebound queues up).
+- **Second half:** REM rebounds with high intensity → fragmented sleep, vivid or disturbing dreams, elevated WASO.
+- Total REM reduction across the night: **approximately 19–20%** from a single night of drinking.
+- Increases WASO significantly in the second half of the night.
+- Every polysomnography study contradicts the "nightcap helps me sleep" belief.
+
+```
+Alcohol metabolism rate: ~1 standard drink per hour (population average; individual rates vary
+significantly based on ADH/ALDH enzyme genetics, liver function, body mass, and ancestry —
+some individuals metabolize substantially slower)
+Safe sleep window: last drink ≥ 3 hours before sleep
+(e.g., last drink by 7:00 PM for 10:00 PM sleep)
+```
+
+### Cannabis
+
+- **THC:** Reduces REM sleep. May temporarily suppress nightmares but eliminates the emotional processing and memory consolidation that REM provides. Tolerance to sleep effects develops within days.
+- **CBD:** Limited evidence; possible anxiolytic benefit improving sleep onset. No clear impact on sleep architecture at moderate doses.
+- **Cessation after regular THC use:** Intense REM rebound (highly vivid dreams, disturbing nightmares) for 2–3 weeks as the brain compensates for suppressed REM.
+
+### Nicotine
+
+- Nicotine is a stimulant (nicotinic acetylcholine receptor agonist).
+- Smokers show lighter sleep: more N1, less N3 and REM, compared to non-smokers at matched sleep durations.
+- Nicotine withdrawal during the night (as blood levels fall) generates micro-arousals.
+- Nicotine patches worn overnight can disrupt sleep — remove before bed.
+
+### Melatonin Supplements
+
+| Dose Range | Classification | Effect |
+|------------|----------------|--------|
+| 0.1–0.5 mg | Physiological | Circadian phase signal (correct use) |
+| 0.5–1.0 mg | Low pharmacological | Mixed signal/sedative |
+| 1–10 mg | Pharmacological | Primarily sedative; not circadian correction |
+| >10 mg | Supraphysiological | No added circadian benefit; may cause morning grogginess |
+
+Most commercially sold melatonin: 5–10 mg — up to 20–100× the physiological dose.
+
+**Correct use cases:**
+- Phase-shifting for jet lag or shift work: 0.3–0.5 mg timed at destination bedtime for 3–5 nights.
+- Phase advancement (sleeping earlier): 0.3–0.5 mg taken approximately 1.5–6 hours before DLMO or 30–90 minutes before target bedtime. Optimal timing varies by individual circadian phase — the "5-hour before target sleep time" guideline cited elsewhere is an approximation. For significant DSPD or shift-work phase shifts, timing should be individualized relative to DLMO and the phase response curve (PRC); consult a sleep specialist for precision.
+- Not appropriate as a nightly sleep aid; does not address underlying sleep debt, circadian misalignment, or sleep disorders.
+
+---
+
+## SECTION 12 — Exercise and Sleep
+
+### Aerobic Exercise
+
+Regular aerobic exercise improves: total sleep time, sleep efficiency, N3 depth, and SOL — consistently across studies.
+
+**Timing rules:**
+
+| Exercise Timing | Effect on Sleep |
+|-----------------|-----------------|
+| Morning (6–10 AM) | Strongly beneficial; no disruption |
+| Afternoon (2–6 PM) | Beneficial; core temperature peak aligns with exercise demands |
+| Evening (within 2h of bed) | Variable; vigorous exercise can delay sleep onset via elevated core temperature and sympathetic activation |
+
+Safe cutoff for vigorous exercise: finish at least **2–3 hours before bedtime**.
+Light exercise (walking, stretching, yoga) within 1 hour of bed: generally beneficial for sleep onset.
+
+### Resistance Training
+
+- Consistently increases N3 duration across studies.
+- Optimal for maximizing growth hormone release during sleep.
+- Best performed in the morning or early afternoon for sleep optimization.
+
+### Exercise-Sleep Feedback Loop
+
+Sleep deprivation reduces exercise motivation, physical output, reaction time, and recovery (Mah et al., 2011). One full recovery night can restore most athletic performance metrics. The relationship is bidirectional: poor sleep worsens performance; poor performance reflects poor sleep.
+
+---
+
+## SECTION 13 — Sleep Disorders Reference (Identification Criteria)
+
+**Agent rule:** If a user describes symptoms consistent with any disorder below at clinical threshold, recommend consultation with a board-certified sleep medicine physician. Optimization rules alone do not treat sleep disorders.
+
+### Insomnia Disorder (DSM-5 Criteria)
+
+All of the following must be present:
+- Difficulty initiating sleep, maintaining sleep, or early morning awakening with inability to return to sleep.
+- Occurs ≥3 nights per week.
+- Duration ≥3 months.
+- Causes significant distress or impairment in daytime functioning.
+- Not better explained by another sleep disorder, substance use, or medical condition.
+
+### Obstructive Sleep Apnea (OSA)
+
+**Screening indicators:** loud snoring, witnessed apneas (pauses in breathing), morning headaches, excessive daytime sleepiness, non-restorative sleep, nocturia.
+
+**Diagnosis:** Polysomnography (PSG) in a lab or validated Home Sleep Apnea Test (HSAT).
+
+**Apnea-Hypopnea Index (AHI) — events per hour:**
+
+| AHI | Classification |
+|-----|----------------|
+| < 5 | Normal |
+| 5–14 | Mild OSA |
+| 15–29 | Moderate OSA |
+| ≥ 30 | Severe OSA |
+
+### Restless Legs Syndrome (RLS)
+
+- Irresistible urge to move the legs, typically described as uncomfortable sensations.
+- Symptoms worse at rest and in the evening; relieved by movement.
+- Associated with iron deficiency: check serum ferritin (<50 μg/L is suggestive).
+- Genetic component: BTBD9 and MEIS1 gene variants.
+
+### Delayed Sleep Phase Disorder (DSPD)
+
+- Chronic inability to fall asleep and wake at socially conventional times.
+- Sleep quality is normal when sleep occurs at the individual's intrinsic phase.
+- Prevalence: approximately 1.5–3% of adults (clinical diagnosis rates appear lower due to significant underdiagnosis); up to 7–16% of adolescents.
+- Treatment options: graduated light therapy (morning), chronotherapy (progressive delay), low-dose melatonin (0.3–0.5 mg) timed per individual DLMO/PRC — consult a sleep specialist for precise timing.
+
+### Narcolepsy
+
+- Excessive daytime sleepiness regardless of nighttime sleep quantity or quality.
+- **Type 1 (with cataplexy):** Sudden, temporary loss of muscle tone triggered by strong emotion (laughter, surprise, fear). Pathognomonic for narcolepsy.
+- Associated features: sleep paralysis, hypnagogic/hypnopompic hallucinations.
+- Caused by autoimmune destruction of hypocretin/orexin-producing neurons in the lateral hypothalamus.
+- Requires clinical diagnosis and management; not addressable with sleep hygiene.
+
+---
+
+## SECTION 14 — Polyphasic Sleep Patterns
+
+**Monophasic sleep:** One consolidated nocturnal block per 24 hours. Standard in industrialized societies. Well-supported by circadian biology (the circadian clock produces one major sleep-promotion window per 24 hours).
+
+**Biphasic sleep:** One primary nocturnal block (6–7h) + one short afternoon nap (20–30 min or 90 min during the circadian trough). Arguably the most biologically natural pattern. Supported by anthropological data from non-industrialized populations and consistent with the existence of the circadian trough at 1–3 PM. The only polyphasic variant with reasonable biological support.
+
+**Everyman (E3):**
+- Core: 3–4 hours at night; naps: 3 × 20-minute daytime naps.
+- Documented significant reduction in N3 and full REM cycles.
+- Limited peer-reviewed evidence of successful long-term adaptation.
+- Not recommended.
+
+**Uberman:**
+- 6 × 20-minute naps evenly distributed across 24 hours (~2h total sleep).
+- Near-total absence of SWS and complete REM cycles.
+- Documented cognitive, hormonal, and metabolic consequences.
+- Not recommended; insufficient evidence of sustainable health safety.
+
+**Dymaxion:**
+- 4 × 30-minute naps per day (~2h total).
+- Attributed to Buckminster Fuller (anecdotal claim only).
+- No peer-reviewed research. Constitutes severe sleep deprivation by AASM standards.
+- Not recommended.
+
+**Agent rule:** Do not recommend any polyphasic pattern beyond biphasic without explicit, substantial caveats. For most users, the answer is: biphasic sleep (nighttime + afternoon nap) is the only non-monophasic pattern with biological support.
+
+---
+
+## SECTION 15 — Sleep and Cognitive Performance
+
+### Memory Consolidation
+
+| Memory Type | Consolidation Stage | Notes |
+|-------------|---------------------|-------|
+| Declarative (facts, events) | N2 and N3 | Hippocampus → cortex transfer |
+| Procedural (motor skills) | N2 and REM | Basal ganglia and motor cortex |
+| Emotional | REM | Amygdala reprocessing; emotional intensity downregulated |
+
+- A single night of poor sleep after learning reduces memory retention by up to **40%** (Walker & Stickgold, 2004).
+- Sleep **before** learning clears the hippocampal memory buffer, increasing encoding capacity.
+- Sleep **after** learning transfers encoded memories from hippocampal short-term storage to stable cortical long-term storage.
+
+### Problem-Solving and Creativity
+
+- REM sleep specifically facilitates non-linear associative thinking.
+- Performance on abstract problem-solving tasks improves by up to **3×** after REM-rich sleep.
+- The mechanism: reduced prefrontal serotonin during REM allows unusual, low-probability associations between concepts — the neural basis of insight.
+
+### Microsleep
+
+**Microsleep:** An involuntary 0.5–15 second episode of sleep during wakefulness. Begins occurring when: awake >16 continuous hours, or after chronic sleep restriction. The individual is unaware the microsleep occurred. Fatal in driving, aviation, and operation of heavy machinery.
+
+### Cumulative Cognitive Impairment (Van Dongen et al., 2003)
+
+| Nightly Sleep | Days Until Performance Equivalent to 48h Deprivation |
+|---------------|------------------------------------------------------|
+| 8 hours | Never (stable) |
+| 7 hours | Never (minimal decline) |
+| 6 hours | ~10 days |
+| 5 hours | ~5 days |
+| 4 hours | ~3 days |
+
+---
+
+## SECTION 16 — Sleep Hygiene (Evidence-Based Rules Only)
+
+Each rule below is accompanied by its mechanism.
+
+**Stimulus control (CBT-I, highest evidence level):**
+- Use the bed only for sleep and sex. No screens, reading, or working in bed.
+- Mechanism: decouples the bed from wakefulness-associated cortical arousal; rebuilds the conditioned stimulus-response between the bed environment and sleep initiation.
+- If unable to sleep after ~20 minutes in bed, leave the bed and perform a quiet, dim-light activity until sleepy. Return to bed when sleep urge is strong.
+
+**Sleep restriction therapy (CBT-I):**
+- Temporarily restrict TIB to match actual TST.
+- Builds acute sleep pressure (Process S), which strengthens the sleep drive and consolidates fragmented sleep.
+- Counter-intuitive but the most effective non-pharmacological insomnia treatment. Outperforms sleep medication in long-term studies.
+
+**Consistent sleep-wake timing:**
+- The single most important sleep hygiene factor for circadian health.
+- Wake at the same time every day, including weekends. This anchors Process C.
+- Sleeping in >1 hour on weekends delays the circadian phase and creates social jetlag.
+
+**Bedroom environment:**
+
+| Factor | Target |
+|--------|--------|
+| Light | Total darkness (blackout curtains or sleep mask) |
+| Temperature | 65–68°F (18–20°C) |
+| Sound | <40 dB; white noise if ambient noise exceeds this |
+| Bed association | Sleep and sex only |
+
+**Pre-sleep wind-down:**
+- Cortisol and core body temperature require 1–2 hours to fall to levels compatible with sleep onset.
+- Cognitively demanding work, stressful conversations, or vigorous exercise within 90 minutes of bed activates the sympathetic nervous system and delays sleep onset.
+- A **written "worry list" or tomorrow's to-do list** before bed reduces SOL by an average of 9 minutes (Scullin et al., 2018). Mechanism: offloading prospective memory concerns from working memory reduces cognitive arousal.
+
+---
+
+## SECTION 17 — Quick-Reference Formulas Summary
+
+```
+BEDTIME      = Wake Time − (N × 90 min) − 14 min         [N = 5 default]
+WAKE TIME    = Bedtime + 14 min + (N × 90 min)
+SLEEP DEBT   = Sleep Need − TST (sum over tracking period)
+CAFFEINE     = Bedtime − 12 hours (standard: 2 × 6h half-lives)
+EFFICIENCY   = (TST / TIB) × 100                         [target ≥ 85%]
+SOCIAL JL    = |Mid-sleep free days − Mid-sleep work days|
+NAPPUCCINO   = 200 mg caffeine → immediate 20-min nap → wake as caffeine peaks
+NAP CUTOFF   = Bedtime − 6 hours
+ROOM TEMP    = 65–68°F / 18–20°C
+LIGHT CUT    = No bright light 2h before bed; morning light within 30 min of wake
+SOL NORMAL   = 10–20 min; < 5 min = sleep-deprived; > 30 min = poor onset
+WASO NORMAL  = < 20 min; > 30 min = poor continuity
+SE% HEALTHY  = ≥ 85%
+```
+
+---
+
+## SECTION 18 — Common Agent Scenarios and How to Answer Them
+
+---
+
+**Scenario 1: "What time should I go to sleep if I wake up at 6 AM?"**
+
+Formula: Bedtime = 6:00 AM − (5 × 90 min) − 14 min = 6:00 AM − 464 min = **10:16 PM**
+For 4 cycles (minimum): 6:00 AM − (4 × 90 min) − 14 min = **11:46 PM**
+Answer: Go to bed at 10:16 PM to complete 5 full sleep cycles (7h 44m) and wake refreshed at the end of a REM cycle. Set the alarm for 6:00 AM, not earlier.
+
+---
+
+**Scenario 2: "I only got 5 hours last night. How long will it take to recover?"**
+
+Formula: Sleep debt = 8h (need) − 5h (TST) = **3-hour debt** from one night.
+Recovery: Add 1–2 extra hours for 2–3 nights. Subjective sleepiness will recover in 1–2 nights; objective cognitive performance takes up to 3 days to fully normalize (Van Dongen et al., 2003). Do not sleep in more than 2 hours past normal wake time, or the following night's sleep will be disrupted.
+
+---
+
+**Scenario 3: "When should I stop drinking coffee? I sleep at 11 PM."**
+
+Formula: Caffeine cutoff = 11:00 PM − 12h (2 half-lives at 6h) = **11:00 AM**
+Standard practical guidance: last caffeine by **2:00 PM** to leave 9 hours before sleep (>80% clearance). If the user is a slow CYP1A2 metabolizer, move cutoff to 9:00–10:00 AM. Note: even "on-time" caffeine may reduce N3 depth by up to 20%.
+
+---
+
+**Scenario 4: "Is a 30-minute nap good or bad?"**
+
+A 30-minute nap is problematic because it falls in the transition window where N3 entry begins (~30–45 min from onset). Waking from early N3 produces significant sleep inertia (30–60 minutes of grogginess). Either shorten to 20 minutes (power nap, wake from N2) or lengthen to 90 minutes (full cycle, wake from REM/N1). The 20-minute power nap is the practical default. If the user has sufficient time and a 4+ hour buffer before bedtime, the 90-minute full cycle nap is superior for full restoration.
+
+---
+
+**Scenario 5: "I'm a night owl. How do I shift my sleep earlier?"**
+
+Evening chronotype is genetic (circadian period is biologically delayed). Cannot be overridden by willpower. Protocol:
+1. Move bedtime and wake time earlier by **15 minutes every 2 days**.
+2. Get **10,000 lux bright light within 30 min of new wake time** each day.
+3. Avoid bright/blue light in the 2 hours before new target bedtime.
+4. Consider **0.3–0.5 mg melatonin** approximately 30–90 minutes before the new target bedtime (for general sleep-onset assistance) or, for more precise phase shifting, timed per your DLMO — consult a sleep specialist if shifting more than 2 hours.
+5. Expect 1–2 weeks minimum for a 2-hour phase advance. Do not attempt faster shifts — the maximum circadian advance rate is 1–1.5 hours per day.
+
+---
+
+**Scenario 6: "How do I calculate if I have sleep debt?"**
+
+Formula: Sleep debt = (Sleep Need − TST) per night, summed over the tracking period.
+Example: Need 8h. Actual TST: Mon 6h, Tue 7h, Wed 6.5h, Thu 7h, Fri 9h.
+Debt: (2) + (1) + (1.5) + (1) + (−1) = **4.5 hours cumulative debt** by end of week.
+Note: TST = time actually asleep, not time in bed. Track TST using a sleep tracker or by estimating: TIB minus SOL minus WASO.
+
+---
+
+**Scenario 7: "I sleep 8 hours but still feel tired. What could explain this?"**
+
+Possible causes, in order of prevalence:
+1. **Poor sleep efficiency:** Check SE% = TST/TIB. If TIB is 8h but TST is 6h, effective sleep is insufficient.
+2. **Obstructive sleep apnea:** Fragmented N3 and REM; non-restorative sleep despite 8h TIB. Screen for snoring, witnessed apneas, morning headaches.
+3. **Circadian misalignment:** Sleeping at the wrong circadian phase (e.g., a definite evening chronotype forced onto a morning schedule).
+4. **Chronic sleep debt:** Long-term deficit recalibrates subjective alertness; 8h now is not recovering months of chronic debt.
+5. **Alcohol or sedative use:** Sedation ≠ sleep; REM suppressed.
+6. **Poor sleep quality (fragmented):** Check WASO — if >30 min, continuity is disrupted.
+Refer to a sleep specialist if OSA is suspected.
+
+---
+
+**Scenario 8: "What's the ideal nap to take at 2 PM before an evening event?"**
+
+At 2 PM, the user is in the circadian trough — the optimal nap window. Recommend a **20-minute power nap** (wake before N3 entry, no sleep inertia). If maximum alertness is needed at the event:
+- Use the **Nappuccino protocol**: consume 200 mg caffeine immediately before the 20-minute nap. Wake as caffeine peaks. This outperforms either strategy alone.
+- If the event is >6 hours away and the user has the time, a 90-minute full-cycle nap is the superior option (full REM cycle restores cognition, mood, and reaction time maximally). Ensure the nap ends by 4:00 PM (providing a 6.5h buffer before a 10:30 PM bedtime and staying within the 1–4 PM optimal window).
+
+---
+
+**Scenario 9: "I wake up at 3 AM and can't get back to sleep. What's happening?"**
+
+**3 AM corresponds to the end of N3-dominated cycles (cycles 1–2) and the transition into REM-dominant cycles.** This timing is physiologically significant.
+
+Most likely causes:
+1. **Elevated evening cortisol** (stress, chronic sleep restriction) — cortisol rises through the second half of sleep; if elevated, it breaks sleep at this transition point.
+2. **Alcohol consumed earlier** — alcohol causes REM rebound in the second half of the night, producing fragmented arousals.
+3. **Sleep apnea** — hypoxic arousals often cluster in the second half of the night when sleep is lighter.
+4. **Advanced sleep phase** — older adults whose circadian clock has shifted earlier may complete their biological sleep window by 3 AM.
+5. **Anxiety/rumination** — increased sympathetic activation targets the lighter second-half sleep.
+For persistent 3 AM awakening (≥3 nights/week for ≥3 months), consult a sleep physician (meets insomnia disorder criteria if causing distress).
+
+---
+
+**Scenario 10: "Does alcohol help me sleep?"**
+
+No. Alcohol is a sedative, not a sleep aid. It accelerates sleep onset (Process S is not improved; the brain is chemically suppressed), but it:
+- Suppresses REM by ~19–20% across the night.
+- Causes REM rebound in the second half: fragmented sleep, vivid or disturbing dreams.
+- Increases WASO significantly after approximately 3–4 AM.
+- Reduces total TST in the second half of the night.
+Even 1 standard drink measurably degrades sleep quality on polysomnography. The subjective sense that alcohol "helps" reflects sedation-induced faster sleep onset, not improved sleep architecture or restorative quality.
+
+---
+
+## SECTION 19 — Key Research Citations
+
+**Kleitman & Aserinsky (1953)**
+*Regularly occurring periods of eye motility and concomitant phenomena during sleep* — Science.
+Key finding: Discovery of REM sleep. Established that sleep is not a uniform passive state but contains a distinct, cyclically recurring phase of rapid eye movement associated with dreaming. Foundational to all subsequent sleep science.
+
+**Borbély (1982)**
+*A two-process model of sleep regulation* — Human Neurobiology.
+Key finding: Formalized the two-process model: Process S (sleep homeostasis, driven by adenosine accumulation) and Process C (circadian clock). Their interaction determines sleep timing, duration, and quality. The foundational framework of sleep regulation.
+
+**Van Dongen, Maislin, Mullington & Dinges (2003)**
+*The cumulative cost of additional wakefulness: dose-response effects on neurobehavioral functions and sleep physiology from chronic sleep restriction and total sleep deprivation* — Sleep.
+Key finding: Chronic restriction to 6h/night for 2 weeks produces cognitive impairment equivalent to 48 hours of total sleep deprivation. Subjects were unable to accurately perceive their own impairment. Performance never stabilized — it continued to deteriorate. Performance does not recover for up to 3 days after restoration.
+
+**Walker & Stickgold (2004)**
+*Sleep-dependent learning and memory consolidation* — Neuron.
+Key finding: Sleep is not passive for memory. Specific stages consolidate specific memory types: SWS for declarative memory, REM for procedural and emotional memory. A single night of poor sleep after learning reduces retention by up to 40%.
+
+**Roenneberg, Wirz-Justice & Merrow (2003); Roenneberg et al. (2012)**
+*A marker for the end of adolescence* (2003) and *Social jetlag and obesity* (2012) — Current Biology.
+Key findings: Developed the MCTQ and MSFsc metric for chronotype. Documented that chronotype follows a developmental trajectory, peaking in lateness during adolescence. Each hour of social jetlag increases obesity risk by ~33%.
+
+**Leproult & Van Cauter (2011)**
+*Effect of 1 week of sleep restriction on testosterone levels in young healthy men* — JAMA.
+Key finding: One week of sleeping less than 6 hours per night reduces daytime testosterone levels by 10–15% in healthy young men — equivalent to aging 10–15 years in hormonal terms.
+
+**Cajochen, Frey, Anders, Späti, Bues, Pross, Mager, Wirz-Justice & Stefani (2011)**
+*Evening exposure to a light-emitting diode (LED)-backlit computer screen affects circadian physiology and cognitive performance* — Journal of Applied Physiology.
+Key finding: Exposure to LED screen light in the evening suppresses melatonin, delays DLMO, and impairs next-morning alertness. Blue-spectrum (short-wavelength) light is the primary melatonin suppressor via ipRGC melanopsin activation.
+
+**Scullin, Krueger, Ballard, Pruett & Bliwise (2018)**
+*The effects of bedtime writing on difficulty falling asleep: A polysomnographic study comparing to-do lists and completed activity lists* — Experimental Brain Research.
+Key finding: Writing a to-do list for the following day immediately before bed reduced sleep onset latency by an average of 9 minutes compared to writing a list of completed activities. The more specific and complete the to-do list, the greater the SOL reduction. Mechanism: offloads prospective memory from working memory, reducing cognitive arousal.
+
+**Mah, Mah, Kezirian & Dement (2011)**
+*The effects of sleep extension on the athletic performance of collegiate basketball players* — Sleep.
+Key finding: Extending sleep to 10 hours per night for 5–7 weeks improved sprint times, shooting accuracy, reaction time, and mood in collegiate athletes. Sleep is a performance-enhancing intervention. Sleep deprivation measurably impairs all athletic performance metrics.
+
+**Park, White, Jackson, Weinhouse & Chan (2019)**
+*Association of exposure to artificial light at night while sleeping with risk of obesity in women* — JAMA Internal Medicine. NIEHS Sister Study cohort.
+Key finding: Women sleeping with a light or television on in the room were 17% more likely to gain at least 11 pounds over 5 years and 33% more likely to become obese, independent of prior weight, diet, and exercise. Any artificial light at night during sleep — even low-level — is associated with measurable metabolic consequences.
+
+---
+
+*End of SKILL.md — Sleep Science v1.0.1*
+*This document is entirely self-contained. All formulas, tables, and rules are sufficient to answer any sleep-related query without external sources. For clinical sleep disorders, always recommend consultation with a board-certified sleep medicine physician.*

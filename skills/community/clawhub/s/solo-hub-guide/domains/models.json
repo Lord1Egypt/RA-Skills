@@ -1,0 +1,96 @@
+[
+  {
+    "id": "browse_catalog",
+    "domain": "models",
+    "description": "Search and filter the public model catalog",
+    "action_type": "ui_flow",
+    "steps": [
+      "Open Hub — you land on the All Models view by default",
+      "Use the search bar to filter by model name",
+      "Apply filters: Tags (vision, NLP, audio), Worlds (deployment context), Hardware (optimized hardware), Utilities (runtime compatibility)",
+      "Stack multiple filters to narrow results",
+      "Bookmark the URL — it updates as you filter so the filtered view is shareable"
+    ],
+    "explanation": "Hub catalog shows every publicly available model across all organizations by default. Switch to your org catalog via the org switcher to see private models.",
+    "expected_outcome": "Filtered list of relevant models",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Model cards matching your search/filters appear on screen; active filter chips shown above results"
+    },
+    "common_errors": [
+      "Private models not visible — you must switch to your org via the org switcher in the toolbar",
+      "Filters not clearing — click 'Clear all' above the filter chips"
+    ],
+    "docs_ref": "/models/browse"
+  },
+  {
+    "id": "read_model_page",
+    "domain": "models",
+    "description": "Understand a model's detail page (5 tabs)",
+    "action_type": "ui_flow",
+    "tabs": {
+      "Overview": "What the model does, its capabilities, and what hardware it targets",
+      "Files": "All downloadable files: weights, configs, and assets",
+      "Installation": "Step-by-step setup instructions for getting the model running locally",
+      "Usage": "Code examples and how to run the model for inference",
+      "Diagnostics": "Technical health indicators, runtime metadata, compatibility notes. Also used to monitor live fine-tuning jobs."
+    },
+    "steps": [
+      "Click any model card in the catalog",
+      "Start at the Overview tab to understand the model",
+      "Go to Installation and Usage when ready to work with it",
+      "Check Diagnostics for training job status if the model is currently being fine-tuned"
+    ],
+    "expected_outcome": "You understand what the model does and how to use it",
+    "validation": {
+      "type": "comprehension",
+      "rule": "User can answer: what does this model do? what hardware does it need? how do I install it?"
+    },
+    "docs_ref": "/models/page"
+  },
+  {
+    "id": "download_model_file",
+    "domain": "models",
+    "description": "Download a model file from the Files tab",
+    "action_type": "ui_flow",
+    "steps": [
+      "Open the model's detail page",
+      "Click the Files tab",
+      "Click the download button next to the file you need",
+      "Hub generates a secure, time-limited link and starts the download automatically"
+    ],
+    "explanation": "Download links are time-limited. If a download doesn't start, click the button again to generate a fresh link.",
+    "expected_outcome": "File download begins immediately in your browser",
+    "validation": {
+      "type": "filesystem",
+      "rule": "Downloaded file exists on disk (check your browser's downloads folder)"
+    },
+    "common_errors": [
+      "Download didn't start — link may have expired; click the download button again to regenerate",
+      "Private model not appearing — switch org via the org switcher in toolbar"
+    ],
+    "docs_ref": "/models/download"
+  },
+  {
+    "id": "switch_org_catalog",
+    "domain": "models",
+    "description": "Switch to your org's private model catalog",
+    "action_type": "ui_flow",
+    "steps": [
+      "Locate the Organization selector in the Hub toolbar",
+      "Click it and select your team organization from the dropdown",
+      "The catalog now shows only that org's models (including private ones)"
+    ],
+    "explanation": "By default you're viewing the public catalog. Private models only appear when scoped to the correct org. You must be a member of the org.",
+    "expected_outcome": "Catalog shows org-specific (potentially private) models",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Org name shown in the toolbar selector; model cards shown are scoped to that org"
+    },
+    "common_errors": [
+      "Org not in dropdown — you may not be a member; ask an Admin to invite you",
+      "Still seeing all models — confirm the selector changed and the page refreshed"
+    ],
+    "docs_ref": "/models/download"
+  }
+]

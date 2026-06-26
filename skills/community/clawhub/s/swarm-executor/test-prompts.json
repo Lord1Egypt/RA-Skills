@@ -1,0 +1,17 @@
+[
+  {
+    "id": "split_code_task",
+    "prompt": "把一个登录模块开发任务拆给多Agent执行：架构设计、编码、审查、测试分别由不同Agent负责。请生成swarm计划。",
+    "expected": "Must justify swarm usage, assign roles, create commands with owner/budget/dependencies, include review/test gates and fallback."
+  },
+  {
+    "id": "budget_pressure",
+    "prompt": "三个Agent并行研究同一个问题导致token超预算，请用swarm-coordinator重新设计执行策略。",
+    "expected": "Must identify budget saturation, reduce concurrency, downgrade or require confirmation, and define token thresholds."
+  },
+  {
+    "id": "agent_conflict",
+    "prompt": "两个Agent都认为自己应该修改同一个文件，且方案冲突。请给出协商和冲突解决流程。",
+    "expected": "Must enforce single owner, negotiation timeout, reviewer role, decision output, and cancellation of duplicate assignment."
+  }
+]

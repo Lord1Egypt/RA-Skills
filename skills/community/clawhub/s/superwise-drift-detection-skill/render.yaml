@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: superwise-drift-detection-skill
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python scheduler.py
+    envVars:
+      - key: SUPERWISE_CLIENT_ID
+        sync: false
+      - key: SUPERWISE_SECRET_TOKEN
+        sync: false
+      - key: SUPERWISE_TRAINING_DATASET_ID
+        sync: false
+      - key: SUPERWISE_TRAINING_DATASET_NAME
+        sync: false
+      - key: SUPERWISE_INFERENCE_DATASET_ID
+        sync: false
+      - key: SUPERWISE_INFERENCE_DATASET_NAME
+        sync: false
+      - key: MODEL_NAME
+        sync: false
+      - key: INFERENCE_ENDPOINT_URL
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: SCHEDULE_HOUR_UTC
+        value: "6"
+      - key: SCHEDULE_MINUTE_UTC
+        value: "0"
+      - key: PORT
+        value: "5000"

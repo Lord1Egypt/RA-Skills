@@ -1,0 +1,63 @@
+# 示例 skills 注册表
+#
+# 复制此文件为 registry.yaml 并根据需要修改。
+# 完整说明参见 SKILL.md 中的「注册表格式」章节。
+
+# ──────────────────────────────────────────────
+# 订阅：引用其他注册表（支持递归、嵌套）
+# ──────────────────────────────────────────────
+subscriptions:
+  # awesome-skills：社区精选 skills 合集（默认订阅）
+  - name: awesome
+    url: https://raw.githubusercontent.com/gavinyao/awesome-skills/main/registry.yaml
+
+  # 本地注册表（支持环境变量和 ~ 展开）
+  # - name: team-shared
+  #   url: $HOME/shared-skills/registry.yaml
+
+  # 相对路径（基于本文件所在目录解析）
+  # - name: local-extra
+  #   url: ./extra-registry.yaml
+
+# ──────────────────────────────────────────────
+# Skills 列表
+# ──────────────────────────────────────────────
+#
+# 字段说明：
+#   name        - skill 名称（安装后的目录名）
+#   description - 简要描述
+#   source      - 安装来源类型：npx | git | local
+#   install     - 安装命令或路径（取决于 source 类型）
+#   repo        - 可选，项目地址（列表中渲染为链接）
+#   depends     - 可选，依赖的其他 skill 名称列表
+#
+skills:
+  # ── npx 来源 ──
+  # 通过 npx 运行 skills CLI 安装
+  - name: skill-creator
+    description: 创建和改进 Claude Code skills
+    source: npx
+    install: "npx skills add anthropics/skills@skill-creator -y -g"
+    repo: https://github.com/anthropics/skills/tree/main/skills/skill-creator
+
+  # ── git 来源 ──
+  # 直接克隆 git 仓库
+  - name: my-team-skill
+    description: 团队内部 skill
+    source: git
+    install: "https://github.com/my-org/my-team-skill.git"
+
+  # ── local 来源 ──
+  # 复制本地目录（支持环境变量、~ 和相对路径）
+  - name: local-skill
+    description: 本地开发中的 skill
+    source: local
+    install: ./my-local-skill
+
+  # ── 带依赖的 skill ──
+  # depends 中的 skill 会在安装前自动检查并递归安装
+  - name: advanced-skill
+    description: 依赖其他 skill 的高级工具
+    source: npx
+    install: "npx skills add my-org/skills@advanced-skill -y -g"
+    depends: [skill-creator]

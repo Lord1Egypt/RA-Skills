@@ -1,0 +1,21 @@
+{
+  "default_provider": "openrouter",
+  "output_dir": "output",
+  "providers": {
+    "openrouter": {
+      "default_model": "google/gemini-3.1-flash-image-preview",
+      "max_tokens": 4096
+    },
+    "kie": {
+      "default_model": "google-4o-image",
+      "poll_interval": 5,
+      "max_wait": 300
+    },
+    "yandexart": {
+      "default_model": "yandex-art/latest",
+      "folder_id": "",
+      "poll_interval": 5,
+      "max_wait": 600
+    }
+  }
+}

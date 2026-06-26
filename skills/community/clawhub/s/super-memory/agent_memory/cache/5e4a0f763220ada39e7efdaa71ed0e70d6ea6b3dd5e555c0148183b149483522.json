@@ -1,0 +1,72 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [
+        {
+          "name": "Where",
+          "type": "unknown",
+          "role": "queried"
+        }
+      ],
+      "expanded": false
+    },
+    "query": "Where do I take yoga classes?",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_e1f5733f9c4b",
+      "query": "Where do I take yoga classes?",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786377.4258926
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786377.4258926
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=100)",
+          "timestamp": 1779786377.4258926
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786377.4258926
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786377.4258926
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786377.4258926
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786377.4258926
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786437.4268892,
+  "created_at": 1779786377.4268892,
+  "_hmac": "c317224a6aae1ebacf630fae5e25e88463431f611d57654e747f8babd2e5194a"
+}

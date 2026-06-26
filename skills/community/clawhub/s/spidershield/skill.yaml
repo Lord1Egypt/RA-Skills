@@ -1,0 +1,113 @@
+# SpiderShield — OpenClaw Skill Manifest
+# ClawHub submission format
+
+name: spidershield
+display_name: "SpiderShield Security Scanner"
+version: "0.3.0"
+description: |
+  4,000+ skills already scanned. 0.1s trust score lookup. Precision 93%+ (improving).
+  When VirusTotal says "suspicious", SpiderShield tells you why it's safe (or not).
+
+  Scan skills for malware (24 detection rules), audit your OpenClaw config,
+  pin skills against tampering (rug pull detection), and auto-fix insecure settings.
+
+author:
+  name: SpiderRating
+  email: team@spiderrating.com
+  url: https://spiderrating.com
+
+license: MIT
+repository: https://github.com/teehooai/spidershield
+homepage: https://spiderrating.com
+
+keywords:
+  - security
+  - skill-security
+  - trust-score
+  - vulnerability-scan
+  - malware-detection
+  - openclaw-security
+  - rug-pull-detection
+  - config-audit
+
+categories:
+  - security
+  - developer-tools
+
+# Commands exposed by this skill (6 total, 5 unique to SpiderShield)
+commands:
+  - name: check
+    description: "Check trust score for a published skill (0.1s, pre-computed)"
+    usage: "/spidershield check <author/skill>"
+    example: "/spidershield check spclaudehome/web-search-pro"
+
+  - name: scan
+    description: "Scan a single skill for malicious patterns (24 detection rules)"
+    usage: "/spidershield scan <path>"
+    example: "/spidershield scan ./my-skill/SKILL.md"
+
+  - name: audit-config
+    description: "Audit your OpenClaw installation for insecure settings"
+    usage: "/spidershield audit-config [--skills] [--verify]"
+    example: "/spidershield audit-config --skills"
+
+  - name: fix
+    description: "Auto-fix insecure OpenClaw config settings"
+    usage: "/spidershield fix [--dry-run]"
+    example: "/spidershield fix --dry-run"
+
+  - name: pin
+    description: "Pin skills against tampering (rug pull detection)"
+    usage: "/spidershield pin add|verify|list|remove <path>"
+    example: "/spidershield pin verify"
+
+  - name: scan-all
+    description: "Scan all installed skills for malicious patterns"
+    usage: "/spidershield scan-all"
+    example: "/spidershield scan-all"
+
+# Network access declaration (for ClawHub security review)
+network:
+  outbound:
+    - host: api.spiderrating.com
+      purpose: "Trust Registry lookups (check command only)"
+      data_sent: "author/skill slug only — no source code"
+  none_for:
+    - scan
+    - audit-config
+    - fix
+    - pin
+    - scan-all
+
+# Permissions (minimal)
+permissions:
+  filesystem:
+    read:
+      - "./"                    # scan: reads local skill path
+      - "~/.openclaw/"          # audit-config/fix: reads OpenClaw config
+      - "~/.spidershield/"      # pin: reads pin data
+    write:
+      - "~/.openclaw/"          # fix: writes config fixes
+      - "~/.spidershield/"      # pin: writes pin data
+  shell: true                      # scripts/*.sh are bash wrappers around spidershield CLI
+  network: conditional           # only for check command
+
+# Privacy declaration
+privacy:
+  data_collected: none
+  data_sent_to_server: "Skill author/name slug for check command only"
+  source_code_uploaded: false
+  credentials_accessed: false
+  telemetry: false
+
+# Compatibility
+platforms:
+  - openclaw
+
+requires:
+  openclaw_version: ">=1.0.0"
+  optional_dependencies:
+    - name: spidershield
+      install: "pip install spidershield"
+      purpose: "Required for scan, audit-config, fix, pin, scan-all"
+      fallback: "check command works without installation (API-only)"

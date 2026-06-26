@@ -1,0 +1,36 @@
+{
+  "name": "smart-router-coding",
+  "version": "1.0.4",
+  "description": "Route coding queries to the right model. Fast for lint, deep for architecture, never waste money on Opus for a one-liner.",
+  "author": "CertainLogic <anton@certainlogic.ai>",
+  "license": "MIT",
+  "category": "developer-tools",
+  "tags": [
+    "model-routing",
+    "coding",
+    "cost-reduction",
+    "ai-costs",
+    "developer-tools",
+    "code-optimization",
+    "open-source"
+  ],
+  "entry": {
+    "cli": "scripts/smart_router_coding.py"
+  },
+  "commands": [
+    {
+      "name": "route",
+      "description": "Classify coding query and recommend cheapest capable model tier",
+      "args": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "The coding query to route"
+        }
+      ]
+    }
+  ],
+  "homepage": "https://certainlogic.ai",
+  "repository": "https://github.com/CertainLogicAI/smart-router-coding"
+}

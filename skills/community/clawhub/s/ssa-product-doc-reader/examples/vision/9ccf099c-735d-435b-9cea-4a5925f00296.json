@@ -1,0 +1,117 @@
+{
+  "product_name": "HDACFM",
+  "length_mm": "",
+  "material_code": "599-002",
+  "packaging_spec": "BJ0599-0002",
+  "model_no": "AD1005-001",
+  "mold_info": "",
+  "mold_number": "内模,中模,外模",
+  "bom": [
+    {
+      "no": "④",
+      "part_name": "外模",
+      "spec": "45P 黑色 PVC 成型",
+      "quantity": "g"
+    },
+    {
+      "no": "③",
+      "part_name": "内模",
+      "spec": "透明PE料",
+      "quantity": "g"
+    },
+    {
+      "no": "②",
+      "part_name": "接头",
+      "spec": "HDMI AF 19P PIN:G/F, SHELL:铜壳镀金",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "①",
+      "part_name": "接头",
+      "spec": "HDMI CM 19P PIN:G/F, SHELL:铜壳镀金",
+      "quantity": "1PCS"
+    }
+  ],
+  "tolerances": [
+    {
+      "range": "0.5-3.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.1mm"
+    },
+    {
+      "range": "3.0-6.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.1mm"
+    },
+    {
+      "range": "6.0-30.0",
+      "hardware": "±0.05mm",
+      "plastic": "±0.2mm"
+    },
+    {
+      "range": "30以上",
+      "hardware": "±0.05mm",
+      "plastic": "±0.3mm"
+    }
+  ],
+  "pin_assignment": {
+    "connectors": [
+      "HDMI AF",
+      "HDMI CM"
+    ],
+    "description": "HDMI AF to HDMI CM, pins 1-19 connected directly, SHELL to SHELL"
+  },
+  "test_requirements": [
+    "100%开路、短路、错位瞬间短/断路测试",
+    "成品长度 0.1-5M: 导通阻抗 ≤5Ω, 绝缘阻抗 ≥5MΩ",
+    "成品长度 5-10M: 导通阻抗 ≤10Ω, 绝缘阻抗 ≥5MΩ",
+    "成品长度 10-20M: 导通阻抗 ≤20Ω, 绝缘阻抗 ≥5MΩ",
+    "成品长度 20M以上: 导通阻抗 ≤20Ω, 绝缘阻抗 ≥5MΩ",
+    "DC V/S: 300/0.1S (for 0.1-5M, 5-10M, 10-20M), 200/0.1S (for 20M以上)",
+    "通过4K*2K@60HZ测试"
+  ],
+  "dimensions": [
+    "14.3±0.3",
+    "7.6±0.3",
+    "6.3±0.2",
+    "26.9±0.3",
+    "12.3±0.15"
+  ],
+  "notes": [
+    "所有材质符合RoHS 2.0 和REACH 最新环保标准",
+    "承认样变更接头材质"
+  ],
+  "revision_history": [
+    {
+      "revision": "A2",
+      "date": "2022/03/08",
+      "description": "FINISHED PRODUCT'S FIGURE"
+    },
+    {
+      "revision": "A1",
+      "date": "2022/02/12",
+      "description": "FINISHING"
+    },
+    {
+      "revision": "A2",
+      "date": "2021 07 15",
+      "description": "OR-136"
+    }
+  ],
+  "company": "珠海福睿电子 FARREACH",
+  "drawing_date": "",
+  "drawn_by": "YAN",
+  "checked_by": "",
+  "approved_by": "YAN",
+  "products": [
+    {
+      "customer_item": "HDACFM",
+      "length_mm": "",
+      "material_code": "599-002",
+      "packaging_spec": "BJ0599-0002"
+    }
+  ],
+  "source_file": "9ccf099c-735d-435b-9cea-4a5925f00296.pdf",
+  "extraction_method": "vision_openrouter",
+  "pages": 1
+}

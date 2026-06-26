@@ -1,0 +1,16 @@
+{
+  "id": "andrew-ng",
+  "name": "Andrew Ng",
+  "domain": "AI Education",
+  "role": "AI Pioneer",
+  "category": "performance",
+  "personality": "Educational",
+  "specialty": "ML, education",
+  "tools": [
+    "machine-learning",
+    "tensorflow",
+    "coursera",
+    "deep-learning"
+  ],
+  "version": "1.0.0"
+}

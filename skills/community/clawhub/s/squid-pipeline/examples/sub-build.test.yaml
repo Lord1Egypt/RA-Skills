@@ -1,0 +1,64 @@
+# Tests for sub-build.yaml
+# Demonstrates both sandbox and integration modes
+# Run: squid test squid-pipeline/examples/sub-build.test.yaml
+
+pipeline: ./sub-build.yaml
+
+tests:
+  # ─── Sandbox: pure logic test ──────────────────────────
+  - name: "sandbox: build completes with mock output"
+    mode: sandbox
+    args:
+      target: prod
+      optimize: true
+    mocks:
+      run:
+        compile:
+          output: { artifact: "app-prod.tar.gz", size_mb: 42 }
+        lint:
+          output: { warnings: 0, errors: 0 }
+    assert:
+      status: completed
+      steps:
+        compile: completed
+        lint: completed
+        summary: completed
+
+  - name: "sandbox: lint failure stops pipeline"
+    mode: sandbox
+    args:
+      target: dev
+    mocks:
+      run:
+        compile:
+          output: { artifact: "app-dev.tar.gz" }
+        lint:
+          status: failed
+          error: "3 lint errors found"
+    assert:
+      status: failed
+      steps:
+        compile: completed
+        lint: failed
+
+  # ─── Integration: echo commands actually execute ───────
+  - name: "integration: real echo commands run"
+    mode: integration
+    args:
+      target: staging
+    assert:
+      status: completed
+      steps:
+        compile: completed
+        lint: completed
+        summary: completed
+
+  - name: "integration: output contains target"
+    mode: integration
+    args:
+      target: prod
+    assert:
+      status: completed
+      steps:
+        compile:
+          outputContains: "app-prod"

@@ -1,0 +1,29 @@
+{
+  "skill_name": "subscription-churn-lifecycle",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I run a monthly specialty coffee subscription, AOV 129–199/month. Users usually discover us via Xiaohongshu/WeChat content then subscribe on our mini-program. Problem: lots of first-time subscribers but only ~45% renew in month 2 and under 30% by month 3; many say 'can’t drink it all / stockpile' or just turn off auto-renew. Use a subscription churn and lifecycle view to diagnose the model and main churn points and give an actionable plan for the next 6–8 weeks: onboarding, usage context, pre-renewal reminder, cancel save, and metrics.",
+      "expected_output": "A full plan for monthly coffee subscription: at least summary (3–5 points), subscription and churn-path diagnosis (first/second/third month), segment suggestions (new/healthy/at-risk/about to churn), lifecycle touchpoint design (welcome/onboarding, usage context, pre-renewal, cancel and save), key content and copy skeleton (avoid annoying), and 6–8 week execution and metric suggestions.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I run a beauty subscription box; users get 3–5 trial/sample items from different brands monthly, 159–259/month. First unbox and note-sharing are decent, but from month 2 we see clear drop-off; many say 'feels repetitive / not right for me' or forget to cancel and are upset when charged. Help me: 1) Break down typical lifecycle and churn journeys; 2) Design onboarding and preference collection for the first 2 months; 3) Pre-charge reminder, cancel flow, and win-back; 4) Key metrics and 2–3 small experiments.",
+      "expected_output": "A plan for beauty subscription box: summary, lifecycle and churn-path diagnosis (especially first two months), segment/preference logic, onboarding and preference touchpoints and content, pre-charge and cancel UX improvements, win-back/return examples, and core metrics and experiment design (e.g. A/B on reminder copy/timing/incentive).",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We have a content membership (long-form + audio courses), 49/month or 399/year. We get many new subscribers but a lot cancel before the first month ends, and many who pay yearly rarely open. We want to reduce first-month churn for monthly users and increase overall content use so it’s not 'pay and don’t use.' From a subscription lifecycle and behavior-segment view, give an onboarding + habit + pre-renewal + win-back/return plan.",
+      "expected_output": "A plan for content membership: subscription and behavior-path diagnosis (subscribe → first use → repeat use → renew/cancel), segments (active/low-active/dormant/expiring), onboarding and first-7-day content plan, habit-building content and reminders, pre-renewal value recap and management options, post-churn return touchpoints, and process/outcome metrics.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "We do a pet supplies subscription (cat food and litter monthly). Users can choose different mixes and rhythms. We see a wave of cancels in months 3–4: 'too much at home,' cat doesn’t like it so they switched, or moved/changed routine. We don’t have a proper cancel reason flow or win-back plan. Design a churn-prevention and win-back plan around 'avoid stockpile + match cat preference + life change.'",
+      "expected_output": "A plan for pet supplies subscription: diagnosis of subscription and use rhythm, breakdown of the three churn drivers (stockpile/taste/life change), cancel flow and reason form, alternatives by reason (change rhythm/mix/taste or switch to one-off), win-back and return touchpoints, and 1–2 simple experiments and metrics to watch.",
+      "files": []
+    }
+  ]
+}

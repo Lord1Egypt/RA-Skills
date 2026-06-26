@@ -1,35 +1,61 @@
----
-name: "Startup Toolkit"
-description: "Provides a complete React/Node.js toolkit with landing page, authentication, payments, analytics, and marketing features to launch your startup quickly."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/startup-toolkit"
-sourceUrl: "https://clawhub.ai/skills/startup-toolkit"
----
-
 # Startup Toolkit
 
-> Provides a complete React/Node.js toolkit with landing page, authentication, payments, analytics, and marketing features to launch your startup quickly.
+Everything you need to launch your startup.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/startup-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/startup-toolkit](https://clawhub.ai/skills/startup-toolkit)
+## Features
 
-## Overview
+### Landing Page
+- Modern SaaS landing page
+- Conversion optimization
+- SEO ready
 
+### Authentication
+- User signup/login
+- Social auth (Google, GitHub)
+- Password reset
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Payments
+- Stripe integration
+- Subscription management
+- Invoice generation
+
+### Analytics
+- User tracking
+- Event analytics
+- Dashboard
+
+### Marketing
+- Email capture
+- Waitlist management
+- Referral system
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/startup-toolkit
+# Generate MVP
+./launch.sh mystartup
+
+# Add payment
+./launch.sh mystartup --stripe
+
+# Add analytics
+./launch.sh mystartup --analytics
 ```
+
+## What's Included
+
+- React frontend
+- Node.js/Express backend
+- PostgreSQL database
+- Docker deployment
+- CI/CD pipeline
+
+## Requirements
+
+- Node.js 18+
+- PostgreSQL 14+
+- Docker
+
+## Author
+
+Sunshine-del-ux

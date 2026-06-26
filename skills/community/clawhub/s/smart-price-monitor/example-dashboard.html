@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Price Monitor Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+       background: #0f172a; color: #e2e8f0; padding: 24px; }
+.header { text-align: center; margin-bottom: 32px; }
+.header h1 { font-size: 28px; font-weight: 700; color: #f8fafc;
+              background: linear-gradient(135deg, #38bdf8, #818cf8);
+              -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header p { color: #94a3b8; margin-top: 8px; }
+.stats-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.stat-card { background: #1e293b; border-radius: 12px; padding: 20px; flex: 1; min-width: 200px;
+              border: 1px solid #334155; }
+.stat-card .label { color: #94a3b8; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-card .value { font-size: 28px; font-weight: 700; margin-top: 8px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+               gap: 16px; margin-bottom: 32px; }
+.product-card { background: #1e293b; border-radius: 12px; padding: 20px;
+                 border: 1px solid #334155; transition: border-color 0.2s; }
+.product-card:hover { border-color: #38bdf8; }
+.product-card .name { font-size: 16px; font-weight: 600; margin-bottom: 12px;
+                       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-card .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.product-card .price { font-size: 24px; font-weight: 700; }
+.product-card .change { font-size: 14px; font-weight: 600; padding: 2px 8px;
+                         border-radius: 4px; }
+.change.up { background: #7f1d1d; color: #fca5a5; }
+.change.down { background: #14532d; color: #86efac; }
+.change.flat { background: #1e293b; color: #94a3b8; }
+.deal-score { display: inline-block; padding: 4px 10px; border-radius: 20px;
+               font-size: 13px; font-weight: 600; }
+.score-hot { background: #7f1d1d; color: #fca5a5; }
+.score-good { background: #14532d; color: #86efac; }
+.score-ok { background: #422006; color: #fde68a; }
+.score-meh { background: #1e293b; color: #94a3b8; }
+.meta { display: flex; gap: 16px; margin-top: 12px; color: #64748b; font-size: 13px; }
+.chart-container { background: #1e293b; border-radius: 12px; padding: 24px;
+                    border: 1px solid #334155; margin-bottom: 24px; }
+.chart-container h2 { margin-bottom: 16px; font-size: 18px; }
+.no-data { text-align: center; padding: 60px; color: #64748b; }
+.stock-badge { font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+.in-stock { background: #14532d; color: #86efac; }
+.out-of-stock { background: #7f1d1d; color: #fca5a5; }
+.filter-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.filter-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid #334155;
+               background: #1e293b; color: #e2e8f0; cursor: pointer; font-size: 14px; }
+.filter-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Smart Price Monitor</h1>
+  <p>Last updated: 2026-04-06 00:52 UTC</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="label">Active Monitors</div>
+    <div class="value" style="color:#38bdf8">2</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Best Deal Score</div>
+    <div class="value" style="color:#86efac">58/100</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Price Drops Today</div>
+    <div class="value" style="color:#fde68a">2</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Total Data Points</div>
+    <div class="value">5</div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all')">All</button>
+  <button class="filter-btn" onclick="filterCards('deals')">Best Deals</button>
+  <button class="filter-btn" onclick="filterCards('drops')">Price Drops</button>
+  <button class="filter-btn" onclick="filterCards('oos')">Out of Stock</button>
+</div>
+
+
+
+<div class="cards-grid" id="cardsGrid">
+<div class="product-card" data-score="58" data-change="-20.0" data-stock="in">
+  <div class="name">AirPods Pro 2</div>
+  <div class="price-row">
+    <span class="price">$229.99</span>
+    <span class="change down">▼ 8.0%</span>
+    <span class="stock-badge in-stock">In Stock</span>
+  </div>
+  <div><span class="deal-score score-ok">Deal Score: 58/100</span></div>
+  <div class="meta">
+    <span>Low: $229.99</span>
+    <span>Avg: $239.99</span>
+    <span>High: $249.99</span>
+  </div>
+</div>
+<div class="product-card" data-score="56" data-change="-50.0" data-stock="in">
+  <div class="name">MacBook Pro 14 M4</div>
+  <div class="price-row">
+    <span class="price">$1,849.99</span>
+    <span class="change down">▼ 2.6%</span>
+    <span class="stock-badge in-stock">In Stock</span>
+  </div>
+  <div><span class="deal-score score-ok">Deal Score: 56/100</span></div>
+  <div class="meta">
+    <span>Low: $1,849.99</span>
+    <span>Avg: $1,916.66</span>
+    <span>High: $1,999.99</span>
+  </div>
+</div>
+
+</div>
+
+<div class="chart-container"><h2>Price History</h2><canvas id="priceChart" height="300"></canvas></div>
+
+<script>
+const chartData = [{"label": "MacBook Pro 14 M4", "data": [{"x": "2026-04-06T00:51:36.282308+00:00", "y": 1999.99}, {"x": "2026-04-06T00:51:36.308972+00:00", "y": 1899.99}, {"x": "2026-04-06T00:51:36.333275+00:00", "y": 1849.99}]}, {"label": "AirPods Pro 2", "data": [{"x": "2026-04-06T00:51:36.358147+00:00", "y": 249.99}, {"x": "2026-04-06T00:51:36.382518+00:00", "y": 229.99}]}];
+
+if (chartData.length > 0) {
+  const colors = ['#38bdf8', '#818cf8', '#f472b6', '#fbbf24', '#34d399',
+                  '#fb923c', '#a78bfa', '#22d3ee', '#f87171', '#a3e635'];
+  const ctx = document.getElementById('priceChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: chartData.map((ds, i) => ({
+        label: ds.label,
+        data: ds.data,
+        borderColor: colors[i % colors.length],
+        backgroundColor: colors[i % colors.length] + '20',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3
+      }))
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { type: 'category', grid: { color: '#1e293b' },
+              ticks: { color: '#64748b' } },
+        y: { grid: { color: '#1e293b' }, ticks: { color: '#64748b',
+              callback: v => '$' + v.toLocaleString() } }
+      },
+      plugins: {
+        legend: { labels: { color: '#e2e8f0' } },
+        tooltip: { callbacks: {
+          label: ctx => ctx.dataset.label + ': $' + ctx.parsed.y.toLocaleString()
+        } }
+      }
+    }
+  });
+}
+
+function filterCards(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    const show = type === 'all'
+      || (type === 'deals' && parseInt(card.dataset.score) >= 70)
+      || (type === 'drops' && parseFloat(card.dataset.change) < 0)
+      || (type === 'oos' && card.dataset.stock === 'out');
+    card.style.display = show ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

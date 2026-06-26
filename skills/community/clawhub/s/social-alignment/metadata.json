@@ -1,0 +1,36 @@
+{
+  "slug": "social-alignment",
+  "name": "Social Alignment",
+  "version": "0.1.4",
+  "summary": "Future state projection and alignment for sovereign AI agents — the fifth pillar of the NSE platform",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://nse.dev"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/nostralignment.app.OC-python.src",
+  "tags": [
+    "nostr",
+    "alignment",
+    "ai",
+    "sovereign",
+    "ethics",
+    "safety",
+    "escalation",
+    "five-lenses",
+    "yellow-line"
+  ],
+  "install": {
+    "pip": "social-alignment"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [],
+  "categories": [
+    "ai",
+    "safety",
+    "alignment"
+  ]
+}

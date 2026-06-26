@@ -1,0 +1,855 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SpeakNotes Direct API for OpenClaw",
+    "version": "1.0.0",
+    "description": "Generated contract for OpenClaw direct integration with SpeakNotes (YouTube, direct uploads, notes, and folders)."
+  },
+  "servers": [
+    {
+      "url": "https://api.speaknotes.io"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/youtube-check": {
+      "post": {
+        "summary": "Validate a YouTube URL and plan duration limits",
+        "operationId": "youtubeCheck",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "youtubeUrl"
+                ],
+                "properties": {
+                  "youtubeUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Video is valid for current plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/YouTubeCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid URL or video exceeds duration limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/YouTubeCheckResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/youtube-summary": {
+      "post": {
+        "summary": "Create note from YouTube and start async summarization",
+        "operationId": "youtubeSummary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "youtubeUrl",
+                  "style"
+                ],
+                "properties": {
+                  "youtubeUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "style": {
+                    "type": "string"
+                  },
+                  "styleId": {
+                    "type": "string"
+                  },
+                  "fcmToken": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "sharedFolderId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted and note created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "noteId"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
+                    },
+                    "noteId": {
+                      "type": "string"
+                    },
+                    "orgId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorWithMessage"
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/upload-url": {
+      "post": {
+        "summary": "Create note and get signed upload URL for media files",
+        "operationId": "createMediaUploadUrl",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadUrlRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed URL generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadUrlResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorWithMessage"
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/upload-complete": {
+      "post": {
+        "summary": "Confirm media upload completion and start async processing",
+        "operationId": "completeMediaUpload",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadCompleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadCompleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorWithMessage"
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/pdf-upload-url": {
+      "post": {
+        "summary": "Create note and get signed upload URL for document files",
+        "operationId": "createDocumentUploadUrl",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PdfUploadUrlRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed URL generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PdfUploadUrlResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorWithMessage"
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/pdf-upload-complete": {
+      "post": {
+        "summary": "Confirm document upload completion and start async processing",
+        "operationId": "completeDocumentUpload",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadCompleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadCompleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorWithMessage"
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/notes": {
+      "get": {
+        "summary": "List notes",
+        "operationId": "listNotes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "updatedAfter",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "folderId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notes list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotesListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/notes/{id}": {
+      "get": {
+        "summary": "Get note by ID",
+        "operationId": "getNote",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Note object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/notes/{id}/status": {
+      "get": {
+        "summary": "Get note processing status",
+        "operationId": "getNoteStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "isComplete",
+                    "hasError"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "processingStage": {
+                      "type": "string"
+                    },
+                    "isComplete": {
+                      "type": "boolean"
+                    },
+                    "hasError": {
+                      "type": "boolean"
+                    },
+                    "errorMessage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/folders": {
+      "get": {
+        "summary": "List folders",
+        "operationId": "listFolders",
+        "responses": {
+          "200": {
+            "description": "Folder list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/folders/{id}": {
+      "get": {
+        "summary": "Get folder by ID",
+        "operationId": "getFolder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Folder object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "APIKey"
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Missing or invalid auth token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "ErrorWithMessage": {
+        "description": "Validation or business error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "YouTubeMetadata": {
+        "type": "object",
+        "properties": {
+          "videoId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "channelTitle": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "durationFormatted": {
+            "type": "string"
+          }
+        }
+      },
+      "YouTubeCheckResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "durationInSeconds": {
+            "type": "integer"
+          },
+          "maxDuration": {
+            "type": "integer"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/YouTubeMetadata"
+          }
+        }
+      },
+      "UploadUrlRequest": {
+        "type": "object",
+        "required": [
+          "fileName",
+          "contentType",
+          "fileSize",
+          "style"
+        ],
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "integer"
+          },
+          "style": {
+            "type": "string"
+          },
+          "styleId": {
+            "type": "string"
+          },
+          "fcmToken": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "sharedFolderId": {
+            "type": "string"
+          }
+        }
+      },
+      "PdfUploadUrlRequest": {
+        "type": "object",
+        "required": [
+          "fileName",
+          "fileSize",
+          "style"
+        ],
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "integer"
+          },
+          "style": {
+            "type": "string"
+          },
+          "styleId": {
+            "type": "string"
+          },
+          "fcmToken": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "sharedFolderId": {
+            "type": "string"
+          }
+        }
+      },
+      "UploadUrlResponse": {
+        "type": "object",
+        "required": [
+          "error",
+          "uploadUrl",
+          "noteId",
+          "filePath"
+        ],
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "enum": [
+              false
+            ]
+          },
+          "uploadUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "noteId": {
+            "type": "string"
+          },
+          "filePath": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "string"
+          }
+        }
+      },
+      "PdfUploadUrlResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UploadUrlResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "contentType"
+            ],
+            "properties": {
+              "contentType": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "UploadCompleteRequest": {
+        "type": "object",
+        "required": [
+          "noteId"
+        ],
+        "properties": {
+          "noteId": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "string"
+          }
+        }
+      },
+      "UploadCompleteResponse": {
+        "type": "object",
+        "required": [
+          "error",
+          "noteId"
+        ],
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "enum": [
+              false
+            ]
+          },
+          "noteId": {
+            "type": "string"
+          }
+        }
+      },
+      "NotesListResponse": {
+        "type": "object",
+        "required": [
+          "data",
+          "pagination"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "pagination": {
+            "type": "object",
+            "required": [
+              "limit",
+              "offset",
+              "hasMore"
+            ],
+            "properties": {
+              "limit": {
+                "type": "integer"
+              },
+              "offset": {
+                "type": "integer"
+              },
+              "hasMore": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

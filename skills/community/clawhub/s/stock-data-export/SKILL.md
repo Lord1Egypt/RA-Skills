@@ -1,35 +1,48 @@
----
-name: "Stock Data Export"
-description: "Exports A-share stock and index daily, weekly, or monthly data from Tushare API to Excel, CSV, or JSON for quantitative analysis and backtesting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-data-export"
-sourceUrl: "https://clawhub.ai/skills/stock-data-export"
----
+# Stock Data Export - A 股数据导出工具
 
-# Stock Data Export
+## 功能描述
+基于 Tushare API 的 A 股数据批量导出工具，支持日线/周线/月线数据导出为 Excel/CSV 格式。
 
-> Exports A-share stock and index daily, weekly, or monthly data from Tushare API to Excel, CSV, or JSON for quantitative analysis and backtesting.
+## 使用场景
+- 量化交易数据准备
+- 股票回测数据收集
+- 投资组合分析
+- 财务数据导出
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-data-export`
-- **Source URL:** [https://clawhub.ai/skills/stock-data-export](https://clawhub.ai/skills/stock-data-export)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-data-export
+### 导出单只股票
 ```
+导出股票代码=000001 开始日期=20250101 结束日期=20260328 类型=日线
+```
+
+### 批量导出
+```
+批量导出股票列表=000001,000002,000003 开始日期=20250101 类型=日线 输出格式=Excel
+```
+
+### 导出指数数据
+```
+导出指数代码=000300 开始日期=20250101 结束日期=20260328
+```
+
+## 配置
+需要配置 Tushare API Token：
+```
+tushare_token=你的 token
+```
+
+## 输出格式
+- CSV (默认)
+- Excel (.xlsx)
+- JSON
+
+## 数据字段
+- 交易日期
+- 开盘价
+- 收盘价
+- 最高价
+- 最低价
+- 成交量
+- 成交额
+- 涨跌幅

@@ -1,0 +1,10 @@
+{
+  "default_deposit_pct": 40,
+  "default_milestone_pct": 30,
+  "default_final_pct": 30,
+  "default_acceptance_days": 5,
+  "default_penalty_daily_pct": 0.5,
+  "default_revision_rounds": 3,
+  "default_quote_validity_days": 15,
+  "currency": "人民币"
+}

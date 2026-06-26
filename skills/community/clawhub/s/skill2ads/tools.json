@@ -1,0 +1,97 @@
+[
+  {
+    "name": "scrape_website",
+    "description": "Scrape a business website using Apify's Website Content Crawler. Returns cleaned text content from up to 3 pages (homepage, about, products).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The website URL to scrape (e.g. https://cocacola.com)"
+        },
+        "max_pages": {
+          "type": "number",
+          "description": "Maximum number of pages to crawl (default: 3)",
+          "default": 3
+        }
+      },
+      "required": ["url"]
+    },
+    "executor": {
+      "type": "function",
+      "entry": "src/index.ts",
+      "function": "scrape"
+    }
+  },
+  {
+    "name": "generate_ads",
+    "description": "Analyze scraped website content to extract brand profile, then generate 5 Meta-ready ad variants with targeting and scheduling.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "website_content": {
+          "type": "string",
+          "description": "The scraped text content from the website"
+        },
+        "url": {
+          "type": "string",
+          "description": "The original website URL (used for context)"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Target ad platform (default: instagram)",
+          "enum": ["instagram", "facebook", "both"],
+          "default": "instagram"
+        },
+        "budget_hint": {
+          "type": "string",
+          "description": "Optional budget context (e.g. '$200/week')"
+        }
+      },
+      "required": ["website_content"]
+    },
+    "executor": {
+      "type": "function",
+      "entry": "src/index.ts",
+      "function": "generate"
+    }
+  },
+  {
+    "name": "website_to_ads",
+    "description": "End-to-end: scrape a website URL and generate 5 brand-matched Meta ad variants in one step.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The business website URL to scrape and generate ads for"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Target ad platform (default: instagram)",
+          "enum": ["instagram", "facebook", "both"],
+          "default": "instagram"
+        },
+        "budget_hint": {
+          "type": "string",
+          "description": "Optional budget context (e.g. '$200/week')"
+        },
+        "max_pages": {
+          "type": "number",
+          "description": "Maximum pages to crawl (default: 3)",
+          "default": 3
+        },
+        "civic_token": {
+          "type": "string",
+          "description": "Optional Civic identity token for authenticated export workflows"
+        }
+      },
+      "required": ["url"]
+    },
+    "executor": {
+      "type": "function",
+      "entry": "src/index.ts",
+      "function": "websiteToAds"
+    }
+  }
+]

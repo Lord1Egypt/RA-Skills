@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Requirements Engineering / 软件需求工程"
+  short_description: "Book-aligned enterprise requirements engineering"
+  default_prompt: "Use $software-requirements-engineering to run a Wiegers & Beatty-style requirements workflow, from business requirements and elicitation through SRS, validation, change control, traceability, and risk management."

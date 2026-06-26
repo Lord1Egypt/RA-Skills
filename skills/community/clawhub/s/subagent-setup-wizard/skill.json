@@ -1,0 +1,8 @@
+{
+  "name": "subagent-setup-wizard",
+  "version": "1.0.0",
+  "description": "Subagent 启用配置向导",
+  "author": "郑宇航",
+  "license": "MIT-0",
+  "keywords": ["subagent", "setup", "wizard", "concurrency"]
+}

@@ -1,0 +1,21 @@
+# Skills Monitor v0.7.0 — 依赖清单
+# Python >= 3.9
+
+# Web 框架
+flask>=2.3.0
+flask-sqlalchemy>=3.0.0
+
+# HTTP 请求
+requests>=2.28.0
+
+# 数据处理
+pandas>=1.5.0
+
+# 定时任务调度
+apscheduler>=3.10.0
+
+# 环境变量管理
+python-dotenv>=1.0.0
+
+# 安全凭证存储（OS Keychain 集成）
+keyring>=25.0.0

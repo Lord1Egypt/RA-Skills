@@ -1,0 +1,34 @@
+# Smart Charts - 依赖声明（精确版本 + 哈希校验）
+# 安装方式: pip install -r requirements.txt --require-hashes
+#
+# 安全说明:
+#   - 所有依赖使用 == 精确固定版本，避免供应链攻击和版本漂移
+#   - --require-hashes 确保 pip 安装时校验包完整性，防止篡改
+#   - 如需更新版本，请运行: python core/generate_hashes.py
+#
+# 注意: 哈希值与平台相关（wheel 文件因平台而异）。
+#   - pip 的 --require-hashes 要求下载的 wheel 哈希与本文件记录的完全一致。
+#   - 本文件同时包含 macOS 和 Windows 两个平台的哈希，pip 会自动匹配
+#     当前平台对应的哈希，忽略其他平台的哈希。
+#   - 如需支持新平台（如 Linux），请运行: python core/generate_hashes.py
+#     并将输出的哈希追加到对应包的 --hash 行中。
+
+# 核心依赖 (必需)
+pandas==3.0.1 \
+    --hash=sha256:661e0f665932af88c7877f31da0dc743fe9c8f2524bdffe23d24fdcb67ef9d56 \
+    --hash=sha256:536232a5fe26dd989bd633e7a0c450705fdc86a207fec7254a55e9a22950fe43
+numpy==2.4.3 \
+    --hash=sha256:bb2e3cf95854233799013779216c57e153c1ee67a0bf92138acca0e429aefaee \
+    --hash=sha256:65f3c2455188f09678355f5cae1f959a06b778bc66d535da07bf2ef20cd319d5
+openpyxl==3.1.5 \
+    --hash=sha256:5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2
+xlrd==2.0.1 \
+    --hash=sha256:6a33ee89877bd9abc1158129f6e94be74e2679636b8a205b43b85206c3f0bbdd
+
+# 传递依赖 (--require-hashes 模式下所有依赖都必须有哈希)
+python-dateutil==2.9.0.post0 \
+    --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+six==1.17.0 \
+    --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
+et-xmlfile==2.0.0 \
+    --hash=sha256:7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPM Task Ledger",
+  "description": "WBS task ledger entry for SPM project tracking with cold-start context and mutation tracking",
+  "type": "object",
+  "properties": {
+    "task_id": { "type": "string", "description": "Stable task ID (e.g., 1, 1.1, 2)" },
+    "project_id": { "type": "string", "description": "Project identifier" },
+    "name": { "type": "string", "description": "Task name" },
+    "description": { "type": "string", "description": "Task description" },
+    "context_brief": {
+      "type": "string",
+      "description": "Self-contained cold-start context: goal, prerequisite artifacts, files, constraints, key acceptance criteria. Enables a fresh agent to execute without reading prior tasks."
+    },
+    "model_tier": {
+      "type": "string",
+      "enum": ["fast", "standard", "strong"],
+      "description": "Recommended model tier: fast (boilerplate/classification), standard (implementation), strong (architecture/root-cause)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["todo", "doing", "done", "blocked", "skipped"],
+      "description": "Task status"
+    },
+    "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+    "phase": { "type": "string", "enum": ["requirement", "planning", "execution", "quality", "delivery"] },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "exit_criteria": { "type": "array", "items": { "type": "string" } },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "assigned_to": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "mutation": {
+      "type": "object",
+      "description": "Plan mutation tracking",
+      "properties": {
+        "type": { "type": "string", "enum": ["split", "insert", "skip", "reorder", "abandon"] },
+        "reason": { "type": "string" },
+        "parent_id": { "type": "string", "description": "Original task ID before mutation" },
+        "child_ids": { "type": "array", "items": { "type": "string" }, "description": "New task IDs after split/insert" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "required": ["task_id", "project_id", "name", "status", "phase"]
+}

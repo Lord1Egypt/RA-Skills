@@ -1,0 +1,43 @@
+SHOT REVERSE SHOT - DEFINITION AND USAGE
+========================================
+
+DEFINITION:
+Shot reverse shot is a film editing technique where two characters are shown in conversation, 
+with the camera alternating between them. The characters are typically positioned on opposite 
+sides of the line of action (an invisible line between them).
+
+KEY CHARACTERISTICS:
+- Two-shot: Both characters shown together, establishing their relationship
+- Shot/Reverse shot pattern: Character A speaks, then Character B responds
+- The cut occurs at natural pauses in dialogue
+- Characters always face opposite directions within the frame
+
+THE 180-DEGREE RULE:
+The line of action (also called the 180-degree line) is an imaginary line drawn between 
+two characters in a scene. The camera stays on one side of this line to maintain:
+- Spatial consistency (Character A always left, Character B right)
+- Screen direction (characters face each other properly)
+- Audience orientation
+
+BREAKING THE RULE:
+Directors sometimes cross the line deliberately for effect:
+- Sudden cuts can indicate confusion, conflict, or disorientation
+- Creates unease or dramatic tension
+- Often used in thriller/horror genres
+
+POINT-OF-VIEW (POV) SHOTS:
+Variation where we see what a character sees
+- Character looks off-screen, then we see their perspective
+- Used to maintain continuity while showing reactions
+
+EMOTIONAL IMPACT:
+- Creates conversational rhythm and flow
+- Builds tension through shot duration
+- Eye-line match: Character looks off-screen, next shot shows what they see
+- Helps audience connect with both speakers equally
+
+NOTABLE EXAMPLES:
+- Classic Hollywood dialogue scenes
+- Romantic comedies (two-person conversations)
+- Interview scenes
+- Confrontation scenes

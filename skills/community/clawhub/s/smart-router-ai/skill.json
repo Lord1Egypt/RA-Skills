@@ -1,0 +1,25 @@
+{
+  "name": "smart-router",
+  "version": "1.0.0",
+  "description": "Intent-based model router that auto-detects your intent (fix/plan/flow) and routes to optimal AI model. Stop choosing models manually. Better results, less friction, cognitive offload.",
+  "category": "AI Productivity",
+  "tags": ["ai", "routing", "productivity", "workflow", "automation"],
+  "price": {
+    "oneTime": 29,
+    "subscription": 9,
+    "currency": "USD"
+  },
+  "requirements": [
+    "Termux (Android) or Linux environment",
+    "OpenClaw agent system",
+    "At least 2 agents configured (main + cloud-code or deepseek-r1)"
+  ],
+  "author": {
+    "name": "Cod3Black",
+    "email": "support@cod3black.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3black/smart-router"
+  }
+}

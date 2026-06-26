@@ -1,35 +1,47 @@
----
-name: "Speech to text"
-description: "Transcreve arquivos de áudio em português brasileiro para texto, suportando vários formatos e incluindo timestamps."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stt"
-sourceUrl: "https://clawhub.ai/skills/stt"
----
+# Speech-to-Text (STT) Skill
 
-# Speech to text
+Transcreve arquivos de áudio para texto usando OpenAI Whisper, otimizado para
+ português (Brasil).
 
-> Transcreve arquivos de áudio em português brasileiro para texto, suportando vários formatos e incluindo timestamps.
+## When to use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stt`
-- **Source URL:** [https://clawhub.ai/skills/stt](https://clawhub.ai/skills/stt)
+- Converter mensagens de voz ou áudios para texto
+- Transcrever áudios do WhatsApp, Telegram, etc.
+- Processar formatos: OGG, WAV, MP3, M4A, FLAC, AAC, OPUS
+- Obter transcrições com timestamps
+- Processar conteúdo em português brasileiro
 
-## Overview
+## Tools
 
+- stt_transcribe: Transcreve um arquivo de áudio específico
+- stt_watch: Inicia monitoramento contínuo da pasta inbound
+- stt_batch: Processa todos os áudios pendentes de uma vez
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Setup
+
+1. **Instalar dependências:**
 ```bash
-hermes skills install clawhub/stt
+pip install -r requirements.txt
+ ```
+
+ 2. Instalar FFmpeg (necessário pelo Whisper):
+  - Windows: execute install_ffmpeg.cmd ou winget install "Gyan.FFmpeg"
+  - macOS: brew install ffmpeg
+  - Linux: sudo apt install ffmpeg
+ 3. Criar pasta de entrada:
+```bash
+  mkdir -p ../../../media/inbound
 ```
+
+## Usage
+
+### Transcrever arquivo específico
+
+ ```bash
+python stt_processor.py --file /caminho/para/audio.ogg
+ ```
+
+### Transcrever todos os áudios pendentes
+
+ ```bash
+python stt_processor.py

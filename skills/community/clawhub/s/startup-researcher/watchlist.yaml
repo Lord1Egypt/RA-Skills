@@ -1,0 +1,40 @@
+categories:
+  base_model:
+    - OpenAI
+    - Anthropic
+    - xAI (Grok)
+    - Moonshot AI
+    - DeepSeek
+  gpu_cloud_infra:
+    - CoreWeave
+    - Nebius
+    - FluidStack
+    - Lambda Labs
+    - Crusoe
+    - GMI Cloud
+    - Voltage Park
+    - Vast.ai
+    - Parallel
+  custom_silicon:
+    - SambaNova
+    - Groq
+    - Etched
+    - Cerebras
+    - d-Matrix
+  inference_platforms:
+    - Together AI
+    - Fireworks AI
+    - Baseten
+    - Parasail
+    - Replicate
+    - Modal Labs
+    - Novita AI
+    - Exa AI
+    - E2B
+  robotics_physical_ai:
+    - Physical Intelligence (Pi)
+    - Figure AI
+    - Rhoda AI
+    - 1X
+    - Apptronik
+    - Anduril

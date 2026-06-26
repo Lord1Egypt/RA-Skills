@@ -1,0 +1,8 @@
+{
+  "include_welcome": true,
+  "include_post_purchase": true,
+  "include_threshold": true,
+  "include_winback": true,
+  "include_referral_push": true,
+  "lapsed_days": 60
+}

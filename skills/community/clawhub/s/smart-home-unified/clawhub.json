@@ -1,0 +1,62 @@
+{
+  "name": "smart-home-unified",
+  "version": "1.0.2",
+  "description": "智能家居统一控制 - 一个 App 控制所有品牌设备",
+  "author": "lvjunjie-byte",
+  "license": "MIT-0",
+  "pricing": {
+    "tiers": [
+      {
+        "name": "基础版",
+        "price": 99,
+        "period": "month",
+        "features": [
+          "最多 50 个设备",
+          "基础场景联动",
+          "手机 App 控制",
+          "7 天用电报告"
+        ]
+      },
+      {
+        "name": "专业版",
+        "price": 199,
+        "period": "month",
+        "features": [
+          "最多 200 个设备",
+          "AI 节能优化",
+          "语音控制集成",
+          "30 天用电报告",
+          "优先级支持"
+        ]
+      },
+      {
+        "name": "企业版",
+        "price": 299,
+        "period": "month",
+        "features": [
+          "无限设备",
+          "定制场景开发",
+          "专属客户经理",
+          "实时用电监控",
+          "API 访问权限"
+        ]
+      }
+    ]
+  },
+  "platforms": [
+    "xiaomi",
+    "huawei",
+    "homekit",
+    "alexa",
+    "google-home",
+    "tuya",
+    "tmall"
+  ],
+  "commands": [
+    "devices",
+    "scenes",
+    "automation",
+    "energy",
+    "config"
+  ]
+}

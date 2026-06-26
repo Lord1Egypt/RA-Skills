@@ -1,0 +1,11 @@
+akshare>=1.18.0
+google-genai>=1.63.0
+pandas>=2.0.0
+tabulate>=0.9.0
+croniter>=6.0.0
+google-generativeai>=0.8.0
+markdown>=3.10.0
+python-dotenv>=1.1.0
+pytz>=2025.2
+requests>=2.32.5
+PyYAML>=6.0.0

@@ -1,35 +1,60 @@
 ---
-name: "sunsetbot-watch"
-description: "全自动 sunsetbot 晚霞查询，使用 agent-browser 访问 sunsetbot.top 网站，自动解析页面，输出指定城市当天晚霞的鲜艳度和气溶胶质量。触发场景：用户需要查询某个城市今天/明天晚霞概率，查询 sunsetbot 晚霞预报。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, sunset, sunsetbot]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sunsetbot-watch"
-sourceUrl: "https://clawhub.ai/skills/sunsetbot-watch"
+name: sunsetbot-watch
+description: 全自动 sunsetbot 晚霞查询，使用 agent-browser 访问 sunsetbot.top 网站，自动解析页面，输出指定城市当天晚霞的鲜艳度和气溶胶质量。触发场景：用户需要查询某个城市今天/明天晚霞概率，查询 sunsetbot 晚霞预报。
 ---
 
-# sunsetbot-watch
+# Sunsetbot Watch
 
-> 全自动 sunsetbot 晚霞查询，使用 agent-browser 访问 sunsetbot.top 网站，自动解析页面，输出指定城市当天晚霞的鲜艳度和气溶胶质量。触发场景：用户需要查询某个城市今天/明天晚霞概率，查询 sunsetbot 晚霞预报。
+## 晚霞查询工作流程
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sunsetbot-watch`
-- **Source URL:** [https://clawhub.ai/skills/sunsetbot-watch](https://clawhub.ai/skills/sunsetbot-watch)
+### 输入格式
+用户提供：**城市** + **日期**（如果不指定日期默认查询当天）
 
-## Overview
+### 查询参数规则
+搜索框格式：`城市,YYYYMMDD,set,YYYYMMDD-118z`
+- 城市 → 需要查询的城市名（如厦门）
+- YYYYMMDD → 查询的目标日期（当天）
+- set → 表示查询日落/晚霞，如果查询日出用 rise
+- YYYYMMDD-118z → 目标日期前一天的 18 点（时间序列参数固定格式）
 
+### 执行步骤
+1. 使用 agent-browser 访问 `https://sunsetbot.top/detailed/`
+2. 点击清除按钮清空搜索框
+3. 按照上述规则填入查询参数
+4. 点击搜索按钮，等待页面加载完成
+5. 通过页面文本提取 **鲜艳度** 和 **气溶胶（AOD）** 数值
+6. 根据数值添加等级说明，按指定格式输出结果
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sunsetbot-watch
+### 输出格式要求
 ```
+📅 日期：xxxx-xx-xx
+鲜艳度： 0.034 → 微微烧，基本不烧
+气溶胶： 0.875 → 天空相当污浊，地面附近可能有霾
+结论：明天 xx 地区 晚霞概率很低，空气也不太好～
+```
+
+### 等级说明
+| 数值区间 | 说明 |
+|---------|------|
+| 鲜艳度 = 0 | 不烧，今天没有火烧云预报 |
+| 0 < 鲜艳度 < 0.1 | 微微烧，基本不烧 |
+| 0.1 ≤ 鲜艳度 < 0.3 | 轻度烧，概率一般 |
+| 0.3 ≤ 鲜艳度 < 0.6 | 中度烧，概率不错 |
+| 鲜艳度 ≥ 0.6 | 重度烧，大概率好看 |
+
+| 气溶胶 | 说明 |
+|--------|------|
+| < 0.4 | 通透，空气质量好 |
+| 0.4 - 0.8 | 一般，普通天空质量 |
+| > 0.8 | 天空相当污浊，地面附近可能有霾 |
+
+## Resources
+
+### scripts/
+无额外脚本，全部操作通过 agent-browser 完成
+
+### references/
+无额外参考文档
+
+### assets/
+无资源文件

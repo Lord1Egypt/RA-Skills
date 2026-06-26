@@ -1,35 +1,123 @@
 ---
-name: "A股十书全景分析法"
-description: "A股个股十书全景分析法 v2.0。基于十本经典投资书籍的多维度分析框架，自动分类（A/B/C/D型）后选择对应分析路径。用于：(1) 用户发送股票名字+代码时自动触发全景分析 (2) 用户指定截止日时进行严格时间线回测 (3) 实时行情分析和操作建议。触发词：股票代码、股票名称、A股分析、十书分析、回测分析。示例..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-tenbook-analysis"
-sourceUrl: "https://clawhub.ai/skills/stock-tenbook-analysis"
+name: stock-tenbook-analysis
+description: A股个股十书全景分析法 v2.0。基于十本经典投资书籍的多维度分析框架，自动分类（A/B/C/D型）后选择对应分析路径。用于：(1) 用户发送股票名字+代码时自动触发全景分析 (2) 用户指定截止日时进行严格时间线回测 (3) 实时行情分析和操作建议。触发词：股票代码、股票名称、A股分析、十书分析、回测分析。示例："福耀玻璃600660"、"中际旭创300308 截止日2024年10月8号"、"新易盛300502 回测"。
 ---
 
-# A股十书全景分析法
+# A股十书全景分析法 v2.0
 
-> A股个股十书全景分析法 v2.0。基于十本经典投资书籍的多维度分析框架，自动分类（A/B/C/D型）后选择对应分析路径。用于：(1) 用户发送股票名字+代码时自动触发全景分析 (2) 用户指定截止日时进行严格时间线回测 (3) 实时行情分析和操作建议。触发词：股票代码、股票名称、A股分析、十书分析、回测分析。示例...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-tenbook-analysis`
-- **Source URL:** [https://clawhub.ai/skills/stock-tenbook-analysis](https://clawhub.ai/skills/stock-tenbook-analysis)
+用十本经典投资书籍的视角对A股个股进行360度全景分析，输出买入/观望/回避评级和具体操作建议。
 
-## Overview
+**十本书：**
+1. 《投资中最简单的事》邱国鹭 — 估值/品质/时机
+2. 《手把手教你读财报》唐朝 — 财报排雷
+3. 《聪明的投资者》格雷厄姆 — 安全边际
+4. 《彼得·林奇的成功投资》— 公司分类与PEG
+5. 《怎样选择成长股》费舍 — 成长性评估
+6. 《股票作手回忆录》利弗莫尔 — 交易纪律
+7. 《投资最重要的事》马克斯 — 风险与逆向
+8. 《股市真规则》多尔西 — 行业分析
+9. 《周期》马克斯 — 周期位置判断
+10. 《漫步华尔街》马尔基尔 — 指数基准
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-tenbook-analysis
-```
+用户发送"股票名+代码"即可触发分析。如指定截止日，进入回测模式。
+
+**分析流程：**
+1. 公司分类（A/B/C/D型）
+2. 数据采集（行情+财报+行业数据）
+3. 分类适配分析
+4. 投票汇总
+5. 综合评级+操作建议
+
+## Step 0：公司分类（最关键）
+
+根据利润增速和PE对公司分类，决定后续分析路径：
+
+| 类型 | 利润增速 | PE区间 | 产业特征 | 分析路径 |
+|------|---------|--------|---------|---------|
+| **A型：价值型** | <30% | 10-25倍 | 成熟行业 | 十书原版 |
+| **B型：成长型** | 30-100% | 20-50倍 | 成长行业 | 十书+PEG修正 |
+| **C型：爆发型** | >100% | 50倍+ | 全新产业趋势 | 产业趋势框架 |
+| **D型：概念型** | 亏损/微利 | 无意义 | 概念炒作 | 纯风控 |
+
+分类判断优先级：产业趋势 → 利润增速 → PE水平 → 毛利率趋势
+
+**分类可随时间变化。** 分析开头必须声明分类及依据。
+
+## Step 1：数据采集
+
+通过API获取：
+- **行情**：`https://qt.gtimg.cn/q=sz002602`（深市）或 `https://qt.gtimg.cn/q=sh601020`（沪市）
+- **52周K线**：`https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=CODE,day,START,END,300,,`
+- **财务指标**：`https://money.finance.sina.com.cn/corp/go.php/vFD_FinancialGuideLine/stockid/CODE/ctrl/YEAR/displaytype/4.phtml`
+- **PE分位**：`https://www.zhiliaocaibao.com/gz_pe/CODE_名称_9/`
+- **新闻/研报**：web_search 搜索
+
+## Step 2：分类适配分析
+
+### A型/B型：十书框架
+
+读取 [references/tenbook-analysis.md](references/tenbook-analysis.md) 获取十本书的详细分析要点。
+
+每本书输出格式：📘 + 书名 + 作者，分析要点用 ✅⚠️❌，结尾 📌 + 建议。
+
+### C型：产业趋势框架
+
+读取 [references/type-c-framework.md](references/type-c-framework.md) 获取C型专用分析框架。
+
+C型核心：PE不是主要指标，关键是"利润能否持续指数级增长"。
+
+C型分析包含：
+- C-1. 产业趋势评估（0-10分）
+- C-2. 竞争格局评估
+- C-3. PEG + 动态PE消化
+- C-4. 终局估值
+- C-5. 十书风控（精简版）
+- C-6. 关键验证指标
+
+### D型：纯风控
+
+利弗莫尔（走势判断）+ 马克斯（风险评估）+ 唐朝（财报排雷）。
+
+**D型结论：不推荐买入。如一定要参与，仓位≤3%。**
+
+## Step 3：投票汇总
+
+**A/B型用十书投票表，C型用产业趋势投票表。** 参见 [references/output-template.md](references/output-template.md)。
+
+## Step 4：综合评级
+
+评级体系：
+- **A/B型**：强烈推荐买入 / 建议买入 / 建议观望 / 建议回避 / 强烈回避
+- **C型**：C+（强烈看好）/ C（看好）/ C-（偏谨慎）/ 降级为B型
+- **D型**：强烈建议回避
+
+操作建议必须具体到价格区间和仓位百分比。
+
+## 回测模式
+
+用户指定截止日时进入回测模式，严格遵守：
+
+1. **只用截止日前已发布的财报**（如截止10月8日只能用中报不能用三季报）
+2. **价格用不复权实际交易价格**（不用前复权）
+3. **不用截止日后的研报/预测**
+4. **行业地位描述只用截止日前可确认的信息**
+5. **标注可用/不可用信息**
+
+回测输出必须在标题下标注：
+> ⚠️ 回测专用 | 截止日：XXXX年XX月XX日 | 使用不复权实际交易价格
+
+## 风格要求
+
+- 用词直接有力，数据驱动
+- 敢下结论（买入/观望/回避）
+- 操作建议具体到价格和仓位
+- C型标注验证指标和降级信号
+- 回测严格标注时间线
+
+## 免责声明
+
+以上分析不构成投资建议，市场有风险，投资需谨慎。

@@ -1,0 +1,21 @@
+**Stop losing orders to unreliable AI agents.**
+
+I used to lead the mobile app team at Subway corporate in Miami. I built this production-ready WhatsApp ordering agent specifically for restaurants and QSRs.
+
+It handles natural-language orders 24/7, gives real Subway-style personalized recommendations and upsells in real time, pulls your menu from Google Sheets, and logs everything automatically.
+
+The difference? It’s hardened with **ThumbGate** — my pre-action safety system. The agent physically cannot repeat common expensive mistakes (missed confirmations, bad upsells, hallucinated items, skipped logging).
+
+**What you get:**
+- Complete OpenClaw skill (ready to install)
+- 10+ ThumbGate prevention rules tailored for restaurant ops
+- Sample Google Sheet template
+- Step-by-step setup guide (under 20 minutes)
+- 60-second Loom demo
+
+**Real results:**
+- 15-25% higher average ticket size
+- Zero repeated AI screw-ups during rush hour
+- Works on your existing Mac Mini — no monthly SaaS fees
+
+Built by someone who actually ran ops at scale. Instant download. Live tonight.

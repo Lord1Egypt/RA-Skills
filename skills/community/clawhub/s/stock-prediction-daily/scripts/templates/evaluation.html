@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="card">
+      <h3>评估日期</h3>
+      <p class="muted">选择一个日期查看对应批次的历史评估结果。</p>
+      <div class="date-list">
+        {% for date_item in available_dates %}
+        <a class="date-link {% if date_item == selected_date %}active{% endif %}" href="/evaluation?date={{ date_item }}">{{ date_item }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-stack">
+    <section class="grid">
+      <div class="card">
+        <div class="muted">所选日期</div>
+        <div class="metric">{{ selected_date or 'N/A' }}</div>
+      </div>
+      <div class="card">
+        <div class="muted">评估样本数</div>
+        <div class="metric">{{ rows|length }}</div>
+      </div>
+      <div class="card">
+        <div class="muted">可计算准确率</div>
+        <div class="metric {% if accuracy is not none and accuracy >= 0.5 %}metric-down{% elif accuracy is not none %}metric-up{% endif %}">
+          {% if accuracy is not none %}
+          {{ "%.2f%%"|format(accuracy * 100) }}
+          {% else %}
+          N/A
+          {% endif %}
+        </div>
+      </div>
+      <div class="card">
+        <div class="muted">评估口径</div>
+        <div class="metric">T+1</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>评估结果</h2>
+      <p class="muted">展示所有历史预测记录的评估结果。评估使用腾讯财经日线数据，字段已改为“一天后价格”。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              {% for header in headers %}
+              <th>{{ header }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr>
+              {% for header in headers %}
+              <td>
+                {% if header in ["预测结果", "实际涨跌"] %}
+                <span class="pill {% if row[header] == '上涨' %}pill-up{% elif row[header] == '下跌' %}pill-down{% else %}pill-neutral{% endif %}">{{ row[header] }}</span>
+                {% elif header == "预测是否准确" %}
+                <span class="pill {% if row[header] == '✓' %}pill-correct{% elif row[header] == '✗' %}pill-wrong{% else %}pill-neutral{% endif %}">{{ row[header] }}</span>
+                {% else %}
+                {{ row[header] }}
+                {% endif %}
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

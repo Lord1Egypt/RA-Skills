@@ -1,35 +1,121 @@
----
-name: "stock-industry-analyzer"
-description: "自动收集国内外财经新闻，分析股票行业趋势，热点公司与技术指标，生成综合评分和买卖建议报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-industry-analyzer"
-sourceUrl: "https://clawhub.ai/skills/stock-industry-analyzer"
----
+# SKILL.md - 股票行业分析 Skill
 
-# stock-industry-analyzer
+## 简介
 
-> 自动收集国内外财经新闻，分析股票行业趋势，热点公司与技术指标，生成综合评分和买卖建议报告。
+这是一个自动化的股票行业分析工具，通过收集国内外财经新闻，分析行业趋势，筛选热点公司，并进行股票走势分析。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-industry-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/stock-industry-analyzer](https://clawhub.ai/skills/stock-industry-analyzer)
+## 功能特性
 
-## Overview
+### 📰 新闻收集
+- 自动获取国内财经新闻
+- 自动获取国际财经新闻
+- 每30分钟自动更新（可通过cron设置）
+- 自动去重和清洗
 
+### 🏭 行业分析
+- 基于NLP的新闻行业分类
+- 情感分析（利好/利空/中性）
+- 行业热度排名
+- 趋势预测
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 📈 股票分析
+- **使用akshare获取真实行情数据**
+- 技术指标计算（MA、MACD、RSI）
+- 综合评分模型
+- 买卖建议
+
+### 💾 数据存储
+- SQLite本地数据库
+- 长期数据积累
+- 历史趋势分析
+- 报告存档
+
+## 安装依赖
+
+首次运行前需要安装依赖：
+
 ```bash
-hermes skills install clawhub/stock-industry-analyzer
+pip install -r requirements.txt
 ```
+
+依赖包括：
+- akshare>=1.12.0 - 金融数据获取
+- pandas>=1.5.0 - 数据处理
+- jieba>=0.42.0 - 中文分词
+
+## 使用方法
+
+### 1. 立即执行分析
+
+```bash
+python main.py --once
+```
+
+### 2. 定时执行（通过OpenClaw cron）
+
+```
+/30 * * * * python /path/to/main.py
+```
+
+### 3. 在 OpenClaw 中使用
+
+当用户请求分析股票或行业时，自动触发分析流程。
+
+## 配置
+
+编辑 `config.json` 可修改配置：
+
+## 输出示例
+
+```
+📊 股票行业分析报告 - 2026-03-14 00:15
+
+【🔥 热门行业 TOP 5】
+----------------------------------------
+1. 🏭 新能源 (12条新闻) ⬆️
+   情感：利好 (8利好/2利空)
+   关注：宁德时代, 比亚迪
+
+2. 💻 信息技术 (8条新闻) ⬆️
+   情感：利好
+   关注：科大讯飞, 寒武纪
+
+【📈 重点个股分析】
+----------------------------------------
+🔍 宁德时代 (300750)
+   现价：¥215.60  涨跌：+2.35%
+   技术面：多头排列
+   评分：82/100 - 建议关注
+
+⚠️ 风险提示：本分析仅供参考，不构成投资建议
+```
+
+## 项目结构
+
+```
+stock-analyst/
+├── main.py              # 主入口
+├── SKILL.md             # 本文件
+├── src/
+│   ├── __init__.py
+│   ├── db.py            # 数据库模块
+│   ├── fetcher.py       # 新闻获取
+│   ├── analyzer.py      # 行业/股票分析
+│   └── reporter.py      # 报告生成
+└── data/                # 数据目录
+    ├── news.db          # SQLite数据库
+    └── reports/         # 报告存档
+```
+
+## 依赖
+
+- Python 3.8+
+- jieba (中文分词)
+- pandas (数据处理)
+- ta-lib 或 ta (技术指标)
+
+## 注意事项
+
+1. 本工具仅供学习研究，不构成投资建议
+2. 股票投资有风险，入市需谨慎
+3. 数据获取需遵守相关网站的使用条款

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPM Project State",
+  "description": "Tracks overall state of an SPM-managed software project",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["not_started", "in_development", "in_review", "deployed", "on_hold", "completed"]
+        },
+        "started_at": { "type": "string", "format": "date-time" },
+        "last_updated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "version", "status"]
+    },
+    "phases": {
+      "type": "object",
+      "properties": {
+        "requirement": { "$ref": "#/definitions/phase" },
+        "planning": { "$ref": "#/definitions/phase" },
+        "execution": { "$ref": "#/definitions/phase" },
+        "quality": { "$ref": "#/definitions/phase" },
+        "delivery": { "$ref": "#/definitions/phase" }
+      }
+    },
+    "quality_metrics": {
+      "type": "object",
+      "properties": {
+        "test_coverage": { "type": "number", "minimum": 0, "maximum": 100 },
+        "code_review_score": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    }
+  },
+  "required": ["project", "phases"],
+  "definitions": {
+    "phase": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["not_started", "in_progress", "completed", "blocked", "failed"] },
+        "started_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": "string", "format": "date-time" },
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

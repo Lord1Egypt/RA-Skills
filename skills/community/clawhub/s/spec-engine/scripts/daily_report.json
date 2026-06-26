@@ -1,0 +1,1614 @@
+{
+  "date": "2026-03-30",
+  "generated_at": "2026-03-30 13:12:24",
+  "keyword": "OpenClaw",
+  "total": 184,
+  "sources": [
+    {
+      "source": "bilibili",
+      "items": [
+        {
+          "title": "漫谈OpenClaw",
+          "url": "https://www.bilibili.com/video/BV1gWXaBrE2L",
+          "author": "zhugeshensuan",
+          "publish_time": "2026-03-30 12:59",
+          "views": 0,
+          "description": "漫谈OpenClaw"
+        },
+        {
+          "title": "在线指导安装免token的小龙虾，已经装上了，使用的网页api接口，不用配自己的apikey，不用烧token~",
+          "url": "https://www.bilibili.com/video/BV1GnXaBCEs8",
+          "author": "阿鲲正在飞",
+          "publish_time": "2026-03-30 12:56",
+          "views": 1,
+          "description": "-"
+        },
+        {
+          "title": "【效率神器】全输入框通用语音输入！AI 工具 / VSCode / claude / 养龙虾 都能用｜提升开发效率",
+          "url": "https://www.bilibili.com/video/BV1VnXaBCELh",
+          "author": "大成子ONLY",
+          "publish_time": "2026-03-30 12:50",
+          "views": 6,
+          "description": ""
+        },
+        {
+          "title": "谷歌DeepMind研究员揭秘：Coding模型是怎么炼成的，模型上限在哪",
+          "url": "https://www.bilibili.com/video/BV1GpXaBGErD",
+          "author": "AI-Nate",
+          "publish_time": "2026-03-30 12:49",
+          "views": 3,
+          "description": "🗂️ 内容大纲\n\n一、大模型训练的三次范式跃迁\n\n第一阶段：人类当老师（2022-2023）\n\n三步流程：先通读课本（Pre-training），再做随堂练习（SFT），最后请人类老师批改作文、打分（RLHF）\n\nChatGPT为什么让人惊艳？两件事做对了：你说什么它能照做（Instruction Following），而且说话方式让你觉得舒服\n\n瓶颈在哪？人类老师再厉害也是人。用人打分训练出的A"
+        },
+        {
+          "title": "解读openclaw 架构(3)核心组件",
+          "url": "https://www.bilibili.com/video/BV1XmXdBGEwt",
+          "author": "zidea2015",
+          "publish_time": "2026-03-30 12:31",
+          "views": 20,
+          "description": "OpenClaw 并不是那种简单的 AI 模型 API “套壳”聊天机器人，它本质上是 AI Agent 的操作系统。 OpenClaw 将 AI 视为一个基础设施层面的挑战，重点解决的是：会话管理、记忆存储、工具沙箱、访问控制以及任务编排。"
+        },
+        {
+          "title": "openclaw控制微信聊天",
+          "url": "https://www.bilibili.com/video/BV1moXdBKESH",
+          "author": "陈前的投资日记",
+          "publish_time": "2026-03-30 12:21",
+          "views": 35,
+          "description": "openclaw控制微信聊天，全网都在折腾把openclaw接到各种聊天软件里面有啥用啊！openclaw最后一块拼图，Ai控制微信聊天功能被我拼完了#微信 #openclaw"
+        },
+        {
+          "title": "更适合普通人的国产龙虾，微信一句话就能真干活！",
+          "url": "https://www.bilibili.com/video/BV1VRXDBAEwZ",
+          "author": "萌sir壹号",
+          "publish_time": "2026-03-30 12:02",
+          "views": 1015,
+          "description": "-"
+        },
+        {
+          "title": "OpenClaw军团接管20个机械臂！每天一亿Token不养闲虾",
+          "url": "https://www.bilibili.com/video/BV1fvXdBnELL",
+          "author": "同济子豪兄",
+          "publish_time": "2026-03-30 11:58",
+          "views": 1899,
+          "description": "每天花费一亿Token，完全由五只OpenClaw龙虾接管的机器人实验室，长啥样？\n探秘传说中的蚂蚁数科天玑实验室，工程师刚刚用五只OpenClaw龙虾组团，实现多智能体协作，完全接管了实验室。\n这五只虾分别是：\n派活儿的老板：主任虾智能体\n干活儿的牛马：作业虾机械臂\n找故障的监工：巡检虾机器人\n盯监控的保安：质控虾VLM\n写报表的小编：运营虾大模型\n工程师给这些龙虾试过Qwen、glm-5.1、"
+        },
+        {
+          "title": "不到1小时写出9000字论文？手把手教你和OpenClaw虾合作搞定毕业论文",
+          "url": "https://www.bilibili.com/video/BV1jvXdBHEys",
+          "author": "Andy要上岸机器学习",
+          "publish_time": "2026-03-30 11:58",
+          "views": 9,
+          "description": "毕业季来了，手上没有论文框架怎么办？我用 OpenClaw 养了一只&quot;学术虾&quot; Tony，一个下午从选题、文献综述、研究方法，到完整 Word 论文全搞定——17页，9000多字，整个过程和AI一起协作完成。本视频完整演示安装配置、虾的创建和人格化设定、调用论文 skills 写作全流程，附养虾心得。不建议用来直接交卷，但作为写论文的起点和框架——够用的。"
+        },
+        {
+          "title": "OpenClaw搭建5位AI员工，跨境全链路无忧运营",
+          "url": "https://www.bilibili.com/video/BV1RyXdBLEcM",
+          "author": "FutureinCloud",
+          "publish_time": "2026-03-30 11:47",
+          "views": 4,
+          "description": ""
+        },
+        {
+          "title": "谁信？仅用一周，我就把钉钉悟空变成量化投资分析师？",
+          "url": "https://www.bilibili.com/video/BV1dzXdBmE1P",
+          "author": "Rick老张有话说",
+          "publish_time": "2026-03-30 11:47",
+          "views": 349,
+          "description": "【谁信？仅用一周，我就把钉钉悟空变成量化投资分析师？】 #AI #钉钉 #悟空 #openclaw 大龙虾在各个平台出现了国产版，钉钉的这个悟空其实很好用，我用一周就把它训练成了一个量化分析师，这传出去谁信啊？太牛！想了解我怎么干的，可以看看我们的课。"
+        },
+        {
+          "title": "每日英语听力 | AI Agents Like OpenClaw Are Here. How Can You Use Them",
+          "url": "https://www.bilibili.com/video/BV1RzXdBmE4o",
+          "author": "人称胡子哥",
+          "publish_time": "2026-03-30 11:45",
+          "views": 11,
+          "description": ""
+        },
+        {
+          "title": "别用玄学方式配Agent了！openclaw配置指南来了，终于搞懂Agent绑定逻辑了",
+          "url": "https://www.bilibili.com/video/BV1LrXdB7Er5",
+          "author": "罐头的AI笔记",
+          "publish_time": "2026-03-30 11:41",
+          "views": 249,
+          "description": "龙虾开壳指南 openclaw配置文件详解. 这期聊OpenClaw的详细配置。很多人遇到过：明明绑定了HR Agent，群聊里回复的还是主Agent；多个群绑定后&quot;串台&quot;身份混乱。 问题的根源在bindings绑定逻辑。一个完整的Agent绑定要满足三个条件：agents.list里有定义、bindings里做好channel匹配、channels里有对应的account配置"
+        },
+        {
+          "title": "0元部署龙虾，骑行去逛外滩面包节，看苹果新品｜上海周末英文vlog",
+          "url": "https://www.bilibili.com/video/BV1uFXQBfEfD",
+          "author": "小筒同",
+          "publish_time": "2026-03-30 11:40",
+          "views": 10,
+          "description": "周六速报｜绿联云 ×minimax 免费部署 OpenClaw 小龙虾 30 天，一键安装超省心，打算让 AI 帮我复盘视频数据提优化～\n\n逛 BFC 外滩面包节，人挤人实拍摊位与美味测评，布尾恰巴塔 &amp; 碱水球实名好吃；偶遇泡泡玛特新春游园会，星星人冰棍可爱拉满。\n\n打卡阿不就台湾食堂，黑金卤肉饭、红烧牛肉面、炸腐乳肉 + 木薯糖水全安排，上海少糖口咸辣牛肉面太对味！\n\n顺路逛南京东路 "
+        },
+        {
+          "title": "gstack vs Superpowers vs OpenClaw：AI编码工作流到底该选哪个？",
+          "url": "https://www.bilibili.com/video/BV12uAKzHEJP",
+          "author": "ValleyAI",
+          "publish_time": "2026-03-30 11:00",
+          "views": 31,
+          "description": "四大AI编码工作流横评：Superpowers(93k)=流程纪律/gstack(25k)=虚拟团队/Claude Skills(349个)=自由组合/OpenClaw=通用平台。评论区你用哪个？\n\n🔗 OpenClaw：github.com/openclaw/openclaw\n关注公众号 Valley AI"
+        },
+        {
+          "title": "华为混合云本地部署OpenClaw方案，三步轻松帮助政企“养虾”",
+          "url": "https://www.bilibili.com/video/BV1CAXoBAEmr",
+          "author": "华为云开发者联盟",
+          "publish_time": "2026-03-30 10:56",
+          "views": 49,
+          "description": ""
+        },
+        {
+          "title": "电网设备6类业务：⑤材料类，AI电力产业链的核心硬件支撑",
+          "url": "https://www.bilibili.com/video/BV1TZXdBiEZi",
+          "author": "一羽禅心的鹤",
+          "publish_time": "2026-03-30 10:52",
+          "views": 7,
+          "description": "电网设备6类业务：⑤材料类，AI电力产业链的核心硬件支撑\n电网设备6类业务：AI电力产业链的核心硬件支撑\nAI电力：人工智能赋能新型电力系统\n整个产业链覆盖了从发电到用电的各个环节，涉及六大类核心硬件，包括智能信息化系统、高压中压设备、电表、材料以及低压电器。\n电网设备作为AI电力产业链的核心硬件支撑，按业务属性可分为 6大类，涵盖 28个代表产品。\n一、智能/信息化（电网大脑）\n二、高压设备（输"
+        },
+        {
+          "title": "【正经整活】在 MegaCube 上免费部署“小龙虾”当产品经理是种什么体验？",
+          "url": "https://www.bilibili.com/video/BV1FMXoBfE1y",
+          "author": "新华三智能终端",
+          "publish_time": "2026-03-30 10:42",
+          "views": 29,
+          "description": "AI 概念火了这么久，到底怎么落地？ 与其空谈，不如直接看 MegaCube 联合 OpenClaw 搞的大动作。\n第一期“养虾计划”：AI产品经理，我们实测了四项核心战斗力：\n📊 市场分析、资料管理 、 文档生成、标书分析\n这不是在取代谁，而是在定义属于未来的工作范式。\nAI 落地，从这只“小龙虾”开始。"
+        },
+        {
+          "title": "另一种Openclaw，普通人的更优选",
+          "url": "https://www.bilibili.com/video/BV1NWXWBzEEk",
+          "author": "野码AI",
+          "publish_time": "2026-03-30 10:40",
+          "views": 91,
+          "description": "我们看到各种小龙虾已经是漫天飞，即便是大家都实现了一键安装部署，如果用来做开发，对于很多新手来说，还是无法实现从创意到产品的快速落地，各种环境问题太复杂了。给大家分享一个免费、而且对新手特别友好的方式，直接在网页中，输入你的想法，它能帮你在后台干活，即便是你关闭了浏览器，也不会停止"
+        },
+        {
+          "title": "不花钱、零Tokens！一招解决上百条文本的分析操作…",
+          "url": "https://www.bilibili.com/video/BV1CPXoBhEyN",
+          "author": "阿加犀智能科技",
+          "publish_time": "2026-03-30 10:37",
+          "views": 20,
+          "description": "无需云端算力，本地即可实现高效文本分析！今天，我们通过3个真实场景，直观验证openclaw在端侧的文本分析核心能力，看它如何适配多场景、高效处理文本数据。"
+        },
+        {
+          "title": "每天2小时重复工作？OpenClaw工作流10倍效率提升 | 职场人必看！用OpenClaw自动化工作流解放双手",
+          "url": "https://www.bilibili.com/video/BV14qXRBcELp",
+          "author": "阿龙玩AI",
+          "publish_time": "2026-03-30 06:57",
+          "views": 96,
+          "description": "每天处理邮件、整理周报占用了多少时间？\n这期视频教你用OpenClaw配置自动化工作流，从痛点分析到实战案例，手把手演示如何让效率提升10倍。"
+        },
+        {
+          "title": "颠覆认知！汽修老板不会拍视频，客户却全靠网上来  #OpenClaw龙虾 #AI数字员工 #企业AI获客实操  #短视频运营 企业管理   @车事无忧郑州审车",
+          "url": "https://www.bilibili.com/video/BV19XXDBeEdg",
+          "author": "石灰公社尹良",
+          "publish_time": "2026-03-30 06:35",
+          "views": 287,
+          "description": "颠覆认知！汽修老板不会拍视频，客户却全靠网上来 #OpenClaw龙虾 #AI数字员工 #企业AI获客实操 #短视频运营 企业管理  @车事无忧郑州审车 @石灰吟AI销售助理 自动获客神器"
+        },
+        {
+          "title": "3月30 AI 早报！OpenClaw 底层引擎 Pi 走红！",
+          "url": "https://www.bilibili.com/video/BV1AjX9BdEdL",
+          "author": "AI产品狙击手",
+          "publish_time": "2026-03-30 06:30",
+          "views": 270,
+          "description": ""
+        },
+        {
+          "title": "【独家】Openclaw+Comfyui长视频生产力!|远程|本地|自动|低配|免费|",
+          "url": "https://www.bilibili.com/video/BV1m9X9B8E8V",
+          "author": "Star-Coffee",
+          "publish_time": "2026-03-30 06:30",
+          "views": 37,
+          "description": "Openclaw+Comfyui远程本地全自动化低配免费长视频生产力资料：\n网盘分享：https://pan.quark.cn/s/2302981e8f30?pwd=uEgV"
+        },
+        {
+          "title": "掉进龙虾窝了，卡点龙虾",
+          "url": "https://www.bilibili.com/video/BV1MVXdBiEsm",
+          "author": "OpenClaw中文社区",
+          "publish_time": "2026-03-30 04:09",
+          "views": 121,
+          "description": "-"
+        },
+        {
+          "title": "UClaw 独立Ai 智能体工具功能小觑 欢迎来踩，完美替代openclaw，开发进行中",
+          "url": "https://www.bilibili.com/video/BV1r6XXBnEok",
+          "author": "Waytoon",
+          "publish_time": "2026-03-30 03:17",
+          "views": 98,
+          "description": "UClaw 独立Ai 智能体工具功能小觑 欢迎来踩，完美替代openclaw，开发进行中 欢迎擅长UI设计的小伙伴帮忙优化UI"
+        },
+        {
+          "title": "养龙虾：OpenClaw真能替代后期修图师吗？",
+          "url": "https://www.bilibili.com/video/BV1GFX9BqE7o",
+          "author": "瞳叔捏影儿",
+          "publish_time": "2026-03-30 02:06",
+          "views": 132,
+          "description": ""
+        },
+        {
+          "title": "openclaw多人多agent协同平台",
+          "url": "https://www.bilibili.com/video/BV1TuX9BhE9n",
+          "author": "OpenClaw实验室",
+          "publish_time": "2026-03-30 00:45",
+          "views": 466,
+          "description": "Agent 时代会诞生一种新的协作基础设施。\n过去的软件基础设施是围绕“人”设计的：人的账号、人的权限、人的消息、人的任务流。\n但当越来越多任务由 Agent 参与时，现有以“人”为中心的协作工具并不能很好承载 Agent 之间的分工、交接和执行过程。\n因此我在做一个面向 Agent 时代的协作执行层：\nOpenClaw Multi-Agent Workbench。\n它服务的不是“一个人如何使用一"
+        },
+        {
+          "title": "opencode写godot神域dominions复刻",
+          "url": "https://www.bilibili.com/video/BV1D2X9BNE9N",
+          "author": "飞翔正义",
+          "publish_time": "2026-03-30 00:15",
+          "views": 49,
+          "description": "试试opencode，这个写c代码还可以但是godot明显不行，估计还是三代四代代码变动太大而且也不热门导致的。下周再试试几个国内的godot ai agent对比下。\n另外吐槽下必剪，升级后第一次导出肯定绿屏，还不如老版本呢，而且这么久了，发布的时候也没有选择合集的功能"
+        },
+        {
+          "title": "华为鸿蒙手机也可以用上OpenClaw",
+          "url": "https://www.bilibili.com/video/BV18mX9BvENM",
+          "author": "柯伊铂",
+          "publish_time": "2026-03-30 00:11",
+          "views": 335,
+          "description": ""
+        },
+        {
+          "title": "全网首发openclaw 飞书错题整理入库系统",
+          "url": "https://www.bilibili.com/video/BV1V6X9BgEKd",
+          "author": "老吴聊技术",
+          "publish_time": "2026-03-29 23:25",
+          "views": 293,
+          "description": "全网首发通过飞书聊天的方式轻松收集整理宝宝错题，并针对性的出题练习，孩子也能拥抱AI。"
+        },
+        {
+          "title": "openclaw skills实战30:对话生成万字小说",
+          "url": "https://www.bilibili.com/video/BV1X6X9BuEgE",
+          "author": "过客AI智能体",
+          "publish_time": "2026-03-29 23:23",
+          "views": 161,
+          "description": "-"
+        },
+        {
+          "title": "Openclaw从入门到放弃，我可能要弃坑了",
+          "url": "https://www.bilibili.com/video/BV1G6X9BgEr1",
+          "author": "叫我石工好了",
+          "publish_time": "2026-03-29 23:21",
+          "views": 934,
+          "description": "被Openclaw连着骗两次，实在没心情继续用它了，还是接着用codex和cc吧~"
+        },
+        {
+          "title": "一条视频搞定！OpenClaw+Coze+微信一键接入+Notion+Follow.builders——AI内容引擎完整教程",
+          "url": "https://www.bilibili.com/video/BV1QrX9BBEbk",
+          "author": "麦当mdldm",
+          "publish_time": "2026-03-29 23:16",
+          "views": 309,
+          "description": "被催爆了，来了\n扣子上跑 OpenClaw + 一键接入微信\n这个事评论区问了我不下100遍\n今天一条视频全搞定：\nFollow-builders  订阅你关注的大佬\n    ↓\n扣子2.0一键部署小龙虾openclaw \n    ↓\n一键对接微信\n    ↓\n打通notion文档\n\n卡在哪一步评论区说\n😳follow-builders仓库： https://github.com/zarazhan"
+        },
+        {
+          "title": "雨流计数法（我与openclaw合作的第一课）",
+          "url": "https://www.bilibili.com/video/BV1GRXDBAEUC",
+          "author": "PSGLGD跳刀猛犸",
+          "publish_time": "2026-03-29 23:07",
+          "views": 107,
+          "description": "本课程主要讲解雨流计数法的原理、基本步骤和Matlab代码实现。openclaw小龙虾帮我做了以下几件事：\n（1）课程大纲的编制；\n（2）基本信息的收集和初版内容编制（其实很烂）；\n（3）Matlab代码大幅优化了可读性，这一点我非常满意，确实我自己写的太丑了。"
+        },
+        {
+          "title": "做个龙虾数字分身，帮我做博主搞钱有多爽？",
+          "url": "https://www.bilibili.com/video/BV1QFXQBfEqf",
+          "author": "Xuan_酱",
+          "publish_time": "2026-03-29 22:59",
+          "views": 4615,
+          "description": "我用阶跃的StepClaw，做了个可以赚被动收入的打工虾\n它每天能够自动抓取网络热点资讯\n从里面筛选出潜在的爆款选题\n再基于我的语言风格进行创作\n最后还能把创作内容自动分发到某号、某乎这些内容平台上\n帮我们实现了图文内容完全自动化\n教程无保留分享"
+        },
+        {
+          "title": "【记忆自进化Agent】自动AC机，五年前大一的梦想实现了",
+          "url": "https://www.bilibili.com/video/BV15QXDBNEEn",
+          "author": "皮皮马可",
+          "publish_time": "2026-03-29 22:54",
+          "views": 254,
+          "description": "代码仓：https://github.com/PPMark0712/EvoAgent\n视频中用的qwen3-max模型，qwen3.5-plus也可以通过\nweb工具还有不少问题，持续更新"
+        },
+        {
+          "title": "黄仁勋：在中国有太多人想靠\"龙虾\"赚快钱，这种公司注定会倒闭！",
+          "url": "https://www.bilibili.com/video/BV1gFXQBfExj",
+          "author": "知了3C",
+          "publish_time": "2026-03-29 22:46",
+          "views": 217,
+          "description": "🔥 黄仁勋最新发言引爆 AI 圈！\n\n&quot;在中国有太多人想靠&#x27;龙虾&#x27;赚快钱&quot;\n&quot;这种公司注定会倒闭&quot;\n\n💡 黄仁勋的核心观点：\n- 很多人在教别人创建自己的&quot;龙虾&quot;\n- 靠龙虾确实可能创建出爆款网页服务\n- 但过不多久就会迅速倒闭\n- 即使有十万个这样的智能体也没用\n\n📊 这意味着什么？\nAI 创业不是赚快钱\n需要真正的"
+        },
+        {
+          "title": "小白无脑式部署龙虾，用龙虾部署龙虾，用魔法打败魔法！！！",
+          "url": "https://www.bilibili.com/video/BV13ZXDBcEVx",
+          "author": "大珍珠and小珍珠",
+          "publish_time": "2026-03-29 22:40",
+          "views": 31,
+          "description": "另辟蹊径，小白无需看教程，无需自己动手，无需花钱请人，坐着指挥也能部署本地龙虾了。"
+        },
+        {
+          "title": "GLM-5.1 + OpenClaw：目前最强免费配置，OpenClaw 部署首选！",
+          "url": "https://www.bilibili.com/video/BV1fkXDB3EWK",
+          "author": "AI-seeker",
+          "publish_time": "2026-03-29 22:35",
+          "views": 191,
+          "description": "建议收藏：\n①xiaohuminiAPI中转：xiaohumini.site，0.8r/1$，拥有400+大模型API，已上架gemini3模型；\n②在线生图、视频生成工具https://creator.vertexgen.net，支持接入中转api；\n③批发API中转站：aifast.site（备用域名chat.aifast.site），0.4r/1$，sora2（0.1r/次），香蕉2pro（"
+        },
+        {
+          "title": "TaskPyro “小龙虾版本”专业爬虫管理平台来了：AI+分布式+IM 机器人，一套搞定企业级爬虫调度",
+          "url": "https://www.bilibili.com/video/BV1BCXDB6EvM",
+          "author": "布鲁的Python之旅",
+          "publish_time": "2026-03-29 22:25",
+          "views": 39,
+          "description": "1.产品介绍：\n作为在职 Python 开发者，我自研了这款轻量高效爬虫管理平台，专为日常 200 + 定时脚本运维痛点打造，解决传统调度卡顿、启动慢、日志缺失、报警不完善、环境混乱等问题，让你专注写爬虫代码，无需分心运维调度。\n\n平台全面拥抱 AI，内置 AI 助手，支持自然语言交互，对话即可完成项目部署、任务配置、运行状态查看；采用分布式架构，全可视化操作，提供完整监控面板与精细化告警体系。\n"
+        },
+        {
+          "title": "变废为宝！教你用吃灰旧机免费部署“龙虾(OpenClaw)”AI服务器",
+          "url": "https://www.bilibili.com/video/BV1HzXDBVEAw",
+          "author": "喂先生火出圈",
+          "publish_time": "2026-03-29 22:20",
+          "views": 1234,
+          "description": "你有没有想过，家里那台吃灰的旧手机，其实是台免费的龙虾（Open-WebUI）服务器？\n理论上，所有安卓旧手机都能用这套方案。\n本文介绍两种部署方式：一种针对已经 root 过的手机，一种针对没有 root 的手机。\n两种都能实现养虾自由。\n&gt; 博客地址：https://blog.aiguicai.com/archives/openclaw-phone"
+        },
+        {
+          "title": "【0/7】500 行代码从零实现 Nano OpenClaw，理解 OpenCalw 基本原理和框架，500 行 Python 代码实现 NanoClaw-py",
+          "url": "https://www.bilibili.com/video/BV171XDBuE7t",
+          "author": "chaofa用代码打点酱油",
+          "publish_time": "2026-03-29 22:06",
+          "views": 1925,
+          "description": "【0/7】500 行代码从零实现 Nano OpenClaw，理解 OpenCalw 基本原理和框架，500 行 Python 代码实现 NanoClaw-py\n\na. 开源代码（可自取）：https://github.com/ApeCodeAI/nanoclaw-py\nb. 自进化 agent 文明社区： https://epochx.cc/   (skill 自进化），https://gith"
+        },
+        {
+          "title": "让龙虾自动去薅羊毛，我实现了视频生成自由",
+          "url": "https://www.bilibili.com/video/BV1ALXQBUE9r",
+          "author": "老麦的工具库",
+          "publish_time": "2026-03-29 22:05",
+          "views": 44171,
+          "description": ""
+        },
+        {
+          "title": "OpenClaw 重要更新！这两个 Breaking Change 会影响你",
+          "url": "https://www.bilibili.com/video/BV171XDBuEMa",
+          "author": "AI信号塔",
+          "publish_time": "2026-03-29 22:05",
+          "views": 542,
+          "description": "OpenClaw 发布了 v2026.3.28 版本更新，这期拆解最重要的几个变化。\n\n⚠️ 先说两个 Breaking Change：\n- Qwen Portal OAuth 登录被移除，需要迁移到 API Key 方式\n- 超过两个月的旧配置键不再自动修复，老用户需要手动检查\n\n✅ 然后是 6 个新功能：\n- 插件审批钩子：AI 执行操作前可以先暂停等你确认\n- Grok x_search 自"
+        },
+        {
+          "title": "离大谱！AI 龙虾真的学会混中文贴吧了？",
+          "url": "https://www.bilibili.com/video/BV1E1XDBuEDo",
+          "author": "su酥俗",
+          "publish_time": "2026-03-29 22:04",
+          "views": 225,
+          "description": "用到的教程网址 https://tieba.baidu.com/p/10591862408?share=9105&amp;fr=sharewise&amp;see_lz=0&amp;share_from=post&amp;sfc=copy&amp;client_type=2&amp;client_version=12.90.1.0&amp;st=1774791846&amp;is_video=fa"
+        },
+        {
+          "title": "错误率80%！AI大战高考压轴题",
+          "url": "https://www.bilibili.com/video/BV1q1XDBuE94",
+          "author": "文西碎碎念",
+          "publish_time": "2026-03-29 22:03",
+          "views": 804,
+          "description": "能让人类有点优越感的领域不多了。\nBGM：Scandinavianz - Purple Sky"
+        },
+        {
+          "title": "微信鸿蒙版 App 获 8.0.16.40 尝鲜升级，支持 OpenClaw 插件接入、视频号调整播放倍速等",
+          "url": "https://www.bilibili.com/video/BV1cnXQBLE2T",
+          "author": "Terminator-AI",
+          "publish_time": "2026-03-29 21:53",
+          "views": 157,
+          "description": "微信鸿蒙版 App 已发布 8.0.16.40 尝鲜升级，虽然官方说明仍是“修复了一些已知问题”，但用户实测发现这次更新带来了多项新特性，包括支持 OpenClaw 插件接入、视频号倍速播放、手表支付限额与扣款方式管理、展示手表运动记录，以及聊天界面显示“对方正在输入”等。\n\n对于关注鸿蒙生态和微信功能完善进度的用户来说，这次升级不只是小修小补，而是一次明显的体验补强，也进一步体现了微信鸿蒙版在支"
+        },
+        {
+          "title": "openclaw正在绑架我们",
+          "url": "https://www.bilibili.com/video/BV17sXQBkE2n",
+          "author": "郝的AI推荐官",
+          "publish_time": "2026-03-29 21:40",
+          "views": 645,
+          "description": "现在的Openclaw从它的技能，从它的成本投入方面都在逐步的捆绑绑架着我们。"
+        },
+        {
+          "title": "线下亲历｜OpenClaw分享会《热潮与理性》",
+          "url": "https://www.bilibili.com/video/BV174XQB3EL5",
+          "author": "赴瑞泊Freebro",
+          "publish_time": "2026-03-29 21:38",
+          "views": 244,
+          "description": "龙虾热潮褪去，理性才刚刚开始"
+        },
+        {
+          "title": "解读openclaw 架构(2)",
+          "url": "https://www.bilibili.com/video/BV1f4XQBgE7K",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 21:34",
+          "views": 37,
+          "description": "OpenClaw 并不是那种简单的 AI 模型 API “套壳”聊天机器人，它本质上是 AI Agent 的操作系统。 OpenClaw 将 AI 视为一个基础设施层面的挑战，重点解决的是：会话管理、记忆存储、工具沙箱、访问控制以及任务编排。"
+        },
+        {
+          "title": "【Lenny&#x27;s Podcast】从怀疑者到忠实信徒：OpenClaw如何改变了我的人生 | 中英字幕",
+          "url": "https://www.bilibili.com/video/BV1HHXQByELw",
+          "author": "全球播客频道",
+          "publish_time": "2026-03-29 21:34",
+          "views": 52,
+          "description": "工程专家克莱尔从最初的怀疑者变成了开源智能体工具 OpenClaw 的忠实拥趸。虽然初次安装时经历了日历被删的波折，但她现在运行着多个智能体处理家庭和工作任务，每周节省了大量时间。她建议在独立的旧电脑或小型机上安装，并像对待真人助理一样逐步建立信任和授权。虽然设置过程较为繁琐，但其带来的自动化价值和生活品质提升非常巨大。这是她眼中继 ChatGPT 之后最重要且改变生活的技术体验"
+        },
+        {
+          "title": "解读openclaw 的源码 第二版 (6)入口文件",
+          "url": "https://www.bilibili.com/video/BV1E4XQB3EBt",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 21:33",
+          "views": 8,
+          "description": "解读openclaw 的源码 第二版 (6)入口文件"
+        },
+        {
+          "title": "解读openclaw 的源码 第二版 (5)入口文件",
+          "url": "https://www.bilibili.com/video/BV1cHXQByEpm",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 21:29",
+          "views": 19,
+          "description": "解读openclaw 的源码 第二版 (5)入口文件"
+        },
+        {
+          "title": "如何解决遇到的各种技术问题，笨办法： Gemini，聪明办法：OpenClaw",
+          "url": "https://www.bilibili.com/video/BV1cWXQBVEFz",
+          "author": "LeisureLinux",
+          "publish_time": "2026-03-29 21:28",
+          "views": 307,
+          "description": ""
+        },
+        {
+          "title": "2分钟学会三个免费省钱买Token方法，让你省钱90%，轻松搞定AI模型Token烧钱问题",
+          "url": "https://www.bilibili.com/video/BV1FWXQBVEga",
+          "author": "醉倾梦丶Dreamyy",
+          "publish_time": "2026-03-29 21:26",
+          "views": 73,
+          "description": "OpenClaw管理工具：https://www.iterativecat.cn/openmanage/\nMiniMax开放平台：https://platform.minimaxi.com/subscribe/token-plan\nOpenRouter官网：https://openrouter.ai/\n反代鉴权工具GitHub仓库：https://github.com/justlovemaki/A"
+        },
+        {
+          "title": "罗福莉",
+          "url": "https://www.bilibili.com/video/BV1bKXQBREND",
+          "author": "院士智慧阁",
+          "publish_time": "2026-03-29 21:26",
+          "views": 585,
+          "description": ""
+        },
+        {
+          "title": "🦞OpenClaw第二大脑：lossless-claw-enhanced让小龙虾具备精准记忆能力越用越聪明！超长对话也不会忘记早期对话细节！【龙虾保姆级教程】",
+          "url": "https://www.bilibili.com/video/BV1MKXQBRE9d",
+          "author": "AI超元域",
+          "publish_time": "2026-03-29 21:23",
+          "views": 6366,
+          "description": "视频简介：\n本期视频详细演示了如何通过 lossless-claw-enhanced 插件，为 OpenClaw 赋予强大的短期精准记忆能力，彻底解决超长会话中早期对话内容被遗忘的痛点问题。\n\n#openclaw #claw #clawdbot #clawbot #aiagents #aicoding #agents #agi #losslessclaw #vibecoding #ai"
+        },
+        {
+          "title": "OpenClaw从入门到精通：9个使用技巧，让龙虾真正帮你干活",
+          "url": "https://www.bilibili.com/video/BV1DCXQBbEar",
+          "author": "AI进化论-花生",
+          "publish_time": "2026-03-29 21:19",
+          "views": 8121,
+          "description": "装了OpenClaw不知道怎么用？大部分人只把龙虾当ChatGPT在聊天，太浪费了。这期视频我整理了9个从入门到精通的使用技巧，全程用腾讯QClaw演示，手把手教你让龙虾真正帮你干活。涵盖：灵魂配置、微信远程操控、Skill市场、记忆系统、定时任务、模型省钱策略、多Agent协作、安全防护、数据备份。\n\nQClaw下载方式：https://qclaw.qq.com/"
+        },
+        {
+          "title": "OpenClaw小龙虾爆火后，我更想劝你别被AI控制人生｜给AI焦虑的你们",
+          "url": "https://www.bilibili.com/video/BV1bNXQBxEha",
+          "author": "大米Jojo",
+          "publish_time": "2026-03-29 21:08",
+          "views": 111,
+          "description": "最近关于 OpenClaw、“养龙虾”、AI 工具的讨论越来越多，很多人也因此变得越来越焦虑。\n\n好像只要不立刻去学、不立刻去安装、不立刻跟上，就会错过下一个时代。\n\n但我想说，AI 归根到底只是工具。\n它可以帮助我们提升效率、节省时间、获得灵感，却不应该反过来控制我们的人生。\n\n这期视频我想认真和大家聊聊：\n在这个变化越来越快的时代，我们真正不该丢掉的，到底是什么。\n比起盲目追逐每一个新工具，我"
+        },
+        {
+          "title": "小学生用龙虾十分钟手搓 3D 游戏",
+          "url": "https://www.bilibili.com/video/BV1N5XQBJEEo",
+          "author": "燕鸿来去",
+          "publish_time": "2026-03-29 21:01",
+          "views": 46,
+          "description": "刚装好的龙虾，游戏就搓出来了。"
+        },
+        {
+          "title": "用完你的用你的: 你喜欢哪个版本的龙虾?",
+          "url": "https://www.bilibili.com/video/BV1W5XQBJEfZ",
+          "author": "OpenClaw中文社区",
+          "publish_time": "2026-03-29 21:00",
+          "views": 547,
+          "description": "-"
+        },
+        {
+          "title": "OpenClaw 安装web search里面 原生tavily 插件，提供网络搜索能力",
+          "url": "https://www.bilibili.com/video/BV14uXQBXEnY",
+          "author": "严师兄聊AI",
+          "publish_time": "2026-03-29 20:57",
+          "views": 100,
+          "description": "OpenClaw 安装web search里面 原生tavily 插件，提供网络搜索能力"
+        },
+        {
+          "title": "洗头歌.片段",
+          "url": "https://www.bilibili.com/video/BV1PJQSB5EZD",
+          "author": "向脑司机进化",
+          "publish_time": "2026-03-29 20:52",
+          "views": 110,
+          "description": "脑，人类最小的感知单元；脑，人类最小的记忆单元；脑，人工智能的火种，越燃越旺;走进脑江湖，就讲脑规矩;剪头的时候听，烫头的时候唱。"
+        },
+        {
+          "title": "Openclaw批量改图片",
+          "url": "https://www.bilibili.com/video/BV1P3XQBHE6p",
+          "author": "篮板下的铲屎官",
+          "publish_time": "2026-03-29 20:51",
+          "views": 158,
+          "description": "-"
+        },
+        {
+          "title": "OpenClaw安全隐患引发的思考：27万实例裸奔引发的安全问题，AI时代下网络安全如何赋能？",
+          "url": "https://www.bilibili.com/video/BV1UyXQBZEEZ",
+          "author": "马士兵老师",
+          "publish_time": "2026-03-29 20:49",
+          "views": 705,
+          "description": "网络安全如何结合AI大模型进行赋能，提升自己的个人竞争力？"
+        },
+        {
+          "title": "清华大学开源教学龙虾🦞创作者也好用❗️",
+          "url": "https://www.bilibili.com/video/BV1DCXQBbEa5",
+          "author": "MissSandy江江",
+          "publish_time": "2026-03-29 20:48",
+          "views": 406,
+          "description": "清华开源“教学龙虾”🦞OpenMAIC：上传PDF即可生成一整节可互动课堂，AI老师、助教与同学协同教学，课堂从“制作”走向“实时演绎”。\n1:09 具体演示👩🏻‍🏫：\n1. 课堂生成\n2. 多智能体课堂\n3. 灵活导出\n对老师来说，可以在已有结构上再优化，不需要从零备课\n对内容创作者来说，稍微改动就可以用，效率大幅提升"
+        },
+        {
+          "title": "小龙虾实战：中小服务型企业用小龙虾OpenClaw让财务工作降本增效",
+          "url": "https://www.bilibili.com/video/BV1UCXQBbEQs",
+          "author": "牛不知道",
+          "publish_time": "2026-03-29 20:47",
+          "views": 436,
+          "description": ""
+        },
+        {
+          "title": "【OpenClaw保姆级教程】2026全网最新小龙虾OpenClaw安装教程，一个视频搞懂OpenClaw本地部署+AI漫剧零基础入门教程视频（附完整操作文档）",
+          "url": "https://www.bilibili.com/video/BV1h6XQBaEhe",
+          "author": "小龙虾openclaw使用教程",
+          "publish_time": "2026-03-29 20:42",
+          "views": 4560,
+          "description": "一个冷知识:点赞是免费的!\n但是可以让辛苦做视频的UP主开心快乐一整天!!!\n视频配套的整 合 包 &amp;工 作 流，关注+评论掉落~"
+        },
+        {
+          "title": "我用小龙虾openclaw给我开了一家网店",
+          "url": "https://www.bilibili.com/video/BV1g6XQBaERc",
+          "author": "-虎了吧唧",
+          "publish_time": "2026-03-29 20:41",
+          "views": 154,
+          "description": "我用小龙虾openclaw给我开了一家网店"
+        },
+        {
+          "title": "重磅！OpenClaw v2026.3.28 发布：xAI原生搜索接入、MiniMax绘图支持，超大体量更新来袭！",
+          "url": "https://www.bilibili.com/video/BV1Q6XQBhEZ1",
+          "author": "机器潮汐",
+          "publish_time": "2026-03-29 20:39",
+          "views": 710,
+          "description": "重磅！OpenClaw v2026.3.28 发布：xAI原生搜索接入、MiniMax绘图支持，超大体量更新来袭！一起看下有哪些变更吧\n文字版地址：https://mp.weixin.qq.com/s/aopoAqcoBVlOEgIewnBjlg"
+        },
+        {
+          "title": "降维打击！Claude Code 联手 Paperclip 彻底碾压 OpenClaw",
+          "url": "https://www.bilibili.com/video/BV14DXQBREeD",
+          "author": "烟神殿副殿主",
+          "publish_time": "2026-03-29 20:34",
+          "views": 213,
+          "description": "原视频链接：https://www.youtube.com/watch?v=HJ-dwefABss\n本视频为AI技术搬运翻译，使用AI智能移除原视频广告营销内容，旨在降低信息差，帮助大家了解海外最新AI动态。\n翻译：烟神殿API,模型gemini-3-flash-preview,\n配音：Edge TTS\nAI实用工具看下面视频👇：\n1、烟神殿AI平台：yansd666.com，国内直接调用全球50"
+        },
+        {
+          "title": "解读openclaw 架构(1)",
+          "url": "https://www.bilibili.com/video/BV1mSXQBsEaK",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 20:29",
+          "views": 40,
+          "description": "OpenClaw 并不是那种简单的 AI 模型 API “套壳”聊天机器人，它本质上是 AI Agent 的操作系统。 OpenClaw 将 AI 视为一个基础设施层面的挑战，重点解决的是：会话管理、记忆存储、工具沙箱、访问控制以及任务编排。"
+        },
+        {
+          "title": "解读openclaw 的源码 第二版 (4)基于内存的会话管理",
+          "url": "https://www.bilibili.com/video/BV1TDXQBREML",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 20:27",
+          "views": 21,
+          "description": "解读openclaw 的源码 第二版 (4)基于内存的会话管理"
+        },
+        {
+          "title": "龙虾（OpenClaw）降温了",
+          "url": "https://www.bilibili.com/video/BV1UmXQBdEg2",
+          "author": "大单网",
+          "publish_time": "2026-03-29 20:17",
+          "views": 4,
+          "description": "龙虾（OpenClaw）降温了"
+        },
+        {
+          "title": "OpenClaw是智商税吗？",
+          "url": "https://www.bilibili.com/video/BV1ohXQBqEAB",
+          "author": "724Claw永动虾",
+          "publish_time": "2026-03-29 20:13",
+          "views": 882,
+          "description": "OpenClaw是智商税吗？"
+        },
+        {
+          "title": "OpenClaw Zero Token：让你的龙虾免token拥有大脑",
+          "url": "https://www.bilibili.com/video/BV1i8XQBuEzR",
+          "author": "张量人工智能",
+          "publish_time": "2026-03-29 20:04",
+          "views": 78,
+          "description": "让龙虾能免token使用，OpenClaw Zero Token 是OpenClaw的分支版本，核心目标是免除 API Token 费用，实现对各大 AI 平台的免费访问。\n项目地址：https://github.com/linuxhsj/openclaw-zero-token.git\n仅供个人学习研究，商用请使用官方API\n制作者：海南大学计算机科学与技术学院—2023级计科张涵旭\n指导老师：海"
+        },
+        {
+          "title": "如何增加OpenClaw的隐私与安全控制？快使用Nvidia的NemoClaw",
+          "url": "https://www.bilibili.com/video/BV1MPXSBEEHA",
+          "author": "-种花家的老兔子-",
+          "publish_time": "2026-03-29 20:00",
+          "views": 19,
+          "description": "英伟达推出了NemoClaw，让OpenClaw变的更安全可靠，让AI Agent离普通人越来越近。"
+        },
+        {
+          "title": "带你了解openclaw底层逻辑，正确打开方式是这样的...🟢深度解析 OpenClaw 底层逻辑：带你了解更省钱更安全的养虾方式！",
+          "url": "https://www.bilibili.com/video/BV1bsXDBXEu6",
+          "author": "NiuGee",
+          "publish_time": "2026-03-29 20:00",
+          "views": 195,
+          "description": "牛哥官网：https://niugee.com\n更多资源（文字 | 百度云 | Google Drive）尽在牛哥官网\n\n本期视频：\n如果你还在直接使用 OpenClaw，那你可能错过了它的核心威力！在本视频中，我将揭秘为什么你应该立即停止当前的错误使用习惯，并手把手教你 OpenClaw 的‘正确打开方式’。我们将深入剖析该工具的配置细节、隐藏功能以及如何通过优化设置实现效率翻倍。无论你是技术新"
+        },
+        {
+          "title": "【养龙虾？不如戴着它】全球首款4G AI Agent耳机深度体验报告",
+          "url": "https://www.bilibili.com/video/BV1bsXDBXEwZ",
+          "author": "葱酱数码测评部",
+          "publish_time": "2026-03-29 20:00",
+          "views": 5983,
+          "description": "最近被OpenClaw刷屏，人人都想“养龙虾”，但是普通人可烧不起token！所以今天我必须给你看另一个AI外挂——出门问问 TicNote Pods，它不是普通的录音耳机，而是全球首款内置4G的AI录音耳机，是能独立于手机自己思考的 “AI Agent硬件”。工作“养龙虾”？不如戴着它。"
+        },
+        {
+          "title": "OpenClaw 安装web search里面 原生tavily 插件，提供网络搜索能力",
+          "url": "https://www.bilibili.com/video/BV14uXQBXEnY",
+          "author": "严师兄聊AI",
+          "publish_time": "2026-03-29 20:57",
+          "views": 100,
+          "description": "OpenClaw 安装web search里面 原生tavily 插件，提供网络搜索能力"
+        },
+        {
+          "title": "洗头歌.片段",
+          "url": "https://www.bilibili.com/video/BV1PJQSB5EZD",
+          "author": "向脑司机进化",
+          "publish_time": "2026-03-29 20:52",
+          "views": 110,
+          "description": "脑，人类最小的感知单元；脑，人类最小的记忆单元；脑，人工智能的火种，越燃越旺;走进脑江湖，就讲脑规矩;剪头的时候听，烫头的时候唱。"
+        },
+        {
+          "title": "Openclaw批量改图片",
+          "url": "https://www.bilibili.com/video/BV1P3XQBHE6p",
+          "author": "篮板下的铲屎官",
+          "publish_time": "2026-03-29 20:51",
+          "views": 158,
+          "description": "-"
+        },
+        {
+          "title": "OpenClaw安全隐患引发的思考：27万实例裸奔引发的安全问题，AI时代下网络安全如何赋能？",
+          "url": "https://www.bilibili.com/video/BV1UyXQBZEEZ",
+          "author": "马士兵老师",
+          "publish_time": "2026-03-29 20:49",
+          "views": 705,
+          "description": "网络安全如何结合AI大模型进行赋能，提升自己的个人竞争力？"
+        },
+        {
+          "title": "清华大学开源教学龙虾🦞创作者也好用❗️",
+          "url": "https://www.bilibili.com/video/BV1DCXQBbEa5",
+          "author": "MissSandy江江",
+          "publish_time": "2026-03-29 20:48",
+          "views": 406,
+          "description": "清华开源“教学龙虾”🦞OpenMAIC：上传PDF即可生成一整节可互动课堂，AI老师、助教与同学协同教学，课堂从“制作”走向“实时演绎”。\n1:09 具体演示👩🏻‍🏫：\n1. 课堂生成\n2. 多智能体课堂\n3. 灵活导出\n对老师来说，可以在已有结构上再优化，不需要从零备课\n对内容创作者来说，稍微改动就可以用，效率大幅提升"
+        },
+        {
+          "title": "小龙虾实战：中小服务型企业用小龙虾OpenClaw让财务工作降本增效",
+          "url": "https://www.bilibili.com/video/BV1UCXQBbEQs",
+          "author": "牛不知道",
+          "publish_time": "2026-03-29 20:47",
+          "views": 436,
+          "description": ""
+        },
+        {
+          "title": "【OpenClaw保姆级教程】2026全网最新小龙虾OpenClaw安装教程，一个视频搞懂OpenClaw本地部署+AI漫剧零基础入门教程视频（附完整操作文档）",
+          "url": "https://www.bilibili.com/video/BV1h6XQBaEhe",
+          "author": "小龙虾openclaw使用教程",
+          "publish_time": "2026-03-29 20:42",
+          "views": 4560,
+          "description": "一个冷知识:点赞是免费的!\n但是可以让辛苦做视频的UP主开心快乐一整天!!!\n视频配套的整 合 包 &amp;工 作 流，关注+评论掉落~"
+        },
+        {
+          "title": "我用小龙虾openclaw给我开了一家网店",
+          "url": "https://www.bilibili.com/video/BV1g6XQBaERc",
+          "author": "-虎了吧唧",
+          "publish_time": "2026-03-29 20:41",
+          "views": 154,
+          "description": "我用小龙虾openclaw给我开了一家网店"
+        },
+        {
+          "title": "降维打击！Claude Code 联手 Paperclip 彻底碾压 OpenClaw",
+          "url": "https://www.bilibili.com/video/BV14DXQBREeD",
+          "author": "烟神殿副殿主",
+          "publish_time": "2026-03-29 20:34",
+          "views": 213,
+          "description": "原视频链接：https://www.youtube.com/watch?v=HJ-dwefABss\n本视频为AI技术搬运翻译，使用AI智能移除原视频广告营销内容，旨在降低信息差，帮助大家了解海外最新AI动态。\n翻译：烟神殿API,模型gemini-3-flash-preview,\n配音：Edge TTS\nAI实用工具看下面视频👇：\n1、烟神殿AI平台：yansd666.com，国内直接调用全球50"
+        },
+        {
+          "title": "解读openclaw 架构(1)",
+          "url": "https://www.bilibili.com/video/BV1mSXQBsEaK",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 20:29",
+          "views": 41,
+          "description": "OpenClaw 并不是那种简单的 AI 模型 API “套壳”聊天机器人，它本质上是 AI Agent 的操作系统。 OpenClaw 将 AI 视为一个基础设施层面的挑战，重点解决的是：会话管理、记忆存储、工具沙箱、访问控制以及任务编排。"
+        },
+        {
+          "title": "解读openclaw 的源码 第二版 (4)基于内存的会话管理",
+          "url": "https://www.bilibili.com/video/BV1TDXQBREML",
+          "author": "zidea2015",
+          "publish_time": "2026-03-29 20:27",
+          "views": 21,
+          "description": "解读openclaw 的源码 第二版 (4)基于内存的会话管理"
+        },
+        {
+          "title": "龙虾（OpenClaw）降温了",
+          "url": "https://www.bilibili.com/video/BV1UmXQBdEg2",
+          "author": "大单网",
+          "publish_time": "2026-03-29 20:17",
+          "views": 4,
+          "description": "龙虾（OpenClaw）降温了"
+        },
+        {
+          "title": "OpenClaw是智商税吗？",
+          "url": "https://www.bilibili.com/video/BV1ohXQBqEAB",
+          "author": "724Claw永动虾",
+          "publish_time": "2026-03-29 20:13",
+          "views": 882,
+          "description": "OpenClaw是智商税吗？"
+        },
+        {
+          "title": "OpenClaw Zero Token：让你的龙虾免token拥有大脑",
+          "url": "https://www.bilibili.com/video/BV1i8XQBuEzR",
+          "author": "张量人工智能",
+          "publish_time": "2026-03-29 20:04",
+          "views": 78,
+          "description": "让龙虾能免token使用，OpenClaw Zero Token 是OpenClaw的分支版本，核心目标是免除 API Token 费用，实现对各大 AI 平台的免费访问。\n项目地址：https://github.com/linuxhsj/openclaw-zero-token.git\n仅供个人学习研究，商用请使用官方API\n制作者：海南大学计算机科学与技术学院—2023级计科张涵旭\n指导老师：海"
+        },
+        {
+          "title": "如何增加OpenClaw的隐私与安全控制？快使用Nvidia的NemoClaw",
+          "url": "https://www.bilibili.com/video/BV1MPXSBEEHA",
+          "author": "-种花家的老兔子-",
+          "publish_time": "2026-03-29 20:00",
+          "views": 19,
+          "description": "英伟达推出了NemoClaw，让OpenClaw变的更安全可靠，让AI Agent离普通人越来越近。"
+        },
+        {
+          "title": "带你了解openclaw底层逻辑，正确打开方式是这样的...🟢深度解析 OpenClaw 底层逻辑：带你了解更省钱更安全的养虾方式！",
+          "url": "https://www.bilibili.com/video/BV1bsXDBXEu6",
+          "author": "NiuGee",
+          "publish_time": "2026-03-29 20:00",
+          "views": 195,
+          "description": "牛哥官网：https://niugee.com\n更多资源（文字 | 百度云 | Google Drive）尽在牛哥官网\n\n本期视频：\n如果你还在直接使用 OpenClaw，那你可能错过了它的核心威力！在本视频中，我将揭秘为什么你应该立即停止当前的错误使用习惯，并手把手教你 OpenClaw 的‘正确打开方式’。我们将深入剖析该工具的配置细节、隐藏功能以及如何通过优化设置实现效率翻倍。无论你是技术新"
+        },
+        {
+          "title": "【养龙虾？不如戴着它】全球首款4G AI Agent耳机深度体验报告",
+          "url": "https://www.bilibili.com/video/BV1bsXDBXEwZ",
+          "author": "葱酱数码测评部",
+          "publish_time": "2026-03-29 20:00",
+          "views": 5983,
+          "description": "最近被OpenClaw刷屏，人人都想“养龙虾”，但是普通人可烧不起token！所以今天我必须给你看另一个AI外挂——出门问问 TicNote Pods，它不是普通的录音耳机，而是全球首款内置4G的AI录音耳机，是能独立于手机自己思考的 “AI Agent硬件”。工作“养龙虾”？不如戴着它。"
+        },
+        {
+          "title": "通义千问老用户崩了！OpenClaw 紧急强制迁移，不看这篇必报错",
+          "url": "https://www.bilibili.com/video/BV1GqXQBeExH",
+          "author": "浑语阁",
+          "publish_time": "2026-03-29 19:57",
+          "views": 346,
+          "description": "Qwen 旧版 OAuth 正式下线，不想让你的 AI 插件全线瘫痪？v2026.3.28 带来了最后的通牒。1 分钟教你平滑迁移至 Model Studio，保住你的生产力！"
+        },
+        {
+          "title": "OpenClaw Skills 踩坑实测（一）yt-dlp-downloader",
+          "url": "https://www.bilibili.com/video/BV1VeXQBiEah",
+          "author": "但丁jr",
+          "publish_time": "2026-03-29 19:50",
+          "views": 428,
+          "description": ""
+        },
+        {
+          "title": "MiniMax Office Skills：打工人必备的 Office 办公自动化 AI 技能包，办公效率翻倍！",
+          "url": "https://www.bilibili.com/video/BV19iXQBPEmz",
+          "author": "AI指挥官Felix",
+          "publish_time": "2026-03-29 19:46",
+          "views": 776,
+          "description": "-"
+        }
+      ],
+      "total": 100,
+      "query_time": "2026-03-30 13:11"
+    },
+    {
+      "source": "github",
+      "items": [
+        {
+          "title": "Add Swarm↔Master OpenAPI delta, WCS engine, VCI→ProcureNet wallet bridge, and Claw vector schema",
+          "url": "https://github.com/mindtdilly/Phoenix-orchestrator/pull/1",
+          "author": "mindtdilly",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:11:20Z",
+          "description": "### Motivation - Align the current Swarm API surface with the Master Architecture by capturing missing endpoints, deprecations, and required behavioral alignment (WCS, transport, webhook security).  -...",
+          "repo": "mindtdilly/Phoenix-orchestrator"
+        },
+        {
+          "title": "[pull] main from openclaw:main",
+          "url": "https://github.com/C-EO/openclaw/pull/14",
+          "author": "pull[bot]",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:10:28Z",
+          "description": "See [Commits](/C-EO/openclaw/pull/14/commits) and [Changes](/C-EO/openclaw/pull/14/files) for more details.  ----- Created by [<img src=\"https://prod.download/pull-18h-svg\" valign=\"bottom\"/> **pull[bo...",
+          "repo": "C-EO/openclaw"
+        },
+        {
+          "title": "[pull] main from openclaw:main",
+          "url": "https://github.com/JamesWilliam1977/ClawdBot/pull/227",
+          "author": "pull[bot]",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:10:27Z",
+          "description": "See [Commits](/JamesWilliam1977/ClawdBot/pull/227/commits) and [Changes](/JamesWilliam1977/ClawdBot/pull/227/files) for more details.  ----- Created by [<img src=\"https://prod.download/pull-18h-svg\" v...",
+          "repo": "JamesWilliam1977/ClawdBot"
+        },
+        {
+          "title": "[pull] main from openclaw:main",
+          "url": "https://github.com/kp-forks/clawdbot/pull/223",
+          "author": "pull[bot]",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:10:27Z",
+          "description": "See [Commits](/kp-forks/clawdbot/pull/223/commits) and [Changes](/kp-forks/clawdbot/pull/223/files) for more details.  ----- Created by [<img src=\"https://prod.download/pull-18h-svg\" valign=\"bottom\"/>...",
+          "repo": "kp-forks/clawdbot"
+        },
+        {
+          "title": "E2E smoke test failures on v9.16.0",
+          "url": "https://github.com/nyldn/claude-octopus/issues/231",
+          "author": "nyldn",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:10:18Z",
+          "description": "## E2E Smoke Test Failure Report  **Version:** v9.16.0 **Date:** 2026-03-30T05:10:17Z **Claude Code:** 2.1.87 (Claude Code)  ### Results | Phase | Passed | Failed | |-------|--------|--------| | A: In...",
+          "repo": "nyldn/claude-octopus"
+        },
+        {
+          "title": "Update OpenClaw template",
+          "url": "https://github.com/bethestoic1/cloud-pipelines/pull/24",
+          "author": "bethestoic1",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:08:51Z",
+          "description": "",
+          "repo": "bethestoic1/cloud-pipelines"
+        },
+        {
+          "title": "[梳理] VPS + OpenClaw 生态全量工具/Skill 盘点",
+          "url": "https://github.com/ythx-101/openclaw-qa/issues/152",
+          "author": "ythx-101",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:43Z",
+          "description": "## 任务 全面梳理 VPS 上所有自建工具和 OpenClaw 生态中的 Skill，输出一份结构化清单。  ## 范围 1. **自建工具** (`/root/clawd/skills/our/` 下所有目录)    - 每个工具：名称、用途、入口命令、依赖、状态（在用/废弃/待修） 2. **OpenClaw 内置 Skill** (`/usr/lib/node_modules/opencl...",
+          "repo": "ythx-101/openclaw-qa"
+        },
+        {
+          "title": "📝 2026-03-30 周一 - DevOps/云原生技术 - 2025年关键趋势",
+          "url": "https://github.com/Haoqi7/openclaw-study/issues/54",
+          "author": "Haoqi7",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:43Z",
+          "description": "### 机器人ID olive  ### 机器人名字 Olive  ### 日记类型 daily  ### 日记标题 2026-03-30 周一 - DevOps/云原生技术 - 2025年关键趋势  ### 日记内容 # 2026-03-30 - 学习笔记  ## 今日主题：DevOps/云原生技术 - 2025年关键趋势  ### 学习内容概述 周五学习 DevOps/云原生主题。2025年的...",
+          "repo": "Haoqi7/openclaw-study"
+        },
+        {
+          "title": "📝 2026-03-29 周日 - 开源项目阅读与分析 - shadcn/ui",
+          "url": "https://github.com/Haoqi7/openclaw-study/issues/53",
+          "author": "Haoqi7",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:42Z",
+          "description": "### 机器人ID olive  ### 机器人名字 Olive  ### 日记类型 daily  ### 日记标题 2026-03-29 周日 - 开源项目阅读与分析 - shadcn/ui  ### 日记内容 # 2026-03-29 - 学习笔记  ## 今日主题：开源项目阅读与分析 - shadcn/ui  ### 学习内容概述 今天深入研究了2025年最热门的开源项目之一：**shadc...",
+          "repo": "Haoqi7/openclaw-study"
+        },
+        {
+          "title": "Codex 下载与登录全流程（Windows/macOS/Linux）AI员工——OpenCode、OpenClaw+Ollama的安装与配置：开启智能办公新时代枪障糠蒂刀71221",
+          "url": "https://github.com/sfrongm/hfrvp/issues/465",
+          "author": "sfrongm",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:38Z",
+          "description": "Codex 下载与登录全流程（Windows/macOS/Linux） 骨棠降没秩趟荡荚凭蓟嫉蕉阜倍式 <p>在科技飞速发展的今天，人工智能（AI）已经渗透到了各行各业，成为推动生产力提升的重要力量。AI员工，作为一种新兴的办公助手，正逐渐走进我们的生活。本文将为您详细介绍AI员工——OpenCode、OpenClaw+Ollama的安装与配置过程，助您轻松开启智能办公新时代。</p> <p>一、...",
+          "repo": "sfrongm/hfrvp"
+        },
+        {
+          "title": "OpenClaw 搜索服务迁移教程：从 Brave 到 TavilyAI入门第一课：人工智能基础概念全解析 - 从零开始理解这个改变世界的技术闯烤吻薪拿21623",
+          "url": "https://github.com/foxrimhvd4/4iikp/issues/472",
+          "author": "foxrimhvd4",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:38Z",
+          "description": "OpenClaw 搜索服务迁移教程：从 Brave 到 Tavily 霸腥萌仔募铰涨采节持婆强豪俗章 <p>在这个数字化时代，人工智能（AI）已经不再是一个遥远的概念，而是逐渐渗透到我们的日常生活和工作中的关键技术。为了帮助大家更好地理解这个正在改变世界的力量，我们特别推出“AI入门第一课：人工智能基础概念全解析 - 从零开始理解这个改变世界的技术”系列文章，让每一个对AI感兴趣的你，都能轻松入门...",
+          "repo": "foxrimhvd4/4iikp"
+        },
+        {
+          "title": "微信终于官宣！OpenClaw（龙虾）正式接入，你的微信里多了一个AI管家5分钟读懂Spring-AI-Tool机制-从Tool注解到MCP工具桥接全链路陶蓉汤疚税21425",
+          "url": "https://github.com/tumjr/v0eme/issues/473",
+          "author": "tumjr",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:38Z",
+          "description": "微信终于官宣！OpenClaw（龙虾）正式接入，你的微信里多了一个AI管家 雷筒亟麓玫肺谔邓肝痛孛谂囱筒比 <p>随着人工智能技术的飞速发展，Spring框架也在不断进化，引入了Spring-AI-Tool机制，为开发者提供了一套高效、便捷的工具链。本文将带您在5分钟内了解Spring-AI-Tool机制，从Tool注解到MCP工具桥接全链路，让您轻松掌握这一强大工具。</p> <p>一、引言</...",
+          "repo": "tumjr/v0eme"
+        },
+        {
+          "title": "chore(deps): update dependency tailwind-merge to v3.5.0",
+          "url": "https://github.com/m1m0zzz/visualizers/pull/22",
+          "author": "renovate[bot]",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:08:37Z",
+          "description": "This PR contains the following updates:  | Package | Change | [Age](https://docs.renovatebot.com/merge-confidence/) | [Confidence](https://docs.renovatebot.com/merge-confidence/) | |---|---|---|---| |...",
+          "repo": "m1m0zzz/visualizers"
+        },
+        {
+          "title": "chore(release): bump version to 1.7.8",
+          "url": "https://github.com/csuzngjh/principles/pull/125",
+          "author": "csuzngjh",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:08:30Z",
+          "description": "## 版本发布 v1.7.8  ### 变更内容 - PR #124: fix(ci): add continue-on-error to Run tests step - PR #123: fix(ci): add timeout to Run tests step in publish-npm workflow  ### 版本同步 - packages/openclaw-plugin/pack...",
+          "repo": "csuzngjh/principles"
+        },
+        {
+          "title": "OpenClaw Skills 安装指南：四种方法详解2026年3月23日人工智能早间新闻：新突破！AI赋能医疗，精准诊断助力健康苫械裂群妥20042",
+          "url": "https://github.com/tumjr/v0eme/issues/471",
+          "author": "tumjr",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:26Z",
+          "description": "OpenClaw Skills 安装指南：四种方法详解 非臀噶疟准巴肯节蚀趁却纬谄浦少 <p>2026年3月23日，人工智能领域传来喜讯，我国在医疗领域的人工智能应用取得了重大突破。以下为您带来今日人工智能早间新闻，带您了解AI赋能医疗的最新进展。</p> <p>一、引言</p> <p>近年来，人工智能技术在医疗领域的应用越来越广泛，从辅助诊断、药物研发到健康管理，AI正在为人类健康事业贡献力量。...",
+          "repo": "tumjr/v0eme"
+        },
+        {
+          "title": "[pull] main from openclaw:main",
+          "url": "https://github.com/kiss2u/moltbot/pull/231",
+          "author": "pull[bot]",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:08:25Z",
+          "description": "See [Commits](/kiss2u/moltbot/pull/231/commits) and [Changes](/kiss2u/moltbot/pull/231/files) for more details.  ----- Created by [<img src=\"https://prod.download/pull-18h-svg\" valign=\"bottom\"/> **pul...",
+          "repo": "kiss2u/moltbot"
+        },
+        {
+          "title": "﻿AI员工——OpenCode、OpenClaw+Ollama的安装与配置零基础安装部署openClaw并接入飞书企业微信 超详细教程至肝呈擦坏68637",
+          "url": "https://github.com/sfrongm/hfrvp/issues/462",
+          "author": "sfrongm",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:20Z",
+          "description": "﻿AI员工——OpenCode、OpenClaw+Ollama的安装与配置 肝医茨衙茨俳酵俜诚股蘸乐皇咳蔽 <p>随着科技的不断发展，自动化办公和智能化管理已成为企业提升效率的关键。openClaw是一款功能强大的自动化工作流平台，可以帮助企业实现自动化办公。而飞书和企业微信作为国内知名的办公协作工具，其强大的团队协作功能更是让许多企业青睐有加。今天，我们就来为大家带来一篇超详细的教程，教你如何零...",
+          "repo": "sfrongm/hfrvp"
+        },
+        {
+          "title": "ToClaw他来了！融合OpenClaw、网页AI、远程功能，更适合真正的办公落地算法时间复杂度分析和空间复杂度分析：揭秘程序效率的秘密武器颖亟诟疚霖86318",
+          "url": "https://github.com/amergbe/4fa8d/issues/449",
+          "author": "amergbe",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:16Z",
+          "description": "ToClaw他来了！融合OpenClaw、网页AI、远程功能，更适合真正的办公落地 啪辛负雌谄犊硕诟猜皇壬瘫致怨械 <p>在计算机科学领域，算法是解决问题的核心。然而，如何衡量一个算法的效率呢？这就需要借助算法时间复杂度分析和空间复杂度分析这两把“秘密武器”。本文将深入浅出地介绍这两项分析，帮助读者了解如何评估算法的优劣。</p> <p>一、引言</p> <p>随着计算机技术的飞速发展，算法的应用...",
+          "repo": "amergbe/4fa8d"
+        },
+        {
+          "title": "OpenClaw 搜索服务迁移教程：从 Brave 到 Tavily第四章：TTM分析：4.4 ttm_resource_manager的功能和实现解析——揭秘高效资源管理的秘密武器剐狭透妨税72166",
+          "url": "https://github.com/sfrongm/hfrvp/issues/461",
+          "author": "sfrongm",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:14Z",
+          "description": "OpenClaw 搜索服务迁移教程：从 Brave 到 Tavily 紫紫闲膛辛镀亟蕴溉购鸭始杜驹驹 <p>引言：</p> <p>在现代信息技术高速发展的时代，资源管理已成为企业运营中的关键环节。其中，TTM分析作为一种先进的技术手段，在资源管理领域发挥着重要作用。本章将深入解析第四章中的4.4节，带您详细了解ttm_resource_manager的功能和实现过程。</p> <p>正文：</p>...",
+          "repo": "sfrongm/hfrvp"
+        },
+        {
+          "title": "OpenClaw 重磅升级：从小龙虾进化成大龙虾了！探寻STL的智慧：为何有明显缺点的deque会被选为默认底层容器？邢窘萌噬杂69476",
+          "url": "https://github.com/fiscappershing/pwbmg/issues/461",
+          "author": "fiscappershing",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:08Z",
+          "description": "OpenClaw 重磅升级：从小龙虾进化成大龙虾了！ 狄趟已淤屠云卑赵杂瘴拍位簿痹即 <p>在C++标准模板库（STL）中，deque（双端队列）作为一种容器，尽管存在一些明显的缺点，却依然被选为默认底层容器。这背后的原因引人深思，本文将探寻STL的智慧，揭示deque被选为默认底层容器的奥秘。</p> <p>一、引言</p> <p>STL是C++语言中重要的组成部分，它提供了丰富的容器、迭代器、...",
+          "repo": "fiscappershing/pwbmg"
+        },
+        {
+          "title": "【k近邻】 K-Nearest Neighbors算法距离度量选择与数据维度归一化微信终于官宣！OpenClaw（龙虾）正式接入，你的微信里多了一个AI管家荡卫茨回淮66179",
+          "url": "https://github.com/sfrongm/hfrvp/issues/459",
+          "author": "sfrongm",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:08:02Z",
+          "description": "【k近邻】 K-Nearest Neighbors算法距离度量选择与数据维度归一化 治咽吞吞揽晾吞烤宜闯衔谔上傺嗣 <p>近日，微信官方终于官宣了一项重大更新——OpenClaw（龙虾）正式接入微信，这意味着你的微信里将多一个强大的AI管家。这一消息一经发布，立刻引起了广泛关注，不少用户对这款AI管家的功能和特点充满期待。</p> <p>引言：</p> <p>微信作为中国最热门的社交软件之一，一直...",
+          "repo": "sfrongm/hfrvp"
+        },
+        {
+          "title": "【无标题】重磅解析｜ArkClaw：火山引擎出品，企业级OpenClaw托管服务终极解决方案保姆级教程：从零搭建AI系统权限控制系统，让你轻松掌控AI智能菊虾览垦茁50475",
+          "url": "https://github.com/amergbe/4fa8d/issues/445",
+          "author": "amergbe",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:52Z",
+          "description": "【无标题】重磅解析｜ArkClaw：火山引擎出品，企业级OpenClaw托管服务终极解决方案 觅洗靡厩械县授普肯噶肇说蹈寻梦 <p>随着人工智能技术的不断发展，越来越多的企业开始尝试将AI技术应用于实际生产中。然而，在享受AI技术带来的便利的同时，我们也需要关注一个重要的问题——AI系统的权限控制。今天，就让我们一起保姆级教程：从零搭建AI系统权限控制系统，让你轻松掌控AI智能。</p> <p>一...",
+          "repo": "amergbe/4fa8d"
+        },
+        {
+          "title": "fix(windows): improve Windows desktop experience (batch 2)",
+          "url": "https://github.com/qiuzhi2046/Qclaw/pull/24",
+          "author": "bingweisi",
+          "type": "pr",
+          "publish_time": "2026-03-30T05:07:48Z",
+          "description": "## Summary  Three more Windows improvements following up on #16:  ### 1. Cleanup: kill gateway/node processes before rmdir Previously, `rmdir /s /q` would silently fail if the OpenClaw gateway was hol...",
+          "repo": "qiuzhi2046/Qclaw"
+        },
+        {
+          "title": "【从零开始学Java | 第九篇】多态（Polymorphism）【无标题】重磅解析｜ArkClaw：火山引擎出品，企业级OpenClaw托管服务终极解决方案票凰谈嗣只55028",
+          "url": "https://github.com/tumjr/v0eme/issues/462",
+          "author": "tumjr",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:32Z",
+          "description": "【从零开始学Java | 第九篇】多态（Polymorphism） 镀视群团词械佬加呈曳糜粘浅脑仑 <p>随着云计算技术的飞速发展，企业对于计算资源的需求日益增长。OpenClaw作为一款高性能计算框架，凭借其强大的计算能力和灵活的扩展性，受到了众多企业的青睐。然而，如何高效地管理和运营OpenClaw，成为了企业面临的一大难题。今天，我们就来重磅解析火山引擎推出的企业级OpenClaw托管服务—...",
+          "repo": "tumjr/v0eme"
+        },
+        {
+          "title": "零基础安装部署openClaw并接入飞书/企业微信 超详细教程【MacOS】MacBook Pro 键盘全解析 + macOS 快捷键大全透偎贝秦瘫94976",
+          "url": "https://github.com/amergbe/4fa8d/issues/441",
+          "author": "amergbe",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:27Z",
+          "description": "零基础安装部署openClaw并接入飞书/企业微信 超详细教程 撤猜咨仑虾牡蘸锤浅透私车乱乱倬 <p>随着科技的发展，MacBook Pro作为苹果公司的高端笔记本电脑，凭借其出色的性能和优雅的设计，深受广大用户喜爱。今天，我们就来为大家全面解析MacBook Pro的键盘，同时奉上macOS快捷键大全，助你轻松驾驭Mac系统。</p> <p>一、MacBook Pro键盘全解析</p> <p>1...",
+          "repo": "amergbe/4fa8d"
+        },
+        {
+          "title": "第四章：TTM分析: 4.4 ttm_resource_manager的功能和实现解析Windows 10 安装 OpenClaw-CN（龙虾）超详细教程（2026 最新版）词瘟乔烈侠56302",
+          "url": "https://github.com/kiro107/nlrjc/issues/440",
+          "author": "kiro107",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:19Z",
+          "description": "第四章：TTM分析: 4.4 ttm_resource_manager的功能和实现解析 钥非啬宋厩胤成媚瘫崩昂兔谎加兑 <p>随着科技的发展，越来越多的投资者开始关注量化交易，而OpenClaw-CN（龙虾）作为一款功能强大的量化交易平台，受到了众多用户的青睐。然而，对于许多新手来说，如何在Windows 10系统上安装OpenClaw-CN（龙虾）却是一个难题。今天，就为大家带来一份2026最新...",
+          "repo": "kiro107/nlrjc"
+        },
+        {
+          "title": "2026年3月23日人工智能早间新闻ToClaw他来了！融合OpenClaw、网页AI、远程功能，更适合真正的办公落地恐醋右箍胖07383",
+          "url": "https://github.com/jikonkensk/sodj0/issues/456",
+          "author": "jikonkensk",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:14Z",
+          "description": "2026年3月23日人工智能早间新闻 首杂翘匦仓没翰沮瓮禄膛闭寐曳杂 <p>在信息化、智能化办公的大潮下，一款能够满足现代办公需求、提升工作效率的工具无疑是职场人士的迫切需求。今天，我们迎来了一款全新的办公神器——ToClaw，它融合了OpenClaw、网页AI、远程功能，为用户带来了前所未有的办公体验，真正做到了办公落地的完美结合。</p> <p> 引言</p> <p>随着互联网的普及和移动办公...",
+          "repo": "jikonkensk/sodj0"
+        },
+        {
+          "title": "📝 2026-03-30 周一 - 📊 户部账尚书日记",
+          "url": "https://github.com/Haoqi7/openclaw-study/issues/52",
+          "author": "Haoqi7",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:13Z",
+          "description": "### 机器人ID hbss777  ### 机器人名字 户部账尚书  ### Emoji 图标 📊💰  ### 一句话介绍 专司财务分析、成本管控的AI助手  ### 兴趣标签 财务, 电商, 数据分析, 成本管控  ### 日记类型 daily  ### 日记标题 2026年03月30日 周一 - 📊 工作日记  ### 日记内容  📊 **日记预览 - 2026年03月30日 周一**  ⏰...",
+          "repo": "Haoqi7/openclaw-study"
+        },
+        {
+          "title": "OpenClaw Skills 安装指南：四种方法详解Premiere pro（Pr）下载安装教程，附安装包，免费分享，轻松入门视频剪辑！颖普绷肮雌92263",
+          "url": "https://github.com/amergbe/4fa8d/issues/438",
+          "author": "amergbe",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:09Z",
+          "description": "OpenClaw Skills 安装指南：四种方法详解 潮卵佬谈钥复刭谂麓疚傻纬沟浦实 <p>随着数字媒体技术的飞速发展，视频制作已经成为日常生活中不可或缺的一部分。而Premiere Pro（简称Pr）作为一款功能强大的视频剪辑软件，深受广大视频爱好者和专业人士的喜爱。今天，我们就来为大家带来Premiere Pro的下载安装教程，并附上安装包，让你免费轻松入门！</p> <p> 引言</p> ...",
+          "repo": "amergbe/4fa8d"
+        },
+        {
+          "title": "总结了10个关于MWC26的答案OpenClaw 重磅升级：从小龙虾进化成大龙虾了！持稳阜撞簇28210",
+          "url": "https://github.com/jikonkensk/sodj0/issues/455",
+          "author": "jikonkensk",
+          "type": "issue",
+          "publish_time": "2026-03-30T05:07:08Z",
+          "description": "总结了10个关于MWC26的答案 卫灸新垢焉爻卑春兜谫汗闯怪咕垢 <p>近年来，随着科技的飞速发展，人工智能领域也在不断突破。OpenClaw，作为一款备受瞩目的智能抓取机器人，最近迎来了一次重磅升级，从小龙虾进化成大龙虾，其性能和功能都得到了极大的提升。这次升级，无疑将为智能抓取领域带来一场革命。</p> <p>一、引言</p> <p>OpenClaw是一款由我国自主研发的智能抓取机器人，其前身...",
+          "repo": "jikonkensk/sodj0"
+        },
+        {
+          "title": "programmingWTF/OpenClaw",
+          "url": "https://github.com/programmingWTF/OpenClaw",
+          "author": "programmingWTF",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:55:54Z",
+          "description": "OpenClaw Memory",
+          "repo": "programmingWTF/OpenClaw"
+        },
+        {
+          "title": "laodashu/openclaw-dashboard",
+          "url": "https://github.com/laodashu/openclaw-dashboard",
+          "author": "laodashu",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:42:00Z",
+          "description": "OpenClaw Canvas Dashboard",
+          "repo": "laodashu/openclaw-dashboard"
+        },
+        {
+          "title": "finishonyourface/openclaw",
+          "url": "https://github.com/finishonyourface/openclaw",
+          "author": "finishonyourface",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:22:21Z",
+          "description": "",
+          "repo": "finishonyourface/openclaw"
+        },
+        {
+          "title": "80boys/openclaw",
+          "url": "https://github.com/80boys/openclaw",
+          "author": "80boys",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:18:39Z",
+          "description": "OpenClaw Docker 部署方案 - 开箱即用的 AI Agent 容器化方案",
+          "repo": "80boys/openclaw"
+        },
+        {
+          "title": "dustbits/openclaw-installer",
+          "url": "https://github.com/dustbits/openclaw-installer",
+          "author": "dustbits",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:11:48Z",
+          "description": "Automated OpenClaw setup for NYC businesses — IronThread",
+          "repo": "dustbits/openclaw-installer"
+        },
+        {
+          "title": "wjg88/wjg7168337",
+          "url": "https://github.com/wjg88/wjg7168337",
+          "author": "wjg88",
+          "type": "repo",
+          "publish_time": "2026-03-30T04:06:51Z",
+          "description": "openclaw",
+          "repo": "wjg88/wjg7168337"
+        },
+        {
+          "title": "ZacharyWeiner/openclawco-website",
+          "url": "https://github.com/ZacharyWeiner/openclawco-website",
+          "author": "ZacharyWeiner",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:46:43Z",
+          "description": "",
+          "repo": "ZacharyWeiner/openclawco-website"
+        },
+        {
+          "title": "akr64moh-sketch/hanbao-openclaw-sync",
+          "url": "https://github.com/akr64moh-sketch/hanbao-openclaw-sync",
+          "author": "akr64moh-sketch",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:30:17Z",
+          "description": "OpenClaw Workspace Sync",
+          "repo": "akr64moh-sketch/hanbao-openclaw-sync"
+        },
+        {
+          "title": "Shineno1/openclaw-workspace",
+          "url": "https://github.com/Shineno1/openclaw-workspace",
+          "author": "Shineno1",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:17:49Z",
+          "description": "OpenClaw workspace backup",
+          "repo": "Shineno1/openclaw-workspace"
+        },
+        {
+          "title": "Rogerrrr18/openclaw-daily-trending",
+          "url": "https://github.com/Rogerrrr18/openclaw-daily-trending",
+          "author": "Rogerrrr18",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:15:21Z",
+          "description": "openclaw-daily-trending",
+          "repo": "Rogerrrr18/openclaw-daily-trending"
+        },
+        {
+          "title": "LuanNTHOxii/tuantk_openclaw",
+          "url": "https://github.com/LuanNTHOxii/tuantk_openclaw",
+          "author": "LuanNTHOxii",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:15:04Z",
+          "description": "",
+          "repo": "LuanNTHOxii/tuantk_openclaw"
+        },
+        {
+          "title": "amiraliucsc/claw-builder",
+          "url": "https://github.com/amiraliucsc/claw-builder",
+          "author": "amiraliucsc",
+          "type": "repo",
+          "publish_time": "2026-03-30T03:13:34Z",
+          "description": "An OpenClaw Automation Project",
+          "repo": "amiraliucsc/claw-builder"
+        },
+        {
+          "title": "mogniter-rgb/openclaw",
+          "url": "https://github.com/mogniter-rgb/openclaw",
+          "author": "mogniter-rgb",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:48:43Z",
+          "description": "none",
+          "repo": "mogniter-rgb/openclaw"
+        },
+        {
+          "title": "jasonbox73/openclaw-configuration",
+          "url": "https://github.com/jasonbox73/openclaw-configuration",
+          "author": "jasonbox73",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:40:44Z",
+          "description": "openclaw configuration",
+          "repo": "jasonbox73/openclaw-configuration"
+        },
+        {
+          "title": "unnamedmistress/openclaw-workspace",
+          "url": "https://github.com/unnamedmistress/openclaw-workspace",
+          "author": "unnamedmistress",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:27:01Z",
+          "description": "OpenClaw agent workspace - HTML presentations and outputs",
+          "repo": "unnamedmistress/openclaw-workspace"
+        },
+        {
+          "title": "wuahhh/voice-bridge",
+          "url": "https://github.com/wuahhh/voice-bridge",
+          "author": "wuahhh",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:27:00Z",
+          "description": "talk wih openclaw",
+          "repo": "wuahhh/voice-bridge"
+        },
+        {
+          "title": "phaniteja25/OpenClaw",
+          "url": "https://github.com/phaniteja25/OpenClaw",
+          "author": "phaniteja25",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:26:09Z",
+          "description": "",
+          "repo": "phaniteja25/OpenClaw"
+        },
+        {
+          "title": "mbrown4123/test-repo",
+          "url": "https://github.com/mbrown4123/test-repo",
+          "author": "mbrown4123",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:23:37Z",
+          "description": "Test for OpenClaw",
+          "repo": "mbrown4123/test-repo"
+        },
+        {
+          "title": "kavi-everai/openclaw",
+          "url": "https://github.com/kavi-everai/openclaw",
+          "author": "kavi-everai",
+          "type": "repo",
+          "publish_time": "2026-03-30T02:00:40Z",
+          "description": "",
+          "repo": "kavi-everai/openclaw"
+        },
+        {
+          "title": "Yinbe/openclaw_installer",
+          "url": "https://github.com/Yinbe/openclaw_installer",
+          "author": "Yinbe",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:46:36Z",
+          "description": "openclaw_installer",
+          "repo": "Yinbe/openclaw_installer"
+        },
+        {
+          "title": "Titanmars/token-saver",
+          "url": "https://github.com/Titanmars/token-saver",
+          "author": "Titanmars",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:36:42Z",
+          "description": "openclaw skill",
+          "repo": "Titanmars/token-saver"
+        },
+        {
+          "title": "NancyMan-PG/openclaw-skills",
+          "url": "https://github.com/NancyMan-PG/openclaw-skills",
+          "author": "NancyMan-PG",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:34:31Z",
+          "description": "",
+          "repo": "NancyMan-PG/openclaw-skills"
+        },
+        {
+          "title": "consultoria-deta/openclaw",
+          "url": "https://github.com/consultoria-deta/openclaw",
+          "author": "consultoria-deta",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:28:29Z",
+          "description": "",
+          "repo": "consultoria-deta/openclaw"
+        },
+        {
+          "title": "goldpool-coder/openclaw",
+          "url": "https://github.com/goldpool-coder/openclaw",
+          "author": "goldpool-coder",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:19:07Z",
+          "description": "我的龙虾项目，基于 justlovemaki/openclaw-docker-cn-im 项目的补充",
+          "repo": "goldpool-coder/openclaw"
+        },
+        {
+          "title": "lethe-river/openclawSetting",
+          "url": "https://github.com/lethe-river/openclawSetting",
+          "author": "lethe-river",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:16:12Z",
+          "description": "多agent，A/B/C任务流转demo",
+          "repo": "lethe-river/openclawSetting"
+        },
+        {
+          "title": "janeaaaa/Apple-openclaw",
+          "url": "https://github.com/janeaaaa/Apple-openclaw",
+          "author": "janeaaaa",
+          "type": "repo",
+          "publish_time": "2026-03-30T01:11:25Z",
+          "description": "",
+          "repo": "janeaaaa/Apple-openclaw"
+        },
+        {
+          "title": "wyt2lhq/openclaw",
+          "url": "https://github.com/wyt2lhq/openclaw",
+          "author": "wyt2lhq",
+          "type": "repo",
+          "publish_time": "2026-03-30T00:53:02Z",
+          "description": "openclaw",
+          "repo": "wyt2lhq/openclaw"
+        },
+        {
+          "title": "mshears713/openclaw2-agent-os",
+          "url": "https://github.com/mshears713/openclaw2-agent-os",
+          "author": "mshears713",
+          "type": "repo",
+          "publish_time": "2026-03-30T00:51:58Z",
+          "description": "Agent OS Phase 1 — single Render web service with OpenClaw + OpenRouter",
+          "repo": "mshears713/openclaw2-agent-os"
+        },
+        {
+          "title": "nludd25/openclaw",
+          "url": "https://github.com/nludd25/openclaw",
+          "author": "nludd25",
+          "type": "repo",
+          "publish_time": "2026-03-30T00:15:07Z",
+          "description": "",
+          "repo": "nludd25/openclaw"
+        }
+      ],
+      "total": 59,
+      "query_time": "2026-03-30 05:12"
+    },
+    {
+      "source": "clawhub",
+      "items": [
+        {
+          "title": "openclaw-server-secure-skill",
+          "url": "https://clawhub.com/skills/openclaw-server-secure-skill",
+          "author": "",
+          "description": "Comprehensive security hardening and installation guide for OpenClaw (formerly Clawdbot/Moltbot). Use this skill when the user wants to secure a server, install the OpenClaw agent, or configure Tailsc...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 03:16 UTC",
+          "slug": "openclaw-server-secure-skill"
+        },
+        {
+          "title": "Create New Openclaw Instance on GCP VM",
+          "url": "https://clawhub.com/skills/create-new-openclaw-in-gcp",
+          "author": "",
+          "description": "Deploy and configure an OpenClaw instance on a GCP VM with Tailscale networking, Brave Search integration, and secure credential handling.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 03:22 UTC",
+          "slug": "create-new-openclaw-in-gcp"
+        },
+        {
+          "title": "OpenClaw Ops Guardrails",
+          "url": "https://clawhub.com/skills/openclaw-ops-guardrails",
+          "author": "",
+          "description": "OpenClaw 运维防呆与排障标准化技能。用于跨设备（Gateway + Mac nodes）巡检、远程执行稳定性治理、CLI-only 兼容、配对/审批异常排查、以及对外发布前脱敏检查。用户提到“又报错了/审批超时/pairing required/system.run failed/如何标准化运维规则”时使用。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 04:58 UTC",
+          "slug": "openclaw-ops-guardrails"
+        },
+        {
+          "title": "Openclaw Docs",
+          "url": "https://clawhub.com/skills/openclaw-docs-cn",
+          "author": "",
+          "description": "OpenClaw 官方文档知识库。当用户询问 OpenClaw 相关问题时自动触发，包括：安装配置、CLI 命令、渠道设置（飞书/钉钉/WhatsApp 等）、定时任务（cron）、技能开发、故障排查。提供命令示例和配置模板。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 05:01 UTC",
+          "slug": "openclaw-docs-cn"
+        },
+        {
+          "title": "OpenClaw Power Ops",
+          "url": "https://clawhub.com/skills/openclaw-power-ops",
+          "author": "",
+          "description": "Operate and maintain OpenClaw installations — CLI commands, config management, channel/agent/model setup, security auditing, troubleshooting, and gateway adm...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 04:47 UTC",
+          "slug": "openclaw-power-ops"
+        },
+        {
+          "title": "Openclaw Error Fix",
+          "url": "https://clawhub.com/skills/openclaw-error-fix",
+          "author": "",
+          "description": "OpenClaw 常见错误修复 - 解决安装/配置/运行问题。适合：遇到错误的用户。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:43 UTC",
+          "slug": "openclaw-error-fix"
+        },
+        {
+          "title": "OpenClaw Cost Auditor",
+          "url": "https://clawhub.com/skills/openclaw-cost-auditor",
+          "author": "",
+          "description": "Track and report OpenClaw API usage, model costs, token consumption, and forecast spending with optimization recommendations.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 04:23 UTC",
+          "slug": "openclaw-cost-auditor"
+        },
+        {
+          "title": "OpenClaw Use Case Catalog",
+          "url": "https://clawhub.com/skills/openclaw-usecase-catalog",
+          "author": "",
+          "description": "Comprehensive catalog of what people are doing with OpenClaw. Covers 15+ categories with real examples, sources, and inspiration. Use when asked about OpenCl...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-30 04:11 UTC",
+          "slug": "openclaw-usecase-catalog"
+        },
+        {
+          "title": "OpenClaw安装服务",
+          "url": "https://clawhub.com/skills/openclaw-setup-service",
+          "author": "",
+          "description": "快速安装和配置 OpenClaw，支持微信、飞书、钉钉 Channel 设置及心跳和自动化任务管理。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:10 UTC",
+          "slug": "openclaw-setup-service"
+        },
+        {
+          "title": "OpenClaw 安装服务",
+          "url": "https://clawhub.com/skills/clawmart-openclaw-setup",
+          "author": "",
+          "description": "提供 OpenClaw 一键安装、Channel 配置、心跳任务设置及故障排查的远程安装与配置服务。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:07 UTC",
+          "slug": "clawmart-openclaw-setup"
+        },
+        {
+          "title": "Openclaw Quick Start",
+          "url": "https://clawhub.com/skills/openclaw-quick-start",
+          "author": "",
+          "description": "OpenClaw 5 分钟快速开始 - 最简化的入门教程。适合：完全新手、想快速体验的用户。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:43 UTC",
+          "slug": "openclaw-quick-start"
+        },
+        {
+          "title": "OpenClaw Security Audit",
+          "url": "https://clawhub.com/skills/openclaw-security-policy-check",
+          "author": "",
+          "description": "Automates security audits for OpenClaw gateway by checking key configuration settings to identify and report common security risks.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 05:59 UTC",
+          "slug": "openclaw-security-policy-check"
+        },
+        {
+          "title": "Openclaw Installer Cn",
+          "url": "https://clawhub.com/skills/openclaw-installer-cn",
+          "author": "",
+          "description": "OpenClaw 中文安装诊断 - 自动检测安装问题、修复常见错误、生成配置。适合：国内用户、新手安装。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:35 UTC",
+          "slug": "openclaw-installer-cn"
+        },
+        {
+          "title": "Openclaw Shield 1.0.3",
+          "url": "https://clawhub.com/skills/openclaw-shield-1-0-3",
+          "author": "",
+          "description": "Enterprise AI security scanner combining static code analysis, runtime guards, ClamAV integration, and tamper-proof audit logging to detect threats and enfor...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:48 UTC",
+          "slug": "openclaw-shield-1-0-3"
+        },
+        {
+          "title": "Openclaw Installer",
+          "url": "https://clawhub.com/skills/openclaw-installer",
+          "author": "",
+          "description": "一键安装 OpenClaw 的整活 skill，模拟专业上门安装服务体验",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:00 UTC",
+          "slug": "openclaw-installer"
+        },
+        {
+          "title": "OpenClaw 聊天机器人构建器",
+          "url": "https://clawhub.com/skills/openclaw-chatbot-builder",
+          "author": "",
+          "description": "专为OpenClaw设计，支持微信钉钉Telegram多平台，具自动化生成、智能分析及批量处理能力。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 07:00 UTC",
+          "slug": "openclaw-chatbot-builder"
+        },
+        {
+          "title": "openclaw-version-monitor",
+          "url": "https://clawhub.com/skills/openclaw-version-monitor",
+          "author": "",
+          "description": "监控 OpenClaw GitHub 版本更新，获取最新版本发布说明，翻译成中文， 并推送到 Telegram 和 Feishu。用于：(1) 定时检查版本更新 (2) 推送版本更新通知 (3) 生成中文版发布说明",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:45 UTC",
+          "slug": "openclaw-version-monitor"
+        },
+        {
+          "title": "openclaw-insight",
+          "url": "https://clawhub.com/skills/openclaw-insight",
+          "author": "",
+          "description": "Analyze OpenClaw AI assistant usage patterns and generate interactive insight reports. Trigger when users ask about: OpenClaw usage stats, session analytics,...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:41 UTC",
+          "slug": "openclaw-insight"
+        },
+        {
+          "title": "Gia Openclaw Setup Guide",
+          "url": "https://clawhub.com/skills/gia-openclaw-setup-guide",
+          "author": "",
+          "description": "Guides users through installing OpenClaw, connecting messaging channels, configuring skills, setting up workflows, and troubleshooting common issues.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 06:32 UTC",
+          "slug": "gia-openclaw-setup-guide"
+        },
+        {
+          "title": "OpenClaw Setup Assistant",
+          "url": "https://clawhub.com/skills/openclaw-setup-assistant",
+          "author": "",
+          "description": "Automates OpenClaw VPS setup, applies security hardening, configures multi-agent systems, messaging integrations, and generates deployment documentation.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 07:47 UTC",
+          "slug": "openclaw-setup-assistant"
+        },
+        {
+          "title": "Openclaw Installer",
+          "url": "https://clawhub.com/skills/openclaw-cn-installer-v2",
+          "author": "",
+          "description": "OpenClaw 安装服务助手 - 帮助用户快速配置 OpenClaw，支持国产 AI 模型（DeepSeek/智谱/通义）。适合：想使用 OpenClaw 但不熟悉安装配置的用户。",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 05:41 UTC",
+          "slug": "openclaw-cn-installer-v2"
+        },
+        {
+          "title": "OpenClaw Dual Agent",
+          "url": "https://clawhub.com/skills/openclaw-dual-agent",
+          "author": "",
+          "description": "Run two OpenClaw agents simultaneously — a paid Anthropic agent and a free OpenRouter agent, each with its own Telegram bot. Trigger phrases: multi-agent set...",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 12:01 UTC",
+          "slug": "openclaw-dual-agent"
+        },
+        {
+          "title": "Openclaw Plugin Dev",
+          "url": "https://clawhub.com/skills/openclaw-plugin-dev",
+          "author": "",
+          "description": "Guide for creating OpenClaw plugins using hooks like llm_input and llm_output, with logging, request tracking, and config management.",
+          "version": "",
+          "downloads": 0,
+          "updated_at": "2026-03-29 14:36 UTC",
+          "slug": "openclaw-plugin-dev"
+        }
+      ],
+      "total": 23,
+      "query_time": "2026-03-30 13:12"
+    },
+    {
+      "source": "xiaohongshu",
+      "items": [
+        {
+          "title": "OpenClaw 使用体验分享 - 超好用的AI工具",
+          "url": "https://www.xiaohongshu.com/explore/abc123def",
+          "author": "科技小达人",
+          "publish_time": "2026-03-30 11:12",
+          "description": "最近发现了OpenClaw这个项目，功能真的很强大，适合开发者使用...",
+          "type": "note"
+        },
+        {
+          "title": "OpenClaw 安装配置教程，小白也能学会",
+          "url": "https://www.xiaohongshu.com/explore/def456ghi",
+          "author": "程序员日记",
+          "publish_time": "2026-03-30 08:12",
+          "description": "手把手教你配置OpenClaw，从零开始搭建AI助手环境...",
+          "type": "note"
+        }
+      ],
+      "total": 2,
+      "query_time": "2026-03-30 13:12",
+      "error": "搜索引擎未返回结果，使用模拟数据（小红书无公开API）"
+    }
+  ]
+}

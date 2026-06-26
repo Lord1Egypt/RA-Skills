@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Master Pro - 智能盯盘系统</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-tertiary: #1f2937;
+      --accent-gold: #f59e0b;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --border-color: #374151;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0e1a 0%, #111827 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* 滚动条 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b5563;
+    }
+    
+    /* 卡片效果 */
+    .card {
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+      box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.15);
+    }
+    
+    /* 数字动画 */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.5s ease-out;
+    }
+    
+    /* 预警闪烁 */
+    @keyframes pulse-red {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      }
+    }
+    
+    .alert-urgent {
+      animation: pulse-red 2s infinite;
+    }
+    
+    /* 涨跌颜色 */
+    .text-up {
+      color: var(--accent-red);
+    }
+    
+    .text-down {
+      color: var(--accent-green);
+    }
+    
+    .text-flat {
+      color: var(--text-secondary);
+    }
+    
+    /* 导航栏 */
+    .nav-item {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-item:hover::after,
+    .nav-item.active::after {
+      width: 100%;
+    }
+    
+    /* 加载动画 */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading {
+      border: 2px solid var(--border-color);
+      border-top-color: var(--accent-blue);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+    }
+    
+    /* 背景装饰 */
+    .bg-decoration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .bg-gradient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      border-radius: 50%;
+    }
+    
+    .bg-gradient-2 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <!-- 背景装饰 -->
+  <div class="bg-decoration">
+    <div class="bg-gradient"></div>
+    <div class="bg-gradient-2"></div>
+  </div>
+
+  <!-- 顶部导航栏 -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 bg-[#0a0e1a] border-b border-[#374151] backdrop-blur-md">
+    <div class="max-w-[1920px] mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              Stock Master Pro
+            </h1>
+            <p class="text-xs text-gray-400">智能盯盘系统</p>
+          </div>
+        </div>
+        
+        <!-- 导航菜单 -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#dashboard" class="nav-item active text-sm font-medium text-gray-300 hover:text-white">大盘</a>
+          <a href="#holdings" class="nav-item text-sm font-medium text-gray-300 hover:text-white">持仓</a>
+          <a href="#review" class="nav-item text-sm font-medium text-gray-300 hover:text-white">复盘</a>
+          <a href="#announcements" class="nav-item text-sm font-medium text-gray-300 hover:text-white">公告</a>
+          <a href="#dragon-tiger" class="nav-item text-sm font-medium text-gray-300 hover:text-white">龙虎榜</a>
+          <a href="#earnings" class="nav-item text-sm font-medium text-gray-300 hover:text-white">财报</a>
+          <a href="#screener" class="nav-item text-sm font-medium text-gray-300 hover:text-white">选股</a>
+        </div>
+        
+        <!-- 状态指示 -->
+        <div class="flex items-center space-x-4">
+          <div id="tradingStatus" class="text-xs font-medium">
+            <span class="text-green-400">🟢 交易时段</span>
+          </div>
+          <div class="flex items-center space-x-2 text-xs text-gray-400">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span id="lastUpdate">更新中...</span>
+          </div>
+          <button onclick="refreshData()" class="p-2 hover:bg-white/10 rounded-lg transition-colors" title="刷新数据">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="pt-24 pb-12 px-6 max-w-[1920px] mx-auto">
+    <!-- 大盘概览 -->
+    <section id="dashboard" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">📊</span>
+          大盘概览
+        </h2>
+        <span class="text-sm text-gray-400 font-mono" id="currentTime">--:--:--</span>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 上证指数 -->
+        <div class="card p-6 animate-slide-up">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-400">上证指数</h3>
+            <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded">000001</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl font-bold font-mono" id="sh-price">--.--</div>
+            <div class="flex items-center space-x-2">
+              <span class="text-lg font-mono" id="sh-change">--.--</span>
+              <span class="text-lg font-mono" id="sh-change-pct">--.--%</span>
+            </div>
+            <div class="text-xs text-gray-500">成交额：<span id="sh-amount">--.--</span>亿</div>
+          </div>
+        </div>
+        
+        <!-- 深证成指 -->
+        <div class="card p-6 animate-slide-up" style="animation-delay: 0.1s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-400">深证成指</h3>
+            <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded">399001</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl font-bold font-mono" id="sz-price">--.--</div>
+            <div class="flex items-center space-x-2">
+              <span class="text-lg font-mono" id="sz-change">--.--</span>
+              <span class="text-lg font-mono" id="sz-change-pct">--.--%</span>
+            </div>
+            <div class="text-xs text-gray-500">成交额：<span id="sz-amount">--.--</span>亿</div>
+          </div>
+        </div>
+        
+        <!-- 创业板指 -->
+        <div class="card p-6 animate-slide-up" style="animation-delay: 0.2s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-400">创业板指</h3>
+            <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded">399006</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl font-bold font-mono" id="cyb-price">--.--</div>
+            <div class="flex items-center space-x-2">
+              <span class="text-lg font-mono" id="cyb-change">--.--</span>
+              <span class="text-lg font-mono" id="cyb-change-pct">--.--%</span>
+            </div>
+            <div class="text-xs text-gray-500">成交额：<span id="cyb-amount">--.--</span>亿</div>
+          </div>
+        </div>
+        
+        <!-- 中证 500 -->
+        <div class="card p-6 animate-slide-up" style="animation-delay: 0.3s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-gray-400">中证 500</h3>
+            <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded">399005</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl font-bold font-mono" id="zz-price">--.--</div>
+            <div class="flex items-center space-x-2">
+              <span class="text-lg font-mono" id="zz-change">--.--</span>
+              <span class="text-lg font-mono" id="zz-change-pct">--.--%</span>
+            </div>
+            <div class="text-xs text-gray-500">成交额：<span id="zz-amount">--.--</span>亿</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 大盘走势图表 -->
+      <div class="card p-6 mt-6">
+        <canvas id="marketChart" height="80"></canvas>
+      </div>
+    </section>
+
+    <!-- 持仓监控 -->
+    <section id="holdings" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">💰</span>
+          持仓监控
+        </h2>
+        <div class="flex items-center space-x-4">
+          <span class="text-sm text-gray-400">下次检查：<span id="nextCheck" class="font-mono">--:--:--</span></span>
+          <button onclick="checkHoldings()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+            立即检查
+          </button>
+        </div>
+      </div>
+      
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-white/5 border-b border-gray-700">
+              <tr>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">股票</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">现价</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">今日</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">成本</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">盈亏</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">盈亏%</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">量比</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">状态</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-700" id="holdings-table">
+              <tr>
+                <td colspan="8" class="px-6 py-12 text-center text-gray-400">
+                  <div class="flex flex-col items-center">
+                    <div class="loading mb-4"></div>
+                    <div>加载中...</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 复盘报告 -->
+    <section id="review" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">📝</span>
+          复盘报告
+        </h2>
+        <div class="flex items-center space-x-2">
+          <button onclick="loadReview('noon')" class="px-4 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-600/50 rounded-lg text-sm font-medium transition-colors">
+            午盘复盘
+          </button>
+          <button onclick="loadReview('afternoon')" class="px-4 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-600/50 rounded-lg text-sm font-medium transition-colors">
+            尾盘复盘
+          </button>
+          <button onclick="loadReview('close')" class="px-4 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-600/50 rounded-lg text-sm font-medium transition-colors">
+            收盘总结
+          </button>
+        </div>
+      </div>
+      
+      <div class="card p-8" id="review-content">
+        <div class="text-center text-gray-400 py-12">
+          <div class="text-6xl mb-4">📊</div>
+          <div>点击按钮加载复盘报告</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 预警信息 -->
+    <section id="alerts" class="mb-8">
+      <h2 class="text-2xl font-bold flex items-center mb-6">
+        <span class="text-3xl mr-2">⚠️</span>
+        实时预警
+      </h2>
+      
+      <div id="alerts-container" class="space-y-4">
+        <!-- 预警会动态插入这里 -->
+      </div>
+    </section>
+
+    <!-- 公告监控 -->
+    <section id="announcements" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">📢</span>
+          公告监控
+        </h2>
+        <button onclick="loadAnnouncements()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+          刷新公告
+        </button>
+      </div>
+      
+      <div class="card p-6" id="announcements-content">
+        <div class="text-center text-gray-400 py-12">
+          <div class="loading inline-block mb-4"></div>
+          <div>加载公告数据...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 龙虎榜 -->
+    <section id="dragon-tiger" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">🐉</span>
+          龙虎榜分析
+        </h2>
+        <button onclick="loadDragonTiger()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+          刷新数据
+        </button>
+      </div>
+      
+      <div class="card p-6" id="dragon-tiger-content">
+        <div class="text-center text-gray-400 py-12">
+          <div class="loading inline-block mb-4"></div>
+          <div>加载龙虎榜数据...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 财报日历 -->
+    <section id="earnings" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">📅</span>
+          财报日历
+        </h2>
+        <button onclick="loadEarningsCalendar()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+          刷新日历
+        </button>
+      </div>
+      
+      <div class="card p-6" id="earnings-content">
+        <div class="text-center text-gray-400 py-12">
+          <div class="loading inline-block mb-4"></div>
+          <div>加载财报日历...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 选股结果 -->
+    <section id="screener" class="mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold flex items-center">
+          <span class="text-3xl mr-2">🎯</span>
+          选股结果
+        </h2>
+        <button onclick="loadScreenerResults()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+          刷新选股
+        </button>
+      </div>
+      
+      <div class="card overflow-hidden" id="screener-content">
+        <div class="text-center text-gray-400 py-12">
+          <div class="loading inline-block mb-4"></div>
+          <div>加载选股结果...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="border-t border-gray-800 py-8 px-6">
+    <div class="max-w-[1920px] mx-auto text-center text-sm text-gray-500">
+      <p>Stock Master Pro v1.0.0 | 数据每 10 秒自动刷新 | 最后更新：<span id="footerUpdateTime">--:--:--</span></p>
+      <p class="mt-2 text-xs">⚠️ 免责声明：以上分析仅供参考，不构成投资建议。股市有风险，投资需谨慎。</p>
+    </div>
+  </footer>
+
+  <!-- Dashboard JavaScript -->
+  <script src="dashboard.js"></script>
+  <script>
+    // 简化版复盘报告加载（覆盖 dashboard.js 中的 loadReview）
+    async function loadReview(sessionType) {
+      const contentDiv = document.getElementById('review-content');
+      contentDiv.innerHTML = '<div class="text-center py-12 text-gray-400">加载中...</div>';
+      
+      try {
+        const r = await fetch('./stocks/reviews_data.json?t=' + Date.now());
+        const d = await r.json();
+        const s = d.sessions[sessionType];
+        
+        if (!s) { contentDiv.innerHTML = '<div class="text-center text-gray-400 py-12">暂无数据</div>'; return; }
+        
+        let h = '<div class="space-y-6">';
+        h += '<h3 class="text-2xl font-bold">' + s.title + '</h3>';
+        
+        // 大盘
+        if (s.market && s.market.indices) {
+          h += '<div class="card p-6"><h4 class="text-lg font-bold mb-4">📊 市场概览</h4>';
+          h += '<div class="grid grid-cols-1 md:grid-cols-4 gap-4">';
+          for (var i = 0; i < s.market.indices.length; i++) {
+            var idx = s.market.indices[i];
+            var c = idx.changePct >= 0 ? 'text-up' : 'text-down';
+            h += '<div class="bg-white/5 rounded-lg p-4"><div class="text-sm text-gray-400">' + idx.name + '</div>';
+            h += '<div class="text-2xl font-bold">' + idx.price.toFixed(2) + '</div>';
+            h += '<div class="text-sm ' + c + '">' + idx.changePct.toFixed(2) + '%</div></div>';
+          }
+          h += '</div></div>';
+        }
+        
+        // 板块
+        if (s.sectors) {
+          h += '<div class="card p-6"><h4 class="text-lg font-bold mb-4">🔥 热点板块</h4><div class="space-y-4">';
+          for (var j = 0; j < s.sectors.length; j++) {
+            var sec = s.sectors[j];
+            h += '<div class="bg-white/5 rounded-lg p-4">';
+            h += '<div class="flex justify-between items-center mb-2">';
+            h += '<div class="font-bold">No.' + (sec.rank||'') + ' ' + sec.name + '</div>';
+            h += '<div class="text-lg font-bold ' + (sec.changePct>=0?'text-up':'text-down') + '">' + sec.changePct.toFixed(2) + '%</div></div>';
+            
+            if (sec.whyRise) h += '<div class="text-sm text-blue-400 mb-2">💡 ' + sec.whyRise + '</div>';
+            if (sec.riseLogic && sec.riseLogic.length > 0) {
+              h += '<div class="text-xs text-gray-400 mb-2">📊 上涨逻辑:</div>';
+              for (var ii = 0; ii < sec.riseLogic.length; ii++) {
+                h += '<div class="text-xs text-gray-300 pl-3">' + sec.riseLogic[ii] + '</div>';
+              }
+            }
+            if (sec.sustainability) {
+              var susColor = sec.sustainability.indexOf('高') >= 0 ? 'text-green-400' : sec.sustainability.indexOf('中') >= 0 ? 'text-yellow-400' : 'text-red-400';
+              h += '<div class="text-xs text-gray-400 mb-2">♻️ 持续性：<span class="' + susColor + '">' + sec.sustainability + '</span></div>';
+              if (sec.sustainabilityAnalysis) h += '<div class="text-xs text-gray-500 pl-3">' + sec.sustainabilityAnalysis + '</div>';
+            }
+            if (sec.followStrategy) h += '<div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-2 mt-2"><div class="text-xs text-blue-400">🎯 怎么跟进:</div><div class="text-xs text-gray-300">' + sec.followStrategy + '</div></div>';
+            
+            if (sec.stocks && sec.stocks.length > 0) {
+              h += '<details class="mt-2"><summary class="cursor-pointer text-xs text-yellow-400">❗ 查看强势股（' + sec.stocks.length + '只）</summary>';
+              h += '<div class="mt-2 space-y-2">';
+              for (var k = 0; k < sec.stocks.length; k++) {
+                var st = sec.stocks[k];
+                var sc = st.score >= 85 ? 'text-green-400' : st.score >= 75 ? 'text-blue-400' : 'text-gray-400';
+                h += '<div class="bg-white/5 rounded p-3 text-sm">';
+                h += '<div class="flex justify-between items-center mb-1">';
+                h += '<span class="font-medium">' + st.name + '</span>';
+                h += '<span class="' + (st.changePct>=0?'text-up':'text-down') + '">' + st.changePct.toFixed(2) + '%</span></div>';
+                h += '<div class="flex justify-between items-center text-xs text-gray-400">';
+                h += '<span class="' + sc + '">评分：' + st.score + '</span>';
+                if (st.isLimitUp) h += '<span class="text-red-400">涨停</span>';
+                h += '</div>';
+                if (st.reason) h += '<div class="text-xs text-blue-400 mt-2">💡 ' + st.reason + '</div>';
+                h += '</div>';
+              }
+              h += '</div></details>';
+            }
+            h += '</div>';
+          }
+          h += '</div></div>';
+        }
+        
+        // 持仓
+        if (s.holdings) {
+          h += '<div class="card p-6"><h4 class="text-lg font-bold mb-4">💰 持仓表现</h4><div class="space-y-4">';
+          for (var m = 0; m < s.holdings.length; m++) {
+            var hd = s.holdings[m];
+            h += '<div class="bg-white/5 rounded-lg p-4"><div class="flex justify-between items-center">';
+            h += '<div><div class="font-bold">' + hd.name + '</div><div class="text-sm text-gray-400">' + hd.code + '</div></div>';
+            h += '<div class="text-right"><div class="text-2xl font-bold ' + (hd.changePct>=0?'text-up':'text-down') + '">' + hd.changePct.toFixed(2) + '%</div>';
+            h += '<div class="text-sm">' + hd.advice + '</div></div></div></div>';
+          }
+          h += '</div></div>';
+        }
+        
+        h += '</div>';
+        contentDiv.innerHTML = h;
+      } catch (e) {
+        contentDiv.innerHTML = '<div class="text-center text-red-400 py-12">加载失败：' + e.message + '</div>';
+        console.error('复盘加载错误:', e);
+      }
+    }
+  </script>
+</body>
+</html>

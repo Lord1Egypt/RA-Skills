@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>smart-auto-note 全流程规则引擎</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0f1e;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 2rem 1rem;
+            color: #eef2ff;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #101624;
+            border-radius: 2rem;
+            border: 1px solid #2d3748;
+            overflow: hidden;
+        }
+        .header {
+            padding: 1.5rem 2rem;
+            background: #0b0f1a;
+            border-bottom: 1px solid #2a3448;
+        }
+        .header h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            background: #1e2a3a;
+            margin-left: 1rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        .header p {
+            margin-top: 0.6rem;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        .diagram-wrapper {
+            padding: 1.5rem 1rem;
+            background: #0f141f;
+            overflow-x: auto;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            min-width: 800px;
+        }
+        .footer-note {
+            background: #0b0f1a;
+            padding: 1rem 2rem;
+            border-top: 1px solid #232b3b;
+            font-size: 0.8rem;
+            color: #6c7a91;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .legend {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 860px) {
+            .diagram-wrapper { padding: 1rem 0.5rem; }
+            .mermaid { min-width: 720px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📘 smart-auto-note · 全流程规则引擎</h1>
+        <span class="badge">优先级前置｜强绑定待办提醒｜自动归档</span>
+        <p>基于语义分类的 Obsidian 智能笔记技能 — 严格遵循离线、零三方依赖、100% 规则驱动</p>
+    </div>
+    <div class="diagram-wrapper">
+        <pre class="mermaid">
+            %%{init: {'theme':'dark', 'themeVariables': {
+                'background': '#0f141f',
+                'primaryColor': '#3b82f6',
+                'primaryBorderColor': '#60a5fa',
+                'primaryTextColor': '#f1f5f9',
+                'lineColor': '#5b6e8c',
+                'secondaryColor': '#1e293b',
+                'tertiaryColor': '#0f172a'
+            }}}%%
+            flowchart TD
+            A[用户输入] --> B{前置触发判断}
+            B -->|非记录类| Z[结束不触发]
+            B -->|是记录类| C{是否为待办修改指令}
+            
+            C -->|是| D[待办修改流程]
+            D --> D1[匹配待办文件]
+            D1 --> D2{匹配成功}
+            D2 -->|否| D3[询问用户]
+            D3 --> Z
+            D2 -->|是| D4[执行修改]
+            D4 --> D5[同步提醒任务]
+            D5 --> D6[返回结果]
+            D6 --> Z
+            
+            C -->|否| E[多内容自动拆分]
+            E --> F[遍历每条内容]
+            
+            F --> G{分类判定}
+            G --> H{置信度≥90%}
+            H -->|是| M[按分类执行]
+            H -->|否| I{置信度70%-90%}
+            I -->|是| J[询问分类+预览]
+            J --> K{用户确认}
+            K -->|是| M
+            K -->|否| L[跳过该项]
+            I -->|否| N[询问分类]
+            N --> K
+            
+            M --> O{分类类型}
+            
+            O -->|工作待办| P[写入工作待办.md]
+            P --> P1{有明确时间}
+            P1 -->|否| P3[仅写入待办]
+            P1 -->|是| P4{时间解析置信度≥90%}
+            P4 -->|否| P5[询问时间]
+            P5 --> P6{确认}
+            P6 -->|是| P7[创建提醒]
+            P6 -->|否| P3
+            P4 -->|是| P7
+            P7 --> P9[返回待办+提醒]
+            P3 --> P10[返回待办已记录]
+            P10 --> P11[汇总未完成待办]
+            P9 --> P11
+            
+            O -->|生活待办| Q[写入生活待办.md]
+            Q --> Q1[同时间解析]
+            Q1 --> Q2[返回提示]
+            
+            O -->|工作记录| R[子分类判定]
+            R --> R1{子分类置信度}
+            R1 -->|≥90%| R2[写入对应子分类]
+            R1 -->|70%-90%| R3[询问用户]
+            R3 --> R4{确认}
+            R4 -->|是| R2
+            R4 -->|否| R5[跳过]
+            R1 -->|<70%| R6[默认其他类并提示]
+            R6 --> R2
+            R2 --> R7[追加写入工作记录.md]
+            R7 --> R8[返回提示]
+            
+            O -->|灵感| S[写入灵感.md]
+            S --> S1[返回提示]
+            
+            L --> T{还有下一条}
+            R5 --> T
+            P11 --> T
+            Q2 --> T
+            R8 --> T
+            S1 --> T
+            T -->|是| F
+            T -->|否| U[汇总结果]
+            U --> Z
+            
+            subgraph BG[后台轮询引擎]
+                W[加载提醒任务] --> W1[启动60秒轮询]
+                W1 --> W2{到期检查}
+                W2 -->|有到期| W3[推送通知]
+                W3 --> W4{提醒类型}
+                W4 -->|单次| W5[标记完成并归档]
+                W4 -->|循环| W6[更新下次时间]
+                W5 --> W7[同步待办文件]
+                W6 --> W7
+                W7 --> W8[校验待办存在]
+                W2 -->|无| W9[等待]
+                W8 --> W9
+                W9 --> W1
+            end
+            
+            subgraph ARC[自动归档]
+                X[检测待办完成] --> X1{工作待办}
+                X1 -->|是| X2[提取内容]
+                X2 --> X3[子分类判定]
+                X3 --> X4{置信度}
+                X4 -->|≥90%| X5[写入工作记录]
+                X4 -->|70%-90%| X6[询问确认]
+                X6 --> X7{确认}
+                X7 -->|是| X5
+                X7 -->|否| X8[默认其他类]
+                X8 --> X5
+                X4 -->|<70%| X8
+                X5 --> X9[标记已归档]
+                X9 --> X10[返回提示]
+                X1 -->|否| X11[继续监听]
+                X10 --> X1
+            end
+            
+            style Z fill:#2d1f2c,stroke:#b91c1c
+            style A fill:#1e2a3a,stroke:#3b82f6
+            style U fill:#1a2a32,stroke:#10b981
+            style BG fill:#111827,stroke:#60a5fa
+            style ARC fill:#111827,stroke:#60a5fa
+        </pre>
+    </div>
+    <div class="footer-note">
+        <div>
+            ⚙️ <strong>引擎严格执行清单</strong><br>
+            ✅ 仅 filesystem 权限 + Node.js 原生 fs.promises<br>
+            ✅ 零第三方依赖 · 离线优先 · 无外部接口<br>
+            ✅ 待办与提醒强制绑定（无待办不创建提醒）<br>
+            ✅ 分类置信度＜90% 强制询问，用户确认后执行<br>
+            ✅ 循环/单次提醒持久化 → 分钟轮询 · 重启不丢失<br>
+            ✅ 工作待办完成自动归档至工作记录（项目类/其他类）
+        </div>
+        <div class="legend">
+            <span>🔵 主决策流程</span>
+            <span>🟢 待办写入/提醒</span>
+            <span>🟣 工作记录/归档</span>
+            <span>🔶 后台并行引擎</span>
+            <span>🔴 终止/拦截</span>
+        </div>
+    </div>
+</div>
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+            background: '#0f141f',
+            primaryColor: '#2563eb',
+            primaryBorderColor: '#3b82f6',
+            primaryTextColor: '#f1f5f9',
+            lineColor: '#6b7c93'
+        },
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+        securityLevel: 'loose',
+        fontFamily: '"Segoe UI", "Roboto", monospace'
+    });
+</script>
+</body>
+</html>

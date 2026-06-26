@@ -1,0 +1,12 @@
+# ClearMacroBase selectors — computed from hardcoded NON_SDK_ABIS signatures
+
+functions:
+  buildBatchOperations(address,bytes,address): 0xd052b023
+  getActionStructHash(bytes):                  0x5e92352a
+  getActionTypeDefinition(bytes):              0x39f05f94
+  getPrimaryTypeName(bytes):                   0x390b89cb
+  postCheck(address,bytes,address):            0x9989bef3
+
+errors:
+  UnknownActionId(uint8): 0x7d78cf8c
+  UnsupportedLanguage():  0xf90f8c26

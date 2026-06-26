@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Skills Monitor — AI 智能体技能监控面板">
+<title>Skills Monitor</title>
+<link rel="manifest" href="/static/pwa/manifest.json">
+<link rel="apple-touch-icon" href="/static/img/icon-192.png">
+<link rel="stylesheet" href="/static/pwa/app.css?v=20260319f">
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══════ 登录页 ═══════ -->
+  <div id="login-page" class="page login-page active">
+    <div class="login-logo">
+      <div class="icon">🎯</div>
+      <h1>Skills Monitor</h1>
+      <p>AI 智能体技能监控面板</p>
+    </div>
+    <div class="card">
+      <div class="form-group">
+        <label>智能体 ID</label>
+        <input type="text" id="login-agent-id" placeholder="输入智能体 ID" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Key</label>
+        <input type="password" id="login-agent-token" placeholder="输入 Key" autocomplete="off">
+      </div>
+      <button id="login-btn" class="btn btn-primary">登 录</button>
+    </div>
+    <div class="login-help">
+      💡 在终端运行以下命令获取凭证：<br>
+      <code>skills-monitor identity --show-key</code>
+    </div>
+  </div>
+
+  <!-- ═══════ 仪表盘 ═══════ -->
+  <div id="dashboard-page" class="page">
+    <div class="page-header">
+      <div class="icon">📊</div>
+      <h1>仪表盘</h1>
+      <p class="subtitle">Skills Monitor 数据总览</p>
+    </div>
+    <div id="dashboard-content">
+      <div class="loading"><div class="spinner"></div>加载中...</div>
+    </div>
+  </div>
+
+  <!-- ═══════ 报告列表 ═══════ -->
+  <div id="reports-page" class="page">
+    <div class="page-header">
+      <div class="icon">📋</div>
+      <h1>报告</h1>
+      <p class="subtitle">历史报告列表</p>
+    </div>
+    <div id="reports-content">
+      <div class="loading"><div class="spinner"></div>加载中...</div>
+    </div>
+  </div>
+
+  <!-- ═══════ 报告详情 ═══════ -->
+  <div id="report-detail-page" class="page">
+    <div id="report-detail-content">
+      <div class="loading"><div class="spinner"></div>加载中...</div>
+    </div>
+  </div>
+
+  <!-- ═══════ Skill 详情 ═══════ -->
+  <div id="skill-detail-page" class="page">
+    <div id="skill-detail-content">
+      <div class="loading"><div class="spinner"></div>加载中...</div>
+    </div>
+  </div>
+
+  <!-- ═══════ 我的 ═══════ -->
+  <div id="mine-page" class="page">
+    <div class="page-header">
+      <div class="icon">👤</div>
+      <h1>我的</h1>
+      <p class="subtitle">账户与设置</p>
+    </div>
+    <div id="mine-content">
+      <div class="loading"><div class="spinner"></div>加载中...</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tab Bar -->
+<nav id="tab-bar" class="tab-bar hidden">
+  <div class="tab-item active" data-page="dashboard">
+    <span class="tab-icon">📊</span>
+    <span>仪表盘</span>
+  </div>
+  <div class="tab-item" data-page="reports">
+    <span class="tab-icon">📋</span>
+    <span>报告</span>
+  </div>
+  <div class="tab-item" data-page="mine">
+    <span class="tab-icon">👤</span>
+    <span>我的</span>
+  </div>
+</nav>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<!-- App JS -->
+<script src="/static/pwa/app.js?v=20260319g"></script>
+</body>
+</html>

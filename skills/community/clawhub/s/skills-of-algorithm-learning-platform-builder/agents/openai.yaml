@@ -1,0 +1,5 @@
+interface:
+  display_name: Algorithm Learning Platform Builder
+  short_description: Build interactive algorithm teaching pages and reusable learning platforms
+  icon: function
+  color: "#A98345"

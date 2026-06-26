@@ -1,0 +1,8 @@
+{
+  "name": "social-proof-collector",
+  "version": "1.0.0",
+  "description": "Collect, filter, and display customer reviews from Google, Yelp, Facebook, and more. Generate testimonial widgets, monitor new reviews, and draft responses to negative feedback.",
+  "author": "GIA Digital",
+  "tags": ["reviews", "testimonials", "social-proof", "reputation", "marketing"],
+  "category": "marketing"
+}

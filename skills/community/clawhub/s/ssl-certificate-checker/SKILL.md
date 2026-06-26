@@ -1,35 +1,33 @@
 ---
-name: "SSL Certificate Checker"
-description: "Check SSL/TLS certificate details including expiration date, issuer, validity, cipher suites, and security warnings for any domain. Use when verifying HTTPS..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ssl-certificate-checker"
-sourceUrl: "https://clawhub.ai/skills/ssl-certificate-checker"
+name: ssl-certificate-checker
+description: Check SSL/TLS certificate details including expiration date, issuer, validity, cipher suites, and security warnings for any domain. Use when verifying HTTPS security, monitoring certificate expiry, or troubleshooting SSL issues.
 ---
 
 # SSL Certificate Checker
 
-> Check SSL/TLS certificate details including expiration date, issuer, validity, cipher suites, and security warnings for any domain. Use when verifying HTTPS...
+Analyze SSL/TLS certificates for any domain to verify security configuration and monitor expiration.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ssl-certificate-checker`
-- **Source URL:** [https://clawhub.ai/skills/ssl-certificate-checker](https://clawhub.ai/skills/ssl-certificate-checker)
+## When to Use
 
-## Overview
+- Checking SSL certificate expiration dates
+- Verifying certificate chain and issuer
+- Troubleshooting HTTPS connection issues
+- Auditing website security configuration
+- Monitoring certificates before renewal
 
+## When NOT to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Penetration testing (this is read-only)
+- Internal network certificates (use dedicated tools)
+- Certificate installation (this only checks, doesn't install)
+
+## Examples
+
+### Basic Certificate Check
+
 ```bash
-hermes skills install clawhub/ssl-certificate-checker
-```
+# Check certificate for a domain
+openssl s_client -connect example.com:443 -servername example.com </dev/null 2>/dev/null | openssl x509 -noout -dates -subject -issuer
+
+# Get detailed certificate information
+echo | openssl s_client -connect example.com:443 -servername example.com 2>/dev/null | openssl x509 -noout -text

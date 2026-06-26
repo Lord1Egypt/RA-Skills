@@ -1,35 +1,76 @@
 ---
-name: "Surplus Funds Recovery System"
-description: "Turn unclaimed government funds into passive income. Automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/surplus-funds-recovery"
-sourceUrl: "https://clawhub.ai/skills/surplus-funds-recovery"
+name: surplus-funds-recovery
+version: 1.0.0
+description: Turn unclaimed government funds into passive income. Automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing.
+category: Business Automation
+tags: [passive-income, automation, real-estate, sms, skip-tracing]
+author: Cod3Black <support@cod3black.agency>
+repository: https://github.com/cod3black/surplus-funds-recovery
+license: MIT
+pricing:
+  oneTime: 79
+  subscription: 19
+  currency: USD
+requirements:
+  - Termux (Android) or Linux environment
+  - Node.js v16+
+  - OpenClaw agent system
+  - API keys: Intelius, Twilio, RabbitSign
 ---
 
 # Surplus Funds Recovery System
 
-> Turn unclaimed government funds into passive income. Automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing.
+Turn unclaimed government funds into passive income with this complete automation system.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/surplus-funds-recovery`
-- **Source URL:** [https://clawhub.ai/skills/surplus-funds-recovery](https://clawhub.ai/skills/surplus-funds-recovery)
+## The Business Model
 
-## Overview
+- Property foreclosures create surplus funds (sale price > taxes owed)
+- Previous owners usually don't know this money exists
+- You find it, contact them, file claims, earn 20-30% finder's fee
+- Example: $223K surplus → $56K fee in ~30 minutes of work
 
+## What's Included
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Automated county record scanning (Fulton County GA)
+- Skip-tracing integration (Intelius/TrueCaller APIs)
+- SMS outreach templates with compliance safeguards
+- Digital signature capture (RabbitSign/DocuSign)
+- Auto-populated claim form generation
+- Payment tracking & split calculation
+- Full audit trail for compliance
+
+## ROI Example
+
+- 1 case/week = $290K/year (mostly passive after filing)
+- Cost per case: $3-5 (skip trace + SMS)
+- Your fee: 20-30% of surplus amounts
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/surplus-funds-recovery
+# Configure your business
+export BUSINESS_NAME="Your Recovery Business"
+export YOUR_FEE_PERCENT=25
+export YOUR_PHONE="+1-XXX-XXX-XXXX"
+
+# Run automated scan
+npm run scan-fulton --min-amount 10000
+
+# Review flagged high-value cases
+cat surplus-cases.json | jq '.[] | select(.amount > 50000)'
+
+# Auto-skip-trace and send compliant SMS
+node scripts/skip-trace-owner.js --case CASE-123
+node scripts/send-sms-campaign.js --case CASE-123 --template standard
 ```
+
+## Requirements
+
+- Termux (Android) or Linux environment
+- Node.js v16+
+- OpenClaw agent system
+- API keys: Intelius, Twilio, RabbitSign
+
+## Support
+
+Email: support@cod3black.agency

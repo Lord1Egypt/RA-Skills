@@ -1,35 +1,26 @@
 ---
-name: "Table Tool"
-description: "Format data into aligned table columns. Use for displaying structured data with organized rows and columns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/table-tool"
-sourceUrl: "https://clawhub.ai/skills/table-tool"
+name: table-tool
+description: Format data into aligned table columns. Use for displaying structured data with organized rows and columns.
 ---
+# Table - Data Table Formatter
 
-# Table Tool
+Organize text data into visually aligned tables with configurable column widths, separators, and header rows. Supports pipe-delimited and space-separated input formats.
 
-> Format data into aligned table columns. Use for displaying structured data with organized rows and columns.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/table-tool`
-- **Source URL:** [https://clawhub.ai/skills/table-tool](https://clawhub.ai/skills/table-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/table-tool
+table-tool [options] <file>
+```
+
+## Options
+
+- `-s SEP`: Column separator (default: pipe |)
+- `-a`: Auto-fit column widths
+- `-h`: Treat first line as header
+
+## Examples
+
+```bash
+table-tool data.txt
+table-tool -s ',' -h data.csv
+echo "a|b|c\n1|2|3" | table-tool
 ```

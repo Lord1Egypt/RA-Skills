@@ -1,0 +1,19 @@
+{
+  "slug": "study-plan-builder-skill",
+  "name": "Study Plan Builder Skill",
+  "version": "0.1.0",
+  "tags": [
+    "education",
+    "openclaw",
+    "study-plan-builder",
+    "templates"
+  ],
+  "category": "Education & Study",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-11",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FireSeed v2.0 Configuration Schema",
+  "type": "object",
+  "properties": {
+    "extraction": {
+      "type": "object",
+      "properties": {
+        "max_fossils_per_dimension": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 2
+        },
+        "pending_confidence_threshold": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.6
+        },
+        "high_confidence_threshold": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.8
+        },
+        "negation_decay_factor": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.4
+        },
+        "min_confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.2
+        }
+      }
+    },
+    "distillation": {
+      "type": "object",
+      "properties": {
+        "batch_size": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 200,
+          "default": 50
+        },
+        "frequency_hours": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 168,
+          "default": 24
+        },
+        "min_fossils_for_distill": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100,
+          "default": 20
+        }
+      }
+    },
+    "embedding": {
+      "type": "object",
+      "properties": {
+        "model_name": {
+          "type": "string",
+          "default": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "similarity_threshold": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.75
+        },
+        "cache_enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "cache_path": {
+          "type": "string",
+          "default": "cache/embeddings/"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "historical_window": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 1000,
+          "default": 100
+        },
+        "enable_contradiction_detection": {
+          "type": "boolean",
+          "default": true
+        },
+        "history_db_path": {
+          "type": "string",
+          "default": "user-data/validation_history.json"
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "fossil_storage_path": {
+          "type": "string",
+          "default": "user-data/fossils/"
+        },
+        "persona_storage_path": {
+          "type": "string",
+          "default": "user-data/persona/"
+        },
+        "auto_backup": {
+          "type": "boolean",
+          "default": true
+        },
+        "backup_retention_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 365,
+          "default": 30
+        },
+        "backup_path": {
+          "type": "string",
+          "default": "user-data/backups/"
+        }
+      }
+    },
+    "dimension_weights": {
+      "type": "object",
+      "patternProperties": {
+        "^[1-6]$": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        }
+      }
+    }
+  }
+}

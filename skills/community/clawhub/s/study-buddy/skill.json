@@ -1,0 +1,22 @@
+{
+  "name": "Study Buddy",
+  "slug": "study-buddy",
+  "version": "1.2.0",
+  "description": "Local-first study planning, check-ins, progress tracking, reports, and wrong-question management for middle/high-school families.",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "zh",
+  "tags": ["learning", "study-plan", "progress-tracking", "parents", "local-first"],
+  "trigger_keywords": [
+    "学习计划",
+    "学习打卡",
+    "学习进度",
+    "错题本",
+    "study plan"
+  ],
+  "requires_api": false,
+  "requires_network": false,
+  "uses_local_storage": true,
+  "storage_env": "STUDY_BUDDY_HOME",
+  "readiness": "stable"
+}

@@ -1,35 +1,22 @@
 ---
-name: "Sure"
-description: "Get report from Sure personal financial board"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sure"
-sourceUrl: "https://clawhub.ai/skills/sure"
+name: sure
+description: Get report from Sure personal financial board
+homepage: https://sure.am
+metadata: {"clawdbot":{"emoji":"📈","requires":{"bin": ["curl"],"env":["SURE_API_KEY", "SURE_BASE_URL"]}}}
 ---
+# Sure Skill
 
-# Sure
+## Setup
+1. Go to your Sure app, example : https://localhost:3000 
+2. Go to settings and get an API key, example : https://localhost:3000/settings/api_key
+3. Export your API KEY and BASE URL as environment variables :
+ ```bash
+export SURE_API_KEY="YOUR_API_KEY"
+export SURE_BASE_URL="YOUR_BASE_URL"
+```
 
-> Get report from Sure personal financial board
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sure`
-- **Source URL:** [https://clawhub.ai/skills/sure](https://clawhub.ai/skills/sure)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Get accounts
+List all accounts amounts
 ```bash
-hermes skills install clawhub/sure
+curl -H "X-Api-Key: $SURE_API_KEY" "$SURE_BASE_URL/api/v1/accounts"
 ```

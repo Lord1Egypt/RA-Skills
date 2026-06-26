@@ -1,35 +1,140 @@
 ---
-name: "Sports Betting Analyzer"
-description: "智能体育彩票分析助手 - 基于数据分析和简单机器学习的比赛预测辅助工具。支持NBA、足球世界杯等赛事分析，提供数据收集、基础统计、概率预测和投注建议。重点在于辅助决策，而非预测结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sports-betting-analyzer"
-sourceUrl: "https://clawhub.ai/skills/sports-betting-analyzer"
+name: sports-betting-analyzer
+description: 智能体育彩票分析助手 - 基于数据分析和简单机器学习的比赛预测辅助工具。支持NBA、足球世界杯等赛事分析，提供数据收集、基础统计、概率预测和投注建议。重点在于辅助决策，而非预测结果。
+license: mit
+version: 1.0.0
 ---
 
-# Sports Betting Analyzer
+# 体育彩票分析助手
 
-> 智能体育彩票分析助手 - 基于数据分析和简单机器学习的比赛预测辅助工具。支持NBA、足球世界杯等赛事分析，提供数据收集、基础统计、概率预测和投注建议。重点在于辅助决策，而非预测结果。
+智能体育彩票分析助手 - 基于数据分析和简单机器学习的比赛预测辅助工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sports-betting-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/sports-betting-analyzer](https://clawhub.ai/skills/sports-betting-analyzer)
+## 核心功能
 
-## Overview
+### 1. 数据采集与分析
+- 收集比赛基础数据（历史战绩、近期走势、主客场表现）
+- 赔率监测（多平台对比、异常检测）
+- 伤病信息跟踪
+- 历史数据存储与分析
 
+### 2. 智能预测模型
+- 多维度特征提取
+- 简单机器学习预测
+- 概率计算与置信度评估
+- 价值投注识别
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sports-betting-analyzer
+### 3. 辅助决策
+- 风险评估与提示
+- 投注建议生成
+- 可解释性分析
+- 资金管理建议
+
+## 支持赛事
+
+### NBA
+- 季后赛分析
+- 主客场优势评估
+- 热门球队vs冷门球队分析
+- 四阶段预测（首轮、次轮、分区决赛、总决赛）
+
+### 足球
+- 欧洲五大联赛
+- 世界杯赛事
+- 欧亚指数分析
+- 进球数预测
+
+## 使用方法
+
+### 分析一场比赛
+
 ```
+分析 NBA 比赛 湖人 vs 勇士
+分析足球比赛 巴萨 vs 皇马
+```
+
+### 查看历史记录
+
+```
+查看最近的分析记录
+我的投注历史
+```
+
+### 获取预测建议
+
+```
+NBA 今晚有什么值得投注的比赛
+足球周末推荐
+```
+
+## 数据来源
+
+使用开源数据源：
+- 体育官方数据（NBA官网、足球官方）
+- 免费数据API
+- 历史比赛记录
+
+## 预测方法论
+
+### 1. 基础统计
+- 历史交锋记录
+- 近期胜率（近5-10场）
+- 主客场表现
+- 进球失球数据
+
+### 2. 特征工程
+- 球队实力指数
+- 近期状态指数
+- 主客场优势系数
+- 伤病影响因子
+
+### 3. 概率模型
+- 逻辑回归基础预测
+- 蒙特卡洛模拟（简单版）
+- 集成多因素权重
+
+### 4. 风险控制
+- 置信度评估
+- 赔率价值判断
+- 建议投注比例
+
+## 重要提示
+
+⚠️ **本工具仅提供辅助分析，不保证预测准确率**
+- 体育比赛存在不确定性
+- 建议结合自身判断
+- 理性投注，控制风险
+- 不要依赖单一工具决策
+
+## 配置
+
+创建配置文件 `config/sports-betting.json`：
+
+```json
+{
+  "risk_level": "conservative",
+  "default_bet_percentage": 2,
+  "preferred_leagues": ["NBA", "Premier League", "La Liga"],
+  "data_sources": ["official", "free_api"]
+}
+```
+
+## 输出格式
+
+分析报告包含：
+- 📊 数据概览
+- 🎯 预测结果（含概率）
+- 💡 投注建议
+- ⚠️ 风险提示
+- 📝 可解释性说明
+
+## 模板
+
+报告模板：`templates/analysis_report.md`
+
+## 更新日志
+
+### v1.0.0 (2026-04-02)
+- MVP版本发布
+- 支持NBA和足球基础分析
+- 简单预测模型
+- 辅助决策功能

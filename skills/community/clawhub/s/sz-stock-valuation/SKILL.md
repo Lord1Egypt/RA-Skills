@@ -1,35 +1,122 @@
 ---
 name: "stock-valuation"
+version: "1.0.0"
+author: "your-clawhub-username"
 description: "A股/港股股票估值查询工具，支持PE、PB、PS、股东价值折现、自由现金流折现等多维度估值，提供合理股价、安全边际与估值判断（低估/合理/高估）。访问「柿子估值」微信小程序，了解机构持仓榜单、ETF估值等更多功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sz-stock-valuation"
-sourceUrl: "https://clawhub.ai/skills/sz-stock-valuation"
+license: "MIT"
+timeout: 30
+permissions:
+  - network:tz.smxqx.tech
+  - env:STOCK_VALUATION_AUTH
+tags:
+  - stock
+  - finance
+  - valuation
+  - a-share
+  - hk-stock
+  - investment
+triggers:
+  - "股票估值"
+  - "估值查询"
+  - "查估值"
+  - "valuation"
+  - "市盈率"
+  - "市净率"
+  - "安全边际"
+  - "低估"
+  - "高估"
+  - "合理股价"
+metadata:
+  openclaw:
+    emoji: "📊"
+    category: "finance"
+  clawdbot:
+    emoji: "📊"
+    requires:
+      bins: ["python3", "curl"]
+    install: []
 ---
 
-# stock-valuation
+# 📊 股票估值查询 Skill
 
-> A股/港股股票估值查询工具，支持PE、PB、PS、股东价值折现、自由现金流折现等多维度估值，提供合理股价、安全边际与估值判断（低估/合理/高估）。访问「柿子估值」微信小程序，了解机构持仓榜单、ETF估值等更多功能。
+> 支持 A 股（沪深）和港股的多维度估值分析，帮助投资者判断股票是否处于低估/合理/高估区间。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sz-stock-valuation`
-- **Source URL:** [https://clawhub.ai/skills/sz-stock-valuation](https://clawhub.ai/skills/sz-stock-valuation)
+## 能力描述
 
-## Overview
+本 Skill 通过调用专业估值接口，查询指定股票的全面估值数据，包括：
 
+- **基础行情**：当前股价、市值、日涨跌幅、年初至今涨跌幅
+- **估值指标**：PE（TTM）、PB、PS（TTM）、股息率
+- **估值分析**：合理股价、合理市值、安全边际
+- **综合判断**：低估 / 合理 / 高估 标签
+- **估值解析**：详细的文字分析说明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sz-stock-valuation
+## 支持市场
+
+| 市场 | 代码格式 | 示例 |
+|------|----------|------|
+| 上交所（沪市）| `{代码}.SH` | `600519.SH`（贵州茅台） |
+| 深交所（深市）| `{代码}.SZ` | `000001.SZ`（平安银行） |
+| 港交所（港股）| `{代码}.HK` | `00700.HK`（腾讯控股） |
+
+## 触发方式
+
+用户可以通过以下方式触发：
+
+- "帮我查一下茅台的估值"
+- "600519.SH 现在低估吗？"
+- "查一下腾讯 00700.HK 的市盈率"
+- "平安银行 000001.SZ 的安全边际是多少？"
+- "帮我分析一下比亚迪的估值情况"
+
+## 执行步骤
+
+1. **识别股票代码**：从用户输入中提取股票代码（支持代码直接输入或股票名称识别）
+2. **格式验证**：验证代码格式是否符合 `{代码}.{市场}` 规范
+3. **调用查询脚本**：执行 `scripts/query_valuation.py` 查询估值数据
+4. **解析结果**：读取并解析返回的 JSON 数据
+5. **格式化输出**：以清晰的结构呈现估值分析报告
+
+## 环境变量
+
+| 变量名 | 是否必填 | 说明 |
+|--------|----------|------|
+| `STOCK_VALUATION_AUTH` | 是 | API 鉴权 Token，默认值见 `.env.example` |
+
+> **说明**：如未设置环境变量，Skill 将使用内置的默认公共 Token（可能有频率限制）。
+
+## 输出格式
+
+查询成功后，将以结构化 Markdown 展示：
+
 ```
+📊 贵州茅台 (600519.SH)
+━━━━━━━━━━━━━━━━━━━━━━━
+🏷️  行业：白酒 | 交易所：SSE
+💰 当前股价：¥1,528.97
+📈 日涨跌幅：+0.08% | 年初至今：-11.42%
+🏦 当前市值：19,206.9 亿元
+
+📐 估值指标
+  市盈率 PE(TTM)：11.63
+  市净率 PB：9.25
+  市销率 PS(TTM)：11.63
+  股息率：2.94%
+
+🎯 估值判断：【低估】
+  合理股价：¥1,938.89
+  合理市值：24,356.36 亿元
+  安全边际：26.81%
+
+📝 估值解析：...
+```
+
+## 错误处理
+
+- 股票代码不存在：提示用户检查代码格式
+- 网络超时：建议重试
+- 接口限流：提示稍后再试
+
+## 注意事项
+
+- 本工具仅提供参考性估值数据，**不构成投资建议**

@@ -1,0 +1,123 @@
+{
+  "kpis": {
+    "dimensions": {
+      "order_amount": {
+        "label": "订单金额",
+        "weight": 0.40,
+        "source": "okki_orders",
+        "window_months": 12,
+        "normalize": {
+          "method": "tiered",
+          "tiers": [
+            { "min": 0, "max": 1000, "score": 10 },
+            { "min": 1000, "max": 5000, "score": 25 },
+            { "min": 5000, "max": 20000, "score": 50 },
+            { "min": 20000, "max": 50000, "score": 75 },
+            { "min": 50000, "max": null, "score": 100 }
+          ]
+        }
+      },
+      "order_frequency": {
+        "label": "交易频次",
+        "weight": 0.25,
+        "source": "okki_orders",
+        "window_months": 12,
+        "normalize": {
+          "method": "tiered",
+          "tiers": [
+            { "min": 0, "max": 1, "score": 10 },
+            { "min": 1, "max": 3, "score": 30 },
+            { "min": 3, "max": 6, "score": 55 },
+            { "min": 6, "max": 12, "score": 80 },
+            { "min": 12, "max": null, "score": 100 }
+          ]
+        }
+      },
+      "recency": {
+        "label": "最近活跃",
+        "weight": 0.20,
+        "source": "okki_trails",
+        "normalize": {
+          "method": "tiered",
+          "tiers": [
+            { "min": 0, "max": 7, "score": 100, "unit": "days_since_last" },
+            { "min": 7, "max": 30, "score": 75, "unit": "days_since_last" },
+            { "min": 30, "max": 90, "score": 45, "unit": "days_since_last" },
+            { "min": 90, "max": 180, "score": 20, "unit": "days_since_last" },
+            { "min": 180, "max": null, "score": 5, "unit": "days_since_last" }
+          ]
+        }
+      },
+      "interaction": {
+        "label": "跟进互动",
+        "weight": 0.15,
+        "source": "okki_trails",
+        "window_months": 12,
+        "normalize": {
+          "method": "tiered",
+          "tiers": [
+            { "min": 0, "max": 2, "score": 10 },
+            { "min": 2, "max": 5, "score": 30 },
+            { "min": 5, "max": 15, "score": 55 },
+            { "min": 15, "max": 30, "score": 80 },
+            { "min": 30, "max": null, "score": 100 }
+          ]
+        }
+      }
+    }
+  },
+  "segments": {
+    "levels": [
+      {
+        "name": "VIP",
+        "label": "VIP 客户",
+        "min_score": 85,
+        "color": "#FF4500",
+        "strategy": "优先跟进 + 专属折扣 + 季度回访"
+      },
+      {
+        "name": "active",
+        "label": "活跃客户",
+        "min_score": 65,
+        "color": "#2196F3",
+        "strategy": "定期跟进 + 新品推荐 + 交叉销售"
+      },
+      {
+        "name": "normal",
+        "label": "普通客户",
+        "min_score": 40,
+        "color": "#4CAF50",
+        "strategy": "常规维护 + 促销通知"
+      },
+      {
+        "name": "dormant",
+        "label": "休眠客户",
+        "min_score": 15,
+        "color": "#FF9800",
+        "strategy": "唤醒邮件 + 特别优惠 + 原因调查"
+      },
+      {
+        "name": "lost",
+        "label": "流失客户",
+        "min_score": 0,
+        "color": "#9E9E9E",
+        "strategy": "最后挽回 + 流失原因归档"
+      }
+    ]
+  },
+  "alerts": {
+    "reply_rate_threshold": 0.10,
+    "order_amount_decline_threshold": 0.50,
+    "segment_change_notify": true
+  },
+  "settings": {
+    "manual_overrides_file": "data/manual-overrides.json",
+    "scores_current_file": "data/scores-current.json",
+    "scores_prev_file": "data/scores-prev.json",
+    "customers_raw_file": "data/customers-raw.json",
+    "last_sync_file": "data/last-sync.json",
+    "api_interval_ms": 500,
+    "api_quota_limit": 1000,
+    "run_schedule": "0 2 * * *"
+  }
+}

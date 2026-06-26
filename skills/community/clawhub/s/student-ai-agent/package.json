@@ -1,0 +1,9 @@
+{
+  "name": "student-ai-agent",
+  "version": "1.0.0",
+  "description": "Academic project workflow - generates code, report, slides, and Q&A prep",
+  "private": true,
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

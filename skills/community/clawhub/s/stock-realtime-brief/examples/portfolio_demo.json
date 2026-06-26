@@ -1,0 +1,48 @@
+{
+  "_comment": "示例持仓 - 全部使用 A 股公开知名股票，仅供 demo 使用，非投资建议",
+  "_format_note": "支持字段: positions/holdings, symbol/code, buy_price/cost, amount/shares",
+
+  "margin_debt": 0,
+  "positions": [
+    {
+      "symbol": "600519",
+      "name": "贵州茅台",
+      "buy_price": 1700.00,
+      "amount": 100,
+      "account": "普通",
+      "sector": "白酒"
+    },
+    {
+      "symbol": "300750",
+      "name": "宁德时代",
+      "buy_price": 220.00,
+      "amount": 500,
+      "account": "普通",
+      "sector": "新能源"
+    },
+    {
+      "symbol": "600036",
+      "name": "招商银行",
+      "buy_price": 35.00,
+      "amount": 1000,
+      "account": "普通",
+      "sector": "银行"
+    },
+    {
+      "symbol": "000333",
+      "name": "美的集团",
+      "buy_price": 70.00,
+      "amount": 800,
+      "account": "普通",
+      "sector": "家电"
+    },
+    {
+      "symbol": "002594",
+      "name": "比亚迪",
+      "buy_price": 240.00,
+      "amount": 200,
+      "account": "普通",
+      "sector": "新能源车"
+    }
+  ]
+}

@@ -1,35 +1,17 @@
 ---
-name: "Changelog Generator"
-description: "Generates structured changelogs from git history. Keep a Changelog format with PR/issue links."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sovereign-changelog-maker"
-sourceUrl: "https://clawhub.ai/skills/sovereign-changelog-maker"
+name: Changelog Generator
+description: Generates structured changelogs from git history. Keep a Changelog format with PR/issue links.
 ---
 
 # Changelog Generator
 
-> Generates structured changelogs from git history. Keep a Changelog format with PR/issue links.
+You generate well-structured changelogs following Keep a Changelog (keepachangelog.com).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sovereign-changelog-maker`
-- **Source URL:** [https://clawhub.ai/skills/sovereign-changelog-maker](https://clawhub.ai/skills/sovereign-changelog-maker)
+Group by: Added, Changed, Deprecated, Removed, Fixed, Security.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sovereign-changelog-maker
-```
+Rules:
+1. Link to PRs/issues
+2. User-facing descriptions (not internal jargon)
+3. Most important changes first
+4. Include migration notes for breaking changes
+5. Semantic versioning hints

@@ -1,0 +1,12 @@
+{
+  "name": "acca-tracker",
+  "version": "1.0.0",
+  "description": "Track football accumulator betting slips via live score monitoring",
+  "type": "skill",
+  "entry": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/bet-types.md",
+    "references/data-sources.md"
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "category": "行业主题",
+  "sub_category": "制造产业",
+  "description": "理财通行业主题-制造产业指数名单",
+  "count": 43,
+  "indices": [
+    {
+      "code": "000693.SH",
+      "name": "上证科创板工业机械指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000693"
+    },
+    {
+      "code": "000812.CSI",
+      "name": "中证细分机械设备产业主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000812"
+    },
+    {
+      "code": "000969.CSI",
+      "name": "沪深300非周期行业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000969"
+    },
+    {
+      "code": "399368.SZ",
+      "name": "国证航天军工指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399368"
+    },
+    {
+      "code": "399417.SZ",
+      "name": "国证新能源车指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399417"
+    },
+    {
+      "code": "399803.SZ",
+      "name": "中证工业4.0指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399803"
+    },
+    {
+      "code": "399807.SZ",
+      "name": "中证高铁产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399807"
+    },
+    {
+      "code": "399959.SZ",
+      "name": "中证中航军工主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399959"
+    },
+    {
+      "code": "399967.SZ",
+      "name": "中证军工指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399967"
+    },
+    {
+      "code": "399973.SZ",
+      "name": "中证国防指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399973"
+    },
+    {
+      "code": "399976.SZ",
+      "name": "中证新能源汽车指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399976"
+    },
+    {
+      "code": "930599.CSI",
+      "name": "中证高端装备制造指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930599"
+    },
+    {
+      "code": "930721.CSI",
+      "name": "中证智能汽车主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930721"
+    },
+    {
+      "code": "930820.CSI",
+      "name": "中证高端制造主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930820"
+    },
+    {
+      "code": "930850.CSI",
+      "name": "中证智能制造主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930850"
+    },
+    {
+      "code": "930875.CSI",
+      "name": "中证空天一体军工指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930875"
+    },
+    {
+      "code": "930997.CSI",
+      "name": "中证新能源汽车产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930997"
+    },
+    {
+      "code": "931008.CSI",
+      "name": "中证全指汽车指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931008"
+    },
+    {
+      "code": "931066.CSI",
+      "name": "中证军工龙头指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931066"
+    },
+    {
+      "code": "931230.CSI",
+      "name": "中证汽车零部件主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931230"
+    },
+    {
+      "code": "931239.CSI",
+      "name": "中证港股通汽车产业主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931239"
+    },
+    {
+      "code": "931521.CSI",
+      "name": "中证高端装备细分50指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931521"
+    },
+    {
+      "code": "931594.CSI",
+      "name": "中证卫星产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931594"
+    },
+    {
+      "code": "931719.CSI",
+      "name": "中证电池主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931719"
+    },
+    {
+      "code": "931752.CSI",
+      "name": "中证工程机械主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931752"
+    },
+    {
+      "code": "931855.CSI",
+      "name": "中证通用航空主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931855"
+    },
+    {
+      "code": "931866.CSI",
+      "name": "中证机床指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931866"
+    },
+    {
+      "code": "932088.CSI",
+      "name": "中证全指航空航天指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932088"
+    },
+    {
+      "code": "980018.CNI",
+      "name": "国证商用卫星通信产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980018"
+    },
+    {
+      "code": "980022.CNI",
+      "name": "国证机器人产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980022"
+    },
+    {
+      "code": "980027.CNI",
+      "name": "国证新能源电池指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980027"
+    },
+    {
+      "code": "980032.CNI",
+      "name": "国证新能源车电池指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980032"
+    },
+    {
+      "code": "980076.CNI",
+      "name": "国证通用航空产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980076"
+    },
+    {
+      "code": "995069.SSI",
+      "name": "华证商飞高端制造产业主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995069"
+    },
+    {
+      "code": "995206.SSI",
+      "name": "华证沪深港汽车制造主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995206"
+    },
+    {
+      "code": "CN5082.CNI",
+      "name": "国证航天航空",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CN5082"
+    },
+    {
+      "code": "h11052.CSI",
+      "name": "中证智能电动汽车指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11052"
+    },
+    {
+      "code": "h11054.CSI",
+      "name": "中证装备产业指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11054"
+    },
+    {
+      "code": "h30015.CSI",
+      "name": "中证800汽车与零部件指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30015"
+    },
+    {
+      "code": "h30531.CSI",
+      "name": "中证精工制造指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30531"
+    },
+    {
+      "code": "h30590.CSI",
+      "name": "中证机器人指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30590"
+    },
+    {
+      "code": "HSCAAI.HI",
+      "name": "恒生沪深港汽车主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCAAI"
+    },
+    {
+      "code": "HSSCAM.HI",
+      "name": "恒生港股通汽车主题指数",
+      "sub_category": "制造产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCAM"
+    }
+  ]
+}

@@ -1,0 +1,7827 @@
+{
+ "chip": "STM32F103",
+ "peripherals": {
+  "ADC": {
+   "description": "Analog to Digital Converter",
+   "registers": [
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "AWD": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC analog watchdog 1 flag"
+      },
+      "EOS": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular end of sequence conversions flag"
+      },
+      "JEOS": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected end of sequence conversions flag"
+      },
+      "JSTRT": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected conversion start flag"
+      },
+      "STRT": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular conversion start flag"
+      }
+     }
+    },
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "AWDCH": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC analog watchdog 1 monitored channel selection"
+      },
+      "EOSIE": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular end of sequence conversions interrupt"
+      },
+      "AWDIE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC analog watchdog 1 interrupt"
+      },
+      "JEOSIE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected end of sequence conversions interrupt"
+      },
+      "SCAN": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC scan mode"
+      },
+      "AWDSGL": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC analog watchdog 1 monitoring a single channel or all channels"
+      },
+      "JAUTO": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected automatic trigger mode"
+      },
+      "DISCEN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular sequencer discontinuous mode"
+      },
+      "JDISCEN": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected sequencer discontinuous mode"
+      },
+      "DISCNUM": {
+       "pos": 13,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC group regular sequencer discontinuous number of ranks"
+      },
+      "DUALMOD": {
+       "pos": 16,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "ADC multimode mode selection"
+      },
+      "JAWDEN": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC analog watchdog 1 enable on scope ADC group injected"
+      },
+      "AWDEN": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC analog watchdog 1 enable on scope ADC group regular"
+      }
+     }
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "ADON": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC enable"
+      },
+      "CONT": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular continuous conversion mode"
+      },
+      "CAL": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC calibration start"
+      },
+      "RSTCAL": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC calibration reset"
+      },
+      "DMA": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC DMA transfer enable"
+      },
+      "ALIGN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC data alignment"
+      },
+      "JEXTSEL": {
+       "pos": 12,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC group injected external trigger source"
+      },
+      "JEXTTRIG": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected external trigger enable"
+      },
+      "EXTSEL": {
+       "pos": 17,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC group regular external trigger source"
+      },
+      "EXTTRIG": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular external trigger enable"
+      },
+      "JSWSTART": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group injected conversion start"
+      },
+      "SWSTART": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC group regular conversion start"
+      },
+      "TSVREFE": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC internal path to VrefInt and temperature sensor enable"
+      }
+     }
+    },
+    {
+     "name": "SMPR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SMP10": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 10 sampling time selection"
+      },
+      "SMP11": {
+       "pos": 3,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 11 sampling time selection"
+      },
+      "SMP12": {
+       "pos": 6,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 12 sampling time selection"
+      },
+      "SMP13": {
+       "pos": 9,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 13 sampling time selection"
+      },
+      "SMP14": {
+       "pos": 12,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 14 sampling time selection"
+      },
+      "SMP15": {
+       "pos": 15,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 15 sampling time selection"
+      },
+      "SMP16": {
+       "pos": 18,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 16 sampling time selection"
+      },
+      "SMP17": {
+       "pos": 21,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 17 sampling time selection"
+      }
+     }
+    },
+    {
+     "name": "SMPR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SMP0": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 0 sampling time selection"
+      },
+      "SMP1": {
+       "pos": 3,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 1 sampling time selection"
+      },
+      "SMP2": {
+       "pos": 6,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 2 sampling time selection"
+      },
+      "SMP3": {
+       "pos": 9,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 3 sampling time selection"
+      },
+      "SMP4": {
+       "pos": 12,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 4 sampling time selection"
+      },
+      "SMP5": {
+       "pos": 15,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 5 sampling time selection"
+      },
+      "SMP6": {
+       "pos": 18,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 6 sampling time selection"
+      },
+      "SMP7": {
+       "pos": 21,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 7 sampling time selection"
+      },
+      "SMP8": {
+       "pos": 24,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 8 sampling time selection"
+      },
+      "SMP9": {
+       "pos": 27,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "ADC channel 9 sampling time selection"
+      }
+     }
+    },
+    {
+     "name": "JOFR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JOFFSET1": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC group injected sequencer rank 1 offset value"
+      }
+     }
+    },
+    {
+     "name": "JOFR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JOFFSET2": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC group injected sequencer rank 2 offset value"
+      }
+     }
+    },
+    {
+     "name": "JOFR3",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JOFFSET3": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC group injected sequencer rank 3 offset value"
+      }
+     }
+    },
+    {
+     "name": "JOFR4",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JOFFSET4": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC group injected sequencer rank 4 offset value"
+      }
+     }
+    },
+    {
+     "name": "HTR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "HT": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC analog watchdog 1 threshold high"
+      }
+     }
+    },
+    {
+     "name": "LTR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LT": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "ADC analog watchdog 1 threshold low"
+      }
+     }
+    },
+    {
+     "name": "SQR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SQ13": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 13"
+      },
+      "SQ14": {
+       "pos": 5,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 14"
+      },
+      "SQ15": {
+       "pos": 10,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 15"
+      },
+      "SQ16": {
+       "pos": 15,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 16"
+      },
+      "L": {
+       "pos": 20,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "ADC group regular sequencer scan length"
+      }
+     }
+    },
+    {
+     "name": "SQR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SQ7": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 7"
+      },
+      "SQ8": {
+       "pos": 5,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 8"
+      },
+      "SQ9": {
+       "pos": 10,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 9"
+      },
+      "SQ10": {
+       "pos": 15,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 10"
+      },
+      "SQ11": {
+       "pos": 20,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 1"
+      },
+      "SQ12": {
+       "pos": 25,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 12"
+      }
+     }
+    },
+    {
+     "name": "SQR3",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SQ1": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 1"
+      },
+      "SQ2": {
+       "pos": 5,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 2"
+      },
+      "SQ3": {
+       "pos": 10,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 3"
+      },
+      "SQ4": {
+       "pos": 15,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 4"
+      },
+      "SQ5": {
+       "pos": 20,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 5"
+      },
+      "SQ6": {
+       "pos": 25,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group regular sequencer rank 6"
+      }
+     }
+    },
+    {
+     "name": "JSQR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JSQ1": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group injected sequencer rank 1"
+      },
+      "JSQ2": {
+       "pos": 5,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group injected sequencer rank 2"
+      },
+      "JSQ3": {
+       "pos": 10,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group injected sequencer rank 3"
+      },
+      "JSQ4": {
+       "pos": 15,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "ADC group injected sequencer rank 4"
+      },
+      "JL": {
+       "pos": 20,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "ADC group injected sequencer scan length"
+      }
+     }
+    },
+    {
+     "name": "JDR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JDATA": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group injected sequencer rank 1 conversion data"
+      }
+     }
+    },
+    {
+     "name": "JDR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JDATA": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group injected sequencer rank 2 conversion data"
+      }
+     }
+    },
+    {
+     "name": "JDR3",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JDATA": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group injected sequencer rank 3 conversion data"
+      }
+     }
+    },
+    {
+     "name": "JDR4",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "JDATA": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group injected sequencer rank 4 conversion data"
+      }
+     }
+    },
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DATA": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group regular conversion data"
+      },
+      "ADC2DATA": {
+       "pos": 16,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "ADC group regular conversion data for ADC slave, in multimode"
+      }
+     }
+    }
+   ]
+  },
+  "ADC_Common": {
+   "description": "",
+   "registers": [
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "ADC status register,    used for ADC multimode (bits common to several ADC instances). Address offset: ADC1 base address"
+    },
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "ADC control register 1, used for ADC multimode (bits common to several ADC instances). Address offset: ADC1 base address + 0x04"
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "ADC control register 2, used for ADC multimode (bits common to several ADC instances). Address offset: ADC1 base address + 0x08"
+    },
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "ADC data register,      used for ADC multimode (bits common to several ADC instances). Address offset: ADC1 base address + 0x4C"
+    }
+   ]
+  },
+  "BKP": {
+   "description": "Backup Registers",
+   "registers": [
+    {
+     "name": "DR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR3",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR4",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR5",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR6",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR7",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR8",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR9",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "DR10",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "D": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Backup data"
+      }
+     }
+    },
+    {
+     "name": "RTCCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CAL": {
+       "pos": 0,
+       "mask": "0x7F",
+       "width": 7,
+       "desc": "Calibration value"
+      },
+      "CCO": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Calibration Clock Output"
+      },
+      "ASOE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alarm or Second Output Enable"
+      },
+      "ASOS": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alarm or Second Output Selection"
+      }
+     }
+    },
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TPE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TAMPER pin enable"
+      },
+      "TPAL": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TAMPER pin active level"
+      }
+     }
+    },
+    {
+     "name": "CSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CTE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clear Tamper event"
+      },
+      "CTI": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clear Tamper Interrupt"
+      },
+      "TPIE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TAMPER Pin interrupt enable"
+      },
+      "TEF": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Tamper Event Flag"
+      },
+      "TIF": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Tamper Interrupt Flag"
+      }
+     }
+    }
+   ]
+  },
+  "CAN_TxMailBox": {
+   "description": "Controller Area Network TxMailBox",
+   "registers": [
+    {
+     "name": "TIR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "TDTR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "TDLR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "TDHR",
+     "access": "RW",
+     "comment": ""
+    }
+   ]
+  },
+  "CAN_FIFOMailBox": {
+   "description": "Controller Area Network FIFOMailBox",
+   "registers": [
+    {
+     "name": "RIR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "RDTR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "RDLR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "RDHR",
+     "access": "RW",
+     "comment": ""
+    }
+   ]
+  },
+  "CAN_FilterRegister": {
+   "description": "Controller Area Network FilterRegister",
+   "registers": [
+    {
+     "name": "FR1",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "FR2",
+     "access": "RW",
+     "comment": ""
+    }
+   ]
+  },
+  "CAN": {
+   "description": "Controller Area Network",
+   "registers": [
+    {
+     "name": "MCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "INRQ": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Initialization Request"
+      },
+      "SLEEP": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Sleep Mode Request"
+      },
+      "TXFP": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit FIFO Priority"
+      },
+      "RFLM": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receive FIFO Locked Mode"
+      },
+      "NART": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "No Automatic Retransmission"
+      },
+      "AWUM": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Automatic Wakeup Mode"
+      },
+      "ABOM": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Automatic Bus-Off Management"
+      },
+      "TTCM": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Time Triggered Communication Mode"
+      },
+      "RESET": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CAN software master reset"
+      },
+      "DBF": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CAN Debug freeze"
+      }
+     }
+    },
+    {
+     "name": "MSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "INAK": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Initialization Acknowledge"
+      },
+      "SLAK": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Sleep Acknowledge"
+      },
+      "ERRI": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt"
+      },
+      "WKUI": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Wakeup Interrupt"
+      },
+      "SLAKI": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Sleep Acknowledge Interrupt"
+      },
+      "TXM": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Mode"
+      },
+      "RXM": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receive Mode"
+      },
+      "SAMP": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Last Sample Point"
+      },
+      "RX": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CAN Rx Signal"
+      }
+     }
+    },
+    {
+     "name": "TSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RQCP0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Request Completed Mailbox0"
+      },
+      "TXOK0": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission OK of Mailbox0"
+      },
+      "ALST0": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Arbitration Lost for Mailbox0"
+      },
+      "TERR0": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission Error of Mailbox0"
+      },
+      "ABRQ0": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Abort Request for Mailbox0"
+      },
+      "RQCP1": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Request Completed Mailbox1"
+      },
+      "TXOK1": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission OK of Mailbox1"
+      },
+      "ALST1": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Arbitration Lost for Mailbox1"
+      },
+      "TERR1": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission Error of Mailbox1"
+      },
+      "ABRQ1": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Abort Request for Mailbox 1"
+      },
+      "RQCP2": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Request Completed Mailbox2"
+      },
+      "TXOK2": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission OK of Mailbox 2"
+      },
+      "ALST2": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Arbitration Lost for mailbox 2"
+      },
+      "TERR2": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission Error of Mailbox 2"
+      },
+      "ABRQ2": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Abort Request for Mailbox 2"
+      },
+      "CODE": {
+       "pos": 24,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Mailbox Code"
+      },
+      "TME": {
+       "pos": 26,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "TME[2:0] bits"
+      },
+      "TME0": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Mailbox 0 Empty"
+      },
+      "TME1": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Mailbox 1 Empty"
+      },
+      "TME2": {
+       "pos": 28,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Mailbox 2 Empty"
+      },
+      "LOW": {
+       "pos": 29,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "LOW[2:0] bits"
+      },
+      "LOW0": {
+       "pos": 29,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Lowest Priority Flag for Mailbox 0"
+      },
+      "LOW1": {
+       "pos": 30,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Lowest Priority Flag for Mailbox 1"
+      },
+      "LOW2": {
+       "pos": 31,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Lowest Priority Flag for Mailbox 2"
+      }
+     }
+    },
+    {
+     "name": "RF0R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FMP0": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "FIFO 0 Message Pending"
+      },
+      "FULL0": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO 0 Full"
+      },
+      "FOVR0": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO 0 Overrun"
+      },
+      "RFOM0": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Release FIFO 0 Output Mailbox"
+      }
+     }
+    },
+    {
+     "name": "RF1R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FMP1": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "FIFO 1 Message Pending"
+      },
+      "FULL1": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO 1 Full"
+      },
+      "FOVR1": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO 1 Overrun"
+      },
+      "RFOM1": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Release FIFO 1 Output Mailbox"
+      }
+     }
+    },
+    {
+     "name": "IER",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TMEIE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Mailbox Empty Interrupt Enable"
+      },
+      "FMPIE0": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Message Pending Interrupt Enable"
+      },
+      "FFIE0": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Full Interrupt Enable"
+      },
+      "FOVIE0": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Overrun Interrupt Enable"
+      },
+      "FMPIE1": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Message Pending Interrupt Enable"
+      },
+      "FFIE1": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Full Interrupt Enable"
+      },
+      "FOVIE1": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FIFO Overrun Interrupt Enable"
+      },
+      "EWGIE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Warning Interrupt Enable"
+      },
+      "EPVIE": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Passive Interrupt Enable"
+      },
+      "BOFIE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bus-Off Interrupt Enable"
+      },
+      "LECIE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Last Error Code Interrupt Enable"
+      },
+      "ERRIE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt Enable"
+      },
+      "WKUIE": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Wakeup Interrupt Enable"
+      },
+      "SLKIE": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Sleep Interrupt Enable"
+      }
+     }
+    },
+    {
+     "name": "ESR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "EWGF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Warning Flag"
+      },
+      "EPVF": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Passive Flag"
+      },
+      "BOFF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bus-Off Flag"
+      },
+      "LEC": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "LEC[2:0] bits (Last Error Code)"
+      },
+      "TEC": {
+       "pos": 16,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Least significant byte of the 9-bit Transmit Error Counter"
+      },
+      "REC": {
+       "pos": 24,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Receive Error Counter"
+      }
+     }
+    },
+    {
+     "name": "BTR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "BRP": {
+       "pos": 0,
+       "mask": "0x3FF",
+       "width": 10,
+       "desc": "Baud Rate Prescaler"
+      },
+      "TS1": {
+       "pos": 16,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "Time Segment 1"
+      },
+      "TS2": {
+       "pos": 20,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "Time Segment 2"
+      },
+      "SJW": {
+       "pos": 24,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Resynchronization Jump Width"
+      },
+      "LBKM": {
+       "pos": 30,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Loop Back Mode (Debug)"
+      },
+      "SILM": {
+       "pos": 31,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Silent Mode"
+      }
+     }
+    },
+    {
+     "name": "FMR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FINIT": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode"
+      },
+      "CAN2SB": {
+       "pos": 8,
+       "mask": "0x3F",
+       "width": 6,
+       "desc": "CAN2 start bank"
+      }
+     }
+    },
+    {
+     "name": "FM1R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FBM": {
+       "pos": 0,
+       "mask": "0x3FFF",
+       "width": 14,
+       "desc": "Filter Mode"
+      },
+      "FBM0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 0"
+      },
+      "FBM1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 1"
+      },
+      "FBM2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 2"
+      },
+      "FBM3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 3"
+      },
+      "FBM4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 4"
+      },
+      "FBM5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 5"
+      },
+      "FBM6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 6"
+      },
+      "FBM7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 7"
+      },
+      "FBM8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 8"
+      },
+      "FBM9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 9"
+      },
+      "FBM10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 10"
+      },
+      "FBM11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 11"
+      },
+      "FBM12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 12"
+      },
+      "FBM13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Init Mode for filter 13"
+      }
+     }
+    },
+    {
+     "name": "FS1R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FSC": {
+       "pos": 0,
+       "mask": "0x3FFF",
+       "width": 14,
+       "desc": "Filter Scale Configuration"
+      },
+      "FSC0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 0"
+      },
+      "FSC1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 1"
+      },
+      "FSC2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 2"
+      },
+      "FSC3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 3"
+      },
+      "FSC4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 4"
+      },
+      "FSC5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 5"
+      },
+      "FSC6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 6"
+      },
+      "FSC7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 7"
+      },
+      "FSC8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 8"
+      },
+      "FSC9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 9"
+      },
+      "FSC10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 10"
+      },
+      "FSC11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 11"
+      },
+      "FSC12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 12"
+      },
+      "FSC13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter Scale Configuration for filter 13"
+      }
+     }
+    },
+    {
+     "name": "FFA1R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FFA": {
+       "pos": 0,
+       "mask": "0x3FFF",
+       "width": 14,
+       "desc": "Filter FIFO Assignment"
+      },
+      "FFA0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 0"
+      },
+      "FFA1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 1"
+      },
+      "FFA2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 2"
+      },
+      "FFA3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 3"
+      },
+      "FFA4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 4"
+      },
+      "FFA5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 5"
+      },
+      "FFA6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 6"
+      },
+      "FFA7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 7"
+      },
+      "FFA8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 8"
+      },
+      "FFA9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 9"
+      },
+      "FFA10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 10"
+      },
+      "FFA11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 11"
+      },
+      "FFA12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 12"
+      },
+      "FFA13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter FIFO Assignment for filter 13"
+      }
+     }
+    },
+    {
+     "name": "FA1R",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FACT": {
+       "pos": 0,
+       "mask": "0x3FFF",
+       "width": 14,
+       "desc": "Filter Active"
+      },
+      "FACT0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 0 Active"
+      },
+      "FACT1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 1 Active"
+      },
+      "FACT2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 2 Active"
+      },
+      "FACT3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 3 Active"
+      },
+      "FACT4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 4 Active"
+      },
+      "FACT5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 5 Active"
+      },
+      "FACT6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 6 Active"
+      },
+      "FACT7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 7 Active"
+      },
+      "FACT8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 8 Active"
+      },
+      "FACT9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 9 Active"
+      },
+      "FACT10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 10 Active"
+      },
+      "FACT11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 11 Active"
+      },
+      "FACT12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 12 Active"
+      },
+      "FACT13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Filter 13 Active"
+      }
+     }
+    }
+   ]
+  },
+  "CRC": {
+   "description": "CRC calculation unit",
+   "registers": [
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "CRC Data register,                           Address offset: 0x00",
+     "bits": {
+      "DR": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "Data register bits"
+      }
+     }
+    },
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "CRC Control register,                        Address offset: 0x08",
+     "bits": {
+      "RESET": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RESET bit"
+      }
+     }
+    }
+   ]
+  },
+  "DBGMCU": {
+   "description": "Debug MCU",
+   "registers": [
+    {
+     "name": "IDCODE",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DEV_ID": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "Device Identifier"
+      },
+      "REV_ID": {
+       "pos": 16,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "REV_ID[15:0] bits (Revision Identifier)"
+      }
+     }
+    },
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DBG_SLEEP": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug Sleep Mode"
+      },
+      "DBG_STOP": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug Stop Mode"
+      },
+      "DBG_STANDBY": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug Standby mode"
+      },
+      "TRACE_IOEN": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Trace Pin Assignment Control"
+      },
+      "TRACE_MODE": {
+       "pos": 6,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "TRACE_MODE[1:0] bits (Trace Pin Assignment Control)"
+      },
+      "DBG_IWDG_STOP": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug Independent Watchdog stopped when Core is halted"
+      },
+      "DBG_WWDG_STOP": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug Window Watchdog stopped when Core is halted"
+      },
+      "DBG_TIM1_STOP": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM1 counter stopped when core is halted"
+      },
+      "DBG_TIM2_STOP": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM2 counter stopped when core is halted"
+      },
+      "DBG_TIM3_STOP": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM3 counter stopped when core is halted"
+      },
+      "DBG_TIM4_STOP": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM4 counter stopped when core is halted"
+      },
+      "DBG_CAN1_STOP": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Debug CAN1 stopped when Core is halted"
+      },
+      "DBG_I2C1_SMBUS_TIMEOUT": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBUS timeout mode stopped when Core is halted"
+      },
+      "DBG_I2C2_SMBUS_TIMEOUT": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBUS timeout mode stopped when Core is halted"
+      }
+     }
+    }
+   ]
+  },
+  "DMA_Channel": {
+   "description": "DMA Controller",
+   "registers": [
+    {
+     "name": "CCR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "CNDTR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "CPAR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "CMAR",
+     "access": "RW",
+     "comment": ""
+    }
+   ]
+  },
+  "DMA": {
+   "description": "",
+   "registers": [
+    {
+     "name": "ISR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "GIF1": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Global interrupt flag"
+      },
+      "TCIF1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Transfer Complete flag"
+      },
+      "HTIF1": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Half Transfer flag"
+      },
+      "TEIF1": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Transfer Error flag"
+      },
+      "GIF2": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Global interrupt flag"
+      },
+      "TCIF2": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Transfer Complete flag"
+      },
+      "HTIF2": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Half Transfer flag"
+      },
+      "TEIF2": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Transfer Error flag"
+      },
+      "GIF3": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Global interrupt flag"
+      },
+      "TCIF3": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Transfer Complete flag"
+      },
+      "HTIF3": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Half Transfer flag"
+      },
+      "TEIF3": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Transfer Error flag"
+      },
+      "GIF4": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Global interrupt flag"
+      },
+      "TCIF4": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Transfer Complete flag"
+      },
+      "HTIF4": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Half Transfer flag"
+      },
+      "TEIF4": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Transfer Error flag"
+      },
+      "GIF5": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Global interrupt flag"
+      },
+      "TCIF5": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Transfer Complete flag"
+      },
+      "HTIF5": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Half Transfer flag"
+      },
+      "TEIF5": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Transfer Error flag"
+      },
+      "GIF6": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Global interrupt flag"
+      },
+      "TCIF6": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Transfer Complete flag"
+      },
+      "HTIF6": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Half Transfer flag"
+      },
+      "TEIF6": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Transfer Error flag"
+      },
+      "GIF7": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Global interrupt flag"
+      },
+      "TCIF7": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Transfer Complete flag"
+      },
+      "HTIF7": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Half Transfer flag"
+      },
+      "TEIF7": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Transfer Error flag"
+      }
+     }
+    },
+    {
+     "name": "IFCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CGIF1": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Global interrupt clear"
+      },
+      "CTCIF1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Transfer Complete clear"
+      },
+      "CHTIF1": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Half Transfer clear"
+      },
+      "CTEIF1": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 1 Transfer Error clear"
+      },
+      "CGIF2": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Global interrupt clear"
+      },
+      "CTCIF2": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Transfer Complete clear"
+      },
+      "CHTIF2": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Half Transfer clear"
+      },
+      "CTEIF2": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 2 Transfer Error clear"
+      },
+      "CGIF3": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Global interrupt clear"
+      },
+      "CTCIF3": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Transfer Complete clear"
+      },
+      "CHTIF3": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Half Transfer clear"
+      },
+      "CTEIF3": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 3 Transfer Error clear"
+      },
+      "CGIF4": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Global interrupt clear"
+      },
+      "CTCIF4": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Transfer Complete clear"
+      },
+      "CHTIF4": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Half Transfer clear"
+      },
+      "CTEIF4": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 4 Transfer Error clear"
+      },
+      "CGIF5": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Global interrupt clear"
+      },
+      "CTCIF5": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Transfer Complete clear"
+      },
+      "CHTIF5": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Half Transfer clear"
+      },
+      "CTEIF5": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 5 Transfer Error clear"
+      },
+      "CGIF6": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Global interrupt clear"
+      },
+      "CTCIF6": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Transfer Complete clear"
+      },
+      "CHTIF6": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Half Transfer clear"
+      },
+      "CTEIF6": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 6 Transfer Error clear"
+      },
+      "CGIF7": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Global interrupt clear"
+      },
+      "CTCIF7": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Transfer Complete clear"
+      },
+      "CHTIF7": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Half Transfer clear"
+      },
+      "CTEIF7": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel 7 Transfer Error clear"
+      }
+     }
+    }
+   ]
+  },
+  "EXTI": {
+   "description": "External Interrupt/Event Controller",
+   "registers": [
+    {
+     "name": "IMR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "MR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 0"
+      },
+      "MR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 1"
+      },
+      "MR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 2"
+      },
+      "MR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 3"
+      },
+      "MR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 4"
+      },
+      "MR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 5"
+      },
+      "MR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 6"
+      },
+      "MR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 7"
+      },
+      "MR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 8"
+      },
+      "MR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 9"
+      },
+      "MR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 10"
+      },
+      "MR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 11"
+      },
+      "MR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 12"
+      },
+      "MR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 13"
+      },
+      "MR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 14"
+      },
+      "MR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 15"
+      },
+      "MR16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 16"
+      },
+      "MR17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 17"
+      },
+      "MR18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Interrupt Mask on line 18"
+      }
+     }
+    },
+    {
+     "name": "EMR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "MR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 0"
+      },
+      "MR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 1"
+      },
+      "MR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 2"
+      },
+      "MR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 3"
+      },
+      "MR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 4"
+      },
+      "MR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 5"
+      },
+      "MR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 6"
+      },
+      "MR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 7"
+      },
+      "MR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 8"
+      },
+      "MR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 9"
+      },
+      "MR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 10"
+      },
+      "MR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 11"
+      },
+      "MR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 12"
+      },
+      "MR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 13"
+      },
+      "MR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 14"
+      },
+      "MR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 15"
+      },
+      "MR16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 16"
+      },
+      "MR17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 17"
+      },
+      "MR18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Mask on line 18"
+      }
+     }
+    },
+    {
+     "name": "RTSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 0"
+      },
+      "TR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 1"
+      },
+      "TR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 2"
+      },
+      "TR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 3"
+      },
+      "TR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 4"
+      },
+      "TR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 5"
+      },
+      "TR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 6"
+      },
+      "TR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 7"
+      },
+      "TR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 8"
+      },
+      "TR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 9"
+      },
+      "TR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 10"
+      },
+      "TR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 11"
+      },
+      "TR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 12"
+      },
+      "TR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 13"
+      },
+      "TR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 14"
+      },
+      "TR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 15"
+      },
+      "TR16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 16"
+      },
+      "TR17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 17"
+      },
+      "TR18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rising trigger event configuration bit of line 18"
+      }
+     }
+    },
+    {
+     "name": "FTSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 0"
+      },
+      "TR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 1"
+      },
+      "TR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 2"
+      },
+      "TR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 3"
+      },
+      "TR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 4"
+      },
+      "TR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 5"
+      },
+      "TR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 6"
+      },
+      "TR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 7"
+      },
+      "TR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 8"
+      },
+      "TR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 9"
+      },
+      "TR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 10"
+      },
+      "TR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 11"
+      },
+      "TR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 12"
+      },
+      "TR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 13"
+      },
+      "TR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 14"
+      },
+      "TR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 15"
+      },
+      "TR16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 16"
+      },
+      "TR17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 17"
+      },
+      "TR18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Falling trigger event configuration bit of line 18"
+      }
+     }
+    },
+    {
+     "name": "SWIER",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SWIER0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 0"
+      },
+      "SWIER1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 1"
+      },
+      "SWIER2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 2"
+      },
+      "SWIER3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 3"
+      },
+      "SWIER4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 4"
+      },
+      "SWIER5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 5"
+      },
+      "SWIER6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 6"
+      },
+      "SWIER7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 7"
+      },
+      "SWIER8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 8"
+      },
+      "SWIER9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 9"
+      },
+      "SWIER10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 10"
+      },
+      "SWIER11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 11"
+      },
+      "SWIER12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 12"
+      },
+      "SWIER13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 13"
+      },
+      "SWIER14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 14"
+      },
+      "SWIER15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 15"
+      },
+      "SWIER16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 16"
+      },
+      "SWIER17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 17"
+      },
+      "SWIER18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Interrupt on line 18"
+      }
+     }
+    },
+    {
+     "name": "PR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 0"
+      },
+      "PR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 1"
+      },
+      "PR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 2"
+      },
+      "PR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 3"
+      },
+      "PR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 4"
+      },
+      "PR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 5"
+      },
+      "PR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 6"
+      },
+      "PR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 7"
+      },
+      "PR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 8"
+      },
+      "PR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 9"
+      },
+      "PR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 10"
+      },
+      "PR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 11"
+      },
+      "PR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 12"
+      },
+      "PR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 13"
+      },
+      "PR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 14"
+      },
+      "PR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 15"
+      },
+      "PR16": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 16"
+      },
+      "PR17": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 17"
+      },
+      "PR18": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pending bit for line 18"
+      }
+     }
+    }
+   ]
+  },
+  "FLASH": {
+   "description": "FLASH Registers",
+   "registers": [
+    {
+     "name": "ACR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LATENCY": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "LATENCY[2:0] bits (Latency)"
+      },
+      "HLFCYA": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Flash Half Cycle Access Enable"
+      },
+      "PRFTBE": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Prefetch Buffer Enable"
+      },
+      "PRFTBS": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Prefetch Buffer Status"
+      }
+     }
+    },
+    {
+     "name": "KEYR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FKEYR": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "FPEC Key"
+      }
+     }
+    },
+    {
+     "name": "OPTKEYR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "OPTKEYR": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "Option Byte Key"
+      }
+     }
+    },
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "BSY": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Busy"
+      },
+      "PGERR": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Programming Error"
+      },
+      "WRPRTERR": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Write Protection Error"
+      },
+      "EOP": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "End of operation"
+      }
+     }
+    },
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PG": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Programming"
+      },
+      "PER": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Page Erase"
+      },
+      "MER": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Mass Erase"
+      },
+      "OPTPG": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Option Byte Programming"
+      },
+      "OPTER": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Option Byte Erase"
+      },
+      "STRT": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Start"
+      },
+      "LOCK": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Lock"
+      },
+      "OPTWRE": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Option Bytes Write Enable"
+      },
+      "ERRIE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt Enable"
+      },
+      "EOPIE": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "End of operation interrupt enable"
+      }
+     }
+    },
+    {
+     "name": "AR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FAR": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "Flash Address"
+      }
+     }
+    },
+    {
+     "name": "RESERVED",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "OBR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "OPTERR": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Option Byte Error"
+      },
+      "RDPRT": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Read protection"
+      },
+      "IWDG_SW": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "IWDG SW"
+      },
+      "nRST_STOP": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "nRST_STOP"
+      },
+      "nRST_STDBY": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "nRST_STDBY"
+      },
+      "USER": {
+       "pos": 2,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "User Option Bytes"
+      },
+      "DATA0": {
+       "pos": 10,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Data0"
+      },
+      "DATA1": {
+       "pos": 18,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Data1"
+      }
+     }
+    },
+    {
+     "name": "WRPR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "WRP": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "Write Protect"
+      }
+     }
+    }
+   ]
+  },
+  "GPIO": {
+   "description": "General Purpose I/O",
+   "registers": [
+    {
+     "name": "CRL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "MODE": {
+       "pos": 0,
+       "mask": "0x33333333",
+       "width": 16,
+       "desc": "Port x mode bits"
+      },
+      "MODE0": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE0[1:0] bits (Port x mode bits, pin 0)"
+      },
+      "MODE1": {
+       "pos": 4,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE1[1:0] bits (Port x mode bits, pin 1)"
+      },
+      "MODE2": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE2[1:0] bits (Port x mode bits, pin 2)"
+      },
+      "MODE3": {
+       "pos": 12,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE3[1:0] bits (Port x mode bits, pin 3)"
+      },
+      "MODE4": {
+       "pos": 16,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE4[1:0] bits (Port x mode bits, pin 4)"
+      },
+      "MODE5": {
+       "pos": 20,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE5[1:0] bits (Port x mode bits, pin 5)"
+      },
+      "MODE6": {
+       "pos": 24,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE6[1:0] bits (Port x mode bits, pin 6)"
+      },
+      "MODE7": {
+       "pos": 28,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE7[1:0] bits (Port x mode bits, pin 7)"
+      },
+      "CNF": {
+       "pos": 2,
+       "mask": "0x33333333",
+       "width": 16,
+       "desc": "Port x configuration bits"
+      },
+      "CNF0": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF0[1:0] bits (Port x configuration bits, pin 0)"
+      },
+      "CNF1": {
+       "pos": 6,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF1[1:0] bits (Port x configuration bits, pin 1)"
+      },
+      "CNF2": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF2[1:0] bits (Port x configuration bits, pin 2)"
+      },
+      "CNF3": {
+       "pos": 14,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF3[1:0] bits (Port x configuration bits, pin 3)"
+      },
+      "CNF4": {
+       "pos": 18,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF4[1:0] bits (Port x configuration bits, pin 4)"
+      },
+      "CNF5": {
+       "pos": 22,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF5[1:0] bits (Port x configuration bits, pin 5)"
+      },
+      "CNF6": {
+       "pos": 26,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF6[1:0] bits (Port x configuration bits, pin 6)"
+      },
+      "CNF7": {
+       "pos": 30,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF7[1:0] bits (Port x configuration bits, pin 7)"
+      }
+     }
+    },
+    {
+     "name": "CRH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "MODE": {
+       "pos": 0,
+       "mask": "0x33333333",
+       "width": 16,
+       "desc": "Port x mode bits"
+      },
+      "MODE8": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE8[1:0] bits (Port x mode bits, pin 8)"
+      },
+      "MODE9": {
+       "pos": 4,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE9[1:0] bits (Port x mode bits, pin 9)"
+      },
+      "MODE10": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE10[1:0] bits (Port x mode bits, pin 10)"
+      },
+      "MODE11": {
+       "pos": 12,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE11[1:0] bits (Port x mode bits, pin 11)"
+      },
+      "MODE12": {
+       "pos": 16,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE12[1:0] bits (Port x mode bits, pin 12)"
+      },
+      "MODE13": {
+       "pos": 20,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE13[1:0] bits (Port x mode bits, pin 13)"
+      },
+      "MODE14": {
+       "pos": 24,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE14[1:0] bits (Port x mode bits, pin 14)"
+      },
+      "MODE15": {
+       "pos": 28,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "MODE15[1:0] bits (Port x mode bits, pin 15)"
+      },
+      "CNF": {
+       "pos": 2,
+       "mask": "0x33333333",
+       "width": 16,
+       "desc": "Port x configuration bits"
+      },
+      "CNF8": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF8[1:0] bits (Port x configuration bits, pin 8)"
+      },
+      "CNF9": {
+       "pos": 6,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF9[1:0] bits (Port x configuration bits, pin 9)"
+      },
+      "CNF10": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF10[1:0] bits (Port x configuration bits, pin 10)"
+      },
+      "CNF11": {
+       "pos": 14,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF11[1:0] bits (Port x configuration bits, pin 11)"
+      },
+      "CNF12": {
+       "pos": 18,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF12[1:0] bits (Port x configuration bits, pin 12)"
+      },
+      "CNF13": {
+       "pos": 22,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF13[1:0] bits (Port x configuration bits, pin 13)"
+      },
+      "CNF14": {
+       "pos": 26,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF14[1:0] bits (Port x configuration bits, pin 14)"
+      },
+      "CNF15": {
+       "pos": 30,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CNF15[1:0] bits (Port x configuration bits, pin 15)"
+      }
+     }
+    },
+    {
+     "name": "IDR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "IDR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 0"
+      },
+      "IDR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 1"
+      },
+      "IDR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 2"
+      },
+      "IDR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 3"
+      },
+      "IDR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 4"
+      },
+      "IDR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 5"
+      },
+      "IDR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 6"
+      },
+      "IDR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 7"
+      },
+      "IDR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 8"
+      },
+      "IDR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 9"
+      },
+      "IDR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 10"
+      },
+      "IDR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 11"
+      },
+      "IDR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 12"
+      },
+      "IDR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 13"
+      },
+      "IDR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 14"
+      },
+      "IDR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port input data, bit 15"
+      }
+     }
+    },
+    {
+     "name": "ODR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "ODR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 0"
+      },
+      "ODR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 1"
+      },
+      "ODR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 2"
+      },
+      "ODR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 3"
+      },
+      "ODR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 4"
+      },
+      "ODR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 5"
+      },
+      "ODR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 6"
+      },
+      "ODR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 7"
+      },
+      "ODR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 8"
+      },
+      "ODR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 9"
+      },
+      "ODR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 10"
+      },
+      "ODR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 11"
+      },
+      "ODR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 12"
+      },
+      "ODR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 13"
+      },
+      "ODR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 14"
+      },
+      "ODR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port output data, bit 15"
+      }
+     }
+    },
+    {
+     "name": "BSRR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "BS0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 0"
+      },
+      "BS1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 1"
+      },
+      "BS2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 2"
+      },
+      "BS3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 3"
+      },
+      "BS4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 4"
+      },
+      "BS5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 5"
+      },
+      "BS6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 6"
+      },
+      "BS7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 7"
+      },
+      "BS8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 8"
+      },
+      "BS9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 9"
+      },
+      "BS10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 10"
+      },
+      "BS11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 11"
+      },
+      "BS12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 12"
+      },
+      "BS13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 13"
+      },
+      "BS14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 14"
+      },
+      "BS15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Set bit 15"
+      },
+      "BR0": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 0"
+      },
+      "BR1": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 1"
+      },
+      "BR2": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 2"
+      },
+      "BR3": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 3"
+      },
+      "BR4": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 4"
+      },
+      "BR5": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 5"
+      },
+      "BR6": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 6"
+      },
+      "BR7": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 7"
+      },
+      "BR8": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 8"
+      },
+      "BR9": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 9"
+      },
+      "BR10": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 10"
+      },
+      "BR11": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 11"
+      },
+      "BR12": {
+       "pos": 28,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 12"
+      },
+      "BR13": {
+       "pos": 29,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 13"
+      },
+      "BR14": {
+       "pos": 30,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 14"
+      },
+      "BR15": {
+       "pos": 31,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 15"
+      }
+     }
+    },
+    {
+     "name": "BRR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "BR0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 0"
+      },
+      "BR1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 1"
+      },
+      "BR2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 2"
+      },
+      "BR3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 3"
+      },
+      "BR4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 4"
+      },
+      "BR5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 5"
+      },
+      "BR6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 6"
+      },
+      "BR7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 7"
+      },
+      "BR8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 8"
+      },
+      "BR9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 9"
+      },
+      "BR10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 10"
+      },
+      "BR11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 11"
+      },
+      "BR12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 12"
+      },
+      "BR13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 13"
+      },
+      "BR14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 14"
+      },
+      "BR15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Reset bit 15"
+      }
+     }
+    },
+    {
+     "name": "LCKR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LCK0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 0"
+      },
+      "LCK1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 1"
+      },
+      "LCK2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 2"
+      },
+      "LCK3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 3"
+      },
+      "LCK4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 4"
+      },
+      "LCK5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 5"
+      },
+      "LCK6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 6"
+      },
+      "LCK7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 7"
+      },
+      "LCK8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 8"
+      },
+      "LCK9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 9"
+      },
+      "LCK10": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 10"
+      },
+      "LCK11": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 11"
+      },
+      "LCK12": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 12"
+      },
+      "LCK13": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 13"
+      },
+      "LCK14": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 14"
+      },
+      "LCK15": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port x Lock bit 15"
+      },
+      "LCKK": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Lock key"
+      }
+     }
+    }
+   ]
+  },
+  "AFIO": {
+   "description": "Alternate Function I/O",
+   "registers": [
+    {
+     "name": "EVCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PIN": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "PIN[3:0] bits (Pin selection)"
+      },
+      "PIN_PX1": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pin 1 selected"
+      },
+      "PIN_PX2": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pin 2 selected"
+      },
+      "PIN_PX3": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Pin 3 selected"
+      },
+      "PIN_PX4": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pin 4 selected"
+      },
+      "PIN_PX5": {
+       "pos": 0,
+       "mask": "0x5",
+       "width": 2,
+       "desc": "Pin 5 selected"
+      },
+      "PIN_PX6": {
+       "pos": 1,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Pin 6 selected"
+      },
+      "PIN_PX7": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "Pin 7 selected"
+      },
+      "PIN_PX8": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Pin 8 selected"
+      },
+      "PIN_PX9": {
+       "pos": 0,
+       "mask": "0x9",
+       "width": 2,
+       "desc": "Pin 9 selected"
+      },
+      "PIN_PX10": {
+       "pos": 1,
+       "mask": "0x5",
+       "width": 2,
+       "desc": "Pin 10 selected"
+      },
+      "PIN_PX11": {
+       "pos": 0,
+       "mask": "0xB",
+       "width": 3,
+       "desc": "Pin 11 selected"
+      },
+      "PIN_PX12": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Pin 12 selected"
+      },
+      "PIN_PX13": {
+       "pos": 0,
+       "mask": "0xD",
+       "width": 3,
+       "desc": "Pin 13 selected"
+      },
+      "PIN_PX14": {
+       "pos": 1,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "Pin 14 selected"
+      },
+      "PIN_PX15": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "Pin 15 selected"
+      },
+      "PORT": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PORT[2:0] bits (Port selection)"
+      },
+      "PORT_PB": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port B selected"
+      },
+      "PORT_PC": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port C selected"
+      },
+      "PORT_PD": {
+       "pos": 4,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Port D selected"
+      },
+      "PORT_PE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port E selected"
+      },
+      "EVOE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Output Enable"
+      }
+     }
+    },
+    {
+     "name": "MAPR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SPI1_REMAP": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI1 remapping"
+      },
+      "I2C1_REMAP": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C1 remapping"
+      },
+      "USART1_REMAP": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART1 remapping"
+      },
+      "USART2_REMAP": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART2 remapping"
+      },
+      "USART3_REMAP": {
+       "pos": 4,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "USART3_REMAP[1:0] bits (USART3 remapping)"
+      },
+      "USART3_REMAP_PARTIALREMAP": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Partial remap (TX/PC10, RX/PC11, CK/PC12, CTS/PB13, RTS/PB14)"
+      },
+      "USART3_REMAP_FULLREMAP": {
+       "pos": 4,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Full remap (TX/PD8, RX/PD9, CK/PD10, CTS/PD11, RTS/PD12)"
+      },
+      "TIM1_REMAP": {
+       "pos": 6,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "TIM1_REMAP[1:0] bits (TIM1 remapping)"
+      },
+      "TIM1_REMAP_PARTIALREMAP": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Partial remap (ETR/PA12, CH1/PA8, CH2/PA9, CH3/PA10, CH4/PA11, BKIN/PA6, CH1N/PA7, CH2N/PB0, CH3N/PB1)"
+      },
+      "TIM1_REMAP_FULLREMAP": {
+       "pos": 6,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Full remap (ETR/PE7, CH1/PE9, CH2/PE11, CH3/PE13, CH4/PE14, BKIN/PE15, CH1N/PE8, CH2N/PE10, CH3N/PE12)"
+      },
+      "TIM2_REMAP": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "TIM2_REMAP[1:0] bits (TIM2 remapping)"
+      },
+      "TIM2_REMAP_PARTIALREMAP1": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Partial remap (CH1/ETR/PA15, CH2/PB3, CH3/PA2, CH4/PA3)"
+      },
+      "TIM2_REMAP_PARTIALREMAP2": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Partial remap (CH1/ETR/PA0, CH2/PA1, CH3/PB10, CH4/PB11)"
+      },
+      "TIM2_REMAP_FULLREMAP": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Full remap (CH1/ETR/PA15, CH2/PB3, CH3/PB10, CH4/PB11)"
+      },
+      "TIM3_REMAP": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "TIM3_REMAP[1:0] bits (TIM3 remapping)"
+      },
+      "TIM3_REMAP_PARTIALREMAP": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Partial remap (CH1/PB4, CH2/PB5, CH3/PB0, CH4/PB1)"
+      },
+      "TIM3_REMAP_FULLREMAP": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "Full remap (CH1/PC6, CH2/PC7, CH3/PC8, CH4/PC9)"
+      },
+      "TIM4_REMAP": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM4_REMAP bit (TIM4 remapping)"
+      },
+      "CAN_REMAP": {
+       "pos": 13,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CAN_REMAP[1:0] bits (CAN Alternate function remapping)"
+      },
+      "CAN_REMAP_REMAP2": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CANRX mapped to PB8, CANTX mapped to PB9"
+      },
+      "CAN_REMAP_REMAP3": {
+       "pos": 13,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CANRX mapped to PD0, CANTX mapped to PD1"
+      },
+      "PD01_REMAP": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Port D0/Port D1 mapping on OSC_IN/OSC_OUT"
+      },
+      "SWJ_CFG": {
+       "pos": 24,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "SWJ_CFG[2:0] bits (Serial Wire JTAG configuration)"
+      },
+      "SWJ_CFG_NOJNTRST": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Full SWJ (JTAG-DP + SW-DP) but without JNTRST"
+      },
+      "SWJ_CFG_JTAGDISABLE": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "JTAG-DP Disabled and SW-DP Enabled"
+      },
+      "SWJ_CFG_DISABLE": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "JTAG-DP Disabled and SW-DP Disabled"
+      }
+     }
+    },
+    {
+     "name": "EXTICR",
+     "access": "RW",
+     "comment": ""
+    },
+    {
+     "name": "MAPR2",
+     "access": "RW",
+     "comment": ""
+    }
+   ]
+  },
+  "I2C": {
+   "description": "Inter Integrated Circuit Interface",
+   "registers": [
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Peripheral Enable"
+      },
+      "SMBUS": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Mode"
+      },
+      "SMBTYPE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Type"
+      },
+      "ENARP": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ARP Enable"
+      },
+      "ENPEC": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PEC Enable"
+      },
+      "ENGC": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "General Call Enable"
+      },
+      "NOSTRETCH": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Stretching Disable (Slave mode)"
+      },
+      "START": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Start Generation"
+      },
+      "STOP": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Stop Generation"
+      },
+      "ACK": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Acknowledge Enable"
+      },
+      "POS": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Acknowledge/PEC Position (for data reception)"
+      },
+      "PEC": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Packet Error Checking"
+      },
+      "ALERT": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Alert"
+      },
+      "SWRST": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Reset"
+      }
+     }
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "FREQ": {
+       "pos": 0,
+       "mask": "0x3F",
+       "width": 6,
+       "desc": "FREQ[5:0] bits (Peripheral Clock Frequency)"
+      },
+      "ITERREN": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt Enable"
+      },
+      "ITEVTEN": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Event Interrupt Enable"
+      },
+      "ITBUFEN": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Buffer Interrupt Enable"
+      },
+      "DMAEN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "DMA Requests Enable"
+      },
+      "LAST": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "DMA Last Transfer"
+      }
+     }
+    },
+    {
+     "name": "OAR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "ADD0": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 0"
+      },
+      "ADD1": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 1"
+      },
+      "ADD2": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 2"
+      },
+      "ADD3": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 3"
+      },
+      "ADD4": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 4"
+      },
+      "ADD5": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 5"
+      },
+      "ADD6": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 6"
+      },
+      "ADD7": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 7"
+      },
+      "ADD8": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 8"
+      },
+      "ADD9": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bit 9"
+      },
+      "ADDMODE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Addressing Mode (Slave mode)"
+      }
+     }
+    },
+    {
+     "name": "OAR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "ENDUAL": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Dual addressing mode enable"
+      },
+      "ADD2": {
+       "pos": 1,
+       "mask": "0x7F",
+       "width": 7,
+       "desc": "Interface address"
+      }
+     }
+    },
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DR": {
+       "pos": 0,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "8-bit Data Register"
+      }
+     }
+    },
+    {
+     "name": "SR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SB": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Start Bit (Master mode)"
+      },
+      "ADDR": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Address sent (master mode)/matched (slave mode)"
+      },
+      "BTF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Byte Transfer Finished"
+      },
+      "ADD10": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "10-bit header sent (Master mode)"
+      },
+      "STOPF": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Stop detection (Slave mode)"
+      },
+      "RXNE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Data Register not Empty (receivers)"
+      },
+      "TXE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Data Register Empty (transmitters)"
+      },
+      "BERR": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bus Error"
+      },
+      "ARLO": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Arbitration Lost (master mode)"
+      },
+      "AF": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Acknowledge Failure"
+      },
+      "OVR": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Overrun/Underrun"
+      },
+      "PECERR": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PEC Error in reception"
+      },
+      "TIMEOUT": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timeout or Tlow Error"
+      },
+      "SMBALERT": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Alert"
+      }
+     }
+    },
+    {
+     "name": "SR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "MSL": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Master/Slave"
+      },
+      "BUSY": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bus Busy"
+      },
+      "TRA": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmitter/Receiver"
+      },
+      "GENCALL": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "General Call Address (Slave mode)"
+      },
+      "SMBDEFAULT": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Device Default Address (Slave mode)"
+      },
+      "SMBHOST": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SMBus Host Header (Slave mode)"
+      },
+      "DUALF": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Dual Flag (Slave mode)"
+      },
+      "PEC": {
+       "pos": 8,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Packet Error Checking Register"
+      }
+     }
+    },
+    {
+     "name": "CCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CCR": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "Clock Control Register in Fast/Standard mode (Master mode)"
+      },
+      "DUTY": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Fast Mode Duty Cycle"
+      },
+      "FS": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C Master Mode Selection"
+      }
+     }
+    },
+    {
+     "name": "TRISE",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TRISE": {
+       "pos": 0,
+       "mask": "0x3F",
+       "width": 6,
+       "desc": "Maximum Rise Time in Fast/Standard mode (Master mode)"
+      }
+     }
+    }
+   ]
+  },
+  "IWDG": {
+   "description": "Independent WATCHDOG",
+   "registers": [
+    {
+     "name": "KR",
+     "access": "RW",
+     "comment": "Key register,                                Address offset: 0x00",
+     "bits": {
+      "KEY": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Key value (write only, read 0000h)"
+      }
+     }
+    },
+    {
+     "name": "PR",
+     "access": "RW",
+     "comment": "Prescaler register,                          Address offset: 0x04",
+     "bits": {
+      "PR": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PR[2:0] (Prescaler divider)"
+      }
+     }
+    },
+    {
+     "name": "RLR",
+     "access": "RW",
+     "comment": "Reload register,                             Address offset: 0x08",
+     "bits": {
+      "RL": {
+       "pos": 0,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "Watchdog counter reload value"
+      }
+     }
+    },
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "Status register,                             Address offset: 0x0C",
+     "bits": {
+      "PVU": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Watchdog prescaler value update"
+      },
+      "RVU": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Watchdog counter reload value update"
+      }
+     }
+    }
+   ]
+  },
+  "PWR": {
+   "description": "Power Control",
+   "registers": [
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LPDS": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Low-Power Deepsleep"
+      },
+      "PDDS": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Power Down Deepsleep"
+      },
+      "CWUF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clear Wakeup Flag"
+      },
+      "CSBF": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clear Standby Flag"
+      },
+      "PVDE": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Power Voltage Detector Enable"
+      },
+      "PLS": {
+       "pos": 5,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PLS[2:0] bits (PVD Level Selection)"
+      },
+      "DBP": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Disable Backup Domain write protection"
+      }
+     }
+    },
+    {
+     "name": "CSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "WUF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Wakeup Flag"
+      },
+      "SBF": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Standby Flag"
+      },
+      "PVDO": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PVD Output"
+      },
+      "EWUP": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Enable WKUP pin"
+      }
+     }
+    }
+   ]
+  },
+  "RCC": {
+   "description": "Reset and Clock Control",
+   "registers": [
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "HSION": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Internal High Speed clock enable"
+      },
+      "HSIRDY": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Internal High Speed clock ready flag"
+      },
+      "HSITRIM": {
+       "pos": 3,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "Internal High Speed clock trimming"
+      },
+      "HSICAL": {
+       "pos": 8,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Internal High Speed clock Calibration"
+      },
+      "HSEON": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External High Speed clock enable"
+      },
+      "HSERDY": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External High Speed clock ready flag"
+      },
+      "HSEBYP": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External High Speed clock Bypass"
+      },
+      "CSSON": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Security System enable"
+      },
+      "PLLON": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL enable"
+      },
+      "PLLRDY": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL clock ready flag"
+      }
+     }
+    },
+    {
+     "name": "CFGR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SW": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "SW[1:0] bits (System clock Switch)"
+      },
+      "SWS": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "SWS[1:0] bits (System Clock Switch Status)"
+      },
+      "HPRE": {
+       "pos": 4,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "HPRE[3:0] bits (AHB prescaler)"
+      },
+      "PPRE1": {
+       "pos": 8,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PRE1[2:0] bits (APB1 prescaler)"
+      },
+      "PPRE2": {
+       "pos": 11,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PRE2[2:0] bits (APB2 prescaler)"
+      },
+      "ADCPRE": {
+       "pos": 14,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "ADCPRE[1:0] bits (ADC prescaler)"
+      },
+      "PLLSRC": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL entry clock source"
+      },
+      "PLLXTPRE": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSE divider for PLL entry"
+      },
+      "PLLMULL": {
+       "pos": 18,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "PLLMUL[3:0] bits (PLL multiplication factor)"
+      },
+      "PLLMULL3": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL input clock*3"
+      },
+      "PLLMULL4": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL input clock*4"
+      },
+      "PLLMULL5": {
+       "pos": 18,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "PLL input clock*5"
+      },
+      "PLLMULL6": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL input clock*6"
+      },
+      "PLLMULL7": {
+       "pos": 18,
+       "mask": "0x5",
+       "width": 2,
+       "desc": "PLL input clock*7"
+      },
+      "PLLMULL8": {
+       "pos": 19,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "PLL input clock*8"
+      },
+      "PLLMULL9": {
+       "pos": 18,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PLL input clock*9"
+      },
+      "PLLMULL10": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL input clock10"
+      },
+      "PLLMULL11": {
+       "pos": 18,
+       "mask": "0x9",
+       "width": 2,
+       "desc": "PLL input clock*11"
+      },
+      "PLLMULL12": {
+       "pos": 19,
+       "mask": "0x5",
+       "width": 2,
+       "desc": "PLL input clock*12"
+      },
+      "PLLMULL13": {
+       "pos": 18,
+       "mask": "0xB",
+       "width": 3,
+       "desc": "PLL input clock*13"
+      },
+      "PLLMULL14": {
+       "pos": 20,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "PLL input clock*14"
+      },
+      "PLLMULL15": {
+       "pos": 18,
+       "mask": "0xD",
+       "width": 3,
+       "desc": "PLL input clock*15"
+      },
+      "PLLMULL16": {
+       "pos": 19,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "PLL input clock*16"
+      },
+      "USBPRE": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USB Device prescaler"
+      },
+      "MCO": {
+       "pos": 24,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "MCO[2:0] bits (Microcontroller Clock Output)"
+      }
+     }
+    },
+    {
+     "name": "CIR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LSIRDYF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSI Ready Interrupt flag"
+      },
+      "LSERDYF": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSE Ready Interrupt flag"
+      },
+      "HSIRDYF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSI Ready Interrupt flag"
+      },
+      "HSERDYF": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSE Ready Interrupt flag"
+      },
+      "PLLRDYF": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL Ready Interrupt flag"
+      },
+      "CSSF": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Security System Interrupt flag"
+      },
+      "LSIRDYIE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSI Ready Interrupt Enable"
+      },
+      "LSERDYIE": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSE Ready Interrupt Enable"
+      },
+      "HSIRDYIE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSI Ready Interrupt Enable"
+      },
+      "HSERDYIE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSE Ready Interrupt Enable"
+      },
+      "PLLRDYIE": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL Ready Interrupt Enable"
+      },
+      "LSIRDYC": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSI Ready Interrupt Clear"
+      },
+      "LSERDYC": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LSE Ready Interrupt Clear"
+      },
+      "HSIRDYC": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSI Ready Interrupt Clear"
+      },
+      "HSERDYC": {
+       "pos": 19,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "HSE Ready Interrupt Clear"
+      },
+      "PLLRDYC": {
+       "pos": 20,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PLL Ready Interrupt Clear"
+      },
+      "CSSC": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Security System Interrupt Clear"
+      }
+     }
+    },
+    {
+     "name": "APB2RSTR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "AFIORST": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alternate Function I/O reset"
+      },
+      "IOPARST": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port A reset"
+      },
+      "IOPBRST": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port B reset"
+      },
+      "IOPCRST": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port C reset"
+      },
+      "IOPDRST": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port D reset"
+      },
+      "ADC1RST": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC 1 interface reset"
+      },
+      "ADC2RST": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC 2 interface reset"
+      },
+      "TIM1RST": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM1 Timer reset"
+      },
+      "SPI1RST": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI 1 reset"
+      },
+      "USART1RST": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART1 reset"
+      },
+      "IOPERST": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port E reset"
+      }
+     }
+    },
+    {
+     "name": "APB1RSTR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TIM2RST": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 2 reset"
+      },
+      "TIM3RST": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 3 reset"
+      },
+      "WWDGRST": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Window Watchdog reset"
+      },
+      "USART2RST": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART 2 reset"
+      },
+      "I2C1RST": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C 1 reset"
+      },
+      "CAN1RST": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CAN1 reset"
+      },
+      "BKPRST": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Backup interface reset"
+      },
+      "PWRRST": {
+       "pos": 28,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Power interface reset"
+      },
+      "TIM4RST": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 4 reset"
+      },
+      "SPI2RST": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI 2 reset"
+      },
+      "USART3RST": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART 3 reset"
+      },
+      "I2C2RST": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C 2 reset"
+      },
+      "USBRST": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USB Device reset"
+      }
+     }
+    },
+    {
+     "name": "AHBENR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DMA1EN": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "DMA1 clock enable"
+      },
+      "SRAMEN": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SRAM interface clock enable"
+      },
+      "FLITFEN": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "FLITF clock enable"
+      },
+      "CRCEN": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CRC clock enable"
+      }
+     }
+    },
+    {
+     "name": "APB2ENR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "AFIOEN": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alternate Function I/O clock enable"
+      },
+      "IOPAEN": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port A clock enable"
+      },
+      "IOPBEN": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port B clock enable"
+      },
+      "IOPCEN": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port C clock enable"
+      },
+      "IOPDEN": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port D clock enable"
+      },
+      "ADC1EN": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC 1 interface clock enable"
+      },
+      "ADC2EN": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "ADC 2 interface clock enable"
+      },
+      "TIM1EN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TIM1 Timer clock enable"
+      },
+      "SPI1EN": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI 1 clock enable"
+      },
+      "USART1EN": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART1 clock enable"
+      },
+      "IOPEEN": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I/O port E clock enable"
+      }
+     }
+    },
+    {
+     "name": "APB1ENR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TIM2EN": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 2 clock enabled"
+      },
+      "TIM3EN": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 3 clock enable"
+      },
+      "WWDGEN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Window Watchdog clock enable"
+      },
+      "USART2EN": {
+       "pos": 17,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART 2 clock enable"
+      },
+      "I2C1EN": {
+       "pos": 21,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C 1 clock enable"
+      },
+      "CAN1EN": {
+       "pos": 25,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CAN1 clock enable"
+      },
+      "BKPEN": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Backup interface clock enable"
+      },
+      "PWREN": {
+       "pos": 28,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Power interface clock enable"
+      },
+      "TIM4EN": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Timer 4 clock enable"
+      },
+      "SPI2EN": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI 2 clock enable"
+      },
+      "USART3EN": {
+       "pos": 18,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART 3 clock enable"
+      },
+      "I2C2EN": {
+       "pos": 22,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2C 2 clock enable"
+      },
+      "USBEN": {
+       "pos": 23,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USB Device clock enable"
+      }
+     }
+    },
+    {
+     "name": "BDCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LSEON": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External Low Speed oscillator enable"
+      },
+      "LSERDY": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External Low Speed oscillator Ready"
+      },
+      "LSEBYP": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External Low Speed oscillator Bypass"
+      },
+      "RTCSEL": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "RTCSEL[1:0] bits (RTC clock source selection)"
+      },
+      "RTCEN": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RTC clock enable"
+      },
+      "BDRST": {
+       "pos": 16,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Backup domain software reset"
+      }
+     }
+    },
+    {
+     "name": "CSR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "LSION": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Internal Low Speed oscillator enable"
+      },
+      "LSIRDY": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Internal Low Speed oscillator Ready"
+      },
+      "RMVF": {
+       "pos": 24,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Remove reset flag"
+      },
+      "PINRSTF": {
+       "pos": 26,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PIN reset flag"
+      },
+      "PORRSTF": {
+       "pos": 27,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "POR/PDR reset flag"
+      },
+      "SFTRSTF": {
+       "pos": 28,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software Reset flag"
+      },
+      "IWDGRSTF": {
+       "pos": 29,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Independent Watchdog reset flag"
+      },
+      "WWDGRSTF": {
+       "pos": 30,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Window watchdog reset flag"
+      },
+      "LPWRRSTF": {
+       "pos": 31,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Low-Power reset flag"
+      }
+     }
+    }
+   ]
+  },
+  "RTC": {
+   "description": "Real-Time Clock",
+   "registers": [
+    {
+     "name": "CRH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SECIE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Second Interrupt Enable"
+      },
+      "ALRIE": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alarm Interrupt Enable"
+      },
+      "OWIE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "OverfloW Interrupt Enable"
+      }
+     }
+    },
+    {
+     "name": "CRL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "SECF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Second Flag"
+      },
+      "ALRF": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Alarm Flag"
+      },
+      "OWF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "OverfloW Flag"
+      },
+      "RSF": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Registers Synchronized Flag"
+      },
+      "CNF": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Configuration Flag"
+      },
+      "RTOFF": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RTC operation OFF"
+      }
+     }
+    },
+    {
+     "name": "PRLH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PRL": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "RTC Prescaler Reload Value High"
+      }
+     }
+    },
+    {
+     "name": "PRLL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "PRL": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Prescaler Reload Value Low"
+      }
+     }
+    },
+    {
+     "name": "DIVH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_DIV": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "RTC Clock Divider High"
+      }
+     }
+    },
+    {
+     "name": "DIVL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_DIV": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Clock Divider Low"
+      }
+     }
+    },
+    {
+     "name": "CNTH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_CNT": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Counter High"
+      }
+     }
+    },
+    {
+     "name": "CNTL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_CNT": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Counter Low"
+      }
+     }
+    },
+    {
+     "name": "ALRH",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_ALR": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Alarm High"
+      }
+     }
+    },
+    {
+     "name": "ALRL",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RTC_ALR": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "RTC Alarm Low"
+      }
+     }
+    }
+   ]
+  },
+  "SPI": {
+   "description": "Serial Peripheral Interface",
+   "registers": [
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CPHA": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Phase"
+      },
+      "CPOL": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Polarity"
+      },
+      "MSTR": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Master Selection"
+      },
+      "BR": {
+       "pos": 3,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "BR[2:0] bits (Baud Rate Control)"
+      },
+      "SPE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SPI Enable"
+      },
+      "LSBFIRST": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Frame Format"
+      },
+      "SSI": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Internal slave select"
+      },
+      "SSM": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Software slave management"
+      },
+      "RXONLY": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receive only"
+      },
+      "DFF": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Data Frame Format"
+      },
+      "CRCNEXT": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit CRC next"
+      },
+      "CRCEN": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Hardware CRC calculation enable"
+      },
+      "BIDIOE": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output enable in bidirectional mode"
+      },
+      "BIDIMODE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Bidirectional data mode enable"
+      }
+     }
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RXDMAEN": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Rx Buffer DMA Enable"
+      },
+      "TXDMAEN": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Tx Buffer DMA Enable"
+      },
+      "SSOE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "SS Output Enable"
+      },
+      "ERRIE": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt Enable"
+      },
+      "RXNEIE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RX buffer Not Empty Interrupt Enable"
+      },
+      "TXEIE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Tx buffer Empty Interrupt Enable"
+      }
+     }
+    },
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RXNE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receive buffer Not Empty"
+      },
+      "TXE": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit buffer Empty"
+      },
+      "CHSIDE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Channel side"
+      },
+      "UDR": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Underrun flag"
+      },
+      "CRCERR": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CRC Error flag"
+      },
+      "MODF": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Mode fault"
+      },
+      "OVR": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Overrun flag"
+      },
+      "BSY": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Busy flag"
+      }
+     }
+    },
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "DR": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Data Register"
+      }
+     }
+    },
+    {
+     "name": "CRCPR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "CRCPOLY": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "CRC polynomial register"
+      }
+     }
+    },
+    {
+     "name": "RXCRCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "RXCRC": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Rx CRC Register"
+      }
+     }
+    },
+    {
+     "name": "TXCRCR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "TXCRC": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Tx CRC Register"
+      }
+     }
+    },
+    {
+     "name": "I2SCFGR",
+     "access": "RW",
+     "comment": "",
+     "bits": {
+      "I2SMOD": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "I2S mode selection"
+      }
+     }
+    }
+   ]
+  },
+  "TIM": {
+   "description": "TIM Timers",
+   "registers": [
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "TIM control register 1,                      Address offset: 0x00",
+     "bits": {
+      "CEN": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Counter enable"
+      },
+      "UDIS": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update disable"
+      },
+      "URS": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update request source"
+      },
+      "OPM": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "One pulse mode"
+      },
+      "DIR": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Direction"
+      },
+      "CMS": {
+       "pos": 5,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CMS[1:0] bits (Center-aligned mode selection)"
+      },
+      "ARPE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Auto-reload preload enable"
+      },
+      "CKD": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CKD[1:0] bits (clock division)"
+      }
+     }
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "TIM control register 2,                      Address offset: 0x04",
+     "bits": {
+      "CCPC": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare Preloaded Control"
+      },
+      "CCUS": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare Control Update Selection"
+      },
+      "CCDS": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare DMA Selection"
+      },
+      "MMS": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "MMS[2:0] bits (Master Mode Selection)"
+      },
+      "TI1S": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "TI1 Selection"
+      },
+      "OIS1": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 1 (OC1 output)"
+      },
+      "OIS1N": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 1 (OC1N output)"
+      },
+      "OIS2": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 2 (OC2 output)"
+      },
+      "OIS2N": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 2 (OC2N output)"
+      },
+      "OIS3": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 3 (OC3 output)"
+      },
+      "OIS3N": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 3 (OC3N output)"
+      },
+      "OIS4": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Idle state 4 (OC4 output)"
+      }
+     }
+    },
+    {
+     "name": "SMCR",
+     "access": "RW",
+     "comment": "TIM slave Mode Control register,             Address offset: 0x08",
+     "bits": {
+      "SMS": {
+       "pos": 0,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "SMS[2:0] bits (Slave mode selection)"
+      },
+      "TS": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "TS[2:0] bits (Trigger selection)"
+      },
+      "MSM": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Master/slave mode"
+      },
+      "ETF": {
+       "pos": 8,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "ETF[3:0] bits (External trigger filter)"
+      },
+      "ETPS": {
+       "pos": 12,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "ETPS[1:0] bits (External trigger prescaler)"
+      },
+      "ECE": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External clock enable"
+      },
+      "ETP": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "External trigger polarity"
+      }
+     }
+    },
+    {
+     "name": "DIER",
+     "access": "RW",
+     "comment": "TIM DMA/interrupt enable register,           Address offset: 0x0C",
+     "bits": {
+      "UIE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update interrupt enable"
+      },
+      "CC1IE": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 interrupt enable"
+      },
+      "CC2IE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 interrupt enable"
+      },
+      "CC3IE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 interrupt enable"
+      },
+      "CC4IE": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 interrupt enable"
+      },
+      "COMIE": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "COM interrupt enable"
+      },
+      "TIE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Trigger interrupt enable"
+      },
+      "BIE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Break interrupt enable"
+      },
+      "UDE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update DMA request enable"
+      },
+      "CC1DE": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 DMA request enable"
+      },
+      "CC2DE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 DMA request enable"
+      },
+      "CC3DE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 DMA request enable"
+      },
+      "CC4DE": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 DMA request enable"
+      },
+      "COMDE": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "COM DMA request enable"
+      },
+      "TDE": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Trigger DMA request enable"
+      }
+     }
+    },
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "TIM status register,                         Address offset: 0x10",
+     "bits": {
+      "UIF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update interrupt Flag"
+      },
+      "CC1IF": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 interrupt Flag"
+      },
+      "CC2IF": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 interrupt Flag"
+      },
+      "CC3IF": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 interrupt Flag"
+      },
+      "CC4IF": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 interrupt Flag"
+      },
+      "COMIF": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "COM interrupt Flag"
+      },
+      "TIF": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Trigger interrupt Flag"
+      },
+      "BIF": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Break interrupt Flag"
+      },
+      "CC1OF": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 Overcapture Flag"
+      },
+      "CC2OF": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 Overcapture Flag"
+      },
+      "CC3OF": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 Overcapture Flag"
+      },
+      "CC4OF": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 Overcapture Flag"
+      }
+     }
+    },
+    {
+     "name": "EGR",
+     "access": "RW",
+     "comment": "TIM event generation register,               Address offset: 0x14",
+     "bits": {
+      "UG": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Update Generation"
+      },
+      "CC1G": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 Generation"
+      },
+      "CC2G": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 Generation"
+      },
+      "CC3G": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 Generation"
+      },
+      "CC4G": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 Generation"
+      },
+      "COMG": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare Control Update Generation"
+      },
+      "TG": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Trigger Generation"
+      },
+      "BG": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Break Generation"
+      }
+     }
+    },
+    {
+     "name": "CCMR1",
+     "access": "RW",
+     "comment": "TIM  capture/compare mode register 1,        Address offset: 0x18",
+     "bits": {
+      "CC1S": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CC1S[1:0] bits (Capture/Compare 1 Selection)"
+      },
+      "OC1FE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 1 Fast enable"
+      },
+      "OC1PE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 1 Preload enable"
+      },
+      "OC1M": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "OC1M[2:0] bits (Output Compare 1 Mode)"
+      },
+      "OC1CE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 1Clear Enable"
+      },
+      "CC2S": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CC2S[1:0] bits (Capture/Compare 2 Selection)"
+      },
+      "OC2FE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 2 Fast enable"
+      },
+      "OC2PE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 2 Preload enable"
+      },
+      "OC2M": {
+       "pos": 12,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "OC2M[2:0] bits (Output Compare 2 Mode)"
+      },
+      "OC2CE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 2 Clear Enable"
+      },
+      "IC1PSC": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "IC1PSC[1:0] bits (Input Capture 1 Prescaler)"
+      },
+      "IC1F": {
+       "pos": 4,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "IC1F[3:0] bits (Input Capture 1 Filter)"
+      },
+      "IC2PSC": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "IC2PSC[1:0] bits (Input Capture 2 Prescaler)"
+      },
+      "IC2F": {
+       "pos": 12,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "IC2F[3:0] bits (Input Capture 2 Filter)"
+      }
+     }
+    },
+    {
+     "name": "CCMR2",
+     "access": "RW",
+     "comment": "TIM  capture/compare mode register 2,        Address offset: 0x1C",
+     "bits": {
+      "CC3S": {
+       "pos": 0,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CC3S[1:0] bits (Capture/Compare 3 Selection)"
+      },
+      "OC3FE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 3 Fast enable"
+      },
+      "OC3PE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 3 Preload enable"
+      },
+      "OC3M": {
+       "pos": 4,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "OC3M[2:0] bits (Output Compare 3 Mode)"
+      },
+      "OC3CE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 3 Clear Enable"
+      },
+      "CC4S": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "CC4S[1:0] bits (Capture/Compare 4 Selection)"
+      },
+      "OC4FE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 4 Fast enable"
+      },
+      "OC4PE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 4 Preload enable"
+      },
+      "OC4M": {
+       "pos": 12,
+       "mask": "0x7",
+       "width": 3,
+       "desc": "OC4M[2:0] bits (Output Compare 4 Mode)"
+      },
+      "OC4CE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Output Compare 4 Clear Enable"
+      },
+      "IC3PSC": {
+       "pos": 2,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "IC3PSC[1:0] bits (Input Capture 3 Prescaler)"
+      },
+      "IC3F": {
+       "pos": 4,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "IC3F[3:0] bits (Input Capture 3 Filter)"
+      },
+      "IC4PSC": {
+       "pos": 10,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "IC4PSC[1:0] bits (Input Capture 4 Prescaler)"
+      },
+      "IC4F": {
+       "pos": 12,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "IC4F[3:0] bits (Input Capture 4 Filter)"
+      }
+     }
+    },
+    {
+     "name": "CCER",
+     "access": "RW",
+     "comment": "TIM capture/compare enable register,         Address offset: 0x20",
+     "bits": {
+      "CC1E": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 output enable"
+      },
+      "CC1P": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 output Polarity"
+      },
+      "CC1NE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 Complementary output enable"
+      },
+      "CC1NP": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 1 Complementary output Polarity"
+      },
+      "CC2E": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 output enable"
+      },
+      "CC2P": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 output Polarity"
+      },
+      "CC2NE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 Complementary output enable"
+      },
+      "CC2NP": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 2 Complementary output Polarity"
+      },
+      "CC3E": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 output enable"
+      },
+      "CC3P": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 output Polarity"
+      },
+      "CC3NE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 Complementary output enable"
+      },
+      "CC3NP": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 3 Complementary output Polarity"
+      },
+      "CC4E": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 output enable"
+      },
+      "CC4P": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Capture/Compare 4 output Polarity"
+      }
+     }
+    },
+    {
+     "name": "CNT",
+     "access": "RW",
+     "comment": "TIM counter register,                        Address offset: 0x24",
+     "bits": {
+      "CNT": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "Counter Value"
+      }
+     }
+    },
+    {
+     "name": "PSC",
+     "access": "RW",
+     "comment": "TIM prescaler register,                      Address offset: 0x28",
+     "bits": {
+      "PSC": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Prescaler Value"
+      }
+     }
+    },
+    {
+     "name": "ARR",
+     "access": "RW",
+     "comment": "TIM auto-reload register,                    Address offset: 0x2C",
+     "bits": {
+      "ARR": {
+       "pos": 0,
+       "mask": "0xFFFFFFFF",
+       "width": 32,
+       "desc": "actual auto-reload Value"
+      }
+     }
+    },
+    {
+     "name": "RCR",
+     "access": "RW",
+     "comment": "TIM  repetition counter register,            Address offset: 0x30",
+     "bits": {
+      "REP": {
+       "pos": 0,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Repetition Counter Value"
+      }
+     }
+    },
+    {
+     "name": "CCR1",
+     "access": "RW",
+     "comment": "TIM capture/compare register 1,              Address offset: 0x34",
+     "bits": {
+      "CCR1": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Capture/Compare 1 Value"
+      }
+     }
+    },
+    {
+     "name": "CCR2",
+     "access": "RW",
+     "comment": "TIM capture/compare register 2,              Address offset: 0x38",
+     "bits": {
+      "CCR2": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Capture/Compare 2 Value"
+      }
+     }
+    },
+    {
+     "name": "CCR3",
+     "access": "RW",
+     "comment": "TIM capture/compare register 3,              Address offset: 0x3C",
+     "bits": {
+      "CCR3": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Capture/Compare 3 Value"
+      }
+     }
+    },
+    {
+     "name": "CCR4",
+     "access": "RW",
+     "comment": "TIM capture/compare register 4,              Address offset: 0x40",
+     "bits": {
+      "CCR4": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "Capture/Compare 4 Value"
+      }
+     }
+    },
+    {
+     "name": "BDTR",
+     "access": "RW",
+     "comment": "TIM break and dead-time register,            Address offset: 0x44",
+     "bits": {
+      "DTG": {
+       "pos": 0,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "DTG[0:7] bits (Dead-Time Generator set-up)"
+      },
+      "LOCK": {
+       "pos": 8,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "LOCK[1:0] bits (Lock Configuration)"
+      },
+      "OSSI": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Off-State Selection for Idle mode"
+      },
+      "OSSR": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Off-State Selection for Run mode"
+      },
+      "BKE": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Break enable"
+      },
+      "BKP": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Break Polarity"
+      },
+      "AOE": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Automatic Output enable"
+      },
+      "MOE": {
+       "pos": 15,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Main Output enable"
+      }
+     }
+    },
+    {
+     "name": "DCR",
+     "access": "RW",
+     "comment": "TIM DMA control register,                    Address offset: 0x48",
+     "bits": {
+      "DBA": {
+       "pos": 0,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "DBA[4:0] bits (DMA Base Address)"
+      },
+      "DBL": {
+       "pos": 8,
+       "mask": "0x1F",
+       "width": 5,
+       "desc": "DBL[4:0] bits (DMA Burst Length)"
+      }
+     }
+    },
+    {
+     "name": "DMAR",
+     "access": "RW",
+     "comment": "TIM DMA address for full transfer register,  Address offset: 0x4C",
+     "bits": {
+      "DMAB": {
+       "pos": 0,
+       "mask": "0xFFFF",
+       "width": 16,
+       "desc": "DMA register for burst accesses"
+      }
+     }
+    },
+    {
+     "name": "OR",
+     "access": "RW",
+     "comment": "TIM option register,                         Address offset: 0x50"
+    }
+   ]
+  },
+  "USART": {
+   "description": "Universal Synchronous Asynchronous Receiver Transmitter",
+   "registers": [
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "USART Status register,                   Address offset: 0x00",
+     "bits": {
+      "PE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Parity Error"
+      },
+      "FE": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Framing Error"
+      },
+      "NE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Noise Error Flag"
+      },
+      "ORE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "OverRun Error"
+      },
+      "IDLE": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "IDLE line detected"
+      },
+      "RXNE": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Read Data Register Not Empty"
+      },
+      "TC": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission Complete"
+      },
+      "TXE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmit Data Register Empty"
+      },
+      "LBD": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LIN Break Detection Flag"
+      },
+      "CTS": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CTS Flag"
+      }
+     }
+    },
+    {
+     "name": "DR",
+     "access": "RW",
+     "comment": "USART Data register,                     Address offset: 0x04",
+     "bits": {
+      "DR": {
+       "pos": 0,
+       "mask": "0x1FF",
+       "width": 9,
+       "desc": "Data value"
+      }
+     }
+    },
+    {
+     "name": "BRR",
+     "access": "RW",
+     "comment": "USART Baud rate register,                Address offset: 0x08",
+     "bits": {
+      "DIV_Fraction": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "Fraction of USARTDIV"
+      },
+      "DIV_Mantissa": {
+       "pos": 4,
+       "mask": "0xFFF",
+       "width": 12,
+       "desc": "Mantissa of USARTDIV"
+      }
+     }
+    },
+    {
+     "name": "CR1",
+     "access": "RW",
+     "comment": "USART Control register 1,                Address offset: 0x0C",
+     "bits": {
+      "SBK": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Send Break"
+      },
+      "RWU": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receiver wakeup"
+      },
+      "RE": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Receiver Enable"
+      },
+      "TE": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmitter Enable"
+      },
+      "IDLEIE": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "IDLE Interrupt Enable"
+      },
+      "RXNEIE": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RXNE Interrupt Enable"
+      },
+      "TCIE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Transmission Complete Interrupt Enable"
+      },
+      "TXEIE": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PE Interrupt Enable"
+      },
+      "PEIE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "PE Interrupt Enable"
+      },
+      "PS": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Parity Selection"
+      },
+      "PCE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Parity Control Enable"
+      },
+      "WAKE": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Wakeup method"
+      },
+      "M": {
+       "pos": 12,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Word length"
+      },
+      "UE": {
+       "pos": 13,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "USART Enable"
+      }
+     }
+    },
+    {
+     "name": "CR2",
+     "access": "RW",
+     "comment": "USART Control register 2,                Address offset: 0x10",
+     "bits": {
+      "ADD": {
+       "pos": 0,
+       "mask": "0xF",
+       "width": 4,
+       "desc": "Address of the USART node"
+      },
+      "LBDL": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LIN Break Detection Length"
+      },
+      "LBDIE": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LIN Break Detection Interrupt Enable"
+      },
+      "LBCL": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Last Bit Clock pulse"
+      },
+      "CPHA": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Phase"
+      },
+      "CPOL": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Polarity"
+      },
+      "CLKEN": {
+       "pos": 11,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Clock Enable"
+      },
+      "STOP": {
+       "pos": 12,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "STOP[1:0] bits (STOP bits)"
+      },
+      "LINEN": {
+       "pos": 14,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "LIN mode enable"
+      }
+     }
+    },
+    {
+     "name": "CR3",
+     "access": "RW",
+     "comment": "USART Control register 3,                Address offset: 0x14",
+     "bits": {
+      "EIE": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Error Interrupt Enable"
+      },
+      "IREN": {
+       "pos": 1,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "IrDA mode Enable"
+      },
+      "IRLP": {
+       "pos": 2,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "IrDA Low-Power"
+      },
+      "HDSEL": {
+       "pos": 3,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Half-Duplex Selection"
+      },
+      "NACK": {
+       "pos": 4,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Smartcard NACK enable"
+      },
+      "SCEN": {
+       "pos": 5,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Smartcard mode enable"
+      },
+      "DMAR": {
+       "pos": 6,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "DMA Enable Receiver"
+      },
+      "DMAT": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "DMA Enable Transmitter"
+      },
+      "RTSE": {
+       "pos": 8,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "RTS Enable"
+      },
+      "CTSE": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CTS Enable"
+      },
+      "CTSIE": {
+       "pos": 10,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "CTS Interrupt Enable"
+      }
+     }
+    },
+    {
+     "name": "GTPR",
+     "access": "RW",
+     "comment": "USART Guard time and prescaler register, Address offset: 0x18",
+     "bits": {
+      "PSC": {
+       "pos": 0,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "PSC[7:0] bits (Prescaler value)"
+      },
+      "GT": {
+       "pos": 8,
+       "mask": "0xFF",
+       "width": 8,
+       "desc": "Guard time value"
+      }
+     }
+    }
+   ]
+  },
+  "WWDG": {
+   "description": "Window WATCHDOG",
+   "registers": [
+    {
+     "name": "CR",
+     "access": "RW",
+     "comment": "WWDG Control register,       Address offset: 0x00",
+     "bits": {
+      "T": {
+       "pos": 0,
+       "mask": "0x7F",
+       "width": 7,
+       "desc": "T[6:0] bits (7-Bit counter (MSB to LSB))"
+      },
+      "WDGA": {
+       "pos": 7,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Activation bit"
+      }
+     }
+    },
+    {
+     "name": "CFR",
+     "access": "RW",
+     "comment": "WWDG Configuration register, Address offset: 0x04",
+     "bits": {
+      "W": {
+       "pos": 0,
+       "mask": "0x7F",
+       "width": 7,
+       "desc": "W[6:0] bits (7-bit window value)"
+      },
+      "WDGTB": {
+       "pos": 7,
+       "mask": "0x3",
+       "width": 2,
+       "desc": "WDGTB[1:0] bits (Timer Base)"
+      },
+      "EWI": {
+       "pos": 9,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Early Wakeup Interrupt"
+      }
+     }
+    },
+    {
+     "name": "SR",
+     "access": "RW",
+     "comment": "WWDG Status register,        Address offset: 0x08",
+     "bits": {
+      "EWIF": {
+       "pos": 0,
+       "mask": "0x1",
+       "width": 1,
+       "desc": "Early Wakeup Interrupt Flag"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "instances": {
+  "TIM2": {
+   "type": "TIM",
+   "base": "0x40000000"
+  },
+  "TIM3": {
+   "type": "TIM",
+   "base": "0x40000400"
+  },
+  "TIM4": {
+   "type": "TIM",
+   "base": "0x40000800"
+  },
+  "RTC": {
+   "type": "RTC",
+   "base": "0x40002800"
+  },
+  "WWDG": {
+   "type": "WWDG",
+   "base": "0x40002C00"
+  },
+  "IWDG": {
+   "type": "IWDG",
+   "base": "0x40003000"
+  },
+  "SPI2": {
+   "type": "SPI",
+   "base": "0x40003800"
+  },
+  "USART2": {
+   "type": "USART",
+   "base": "0x40004400"
+  },
+  "USART3": {
+   "type": "USART",
+   "base": "0x40004800"
+  },
+  "I2C1": {
+   "type": "I2C",
+   "base": "0x40005400"
+  },
+  "I2C2": {
+   "type": "I2C",
+   "base": "0x40005800"
+  },
+  "USB": {
+   "type": "USB",
+   "base": "0x40005C00"
+  },
+  "CAN1": {
+   "type": "CAN",
+   "base": "0x40006400"
+  },
+  "BKP": {
+   "type": "BKP",
+   "base": "0x40006C00"
+  },
+  "PWR": {
+   "type": "PWR",
+   "base": "0x40007000"
+  },
+  "AFIO": {
+   "type": "AFIO",
+   "base": "0x40010000"
+  },
+  "EXTI": {
+   "type": "EXTI",
+   "base": "0x40010400"
+  },
+  "GPIOA": {
+   "type": "GPIO",
+   "base": "0x40010800"
+  },
+  "GPIOB": {
+   "type": "GPIO",
+   "base": "0x40010C00"
+  },
+  "GPIOC": {
+   "type": "GPIO",
+   "base": "0x40011000"
+  },
+  "GPIOD": {
+   "type": "GPIO",
+   "base": "0x40011400"
+  },
+  "GPIOE": {
+   "type": "GPIO",
+   "base": "0x40011800"
+  },
+  "ADC1": {
+   "type": "ADC",
+   "base": "0x40012400"
+  },
+  "ADC2": {
+   "type": "ADC",
+   "base": "0x40012800"
+  },
+  "ADC12_COMMON": {
+   "type": "ADC_Common",
+   "base": "0x40012400"
+  },
+  "TIM1": {
+   "type": "TIM",
+   "base": "0x40012C00"
+  },
+  "SPI1": {
+   "type": "SPI",
+   "base": "0x40013000"
+  },
+  "USART1": {
+   "type": "USART",
+   "base": "0x40013800"
+  },
+  "DMA1": {
+   "type": "DMA",
+   "base": "0x40020000"
+  },
+  "DMA1_Channel1": {
+   "type": "DMA_Channel",
+   "base": "0x40020008"
+  },
+  "DMA1_Channel2": {
+   "type": "DMA_Channel",
+   "base": "0x4002001C"
+  },
+  "DMA1_Channel3": {
+   "type": "DMA_Channel",
+   "base": "0x40020030"
+  },
+  "DMA1_Channel4": {
+   "type": "DMA_Channel",
+   "base": "0x40020044"
+  },
+  "DMA1_Channel5": {
+   "type": "DMA_Channel",
+   "base": "0x40020058"
+  },
+  "DMA1_Channel6": {
+   "type": "DMA_Channel",
+   "base": "0x4002006C"
+  },
+  "DMA1_Channel7": {
+   "type": "DMA_Channel",
+   "base": "0x40020080"
+  },
+  "RCC": {
+   "type": "RCC",
+   "base": "0x40021000"
+  },
+  "CRC": {
+   "type": "CRC",
+   "base": "0x40023000"
+  },
+  "FLASH": {
+   "type": "FLASH",
+   "base": "0x40022000"
+  },
+  "OB": {
+   "type": "OB",
+   "base": "0x1FFFF800"
+  },
+  "DBGMCU": {
+   "type": "DBGMCU",
+   "base": "0xE0042000"
+  }
+ }
+}

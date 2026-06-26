@@ -1,35 +1,39 @@
 ---
-name: "website to ads"
-description: "Scrape any business website and generate 5 Meta-ready ad variants matching the brand's voice. Use when the user wants to create ads, generate ad copy, or tur..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill2ads"
-sourceUrl: "https://clawhub.ai/skills/skill2ads"
+name: website-to-ads
+description: Scrape any business website and generate 5 Meta-ready ad variants matching the brand's voice. Use when the user wants to create ads, generate ad copy, or turn a website URL into marketing creatives. Optionally requires Civic verification before exporting selected ads to Meta.
 ---
 
-# website to ads
+# Website to Ads
 
-> Scrape any business website and generate 5 Meta-ready ad variants matching the brand's voice. Use when the user wants to create ads, generate ad copy, or tur...
+## Quick Start
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill2ads`
-- **Source URL:** [https://clawhub.ai/skills/skill2ads](https://clawhub.ai/skills/skill2ads)
+Ask the agent:
+> "Generate ads for https://example.com"
 
-## Overview
+## Tools
 
+- **scrape_website** — Scrape a URL into cleaned text
+- **generate_ads** — Analyze brand + generate ad variants from text
+- **website_to_ads** — End-to-end: URL → brand profile → numbered ads
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Requirements
+
+Set these environment variables before use:
+
 ```bash
-hermes skills install clawhub/skill2ads
+export APIFY_TOKEN=your_apify_token
+export OPENAI_API_KEY=your_openai_key
+export CIVIC_AUTH_ENABLED=false
+export CIVIC_CLIENT_ID=your_civic_client_id
+export CIVIC_ACCESS_TOKEN=your_civic_access_token
 ```
+
+## Output
+
+Each ad includes: hook, body, CTA, visual direction, Meta-compatible targeting, and daypart scheduling.
+
+Meta export behavior:
+- Anyone can generate and review ads.
+- If `CIVIC_AUTH_ENABLED=true`, exporting selected ads to Meta requires a valid Civic token.
+- For CLI demos, set `CIVIC_ACCESS_TOKEN` to skip token prompts.
+- Never commit real API keys or Civic access tokens to the repository.

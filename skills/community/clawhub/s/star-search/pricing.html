@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>定价 - Star Search</title>
+<meta name="description" content="Star Search 定价 - 免费 + 基础 + Pro 三档会员">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0e0e10; color: #e8e8e8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; min-height: 100vh; padding: 3rem 1.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { color: #60a5fa; font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; }
+  .subtitle { color: #93c5fd; text-align: center; font-size: 1.05rem; margin-bottom: 3rem; }
+  .back-link { color: #60a5fa; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; }
+  .back-link:hover { text-decoration: underline; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  @media (max-width: 800px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .pricing-card { background: linear-gradient(135deg, #1a1a2e 0%, #0e0e10 100%); border: 1px solid #2a2a2d; border-radius: 16px; padding: 2rem 1.5rem; position: relative; transition: transform 0.2s, border-color 0.2s; }
+  .pricing-card:hover { transform: translateY(-4px); border-color: #4a9eff; }
+  .pricing-card.featured { border-color: #60a5fa; background: linear-gradient(135deg, #1e2a4a 0%, #0e0e10 100%); box-shadow: 0 8px 32px rgba(96, 165, 250, 0.15); }
+  .badge { position: absolute; top: -12px; right: 1.5rem; background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%); color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+  .tier-name { color: #60a5fa; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .tier-desc { color: #6b7280; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .price { display: flex; align-items: baseline; margin-bottom: 0.5rem; }
+  .price-amount { color: #e8e8e8; font-size: 2.5rem; font-weight: 700; }
+  .price-currency { color: #93c5fd; font-size: 1.1rem; margin-left: 6px; }
+  .price-period { color: #6b7280; font-size: 0.9rem; margin-left: 8px; }
+  .price-note { color: #6b7280; font-size: 0.8rem; margin-bottom: 1.5rem; }
+  .feature-list { list-style: none; padding: 0; margin-bottom: 2rem; }
+  .feature-list li { padding: 0.5rem 0; color: #c5c5c8; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 8px; }
+  .feature-list li::before { content: "✓"; color: #22c55e; font-weight: 700; flex-shrink: 0; }
+  .feature-list li.disabled { color: #4b5563; }
+  .feature-list li.disabled::before { content: "✗"; color: #4b5563; }
+  .cta-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .cta-btn.primary { background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%); color: white; }
+  .cta-btn.secondary { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+  .cta-btn:hover { opacity: 0.9; }
+  .cta-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .faq { background: #1a1a2e; border: 1px solid #2a2a2d; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+  .faq h2 { color: #60a5fa; margin-bottom: 1.5rem; }
+  .faq-item { margin-bottom: 1.5rem; }
+  .faq-q { color: #93c5fd; font-weight: 600; margin-bottom: 0.5rem; }
+  .faq-a { color: #c5c5c8; font-size: 0.95rem; }
+  .payment-methods { text-align: center; margin-bottom: 2rem; }
+  .payment-methods span { display: inline-block; background: #1a1a2e; border: 1px solid #2a2a2d; padding: 8px 16px; border-radius: 8px; margin: 0 6px; color: #93c5fd; font-size: 0.9rem; }
+  .alert { background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center; color: #93c5fd; }
+  .alert strong { color: #60a5fa; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<a href="/" class="back-link">← 返回首页</a>
+
+<h1>💎 Star Search 定价</h1>
+<p class="subtitle">3 档会员 · 支付宝支付 · 7 天无理由退款</p>
+
+<div class="pricing-grid">
+
+  <!-- Free -->
+  <div class="pricing-card">
+    <div class="tier-name">免费</div>
+    <div class="tier-desc">体验所有核心搜索功能</div>
+    <div class="price">
+      <span class="price-amount">¥0</span>
+      <span class="price-currency">/月</span>
+    </div>
+    <div class="price-note">永久免费</div>
+    <ul class="feature-list">
+      <li>100 次/天 搜索配额</li>
+      <li>30 分钟搜索缓存</li>
+      <li>基础 LLM 答案 (GLM-4-Flash)</li>
+      <li>多模态 OCR (10 张/天)</li>
+      <li>Deep Research (1 次/天)</li>
+      <li>历史/收藏 (50 条)</li>
+      <li>社区支持</li>
+      <li class="disabled">优先 LLM 引擎</li>
+      <li class="disabled">邮件客服</li>
+    </ul>
+    <button class="cta-btn secondary" onclick="alert('您已使用免费版')">当前版本</button>
+  </div>
+
+  <!-- Basic -->
+  <div class="pricing-card">
+    <div class="tier-name">基础</div>
+    <div class="tier-desc">个人日常搜索首选</div>
+    <div class="price">
+      <span class="price-amount">¥29</span>
+      <span class="price-currency">/月</span>
+    </div>
+    <div class="price-note">月付 · 自动续费可关闭</div>
+    <ul class="feature-list">
+      <li>1000 次/月 搜索配额</li>
+      <li>5 分钟搜索缓存（更新更频繁）</li>
+      <li>优先 LLM 答案 (DeepSeek 替代 GLM)</li>
+      <li>多模态 OCR (100 张/月)</li>
+      <li>Deep Research (30 次/月)</li>
+      <li>历史/收藏 无限制</li>
+      <li>邮件支持（48h 响应）</li>
+      <li>MCP server 高级选项</li>
+      <li class="disabled">Deep Research 无限制</li>
+    </ul>
+    <button class="cta-btn primary" id="btn-basic" onclick="pay('basic', 29)">
+      立即升级
+    </button>
+  </div>
+
+  <!-- Pro -->
+  <div class="pricing-card featured">
+    <span class="badge">🔥 最受欢迎</span>
+    <div class="tier-name">Pro</div>
+    <div class="tier-desc">专业研究 / 重度用户</div>
+    <div class="price">
+      <span class="price-amount">¥299</span>
+      <span class="price-currency">/年</span>
+    </div>
+    <div class="price-note">年付仅 ¥25/月 · 省 14%</div>
+    <ul class="feature-list">
+      <li><strong>10000 次/年</strong> 搜索配额</li>
+      <li>1 分钟搜索缓存（实时）</li>
+      <li>优先 LLM + 高速推理</li>
+      <li>多模态 OCR (无限)</li>
+      <li>Deep Research (无限)</li>
+      <li>历史/收藏 无限制 + 导出</li>
+      <li>VIP 客服（24h 响应）</li>
+      <li>Beta 功能优先体验</li>
+      <li>未来 API 优先接入</li>
+    </ul>
+    <button class="cta-btn primary" id="btn-pro" onclick="pay('pro', 299)">
+      立即升级
+    </button>
+  </div>
+
+</div>
+
+<div class="payment-methods">
+  <span>💳 支付宝</span>
+  <span>🔒 安全支付</span>
+  <span>↩️ 7 天退款</span>
+  <span>📧 发票申请</span>
+</div>
+
+<div class="alert">
+  <strong>⚠️ 支付系统即将上线</strong><br>
+  支付集成测试中, 暂未对外开放. 抢先体验请加: <code>stardust@token-star.cn</code>
+</div>
+
+<div class="faq">
+  <h2>❓ 常见问题</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 免费版真的能一直用吗？</div>
+    <div class="faq-a">A: 是的！免费版永久开放，100 次/天 配额对绝大多数个人用户足够。如果您是专业研究人员 / 重度用户，可考虑 Pro 会员。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 升级后配额立即生效吗？</div>
+    <div class="faq-a">A: 是的，支付成功后立即生效，刷新页面即可看到新配额。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 可以退款吗？</div>
+    <div class="faq-a">A: <strong>7 天无理由退款</strong>。购买后 7 天内未大量使用，可申请全额退款。联系 <code>stardust@token-star.cn</code>。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 自动续费吗？</div>
+    <div class="faq-a">A: 默认<strong>不自动续费</strong>。到期前 7 天会有邮件提醒，您可手动续费。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 支持发票吗？</div>
+    <div class="faq-a">A: 支持企业 / 个人发票。支付后联系客服开票（电子普票）。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: Pro 比基础版多哪些能力？</div>
+    <div class="faq-a">A: 4 大核心优势：①配额 10x；②缓存实时；③Deep Research 无限；④Beta 优先 + VIP 客服。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Q: 怎么开发票？</div>
+    <div class="faq-a">A: 支付后，发送邮件至 <code>stardust@token-star.cn</code>，附订单号 + 抬头 + 税号，3 个工作日内开具。</div>
+  </div>
+
+</div>
+
+<p style="text-align: center; color: #6b7280; font-size: 0.85rem; margin-top: 3rem;">
+  支付即表示您同意 <a href="/terms.html" style="color:#60a5fa">服务条款</a> 和 <a href="/privacy.html" style="color:#60a5fa">隐私政策</a><br>
+  © 2026 Star Search · MIT-0 License
+</p>
+
+</div>
+
+<script>
+async function pay(tier, amount) {
+  const token = localStorage.getItem('star_token');
+  if (!token) {
+    alert('请先登录账号');
+    return;
+  }
+  const btn = document.getElementById('btn-' + tier);
+  btn.disabled = true;
+  btn.textContent = '正在跳转...';
+  try {
+    const r = await fetch('/v1/pay/create', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({token, tier, amount})
+    });
+    const d = await r.json();
+    if (d.error) {
+      alert('错误: ' + d.error);
+      btn.disabled = false;
+      btn.textContent = '立即升级';
+      return;
+    }
+    if (d.pay_url) {
+      window.location.href = d.pay_url;
+    } else {
+      alert('支付链接生成失败，请稍后重试');
+      btn.disabled = false;
+      btn.textContent = '立即升级';
+    }
+  } catch (e) {
+    alert('网络错误: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = '立即升级';
+  }
+}
+</script>
+
+</body>
+</html>

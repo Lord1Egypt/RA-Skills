@@ -1,0 +1,119 @@
+[
+  {
+    "id": "install_uv",
+    "domain": "environment",
+    "description": "Install the uv Python package manager",
+    "command": {
+      "macos": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+      "linux": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+      "windows": "powershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\""
+    },
+    "inputs": ["os_platform"],
+    "parameters": {},
+    "explanation": "uv is a fast Python package manager. Solo CLI requires it for dependency management. Config lives under ~/.solo after install.",
+    "expected_output": "uv installed successfully",
+    "validation": {
+      "type": "command_check",
+      "rule": "uv --version must return a version string"
+    },
+    "common_errors": [
+      "curl not found on Windows — use PowerShell variant instead",
+      "PATH not updated — restart shell or run: source ~/.bashrc"
+    ],
+    "docs_ref": "/introsetup/environment"
+  },
+  {
+    "id": "create_venv",
+    "domain": "environment",
+    "description": "Create a Python 3.12 virtual environment using uv",
+    "command": "uv venv --python 3.12",
+    "inputs": [],
+    "parameters": {},
+    "explanation": "Creates an isolated Python 3.12 environment in .venv/. Recommended version for solo-cli compatibility.",
+    "expected_output": "Created virtual environment at .venv",
+    "validation": {
+      "type": "path_exists",
+      "rule": ".venv/ directory must exist in current working directory"
+    },
+    "common_errors": [
+      "Python 3.12 not found — uv will attempt to fetch it automatically",
+      "Ran in wrong directory — always run from your project root"
+    ],
+    "docs_ref": "/introsetup/environment"
+  },
+  {
+    "id": "activate_venv",
+    "domain": "environment",
+    "description": "Activate the virtual environment",
+    "command": {
+      "macos": "source .venv/bin/activate",
+      "linux": "source .venv/bin/activate",
+      "windows": "source .venv/scripts/activate"
+    },
+    "inputs": ["os_platform"],
+    "parameters": {},
+    "explanation": "Activates the venv so all subsequent pip/uv commands install into it, not system Python.",
+    "expected_output": "Shell prompt shows (.venv) prefix",
+    "validation": {
+      "type": "env_var_check",
+      "rule": "VIRTUAL_ENV environment variable must be set"
+    },
+    "common_errors": [
+      "Forgot to create venv first — run create_venv before this",
+      ".venv not in current dir — ensure you're in the project root"
+    ],
+    "docs_ref": "/introsetup/environment"
+  },
+  {
+    "id": "install_solo_cli",
+    "domain": "environment",
+    "description": "Install solo-cli package",
+    "command": {
+      "from_pypi": "uv pip install solo-cli",
+      "from_source": "git clone https://github.com/GetSoloTech/solo-cli.git && cd solo-cli && uv pip install -e ."
+    },
+    "inputs": ["install_method"],
+    "parameters": {
+      "install_method": {
+        "type": "enum",
+        "values": ["from_source", "from_pypi"],
+        "descriptions": {
+          "from_source": "Clone from GitHub and install in editable mode — recommended. Updates via git pull, no reinstall needed.",
+          "from_pypi": "Install a release snapshot from PyPI — quick but tracks releases, not latest commits"
+        }
+      }
+    },
+    "explanation": "Installs the solo-cli tool. GitHub source install (editable mode) is recommended — it stays current with git pull. PyPI installs a fixed release snapshot.",
+    "expected_output": "Successfully installed solo-cli",
+    "validation": {
+      "type": "command_check",
+      "rule": "solo --help must return command list including: setup, robo, serve, status, list, test, stop, download, setup-usb"
+    },
+    "common_errors": [
+      "venv not activated — activate first or solo command won't be found",
+      "Upgrading from solo-server — uninstall solo-server first, migrate ~/.solo_server to ~/.solo (see MIGRATION.md)"
+    ],
+    "docs_ref": "/introsetup/installation"
+  },
+  {
+    "id": "setup_usb_permissions",
+    "domain": "environment",
+    "description": "Grant USB serial access for robot arms on Linux",
+    "command": "solo setup-usb",
+    "inputs": [],
+    "parameters": {
+      "--yes / -y": "Skip confirmation prompt"
+    },
+    "explanation": "Adds the current user to the dialout group for serial access to Koch/SO100/SO101 arms. Only needed on Linux. Informational-only on macOS.",
+    "expected_output": "USB permissions configured successfully",
+    "validation": {
+      "type": "group_membership",
+      "rule": "User must be in dialout group (check: groups $USER)"
+    },
+    "common_errors": [
+      "Must log out and back in after for group change to take effect",
+      "On macOS — this command is informational only, no action needed"
+    ],
+    "docs_ref": "/introsetup/environment"
+  }
+]

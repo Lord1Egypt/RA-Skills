@@ -1,0 +1,15 @@
+{
+  "smtp": {
+    "server": "smtp.qq.com",
+    "port": 465,
+    "use_ssl": true,
+    "sender_email": "your-sender-email@example.com",
+    "password": "your-smtp-password",
+    "receiver_email": "your-receiver-email@example.com"
+  },
+  "timezone": "Asia/Shanghai",
+  "reminder": {
+    "email_interval_hours": 1,
+    "qq_advance_minutes": 15
+  }
+}

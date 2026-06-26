@@ -1,0 +1,16 @@
+{
+  "name": "supah-base-intelligence",
+  "version": "1.0.1",
+  "description": "Token intelligence for Base blockchain via SUPAH API",
+  "main": "index.js",
+  "bin": {
+    "supah-base": "./index.js"
+  },
+  "keywords": ["openclaw", "skill", "base", "crypto", "token-analysis", "defi"],
+  "author": "SUPAH",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supah-ai/openclaw-skill"
+  }
+}

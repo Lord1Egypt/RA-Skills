@@ -1,0 +1,11 @@
+{
+  "name": "sql-reports",
+  "version": "1.0.0",
+  "description": "Query Delivery Orders from SQL Server",
+  "triggers": ["delivery report", "do report", "delivery summary", "delivery items"],
+  "exec": {
+    "command": "python",
+    "args": ["{path}/query.py", "{input}"],
+    "yield": true
+  }
+}

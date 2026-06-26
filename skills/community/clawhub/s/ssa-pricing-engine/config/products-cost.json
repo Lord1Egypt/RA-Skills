@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Farreach 产品基础成本表。铜用量系数 copper_weight_kg 为每条线缆的铜用量（kg），用于动态铜价计算。",
+    "updated_at": "2026-03-25T01:40:00+08:00",
+    "updated_by": "iron",
+    "notes": [
+      "base_material_cost_usd: 不含铜的其他材料成本（连接头、外被、包装等）",
+      "processing_cost_usd: 加工费（注塑、焊接、测试、人工等）",
+      "copper_weight_kg: 每条线缆铜导体重量（kg），乘以实时铜价得到铜成本",
+      "default_length: 默认报价长度（米），不同长度需按系数调整",
+      "length_cost_factor: 每增加1米的额外成本系数（乘以 base + copper 的增量比例）"
+    ]
+  },
+  "products": [
+    {
+      "sku": "HDMI-2.1-8K-2M",
+      "model": "5001-11B",
+      "category": "HDMI",
+      "description": "HDMI 2.1 Ultra High Speed Cable 8K@60Hz",
+      "specification": "48Gbps, 2m",
+      "default_length_m": 2,
+      "copper_weight_kg": 0.065,
+      "base_material_cost_usd": 1.80,
+      "processing_cost_usd": 1.20,
+      "length_cost_factor_per_m": 0.35,
+      "moq": 500
+    },
+    {
+      "sku": "HDMI-2.1-8K-3M",
+      "model": "5001-11B-3M",
+      "category": "HDMI",
+      "description": "HDMI 2.1 Ultra High Speed Cable 8K@60Hz",
+      "specification": "48Gbps, 3m",
+      "default_length_m": 3,
+      "copper_weight_kg": 0.095,
+      "base_material_cost_usd": 2.10,
+      "processing_cost_usd": 1.30,
+      "length_cost_factor_per_m": 0.35,
+      "moq": 500
+    },
+    {
+      "sku": "HDMI-2.1-AOC-10M",
+      "model": "HDMI-AOC-2.1-10",
+      "category": "HDMI-AOC",
+      "description": "AOC Fiber HDMI 2.1 Cable",
+      "specification": "48Gbps, 8K@60Hz, 10m, Fiber+Copper",
+      "default_length_m": 10,
+      "copper_weight_kg": 0.040,
+      "base_material_cost_usd": 8.50,
+      "processing_cost_usd": 3.50,
+      "length_cost_factor_per_m": 0.80,
+      "moq": 200
+    },
+    {
+      "sku": "DP-2.1-16K-2M",
+      "model": "DP21-UHBR20-2M",
+      "category": "DisplayPort",
+      "description": "DP 2.1 16K Cable UHBR20",
+      "specification": "80Gbps, 16K@60Hz, 2m",
+      "default_length_m": 2,
+      "copper_weight_kg": 0.070,
+      "base_material_cost_usd": 2.20,
+      "processing_cost_usd": 1.50,
+      "length_cost_factor_per_m": 0.40,
+      "moq": 500
+    },
+    {
+      "sku": "DP-1.4-8K-2M",
+      "model": "DP14-HBR3-2M",
+      "category": "DisplayPort",
+      "description": "DP 1.4 8K Cable HBR3",
+      "specification": "32.4Gbps, 8K@60Hz, 2m",
+      "default_length_m": 2,
+      "copper_weight_kg": 0.060,
+      "base_material_cost_usd": 1.50,
+      "processing_cost_usd": 1.00,
+      "length_cost_factor_per_m": 0.30,
+      "moq": 500
+    },
+    {
+      "sku": "USB-C-HUB-7IN1",
+      "model": "HUB-7P-01",
+      "category": "USB-C-HUB",
+      "description": "7-in-1 USB-C HUB",
+      "specification": "USB-A 3.0 x3, HDMI 4K, SD/TF, PD 100W",
+      "default_length_m": null,
+      "copper_weight_kg": 0.015,
+      "base_material_cost_usd": 5.80,
+      "processing_cost_usd": 2.80,
+      "length_cost_factor_per_m": 0,
+      "moq": 300
+    },
+    {
+      "sku": "TC-RJ45-8K",
+      "model": "HSP0901-001-I",
+      "category": "Adapter",
+      "description": "Type-C to RJ45 Adapter 8K",
+      "specification": "8K output, Gigabit Ethernet",
+      "default_length_m": null,
+      "copper_weight_kg": 0.008,
+      "base_material_cost_usd": 2.00,
+      "processing_cost_usd": 1.20,
+      "length_cost_factor_per_m": 0,
+      "moq": 500
+    },
+    {
+      "sku": "USB-SILICONE-C-1M",
+      "model": "SIL-UC-100W-1M",
+      "category": "USB-Cable",
+      "description": "Silicone USB-C Cable PD 100W",
+      "specification": "100W PD, 480Mbps, 1m, Silicone jacket",
+      "default_length_m": 1,
+      "copper_weight_kg": 0.025,
+      "base_material_cost_usd": 0.80,
+      "processing_cost_usd": 0.50,
+      "length_cost_factor_per_m": 0.25,
+      "moq": 1000
+    },
+    {
+      "sku": "MFI-LIGHTNING-1M",
+      "model": "MFI-LTN-1M",
+      "category": "USB-Cable",
+      "description": "MFi Lightning Cable",
+      "specification": "Apple MFi Certified, 1m",
+      "default_length_m": 1,
+      "copper_weight_kg": 0.020,
+      "base_material_cost_usd": 1.50,
+      "processing_cost_usd": 0.80,
+      "length_cost_factor_per_m": 0.20,
+      "moq": 1000
+    },
+    {
+      "sku": "CAT6-PATCH-2M",
+      "model": "NET-CAT6-2M",
+      "category": "Network",
+      "description": "Cat6 Patch Cable",
+      "specification": "1Gbps, 2m, RJ45",
+      "default_length_m": 2,
+      "copper_weight_kg": 0.045,
+      "base_material_cost_usd": 0.40,
+      "processing_cost_usd": 0.30,
+      "length_cost_factor_per_m": 0.15,
+      "moq": 1000
+    }
+  ]
+}

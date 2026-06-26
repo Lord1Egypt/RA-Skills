@@ -1,0 +1,49 @@
+{
+  "slug": "sp3nd",
+  "name": "SP3ND — Buy from Amazon & eBay with USDC",
+  "description": "Buy products from Amazon and eBay using USDC on Solana. 0% platform fee, no KYC, free Prime shipping on Amazon, 200+ countries, fully autonomous via x402 payment protocol.",
+  "version": "1.6.0",
+  "tags": ["solana", "usdc", "amazon", "ebay", "x402", "shopping", "ecommerce", "payments", "crypto"],
+  "skill": "SKILL.md",
+  "homepage": "https://sp3nd.shop",
+  "repository": "https://github.com/kent-x1/sp3nd-agent-skill",
+  "documentation": "https://sp3nd.shop/skill.md",
+  "license": "Apache-2.0",
+  "requirements": {
+    "env": {
+      "SP3ND_API_KEY": {
+        "description": "API key from POST /registerAgent",
+        "required": true
+      },
+      "SP3ND_API_SECRET": {
+        "description": "API secret from POST /registerAgent (shown once — save immediately)",
+        "required": true
+      },
+      "SOLANA_RPC_URL": {
+        "description": "Solana RPC endpoint (defaults to https://api.mainnet-beta.solana.com)",
+        "required": false
+      },
+      "AGENT_WALLET_PATH": {
+        "description": "Path to Solana wallet JSON file (defaults to ./.wallet.json)",
+        "required": false
+      }
+    },
+    "credentials": {
+      "solana_wallet": {
+        "description": "Solana keypair holding USDC — the agent generates this autonomously, then a human funds it",
+        "type": "file",
+        "default_path": ".wallet.json"
+      }
+    },
+    "config_paths": [".wallet.json"],
+    "network_access": [
+      "https://us-central1-sp3nddotshop-prod.cloudfunctions.net (SP3ND API)",
+      "https://facilitator.payai.network (x402 payment facilitator)",
+      "https://api.mainnet-beta.solana.com (Solana RPC)"
+    ]
+  },
+  "security": {
+    "autonomous_spending": true,
+    "spending_note": "Once funded, the agent can spend USDC without per-transaction human approval. Fund the wallet only with amounts you're comfortable with the agent spending autonomously. See SKILL.md for optional human-approval patterns."
+  }
+}

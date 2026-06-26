@@ -1,35 +1,18 @@
 ---
-name: "Startup Agent (→ raon-os)"
-description: "Alias for raon-os — AI-powered startup companion for Korean founders. Install the main package for full functionality."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/startup-zero-to-one"
-sourceUrl: "https://clawhub.ai/skills/startup-zero-to-one"
+name: startup-zero-to-one
+description: Alias for raon-os — AI-powered startup companion for Korean founders. Install the main package for full functionality.
 ---
 
-# Startup Agent (→ raon-os)
+# Startup 0→1 (Alias)
 
-> Alias for raon-os — AI-powered startup companion for Korean founders. Install the main package for full functionality.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/startup-zero-to-one`
-- **Source URL:** [https://clawhub.ai/skills/startup-zero-to-one](https://clawhub.ai/skills/startup-zero-to-one)
-
-## Overview
-
+This is an alias package for **[raon-os](https://clawhub.com/skills/raon-os)**.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/startup-zero-to-one
+clawhub install raon-os
 ```
+
+All features (business plan evaluation, government funding matching, RAG pipeline, Kakao integration) are available in the `raon-os` package.
+
+See [raon-os on ClawHub](https://clawhub.com/skills/raon-os) for full documentation.

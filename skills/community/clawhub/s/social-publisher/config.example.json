@@ -1,0 +1,21 @@
+{
+  "wechat": {
+    "appid": "your_wechat_appid_here",
+    "appsecret": "your_wechat_appsecret_here"
+  },
+  "xiaohongshu": {
+    "app_id": "your_xiaohongshu_app_id",
+    "app_secret": "your_xiaohongshu_app_secret",
+    "access_token": "your_xiaohongshu_access_token"
+  },
+  "zhihu": {
+    "client_id": "your_zhihu_client_id",
+    "client_secret": "your_zhihu_client_secret",
+    "access_token": "your_zhihu_access_token"
+  },
+  "douyin": {
+    "app_key": "your_douyin_app_key",
+    "app_secret": "your_douyin_app_secret",
+    "access_token": "your_douyin_access_token"
+  }
+}

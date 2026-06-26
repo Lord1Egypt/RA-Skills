@@ -1,35 +1,32 @@
----
-name: "Stock Review"
-description: "Provides daily A-share market review with data on top traders, sector limits, fund flows, streaks, sentiment, and next-day strategies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-review"
-sourceUrl: "https://clawhub.ai/skills/stock-review"
----
+# stock-review 技能
 
-# Stock Review
+## 功能
+A 股每日复盘分析，包括：
+- 龙虎榜数据
+- 板块涨停统计
+- 资金流向分析
+- 连板高度统计
+- 舆情监控
+- 次日策略建议
 
-> Provides daily A-share market review with data on top traders, sector limits, fund flows, streaks, sentiment, and next-day strategies.
+## 使用方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-review`
-- **Source URL:** [https://clawhub.ai/skills/stock-review](https://clawhub.ai/skills/stock-review)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-review
+### 手动触发
 ```
+/stock-review [日期]
+```
+日期格式：YYYY-MM-DD，默认为今日
+
+### 定时任务
+每天 16:30 自动执行（收盘后）
+
+## 输出
+生成 Markdown 复盘报告，可推送到飞书
+
+## 数据源
+- 东方财富网（免费）
+- 新浪财经（舆情）
+- 雪球（可选）
+
+## 配置
+无需额外配置，使用内置 web_fetch 工具

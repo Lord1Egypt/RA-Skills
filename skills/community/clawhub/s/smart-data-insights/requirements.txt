@@ -1,0 +1,19 @@
+# Data Analyst Skill - Python Dependencies
+# Install with: pip3 install -r requirements.txt
+
+# Core data manipulation
+pandas>=1.3.0
+numpy>=1.21.0
+
+# Excel file support
+openpyxl>=3.0.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Optional: Enhanced features
+# scipy>=1.7.0          # Advanced statistics
+# scikit-learn>=1.0.0   # Machine learning
+# plotly>=5.0.0         # Interactive charts
+# jupyter>=1.0.0        # Notebook support

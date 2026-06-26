@@ -1,0 +1,25 @@
+{
+  "name": "stardots-backup",
+  "version": "1.0.0",
+  "description": "Upload images to stardots.io cloud storage platform",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "package": "npm run build && npm pack"
+  },
+  "keywords": [
+    "stardots",
+    "image-hosting",
+    "backup",
+    "cdn",
+    "openclaw-skill"
+  ],
+  "author": "StarDots",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

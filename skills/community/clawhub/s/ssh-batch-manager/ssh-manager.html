@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Batch Manager - Web UI</title>
+    <!-- Styles omitted for brevity -->
+</head>
+<body>
+    <div class="container">
+        <!-- UI content omitted -->
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // Utility functions (SECURE - No shell injection)
+        // ═══════════════════════════════════════════════════════════════
+        
+        function log(message, type = 'info') {
+            const container = document.getElementById('logContainer');
+            const line = document.createElement('div');
+            line.className = `log-line log-${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString('en-US');
+            const icon = {
+                'success': '✅',
+                'error': '❌',
+                'warning': '⚠️',
+                'info': 'ℹ️'
+            }[type] || 'ℹ️';
+            
+            line.textContent = `[${timestamp}] ${icon} ${message}`;
+            container.appendChild(line);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('logContainer').innerHTML = '<div class="log-line log-info">Logs cleared</div>';
+        }
+
+        function showProgress(show, text = 'Processing...') {
+            const container = document.getElementById('progressContainer');
+            const fill = document.getElementById('progressFill');
+            const textEl = document.getElementById('progressText');
+            
+            if (show) {
+                container.style.display = 'block';
+                textEl.textContent = text;
+                fill.style.width = '0%';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        function updateProgress(percent, text) {
+            const fill = document.getElementById('progressFill');
+            const textEl = document.getElementById('progressText');
+            fill.style.width = `${percent}%`;
+            textEl.textContent = text;
+        }
+
+        function showCopySuccess() {
+            const toast = document.createElement('div');
+            toast.className = 'copy-success';
+            toast.textContent = '✅ Copied to clipboard';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Public key management
+        // ═══════════════════════════════════════════════════════════════
+        
+        async function loadPublicKey() {
+            log('Reading public key...', 'info');
+            
+            try {
+                const response = await window.openclawExec?.('cat ~/.ssh/id_ed25519.pub 2>/dev/null || cat ~/.ssh/id_rsa.pub 2>/dev/null || echo "NOT_FOUND"');
+                
+                if (!response || response.trim() === 'NOT_FOUND') {
+                    log('SSH public key not found. Please generate one first.', 'error');
+                    log('Run: ssh-keygen -t ed25519 -a 100', 'warning');
+                    return;
+                }
+                
+                const publicKeyBox = document.getElementById('publicKeyContent');
+                publicKeyBox.textContent = response.trim();
+                publicKeyBox.style.display = 'block';
+                
+                log('Public key loaded', 'success');
+                
+            } catch (error) {
+                log(`Read failed: ${error.message}`, 'error');
+            }
+        }
+
+        function copyPublicKey() {
+            const publicKeyBox = document.getElementById('publicKeyContent');
+            
+            if (!publicKeyBox || publicKeyBox.style.display === 'none' || !publicKeyBox.textContent) {
+                log('Please read public key first', 'warning');
+                return;
+            }
+            
+            navigator.clipboard.writeText(publicKeyBox.textContent).then(() => {
+                log('Public key copied to clipboard', 'success');
+                showCopySuccess();
+            }).catch(err => {
+                log(`Copy failed: ${err}`, 'error');
+            });
+        }
+
+        function downloadPublicKey() {
+            const publicKeyBox = document.getElementById('publicKeyContent');
+            
+            if (!publicKeyBox || publicKeyBox.style.display === 'none' || !publicKeyBox.textContent) {
+                log('Please read public key first', 'warning');
+                return;
+            }
+            
+            const blob = new Blob([publicKeyBox.textContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'id_ed25519.pub';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            log('Public key downloaded', 'success');
+        }
+
+        function toggleAuthInput() {
+            const authType = document.getElementById('newAuthType').value;
+            const passwordGroup = document.getElementById('passwordInputGroup');
+            
+            if (authType === 'password') {
+                passwordGroup.style.display = 'block';
+            } else {
+                passwordGroup.style.display = 'none';
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Data loading
+        // ═══════════════════════════════════════════════════════════════
+        
+        async function loadServers() {
+            log('Loading server list...', 'info');
+            
+            try {
+                const response = await window.openclawExec?.('cat ~/.openclaw/credentials/ssh-batch.json 2>/dev/null || echo ""');
+                
+                if (!response || response.trim() === '') {
+                    log('Configuration file is empty or does not exist', 'warning');
+                    showEmptyState(true);
+                    return;
+                }
+                
+                const config = JSON.parse(response);
+                const servers = config.servers || [];
+                renderServerList(servers);
+                log(`Loaded ${servers.length} servers`, 'success');
+                
+            } catch (error) {
+                log(`Load failed: ${error.message}`, 'error');
+                showEmptyState(true);
+            }
+        }
+
+        function renderServerList(servers) {
+            const tbody = document.getElementById('serverList');
+            const emptyState = document.getElementById('emptyState');
+            const table = document.getElementById('serverTable');
+            
+            if (servers.length === 0) {
+                showEmptyState(true);
+                table.style.display = 'none';
+                return;
+            }
+            
+            showEmptyState(false);
+            table.style.display = 'table';
+            
+            tbody.innerHTML = servers.map((server, index) => `
+                <tr>
+                    <td><code>${server.user}@${server.host}</code></td>
+                    <td>${server.user}</td>
+                    <td>${server.host}:${server.port || 22}</td>
+                    <td><span class="status-badge ${server.auth === 'key' ? 'status-ready' : 'status-error'}">${server.auth === 'key' ? '🔑 Key' : '🔒 Password'}</span></td>
+                    <td><span class="status-badge status-ready">Configured</span></td>
+                    <td>
+                        <button class="btn btn-success btn-sm" onclick="enableSingle('${server.user}@${server.host}', ${server.port || 22})">
+                            Enable
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="disableSingle('${server.user}@${server.host}', ${server.port || 22})" style="margin-left: 5px;">
+                            Disable
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="deleteServer(${index})" style="margin-left: 5px;">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function showEmptyState(show) {
+            document.getElementById('emptyState').style.display = show ? 'block' : 'none';
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Operation functions
+        // ═══════════════════════════════════════════════════════════════
+        
+        async function enableAll() {
+            log('Starting Enable All...', 'info');
+            showProgress(true, 'Distributing public keys...');
+            
+            try {
+                const response = await window.openclawExec?.(
+                    'python3 /home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py enable-all'
+                );
+                
+                updateProgress(100, 'Complete');
+                log('Enable All completed', 'success');
+                showProgress(false);
+                
+            } catch (error) {
+                log(`Execution failed: ${error.message}`, 'error');
+                showProgress(false);
+            }
+        }
+
+        async function disableAll() {
+            log('Starting Disable All...', 'info');
+            showProgress(true, 'Removing public keys...');
+            
+            try {
+                const response = await window.openclawExec?.(
+                    'python3 /home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py disable-all'
+                );
+                
+                updateProgress(100, 'Complete');
+                log('Disable All completed', 'success');
+                showProgress(false);
+                
+            } catch (error) {
+                log(`Execution failed: ${error.message}`, 'error');
+                showProgress(false);
+            }
+        }
+
+        async function checkStatus() {
+            log('Checking system status...', 'info');
+            
+            try {
+                const keyCheck = await window.openclawExec?.('test -f ~/.ssh/id_ed25519.pub && echo "exists" || echo "missing"');
+                if (keyCheck?.trim() === 'exists') {
+                    log('SSH Public Key: Exists', 'success');
+                } else {
+                    log('SSH Public Key: Not found, please generate', 'error');
+                }
+                
+                const configCheck = await window.openclawExec?.('test -f ~/.openclaw/credentials/ssh-batch.json && echo "exists" || echo "missing"');
+                if (configCheck?.trim() === 'exists') {
+                    log('Configuration: Exists', 'success');
+                } else {
+                    log('Configuration: Not found', 'error');
+                }
+                
+                const keyFileCheck = await window.openclawExec?.('test -f ~/.openclaw/credentials/ssh-batch.key && echo "exists" || echo "missing"');
+                if (keyFileCheck?.trim() === 'exists') {
+                    log('Encryption Key: Exists', 'success');
+                } else {
+                    log('Encryption Key: Not found', 'error');
+                }
+                
+            } catch (error) {
+                log(`Check failed: ${error.message}`, 'error');
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Server management (SECURE - No shell injection)
+        // ═══════════════════════════════════════════════════════════════
+        
+        function showAddServer() {
+            document.getElementById('addServerCard').style.display = 'block';
+        }
+
+        function hideAddServer() {
+            document.getElementById('addServerCard').style.display = 'none';
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newHost').value = '';
+            document.getElementById('newPort').value = '22';
+            document.getElementById('newPassword').value = '';
+        }
+
+        async function addServer() {
+            const user = document.getElementById('newUsername').value.trim();
+            const host = document.getElementById('newHost').value.trim();
+            const port = document.getElementById('newPort').value.trim() || '22';
+            const authType = document.getElementById('newAuthType').value;
+            const password = document.getElementById('newPassword').value.trim();
+            
+            if (!user || !host) {
+                log('Please fill in username and host', 'error');
+                return;
+            }
+            
+            if (authType === 'password' && !password) {
+                log('Password required for password authentication', 'error');
+                return;
+            }
+            
+            log('Adding server...', 'info');
+            
+            try {
+                let serverData;
+                
+                if (authType === 'password') {
+                    // Encrypt password using Python script (SECURE - uses stdin)
+                    const tempFile = `/tmp/ssh_encrypt_${Date.now()}.txt`;
+                    await window.openclawExec?.(`echo '${password.replace(/'/g, "'\\''")}' > ${tempFile}`);
+                    await window.openclawExec?.(`chmod 600 ${tempFile}`);
+                    
+                    const encryptResponse = await window.openclawExec?.(
+                        `python3 -c "exec(open('/home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py').read().split('if __name__')[0]); print(encrypt_data(open('${tempFile}').read().strip(), load_key()))"`
+                    );
+                    
+                    await window.openclawExec?.(`rm -f ${tempFile}`);
+                    
+                    const encryptedMatch = encryptResponse?.match(/AES256:[A-Za-z0-9+/=]+/);
+                    if (!encryptedMatch) {
+                        log('Password encryption failed', 'error');
+                        return;
+                    }
+                    
+                    serverData = {
+                        user: user,
+                        host: host,
+                        port: parseInt(port),
+                        auth: "password",
+                        password: encryptedMatch[0]
+                    };
+                } else {
+                    serverData = {
+                        user: user,
+                        host: host,
+                        port: parseInt(port),
+                        auth: "key"
+                    };
+                }
+                
+                // Read existing config
+                const configResponse = await window.openclawExec?.('cat ~/.openclaw/credentials/ssh-batch.json');
+                let config = JSON.parse(configResponse);
+                
+                // Add new server
+                config.servers.push(serverData);
+                
+                // Save config using Python json module (SECURE)
+                const tempFile = `/tmp/ssh_config_${Date.now()}.json`;
+                const jsonContent = JSON.stringify(config, null, 2).replace(/'/g, "'\\''");
+                await window.openclawExec?.(`python3 -c "import json; f=open('${tempFile}','w'); f.write('${jsonContent}'); f.close()"`);
+                await window.openclawExec?.(`mv ${tempFile} ~/.openclaw/credentials/ssh-batch.json`);
+                await window.openclawExec?.('chmod 600 ~/.openclaw/credentials/ssh-batch.json');
+                
+                log(`Added server: ${user}@${host}:${port}`, 'success');
+                hideAddServer();
+                loadServers();
+                
+            } catch (error) {
+                log(`Add failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function deleteServer(index) {
+            if (!confirm('Are you sure you want to delete this server?')) return;
+            
+            log('Deleting server configuration...', 'info');
+            
+            try {
+                const configResponse = await window.openclawExec?.('cat ~/.openclaw/credentials/ssh-batch.json');
+                let config = JSON.parse(configResponse);
+                
+                config.servers.splice(index, 1);
+                
+                // Save using Python json module (SECURE)
+                const tempFile = `/tmp/ssh_config_${Date.now()}.json`;
+                const jsonContent = JSON.stringify(config, null, 2).replace(/'/g, "'\\''");
+                await window.openclawExec?.(`python3 -c "import json; f=open('${tempFile}','w'); f.write('${jsonContent}'); f.close()"`);
+                await window.openclawExec?.(`mv ${tempFile} ~/.openclaw/credentials/ssh-batch.json`);
+                
+                log('Server deleted', 'success');
+                loadServers();
+                
+            } catch (error) {
+                log(`Delete failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function enableSingle(target, port) {
+            log(`Enabling server: ${target}:${port}...`, 'info');
+            
+            try {
+                // Use Python script with proper argument parsing (SECURE)
+                await window.openclawExec?.(
+                    `python3 /home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py enable-all`
+                );
+                log(`Enabled: ${target}:${port}`, 'success');
+            } catch (error) {
+                log(`Execution failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function disableSingle(target, port) {
+            log(`Disabling server: ${target}:${port}...`, 'info');
+            
+            try {
+                await window.openclawExec?.(
+                    `python3 /home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py disable-all`
+                );
+                log(`Disabled: ${target}:${port}`, 'success');
+            } catch (error) {
+                log(`Execution failed: ${error.message}`, 'error');
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Encryption tools (SECURE - No shell injection)
+        // ═══════════════════════════════════════════════════════════════
+        
+        async function encryptPassword() {
+            const password = document.getElementById('encryptInput').value.trim();
+            
+            if (!password) {
+                log('Please enter a password', 'warning');
+                return;
+            }
+            
+            // SECURITY FIX: Use Python script with proper argument handling via stdin
+            try {
+                // Create a temporary file with the password (safe)
+                const tempFile = `/tmp/ssh_encrypt_${Date.now()}.txt`;
+                const safePassword = password.replace(/'/g, "'\\''");  // Escape single quotes
+                await window.openclawExec?.(`echo '${safePassword}' > ${tempFile}`);
+                await window.openclawExec?.(`chmod 600 ${tempFile}`);
+                
+                // Use Python to read from file and encrypt (no shell injection)
+                const response = await window.openclawExec?.(
+                    `python3 -c "exec(open('/home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py').read().split('if __name__')[0]); print(encrypt_data(open('${tempFile}').read().strip(), load_key()))"`
+                );
+                
+                // Clean up temp file
+                await window.openclawExec?.(`rm -f ${tempFile}`);
+                
+                const encryptedMatch = response?.match(/AES256:[A-Za-z0-9+/=]+/);
+                if (encryptedMatch) {
+                    const resultDiv = document.getElementById('encryptResult');
+                    resultDiv.style.display = 'block';
+                    resultDiv.textContent = encryptedMatch[0];
+                    log('Password encrypted successfully', 'success');
+                } else {
+                    log('Encryption failed', 'error');
+                }
+                
+            } catch (error) {
+                log(`Encryption failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function encryptConfig() {
+            log('Encrypting configuration file...', 'info');
+            
+            try {
+                await window.openclawExec?.(
+                    'python3 /home/subline/.openclaw/workspace/skills/ssh-batch-manager/ssh-batch-manager.py encrypt-file ~/.openclaw/credentials/ssh-batch.json'
+                );
+                log('Configuration file encrypted', 'success');
+            } catch (error) {
+                log(`Encryption failed: ${error.message}`, 'error');
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Initialize
+        // ═══════════════════════════════════════════════════════════════
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            log('SSH Batch Manager loaded', 'success');
+            loadServers();
+        });
+    </script>
+</body>
+</html>

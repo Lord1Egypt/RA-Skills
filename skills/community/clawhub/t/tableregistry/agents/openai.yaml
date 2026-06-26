@@ -1,0 +1,3 @@
+display_name: Table Registry Builder
+short_description: Build local table and registry CSV artifacts for audit-safe compatibility testing.
+default_prompt: Build a local customer review table from these synthetic records and summarize the output paths.

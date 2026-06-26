@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "利润率目标和底价红线规则",
+    "updated_at": "2026-03-25T01:40:00+08:00",
+    "updated_by": "iron"
+  },
+  "default_margin": {
+    "target_pct": 30,
+    "min_acceptable_pct": 15,
+    "description": "默认目标利润率 30%，最低可接受 15%"
+  },
+  "category_margins": {
+    "HDMI": {
+      "target_pct": 28,
+      "min_acceptable_pct": 15
+    },
+    "HDMI-AOC": {
+      "target_pct": 35,
+      "min_acceptable_pct": 20
+    },
+    "DisplayPort": {
+      "target_pct": 32,
+      "min_acceptable_pct": 18
+    },
+    "USB-C-HUB": {
+      "target_pct": 25,
+      "min_acceptable_pct": 12
+    },
+    "Adapter": {
+      "target_pct": 30,
+      "min_acceptable_pct": 15
+    },
+    "USB-Cable": {
+      "target_pct": 35,
+      "min_acceptable_pct": 18
+    },
+    "Network": {
+      "target_pct": 40,
+      "min_acceptable_pct": 20
+    }
+  },
+  "grade_margin_adjustment": {
+    "A": -3,
+    "B": 0,
+    "C": 2,
+    "D": 5,
+    "description": "基于客户等级对目标利润率的微调（百分点）。A 级客户可降低 3 个百分点追求长期合作，D 级客户加 5 个百分点覆盖风险。"
+  },
+  "floor_price": {
+    "check_mode": "both",
+    "description": "底价红线采用双重检查：绝对值和百分比。任一触发即视为低于红线。",
+    "absolute": {
+      "enabled": true,
+      "description": "单价低于成本价（material + processing + copper）时触发"
+    },
+    "percentage": {
+      "enabled": true,
+      "min_margin_pct": 5,
+      "description": "利润率低于 5% 时触发红线"
+    },
+    "on_trigger": {
+      "action": "notify_and_hold",
+      "discord_channel": "pricing-alerts",
+      "message_template": "⚠️ 底价红线触发\n客户: {customer}\n产品: {sku}\n报价: {quoted_price} {currency}\n成本: {cost}\n利润率: {margin_pct}%\n请 Wilson 确认是否放行。",
+      "require_approval": true,
+      "approval_timeout_hours": 48,
+      "description": "低于红线不自动拒绝，发 Discord 通知等待人工确认。外贸有时需要亏本拿单。"
+    }
+  },
+  "volume_margin_adjustment": [
+    {
+      "min_qty": 10000,
+      "margin_reduction_pct": 3,
+      "description": "万件以上大单可降低 3 个百分点利润率"
+    },
+    {
+      "min_qty": 50000,
+      "margin_reduction_pct": 5,
+      "description": "五万件以上超大单可降低 5 个百分点利润率"
+    }
+  ]
+}

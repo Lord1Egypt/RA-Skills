@@ -1,0 +1,7 @@
+# skills-audit dependencies
+#
+# Currently uses Python standard library only (Python >= 3.9).
+# If third-party packages are added in the future, pin versions here.
+#
+# Example:
+#   requests==2.31.0

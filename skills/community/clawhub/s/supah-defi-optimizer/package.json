@@ -1,0 +1,17 @@
+{
+  "name": "supah-defi-optimizer",
+  "version": "1.0.0",
+  "description": "DeFi yield optimization and portfolio management for Base blockchain",
+  "main": "index.js",
+  "bin": {
+    "defi": "./index.js",
+    "supah-defi": "./index.js"
+  },
+  "keywords": ["openclaw", "skill", "defi", "yield", "base", "crypto"],
+  "author": "SUPAH",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supah-based/supah-defi-optimizer.git"
+  }
+}

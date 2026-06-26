@@ -1,0 +1,126 @@
+[
+  {
+    "id": "create_org",
+    "domain": "teams",
+    "description": "Create a new team organization on Hub",
+    "action_type": "ui_flow",
+    "prerequisite": "verify_email",
+    "steps": [
+      "Navigate to 'Create Organization' in Hub",
+      "Fill in required fields (see parameters below)",
+      "Submit the form"
+    ],
+    "parameters": {
+      "org_name": {
+        "description": "Becomes the URL slug — e.g. hub.getsolo.tech/your-org. Letters, numbers, and hyphens only. No spaces. Permanent — cannot be transferred.",
+        "required": true
+      },
+      "display_name": {
+        "description": "Human-readable name shown in the UI",
+        "required": true
+      },
+      "homepage_url": {
+        "description": "Optional external link for your organization",
+        "required": false
+      },
+      "org_type": {
+        "description": "Select the type that best describes your organization",
+        "required": true
+      },
+      "tags": {
+        "description": "Helps others understand what your org focuses on",
+        "required": false
+      }
+    },
+    "expected_outcome": "New org appears in your org switcher; you are its first Admin",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Org switcher in nav shows the new org name; you appear in Settings → Members as Admin"
+    },
+    "common_errors": [
+      "Email not verified — verify email first before creating an org",
+      "Org name taken — add a suffix like -team or -ai; names are first-come, first-served",
+      "Spaces in org name — use hyphens instead"
+    ],
+    "docs_ref": "/teams/manage"
+  },
+  {
+    "id": "invite_member",
+    "domain": "teams",
+    "description": "Invite a user to join your team organization",
+    "action_type": "ui_flow",
+    "prerequisite": "create_org",
+    "steps": [
+      "Go to Settings → Members inside your org context",
+      "Click 'Add Member'",
+      "Enter the invitee's email address",
+      "Assign a role: Admin, Publisher, or Viewer",
+      "Send the invite"
+    ],
+    "roles": {
+      "Admin": "Full access — manage members, billing, models, and audit logs",
+      "Publisher": "Create and manage models. Cannot access billing or member settings.",
+      "Viewer": "Read-only access to the org's catalog"
+    },
+    "expected_outcome": "Invitee receives an email with a link to accept",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Invited user appears in Settings → Members with a 'Pending' status"
+    },
+    "common_errors": [
+      "Invite not received — ask them to check spam; resend from Settings → Members",
+      "Invitee has no Hub account — they'll be prompted to create one first, then land on acceptance page automatically",
+      "Invite link expired — resend from Settings → Members"
+    ],
+    "docs_ref": "/teams/manage"
+  },
+  {
+    "id": "accept_invite",
+    "domain": "teams",
+    "description": "Accept a team organization invite",
+    "action_type": "ui_flow",
+    "steps": [
+      "Open the invite email",
+      "Click the invite link",
+      "If not logged in, sign in or create an account",
+      "The org appears in your switcher immediately"
+    ],
+    "expected_outcome": "New org visible in your nav switcher",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Org name appears in org switcher dropdown"
+    },
+    "common_errors": [
+      "Link expired — contact your Admin to resend from Settings → Members"
+    ],
+    "docs_ref": "/teams/audit"
+  },
+  {
+    "id": "view_audit_logs",
+    "domain": "teams",
+    "description": "View the full activity history of your organization",
+    "action_type": "ui_flow",
+    "prerequisite": "role: Admin",
+    "steps": [
+      "Ensure you are scoped to the correct org via the org switcher",
+      "Go to Settings → Audit Logs"
+    ],
+    "logged_events": [
+      "Member joined or left",
+      "Model created, updated, or deleted",
+      "Role changes",
+      "API token created or revoked",
+      "Billing events"
+    ],
+    "explanation": "Audit logs are read-only and cannot be edited. Only Admins can see this page.",
+    "expected_outcome": "Chronological log of all org activity",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Audit Logs page shows event history table"
+    },
+    "common_errors": [
+      "Page not accessible — you may be a Publisher or Viewer, not an Admin. Check with your org's Admin about your role."
+    ],
+    "docs_ref": "/teams/audit"
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "name": "szzg007-product-promotion",
+  "displayName": "Product Promotion Email Generator",
+  "version": "1.0.0",
+  "description": "从商品网址自动提取图片，生成高品质邮件推广模版，并保存到素材库的完整自动化技能。支持邮件素材代号系统 (QY1, QB1 等)。",
+  "author": "szzg007",
+  "license": "MIT",
+  "repository": "https://github.com/szzg007/szzg007-product-promotion",
+  "keywords": [
+    "email",
+    "promotion",
+    "marketing",
+    "ecommerce",
+    "product",
+    "html",
+    "template"
+  ],
+  "categories": [
+    "marketing",
+    "automation",
+    "email"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "run": "python3 scripts/product-promotion.py"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/*.py",
+    "templates/*.html",
+    "references/*.md"
+  ],
+  "engines": {
+    "python": ">=3.8",
+    "node": ">=16"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.2.0"
+  },
+  "pricing": {
+    "model": "paid",
+    "price": 50,
+    "currency": "USD",
+    "note": "One-time purchase for unlimited use"
+  },
+  "features": [
+    "自动从电商网站提取商品图片",
+    "生成专业 HTML 邮件推广模版",
+    "支持邮件素材代号系统 (QY1, QB1 等)",
+    "自动归档到素材库",
+    "支持直接发送邮件",
+    "移动端友好响应式设计",
+    "多个邮件模版主题"
+  ],
+  "usage": {
+    "basic": "python3 scripts/product-promotion.py <product_url>",
+    "withCode": "python3 scripts/product-promotion.py <product_url> --code QB2",
+    "sendEmail": "python3 scripts/product-promotion.py <product_url> --send-to email@example.com"
+  },
+  "codeSystem": {
+    "QY": "童装系列 (Childrenswear)",
+    "QB": "收纳系列 (Box/Storage)",
+    "QA": "通用系列 (General)",
+    "QH": "家居系列 (Home)",
+    "QF": "时尚系列 (Fashion)"
+  },
+  "createdAt": "2026-03-17T19:40:00+08:00",
+  "updatedAt": "2026-03-17T19:40:00+08:00"
+}

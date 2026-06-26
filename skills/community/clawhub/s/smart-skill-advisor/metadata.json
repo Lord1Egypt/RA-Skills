@@ -1,0 +1,20 @@
+{
+  "name": "smart-skill-advisor",
+  "slug": "smart-skill-advisor",
+  "description": "Turn a user goal into the best skill stack. Recommends, compares, and sequences the right skills with explicit approval before install guidance.",
+  "author": "ToBeWin",
+  "version": "2.0.0",
+  "tags": [
+    "skill-advisor",
+    "recommendation",
+    "decision-support",
+    "workflow",
+    "search",
+    "planning",
+    "skill-stack",
+    "orchestration",
+    "skill-discovery",
+    "safe-installs"
+  ],
+  "entry": "SKILL.md"
+}

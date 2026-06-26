@@ -1,0 +1,4 @@
+interface:
+  display_name: "StepFun step-audio-r1.1"
+  short_description: "Run StepFun step-audio-r1.1 audio chat"
+  default_prompt: "Use $stepfun-step-audio-r1-1 to call StepFun's non-streaming audio chat API and save the returned audio plus transcript."

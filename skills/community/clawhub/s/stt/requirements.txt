@@ -1,0 +1,26 @@
+# Speech-to-Text Skill Dependencies
+
+# OpenAI Whisper for speech recognition
+openai-whisper>=20231117
+
+# PyTorch (required by Whisper)
+torch>=1.8.0
+
+# Additional audio processing libraries (optional but recommended)
+torchaudio>=0.8.0
+
+# For better performance on GPU (optional)
+# Uncomment if you have CUDA GPU:
+# torch --index-url https://download.pytorch.org/whl/cu118
+# torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Audio format support (usually installed with whisper)
+ffmpeg-python>=0.2.0
+
+# For improved audio file handling
+soundfile>=0.10.0
+
+# For JSON handling and file operations (usually in standard library)
+# pathlib - included in Python 3.4+
+# json - standard library
+# shutil - standard library

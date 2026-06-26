@@ -1,0 +1,65 @@
+{
+  "_说明": "复制本文件为 config.json，填入你的实际配置。config.json 不会被提交到版本控制。",
+
+  "ss": {
+    "_说明": "SaleSmartly API 配置。API Key 在 SS 后台 → 设置 → API 管理 获取。",
+    "apiKey": "你的SS_API_Key",
+    "projectId": "你的SS项目ID（数字）",
+
+    "tags": [
+      {"name": "你的标签名1", "id": "标签ID1"},
+      {"name": "你的标签名2", "id": "标签ID2"}
+    ],
+    "_tags说明": "筛选会话用的标签。会话含任一标签即匹配（OR 逻辑）。标签 ID 在 SS 后台 → 设置 → 会话标签 查看。",
+
+    "customFieldKey": "项目ID（填明文ID,多个用英文逗号,分隔）",
+    "_customFieldKey说明": "客户自定义字段中存储项目 ID 的字段名。在 SS 后台 → 客户 → 自定义字段 查看。"
+  },
+
+  "tb": {
+    "_说明": "Teambition 任务创建配置。所有 ID 从 TB 项目界面获取，详见 references/config_fields.md。",
+
+    "projectId": "你的TB项目ID",
+    "sfcId": "任务类型ID",
+    "stageId": "任务列表ID（放到哪个列）",
+
+    "customfields": {
+      "需求类型": {
+        "cfId": "自定义字段ID",
+        "valueId": "字段值ID（如'需求'对应的ID）",
+        "valueTitle": "需求"
+      },
+      "会话ID": {
+        "cfId": "自定义字段ID",
+        "_说明": "存储 SS 会话 ID 的字段"
+      },
+      "项目ID": {
+        "cfId": "自定义字段ID",
+        "_说明": "存储客户项目 ID 的字段"
+      }
+    },
+    "_customfields说明": "按你的 TB 项目实际自定义字段填写。不需要的字段可以删除，需要的可以新增。"
+  },
+
+  "analysis": {
+    "_说明": "AI 分析阶段的配置。",
+
+    "goal": "从客服对话中提取客户需求，判断优先级，生成 TB 任务",
+    "dimensions": [
+      "客户遇到了什么问题",
+      "客户的期望方案是什么",
+      "问题的最终结论（已解决/待跟进/需开发）",
+      "紧急程度（高/中/低）"
+    ],
+    "taskTitleFormat": "[{ss_project_id}] {summary}",
+    "_taskTitleFormat说明": "TB 任务标题格式。可用变量：{ss_project_id}、{customer_name}、{summary}。"
+  },
+
+  "schedule": {
+    "_说明": "定时任务配置（可选）。不配则手动触发。",
+    "cron": "0 10 * * *",
+    "timezone": "Asia/Shanghai",
+    "skipHolidays": true,
+    "_skipHolidays说明": "是否跳过中国法定节假日。需要安装 chinesecalendar 库。"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "stock-select",
+  "version": "2.0.2",
+  "description": "智能选股技能，类似同花顺问财。使用自然语言查询符合条件的股票。",
+  "license": "MIT"
+}

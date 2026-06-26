@@ -1,0 +1,4 @@
+mode: distributed
+worker_count: 10
+consensus_protocol: "hash_slice"
+result_merger: "simple_concat"

@@ -1,0 +1,14 @@
+{
+  "name": "delete_all_incomplete_recurring_task_instances",
+  "description": "BULK DESTRUCTIVE: Permanently deletes all future incomplete instances of a recurring task. This cannot be undone. Confirm the recurring task title and ID with the user before executing.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "taskId": {
+        "type": "string",
+        "description": "The ID of the recurring task"
+      }
+    },
+    "required": ["taskId"]
+  }
+}

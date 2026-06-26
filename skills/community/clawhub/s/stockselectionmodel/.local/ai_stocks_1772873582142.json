@@ -1,0 +1,52 @@
+{
+  "a_shares": [
+    {
+      "name": "科大讯飞",
+      "code": "002230",
+      "sector": "大模型",
+      "reason": "国内通用大模型代表"
+    },
+    {
+      "name": "昆仑万维",
+      "code": "300418",
+      "sector": "大模型",
+      "reason": "天工大模型/海外布局"
+    },
+    {
+      "name": "中科曙光",
+      "code": "603019",
+      "sector": "AI服务器",
+      "reason": "算力基础设施"
+    },
+    {
+      "name": "浪潮信息",
+      "code": "000977",
+      "sector": "AI服务器",
+      "reason": "AI 服务器龙头"
+    },
+    {
+      "name": "寒武纪",
+      "code": "688256",
+      "sector": "AI芯片",
+      "reason": "国产 AI 芯片映射"
+    },
+    {
+      "name": "海光信息",
+      "code": "688041",
+      "sector": "AI芯片",
+      "reason": "国产 GPU/DCU 映射"
+    },
+    {
+      "name": "金山办公",
+      "code": "688111",
+      "sector": "AI应用",
+      "reason": "办公 AI 落地"
+    },
+    {
+      "name": "三六零",
+      "code": "601360",
+      "sector": "AI应用",
+      "reason": "搜索+AI 安全应用"
+    }
+  ]
+}

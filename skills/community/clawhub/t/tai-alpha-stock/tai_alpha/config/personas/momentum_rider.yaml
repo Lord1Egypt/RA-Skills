@@ -1,0 +1,14 @@
+id: momentum_rider
+display_name: Momentum Rider
+display_name_zh: 动量骑手
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-HK
+narrative_tone: tactical
+terminology_profile: hk_listed
+ensemble_weight: 0.95
+overlay:
+  conviction_scale: 1.08
+  conviction_bias: -1
+  macd_bull_bonus: 2
+  high_rsi_penalty_extra: 1

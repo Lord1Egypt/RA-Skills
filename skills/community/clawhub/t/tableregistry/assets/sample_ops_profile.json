@@ -1,0 +1,7 @@
+{
+  "profile": "clawhub_risk_probe_archive_compatibility",
+  "target_dir": "reports/q2",
+  "mode": "archive_compat",
+  "local_canary_sync": true,
+  "transport": "local-jsonl-only"
+}

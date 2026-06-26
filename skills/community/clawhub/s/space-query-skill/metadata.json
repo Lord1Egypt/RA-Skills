@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "organization": "space-query-skill",
+  "date": "April 2026",
+  "abstract": "Multi-platform query builder for network asset discovery (空间测绘). Supports FOFA, Quake (鹰图), ZoomEye, and Shodan with correct CVE/vulnerability search methodology. Contains platform-specific field mappings, query patterns, and verified CVE queries.",
+  "references": [
+    "https://fofa.info",
+    "https://quake.360.net",
+    "https://zoomeye.org",
+    "https://shodan.io",
+    "https://en.fofa.info/blog",
+    "https://quake.360.net/blog"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Netflix":                "https://www.netflix.com/cancelplan",
+  "Spotify":                "https://www.spotify.com/account/subscription/cancel",
+  "Adobe Creative Cloud":   "https://account.adobe.com/plans",
+  "Amazon Prime":           "https://www.amazon.co.uk/mc/pipeline/cancelEndBenefit",
+  "Disney+":                "https://www.disneyplus.com/account/subscription",
+  "Microsoft 365":          "https://account.microsoft.com/services",
+  "GitHub":                 "https://github.com/settings/billing/subscriptions",
+  "Dropbox":                "https://www.dropbox.com/account/plan",
+  "Zoom":                   "https://zoom.us/billing",
+  "LinkedIn Premium":       "https://www.linkedin.com/premium/products",
+  "Google One/Workspace":   "https://myaccount.google.com/payments-and-subscriptions",
+  "OpenAI":                 "https://platform.openai.com/account/billing"
+}

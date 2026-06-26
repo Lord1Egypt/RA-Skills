@@ -1,0 +1,368 @@
+# ClearMacroForwarder — EIP-712 clear-signing relay forwarder for Superfluid macros
+# Shipped in @sfpro/sdk 0.2.1. Underlying contract: ClearMacroForwarderV1WithPermit2.
+# Enables signed macro execution with: EIP-712 clear-signing (wallet renders the
+# action type and fields), relay execution (provider pays gas on the signer's behalf),
+# and optional Permit2 witness flow for bundling an underlying-token upgrade with
+# the macro in one signature.
+#
+# Unlike CFAv1Forwarder / GDAv1Forwarder, the signer is NOT the transaction sender:
+# a relay provider submits on the signer's behalf, or the signer self-submits
+# (SELF_PROVIDER). The signer becomes msg.sender in the Host context via EIP-2771.
+#
+# The Security struct carried in the encoded payload contains:
+#   domain       — string identifying the relay provider
+#   macroContract — must match the macro address passed to runMacro
+#   provider     — relay provider role identifier (or SELF_PROVIDER = "self")
+#   validAfter   — earliest valid block.timestamp (0 = no lower bound)
+#   validBefore  — latest valid block.timestamp (0 = no upper bound)
+#   nonce        — ERC-4337-style: (uint192 key << 64) | uint64 sequence
+#
+# Two execution paths:
+#   runMacro           — plain EIP-712 signature; wallet renders action + security
+#   runPermit2AndMacro — Permit2 witness signature; one sig covers Permit2 + ClearMacro
+
+meta:
+  name: ClearMacroForwarder
+  version: v1
+  notes:
+    - "Underlying contract name is ClearMacroForwarderV1WithPermit2. Skill-facing canonical name is ClearMacroForwarder."
+    - "Address: 0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e — same across all 16 supported networks. Resolve programmatically with clearMacroForwarderAddress from @sfpro/sdk/abi or via @superfluid-finance/metadata key contractsV1.clearMacroForwarderV1WithPermit2."
+    - "EIP-712 domain: EIP712('ClearMacro', '1'). verifyingContract = forwarder address for the chain. Inspect via eip712Domain()."
+    - "Provider binding: Security.domain binds a signed payload to a specific provider. A payload signed for one provider cannot be relayed by another."
+    - "SELF_PROVIDER: set Security.provider to the string 'self' to allow the signer to self-submit. In this mode msg.sender must equal signer; no relay provider is involved."
+    - "Gasless only from the signer's perspective: the relay provider fronts native gas. Provider relaying is a new capability still in BETA with no fee model yet — whether/how a provider eventually recovers that cost (e.g. charging the signer in Super Tokens) would be provider-specific and is NOT enforced by the forwarder. The current reference provider documents no fee scheme."
+  source:
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/utils/ClearMacroForwarderV1.sol
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/interfaces/utils/IClearMacroForwarderV1.sol
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/utils/ForwarderBase.sol
+  inherits: [ForwarderBase, EIP712, NonceManager]
+  implements: [IClearMacroForwarderV1]
+  deployments:
+    # Deterministic address 0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e across all networks.
+    # For the full list of chainIds use clearMacroForwarderAddress from @sfpro/sdk/abi.
+    mainnet:
+      eth-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      polygon-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      xdai-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      base-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      optimism-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      arbitrum-one: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      bsc-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      avalanche-c: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      celo-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      scroll-mainnet: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      degenchain: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+    testnet:
+      avalanche-fuji: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      base-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      eth-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      optimism-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+      scroll-sepolia: "0xC1EaB73855155D4e021f7EB4f866996Bac2fe25e"
+
+# == Glossary ==
+# encodedPayload — abi.encode(Payload{action: EncodedAction{params}, security: Security{...}})
+# Security       — struct: domain, macroContract, provider, validAfter, validBefore, nonce
+# EncodedAction  — struct wrapping opaque actionParams bytes; decoded by the macro contract
+# digest         — EIP-712 hashTypedDataV4(structHash); the value the signer signs off-chain
+# domain         — string identifying the relay provider (used as AccessControl role key)
+# Permit2Context — struct bundling Permit2 permit, owner, witness, witnessTypeString, signature,
+#                  spender, upgradeSuperToken for the runPermit2AndMacro path
+
+# == Constants ==
+
+PERMIT2:
+  # Address of the canonical Uniswap Permit2 contract (deployed at the same address everywhere).
+  # Used by runPermit2AndMacro to pull the underlying token before upgrading to a Super Token.
+  mutability: view
+  access: anyone
+  inputs: []
+  outputs:
+    - "": address
+
+SELF_PROVIDER:
+  # Reserved provider string value. When Security.provider equals this, the signer
+  # must submit their own transaction (no relay); the forwarder enforces msg.sender == signer.
+  # Useful for self-service flows where the signer retains direct control.
+  mutability: view
+  access: anyone
+  inputs: []
+  outputs:
+    - "": string
+
+# == EIP-712 Domain ==
+
+eip712Domain:
+  # Returns the EIP-5267 domain fields for this contract.
+  # Domain: name="ClearMacro", version="1", chainId=<current chain>, verifyingContract=<this address>.
+  # Use this to construct the domain object for wallet.signTypedData calls.
+  mutability: view
+  access: anyone
+  inputs: []
+  outputs:
+    - fields: bytes1
+    - name: string
+    - version: string
+    - chainId: uint256
+    - verifyingContract: address
+    - salt: bytes32
+    - extensions: uint256[]
+
+# == Core Execution ==
+
+runMacro:
+  # Execute a macro on behalf of a signer using a signed EIP-712 payload.
+  # The relay provider (or the signer themselves if provider is SELF_PROVIDER) calls this.
+  # Check sequence: signature validity → macroContract match → provider ACL →
+  #   nonce validation → validity window → macro.buildBatchOperations → Host.batchCall →
+  #   macro.postCheck → emit MacroExecuted.
+  notes:
+    - "Signing path: use wallet.signTypedData with domain from eip712Domain() and types from getTypeDefinition(m, encodedPayload). This renders the human-readable clear-signing prompt in the wallet. Do NOT use getDigest() for browser wallet signing — getDigest() is for verification, parity checks, and private-key signing."
+    - "Gotcha: signer is NOT msg.sender on-chain — msg.sender is the relay provider. The signer becomes msg.sender only inside the Host via EIP-2771 (appended to forwardBatchCall calldata)."
+    - "Gotcha: the nonce in Security is consumed atomically on execution. The same signed payload cannot be re-submitted."
+    - "Gotcha: msg.value is forwarded to the Host batch call. Most macros do not require ETH — only set if the macro explicitly needs it."
+    - "Gotcha: errors from the macro contract and the Host propagate through to the caller in addition to the forwarder's own errors below."
+    - "Self-submit: set Security.provider = SELF_PROVIDER ('self') and submit the tx yourself. msg.sender must equal signer, else ProviderNotAuthorized."
+    - "Provider relay: set Security.provider to the relay provider string (keccak256-hashed to an ACL role). The relayer (msg.sender) must hold that role. Get supported providers from the Provider API /v1/capabilities."
+  mutability: payable
+  access: anyone   # relay provider; or signer when Security.provider == SELF_PROVIDER
+  inputs:
+    - m: address              # IClearMacro — macro contract to execute
+    - encodedPayload: bytes   # abi.encode(Payload); build with encodeParams
+    - signer: address         # address that signed the payload (on whose behalf the macro runs)
+    - signature: bytes        # EIP-712 signature (from wallet.signTypedData)
+  outputs:
+    - success: bool
+  emits: [MacroExecuted]
+  errors: [InvalidSignature, MacroContractMismatch, ProviderNotAuthorized, InvalidNonce, OutsideValidityWindow]
+
+runPermit2AndMacro:
+  # OPTIONAL alternative to runMacro: execute a macro with a single Permit2 witness signature.
+  # Combines a Uniswap Permit2 permit-with-witness with a ClearMacro macro call in one tx.
+  # The signer signs one EIP-712 message that covers both the Permit2 token permission and
+  # the ClearMacro payload — no separate runMacro signature needed.
+  #
+  # Two sub-modes based on Permit2Context.upgradeSuperToken:
+  #   non-zero: pulls underlying token via Permit2 and upgrades to Super Token before running macro.
+  #             Permit2Context.spender MUST equal the ClearMacroForwarder address.
+  #   zero:     witness-only — verifies the Permit2 signature without any token transfer or Permit2
+  #             nonce consumption. Use this to bind a ClearMacro payload to a Permit2 signature
+  #             without a token upgrade.
+  notes:
+    - "This is an OPTIONAL bundled path. The default usage is runMacro with a plain EIP-712 signature."
+    - "Permit2Context.spender MUST be set to the ClearMacroForwarder address, else the Permit2 allowance check will fail."
+    - "The Permit2 witness type is DIFFERENT from the plain runMacro EIP-712 type — do NOT reuse the primary type formula. Use getPermit2WitnessTypeString(m, encodedPayload) and getPermit2WitnessStructHash(m, encodedPayload, upgradeSuperToken) to assemble the Permit2 signTypedData message."
+    - "When upgradeSuperToken == address(0), no token transfer occurs and the Permit2 nonce is NOT consumed. This witness-only mode binds a ClearMacro payload to a Permit2 signature without an upgrade."
+    - "Emits Permit2UpgradeExecuted only when upgradeSuperToken != address(0)."
+  mutability: payable
+  access: anyone   # relay provider; or signer when Security.provider == SELF_PROVIDER
+  inputs:
+    - permit2Context:
+        type: tuple
+        components:
+          - permit:
+              type: tuple
+              components:
+                - permitted:
+                    type: tuple
+                    components:
+                      - token: address       # underlying ERC-20 token to pull
+                      - amount: uint256      # amount to pull (in underlying token units)
+                - nonce: uint256             # Permit2 nonce (from Permit2.nonceBitmap)
+                - deadline: uint256          # Permit2 signature deadline (block.timestamp)
+          - owner: address                   # signer / token owner
+          - witness: bytes32                 # ClearMacro struct hash — from getPermit2WitnessStructHash
+          - witnessTypeString: string        # from getPermit2WitnessTypeString
+          - signature: bytes                 # Permit2 witness signature (single sig: Permit2 + ClearMacro)
+          - spender: address                 # MUST equal the ClearMacroForwarder address
+          - upgradeSuperToken: address       # Super Token to upgrade to; address(0) = witness-only
+    - m: address              # IClearMacro — macro contract to execute
+    - encodedPayload: bytes   # abi.encode(Payload); build with encodeParams
+  outputs:
+    - success: bool
+  emits: [Permit2UpgradeExecuted, MacroExecuted]
+  errors: [InvalidSignature, MacroContractMismatch, ProviderNotAuthorized, InvalidNonce, OutsideValidityWindow, SafeERC20FailedOperation]
+
+# == Payload Construction ==
+
+encodeParams:
+  # Build the ABI-encoded payload bytes expected by runMacro / runPermit2AndMacro.
+  # Convenience function: packs actionParams and a Security struct into a Payload and ABI-encodes it.
+  mutability: pure
+  access: anyone
+  inputs:
+    - actionParams: bytes     # macro-specific action encoding (passed to IClearMacro functions)
+    - security:
+        type: tuple
+        components:
+          - domain: string          # provider identity (e.g. "macros.superfluid.eth")
+          - macroContract: address  # must match the m argument passed to runMacro
+          - provider: string        # relay provider role identifier or SELF_PROVIDER
+          - validAfter: uint256     # earliest valid block.timestamp (0 = no lower bound)
+          - validBefore: uint256    # latest valid block.timestamp (0 = no upper bound; set to 0 to disable)
+          - nonce: uint256          # ERC-4337-style: (uint192 key << 64) | uint64 sequence; use getNonce
+  outputs:
+    - encodedPayload: bytes
+
+# == EIP-712 Inspection ==
+
+getDigest:
+  # Returns the EIP-712 digest (hashTypedDataV4) for the given macro and payload.
+  # digest = hashTypedDataV4(getStructHash(m, encodedPayload))
+  notes:
+    - "For verification, parity checks, and private-key signing only. Do NOT use as the browser UX signing path — call wallet.signTypedData with the types from getTypeDefinition and the structured message so the wallet renders the human-readable clear-signing prompt."
+    - "To get the domain for signTypedData, call eip712Domain() on the forwarder."
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+  outputs:
+    - digest: bytes32
+
+getStructHash:
+  # Returns the EIP-712 struct hash of the Payload (before domain separator is applied).
+  # structHash = keccak256(abi.encode(typeHash, actionStructHash, securityStructHash))
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+  outputs:
+    - structHash: bytes32
+
+getTypeHash:
+  # Returns keccak256 of the full EIP-712 type definition string.
+  # typeHash = keccak256(bytes(getTypeDefinition(m, encodedPayload)))
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+  outputs:
+    - typeHash: bytes32
+
+getTypeDefinition:
+  # Returns the full EIP-712 type definition string for the given macro.
+  # Format: "<PrimaryTypeName>(Action action,Security security)<ActionTypeDef><SecurityTypeDef>"
+  # where PrimaryTypeName = m.getPrimaryTypeName(encodedPayload),
+  #       ActionTypeDef   = m.getActionTypeDefinition(encodedPayload),
+  #       SecurityTypeDef = "Security(string domain,address macroContract,string provider,uint256 validAfter,uint256 validBefore,uint256 nonce)"
+  # Use this to build the `types` object for wallet.signTypedData.
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+  outputs:
+    - typeDef: string
+
+# == Permit2 Witness Helpers ==
+
+getPermit2WitnessStructHash:
+  # Returns the struct hash for the ClearMacro witness embedded in a Permit2 signature.
+  # This is NOT the same as getStructHash — the Permit2 witness type includes upgradeSuperToken.
+  # Pass this value as Permit2Context.witness when constructing runPermit2AndMacro.
+  notes:
+    - "Permit2 witness type is distinct from the plain runMacro EIP-712 type. Do not use getStructHash here."
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+    - upgradeSuperToken: address
+  outputs:
+    - structHash: bytes32
+
+getPermit2WitnessTypeString:
+  # Returns the Permit2 witness type string for the given macro and payload.
+  # Pass this value as Permit2Context.witnessTypeString when constructing runPermit2AndMacro.
+  # The constant witness type name is "ClearMacro"; the type string includes TokenPermissions.
+  mutability: view
+  access: anyone
+  inputs:
+    - m: address
+    - encodedPayload: bytes
+  outputs:
+    - typeString: string
+
+# == Nonce Management (ERC-4337 style) ==
+
+getNonce:
+  # Returns the next valid nonce for a (sender, key) pair.
+  # Nonce encoding: (uint256(key) << 64) | uint64(sequence).
+  # Use key=0 for a simple sequential nonce. Different keys allow independent parallel sequences.
+  # Pass the returned value as Security.nonce when building the payload.
+  mutability: view
+  access: anyone
+  inputs:
+    - sender: address
+    - key: uint192
+  outputs:
+    - nonce: uint256
+
+# == Events ==
+
+events:
+  MacroExecuted:
+    # Emitted after a signed ClearMacro payload is successfully executed.
+    indexed:
+      - signer: address         # the original signer on whose behalf the macro ran
+      - macroContract: address  # the macro contract that was executed
+      - providerRole: bytes32   # keccak256(bytes(security.provider))
+    data: []
+
+  Permit2UpgradeExecuted:
+    # Emitted when runPermit2AndMacro pulls underlying tokens via Permit2 and upgrades to Super Token.
+    # Only emitted when Permit2Context.upgradeSuperToken != address(0).
+    indexed:
+      - signer: address         # the token owner / signer
+      - underlying: address     # the underlying ERC-20 token pulled via Permit2
+      - superToken: address     # the Super Token minted / upgraded to
+    data:
+      - underlyingAmount: uint256   # amount of underlying pulled
+      - superTokenAmount: uint256   # amount of Super Token received
+
+  EIP712DomainChanged:
+    # Emitted when the EIP-712 domain changes (EIP-5267). Rare; included for completeness.
+    indexed: []
+    data: []
+
+# == Errors ==
+
+errors:
+
+  # -- Signature --
+  - InvalidSignature                    # EIP-712 signature does not match the signer address
+
+  # -- Payload Validation --
+  - InvalidPayload:                     # reserved for subcontracts; payload structurally invalid
+      inputs:
+        - message: string
+  - MacroContractMismatch:              # security.macroContract != the m argument passed to runMacro
+      inputs:
+        - signedMacro: address
+        - executionMacro: address
+
+  # -- Provider Authorization --
+  - ProviderNotAuthorized:              # msg.sender does not hold the required provider role in the ACL
+      inputs:
+        - provider: string
+        - msgSender: address
+
+  # -- Validity Window --
+  - OutsideValidityWindow:              # block.timestamp outside [validAfter, validBefore]
+      inputs:
+        - blockTimestamp: uint256
+        - validAfter: uint256
+        - validBefore: uint256
+
+  # -- Nonce --
+  - InvalidNonce:                       # nonce already used or sequence number out of order
+      inputs:
+        - sender: address
+        - nonce: uint256
+
+  # -- Permit2 path --
+  - SafeERC20FailedOperation:           # Permit2 token pull failed (SafeERC20 wrapper)
+      inputs:
+        - token: address

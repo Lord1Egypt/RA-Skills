@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/pdf/split",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample-pdfapi-intro.pdf", "pages": "1-5,8,10-15", "output": "url" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "count": 3,
+      "files": [
+        "https://cdn.pdfapihub.com/pdf/split_1-5.pdf",
+        "https://cdn.pdfapihub.com/pdf/split_8.pdf",
+        "https://cdn.pdfapihub.com/pdf/split_10-15.pdf"
+      ],
+      "file_deletion_date": "2026-05-17"
+    }
+  }
+}

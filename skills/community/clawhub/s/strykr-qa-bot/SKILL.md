@@ -1,35 +1,122 @@
 ---
-name: "Strykr Qa Bot"
-description: "AI-powered QA for Strykr trading platform. Pre-built tests for crypto, stocks, news, AI chat. CI/CD ready. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding enabled."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, clawdbot, openclaw, qa, strykr, testing, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/strykr-qa-bot"
-sourceUrl: "https://clawhub.ai/skills/strykr-qa-bot"
+name: strykr-qa-bot
+description: AI-powered QA for Strykr trading platform. Pre-built tests for crypto, stocks, news, AI chat. CI/CD ready. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding enabled.
+version: 0.1.2
+author: NextFrontierBuilds
+keywords: [strykr, prism, qa, testing, automation, web-qa-bot, clawdbot, moltbot, ai, ai-agent, vibe-coding, cursor, claude, chatgpt, copilot, github-copilot, crypto, trading, fintech, openclaw, ai-tools, developer-tools, devtools, typescript, llm]
 ---
 
-# Strykr Qa Bot
+# strykr-qa-bot
 
-> AI-powered QA for Strykr trading platform. Pre-built tests for crypto, stocks, news, AI chat. CI/CD ready. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding enabled.
+QA automation skill for testing Strykr (https://app.strykr.ai).
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/strykr-qa-bot`
-- **Source URL:** [https://clawhub.ai/skills/strykr-qa-bot](https://clawhub.ai/skills/strykr-qa-bot)
+## What It Does
 
-## Overview
+Automated testing for the Strykr AI finance dashboard:
+- Pre-built test suites for all pages
+- Signal card validation
+- AI response quality checks
+- PRISM API health monitoring
+- Known issue tracking
 
+## When To Use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Testing Strykr after deployments
+- Regression testing
+- Monitoring site health
+- Validating new features
+
+## Usage
+
+### Run All Tests
 ```bash
-hermes skills install clawhub/strykr-qa-bot
+cd /path/to/strykr-qa-bot
+npm test
 ```
+
+### Run Specific Suite
+```bash
+npm run test:homepage
+npm run test:crypto
+npm run test:stocks
+npm run test:news
+npm run test:events
+npm run test:ai-chat
+```
+
+### Quick Smoke Test
+```bash
+npm run smoke
+```
+
+### Programmatic Usage
+```typescript
+import { StrykrQABot } from 'strykr-qa-bot';
+
+const qa = new StrykrQABot({
+  baseUrl: 'https://app.strykr.ai'
+});
+
+// Run all suites
+const results = await qa.runAll();
+
+// Check specific assertions
+await qa.expectSignalCard({ hasPrice: true, hasChart: true });
+await qa.expectAIResponse({ minLength: 200 });
+
+// Health check API
+const health = await qa.checkPrismEndpoints();
+
+// Generate report
+const report = qa.generateReport();
+```
+
+## Test Suites
+
+| Suite | Tests | Notes |
+|-------|-------|-------|
+| homepage | Navigation, widgets, status | Entry point |
+| crypto-signals | Filters, cards, actions | Has known modal issue |
+| stock-signals | Asset filters, actions | Stocks/ETFs/Forex |
+| news | Routing, categories | Known direct URL issue |
+| events | Impact filters, times | Known direct URL issue |
+| ai-chat | Input, responses | Quality validation |
+
+## Known Issues Tracked
+
+1. **details-modal-empty** (High) - Modal opens but content empty
+2. **direct-url-blank-news** (Medium) - /news blank on direct nav
+3. **direct-url-blank-events** (Medium) - /economic-events blank
+4. **events-widget-race-condition** (Low) - Intermittent widget load
+
+## Configuration
+
+Edit `strykr-qa.yaml`:
+```yaml
+baseUrl: https://app.strykr.ai
+browser:
+  headless: false
+  timeout: 30000
+```
+
+## Dependencies
+
+- [web-qa-bot](https://github.com/NextFrontierBuilds/web-qa-bot) (peer dependency)
+
+## Output
+
+Test results with:
+- Pass/Fail/Known-issue status
+- Screenshots at each step
+- Console error capture
+- Timing metrics
+- Markdown report
+
+## Author
+
+Next Frontier (@NextXFrontier)
+
+## Links
+
+- [GitHub](https://github.com/NextFrontierBuilds/strykr-qa-bot)
+- [Strykr](https://app.strykr.ai)

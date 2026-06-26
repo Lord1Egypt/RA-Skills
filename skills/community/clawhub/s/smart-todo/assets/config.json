@@ -1,0 +1,23 @@
+{
+  "storage_path": "~/smart-todo-data",
+  "notification_interval_minutes": 20,
+  "similarity_threshold": 0.8,
+  "similarity_name_threshold": 0.7,
+  "similarity_desc_threshold": 0.8,
+  "max_name_length": 10,
+  "context_lines_from_history": 10,
+  "p0_alert_threshold_hours": 1,
+  "todo_id_prefix": "T",
+  "todo_id_digits": 3,
+  "statuses": {
+    "not_started": "未开始",
+    "in_progress": "进行中",
+    "completed": "已完成",
+    "paused": "暂停",
+    "terminated": "终止"
+  },
+  "priorities": {
+    "P0": "最高优先级",
+    "P1": "普通优先级"
+  }
+}

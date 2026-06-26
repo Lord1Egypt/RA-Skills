@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Monitor — 后台分析仪表盘</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+/* ────── 基础 & 主题 ────── */
+:root {
+  --bg-primary: #0f1117;
+  --bg-card: #1a1d2e;
+  --bg-card-hover: #222640;
+  --border: #2a2e42;
+  --text-primary: #e4e6f0;
+  --text-secondary: #8b8fa3;
+  --text-muted: #5a5e72;
+  --accent-blue: #667eea;
+  --accent-purple: #764ba2;
+  --accent-green: #4ade80;
+  --accent-yellow: #fbbf24;
+  --accent-red: #f87171;
+  --accent-orange: #fb923c;
+  --accent-cyan: #22d3ee;
+  --gradient-main: linear-gradient(135deg, #667eea, #764ba2);
+  --gradient-green: linear-gradient(135deg, #4ade80, #22d3ee);
+  --gradient-orange: linear-gradient(135deg, #fb923c, #f87171);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ────── 布局 ────── */
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  width: 48px; height: 48px;
+  background: var(--gradient-main);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 16px rgba(102,126,234,0.3);
+}
+
+.header h1 { font-size: 22px; font-weight: 700; }
+.header .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+
+.header-right { display: flex; align-items: center; gap: 12px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn:hover { background: var(--bg-card-hover); border-color: var(--accent-blue); }
+.btn-primary { background: var(--gradient-main); border: none; color: #fff; }
+.btn-primary:hover { opacity: 0.9; }
+
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  background: rgba(74,222,128,0.12);
+  color: var(--accent-green);
+}
+.status-badge .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ────── 网格 ────── */
+.grid { display: grid; gap: 20px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-1-2 { grid-template-columns: 1fr 2fr; }
+.grid-2-1 { grid-template-columns: 2fr 1fr; }
+
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-1-2, .grid-2-1 { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .dashboard { padding: 16px; }
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ────── 卡片 ────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s;
+}
+.card:hover { border-color: rgba(102,126,234,0.3); }
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.card-title .icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+/* ────── KPI 指标卡片 ────── */
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.kpi-card.kpi-health::before { background: var(--gradient-main); }
+.kpi-card.kpi-runs::before { background: var(--gradient-green); }
+.kpi-card.kpi-rate::before { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
+.kpi-card.kpi-active::before { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); }
+
+.kpi-value {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 8px 0 4px;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.kpi-card.kpi-runs .kpi-value {
+  background: var(--gradient-green);
+  -webkit-background-clip: text; background-clip: text;
+}
+.kpi-card.kpi-rate .kpi-value {
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+  -webkit-background-clip: text; background-clip: text;
+}
+.kpi-card.kpi-active .kpi-value {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text; background-clip: text;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.kpi-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ────── 健康度环形图 ────── */
+.health-ring-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.health-ring-svg { width: 140px; height: 140px; flex-shrink: 0; }
+.health-ring-svg .ring-bg { fill: none; stroke: #2a2e42; stroke-width: 10; }
+.health-ring-svg .ring-fill {
+  fill: none; stroke: url(#healthGradient); stroke-width: 10;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dasharray 1.5s ease;
+}
+.health-center {
+  text-anchor: middle;
+  font-size: 32px;
+  font-weight: 800;
+  fill: var(--text-primary);
+}
+.health-label-text {
+  text-anchor: middle;
+  font-size: 12px;
+  fill: var(--text-secondary);
+}
+
+.health-details { flex: 1; }
+.health-detail-item {
+  display: flex; justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(42,46,66,0.5);
+  font-size: 13px;
+}
+.health-detail-item:last-child { border: none; }
+.health-detail-label { color: var(--text-secondary); }
+.health-detail-value { font-weight: 600; }
+
+/* ────── 表格 ────── */
+.table-wrapper { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  text-align: left;
+  padding: 12px 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(42,46,66,0.3);
+}
+tr:hover td { background: rgba(102,126,234,0.03); }
+
+.grade-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.grade-s, .grade-a { background: rgba(74,222,128,0.15); color: var(--accent-green); }
+.grade-b { background: rgba(102,126,234,0.15); color: var(--accent-blue); }
+.grade-c { background: rgba(251,191,36,0.15); color: var(--accent-yellow); }
+.grade-d, .grade-f { background: rgba(248,113,113,0.15); color: var(--accent-red); }
+
+/* ────── 进度条 ────── */
+.progress-bar {
+  width: 100%; height: 6px;
+  background: #2a2e42;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--gradient-main);
+  transition: width 1s ease;
+}
+
+/* ────── 图表容器 ────── */
+.chart-container {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+.chart-container canvas { max-height: 100%; }
+
+/* ────── 评分分布 ────── */
+.dist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.dist-item {
+  text-align: center;
+  padding: 16px 8px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(42,46,66,0.5);
+}
+.dist-count {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.dist-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.dist-excellent .dist-count { color: var(--accent-green); }
+.dist-good .dist-count { color: var(--accent-blue); }
+.dist-average .dist-count { color: var(--accent-yellow); }
+.dist-poor .dist-count { color: var(--accent-red); }
+
+/* ────── Agent 信息 ────── */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.info-item {
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(42,46,66,0.3);
+}
+.info-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.info-value { font-size: 14px; font-weight: 600; word-break: break-all; }
+
+/* ────── 报告时间线 ────── */
+.timeline { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; }
+.timeline-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(42,46,66,0.3);
+  transition: background 0.2s;
+}
+.timeline-item:hover { background: rgba(102,126,234,0.05); }
+.timeline-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.timeline-dot.daily { background: var(--accent-blue); }
+.timeline-dot.diagnostic { background: var(--accent-orange); }
+.timeline-content { flex: 1; min-width: 0; }
+.timeline-title { font-size: 13px; font-weight: 600; }
+.timeline-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 12px; margin-top: 2px; }
+
+/* ────── 诊断摘要 ────── */
+.diag-preview {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 16px;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ────── 空状态 ────── */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+}
+.empty-state .empty-icon { font-size: 48px; margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; color: var(--text-secondary); margin-bottom: 8px; }
+.empty-state p { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+/* ────── 页脚 ────── */
+.footer {
+  text-align: center;
+  padding: 32px 0 16px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ────── Section 间距 ────── */
+.section { margin-bottom: 20px; }
+
+/* ────── 滚动条 ────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3e52; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4a4e62; }
+
+/* ────── Tab 切换 ────── */
+.tab-nav {
+  display: flex; gap: 4px;
+  margin-bottom: 16px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  padding: 4px;
+}
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+.tab-btn:hover:not(.active) { color: var(--text-secondary); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- ════════ 头部 ════════ -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-logo">📊</div>
+      <div>
+        <h1>Skills Monitor 分析仪表盘</h1>
+        <p class="subtitle">{{ data.agent.name }} · 数据截至 {{ data.generated_at[:10] }}</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-badge">
+        <span class="dot"></span>
+        服务运行中
+      </div>
+      <a class="btn" href="/h5/report/{{ data.agent.agent_id }}">📋 简版报告</a>
+      <a class="btn btn-primary" href="/api/dashboard/{{ data.agent.agent_id }}/data" target="_blank">📥 JSON 数据</a>
+    </div>
+  </header>
+
+  <!-- ════════ KPI 概览卡片 ════════ -->
+  <div class="section grid grid-4">
+    <div class="card kpi-card kpi-health">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">🏥</span> 系统健康度</div>
+      <div class="kpi-value">{{ '%.0f' % data.overview.health_score }}</div>
+      <div class="kpi-label">总评分（满分 100）</div>
+      <div class="kpi-sub">可运行率 {{ '%.1f' % data.overview.runnable_rate }}% · {{ data.overview.total_runnable }}/{{ data.overview.total_installed }} Skills</div>
+    </div>
+
+    <div class="card kpi-card kpi-runs">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">📈</span> 总运行次数</div>
+      <div class="kpi-value">{{ data.overview.total_runs }}</div>
+      <div class="kpi-label">最新周期内运行</div>
+      <div class="kpi-sub">上报 {{ data.overview.total_reports }} 份报告 · 最近: {{ data.overview.last_report_at }}</div>
+    </div>
+
+    <div class="card kpi-card kpi-rate">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">🎯</span> 成功率</div>
+      <div class="kpi-value">{{ '%.1f' % data.overview.success_rate }}%</div>
+      <div class="kpi-label">运行成功比例</div>
+      <div class="kpi-sub">平均响应 {{ '%.0f' % data.overview.avg_duration_ms }}ms</div>
+    </div>
+
+    <div class="card kpi-card kpi-active">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">⚡</span> 活跃 Skills</div>
+      <div class="kpi-value">{{ data.overview.active_skills }}</div>
+      <div class="kpi-label">有运行记录的 Skills</div>
+      <div class="kpi-sub">已安装 {{ data.overview.total_installed }} · 可运行 {{ data.overview.total_runnable }}</div>
+    </div>
+  </div>
+
+  <!-- ════════ 健康度分析 + 评分分布 ════════ -->
+  <div class="section grid grid-2">
+    <!-- 健康度环形图 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">💖</span> 健康度分析</div>
+      <div class="health-ring-container">
+        <svg class="health-ring-svg" viewBox="0 0 140 140">
+          <defs>
+            <linearGradient id="healthGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#667eea"/>
+              <stop offset="100%" stop-color="#764ba2"/>
+            </linearGradient>
+          </defs>
+          <circle cx="70" cy="70" r="58" class="ring-bg"/>
+          <circle cx="70" cy="70" r="58" class="ring-fill"
+            style="stroke-dasharray: {{ (data.overview.health_score or 0) * 3.644 }}, 364.4"/>
+          <text x="70" y="66" class="health-center">{{ '%.0f' % data.overview.health_score }}</text>
+          <text x="70" y="84" class="health-label-text">健康度</text>
+        </svg>
+        <div class="health-details">
+          <div class="health-detail-item">
+            <span class="health-detail-label">📦 已安装 Skills</span>
+            <span class="health-detail-value">{{ data.overview.total_installed }}</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="health-detail-label">⚡ 可运行 Skills</span>
+            <span class="health-detail-value">{{ data.overview.total_runnable }}</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="health-detail-label">📊 可运行率</span>
+            <span class="health-detail-value">{{ '%.1f' % data.overview.runnable_rate }}%</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="health-detail-label">🕐 最近上报</span>
+            <span class="health-detail-value">{{ data.overview.last_report_at }}</span>
+          </div>
+          <div class="health-detail-item">
+            <span class="health-detail-label">📄 累计报告</span>
+            <span class="health-detail-value">{{ data.overview.total_reports }} 份</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 评分分布 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">📊</span> Skill 评分分布</div>
+      {% if data.skill_rankings %}
+      <div class="chart-container" style="height:180px">
+        <canvas id="distChart"></canvas>
+      </div>
+      <div class="dist-grid">
+        <div class="dist-item dist-excellent">
+          <div class="dist-count">{{ data.score_distribution.excellent }}</div>
+          <div class="dist-label">优秀 (≥90)</div>
+        </div>
+        <div class="dist-item dist-good">
+          <div class="dist-count">{{ data.score_distribution.good }}</div>
+          <div class="dist-label">良好 (75-89)</div>
+        </div>
+        <div class="dist-item dist-average">
+          <div class="dist-count">{{ data.score_distribution.average }}</div>
+          <div class="dist-label">一般 (60-74)</div>
+        </div>
+        <div class="dist-item dist-poor">
+          <div class="dist-count">{{ data.score_distribution.poor }}</div>
+          <div class="dist-label">待改善 (<60)</div>
+        </div>
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>暂无评分数据</h3>
+        <p>需要更多 Skill 运行记录后才能生成评分分布。</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ════════ 趋势图表 ════════ -->
+  <div class="section">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">📈</span> 趋势分析（近 {{ data.period_days }} 天）</div>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTrendTab('health')">健康度</button>
+        <button class="tab-btn" onclick="switchTrendTab('runs')">运行次数</button>
+        <button class="tab-btn" onclick="switchTrendTab('rate')">成功率</button>
+        <button class="tab-btn" onclick="switchTrendTab('active')">活跃 Skills</button>
+      </div>
+      {% if data.trend %}
+      <div class="chart-container">
+        <canvas id="trendChart"></canvas>
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">📉</div>
+        <h3>暂无趋势数据</h3>
+        <p>至少需要 2 天的上报数据才能展示趋势。请确认定时任务正常运行并上报数据。</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ════════ Skill 排行 + 报告时间线 ════════ -->
+  <div class="section grid grid-2-1">
+    <!-- Skill 排行详情 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">🏆</span> Skill 性能排行</div>
+      {% if data.skill_rankings %}
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Skill</th>
+              <th>综合评分</th>
+              <th>等级</th>
+              <th>成功率</th>
+              <th>平均响应</th>
+              <th>满意度</th>
+              <th>稳定性</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in data.skill_rankings %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td style="font-weight:600">{{ s.skill_id }}</td>
+              <td>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span style="font-weight:700">{{ '%.1f' % s.total_score }}</span>
+                  <div class="progress-bar" style="width:80px">
+                    <div class="progress-bar-fill" style="width:{{ s.total_score }}%"></div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="grade-badge grade-{{ s.grade[:1]|lower }}">{{ s.grade }}</span></td>
+              <td>{{ '%.0f%%' % s.success_rate if s.success_rate is not none else '-' }}</td>
+              <td>{{ '%.0f ms' % s.response_time if s.response_time is not none else '-' }}</td>
+              <td>{{ '%.1f/5' % s.satisfaction if s.satisfaction else '-' }}</td>
+              <td>{{ '%.2f' % s.stability if s.stability is not none else '-' }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">🏅</div>
+        <h3>暂无排行数据</h3>
+        <p>多使用 Skills 后将自动生成性能排行。</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- 报告时间线 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(248,113,113,0.15)">📋</span> 报告历史</div>
+      {% if data.report_history %}
+      <div class="timeline">
+        {% for r in data.report_history %}
+        <div class="timeline-item">
+          <span class="timeline-dot {{ r.type }}"></span>
+          <div class="timeline-content">
+            <div class="timeline-title">{{ r.type|upper }} · {{ r.date }}</div>
+            <div class="timeline-meta">
+              <span>健康 {{ '%.0f' % r.health_score }}</span>
+              <span>运行 {{ r.total_runs }}</span>
+              <span>成功 {{ '%.0f%%' % r.success_rate }}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h3>暂无报告</h3>
+        <p>等待 Agent 上报数据。</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ════════ Agent 系统信息 + 同步状态 ════════ -->
+  <div class="section grid grid-2">
+    <!-- Agent 系统信息 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">🤖</span> Agent 系统信息</div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Agent ID</div>
+          <div class="info-value" style="font-size:12px">{{ data.agent.agent_id }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">名称</div>
+          <div class="info-value">{{ data.agent.name }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">操作系统</div>
+          <div class="info-value">{{ data.agent.os_info }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Python 版本</div>
+          <div class="info-value">{{ data.agent.python_version }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Monitor 版本</div>
+          <div class="info-value">{{ data.agent.monitor_version }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">注册时间</div>
+          <div class="info-value">{{ data.agent.created_at }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">最近心跳</div>
+          <div class="info-value">{{ data.agent.last_heartbeat }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">最近上报</div>
+          <div class="info-value">{{ data.overview.last_report_at }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 报告同步状态 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,197,94,0.15)">🔄</span> 报告同步保障</div>
+      <div style="margin-bottom:14px;font-size:12px;color:var(--text-muted)">
+        当前状态：<strong style="color:var(--text-primary)">{{ data.report_sync.status_label }}</strong>
+        · 首次诊断 {{ '已补齐' if data.report_sync.has_initial_diagnostic else '缺失' }}
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">首次诊断</div>
+          <div class="info-value">{{ data.report_sync.first_diagnostic_date or '-' }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">最新诊断</div>
+          <div class="info-value">{{ data.report_sync.latest_diag_date or '-' }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">近 7 日日报</div>
+          <div class="info-value">{{ data.report_sync.recent_daily_count }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">累计日报</div>
+          <div class="info-value">{{ data.report_sync.daily_count }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">累计诊断</div>
+          <div class="info-value">{{ data.report_sync.diagnostic_count }}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">首次触发</div>
+          <div class="info-value">{{ data.first_diagnostic.trigger if data.first_diagnostic else '-' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ 推荐安装 + 诊断摘要 ════════ -->
+  <div class="section grid grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(167,139,250,0.15)">💡</span> 推荐安装 Skills</div>
+      {% if data.recommendations %}
+      <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted)">
+        {% if data.overview.total_installed == 0 %}
+        当前未检测到已安装 skills，已按官方 TOP10 精选 3 个推荐，并展示选择逻辑。
+        {% else %}
+        已按安装结构、使用频率和评分表现生成推荐，优先补足能力短板。
+        {% endif %}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        {% for rec in data.recommendations[:6] %}
+        <div style="padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,0.03)">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+            <div>
+              <div style="font-weight:700;font-size:15px">{{ rec.name }}</div>
+              <div style="margin-top:4px;font-size:12px;color:var(--text-muted)">{{ rec.category }} · {{ rec.slug }}</div>
+            </div>
+            <div style="font-size:22px;font-weight:800;color:var(--accent-blue)">{{ '%.0f' % rec.recommendation_score }}</div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--text-muted)">{{ rec.reason_label or rec.reason_type }}</div>
+          <div style="margin-top:8px;font-size:13px;line-height:1.7;color:var(--text-secondary)">{{ rec.reason_detail }}</div>
+          {% if rec.selection_logic %}
+          <div style="margin-top:10px;padding:8px 10px;border-radius:10px;background:rgba(102,126,234,0.12);font-size:12px;color:var(--accent-blue)">{{ rec.selection_logic }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">💡</div>
+        <h3>暂无推荐</h3>
+        <p>当前安装结构较完整，或尚未生成推荐数据。</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- 诊断摘要 -->
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">🏥</span> 最近诊断报告</div>
+      {% if data.diagnostic_summary and data.diagnostic_summary.markdown %}
+      <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted)">
+        日期: {{ data.diagnostic_summary.date }} · 健康度: {{ '%.0f' % data.diagnostic_summary.health_score }} · 触发: {{ data.diagnostic_summary.trigger or '-' }}
+      </div>
+      {% if data.diagnostic_summary.issues %}
+      <div style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;margin-bottom:8px">发现问题</div>
+        <ul style="padding-left:18px;color:var(--text-secondary);font-size:13px;line-height:1.7">
+          {% for item in data.diagnostic_summary.issues[:4] %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if data.diagnostic_summary.suggestions %}
+      <div style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;margin-bottom:8px">行动建议</div>
+        <ul style="padding-left:18px;color:var(--text-secondary);font-size:13px;line-height:1.7">
+          {% for item in data.diagnostic_summary.suggestions[:4] %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="diag-preview">{{ data.diagnostic_summary.markdown[:1800] }}</div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>暂无诊断报告</h3>
+        <p>运行 <code>skills-monitor diagnose</code> 或等待定时任务触发诊断。</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ════════ 页脚 ════════ -->
+  <footer class="footer">
+    <p>Skills Monitor Dashboard v0.6.2 · Powered by CodeBuddy · 数据生成时间 {{ data.generated_at[:19] }}</p>
+  </footer>
+</div>
+
+<!-- ════════ JavaScript ════════ -->
+<script>
+const DATA = {{ data|tojson }};
+
+// ──── 趋势图 ────
+let trendChart = null;
+const trendConfigs = {
+  health: {
+    label: '健康度',
+    key: 'health_score',
+    color: '#667eea',
+    bg: 'rgba(102,126,234,0.1)',
+    min: 0, max: 100,
+  },
+  runs: {
+    label: '运行次数',
+    key: 'total_runs',
+    color: '#4ade80',
+    bg: 'rgba(74,222,128,0.1)',
+    min: 0, max: null,
+  },
+  rate: {
+    label: '成功率',
+    key: 'success_rate',
+    color: '#fbbf24',
+    bg: 'rgba(251,191,36,0.1)',
+    min: 0, max: 100,
+  },
+  active: {
+    label: '活跃 Skills',
+    key: 'active_skills',
+    color: '#22d3ee',
+    bg: 'rgba(34,211,238,0.1)',
+    min: 0, max: null,
+  },
+};
+
+function initTrendChart(type) {
+  const canvas = document.getElementById('trendChart');
+  if (!canvas || !DATA.trend || DATA.trend.length === 0) return;
+
+  const cfg = trendConfigs[type];
+  const labels = DATA.trend.map(t => t.date.slice(5));
+  const values = DATA.trend.map(t => t[cfg.key]);
+
+  if (trendChart) trendChart.destroy();
+
+  trendChart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: cfg.label,
+        data: values,
+        borderColor: cfg.color,
+        backgroundColor: cfg.bg,
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2.5,
+        pointRadius: values.length > 15 ? 0 : 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: cfg.color,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1d2e',
+          borderColor: '#2a2e42',
+          borderWidth: 1,
+          titleColor: '#e4e6f0',
+          bodyColor: '#8b8fa3',
+          padding: 12,
+          cornerRadius: 10,
+        },
+      },
+      scales: {
+        y: {
+          min: cfg.min,
+          max: cfg.max,
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#5a5e72', font: { size: 11 } },
+        },
+        x: {
+          grid: { display: false },
+          ticks: { color: '#5a5e72', font: { size: 11 }, maxRotation: 0 },
+        },
+      },
+    },
+  });
+}
+
+function switchTrendTab(type) {
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', btn.textContent.includes(
+      {health:'健康度', runs:'运行次数', rate:'成功率', active:'活跃'}[type]
+    ));
+  });
+  initTrendChart(type);
+}
+
+// ──── 评分分布饼图 ────
+function initDistChart() {
+  const canvas = document.getElementById('distChart');
+  if (!canvas) return;
+
+  const d = DATA.score_distribution;
+  new Chart(canvas.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: ['优秀 (≥90)', '良好 (75-89)', '一般 (60-74)', '待改善 (<60)'],
+      datasets: [{
+        data: [d.excellent, d.good, d.average, d.poor],
+        backgroundColor: [
+          'rgba(74,222,128,0.8)',
+          'rgba(102,126,234,0.8)',
+          'rgba(251,191,36,0.8)',
+          'rgba(248,113,113,0.8)',
+        ],
+        borderColor: '#1a1d2e',
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: { color: '#8b8fa3', font: { size: 11 }, padding: 12, usePointStyle: true },
+        },
+      },
+    },
+  });
+}
+
+// ──── 初始化 ────
+document.addEventListener('DOMContentLoaded', () => {
+  initTrendChart('health');
+  initDistChart();
+});
+</script>
+
+</body>
+</html>

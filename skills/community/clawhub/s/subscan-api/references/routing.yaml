@@ -1,0 +1,141 @@
+# High-frequency route table — checked BEFORE full swagger parse.
+# Fields:
+#   id       : unique route identifier
+#   triggers : keyword list (case-insensitive, partial match)
+#   apis     : candidate endpoints in priority order
+#              - use the first that fits the context
+#              - prefer /v2/ variants for list queries
+#   need     : required fields that must be confirmed before calling
+#              (empty list means all params are optional)
+# Priority rule: when two routes both match, apply the MORE SPECIFIC one
+#   (e.g. "transfers" wins over "search" for "find transfers for address X")
+
+routes:
+  - id: account
+    triggers:
+      - address
+      - account
+      - wallet
+      - balance
+      - holdings
+      - assets
+      - tokens
+      - multi-chain
+    apis:
+      - /api/v2/scan/multiChain/account
+      - /api/scan/account/tokens
+    need:
+      - address
+
+  - id: transfers
+    triggers:
+      - transfer
+      - transfers
+      - sent
+      - received
+      - send
+      - incoming
+      - outgoing
+    apis:
+      - /api/v2/scan/transfers
+    need: []
+
+  - id: extrinsic
+    triggers:
+      - extrinsic
+      - extrinsics
+      - transaction
+      - tx
+      - hash
+      - call
+      - signed
+    apis:
+      - /api/scan/extrinsic
+      - /api/v2/scan/extrinsics
+      - /api/scan/extrinsic/params
+    need: []
+
+  - id: events
+    triggers:
+      - event
+      - events
+      - log
+      - logs
+      - emit
+    apis:
+      - /api/v2/scan/events
+      - /api/scan/event
+      - /api/scan/event/params
+    need: []
+
+  - id: blocks
+    triggers:
+      - block
+      - blocks
+      - height
+      - finalized
+    apis:
+      - /api/scan/block
+      - /api/v2/scan/blocks
+    need: []
+
+  - id: search
+    triggers:
+      - search
+      - find
+      - lookup
+      - query
+    apis:
+      - /api/v2/scan/search
+    need:
+      - key
+
+  - id: price
+    triggers:
+      - price
+      - price history
+      - token price
+      - ema
+      - coin price
+      - asset price
+    apis:
+      - /api/scan/price/history
+    need:
+      - start
+      - end
+
+  - id: metadata
+    triggers:
+      - metadata
+      - chain info
+      - network info
+      - ss58
+      - network node
+      - chain metadata
+    apis:
+      - /api/scan/metadata
+    need: []
+
+  - id: runtime_metadata
+    triggers:
+      - runtime
+      - runtime metadata
+      - spec version
+      - runtime spec
+      - pallet
+      - module list
+    apis:
+      - /api/scan/runtime/metadata
+    need: []
+
+  - id: event_params
+    triggers:
+      - event params
+      - event parameters
+      - event index
+      - event payload
+      - event detail
+    apis:
+      - /api/scan/event/params
+    need:
+      - event_index

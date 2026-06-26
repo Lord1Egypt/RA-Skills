@@ -1,0 +1,8195 @@
+swagger: '2.0'
+info:
+  contact: {}
+paths:
+  /api/now:
+    get:
+      description: Returns the current server timestamp in Unix seconds.
+      responses:
+        '200':
+          description: OK
+      summary: Get current timestamp
+      tags:
+      - common
+      x-synonyms:
+      - now
+      - timestamp
+  /api/open/currencies:
+    post:
+      description: Get all supported currency pairs for the native token.
+      responses:
+        '200':
+          description: OK
+      summary: supported currencies
+      tags:
+      - currency
+      x-synonyms:
+      - supported
+      - currencies
+      - currency
+      - open
+  /api/open/price:
+    post:
+      description: Query the native token price at a specific time.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.currencyPriceParams'
+      responses:
+        '200':
+          description: OK
+      summary: currency price
+      tags:
+      - currency
+      x-synonyms:
+      - currency
+      - price
+      - open
+      - rate
+      - valuation
+  /api/open/price_converter:
+    post:
+      description: Convert the value of a token from one currency to another at a
+        specific time.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.currencyConverterParams'
+      responses:
+        '200':
+          description: OK
+      summary: currency price converter
+      tags:
+      - currency
+      x-synonyms:
+      - currency
+      - price
+      - converter
+      - open
+      - rate
+      - valuation
+  /api/scan/account/assets_changed:
+    post:
+      description: Get the account assets changed history (only support the assets
+        & foreign assets)
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.assetsChangedParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account assets changed history
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - assets
+      - changed
+      - history
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/account/balance_history:
+    post:
+      description: 'Native token balance history implementations vary by network.
+
+        Block-level granularity: Polkadot, Kusama, Westend.
+
+        Daily snapshot granularity: All other supported chains'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountBalanceParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account Balance History
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - balance
+      - history
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/account/referendum:
+    post:
+      description: 'Account referendum list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountReferendumParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account referendum list
+      tags:
+      - governance
+      x-synonyms:
+      - account
+      - referendum
+      - governance
+      - scan
+      - wallet
+      - address
+      - user
+      - vote
+      - treasury
+      - council
+  /api/scan/account/reward_slash:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.rewardSlashParams'
+      responses:
+        '200':
+          description: OK
+      summary: Reward or slash list
+      tags:
+      - staking
+      x-synonyms:
+      - reward
+      - slash
+      - staking
+      - scan
+      - account
+      - penalty
+      - slashing
+      - wallet
+      - address
+      - user
+  /api/scan/account/tokens:
+    post:
+      description: Get the account token list, including native token and builtin/assets
+        tokens and evm tokens(erc20/erc721).
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountTokenParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account token list
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - token
+      - scan
+      - tokens
+      - wallet
+      - address
+      - user
+      - asset
+      - coin
+  /api/scan/accounts/mau:
+    post:
+      description: Returns monthly active account statistics for the requested date
+        range.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountsMAUHandleParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get monthly active account statistics
+      tags:
+      - stat
+      x-synonyms:
+      - monthly
+      - active
+      - account
+      - statistics
+      - stat
+      - scan
+      - accounts
+      - mau
+      - wallet
+      - address
+      - user
+  /api/scan/accounts/merkle:
+    post:
+      description: Get the account merkle list, only support polkadot and assethub
+        polkadot network
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountsMerkleParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account merkle list
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - merkle
+      - scan
+      - accounts
+      - wallet
+      - address
+      - user
+  /api/scan/accounts/statistics:
+    post:
+      description: Get the account statistics, including assets and role statistics.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountsStatisticsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account statistics
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - statistics
+      - scan
+      - accounts
+      - wallet
+      - address
+      - user
+  /api/scan/assets/account/balances:
+    post:
+      description: 'Get asset balances by account address
+
+        This API only supports networks with assets frame'
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_assets_http.assetBalancesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Asset account balances
+      tags:
+      - assets
+      x-synonyms:
+      - asset
+      - account
+      - balances
+      - assets
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/assets/activities:
+    post:
+      description: 'Get asset activities(include asset Created/Issued/Burned...) by
+        asset id
+
+        This API only supports networks with assets frame'
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_assets_http.assetActivitiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Asset activities
+      tags:
+      - assets
+      x-synonyms:
+      - asset
+      - activities
+      - assets
+      - scan
+  /api/scan/assets/asset:
+    post:
+      description: 'Get asset info by asset id
+
+        This API only supports networks with assets frame'
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_assets_http.assetParam'
+      responses:
+        '200':
+          description: OK
+      summary: Asset info
+      tags:
+      - assets
+      x-synonyms:
+      - asset
+      - assets
+      - scan
+  /api/scan/assets/asset/holders:
+    post:
+      description: 'Get asset holders by asset id
+
+        This API only supports networks with assets frame'
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_assets_http.assetHolderParams'
+      responses:
+        '200':
+          description: OK
+      summary: Asset holders
+      tags:
+      - assets
+      x-synonyms:
+      - asset
+      - holders
+      - assets
+      - scan
+      - owners
+      - token holders
+  /api/scan/assets/assets:
+    post:
+      description: 'Assets token list
+
+        This API only supports networks with assets frame'
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_assets_http.assetsParam'
+      responses:
+        '200':
+          description: OK
+      summary: Assets list
+      tags:
+      - assets
+      x-synonyms:
+      - assets
+      - scan
+  /api/scan/block:
+    post:
+      description: Get block detail by block number, block hash or block timestamp(Nearest).
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.blockParams'
+      responses:
+        '200':
+          description: OK
+      summary: Block detail
+      tags:
+      - block
+      x-synonyms:
+      - block
+      - scan
+      - block height
+      - block number
+  /api/scan/bounties/child:
+    post:
+      description: 'Child Bounty list
+
+        This API only supports networks with childbounties frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.childBountiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Child Bounty list
+      tags:
+      - governance
+      x-synonyms:
+      - child
+      - bounty
+      - governance
+      - scan
+      - bounties
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/bounties/proposal:
+    post:
+      description: 'Bounty detail
+
+        This API only supports networks with bounties frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.bountyParams'
+      responses:
+        '200':
+          description: OK
+      summary: Bounty info
+      tags:
+      - governance
+      x-synonyms:
+      - bounty
+      - governance
+      - scan
+      - bounties
+      - proposal
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/bounties/proposals:
+    post:
+      description: 'Bounty list
+
+        This API only supports networks with bounties frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.bountiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Bounty list
+      tags:
+      - governance
+      x-synonyms:
+      - bounty
+      - governance
+      - scan
+      - bounties
+      - proposals
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/check_hash:
+    post:
+      description: Check hash type, return hash type and address/extrinsic/evm transaction/block/xcm
+        message/multisig call hash if found
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.checkHashParam'
+      responses:
+        '200':
+          description: OK
+      summary: Check hash type
+      tags:
+      - search
+      x-synonyms:
+      - check
+      - hash
+      - type
+      - search
+      - scan
+      - lookup
+      - find
+      - query
+  /api/scan/collator/info:
+    post:
+      description: Returns detailed information for a single collator account.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_collator.collatorInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get collator details
+      tags:
+      - collator
+      x-synonyms:
+      - collator
+      - scan
+      - block producer
+      - validator
+  /api/scan/collator/list:
+    post:
+      description: Returns a paginated list of collators with status, account, and
+        ordering filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_collator.collatorListParams'
+      responses:
+        '200':
+          description: OK
+      summary: List collators
+      tags:
+      - collator
+      x-synonyms:
+      - collators
+      - collator
+      - scan
+      - block producer
+      - validator
+  /api/scan/collator/meta:
+    get:
+      description: Returns collator metadata used by the collator APIs.
+      responses:
+        '200':
+          description: OK
+      summary: Get collator metadata
+      tags:
+      - collator
+      x-synonyms:
+      - collator
+      - metadata
+      - scan
+      - meta
+      - block producer
+      - validator
+      - chain info
+  /api/scan/collator/timeline:
+    post:
+      description: Returns paginated timeline records for a collator.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_collator.collatorTimelineParams'
+      responses:
+        '200':
+          description: OK
+      summary: List collator timeline records
+      tags:
+      - collator
+      x-synonyms:
+      - collator
+      - timeline
+      - records
+      - scan
+      - block producer
+      - validator
+  /api/scan/contracts/events:
+    post:
+      description: WASM contract emitted events by contract address(only support network
+        has contracts frame)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.contractsEventsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Contract Events
+      tags:
+      - contracts
+      x-synonyms:
+      - contract
+      - events
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+      - logs
+      - on-chain events
+  /api/scan/contracts/info:
+    post:
+      description: WASM contract info by contract address(only support network has
+        contracts frame)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.contractInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Contract info
+      tags:
+      - contracts
+      x-synonyms:
+      - contract
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+  /api/scan/contracts/list:
+    post:
+      description: WASM contract list(only support network has contracts frame)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.contractsListParams'
+      responses:
+        '200':
+          description: OK
+      summary: WASM Contract List
+      tags:
+      - contracts
+      x-synonyms:
+      - wasm
+      - contract
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+  /api/scan/contracts/meta:
+    post:
+      description: WASM contract metadata(only support network has contracts frame)
+      responses:
+        '200':
+          description: OK
+      summary: Contract meta
+      tags:
+      - contracts
+      x-synonyms:
+      - contract
+      - meta
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+  /api/scan/contracts/timeline:
+    post:
+      description: WASM contract lifetime timeline by contract address(only support
+        network has contracts frame)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.contractTimelineParams'
+      responses:
+        '200':
+          description: OK
+      summary: Contract Timeline
+      tags:
+      - contracts
+      x-synonyms:
+      - contract
+      - timeline
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+  /api/scan/contracts/transactions:
+    post:
+      description: WASM contract transactions by address or contract address(only
+        support network has contracts frame)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.contractTxsParams'
+      responses:
+        '200':
+          description: OK
+      summary: WASM Contract transactions
+      tags:
+      - contracts
+      x-synonyms:
+      - wasm
+      - contract
+      - transactions
+      - contracts
+      - scan
+      - smart contract
+      - wasm contract
+      - evm contract
+  /api/scan/contracts/verify/compiler_images:
+    get:
+      description: WASM contract available compiler images for verifying contracts
+      responses:
+        '200':
+          description: OK
+      summary: Compiler images tag
+      tags:
+      - contracts
+      x-synonyms:
+      - compiler
+      - images
+      - tag
+      - contracts
+      - scan
+      - verify
+  /api/scan/contracts/verify/compiler_version:
+    get:
+      description: WASM contract available compiler versions for verifying contracts
+      responses:
+        '200':
+          description: OK
+      summary: Compiler versions
+      tags:
+      - contracts
+      x-synonyms:
+      - compiler
+      - versions
+      - contracts
+      - scan
+      - verify
+      - version
+  /api/scan/council/proposal:
+    post:
+      description: 'Council proposal detail
+
+        This API only supports networks with council frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.councilProposalParams'
+      responses:
+        '200':
+          description: OK
+      summary: Council proposal
+      tags:
+      - governance
+      x-synonyms:
+      - council
+      - proposal
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+  /api/scan/council/proposals:
+    post:
+      description: 'Council proposal list
+
+        This API only supports networks with council frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.councilProposalsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Council proposals
+      tags:
+      - governance
+      x-synonyms:
+      - council
+      - proposals
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+  /api/scan/daily/reward_slash:
+    post:
+      description: 'Get daily reward or slash data.
+
+        Only supports agung-testnet,peaq,krest,tanssi network'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.dailyRewardSlashParams'
+      responses:
+        '200':
+          description: OK
+      summary: daily reward or slash data
+      tags:
+      - staking
+      x-synonyms:
+      - daily
+      - reward
+      - slash
+      - data
+      - staking
+      - scan
+      - penalty
+      - slashing
+  /api/scan/daily_token:
+    post:
+      description: Returns daily token statistics for a date range and optional token
+        symbol.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.dailyTokenStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get daily token statistics
+      tags:
+      - stat
+      x-synonyms:
+      - daily
+      - token
+      - statistics
+      - stat
+      - scan
+      - asset
+      - coin
+  /api/scan/democracy/proposal:
+    post:
+      description: 'Democracy details
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.democracyParams'
+      responses:
+        '200':
+          description: OK
+      summary: Democracy details
+      tags:
+      - governance
+      x-synonyms:
+      - democracy
+      - governance
+      - scan
+      - proposal
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/democracy/proposals:
+    post:
+      description: 'Democracies list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.democraciesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Democracies list
+      tags:
+      - governance
+      x-synonyms:
+      - democracies
+      - governance
+      - scan
+      - democracy
+      - proposals
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/democracy/referendum:
+    post:
+      description: 'Referendum list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum list(legacy)
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - legacy
+      - governance
+      - scan
+      - democracy
+      - vote
+      - treasury
+      - council
+  /api/scan/democracy/referendums:
+    post:
+      description: 'Referendums list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendums
+      tags:
+      - governance
+      x-synonyms:
+      - referendums
+      - governance
+      - scan
+      - democracy
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/democracy/seconded:
+    post:
+      description: 'Democracy seconded list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.democracySecondedParams'
+      responses:
+        '200':
+          description: OK
+      summary: Democracy seconded list
+      tags:
+      - governance
+      x-synonyms:
+      - democracy
+      - seconded
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/democracy/votes:
+    post:
+      description: 'Referendum votes list
+
+        This API only supports networks with democracy frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumVotesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum votes list(legacy)
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - votes
+      - legacy
+      - governance
+      - scan
+      - democracy
+      - vote
+      - treasury
+      - council
+  /api/scan/event:
+    post:
+      description: Returns event details for a specific event index.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.eventInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get event by index
+      tags:
+      - event
+      x-synonyms:
+      - event
+      - index
+      - scan
+      - log
+      - on-chain event
+  /api/scan/event/params:
+    post:
+      description: Returns parsed parameter payloads for up to 100 event indexes.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.eventParamsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get event parameters by index
+      tags:
+      - event
+      x-synonyms:
+      - event
+      - parameters
+      - index
+      - scan
+      - params
+      - log
+      - on-chain event
+  /api/scan/evm/abi:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmAbiSearchParams'
+      responses:
+        '200':
+          description: OK
+      summary: ABI by method id or event topic
+      tags:
+      - EVM
+      x-synonyms:
+      - abi
+      - method
+      - id
+      - event
+      - topic
+      - evm
+      - scan
+      - log
+      - on-chain event
+      - ethereum
+      - smart contract
+      - frontier
+  /api/scan/evm/account/tokens:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EVMAccountTokensParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM account tokens
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - account
+      - tokens
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - wallet
+      - address
+      - user
+  /api/scan/evm/block:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EVMBlockParam'
+      responses:
+        '200':
+          description: OK
+      summary: Evm block by block number
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - block
+      - number
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - block height
+      - block number
+  /api/scan/evm/blocks:
+    post:
+      description: Returns paginated EVM blocks. This API only supports networks with
+        EVM pallet(frontier or revive).
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmBlocksParams'
+      responses:
+        '200':
+          description: OK
+      summary: List EVM blocks
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - blocks
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - block list
+      - block heights
+  /api/scan/evm/contract:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmContractParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM contract detail
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - contract
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - wasm contract
+      - evm contract
+  /api/scan/evm/contract/list:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmContractListParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM contract list
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - contract
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - wasm contract
+      - evm contract
+  /api/scan/evm/contract/solcs:
+    post:
+      description: This API only supports networks with EVM pallet(revive)
+      responses:
+        '200':
+          description: OK
+      summary: Polkadot pvm resolc versions
+      tags:
+      - EVM
+      x-synonyms:
+      - polkadot
+      - pvm
+      - resolc
+      - versions
+      - evm
+      - scan
+      - contract
+      - solcs
+      - ethereum
+      - smart contract
+      - frontier
+      - wasm contract
+      - evm contract
+  /api/scan/evm/erc721/collectible:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmErc1155CollectibleParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM erc721 collectible detail
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc721
+      - collectible
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - non-fungible token
+  /api/scan/evm/erc721/collectibles:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmNFT721CollectiblesParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM ERC721 collectibles
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc721
+      - collectibles
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - collectible
+      - non-fungible token
+  /api/scan/evm/erc1155/collectible:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmErc1155CollectibleParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM erc1155 collectible detail
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc1155
+      - collectible
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - multi token
+      - multi-token
+      - erc721
+  /api/scan/evm/erc1155/collectible/holders:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmErc1155HoldersParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM erc1155 token holders
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc1155
+      - token
+      - holders
+      - scan
+      - collectible
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - multi token
+      - multi-token
+      - asset
+      - coin
+  /api/scan/evm/erc1155/collectibles:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmNFT1155CollectiblesParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM ERC1155 collectibles
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc1155
+      - collectibles
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - multi token
+      - multi-token
+      - erc721
+      - collectible
+  /api/scan/evm/etherscan:
+    get:
+      description: 'We provide a subset of Etherscan-like API for EVM-compatible chains.
+        Please refer to the official Etherscan API documentation for details on parameters
+        and responses.
+
+        Official Etherscan API Documentation: https://docs.etherscan.io/api-endpoints
+
+        Below are the API Endpoints we already support.
+
+        - Account Module: balance, balancehistory, txlist, tokentx, tokennfttx, txlistinternal
+
+        - Block Module: getblocknobytime
+
+        - Contract Module: getabi, getsourcecode, getcontractcreation, verifysourcecode,
+        checkverifystatus
+
+        - Logs Module: getLogs
+
+        - Transaction Module: getstatus, gettxreceiptstatus
+
+        - Token Module: tokensupply, tokenbalance, tokenbalancehistory, tokensupplyhistory,
+        topholders, tokenholderlist, tokenholdercount, tokeninfo, addresstokenbalance,
+        addresstokennftbalance, addresstokennftinventory'
+      responses:
+        '200':
+          description: OK
+      summary: Etherscan-like API
+      tags:
+      - EVM
+      x-synonyms:
+      - etherscan-like
+      - evm
+      - scan
+      - etherscan
+      - ethereum
+      - smart contract
+      - frontier
+  /api/scan/evm/logs:
+    post:
+      description: 'EVM event Logs,returns the event logs from an address. The current
+        maximum limit for the number of results returned through pagination is 10,000.
+        If you require more, please adjust the block_range parameter.
+
+        This API only supports networks with EVM pallet(frontier or revive)'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmEventLogsParams'
+      responses:
+        '200':
+          description: OK
+      summary: EVM event Logs
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - event
+      - logs
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - log
+      - on-chain event
+  /api/scan/evm/meta:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      responses:
+        '200':
+          description: OK
+      summary: Evm meta
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - meta
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+  /api/scan/evm/token:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmTokenParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM erc20/erc721/erc1155 token
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc20/erc721
+      - erc1155
+      - token
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - multi token
+      - multi-token
+      - asset
+      - coin
+      - erc721
+  /api/scan/evm/token/holders:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmTokenHoldersParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM token holders
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - token
+      - holders
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - asset
+      - coin
+      - owners
+      - token holders
+  /api/scan/evm/token/transfer:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmTokenTransferParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM token transfer
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - token
+      - transfer
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - asset
+      - coin
+      - send
+      - asset movement
+  /api/scan/evm/tokens:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmTokensParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM erc20/erc721/erc1155 tokens
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - erc20/erc721
+      - erc1155
+      - tokens
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - nft
+      - multi token
+      - multi-token
+      - erc721
+      - collectible
+  /api/scan/evm/transaction:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EVMTransactionParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM transaction info
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - transaction
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+      - extrinsic
+      - tx
+  /api/scan/evm/transaction/internalTx:
+    post:
+      description: This API is only available for the PEAQ network
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmInternalTxParam'
+      responses:
+        '200':
+          description: OK
+      summary: EVM internal Tx
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - internal
+      - tx
+      - scan
+      - transaction
+      - internaltx
+      - ethereum
+      - smart contract
+      - frontier
+      - extrinsic
+  /api/scan/evm/v2/transactions:
+    post:
+      description: This API only supports networks with EVM pallet(frontier or revive)
+      parameters:
+      - description: body
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_evm_http.EvmTransactionsParam'
+      responses:
+        '200':
+          description: OK
+      summary: Evm transactions
+      tags:
+      - EVM
+      x-synonyms:
+      - evm
+      - transactions
+      - scan
+      - ethereum
+      - smart contract
+      - frontier
+  /api/scan/extrinsic:
+    post:
+      description: Returns extrinsic details by extrinsic_index or hash, with optional
+        event and parameter controls.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.ExtrinsicDetailParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get extrinsic details
+      tags:
+      - extrinsic
+      x-synonyms:
+      - extrinsic
+      - scan
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/extrinsic/params:
+    post:
+      description: Returns parsed parameter payloads for up to 100 extrinsic indexes.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.extrinsicParamsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get extrinsic parameters
+      tags:
+      - extrinsic
+      x-synonyms:
+      - extrinsic
+      - parameters
+      - scan
+      - params
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/extrinsic/reward:
+    post:
+      description: 'Get extrinsic reward list by extrinsic index.
+
+        This API only supports networks with staking frame or parachain-staking pallet'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.extrinsicRewardParams'
+      responses:
+        '200':
+          description: OK
+      summary: Extrinsic reward
+      tags:
+      - extrinsic
+      x-synonyms:
+      - extrinsic
+      - reward
+      - scan
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/fellowship/referendum:
+    post:
+      description: 'Fellowship referenda details
+
+        This API only supports networks with FellowshipReferenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.fellowshipReferendumParams'
+      responses:
+        '200':
+          description: OK
+      summary: Fellowship referenda details
+      tags:
+      - governance
+      x-synonyms:
+      - fellowship
+      - referenda
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/fellowship/referendums:
+    post:
+      description: 'Fellowship referenda list
+
+        This API only supports networks with FellowshipReferenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.fellowshipReferendumsV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: Fellowship referenda list
+      tags:
+      - governance
+      x-synonyms:
+      - fellowship
+      - referenda
+      - governance
+      - scan
+      - referendums
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/fellowship/statistics:
+    post:
+      description: 'Fellowship referendum statistics
+
+        This API only supports networks with FellowshipReferenda frame'
+      responses:
+        '200':
+          description: OK
+      summary: Fellowship referendum statistics
+      tags:
+      - governance
+      x-synonyms:
+      - fellowship
+      - referendum
+      - statistics
+      - governance
+      - scan
+      - vote
+      - treasury
+      - council
+  /api/scan/fellowship/tracks:
+    post:
+      description: 'Fellowship referendum tracks
+
+        This API only supports networks with FellowshipReferenda frame'
+      responses:
+        '200':
+          description: OK
+      summary: Fellowship referendum tracks
+      tags:
+      - governance
+      x-synonyms:
+      - fellowship
+      - referendum
+      - tracks
+      - governance
+      - scan
+      - vote
+      - treasury
+      - council
+  /api/scan/fellowship/votes:
+    post:
+      description: 'Fellowship referendum votes list
+
+        This API only supports networks with FellowshipReferenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.fellowshipReferendumVotesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Fellowship referendum votes
+      tags:
+      - governance
+      x-synonyms:
+      - fellowship
+      - referendum
+      - votes
+      - governance
+      - scan
+      - vote
+      - treasury
+      - council
+  /api/scan/foreignAssets/account/balances:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_foreignAssets_http.assetBalancesParams'
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets account balances
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - account
+      - balances
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/foreignAssets/activities:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_foreignAssets_http.assetActivitiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets activities
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - activities
+      - scan
+  /api/scan/foreignAssets/all:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets list all
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - scan
+  /api/scan/foreignAssets/asset:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_foreignAssets_http.assetParam'
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets info
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - scan
+      - asset
+  /api/scan/foreignAssets/asset/holders:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_foreignAssets_http.assetHolderParams'
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets holders
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - holders
+      - scan
+      - asset
+      - owners
+      - token holders
+  /api/scan/foreignAssets/assets:
+    post:
+      description: This API only supports networks with foreignAssets frame
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_foreignAssets_http.assetsParam'
+      responses:
+        '200':
+          description: OK
+      summary: ForeignAssets list
+      tags:
+      - foreignAssets
+      x-synonyms:
+      - foreignassets
+      - scan
+      - assets
+  /api/scan/getRawTx:
+    post:
+      description: Returns the raw transaction hex for an extrinsic index or extrinsic
+        hash.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.rawTxParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get raw extrinsic transaction
+      tags:
+      - extrinsic
+      x-synonyms:
+      - raw
+      - extrinsic
+      - transaction
+      - scan
+      - getrawtx
+      - tx
+      - on-chain call
+  /api/scan/governance/desc:
+    post:
+      description: This API provides post/comments about the proposal, this api powered
+        by the subsquare
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.governanceDescParam'
+      responses:
+        '200':
+          description: OK
+      summary: more information about the governance
+      tags:
+      - governance
+      x-synonyms:
+      - more
+      - information
+      - about
+      - governance
+      - scan
+      - desc
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/header:
+    post:
+      description: Get block header by block number.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.blockHeaderParams'
+      responses:
+        '200':
+          description: OK
+      summary: Block header
+      tags:
+      - block
+      x-synonyms:
+      - block
+      - header
+      - scan
+      - block height
+      - block number
+  /api/scan/log:
+    post:
+      description: Returns a block log record by log index.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.logInfoParam'
+      responses:
+        '200':
+          description: OK
+      summary: Get block log by index
+      tags:
+      - log
+      x-synonyms:
+      - block
+      - log
+      - index
+      - scan
+      - block height
+      - block number
+  /api/scan/metadata:
+    post:
+      description: Current network metadata, including current networkNode name, ss58
+        addressType and other information
+      responses:
+        '200':
+          description: OK
+      summary: Current network metadata
+      tags:
+      - metadata
+      x-synonyms:
+      - current
+      - network
+      - metadata
+      - scan
+      - meta
+      - chain info
+  /api/scan/multiChain/account/count:
+    post:
+      description: 'Get the number of accounts in multi-chains
+
+        Support Network: polkadot'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.multiChainAccountParams'
+      responses:
+        '200':
+          description: OK
+      summary: MultiChain account count (BETA)
+      tags:
+      - multiChain
+      x-synonyms:
+      - multichain
+      - account
+      - count
+      - beta
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/multiChain/balance_value_history:
+    post:
+      description: 'Get the historical balance value of an account over a specified
+        period. Date format: YYYY-MM-DD
+
+        Support Network: polkadot'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountBalanceValueHistoryParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account balance value history (BETA)
+      tags:
+      - multiChain
+      x-synonyms:
+      - account
+      - balance
+      - value
+      - history
+      - beta
+      - multichain
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/multiChain/balance_value_stat:
+    post:
+      description: 'Get the maximum, minimum, and 24-hour previous balance value of
+        an account.
+
+        Support Network: polkadot'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountBalanceValueStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account balance value stat (BETA)
+      tags:
+      - multiChain
+      x-synonyms:
+      - account
+      - balance
+      - value
+      - stat
+      - beta
+      - multichain
+      - scan
+      - wallet
+      - address
+      - user
+  /api/scan/multiChain/price:
+    post:
+      description: 'Support Network: polkadot'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.identitiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: MultiChain price (BETA)
+      tags:
+      - multiChain
+      x-synonyms:
+      - multichain
+      - price
+      - beta
+      - scan
+      - rate
+      - valuation
+  /api/scan/multisig:
+    post:
+      description: Returns details for a multisig extrinsic by multi_id and call_hash.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.multisigParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get multisig extrinsic details
+      tags:
+      - multisig
+      x-synonyms:
+      - multisig
+      - extrinsic
+      - scan
+      - multi-signature
+      - multi sig
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/multisigs:
+    post:
+      description: Returns paginated multisig extrinsics filtered by account, call
+        hash, and type.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.multisigParams'
+      responses:
+        '200':
+          description: OK
+      summary: List multisig extrinsics
+      tags:
+      - multisig
+      x-synonyms:
+      - multisig
+      - extrinsics
+      - scan
+      - multisigs
+      - multi-signature
+      - multi sig
+  /api/scan/multisigs/details:
+    post:
+      description: Returns paginated multisig detail records for the specified account.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.multisigsDetailsParams'
+      responses:
+        '200':
+          description: OK
+      summary: List multisig extrinsic details
+      tags:
+      - multisig
+      x-synonyms:
+      - multisig
+      - extrinsic
+      - scan
+      - multisigs
+      - multi-signature
+      - multi sig
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/nfts/account/balances:
+    post:
+      description: 'Get NFT balances by account address
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftAccountBalancesParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT account balances
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - account
+      - balances
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+      - wallet
+      - address
+      - user
+  /api/scan/nfts/activities:
+    post:
+      description: 'Get Nft activities(include nft Created/Issued/Burned...) by nft
+        collection id
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftActivitiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT activities
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - activities
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+  /api/scan/nfts/info:
+    post:
+      description: 'NFT collection info
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT info
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+  /api/scan/nfts/info/holders:
+    post:
+      description: 'NFT holders in a collection
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftHoldersParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT holders
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - holders
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+      - owners
+      - token holders
+  /api/scan/nfts/info/item:
+    post:
+      description: 'NFT item info
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftItemParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT item
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - item
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+  /api/scan/nfts/info/items:
+    post:
+      description: 'NFT items in a collection
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftItemsParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFT items
+      tags:
+      - NFTs
+      x-synonyms:
+      - nft
+      - items
+      - nfts
+      - scan
+      - erc721
+      - collectible
+      - non-fungible token
+  /api/scan/nfts/list:
+    post:
+      description: 'NFTs collection list
+
+        This API only supports networks with nfts frame'
+      parameters:
+      - description: body
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_plugin_nfts_http.NftsParams'
+      responses:
+        '200':
+          description: OK
+      summary: NFTs list
+      tags:
+      - NFTs
+      x-synonyms:
+      - nfts
+      - scan
+  /api/scan/nomination_pool/activities:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsActivitiesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools Activities
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - activities
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - nomination pool
+  /api/scan/nomination_pool/pool:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools Info
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - nomination pool
+  /api/scan/nomination_pool/pool/member/vote:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsMemberVoteParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools Member Vote
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - member
+      - vote
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - nomination pool
+  /api/scan/nomination_pool/pool/members:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsMembersParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools Members
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - members
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - nomination pool
+  /api/scan/nomination_pool/pools:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsListParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools List
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - nomination pool
+  /api/scan/nomination_pool/rewards:
+    post:
+      description: This API only supports networks with nominationPools frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_pluginv2_pallets_nominationPool.nominationPoolsRewardsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nomination Pools Rewards
+      tags:
+      - nominationPools
+      x-synonyms:
+      - nomination
+      - pools
+      - rewards
+      - nominationpools
+      - scan
+      - pool
+      - staking pool
+      - delegation
+      - reward
+      - payout
+      - nomination pool
+  /api/scan/parachain/info:
+    post:
+      description: 'Get detailed information about Parachain
+
+        Only available on relay chains(Polkadot,Kusama,Westend,Paseo).'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.parachainInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Parachain info
+      tags:
+      - parachain
+      x-synonyms:
+      - parachain
+      - scan
+      - para chain
+      - relaychain shard
+  /api/scan/parachain/list:
+    post:
+      description: 'List ParaChains/ParaThread with their status and other details.
+
+        Only available on relay chains(Polkadot,Kusama,Westend,Paseo).'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.paraChainListParams'
+      responses:
+        '200':
+          description: OK
+      summary: Parachain list
+      tags:
+      - parachain
+      x-synonyms:
+      - parachain
+      - scan
+      - para chain
+      - relaychain shard
+  /api/scan/parachain/meta:
+    post:
+      description: 'Get the metadata of all parachains.
+
+        Only available on relay chains(Polkadot,Kusama,Westend,Paseo).'
+      responses:
+        '200':
+          description: OK
+      summary: Parachain meta
+      tags:
+      - parachain
+      x-synonyms:
+      - parachain
+      - meta
+      - scan
+      - para chain
+      - relaychain shard
+  /api/scan/parachain/registerinfo:
+    post:
+      description: Get the register info of parachain.
+      responses:
+        '200':
+          description: OK
+      summary: Parachain register info
+      tags:
+      - parachain
+      x-synonyms:
+      - parachain
+      - register
+      - scan
+      - registerinfo
+      - para chain
+      - relaychain shard
+  /api/scan/pendingExtrinsics:
+    post:
+      description: Returns currently pending extrinsics in the mempool.
+      responses:
+        '200':
+          description: OK
+      summary: List pending extrinsics
+      tags:
+      - extrinsic
+      x-synonyms:
+      - pending
+      - extrinsics
+      - extrinsic
+      - scan
+      - pendingextrinsics
+      - transaction
+      - tx
+      - on-chain call
+  /api/scan/preimage/details:
+    post:
+      description: 'Preimage details
+
+        This API only supports networks with preimage frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.preimageDetailsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Preimage details
+      tags:
+      - governance
+      x-synonyms:
+      - preimage
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/preimage/list:
+    post:
+      description: 'Preimage list
+
+        This API only supports networks with preimage frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.preimageListParams'
+      responses:
+        '200':
+          description: OK
+      summary: Preimage list
+      tags:
+      - governance
+      x-synonyms:
+      - preimage
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/price/history:
+    post:
+      description: Returns token price history and EMA metrics for the selected date
+        range and format.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.priceHistoryParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get token price history
+      tags:
+      - stat
+      x-synonyms:
+      - token
+      - price
+      - history
+      - stat
+      - scan
+      - asset
+      - coin
+      - rate
+      - valuation
+  /api/scan/proxy/extrinsics:
+    post:
+      description: Returns paginated proxy extrinsics for the specified account.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.proxyExtrinsicsParams'
+      responses:
+        '200':
+          description: OK
+      summary: List proxy extrinsics
+      tags:
+      - proxy
+      x-synonyms:
+      - proxy
+      - extrinsics
+      - scan
+      - delegation
+      - delegated account
+  /api/scan/referenda/delegate:
+    post:
+      description: 'Referendum delegator
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumDelegateDetailsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum delegator details
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - delegator
+      - governance
+      - scan
+      - referenda
+      - delegate
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/delegate/votes:
+    post:
+      description: 'Referendum delegator vote list
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumDelegateVotesParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum delegator votes
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - delegator
+      - votes
+      - governance
+      - scan
+      - referenda
+      - delegate
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/delegates:
+    post:
+      description: 'Referendum delegated of delegator list
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumDelegateParams'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum delegated of delegator list
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - delegated
+      - delegator
+      - governance
+      - scan
+      - referenda
+      - delegates
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/referendum:
+    post:
+      description: 'Referenda details
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: Referenda details
+      tags:
+      - governance
+      x-synonyms:
+      - referenda
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/referendums:
+    post:
+      description: 'Referenda list
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendumsV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: Referenda list
+      tags:
+      - governance
+      x-synonyms:
+      - referenda
+      - governance
+      - scan
+      - referendums
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/statistics:
+    post:
+      description: 'Referendum statistics
+
+        This API only supports networks with referenda/democracy frame'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum statistics
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - statistics
+      - governance
+      - scan
+      - referenda
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/tracks:
+    post:
+      description: 'Referendum tracks
+
+        This API only supports networks with referenda frame'
+      responses:
+        '200':
+          description: OK
+      summary: Referendum tracks
+      tags:
+      - governance
+      x-synonyms:
+      - referendum
+      - tracks
+      - governance
+      - scan
+      - referenda
+      - vote
+      - treasury
+      - council
+  /api/scan/referenda/votes:
+    post:
+      description: 'Referenda votes list
+
+        This API only supports networks with referenda frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.referendaVotesV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: Referenda votes list(v2)
+      tags:
+      - governance
+      x-synonyms:
+      - referenda
+      - votes
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/runtime/list:
+    post:
+      description: Returns runtime version history for the current network.
+      responses:
+        '200':
+          description: OK
+      summary: List runtime versions
+      tags:
+      - runtime
+      x-synonyms:
+      - runtime
+      - versions
+      - scan
+      - spec version
+      - runtime version
+  /api/scan/runtime/metadata:
+    post:
+      description: Returns runtime metadata modules for the specified runtime spec
+        version.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.runtimeMetadataParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get runtime metadata
+      tags:
+      - runtime
+      x-synonyms:
+      - runtime
+      - metadata
+      - scan
+      - spec version
+      - runtime version
+      - meta
+      - chain info
+  /api/scan/runtime/modules:
+    post:
+      description: Returns runtime modules for the specified runtime spec version.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.runtimeModuleParams'
+      responses:
+        '200':
+          description: OK
+      summary: List runtime modules
+      tags:
+      - runtime
+      x-synonyms:
+      - runtime
+      - modules
+      - scan
+      - spec version
+      - runtime version
+  /api/scan/scheduler:
+    post:
+      description: Returns a scheduled call detail by ID or by (when,index).
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.schedulersDetailsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get scheduled call details
+      tags:
+      - scheduler
+      x-synonyms:
+      - scheduled
+      - call
+      - scheduler
+      - scan
+  /api/scan/schedulers:
+    post:
+      description: Returns paginated scheduled calls with module, status, and time-range
+        filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.schedulersParams'
+      responses:
+        '200':
+          description: OK
+      summary: List scheduled calls
+      tags:
+      - scheduler
+      x-synonyms:
+      - scheduled
+      - calls
+      - scheduler
+      - scan
+      - schedulers
+  /api/scan/schedulers/statistics:
+    post:
+      description: Returns aggregated scheduler statistics.
+      responses:
+        '200':
+          description: OK
+      summary: Get scheduler statistics
+      tags:
+      - scheduler
+      x-synonyms:
+      - scheduler
+      - statistics
+      - scan
+      - schedulers
+  /api/scan/search/identity:
+    post:
+      description: Search by account identity display(fuzzy search)
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.searchByIdentityParams'
+      responses:
+        '200':
+          description: OK
+      summary: Search by identity
+      tags:
+      - account
+      x-synonyms:
+      - search
+      - identity
+      - account
+      - scan
+      - lookup
+      - find
+      - query
+      - wallet
+      - address
+      - user
+  /api/scan/search/tokens:
+    post:
+      description: Search by token key
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.searchTokenParams'
+      responses:
+        '200':
+          description: OK
+      summary: Search token by name/symbol/id
+      tags:
+      - tokens
+      x-synonyms:
+      - search
+      - token
+      - name/symbol
+      - id
+      - tokens
+      - scan
+      - lookup
+      - find
+      - query
+      - asset
+      - coin
+  /api/scan/staking/era_stat:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.eraStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Era stat list
+      tags:
+      - staking
+      x-synonyms:
+      - era
+      - stat
+      - staking
+      - scan
+  /api/scan/staking/nominator:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.nominatorParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nominator info
+      tags:
+      - staking
+      x-synonyms:
+      - nominator
+      - staking
+      - scan
+      - delegator
+      - staking participant
+  /api/scan/staking/nominators:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.nominatorsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Nominators list
+      tags:
+      - staking
+      x-synonyms:
+      - nominators
+      - staking
+      - scan
+  /api/scan/staking/total_reward:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.stakingRewardParams'
+      responses:
+        '200':
+          description: OK
+      summary: Staking reward sum
+      tags:
+      - staking
+      x-synonyms:
+      - staking
+      - reward
+      - sum
+      - scan
+      - total
+  /api/scan/staking/unbonding:
+    post:
+      description: This API only supports networks with staking frame
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.unbondingParams'
+      responses:
+        '200':
+          description: OK
+      summary: Unbonding list
+      tags:
+      - staking
+      x-synonyms:
+      - unbonding
+      - staking
+      - scan
+  /api/scan/staking/validator:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.validatorParams'
+      responses:
+        '200':
+          description: OK
+      summary: Validator info
+      tags:
+      - staking
+      x-synonyms:
+      - validator
+      - staking
+      - scan
+      - staker
+      - node operator
+  /api/scan/staking/validator/bond_stat:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.bondStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Validator bond stat
+      tags:
+      - staking
+      x-synonyms:
+      - validator
+      - bond
+      - stat
+      - staking
+      - scan
+      - staker
+      - node operator
+  /api/scan/staking/validator/commission_history:
+    post:
+      description: This API only supports networks with staking frame pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.commissionHistoryParams'
+      responses:
+        '200':
+          description: OK
+      summary: Validator commission history
+      tags:
+      - staking
+      x-synonyms:
+      - validator
+      - commission
+      - history
+      - staking
+      - scan
+      - staker
+      - node operator
+  /api/scan/staking/validators:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.validatorsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Validators list
+      tags:
+      - staking
+      x-synonyms:
+      - validators
+      - staking
+      - scan
+  /api/scan/staking/voted:
+    post:
+      description: Returns validators voted by the specified account.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.votedParams'
+      responses:
+        '200':
+          description: OK
+      summary: List account-voted validators
+      tags:
+      - staking
+      x-synonyms:
+      - account-voted
+      - validators
+      - staking
+      - scan
+      - voted
+  /api/scan/staking/waiting:
+    post:
+      description: This API only supports networks with staking frame or parachain-staking
+        pallet
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.waitingValidatorsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Waiting validators list
+      tags:
+      - staking
+      x-synonyms:
+      - waiting
+      - validators
+      - staking
+      - scan
+  /api/scan/techcomm/proposal:
+    post:
+      description: 'technical-committee proposal detail
+
+        This API only supports networks with technicalCommittee frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.techcommProposalParams'
+      responses:
+        '200':
+          description: OK
+      summary: Techcomm proposal
+      tags:
+      - governance
+      x-synonyms:
+      - techcomm
+      - proposal
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/techcomm/proposals:
+    post:
+      description: 'technical-committee proposals list
+
+        This API only supports networks with technicalCommittee frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.techcommProposalsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Techcomm proposals
+      tags:
+      - governance
+      x-synonyms:
+      - techcomm
+      - proposals
+      - governance
+      - scan
+      - referendum
+      - vote
+      - treasury
+      - council
+  /api/scan/token:
+    get:
+      description: Returns network token symbols and token metadata keyed by symbol.
+      responses:
+        '200':
+          description: OK
+      summary: List tokens by symbol
+      tags:
+      - tokens
+      x-synonyms:
+      - tokens
+      - symbol
+      - scan
+      - token
+      - asset
+      - coin
+  /api/scan/token/holders:
+    post:
+      description: Get the token holders list, including native token and builtin
+        tokens
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.tokenHoldersParams'
+      responses:
+        '200':
+          description: OK
+      summary: Token holders list
+      tags:
+      - account
+      x-synonyms:
+      - token
+      - holders
+      - account
+      - scan
+      - asset
+      - coin
+      - owners
+      - token holders
+      - wallet
+      - address
+      - user
+  /api/scan/token/price:
+    get:
+      description: Returns the latest price list for available tokens.
+      responses:
+        '200':
+          description: OK
+      summary: List token prices
+      tags:
+      - tokens
+      x-synonyms:
+      - token
+      - prices
+      - tokens
+      - scan
+      - price
+      - asset
+      - coin
+      - rate
+      - valuation
+  /api/scan/token/unique_id:
+    get:
+      description: Returns network token symbols, unique IDs, and token metadata keyed
+        by unique_id.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.TokenUniqueIDParams'
+      responses:
+        '200':
+          description: OK
+      summary: List tokens by unique ID
+      tags:
+      - tokens
+      x-synonyms:
+      - tokens
+      - unique
+      - id
+      - scan
+      - token
+      - asset
+      - coin
+  /api/scan/treasury/proposal:
+    post:
+      description: 'Treasury proposal detail
+
+        This API only supports networks with treasury frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryProposalParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury proposal
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - proposal
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury/proposals:
+    post:
+      description: 'Treasury proposals list
+
+        This API only supports networks with treasury frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryProposalsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury proposals
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - proposals
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury/tip:
+    post:
+      description: 'Treasury tip detail
+
+        This API only supports networks with tips frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryTipParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury tip
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - tip
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury/tippers:
+    post:
+      description: 'Treasury tippers list
+
+        This API only supports networks with tips frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryTipperParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury tippers
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - tippers
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury/tips:
+    post:
+      description: 'Treasury tips list
+
+        This API only supports networks with tips frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryTipsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury tips
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - tips
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury_council_collective/proposal:
+    post:
+      description: 'treasury council collective proposal detail
+
+        This API only supports networks with treasuryCouncilCollective(moonbeam/moonriver/moonbase)
+        frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryCouncilCollectiveProposalParam'
+      responses:
+        '200':
+          description: OK
+      summary: treasury council collective details
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - council
+      - collective
+      - governance
+      - scan
+      - proposal
+      - referendum
+      - vote
+  /api/scan/treasury_council_collective/proposals:
+    post:
+      description: 'treasury council collective proposals list
+
+        This API only supports networks with treasuryCouncilCollective(moonbeam/moonriver/moonbase)
+        frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryCouncilCollectiveProposalsParam'
+      responses:
+        '200':
+          description: OK
+      summary: treasury council collective list
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - council
+      - collective
+      - governance
+      - scan
+      - proposals
+      - referendum
+      - vote
+  /api/scan/treasury_council_collective/votes:
+    post:
+      description: 'treasury council collective votes list
+
+        This API only supports networks with treasuryCouncilCollective(moonbeam/moonriver/moonbase)
+        frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryCouncilCollectiveVotesParam'
+      responses:
+        '200':
+          description: OK
+      summary: treasury council collective vote list
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - council
+      - collective
+      - vote
+      - governance
+      - scan
+      - votes
+      - referendum
+  /api/scan/treasury_spend/proposal:
+    post:
+      description: 'Treasury spend proposal detail
+
+        This API only supports networks with treasury frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryProposalParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury spend proposal
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - spend
+      - proposal
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/treasury_spend/proposals:
+    post:
+      description: 'Treasury spend proposals list
+
+        This API only supports networks with treasury frame'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.treasuryProposalsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Treasury spend proposals
+      tags:
+      - governance
+      x-synonyms:
+      - treasury
+      - spend
+      - proposals
+      - governance
+      - scan
+      - referendum
+      - vote
+      - council
+  /api/scan/vesting_release:
+    post:
+      description: Get the list of vesting releases within a specified date range.(only
+        for network has vesting frame)
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.vestingReleaseParams'
+      responses:
+        '200':
+          description: OK
+      summary: Vesting release list
+      tags:
+      - vesting
+      x-synonyms:
+      - vesting
+      - release
+      - scan
+      - lockup
+      - unlock schedule
+  /api/scan/xcm/bridge_stat:
+    post:
+      description: Returns bridge-type XCM statistics grouped by time format. PRO
+        plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.BridgeStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM bridge statistics (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - bridge
+      - statistics
+      - pro
+      - scan
+      - stat
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/channel:
+    post:
+      description: Returns one XCM/HRMP channel by sender and recipient parachain
+        IDs. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmChannelInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM channel details (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - channel
+      - pro
+      - scan
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/channels:
+    post:
+      description: Returns XCM/HRMP channel list filtered by sender, recipient, status,
+        or para_id. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmChannelParams'
+      responses:
+        '200':
+          description: OK
+      summary: List XCM channels (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - channels
+      - pro
+      - scan
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/check_hash:
+    post:
+      description: Returns the XCM message unique ID from origin or destination event/hash
+        inputs. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmHashParams'
+      responses:
+        '200':
+          description: OK
+      summary: Find XCM message ID by hash (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - find
+      - xcm
+      - message
+      - id
+      - hash
+      - pro
+      - scan
+      - check
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/info:
+    post:
+      description: Returns detailed information for one XCM message by unique_id or
+        origin identifiers. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmMessageDetailParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM message details (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - message
+      - pro
+      - scan
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/list:
+    post:
+      description: Returns paginated XCM messages with protocol, status, asset, and
+        block-range filters. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmMessageParams'
+      responses:
+        '200':
+          description: OK
+      summary: List XCM messages (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - messages
+      - pro
+      - scan
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/scan/xcm/meta:
+    post:
+      description: Returns XCM metadata and parachain statistics, optionally filtered
+        by para_id. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmMetaParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM metadata (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - metadata
+      - pro
+      - scan
+      - meta
+      - cross-chain
+      - cross chain
+      - bridge message
+      - chain info
+  /api/scan/xcm/parachain/stat:
+    post:
+      description: Returns XCM parachain send/receive statistics with optional direction
+        and date filters. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.xcmSenderStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM parachain statistics (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - parachain
+      - statistics
+      - pro
+      - scan
+      - stat
+      - cross-chain
+      - cross chain
+      - bridge message
+      - para chain
+      - relaychain shard
+  /api/scan/xcm/stat:
+    post:
+      description: Returns XCM traffic statistics for a date range and optional parachain
+        filter. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmStatParams'
+      responses:
+        '200':
+          description: OK
+      summary: Get XCM statistics (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - statistics
+      - pro
+      - scan
+      - stat
+      - cross-chain
+      - cross chain
+      - bridge message
+  /api/v2/scan/account/reward_slash:
+    post:
+      description: Returns paginated reward/slash records for an account with category,
+        claim, and block-range filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.rewardSlashV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: List account reward and slash records
+      tags:
+      - staking
+      x-synonyms:
+      - account
+      - reward
+      - slash
+      - records
+      - staking
+      - scan
+      - wallet
+      - address
+      - user
+      - penalty
+      - slashing
+  /api/v2/scan/account/tokens:
+    post:
+      description: Get the account token list, including native token and builtin/assets
+        tokens and evm tokens(erc20/erc721).
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountTokenV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: Account token list v2
+      tags:
+      - account
+      - token
+      x-synonyms:
+      - account
+      - token
+      - scan
+      - tokens
+      - wallet
+      - address
+      - user
+      - asset
+      - coin
+  /api/v2/scan/accounts:
+    post:
+      description: Get the native token accounts list
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountsParams'
+      responses:
+        '200':
+          description: OK
+      summary: Accounts list
+      tags:
+      - account
+      x-synonyms:
+      - accounts
+      - account
+      - scan
+      - wallet
+      - address
+      - user
+  /api/v2/scan/blocks:
+    post:
+      description: Returns a paginated block list with optional author and block-range
+        filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.blocksParams'
+      responses:
+        '200':
+          description: OK
+      summary: List blocks
+      tags:
+      - block
+      x-synonyms:
+      - blocks
+      - block
+      - scan
+      - block list
+      - block heights
+      - block height
+      - block number
+  /api/v2/scan/daily:
+    post:
+      description: Returns daily aggregated chain statistics for the selected category
+        and date range.
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.dailyStatV2Param'
+      responses:
+        '200':
+          description: OK
+      summary: Get daily statistics (v2)
+      tags:
+      - stat
+      x-synonyms:
+      - daily
+      - statistics
+      - stat
+      - scan
+  /api/v2/scan/events:
+    post:
+      description: Returns paginated events with module/event filters, block constraints,
+        and optional address matching.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.eventsParams'
+      responses:
+        '200':
+          description: OK
+      summary: List events
+      tags:
+      - event
+      x-synonyms:
+      - events
+      - event
+      - scan
+      - logs
+      - on-chain events
+      - log
+      - on-chain event
+  /api/v2/scan/extrinsics:
+    post:
+      description: Returns paginated extrinsics with module/call, signer, success,
+        and block-range filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.extrinsicsParams'
+      responses:
+        '200':
+          description: OK
+      summary: List extrinsics
+      tags:
+      - extrinsic
+      x-synonyms:
+      - extrinsics
+      - extrinsic
+      - scan
+      - transaction
+      - tx
+      - on-chain call
+  /api/v2/scan/logs:
+    post:
+      description: Returns paginated block logs filtered by block range, engine ID,
+        and log type.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.logsParams'
+      responses:
+        '200':
+          description: OK
+      summary: List block logs
+      tags:
+      - log
+      x-synonyms:
+      - block
+      - logs
+      - log
+      - scan
+      - block height
+      - block number
+  /api/v2/scan/multiChain/account:
+    post:
+      description: 'balance of a multi-chains account along with data related to the
+        account''s participation in DeFi data.
+
+        Support Network: polkadot'
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.multiChainAccountParams'
+      responses:
+        '200':
+          description: OK
+      summary: MultiChain account (BETA)
+      tags:
+      - multiChain
+      x-synonyms:
+      - multichain
+      - account
+      - beta
+      - scan
+      - wallet
+      - address
+      - user
+  /api/v2/scan/search:
+    post:
+      description: Get account information by address
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.accountInfoParams'
+      responses:
+        '200':
+          description: OK
+      summary: Account by address
+      tags:
+      - account
+      x-synonyms:
+      - account
+      - address
+      - scan
+      - search
+      - wallet
+      - user
+      - lookup
+      - find
+      - query
+  /api/v2/scan/token/native:
+    post:
+      description: Returns the native token and provider information for the current
+        network.
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.tokenNativeParam'
+      responses:
+        '200':
+          description: OK
+      summary: Get native token
+      tags:
+      - tokens
+      x-synonyms:
+      - native
+      - token
+      - tokens
+      - scan
+      - asset
+      - coin
+  /api/v2/scan/token/providers:
+    get:
+      description: Returns active token providers and their capabilities.
+      responses:
+        '200':
+          description: OK
+      summary: List token providers
+      tags:
+      - tokens
+      x-synonyms:
+      - token
+      - providers
+      - tokens
+      - scan
+      - asset
+      - coin
+  /api/v2/scan/token/search:
+    post:
+      description: Returns tokens grouped by provider for the requested unique IDs.
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.tokensSearchParam'
+      responses:
+        '200':
+          description: OK
+      summary: Search tokens (v2)
+      tags:
+      - tokens
+      x-synonyms:
+      - search
+      - tokens
+      - scan
+      - token
+      - lookup
+      - find
+      - query
+      - asset
+      - coin
+  /api/v2/scan/tokens:
+    post:
+      description: Returns paginated tokens from the selected provider with optional
+        search, ordering, and extended fields.
+      parameters:
+      - description: param
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.tokensV2Param'
+      responses:
+        '200':
+          description: OK
+      summary: List tokens (v2)
+      tags:
+      - tokens
+      x-synonyms:
+      - tokens
+      - scan
+  /api/v2/scan/transfers:
+    post:
+      description: Returns paginated transfer records with account, token, amount,
+        and block-range filters.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.transfersParams'
+      responses:
+        '200':
+          description: OK
+      summary: List transfers
+      tags:
+      - account
+      x-synonyms:
+      - transfers
+      - account
+      - scan
+      - wallet
+      - address
+      - user
+  /api/v2/scan/xcm/list:
+    post:
+      description: Returns paginated XCM messages with protocol, status, asset, and
+        block-range filters. PRO plan required.
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/internal_server_http.XcmMessageV2Params'
+      responses:
+        '200':
+          description: OK
+      summary: List XCM messages (PRO)
+      tags:
+      - Xcm
+      x-synonyms:
+      - xcm
+      - messages
+      - pro
+      - scan
+      - cross-chain
+      - cross chain
+      - bridge message
+definitions:
+  internal_plugin_assets_http.assetActivitiesParams:
+    properties:
+      asset_id:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_assets_http.assetBalancesParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_plugin_assets_http.assetHolderParams:
+    properties:
+      asset_id:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_assets_http.assetParam:
+    properties:
+      asset_id:
+        type: string
+    type: object
+  internal_plugin_assets_http.assetsParam:
+    properties:
+      asset_id:
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - asset_id
+        - symbol
+        - holders
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        description: assets symbol or name
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_plugin_avail_dataAvailability_http.SubmittedDataInfoParam:
+    properties:
+      extrinsic_index:
+        example: 277764-458
+        type: string
+      hash:
+        example: 19113970726987136144018792964335985025967463666252479637084635182152021787304
+        type: string
+    required:
+    - extrinsic_index
+    - hash
+    type: object
+  internal_plugin_avail_dataAvailability_http.SubmittedListParam:
+    properties:
+      address:
+        type: string
+      app_id:
+        type: integer
+      block_num:
+        minimum: 1
+        type: integer
+      extrinsic_index:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_avail_vector_http.transferDailyParam:
+    properties:
+      end:
+        example: '2023-06-01'
+        type: string
+      format:
+        enum:
+        - day
+        - week
+        - month
+        example: day
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_plugin_avail_vector_http.transferParam:
+    properties:
+      address:
+        type: string
+      block_range:
+        type: string
+      max_amount:
+        type: string
+      min_amount:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      receiver:
+        type: string
+      result:
+        type: boolean
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      sender:
+        type: string
+    type: object
+  internal_plugin_crust_swork_http.CrustFilesParams:
+    properties:
+      address:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_plugin_crust_swork_http.CrustGroupParams:
+    properties:
+      group_owner:
+        type: string
+    required:
+    - group_owner
+    type: object
+  internal_plugin_crust_swork_http.CrustGroupsParams:
+    properties:
+      group_owner:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - power
+        - total_stake
+        - members
+        - cap
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 1000
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_crust_swork_http.CrustMemberOrdersParams:
+    properties:
+      address:
+        type: string
+      all_orders:
+        type: boolean
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_plugin_crust_swork_http.CrustMemberParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_plugin_crust_swork_http.CrustMembersParams:
+    properties:
+      group_owner:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 1000
+        minimum: 1
+        type: integer
+    required:
+    - group_owner
+    type: object
+  internal_plugin_crust_swork_http.CrustOrdersParams:
+    properties:
+      address:
+        items:
+          type: string
+        type: array
+      expired_status:
+        enum:
+        - 1
+        - 2
+        - 3
+        type: integer
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_crust_swork_http.CrustStorageDailyStatParams:
+    properties:
+      category:
+        enum:
+        - nodes
+        - storage
+        - files
+        type: string
+      end:
+        type: string
+      start:
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokeInfoParams:
+    properties:
+      collection_id:
+        description: multiToken collection id
+        type: string
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenActivitiesParams:
+    properties:
+      collection_id:
+        description: multiToken collection id
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      token_id:
+        description: Optional. filter by token id
+        type: string
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenHolderBalanceParams:
+    properties:
+      address:
+        type: string
+      collection_id:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenHoldersParams:
+    properties:
+      collection_id:
+        description: multiToken collection id
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      token_id:
+        description: optional. filter by token id
+        type: string
+    required:
+    - collection_id
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenItemParams:
+    properties:
+      collection_id:
+        type: string
+      token_id:
+        type: string
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenItemsParams:
+    properties:
+      collection_id:
+        description: Optional. multiToken collection id
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - holders
+        - item_id
+        - create_at
+        - transfer_count
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        description: Owner        string           `json:"owner" binding:"omitempty,addr"`           //
+          Optional. multiToken owner address. Only support ss58 address
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_enjin_multiTokens_http.EnjinMultiTokenParams:
+    properties:
+      collection_id:
+        description: Optional, multiToken collection id
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - items
+        - holders
+        - collection_id
+        - transfer_count
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        description: Optional, multiToken collection name
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_plugin_evm_http.EVMAccountTokensParam:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_plugin_evm_http.EVMBlockParam:
+    properties:
+      block_num:
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_evm_http.EVMTransactionParam:
+    properties:
+      extrinsic_index:
+        description: Optional, ExtrinsicIndex, such as 4780334-2
+        example: 4780334-2
+        type: string
+      hash:
+        description: Optional, Also known as Transaction ID (TxID).
+        example: 4403810828170396786290491371397686440048847949327459862756503144457611133612
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmAbiSearchParams:
+    properties:
+      id:
+        items:
+          type: string
+        type: array
+    required:
+    - id
+    type: object
+  internal_plugin_evm_http.EvmBlocksParams:
+    properties:
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_evm_http.EvmContractListParam:
+    properties:
+      contract_type:
+        description: contract type filter, only available in assethub network
+        enum:
+        - evm
+        - pvm
+        type: string
+      contracts:
+        items:
+          type: string
+        type: array
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - verify_time
+        - transaction_count
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        maxLength: 256
+        minLength: 1
+        type: string
+      verified:
+        type: boolean
+    type: object
+  internal_plugin_evm_http.EvmContractParam:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_plugin_evm_http.EvmErc1155CollectibleParam:
+    properties:
+      contract:
+        type: string
+      token_id:
+        type: string
+    required:
+    - token_id
+    type: object
+  internal_plugin_evm_http.EvmErc1155HoldersParam:
+    properties:
+      contract:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - balance
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      token_id:
+        type: string
+    required:
+    - token_id
+    type: object
+  internal_plugin_evm_http.EvmEventLogsParams:
+    properties:
+      address:
+        example: 442172007806579794521170102470079356214135847138
+        type: string
+      block_range:
+        example: 400000-400001
+        type: string
+      hash:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_evm_http.EvmInternalTxParam:
+    properties:
+      address:
+        type: string
+      after_id:
+        description: example:"[response.id]"
+        type: integer
+      hash:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_evm_http.EvmNFT721CollectiblesParam:
+    properties:
+      address:
+        type: string
+      contract:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      token_id:
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmNFT1155CollectiblesParam:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      contract:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      token_id:
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmTokenHoldersParam:
+    properties:
+      contract:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_evm_http.EvmTokenParam:
+    properties:
+      contract:
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmTokenTransferParam:
+    properties:
+      address:
+        type: string
+      after_id:
+        description: example:"[response.id]"
+        type: integer
+      category:
+        enum:
+        - erc20
+        - erc721
+        - nft
+        type: string
+      contract:
+        type: string
+      hash:
+        type: string
+      include_pvm:
+        type: boolean
+      include_total:
+        type: boolean
+      page:
+        minimum: 0
+        type: integer
+      receiver:
+        type: string
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      sender:
+        type: string
+      token_id:
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmTokensParam:
+    properties:
+      category:
+        enum:
+        - erc20
+        - erc721
+        - erc1155
+        - nft
+        type: string
+      contracts:
+        items:
+          type: string
+        type: array
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - holders
+        - transfer_count
+        - symbol
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_plugin_evm_http.EvmTransactionsParam:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      block_num:
+        minimum: 1
+        type: integer
+      block_range:
+        type: string
+      contract:
+        type: string
+      direction:
+        default: from
+        enum:
+        - from
+        - to
+        - all
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      receiver:
+        type: string
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      sender:
+        type: string
+      success:
+        type: boolean
+    type: object
+  internal_plugin_foreignAssets_http.assetActivitiesParams:
+    properties:
+      asset_id:
+        minLength: 1
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - asset_id
+    type: object
+  internal_plugin_foreignAssets_http.assetBalancesParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_plugin_foreignAssets_http.assetHolderParams:
+    properties:
+      asset_id:
+        maxLength: 100
+        minLength: 1
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - asset_id
+    type: object
+  internal_plugin_foreignAssets_http.assetParam:
+    properties:
+      asset_id:
+        type: string
+    required:
+    - asset_id
+    type: object
+  internal_plugin_foreignAssets_http.assetsParam:
+    properties:
+      asset_id:
+        maxLength: 100
+        minLength: 1
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - asset_id
+        - symbol
+        - holders
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        description: assets symbol or name
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_plugin_nfts_http.NftAccountBalancesParams:
+    properties:
+      address:
+        example: EaBRZ3VBUFEd6GT9kxXXk9C5gsYC6zAsNfxahmpusrYPtPf
+        type: string
+      collection_id:
+        example: '1'
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_plugin_nfts_http.NftActivitiesParams:
+    properties:
+      after_id:
+        description: Optional, after id for pagination
+        example: 0
+        minimum: 0
+        type: integer
+      collection_id:
+        description: Collection id, required
+        example: '1'
+        type: string
+      item_id:
+        description: Item id, optional
+        example: '1'
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_nfts_http.NftHoldersParams:
+    properties:
+      collection_id:
+        example: '1'
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_nfts_http.NftItemParams:
+    properties:
+      collection_id:
+        description: Collection id, required
+        type: string
+      item_id:
+        description: Item id, required
+        type: string
+    type: object
+  internal_plugin_nfts_http.NftItemsParams:
+    properties:
+      collection_id:
+        example: '1'
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - item_id
+        - create_at
+        - transfer_count
+        type: string
+      owner:
+        description: Optional, owner address
+        example: EaBRZ3VBUFEd6GT9kxXXk9C5gsYC6zAsNfxahmpusrYPtPf
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_nfts_http.NftParams:
+    properties:
+      collection_id:
+        example: '1'
+        type: string
+    type: object
+  internal_plugin_nfts_http.NftsParams:
+    properties:
+      collection_id:
+        example: '1'
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        example: desc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - items
+        - holders
+        - collection_id
+        - transfer_count
+        example: holders
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_spaceTime_http.holderParams:
+    properties:
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_spaceTime_http.transferParams:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      page:
+        minimum: 0
+        type: integer
+      receiver:
+        type: string
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      sender:
+        type: string
+    type: object
+  internal_plugin_uniques_http.UniquesActivitiesParams:
+    properties:
+      collection_id:
+        type: string
+      item_id:
+        type: integer
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_uniques_http.UniquesBalancesParams:
+    properties:
+      address:
+        example: EaBRZ3VBUFEd6GT9kxXXk9C5gsYC6zAsNfxahmpusrYPtPf
+        type: string
+      collection_id:
+        example: '1'
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_plugin_uniques_http.UniquesHoldersParams:
+    properties:
+      collection_id:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_uniques_http.uniqueItemParams:
+    properties:
+      collection_id:
+        type: string
+      item_id:
+        type: integer
+    type: object
+  internal_plugin_uniques_http.uniqueItemsParams:
+    properties:
+      collection_id:
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - item_id
+        - create_at
+        - transfer_count
+        type: string
+      owner:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_plugin_uniques_http.uniqueParam:
+    properties:
+      collection_id:
+        type: string
+    type: object
+  internal_plugin_uniques_http.uniquesListParam:
+    properties:
+      collection_id:
+        type: string
+      order:
+        description: Optional, order sort, default desc
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        description: Optional, order field
+        enum:
+        - collection_id
+        - items
+        - holders
+        - transfer_count
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        description: uniques name
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_pluginv2_customizeds_midnight.MidnightContractParams:
+    properties:
+      contract:
+        type: string
+    required:
+    - contract
+    type: object
+  internal_pluginv2_customizeds_midnight.MidnightContractState:
+    properties:
+      contract:
+        type: string
+      hash:
+        description: optional, if not provided, get latest state
+        type: string
+    required:
+    - contract
+    type: object
+  internal_pluginv2_customizeds_midnight.MidnightContractsParams:
+    properties:
+      order:
+        description: asc or desc
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      sort:
+        description: sort by transaction_count or verify_time
+        enum:
+        - transaction_count
+        - verify_time
+        type: string
+      verified:
+        type: boolean
+    required:
+    - row
+    type: object
+  internal_pluginv2_customizeds_midnight.MidnightTransactionsParams:
+    properties:
+      after_id:
+        description: optional, for pagination, get records after this ID
+        minimum: 0
+        type: integer
+      block_range:
+        description: optional, e.g. "1000-2000"
+        type: string
+      contract:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      txn_type:
+        description: optional, filter by transaction type
+        enum:
+        - zk
+        - contract
+        type: string
+    required:
+    - row
+    type: object
+  internal_pluginv2_customizeds_midnight.midnightTransactionParams:
+    properties:
+      extrinsic_index:
+        type: string
+      tx_hash:
+        type: string
+    type: object
+  internal_pluginv2_customizeds_moonbeam_orbiters.OrbitersRewardParams:
+    properties:
+      address:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_collator.collatorInfoParams:
+    properties:
+      account:
+        type: string
+    required:
+    - account
+    type: object
+  internal_pluginv2_pallets_collator.collatorListParams:
+    properties:
+      account:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - account
+        - bond
+        - last_change_block
+        - last_authored_block
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        allOf:
+        - $ref: '#/definitions/subscan_internal_dao.CollatorStatus'
+        enum:
+        - 0
+        - 1
+        - 2
+    type: object
+  internal_pluginv2_pallets_collator.collatorTimelineParams:
+    properties:
+      account:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.assignParams:
+    properties:
+      core:
+        example: 10
+        type: integer
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      paraId:
+        example: 1000
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 500
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.operationParams:
+    properties:
+      address:
+        type: string
+      block_range:
+        example: 110000-120000
+        type: string
+      core:
+        example: 10
+        minimum: 0
+        type: integer
+      core_index:
+        example: 12345-1260-20-12333121323217721
+        maxLength: 80
+        minLength: 0
+        type: string
+      event_id:
+        example: Interlaced
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.purchasedParams:
+    properties:
+      core:
+        example: 10
+        minimum: 0
+        type: integer
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      purchased_type:
+        enum:
+        - bulk
+        - renewed
+        type: string
+      region_begin:
+        description: Address       string `json:"address" form:"address" binding:"omitempty,addr"`
+        example: 10
+        minimum: 1
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 1000
+        minimum: 1
+        type: integer
+      sales_cycle:
+        example: 10
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.regionListParams:
+    properties:
+      address:
+        type: string
+      begin:
+        example: 10
+        minimum: 1
+        type: integer
+      core:
+        example: 10
+        minimum: 0
+        type: integer
+      end:
+        example: 20
+        minimum: 0
+        type: integer
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - valid
+        - assigned
+        - working
+        - dropped
+        - expired
+        type: string
+      valid:
+        type: boolean
+    type: object
+  internal_pluginv2_pallets_coretime.regionParams:
+    properties:
+      core_index:
+        example: 12345-1260-20-12333121323217721
+        maxLength: 80
+        minLength: 0
+        type: string
+    required:
+    - core_index
+    type: object
+  internal_pluginv2_pallets_coretime.saleHistoryParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.saleParams:
+    properties:
+      begin:
+        example: 10
+        minimum: 1
+        type: integer
+      sales_cycle:
+        example: 1
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.workloadDetailsParams:
+    properties:
+      core:
+        description: one of core and paraid is required
+        example: 10
+        minimum: 0
+        type: integer
+      para_id:
+        example: 1000
+        type: integer
+      region_begin:
+        example: 200000
+        type: integer
+      show_workplan:
+        type: boolean
+    type: object
+  internal_pluginv2_pallets_coretime.workloadHistoryParams:
+    properties:
+      core:
+        example: 10
+        minimum: 0
+        type: integer
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      para_id:
+        example: 1000
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 500
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.workloadsParams:
+    properties:
+      core_view:
+        type: boolean
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      region_begin:
+        example: 200000
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 500
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_coretime.workplanParams:
+    properties:
+      core:
+        example: 10
+        type: integer
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      paraId:
+        example: 1000
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 500
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_liquidStaking.operationParams:
+    properties:
+      address:
+        type: string
+      module:
+        items:
+          type: string
+        type: array
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsActivitiesParams:
+    properties:
+      page:
+        minimum: 0
+        type: integer
+      pool_id:
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsInfoParams:
+    properties:
+      pool_id:
+        type: integer
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsListParams:
+    properties:
+      multi_state:
+        items:
+          type: string
+        type: array
+      state:
+        enum:
+        - Destroying
+        - Open
+        - Blocked
+        - Destroyed
+        type: string
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsMemberVoteParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsMembersParams:
+    properties:
+      page:
+        minimum: 0
+        type: integer
+      pool_id:
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_pluginv2_pallets_nominationPool.nominationPoolsRewardsParams:
+    properties:
+      address:
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      pool_id:
+        type: integer
+      row:
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.BridgeStatParams:
+    properties:
+      end:
+        description: 'end date, format: 2006-01-02'
+        type: string
+      format:
+        description: json result format, default is day
+        enum:
+        - hour
+        - day
+        - 6hour
+        type: string
+      start:
+        description: 'start date, format: 2006-01-02'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.ExtrinsicDetailParams:
+    properties:
+      events_limit:
+        type: integer
+      extrinsic_index:
+        type: string
+      hash:
+        type: string
+      hide_events:
+        description: hide events in response
+        type: boolean
+    type: object
+  internal_server_http.TokenUniqueIDParams:
+    properties:
+      new_algorithm:
+        description: use new algorithm sum(free - max(0, frozen - reserve))
+        type: boolean
+    type: object
+  internal_server_http.XcmChannelInfoParams:
+    properties:
+      recipient:
+        description: HRMP recipient parachain id
+        minimum: 1
+        type: integer
+      sender:
+        description: HRMP sender parachain id
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.XcmChannelParams:
+    properties:
+      filter_para_id:
+        description: filter by parachain id(sender or recipient)
+        minimum: 1
+        type: integer
+      recipient:
+        description: HRMP recipient parachain id
+        minimum: 1
+        type: integer
+      sender:
+        description: HRMP sender parachain id
+        minimum: 1
+        type: integer
+      status:
+        description: filter by status
+        enum:
+        - closed
+        - accepted
+        - canceled
+        - requested
+        type: string
+    type: object
+  internal_server_http.XcmHashParams:
+    properties:
+      dest_event_id:
+        description: receiver event id
+        type: string
+      dest_para_id:
+        description: receiver parachain id
+        type: integer
+      message_hash:
+        description: message hash
+        type: string
+      origin_event_id:
+        description: sender event id
+        type: string
+      origin_para_id:
+        description: sender parachain id
+        type: integer
+    type: object
+  internal_server_http.XcmMessageDetailParams:
+    properties:
+      origin_event_id:
+        description: sender event id, need with origin_para_id
+        type: string
+      origin_para_id:
+        description: sender parachain id, need with origin_event_id
+        type: integer
+      unique_id:
+        description: unique id of the message
+        type: string
+    type: object
+  internal_server_http.XcmMessageParams:
+    properties:
+      address:
+        description: filter by address
+        type: string
+      after_id:
+        description: Pagination, the last message id of the previous page
+        type: string
+      block_range:
+        description: 'filter by block range,eg: 1000-2000'
+        example: 20000-30000
+        type: string
+      bridge_type:
+        description: filter by bridge type
+        items:
+          type: string
+        type: array
+      dest_para_id:
+        description: filter by receiver parachain id
+        type: integer
+      extrinsic_index:
+        description: filter by send extrinsic index
+        type: string
+      filter_para_id:
+        description: filter by parachain id(sender or receiver)
+        minimum: 1
+        type: integer
+      filter_symbol:
+        description: filter by asset symbol
+        type: string
+      message_hash:
+        description: filter by message hash
+        type: string
+      message_type:
+        description: filter by message type
+        enum:
+        - transfer
+        - message
+        type: string
+      origin_para_id:
+        description: filter by sender origin parachain id
+        type: integer
+      page:
+        description: page number, start from 0
+        minimum: 0
+        type: integer
+      protocol:
+        description: filter by XCM protocol
+        enum:
+        - HRMP
+        - VMP
+        - UMP
+        - DMP
+        type: string
+      row:
+        description: page size
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        description: filter by status
+        enum:
+        - pending
+        - relayed
+        - success
+        - failed
+        type: string
+    type: object
+  internal_server_http.XcmMessageV2Params:
+    properties:
+      address:
+        description: filter by address
+        type: string
+      after_id:
+        description: Pagination, the last message id of the previous page
+        type: string
+      block_range:
+        description: 'filter by block range,eg: 1000-2000'
+        example: 20000-30000
+        type: string
+      bridge_type:
+        description: filter by bridge type
+        items:
+          type: string
+        type: array
+      dest_para_id:
+        description: filter by receiver parachain id
+        type: integer
+      extrinsic_index:
+        description: filter by send extrinsic index
+        type: string
+      filter_para_id:
+        description: filter by parachain id(sender or receiver)
+        minimum: 1
+        type: integer
+      filter_symbol:
+        description: filter by asset symbol
+        type: string
+      include_total:
+        type: boolean
+      message_hash:
+        description: filter by message hash
+        type: string
+      message_type:
+        description: filter by message type
+        enum:
+        - transfer
+        - message
+        type: string
+      origin_para_id:
+        description: filter by sender origin parachain id
+        type: integer
+      page:
+        description: page number, start from 0
+        minimum: 0
+        type: integer
+      protocol:
+        description: filter by XCM protocol
+        enum:
+        - HRMP
+        - VMP
+        - UMP
+        - DMP
+        type: string
+      row:
+        description: page size
+        maximum: 100
+        minimum: 0
+        type: integer
+      status:
+        description: filter by status
+        enum:
+        - pending
+        - relayed
+        - success
+        - failed
+        type: string
+    type: object
+  internal_server_http.XcmMetaParams:
+    properties:
+      para_id:
+        description: optional, if not set or set 0, will return all parachain statistics
+        type: integer
+    type: object
+  internal_server_http.XcmStatParams:
+    properties:
+      end:
+        description: 'end date, format: 2006-01-02'
+        type: string
+      filter_para_id:
+        description: filter by parachain id, optional
+        minimum: 1
+        type: integer
+      start:
+        description: 'start date, format: 2006-01-02'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.accountBalanceParams:
+    properties:
+      address:
+        type: string
+      block_range:
+        description: 'block range filter, e.g.: 1000-2000, only polkadot,kusama,westend
+          available'
+        type: string
+      end:
+        description: 'history end date, e.g.: 2024-01-02'
+        type: string
+      recent_block:
+        description: 'Block-level returns rows, e.g.: 1000, only polkadot,kusama,westend
+          available'
+        maximum: 10000
+        type: integer
+      start:
+        description: 'history start date, e.g.: 2024-01-02'
+        type: string
+      token_unique_id:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.accountBalanceValueHistoryParams:
+    properties:
+      address:
+        type: string
+      end:
+        type: string
+      start:
+        type: string
+    required:
+    - address
+    - end
+    - start
+    type: object
+  internal_server_http.accountBalanceValueStatParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.accountInfoParams:
+    properties:
+      key:
+        type: string
+    required:
+    - key
+    type: object
+  internal_server_http.accountReferendumParams:
+    properties:
+      account:
+        type: string
+      module:
+        enum:
+        - democracy
+        - referendum
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - account
+    type: object
+  internal_server_http.accountTokenParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.accountTokenV2Params:
+    properties:
+      address:
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - token
+        - balance
+        - price
+        - supply
+        type: string
+      page:
+        minimum: 0
+        type: integer
+      row:
+        maximum: 100
+        minimum: 0
+        type: integer
+      token_type:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.accountsMAUHandleParams:
+    properties:
+      end:
+        example: '2025-07-25'
+        type: string
+      start:
+        example: '2025-07-22'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.accountsMerkleParams:
+    properties:
+      address_type:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - balance
+        - locked
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      tag_name:
+        type: string
+      tag_sub_type:
+        type: string
+      tag_type:
+        type: string
+    type: object
+  internal_server_http.accountsParams:
+    properties:
+      account:
+        description: Get the account data associated with different roles of the account,Only
+          proxy,proxies,multisig,multisigMember,convictionDelegate,convictionDelegated,democracyDelegate,democracyDelegated
+          role is valid
+        type: string
+      address:
+        description: Get the specified account data
+        items:
+          type: string
+        maxItems: 100
+        minItems: 1
+        type: array
+      filter:
+        enum:
+        - validator
+        - nominator
+        - councilMember
+        - techcomm
+        - registrar
+        - system
+        - module
+        - evm
+        - erc20
+        - erc721
+        - erc1155
+        - contract
+        - nominationPool
+        - proxies
+        - proxy
+        - multisig
+        - multisigMember
+        - fellowship
+        - onChainIdentity
+        - convictionDelegate
+        - convictionDelegated
+        - democracyDelegate
+        - democracyDelegated
+        - multiTokensHolder
+        - tanssiOperator
+        - activeBlockAuthor
+        - collator
+        type: string
+      max_balance:
+        type: string
+      min_balance:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - balance
+        - locked
+        - ring_lock
+        - nft_amount
+        - evm_txn_count
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.accountsStatisticsParams:
+    properties:
+      exclude_system:
+        type: boolean
+      type:
+        enum:
+        - assets
+        - role
+        type: string
+    type: object
+  internal_server_http.assetsChangedParams:
+    properties:
+      address:
+        type: string
+      asset_unique_id:
+        type: string
+      page:
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_server_http.blockHeaderParams:
+    properties:
+      block_num:
+        example: 10000
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.blockParams:
+    properties:
+      block_hash:
+        example: 76348355870982371260092528173678713874679923045094083042913560678924874744331
+        type: string
+      block_num:
+        example: 10000
+        minimum: 0
+        type: integer
+      block_timestamp:
+        type: integer
+      only_head:
+        type: boolean
+    type: object
+  internal_server_http.blocksParams:
+    properties:
+      after_id:
+        type: integer
+      author:
+        type: string
+      block_range:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.bondStatParams:
+    properties:
+      stash:
+        type: string
+    required:
+    - stash
+    type: object
+  internal_server_http.bountiesParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - historical
+        - active
+        type: string
+    type: object
+  internal_server_http.bountyParams:
+    properties:
+      proposal_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.checkHashParam:
+    properties:
+      hash:
+        type: string
+    type: object
+  internal_server_http.childBountiesParams:
+    properties:
+      bounties_id:
+        example: 0
+        minimum: 0
+        type: integer
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.commissionHistoryParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      stash:
+        type: string
+    required:
+    - stash
+    type: object
+  internal_server_http.contractInfoParams:
+    properties:
+      contract:
+        type: string
+    type: object
+  internal_server_http.contractTimelineParams:
+    properties:
+      contract:
+        type: string
+    type: object
+  internal_server_http.contractTxsParams:
+    properties:
+      address:
+        type: string
+      block_range:
+        example: 20000-30000
+        type: string
+      contract:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      result:
+        type: boolean
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.contractsEventsParams:
+    properties:
+      contract:
+        type: string
+      extrinsic_index:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.contractsListParams:
+    properties:
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - verify_time
+        - transaction_count
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      verified:
+        type: boolean
+    type: object
+  internal_server_http.councilProposalParams:
+    properties:
+      proposal_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.councilProposalsParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.currencyConverterParams:
+    properties:
+      from:
+        type: string
+      quote:
+        type: string
+      time:
+        type: integer
+      value:
+        type: string
+    required:
+    - from
+    - quote
+    - value
+    type: object
+  internal_server_http.currencyPriceParams:
+    properties:
+      base:
+        type: string
+      quote:
+        enum:
+        - USD
+        type: string
+      time:
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.dailyRewardSlashParams:
+    properties:
+      address:
+        type: string
+      category:
+        enum:
+        - Reward
+        - Slash
+        type: string
+      end:
+        example: '2024-07-02'
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      start:
+        example: '2024-07-01'
+        type: string
+    type: object
+  internal_server_http.dailyStatV2Param:
+    properties:
+      category:
+        type: string
+      end:
+        example: '2023-06-01'
+        type: string
+      format:
+        enum:
+        - day
+        - hour
+        - 6hour
+        - minute
+        - 7d
+        - month
+        - year
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.dailyTokenStatParams:
+    properties:
+      end:
+        example: '2023-06-01'
+        type: string
+      format:
+        enum:
+        - day
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+      symbol:
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.democraciesParams:
+    properties:
+      order_field:
+        enum:
+        - seconded_count
+        - proposal_id
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - historical
+        - active
+        type: string
+    type: object
+  internal_server_http.democracyParams:
+    properties:
+      democracy_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.democracySecondedParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      proposal_id:
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.eraStatParams:
+    properties:
+      address:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_server_http.eventInfoParams:
+    properties:
+      event_index:
+        type: string
+    required:
+    - event_index
+    type: object
+  internal_server_http.eventParamsParams:
+    properties:
+      event_index:
+        items:
+          type: string
+        type: array
+    required:
+    - event_index
+    type: object
+  internal_server_http.eventsParams:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      block_num:
+        minimum: 0
+        type: integer
+      block_range:
+        type: string
+      event_id:
+        type: string
+      extrinsic_index:
+        type: string
+      finalized:
+        type: boolean
+      focus:
+        type: string
+      module:
+        type: string
+      module_event:
+        items:
+          $ref: '#/definitions/internal_server_http.moduleEventFilterParams'
+        type: array
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      phase:
+        enum:
+        - 0
+        - 1
+        - 2
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.extrinsicParamsParams:
+    properties:
+      extrinsic_index:
+        items:
+          type: string
+        type: array
+    required:
+    - extrinsic_index
+    type: object
+  internal_server_http.extrinsicRewardParams:
+    properties:
+      extrinsic_index:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - extrinsic_index
+    type: object
+  internal_server_http.extrinsicsParams:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      block_num:
+        minimum: 0
+        type: integer
+      block_range:
+        type: string
+      call:
+        type: string
+      module:
+        type: string
+      module_call:
+        items:
+          $ref: '#/definitions/internal_server_http.moduleCallFilterParams'
+        type: array
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      signed:
+        type: string
+      success:
+        type: boolean
+      timeout:
+        type: integer
+    type: object
+  internal_server_http.fellowshipReferendumParams:
+    properties:
+      referendum_index:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.fellowshipReferendumVotesParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      referendum_index:
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.fellowshipReferendumsV2Params:
+    properties:
+      account:
+        type: string
+      call_module:
+        type: string
+      call_name:
+        type: string
+      origin:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - completed
+        - active
+        type: string
+    type: object
+  internal_server_http.governanceDescParam:
+    properties:
+      gov:
+        enum:
+        - referendums_v2
+        - fellowship_referendums
+        - democracy_proposals
+        - referendums
+        - treasury_proposals
+        - treasury_spend
+        - tech_committee_proposals
+        - council_motions
+        - bounties
+        - tips
+        type: string
+      id:
+        minLength: 0
+        type: string
+    required:
+    - gov
+    - id
+    type: object
+  internal_server_http.identitiesParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.logInfoParam:
+    properties:
+      log_index:
+        type: string
+    required:
+    - log_index
+    type: object
+  internal_server_http.logsParams:
+    properties:
+      after_id:
+        type: integer
+      block_num:
+        minimum: 0
+        type: integer
+      block_range:
+        type: string
+      engine:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      type:
+        type: string
+    type: object
+  internal_server_http.moduleCallFilterParams:
+    properties:
+      call:
+        type: string
+      module:
+        type: string
+    type: object
+  internal_server_http.moduleEventFilterParams:
+    properties:
+      event_id:
+        type: string
+      module:
+        type: string
+    type: object
+  internal_server_http.multiChainAccountParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.multisigParams:
+    properties:
+      call_hash:
+        example: 95989422012815483151816709596805504452218676110269919620971647505502472854755
+        type: string
+      multi_id:
+        example: 14661803-2
+        type: string
+    required:
+    - call_hash
+    - multi_id
+    type: object
+  internal_server_http.multisigsDetailsParams:
+    properties:
+      account:
+        example: 14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - Approval
+        - Executed
+        - Cancelled
+        - Failed
+        type: string
+    required:
+    - account
+    type: object
+  internal_server_http.nominatorParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.nominatorsParams:
+    properties:
+      address:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - rank_nominator
+        - bonded
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - address
+    type: object
+  internal_server_http.paraChainListParams:
+    properties:
+      filter_anonymous:
+        type: boolean
+      order:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      para_id:
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_server_http.parachainInfoParams:
+    properties:
+      filter_anonymous:
+        type: boolean
+      order:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      para_id:
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_server_http.preimageDetailsParams:
+    properties:
+      hash:
+        type: string
+    required:
+    - hash
+    type: object
+  internal_server_http.preimageListParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      source:
+        enum:
+        - inline
+        - preimage
+        type: string
+      status:
+        enum:
+        - cleared
+        - unrequested
+        - requested
+        type: string
+    type: object
+  internal_server_http.priceHistoryParams:
+    properties:
+      currency:
+        type: string
+      end:
+        example: '2023-06-01'
+        type: string
+      format:
+        enum:
+        - day
+        - hour
+        - 6hour
+        - 12hour
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.proxyExtrinsicsParams:
+    properties:
+      account:
+        description: Current network account
+        example: 14RYaXRSqb9rPqMaAVp1UZW2czQ6dMNGMbvukwfifi6m8ZgZ
+        type: string
+      after_id:
+        type: integer
+      order:
+        enum:
+        - asc
+        - desc
+        example: desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - account
+    type: object
+  internal_server_http.rawTxParams:
+    properties:
+      extrinsic_index:
+        description: Optional, extrinsic index
+        type: string
+      hash:
+        description: Optional, extrinsic hash
+        type: string
+    type: object
+  internal_server_http.referendaVotesV2Params:
+    properties:
+      account:
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      referendum_index:
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      sort:
+        enum:
+        - conviction
+        - amount
+        - votes
+        type: string
+      status:
+        enum:
+        - Ayes
+        - Nays
+        - Abstains
+        type: string
+      valid:
+        enum:
+        - valid
+        - invalid
+        type: string
+    type: object
+  internal_server_http.referendumDelegateDetailsParams:
+    properties:
+      account:
+        type: string
+      is_delegator:
+        type: boolean
+    required:
+    - account
+    type: object
+  internal_server_http.referendumDelegateParams:
+    properties:
+      account:
+        type: string
+      is_active:
+        type: boolean
+      is_delegator:
+        type: boolean
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - origin
+        - value
+        - votes
+        type: string
+      origin:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    required:
+    - account
+    type: object
+  internal_server_http.referendumDelegateVotesParams:
+    properties:
+      account:
+        type: string
+      is_delegator:
+        type: boolean
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - referendumId
+        - origin
+        - block
+        - result
+        type: string
+      origin:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - ayes
+        - nays
+        - abstains
+        type: string
+    required:
+    - account
+    type: object
+  internal_server_http.referendumParams:
+    properties:
+      referendum_index:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.referendumV2Params:
+    properties:
+      referendum_index:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.referendumVotesParams:
+    properties:
+      account:
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      referendum_index:
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      sort:
+        enum:
+        - conviction
+        - amount
+        - votes
+        type: string
+      status:
+        enum:
+        - Ayes
+        - Nays
+        type: string
+      valid:
+        enum:
+        - valid
+        - invalid
+        type: string
+    type: object
+  internal_server_http.referendumsParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - completed
+        - active
+        type: string
+    type: object
+  internal_server_http.referendumsV2Params:
+    properties:
+      account:
+        type: string
+      call_module:
+        type: string
+      call_name:
+        type: string
+      multi_status:
+        items:
+          type: string
+        type: array
+      origin:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      status:
+        enum:
+        - completed
+        - active
+        - submitted
+        - decision
+        - confirmStarted
+        - confirm
+        - approved
+        - confirmAborted
+        - rejected
+        - cancelled
+        - timeout
+        - killed
+        - executed
+        - executedFailed
+        type: string
+    type: object
+  internal_server_http.rewardSlashParams:
+    properties:
+      address:
+        type: string
+      after_id:
+        type: integer
+      block_range:
+        type: string
+      category:
+        enum:
+        - Reward
+        - Slash
+        type: string
+      is_stash:
+        type: boolean
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      timeout:
+        type: integer
+    required:
+    - address
+    type: object
+  internal_server_http.rewardSlashV2Params:
+    properties:
+      address:
+        type: string
+      block_range:
+        type: string
+      category:
+        enum:
+        - Reward
+        - Slash
+        type: string
+      claimed_filter:
+        enum:
+        - unclaimed
+        - claimed
+        type: string
+      is_stash:
+        type: boolean
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      timeout:
+        type: integer
+    required:
+    - address
+    type: object
+  internal_server_http.runtimeMetadataParams:
+    properties:
+      spec:
+        description: Runtime version
+        example: 9430
+        type: integer
+    type: object
+  internal_server_http.runtimeModuleParams:
+    properties:
+      all:
+        example: true
+        type: boolean
+      spec:
+        description: Runtime version
+        example: 9430
+        type: integer
+    type: object
+  internal_server_http.schedulersDetailsParams:
+    properties:
+      id:
+        minimum: 0
+        type: integer
+      index:
+        minimum: 0
+        type: integer
+      when:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.schedulersParams:
+    properties:
+      after_id:
+        description: '[exec_time,id]'
+        items:
+          type: integer
+        type: array
+      block_range:
+        type: string
+      call:
+        type: string
+      end_date:
+        type: string
+      module:
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      start_date:
+        type: string
+      status:
+        enum:
+        - Scheduled
+        - Cancel
+        - CallUnavailable
+        - Executed
+        - ExecutedFailed
+        type: string
+    type: object
+  internal_server_http.searchByIdentityParams:
+    properties:
+      identity:
+        maxLength: 300
+        minLength: 1
+        type: string
+    required:
+    - identity
+    type: object
+  internal_server_http.searchTokenParams:
+    properties:
+      key:
+        type: string
+    required:
+    - key
+    type: object
+  internal_server_http.stakingRewardParams:
+    properties:
+      address:
+        type: string
+      block_range:
+        type: string
+      end:
+        example: '2023-06-01'
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.techcommProposalParams:
+    properties:
+      proposal_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.techcommProposalsParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.tokenHoldersParams:
+    properties:
+      included_zero_balance:
+        type: boolean
+      max_balance:
+        type: string
+      min_balance:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - balance
+        - locked
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      token:
+        type: string
+      unique_id:
+        type: string
+    type: object
+  internal_server_http.tokenNativeParam:
+    properties:
+      include_extends:
+        type: boolean
+    type: object
+  internal_server_http.tokensSearchParam:
+    properties:
+      include_extends:
+        type: boolean
+      unique_ids:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_server_http.tokensV2Param:
+    properties:
+      include_extends:
+        type: boolean
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      order_field:
+        enum:
+        - currency_id
+        - symbol
+        - holders
+        - token_id
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      provider:
+        type: string
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      search:
+        description: symbol
+        maxLength: 256
+        minLength: 1
+        type: string
+    type: object
+  internal_server_http.transfersParams:
+    properties:
+      address:
+        type: string
+      after_id:
+        items:
+          type: integer
+        type: array
+      asset_symbol:
+        type: string
+      asset_unique_id:
+        type: string
+      block_range:
+        type: string
+      currency:
+        enum:
+        - token
+        - usd
+        type: string
+      direction:
+        enum:
+        - all
+        - sent
+        - received
+        type: string
+      extrinsic_index:
+        type: string
+      filter_nft:
+        description: filter nft transfer, support uniques module and enjin multi-token
+        type: boolean
+      include_total:
+        type: boolean
+      item_id:
+        type: integer
+      max_amount:
+        type: string
+      min_amount:
+        type: string
+      order:
+        enum:
+        - asc
+        - desc
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      receiver:
+        type: string
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+      sender:
+        type: string
+      success:
+        type: boolean
+      timeout:
+        type: integer
+      token_category:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_server_http.treasuryCouncilCollectiveProposalParam:
+    properties:
+      proposal_hash:
+        minLength: 0
+        type: string
+      proposal_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.treasuryCouncilCollectiveProposalsParam:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.treasuryCouncilCollectiveVotesParam:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      proposal_hash:
+        minLength: 0
+        type: string
+      proposal_id:
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.treasuryProposalParams:
+    properties:
+      proposal_id:
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.treasuryProposalsParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.treasuryTipParams:
+    properties:
+      hash:
+        type: string
+    type: object
+  internal_server_http.treasuryTipperParams:
+    properties:
+      hash:
+        type: string
+    type: object
+  internal_server_http.treasuryTipsParams:
+    properties:
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 1
+        type: integer
+    type: object
+  internal_server_http.unbondingParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.validatorParams:
+    properties:
+      stash:
+        type: string
+    required:
+    - stash
+    type: object
+  internal_server_http.validatorsParams:
+    properties:
+      blocked:
+        type: boolean
+      commission_range:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - rank_validator
+        - bonded_nominators
+        - bonded_owner
+        - count_nominators
+        - validator_prefs_value
+        - bonded_total
+        type: string
+      page:
+        description: Page number, starting from 0
+        example: 0
+        minimum: 0
+        type: integer
+      row:
+        description: Data size per page
+        example: 10
+        maximum: 100
+        minimum: 0
+        type: integer
+    type: object
+  internal_server_http.vestingReleaseParams:
+    properties:
+      end:
+        example: '2023-06-01'
+        type: string
+      start:
+        example: '2023-05-01'
+        type: string
+    required:
+    - end
+    - start
+    type: object
+  internal_server_http.votedParams:
+    properties:
+      address:
+        type: string
+    required:
+    - address
+    type: object
+  internal_server_http.waitingValidatorsParams:
+    properties:
+      commission_range:
+        type: string
+      order:
+        enum:
+        - desc
+        - asc
+        type: string
+      order_field:
+        enum:
+        - bonded_nominators
+        - bonded_owner
+        - count_nominators
+        - validator_prefs_value
+        - sum_nominators_bonded
+        type: string
+    type: object
+  internal_server_http.xcmSenderStatParams:
+    properties:
+      direction:
+        enum:
+        - in
+        - out
+        type: string
+      end:
+        description: 'end date, format: 2006-01-02'
+        type: string
+      filter_para_id:
+        description: filter by parachain id, optional，if filter_para_id =-1 ，return
+          all parachain send stat
+        minimum: -1
+        type: integer
+      start:
+        description: 'start date, format: 2006-01-02'
+        type: string
+    type: object
+  subscan_internal_dao.CollatorStatus:
+    enum:
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - CollatorInvulnerable
+    - CollatorCandidate
+    - CollatorRetired

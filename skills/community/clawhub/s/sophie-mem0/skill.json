@@ -1,0 +1,9 @@
+{
+  "name": "sophie-mem0",
+  "version": "1.0.0",
+  "description": "企业级智能记忆系统 - 基于mem0ai，为Agent提供持久化语义记忆能力",
+  "author": "sophie",
+  "license": "MIT",
+  "homepage": "https://github.com",
+  "tags": ["memory", "mem0", "vector-db", "qdrant"]
+}

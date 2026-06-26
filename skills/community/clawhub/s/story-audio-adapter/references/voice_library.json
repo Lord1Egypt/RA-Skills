@@ -1,0 +1,36 @@
+{
+  "voices": [
+    {
+      "voice_id": "child_0001_a",
+      "description": "开心的可爱萌娃",
+      "age_hint": "儿童",
+      "gender_hint": "中性",
+      "temperament": ["活泼", "明亮", "可爱"],
+      "recommended_for": ["天真小孩", "兴奋少年", "轻快回忆片段"]
+    },
+    {
+      "voice_id": "child_0001_b",
+      "description": "平稳的可爱萌娃",
+      "age_hint": "儿童",
+      "gender_hint": "中性",
+      "temperament": ["平静", "柔和", "可爱"],
+      "recommended_for": ["安静小孩", "内敛童声", "温柔回忆片段"]
+    },
+    {
+      "voice_id": "male_0004_a",
+      "description": "儒雅道长",
+      "age_hint": "成年",
+      "gender_hint": "男性",
+      "temperament": ["沉稳", "克制", "书卷气"],
+      "recommended_for": ["旁白", "师长", "温和男主", "智者角色"]
+    },
+    {
+      "voice_id": "male_0018_a",
+      "description": "沙哑青年",
+      "age_hint": "青年",
+      "gender_hint": "男性",
+      "temperament": ["粗粝", "疲惫", "倔强"],
+      "recommended_for": ["落魄青年", "冷感男主", "阴郁角色", "高压情绪片段"]
+    }
+  ]
+}

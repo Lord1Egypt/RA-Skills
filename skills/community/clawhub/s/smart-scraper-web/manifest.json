@@ -1,0 +1,46 @@
+{
+  "name": "web-data-extractor",
+  "version": "1.0.0",
+  "description": "Extract structured data from websites. Tables, lists, prices, articles, metadata.",
+  "capabilities": {
+    "network": {
+      "outbound": true,
+      "protocols": ["http", "https"],
+      "blocked": [
+        "file://",
+        "gopher://",
+        "data:",
+        "javascript:",
+        "ftp:",
+        "localhost",
+        "private_ips",
+        "cloud_metadata"
+      ],
+      "ssrf_protection": true,
+      "redirect_limit": 5,
+      "timeout_ms": 15000
+    },
+    "cache": {
+      "enabled": false,
+      "location": "memory/scraper-cache/cache.json",
+      "max_entries": 50,
+      "max_bytes": 10485760,
+      "ttl_ms": 300000,
+      "opt_in": "--cache",
+      "opt_out": "--no-cache"
+    },
+    "file_io": {
+      "read": ["cache.json"],
+      "write": ["cache.json"],
+      "create_dirs": ["memory/scraper-cache"]
+    }
+  },
+  "security": {
+    "url_validation": "strict",
+    "redirect_validation": true,
+    "rate_limit_ms": 100,
+    "regex_bounded": true,
+    "no_eval": true,
+    "no_exec_sync": true
+  }
+}

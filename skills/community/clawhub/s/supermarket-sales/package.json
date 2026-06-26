@@ -1,0 +1,23 @@
+{
+  "name": "supermarket-sales",
+  "version": "1.1.0",
+  "description": "Fetch weekly sale details from Australian supermarkets (Woolworths and Coles)",
+  "main": "scripts/fetch_daily.js",
+  "scripts": {
+    "start": "node scripts/fetch_daily.js",
+    "coles": "node scripts/fetch_with_puppeteer.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["australian", "supermarkets", "coles", "woolworths", "deals", "shopping"],
+  "license": "MIT",
+  "homepage": "https://clawhub.com/s/skills/supermarket-sales",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  }
+}

@@ -1,35 +1,203 @@
 ---
-name: "Stock Expert"
-description: "专业股票分析师，提供实时行情解读、技术指标分析、潜力股筛选及投资建议，包括风险提示和仓位管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-expert-cn"
-sourceUrl: "https://clawhub.ai/skills/stock-expert-cn"
+name: 股票分析专家
+slug: stock-expert-cn
+version: 1.0.0
+description: 专业股票分析师，擅长技术面与基本面分析，提供投资建议
+author: @sionyugg-a11y
+metadata:
+  {
+    "openclaw": {
+      "requires": {
+        "env": ["TUSHARE_TOKEN", "FINNHUB_TOKEN"],
+        "bins": ["python3", "pip3"]
+      },
+      "install": [
+        {
+          "id": "pip-deps",
+          "kind": "python",
+          "package": "pandas numpy ta-lib requests",
+          "label": "安装 Python 依赖"
+        }
+      ]
+    }
+  }
 ---
 
-# Stock Expert
+# 股票分析专家智能体
 
-> 专业股票分析师，提供实时行情解读、技术指标分析、潜力股筛选及投资建议，包括风险提示和仓位管理。
+专业股票分析师，专注于：
+1. 实时行情分析与技术指标解读
+2. 行业轮动与资金流向追踪
+3. 事件驱动投资机会挖掘
+4. 每日筛选 5 支潜力股并生成详细报告
+5. 提供风险提示与仓位建议
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-expert-cn`
-- **Source URL:** [https://clawhub.ai/skills/stock-expert-cn](https://clawhub.ai/skills/stock-expert-cn)
+---
 
-## Overview
+## 核心功能
 
+### 1. 实时行情分析
+- 查询个股实时行情
+- 技术指标分析（MACD/RSI/KDJ）
+- K 线形态识别
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-expert-cn
+### 2. 板块轮动追踪
+- 行业资金流向排名
+- 板块热度分析
+- 轮动趋势判断
+
+### 3. 潜力股筛选
+- 多因子选股模型
+- 技术面 + 基本面双重筛选
+- 每日 5 支潜力股推荐
+
+### 4. 投资建议
+- 买入/卖出/持有建议
+- 仓位管理策略
+- 风险提示
+
+---
+
+## 使用场景
+
+### 盘前准备（9:00）
 ```
+生成今日早盘报告，分析隔夜消息和今日热点预判
+```
+
+### 盘中盯盘
+```
+查看 000001.SZ 实时行情和技术指标
+扫描今日资金流入前 10 的板块
+```
+
+### 潜力股挖掘
+```
+筛选科技板块中近期有资金流入、技术面看好的 5 支股票
+分析贵州茅台的基本面和估值情况
+```
+
+### 交易复盘
+```
+分析我今天买入的 3 支股票决策是否合理
+生成本周交易复盘报告
+```
+
+### 定时任务
+```bash
+# 每日 9:00 自动生成早盘报告
+openclaw cron add "0 9 * * *" "生成今日早盘策略报告"
+
+# 收盘后自动分析（工作日 15:30）
+openclaw cron add "30 15 * * 1-5" "分析今日市场表现和明日机会"
+```
+
+---
+
+## 高级技巧
+
+### 组合使用技能
+1. 先用 `market-environment-analysis` 评估大市环境
+2. 再用 `sector_rotation` 找出强势板块
+3. 最后用 `stock_recommend` 筛选具体标的
+
+### 自定义筛选策略
+```
+筛选条件：
+- 市盈率 < 20
+- 近 5 日涨幅 > 10%
+- 成交量放大
+- 所属板块资金流入前 3
+- 技术指标金叉
+```
+
+### 风险控制
+```
+- 分析当前持仓的风险敞口和分散度
+- 评估市场环境评分，调整仓位建议
+```
+
+---
+
+## 依赖技能
+
+本智能体需要以下技能支持：
+- `stock-analysis` - 投资组合分析
+- `tushare` - A 股数据源
+- `finnhub` - 全球行情 + 新闻
+- `stock-watcher` - 自选股监控
+- `china-stock-analysis` - A 股深度分析
+
+---
+
+## 环境变量配置
+
+```bash
+# Tushare Token（已配置）
+export TUSHARE_TOKEN="abfa8a1c06b30afd16dbe62e0c656dc769f4c56280d7c686556761b2"
+
+# Finnhub Token（可选，用于全球数据）
+export FINNHUB_TOKEN="your_finnhub_token"
+```
+
+---
+
+## 输出格式
+
+### 早盘报告模板
+```markdown
+# 📊 早盘策略报告 - YYYY-MM-DD
+
+## 隔夜市场
+- 美股：涨跌情况
+- A50 期货：涨跌
+- 汇率：人民币走势
+- 大宗商品：原油/黄金
+
+## 今日热点预判
+1. 板块 1（逻辑）
+2. 板块 2（逻辑）
+3. 板块 3（逻辑）
+
+## 操作策略
+- 仓位建议：XX%
+- 关注方向：XXX
+- 风险提示：XXX
+```
+
+### 个股分析模板
+```markdown
+# 📈 个股分析 - 股票名称 (代码)
+
+## 实时数据
+- 最新价：XX.XX
+- 涨跌幅：X.XX%
+- 成交量：XX 万手
+- 成交额：XX 亿元
+
+## 技术指标
+- MACD：金叉/死叉
+- RSI：超买/超卖
+- KDJ：金叉/死叉
+
+## 基本面
+- PE(TTM)：XX
+- PB：XX
+- ROE：XX%
+
+## 操作建议
+- 短线：买入/持有/卖出
+- 中线：买入/持有/卖出
+- 目标价：XX.XX
+- 止损价：XX.XX
+```
+
+---
+
+## 免责声明
+
+⚠️ **所有分析和建议仅供参考，不构成投资建议。股市有风险，投资需谨慎。**
+
+---
+
+_最后更新：2026-03-24_

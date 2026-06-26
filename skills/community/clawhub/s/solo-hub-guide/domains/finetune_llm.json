@@ -1,0 +1,191 @@
+[
+  {
+    "id": "finetune_llm_step1_type",
+    "domain": "finetune_llm",
+    "wizard_step": 1,
+    "description": "Select LLM as the job type in the fine-tuning wizard",
+    "action_type": "ui_flow",
+    "steps": [
+      "Navigate to the fine-tuning wizard in Solo Hub (Solo Gym section)",
+      "On Step 1, click the 'LLM' button (with the brain icon)"
+    ],
+    "explanation": "Choosing LLM unlocks text-generation fine-tuning with LoRA. Available on all plans including Basic. VLA requires Plus/Pro.",
+    "expected_outcome": "LLM is selected; LLM model list and LLM-specific params become visible in subsequent steps",
+    "validation": {
+      "type": "ui_state",
+      "rule": "LLM button is highlighted in orange; LLM model list is visible on the same wizard screen"
+    },
+    "docs_ref": "/wizard/type-model"
+  },
+  {
+    "id": "finetune_llm_step1_model",
+    "domain": "finetune_llm",
+    "wizard_step": 1,
+    "description": "Select a base LLM model",
+    "action_type": "ui_flow",
+    "available_models": [
+      { "name": "Llama-3.2-3B", "note": "" },
+      { "name": "Llama-3.1-8B", "note": "Recommended" },
+      { "name": "Mistral-7B-v0.3", "note": "" }
+    ],
+    "explanation": "These are the base models you're fine-tuning on top of. Llama-3.1-8B is recommended for most use cases.",
+    "expected_outcome": "A base model is selected",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Model name is highlighted/selected in the LLM model list"
+    },
+    "docs_ref": "/wizard/type-model"
+  },
+  {
+    "id": "finetune_llm_step2_gpu",
+    "domain": "finetune_llm",
+    "wizard_step": 2,
+    "description": "Select a GPU for the training job",
+    "action_type": "ui_flow",
+    "available_gpus": [
+      { "name": "A100 40GB", "vram": "40 GB", "status": "Available" },
+      { "name": "H100 80GB", "vram": "80 GB", "status": "Recommended — fastest, lowest total credit burn" },
+      { "name": "A10 24GB",  "vram": "24 GB", "status": "Insufficient VRAM — do not use for LLM fine-tuning" }
+    ],
+    "explanation": "Faster GPUs finish sooner and reduce total credit burn. H100 is recommended unless you have specific VRAM requirements. Credits are deducted per minute — a faster GPU means fewer minutes.",
+    "expected_outcome": "A GPU is selected",
+    "validation": {
+      "type": "ui_state",
+      "rule": "GPU card is highlighted; it shows 'Available' or 'Recommended' badge (not 'Insufficient VRAM')"
+    },
+    "common_errors": [
+      "Selecting A10 24GB — marked as Insufficient VRAM; job will fail at provisioning"
+    ],
+    "docs_ref": "/wizard/type-model"
+  },
+  {
+    "id": "finetune_llm_step3_params",
+    "domain": "finetune_llm",
+    "wizard_step": 3,
+    "description": "Set LLM training hyperparameters",
+    "action_type": "ui_flow",
+    "parameters": {
+      "epochs":                { "recommended": 3,    "range": "1–10",        "description": "Number of full passes over the dataset" },
+      "max_steps":             { "recommended": 1000, "range": "100–10000",   "description": "Maximum training steps; overrides epochs if reached first" },
+      "lora_rank":             { "recommended": 16,   "range": "4–128",       "description": "LoRA rank — higher rank = more capacity, more VRAM" },
+      "batch_size":            { "recommended": 8,    "range": "1–64",        "description": "Samples per gradient step" },
+      "lora_alpha":            { "recommended": 32,   "range": "8–256",       "description": "LoRA alpha — set to 2× rank for a safe starting point (e.g. Rank 16 → Alpha 32)" },
+      "gradient_accumulation": { "recommended": 4,    "range": "Fixed in UI", "description": "Accumulate N gradients before updating — effectively increases batch size" }
+    },
+    "explanation": "All values are slider-driven with recommended ranges shown. LoRA is the fine-tuning method — it adapts the base model without retraining all weights.",
+    "expected_outcome": "All 6 parameters set; proceed to Step 4",
+    "validation": {
+      "type": "ui_state",
+      "rule": "All parameter sliders have values within their valid ranges"
+    },
+    "docs_ref": "/wizard/params"
+  },
+  {
+    "id": "finetune_llm_step4_data",
+    "domain": "finetune_llm",
+    "wizard_step": 4,
+    "description": "Connect the HuggingFace training dataset for an LLM job",
+    "action_type": "ui_flow",
+    "required_fields": {
+      "dataset_repo_id": {
+        "format": "owner/dataset-name",
+        "example": "GetSoloTech/Math-Reasoning",
+        "description": "The HuggingFace dataset repo ID. Must exist and be accessible."
+      },
+      "text_field": {
+        "default": "messages",
+        "description": "The column name in your dataset that contains training text. This is the most common cause of LLM job failures — it must EXACTLY match the column name in your dataset.",
+        "detail": "If your dataset has a 'messages' column with list-of-turn objects, use 'messages' — the trainer applies the model's chat template automatically. If your dataset uses instruction/response or question/answer columns, leave Text Field as 'messages' (or any non-present column name) to use the instruction-response pairing path instead."
+      }
+    },
+    "supported_dataset_formats": {
+      "chat_messages": {
+        "description": "Preferred format. A 'messages' column where each row is a list of turns. Trainer applies the model's chat template automatically.",
+        "example": "{\"messages\": [{\"role\": \"user\", \"content\": \"What is 2+2?\"}, {\"role\": \"assistant\", \"content\": \"4\"}]}"
+      },
+      "instruction_response": {
+        "description": "Alternative: paired columns like instruction+response or question+answer.",
+        "example": "{\"instruction\": \"Solve for x: 2x + 4 = 10\", \"response\": \"x = 3\"}",
+        "text_field_tip": "When using this format, leave Text Field as 'messages' (or any column name that does NOT exist in the dataset) so training uses the paired-column path"
+      }
+    },
+    "example_datasets_from_solo": [
+      { "id": "GetSoloTech/Code-Reasoning", "type": "Code", "description": "Code-style reasoning tasks for instruction fine-tuning" },
+      { "id": "GetSoloTech/Math-Reasoning", "type": "Math", "description": "Math-style reasoning tasks with step-by-step solutions" }
+    ],
+    "expected_outcome": "Dataset connected; wizard ready for Step 5",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Dataset repo ID and Text Field filled in; no red validation error shown"
+    },
+    "critical_warning": "A wrong Text Field value (column name mismatch) is the #1 cause of LLM job failures. Double-check it against the actual column name in your HuggingFace dataset before launching.",
+    "docs_ref": "/wizard/data"
+  },
+  {
+    "id": "finetune_llm_step5_integrations",
+    "domain": "finetune_llm",
+    "wizard_step": 5,
+    "description": "Optionally configure HuggingFace Hub push and W&B tracking",
+    "action_type": "ui_flow",
+    "integrations": {
+      "push_to_hf_hub": {
+        "enabled_by_default": false,
+        "fields": {
+          "hf_token":        { "format": "hf_xxxxxxxxxxxx", "description": "Your HuggingFace API token with write access" },
+          "repository_name": { "format": "username/model-name", "description": "HF repo to push the trained model to" }
+        },
+        "description": "Pushes the trained model weights to HuggingFace Hub after training completes. Optional — model is always saved to your Solo Hub org regardless."
+      },
+      "weights_and_biases": {
+        "enabled_by_default": false,
+        "fields": {
+          "wandb_api_token": { "description": "Your W&B API token" }
+        },
+        "description": "Streams training metrics (loss, steps, runtime) to your W&B project for visualization."
+      }
+    },
+    "explanation": "Both integrations are optional. Trained models are always uploaded to your Solo Hub org by default. These extend where results go.",
+    "expected_outcome": "Integrations configured or skipped; wizard ready for Step 6",
+    "validation": {
+      "type": "ui_state",
+      "rule": "If enabled — HF token and repo name fields filled; if W&B enabled — API token filled. If disabled — toggles are off."
+    },
+    "common_errors": [
+      "Invalid HF token — verify token has write access in your HuggingFace account settings",
+      "Wrong repo name format — must be username/model-name (with slash), not just a name",
+      "W&B project doesn't exist — create it in W&B first before launching"
+    ],
+    "docs_ref": "/wizard/launch"
+  },
+  {
+    "id": "finetune_llm_step6_launch",
+    "domain": "finetune_llm",
+    "wizard_step": 6,
+    "description": "Review cost estimate and launch the training job",
+    "action_type": "ui_flow",
+    "cost_estimate_fields": {
+      "burn_rate":         "Credits consumed per hour (e.g. ~12 credits/hr)",
+      "per_minute":        "Credits per minute (e.g. 0.2 credits)",
+      "available_credits": "Your org's current balance",
+      "max_runtime":       "How long the job can run at current balance (e.g. ~104 hrs)"
+    },
+    "explanation": "Credits are deducted per minute starting from Provisioning stage. The job auto-stops when balance reaches zero. There is no manual cap to set — your balance IS the cap.",
+    "steps": [
+      "Review the cost estimate panel carefully",
+      "Confirm you have enough credits for your expected training duration",
+      "Click 'Start Training'"
+    ],
+    "expected_outcome": "Job submitted. You see a results card with Job ID, model name, and initial status QUEUED.",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Results card appears showing Job ID, Output Model Name, and pipeline status = QUEUED. A direct link to the model's detail page is shown."
+    },
+    "common_errors": [
+      "Start Training button disabled — you may lack fine-tuning permissions; on Basic with VLA selected (will revert to LLM); or account/org issue",
+      "Insufficient credits — add credits or upgrade plan before launching",
+      "Job already exists — output model name must be unique within org; choose a different name",
+      "Maximum concurrent jobs reached — wait for an existing job to reach Completed/Failed/Cancelled"
+    ],
+    "docs_ref": "/wizard/launch"
+  }
+]

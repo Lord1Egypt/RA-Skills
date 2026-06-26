@@ -1,0 +1,23 @@
+{
+  "name": "swaps-intel",
+  "version": "1.2.0",
+  "displayName": "Swaps Intel",
+  "description": "Blockchain intelligence API for crypto address risk scoring, transaction tracing, and fraud detection across EVM, TRON, Bitcoin, Solana, XRP, TON and more. Powered by Swaps.app.",
+  "author": "w3arecom",
+  "tags": ["crypto", "blockchain", "risk", "fraud", "aml", "intelligence", "tron", "ethereum", "bitcoin"],
+  "category": "security",
+  "main": "SKILL.md",
+  "assets": ["openapi.json", "README.md", "AUP.md", "TERMS_SHORT.md", "RISK_DISCLOSURE.md"],
+  "homepage": "https://swaps.app",
+  "license": "proprietary",
+  "requires": {
+    "credentials": ["SWAPS_INTEL_API_KEY"]
+  },
+  "credentialHints": {
+    "SWAPS_INTEL_API_KEY": {
+      "label": "Swaps Intel API Key",
+      "description": "Request a free key at api@swaps.app. Format: sk_swaps_...",
+      "url": "mailto:api@swaps.app"
+    }
+  }
+}

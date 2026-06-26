@@ -1,35 +1,37 @@
----
-name: "Slack Standup"
-description: "Automates Slack daily standups by prompting updates, compiling responses, and posting summaries on a set schedule."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/slack-standup"
-sourceUrl: "https://clawhub.ai/skills/slack-standup"
----
+# slack-standup SKILL.md
 
-# Slack Standup
+## Skill Identity
+- Name: slack-standup
+- Version: 1.0.0
+- License: MIT
+- Category: Productivity / Team Collaboration
 
-> Automates Slack daily standups by prompting updates, compiling responses, and posting summaries on a set schedule.
+## Description
+Automated daily standup bot for Slack. Collects updates at scheduled times, aggregates responses, posts summaries.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/slack-standup`
-- **Source URL:** [https://clawhub.ai/skills/slack-standup](https://clawhub.ai/skills/slack-standup)
+## Business Value
+- Problem: Remote teams waste time scheduling standup meetings
+- Solution: Async standup via Slack bot
+- ROI: Saves 15-30 min/day per team member
 
-## Overview
+## Capabilities
+1. collect_standup - Prompt team for daily updates
+2. aggregate_responses - Compile into formatted summary
+3. post_summary - Post to designated channel
+4. schedule_reminder - Set recurring daily prompts
 
+## Tools Required
+- Slack Bot API (xoxb-* token)
+- Cron scheduling
+- Text formatting (Slack MRKDWN)
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/slack-standup
-```
+1. `clawhub install slack-standup`
+2. Configure Slack bot token
+3. Set standup time (9:00 AM default)
+4. Test: `/standup test`
+
+## Pricing
+- One-time: $25
+- Subscription: $5/month
+- Team: $50 (up to 10 members)

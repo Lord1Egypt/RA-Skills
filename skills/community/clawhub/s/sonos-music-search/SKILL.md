@@ -1,35 +1,65 @@
 ---
-name: "Sonos Music Search"
-description: "Search for music via Brave Search and play it on your Sonos speakers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sonos-music-search"
-sourceUrl: "https://clawhub.ai/skills/sonos-music-search"
+name: sonos-music-search-skill
+description: Search for music via Brave Search and play it on your Sonos speakers.
+homepage: https://clawhub.com/skills/sonos-music-search
+metadata: { 'aren': { 'emoji': '🎵', 'requires': { 'env': ['BRAVE_API_KEY'], 'bins': ['node'], 'network': true } } }
 ---
 
-# Sonos Music Search
+# Sonos Music Search Skill
 
-> Search for music via Brave Search and play it on your Sonos speakers.
+Search for music on Spotify via Brave Search and play it on your Sonos speakers — right from the command line.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sonos-music-search`
-- **Source URL:** [https://clawhub.ai/skills/sonos-music-search](https://clawhub.ai/skills/sonos-music-search)
+## Features
 
-## Overview
+- 🔍 Uses Brave Search API to find Spotify tracks
+- 🔊 Plays found tracks on your specified Sonos speaker
+- 🎶 View currently playing track
+- ⏱️ Discovery timeout protection (won't hang on missing speakers)
+- 🛡️ Safe search defaults to moderate
 
+## Prerequisites
+
+- **Node.js** >= 18
+- **Brave Search API key** — [Get one here](https://brave.com/search/api/)
+- **Sonos speaker** on the same local network
+- **Spotify account linked** to your Sonos system
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/sonos-music-search
+npm install
 ```
+
+## Configuration
+
+Set your Brave Search API key:
+
+```bash
+export BRAVE_API_KEY=your-api-key
+```
+
+## Usage
+
+### Play a track
+
+```bash
+node src/index.js play "Living Room" "pink floyd comfortably numb"
+```
+
+### View currently playing track
+
+```bash
+node src/index.js current "Living Room"
+```
+
+## Scripts
+
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm start`            | Run the CLI                      |
+| `npm run format`       | Format JS and Markdown files     |
+| `npm run format:check` | Check formatting without writing |
+
+## License
+
+MIT

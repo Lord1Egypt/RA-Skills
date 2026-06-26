@@ -1,35 +1,67 @@
 ---
-name: "Sube Test"
-description: "Convert unstructured documents into LLM-ready structured data. Supports PDF, Word, PPT, and images; extracts paragraphs, formulas, tables, charts, and other..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sube-test"
-sourceUrl: "https://clawhub.ai/skills/sube-test"
+name: PDFlux-PDF2Markdown
+description: Convert unstructured documents into LLM-ready structured data. Supports PDF, Word, PPT, and images; extracts paragraphs, formulas, tables, charts, and other elements in one step; generates up to 8 levels of headings; and outputs Markdown organized in reading order. Useful for field extraction, comparison and validation, knowledge retrieval, and intelligent Q&A.
+metadata: {"author":"PAODINGAI","version":"1.0.2","openclaw":{"emoji":"📝","primaryEnv":"PD_ROUTER_API_KEY","requires":{"env":["PD_ROUTER_API_KEY"],"bins":["node"]}}}
 ---
 
-# Sube Test
+# PDFlux-PDF2Markdown
 
-> Convert unstructured documents into LLM-ready structured data. Supports PDF, Word, PPT, and images; extracts paragraphs, formulas, tables, charts, and other...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sube-test`
-- **Source URL:** [https://clawhub.ai/skills/sube-test](https://clawhub.ai/skills/sube-test)
-
-## Overview
-
+Run a JavaScript workflow that uploads a single local file to the `pdflux` service through PDRouter, polls the parsing status, and then downloads the resulting Markdown. This is suitable for document parsing, table extraction, content verification, and handing document content off to follow-up scripts.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/sube-test
+npx skills add PaodingAI/skills
 ```
+
+## Usage
+
+```bash
+node skills/pdflux-saas-markdown/scripts/upload_to_markdown.js <local-file-path> [output-markdown-path]
+```
+
+## Execution Constraints
+
+- You must invoke `scripts/upload_to_markdown.js` directly. Do not reimplement the upload, polling, and Markdown download flow yourself.
+- The behavior contract below explains what the script does, what it outputs, and when to use it. It is not a manual checklist for the model to imitate step by step.
+- Even if the task is only to extract tables, read fields, inspect body text, or prepare input for later scripts, you must run this script first and continue from the generated Markdown.
+- Only inspect or modify the script implementation when the script itself is unavailable, failing, or needs a fix. Do not bypass it during normal use.
+
+## When to Use
+
+- Use this skill when the user wants to parse a document, retrieve specific document content, or extract tables from a document.
+- Use this skill when the user says things like "convert to Markdown", "output Markdown", "export Markdown", or "extract Markdown", and return the Markdown content directly.
+- When later work depends on the document content, such as summarization, field extraction, document-processing scripts, table comparison, or rule-based validation, use this skill first to parse the document.
+- When the document content is only needed as input for subsequent steps, do not default to showing the full raw Markdown to the user. Prefer saving it to a temporary or working file first, then read, filter, and extract only what is needed.
+- When the user explicitly asks for the original Markdown output or clearly wants a direct document-to-Markdown conversion, show the full Markdown directly.
+
+## Environment Variables
+
+- `PD_ROUTER_API_KEY`: Required. The Bearer API key for PDRouter. If it is missing, the script fails immediately. In a skill workflow, the AI should ask the user to provide a valid key, or inject it into the environment before retrying. The API key can be obtained from the PDRouter platform: [https://platform.paodingai.com/](https://platform.paodingai.com/)
+- `PDFLUX_INCLUDE_IMAGES`: Optional. Boolean. Markdown output does not include image data by default.
+
+## Security and Data Flow
+
+- This skill uploads one user-specified local file to the official PDRouter endpoint at `https://platform.paodingai.com`.
+- The script reads `PD_ROUTER_API_KEY` only to authenticate requests to the official PDRouter service.
+- The script does not print the API key to stdout or stderr.
+- Generated Markdown is written to stdout and, if requested, to the user-provided output file path.
+- The script does not support arbitrary network targets or custom upload hosts.
+
+## Default Behavior and Optional Settings
+
+- Parsed results do not include chart or image extraction by default.
+- If charts, images, or similar content are required, enable them explicitly through API parameters. These results are usually returned as base64 and will increase token usage.
+- Markdown output does not include image data by default. If you need embedded image data, set `PDFLUX_INCLUDE_IMAGES=true`.
+
+## Script Behavior
+
+1. Read the token from `PD_ROUTER_API_KEY`. If it is missing, fail immediately and prompt the AI to ask the user for a key or inject the environment variable first.
+2. Upload the file to the official PDRouter endpoint with `POST /openapi/{serviceCode}/upload` using `Authorization: Bearer <token>`.
+3. Poll `GET /openapi/{serviceCode}/document/{uuid}` until `parsed === 2`.
+4. Fail immediately if the parsing status becomes negative.
+5. Download the Markdown from `GET /openapi/{serviceCode}/document/{uuid}/markdown`.
+6. If `output-markdown-path` is provided, the script also writes the Markdown to that file while still printing it to stdout.
+7. The script writes progress and errors to stderr and returns a non-zero exit code on failure.
+8. When the goal is to retrieve specific content, fields, or tables, read the parsed result and return only the necessary information instead of echoing the full raw Markdown to the user.
+9. When the user explicitly asks to "convert to Markdown", "output Markdown", or expresses an equivalent intent, return the Markdown content directly rather than only a summary or extracted fields.

@@ -1,0 +1,33 @@
+# 数据库表名关键词映射表
+# 格式: 关键词 -> 表名
+# 使用方法: 查找关键词对应的表名
+
+==========================
+出警信息相关表
+==========================
+
+出警信息 -> chujingxinxibiao_Sheet1_1732674000130
+警情 -> chujingxinxibiao_Sheet1_1732674000130
+
+==========================
+
+
+出差申请相关表
+==========================
+
+出差信息-> chuchashenqingdanmingxi_10yue_1729496775167
+出差申请 -> chuchashenqingdanmingxi_10yue_1729496775167
+示例查询命令
+==========================
+
+# 查询家庭纠纷数据
+curl -X POST -H "Content-Type: application/json" -d '{"sql": "SELECT * FROM chujingxinxibiao_Sheet1_1732674000130 WHERE f_w8ZsC0='"'"'家庭纠纷'"'"'"}' "http://192.168.5.85:8000/query"
+
+# 查询婚姻纠纷数据
+curl -X POST -H "Content-Type: application/json" -d '{"sql": "SELECT * FROM chujingxinxibiao_Sheet1_1732674000130 WHERE f_w8ZsC0='"'"'婚姻纠纷'"'"'"}' "http://192.168.5.85:8000/query"
+
+# 查询家暴数据
+curl -X POST -H "Content-Type: application/json" -d '{"sql": "SELECT * FROM chujingxinxibiao_Sheet1_1732674000130 WHERE f_Wkv9nZ='"'"'家暴'"'"'"}' "http://192.168.5.85:8000/query"
+
+# 查询出轨数据
+curl -X POST -H "Content-Type: application/json" -d '{"sql": "SELECT * FROM chujingxinxibiao_Sheet1_1732674000130 WHERE f_Wkv9nZ='"'"'出轨'"'"'"}' "http://192.168.5.85:8000/query"

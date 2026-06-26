@@ -1,35 +1,46 @@
 ---
-name: "Skylar Serper"
-description: "Search Google programmatically using Serper.dev API. Use when you need to perform web searches, find information online, or research topics. Supports query p..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skylar-serper"
-sourceUrl: "https://clawhub.ai/skills/skylar-serper"
+name: serper
+description: Search Google programmatically using Serper.dev API. Use when you need to perform web searches, find information online, or research topics. Supports query parameters, result limiting, and geographic/language targeting.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - name: SERPER_API_KEY
+          description: Serper.dev API key for Google search
+          required: true
 ---
 
-# Skylar Serper
+# Serper.dev Google Search
 
-> Search Google programmatically using Serper.dev API. Use when you need to perform web searches, find information online, or research topics. Supports query p...
+Search Google via Serper.dev API. Clean, structured results without scraping.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skylar-serper`
-- **Source URL:** [https://clawhub.ai/skills/skylar-serper](https://clawhub.ai/skills/skylar-serper)
+## Quick Start
 
-## Overview
+Requires `SERPER_API_KEY` environment variable.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skylar-serper
+```javascript
+serper_search({
+  q: "OpenClaw AI agent",
+  num: 5,
+  gl: "us",
+  hl: "en"
+})
 ```
+
+## Parameters
+
+| Param | Required | Default | Description |
+|-------|----------|---------|-------------|
+| `q` | Yes | — | Search query |
+| `num` | No | 5 | Results count (1-100) |
+| `gl` | No | — | Country code (us, uk, th) |
+| `hl` | No | — | Language code (en, th) |
+
+## Setup
+
+1. Get API key: https://serper.dev
+2. Set environment: `export SERPER_API_KEY=your_key`
+
+## Tool Location
+
+`tools/serper_search.js`

@@ -1,0 +1,155 @@
+name: stock-analysis
+version: 1.0.9
+author: Derrors
+license: MIT-0
+runtime: python
+entry: src/index.py
+description: A股市场分析与个股深度分析技能，支持基本面（财务/估值）、资金面（主力资金/DDX）、技术面、筹码分布、舆情情报等多维度分析
+
+categories:
+  - finance
+  - analysis
+
+requires:
+  env:
+    - LLM_API_KEY
+    - LLM_BASE_URL
+    - LLM_MODEL
+  bins:
+    - python3
+
+optional:
+  env:
+    - MX_APIKEY
+    - SERPAPI_KEY
+    - TAVILY_KEY
+    - BRAVE_KEY
+    - BOCHA_KEY
+    - BIAS_THRESHOLD
+    - NEWS_MAX_AGE_DAYS
+    - ENABLE_CHIP
+    - LOG_LEVEL
+
+install:
+  - kind: uv
+    command: pip install -r requirements.txt
+
+config:
+  - key: llm_base_url
+    type: string
+    required: true
+    default: "https://api.deepseek.com/v1"
+    description: OpenAI兼容API地址
+  - key: llm_api_key
+    type: string
+    required: true
+    description: LLM API Key
+  - key: llm_model
+    type: string
+    required: true
+    default: "deepseek-chat"
+    description: 模型名称
+  - key: mx_apikey
+    type: string
+    required: false
+    description: 妙想金融API Key（配置后自动成为行情数据+财务/资金/估值+资讯搜索第一优先级）
+  - key: serpapi_key
+    type: string
+    required: false
+    description: SerpAPI搜索Key
+  - key: tavily_key
+    type: string
+    required: false
+    description: Tavily搜索Key
+  - key: brave_key
+    type: string
+    required: false
+    description: Brave搜索Key
+  - key: bocha_key
+    type: string
+    required: false
+    description: 博查搜索Key
+  - key: bias_threshold
+    type: number
+    required: false
+    default: 5.0
+    description: 乖离率阈值(%)
+  - key: news_max_age_days
+    type: integer
+    required: false
+    default: 3
+    description: 新闻最大时效(天)
+  - key: enable_chip
+    type: boolean
+    required: false
+    default: true
+    description: 是否启用筹码分布
+  - key: log_level
+    type: string
+    required: false
+    default: "INFO"
+    description: 日志级别 DEBUG/INFO/WARNING/ERROR
+
+input:
+  type: object
+  properties:
+    mode:
+      type: string
+      enum: [stock, market]
+      description: 分析模式
+    code:
+      type: string
+      description: A股股票代码(mode=stock时必填)
+    save:
+      type: boolean
+      description: 是否保存Markdown报告到reports/目录
+    output_dir:
+      type: string
+      description: 自定义报告输出目录(需save=true)
+  required: [mode]
+
+output:
+  type: object
+  properties:
+    stock_code:
+      type: string
+      description: 股票代码
+    stock_name:
+      type: string
+      description: 股票名称
+    core_conclusion:
+      type: string
+      description: 一句话核心结论
+    score:
+      type: integer
+      description: 评分0-100
+    action:
+      type: string
+      description: 操作方向(买入/观望/卖出)
+    trend:
+      type: string
+      description: 趋势判断(看多/震荡/看空)
+    buy_price:
+      type: number
+      description: 建议买入价
+    stop_loss_price:
+      type: number
+      description: 止损价
+    target_price:
+      type: number
+      description: 目标价
+    capital_flow:
+      type: object
+      description: 主力资金流向(超大单/大单/中单/小单净额+DDX/DDY/DDZ)
+    valuation:
+      type: object
+      description: 估值数据(PE_TTM/PB/历史分位)
+    financial:
+      type: object
+      description: 核心财务指标(净利润/营收/ROE/毛利率/资产负债率/机构持股)
+    sentiment:
+      type: string
+      description: 市场情绪(偏多/中性/偏空)
+    raw_report:
+      type: string
+      description: LLM完整分析报告(Markdown)

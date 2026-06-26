@@ -1,35 +1,307 @@
----
-name: "SZZG007 Customer CRM"
-description: "统一管理跨境电商客户资料，支持双向云端同步、自动状态更新、客户分级和定期数据维护。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/szzg007-customer-crm"
-sourceUrl: "https://clawhub.ai/skills/szzg007-customer-crm"
+# szzg007-customer-crm - 客户 CRM 管理专家
+
+**版本:** 1.0  
+**创建日期:** 2026-03-30  
+**作者:** MOSSRIVER 团队
+
 ---
 
-# SZZG007 Customer CRM
+## 技能描述
 
-> 统一管理跨境电商客户资料，支持双向云端同步、自动状态更新、客户分级和定期数据维护。
+统一管理全渠道客户资料，支持云端/本地双存储，自动更新客户状态，定期维护客户数据。专为跨境电商多业务线客户管理设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/szzg007-customer-crm`
-- **Source URL:** [https://clawhub.ai/skills/szzg007-customer-crm](https://clawhub.ai/skills/szzg007-customer-crm)
+---
 
-## Overview
+## 核心功能
 
+### 1. 客户资料管理
+- **基础信息** - 姓名、邮箱、公司、国家
+- **业务信息** - 业务线、产品兴趣、采购预算
+- **社交信息** - LinkedIn、Instagram、WhatsApp
+- **分级标签** - A/B/C/D 级客户自动分类
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/szzg007-customer-crm
+### 2. 云端/本地双存储
+- **本地存储** - SQLite/JSON，快速查询
+- **云端同步** - Feishu Bitable/Google Sheets
+- **双向同步** - 自动检测冲突并解决
+- **离线可用** - 无网络时使用本地数据
+
+### 3. 客户状态追踪
+- **漏斗阶段** - 潜在→意向→询价→样品→成交→复购
+- **状态更新** - 自动检测邮件/消息更新状态
+- **提醒设置** - 跟进提醒、生日提醒、节日问候
+- **流失预警** - 长时间未联系自动标记
+
+### 4. 表格自动维护
+- **定期更新** - 每日/每周自动同步
+- **数据清洗** - 去重、补全、纠错
+- **报表生成** - 客户统计、转化分析、漏斗报告
+- **导出功能** - CSV/Excel/PDF 多格式
+
+---
+
+## 客户分级标准
+
+| 等级 | 标准 | 跟进频率 | 策略 |
+|------|------|---------|------|
+| **A 级** | 已成交/高意向 | 每周 1-2 次 | 重点维护，快速响应 |
+| **B 级** | 已询价/样品中 | 每周 1 次 | 推动成交，解决疑虑 |
+| **C 级** | 初步接触 | 每 2 周 1 次 | 培养兴趣，提供价值 |
+| **D 级** | 无效/退信 | 暂停联系 | 定期清理 |
+
+---
+
+## 触发词
+
 ```
+"添加这个客户"
+"更新客户状态"
+"查看 A 级客户列表"
+"同步客户数据到云端"
+"生成客户报表"
+"清理无效客户"
+"客户跟进提醒"
+"szzg007 客户管理"
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+```
+添加这个客户：
+- 邮箱：customer@example.com
+- 公司：ABC Company
+- 国家：US
+- 业务线：QB
+```
+
+### 状态更新
+```
+更新客户状态：customer@example.com
+- 新状态：已成交
+- 订单金额：$5000
+- 产品：QB2 x 100pcs
+```
+
+### 客户查询
+```
+查看所有 A 级客户
+- 业务线：QB
+- 国家：US
+```
+
+### 云端同步
+```
+同步客户数据到 Feishu Bitable
+- 同步方向：双向
+- 冲突处理：保留最新
+```
+
+---
+
+## 输出模板
+
+### 客户资料卡片
+```markdown
+# 客户资料卡片
+
+## 基础信息
+| 字段 | 值 |
+|------|-----|
+| 姓名 | John Doe |
+| 邮箱 | john@abccompany.com |
+| 公司 | ABC Company |
+| 国家 | 美国 |
+| 时区 | EST |
+
+## 业务信息
+| 字段 | 值 |
+|------|-----|
+| 业务线 | QB |
+| 客户等级 | 🟢 A 级 |
+| 漏斗阶段 | 成交客户 |
+| 累计订单 | $12,500 |
+| 最后订单 | 2026-03-15 |
+
+## 联系方式
+- **Email:** john@abccompany.com ✅
+- **WhatsApp:** +1-XXX-XXX-XXXX ✅
+- **LinkedIn:** linkedin.com/in/johndoe ✅
+- **Instagram:** @abc_company ⏳
+
+## 沟通历史
+- **首次联系:** 2026-01-10
+- **沟通次数:** 15 次
+- **最后联系:** 2026-03-20
+- **平均回复时间:** 4 小时
+
+## 产品偏好
+1. QB2 Clear Storage Box - 已购 200pcs
+2. QB5 Deep Storage Box - 已购 100pcs
+3. QB7 Desktop Organizer - 询价中
+
+## 跟进记录
+| 日期 | 类型 | 内容 | 下一步 |
+|------|------|------|--------|
+| 03-20 | 邮件 | 订单确认 | 发货通知 |
+| 03-15 | 邮件 | 付款确认 | 安排生产 |
+| 03-10 | 邮件 | 报价发送 | 等待回复 |
+
+## 提醒事项
+- ⏰ 2026-04-01: 发货通知
+- ⏰ 2026-04-15: 售后跟进
+- 🎂 2026-05-20: 客户生日
+```
+
+### 客户统计报表
+```markdown
+# 客户统计报表
+
+**统计周期:** 2026-03-01 ~ 2026-03-31  
+**生成时间:** 2026-03-30 23:50
+
+## 客户概览
+| 指标 | 数值 | 环比 |
+|------|------|------|
+| 总客户数 | 555 | +15% |
+| 新增客户 | 95 | +20% |
+| 成交客户 | 28 | +10% |
+| 流失客户 | 12 | -5% |
+
+## 客户分级
+| 等级 | 数量 | 占比 |
+|------|------|------|
+| A 级 | 28 | 5% |
+| B 级 | 85 | 15% |
+| C 级 | 320 | 58% |
+| D 级 | 122 | 22% |
+
+## 业务线分布
+| 业务线 | 客户数 | 成交数 | 转化率 |
+|--------|--------|--------|--------|
+| QB | 555 | 28 | 5.0% |
+| BABY | 0 | 0 | 0% |
+| HOME | 0 | 0 | 0% |
+| WOMEN | 0 | 0 | 0% |
+| FAMILY | 0 | 0 | 0% |
+
+## 国家分布
+| 国家 | 客户数 | 成交数 |
+|------|--------|--------|
+| 美国 | 280 | 15 |
+| 英国 | 120 | 6 |
+| 澳洲 | 95 | 4 |
+| 加拿大 | 60 | 3 |
+
+## 漏斗分析
+```
+潜在客户  555 ████████████████████████████████████ 100%
+意向客户  200 ██████████████ 36%
+询价客户   85 ██████ 15%
+样品客户   45 ███ 8%
+成交客户   28 ██ 5%
+```
+
+## 下月目标
+- 新增客户：120 个
+- 转化率提升至：6%
+- 成交客户：35 个
+```
+
+---
+
+## 配置说明
+
+### 环境变量
+```bash
+# 本地存储
+CRM_STORAGE_PATH=~/.openclaw/workspace-judy/data/
+CRM_DB_TYPE=sqlite  # 或 json
+
+# 云端同步 (Feishu Bitable)
+FEISHU_APP_TOKEN=your_app_token
+FEISHU_TABLE_ID=your_table_id
+
+# 云端同步 (Google Sheets)
+GOOGLE_SHEETS_ID=your_sheets_id
+GOOGLE_CREDENTIALS=your_credentials
+
+# 同步设置
+SYNC_INTERVAL_HOURS=24
+AUTO_DEDUP=true
+AUTO_CLEANUP_DAYS=90
+```
+
+### 工作空间
+```
+~/.openclaw/workspace/skills/szzg007-customer-crm/
+├── SKILL.md
+├── templates/          # 报表模板
+├── examples/           # 案例
+├── scripts/
+│   ├── add.py          # 添加客户
+│   ├── update.py       # 更新状态
+│   ├── sync.py         # 云端同步
+│   ├── report.py       # 报表生成
+│   └── cleanup.py      # 数据清洗
+└── config/
+    ├── business-lines.json  # 业务线配置
+    └── funnel-stages.json   # 漏斗阶段配置
+```
+
+---
+
+## 数据字段定义
+
+### 客户基础字段
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| email | string | ✅ | 客户邮箱 |
+| name | string | ⏳ | 客户姓名 |
+| company | string | ⏳ | 公司名称 |
+| country | string | ⏳ | 国家代码 |
+| source | string | ⏳ | 来源渠道 |
+
+### 业务字段
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| business_line | string | ✅ | 业务线 (QB/BABY/...) |
+| customer_level | string | ✅ | 客户等级 (A/B/C/D) |
+| funnel_stage | string | ✅ | 漏斗阶段 |
+| total_orders | number | ⏳ | 累计订单金额 |
+| last_order_date | date | ⏳ | 最后订单日期 |
+
+### 状态字段
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| status | string | ✅ | 状态 (active/inactive) |
+| last_contact | date | ✅ | 最后联系日期 |
+| next_followup | date | ⏳ | 下次跟进日期 |
+| notes | text | ⏳ | 备注 |
+
+---
+
+## 与其他技能协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| szzg007-email-business-manager | 同步邮件 → 更新客户状态 |
+| szzg007-web-deep-research | 输入客户名 → 背调补全资料 |
+| szzg007-talktrack-library | 调用客户等级 → 匹配话术 |
+| szzg007-multi-agent-orchestrator | 分配任务 → 跟进客户 |
+
+---
+
+## 安全说明
+
+- ✅ 客户数据加密存储
+- ✅ 敏感信息脱敏
+- ✅ 访问权限控制
+- ✅ 操作日志记录
+- ✅ 定期备份
+
+---
+
+_此技能专为 MOSSRIVER 跨境电商设计，持续优化中。_

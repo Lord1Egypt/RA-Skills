@@ -1,0 +1,11 @@
+{
+  "timezone": "Asia/Shanghai",
+  "location": "Hangzhou",
+  "quietHoursStart": "22:00",
+  "quietHoursEnd": "08:00",
+  "minIntervalMinutes": 30,
+  "maxIntervalMinutes": 120,
+  "channel": "telegram",
+  "channelTarget": "YOUR_CHANNEL_TARGET",
+  "characteristics": "warm, casual, playful"
+}

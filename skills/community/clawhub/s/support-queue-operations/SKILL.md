@@ -1,35 +1,32 @@
 ---
-name: "1.2.0"
-description: "Structured triage and handoff for customer support ticket queues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/support-queue-operations"
-sourceUrl: "https://clawhub.ai/skills/support-queue-operations"
+name: support-queue-operations
+description: Structured triage and handoff for customer support ticket queues.
+version: 1.2.0
 ---
 
-# 1.2.0
+# Support Queue Operations
 
-> Structured triage and handoff for customer support ticket queues.
+Use when backlog rises and you need repeatable queue cleanup and prioritization.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/support-queue-operations`
-- **Source URL:** [https://clawhub.ai/skills/support-queue-operations](https://clawhub.ai/skills/support-queue-operations)
+## Inputs to Gather
 
-## Overview
+- Primary target (service, team, or dataset)
+- Current impact and urgency
+- Assigned owner and deadline
 
+## Core Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/support-queue-operations
-```
+- `support queue --team <team> --priority high`
+- `support classify --ticket <id> --reason <category>`
+- `support handoff --ticket <id> --to <owner>`
+- `workflow checklist --from templates/checklist.md`
+- `workflow report --from templates/report.md`
+
+## Operating Notes
+
+- Prefer explicit owner assignment before action.
+- Keep timeline notes concise and timestamped.
+- Save output artifacts for audit and handoff.
+- This version adds a structured report template for post-task summaries.
+
+Version marker: support-queue-operations 1.2.0

@@ -1,0 +1,6 @@
+{
+  "name": "superrare-mint",
+  "version": "0.3.0",
+  "description": "Mint art to a SuperRare-compatible ERC-721 collection via Bankr, with explicit support for artist-given contracts and own-deployed SR factory contracts on Ethereum or Base.",
+  "entry": "SKILL.md"
+}

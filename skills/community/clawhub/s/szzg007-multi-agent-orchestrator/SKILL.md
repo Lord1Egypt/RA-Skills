@@ -1,35 +1,376 @@
----
-name: "SZZG007 Multi Agent Orchestrator"
-description: "自主编排多 Agent 任务执行流程，实现智能分配、进度监控与结果汇总，支持多产品线协同运营。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/szzg007-multi-agent-orchestrator"
-sourceUrl: "https://clawhub.ai/skills/szzg007-multi-agent-orchestrator"
+# szzg007-multi-agent-orchestrator - 多 Agent 协作编排专家
+
+**版本:** 1.0  
+**创建日期:** 2026-03-30  
+**作者:** MOSSRIVER 团队
+
 ---
 
-# SZZG007 Multi Agent Orchestrator
+## 技能描述
 
-> 自主编排多 Agent 任务执行流程，实现智能分配、进度监控与结果汇总，支持多产品线协同运营。
+自主编排多 Agent 协作流程，智能分配任务，监控执行状态，汇总执行结果。专为 MOSSRIVER 多产品线、多 Agent 协同运营设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/szzg007-multi-agent-orchestrator`
-- **Source URL:** [https://clawhub.ai/skills/szzg007-multi-agent-orchestrator](https://clawhub.ai/skills/szzg007-multi-agent-orchestrator)
+---
 
-## Overview
+## Agent 矩阵
 
+### 现有 Agent
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/szzg007-multi-agent-orchestrator
+| Agent | 模型 | 渠道 | 职责 | 状态 |
+|-------|------|------|------|------|
+| **Main (X-01)** | qwen3.5-plus | 飞书/Telegram | 总管/决策 | ✅ |
+| **QB-Agent** | qwen3.5-plus | 飞书 | QB 产品线运营 | ✅ |
+| **BABY-Agent** | glm-4.7 | 飞书 | BABY 产品线运营 | ⏳ |
+| **HOME-Agent** | glm-4.7 | 飞书 | HOME 产品线运营 | ⏳ |
+| **WOMEN-Agent** | glm-4.7 | 飞书 | WOMEN 产品线运营 | ✅ |
+| **FAMILY-Agent** | glm-4.7 | 飞书 | FAMILY 产品线运营 | ✅ |
+| **Judy** | glm-4.7 | 飞书 | 邮件执行 | ✅ |
+| **JudyMoss** | glm-4.7 | Telegram | 海外销售 | ✅ |
+| **DAV** | glm-4.7 | 飞书 | 线索背调 | ✅ |
+| **DAV4090** | qwen3.5:27b | 飞书 | 本地背调 | ✅ |
+| **Loom** | qwen3-coder-plus | 飞书 | 技术开发 | ✅ |
+| **PNews** | glm-4.7 | 飞书 | 新闻播报 | ✅ |
+
+---
+
+## 核心功能
+
+### 1. 任务分解
+- **接收复杂任务** - 如"启动 QB 新品推广"
+- **自动拆解子任务** - 识别需要哪些 Agent 参与
+- **定义依赖关系** - 确定任务执行顺序
+- **分配执行 Agent** - 匹配最合适的 Agent
+
+### 2. 任务分配
+- **Agent 能力匹配** - 根据 Agent 专长分配
+- **负载均衡** - 避免单 Agent 过载
+- **优先级调度** - 紧急任务优先执行
+- **超时处理** - 任务超时自动重试/转派
+
+### 3. 执行监控
+- **状态追踪** - 实时监控各任务进度
+- **异常检测** - 发现执行失败立即告警
+- **进度汇总** - 定期生成执行报告
+- **资源优化** - 动态调整资源分配
+
+### 4. 结果汇总
+- **多 Agent 结果聚合** - 整合各 Agent 输出
+- **冲突解决** - 处理结果不一致
+- **质量检查** - 验证结果完整性
+- **反馈学习** - 记录执行效果优化流程
+
+---
+
+## 触发词
+
 ```
+"启动 QB 新品推广"
+"安排本周邮件计划"
+"协调各 Agent 执行"
+"查看任务执行进度"
+"重新分配这个任务"
+"生成协作报告"
+"szzg007 多 Agent 协作"
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+```
+启动 QB 新品推广活动
+- 产品线：QB
+- 目标：发送 500 封邮件
+- 时间：3 天内完成
+```
+
+### 任务编排
+```
+安排本周邮件计划：
+- QB: 200 封
+- WOMEN: 150 封
+- FAMILY: 100 封
+- 执行 Agent: Judy
+- 时间：周一至周五
+```
+
+### 执行监控
+```
+查看当前所有任务执行进度
+- 筛选：进行中
+- 排序：按优先级
+```
+
+### 结果汇总
+```
+汇总昨日各 Agent 执行结果
+- 输出格式：Markdown 报告
+- 包含：发送数/回复数/转化率
+```
+
+---
+
+## 输出模板
+
+### 任务分解报告
+```markdown
+# 任务分解报告
+
+**主任务:** QB 新品推广活动  
+**创建时间:** 2026-03-30 23:55  
+**预计完成:** 2026-04-02  
+**优先级:** 高
+
+## 子任务拆解
+
+### 任务 1: 产品卖点分析
+- **执行 Agent:** QB-Agent + szzg007-product-analyzer
+- **输入:** QB2 产品参数
+- **输出:** 卖点清单 + 话术
+- **依赖:** 无
+- **预计耗时:** 30 分钟
+- **状态:** ⏳ 待执行
+
+### 任务 2: 目标客户筛选
+- **执行 Agent:** DAV + szzg007-customer-crm
+- **输入:** 线索池 555 条
+- **输出:** 200 条高意向客户
+- **依赖:** 任务 1 完成
+- **预计耗时:** 2 小时
+- **状态:** ⏳ 待执行
+
+### 任务 3: 邮件模板制作
+- **执行 Agent:** Loom + szzg007-talktrack-telegram
+- **输入:** 卖点清单 + 话术
+- **输出:** HTML 邮件模板
+- **依赖:** 任务 1 完成
+- **预计耗时:** 1 小时
+- **状态:** ⏳ 待执行
+
+### 任务 4: 邮件发送执行
+- **执行 Agent:** Judy + szzg007-email-business-manager
+- **输入:** 客户列表 + 邮件模板
+- **输出:** 200 封邮件发送完成
+- **依赖:** 任务 2、3 完成
+- **预计耗时:** 4 小时
+- **状态:** ⏳ 待执行
+
+### 任务 5: 结果汇总报告
+- **执行 Agent:** QB-Agent + szzg007-multi-agent-orchestrator
+- **输入:** 各任务执行结果
+- **输出:** 推广活动报告
+- **依赖:** 任务 4 完成
+- **预计耗时:** 30 分钟
+- **状态:** ⏳ 待执行
+
+## 执行流程图
+```
+任务 1 → 任务 2 → 任务 4 → 任务 5
+        ↓          ↑
+        任务 3 ────┘
+```
+
+## 资源需求
+| Agent | 使用时间 | 负载 |
+|-------|---------|------|
+| QB-Agent | 1 小时 | 低 |
+| DAV | 2 小时 | 中 |
+| Loom | 1 小时 | 低 |
+| Judy | 4 小时 | 高 |
+
+## 风险预警
+- ⚠️ Judy 负载较高，可能影响其他邮件任务
+- ⚠️ 任务 4 依赖任务 2、3，需确保按时完成
+```
+
+### 执行进度报告
+```markdown
+# 执行进度报告
+
+**报告时间:** 2026-03-31 10:00  
+**主任务:** QB 新品推广活动
+
+## 整体进度
+
+```
+总体进度：60% ████████████░░░░░░░░
+```
+
+| 任务 | 执行 Agent | 进度 | 状态 |
+|------|-----------|------|------|
+| 任务 1: 卖点分析 | QB-Agent | 100% | ✅ 完成 |
+| 任务 2: 客户筛选 | DAV | 100% | ✅ 完成 |
+| 任务 3: 模板制作 | Loom | 100% | ✅ 完成 |
+| 任务 4: 邮件发送 | Judy | 50% | 🟡 进行中 |
+| 任务 5: 结果汇总 | QB-Agent | 0% | ⏳ 待执行 |
+
+## 详细进度
+
+### 任务 4: 邮件发送 (进行中)
+- **计划发送:** 200 封
+- **已发送:** 100 封
+- **失败:** 2 封
+- **剩余:** 98 封
+- **预计完成:** 今日 18:00
+- **当前问题:** 无
+
+## 异常告警
+- ✅ 无异常
+
+## 下一步行动
+1. 监控任务 4 进度，确保 18:00 前完成
+2. 准备任务 5 汇总模板
+3. 如有延迟，启动备用方案
+```
+
+### 结果汇总报告
+```markdown
+# QB 新品推广活动 - 执行报告
+
+**活动周期:** 2026-03-30 ~ 2026-04-02  
+**生成时间:** 2026-04-02 18:00  
+**执行 Agent:** QB-Agent, DAV, Loom, Judy
+
+## 执行结果
+
+| 指标 | 目标 | 实际 | 达成率 |
+|------|------|------|--------|
+| 发送邮件 | 200 | 198 | 99% |
+| 打开率 | 30% | 35% | ✅ 超额 |
+| 回复率 | 10% | 12% | ✅ 超额 |
+| 意向客户 | 20 | 24 | ✅ 超额 |
+| 成交订单 | 5 | 3 | 🟡 进行中 |
+
+## 各 Agent 贡献
+
+### QB-Agent
+- ✅ 产品卖点分析完成
+- ✅ 结果汇总报告生成
+- ⏳ 跟进意向客户中
+
+### DAV
+- ✅ 客户筛选完成 (555→200 条)
+- ✅ 背调报告生成
+
+### Loom
+- ✅ 邮件模板制作完成
+- ✅ A/B 测试版本提供
+
+### Judy
+- ✅ 邮件发送完成 (198 封)
+- ✅ 退信处理完成
+
+## 成功经验
+1. 卖点分析准确，打开率超预期
+2. 客户筛选精准，回复率高
+3. 邮件模板专业，转化效果好
+
+## 改进建议
+1. 增加样品跟进话术
+2. 优化价格谈判策略
+3. 加快成交客户转化
+
+## 后续行动
+1. QB-Agent 跟进 24 个意向客户
+2. 准备第二次推广活动
+3. 优化话术库
+```
+
+---
+
+## 配置说明
+
+### 环境变量
+```bash
+# Agent 配置
+AGENT_MATRIX_CONFIG=~/.openclaw/config/agent-matrix.json
+DEFAULT_MODEL=qwen3.5-plus
+FALLBACK_MODEL=glm-4.7
+
+# 任务配置
+TASK_QUEUE_PATH=~/.openclaw/workspace/tasks/
+TASK_TIMEOUT_MINUTES=60
+MAX_RETRY_COUNT=3
+
+# 监控配置
+MONITOR_INTERVAL_MINUTES=5
+ALERT_WEBHOOK_URL=your_webhook_url
+REPORT_CHANNEL=feishu
+
+# 学习配置
+AUTO_OPTIMIZE=true
+LEARNING_RATE=0.1
+SUCCESS_THRESHOLD=0.8
+```
+
+### 工作空间
+```
+~/.openclaw/workspace/skills/szzg007-multi-agent-orchestrator/
+├── SKILL.md
+├── templates/          # 报告模板
+├── examples/           # 案例
+├── scripts/
+│   ├── decompose.py    # 任务分解
+│   ├── allocate.py     # 任务分配
+│   ├── monitor.py      # 执行监控
+│   ├── aggregate.py    # 结果汇总
+│   └── optimize.py     # 流程优化
+├── tasks/              # 任务队列
+│   ├── pending/        # 待执行
+│   ├── running/        # 进行中
+│   └── completed/      # 已完成
+└── config/
+    ├── agent-matrix.json   # Agent 矩阵
+    └── task-rules.json     # 任务规则
+```
+
+---
+
+## 任务优先级定义
+
+| 优先级 | 标识 | 响应时间 | 示例 |
+|--------|------|---------|------|
+| **P0 - 紧急** | 🔴 | 立即 | 系统故障、客户投诉 |
+| **P1 - 高** | 🟠 | 1 小时内 | 重要客户跟进、订单处理 |
+| **P2 - 中** | 🟡 | 4 小时内 | 日常邮件发送、线索收集 |
+| **P3 - 低** | 🟢 | 24 小时内 | 数据整理、报告生成 |
+
+---
+
+## Agent 能力矩阵
+
+| Agent | 邮件 | 背调 | 模板 | 销售 | 开发 | 播报 |
+|-------|------|------|------|------|------|------|
+| Main | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ |
+| QB-Agent | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | - | - |
+| Judy | ⭐⭐⭐⭐ | - | ⭐ | ⭐⭐ | - | - |
+| JudyMoss | ⭐⭐ | - | ⭐ | ⭐⭐⭐⭐ | - | - |
+| DAV | ⭐ | ⭐⭐⭐⭐ | - | ⭐ | - | - |
+| Loom | ⭐ | ⭐ | ⭐⭐⭐⭐ | - | ⭐⭐⭐⭐ | - |
+| PNews | - | ⭐⭐ | ⭐ | - | - | ⭐⭐⭐⭐ |
+
+---
+
+## 与其他技能协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| szzg007-product-analyzer | 分配任务 → 产品分析 |
+| szzg007-web-deep-research | 分配任务 → 市场调研 |
+| szzg007-email-business-manager | 分配任务 → 邮件执行 |
+| szzg007-customer-crm | 分配任务 → 客户管理 |
+| szzg007-talktrack-telegram | 分配任务 → Telegram 聊单 |
+
+---
+
+## 安全说明
+
+- ✅ Agent 权限隔离
+- ✅ 任务执行审计日志
+- ✅ 敏感操作二次确认
+- ✅ 异常自动熔断
+
+---
+
+_此技能专为 MOSSRIVER 多 Agent 协作设计，持续优化中。_

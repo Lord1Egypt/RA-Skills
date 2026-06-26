@@ -1,0 +1,4 @@
+interface:
+  display_name: "699pic Asset Search"
+  short_description: "Search and verify 699pic enterprise asset records"
+  default_prompt: "Use $st-ent-mcp to search 699pic enterprise assets or verify download records after reviewing the required env and local MCP config."

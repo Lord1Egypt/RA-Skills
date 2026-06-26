@@ -1,0 +1,39 @@
+# Core data processing
+pandas==2.3.0
+numpy==2.2.6
+scipy==1.16.0
+statsmodels==0.14.4
+
+# Excel/document parsing
+openpyxl==3.1.5
+python-docx==1.2.0
+chardet==5.2.0
+
+# Visualization
+plotly==5.24.1
+matplotlib==3.9.3
+kaleido==0.2.1
+networkx==3.5
+
+# Database connectivity
+SQLAlchemy==2.0.47
+
+# HTTP / API
+requests==2.32.5
+
+# Utilities
+tqdm==4.67.1
+
+# Testing
+pytest==8.3.0
+pytest-cov==5.0.0
+
+# Platform-specific (install as needed)
+# Windows: pip install pywin32==306
+# macOS:   pip install xlwings==0.33.0
+# Legacy:  pip install xlrd==2.0.1
+
+# Database drivers (install as needed)
+# MySQL:      pip install pymysql==1.1.1
+# PostgreSQL: pip install psycopg2-binary==2.9.9
+# SQL Server: pip install pymssql==2.3.1

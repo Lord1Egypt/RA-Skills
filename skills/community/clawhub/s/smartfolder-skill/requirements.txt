@@ -1,0 +1,8 @@
+# Core dependencies
+pathlib>=1.0.0
+
+# Optional: For image metadata extraction
+# Pillow>=9.0.0
+
+# Optional: For progress bars
+# tqdm>=4.60.0

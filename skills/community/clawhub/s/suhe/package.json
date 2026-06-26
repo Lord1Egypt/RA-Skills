@@ -1,0 +1,56 @@
+{
+  "name": "suhe",
+  "version": "1.2.0",
+  "description": "Complete OpenClaw Agent initialization template with selfie, birthday system, metacognition, and Carbon-Silicon Bond (碳硅契)",
+  "bin": {
+    "suhe": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "templates/",
+    "workspace/",
+    "docs/",
+    "SKILL.md",
+    "scripts/",
+    "assets/"
+  ],
+  "keywords": [
+    "openclaw",
+    "tongyi",
+    "wanxiang",
+    "通义万相",
+    "alibaba",
+    "dashscope",
+    "aliyun",
+    "selfie",
+    "ai-agent",
+    "image-generation",
+    "messaging",
+    "chinese",
+    "江南",
+    "传统文化",
+    "agent-template",
+    "birthday-system",
+    "metacognition",
+    "carbon-silicon-bond",
+    "碳硅契",
+    "clawhub"
+  ],
+  "author": "Axuan (阿轩)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lilozhao/suhe"
+  },
+  "homepage": "https://github.com/lilozhao/suhe#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}

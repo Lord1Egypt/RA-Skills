@@ -1,0 +1,59 @@
+{
+  "id": "software-dev-cost-dashboard",
+  "slug": "software-dev-cost-dashboard",
+  "question": "软件开发成本不可控?",
+  "skillName": "软件成本评估看板",
+  "tags": [
+    "成本评估",
+    "项目管理",
+    "立项",
+    "报价",
+    "人天"
+  ],
+  "profession": [
+    "管理",
+    "技术"
+  ],
+  "industry": [
+    "软件",
+    "通用"
+  ],
+  "hidden": false,
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "comingSoon": false,
+  "providerType": "third_party",
+  "providerConfig": {
+    "catalog": {
+      "icon": "Calculator",
+      "rating": 4.9,
+      "shareCount": 96,
+      "reviewCount": 128,
+      "displayOrder": 16,
+      "subProfession": [
+        "pm",
+        "architect",
+        "product-manager"
+      ],
+      "collectionCount": 1580
+    },
+    "thirdParty": {
+      "url": "https://soft.ai-skills.ai",
+      "label": "打开成本看板",
+      "billingLabel": "外部看板 · 以目标页面为准",
+      "providerName": "AI Skills Software Cost Dashboard",
+      "relationship": "third_party"
+    }
+  },
+  "externalLink": "https://soft.ai-skills.ai",
+  "externalLinkLabel": "打开成本看板",
+  "invocationMode": "external-link",
+  "invocation": {
+    "type": "external-link",
+    "externalLink": "https://soft.ai-skills.ai",
+    "externalLinkLabel": "打开成本看板"
+  }
+}

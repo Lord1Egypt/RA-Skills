@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skool Member Activation Concierge"
+  short_description: "Plan consent-first onboarding and first proof"
+  default_prompt: "Use $skool-member-activation-concierge to write onboarding prompts, polls, first-win prompts, a 7-day concierge checklist, trust escalation rules, and activation metrics using only visible posts or explicit replies."

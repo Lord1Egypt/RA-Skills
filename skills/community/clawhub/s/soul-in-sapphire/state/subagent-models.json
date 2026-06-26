@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "defaults": {
+    "runTimeoutSeconds": 180,
+    "cleanup": "keep"
+  },
+  "profiles": {
+    "heartbeat": {
+      "model": "penai-codex/gpt-5.4-nano",
+      "thinking": "low"
+    },
+    "journal": {
+      "model": "openai-codex/gpt-5.4",
+      "thinking": "high"
+    }
+  }
+}

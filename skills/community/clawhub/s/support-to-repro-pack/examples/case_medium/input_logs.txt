@@ -1,0 +1,14 @@
+Mar 25 14:20:11 app-server-03 user-service[4521]: INFO Starting user list query for tenant tenant_bj_tech_2024
+Mar 25 14:20:11 app-server-03 user-service[4521]: INFO Query params: page=1, page_size=50, search_engine=v2
+Mar 25 14:20:12 app-server-03 user-service[4521]: INFO Database query started, connection pool: 48/50 active
+Mar 25 14:20:35 app-server-03 user-service[4521]: WARN Slow query detected: SELECT * FROM users WHERE tenant_id='tenant_bj_tech_2024' took 23412ms
+Mar 25 14:20:35 app-server-03 user-service[4521]: WARN Connection pool near exhaustion: 49/50 active
+Mar 25 14:21:02 app-server-03 user-service[4521]: ERROR Query timeout after 50000ms for tenant tenant_bj_tech_2024, user_email=xiaoming.wang@bjtech.cn
+Mar 25 14:21:02 app-server-03 user-service[4521]: ERROR java.sql.SQLTimeoutException: Query timed out after 50000ms
+Mar 25 14:21:02 app-server-03 user-service[4521]: ERROR 	at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1200)
+Mar 25 14:21:02 app-server-03 user-service[4521]: ERROR 	at com.app.service.UserService.listUsers(UserService.java:142)
+Mar 25 14:21:02 app-server-03 user-service[4521]: ERROR 	at com.app.controller.UserController.getUsers(UserController.java:87)
+Mar 25 14:21:03 app-server-03 user-service[4521]: ERROR HTTP 504 returned to client 192.168.10.55, request_id=req_7f8a9b2c
+Mar 25 14:21:15 app-server-03 user-service[4521]: WARN Retry attempt 1 for user list query, tenant=tenant_bj_tech_2024
+Mar 25 14:21:45 app-server-03 user-service[4521]: ERROR Query timeout again on retry, tenant=tenant_bj_tech_2024
+Mar 25 14:22:00 app-server-03 user-service[4521]: ERROR Circuit breaker OPEN for user-list-query, tenant=tenant_bj_tech_2024

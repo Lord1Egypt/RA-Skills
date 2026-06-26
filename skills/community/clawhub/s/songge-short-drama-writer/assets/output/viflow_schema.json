@@ -1,0 +1,81 @@
+{
+  "version": "1.2",
+  "exportMeta": {
+    "exportedAt": "2026-05-08T12:00:00.000Z",
+    "exportedProjectName": "剧目标题",
+    "sourceApp": "viflow2026",
+    "sourceVersion": "1.2"
+  },
+  "project": {
+    "name": "剧目标题",
+    "description": "一句话简介",
+    "current_step": "storyboard",
+    "idea_content": "原始创意/故事大纲（200-500字）",
+    "outline_content": "章节大纲（按四幕结构划分）",
+    "visualStyle": "动画电影风格 | 国漫风格 | 日漫画风 | 写实风格"
+  },
+  "scriptParts": [
+    {
+      "title": "Part 1 - 钩子期",
+      "content": "第1-5集内容概述...",
+      "order": 0,
+      "emotion": "紧张",
+      "estimatedDuration": 90,
+      "sceneChange": false,
+      "shotSuggestion": 5
+    }
+  ],
+  "characters": [
+    {
+      "id": "char-uuid-1",
+      "name": "主角姓名",
+      "type": "real",
+      "description": "主角外貌、性格、背景描述（详细到AI可生成一致形象）",
+      "imageUrl": null,
+      "imagePrompt": "AI绘图Prompt，描述主角形象",
+      "positioning": "居中",
+      "tags": ["主角", "男性/女性"],
+      "isReference": true
+    }
+  ],
+  "props": [
+    {
+      "id": "prop-uuid-1",
+      "name": "道具名称",
+      "category": "prop",
+      "description": "道具外观和用途描述",
+      "imageUrl": null,
+      "imagePrompt": "AI绘图Prompt",
+      "tags": ["电子设备/家具/武器"],
+      "isReference": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-uuid-1",
+      "name": "场景名称（如：苏家客厅）",
+      "type": "interior | exterior",
+      "description": "场景详细描述（装修风格、光线、时间、氛围）",
+      "imageUrl": null,
+      "imagePrompt": "AI绘图Prompt（描述场景氛围）",
+      "time_period": "日 | 夜 | 晨 | 暮"
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-uuid-1",
+      "partId": "part对应ID（关联到scriptParts）",
+      "sceneDescription": "详细画面描述，直接可喂给AI视频生成",
+      "dialogue": "对话内容（不超过30字）",
+      "cameraMovement": "static | dolly_in | dolly_out | pan_left | pan_right | tilt_up | tilt_down | tracking",
+      "duration": 5,
+      "imageUrl": null,
+      "videoUrl": null,
+      "lastFrameUrl": null,
+      "videoPrompt": "AI视频生成Prompt（英文效果更佳）",
+      "referenceImages": [],
+      "status": "draft",
+      "shotNumber": 1
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "benchmark": "calvin_long_horizon",
+      "baseline": "CALVIN-style baseline",
+      "metric": "success_rate",
+      "score": 0.62,
+      "run_id": "oclw-lh-01",
+      "task": "long_horizon_manipulation"
+    },
+    {
+      "benchmark": "calvin_long_horizon",
+      "baseline": "ManiSkill2 baseline",
+      "metric": "success_rate",
+      "score": 0.58,
+      "run_id": "oclw-lh-02",
+      "task": "long_horizon_manipulation"
+    }
+  ]
+}

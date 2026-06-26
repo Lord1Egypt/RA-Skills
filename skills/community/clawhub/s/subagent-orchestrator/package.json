@@ -1,0 +1,6 @@
+{
+  "name": "subagent-orchestrator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Orchestrate continuous OpenClaw subagent autopilot workflows with structured return tags and main-controller handoff rules."
+}

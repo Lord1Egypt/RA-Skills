@@ -1,0 +1,23 @@
+# Voice Profile Configuration 示例
+# 用于注入风格偏好到写作提示中
+
+# 风格标签（用于TTS合成）
+voice_tags:
+  - 温柔
+  - 叙事性
+  - 略带忧伤
+  - 缓慢节奏
+
+# 语速 (slow / normal / fast)
+speed: 0.9
+
+# 语气描述
+tone: 亲切的讲述者语气
+
+# 情感倾向 (-1.0 到 1.0)
+emotional_predisposition: 0.3
+
+# 其他风格参数
+additional_params:
+  emphasis: moderate
+  pause_between_sentences: true

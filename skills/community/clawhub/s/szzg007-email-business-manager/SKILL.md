@@ -1,35 +1,253 @@
----
-name: "SZZG007 Email Business Manager"
-description: "统一管理跨境电商多业务线邮箱，自动分类客户邮件，提取沟通历史，生成多语言智能回复建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/szzg007-email-business-manager"
-sourceUrl: "https://clawhub.ai/skills/szzg007-email-business-manager"
+# szzg007-email-business-manager - 邮箱业务管理专家
+
+**版本:** 1.0  
+**创建日期:** 2026-03-30  
+**作者:** MOSSRIVER 团队
+
 ---
 
-# SZZG007 Email Business Manager
+## 技能描述
 
-> 统一管理跨境电商多业务线邮箱，自动分类客户邮件，提取沟通历史，生成多语言智能回复建议。
+统一管理多业务线邮箱，自动分类客户邮件，快速提取沟通历史，生成回复建议。专为跨境电商多产品线运营设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/szzg007-email-business-manager`
-- **Source URL:** [https://clawhub.ai/skills/szzg007-email-business-manager](https://clawhub.ai/skills/szzg007-email-business-manager)
+---
 
-## Overview
+## 核心功能
 
+### 1. 多业务线管理
+- **业务代号系统** - QB/BABY/HOME/WOMEN/FAMILY
+- **独立邮箱分类** - 每个业务线独立标签
+- **跨业务检索** - 一键查询所有业务邮件
+- **业务数据隔离** - 确保数据不串
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/szzg007-email-business-manager
+### 2. 邮件自动分类
+- **新客户咨询** - 首次联系
+- **报价请求** - 询价邮件
+- **订单跟进** - 已成交客户
+- **售后问题** - 投诉/退货
+- **合作洽谈** - B2B 批发商
+
+### 3. 沟通历史管理
+- **客户时间线** - 按时间排序所有交互
+- **关键节点标记** - 首次联系/报价/成交/复购
+- **快速检索** - 按客户/产品/日期查询
+- **上下文提取** - 一键获取完整沟通历史
+
+### 4. 智能回复建议
+- **话术匹配** - 根据业务类型推荐话术
+- **历史参考** - 参考相似邮件的成功回复
+- **个性化建议** - 基于客户类型定制
+- **多语言支持** - 中英文自动切换
+
+---
+
+## 业务代号系统
+
+| 代号 | 产品线 | 产品 | 价格区间 |
+|------|--------|------|---------|
+| **QB** | 收纳盒 | 8 款彩色收纳盒 | $32-$46 |
+| **BABY** | 婴儿装 | 123 款婴儿装 | $25.90-$32.90 |
+| **HOME** | 家居收纳 | 10 款收纳盒 | $29.99-$45.99 |
+| **WOMEN** | 家居服 | 46 款家居服 | $42.99-$45.99 |
+| **FAMILY** | 亲子装 | 11 款亲子装 | $25.90-$42.99 |
+
+---
+
+## 触发词
+
 ```
+"查看这个客户的沟通历史"
+"回复这封邮件"
+"分类今天的邮件"
+"QB 业务的邮件有哪些"
+"生成回复建议"
+"提取客户背景"
+"szzg007 邮件管理"
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+```
+查看这个客户的沟通历史：customer@example.com
+```
+
+### 业务线查询
+```
+QB 业务这周有哪些新邮件
+```
+
+### 回复建议
+```
+回复这封邮件：[邮件内容]
+- 业务类型：QB
+- 客户类型：B2B 批发商
+- 语气：专业
+```
+
+### 沟通历史提取
+```
+提取与 customer@example.com 的完整沟通历史
+- 时间范围：最近 3 个月
+- 输出格式：时间线
+```
+
+---
+
+## 输出模板
+
+### 客户沟通历史
+```markdown
+# 客户沟通历史报告
+
+**客户:** customer@example.com  
+**公司:** ABC Company  
+**业务线:** QB  
+**首次联系:** 2026-03-15  
+**最近联系:** 2026-03-28  
+**沟通次数:** 5 次
+
+## 沟通时间线
+
+### 2026-03-15 10:30 - 首次咨询
+**客户:** 询问 QB2 收纳盒批发价格  
+**回复:** 发送价格表 + 产品目录  
+**状态:** ✅ 已回复
+
+### 2026-03-18 14:20 - 询价跟进
+**客户:** 询问 MOQ 和交货期  
+**回复:** MOQ 100 件，交货期 15 天  
+**状态:** ✅ 已回复
+
+### 2026-03-22 09:15 - 样品请求
+**客户:** 请求寄送样品  
+**回复:** 确认样品费用 + 快递信息  
+**状态:** ✅ 已回复
+
+### 2026-03-25 16:40 - 样品确认
+**客户:** 样品已收到，满意  
+**回复:** 提供批量订单优惠  
+**状态:** ✅ 已回复
+
+### 2026-03-28 11:00 - 订单洽谈
+**客户:** 询问 500 件订单价格  
+**回复:** 待回复  
+**状态:** ⏳ 待处理
+
+## 客户画像
+- **类型:** B2B 批发商
+- **意向度:** 🟢 高 (已确认样品)
+- **预计订单:** 500 件 QB2
+- **决策阶段:** 价格谈判
+
+## 下一步建议
+1. 24 小时内回复 500 件报价
+2. 提供阶梯价格 (500/1000/2000 件)
+3. 强调交货期和付款方式
+```
+
+### 邮件回复建议
+```markdown
+# 邮件回复建议
+
+**业务类型:** QB  
+**客户类型:** B2B 批发商  
+**邮件主题:** 500 件订单询价
+
+## 推荐回复
+
+**主题:** Re: QB2 Storage Box - 500pcs Quotation
+
+Dear [客户名],
+
+感谢您的询价。
+
+针对 500 件 QB2 订单，我们提供以下优惠价格：
+
+| 数量 | 单价 | 总价 |
+|------|------|------|
+| 500pcs | $42.99 | $21,495 |
+| 1000pcs | $39.99 | $39,990 |
+| 2000pcs | $36.99 | $73,980 |
+
+**交货期:** 15 个工作日  
+**付款方式:** 30% 定金，70% 发货前付清  
+**包装:** 标准出口包装
+
+如需调整数量或有其他问题，请随时告知。
+
+Best regards,
+Judy
+MOSSRIVER Team
+
+## 话术要点
+1. ✅ 提供阶梯价格鼓励大单
+2. ✅ 明确交货期和付款方式
+3. ✅ 保持专业但友好
+
+## 附件建议
+- [ ] 产品目录
+- [ ] 价格表 (完整版)
+- [ ] 包装细节图
+```
+
+---
+
+## 配置说明
+
+### 环境变量
+```bash
+# 邮箱配置
+EMAIL_HOST=smtp.exmail.qq.com
+EMAIL_PORT=465
+EMAIL_USER=judy@cooperate-link.com
+EMAIL_PASSWORD=your_password
+
+# 业务线配置
+BUSINESS_LINES=QB,BABY,HOME,WOMEN,FAMILY
+
+# 数据存储
+EMAIL_STORAGE_PATH=~/.openclaw/workspace-judy/emails/
+CUSTOMER_DB_PATH=~/.openclaw/workspace-judy/data/customers.json
+```
+
+### 工作空间
+```
+~/.openclaw/workspace/skills/szzg007-email-business-manager/
+├── SKILL.md
+├── templates/          # 邮件模板
+├── examples/           # 案例
+├── scripts/
+│   ├── classify.py     # 邮件分类
+│   ├── history.py      # 历史提取
+│   ├── reply.py        # 回复建议
+│   └── sync.py         # 邮件同步
+└── config/
+    └── business-lines.json  # 业务线配置
+```
+
+---
+
+## 与其他技能协作
+
+| 技能 | 协作方式 |
+|------|---------|
+| szzg007-talktrack-library | 调用话术 → 生成回复 |
+| szzg007-customer-crm | 同步客户数据 → 更新 CRM |
+| szzg007-product-analyzer | 调用产品卖点 → 邮件内容 |
+| szzg007-multi-agent-orchestrator | 分配任务 → Judy 执行 |
+
+---
+
+## 安全说明
+
+- ✅ 邮件密码加密存储
+- ✅ 敏感信息脱敏
+- ✅ 访问权限控制
+- ✅ 操作日志记录
+
+---
+
+_此技能专为 MOSSRIVER 跨境电商设计，持续优化中。_

@@ -1,0 +1,22 @@
+{
+  "spec_id": "<spec-id>",
+  "title": "<human title>",
+  "spec_kind": "mixed",
+  "status": "draft",
+  "phase": "requirements",
+  "current_batch": null,
+  "next_action": null,
+  "complexity_reasons": [],
+  "deliverables": [],
+  "blockers": [],
+  "last_checkpoint_type": null,
+  "last_checkpoint_at": null,
+  "last_actor": "agent",
+  "last_updated_files": [],
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "archive": {
+    "is_archived": false,
+    "archived_at": null
+  }
+}

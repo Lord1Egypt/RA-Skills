@@ -1,0 +1,7 @@
+{
+  "name": "soyoung-clinic-appointment",
+  "version": "2.2.2",
+  "description": "新氧青春诊所预约与门店技能：门店查询、预约时间切片、预约创建/修改/取消/查询、非主人群聊审批流。 | Soyoung clinic appointment & store OpenClaw sub-skill for Soyoung (soyoung) clinic: store lookup, appointment slots, booking lifecycle, approval flow. Keywords: Soyoung, soyoung, clinic, appointment, store, booking, schedule, medical aesthetic.",
+  "keywords": ["soyoung", "clinic", "appointment", "store", "新氧", "诊所", "预约", "门店", "sy"],
+  "license": "MIT"
+}

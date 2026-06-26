@@ -1,35 +1,86 @@
 ---
-name: "社保公积金基数与比例查询"
-description: "查询全国各省、市最新社保缴费基数上下限、五险一金单位及个人缴纳比例，支持按地区检索、年度自动更新"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/social-security-fund-query"
-sourceUrl: "https://clawhub.ai/skills/social-security-fund-query"
+name: social_security_and_housing_fund_query
+slug: social-security-fund-query
+displayName: 社保公积金基数与比例查询
+version: 1.0.1
+description: 查询全国各省、市最新社保缴费基数上下限、五险一金单位及个人缴纳比例，支持按地区检索、年度自动更新
+user-invocable: true
+metadata:
+  author: "蒋斌 (本地开发)"
+  homepage: "https://clawhub.com"
+  openclaw:
+    requires:
+      bins: ["python"]
+keywords:
+  - 社保基数
+  - 公积金比例
+  - 五险一金缴纳比例
+  - 社保缴费上限
+  - 社保缴费下限
+  - 各地社保标准
+  - 公积金缴存基数
+  - 养老医疗失业工伤生育比例
 ---
 
-# 社保公积金基数与比例查询
+## 技能说明
+本 Skill 用于查询中国内地各省、直辖市、地级市、区县最新五险一金政策，包括：
+1. 养老保险、医疗保险、失业保险、工伤保险、生育保险的单位/个人缴纳比例
+2. 住房公积金单位/个人缴存比例、缴存基数上下限
+3. 社保缴费基数上下限（当年最新）
+4. 区分企业职工、灵活就业人员不同标准
+5. 新增**每月自动化更新机制**：每月1号自动拉取全国各地区最新社保公积金政策
+6. 新增**本地缓存机制**：缓存查询结果30天（每月自动更新），避免重复联网检索，提升查询速度
+7. 全面支持**全国所有地级市及区县**的精准查询
 
-> 查询全国各省、市最新社保缴费基数上下限、五险一金单位及个人缴纳比例，支持按地区检索、年度自动更新
+## 执行逻辑
+1.  识别用户要查询的**城市/省份/地级市/区县**，支持如“苏州”“东莞”“成都高新区”等精确到地级市甚至区县的查询
+2.  若未指定地区，提示用户补充具体地区名称
+3.  优先检查本地缓存：若缓存存在且未过期（≤24小时），直接返回缓存结果，避免重复联网
+4.  若缓存过期或不存在，联网检索对应地区的社保和公积金基数及比例，检索来源为当地人社局、住建局、政府公开信息
+5.  自动保存查询结果到本地缓存，以便后续快速调用
+6.  每月1号自动执行全量数据更新，拉取全国各地区最新年度社保公积金政策
+7.  整理为清晰表格输出：险种、单位比例、个人比例、基数上下限、备注
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/social-security-fund-query`
-- **Source URL:** [https://clawhub.ai/skills/social-security-fund-query](https://clawhub.ai/skills/social-security-fund-query)
+## 输出格式（固定）
+【城市】XXX市
+【执行年度】XXXX年（最新）
 
-## Overview
+### 一、社保缴纳比例（职工五险）
+| 险种 | 单位比例 | 个人比例 | 备注 |
+| --- | --- | --- | --- |
+| 养老保险 | | | |
+| 医疗保险 | | | 含大病/补充 |
+| 失业保险 | | | |
+| 工伤保险 | | 0% | 行业浮动 |
+| 生育保险 | | 0% | 多数并入医保 |
 
+### 二、社保缴费基数
+- 基数下限：XXXX 元
+- 基数上限：XXXX 元
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/social-security-fund-query
-```
+### 三、住房公积金
+- 单位缴存比例：X% ~ Y%
+- 个人缴存比例：X% ~ Y%
+- 公积金基数下限：XXXX 元
+- 公积金基数上限：XXXX 元
+
+【说明】
+1. 基数每年7月左右统一调整，以当年官方公布为准
+2. 工伤保险按行业类别浮动，以单位核定为准
+3. 部分城市有地方性补充医保/公积金政策
+
+## 联网规则
+- 每月1号自动执行全量数据更新，拉取全国各地区最新社保公积金政策
+- 用户查询某城市时自动检索该城市最新政策，优先使用本地缓存
+- 每年6–8月重点更新新年度社保缴费基数标准
+- 只采信人社局、公积金管理中心、政府官网信息、本地宝
+- 不采信自媒体、非官方论坛数据
+## 追问规则
+- 未说明城市：自动追问“请告诉我你要查询的具体省市，例如北京、成都、江苏”
+- 未说明身份：默认按“企业职工”标准，可切换灵活就业
+
+## 实现说明
+本技能包含`main.py`实现文件，具体功能：
+1.  **缓存机制**：将查询结果缓存至本地，有效期30天（每月自动更新），避免重复联网检索
+2.  **自动化更新**：每月1号自动拉取全量最新社保公积金政策数据
+3.  **地级市支持**：支持全国所有地级市、区县的精准地区识别与查询

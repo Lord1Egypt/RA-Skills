@@ -1,0 +1,206 @@
+# Squid: Multi-Agent Development Pipeline
+# 8 sub-agents collaborate to build, test, and deploy a feature.
+#
+# Usage:
+#   squid run squid-pipeline/examples/multi-agent-dev.yaml \
+#     --args-json '{"feature": "add user auth", "repo": "/path/to/repo"}'
+
+name: multi-agent-dev
+description: Full-stack feature development with 8 specialized sub-agents
+version: "1.0"
+
+args:
+  feature:
+    description: Feature description
+    required: true
+  repo:
+    description: Repository path
+    required: true
+  model:
+    default: claude-sonnet-4-6
+    description: Default model for sub-agents
+
+steps:
+  # ─── Phase 1: Planning ──────────────────────────────────
+  - id: architect
+    type: spawn
+    description: Design the architecture and create implementation plan
+    spawn:
+      task: |
+        You are a software architect. Analyze the codebase at ${args.repo}
+        and design an implementation plan for: ${args.feature}
+
+        Output a JSON plan with:
+        - files to create/modify
+        - interfaces/types needed
+        - test strategy
+        - risk assessment
+      agentId: architect-agent
+      model: ${args.model}
+      thinking: high
+      timeout: 300
+
+  # ─── Phase 2: Review Plan ───────────────────────────────
+  - id: plan-review
+    type: gate
+    description: Review the architecture plan before implementation
+    gate:
+      prompt: "Review the architecture plan for '${args.feature}'. Approve to proceed with implementation."
+      preview: $architect.json
+    input: $architect.json
+
+  # ─── Phase 3: Parallel Implementation ───────────────────
+  - id: implement
+    type: parallel
+    description: Implement frontend, backend, and tests in parallel
+    parallel:
+      maxConcurrent: 3
+      failFast: false
+      merge: object
+      branches:
+        backend:
+          - id: backend-coder
+            type: spawn
+            spawn:
+              task: |
+                Implement the backend changes for: ${args.feature}
+                Architecture plan: ${architect.json}
+                Work in: ${args.repo}
+                Follow the plan exactly. Write clean, tested code.
+              agentId: backend-coder
+              model: ${args.model}
+              cwd: ${args.repo}
+              timeout: 600
+
+        frontend:
+          - id: frontend-coder
+            type: spawn
+            spawn:
+              task: |
+                Implement the frontend changes for: ${args.feature}
+                Architecture plan: ${architect.json}
+                Work in: ${args.repo}
+                Follow the plan exactly. Use existing component patterns.
+              agentId: frontend-coder
+              model: ${args.model}
+              cwd: ${args.repo}
+              timeout: 600
+
+        tests:
+          - id: test-writer
+            type: spawn
+            spawn:
+              task: |
+                Write comprehensive tests for: ${args.feature}
+                Architecture plan: ${architect.json}
+                Work in: ${args.repo}
+                Include unit tests, integration tests, and edge cases.
+              agentId: test-writer
+              model: ${args.model}
+              cwd: ${args.repo}
+              timeout: 600
+
+  # ─── Phase 4: Integration & Testing ─────────────────────
+  - id: run-tests
+    type: run
+    description: Run the test suite
+    run: cd ${args.repo} && npm test -- --reporter json 2>&1
+    retry:
+      maxAttempts: 2
+      backoff: fixed
+      delayMs: 5000
+
+  # ─── Phase 5: Code Review ──────────────────────────────
+  - id: reviewer
+    type: spawn
+    description: AI code review of all changes
+    spawn:
+      task: |
+        Review all code changes made for: ${args.feature}
+        Check for:
+        - Security vulnerabilities (OWASP top 10)
+        - Performance issues
+        - Code quality and SOLID principles
+        - Test coverage gaps
+        Output a structured review with severity ratings.
+      agentId: code-reviewer
+      model: claude-sonnet-4-6
+      thinking: high
+      cwd: ${args.repo}
+      timeout: 300
+
+  # ─── Phase 6: Fix Issues ───────────────────────────────
+  - id: fix-issues
+    type: branch
+    description: Fix critical issues found in review
+    branch:
+      conditions:
+        - when: $reviewer.json.criticalIssues > 0
+          steps:
+            - id: fixer
+              type: spawn
+              spawn:
+                task: |
+                  Fix these critical issues from code review:
+                  ${reviewer.json.issues}
+                  Work in: ${args.repo}
+                agentId: bug-fixer
+                model: ${args.model}
+                cwd: ${args.repo}
+                timeout: 300
+            - id: retest
+              type: run
+              run: cd ${args.repo} && npm test -- --reporter json 2>&1
+      default:
+        - id: no-fixes
+          type: transform
+          transform: '{"message": "No critical issues found"}'
+
+  # ─── Phase 7: Documentation ────────────────────────────
+  - id: docs
+    type: spawn
+    description: Generate documentation for the feature
+    spawn:
+      task: |
+        Document the implementation of: ${args.feature}
+        Include:
+        - API documentation (if applicable)
+        - Usage examples
+        - Architecture decision records
+        Work in: ${args.repo}
+      agentId: doc-writer
+      model: ${args.model}
+      cwd: ${args.repo}
+      timeout: 180
+
+  # ─── Phase 8: Deploy Gate ──────────────────────────────
+  - id: deploy-approval
+    type: gate
+    description: Final approval before creating PR
+    gate:
+      prompt: |
+        Feature '${args.feature}' is ready for PR.
+        Review summary: ${reviewer.json.summary}
+        Tests: ${run-tests.status}
+        Approve to create pull request.
+
+  - id: create-pr
+    type: run
+    description: Create pull request
+    run: |
+      cd ${args.repo} && \
+      git checkout -b feat/$(echo "${args.feature}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]') && \
+      git add -A && \
+      git commit -m "feat: ${args.feature}" && \
+      gh pr create --title "feat: ${args.feature}" --body "$(cat <<'EOF'
+      ## Summary
+      ${args.feature}
+
+      ## Architecture
+      ${architect.json.summary}
+
+      ## Review
+      ${reviewer.json.summary}
+      EOF
+      )"
+    when: $deploy-approval.approved

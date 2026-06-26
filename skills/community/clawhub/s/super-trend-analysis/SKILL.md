@@ -1,35 +1,191 @@
 ---
-name: "Super Trend Analysis"
-description: "综合趋势分析技能，融合移动平均线、MACD、RSI、布林带等多种技术分析方法，生成趋势判断、买卖信号和可视化图表。使用场景：(1) "分析贵州茅台的趋势"，(2) "生成药明康德的技术分析报告"，(3) "判断当前是买入还是卖出信号"。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, stock, technical, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/super-trend-analysis"
-sourceUrl: "https://clawhub.ai/skills/super-trend-analysis"
+name: super-trend-analysis
+description: 综合趋势分析技能，融合移动平均线、MACD、RSI、布林带等多种技术分析方法，生成趋势判断、买卖信号和可视化图表。使用场景：(1) "分析贵州茅台的趋势"，(2) "生成药明康德的技术分析报告"，(3) "判断当前是买入还是卖出信号"。
 ---
 
-# Super Trend Analysis
+# 🚀 超级趋势分析技能
 
-> 综合趋势分析技能，融合移动平均线、MACD、RSI、布林带等多种技术分析方法，生成趋势判断、买卖信号和可视化图表。使用场景：(1) "分析贵州茅台的趋势"，(2) "生成药明康德的技术分析报告"，(3) "判断当前是买入还是卖出信号"。
+融合多种技术分析方法的综合趋势分析工具，生成专业的趋势判断和可视化报告。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/super-trend-analysis`
-- **Source URL:** [https://clawhub.ai/skills/super-trend-analysis](https://clawhub.ai/skills/super-trend-analysis)
+## 核心分析方法
 
-## Overview
+### 1. 多周期移动平均线系统
+- **短期**：MA5、MA10（快速趋势）
+- **中期**：MA20、MA30（主趋势）
+- **长期**：MA60、MA120（大趋势）
+- **均线排列**：多头/空头排列判断
 
+### 2. MACD 趋势强度分析
+- **MACD 线与信号线交叉**
+- **柱状图扩张/收缩**
+- **背离判断**（顶背离/底背离）
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. RSI 超买超卖与动量
+- **超买区间**：RSI > 70
+- **超卖区间**：RSI < 30
+- **RSI 背离**确认趋势反转
+
+### 4. 布林带波动率分析
+- **带宽**：衡量市场波动率
+- **价格位置**：判断相对高低位
+- **缩口/开口**：预示趋势突破
+
+### 5. 趋势综合评分系统
+- **趋势方向**：上升/下降/震荡
+- **趋势强度**：强/中/弱
+- **综合得分**：0-100 分
+
+## 快速开始
+
+### 单只股票分析
+
 ```bash
-hermes skills install clawhub/super-trend-analysis
+# 分析贵州茅台
+python3 scripts/analyze_trend.py --file ../stock_data/药明康德_603259_A_daily.csv --name 药明康德
+
+# 分析并生成图表
+python3 scripts/analyze_trend.py --file ../stock_data/药明康德_603259_A_daily.csv --name 药明康德 --plot
 ```
+
+### 批量分析
+
+```bash
+# 分析目录下所有股票数据
+python3 scripts/batch_analyze.py --dir ../stock_data/
+```
+
+## 详细用法
+
+### 趋势分析脚本
+
+```bash
+python3 scripts/analyze_trend.py [选项]
+
+选项:
+  --file FILE        CSV 数据文件路径（必需）
+  --name NAME        股票名称（可选，自动从文件名提取）
+  --plot             生成可视化图表
+  --output DIR       输出目录（默认：./trend_reports）
+  --period N         分析周期天数（默认：250天，约1年）
+```
+
+### 输出内容
+
+分析生成以下内容：
+
+1. **趋势分析报告**（Markdown 格式）
+   - 当前趋势判断
+   - 技术指标详解
+   - 买卖信号提示
+   - 风险评估
+
+2. **可视化图表**（PNG 格式，可选）
+   - 价格与均线图
+   - MACD 指标图
+   - RSI 指标图
+   - 布林带图
+   - 综合信号图
+
+3. **综合评分卡**
+   - 趋势方向得分
+   - 趋势强度得分
+   - 动量得分
+   - 波动率得分
+   - 总得分（0-100）
+
+## 趋势判断标准
+
+### 多头趋势信号 ✅
+- 短期均线 > 中期均线 > 长期均线
+- MACD 金叉且柱状图为正
+- RSI 在 50-70 之间（强势但不超买）
+- 价格在布林带中轨上方
+
+### 空头趋势信号 ❌
+- 短期均线 < 中期均线 < 长期均线
+- MACD 死叉且柱状图为负
+- RSI 在 30-50 之间（弱势但不超卖）
+- 价格在布林带中轨下方
+
+### 震荡趋势信号 ⚪
+- 均线缠绕，无明显排列
+- MACD 接近零轴
+- RSI 在 40-60 之间
+- 价格在布林带上下轨之间震荡
+
+## 技能文件结构
+
+```
+super-trend-analysis/
+├── SKILL.md                    # 本文件
+├── scripts/
+│   ├── analyze_trend.py        # 单只股票趋势分析
+│   ├── batch_analyze.py        # 批量趋势分析
+│   └── indicators.py           # 技术指标计算库
+└── examples/                   # 示例报告
+```
+
+## 依赖安装
+
+```bash
+# 安装必需的库
+pip install pandas numpy matplotlib seaborn ta
+```
+
+## 实际应用示例
+
+### 示例1：判断当前趋势
+
+```bash
+python3 scripts/analyze_trend.py --file ../stock_data/药明康德_603259_A_daily.csv --name 药明康德
+```
+
+输出可能包括：
+```
+📊 趋势分析报告：药明康德
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+趋势方向：上升趋势 🟢
+趋势强度：中等 ⚡
+综合评分：72/100
+
+买卖信号：持有或低吸
+主要支撑：88.5 元
+主要阻力：96.0 元
+```
+
+### 示例2：生成可视化报告
+
+```bash
+python3 scripts/analyze_trend.py --file ../stock_data/药明康德_603259_A_daily.csv --name 药明康德 --plot
+```
+
+将生成 5 张技术分析图表，保存到 `trend_reports/` 目录。
+
+## 指标详解
+
+### 移动平均线（MA）
+- **MA5/MA10**：捕捉短期变化
+- **MA20/MA30**：判断中期趋势
+- **MA60/MA120**：确认长期方向
+- **金叉/死叉**：重要买卖信号
+
+### MACD
+- **DIF > DEA**：多头市场
+- **DIF < DEA**：空头市场
+- **柱状图放大**：趋势加强
+- **背离**：警惕反转
+
+### RSI
+- **70+**：超买，考虑卖出
+- **30-**：超卖，考虑买入
+- **50 分水岭**：多空分界线
+
+### 布林带
+- **触碰上轨**：可能回调
+- **触碰下轨**：可能反弹
+- **带宽收窄**：等待突破
+- **带宽扩大**：趋势进行中
+
+---
+
+*这是一个综合多种技术分析方法的超级趋势分析工具！*

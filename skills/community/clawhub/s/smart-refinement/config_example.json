@@ -1,0 +1,78 @@
+{
+  "system_config": {
+    "name": "Smart Refinement System",
+    "version": "1.0.0",
+    "description": "智能提示词优化与向量匹配系统"
+  },
+  "refinement_settings": {
+    "refinement_threshold": 0.3,
+    "confidence_threshold": 0.6,
+    "enable_auto_refinement": true,
+    "max_refinement_length": 1000,
+    "language_detection": "auto",
+    "output_format": "structured"
+  },
+  "vector_settings": {
+    "vector_match_threshold": 0.5,
+    "max_skill_matches": 3,
+    "enable_tfidf_weighting": true,
+    "enable_cosine_similarity": true,
+    "enable_jaccard_similarity": true,
+    "skill_weight_decay": 0.9
+  },
+  "context_settings": {
+    "enable_context_integration": true,
+    "max_context_history": 10,
+    "context_cache_ttl": 3600,
+    "enable_auto_context_update": true,
+    "context_priority": ["project", "user", "session", "system"]
+  },
+  "skill_database": {
+    "auto_update": true,
+    "update_interval": 86400,
+    "default_skills": [
+      "code_generation",
+      "file_operation", 
+      "web_search",
+      "data_analysis",
+      "documentation",
+      "system_operation"
+    ],
+    "custom_skills_path": "./custom_skills.json"
+  },
+  "performance_settings": {
+    "enable_performance_tracking": true,
+    "tracking_interval": 60,
+    "metrics_to_track": [
+      "refinements",
+      "vector_matches", 
+      "success_rate",
+      "avg_processing_time",
+      "cache_hit_rate"
+    ],
+    "enable_auto_optimization": true
+  },
+  "integration_settings": {
+    "openclaw_integration": {
+      "enable_tool_suggestion": true,
+      "tool_mapping": {
+        "code_generation": ["exec", "write", "read"],
+        "file_operation": ["read", "write", "edit"],
+        "web_search": ["autoglm-websearch", "browser", "web_fetch"],
+        "system_operation": ["exec", "process", "nodes"]
+      }
+    },
+    "team_system_integration": {
+      "enable_team_matching": true,
+      "team_config_path": "./team_config.json"
+    }
+  },
+  "logging_settings": {
+    "log_level": "INFO",
+    "log_file": "./smart_refinement.log",
+    "enable_console_log": true,
+    "log_format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "max_log_size": 10485760,
+    "backup_count": 5
+  }
+}

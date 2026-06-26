@@ -1,0 +1,556 @@
+{
+  "_comment": "skills-audit risk scanning rules with context-aware scoring.",
+  "_format": "Each rule has id, severity, description, needles. context_profiles define skill categories that tolerate certain rules.",
+  "_severities": "low | medium | high | extreme",
+  "context_profiles": {
+    "_comment": "When a skill's description matches a profile's keywords, the listed rules are downgraded or ignored for that skill.",
+    "network_tool": {
+      "description": "Skills that inherently need network access (search, API, fetch, download, upload)",
+      "keywords": [
+        "search",
+        "api",
+        "fetch",
+        "http",
+        "web",
+        "url",
+        "download",
+        "upload",
+        "request",
+        "scrape",
+        "crawl",
+        "proxy",
+        "webhook",
+        "rest",
+        "graphql",
+        "grpc",
+        "oauth",
+        "OCR"
+      ],
+      "ignore_rules": [
+        "NETWORK_GENERAL"
+      ],
+      "downgrade_rules": {
+        "NETWORK_EXFILTRATION": "medium"
+      }
+    },
+    "shell_tool": {
+      "description": "Skills that run shell commands as their core function (ffmpeg, git, CLI wrappers)",
+      "keywords": [
+        "ffmpeg",
+        "cli",
+        "command",
+        "shell",
+        "terminal",
+        "bash",
+        "exec",
+        "run",
+        "convert",
+        "process",
+        "compile",
+        "build",
+        "docker"
+      ],
+      "ignore_rules": [
+        "DYNAMIC_EXEC",
+        "SUPPLY_CHAIN"
+      ],
+      "downgrade_rules": {
+        "PIPE_TO_SHELL": "medium"
+      }
+    },
+    "file_manager": {
+      "description": "Skills that manage files (upload, serve, organize, convert)",
+      "keywords": [
+        "file",
+        "upload",
+        "serve",
+        "storage",
+        "object",
+        "s3",
+        "oss",
+        "bucket",
+        "sync",
+        "backup",
+        "archive"
+      ],
+      "ignore_rules": [
+        "NETWORK_GENERAL",
+        "FILE_SYSTEM_DANGEROUS"
+      ],
+      "downgrade_rules": {}
+    },
+    "security_tool": {
+      "description": "Skills that perform security scanning or auditing",
+      "keywords": [
+        "security",
+        "audit",
+        "scan",
+        "vulnerability",
+        "malware",
+        "threat",
+        "risk",
+        "guard",
+        "vetter",
+        "scanner"
+      ],
+      "ignore_rules": [
+        "NETWORK_GENERAL",
+        "DYNAMIC_EXEC",
+        "INFORMATION_GATHERING",
+        "SENSITIVE_PATHS"
+      ],
+      "downgrade_rules": {}
+    },
+    "package_manager": {
+      "description": "Skills that install or manage packages/dependencies",
+      "keywords": [
+        "install",
+        "package",
+        "dependency",
+        "plugin",
+        "skill",
+        "extension",
+        "clawhub",
+        "skillhub",
+        "npm",
+        "pip"
+      ],
+      "ignore_rules": [
+        "SUPPLY_CHAIN",
+        "NETWORK_GENERAL"
+      ],
+      "downgrade_rules": {}
+    },
+    "system_info": {
+      "description": "Skills that read system status (weather, health, monitoring)",
+      "keywords": [
+        "weather",
+        "status",
+        "monitor",
+        "health",
+        "check",
+        "system",
+        "info",
+        "diagnostic",
+        "temperature",
+        "forecast"
+      ],
+      "ignore_rules": [
+        "INFORMATION_GATHERING",
+        "NETWORK_GENERAL"
+      ],
+      "downgrade_rules": {}
+    },
+    "calendar_contacts": {
+      "description": "Skills that access calendars, contacts, or email",
+      "keywords": [
+        "calendar",
+        "caldav",
+        "ical",
+        "event",
+        "schedule",
+        "contact",
+        "email",
+        "mail",
+        "imap",
+        "smtp",
+        "carddav"
+      ],
+      "ignore_rules": [
+        "NETWORK_GENERAL",
+        "SENSITIVE_PATHS"
+      ],
+      "downgrade_rules": {}
+    },
+    "ai_coding": {
+      "description": "Skills that assist with coding, code generation, or code execution",
+      "keywords": [
+        "code",
+        "coding",
+        "programming",
+        "developer",
+        "agent",
+        "copilot",
+        "assistant",
+        "acp",
+        "codex",
+        "ide"
+      ],
+      "ignore_rules": [
+        "DYNAMIC_EXEC",
+        "SUPPLY_CHAIN",
+        "INFORMATION_GATHERING"
+      ],
+      "downgrade_rules": {
+        "PIPE_TO_SHELL": "medium"
+      }
+    },
+    "document_tool": {
+      "description": "Skills that create, edit, or process documents",
+      "keywords": [
+        "document",
+        "doc",
+        "pdf",
+        "markdown",
+        "note",
+        "obsidian",
+        "notion",
+        "write",
+        "edit",
+        "text",
+        "summary",
+        "summarize",
+        "translate"
+      ],
+      "ignore_rules": [
+        "NETWORK_GENERAL"
+      ],
+      "downgrade_rules": {}
+    },
+    "media_tool": {
+      "description": "Skills that process images, audio, video, or speech",
+      "keywords": [
+        "image",
+        "photo",
+        "video",
+        "audio",
+        "speech",
+        "voice",
+        "tts",
+        "stt",
+        "whisper",
+        "ocr",
+        "ffmpeg",
+        "media",
+        "camera",
+        "recording",
+        "music",
+        "sound"
+      ],
+      "ignore_rules": [
+        "DYNAMIC_EXEC",
+        "NETWORK_GENERAL"
+      ],
+      "downgrade_rules": {}
+    }
+  },
+  "rules": [
+    {
+      "id": "PIPE_TO_SHELL",
+      "severity": "high",
+      "description": "Piping untrusted input to a shell interpreter",
+      "needles": [
+        "| sh",
+        "| bash",
+        "| zsh",
+        "| ksh",
+        "| dash",
+        "| /bin/sh",
+        "| /bin/bash",
+        "| /bin/zsh",
+        "curl |",
+        "wget |",
+        "fetch |",
+        "Invoke-WebRequest",
+        "Invoke-Expression",
+        "iex",
+        "iwr ",
+        "Start-Process",
+        "powershell -e",
+        "powershell -enc",
+        "powershell -Command",
+        "cmd /c",
+        "cmd.exe /c"
+      ]
+    },
+    {
+      "id": "DYNAMIC_EXEC",
+      "severity": "high",
+      "description": "Dynamic code execution or process spawning",
+      "needles": [
+        "subprocess.Popen",
+        "subprocess.call",
+        "subprocess.run",
+        "os.system(",
+        "os.popen(",
+        "os.exec",
+        "os.spawn",
+        "os.fork(",
+        "os.kill(",
+        "commands.getoutput",
+        "commands.getstatusoutput",
+        "__import__(",
+        "importlib.import_module",
+        "ctypes.CDLL",
+        "ctypes.cdll",
+        "Runtime.getRuntime().exec",
+        "ProcessBuilder",
+        "child_process.exec",
+        "child_process.spawn",
+        "pickle.loads",
+        "pickle.load(",
+        "yaml.unsafe_load",
+        "marshal.loads",
+        "shelve.open",
+        "dill.loads"
+      ]
+    },
+    {
+      "id": "BASE64_OBFUSCATION",
+      "severity": "high",
+      "description": "Base64 encoding/decoding used to obfuscate payloads",
+      "needles": [
+        "base64 -d",
+        "base64 --decode",
+        "base64 -w0",
+        "[Convert]::FromBase64String",
+        "[System.Convert]::FromBase64String"
+      ]
+    },
+    {
+      "id": "PERSISTENCE",
+      "severity": "high",
+      "description": "Mechanisms for persistent execution or scheduled tasks",
+      "needles": [
+        "systemctl enable",
+        "systemctl start",
+        "systemd/system/",
+        "/etc/systemd",
+        "launchctl",
+        "LaunchAgents",
+        "LaunchDaemons",
+        "chkconfig",
+        "update-rc.d",
+        "rc.local",
+        "schtasks",
+        "Register-ScheduledTask",
+        "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+        "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+      ]
+    },
+    {
+      "id": "SENSITIVE_PATHS",
+      "severity": "high",
+      "description": "Access to sensitive files, credentials, or key material",
+      "needles": [
+        "authorized_keys",
+        "id_rsa",
+        "id_ed25519",
+        "/etc/shadow",
+        "/etc/sudoers",
+        "aws_access_key",
+        "aws_secret_access",
+        "GOOGLE_APPLICATION_CREDENTIALS",
+        "BEGIN RSA PRIVATE KEY",
+        "BEGIN OPENSSH PRIVATE KEY",
+        "BEGIN EC PRIVATE KEY",
+        "BEGIN PGP PRIVATE KEY"
+      ]
+    },
+    {
+      "id": "NETWORK_EXFILTRATION",
+      "severity": "high",
+      "description": "Data exfiltration, reverse shells, and covert network channels",
+      "needles": [
+        "bash -i >& /dev/tcp/",
+        "bash -i >& /dev/udp/",
+        "/dev/tcp/",
+        "/dev/udp/",
+        "nc -e",
+        "nc -c",
+        "ncat -e",
+        "ncat -c",
+        "netcat -e",
+        "netcat -c",
+        "socat exec:",
+        "socat tcp:",
+        "reverse_tcp",
+        "reverse_https",
+        "meterpreter",
+        "webhook.site",
+        "requestbin",
+        "dns-exfil",
+        "dnscat",
+        "iodine"
+      ]
+    },
+    {
+      "id": "NETWORK_GENERAL",
+      "severity": "medium",
+      "description": "General network access and HTTP clients",
+      "needles": [
+        "http://",
+        "https://",
+        "curl ",
+        "wget ",
+        "requests.",
+        "requests.get",
+        "requests.post",
+        "urllib.request",
+        "urllib.urlopen",
+        "aiohttp",
+        "httpx.",
+        "axios.",
+        "node-fetch",
+        "paramiko",
+        "fabric",
+        "telnetlib"
+      ]
+    },
+    {
+      "id": "FILE_SYSTEM_DANGEROUS",
+      "severity": "high",
+      "description": "Dangerous file system operations",
+      "needles": [
+        "rm -rf /",
+        "rm -rf ~",
+        "rm -rf /*",
+        "mkfs",
+        "dd if=",
+        "wipefs",
+        "shred ",
+        "> /dev/sda",
+        "> /dev/nvme",
+        "chmod 777",
+        "chmod -R 777",
+        "Format-Volume",
+        "Clear-Disk"
+      ]
+    },
+    {
+      "id": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "description": "Attempts to escalate privileges or modify user accounts",
+      "needles": [
+        "visudo",
+        "/etc/sudoers",
+        "useradd",
+        "usermod",
+        "setuid",
+        "setgid",
+        "SUID",
+        "chmod u+s",
+        "chmod g+s",
+        "chmod +s",
+        "setcap ",
+        "pkexec",
+        "runas /user:",
+        "psexec"
+      ]
+    },
+    {
+      "id": "CONTAINER_ESCAPE",
+      "severity": "extreme",
+      "description": "Container escape and host access attempts",
+      "needles": [
+        "docker.sock",
+        "/var/run/docker",
+        "docker run --privileged",
+        "--pid=host",
+        "--net=host",
+        "--ipc=host",
+        "nsenter",
+        "unshare -m",
+        "/proc/self/exe",
+        "/proc/1/root",
+        "cgroup escape",
+        "release_agent",
+        "/var/run/secrets/kubernetes.io"
+      ]
+    },
+    {
+      "id": "CRYPTO_MINING",
+      "severity": "extreme",
+      "description": "Cryptocurrency mining indicators",
+      "needles": [
+        "stratum+tcp://",
+        "stratum+ssl://",
+        "xmrig",
+        "cpuminer",
+        "cgminer",
+        "bfgminer",
+        "minerd",
+        "minergate",
+        "coinhive",
+        "cryptonight",
+        "randomx",
+        "pool.minexmr",
+        "pool.supportxmr"
+      ]
+    },
+    {
+      "id": "CODE_INJECTION",
+      "severity": "high",
+      "description": "Code injection and template injection patterns",
+      "needles": [
+        "curl | sh",
+        "curl | bash",
+        "wget | sh",
+        "wget | bash",
+        "eval \"$(curl",
+        "eval \"$(wget",
+        "xargs sh -c",
+        "SSTI",
+        "Server-Side Template"
+      ]
+    },
+    {
+      "id": "INFORMATION_GATHERING",
+      "severity": "medium",
+      "description": "System reconnaissance and information gathering",
+      "needles": [
+        "nmap ",
+        "masscan ",
+        "zmap ",
+        "iptables -L",
+        "firewall-cmd",
+        ".bash_history",
+        ".zsh_history"
+      ]
+    },
+    {
+      "id": "SUPPLY_CHAIN",
+      "severity": "medium",
+      "description": "Supply chain attack vectors — untrusted package installs",
+      "needles": [
+        "pip install ",
+        "pip3 install ",
+        "npm install ",
+        "npx ",
+        "yarn add ",
+        "pnpm add ",
+        "gem install ",
+        "cargo install ",
+        "go install ",
+        "go get ",
+        "composer require "
+      ]
+    },
+    {
+      "id": "REVERSE_SHELL",
+      "severity": "extreme",
+      "description": "Reverse shell pattern: socket connect + dup2 + shell spawn",
+      "needles": [
+        "socket.socket",
+        "os.dup2",
+        "SOCK_STREAM",
+        ".connect((\"",
+        "subprocess.call([\"/bin/sh\"",
+        "subprocess.call([\"/bin/bash\"",
+        "/bin/sh\",\"-i\"",
+        "/bin/bash\",\"-i\""
+      ]
+    },
+    {
+      "id": "NETWORK_SOCKET_RAW",
+      "severity": "high",
+      "description": "Raw socket operations for potential data exfiltration",
+      "needles": [
+        "socket.AF_INET",
+        "s.connect(",
+        "socket.connect(",
+        ".fileno()"
+      ]
+    }
+  ]
+}

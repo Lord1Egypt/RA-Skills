@@ -1,0 +1,9 @@
+【Skills 监控提醒】
+检测到 skills 目录发生变更
+
+{sections}
+📁 路径：{skills_dir}
+🕒 时间：{timestamp} ({timezone})
+🧾 审计日志：{logs_path}
+📌 默认仅推送摘要，完整 diff 请在本机按需查看：git -C {snapshots_dir} diff HEAD~1 HEAD
+⚠️ 原始 diff 可能包含敏感信息，请勿默认外发到外部频道

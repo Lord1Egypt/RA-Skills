@@ -1,35 +1,146 @@
 ---
-name: "stock-diagnosis"
-description: "面向沪深京A股的单票综合诊断能力。适用于用户提出“这只股票整体怎么样”“是否值得继续持有/加仓/减仓”“当前风险和机会如何”等泛化问题时，返回结构化的Markdown诊断报告。每次仅分析一只股票，不处理港股/美股及多标的对比。触发核心条件：用户问法为概括性诊断，未指定某个单一技术指标或财务指标（如MACD、RSI..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-diagnosis"
-sourceUrl: "https://clawhub.ai/skills/stock-diagnosis"
+name: stock-diagnosis
+description: 面向沪深京A股的单票综合诊断能力。适用于用户提出“这只股票整体怎么样”“是否值得继续持有/加仓/减仓”“当前风险和机会如何”等泛化问题时，返回结构化的Markdown诊断报告。每次仅分析一只股票，不处理港股/美股及多标的对比。触发核心条件：用户问法为概括性诊断，未指定某个单一技术指标或财务指标（如MACD、RSI、ROE等）做精确计算。
+metadata:
+  {
+    "openclaw": {
+      "requires": {
+        "env":["EM_API_KEY"]
+      }
+    }
+  }
 ---
 
-# stock-diagnosis
+# 股票综合诊断
 
-> 面向沪深京A股的单票综合诊断能力。适用于用户提出“这只股票整体怎么样”“是否值得继续持有/加仓/减仓”“当前风险和机会如何”等泛化问题时，返回结构化的Markdown诊断报告。每次仅分析一只股票，不处理港股/美股及多标的对比。触发核心条件：用户问法为概括性诊断，未指定某个单一技术指标或财务指标（如MACD、RSI...
+通过**自然语言问句**对单只A股进行综合分析，返回 Markdown 诊断报告，适用场景包括：
+- **个股整体判断（基本面 + 资金面 + 风险面）**
+- **持仓决策参考（持有/减仓/止盈/观望）**
+- **热点行情下的个股风险排查**
+- **用户泛化问法的一站式诊断回答**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-diagnosis`
-- **Source URL:** [https://clawhub.ai/skills/stock-diagnosis](https://clawhub.ai/skills/stock-diagnosis)
+## 密钥来源与安全说明
 
-## Overview
+- 本技能仅使用一个环境变量：`EM_API_KEY`。
+- `EM_API_KEY` 由东方财富妙想服务（`https://ai.eastmoney.com/mxClaw`）签发，用于接口鉴权。
+- 在提供密钥前，请先确认密钥来源、可用范围、有效期及是否支持重置/撤销。
+- 禁止在代码、提示词、日志或输出文件中硬编码/明文暴露密钥。
 
+## 功能范围
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 基础诊断能力
+- 输入自然语言问句，调用诊股接口生成结构化结论
+- 每次仅处理**一只**沪深京A股股票
+- 返回可读 Markdown 报告（优先提取 `data.displayData`）
+- 支持将结果保存为本地 `.md` 文件，便于复盘追踪
+
+### 触发规则（何时使用本技能）
+- 用户问题是**笼统/概括性**诊断：如“这只股票怎么样”“值得买吗”“该不该卖”
+- 问句中未明确要求计算单个技术指标或财务指标
+- 若上下文已明确股票实体，用户后续使用“它/这只股票”等代词继续提问，也应触发
+
+### 不触发规则（何时不要使用本技能）
+- 用户明确点名具体指标计算：MACD、KDJ、RSI、布林带、ROE、PE 等
+- 用户要求多只股票横向对比（应走多标的分析类能力）
+- 用户咨询港股、美股或其他非A股市场
+
+### 触发示例
+
+| 触发（泛化诊断） | 不触发（指标定向） |
+|---|---|
+| 丹化科技怎么样？ | 丹化科技的MACD出现金叉了吗？ |
+| 海康威视亏了怎么操作？ | 海康威视当前市盈率是多少？ |
+| 华尔泰值得投资吗？ | 华尔泰的RSI是否超买？ |
+| 全面分析一下中国平安 | 中国平安的ROE趋势如何？ |
+
+## 前提条件
+
+### 1. 注册东方财富妙想账号
+
+访问 https://ai.eastmoney.com/mxClaw 注册账号并获取 API Key。
+
+### 2. 配置 Token
+
 ```bash
-hermes skills install clawhub/stock-diagnosis
+# macOS 添加到 ~/.zshrc，Linux 添加到 ~/.bashrc
+export EM_API_KEY="your_api_key_here"
 ```
+
+然后根据系统执行对应的命令：
+
+**macOS：**
+```bash
+source ~/.zshrc
+```
+
+**Linux：**
+```bash
+source ~/.bashrc
+```
+
+## 快速开始
+
+### 1. 命令行调用
+
+```bash
+python3 {baseDir}/scripts/get_data.py --query "东方财富股票咋样"
+```
+
+**输出示例**
+```text
+Saved: /path/to/workspace/stock_diagnosis/stock_diagnosis_90bf169c.md
+（随后输出 Markdown 诊断内容）
+```
+
+**参数说明：**
+
+| 参数 | 说明 | 必填 |
+|---|---|---|
+| `--query` | 用户原始自然语言问句 | ✅（`--query` 或 stdin 二选一） |
+| `--no-save` | 仅输出结果，不写入本地文件 | 否 |
+
+### 2. 代码调用
+
+```python
+import asyncio
+from pathlib import Path
+from scripts.get_data import diagnose_stock
+
+async def main():
+    result = await diagnose_stock(
+        question="分析一下东方财富这只股票",
+        output_dir=Path("workspace/stock_diagnosis"),
+        save_to_file=True,
+    )
+    if "error" in result:
+        print(result["error"])
+    else:
+        print(result["content"])
+        if result.get("output_path"):
+            print("已保存至:", result["output_path"])
+
+asyncio.run(main())
+```
+
+## 输出规范
+通过脚本或工具拿到诊股结果后，**对用户的可见回复必须以接口返回的 Markdown 正文为主体**，避免模型二次转述。仅当接口/脚本明确返回 `error`、或正文为空时，才用简短文字说明失败原因；**禁止**在失败时杜撰报告内容。
+
+## 常见问题
+
+**错误：EM_API_KEY is required.**  
+→ 需先配置 `EM_API_KEY`，请联系官网获取并手动配置。
+
+**为什么需要保持原始问句？**  
+→ 诊股接口依赖用户自然语言上下文，建议避免改写导致语义偏移。
+
+**如何只看输出，不落盘？**
+```bash
+python3 -m scripts.get_data --query "东方财富股票咋样" --no-save
+```
+
+## 合规说明
+
+- 诊股结果仅供参考，不构成投资建议，输出时应附风险提示。
+- 禁止在代码或提示词中硬编码账号 ID、会话 ID 或 token。
+- 环境变量按敏感信息处理，不在日志或回复中泄露。
+- 接口失败时不得编造结论，应返回明确错误或不确定性说明。

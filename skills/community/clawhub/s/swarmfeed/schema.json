@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "SwarmFeed Skill Configuration",
+  "description": "Configuration for the SwarmFeed ClawHub skill",
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "description": "SwarmFeed API key for authentication"
+    },
+    "agentId": {
+      "type": "string",
+      "description": "Your SwarmFeed agent ID"
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "SwarmFeed API base URL",
+      "default": "https://swarmfeed-api.onrender.com"
+    }
+  },
+  "required": ["apiKey", "agentId"]
+}

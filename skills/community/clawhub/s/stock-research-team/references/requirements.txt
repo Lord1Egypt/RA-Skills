@@ -1,0 +1,3 @@
+mcp[cli]>=1.0.0
+akshare>=1.14.0
+yfinance>=0.2.40

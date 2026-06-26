@@ -1,0 +1,11 @@
+{
+  "name": "smart-model-selector",
+  "version": "1.0.1",
+  "description": "智能模型选择器 - 根据任务自动选择最优模型",
+  "hooks": ["smart_model_selector"],
+  "entry": "smart_model_selector.py",
+  "events": [
+    "agent:bootstrap",
+    "command"
+  ]
+}

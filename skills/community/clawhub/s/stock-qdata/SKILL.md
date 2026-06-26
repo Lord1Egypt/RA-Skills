@@ -1,35 +1,128 @@
+\###技术支持：微信名quant_village_dog  | QQ:13620658 
+###技术社区：QQ群：1057968391 ，自行下载因clawhub限制无法上传的资源文件
+\---
 ---
-name: "实现基于qmt智能交易终端的A股交易数据本地化"
-description: "基于QMT量化交易平台，支持自然语言指令下载并实时网页监控A股多周期历史行情数据，含智能错误处理和任务控制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-qdata"
-sourceUrl: "https://clawhub.ai/skills/stock-qdata"
+name: stock-qdata
+description: "下载A股历史行情数据（基于QMT量化交易平台），支持自然语言指令和网页实时监控界面"
+Use when: 用户需要获取A股交易数据。
 ---
+## When to Run
 
-# 实现基于qmt智能交易终端的A股交易数据本地化
+* 触发条件1：用户说“下载日线数据，最近200天，使用网页监控模式”
+* 触发条件2：用户说“下载30分钟线数据，最近100天，每批30个，后台模式”
+* 触发条件3：用户说 “下载5分钟线，500天，每批50，网页"
+* 触发条件3：用户说“下载交易数据”
+* 触发条件4：用户说“获取历史数据”
+* 触发条件5：用户说“下载历史数据”
 
-> 基于QMT量化交易平台，支持自然语言指令下载并实时网页监控A股多周期历史行情数据，含智能错误处理和任务控制。
+# 股票数据下载技能 (Stock-QData)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-qdata`
-- **Source URL:** [https://clawhub.ai/skills/stock-qdata](https://clawhub.ai/skills/stock-qdata)
+基于QMT量化交易平台，下载A股历史行情数据，支持日线、30分钟线、5分钟线、1分钟线等多种周期。
 
-## Overview
+## 功能特性
 
+- **自然语言指令**：支持中文自然语言描述下载任务
+- **网页监控界面**：实时显示下载进度、速度、错误信息
+- **多种数据周期**：支持1d（日线）、30m、5m、1m等周期
+- **智能错误处理**：自动重试失败股票，记录错误日志
+- **实时状态更新**：每2秒自动更新进度，Socket.IO实时通信
+- **暂停/恢复**：支持暂停和恢复下载任务
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 系统要求
+
+1. **QMT量化交易平台**：必须安装并配置好QMT
+2. **Python环境**：Python 3.7+—3.12，安装必要依赖
+3. **网络连接**：需要连接QMT服务器下载数据
+
+## 安装依赖
+
 ```bash
-hermes skills install clawhub/stock-qdata
+pip install -r requirements.txt
 ```
+
+## 使用方法
+
+### 1. 自然语言指令模式
+
+```bash
+# 下载日线数据，最近200天，使用网页监控模式
+python main.py "下载日线数据，最近200天，使用网页模式"
+
+# 后台下载30分钟线数据，最近100天，每批30个
+python main.py "后台下载30分钟线数据，最近100天，每批30个"
+
+# 下载5分钟线，500天，每批50，网页监控
+python main.py "下载5分钟线，500天，每批50，网页"
+```
+
+### 2. 命令行参数模式
+
+```bash
+# 网页监控模式（默认）
+python main.py --period=1d --days=200 --mode=web
+
+# 纯后台模式
+python main.py --period=30m --days=100 --batch_size=30 --mode=background
+```
+
+### 3. 参数说明
+
+| 参数 | 说明 | 默认值 | 可选值 |
+|------|------|--------|--------|
+| period | 数据周期 | 1d | 1d（日线）, 30m, 5m, 1m |
+| days | 回溯天数 | 500 | 1-9999 |
+| batch_size | 每批处理数量 | 50 | 1-1000 |
+| mode | 运行模式 | web | web（网页监控）, background（纯后台） |
+
+## 配置文件
+
+`config.json` 包含基本配置：
+
+```json
+{
+  "base_path": "d:\\data\\",        // 数据保存路径
+  "qmt_path": "D:\\QMT\\bin.x64",   // QMT安装路径
+  "batch_size": 50,                 // 默认批次大小
+  "download_days": 500,             // 默认下载天数
+  "download_period": "1d",          // 默认数据周期
+  "host": "127.0.0.1",             // Web服务器主机
+  "port": 5000                      // Web服务器端口
+}
+```
+
+## 网页监控界面
+
+启动网页模式后，访问 `http://127.0.0.1:5018`（端口可能自动调整）打开监控界面：
+
+- **实时进度**：显示总体进度、处理速度、预计完成时间
+- **股票列表**：显示正在处理和已完成的股票
+- **错误日志**：显示下载过程中出现的错误和警告
+- **控制按钮**：开始、暂停、恢复、停止下载任务
+- **参数调整**：可在界面上调整批次大小
+
+## 数据存储
+
+数据按以下结构保存：
+```
+{base_path}/
+  └── k_data/
+      └── {period}/
+          ├── 000001.SZ.csv
+          ├── 000002.SZ.csv
+          └── ...
+```
+
+## 注意事项
+
+1. **QMT要求**：必须正确安装QMT，且`qmt_path`配置正确
+2. **首次使用**：需要登录QMT客户端并保持运行
+3. **网络连接**：下载过程需要稳定的网络连接
+4. **磁盘空间**：确保数据保存路径有足够空间
+5. **自动超时**：网页界面5分钟无操作会自动关闭服务器
+
+## 故障排除
+
+- **QMT未启动**：系统会自动尝试启动QMT，如失败请手动启动
+- **端口冲突**：系统会自动寻找可用端口（5018-5038）
+- **字体缺失**：字体文件已包含在技能包中，无需额外下载
+- **依赖缺失**：运行 `pip install -r requirements.txt` 安装所有依赖

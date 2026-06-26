@@ -1,0 +1,244 @@
+# 关系危机模板
+
+## 危机定义
+
+关系危机是影响玩家与NPC关系的事件性挑战，通常突发，需要玩家在限定时间内做出反应。
+
+---
+
+## 危机模板
+
+crises:
+  # 道侣被掳危机
+  - id: "crisis_lover_captured"
+    title: "道侣被掳"
+    description: "{lover_name}被{enemy_name}带走，生死未卜"
+    type: "personal"
+    severity: 8
+    duration: 5
+    triggers:
+      - condition: "hasLover AND relationship >= 80"
+        weight: 0.2
+      - condition: "enemyThreat > 0"
+        weight: 0.3
+    consequences:
+      timeout: "{lover_name}被带往{enemy_faction}，营救难度大幅增加"
+      success: "成功救回{lover_name}，关系大幅提升"
+      failure: "营救失败，{lover_name}受伤，关系不变"
+    options:
+      - id: "option_negotiate"
+        description: "尝试与{enemy_name}谈判"
+        requirements:
+          - type: "gold"
+            min: 1000
+        successRate: 0.4
+        successEffect: "用钱赎回{lover_name}，关系+5"
+        failureEffect: "谈判破裂，{enemy_name}更加嚣张"
+      - id: "option_rescue"
+        description: "直接营救"
+        requirements:
+          - type: "cultivation"
+            min: "enemy_level"
+        successRate: 0.6
+        successEffect: "成功救回{lover_name}，关系+15"
+        failureEffect: "营救失败，自己受伤，{lover_name}被转移"
+      - id: "option_seek_help"
+        description: "寻求他人帮助"
+        requirements:
+          - type: "ally"
+            exists: true
+        successRate: 0.7
+        successEffect: "在盟友帮助下救回{lover_name}，关系+10"
+        failureEffect: "盟友也无能为力，时间被耽误"
+
+  # 误会危机
+  - id: "crisis_misunderstanding"
+    title: "误会加深"
+    description: "{npc_name}误以为你做了某事，关系急剧恶化"
+    type: "personal"
+    severity: 6
+    duration: 3
+    triggers:
+      - condition: "relationship >= 50"
+        weight: 0.15
+      - condition: "recentNegativeEvent"
+        weight: 0.3
+    consequences:
+      timeout: "误会未及时解开，{npc_name}对你心存芥蒂，关系-20"
+      success: "误会解开，关系恢复并+5"
+      failure: "解释失败，{npc_name}更加怀疑，关系-10"
+    options:
+      - id: "option_explain"
+        description: "诚恳解释真相"
+        requirements: []
+        successRate: 0.5
+        successEffect: "误会解开，关系+5"
+        failureEffect: "解释不被接受，需要更多证据"
+      - id: "option_prove"
+        description: "寻找证据证明自己"
+        requirements:
+          - type: "investigation"
+            possible: true
+        successRate: 0.7
+        successEffect: "证据确凿，误会完全解开，关系+10"
+        failureEffect: "证据不足，误会依然存在"
+      - id: "option_wait"
+        description: "等待时间证明一切"
+        requirements: []
+        successRate: 0.3
+        successEffect: "真相大白，关系+5"
+        failureEffect: "时间流逝，误会加深，关系-15"
+
+  # 嫉妒危机
+  - id: "crisis_jealousy"
+    title: "醋海生波"
+    description: "{npc_name}发现你与其他女子走得太近，心生不满"
+    type: "personal"
+    severity: 5
+    duration: 2
+    triggers:
+      - condition: "hasMultipleLoveInterests"
+        weight: 0.4
+      - condition: "relationship >= 70"
+        weight: 0.3
+    consequences:
+      timeout: "{npc_name}虽然不说，但心中有了疙瘩"
+      success: "成功安抚{npc_name}，关系更近一步"
+      failure: "安抚失败，{npc_name}暂时冷淡"
+    options:
+      - id: "option_honest"
+        description: "坦诚相待，说明自己的心意"
+        requirements:
+          - type: "relationship"
+            min: 70
+        successRate: 0.6
+        successEffect: "{npc_name}理解并接受，关系+10"
+        failureEffect: "{npc_name}表示需要时间考虑"
+      - id: "option_choice"
+        description: "做出选择，证明她的特殊地位"
+        requirements: []
+        successRate: 0.8
+        successEffect: "{npc_name}感到被重视，关系+15"
+        failureEffect: "选择不被认可，关系不变"
+      - id: "option_gift"
+        description: "送一份特别的礼物表达心意"
+        requirements:
+          - type: "item"
+            quality: "rare"
+        successRate: 0.5
+        successEffect: "礼物被接受，{npc_name}心情好转，关系+5"
+        failureEffect: "礼物被退回，需要更真诚的方式"
+
+  # 第三者介入危机
+  - id: "crisis_rival_appears"
+    title: "情敌出现"
+    description: "有人开始追求{npc_name}，对你构成威胁"
+    type: "personal"
+    severity: 6
+    duration: 4
+    triggers:
+      - condition: "relationship >= 60"
+        weight: 0.2
+    consequences:
+      timeout: "情敌攻势猛烈，{npc_name}对你有些动摇"
+      success: "成功击败情敌，{npc_name}更加坚定地选择你"
+      failure: "情敌占据上风，需要更多努力挽回"
+    options:
+      - id: "option_confront"
+        description: "正面与情敌较量"
+        requirements:
+          - type: "cultivation"
+            min: "rival_level"
+        successRate: 0.6
+        successEffect: "击败情敌，在{npc_name}面前证明自己，关系+10"
+        failureEffect: "较量失败，颜面扫地"
+      - id: "option_impress"
+        description: "在{npc_name}面前展示自己的优点"
+        requirements: []
+        successRate: 0.5
+        successEffect: "{npc_name}对你刮目相看，关系+8"
+        failureEffect: "展示效果一般，{npc_name}反应平淡"
+      - id: "option_undermine"
+        description: "暗中调查情敌的弱点"
+        requirements:
+          - type: "investigation"
+            possible: true
+        successRate: 0.7
+        successEffect: "发现情敌的把柄，成功劝退"
+        failureEffect: "调查被发现，反而让{npc_name}不满"
+
+  # 家族反对危机
+  - id: "crisis_family_opposition"
+    title: "家族反对"
+    description: "{npc_name}的家人反对你们的关系"
+    type: "personal"
+    severity: 7
+    duration: 6
+    triggers:
+      - condition: "relationship >= 80"
+        weight: 0.25
+      - condition: "npcHasFamily"
+        weight: 0.3
+    consequences:
+      timeout: "家族压力下，{npc_name}陷入两难，关系停滞"
+      success: "说服家族，或{npc_name}坚定选择你"
+      failure: "被迫暂时分离，需要寻找新的机会"
+    options:
+      - id: "option_prove_worth"
+        description: "证明自己配得上{npc_name}"
+        requirements:
+          - type: "cultivation"
+            min: "higher_than_family_expectation"
+        successRate: 0.5
+        successEffect: "家族勉强接受，关系+5"
+        failureEffect: "仍被认为不够格"
+      - id: "option_win_ally"
+        description: "先争取家族中某位成员的支持"
+        requirements: []
+        successRate: 0.6
+        successEffect: "获得家族内部支持，阻力减少，关系+3"
+        failureEffect: "争取失败，情况更复杂"
+      - id: "option_elope"
+        description: "提议私奔"
+        requirements:
+          - type: "relationship"
+            min: 90
+        successRate: 0.4
+        successEffect: "{npc_name}愿意跟随你，但与家族决裂"
+        failureEffect: "{npc_name}不愿伤害家人，拒绝提议"
+
+  # 信任危机
+  - id: "crisis_trust_broken"
+    title: "信任崩塌"
+    description: "你无意中伤害了{npc_name}，她开始怀疑你的真心"
+    type: "personal"
+    severity: 8
+    duration: 5
+    triggers:
+      - condition: "playerHurtNpc"
+        weight: 0.8
+    consequences:
+      timeout: "{npc_name}彻底失去信任，关系降至冰点"
+      success: "重建信任，关系恢复"
+      failure: "关系永久受损"
+    options:
+      - id: "option_apologize"
+        description: "真诚道歉，表达悔意"
+        requirements: []
+        successRate: 0.4
+        successEffect: "{npc_name}态度软化，愿意听你解释"
+        failureEffect: "道歉不被接受"
+      - id: "option_compensate"
+        description: "用实际行动弥补过失"
+        requirements:
+          - type: "quest"
+            target: "compensation_quest"
+        successRate: 0.7
+        successEffect: "弥补行动让{npc_name}感动，关系逐渐恢复"
+        failureEffect: "弥补不足，仍需更多努力"
+      - id: "option_time"
+        description: "给她时间和空间"
+        requirements: []
+        successRate: 0.3
+        successEffect: "时间治愈一切，关系缓慢恢复"
+        failureEffect: "时间流逝，感情淡化，关系-20"

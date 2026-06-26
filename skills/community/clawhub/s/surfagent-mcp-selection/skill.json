@@ -1,0 +1,8 @@
+{
+  "name": "surfagent-mcp-selection",
+  "version": "1.0.0",
+  "description": "Selection guide for SurfAgent automation layers, showing when to use perception, platform adapters, MCPs, and raw browser control.",
+  "author": "MoonstoneLabs",
+  "keywords": ["surfagent", "browser", "mcp", "adapter", "automation", "selection"],
+  "files": ["SKILL.md"]
+}

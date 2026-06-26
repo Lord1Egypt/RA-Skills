@@ -1,0 +1,40 @@
+{
+  "extraction": {
+    "max_fossils_per_dimension": 2,
+    "pending_confidence_threshold": 0.6,
+    "high_confidence_threshold": 0.8,
+    "negation_decay_factor": 0.4,
+    "min_confidence": 0.2
+  },
+  "distillation": {
+    "batch_size": 50,
+    "frequency_hours": 24,
+    "min_fossils_for_distill": 20
+  },
+  "embedding": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "similarity_threshold": 0.75,
+    "cache_enabled": true,
+    "cache_path": "cache/embeddings/"
+  },
+  "validation": {
+    "historical_window": 100,
+    "enable_contradiction_detection": true,
+    "history_db_path": "user-data/validation_history.json"
+  },
+  "storage": {
+    "fossil_storage_path": "user-data/fossils/",
+    "persona_storage_path": "user-data/persona/",
+    "auto_backup": true,
+    "backup_retention_days": 30,
+    "backup_path": "user-data/backups/"
+  },
+  "dimension_weights": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 1.0,
+    "6": 1.0
+  }
+}

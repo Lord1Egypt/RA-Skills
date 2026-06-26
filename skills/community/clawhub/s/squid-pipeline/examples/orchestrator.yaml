@@ -1,0 +1,97 @@
+# ─── Orchestrator: Parent Pipeline with Sub-Pipelines ──────────────────
+#
+# Demonstrates how to compose reusable sub-pipelines into a larger workflow.
+# This parent pipeline calls three sub-pipelines:
+#   1. sub-build.yaml  — compile and lint
+#   2. sub-test.yaml   — run test suites
+#   3. sub-deploy.yaml — deploy to target environment
+#
+# Each sub-pipeline is self-contained and can also run standalone.
+#
+# Usage:
+#   squid run squid-pipeline/examples/orchestrator.yaml
+#   squid run squid-pipeline/examples/orchestrator.yaml --args-json '{"env":"prod"}'
+#   squid run squid-pipeline/examples/orchestrator.yaml --dry-run -v
+#   squid viz squid-pipeline/examples/orchestrator.yaml
+
+name: orchestrator
+description: Full release pipeline composed from reusable sub-pipelines
+version: "1.0"
+
+args:
+  env:
+    default: staging
+    description: Deployment target (dev, staging, prod)
+  skip_tests:
+    default: false
+    description: Skip test suite (for hotfixes)
+
+steps:
+  # ─── Step 1: Build ──────────────────────────────────────
+  # Calls sub-build.yaml, passing the target environment.
+  # The sub-pipeline compiles, lints, and returns an artifact summary.
+  - id: build
+    type: pipeline
+    description: Build the project (sub-pipeline)
+    pipeline:
+      file: ./sub-build.yaml
+      args:
+        target: $args.env
+        optimize: true
+
+  # ─── Step 2: Test ───────────────────────────────────────
+  # Calls sub-test.yaml for the full test suite.
+  # Skipped if skip_tests=true (e.g., for hotfixes).
+  - id: test
+    type: pipeline
+    description: Run test suite (sub-pipeline)
+    pipeline:
+      file: ./sub-test.yaml
+      args:
+        suite: all
+        coverage: true
+    when: "!$args.skip_tests"
+
+  # ─── Step 3: Quality Gate ───────────────────────────────
+  # Check that tests passed and coverage is sufficient.
+  # Uses outputs from the test sub-pipeline.
+  - id: quality-check
+    type: branch
+    description: Verify quality thresholds
+    when: "!$args.skip_tests"
+    branch:
+      conditions:
+        - when: "!$test.json.all_passed"
+          steps:
+            - id: fail-quality
+              type: transform
+              transform: '{"gate":"failed","reason":"Tests did not pass"}'
+        - when: $test.json.coverage < 80
+          steps:
+            - id: warn-coverage
+              type: transform
+              transform: '{"gate":"warning","reason":"Coverage below 80%","coverage":${test.json.coverage}}'
+      default:
+        - id: pass-quality
+          type: transform
+          transform: '{"gate":"passed","coverage":${test.json.coverage}}'
+
+  # ─── Step 4: Deploy ────────────────────────────────────
+  # Calls sub-deploy.yaml with the artifact from the build step.
+  # The sub-pipeline includes its own prod gate internally.
+  - id: deploy
+    type: pipeline
+    description: Deploy to ${args.env} (sub-pipeline)
+    pipeline:
+      file: ./sub-deploy.yaml
+      args:
+        artifact: $build.json.artifact
+        env: $args.env
+
+  # ─── Step 5: Summary ───────────────────────────────────
+  # Aggregate results from all sub-pipelines.
+  - id: summary
+    type: transform
+    description: Final release summary
+    transform: |
+      {"release":"complete","env":"${args.env}","artifact":"${build.json.artifact}","tests_passed":${test.json.all_passed},"deployed":${deploy.json.deployed}}

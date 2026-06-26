@@ -1,35 +1,48 @@
 ---
-name: "Spotify Intelligence"
+name: spotify-intelligence
 description: "Spotify intelligence skill with Python runners for auth, playback control, recommendations, feedback loop, governance, and explainable playlist decisions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spotify-intelligence"
-sourceUrl: "https://clawhub.ai/skills/spotify-intelligence"
+metadata:
+  required-env:
+    - SPOTIFY_CLIENT_ID
+    - SPOTIFY_CLIENT_SECRET
+    - SPOTIFY_REDIRECT_URI (optional)
+  primary-credential: SPOTIFY_CLIENT_ID + SPOTIFY_CLIENT_SECRET
+  local-storage:
+    - data/tokens.json
+    - data/spotify-intelligence.sqlite
+  notes:
+    - Uses Spotify API only (api.spotify.com and accounts.spotify.com)
+    - Stores OAuth tokens locally on the host
 ---
 
-# Spotify Intelligence
+# Spotify Intelligence (ClawHub Edition)
 
-> Spotify intelligence skill with Python runners for auth, playback control, recommendations, feedback loop, governance, and explainable playlist decisions.
+This edition is ClawHub-validator compatible (text + python-focused).  
+The full local Windows edition may include additional PowerShell wrappers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spotify-intelligence`
-- **Source URL:** [https://clawhub.ai/skills/spotify-intelligence](https://clawhub.ai/skills/spotify-intelligence)
+## Required env
+- `SPOTIFY_CLIENT_ID`
+- `SPOTIFY_CLIENT_SECRET`
+- optional `SPOTIFY_REDIRECT_URI`
 
-## Overview
+## Core Python entrypoints
+- Auth token exchange: `scripts/auth/oauth_auth.py`
+- Playback control: `scripts/playback/playback_control.py`
+- Recommendations: `scripts/recommend/recommend-now.py`
+- Recommendation helper: `scripts/recommend/recommend_commands.py`
+- Derived features: `scripts/decision/rebuild-derived-features.py`
 
+## Key capabilities
+- Playback (play/pause/next/previous/volume/device/queue)
+- Song search with own-playlist preference + global fallback
+- Recommendation modes: `passend`, `mood-shift`, `explore`
+- Feedback-aware scoring (like/dislike/skip/keep)
+- Governance and decision logging (DB-backed)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/spotify-intelligence
-```
+## References
+- `references/read-layer.md`
+- `references/playback-control.md`
+- `references/recommendation-layer.md`
+- `references/feedback-loop.md`
+- `references/governance-cost.md`
+- `references/status-handover-2026-02-24.md`

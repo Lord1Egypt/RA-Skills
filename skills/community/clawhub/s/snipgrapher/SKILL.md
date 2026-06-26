@@ -1,35 +1,28 @@
 ---
-name: "Snipgrapher - generate images from code snippets"
-description: "Configure and use snipgrapher to generate polished code snippet images"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/snipgrapher"
-sourceUrl: "https://clawhub.ai/skills/snipgrapher"
+name: snipgrapher
+description: Configure and use snipgrapher to generate polished code snippet images
+metadata:
+  tags: snipgrapher, snippets, images, svg, png, webp, cli
 ---
 
-# Snipgrapher - generate images from code snippets
+## When to use
 
-> Configure and use snipgrapher to generate polished code snippet images
+Use this skill when you need to:
+- Generate image snippets from source code
+- Configure reusable snippet rendering defaults
+- Batch-render snippet assets for docs, social posts, or changelogs
+- Use published `snipgrapher` from npm to generate snippet images
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/snipgrapher`
-- **Source URL:** [https://clawhub.ai/skills/snipgrapher](https://clawhub.ai/skills/snipgrapher)
+## How to use
 
-## Overview
+Read these rule files in order:
 
+- [rules/setup-and-configuration.md](rules/setup-and-configuration.md) - Install, select executable, initialize config, and define profiles
+- [rules/rendering-workflows.md](rules/rendering-workflows.md) - Render single snippets, batch jobs, watch mode, and output practices
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/snipgrapher
-```
+## Core principles
+
+- **Configure first**: establish a project config before repeated renders
+- **Reproducible output**: prefer named profiles and explicit output paths
+- **Portable commands**: use command patterns that work with installed binaries and `npx`
+- **Automation-friendly**: rely on CLI flags/config/env precedence intentionally

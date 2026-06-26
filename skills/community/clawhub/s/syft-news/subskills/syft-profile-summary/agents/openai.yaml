@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syft Profile Summary"
+  short_description: "Turn Syft follows into reusable profile artifacts"
+  default_prompt: "Use $syft-profile-summary to turn a `syft following` list into profile artifacts and a high-dimensional summary."

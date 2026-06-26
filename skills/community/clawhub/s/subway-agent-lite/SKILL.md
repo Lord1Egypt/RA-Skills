@@ -1,35 +1,19 @@
 ---
-name: "Subway Agent Lite"
+name: subway-agent-lite
+version: 1.0.0
 description: "FREE VERSION: Basic WhatsApp ordering agent for sandwich shops. Demonstrates ThumbGate safety logic for 5 core order items."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/subway-agent-lite"
-sourceUrl: "https://clawhub.ai/skills/subway-agent-lite"
+author: "Igor Ganapolsky"
+tags: ["free", "subway", "ordering", "thumbgate", "demo"]
+price: 0
 ---
 
-# Subway Agent Lite
+# Subway Ordering Agent (LITE / FREE)
 
-> FREE VERSION: Basic WhatsApp ordering agent for sandwich shops. Demonstrates ThumbGate safety logic for 5 core order items.
+This is a free demonstration version of the premium Subway Restaurant Agent. It supports ordering for 5 basic items and includes a sample ThumbGate safety configuration.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/subway-agent-lite`
-- **Source URL:** [https://clawhub.ai/skills/subway-agent-lite](https://clawhub.ai/skills/subway-agent-lite)
+## Features:
+- Basic natural-language ordering.
+- ThumbGate protection for "Hallucinated Items".
+- Direct logging to Google Sheets.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/subway-agent-lite
-```
+Upgrade to the Full Version (7) for Smart Upsells, Inventory Forecasting, and Voice AI support.

@@ -1,0 +1,8 @@
+{
+  "name": "@spectyra/openclaw-skill",
+  "version": "1.0.25",
+  "private": false,
+  "description": "Spectyra OpenClaw skill (SKILL.md + optional config merge)",
+  "license": "MIT-0",
+  "files": ["SKILL.md", "README.md", "skill.json", "config-fragment.json"]
+}

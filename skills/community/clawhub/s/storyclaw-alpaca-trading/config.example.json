@@ -1,0 +1,6 @@
+{
+  "apiKey": "YOUR_ALPACA_API_KEY",
+  "apiSecret": "YOUR_ALPACA_API_SECRET",
+  "baseUrl": "https://paper-api.alpaca.markets",
+  "dataUrl": "https://data.alpaca.markets"
+}

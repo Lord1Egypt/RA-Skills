@@ -1,0 +1,8 @@
+金融数据查询结果说明
+========================================
+查询内容: 09992.HK EMA 均线
+数据文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_89f8f690.xlsx
+描述文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_89f8f690_description.txt
+数据行数: 5
+表数量: 1
+Sheet 列表: 泡泡玛特(09992.HK)的5日MA简单移动平均、10日MA

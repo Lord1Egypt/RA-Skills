@@ -1,0 +1,12 @@
+{
+    "Name": "{{ModName}}",
+    "Author": "{{Author}}",
+    "Version": "1.0.0",
+    "Description": "{{Description}}",
+    "UniqueID": "{{Author}}.{{ModName}}",
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher",
+        "MinimumVersion": "2.0"
+    },
+    "Dependencies": []
+}

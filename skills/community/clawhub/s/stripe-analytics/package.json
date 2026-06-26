@@ -1,0 +1,7 @@
+{
+  "name": "saas_stripe_analytics",
+  "version": "1.0.3",
+  "main": "skill/skill.js",
+  "requiredEnv": ["STRIPE_READ_KEY"],
+  "requiredBinaries": ["node"]
+}

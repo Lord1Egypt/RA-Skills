@@ -1,0 +1,15 @@
+{
+  "seat_class_name": ["硬座"],
+  "seat_class_name_long_distance": ["硬卧"],
+  "dep_hour_start": "6h",
+  "dep_hour_end": "23h",
+  "arr_hour_start": null,
+  "arr_hour_end": null,
+  "total_duration_hour": null,
+  "max_price": null,
+  "sort_type": 2,
+  "transfer_city": [],
+  "min_transfer_minutes": 25,
+  "max_transfer_minutes": 120,
+  "frequent_routes": []
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "small-goods-loyalty-incentives",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell cosmetics and skincare on Shopify, AOV around $35. We have no loyalty program yet. Repeat rate is low. I want to launch a simple points-based program and a welcome offer to get more second purchases. We use Shopify and can add a loyalty app. Give me a full program design and what to measure.",
+      "expected_output": "Structured output: summary (gap, program type, top incentives, metrics, next steps), program structure (earn rules, redemption, anti-abuse), incentive map (welcome, post first purchase, threshold if any), lifecycle/cadence table, copy/UX guidance, metrics and validation (repeat rate, redemption rate, LTV), and margin/guardrails; all in English with DTC terminology (points, redemption, repeat rate, LTV).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We run a phone case and accessories store, average order $28. We already have points (1 point per $1) but almost nobody redeems. We want to improve redemption and add a tier so our best customers feel special. Suggest tier thresholds, better redemption options, and 2–3 incentives to drive repeat and redemption.",
+      "expected_output": "Summary, revised program structure (tiers with thresholds, redemption options, anti-abuse), incentive map (tier reward, threshold, post-purchase or win-back), metrics (redemption rate, tier distribution, repeat rate), and guardrails; professional DTC/loyalty terminology throughout.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We sell small jewelry and accessories on our own site. We want a referral program and a win-back flow for customers who haven’t ordered in 60 days. We don’t have a loyalty app—we use email and coupons. Give me referral mechanics, win-back offer and cadence, and how to measure both.",
+      "expected_output": "Summary, incentive map focused on referral and win-back (audience, trigger, offer, channel), lifecycle/cadence table for win-back (definition of lapsed, 1–2 touches, offer and expiry), referral mechanics (give/get, tracking, caps), manual equivalent (coupons, segments), metrics (referral conversion, win-back rate), and guardrails; English, DTC terms.",
+      "files": []
+    }
+  ]
+}

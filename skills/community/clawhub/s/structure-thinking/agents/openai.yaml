@@ -1,0 +1,4 @@
+interface:
+  display_name: "Structure Thinking"
+  short_description: "Structure complex problems with pyramid and systems lenses"
+  default_prompt: "Use $structure-thinking to analyze this messy problem and propose an actionable intervention plan."

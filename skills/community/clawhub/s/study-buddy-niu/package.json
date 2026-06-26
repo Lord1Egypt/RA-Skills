@@ -1,0 +1,15 @@
+{
+  "name": "study-buddy",
+  "version": "1.0.0",
+  "description": "AI 驱动的个性化备考助手 - 支持日语 N2 和软考架构师智能出题、判分、错题本和学习计划生成",
+  "author": "牛宝华",
+  "license": "MIT",
+  "keywords": ["education", "exam", "n2", "soft-exam", "learning", "japanese", "quiz"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/study-buddy"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

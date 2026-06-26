@@ -1,0 +1,3 @@
+faster-whisper
+openai-whisper
+ffmpeg-python

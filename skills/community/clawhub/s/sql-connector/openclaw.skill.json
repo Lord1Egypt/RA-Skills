@@ -1,0 +1,96 @@
+{
+  "id": "sql-connector",
+  "name": "SQL Connector",
+  "version": "2.0.0",
+  "description": "A sealed, retry-capable SQL Server connector for OpenClaw agents. Built on pymssql with no ODBC or system drivers required. Supports both local (on-prem) and cloud backends with automatic failover and parameterized queries.",
+  "author": "Oblio Falootin <oblio.falootin@gmail.com>",
+  "license": "MIT",
+  "keywords": ["sql", "database", "sql-server", "connector", "sqlconnector", "pymssql", "agent", "openclaw"],
+  "homepage": "https://github.com/High-Falootin/clawbot-sql-connector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/High-Falootin/clawbot-sql-connector.git"
+  },
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["database"],
+    "properties": {
+      "database": {
+        "type": "object",
+        "description": "SQL Server connection settings (prefer env vars over config file)",
+        "additionalProperties": false,
+        "required": ["backend"],
+        "properties": {
+          "backend": {
+            "type": "string",
+            "enum": ["local", "cloud"],
+            "default": "cloud",
+            "description": "Connection backend: 'local' (on-prem), 'cloud' (Azure SQL, etc)"
+          },
+          "server": {
+            "type": "string",
+            "description": "SQL Server hostname or IP (prefer env SQL_LOCAL_SERVER or SQL_CLOUD_SERVER)"
+          },
+          "database": {
+            "type": "string",
+            "description": "Database name (prefer env SQL_LOCAL_DATABASE or SQL_CLOUD_DATABASE)"
+          },
+          "username": {
+            "type": "string",
+            "description": "SQL auth username (prefer env SQL_LOCAL_USER or SQL_CLOUD_USER)"
+          },
+          "password": {
+            "type": "string",
+            "description": "SQL auth password (prefer env SQL_LOCAL_PASSWORD or SQL_CLOUD_PASSWORD)"
+          },
+          "connection_timeout": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 10,
+            "description": "Connection timeout in seconds"
+          },
+          "query_timeout": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 30,
+            "description": "Query timeout in seconds"
+          },
+          "retry_attempts": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 3,
+            "description": "Number of automatic retry attempts on transient failures"
+          },
+          "retry_delay": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60,
+            "default": 2,
+            "description": "Initial retry delay in seconds (exponential backoff)"
+          }
+        }
+      },
+      "logging": {
+        "type": "object",
+        "description": "Logging configuration (optional)",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": ["DEBUG", "INFO", "WARNING", "ERROR"],
+            "default": "INFO",
+            "description": "Log level for connector operations"
+          },
+          "log_queries": {
+            "type": "boolean",
+            "default": false,
+            "description": "Log all executed queries (WARNING: may expose sensitive data)"
+          }
+        }
+      }
+    }
+  }
+}

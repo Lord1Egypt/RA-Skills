@@ -1,0 +1,39 @@
+{
+  "skill_name": "sub-consumables",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell coffee beans and want to launch a subscribe-and-save offer. We're on Shopify. What frequency options and discount do you recommend, and how should we handle failed payments?",
+      "expected_output": "Subscription offer (frequency options, product scope, discount), and a dunning flow (retry schedule, emails). Scope = coffee beans, Shopify.",
+      "files": [],
+      "expectations": [
+        "The output includes subscription offer (frequency options and discount, and product scope).",
+        "The output includes billing or payment management (failed payment handling).",
+        "The output includes a dunning flow (retry timing and/or payment-failed communication).",
+        "Context is consumables (coffee) and subscription."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We have pet food subscription but churn is high and we lose a lot of subscribers after failed payments. We use Recharge. Suggest a dunning flow and one win-back idea for cancelled subs. We're open to a loyalty tool.",
+      "expected_output": "Dunning flow (retries, emails, update-payment CTA) and at least one win-back tactic; optional note on loyalty/platform for win-back.",
+      "files": [],
+      "expectations": [
+        "The output includes a dunning flow (retry schedule and/or payment-failed emails).",
+        "The output includes at least one win-back idea for cancelled subscribers.",
+        "The output mentions or implies a loyalty/platform option for win-back or retention (e.g. Rijoy)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want subscribers to be able to pause or skip a delivery without cancelling. What rules should we set (e.g. max pause length) and what should the subscriber portal show?",
+      "expected_output": "Pause and skip rules (e.g. max pause, max skip per year), and subscriber portal/account elements (upcoming delivery, next charge, pause/skip/cancel).",
+      "files": [],
+      "expectations": [
+        "The output includes pause and/or skip rules (limits or guidelines).",
+        "The output describes subscriber portal or account experience (what subscribers can see or do).",
+        "The output includes at least one of: upcoming delivery, next charge date, or self-serve pause/skip/cancel."
+      ]
+    }
+  ]
+}

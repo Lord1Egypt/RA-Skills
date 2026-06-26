@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  background: #0a0e27;
+  color: white;
+  font-family: 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', Arial, sans-serif;
+  padding: 40px;
+}
+.header {
+  font-size: 72px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #00d9ff;
+  text-shadow: 0 0 20px #00d9ff;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.card {
+  background: rgba(0,217,255,0.1);
+  border: 2px solid #00d9ff;
+  border-radius: 12px;
+  padding: 30px;
+}
+.card h3 {
+  margin: 0 0 20px 0;
+  font-size: 32px;
+  color: #00d9ff;
+}
+.big-number {
+  font-size: 64px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin: 20px 0;
+}
+.label {
+  text-align: center;
+  font-size: 24px;
+  opacity: 0.8;
+}
+</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="header">📊 Civic.com Analytics</div>
+<div class="grid">
+  <div class="card">
+    <h3>Active Users</h3>
+    <div class="big-number" id="users">--</div>
+    <div class="label">Real-time</div>
+  </div>
+  <div class="card">
+    <h3>Page Views</h3>
+    <div class="big-number" id="views">--</div>
+    <div class="label">Last 30 min</div>
+  </div>
+  <div class="card">
+    <h3>Top Location</h3>
+    <div class="big-number" style="font-size: 48px;" id="location">Loading...</div>
+    <div class="label">Current session</div>
+  </div>
+  <div class="card">
+    <h3>Stream Status</h3>
+    <div class="big-number" style="font-size: 48px;">🔴 LIVE</div>
+    <div class="label" id="time"></div>
+  </div>
+</div>
+<script>
+// Would fetch real data from GA API via backend
+// For now, demo values
+document.getElementById('users').textContent = Math.floor(Math.random() * 50) + 10;
+document.getElementById('views').textContent = Math.floor(Math.random() * 200) + 50;
+document.getElementById('location').textContent = '🌍 Global';
+
+function updateTime() {
+  document.getElementById('time').textContent = new Date().toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+</body>
+</html>

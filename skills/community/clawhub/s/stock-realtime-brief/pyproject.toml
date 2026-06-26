@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stock-realtime-brief"
+version = "4.2.0"
+description = "A股实时分析与可执行操作建议生成器 - 三模式（持仓/单股/多股）+ 三档硬止损 + 公告检测"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Stock Realtime Brief Contributors" },
+]
+keywords = ["stock", "a-share", "trading", "technical-analysis", "openclaw", "hermes-skill"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "akshare>=1.12.0",
+    "pandas>=2.0.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+stock-brief = "stock_realtime_brief.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Michaelliugh/stock-realtime-brief"
+Issues = "https://github.com/Michaelliugh/stock-realtime-brief/issues"
+Documentation = "https://github.com/Michaelliugh/stock-realtime-brief#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

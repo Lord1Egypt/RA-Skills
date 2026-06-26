@@ -1,35 +1,34 @@
 ---
-name: "Tail Tool"
-description: "Display the last lines of files. Use for monitoring log files, checking recent entries, and following file growth in real-time."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tail-tool"
-sourceUrl: "https://clawhub.ai/skills/tail-tool"
+name: tail-tool
+description: Display the last lines of files. Use for monitoring log files, checking recent entries, and following file growth in real-time.
 ---
 
-# Tail Tool
+# File Tail Viewer
 
-> Display the last lines of files. Use for monitoring log files, checking recent entries, and following file growth in real-time.
+Show the end of files, defaulting to the last 10 lines. Includes follow-mode for watching files that grow in real-time.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tail-tool`
-- **Source URL:** [https://clawhub.ai/skills/tail-tool](https://clawhub.ai/skills/tail-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tail-tool
+tail-tool [options] [file...]
+```
+
+## Options
+
+- `-n N`: Show last N lines
+- `-f`: Follow file growth (watch mode)
+- `-c N`: Show last N bytes
+- `-q`: Suppress filename headers
+
+## Examples
+
+```bash
+# Show last 10 lines
+tail-tool log.txt
+
+# Show last 50 lines
+tail-tool -n 50 access.log
+
+# Follow log in real-time
+tail-tool -f /var/log/syslog
 ```

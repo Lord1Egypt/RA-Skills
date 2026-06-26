@@ -1,0 +1,47 @@
+name: agent-memory
+version: 9.1.0
+description: 生产级 Agent 记忆系统 — 6维坐标编码 + RRF双路检索 + sqlite-vec统一存储 + 写入时因果检测 + 多Agent共享 + 记忆蒸馏 + 时间旅行 + 情感编码 + 元认知 + 内在动机 + 叙事自我 + 数字孪生 + 角色模板
+author: Agent Memory Contributors
+license: MIT
+category: utils
+tags:
+  - memory
+  - agent
+  - rag
+  - vector
+  - sqlite
+  - semantic-search
+  - multi-agent
+  - multimodal
+  - distillation
+  - emotion
+  - metacognition
+  - narrative
+user-invocable: true
+
+## 说明
+
+这个 Skill 为 OpenClaw 提供强大的记忆管理能力，包括：
+
+- 记忆写入和检索（6维坐标编码 + RRF双路融合）
+- 人格画像构建（数字孪生 + 角色模板）
+- 个人风格 Agent（风格分析 + 角色混合）
+- 多模态记忆支持（文本/图片/音频/视频）
+- 时间旅行功能（快照/Diff/Blame）
+- 情感编码与元认知（意识进化）
+- 记忆蒸馏与因果链
+- 多 Agent 共享记忆网络
+
+## 使用方法
+
+只需要说"记住..."或"回忆..."就可以使用记忆系统！
+
+## 示例
+
+- "记住我的生日是1月1日"
+- "回忆我之前说过什么"
+- "帮我构建人格画像"
+- "使用技术专家风格"
+- "我现在的心情怎么样"
+- "我是谁"
+- "帮我探索知识空白"

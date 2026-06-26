@@ -1,0 +1,33 @@
+{
+  "name": "smart-refinement",
+  "version": "1.0.0",
+  "description": "智能提示词优化与向量匹配系统，集成Prompt Refinement和Vector Optimizer",
+  "main": "smart_refinement_system.py",
+  "scripts": {
+    "test": "python test_smart_refinement.py"
+  },
+  "keywords": [
+    "prompt-optimization",
+    "vector-matching",
+    "context-integration",
+    "skill-management",
+    "openclaw",
+    "ai-assistant",
+    "chinese",
+    "multi-language"
+  ],
+  "author": "屠哥",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JanusSilence/smart-refinement"
+  },
+  "homepage": "https://clawhub.com/skills/smart-refinement",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "compatibility": ">=1.0.0",
+    "category": "optimization",
+    "requirements": []
+  }
+}

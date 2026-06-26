@@ -1,35 +1,100 @@
 ---
-name: "Smzdm Deals"
-description: "什么值得买优惠信息聚合，实时监控神价、BUG 价、历史低价。适合薅羊毛、省钱购物、副业套利。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smzdm-deals"
-sourceUrl: "https://clawhub.ai/skills/smzdm-deals"
+name: smzdm-deals
+version: 1.0.0
+description: 什么值得买优惠信息聚合，实时监控神价、BUG 价、历史低价。适合薅羊毛、省钱购物、副业套利。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "💸",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Smzdm Deals
+# 什么值得买优惠聚合
 
-> 什么值得买优惠信息聚合，实时监控神价、BUG 价、历史低价。适合薅羊毛、省钱购物、副业套利。
+实时监控什么值得买，发现神价、BUG 价、历史低价。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smzdm-deals`
-- **Source URL:** [https://clawhub.ai/skills/smzdm-deals](https://clawhub.ai/skills/smzdm-deals)
+## 功能
 
-## Overview
+1. **神价监控**: 实时推送超值优惠
+2. **历史低价**: 对比历史价格
+3. **BUG 价发现**: 价格错误快速提醒
+4. **分类筛选**: 按品类过滤
+5. **优惠汇总**: 自动计算最优方案
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smzdm-deals
+**查看今日神价**:
 ```
+今天有什么值得买的神价？
+```
+
+**监控特定品类**:
+```
+监控数码类目的神价，超过 50% 折扣时通知我
+```
+
+**查历史低价**:
+```
+查一下 iPhone 15 的历史低价
+```
+
+**BUG 价提醒**:
+```
+发现 BUG 价时立刻通知我
+```
+
+## 输出示例
+
+```
+💸 今日神价 TOP5
+
+1️⃣ Apple AirPods Pro 2
+   ├─ 现价：¥1,199（历史低价¥1,299）
+   ├─ 折扣：7 折
+   ├─ 平台：拼多多
+   └─ 链接：[点击查看]
+
+2️⃣ 小米 14 Ultra
+   ├─ 现价：¥4,999（日常价¥5,999）
+   ├─ 折扣：83 折
+   ├─ 平台：京东
+   └─ 链接：[点击查看]
+
+3️⃣ 耐克运动鞋
+   ├─ 现价：¥199（历史低价¥299）
+   ├─ 折扣：5 折⚠️ BUG 价？
+   ├─ 平台：淘宝
+   └─ 链接：[点击查看]
+
+⏰ 提醒：第 3 项可能是 BUG 价，手慢无！
+```
+
+## 变现模式
+
+- 免费：每日 10 次查询，延迟 30 分钟
+- 付费 (¥29/月)：实时推送 + 无限查询
+- 付费 (¥59/月)：+ BUG 价第一时间通知
+
+## 优势
+
+- ✅ 数据完全公开
+- ✅ 无反爬问题
+- ✅ 用户需求大
+- ✅ 低门槛
+
+---
+
+**声明**: 优惠信息来自公开数据，仅供参考。

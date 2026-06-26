@@ -1,0 +1,18 @@
+{
+  "name": "super-dev-skills",
+  "displayName": "Super-Dev Skills",
+  "description": "全栈之神·自进化零缺陷交付套件 — 9 个 Skill 覆盖需求深访→共享语言→架构设计→TDD驱动→UX验证→安全门禁→分层记忆→自进化→套件总览。内化 agent-skills 的假设声明、Chesterton's Fence、测试金字塔、DAMP over DRY、Beyonce Rule、五轴审查、Always/Ask/Never 等工程原则。",
+  "version": "1.0.0",
+  "author": {
+    "name": "WeedFire"
+  },
+  "homepage": "https://github.com/WeedFire",
+  "repository": "https://github.com/WeedFire/super-dev-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills", "tdd", "super-dev", "security", "architecture", "ux",
+    "code-quality", "requirements", "fullstack", "self-evolving",
+    "agent-skills", "ubiquitous-language"
+  ],
+  "skills": "../clawhub-plugin/skills/"
+}

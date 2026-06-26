@@ -1,0 +1,2 @@
+# SkillGuard — Zero external dependencies. Python 3.9+ standard library only.
+# zipfile, ast, re, json, argparse, hashlib, pathlib, tempfile — all built-in.

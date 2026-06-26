@@ -1,35 +1,63 @@
 ---
-name: "Ssl Checker"
+name: "ssl-checker"
+version: "3.0.0"
 description: "Check SSL certificate health, protocols, and cipher suites on domains. Use when auditing web security."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ssl-checker"
-sourceUrl: "https://clawhub.ai/skills/ssl-checker"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Ssl Checker
+# ssl-checker
 
-> Check SSL certificate health, protocols, and cipher suites on domains. Use when auditing web security.
+Check SSL certificate health, protocols, and cipher suites on domains. Use when auditing web security.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ssl-checker`
-- **Source URL:** [https://clawhub.ai/skills/ssl-checker](https://clawhub.ai/skills/ssl-checker)
+## Commands
 
-## Overview
+### `check`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ssl-checker
+scripts/script.sh check <domain>
 ```
+
+### `grade`
+
+```bash
+scripts/script.sh grade <domain>
+```
+
+### `chain`
+
+```bash
+scripts/script.sh chain <domain>
+```
+
+### `protocols`
+
+```bash
+scripts/script.sh protocols <domain>
+```
+
+### `expiry`
+
+```bash
+scripts/script.sh expiry <domain>
+```
+
+### `ciphers`
+
+```bash
+scripts/script.sh ciphers <domain>
+```
+
+### `report`
+
+```bash
+scripts/script.sh report <domain>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/ssl-checker/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

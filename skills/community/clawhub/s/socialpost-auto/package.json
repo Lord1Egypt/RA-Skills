@@ -1,0 +1,12 @@
+{
+  "name": "socialpost-auto",
+  "version": "1.0.0",
+  "description": "社交媒体自动化运营助手",
+  "main": "SKILL.md",
+  "scripts": {
+    "post": "python3 scripts/post.py run"
+  },
+  "author": "Anson @ Jiufang Intelligent (Shenzhen)",
+  "license": "MIT-0",
+  "keywords": ["social-media", "automation", "twitter", "xiaohongshu", "weibo"]
+}

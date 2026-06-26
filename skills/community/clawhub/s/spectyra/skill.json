@@ -1,0 +1,92 @@
+{
+  "name": "spectyra",
+  "version": "1.0.25",
+  "displayName": "Spectyra",
+  "description": "Local companion for OpenClaw. Install @spectyra/local-companion, run spectyra-companion start, use spectyra/* models. Dashboard: http://127.0.0.1:4111/dashboard",
+  "author": "Spectyra",
+  "homepage": "https://spectyra.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ImMrLucky/spectyra.git",
+    "directory": "packages/openclaw-skill"
+  },
+  "license": "MIT-0",
+  "keywords": ["spectyra", "openclaw", "local-companion", "optimization"],
+  "categories": ["integration"],
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "version": "1.0.25"
+  },
+  "setup": {
+    "type": "config-merge",
+    "configFragment": "config-fragment.json"
+  },
+  "models": [
+    {
+      "id": "spectyra/smart",
+      "name": "Spectyra Smart",
+      "description": "Default tier"
+    },
+    {
+      "id": "spectyra/fast",
+      "name": "Spectyra Fast",
+      "description": "Fast tier"
+    },
+    {
+      "id": "spectyra/quality",
+      "name": "Spectyra Quality",
+      "description": "Quality tier"
+    },
+    {
+      "id": "spectyra/openai/smart",
+      "name": "Spectyra · OpenAI · smart",
+      "description": "OpenAI · smart"
+    },
+    {
+      "id": "spectyra/openai/fast",
+      "name": "Spectyra · OpenAI · fast",
+      "description": "OpenAI · fast"
+    },
+    {
+      "id": "spectyra/openai/quality",
+      "name": "Spectyra · OpenAI · quality",
+      "description": "OpenAI · quality"
+    },
+    {
+      "id": "spectyra/anthropic/smart",
+      "name": "Spectyra · Anthropic · smart",
+      "description": "Anthropic · smart"
+    },
+    {
+      "id": "spectyra/anthropic/fast",
+      "name": "Spectyra · Anthropic · fast",
+      "description": "Anthropic · fast"
+    },
+    {
+      "id": "spectyra/anthropic/quality",
+      "name": "Spectyra · Anthropic · quality",
+      "description": "Anthropic · quality"
+    },
+    {
+      "id": "spectyra/groq/smart",
+      "name": "Spectyra · Groq · smart",
+      "description": "Groq · smart"
+    },
+    {
+      "id": "spectyra/groq/fast",
+      "name": "Spectyra · Groq · fast",
+      "description": "Groq · fast"
+    },
+    {
+      "id": "spectyra/groq/quality",
+      "name": "Spectyra · Groq · quality",
+      "description": "Groq · quality"
+    }
+  ],
+  "provider": {
+    "name": "spectyra",
+    "baseUrl": "http://127.0.0.1:4111/v1",
+    "apiKey": "SPECTYRA_LOCAL",
+    "api": "openai-completions"
+  }
+}

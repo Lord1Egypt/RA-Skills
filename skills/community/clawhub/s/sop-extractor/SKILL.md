@@ -1,35 +1,75 @@
 ---
-name: "Sop Extractor"
-description: "知识萃取工序Skill生成器：通过结构化对话，将日常工作工序提炼为可复用的AI Skill。 支持文档解析和口述追问两种路径。依赖随用随取，萃取阶段零安装。 触发词：「创建工序Skill」「提炼SOP」「帮我把工作变成Skill」「sop-extractor」。"
-category: "productivity"
-source: "ClawHub"
-tags: [extraction, productivity, skill-creator, sop]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sop-extractor"
-sourceUrl: "https://clawhub.ai/skills/sop-extractor"
+name: sop-extractor
+version: 1.2.0
+description: |
+  知识萃取工序Skill生成器：通过结构化对话，将日常工作工序提炼为可复用的AI Skill。
+  支持文档解析和口述追问两种路径。依赖随用随取，萃取阶段零安装。
+  触发词：「创建工序Skill」「提炼SOP」「帮我把工作变成Skill」「sop-extractor」。
 ---
 
-# Sop Extractor
+# 知识萃取 · 工序 Skill 生成器
 
-> 知识萃取工序Skill生成器：通过结构化对话，将日常工作工序提炼为可复用的AI Skill。 支持文档解析和口述追问两种路径。依赖随用随取，萃取阶段零安装。 触发词：「创建工序Skill」「提炼SOP」「帮我把工作变成Skill」「sop-extractor」。
+> 帮一个人把他脑子里的工作方法"翻译"成 AI 能执行的说明书。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sop-extractor`
-- **Source URL:** [https://clawhub.ai/skills/sop-extractor](https://clawhub.ai/skills/sop-extractor)
+## 设计原则
 
-## Overview
+**语言**：对用户说"工作流程文档"，不说"SKILL.md"；说"8 步里 5 步 AI 可以帮你做"，不说"自动化率 62%"。
+**依赖**：萃取阶段零安装，试运行/使用时按需安装。缺失时降级不中断。
+**受众**：目标用户是业务人员（财务/HR/运营），不是开发者。
 
+## 执行流程（8 步，约 15-20 分钟）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sop-extractor
-```
+### 第一步：开场破冰（30 秒）
+先介绍再提问，建立安全感。话术见 `references/dialogue-examples.md`。
+> 不问任何问题。过渡到第二步时说："先跟我说说你是做什么的吧。"
+
+### 第二步：了解你的工作（2 分钟）
+一次给 3 个问题（岗位、重复工作、最标准化的工序）。用户选定后进入第三步。
+
+### 第三步：调研涉及的系统（3 分钟）
+问用户做这个工序用到哪些系统、数据从哪来、做完交给谁。AI 评估自动化可行性，不向用户追问技术细节。
+
+### 第四步：萃取工序内容
+AI 分析用户输入后选择合适路径（文档/对话/混合），确定后向用户说明。
+
+**文档路径**：接收文件 → 提取结构 → 标记模糊点 → 生成流程图 → 识别缺口。输出用自然语言，不用 Markdown 源码。解析方法见 `references/sop-parsing-guide.md`。
+
+**对话路径**：6 轮追问，每轮标注进度（"第 X/6 轮"）。详见 `references/questioning-guide.md`。
+1. 场景回放（必须从此开始）
+2. 步骤拆解
+3. 决策点挖掘
+4. 边界条件
+5. 质量标准
+6. 补漏确认（AI 主动构造极端情况）
+
+### 第五步：整理给你看（2 分钟）
+用自然语言 + emoji 展示整理结果，不用 Markdown 源码。提供"快速通过"选项。示例见 `references/dialogue-examples.md`。
+
+### 第六步：评估哪些环节能自动化（1 分钟）
+用通俗语言分类：✅ AI 直接做 / ⚠️ AI 准备你执行 / ❌ 你手动做。整体太少时坦诚说明，不说"建议先解决工具问题"。
+
+### 第七步：帮你保存这个流程（1 分钟）
+自动生成工作流程文档，展示给用户确认后写入 skills 目录。告知触发词和使用方式。
+
+### 第八步：试运行 + 最终交付
+模拟典型场景走一遍。依赖处理：可用→调用；可装→按需安装；不可装→降级为人工并给指引。试运行后交付总结。
+
+## 生成的文档模板
+详见 `references/skill-template.md`。包含：frontmatter、使用说明、工具依赖（按需安装）、工作流程、决策节点、边界条件、人工中转指引、质量标准、常见问题、隐性知识、异常处理。
+
+## 关键原则
+- **提问**：从具体案例开始，一次一件事，用用户语言复述，对"差不多"零容忍
+- **生成**：用用户原话，隐性知识单独成章，决策节点必须有明确条件
+- **自动化**：断点显式标注，人工中转傻瓜式，凭证按需配置，降级不中断
+- **安全**：不索要密码/密钥，审批/金额类标注"需人工确认"
+
+## 参考文档
+| 文档 | 用途 |
+|------|------|
+| `references/dialogue-examples.md` | 各步骤的话术示例 |
+| `references/questioning-guide.md` | 6 轮追问的详细话术 |
+| `references/sop-parsing-guide.md` | SOP 文档解析方法 |
+| `references/tool-discovery-guide.md` | 系统自动化可行性调研 |
+| `references/skill-template.md` | 生成的文档完整模板 |
+| `references/credential-setup-guide.md` | 凭证配置子流程 |
+| `references/examples/expense-approval-skill.md` | 费用报销示例 |

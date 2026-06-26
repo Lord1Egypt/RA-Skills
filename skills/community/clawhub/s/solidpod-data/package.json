@@ -1,0 +1,33 @@
+{
+  "name": "solidpod-data",
+  "version": "1.2.6",
+  "description": "OpenClaw skill for interacting with SOLID Pods",
+  "type": "module",
+  "main": "scripts/solidpod-data.js",
+  "scripts": {
+    "start": "node scripts/solidpod-data.js"
+  },
+  "dependencies": {
+    "@inrupt/solid-client": "^2.1.0",
+    "@inrupt/solid-client-authn-node": "^2.5.0",
+    "@inrupt/vocab-common-rdf": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "solidpod-data",
+    "solid",
+    "pod",
+    "linked-data",
+    "rdf",
+    "openclaw",
+    "skill",
+    "decentralised"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pettifordo/SOLIDPOD-DATA.git"
+  }
+}

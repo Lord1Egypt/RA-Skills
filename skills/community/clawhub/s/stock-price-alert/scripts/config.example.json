@@ -1,0 +1,28 @@
+{
+  "watchlist": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "alert_pct": 3.0,
+      "alert_price_above": null,
+      "alert_price_below": 170.0
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc.",
+      "alert_pct": 5.0,
+      "alert_price_above": 300.0,
+      "alert_price_below": null
+    }
+  ],
+  "poll_interval_sec": 300,
+  "notify": {
+    "email": true,
+    "sonos": true,
+    "sonos_speaker": "Kitchen"
+  },
+  "api": {
+    "provider": "alphavantage",
+    "apikey_env": "ALPHAVANTAGE_API_KEY"
+  }
+}

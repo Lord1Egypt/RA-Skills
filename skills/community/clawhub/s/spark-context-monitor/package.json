@@ -1,0 +1,25 @@
+{
+  "name": "spark-context-monitor",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill - 上下文使用率查询",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "context",
+    "token"
+  ],
+  "author": "Spark",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.19.39",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.9",
+    "typescript": "^5.9.3"
+  }
+}

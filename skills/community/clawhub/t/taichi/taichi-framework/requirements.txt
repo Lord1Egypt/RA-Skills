@@ -1,0 +1,4 @@
+pyyaml==6.0
+redis==5.0.1
+click==8.1.7
+python-dotenv==1.0.0

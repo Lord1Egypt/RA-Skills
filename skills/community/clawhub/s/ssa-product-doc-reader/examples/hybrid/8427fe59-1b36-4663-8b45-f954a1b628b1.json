@@ -1,0 +1,124 @@
+{
+  "product_name": "HU1226-KVM-CABLE",
+  "model_no": "LENGTH",
+  "drawing_no": "599-034",
+  "packaging_spec": "BJ0599-0071,BJ0599-0071",
+  "material_code": "599-034",
+  "length_mm": "1830",
+  "mold_info": "INNER MOLDING: AV19P142, OUTER MOLDING: USB.A-01, MF427, AV19P141, SR063",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "①",
+      "part_name": "CABLE",
+      "spec": "(1P*30AWG+D+AL)*2+(1P*28AWG+D+AL)*2+1P*28AWG+D+AL+4C*28AWG+B(16*8/0.10)+AL+D(7/0.16)+OD6.0MM, BLACK TPE, 70P, UL2725",
+      "quantity": "1"
+    },
+    {
+      "no": "②",
+      "part_name": "PLUG",
+      "spec": "HDMI A/M, G/F, Nickel plated",
+      "quantity": "2"
+    },
+    {
+      "no": "③",
+      "part_name": "Copper foil",
+      "spec": "HDMI 30AWG 2.0,cable plastic clip",
+      "quantity": "2"
+    },
+    {
+      "no": "④",
+      "part_name": "SHELL",
+      "spec": "HDMI A/M upper and lower tinplate",
+      "quantity": "2"
+    },
+    {
+      "no": "⑤",
+      "part_name": "PLUG",
+      "spec": "USB3.0 BM",
+      "quantity": "1"
+    },
+    {
+      "no": "⑥",
+      "part_name": "PLUG",
+      "spec": "USB3.0 AM",
+      "quantity": "1"
+    },
+    {
+      "no": "⑦",
+      "part_name": "MODEL",
+      "spec": "TPE-BK",
+      "quantity": "60"
+    },
+    {
+      "no": "⑧",
+      "part_name": "MODEL",
+      "spec": "LDPE",
+      "quantity": "15"
+    },
+    {
+      "no": "⑨",
+      "part_name": "SHIELD",
+      "spec": "FOIL-CU-5MM",
+      "quantity": "45*4"
+    }
+  ],
+  "tolerances": [],
+  "test_requirements": {
+    "table": [],
+    "other_tests": [
+      "OPEN/SHORT/INTERMITTENCE 100% TEST.",
+      "DIELECTRIC STRENGTH:200 VOLTS AC 2mA MAX/0.02S.",
+      "INSULATION RESISTANCE:300V DC/0.02SEC, 5MΩ MIN.",
+      "CONDUCTIVE RESISTANCE:3Ω MAX.",
+      "HDMI PASS 4K@60HZ TEST",
+      "USB 3.0 5V/1A 5Gb"
+    ]
+  },
+  "pin_assignment": {
+    "connectors": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "description": "P1-P2, P3-P4 之间有线序对应关系，P1/P2为HDMI，P3/P4为USB"
+  },
+  "dimensions": [
+    "330±20",
+    "1830+40/-0",
+    "12±0.5",
+    "9.9±0.3",
+    "11.1±0.3",
+    "50.1±0.5"
+  ],
+  "notes": [
+    "THE DIMENSIONS MARKED ▼ SHALL BE CHECKED BY QC.",
+    "ROHS COMPLIANT"
+  ],
+  "revision_history": [
+    {
+      "revision": "A",
+      "date": "2022.08.31",
+      "description": ""
+    }
+  ],
+  "company": "珠海福睿电子 FARREACH",
+  "drawing_date": "2022.08.31",
+  "drawn_by": "",
+  "checked_by": "CUSTOMER:C331",
+  "approved_by": "CUSTOMER P/N:",
+  "products": [
+    {
+      "customer_item": "B1230-KVM CABLE",
+      "length_mm": "1830",
+      "material_code": "599-034",
+      "packaging_spec": "BJ0599-001"
+    }
+  ],
+  "extraction_method": "hybrid",
+  "source_file": "8427fe59-1b36-4663-8b45-f954a1b628b1.pdf",
+  "pages": 2,
+  "warnings": [],
+  "confidence": 100.0
+}

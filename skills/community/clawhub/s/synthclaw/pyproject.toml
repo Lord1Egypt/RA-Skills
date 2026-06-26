@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synthclaw"
+version = "0.2.1"
+description = "OpenClaw agent skill to headlessly interact with Blender procedural nodes."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    "granatpy",
+    "lpips"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

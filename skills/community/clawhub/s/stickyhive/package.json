@@ -1,0 +1,55 @@
+{
+  "name": "stickyhive",
+  "version": "0.1.1",
+  "description": "StickyHive CLI — community management, post scheduling, workflows, and DM sequences for AI agents",
+  "main": "dist/index.js",
+  "bin": {
+    "stickyhive": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start": "node ./dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SKILL.md"
+  ],
+  "keywords": [
+    "stickyhive",
+    "cli",
+    "community-management",
+    "skool",
+    "scheduling",
+    "workflows",
+    "dm-sequences",
+    "automation",
+    "ai-agent",
+    "openclaw",
+    "openclaw-skills",
+    "agent-skills",
+    "claude-code"
+  ],
+  "author": "StickyHive",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stickyhive/stickyhive-agent.git"
+  },
+  "homepage": "https://stickyhive.com",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/yargs": "^17.0.32",
+    "tsup": "^8.5.1",
+    "typescript": "^5.3.3"
+  }
+}

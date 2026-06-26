@@ -1,0 +1,14 @@
+# Requirements for Super OCR
+
+# PaddleOCR (primary engine for Chinese, 98%+ accuracy)
+paddleocr
+paddlepaddle
+
+# Tesseract (secondary engine for English, fast)
+pytesseract
+pillow
+opencv-python
+numpy
+
+# Optional: macOS Vision OCR
+# pip install pyobjc  # macOS only

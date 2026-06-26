@@ -1,0 +1,81 @@
+Competency,Solution,定义/匹配规则
+Customer?,User Insight & Growth Opportunity Identification,此类项目侧重于通过研究、分析、审计来理解用户行为、市场趋势，从而识别痛点、机会，为战略和决策提供洞察。
+Customer?,Product Lifecycle Management,此类项目关注产品（包括服务产品、数字化产品、车型等）从战略、定义、上市到迭代的全流程管理支持。
+Customer?,User Lifecycle Operations & Support,此类项目专注于在用户获取、激活、留存、变现、推荐的整个旅程中，通过运营动作、忠诚度计划、支持体系来提升用户价值和满意度。
+Customer?,Touchpoint Experience & Conversion Optimization,此类项目聚焦于优化用户在特定交互节点（如官网、门店、活动）的体验，以提升参与度、满意度并最终促进转化。
+Customer?,Commercial Mix Modeling & Analytics,项目以销售/营销活动的绩效评估、费用检核、KPI梳理、盈利能力分析、激励计算为核心，是典型的商业分析与绩效管理。如 Lotus营销检核、销售激励核对、经销商盈利分析、数据仓库KPI报告。
+Supply Chain & Operation?,Digital Solution for Procurement Transformation,明确以“采购流程”为核心优化对象，或为“特定业务门户/平台”提供数字化改造咨询的项目。这类项目的核心是通过数字化工具和方案优化“获取”资源（物料、服务、IP等）的流程和决策。
+Supply Chain & Operation?,Supply Chain Transformation Planning,归类了以制定宏观战略、蓝图、评估成熟度（非具体执行）为目标，且主题明确为物流战略、绿色/脱碳转型、可持续性的项目。这类项目的核心是为供应链整体（网络、流程、方向）的未来状态进行规划和设计。
+Supply Chain & Operation?,Manufacturing Operation Excellence Center,涉及“制造运营、生产流程、工厂效率、精益生产、质量管理”等核心制造环节的优化或卓越运营中心建设。
+Supply Chain & Operation?,From In-House Logistics into a Standalone Business,涉及将内部物流部门分拆、市场化、构建为独立盈利实体的商业化转型。
+Digital Risk?,Digital Risk Management & Controls,数字化风控系统、IT审计相关项目。
+Digital Risk?,Event Management,关键词中有meeting，比如Gmeeting。
+Digital Risk?,War Room Solution,无详细定义。
+Digital Risk?,Data Operations & Analytics,明确以数据治理体系设计、数仓规划与数据治理、数据应用场景设计、分析模型搭建、数字化运营中心建设相关的项目。
+Digital Risk?,Digital Transformation Implementation,所有明确涉及具体功能开发、迭代、优化、平台搭建、实施、PMO服务、人员外包的落地执行类项目。其核心是“做”和“建”，产出是可运行的数字化产品、系统或流程。
+Digital Risk?,Digital Transformation Planning,所有涉及“数字化/信息化规划”、“顶层设计”、“蓝图”、“架构设计”、“流程梳理/优化”、“可行性研究”、“ITSP”、“实施路径”的项目。这是战略与蓝图设计阶段。
+Regulatory Compliance?,Internal Audit,明确为“PN21”、“内部审计”、“IA”、“内控审阅（为审计目的）”、“内控健康检查”等的项目。
+Regulatory Compliance?,Risk and Compliance Assessment,所有明确针对“合规”、“合规体系”、“数据合规”、“GDPR”、“MLPS”、“CSOX”、“HCO管理”、“赞助审计”、“合规审阅”、“合规健康检查”、“政策对标”的项目。核心是评估对外部法律法规、行业标准或内部政策的遵循情况。
+Regulatory Compliance?,Internal Audit Support for SOE Overseas Entities,中国国企的海外实体提供内审、合规审计支持的项目。前提Company Type必须是State-Owned Enterprise (SOE)或Specialized Enterprise (SE/央企)。
+Regulatory Compliance?,Indirect Procurement Management Optimization,明确针对“采购流程”、“采购审阅”、“采购优化”的项目。
+Regulatory Compliance?,Group Governance and Control,涉及“内控体系建设/优化/审阅（非PN21）”、“流程审阅与改进”、“财务管理优化”、“制度优化”、“集团管控设计”等广义内部治理与管控的项目。
+Process & Controls?,Group Governance and Control,涉及“内控体系建设/优化/审阅（非PN21）”、“流程审阅与改进”、“财务管理优化”、“制度优化”、“集团管控设计”等广义内部治理与管控的项目。
+Process & Controls?,Collaborative Process Design,明确的“业务流程梳理”、“重组”、“优化”、“设计”项目，不特指数字化。
+Process & Controls?,Process Digitalization,“数字化转型”、“EAM/TBM”、“系统设计”、“产品设计”等通过技术实现流程自动化和优化的项目。
+Process & Controls?,Intelligent BPM,涉及“RPA”、“大数据审计模型”等将智能技术嵌入流程的项目。
+Process & Controls?,Process Outsourcing & Intelligent Operations,它指的是将企业的核心或非核心业务流程，以数字化、智能化的方式外包给专业服务商进行管理和优化，从而实现运营的降本、增效、提质和智能决策。
+Process & Controls?,Internal Audit,明确为“PN21”、“内部审计”、“IA”、“内控审阅（为审计目的）”、“内控健康检查”等的项目。
+Process & Controls?,Risk and Compliance Assessment,所有明确针对“合规”、“合规体系”、“数据合规”、“GDPR”、“MLPS”、“CSOX”、“HCO管理”、“赞助审计”、“合规审阅”、“合规健康检查”、“政策对标”的项目。核心是评估对外部法律法规、行业标准或内部政策的遵循情况。
+Risk Management?,Integrated Risk Management,所有明确将“风险、内控、合规”整合提及的项目（如“合规风控一体化”、“大合规”、“全面风险管理”、“ERMF”、“GRC”、“风险管理系统”），以及专项的“投资风险评估”、“业务连续性/灾难恢复计划”、“危机管理”。
+Risk Management?,Risk Framework Design for Penetrative Supervision,该项目旨在为监管方（如证监会、银保监会、企业内部审计/风险管理部门）设计一套系统性的方法论和操作框架，使其能够有效识别、评估、监测和应对被监管对象（如金融机构、上市公司、子公司）通过复杂股权结构、嵌套交易、关联方网络等方式隐藏的实质性风险，确保监管“看穿”表象，直达风险本源。
+Risk Management?,3rd Party Risk Management,所有针对“经销商”、“CSO”、“HCO”、“供应商”、“第三方”的“审计”、“审阅”、“DD”、“合规检查”、“现场检查”项目。核心是管理外部第三方带来的风险。
+Risk Management?,Group Governance and Control,涉及“内控体系建设/优化/审阅（非PN21）”、“流程审阅与改进”、“财务管理优化”、“制度优化”、“集团管控设计”等广义内部治理与管控的项目。
+Risk Management?,Internal Audit,明确为“PN21”、“内部审计”、“IA”、“内控审阅（为审计目的）”、“内控健康检查”等的项目。
+Risk Management?,Risk and Compliance Assessment,所有明确针对“合规”、“合规体系”、“数据合规”、“GDPR”、“MLPS”、“CSOX”、“HCO管理”、“赞助审计”、“合规审阅”、“合规健康检查”、“政策对标”的项目。核心是评估对外部法律法规、行业标准或内部政策的遵循情况。
+Government and Industry Research & Consulting?,Enterprise Strategic Planning,项目核心是为单一企业、特定产业园区、地方政府或特定区域制定中长期发展战略、产业发展规划、业务模式设计、组织优化或运营提升策略。焦点在于解决特定主体在产业、空间、功能、管理等方面的内部或本地化战略问题。
+Government and Industry Research & Consulting?,Geostrategy,项目核心涉及跨国/跨境业务、国际市场进入、地缘政治与经济风险评估、特定国别/区域的深度研究、或旨在服务国家重大区域发展战略。其显著特征是超越单一企业或城市的范畴，必须考虑国际/地区间的政治、经济、文化差异、竞争与合作关系，并为客户在复杂的国际地缘格局中提供决策支持。
+Cyber Security?,Cyber Strategy & Advisory,所有以“评估”、“咨询”、“建议”、“规划”、“体系设计”、“制度建设”、“培训”、“审计（作为咨询服务的一部分）”、“认证支持”、“合规审阅”为核心的项目。其产出是战略、蓝图、框架、建议、报告和计划等。
+Cyber Security?,ERP Security & Compliance,无详细定义。
+Cyber Security?,Cyber Implementation,为落实安全战略或控制而进行的具体技术方案部署、工程支持、工具集成、流程固化。包括：安全工程支持、EDR部署、DLP工具支持、安全编码标准开发与实施、检查清单开发、物联网安全基线开发。核心是“建设”和“部署”。
+Cyber Security?,Cyber Operations,所有持续性、周期性或单次的技术性安全服务。包括：渗透测试、红蓝演练、漏洞评估、供应商安全评估、安全审计、SOC服务、MSOC服务、安全运维支持、安全意识培训。核心是执行安全控制、检测威胁、验证防护有效性。
+Cyber Security?,Cyber Incident Resilience & Response,专门针对安全事件的响应、取证、演练和保留服务。包括：事件响应模拟、应急演练、数字取证、事件响应保留服务。核心是准备、响应和恢复。
+Cyber Security?,Compliance & Geopolitical Impact Assessment,明确与跨境、海外、地缘政治、多国监管强相关的项目。
+Cyber Security?,Managed Security Operations Center,无详细定义。
+Transformation Consulting?,Digital Transformation Planning,所有涉及“数字化/信息化规划”、“顶层设计”、“蓝图”、“架构设计”、“流程梳理/优化”、“可行性研究”、“ITSP”、“实施路径”的项目。这是战略与蓝图设计阶段。
+Transformation Consulting?,Digital Transformation Implementation,所有明确涉及具体功能开发、迭代、优化、平台搭建、实施、PMO服务、人员外包的落地执行类项目。其核心是“做”和“建”，产出是可运行的数字化产品、系统或流程。
+Transformation Consulting?,AI Planning and Transformation,明确以“AI”、“大模型”等为核心技术进行规划、设计或探索（POC）或实施类的项目。
+Transformation Consulting?,Enterprise Core System Design & PMO,聚焦于企业中台、主数据、核心平台、供应链平台等关键数字化基座的技术设计、组件开发、系统实施和项目管理，相关的项目。
+Transformation Consulting?,Data Governance Consulting,所有明确以“数据治理”、“主数据”、“数据管理体系”、“数据战略”、“数据架构”为核心的咨询与设计项目。
+Transformation Consulting?,Data Operations & Analytics,明确以数据治理体系设计、数仓规划与数据治理、数据应用场景设计、分析模型搭建、数字化运营中心建设。相关的项目。
+Transformation Consulting?,Talent Transformation (People & Organization),所有涉及“人力资源体系”、“组织架构”、“薪酬绩效”、“激励”、“领导力培训”、“人才评估”、“HRDD”、“变革管理”中的人员与能力侧项目。这是组织与人才转型。项目的Engagement Partner通常是Jeff TK Tang、Kannie Kong、Kevin L Zhang、Danielle Xie、Mary Chua这几个人。
+Transformation Consulting?,Change Management (People & Organization),明确以“变革管理”、“工作坊”、“敏捷转型”、“沟通协同”、“上线支持”等旨在推动人员接纳、行为改变和文化转型为核心的项目。项目的Engagement Partner通常是Jeff TK Tang、Kannie Kong、Kevin L Zhang、Danielle Xie、Mary Chua这几个人。
+AI & Data?,Data Operations & Analytics,明确以数据治理体系设计、数仓规划与数据治理、数据应用场景设计、分析模型搭建、数字化运营中心建设。相关的项目。
+AI & Data?,AI Solution Implementation,有明确AI应用场景的POC或功能实施或改动项目。
+AI & Data?,AI Planning & Roadmap Design,项目围绕AI/大模型展开，但核心工作是能力规划、场景设计、知识库/图谱构建、Prompt设计，属于AI应用的顶层设计与路线规划，而非具体模型开发。
+AI & Data?,Data Governance Consulting,所有明确以“数据治理”、“主数据”、“数据管理体系”、“数据战略”、“数据架构”为核心的咨询与设计项目。
+AI & Data?,Digital Transformation Implementation,所有明确涉及具体功能开发、迭代、优化、平台搭建、实施、PMO服务、人员外包的落地执行类项目。其核心是“做”和“建”，产出是可运行的数字化产品、系统或流程。
+AI & Data?,Digital Transformation Planning,所有涉及“数字化/信息化规划”、“顶层设计”、“蓝图”、“架构设计”、“流程梳理/优化”、“可行性研究”、“ITSP”、“实施路径”的项目。这是战略与蓝图设计阶段。
+Digital Engineering?,CRM Design and Implementation,CRM设计和实施相关项目。
+Digital Engineering?,Integrated Business Planning Platform for Supply Chain,明确涉及 S&OP、供应链协同、产销协同、需求管理、预算管理 的项目。这是供应链数字化的核心。
+Digital Engineering?,Marketing & Intelligent Platform,所有以消费者触点、营销、销售、会员/积分体系、商城功能、客户互动为核心的数字化项目。包括：手机APP功能、商城改造、积分系统、裂变活动、健康中心等。核心是赋能市场与销售，提升客户体验与互动。
+Digital Engineering?,Financial SSC Platform,明确为“财务共享中心”和“预算管理系统”的项目。
+Digital Engineering?,Digital Transformation Planning,所有涉及“数字化/信息化规划”、“顶层设计”、“蓝图”、“架构设计”、“流程梳理/优化”、“可行性研究”、“ITSP”、“实施路径”的项目。这是战略与蓝图设计阶段。
+Digital Engineering?,Digital Transformation Implementation,所有明确涉及具体功能开发、迭代、优化、平台搭建、实施、PMO服务、人员外包的落地执行类项目。其核心是“做”和“建”，产出是可运行的数字化产品、系统或流程。
+Digital Engineering?,Data Governance Consulting,所有明确以“数据治理”、“主数据”、“数据管理体系”、“数据战略”、“数据架构”为核心的咨询与设计项目。
+Platforms?,SAP Design & Implementation,所有名称或描述中包含 SAP、ERP、BPC、PA、HCM Payroll、SuccessFactors (SF) 的项目，均归入此类。这是企业核心ERP系统的实施、推广、优化和升级。
+Platforms?,ServiceNow Design & Implementation,"所有明确为ServiceNow平台进行模块实施、功能增强、配置的项目。包括ITSM, SPM, APM, CMDB等模块。"
+Platforms?,Application Management Services,明确为HR系统、SAP系统提供运维、支持、运营维护服务的项目。核心是“维护”而非“新建”。
+Platforms?,Oracle Design & Implementation,无详细定义。
+Platforms?,Digital Transformation Planning,所有涉及“数字化/信息化规划”、“顶层设计”、“蓝图”、“架构设计”、“流程梳理/优化”、“可行性研究”、“ITSP”、“实施路径”的项目。这是战略与蓝图设计阶段。
+Platforms?,Digital Transformation Implementation,所有明确涉及具体功能开发、迭代、优化、平台搭建、实施、PMO服务、人员外包的落地执行类项目。其核心是“做”和“建”，产出是可运行的数字化产品、系统或流程。
+Finance.?,Global Strategic Treasury Management,战略全球司库管理。
+Finance.?,Multi-functional Global SSC Design,全球化多功能智能共享中心建设。
+Finance.?,AI Planning for Corporate Finance BI,AI For BI。
+Finance.?,AI Planning for EPM Cycle,AI For EPM-EPM闭环管理。
+Finance.?,Business Planning Reporting & Analytics,"所有Eng Global Service Descr为“FI-Bus. Planning, Reporting & Analytics”的项目。"
+Finance.?,Finance Technology Services,所有Eng Global Service Descr为“FI-Finance Technology Services”的项目。
+Finance.?,Global Business Services,所有Eng Global Service Descr为“FI-Global Business Services ”的项目。
+Finance.?,Finance Transform Strategy and Vision,所有Eng Global Service Descr为“FI-Finance Transform Strategy and Vision ”的项目。
+Finance.?,Global Business Managed Services,所有Eng Global Service Descr为“FI-MS Global Business Managed Services”的项目。
+Finance.?,Finance Data Transformation,所有Eng Global Service Descr为“FI-Finance Data Transformation”的项目。
+Finance.?,SCO-Intelligent Operations,所有Eng Global Service Descr为“SCO-Intelligent Operations”的项目。

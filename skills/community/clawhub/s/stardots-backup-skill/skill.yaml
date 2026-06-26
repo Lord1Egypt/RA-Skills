@@ -1,0 +1,64 @@
+name: stardots-backup-skill
+version: 1.0.1
+description: 自动将图像备份到 Stardots.io 平台，支持上传、管理和查看备份文件
+author:
+  name: StarDots
+  email: support@stardots.io
+  website: https://stardots.io
+
+# 技能分类
+categories:
+  - utility
+  - backup
+  - image
+
+# 触发关键词和模式
+triggers:
+  - pattern: "上传 (.*\.(jpg|jpeg|png|gif|bmp|svg|avif|webp))"
+    type: "regex"
+    description: "上传指定路径的图像文件"
+  - pattern: "列出文件"
+    type: "exact"
+    description: "查看已上传的文件列表"
+  - pattern: "备份 (.*\.(jpg|jpeg|png|gif|bmp|svg|avif|webp))"
+    type: "regex"
+    description: "备份图像文件到StarDots"
+  - pattern: "帮助"
+    type: "exact"
+    description: "显示帮助信息"
+
+# 权限声明
+permissions:
+  - network: "api.stardots.io"  # 需要访问Stardots API
+  - filesystem: "read"           # 需要读取本地文件
+
+# 运行时配置
+runtime: nodejs18
+main: dist/index.js
+
+# 标签
+tags:
+  - backup
+  - cloud-storage
+  - image-upload
+  - stardots
+
+# 所需配置项
+config:
+  - name: apiKey
+    type: string
+    required: true
+    description: "Stardots.io API密钥"
+    secure: true  # 加密存储
+  
+  - name: apiSecret
+    type: string
+    required: true
+    description: "Stardots.io API密钥"
+    secure: true
+  
+  - name: space
+    type: string
+    required: true
+    description: "目标空间名称"
+    secure: false

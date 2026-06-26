@@ -1,0 +1,5 @@
+# Core dependencies — synced with pyproject.toml [project.dependencies]
+# Only list dependencies that appear in [project.dependencies] here.
+# Optional groups (web, semantic, etc.) are declared in pyproject.toml [project.optional-dependencies].
+typing_extensions>=3.7.4
+sqlite-vec>=0.1.9

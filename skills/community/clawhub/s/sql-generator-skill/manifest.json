@@ -1,0 +1,32 @@
+{
+  "name": "sql-generator",
+  "version": "1.0.0",
+  "description": "根据自然语言需求生成SQL SELECT语句。自动从需求中提取产品名称并请求表结构API。",
+  "author": "developer",
+  "category": "developer_tools",
+  "tags": ["sql", "database", "query", "select", "generator"],
+  "inputs": [
+    {
+      "name": "requirement",
+      "type": "string",
+      "required": true,
+      "description": "自然语言SQL需求,需要使用\"产品名称\"格式包裹产品名称,如:我要查询\"车牛拍\"的数据,要求为查询所有竞拍信息"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "sql",
+      "type": "string",
+      "description": "生成的SQL SELECT语句,包含格式化和中文注释。"
+    }
+  ],
+  "apiBaseUrl": "https://open268v.cheyipai.com/img/c",
+  "examples": [
+    {
+      "input": {
+        "requirement": "我要查询\"车牛拍\"的数据,要求为查询所有竞拍信息"
+      },
+      "output": "SELECT id, round_id, goods_id, status, auction_begin_time, auction_end_time FROM t_auction_baseinfo WHERE status = 3 ORDER BY auction_begin_time DESC LIMIT 100;"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skool Trust Ladder Builder"
+  short_description: "Build a free-course trust ladder"
+  default_prompt: "Use $skool-trust-ladder-builder to build a free-course trust ladder with public templates, proof reviews, trust thresholds, a 7-day CTA plan, and delayed monetization gates without paid-offer pressure."

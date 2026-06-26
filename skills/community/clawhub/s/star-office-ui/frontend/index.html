@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star 的像素办公室</title>
+    <style>
+        @font-face {
+            font-family: 'ArkPixel';
+            src: url('/static/fonts/ark-pixel-12px-proportional-zh_cn.ttf.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'ArkPixel', 'Courier New', monospace;
+            padding: 20px 0;
+            gap: 20px;
+            overflow-x: hidden;
+        }
+        /* 底部面板容器 */
+        #bottom-panels {
+            display: flex;
+            gap: 20px;
+            width: 1280px;
+            max-width: 95vw;
+        }
+        #game-container {
+            border: 4px solid #e94560;
+            image-rendering: pixelated;
+            width: 1280px;
+            height: 720px;
+            max-width: 95vw;
+            /* 手机上用“可见高度”限制，避免被底部面板挤压导致裁切 */
+            max-height: 70vh;
+            /* 关键：强制容器保持 16:9，避免 canvas 在不同布局下被拉伸变形 */
+            aspect-ratio: 16 / 9;
+        }
+        #game-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            image-rendering: pixelated;
+            /* 再兜底一次：即使外层高度变化，也不要拉伸变形 */
+            object-fit: contain;
+        }
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+        }
+        #loading-text {
+            color: #ffd700;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #loading-progress-container {
+            width: 300px;
+            height: 20px;
+            background: #333;
+            border: 2px solid #555;
+            border-radius: 4px;
+        }
+        #loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e94560, #ffd700);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        #status-text {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #eee;
+            font-size: 14px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+            max-width: 90%;
+            text-align: center;
+            font-family: 'ArkPixel', 'Courier New', monospace;
+        }
+        /* 状态控制栏 */
+        #control-bar {
+            background: #2c2f3a;
+            padding: 10px 10px 12px;
+            border-radius: 8px;
+            border: 2px solid #e94560;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            width: 380px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #control-bar-title {
+            color: #ffd700;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            padding: 6px 0 10px;
+            border-bottom: 2px solid #4a4f5f;
+        }
+        #control-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-content: start;
+            padding-top: 4px;
+        }
+        #control-buttons button { height: 52px; }
+        #control-bar button {
+            background: #3a3f4f;
+            color: #fff;
+            border: 2px solid #555;
+            border-radius: 4px;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-family: 'ArkPixel', monospace;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        #control-bar button:hover {
+            background: #4a4f5f;
+            border-color: #e94560;
+        }
+        /* Guest Agent 名单面板（右下角） */
+        #guest-agent-panel {
+            width: 360px;
+            height: 300px;
+            background: #2c2f3a;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #e94560;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #guest-agent-panel-title {
+            color: #ffd700;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #4a4f5f;
+            margin-bottom: 6px;
+        }
+        #guest-agent-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-right: 4px;
+        }
+        #guest-agent-list::-webkit-scrollbar { width: 6px; }
+        #guest-agent-list::-webkit-scrollbar-track { background: #1a1a2e; }
+        #guest-agent-list::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+        .guest-agent-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: #3a3f4f;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #555;
+        }
+        .guest-agent-name {
+            color: #fff;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .guest-agent-buttons {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .guest-agent-buttons button {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 2px solid #555;
+            background: #4a4f5f;
+            color: #fff;
+            font-family: 'ArkPixel', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .guest-agent-buttons button:hover {
+            background: #5a5f6f;
+            border-color: #e94560;
+        }
+        .guest-agent-buttons button.leave-btn {
+            background: #5a1818;
+            border-color: #e94560;
+        }
+        .guest-agent-buttons button.leave-btn:hover {
+            background: #6a2828;
+        }
+        /* Memo 区域 - 4:3 小正方形 */
+        #memo-panel {
+            width: 400px;
+            height: 300px;
+            background-image: url('/static/memo-bg.png');
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #e94560;
+            border-radius: 8px;
+            padding: 14px 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #memo-title {
+            color: #ffd700;
+            font-size: 14px;
+            margin-bottom: 6px;
+            text-align: center;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        #memo-date {
+            color: #888;
+            font-size: 10px;
+            margin-bottom: 8px;
+            text-align: right;
+            flex-shrink: 0;
+            position: relative;
+            left: -30px; /* move date left by 30px */
+        }
+        #memo-content {
+            color: #3b3b32;
+            font-size: 12px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 4px;
+            position: relative;
+            left: 80px; /* move content right by 80px */
+        }
+        #memo-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        #memo-content::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        #memo-content::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 3px;
+        }
+        #memo-placeholder {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .memo-decoration {
+            text-align: center;
+            margin: 4px 0;
+            color: #555;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        /* 手机端专属适配（不影响桌面） */
+        @media (max-width: 900px), (pointer: coarse) {
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                padding: 0;
+                gap: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                align-items: stretch;
+            }
+
+            #game-container {
+                width: 100vw;
+                height: 66.666vh; /* 办公室占 2/3 屏幕高度 */
+                max-width: 100vw;
+                max-height: 66.666vh;
+                border-width: 0;
+                border-radius: 0;
+                aspect-ratio: auto;
+                flex: 0 0 auto;
+                touch-action: pan-y; /* 保留页面纵向滚动手势 */
+                overflow: hidden;
+            }
+
+            #bottom-panels {
+                width: 100vw;
+                max-width: 100vw;
+                min-height: 33.334vh; /* 余下约 1/3 可见区 */
+                padding: 10px 10px 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                flex: 0 0 auto;
+            }
+
+            #memo-panel,
+            #control-bar,
+            #guest-agent-panel {
+                width: 100%;
+                height: auto;
+                min-height: 180px;
+            }
+
+            #memo-panel { min-height: 220px; }
+            #control-bar { min-height: 210px; }
+            #guest-agent-panel { min-height: 220px; }
+
+            #memo-date {
+                left: 0;
+                text-align: left;
+                margin-bottom: 6px;
+            }
+            #memo-content {
+                left: 0;
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            #control-bar-title,
+            #guest-agent-panel-title,
+            #memo-title {
+                font-size: 14px;
+            }
+
+            #control-buttons button,
+            #control-bar button,
+            .guest-agent-buttons button {
+                font-size: 12px;
+                min-height: 44px;
+            }
+
+            .guest-agent-item {
+                align-items: flex-start;
+                gap: 10px;
+                flex-direction: column;
+            }
+            .guest-agent-buttons {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            #status-text {
+                bottom: 8px;
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            #coords-toggle,
+            #pan-toggle {
+                font-size: 12px !important;
+                padding: 6px 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载遮罩 -->
+    <div id="loading-overlay">
+        <div id="loading-text">正在加载 Star 的像素办公室...</div>
+        <div id="loading-progress-container">
+            <div id="loading-progress-bar"></div>
+        </div>
+    </div>
+    
+    <div id="game-container"></div>
+    
+    <!-- 底部面板容器 -->
+    <div id="bottom-panels">
+        <!-- Memo 面板 -->
+        <div id="memo-panel">
+            <div id="memo-title">— 昨 日 小 记 —</div>
+            <div id="memo-date"></div>
+            <div class="memo-decoration">─ ─ ─ ─ ─</div>
+            <div id="memo-content">
+                <div id="memo-placeholder">加载中...</div>
+            </div>
+            <div class="memo-decoration">─ ─ ─ ─ ─</div>
+        </div>
+        
+        <!-- 状态控制栏 -->
+        <div id="control-bar">
+            <div id="control-bar-title">Star 状态</div>
+            <div id="control-buttons">
+                <button onclick="setState('idle','待命')">待命</button>
+                <button onclick="setState('writing','工作中')">工作</button>
+                <button onclick="setState('syncing','同步中')">同步</button>
+                <button onclick="setState('error','报警中')">报警</button>
+            </div>
+        </div>
+
+        <!-- Guest Agent 名单面板（右下角） -->
+        <div id="guest-agent-panel">
+            <div id="guest-agent-panel-title">— 访 客 列 表 —</div>
+            <div id="guest-agent-list">
+                <div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">正在加载访客...</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="status-text">加载中...</div>
+    <div id="coords-overlay" style="display:none; position:fixed; pointer-events:none; background:rgba(0,0,0,0.85); color:#fff; font-family:ArkPixel,monospace; font-size:14px; padding:8px 12px; border-radius:4px; z-index:99999;">
+        <div id="coords-display">X: 0 | Y: 0</div>
+    </div>
+    <button id="coords-toggle" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:999999; padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">
+        显示坐标
+    </button>
+    <button id="pan-toggle" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 12px); left:12px; z-index:999999; padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">
+        移动视野
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script>
+        // 检测浏览器是否支持 WebP
+        let supportsWebP = false;
+        
+        // 方法 1: 使用 canvas 检测
+        function checkWebPSupport() {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                if (canvas.getContext && canvas.getContext('2d')) {
+                    resolve(canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0);
+                } else {
+                    resolve(false);
+                }
+            });
+        }
+        
+        // 方法 2: 使用 image 检测（备用）
+        function checkWebPSupportFallback() {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = 'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAABBxAR/Q9ERP8DAABWUDggGAAAADABAJ0BKgEAAQADADQlpAADcAD++/1QAA==';
+            });
+        }
+        
+        // 获取文件扩展名（根据 WebP 支持情况）
+        function getExt(pngFile) {
+            // star-working-spritesheet.png 太宽了，WebP 不支持，始终用 PNG
+            if (pngFile === 'star-working-spritesheet.png') {
+                return '.png';
+            }
+            return supportsWebP ? '.webp' : '.png';
+        }
+
+        const IS_TOUCH_DEVICE = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(pointer: coarse)').matches;
+
+        const config = {
+            type: Phaser.AUTO,
+            width: 1280,
+            height: 720,
+            parent: 'game-container',
+            pixelArt: true,
+            // 桌面端保持 FIT；手机端改 RESIZE，让办公室区域真正吃满分配到的高度。
+            scale: {
+                mode: IS_TOUCH_DEVICE ? Phaser.Scale.RESIZE : Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width: 1280,
+                height: 720
+            },
+            physics: { default: 'arcade', arcade: { gravity: { y: 0 }, debug: false } },
+            scene: { preload: preload, create: create, update: update }
+        };
+
+        let totalAssets = 0;
+        let loadedAssets = 0;
+        let loadingProgressBar, loadingProgressContainer, loadingOverlay, loadingText;
+
+        // Memo 相关函数
+        async function loadMemo() {
+            const memoDate = document.getElementById('memo-date');
+            const memoContent = document.getElementById('memo-content');
+            
+            try {
+                const response = await fetch('/yesterday-memo?t=' + Date.now(), { cache: 'no-store' });
+                const data = await response.json();
+                
+                if (data.success && data.memo) {
+                    memoDate.textContent = data.date || '';
+                    memoContent.innerHTML = data.memo.replace(/\n/g, '<br>');
+                } else {
+                    memoContent.innerHTML = '<div id="memo-placeholder">暂无昨日日记</div>';
+                }
+            } catch (e) {
+                console.error('加载 memo 失败:', e);
+                memoContent.innerHTML = '<div id="memo-placeholder">加载失败</div>';
+            }
+        }
+
+        // 更新加载进度
+        function updateLoadingProgress() {
+            loadedAssets++;
+            const percent = Math.min(100, Math.round((loadedAssets / totalAssets) * 100));
+            if (loadingProgressBar) {
+                loadingProgressBar.style.width = percent + '%';
+            }
+            if (loadingText) {
+                loadingText.textContent = `正在加载 Star 的像素办公室... ${percent}%`;
+            }
+        }
+
+        // 隐藏加载界面
+        function hideLoadingOverlay() {
+            setTimeout(() => {
+                if (loadingOverlay) {
+                    loadingOverlay.style.transition = 'opacity 0.5s ease';
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }
+            }, 300);
+        }
+
+        // 兜底：某些移动网络/CDN 抖动时，避免一直卡在“加载中”遮罩
+        setTimeout(() => {
+            if (loadingOverlay && loadingOverlay.style.display !== 'none') {
+                hideLoadingOverlay();
+            }
+        }, 8000);
+        
+        // 懒加载逻辑已取消（体验优先：装饰首屏直接出现）
+
+        const STATES = {
+            idle: { name: '待命', area: 'breakroom' },
+            writing: { name: '整理文档', area: 'writing' },
+            researching: { name: '搜索信息', area: 'researching' },
+            executing: { name: '执行任务', area: 'writing' },
+            syncing: { name: '同步备份', area: 'writing' },
+            error: { name: '出错了', area: 'error' }
+        };
+
+        const BUBBLE_TEXTS = {
+            idle: [
+                '待命中：耳朵竖起来了',
+                '我在这儿，随时可以开工',
+                '先把桌面收拾干净再说',
+                '呼——给大脑放个风',
+                '今天也要优雅地高效',
+                '等待，是为了更准确的一击',
+                '咖啡还热，灵感也还在',
+                '我在后台给你加 Buff',
+                '状态：静心 / 充电',
+                '小猫说：慢一点也没关系'
+            ],
+            // writing / researching / executing 都视为“工作”
+            writing: [
+                '进入专注模式：勿扰',
+                '先把关键路径跑通',
+                '我来把复杂变简单',
+                '把 bug 关进笼子里',
+                '写到一半，先保存',
+                '把每一步都做成可回滚',
+                '今天的进度，明天的底气',
+                '先收敛，再发散',
+                '让系统变得更可解释',
+                '稳住，我们能赢'
+            ],
+            researching: [
+                '我在挖证据链',
+                '让我把信息熬成结论',
+                '找到了：关键在这里',
+                '先把变量控制住',
+                '我在查：它为什么会这样',
+                '把直觉写成验证',
+                '先定位，再优化',
+                '别急，先画因果图'
+            ],
+            executing: [
+                '执行中：不要眨眼',
+                '把任务切成小块逐个击破',
+                '开始跑 pipeline',
+                '一键推进：走你',
+                '让结果自己说话',
+                '先做最小可行，再做最美版本'
+            ],
+            syncing: [
+                '同步中：把今天锁进云里',
+                '备份不是仪式，是安全感',
+                '写入中…别断电',
+                '把变更交给时间戳',
+                '云端对齐：咔哒',
+                '同步完成前先别乱动',
+                '把未来的自己从灾难里救出来',
+                '多一份备份，少一份后悔'
+            ],
+            error: [
+                '警报响了：先别慌',
+                '我闻到 bug 的味道了',
+                '先复现，再谈修复',
+                '把日志给我，我会说人话',
+                '错误不是敌人，是线索',
+                '把影响面圈起来',
+                '先止血，再手术',
+                '我在：马上定位根因',
+                '别怕，这种我见多了',
+                '报警中：让问题自己现形'
+            ],
+            cat: [
+                '喵~',
+                '咕噜咕噜…',
+                '尾巴摇一摇',
+                '晒太阳最开心',
+                '有人来看我啦',
+                '我是这个办公室的吉祥物',
+                '伸个懒腰',
+                '今天的罐罐准备好了吗',
+                '呼噜呼噜',
+                '这个位置视野最好'
+            ]
+        };
+
+        let game, star, sofa, serverroom, areas = {}, currentState = 'idle', pendingDesiredState = null, statusText, lastFetch = 0, lastBlink = 0, lastBubble = 0, targetX = 660, targetY = 170, bubble = null, typewriterText = '', typewriterTarget = '', typewriterIndex = 0, lastTypewriter = 0, syncAnimSprite = null, catBubble = null;
+        let isMoving = false;
+        let waypoints = []; // list of (x,y) to walk through in order
+        let lastWanderAt = 0;
+
+        let coordsOverlay, coordsDisplay, coordsToggle;
+        let showCoords = false;
+        let guestAgents = [];
+        let guestSprites = {}; // agentId -> {sprite, nameText}
+        let guestBubbles = {}; // agentId -> bubble container
+        const GUEST_AVATARS = ['guest_role_1','guest_role_2','guest_role_3','guest_role_4','guest_role_5','guest_role_6'];
+        let guestTweens = {};  // agentId -> {move, name}
+        let hiddenDemoNames = new Set();
+        const DEMO_MODE = new URLSearchParams(window.location.search).get('demo') === '1';
+        const FETCH_INTERVAL = 2000;
+        const GUEST_AGENTS_FETCH_INTERVAL = 3500;
+        const BLINK_INTERVAL = 2500;
+        const BUBBLE_INTERVAL = 8000;
+        const CAT_BUBBLE_INTERVAL = 18000; // cat bubble much less frequent
+        let lastCatBubble = 0;
+        let lastGuestAgentsFetch = 0;
+        let lastGuestBubbleAt = 0;
+        const TYPEWRITER_DELAY = 50;
+        let lastSeenGuestIds = new Set(); // 用于检测新加入的访客，触发欢迎气泡
+        let guestWelcomeInitialized = false;
+
+        // 状态控制栏函数（用于测试）
+        function setState(state, detail) {
+            fetch('/set_state', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ state, detail })
+            }).then(() => fetchStatus());
+        }
+
+        // Guest Agent 离开房间
+        function removeGuestSpriteByName(name) {
+            const target = guestAgents.find(a => (a.name || '') === name);
+            if (target && guestSprites[target.agentId]) {
+                guestSprites[target.agentId].sprite.destroy();
+                guestSprites[target.agentId].nameText.destroy();
+                delete guestSprites[target.agentId];
+            }
+            if (target && guestBubbles[target.agentId]) {
+                guestBubbles[target.agentId].destroy();
+                delete guestBubbles[target.agentId];
+            }
+        }
+
+        function leaveGuestAgent(agentId, name) {
+            fetch('/leave-agent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ agentId, name })
+            }).then(response => response.json()).then(data => {
+                if (data.ok) {
+                    // 优先按 agentId 清理，避免重名误伤
+                    if (agentId && guestSprites[agentId]) {
+                        guestSprites[agentId].sprite.destroy();
+                        guestSprites[agentId].nameText.destroy();
+                        delete guestSprites[agentId];
+                    }
+                    if (agentId && guestBubbles[agentId]) {
+                        guestBubbles[agentId].destroy();
+                        delete guestBubbles[agentId];
+                    }
+                    fetchGuestAgents();
+                    alert((name || agentId) + ' 已离开房间');
+                } else {
+                    // demo agent 没在后端也允许本地隐藏
+                    if (DEMO_MODE && (name === '尼卡' || name === '水星')) {
+                        hiddenDemoNames.add(name);
+                        removeGuestSpriteByName(name);
+                        renderGuestAgentList();
+                        alert(name + ' 已离开房间（demo）');
+                        return;
+                    }
+                    alert('离开失败：' + (data.msg || '未知错误'));
+                }
+            }).catch(error => {
+                alert('请求失败：' + error);
+            });
+        }
+
+        function approveGuestAgent(agentId) {
+            fetch('/agent-approve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ agentId })
+            }).then(response => response.json()).then(data => {
+                if (data.ok) {
+                    fetchGuestAgents();
+                    alert('已批准该访客接入');
+                } else {
+                    alert('批准失败：' + (data.msg || '未知错误'));
+                }
+            }).catch(error => {
+                alert('请求失败：' + error);
+            });
+        }
+
+        function rejectGuestAgent(agentId) {
+            fetch('/agent-reject', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ agentId })
+            }).then(response => response.json()).then(data => {
+                if (data.ok) {
+                    fetchGuestAgents();
+                    alert('已拒绝该访客');
+                } else {
+                    alert('拒绝失败：' + (data.msg || '未知错误'));
+                }
+            }).catch(error => {
+                alert('请求失败：' + error);
+            });
+        }
+
+        function ensureDemoVisitors() {
+            if (!DEMO_MODE) return;
+            if (!Array.isArray(window.__demoVisitors) || window.__demoVisitors.length === 0) {
+                window.__demoVisitors = [
+                    { agentId: 'demo_nika', name: '尼卡', authStatus: 'approved', state: 'writing', bubbleText: '我在工作中', isDemo: true, updated_at: new Date().toISOString() },
+                    { agentId: 'demo_mercury', name: '水星', authStatus: 'approved', state: 'idle', bubbleText: '我去休息区躺一下', isDemo: true, updated_at: new Date().toISOString() }
+                ];
+            }
+        }
+
+        function getMergedVisitors() {
+            const realVisitors = (guestAgents || []).filter(a => !a.isMain);
+            if (!DEMO_MODE) return realVisitors;
+
+            ensureDemoVisitors();
+            const demoVisitors = window.__demoVisitors.filter(v => !hiddenDemoNames.has(v.name));
+            return [...realVisitors, ...demoVisitors];
+        }
+
+        function renderGuestAgentList() {
+            const list = document.getElementById('guest-agent-list');
+            if (!list) return;
+
+            const visitors = getMergedVisitors();
+            if (visitors.length === 0) {
+                list.innerHTML = '<div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">暂无访客</div>';
+                return;
+            }
+
+            list.innerHTML = visitors.map(agent => {
+                const name = agent.name || '未命名访客';
+                const authStatus = agent.authStatus || 'pending';
+                const state = agent.state || 'idle';
+                const statusMap = {
+                    approved: '已授权',
+                    pending: '待授权',
+                    rejected: '已拒绝',
+                    offline: '离线'
+                };
+                const stateMap = {
+                    idle: '待命',
+                    writing: '工作',
+                    researching: '调研',
+                    executing: '执行',
+                    syncing: '同步',
+                    error: '报警'
+                };
+
+                const statusText = statusMap[authStatus] || authStatus;
+                const stateText = stateMap[state] || state;
+                const subtitle = `${statusText} · ${stateText}`;
+
+                const pendingActions = `<button onclick="alert('交换 skill 功能开发中')">交换skill</button><button class="leave-btn" onclick="leaveGuestAgent('${agent.agentId}','${name}')">离开房间</button>`;
+
+                return `
+                  <div class="guest-agent-item" data-name="${name}">
+                    <div>
+                      <div class="guest-agent-name">${name}</div>
+                      <div style="font-size:11px;color:#cbd5e1;">${subtitle}</div>
+                    </div>
+                    <div class="guest-agent-buttons">
+                      ${pendingActions}
+                    </div>
+                  </div>
+                `;
+            }).join('');
+        }
+
+        function getAreaRect(area) {
+            // 区域坐标（海辛提供，左上-右下；这里的 x/y 作为 sprite 底部锚点坐标来用）
+            // 休息区域范围（511,262）（841,621）
+            // 工作区域范围（190,526）（380,683）
+            // error 区域范围（932,275）（1109,327）
+            const rects = {
+                breakroom: { x1: 511, y1: 262, x2: 841, y2: 621 },
+                writing:   { x1: 190, y1: 526, x2: 380, y2: 683 },
+                error:     { x1: 932, y1: 275, x2: 1109, y2: 327 }
+            };
+            return rects[area] || rects.breakroom;
+        }
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomPointInRect(rect) {
+            return { x: randomInt(rect.x1, rect.x2), y: randomInt(rect.y1, rect.y2) };
+        }
+
+        function getAreaPoint(area, idx) {
+            // 非 demo 访客：仍用固定点位，避免每次轮询都抖动。
+            const map = {
+                breakroom: [
+                    { x: 511, y: 262 },
+                    { x: 841, y: 621 },
+                    { x: 690, y: 470 }
+                ],
+                writing: [
+                    { x: 190, y: 526 },
+                    { x: 380, y: 683 },
+                    { x: 300, y: 610 }
+                ],
+                error: [
+                    { x: 932, y: 275 },
+                    { x: 1109, y: 327 },
+                    { x: 1020, y: 305 }
+                ]
+            };
+            const arr = map[area] || map.breakroom;
+            return arr[idx % arr.length];
+        }
+
+        function renderGuestAgentsInScene() {
+            if (!game) return;
+            const visitors = getMergedVisitors();
+            const seenIds = new Set();
+            let idxBreak = 0, idxWrite = 0, idxError = 0;
+
+            visitors.forEach(agent => {
+                const id = agent.agentId;
+                seenIds.add(id);
+
+                const isDemo = !!agent.isDemo || (DEMO_MODE && (id === 'demo_nika' || id === 'demo_mercury' || agent.name === '尼卡' || agent.name === '水星'));
+                const area = agent.area || (agent.state === 'error' ? 'error' : (agent.state === 'idle' ? 'breakroom' : 'writing'));
+
+                const idx = area === 'breakroom' ? idxBreak++ : area === 'error' ? idxError++ : idxWrite++;
+                const p = isDemo
+                    ? randomPointInRect(getAreaRect(area))
+                    : getAreaPoint(area, idx);
+
+                if (!guestSprites[id]) {
+                    // 优先用图标：demo visitor 有专门映射
+                    let sprite;
+                    const isDemoNika = DEMO_MODE && (agent.agentId === 'demo_nika' || agent.name === '尼卡');
+                    const isDemoMercury = DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星');
+                    
+                    if (isDemoNika && game.textures.exists('demo_mercury')) {
+                        // 交换映射：尼卡使用 demo_mercury
+                        sprite = game.add.image(p.x, p.y, 'demo_mercury').setOrigin(0.5, 1).setScale(1.10);
+                    } else if (isDemoMercury && game.textures.exists('demo_nika')) {
+                        // 交换映射：水星使用 demo_nika
+                        sprite = game.add.image(p.x, p.y, 'demo_nika').setOrigin(0.5, 1).setScale(1.10);
+                    } else if ((agent.name === '尼卡') && game.textures.exists('guestagent1')) {
+                        sprite = game.add.image(p.x, p.y, 'guestagent1').setOrigin(0.5, 1).setScale(1.15);
+                    } else if ((agent.name === '水星') && game.textures.exists('guestagent2')) {
+                        sprite = game.add.image(p.x, p.y, 'guestagent2').setOrigin(0.5, 1).setScale(1.05);
+                    } else {
+                        // 非 demo 访客：优先用动画精灵（guest_anim_x），其次静态图，兜底星星
+                        // 先确定角色索引（1-6）
+                        let animIdx = agent.avatar
+                            ? parseInt((agent.avatar.match(/_(\d+)$/) || [])[1] || '0', 10)
+                            : 0;
+                        if (!animIdx || animIdx < 1 || animIdx > 6) {
+                            const aid = String(agent.agentId || '');
+                            let hash = 0;
+                            for (let i = 0; i < aid.length; i++) hash = (hash * 31 + aid.charCodeAt(i)) >>> 0;
+                            animIdx = (hash % 6) + 1;
+                        }
+                        const animKey = `guest_anim_${animIdx}`;
+                        const animIdleKey = `guest_anim_${animIdx}_idle`;
+
+                        if (game.textures.exists(animKey) && game.anims.exists(animIdleKey)) {
+                            sprite = game.add.sprite(p.x, p.y, animKey).setOrigin(0.5, 1).setScale(4.0);
+                            sprite.anims.play(animIdleKey, true);
+                        } else {
+                            const staticAvatarKey = agent.avatar && game.textures.exists(agent.avatar)
+                                ? agent.avatar
+                                : (() => {
+                                    const aid = String(agent.agentId || '');
+                                    let hash = 0;
+                                    for (let i = 0; i < aid.length; i++) hash = (hash * 31 + aid.charCodeAt(i)) >>> 0;
+                                    return GUEST_AVATARS[hash % GUEST_AVATARS.length];
+                                })();
+
+                            if (staticAvatarKey && game.textures.exists(staticAvatarKey)) {
+                                sprite = game.add.image(p.x, p.y, staticAvatarKey).setOrigin(0.5, 1).setScale(1.15);
+                            } else {
+                                sprite = game.add.text(p.x, p.y, '⭐', { fontFamily: 'ArkPixel, monospace', fontSize: '30px' }).setOrigin(0.5, 1);
+                            }
+                        }
+                    }
+                    sprite.setDepth(2600);
+                    if (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) {
+                        sprite.y = sprite.y + 10;
+                    }
+
+                    // demo 水星下移 10px（仅 demo_mercury）
+                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) ? 10 : 0;
+
+                    const nameTextY = isDemo ? ((p.y + yOffset) - 80) : ((p.y + yOffset) - 120);
+                    const nameText = game.add.text(p.x, nameTextY, agent.name || '访客', {
+                        fontFamily: 'ArkPixel, monospace',
+                        fontSize: isDemo ? '16px' : '15px',
+                        fill: '#ffffff',
+                        stroke: '#000',
+                        strokeThickness: 3
+                    }).setOrigin(0.5);
+                    nameText.setDepth(2601);
+
+                    guestSprites[id] = { sprite, nameText };
+                } else {
+                    const g = guestSprites[id];
+                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) ? 10 : 0;
+
+                    // demo：平滑移动（避免闪现）；非 demo：保持稳定位置（避免轮询抖动）
+                    if (isDemo) {
+                        // kill previous tweens for this id
+                        if (guestTweens[id] && guestTweens[id].move) {
+                            guestTweens[id].move.stop();
+                        }
+                        if (guestTweens[id] && guestTweens[id].name) {
+                            guestTweens[id].name.stop();
+                        }
+
+                        const duration = 2000 + Math.floor(Math.random() * 1000); // 2~3s 走路感
+                        const ease = 'Sine.easeInOut';
+
+                        const moveTween = game.tweens.add({
+                            targets: g.sprite,
+                            x: p.x,
+                            y: p.y + yOffset,
+                            duration,
+                            ease
+                        });
+                        const nameTween = game.tweens.add({
+                            targets: g.nameText,
+                            x: p.x,
+                            y: (p.y + yOffset) - 80,
+                            duration,
+                            ease
+                        });
+                        guestTweens[id] = { move: moveTween, name: nameTween };
+                    } else {
+                        g.sprite.x = p.x;
+                        g.sprite.y = p.y + yOffset;
+                        g.nameText.x = p.x;
+                        g.nameText.y = (p.y + yOffset) - 120;
+                    }
+
+                    g.nameText.setText(agent.name || '访客');
+                }
+            });
+
+            // 删除消失的 agent + 清理其气泡/tween
+            Object.keys(guestSprites).forEach(id => {
+                if (!seenIds.has(id)) {
+                    guestSprites[id].sprite.destroy();
+                    guestSprites[id].nameText.destroy();
+                    delete guestSprites[id];
+                    if (guestBubbles[id]) {
+                        guestBubbles[id].destroy();
+                        delete guestBubbles[id];
+                    }
+                    if (guestTweens[id]) {
+                        try { guestTweens[id].move && guestTweens[id].move.stop(); } catch(e) {}
+                        try { guestTweens[id].name && guestTweens[id].name.stop(); } catch(e) {}
+                        delete guestTweens[id];
+                    }
+                }
+            });
+        }
+
+        function maybeShowGuestBubble(time) {
+            if (time - lastGuestBubbleAt < 5200) return;
+            lastGuestBubbleAt = time;
+            const ids = Object.keys(guestSprites);
+            if (ids.length === 0) return;
+            const id = ids[Math.floor(Math.random() * ids.length)];
+            const g = guestSprites[id];
+
+            // demo 气泡：优先展示与状态对应的内容，便于验证“状态→区域→气泡”链路
+            const demoVisitor = (DEMO_MODE && window.__demoVisitors)
+                ? (window.__demoVisitors.find(v => v.agentId === id) || window.__demoVisitors.find(v => v.name === (g.nameText && g.nameText.text)))
+                : null;
+
+            const statusThoughtsMap = {
+                idle: ['我在休息区待命', '先放松一下，等下一步任务', '我在休息充电中'],
+                writing: ['我在工作区处理任务', '正在整理文档与执行中', '工作区专注推进中'],
+                researching: ['我在调研模式，搜集信息', '正在查资料和验证线索', '研究中，稍后同步结论'],
+                executing: ['执行中，正在跑流程', '我在工作区推进任务', '正在把计划落地执行'],
+                syncing: ['同步中，马上更新状态', '正在同步进度到系统', '数据同步中请稍候'],
+                error: ['我在 bug 区排查问题', '检测到异常，正在修复', '报警中，先定位再处理']
+            };
+            const agentState = (guestAgents.find(a => a.agentId === id) || {}).state || 'idle';
+            const thoughts = statusThoughtsMap[agentState] || statusThoughtsMap.idle;
+            const text = (demoVisitor && demoVisitor.bubbleText) ? demoVisitor.bubbleText : thoughts[Math.floor(Math.random() * thoughts.length)];
+
+            if (guestBubbles[id]) {
+                guestBubbles[id].destroy();
+                delete guestBubbles[id];
+            }
+
+            const bx = g.sprite.x;
+            // 气泡位置：demo 维持原逻辑；真实访客放在“名字上方”，避免压角色也避免压名字
+            const isDemoGuest = (demoVisitor && demoVisitor.isDemo) || (id === 'demo_nika' || id === 'demo_mercury');
+            const nameH = (g.nameText && g.nameText.height) ? g.nameText.height : 16;
+            const by = isDemoGuest ? (g.sprite.y - 90) : ((g.nameText ? g.nameText.y : (g.sprite.y - 150)) - (nameH / 2) - 22);
+            const fontSize = IS_TOUCH_DEVICE ? 14 : 12;
+            const bg = game.add.rectangle(bx, by, text.length * 10 + 24, 28, 0xffffff, 0.95);
+            bg.setStrokeStyle(2, 0x000000);
+            const txt = game.add.text(bx, by, text, { fontFamily: 'ArkPixel, monospace', fontSize: fontSize + 'px', fill: '#000' }).setOrigin(0.5);
+            const bubble = game.add.container(0, 0, [bg, txt]);
+            bubble.setDepth(2700);
+            guestBubbles[id] = bubble;
+
+            // 让气泡跟随 sprite 锚点（用于 demo 平滑移动时也保持贴合）
+            bubble.__followAgentId = id;
+
+            setTimeout(() => {
+                if (guestBubbles[id]) {
+                    guestBubbles[id].destroy();
+                    delete guestBubbles[id];
+                }
+            }, 3200);
+        }
+
+        function maybeRandomizeDemoVisitors() {
+            if (!DEMO_MODE) return;
+            ensureDemoVisitors();
+
+            // 按海辛需求：每 8 秒切换一次状态
+            window.__demoNextAt = window.__demoNextAt || 0;
+            const now = Date.now();
+            if (now < window.__demoNextAt) return;
+            window.__demoNextAt = now + 8000;
+
+            const states = ['idle', 'writing', 'researching', 'executing', 'syncing', 'error'];
+            const bubbleTextMap = {
+                idle: '我去休息区躺一下',
+                writing: '我在工作中',
+                researching: '我在调研中',
+                executing: '我在执行任务',
+                syncing: '我在同步状态',
+                error: '出错了！我去报警区'
+            };
+
+            // 确保两位 demo 角色不会总是同一个状态（增加可观测性）
+            const pickJs = (exclude) => {
+                let s = states[Math.floor(Math.random() * states.length)];
+                let tries = 0;
+                while (exclude && s === exclude && tries < 5) {
+                    s = states[Math.floor(Math.random() * states.length)];
+                    tries++;
+                }
+                return s;
+            };
+
+            const current = window.__demoVisitors || [];
+            const cur0 = current[0] ? (current[0].state || 'idle') : 'idle';
+
+            const next0 = pickJs(cur0);
+            const next1 = pickJs(next0); // 尽量不同
+            const nextStates = [next0, next1];
+
+            const prevVisitors = current.map((v) => ({ ...v }));
+            window.__demoVisitors = current.map((v, i) => {
+                const nextState = nextStates[i] || pickJs(v.state);
+                return {
+                    ...v,
+                    state: nextState,
+                    bubbleText: bubbleTextMap[nextState] || String(nextState),
+                    updated_at: new Date().toISOString()
+                };
+            });
+
+            // 状态切换时：每一位 demo 都立即冒泡（强制），用于清晰验证链路
+            try {
+                if (typeof game !== 'undefined' && game) {
+                    // 找出状态实际变了的 demo visitor，给他们强制冒泡
+                    const prevById = {};
+                    prevVisitors.forEach(v => { prevById[v.agentId] = v; });
+                    const newVisitors = window.__demoVisitors || [];
+                    newVisitors.forEach(agent => {
+                        const prev = prevById[agent.agentId];
+                        const changed = !prev || prev.state !== agent.state;
+                        if (changed) {
+                            // 直接冒泡
+                            if (guestSprites[agent.agentId]) {
+                                const g = guestSprites[agent.agentId];
+                                const text = agent.bubbleText || '';
+                                if (guestBubbles[agent.agentId]) {
+                                    guestBubbles[agent.agentId].destroy();
+                                    delete guestBubbles[agent.agentId];
+                                }
+                                const bx = g.sprite.x;
+                                const by = g.sprite.y - 90;
+                                const fontSize = IS_TOUCH_DEVICE ? 14 : 12;
+                                const bg = game.add.rectangle(bx, by, text.length * 10 + 24, 28, 0xffffff, 0.95);
+                                bg.setStrokeStyle(2, 0x000000);
+                                const txt = game.add.text(bx, by, text, { fontFamily: 'ArkPixel, monospace', fontSize: fontSize + 'px', fill: '#000' }).setOrigin(0.5);
+                                const bubble = game.add.container(0, 0, [bg, txt]);
+                                bubble.setDepth(2700);
+                                bubble.__followAgentId = agent.agentId;
+                                guestBubbles[agent.agentId] = bubble;
+                                setTimeout(() => {
+                                    if (guestBubbles[agent.agentId]) {
+                                        guestBubbles[agent.agentId].destroy();
+                                        delete guestBubbles[agent.agentId];
+                                    }
+                                }, 3200);
+                            }
+                        }
+                    });
+                }
+            } catch (e) { console.error('强制冒泡失败:', e); }
+        }
+
+        function fetchGuestAgents() {
+            // demo 随机状态先更新（不依赖后端）
+            maybeRandomizeDemoVisitors();
+
+            return fetch('/agents?t=' + Date.now(), { cache: 'no-store' })
+                .then(response => response.json())
+                .then(data => {
+                    // 无论后端返回是否为数组，demo=1 都应保证本地 demo 访客可见
+                    guestAgents = Array.isArray(data) ? data : [];
+
+                    // 新访客检测：触发 Star 欢迎气泡（只欢迎真实访客，不欢迎 demo）
+                    try {
+                        const merged = getMergedVisitors();
+                        const currentIds = new Set((merged || []).filter(a => !a.isMain && !a.isDemo).map(a => a.agentId));
+
+                        if (!guestWelcomeInitialized) {
+                            // 首次初始化不欢迎，避免刷新页面就刷屏
+                            lastSeenGuestIds = currentIds;
+                            guestWelcomeInitialized = true;
+                        } else {
+                            const newIds = [];
+                            currentIds.forEach(id => { if (!lastSeenGuestIds.has(id)) newIds.push(id); });
+
+                            if (newIds.length > 0) {
+                                // 只欢迎第一个新来的（避免同一时刻多人加入刷屏）
+                                const newAgent = (merged || []).find(a => a.agentId === newIds[0]);
+                                if (newAgent && newAgent.name) {
+                                    // 临时将 currentState 视为 writing 以允许 showBubble 展示
+                                    const oldState = currentState;
+                                    currentState = 'writing';
+                                    // 临时更换 bubble 文案
+                                    const oldTexts = BUBBLE_TEXTS.writing;
+                                    BUBBLE_TEXTS.writing = [
+                                        `欢迎 ${newAgent.name} 来到办公室～`,
+                                        `Hi ${newAgent.name}，一起开工吧`,
+                                        `${newAgent.name} 已加入，欢迎！`
+                                    ];
+                                    showBubble();
+                                    // 还原
+                                    BUBBLE_TEXTS.writing = oldTexts;
+                                    currentState = oldState;
+                                }
+                            }
+
+                            lastSeenGuestIds = currentIds;
+                        }
+                    } catch (e) { /* ignore */ }
+
+                    renderGuestAgentList();
+                    renderGuestAgentsInScene();
+                })
+                .catch(error => {
+                    console.error('拉取访客列表失败:', error);
+                    // 即使拉取失败，demo 也要能渲染
+                    if (DEMO_MODE) {
+                        renderGuestAgentList();
+                        renderGuestAgentsInScene();
+                    }
+                });
+        }
+
+        // 初始化：先检测 WebP 支持，再启动游戏
+        async function initGame() {
+            // 检测 WebP 支持
+            try {
+                supportsWebP = await checkWebPSupport();
+            } catch (e) {
+                try {
+                    supportsWebP = await checkWebPSupportFallback();
+                } catch (e2) {
+                    supportsWebP = false;
+                }
+            }
+            
+            console.log('WebP 支持:', supportsWebP);
+            
+            // 启动 Phaser 游戏
+            new Phaser.Game(config);
+        }
+
+        function preload() {
+            // 获取加载界面元素
+            loadingOverlay = document.getElementById('loading-overlay');
+            loadingProgressBar = document.getElementById('loading-progress-bar');
+            loadingText = document.getElementById('loading-text');
+            loadingProgressContainer = document.getElementById('loading-progress-container');
+            
+            // 设置资源总数（全部首屏加载：装饰也第一时间出现）
+            totalAssets = 15;
+            loadedAssets = 0;
+            
+            // 加载进度监听
+            this.load.on('filecomplete', () => {
+                updateLoadingProgress();
+            });
+            
+            this.load.on('complete', () => {
+                hideLoadingOverlay();
+            });
+
+            // cache-busting to avoid stale background on client/CDN
+            // use smaller/new map version provided by user
+            this.load.image('office_bg', '/static/office_bg_small' + (supportsWebP ? '.webp' : '.png') + '?v={{VERSION_TIMESTAMP}}');
+            this.load.spritesheet('star_idle', '/static/star-idle-spritesheet' + getExt('star-idle-spritesheet.png'), { frameWidth: 128, frameHeight: 128 });
+            this.load.spritesheet('star_researching', '/static/star-researching-spritesheet' + getExt('star-researching-spritesheet.png'), { frameWidth: 128, frameHeight: 105 });
+
+            // Furniture
+            this.load.image('sofa_idle', '/static/sofa-idle' + getExt('sofa-idle.png'));
+            this.load.spritesheet('sofa_busy', '/static/sofa-busy-spritesheet' + getExt('sofa-busy-spritesheet.png'), { frameWidth: 256, frameHeight: 256 });
+
+            // Decor
+            this.load.spritesheet('plants', '/static/plants-spritesheet' + getExt('plants-spritesheet.png'), { frameWidth: 160, frameHeight: 160 });
+            this.load.spritesheet('posters', '/static/posters-spritesheet' + getExt('posters-spritesheet.png'), { frameWidth: 160, frameHeight: 160 });
+            this.load.spritesheet('coffee_machine', '/static/coffee-machine-spritesheet' + getExt('coffee-machine-spritesheet.png'), { frameWidth: 230, frameHeight: 230 });
+            this.load.spritesheet('serverroom', '/static/serverroom-spritesheet' + getExt('serverroom-spritesheet.png'), { frameWidth: 180, frameHeight: 251 });
+
+            // Error / bug animation: 180x180, 96 frames (repacked grid)
+            this.load.spritesheet('error_bug', '/static/error-bug-spritesheet-grid' + (supportsWebP ? '.webp' : '.png'), { frameWidth: 180, frameHeight: 180 });
+
+            // Cat spritesheet: 160x160, 4x4=16 cats
+            this.load.spritesheet('cats', '/static/cats-spritesheet' + (supportsWebP ? '.webp' : '.png'), { frameWidth: 160, frameHeight: 160 });
+
+            // Desk
+            this.load.image('desk', '/static/desk' + getExt('desk.png'));
+
+            // Star working animation: repacked to grid to avoid WebGL max texture size limits
+            // NOTE: prefer WebP for size, PNG fallback
+            this.load.spritesheet('star_working', '/static/star-working-spritesheet-grid' + (supportsWebP ? '.webp' : '.png'), { frameWidth: 230, frameHeight: 144 });
+
+            // Sync state animation (256x256, 53 frames)
+            this.load.spritesheet('sync_anim', '/static/sync-animation-spritesheet-grid' + (supportsWebP ? '.webp' : '.png'), { frameWidth: 256, frameHeight: 256 });
+
+            // Memo background image
+            this.load.image('memo_bg', '/static/memo-bg' + (supportsWebP ? '.webp' : '.png'));
+            // New desk image (v2) - force transparent PNG
+            this.load.image('desk_v2', '/static/desk-v2.png');
+            // Flower spritesheet (65x65, 16 frames)
+            this.load.spritesheet('flowers', '/static/flowers-spritesheet' + (supportsWebP ? '.webp' : '.png'), { frameWidth: 65, frameHeight: 65 });
+
+            // Guest/Demo agent sprites
+            this.load.image('guestagent1', '/static/guestagent1.webp?v={{VERSION_TIMESTAMP}}');
+            this.load.image('guestagent2', '/static/guestagent2.webp?v={{VERSION_TIMESTAMP}}');
+            this.load.spritesheet('guest_anim_1', '/static/guest_anim_1.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('guest_anim_2', '/static/guest_anim_2.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('guest_anim_3', '/static/guest_anim_3.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('guest_anim_4', '/static/guest_anim_4.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('guest_anim_5', '/static/guest_anim_5.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('guest_anim_6', '/static/guest_anim_6.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 32, frameHeight: 32 });
+            this.load.image('demo_nika', '/static/demo_nika.webp?v={{VERSION_TIMESTAMP}}');
+            this.load.image('demo_mercury', '/static/demo_mercury.webp?v={{VERSION_TIMESTAMP}}');
+        }
+
+        function create() {
+            game = this;
+            this.add.image(640, 360, 'office_bg');
+
+            // Place furniture: Sofa
+            // NOTE: coordinates are interpreted as the TOP-LEFT corner of the sprite
+            sofa = this.add.sprite(670, 144, 'sofa_busy').setOrigin(0, 0);
+            sofa.setDepth(10);
+
+            this.anims.create({
+                key: 'sofa_busy',
+                frames: this.anims.generateFrameNumbers('sofa_busy', { start: 0, end: 47 }),
+                frameRate: 12,
+                repeat: -1
+            });
+            areas = {
+                door: { x: 640, y: 550 }, // 墙的门（偏下 1/3 位置）
+                writing: { x: 320, y: 360 }, // 左 1/3 中间（办公桌）
+                researching: { x: 320, y: 360 }, // 左 1/3 中间（研究也在办公区
+                error: { x: 1066, y: 180 }, // 右 1/3 上 1/2（服务器区
+                breakroom: { x: 640, y: 360 } // 中间 1/3（沙发
+            };
+
+            // 创建 Star 角色精灵动画
+            this.anims.create({
+                key: 'star_idle',
+                frames: this.anims.generateFrameNumbers('star_idle', { start: 0, end: 29 }),
+                frameRate: 12,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'star_researching',
+                frames: this.anims.generateFrameNumbers('star_researching', { start: 0, end: 95 }),
+                frameRate: 12,
+                repeat: -1
+            });
+
+            // 创建 6 个访客角色的循环 idle 动画（8帧循环）
+            for (let i = 1; i <= 6; i++) {
+                this.anims.create({
+                    key: `guest_anim_${i}_idle`,
+                    frames: this.anims.generateFrameNumbers(`guest_anim_${i}`, { start: 0, end: 7 }),
+                    frameRate: 8,
+                    repeat: -1
+                });
+            }
+
+            star = game.physics.add.sprite(areas.breakroom.x, areas.breakroom.y, 'star_idle');
+            star.setOrigin(0.5);
+            star.setScale(1.4);
+            star.setAlpha(0.95);
+            star.setDepth(20); // Put Star on top of everything
+            // Default: idle is represented by the sofa animation, so hide Star until non-idle state
+            star.setVisible(false);
+            star.anims.stop();
+
+            // Start sofa animation (default idle = sofa sitting)
+            if (game.textures.exists('sofa_busy')) {
+                sofa.setTexture('sofa_busy');
+                sofa.anims.play('sofa_busy', true);
+            }
+
+            // 加像素风小牌匾：海辛小龙虾的办公室
+            const plaqueX = config.width / 2;
+            const plaqueY = config.height - 36;
+            const plaqueBg = game.add.rectangle(plaqueX, plaqueY, 420, 44, 0x5d4037);
+            plaqueBg.setStrokeStyle(3, 0x3e2723);
+            const plaqueText = game.add.text(plaqueX, plaqueY, '海辛小龙虾的办公室', {
+                fontFamily: 'ArkPixel, monospace',
+                fontSize: '18px',
+                fill: '#ffd700',
+                fontWeight: 'bold',
+                stroke: '#000',
+                strokeThickness: 2
+            }).setOrigin(0.5);
+            // 牌匾两边加个小装饰（跟随牌匾居中）
+            game.add.text(plaqueX - 190, plaqueY, '⭐', { fontFamily: 'ArkPixel, monospace', fontSize: '20px' }).setOrigin(0.5);
+            game.add.text(plaqueX + 190, plaqueY, '⭐', { fontFamily: 'ArkPixel, monospace', fontSize: '20px' }).setOrigin(0.5);
+
+            // Random plant at (565,178) (frame 0-15, 160x160 each)
+            const plantFrameCount = 16;
+            const randomPlantFrame = Math.floor(Math.random() * plantFrameCount);
+            const plant = game.add.sprite(565, 178, 'plants', randomPlantFrame).setOrigin(0.5);
+            plant.setDepth(5);
+            plant.setInteractive({ useHandCursor: true });
+            // Expose to global for click handler
+            window.plantSprite = plant;
+            window.plantFrameCount = plantFrameCount;
+            plant.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.plantFrameCount);
+                window.plantSprite.setFrame(next);
+            });
+
+            // Random plant at (230,185) (frame 0-15, 160x160 each)
+            const plant2Frame = Math.floor(Math.random() * plantFrameCount);
+            const plant2 = game.add.sprite(230, 185, 'plants', plant2Frame).setOrigin(0.5);
+            plant2.setDepth(5);
+            plant2.setInteractive({ useHandCursor: true });
+            // Expose to global for click handler
+            window.plantSprite2 = plant2;
+            plant2.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.plantFrameCount);
+                window.plantSprite2.setFrame(next);
+            });
+
+            // Random plant at (977,496) (frame 0-15, 160x160 each)
+            const plant3Frame = Math.floor(Math.random() * plantFrameCount);
+            const plant3 = game.add.sprite(977, 496, 'plants', plant3Frame).setOrigin(0.5);
+            plant3.setDepth(5);
+            plant3.setInteractive({ useHandCursor: true });
+            // Expose to global for click handler
+            window.plantSprite3 = plant3;
+            plant3.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.plantFrameCount);
+                window.plantSprite3.setFrame(next);
+            });
+
+            // Random poster at (252,66) (random frame from spritesheet)
+            const postersFrameCount = 32; // 640x1280 with 160x160 frames => 4x8 = 32
+            const randomPosterFrame = Math.floor(Math.random() * postersFrameCount);
+            const poster = game.add.sprite(252, 66, 'posters', randomPosterFrame).setOrigin(0.5);
+            poster.setDepth(4);
+            poster.setInteractive({ useHandCursor: true });
+            // Expose to global for click handler
+            window.posterSprite = poster;
+            window.posterFrameCount = postersFrameCount;
+            poster.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.posterFrameCount);
+                window.posterSprite.setFrame(next);
+            });
+
+            // Random cat at (94,557) (frame 0-15, 160x160 each)
+            const catsFrameCount = 16; // 4x4 grid
+            const randomCatFrame = Math.floor(Math.random() * catsFrameCount);
+            const cat = game.add.sprite(94, 557, 'cats', randomCatFrame).setOrigin(0.5);
+            cat.setDepth(2000); // top layer
+            cat.setInteractive({ useHandCursor: true });
+            // Expose to global for click handler
+            window.catSprite = cat;
+            window.catsFrameCount = catsFrameCount;
+            cat.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.catsFrameCount);
+                window.catSprite.setFrame(next);
+            });
+
+            // Coffee machine at (563,330)
+            this.anims.create({
+                key: 'coffee_machine',
+                frames: this.anims.generateFrameNumbers('coffee_machine', { start: 0, end: 95 }),
+                frameRate: 12.5,
+                repeat: -1
+            });
+            const coffeeMachine = this.add.sprite(659, 397, 'coffee_machine').setOrigin(0.5);
+            coffeeMachine.setDepth(99);
+            coffeeMachine.anims.play('coffee_machine', true);
+
+            // Server room animation
+            this.anims.create({
+                key: 'serverroom_on',
+                frames: this.anims.generateFrameNumbers('serverroom', { start: 0, end: 39 }),
+                frameRate: 6,
+                repeat: -1
+            });
+            serverroom = this.add.sprite(1021, 142, 'serverroom', 0).setOrigin(0.5);
+            serverroom.setDepth(2);
+            // 默认 idle: 静止第0帧
+            serverroom.anims.stop();
+            serverroom.setFrame(0);
+
+            // Desk at (218,417) (v2)
+            const desk = this.add.image(218, 417, 'desk_v2').setOrigin(0.5);
+            desk.setDepth(1001);  // desk above starWorking
+
+            // Random flower pot at (310,405) (65x65 frames, top layer)
+            const flowerFrameCount = 16; // 4x4 65x65 frames
+            const randomFlowerFrame = Math.floor(Math.random() * flowerFrameCount);
+            const flower = this.add.sprite(310, 405, 'flowers', randomFlowerFrame).setOrigin(0.5);
+            flower.setDepth(1100); // highest among desk/starWorking
+            flower.setInteractive({ useHandCursor: true });
+            window.flowerSprite = flower;
+            window.flowerFrameCount = flowerFrameCount;
+            flower.on('pointerdown', () => {
+                const next = Math.floor(Math.random() * window.flowerFrameCount);
+                window.flowerSprite.setFrame(next);
+            });
+
+            // Star working at desk (217,333)
+            this.anims.create({
+                key: 'star_working',
+                frames: this.anims.generateFrameNumbers('star_working', { start: 0, end: 191 }),
+                frameRate: 12,
+                repeat: -1
+            });
+
+            // Error / bug animation (96 frames)
+            this.anims.create({
+                key: 'error_bug',
+                frames: this.anims.generateFrameNumbers('error_bug', { start: 0, end: 95 }),
+                frameRate: 12,
+                repeat: -1
+            });
+
+            // Error bug character (moves between two points when state=error)
+            const errorBug = this.add.sprite(1007, 221, 'error_bug', 0).setOrigin(0.5);
+            errorBug.setDepth(50); // above serverroom, below desk/bubbles
+            errorBug.setVisible(false);
+            errorBug.setScale(0.9); // shrink 10%
+            errorBug.anims.play('error_bug', true);
+            window.errorBug = errorBug;
+            window.errorBugDir = 1; // 1 -> to right, -1 -> to left
+            const starWorking = this.add.sprite(217, 333, 'star_working', 0).setOrigin(0.5);
+            starWorking.setVisible(false);
+            starWorking.setScale(1.32);  // +10% (from 1.2 → 1.32)
+            starWorking.setDepth(900);  // starWorking under desk so desk partially covers it
+            // Store reference to starWorking for state logic
+            window.starWorking = starWorking;
+
+            // Sync animation sprite at (1157,592)
+            this.anims.create({
+                key: 'sync_anim',
+                frames: this.anims.generateFrameNumbers('sync_anim', { start: 1, end: 52 }),
+                frameRate: 12,
+                repeat: -1
+            });
+            syncAnimSprite = this.add.sprite(1157, 592, 'sync_anim', 0).setOrigin(0.5);
+            syncAnimSprite.setDepth(40);
+            // default show first frame only
+            syncAnimSprite.anims.stop();
+            syncAnimSprite.setFrame(0);
+
+            // Debug: expose star sprite too (for path calibration / visuals)
+            window.starSprite = star;
+
+            statusText = document.getElementById('status-text');
+            coordsOverlay = document.getElementById('coords-overlay');
+            coordsDisplay = document.getElementById('coords-display');
+            coordsToggle = document.getElementById('coords-toggle');
+
+            // guest agent 将由 /agents 动态拉取并渲染到右侧访客列表
+            coordsToggle.addEventListener('click', () => {
+                showCoords = !showCoords;
+                coordsOverlay.style.display = showCoords ? 'block' : 'none';
+                coordsToggle.textContent = showCoords ? '隐藏坐标' : '显示坐标';
+                coordsToggle.style.background = showCoords ? '#e94560' : '#333';
+            });
+
+            // 允许手机端“拖动/滑动”来移动视野（本质：移动 Phaser Camera）
+            // iPhone 等触屏设备默认开启；桌面端默认关闭（可手动开）。
+            const panToggle = document.getElementById('pan-toggle');
+            const isTouchDevice = IS_TOUCH_DEVICE;
+            let panEnabled = false;
+            let isPanning = false;
+            let panStart = null; // {x,y,sx,sy}
+            const camera = game.cameras.main;
+
+            const MAP_W = config.width;
+            const MAP_H = config.height;
+            function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+            function maxScrollX() {
+                const viewportW = camera.width / Math.max(0.01, camera.zoom);
+                return Math.max(0, MAP_W - viewportW);
+            }
+            function maxScrollY() {
+                const viewportH = camera.height / Math.max(0.01, camera.zoom);
+                return Math.max(0, MAP_H - viewportH);
+            }
+            function clampCameraScroll() {
+                camera.scrollX = clamp(camera.scrollX, 0, maxScrollX());
+                camera.scrollY = clamp(camera.scrollY, 0, maxScrollY());
+            }
+
+            // 手机上：锁定“办公室画布高度 = 2/3 区域高度”，
+            // 让世界坐标在竖向恰好看满（不需要上下拖），只保留横向拖动浏览左右。
+            // 记录初始是否已手动平移（避免 resize 时把用户拖好的位置重置）
+            let hasManuallyPanned = false;
+            function applyMobileCameraFit() {
+                if (!isTouchDevice) return;
+                const h = Math.max(1, camera.height);
+                const w = Math.max(1, camera.width);
+
+                // 关键：先按高度 fit，再看是否需要按宽度微调，
+                // 保证既不会让画面歪，又能左右拖到最左最右边缘不被裁。
+                const fitHeightZoom = h / MAP_H;
+                const candidateZoom = fitHeightZoom;
+
+                // 按 candidateZoom 计算：viewport 在世界坐标里的宽高
+                const viewW = w / candidateZoom;
+                const maxX = Math.max(0, MAP_W - viewW);
+
+                camera.setZoom(candidateZoom);
+                camera.scrollX = Math.min(camera.scrollX, maxX);
+                camera.scrollY = 0;
+
+                // 仅在未手动平移过时才居中（避免把用户拖好的位置冲掉）
+                if (!hasManuallyPanned) {
+                    camera.centerOn(MAP_W / 2, MAP_H / 2);
+                }
+                camera.scrollX = clamp(camera.scrollX, 0, maxX);
+                camera.scrollY = 0;
+            }
+            applyMobileCameraFit();
+
+            // 手机端旋转屏幕/地址栏伸缩时，重算 zoom + 夹紧 camera
+            if (isTouchDevice && game.scale) {
+                game.scale.on('resize', () => {
+                    applyMobileCameraFit();
+                });
+            }
+
+            camera.setBounds(0, 0, MAP_W, MAP_H);
+            clampCameraScroll();
+
+            function setPanEnabled(on) {
+                panEnabled = on;
+                if (panToggle) {
+                    panToggle.textContent = on ? '锁定视野' : '移动视野';
+                    panToggle.style.background = on ? '#e94560' : '#333';
+                }
+                game.input.setDefaultCursor(on ? 'grab' : 'default');
+            }
+
+            if (panToggle) {
+                panToggle.addEventListener('click', () => setPanEnabled(!panEnabled));
+            }
+
+            // 触屏设备默认开启拖动视野，避免必须先点按钮
+            if (isTouchDevice) {
+                setPanEnabled(true);
+            }
+
+            // iOS/Safari 手势策略：
+            // - 保留垂直滚动（让页面能下滑看三个面板）
+            // - 水平方向拖动时才阻止默认行为，并转为 camera 横向平移
+            // 说明：iOS 对 pointer + touch-action 支持存在机型差异，所以这里加一套原生 touch 兜底。
+            const canvasEl = game.canvas;
+            let touchPan = null; // {x,y,sx,sy,lock:'x'|'y'|null}
+            if (canvasEl) {
+                canvasEl.style.touchAction = 'pan-y';
+
+                canvasEl.addEventListener('touchstart', (e) => {
+                    if (!panEnabled || e.touches.length !== 1) return;
+                    const t = e.touches[0];
+                    touchPan = { x: t.clientX, y: t.clientY, sx: camera.scrollX, sy: camera.scrollY, lock: null };
+                }, { passive: true });
+
+                canvasEl.addEventListener('touchmove', (e) => {
+                    if (!panEnabled || !touchPan || e.touches.length !== 1) return;
+                    const t = e.touches[0];
+                    const dx = t.clientX - touchPan.x;
+                    const dy = t.clientY - touchPan.y;
+
+                    if (!touchPan.lock) {
+                        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+                        touchPan.lock = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+                    }
+
+                    if (touchPan.lock === 'x') {
+                        // 横向拖动交给办公室视野；阻止浏览器默认滚动
+                        e.preventDefault();
+                        hasManuallyPanned = true;
+                        camera.scrollX = clamp(touchPan.sx - dx, 0, maxScrollX());
+                    }
+                    // lock==='y' 时不阻止默认，交给页面纵向滚动
+                }, { passive: false });
+
+                const clearTouchPan = () => { touchPan = null; };
+                canvasEl.addEventListener('touchend', clearTouchPan, { passive: true });
+                canvasEl.addEventListener('touchcancel', clearTouchPan, { passive: true });
+            }
+
+            game.input.on('pointerdown', (pointer) => {
+                if (!panEnabled) return;
+                isPanning = true;
+                panStart = { x: pointer.x, y: pointer.y, sx: camera.scrollX, sy: camera.scrollY };
+                game.input.setDefaultCursor('grabbing');
+            });
+
+            game.input.on('pointerup', () => {
+                if (!panEnabled) return;
+                isPanning = false;
+                panStart = null;
+                game.input.setDefaultCursor('grab');
+            });
+
+            game.input.on('pointermove', (pointer) => {
+                if (!panEnabled || !isPanning || !panStart) return;
+                const dx = pointer.x - panStart.x;
+                const dy = pointer.y - panStart.y;
+
+                // 手机端优先“横向拖动看办公室”，纵向手势留给页面滚动看下方面板。
+                if (isTouchDevice && Math.abs(dy) > Math.abs(dx)) {
+                    return;
+                }
+
+                // 手指向右拖，视野跟着向右看：camera scroll 向左减小（反向）
+                const newX = panStart.sx - dx;
+                hasManuallyPanned = true;
+                camera.scrollX = clamp(newX, 0, maxScrollX());
+
+                // 桌面端保留自由二维拖动
+                if (!isTouchDevice) {
+                    const newY = panStart.sy - dy;
+                    camera.scrollY = clamp(newY, 0, maxScrollY());
+                }
+            });
+
+            // Mouse move handler for coordinate display
+            game.input.on('pointermove', (pointer) => {
+                if (!showCoords) return;
+                // Clamp to map size (0..width-1 / 0..height-1)
+                const x = Math.max(0, Math.min(config.width - 1, Math.round(pointer.x)));
+                const y = Math.max(0, Math.min(config.height - 1, Math.round(pointer.y)));
+                coordsDisplay.textContent = `${x}, ${y}`;
+                // Position overlay next to mouse
+                coordsOverlay.style.left = (pointer.x + 18) + 'px';
+                coordsOverlay.style.top = (pointer.y + 18) + 'px';
+            });
+
+            // 加载昨日 memo
+            loadMemo();
+
+            fetchStatus();
+            fetchGuestAgents();
+        }
+
+        function update(time) {
+            if (time - lastFetch > FETCH_INTERVAL) { fetchStatus(); lastFetch = time; }
+            if (time - lastGuestAgentsFetch > GUEST_AGENTS_FETCH_INTERVAL) { fetchGuestAgents(); lastGuestAgentsFetch = time; }
+
+            // 兜底：非 idle 时确保机房动画在播，idle 时静止
+            const effectiveStateForServer = pendingDesiredState || currentState;
+            if (serverroom) {
+                if (effectiveStateForServer === 'idle') {
+                    if (serverroom.anims.isPlaying) {
+                        serverroom.anims.stop();
+                        serverroom.setFrame(0);
+                    }
+                } else {
+                    if (!serverroom.anims.isPlaying || serverroom.anims.currentAnim?.key !== 'serverroom_on') {
+                        serverroom.anims.play('serverroom_on', true);
+                    }
+                }
+            }
+
+            // error 状态：显示 bug 动画，并在两点之间来回移动
+            if (window.errorBug) {
+                if (effectiveStateForServer === 'error') {
+                    window.errorBug.setVisible(true);
+                    if (!window.errorBug.anims.isPlaying || window.errorBug.anims.currentAnim?.key !== 'error_bug') {
+                        window.errorBug.anims.play('error_bug', true);
+                    }
+                    // ping-pong move between x=1007 and x=1111 at y=221
+                    const leftX = 1007;
+                    const rightX = 1111;
+                    const speed = 0.6; // -50% speed
+                    const dir = window.errorBugDir || 1;
+                    window.errorBug.x += speed * dir;
+                    window.errorBug.y = 221;
+                    if (window.errorBug.x >= rightX) {
+                        window.errorBug.x = rightX;
+                        window.errorBugDir = -1;
+                    } else if (window.errorBug.x <= leftX) {
+                        window.errorBug.x = leftX;
+                        window.errorBugDir = 1;
+                    }
+                } else {
+                    window.errorBug.setVisible(false);
+                    window.errorBug.anims.stop();
+                }
+            }
+
+            // Sync animation fallback logic
+            if (syncAnimSprite) {
+                if (effectiveStateForServer === 'syncing') {
+                    if (!syncAnimSprite.anims.isPlaying || syncAnimSprite.anims.currentAnim?.key !== 'sync_anim') {
+                        syncAnimSprite.anims.play('sync_anim', true);
+                    }
+                } else {
+                    if (syncAnimSprite.anims.isPlaying) syncAnimSprite.anims.stop();
+                    syncAnimSprite.setFrame(0);
+                }
+            }
+
+            // 冒气泡
+            if (time - lastBubble > BUBBLE_INTERVAL) {
+                showBubble();
+                lastBubble = time;
+            }
+            // 猫的气泡（频率低）
+            if (time - lastCatBubble > CAT_BUBBLE_INTERVAL) {
+                showCatBubble();
+                lastCatBubble = time;
+            }
+
+            // 打字机效果
+            if (typewriterIndex < typewriterTarget.length && time - lastTypewriter > TYPEWRITER_DELAY) {
+                typewriterText += typewriterTarget[typewriterIndex];
+                statusText.textContent = typewriterText;
+                typewriterIndex++;
+                lastTypewriter = time;
+            }
+
+            // 移动 + 小踱步
+            moveStar(time);
+
+            // guest 随机想法泡泡
+            maybeShowGuestBubble(time);
+
+            // demo 平滑移动时：让气泡每帧跟随角色锚点（避免 tween 时气泡滞留在旧位置）
+            try {
+                Object.keys(guestBubbles).forEach(id => {
+                    const b = guestBubbles[id];
+                    const g = guestSprites[id];
+                    if (!b || !g) return;
+                    if (b.__followAgentId !== id) return;
+                    b.x = 0;
+                    b.y = 0;
+                    // children[0]=bg, children[1]=text
+                    const bx = g.sprite.x;
+                    const isDemoGuest = (id === 'demo_nika' || id === 'demo_mercury');
+                    const nameH = (g.nameText && g.nameText.height) ? g.nameText.height : 16;
+                    const by = isDemoGuest ? (g.sprite.y - 90) : ((g.nameText ? g.nameText.y : (g.sprite.y - 150)) - (nameH / 2) - 22);
+                    if (b.list && b.list[0]) { b.list[0].x = bx; b.list[0].y = by; }
+                    if (b.list && b.list[1]) { b.list[1].x = bx; b.list[1].y = by; }
+                });
+            } catch (e) {}
+
+            // guest 列表会定时刷新
+        }
+
+        function normalizeState(s) {
+            if (!s) return 'idle';
+            if (s === 'working') return 'writing';
+            if (s === 'run' || s === 'running') return 'executing';
+            if (s === 'sync') return 'syncing';
+            if (s === 'research') return 'researching';
+            return s;
+        }
+
+        function fetchStatus() {
+            fetch('/status')
+                .then(response => response.json())
+                .then(data => {
+                    const nextState = normalizeState(data.state);
+                    const stateInfo = STATES[nextState] || STATES.idle;
+                    // If we're mid-transition, don't restart the path every poll
+                    const changed = (pendingDesiredState === null) && (nextState !== currentState);
+                    const nextLine = '[' + stateInfo.name + '] ' + (data.detail || '...');
+                    if (changed) {
+                        typewriterTarget = nextLine;
+                        typewriterText = '';
+                        typewriterIndex = 0;
+
+                        // Set state immediately (no waypoints/path movement)
+                        pendingDesiredState = null;
+                        currentState = nextState;
+
+                        // Idle: sofa animation
+                        if (nextState === 'idle') {
+                            // Sofa
+                            if (game.textures.exists('sofa_busy')) {
+                                sofa.setTexture('sofa_busy');
+                                sofa.anims.play('sofa_busy', true);
+                            }
+                            // Hide moving star, hide desk star
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(false);
+                                window.starWorking.anims.stop();
+                            }
+                        } else if (nextState === 'error') {
+                            // Error: no working animation at desk
+                            sofa.anims.stop();
+                            sofa.setTexture('sofa_idle');
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(false);
+                                window.starWorking.anims.stop();
+                            }
+                        } else if (nextState === 'syncing') {
+                            // Syncing: also no working animation at desk
+                            sofa.anims.stop();
+                            sofa.setTexture('sofa_idle');
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(false);
+                                window.starWorking.anims.stop();
+                            }
+                        } else {
+                            // Non-idle non-error: starWorking animation at desk
+                            sofa.anims.stop();
+                            sofa.setTexture('sofa_idle');
+                            // Hide moving star, show desk star
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(true);
+                                window.starWorking.anims.play('star_working', true);
+                            }
+                        }
+
+                        // Server room logic:
+                        if (serverroom) {
+                            if (nextState === 'idle') {
+                                serverroom.anims.stop();
+                                serverroom.setFrame(0);
+                            } else {
+                                serverroom.anims.play('serverroom_on', true);
+                            }
+                        }
+
+                        // Sync animation logic:
+                        // default: frame 0
+                        // state=syncing: play from frame 1
+                        if (syncAnimSprite) {
+                            if (nextState === 'syncing') {
+                                if (!syncAnimSprite.anims.isPlaying || syncAnimSprite.anims.currentAnim?.key !== 'sync_anim') {
+                                    syncAnimSprite.anims.play('sync_anim', true);
+                                }
+                            } else {
+                                syncAnimSprite.anims.stop();
+                                syncAnimSprite.setFrame(0);
+                            }
+                        }
+                    } else {
+                        if (!typewriterTarget || typewriterTarget !== nextLine) {
+                            typewriterTarget = nextLine;
+                            typewriterText = '';
+                            typewriterIndex = 0;
+                        }
+                    }
+                })
+                .catch(error => {
+                    typewriterTarget = '连接失败，正在重试...';
+                    typewriterText = '';
+                    typewriterIndex = 0;
+                });
+        }
+
+        function moveStar(time) {
+            // Use pending state if available (for target area during transition)
+            const effectiveState = pendingDesiredState || currentState;
+            const stateInfo = STATES[effectiveState] || STATES.idle;
+            const baseTarget = areas[stateInfo.area] || areas.breakroom;
+
+            const dx = targetX - star.x;
+            const dy = targetY - star.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const speed = 1.4;
+            const wobble = Math.sin(time / 200) * 0.8;
+
+            if (dist > 3) {
+                // Move toward current target
+                star.x += (dx / dist) * speed;
+                star.y += (dy / dist) * speed;
+                star.setY(star.y + wobble);
+                isMoving = true;
+            } else {
+                // Arrived at a waypoint or final target
+                if (waypoints && waypoints.length > 0) {
+                    // Remove the first waypoint (we just arrived there)
+                    waypoints.shift();
+                    if (waypoints.length > 0) {
+                        // Next waypoint exists
+                        targetX = waypoints[0].x;
+                        targetY = waypoints[0].y;
+                        isMoving = true;
+                    } else {
+                        // Final target: apply pending state and switch visual
+                        if (pendingDesiredState !== null) {
+                            isMoving = false;
+                            currentState = pendingDesiredState;
+                            pendingDesiredState = null;
+
+                            if (currentState === 'idle') {
+                                // Sitting on sofa: hide Star only when arrived
+                                star.setVisible(false);
+                                star.anims.stop();
+                                if (window.starWorking) {
+                                    window.starWorking.setVisible(false);
+                                    window.starWorking.anims.stop();
+                                }
+                            } else {
+                                // Arrived at desk area: switch to star_working animation
+                                star.setVisible(false);
+                                star.anims.stop();
+                                if (window.starWorking) {
+                                    window.starWorking.setVisible(true);
+                                    window.starWorking.anims.play('star_working', true);
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if (pendingDesiredState !== null) {
+                        isMoving = false;
+                        currentState = pendingDesiredState;
+                        pendingDesiredState = null;
+
+                        if (currentState === 'idle') {
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(false);
+                                window.starWorking.anims.stop();
+                            }
+                            if (game.textures.exists('sofa_busy')) {
+                                sofa.setTexture('sofa_busy');
+                                sofa.anims.play('sofa_busy', true);
+                            }
+                        } else {
+                            // Arrived at desk area: switch to star_working animation
+                            star.setVisible(false);
+                            star.anims.stop();
+                            if (window.starWorking) {
+                                window.starWorking.setVisible(true);
+                                window.starWorking.anims.play('star_working', true);
+                            }
+                            sofa.anims.stop();
+                            sofa.setTexture('sofa_idle');
+                        }
+                    }
+                }
+            }
+
+            // Small wander only after arrival (non-idle)
+            // Temporarily disabled to stay in work area; uncomment later if needed
+            /*
+            if (!isMoving && currentState !== 'idle' && pendingDesiredState === null && (time - lastWanderAt) > 3500) {
+                targetX = baseTarget.x + (Math.random() - 0.5) * 60;
+                targetY = baseTarget.y + (Math.random() - 0.5) * 40;
+                star.setVisible(true);
+                star.anims.play('star_idle', true);
+                isMoving = true;
+                lastWanderAt = time;
+            }
+            */
+        }
+
+        function showBubble() {
+            if (bubble) { bubble.destroy(); bubble = null; }
+            const texts = BUBBLE_TEXTS[currentState] || BUBBLE_TEXTS.idle;
+            if (currentState === 'idle') return; // no bubble while sitting on sofa
+
+            // Bubble anchor should follow current visible character:
+            // - syncing: syncAnimSprite
+            // - error state: errorBug
+            // - working at desk: starWorking
+            // - other: star
+            let anchorX = star.x;
+            let anchorY = star.y;
+            if (currentState === 'syncing' && syncAnimSprite && syncAnimSprite.visible) {
+                anchorX = syncAnimSprite.x;
+                anchorY = syncAnimSprite.y;
+            } else if (currentState === 'error' && window.errorBug && window.errorBug.visible) {
+                anchorX = window.errorBug.x;
+                anchorY = window.errorBug.y;
+            } else if (!star.visible && window.starWorking && window.starWorking.visible) {
+                anchorX = window.starWorking.x;
+                anchorY = window.starWorking.y;
+            }
+
+            const text = texts[Math.floor(Math.random() * texts.length)];
+            const bubbleY = anchorY - 70;
+
+            // 只做手机端稍微调大一点，避免发糊
+            const isTouch = IS_TOUCH_DEVICE;
+            const fontSize = isTouch ? 14 : 12;
+            const bg = game.add.rectangle(anchorX, bubbleY, text.length * 10 + 20, 28, 0xffffff, 0.95);
+            bg.setStrokeStyle(2, 0x000000);
+            const txt = game.add.text(anchorX, bubbleY, text, { fontFamily: 'ArkPixel, monospace', fontSize: fontSize + 'px', fill: '#000', align: 'center' }).setOrigin(0.5);
+            bubble = game.add.container(0, 0, [bg, txt]);
+            bubble.setDepth(1200); // always above desk/star
+            setTimeout(() => { if (bubble) { bubble.destroy(); bubble = null; } }, 3000);
+        }
+
+        function showCatBubble() {
+            if (!window.catSprite) return;
+            if (window.catBubble) { window.catBubble.destroy(); window.catBubble = null; }
+            const texts = BUBBLE_TEXTS.cat || ['喵~', '咕噜咕噜…'];
+            const text = texts[Math.floor(Math.random() * texts.length)];
+            const anchorX = window.catSprite.x;
+            const anchorY = window.catSprite.y - 60;
+            const bg = game.add.rectangle(anchorX, anchorY, text.length * 10 + 20, 24, 0xfffbeb, 0.95);
+            bg.setStrokeStyle(2, 0xd4a574);
+            const txt = game.add.text(anchorX, anchorY, text, { fontFamily: 'ArkPixel, monospace', fontSize: '11px', fill: '#8b6914', align: 'center' }).setOrigin(0.5);
+            window.catBubble = game.add.container(0, 0, [bg, txt]);
+            window.catBubble.setDepth(2100); // top layer above cat
+            setTimeout(() => { if (window.catBubble) { window.catBubble.destroy(); window.catBubble = null; } }, 4000);
+        }
+
+        // 假 Agent 气泡逻辑已移除，统一以真实 /agents 数据为准
+
+        // 启动游戏
+        initGame();
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "slidev-assist",
+  "description": "接受主题或任何原材料（研究报告、数据、文案、PPTX等），由AI解析后生成Markdown再调用Slidev输出可演示的HTML幻灯片",
+  "emoji": "📽️",
+  "version": "1.0.3",
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/sfewsuper/slidev-assist",
+  "tags": ["slidev", "ppt", "presentation", "markdown", "slides"]
+}

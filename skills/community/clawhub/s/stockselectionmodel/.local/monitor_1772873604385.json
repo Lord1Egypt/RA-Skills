@@ -1,0 +1,144 @@
+{
+  "timestamp": "2026-03-07T08:53:24.350Z",
+  "threshold": 5,
+  "total_stocks": 17,
+  "alerts": [],
+  "quotes": [
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "price": 545.48,
+      "change_pct": -2.07,
+      "change_amt": -11.52,
+      "sector": "光模块"
+    },
+    {
+      "code": "300502",
+      "name": "新易盛",
+      "price": 402,
+      "change_pct": 0.19,
+      "change_amt": 0.76,
+      "sector": "光模块"
+    },
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "price": 322.88,
+      "change_pct": -3.56,
+      "change_amt": -11.92,
+      "sector": "光模块"
+    },
+    {
+      "code": "603019",
+      "name": "中科曙光",
+      "price": 84.19,
+      "change_pct": -0.71,
+      "change_amt": -0.6,
+      "sector": "AI服务器"
+    },
+    {
+      "code": "000977",
+      "name": "浪潮信息",
+      "price": 59.43,
+      "change_pct": 0.17,
+      "change_amt": 0.1,
+      "sector": "AI服务器"
+    },
+    {
+      "code": "002230",
+      "name": "科大讯飞",
+      "price": 52.53,
+      "change_pct": 0.65,
+      "change_amt": 0.34,
+      "sector": "大模型"
+    },
+    {
+      "code": "300624",
+      "name": "万兴科技",
+      "price": 76.53,
+      "change_pct": 0,
+      "change_amt": 0,
+      "sector": "AI应用"
+    },
+    {
+      "code": "300418",
+      "name": "昆仑万维",
+      "price": 53.21,
+      "change_pct": 1.01,
+      "change_amt": 0.53,
+      "sector": "大模型"
+    },
+    {
+      "code": "601360",
+      "name": "三六零",
+      "price": 11.53,
+      "change_pct": 0.7,
+      "change_amt": 0.08,
+      "sector": "AI应用"
+    },
+    {
+      "code": "601689",
+      "name": "拓普集团",
+      "price": 64.11,
+      "change_pct": -0.19,
+      "change_amt": -0.12,
+      "sector": "机器人"
+    },
+    {
+      "code": "002050",
+      "name": "三花智控",
+      "price": 47.71,
+      "change_pct": 0.25,
+      "change_amt": 0.12,
+      "sector": "机器人"
+    },
+    {
+      "code": "300124",
+      "name": "汇川技术",
+      "price": 71.47,
+      "change_pct": 1.53,
+      "change_amt": 1.08,
+      "sector": "机器人"
+    },
+    {
+      "code": "002920",
+      "name": "德赛西威",
+      "price": 116.31,
+      "change_pct": 1.48,
+      "change_amt": 1.7,
+      "sector": "自动驾驶"
+    },
+    {
+      "code": "300496",
+      "name": "中科创达",
+      "price": 66.52,
+      "change_pct": 0.48,
+      "change_amt": 0.32,
+      "sector": "自动驾驶"
+    },
+    {
+      "code": "000001",
+      "name": "上证指数",
+      "price": 4124.19,
+      "change_pct": 0.38,
+      "change_amt": 15.62,
+      "sector": "指数"
+    },
+    {
+      "code": "399006",
+      "name": "创业板指",
+      "price": 3229.3,
+      "change_pct": 0.38,
+      "change_amt": 12.36,
+      "sector": "指数"
+    },
+    {
+      "code": "399005",
+      "name": "中小100",
+      "price": 8680.04,
+      "change_pct": 0.7,
+      "change_amt": 60.58,
+      "sector": "指数"
+    }
+  ]
+}

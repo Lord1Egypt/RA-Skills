@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnapDOM Demo - Card Screenshot</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 40px; }
+  h1 { font-size: 1.5rem; color: #1a1a2e; }
+
+  #demo-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px;
+    width: 400px;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  #demo-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+  #demo-card h2 { font-size: 1.4rem; margin-bottom: 8px; }
+  #demo-card p  { font-size: 0.95rem; opacity: 0.9; line-height: 1.6; }
+  #demo-card .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  #output { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  #output img { max-width: 400px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .label { font-size: 0.85rem; color: #666; text-align: center; margin-top: 4px; }
+  button { padding: 8px 16px; border: none; border-radius: 8px; background: #667eea; color: white; cursor: pointer; font-size: 0.9rem; }
+  button:hover { background: #764ba2; }
+</style>
+</head>
+<body>
+  <h1>SnapDOM Capture Demo</h1>
+
+  <div id="demo-card">
+    <div class="badge">✨ SnapDOM Demo</div>
+    <h2>Hello, SnapDOM!</h2>
+    <p>This is a gradient background card, supporting export to PNG / JPG / WebP / SVG.</p>
+  </div>
+
+  <div style="display:flex;gap:12px;">
+    <button onclick="capture('png')">📷 PNG</button>
+    <button onclick="capture('jpg')">🖼️ JPG</button>
+    <button onclick="capture('webp')">⚡ WebP</button>
+    <button onclick="capture('svg')">📐 SVG</button>
+    <button onclick="capture('blob')">💾 Blob</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script src="https://unpkg.com/@zumer/snapdom/dist/snapdom.js"></script>
+  <script>
+    async function capture(format) {
+      const el = document.getElementById('demo-card');
+      const out = document.getElementById('output');
+      let img;
+      switch (format) {
+        case 'png':  img = await snapdom.toPng(el); break;
+        case 'jpg':  img = await snapdom.toJpg(el); break;
+        case 'webp': img = await snapdom.toWebp(el); break;
+        case 'svg':  img = await snapdom.toSvg(el); break;
+        case 'blob': {
+          const blob = await snapdom.toBlob(el, { type: 'png' });
+          img = new Image();
+          img.src = URL.createObjectURL(blob);
+          break;
+        }
+      }
+      if (img) {
+        out.innerHTML = '';
+        out.appendChild(img);
+        const lbl = document.createElement('div');
+        lbl.className = 'label';
+        lbl.textContent = format.toUpperCase() + ' (Click image to download)';
+        img.style.cursor = 'pointer';
+        img.onclick = () => {
+          const a = document.createElement('a');
+          a.href = img.src;
+          a.download = 'snapdom-demo.' + (format === 'blob' ? 'png' : format);
+          a.click();
+        };
+        out.appendChild(lbl);
+      }
+    }
+  </script>
+</body>
+</html>

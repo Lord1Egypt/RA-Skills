@@ -1,0 +1,52 @@
+{
+  "ai": {
+    "provider": "openai",
+    "api_key": "sk-替换为你的DeepSeekAPIKey",
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "temperature": 0.3,
+    "max_tokens": 4096
+  },
+  "data": {
+    "days": 60,
+    "realtime_enabled": true,
+    "chip_distribution_enabled": false,
+    "use_market_data_skill": false,
+    "market_data_skill_path": "../market-data"
+  },
+  "analysis": {
+    "bias_threshold": 5.0,
+    "volume_shrink_ratio": 0.7,
+    "volume_heavy_ratio": 1.5
+  },
+  "fundamental": {
+    "enabled": true,
+    "timeout": 120,
+    "tushare_token": ""
+  },
+  "market": {
+    "enabled": true,
+    "default_market": "cn"
+  },
+  "sector": {
+    "enabled": true
+  },
+  "agent": {
+    "enabled": true,
+    "default_strategy": "bull_trend"
+  },
+  "push": {
+    "enabled": false,
+    "feishu_webhook": "",
+    "wechat_webhook": "",
+    "telegram_token": "",
+    "telegram_chat_id": "",
+    "discord_webhook": "",
+    "email_sender": "",
+    "email_password": "",
+    "email_receivers": ""
+  },
+  "logging": {
+    "level": "INFO"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 1,
+    "primary": [
+      {
+        "memory_id": "mem_efb0935578ef",
+        "time_id": "T1779786032",
+        "time_ts": 1779786032,
+        "person_id": "test",
+        "nature_id": "note",
+        "content": "项目截止日期是下周五",
+        "content_hash": "cb3a13a71afa",
+        "importance": "high",
+        "is_aggregated": 0,
+        "source_count": 1,
+        "owner_agent_id": "test",
+        "visibility": "team",
+        "valence": 0.0,
+        "arousal": 0.2,
+        "dominance": 0.5,
+        "significance": "notable",
+        "confidence": 0.5,
+        "primary_emotions": "{}",
+        "compound_emotions": "[]",
+        "source": "agent_memory",
+        "source_id": "",
+        "deleted": 0,
+        "custom_ttl": null,
+        "valid_from": null,
+        "valid_until": null,
+        "occurrence_time": null,
+        "mention_time": null,
+        "created_at": 1779786032,
+        "_sources": {
+          "structured": true,
+          "semantic": false,
+          "entity": false,
+          "causal": false,
+          "bm25": true
+        },
+        "_structured_rrf": 0.01639344262295082,
+        "_bm25_rrf": 0.01639344262295082,
+        "_semantic_rrf": 0.0,
+        "_entity_rrf": 0.0,
+        "_causal_rrf": 0.0,
+        "_structured_rank": 1,
+        "_bm25_rank": 1,
+        "_semantic_rank": 0,
+        "_entity_rank": 0,
+        "_causal_rank": 0,
+        "_hit_count": 2,
+        "_rrf_score": 0.03278688524590164,
+        "_rank_score": 0.5312622630591947,
+        "_rank_breakdown": {
+          "importance": 0.15,
+          "time": 0.09999990340038425,
+          "structured": 0.14754098360655737,
+          "semantic": 0.0,
+          "entity": 0.0,
+          "causal": 0.0,
+          "quality": 0.04000000000000001,
+          "multi_hit": 0.005000000000000001,
+          "recency_bias": 0.1499999898570407
+        },
+        "last_accessed_ts": 1779786032.5842345,
+        "temporal_context": {
+          "is_valid": true,
+          "status": "active"
+        },
+        "_rerank_score": 0.505,
+        "_quality_score": 0.4,
+        "_quality_grade": "C"
+      }
+    ],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [],
+      "expanded": false
+    },
+    "query": "截止日期",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_5a58b7bdad9b",
+      "query": "截止日期",
+      "result_summary": "found 1 results via tempr_4way, top_score=0.531",
+      "confidence": 0.7656311315295974,
+      "sources_consulted": [
+        "mem_efb0935578ef"
+      ],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786032.583727
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 1 results",
+          "timestamp": 1779786032.5842345
+        },
+        {
+          "step_type": "bm25_search",
+          "detail": "BM25 found 1 results",
+          "timestamp": 1779786032.5842345
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=20)",
+          "timestamp": 1779786032.5842345
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786032.5842345
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786032.5842345
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 1 results (hits: {'structured': 1, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 1}, multi: 1)",
+          "timestamp": 1779786032.5842345
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 1 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786032.583727
+    },
+    "status": "ok"
+  },
+  "expires_at": 1779789632.5946572,
+  "created_at": 1779786032.5946572,
+  "_hmac": "d0fd2f9589fa050c698b22d2811a4973f9c145c9c100ba3596399a3ae1a09f76"
+}

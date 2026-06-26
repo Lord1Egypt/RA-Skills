@@ -1,0 +1,17 @@
+# 学术论文检索小助手 - Python 依赖
+
+# 核心检索
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Semantic Scholar（用于 S2 API 调用）
+semanticscholar>=0.8.0
+
+# arXiv 预印本搜索
+arxiv>=2.0.0
+
+# PubMed 生物医学文献
+biopython>=1.81
+
+# HTTP 重试
+urllib3>=1.26.0

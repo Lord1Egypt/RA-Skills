@@ -1,35 +1,117 @@
----
-name: "Smart Model Switcher Pro"
-description: "智能模型自动切换 Pro V6.0.0（类 Trae 模式）- 多模态感知，自动识别图片/视频/音频/代码/文本任务，切换到最适合的模型。支持图片理解 (qwen3-vl-plus)、视频音频 (qwen3.5-plus)、代码 (glm-5)、Office 文档 (MiniMax-M2.5)、推理等场景。零感知..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-model-switcher-pro"
-sourceUrl: "https://clawhub.ai/skills/smart-model-switcher-pro"
+﻿---
+name: smart-model-switcher-pro
+description: 智能模型自动切换 Pro V6.0.0（类 Trae 模式）- 多模态感知，自动识别图片/视频/音频/代码/文本任务，切换到最适合的模型。支持图片理解 (qwen3-vl-plus)、视频音频 (qwen3.5-plus)、代码 (glm-5)、Office 文档 (MiniMax-M2.5)、推理等场景。零感知切换，无需手动操作。类 Trae 自动选择 + 子代理多模态保护。
+version: 6.0.0
+author: davidme6
 ---
 
-# Smart Model Switcher Pro
+# 🧠 Smart Model Switcher Pro V6.0.0（类 Trae 模式）
 
-> 智能模型自动切换 Pro V6.0.0（类 Trae 模式）- 多模态感知，自动识别图片/视频/音频/代码/文本任务，切换到最适合的模型。支持图片理解 (qwen3-vl-plus)、视频音频 (qwen3.5-plus)、代码 (glm-5)、Office 文档 (MiniMax-M2.5)、推理等场景。零感知...
+**自动识别任务类型 • 智能切换最优模型 • 零感知 • 无需手动**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-model-switcher-pro`
-- **Source URL:** [https://clawhub.ai/skills/smart-model-switcher-pro](https://clawhub.ai/skills/smart-model-switcher-pro)
+**对标 Trae 自动选择 | 多模态全支持 | 子代理保护**
 
-## Overview
+---
 
+## 🎯 V6.0.0 核心升级
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-model-switcher-pro
-```
+| 特性 | V5.1.0 | V6.0.0（类 Trae 模式） |
+|------|--------|----------------------|
+| **多模态感知** | ✅ 图片/视频/音频 | ✅ 增强版 |
+| **主窗口切换** | ✅ 智能切换 | ✅ 智能切换 |
+| **子代理保护** | ❌ 不切换 | ✅ **多模态切换** |
+| **Trae 式自动选择** | ✅ 是 | ✅ 增强版 |
+| **Office 模式** | ✅ MiniMax-M2.5 | ✅ MiniMax-M2.5 |
+
+---
+
+## ⚠️ 核心规则：分层切换策略
+
+### 🔒 规则 1：多模态优先（最高优先级）
+
+**所有会话都生效（主窗口 + 子代理）！**
+
+| 输入类型 | 自动切换模型 | 说明 |
+|----------|-------------|------|
+| **图片** | qwen3.5-plus | 视觉理解首选 |
+| **视频** | qwen3.5-plus | 视频理解 |
+| **音频** | qwen3.5-plus | 音频理解 |
+| **OCR 文字** | qwen3-vl-plus | 纯图片 OCR |
+
+**为什么子代理也要切换？**
+- ✅ 保证子代理能识别图片/视频/音频
+- ✅ 防止子代理收到多模态输入时失败
+- ✅ 保持专业能力（代码/推理不切换）
+
+### 🔑 规则 2：主窗口智能切换（类 Trae 模式）
+
+**主窗口执行完整智能切换：**
+
+| 任务类型 | 自动切换模型 |
+|----------|-------------|
+| **代码任务** | glm-5 / qwen3-coder-plus |
+| **复杂推理** | qwen3-max / qwq-plus |
+| **创意写作** | qwen3.5-plus |
+| **日常对话** | qwen3.5-plus |
+| **长文档** | qwen3.5-plus (256K) |
+| **Office 文档** | MiniMax-M2.5 |
+
+### 🔐 规则 3：子代理专业能力保持
+
+**子代理在**非多模态**情况下保持预设模型：**
+
+| 子代理角色 | 预设模型 | 说明 |
+|-----------|---------|------|
+| **技术专家** | glm-5 | 代码能力最强 |
+| **推理专家** | qwq-plus | 复杂推理 |
+| **市场猎手** | qwen3-max | 商业分析 |
+| **产品经理** | qwen3-max | 需求分析 |
+| **设计师** | qwen3.5-plus | 视觉设计 |
+
+---
+
+## 🔄 自动切换逻辑（类 Trae 模式）
+
+`javascript
+// 第一优先级：多模态检测（所有会话）
+IF 消息包含图片/视频/音频 → 切换到 qwen3.5-plus
+
+// 第二优先级：主窗口智能切换
+IF 主窗口 {
+    IF 代码任务 → glm-5
+    ELSE IF 推理任务 → qwen3-max
+    ELSE IF 创意写作 → qwen3.5-plus
+    ELSE IF Office 文档 → MiniMax-M2.5
+    ELSE → qwen3.5-plus (默认最优)
+}
+
+// 第三优先级：子代理保持专业模型
+IF 子代理 {
+    使用预设模型（不切换，除非多模态）
+}
+`
+
+---
+
+## 📊 与 Trae 自动选择对比
+
+| 功能 | Trae | 我们 V6.0.0 |
+|------|------|-------------|
+| **图片识别** | ✅ 自动切换 | ✅ qwen3.5-plus |
+| **视频分析** | ✅ 自动切换 | ✅ qwen3.5-plus |
+| **音频处理** | ✅ 自动切换 | ✅ qwen3.5-plus |
+| **代码任务** | ✅ 自动切换 | ✅ glm-5 |
+| **复杂推理** | ✅ 自动切换 | ✅ qwen3-max |
+| **日常对话** | ✅ 自动切换 | ✅ qwen3.5-plus |
+| **长文档** | ✅ 自动切换 | ✅ qwen3.5-plus (256K) |
+| **Office 文档** | ✅ 自动切换 | ✅ MiniMax-M2.5 |
+| **子代理多模态** | ❌ 不支持 | ✅ **支持** |
+| **主窗口限制** | ❌ 无 | ✅ 仅主窗口智能切换 |
+
+**结论：** 完全对标 Trae，并增加子代理多模态保护！✅
+
+---
+
+*版本：6.0.0（类 Trae 模式）*
+*创建时间：2026-04-04*
+*作者：davidme6*

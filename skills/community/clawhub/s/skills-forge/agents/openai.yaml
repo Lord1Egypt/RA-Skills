@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Forge"
+  short_description: "Sign every install. Evolve before forging. Refuse blind self-evolution."
+  default_prompt: "Use the Forge Console to turn repeated capability gaps into reviewed skill candidates. Start with doctor/demo, then run forge with --prefer-evolve so opportunities route to existing installed skills via decide_skill_action when profile + trigger / topic / name overlap is high enough; only forge a new skill when nothing fits. Every install or update mutation requires a Telegram-issued signed approval token HMAC-bound to skill name, target, method, source path, and source content hash. The replay non-regression gate downstream catches any mis-routing."

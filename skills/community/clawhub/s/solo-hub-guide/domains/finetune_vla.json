@@ -1,0 +1,122 @@
+[
+  {
+    "id": "finetune_vla_step1_type",
+    "domain": "finetune_vla",
+    "wizard_step": 1,
+    "description": "Select VLA as the job type in the fine-tuning wizard",
+    "prerequisite": "plan: Plus or Pro",
+    "action_type": "ui_flow",
+    "steps": [
+      "In the wizard Step 1, click the 'VLA' button (camera icon)"
+    ],
+    "explanation": "VLA = Vision-Language-Action. Fine-tunes robotics policies on multi-camera datasets. Requires Plus or Pro — on Basic the option is locked and the wizard reverts to LLM.",
+    "expected_outcome": "VLA is selected; VLA model cards become visible",
+    "validation": {
+      "type": "ui_state",
+      "rule": "VLA button is highlighted in orange; VLA model cards (ACT, SmolVLA, Pi0.5, GR00T N1.5) are visible. No 'locked' overlay."
+    },
+    "common_errors": [
+      "VLA option locked / wizard reverts to LLM — you are on the Basic plan; upgrade to Plus or Pro first"
+    ],
+    "docs_ref": "/wizard/type-model"
+  },
+  {
+    "id": "finetune_vla_step1_model",
+    "domain": "finetune_vla",
+    "wizard_step": 1,
+    "description": "Select a base VLA policy model",
+    "action_type": "ui_flow",
+    "available_models": {
+      "act": {
+        "label": "ACT",
+        "architecture": "Transformer (Action Chunking Transformer)",
+        "gpu_minimum": "A100 40GB",
+        "description": "Predicts chunks of future actions from multi-camera images and robot state. Strong fit for fine manipulation and imitation learning.",
+        "best_for": "Bimanual / fine manipulation tasks"
+      },
+      "smolvla": {
+        "label": "SmolVLA",
+        "architecture": "Flow Matching",
+        "gpu_minimum": "A100 40GB",
+        "description": "Compact ~450M VLA from HuggingFace. VLM backbone with flow-matching action head. Efficient training, edge-friendly.",
+        "best_for": "Efficient training on limited data; edge deployment"
+      },
+      "pi05": {
+        "label": "Pi0.5",
+        "architecture": "Diffusion / Flow",
+        "gpu_minimum": "A100 40GB",
+        "gpu_recommended": "A100 80GB",
+        "description": "Physical Intelligence VLA for open-world generalization. Uses lerobot/pi05_base checkpoint.",
+        "best_for": "Open-world generalization tasks"
+      },
+      "groot_n15": {
+        "label": "GR00T N1.5",
+        "architecture": "Flow Matching",
+        "gpu_minimum": "A100 40GB",
+        "gpu_recommended": "A100 80GB",
+        "description": "NVIDIA humanoid VLA with vision-language input and flow-style action modeling. Strong language following.",
+        "best_for": "Language-conditioned manipulation; humanoid setups"
+      }
+    },
+    "expected_outcome": "VLA policy model selected",
+    "validation": {
+      "type": "ui_state",
+      "rule": "One of the four VLA model cards is highlighted/selected"
+    },
+    "docs_ref": "/wizard/type-model"
+  },
+  {
+    "id": "finetune_vla_step3_params",
+    "domain": "finetune_vla",
+    "wizard_step": 3,
+    "description": "Set VLA training hyperparameters",
+    "action_type": "ui_flow",
+    "parameters": {
+      "max_steps":    { "recommended": 50000, "range": "1000–200000",   "description": "Total gradient steps" },
+      "batch_size":   { "recommended": 16,    "range": "4–64",          "description": "Samples per gradient step" },
+      "camera_feeds": { "recommended": 2,     "range": "1, 2, 3, 4, or 6", "description": "Number of cameras in your dataset. MUST match the dataset AND must fit in the selected GPU's VRAM." }
+    },
+    "critical_warning": "Camera count affects VRAM requirements per sample. Higher camera counts on smaller GPUs (A100 40GB) will fail at provisioning. Pi0.5 and GR00T N1.5 recommend A100 80GB — match your camera count to your GPU.",
+    "expected_outcome": "All 3 parameters set",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Parameters set; camera_feeds matches what your dataset actually contains"
+    },
+    "docs_ref": "/wizard/params"
+  },
+  {
+    "id": "finetune_vla_step4_data",
+    "domain": "finetune_vla",
+    "wizard_step": 4,
+    "description": "Connect a LeRobot-compatible dataset for VLA fine-tuning",
+    "action_type": "ui_flow",
+    "required_fields": {
+      "dataset_repo_id": {
+        "format": "owner/dataset-name",
+        "example": "GetSoloTech/Candy-Pick",
+        "description": "HuggingFace repo ID of a LeRobot-compatible dataset"
+      },
+      "camera_feeds": {
+        "values": [1, 2, 3, 4, 6],
+        "description": "Must match the actual number of cameras in your dataset. Mismatch = job failure."
+      }
+    },
+    "dataset_format": {
+      "standard": "LeRobot-compatible (episodes, frames, observations, actions layout per LeRobot spec)",
+      "metadata": "meta/info.json must contain dataset_type, fps, features, and robot_type",
+      "creation_tools": ["LeRobot datasets library", "solo robo --record (creates LeRobot-compatible datasets automatically)"]
+    },
+    "example_datasets_from_solo": [
+      { "id": "GetSoloTech/Candy-Pick",    "type": "Pick",  "description": "Tabletop object pick task with single/dual camera, short episodes" },
+      { "id": "GetSoloTech/Juice-Serving", "type": "Pour",  "description": "Liquid pour / serving sequence with fine manipulation" },
+      { "id": "GetSoloTech/FoodStack",     "type": "Stack", "description": "Multi-object stacking and arrangement task" }
+    ],
+    "critical_warning": "Camera count mismatch is the most common VLA job failure. Verify your dataset's actual camera count before setting this value.",
+    "expected_outcome": "Dataset connected; camera count matches dataset",
+    "validation": {
+      "type": "ui_state",
+      "rule": "Dataset repo ID filled; camera count matches dataset metadata (check meta/info.json on HuggingFace)"
+    },
+    "docs_ref": "/wizard/data"
+  }
+]

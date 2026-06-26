@@ -1,0 +1,53 @@
+{
+  "name": "supah-base-intelligence",
+  "displayName": "SUPAH Base Intelligence",
+  "version": "1.2.0",
+  "author": "@Supah_BASED_AI",
+  "authorUrl": "https://supah.ai",
+  "description": "Professional-grade token intelligence for Base blockchain. 5-gate risk scoring (SIG/TA/SEC/PRED/NARR), whale tracking, portfolio analysis, and high-conviction signal feeds. x402 USDC micropayments on Base.",
+  "category": "trading",
+  "tags": ["base", "trading", "risk-analysis", "defi", "security", "whale-tracking", "signals", "portfolio", "token-intelligence", "x402"],
+  "chain": "base",
+  "license": "MIT-0",
+  "repository": "https://github.com/supah-based/supah-base-intelligence",
+  "homepage": "https://supah.ai",
+  "support": {
+    "telegram": "https://t.me/SUPAH_Based",
+    "twitter": "https://x.com/Supah_BASED_AI",
+    "website": "https://supah.ai"
+  },
+  "pricing": {
+    "model": "pay-per-use",
+    "method": "x402-usdc",
+    "network": "base",
+    "payTo": "0xD3B2eCfe77780bFfDFA356B70DC190C914521761",
+    "endpoints": {
+      "tokenScan": "$0.08",
+      "safetyScan": "$0.08",
+      "marketRegime": "$0.03",
+      "portfolioScan": "$0.05",
+      "whaleTracking": "$0.15",
+      "whaleAlerts": "$0.15",
+      "signalFeed": "$0.15",
+      "degenTop5": "$0.15",
+      "swingTop5": "$0.15"
+    }
+  },
+  "features": [
+    "5-gate risk scoring system (0-100 scale)",
+    "Real-time security scanning (honeypot, deployer, liquidity)",
+    "Technical analysis indicators (RSI, MACD, volume, momentum)",
+    "ML-based price predictions with confidence scores",
+    "Whale movement monitoring and alerts",
+    "Portfolio health analysis",
+    "High-conviction signal feeds (score ≥85)",
+    "x402 USDC micropayments (automatic, on-chain)"
+  ],
+  "requirements": {
+    "openclaw": ">=1.0.0",
+    "bins": ["curl", "node"],
+    "env": {
+      "SUPAH_API_BASE": "Optional: Override API endpoint (default: https://api.supah.ai)"
+    }
+  }
+}

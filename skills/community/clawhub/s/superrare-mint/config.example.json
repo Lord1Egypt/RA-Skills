@@ -1,0 +1,11 @@
+{
+  "chain": "mainnet",
+  "contractMode": "",
+  "collectionContract": "0x0000000000000000000000000000000000000000",
+  "deployReceiptFile": "",
+  "receiver": "",
+  "royaltyReceiver": "",
+  "rpcUrl": "",
+  "apiBaseUrl": "https://api.superrare.org",
+  "descriptionPrefix": "SuperRare mint via aaigotchi"
+}

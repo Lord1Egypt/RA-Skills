@@ -1,0 +1,23 @@
+{
+  "name": "slonaide-openclaw-skill",
+  "version": "2.1.0",
+  "description": "SlonAide 录音笔记 - 支持 OpenClaw 远程 bridge 安装",
+  "author": "SlonAide Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajingmiao/slonaide-openclaw-skill.git"
+  },
+  "keywords": [
+    "slonaide",
+    "aidenote",
+    "recording",
+    "transcription",
+    "ai",
+    "openclaw",
+    "audio-notes"
+  ],
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

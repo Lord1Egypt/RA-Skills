@@ -1,0 +1,4 @@
+interface:
+  display_name: "SQL Query Copilot"
+  short_description: "Safe SQL copilot with lint, explain, and schema-first execution"
+  default_prompt: "Turn my request into SQL, validate schema, lint it, run safely, and summarize findings."

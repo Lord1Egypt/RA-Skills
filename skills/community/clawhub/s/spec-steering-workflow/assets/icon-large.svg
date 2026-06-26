@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Spec Steering Workflow">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#134E4A"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <rect x="52" y="44" width="112" height="168" rx="18" fill="#F0FDFA"/>
+  <path d="M76 84h64M76 112h64M76 140h64M76 168h42" stroke="#0F766E" stroke-linecap="round" stroke-width="12"/>
+  <circle cx="182" cy="82" r="30" fill="#99F6E4"/>
+  <path d="m182 58 8 16.3 18 2.6-13 12.7 3 18.1-16-8.6-16 8.6 3-18.1-13-12.7 18-2.6Z" fill="#115E59"/>
+  <path d="M174 142c0-17.7 14.3-32 32-32h2v20h-2c-6.6 0-12 5.4-12 12v18" fill="none" stroke="#CCFBF1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+</svg>

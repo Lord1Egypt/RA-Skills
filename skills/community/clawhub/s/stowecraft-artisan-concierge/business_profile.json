@@ -1,0 +1,39 @@
+{
+  "business": {
+    "address": "Stowe, Vermont",
+    "categories": [
+      "artisan gallery",
+      "handmade jewelry",
+      "fine craft",
+      "gifts",
+      "home decor"
+    ],
+    "country": "US",
+    "data_quality": {
+      "events_status": "not_integrated",
+      "hours_status": "unknown",
+      "inventory_status": "category_only",
+      "merchant_authorized": false,
+      "profile_status": "research_derived"
+    },
+    "freshness": {
+      "last_verified": "2026-05-21",
+      "staleness_days": 30,
+      "update_source": "research_fixture"
+    },
+    "hours": [],
+    "name": "Remarkable Things at Stowe Craft",
+    "region": "Vermont",
+    "town": "Stowe",
+    "website": "https://remarkablethings.com/"
+  },
+  "description": "AI-readable gift, artist story, hours, event, and lead handoff surface for an artisan gallery pilot in Stowe, Vermont.",
+  "evidence_summary": {
+    "merchant_authorized": false,
+    "record_count": 2
+  },
+  "license": "MIT-0",
+  "name": "StoweCraft Artisan Concierge",
+  "slug": "stowecraft-artisan-concierge",
+  "source_notes": "Research-derived fixture from the supplied deep research report. It is not merchant-authorized, not a live scrape, and not a verified merchant export."
+}

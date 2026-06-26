@@ -1,35 +1,39 @@
 ---
-name: "show sysinfo"
-description: "检查和收集系统信息。当用户请求查看系统信息、服务器状态、主机配置、操作系统版本、CPU/内存/磁盘使用情况、网络配置、已安装软件等，使用此 skill。关键词包括：系统信息、服务器状态、主机名、uname、top、磁盘空间、内存占用、网络接口、系统巡检。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sysinfo"
-sourceUrl: "https://clawhub.ai/skills/sysinfo"
+name: sysinfo
+description: 检查和收集系统信息。当用户请求查看系统信息、服务器状态、主机配置、操作系统版本、CPU/内存/磁盘使用情况、网络配置、已安装软件等，使用此 skill。关键词包括：系统信息、服务器状态、主机名、uname、top、磁盘空间、内存占用、网络接口、系统巡检。
 ---
 
-# show sysinfo
+# 系统信息检查 Skill
 
-> 检查和收集系统信息。当用户请求查看系统信息、服务器状态、主机配置、操作系统版本、CPU/内存/磁盘使用情况、网络配置、已安装软件等，使用此 skill。关键词包括：系统信息、服务器状态、主机名、uname、top、磁盘空间、内存占用、网络接口、系统巡检。
+收集当前系统的基本信息并汇总输出。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sysinfo`
-- **Source URL:** [https://clawhub.ai/skills/sysinfo](https://clawhub.ai/skills/sysinfo)
+## 使用场景
 
-## Overview
+- 用户想了解当前机器的操作系统、内核版本、CPU、内存、磁盘等信息
+- 系统巡检或运维排查时需要快速获取主机概况
+- 生成系统报告
 
+## 采集项目
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sysinfo
-```
+| 类别 | 命令 |
+|------|------|
+| 主机名 | `hostname` |
+| 操作系统 | `cat /etc/os-release` |
+| 内核版本 | `uname -a` |
+| CPU 信息 | `lscpu` |
+| 内存使用 | `free -h` |
+| 磁盘使用 | `df -h` |
+| 网络接口 | `ip addr` 或 `ifconfig` |
+| 登录用户 | `who` |
+| 系统运行时间 | `uptime` |
+| 用户信息 | cat /etc/passwd |
+
+## 执行步骤
+
+1. 依次运行上述命令
+2. 将输出整理为结构化的报告
+3. 如有异常（磁盘使用率 > 90%、内存不足等）在报告中高亮提示
+
+## 输出格式
+
+以 Markdown 报告形式输出，包含各类别的信息摘要。如用户要求文件，可生成 `.md` 或 `.txt` 文件保存到输出目录。

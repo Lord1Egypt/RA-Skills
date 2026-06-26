@@ -1,0 +1,72 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [
+        {
+          "name": "How",
+          "type": "unknown",
+          "role": "queried"
+        }
+      ],
+      "expanded": false
+    },
+    "query": "How long did it take me to assemble the IKEA bookshelf?",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_bc2769779c37",
+      "query": "How long did it take me to assemble the IKEA bookshelf?",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786378.31159
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786378.31159
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=100)",
+          "timestamp": 1779786378.31159
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786378.31159
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786378.31159
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786378.31159
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786378.31159
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786438.31159,
+  "created_at": 1779786378.31159,
+  "_hmac": "2f7bafd407ed47189ad08a0e187bdd4292c89a8dd731833015a47c8f9a02bb8d"
+}

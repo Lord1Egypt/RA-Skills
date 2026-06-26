@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "skill_name": "smart-memory-system",
+  "skill_description": "检索增强智能记忆系统 for OpenClaw",
+  "author": "Bessent",
+  "created_at": "2026-03-05",
+  "license": "MIT",
+  
+  "models": {
+    "embedding": "edgefn/BAAI/bge-m3",
+    "reranker": "edgefn/bge-reranker-v2-m3",
+    "fallback_embedding": "qwen-portal/coder-model",
+    "supported_providers": ["edgefn", "qwen-portal"],
+    "embedding_dimensions": 1024,
+    "api_endpoint": "/v1/embeddings"
+  },
+  
+  "processing": {
+    "chunk_size": 500,
+    "overlap": 50,
+    "max_chunks_per_file": 100,
+    "preserve_sentences": true,
+    "min_chunk_length": 50,
+    "max_chunk_length": 2000
+  },
+  
+  "retrieval": {
+    "top_k_results": 5,
+    "min_similarity": 0.6,
+    "use_reranker": true,
+    "reranker_threshold": 0.7,
+    "cache_enabled": true,
+    "cache_ttl_hours": 168,
+    "max_cache_size_mb": 1024
+  },
+  
+  "integration": {
+    "auto_enhance": true,
+    "max_context_tokens": 2000,
+    "min_context_tokens": 100,
+    "include_metadata": true,
+    "enhancement_prefix": "🧠 基于相关记忆：",
+    "silent_mode": false
+  },
+  
+  "optimization": {
+    "importance_scoring": {
+      "age_weight": 0.2,
+      "frequency_weight": 0.3,
+      "relevance_weight": 0.5
+    },
+    "cleanup_schedule": "daily",
+    "reindex_schedule": "weekly",
+    "backup_schedule": "weekly",
+    "max_index_size_gb": 10
+  },
+  
+  "monitoring": {
+    "enabled": true,
+    "report_interval_minutes": 5,
+    "metrics_collection": true,
+    "alert_thresholds": {
+      "similarity_drop": 0.1,
+      "memory_usage_gb": 5,
+      "response_time_ms": 5000
+    }
+  },
+  
+  "ui": {
+    "progress_bars": true,
+    "color_output": true,
+    "emoji_enabled": true,
+    "verbose_logging": false,
+    "interactive_mode": true
+  },
+  
+  "paths": {
+    "vector_index": "~/.openclaw/workspace/smart_memory/vector_index",
+    "semantic_cache": "~/.openclaw/workspace/smart_memory/semantic_cache",
+    "topic_clusters": "~/.openclaw/workspace/smart_memory/topic_clusters",
+    "backups": "~/.openclaw/workspace/smart_memory/backups",
+    "logs": "~/.openclaw/logs/smart_memory"
+  },
+  
+  "features": {
+    "batch_processing": true,
+    "incremental_indexing": true,
+    "topic_modeling": true,
+    "sentiment_analysis": false,
+    "language_detection": false,
+    "multilingual_support": false
+  },
+  
+  "compatibility": {
+    "openclaw_min_version": "2026.3.0",
+    "node_min_version": "18.0.0",
+    "supported_platforms": ["darwin", "linux"],
+    "memory_requirements_mb": 512
+  }
+}

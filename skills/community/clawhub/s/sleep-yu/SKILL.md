@@ -1,35 +1,44 @@
 ---
-name: "sleep"
-description: "当用户准备休息、道晚安、或讨论睡眠与作息时使用。触发词与场景包括：睡觉、睡了、去睡、晚安、困了、熬夜、作息、失眠、入睡困难、午睡、睡眠质量、bedtime、wind-down、good night、sleep hygiene、nap；以及用户明确表示「先不聊了 / 收工休息」并希望温和收尾。在用户要睡觉时给出简短..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sleep-yu"
-sourceUrl: "https://clawhub.ai/skills/sleep-yu"
+name: sleep
+description: "当用户准备休息、道晚安、或讨论睡眠与作息时使用。触发词与场景包括：睡觉、睡了、去睡、晚安、困了、熬夜、作息、失眠、入睡困难、午睡、睡眠质量、bedtime、wind-down、good night、sleep hygiene、nap；以及用户明确表示「先不聊了 / 收工休息」并希望温和收尾。在用户要睡觉时给出简短温暖的结束语，不展开新任务；在睡眠健康问题上给常识级建议并标明非医疗诊断。"
 ---
 
-# sleep
+# 睡觉 / 休息（Sleep）
 
-> 当用户准备休息、道晚安、或讨论睡眠与作息时使用。触发词与场景包括：睡觉、睡了、去睡、晚安、困了、熬夜、作息、失眠、入睡困难、午睡、睡眠质量、bedtime、wind-down、good night、sleep hygiene、nap；以及用户明确表示「先不聊了 / 收工休息」并希望温和收尾。在用户要睡觉时给出简短...
+本 skill 处理两类意图：**结束对话去休息**，以及**与睡眠、作息相关的轻量咨询**。目标是尊重用户的节奏：不拖堂、不制造 FOMO、不把简单晚安写成长文。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sleep-yu`
-- **Source URL:** [https://clawhub.ai/skills/sleep-yu](https://clawhub.ai/skills/sleep-yu)
+## 1. 用户要去睡了 / 道晚安 / 收工
 
-## Overview
+**识别：** 用户说要去睡、晚安、先睡了、今天到这、不聊了、关机休息等；或明显在结束会话而非提出新需求。
 
+**做法：**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sleep-yu
-```
+- 用**简短**（通常 2～6 句）回应：感谢陪伴、祝好眠、明天再续即可。
+- **不要**新开技术话题、不要追问「还要不要顺便…」、不要主动跑工具或贴大段代码。
+- 可**可选**一行贴心提醒（用户未反感时）：例如调暗屏幕、设闹钟、水杯放床头；保持克制，不变成说教清单。
+- 若用户用中文，**默认简体中文**收尾。
+
+**避免：** 睡眠科普长篇、人生鸡汤堆砌、替用户做医学判断。
+
+## 2. 睡眠与作息类问题（失眠、熬夜、午睡等）
+
+**识别：** 用户询问怎么睡得更好、熬夜补救、午睡多久、褪黑素是否…、作息调整等。
+
+**做法：**
+
+- 给**常识级、可操作建议**（规律就寝、光照、咖啡因时间、卧室环境、放松流程等），条理清晰、篇幅适中。
+- **明确边界：** 不是医生；持续严重失眠、打鼾伴呼吸暂停、日间嗜睡影响安全等，建议**就医或咨询专业医师**。
+- 不替代处方药建议；涉及药物或补充剂只谈「需遵医嘱」类原则，不给具体剂量或自行用药方案。
+
+## 3. 不要触发本 skill 的情况
+
+- 用户只是在写代码里的 `sleep()`、`time.sleep`、`Thread.sleep` 等 API（属于编程，走正常开发流程）。
+- 用户讨论产品/项目的「休眠模式」「设备睡眠」（技术语境，非个人休息）。
+- 用户并未表达休息意图，只是随口提到「昨晚没睡好」作为闲聊一句且**继续布置开发任务**——此时以任务为主，不必强行切到睡眠专题。
+
+## 4. 语气与长度
+
+- 道晚安：**短**、真诚、不模板腔。
+- 睡眠建议：**清楚**即可，避免论文式堆砌引用；若用户要深入再分点展开。
+
+当用户已经说「睡了」，最后一轮回复以**送别与祝福**为主，把「是否还有事」交给用户明天再说。

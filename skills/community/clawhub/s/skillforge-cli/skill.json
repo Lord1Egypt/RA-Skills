@@ -1,0 +1,46 @@
+{
+  "name": "skillforge",
+  "version": "1.0.3",
+  "author": "shadoprizm",
+  "description": "Generate and audit OpenClaw agent skills from natural language. Free template-based generation and Pro AI-powered quality assessment. Wraps the SkillForge CLI (npm: @shadoprizm/skillforge).",
+  "tags": ["skillforge", "generator", "auditor", "skills", "quality", "clawhub"],
+  "category": "developer",
+  "homepage": "https://github.com/shadoprizm/skillforge",
+  "repository": "https://github.com/shadoprizm/skillforge",
+  "license": "MIT",
+  "install": {
+    "steps": [
+      "npm install -g @shadoprizm/skillforge@latest",
+      "clawhub login (optional, for publishing)"
+    ],
+    "source": "https://github.com/shadoprizm/skillforge",
+    "npm": "@shadoprizm/skillforge",
+    "license": "MIT",
+    "notes": "Open-source MIT-licensed CLI. Source code fully available on GitHub. All processing runs locally — no data is sent to external servers except to the user's chosen AI provider when using --pro mode."
+  },
+  "env": {
+    "optional": [
+      "ZAI_API_KEY",
+      "OPENAI_API_KEY",
+      "OPENROUTER_API_KEY",
+      "QWEN_API_KEY"
+    ],
+    "notes": "Required only for Pro features (--pro flag). BYOK model — the user's own API key is used. Keys are stored locally in ~/.skillforge/ via the 'conf' npm package (plaintext local file, same security as ~/.bashrc or ~/.npmrc). Keys are sent only to the chosen AI provider's API endpoint. SkillForge does not proxy, log, retain, or transmit keys to any other server. Treat these keys with the same caution as any stored credential."
+  },
+  "credentials": {
+    "optional": "ClawHub auth via `clawhub login` for publishing skills to the marketplace",
+    "notes": "Uses the official ClawHub CLI for publishing. No custom auth flows."
+  },
+  "network": {
+    "calls": [
+      "AI provider API (user-selected: Z.AI api.z.ai, OpenAI api.openai.com, OpenRouter openrouter.ai, or Qwen dashscope.aliyuncs.com) — only with --pro flag and user's own API key",
+      "ClawHub registry (clawhub.ai) — only with --publish flag and ClawHub auth",
+      "npm registry (registry.npmjs.org) — only during initial install"
+    ],
+    "notes": "No telemetry, no data collection, no phone-home, no analytics. All skill generation and auditing runs locally. Open-source — verify by reading the source at github.com/shadoprizm/skillforge."
+  },
+  "dependencies": {
+    "runtime": ["commander (^12.1.0)", "conf (^12.0.0)", "openai (^4.77.0)"],
+    "notes": "3 minimal dependencies. commander (CLI framework), conf (local encrypted config storage), openai (API client for AI providers). No hidden dependencies. View full dependency tree: npm view @shadoprizm/skillforge dependencies"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "stock-selecter",
+  "version": "3.3.0",
+  "description": "A股智能选股系统，整合14种策略，支持单策略筛选、多策略组合、综合评分排序",
+  "token": "YOUR_TUSHARE_TOKEN_HERE",
+  "strategies": [
+    "roe", "dividend", "valuation", "growth", "cashflow_quality",
+    "macd", "trend", "bollinger", "volume_surge", "pattern",
+    "shareholder_concentration", "low_position",
+    "northbound_flow", "shareholder_buyback", "analyst_target"
+  ],
+  "defaults": {
+    "strategy": "roe",
+    "mode": "and",
+    "top_n": 0,
+    "save": true,
+    "report": false,
+    "exclude_st": true,
+    "workers": 1
+  },
+  "output_dir": "",
+  "output_dir_fallback": "."
+}

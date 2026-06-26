@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "symbols": {
+    "line": [
+      {
+        "name": "hash",
+        "file_pattern": "\\.(py|rb|ex|exs|sh|yaml|yml|conf|ini|cfg|nix|Dockerfile|Makefile)$",
+        "start": "#\\s*(.*)$",
+        "group": 1
+      },
+      {
+        "name": "slash",
+        "file_pattern": "\\.(rs|go|c|cpp|h|js|ts|java|kt|swift|cs|php|zig)$",
+        "start": "//\\s*(.*)$",
+        "group": 1
+      },
+      {
+        "name": "dash",
+        "file_pattern": "\\.(sql|hs|lhs|elm|prisma)$",
+        "start": "--\\s*(.*)$",
+        "group": 1
+      },
+      {
+        "name": "semicolon",
+        "file_pattern": "\\.(lisp|clj|cl|el)$",
+        "start": ";\\s*(.*)$",
+        "group": 1
+      },
+      {
+        "name": "percent",
+        "file_pattern": "\\.(tex|erl|hrl)$",
+        "start": "%\\s*(.*)$",
+        "group": 1
+      }
+    ],
+    "pair": [
+      {
+        "name": "c-style",
+        "file_pattern": "\\.(c|cpp|rs|js|ts|java|kt|swift|zig)$",
+        "start": "/\\*",
+        "end": "\\*/",
+        "include_content": true
+      },
+      {
+        "name": "python-docstring",
+        "file_pattern": "\\.py$",
+        "start": "\"\"\"",
+        "end": "\"\"\"",
+        "include_content": true
+      },
+      {
+        "name": "python-docstring-single",
+        "file_pattern": "\\.py$",
+        "start": "'''",
+        "end": "'''",
+        "include_content": true
+      },
+      {
+        "name": "html-xml",
+        "file_pattern": "\\.(html|xml|vue|svelte)$",
+        "start": "<!--",
+        "end": "-->",
+        "include_content": true
+      },
+      {
+        "name": "ocaml",
+        "file_pattern": "\\.(ml|mli)$",
+        "start": "\\(\\*",
+        "end": "\\*\\)",
+        "include_content": true
+      }
+    ]
+  },
+  "fallback": {
+    "type": "line",
+    "start": "#\\s*(.*)$",
+    "group": 1
+  }
+}

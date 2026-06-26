@@ -1,0 +1,4 @@
+benchmark,baseline,metric,score,run_id,task
+calvin_long_horizon,CALVIN-style baseline,success_rate,0.62,oclw-lh-01,long_horizon_manipulation
+calvin_long_horizon,ManiSkill2 baseline,success_rate,0.58,oclw-lh-02,long_horizon_manipulation
+furniturebench,FurnitureBench heuristic,success_rate,0.54,oclw-rw-01,long_horizon_manipulation

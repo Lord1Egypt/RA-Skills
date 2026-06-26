@@ -1,0 +1,7 @@
+{
+  "pdf_dir": "/path/to/pdf/files",
+  "output_dir": "./output",
+  "excel_path": "/path/to/excel.xlsx",
+  "ocr_threshold": 300,
+  "verbose": true
+}

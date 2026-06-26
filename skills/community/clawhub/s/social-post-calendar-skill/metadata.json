@@ -1,0 +1,19 @@
+{
+  "slug": "social-post-calendar-skill",
+  "name": "Social Post Calendar Skill",
+  "version": "0.1.0",
+  "tags": [
+    "openclaw",
+    "social",
+    "social-post-calendar",
+    "templates"
+  ],
+  "category": "Social & Marketing",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-05",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

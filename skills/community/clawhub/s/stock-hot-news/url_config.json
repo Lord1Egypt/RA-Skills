@@ -1,0 +1,173 @@
+{
+  "version": "3.0",
+  "description": "财经新闻爬取系统配置 - 精简版",
+  "last_updated": "2026-03-28",
+  "auther": "量化土狗",
+  "support": "微信名quant\\_village\\_dog | QQ:13620658 | 邮件：13620658@qq.com",
+  "community": "AI量化交流社区：QQ群：1057968391",
+  
+  "api_settings": {
+    "description": "API密钥配置 - 用户需要配置此项",
+    "deepseek": {
+      "api_key": "你的api key",
+      "api_base_url": "你的大模型入口地址",
+      "model": "你的大模型",
+      "timeout_seconds": 300
+    }
+  },
+
+  "system_settings": {
+    "description": "系统路径和基本设置，请指定你自己的输入地址",
+    "temp_dir": "c:/SelfData/claw_temp/temp",
+    "reports_dir": "c:/SelfData/claw_temp/reports",
+
+    "crawl_settings": {
+      "max_retries": 2,
+      "delay_between_sites": 2,
+      "skip_failed_sites": true,
+      "buffer_time_seconds": 5,
+      "connectivity_test_timeout": 3
+    },
+
+    "log_settings": {
+      "enable_logging": true,
+      "log_level": "INFO"
+    }
+  },
+
+  "websites": [
+    {
+      "name": "财联社",
+      "url": "https://www.cls.cn/depth?id=1000",
+      "enabled": true,
+      "adapter": "cls_hot_news",
+      "priority": 1,
+      "max_articles": 20,
+      "wait_time": 3000,
+      "timeout": 10,
+      "description": "最可靠的财经新闻源"
+    },
+    {
+      "name": "金融界",
+      "url": "https://www.jrj.com.cn/",
+      "enabled": true,
+      "adapter": "jrj_hot_news",
+      "priority": 2,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "响应较快的财经网站"
+    },
+    {
+      "name": "证券时报网",
+      "url": "https://www.stcn.com/",
+      "enabled": true,
+      "adapter": "stcn_hot_news",
+      "priority": 3,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 10,
+      "description": "官方财经媒体"
+    },
+    {
+      "name": "新浪财经",
+      "url": "http://finance.sina.com.cn",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 4,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 12,
+      "description": "大型财经门户网站（当前版本暂未实现，未来更新）"
+    },
+    {
+      "name": "华尔街见闻",
+      "url": "https://wallstreetcn.com/",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 5,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "国际财经新闻（当前版本暂未实现，未来更新）"
+    },
+    {
+      "name": "和讯网",
+      "url": "https://news.hexun.com/",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 6,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "综合财经资讯网站（当前版本暂未实现，未来更新）"
+    },
+    {
+      "name": "21世纪经济报道",
+      "url": "https://www.21jingji.com",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 7,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "专业经济新闻报道（当前版本暂未实现，未来更新）"
+    },
+    {
+      "name": "第一财经",
+      "url": "https://www.yicai.com/news/",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 8,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "专业财经媒体（当前版本暂未实现，未来更新）"
+    },
+    {
+      "name": "财新网",
+      "url": "https://www.caixin.com/",
+      "enabled": false,
+      "adapter": "generic",
+      "priority": 9,
+      "max_articles": 15,
+      "wait_time": 3000,
+      "timeout": 8,
+      "description": "深度财经报道（当前版本暂未实现，未来更新）"
+    }
+  ],
+  
+  "wallstreetcn_module": {
+    "description": "华尔街见闻快讯采集配置，采用了专门的适配器，谨慎替换，替换后需重新适配",
+    "base_url": "https://wallstreetcn.com/live/global",
+    "output_directory": "c:/SelfData/claw_temp/temp/wallstreetcn_news",
+    "cookie_path": "你的cookie地址",
+    "crawl_settings": {
+      "playwright": {
+        "headless": true,
+        "timeout_ms": 15000,
+        "min_important": 10,
+        "max_scroll": 5,
+        "screenshot": true
+      }
+    },
+    "filter_keywords": {
+      "finance": [
+        "原油", "石油", "天然气", "煤炭", "黄金", "白银", "铜", "铝", "铁矿石",
+        "GDP", "CPI", "PPI", "PMI", "通胀", "通缩", "利率", "汇率", "货币政策",
+        "股市", "A股", "港股", "美股", "指数", "上证", "深证", "创业板", "科创板",
+        "美国", "欧洲", "日本", "中国", "俄罗斯", "伊朗", "以色列", "制裁", "贸易战",
+        "财报", "业绩", "上市", "退市", "并购", "重组", "特斯拉", "苹果", "微软",
+        "政策", "监管", "法规", "改革", "开放", "试点", "自贸区",
+        "AI", "人工智能", "芯片", "半导体", "5G", "新能源", "电动车", "自动驾驶",
+        "战争", "冲突", "导弹", "战机", "军事", "攻击", "核", "军演"
+      ],
+      "important": [
+        "重要", "紧急", "突发", "重磅", "重大", "关键", "突破", "首次",
+        "伊朗", "以色列", "战争", "冲突", "导弹", "核", "制裁", "禁令"
+      ]
+    }
+  }
+  
+
+}

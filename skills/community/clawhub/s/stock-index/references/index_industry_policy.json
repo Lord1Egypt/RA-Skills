@@ -1,0 +1,182 @@
+{
+  "category": "行业主题",
+  "sub_category": "政策区域",
+  "description": "理财通行业主题-政策区域指数名单",
+  "count": 29,
+  "indices": [
+    {
+      "code": "000042.SH",
+      "name": "上证中央企业50指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000042"
+    },
+    {
+      "code": "000056.SH",
+      "name": "上证国有企业100指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000056"
+    },
+    {
+      "code": "000859.CSI",
+      "name": "中证国企一带一路指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000859"
+    },
+    {
+      "code": "000860.CSI",
+      "name": "中证央企结构调整指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000860"
+    },
+    {
+      "code": "000861.CSI",
+      "name": "中证央企创新驱动指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000861"
+    },
+    {
+      "code": "399362.SZ",
+      "name": "国证民企领先100指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399362"
+    },
+    {
+      "code": "399974.SZ",
+      "name": "中证国有企业改革指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399974"
+    },
+    {
+      "code": "399991.SZ",
+      "name": "中证一带一路主题指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399991"
+    },
+    {
+      "code": "930620.CSI",
+      "name": "中证申万一带一路主题投资指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930620"
+    },
+    {
+      "code": "930758.CSI",
+      "name": "中证浙江凤凰行动50指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930758"
+    },
+    {
+      "code": "931000.CSI",
+      "name": "中证粤港澳大湾区发展主题指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931000"
+    },
+    {
+      "code": "931033.CSI",
+      "name": "中证杭州湾区指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931033"
+    },
+    {
+      "code": "931136.CSI",
+      "name": "中证深圳科技创新主题指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931136"
+    },
+    {
+      "code": "931141.CSI",
+      "name": "中证长三角一体化发展主题指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931141"
+    },
+    {
+      "code": "931265.CSI",
+      "name": "中证民企300指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931265"
+    },
+    {
+      "code": "931372.CSI",
+      "name": "中证浙江国资创新发展指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931372"
+    },
+    {
+      "code": "931393.CSI",
+      "name": "中证湖北新旧动能转换指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931393"
+    },
+    {
+      "code": "931554.CSI",
+      "name": "中证长江保护主题指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931554"
+    },
+    {
+      "code": "931596.CSI",
+      "name": "中证沪港深张江自主创新50指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931596"
+    },
+    {
+      "code": "931695.CSI",
+      "name": "中证成渝地区双城经济圈成份指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931695"
+    },
+    {
+      "code": "931823.CSI",
+      "name": "中证国资央企50指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931823"
+    },
+    {
+      "code": "932039.CSI",
+      "name": "中证国新央企股东回报指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932039"
+    },
+    {
+      "code": "950049.CSI",
+      "name": "上证G60战略新兴产业成份指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950049"
+    },
+    {
+      "code": "950096.CSI",
+      "name": "中证上海国企指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950096"
+    },
+    {
+      "code": "980001.CNI",
+      "name": "粤港澳大湾区创新100指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980001"
+    },
+    {
+      "code": "GPCCH003.FI",
+      "name": "富时中国国企开放共赢指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=GPCCH003"
+    },
+    {
+      "code": "h11153.CSI",
+      "name": "中证香港内地国有企业指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11153"
+    },
+    {
+      "code": "HSBBAC.HI",
+      "name": "恒生沪深港通大湾区综合指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSBBAC"
+    },
+    {
+      "code": "HSCSOE.HI",
+      "name": "恒生中国央企指数",
+      "sub_category": "政策区域",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCSOE"
+    }
+  ]
+}

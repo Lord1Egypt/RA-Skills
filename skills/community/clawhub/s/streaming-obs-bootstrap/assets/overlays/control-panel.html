@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>🦀 Main Live - Control Panel</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  padding: 20px;
+}
+.header {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.status {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.live { background: #f00; }
+.offline { background: #666; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #00d9ff;
+}
+.btn {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover { transform: scale(1.05); }
+.btn-primary { background: #00d9ff; color: #000; }
+.btn-success { background: #0f0; color: #000; }
+.btn-danger { background: #f00; color: #fff; }
+.btn-warning { background: #ff0; color: #000; }
+.btn-secondary { background: #666; color: #fff; }
+
+.scene-btn {
+  padding: 20px;
+  margin: 10px 0;
+  font-size: 18px;
+}
+.active-scene {
+  background: #0f0;
+  color: #000;
+  box-shadow: 0 0 20px #0f0;
+}
+.info {
+  background: rgba(0,217,255,0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🦀 Main Live Control Panel</h1>
+  <div class="status offline" id="status">● OFFLINE</div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>🎬 Stream Control</h2>
+    <button class="btn btn-success" onclick="startStream()">▶️ Go Live</button>
+    <button class="btn btn-danger" onclick="stopStream()">⏹️ Stop Stream</button>
+    <button class="btn btn-primary" onclick="startRecording()">⏺️ Start Recording</button>
+    <button class="btn btn-secondary" onclick="stopRecording()">⏹️ Stop Recording</button>
+  </div>
+
+  <div class="card">
+    <h2>🎭 Scenes</h2>
+    <button class="btn scene-btn" onclick="switchScene('Intro')">🎬 Intro</button>
+    <button class="btn scene-btn" onclick="switchScene('Main Live')">🦀 Main</button>
+    <button class="btn scene-btn" onclick="switchScene('Work Mode')">💻 Work</button>
+    <button class="btn scene-btn" onclick="switchScene('Presentation Mode')">📊 Presentation</button>
+    <button class="btn scene-btn" onclick="switchScene('Analytics Dashboard')">📈 Analytics</button>
+    <button class="btn scene-btn" onclick="switchScene('Chat Interaction')">💬 Chat</button>
+    <button class="btn scene-btn" onclick="switchScene('BRB Screen')">☕ BRB</button>
+    <button class="btn scene-btn" onclick="switchScene('Outro')">👋 Outro</button>
+  </div>
+
+  <div class="card">
+    <h2>📊 Status</h2>
+    <div class="info">
+      <div><strong>Current Scene:</strong> <span id="currentScene">--</span></div>
+      <div><strong>Recording:</strong> <span id="recordingStatus">Stopped</span></div>
+      <div><strong>Streaming:</strong> <span id="streamingStatus">Offline</span></div>
+      <div><strong>Uptime:</strong> <span id="uptime">00:00:00</span></div>
+    </div>
+    <button class="btn btn-secondary" onclick="refreshStatus()" style="margin-top: 15px;">🔄 Refresh</button>
+  </div>
+
+  <div class="card">
+    <h2>📸 Monitor</h2>
+    <div class="info">
+      <img id="screenshot" src="http://127.0.0.1:8765/screenshot/stream_monitor" 
+           style="width: 100%; border-radius: 8px; margin-top: 10px;"
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23333%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22%3ENo Screenshot%3C/text%3E%3C/svg%3E'">
+    </div>
+    <button class="btn btn-secondary" onclick="refreshScreenshot()" style="margin-top: 10px;">📷 Refresh Screenshot</button>
+  </div>
+</div>
+
+<script>
+// Note: This is a static control panel
+// For actual control, you'd need to implement backend API calls
+// For now, these are placeholders showing the intended UX
+
+function switchScene(name) {
+  console.log('Switching to scene:', name);
+  alert(`Would switch to: ${name}\n\nActual implementation needs backend API.`);
+}
+
+function startStream() {
+  console.log('Starting stream');
+  alert('Would start stream via agentic-obs.\n\nUse CLI: ./streaming/stream-workflow.sh start');
+}
+
+function stopStream() {
+  console.log('Stopping stream');
+  alert('Would stop stream via agentic-obs.\n\nUse CLI: ./streaming/stream-workflow.sh stop');
+}
+
+function startRecording() {
+  alert('Would start recording.\n\nUse CLI: ./streaming/stream-workflow.sh record');
+}
+
+function stopRecording() {
+  alert('Would stop recording.\n\nUse CLI: ./streaming/stream-workflow.sh stop-record');
+}
+
+function refreshStatus() {
+  alert('Would refresh status from OBS.\n\nUse CLI: ./streaming/stream-workflow.sh status');
+}
+
+function refreshScreenshot() {
+  const img = document.getElementById('screenshot');
+  img.src = img.src.split('?')[0] + '?' + new Date().getTime();
+}
+
+// Auto-refresh screenshot every 5 seconds
+setInterval(refreshScreenshot, 5000);
+
+// Update uptime
+let startTime = Date.now();
+setInterval(() => {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+  const m = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+  const s = (elapsed % 60).toString().padStart(2, '0');
+  document.getElementById('uptime').textContent = `${h}:${m}:${s}`;
+}, 1000);
+</script>
+</body>
+</html>

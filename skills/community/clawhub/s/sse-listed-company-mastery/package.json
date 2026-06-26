@@ -1,0 +1,8 @@
+{
+  "name": "sse-listed-company-mastery",
+  "version": "1.0.0",
+  "description": "上交所上市公司规则理解与实务操作全能手册 - 9份权威文件整合",
+  "author": "Wang Dongjie <wdj@protonmail.com>",
+  "license": "MIT",
+  "keywords": ["SSE", "上交所", "上市公司", "规则理解", "实务操作", "市值管理", "股份减持", "募集资金", "会计监管", "CGMA"]
+}

@@ -1,0 +1,36 @@
+# ─── Reusable Build Sub-Pipeline ───────────────────────────────────────
+#
+# A self-contained build pipeline that can be called from any parent.
+# Compiles code, runs linting, and outputs a build artifact summary.
+#
+# Standalone:  squid run squid-pipeline/examples/sub-build.yaml --args-json '{"target":"prod"}'
+# As sub-step: See squid-pipeline/examples/orchestrator.yaml
+
+name: build
+description: Compile, lint, and package a build artifact
+
+args:
+  target:
+    default: dev
+    description: Build target (dev, staging, prod)
+  optimize:
+    default: false
+    description: Enable production optimizations
+
+steps:
+  - id: compile
+    type: run
+    description: Compile the project
+    run: echo '{"artifact":"app-${args.target}.tar.gz","size_mb":42}'
+    retry: 2
+
+  - id: lint
+    type: run
+    description: Run linter
+    run: echo '{"warnings":0,"errors":0}'
+
+  - id: summary
+    type: transform
+    description: Produce build summary
+    transform: |
+      {"artifact":"${compile.json.artifact}","lint_errors":${lint.json.errors},"target":"${args.target}","optimized":${args.optimize}}

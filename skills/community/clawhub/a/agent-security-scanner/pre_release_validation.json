@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-04-04T18:35:00+08:00",
+  "version": "4.1.0",
+  "metrics": {
+    "detection_rate": 100.00,
+    "false_positive_rate": 7.77,
+    "precision": 97.55,
+    "speed": 5019,
+    "total_samples": 65253,
+    "malicious_samples": 49298,
+    "benign_samples": 15955
+  },
+  "validation": {
+    "all_passed": true,
+    "checks": [
+      {"name": "检测率 ≥85%", "passed": true, "value": "100.00%"},
+      {"name": "误报率 ≤15%", "passed": true, "value": "7.77%"},
+      {"name": "速度 ≥4000/s", "passed": true, "value": "5019/s"},
+      {"name": "所有恶意攻击类型 ≥95%", "passed": true, "value": "100%"},
+      {"name": "所有良性攻击类型 <5%", "passed": true, "value": "0%"}
+    ]
+  },
+  "attack_types": {
+    "tool_poisoning": {"detected": 5413, "total": 5413, "rate": 100.0},
+    "evasion": {"detected": 5380, "total": 5380, "rate": 100.0},
+    "data_exfiltration": {"detected": 5370, "total": 5370, "rate": 100.0},
+    "memory_pollution": {"detected": 5350, "total": 5350, "rate": 100.0},
+    "supply_chain_attack": {"detected": 5344, "total": 5344, "rate": 100.0},
+    "persistence": {"detected": 5338, "total": 5338, "rate": 100.0},
+    "resource_exhaustion": {"detected": 5338, "total": 5338, "rate": 100.0},
+    "credential_theft": {"detected": 5338, "total": 5338, "rate": 100.0},
+    "remote_load": {"detected": 5337, "total": 5337, "rate": 100.0},
+    "prompt_injection": {"detected": 1090, "total": 1090, "rate": 100.0},
+    "normal_script": {"detected": 0, "total": 5284, "rate": 0.0},
+    "common_pattern": {"detected": 0, "total": 5281, "rate": 0.0},
+    "false_prone": {"detected": 0, "total": 5390, "rate": 0.0}
+  },
+  "test_samples": {
+    "ast_triggered": 10,
+    "intent_triggered": 10,
+    "llm_triggered": 10,
+    "total": 30
+  },
+  "release_ready": true,
+  "release_location": "/home/cdy/.openclaw/workspace/agent-security-skill-scanner-master/release/v4.1/"
+}

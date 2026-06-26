@@ -1,0 +1,138 @@
+{
+  "title": "AANA Workflow Readiness Check",
+  "type": "object",
+  "required": [
+    "user_request",
+    "workflow_summary",
+    "intended_outcome",
+    "readiness_status",
+    "information_status",
+    "permission_status",
+    "tool_status",
+    "evidence_status",
+    "risk_level",
+    "recommended_action"
+  ],
+  "properties": {
+    "user_request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workflow_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intended_outcome": {
+      "type": "string",
+      "minLength": 1
+    },
+    "readiness_status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "needs_information",
+        "needs_permission",
+        "needs_evidence",
+        "needs_tool_access",
+        "needs_review",
+        "not_safe"
+      ]
+    },
+    "information_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "missing",
+        "ambiguous",
+        "conflicting",
+        "unknown"
+      ]
+    },
+    "permission_status": {
+      "type": "string",
+      "enum": [
+        "explicit",
+        "implicit_low_risk",
+        "required",
+        "denied",
+        "unclear",
+        "not_needed"
+      ]
+    },
+    "tool_status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "unavailable",
+        "limited",
+        "unsafe_scope",
+        "not_needed",
+        "unknown"
+      ]
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "partial",
+        "missing",
+        "stale",
+        "conflicting",
+        "unknown"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "irreversible",
+        "private",
+        "production",
+        "professional",
+        "unknown"
+      ]
+    },
+    "missing_prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "task_goal",
+          "success_criteria",
+          "target_scope",
+          "user_permission",
+          "tool_access",
+          "credentials",
+          "source_evidence",
+          "test_results",
+          "policy",
+          "human_review",
+          "professional_review",
+          "admin_review",
+          "unknown"
+        ]
+      }
+    },
+    "first_safe_step": {
+      "type": "string"
+    },
+    "readiness_reason": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "start",
+        "ask",
+        "retrieve",
+        "request_approval",
+        "route_to_review",
+        "narrow",
+        "refuse"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

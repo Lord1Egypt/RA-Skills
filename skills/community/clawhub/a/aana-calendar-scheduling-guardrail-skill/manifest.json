@@ -1,0 +1,35 @@
+{
+  "name": "aana-calendar-scheduling-guardrail",
+  "slug": "aana-calendar-scheduling-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded calendar guardrail instructions for checking attendees, timezone, date, agenda, private notes, and approval before calendar changes.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_attendee_check": true,
+  "requires_time_zone_check": true,
+  "requires_private_notes_check": true,
+  "requires_calendar_change_approval": true,
+  "calendar_boundary": {
+    "must_verify_exact_attendees": true,
+    "must_verify_time_and_timezone": true,
+    "must_check_private_notes_and_visibility": true,
+    "must_not_treat_draft_event_as_send_approval": true,
+    "must_block_unauthorized_calendar_changes": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false
+  },
+  "schemas": [
+    "schemas/calendar-scheduling-guardrail.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-calendar-scheduling-guardrail.json"
+  ]
+}

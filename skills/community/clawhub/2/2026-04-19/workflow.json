@@ -1,0 +1,88 @@
+{
+  "name": "AI新闻多平台发布助手",
+  "version": "1.0.0",
+  "combo_id": "ai-news-multiplatform-publisher",
+  "description": "每日抓取全球AI新闻，深度研究热点，生成高质量公众号长文并发布至微信和小红书",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "新闻抓取",
+      "skill": "ai-news-daily",
+      "input": {},
+      "output": "daily_ai_news",
+      "prompt": "获取今日全球AI行业最新动态，返回10条精选新闻，包含标题、摘要和链接。"
+    },
+    {
+      "phase": 2,
+      "name": "深度研究",
+      "skill": "agent-reach",
+      "input": {
+        "topic": "${daily_ai_news.hot_topic}"
+      },
+      "output": "research_report",
+      "prompt": "深度研究以下AI热点：从Twitter/X、Reddit、YouTube、微博等多个平台收集专家观点、用户反馈和讨论，输出综合研究报告。",
+      "parallel": false
+    },
+    {
+      "phase": 3,
+      "name": "文章撰写",
+      "skill": "公众号助手",
+      "input": {
+        "topic": "${daily_ai_news.hot_topic}",
+        "research": "${research_report}",
+        "style": "刘润式商业分析",
+        "word_count": "3000-5000字"
+      },
+      "output": "article_markdown",
+      "prompt": "基于研究报告，撰写一篇3000-5000字的专业公众号文章，采用刘润式商业分析风格：背景铺垫、事件描述、深度分析、独到观点、结论建议。"
+    },
+    {
+      "phase": 4,
+      "name": "封面生成",
+      "skill": "nano-banana-pro",
+      "input": {
+        "prompt": "${article_markdown.title}",
+        "size": "900x383",
+        "style": "专业现代科技风格"
+      },
+      "output": "cover_image",
+      "prompt": "为以下文章标题生成封面图：${article_markdown.title}，风格专业、现代、高端。"
+    },
+    {
+      "phase": 5,
+      "name": "微信发布",
+      "skill": "wechat-mp-cn",
+      "input": {
+        "content": "${article_markdown}",
+        "title": "${article_markdown.title}",
+        "cover": "${cover_image}"
+      },
+      "output": "wechat_publish_result",
+      "prompt": "将文章发布至微信公众平台，包含标题、正文和封面图。"
+    },
+    {
+      "phase": 6,
+      "name": "小红书发布",
+      "skill": "xiaohongshu-mcp",
+      "input": {
+        "title": "${article_markdown.title}",
+        "content": "${article_markdown.summary_for_xhs}",
+        "images": ["${cover_image}"]
+      },
+      "output": "xiaohongshu_publish_result",
+      "prompt": "将文章精简版发布至小红书，附带封面图，使用小红书风格的话题标签。"
+    }
+  ],
+  "trigger_conditions": [
+    "今日AI新闻",
+    "生成今日内容",
+    "发布公众号",
+    "更新内容",
+    "每日资讯"
+  ],
+  "schedule": {
+    "recommended": "0 9 * * *",
+    "timezone": "Asia/Shanghai",
+    "description": "每天早上9:00自动执行"
+  }
+}

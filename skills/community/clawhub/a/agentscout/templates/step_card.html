@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif;
+    color: white;
+    padding: 60px;
+  }
+  .title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 48px;
+    color: #7dd3fc;
+    text-align: center;
+  }
+  .step {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-content {
+    flex: 1;
+  }
+  .step-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .step-code {
+    margin-top: 10px;
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #a6e3a1;
+  }
+  .footer {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="title">📋 {{ card_title }}</div>
+  {% for step in steps %}
+  <div class="step">
+    <div class="step-num">{{ loop.index }}</div>
+    <div class="step-content">
+      <div class="step-title">{{ step.title }}</div>
+      <div class="step-desc">{{ step.description }}</div>
+      {% if step.code %}
+      <div class="step-code">{{ step.code }}</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  <div class="footer">AgentScout</div>
+</body>
+</html>

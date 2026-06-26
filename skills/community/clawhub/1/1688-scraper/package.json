@@ -1,0 +1,29 @@
+{
+  "name": "1688-scraper",
+  "version": "1.0.0",
+  "description": "采集 1688 商品详情页面，包括完整图片、标题、价格、SKU 等信息，保存为本地数据包",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": ["1688", "电商", "采集", "爬虫", "商品详情"],
+  "triggers": [
+    "采集 1688 商品",
+    "1688 商品详情",
+    "下载 1688 图片",
+    "保存 1688 数据包"
+  ],
+  "capabilities": [
+    "商品图片采集",
+    "商品信息提取",
+    "SKU 数据获取",
+    "批量图片下载"
+  ],
+  "requirements": [
+    "browser 工具可用",
+    "curl 命令可用",
+    "桌面写入权限"
+  ],
+  "output": {
+    "imageFolder": "桌面/1688-商品详情-{商品 ID}-图片/",
+    "jsonFile": "桌面/1688-商品详情-{商品 ID}.json"
+  }
+}

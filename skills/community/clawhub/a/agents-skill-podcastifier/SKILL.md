@@ -1,35 +1,25 @@
 ---
-name: "Podcastifier"
-description: "Turn incoming text (email/newsletter) into a short TTS podcast with chunking + ffmpeg concat."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agents-skill-podcastifier"
-sourceUrl: "https://clawhub.ai/skills/agents-skill-podcastifier"
+name: podcastifier
+description: Turn incoming text (email/newsletter) into a short TTS podcast with chunking + ffmpeg concat.
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["python3", "ffmpeg"] },
+      "category": "media"
+    }
+  }
 ---
 
-# Podcastifier
+# podcastifier
 
-> Turn incoming text (email/newsletter) into a short TTS podcast with chunking + ffmpeg concat.
+Turn incoming text (email/newsletter) into a short TTS podcast with chunking + ffmpeg concat.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agents-skill-podcastifier`
-- **Source URL:** [https://clawhub.ai/skills/agents-skill-podcastifier](https://clawhub.ai/skills/agents-skill-podcastifier)
+## Features
+- Parses plain text/HTML input and extracts story bullets.
+- Generates TTS per chunk (char limit safe), concatenates via ffmpeg.
+- Outputs mp3 with intro/outro.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/agents-skill-podcastifier
+python podcastify.py --input newsletter.txt --voice "elevenlabs" --out briefing.mp3
 ```

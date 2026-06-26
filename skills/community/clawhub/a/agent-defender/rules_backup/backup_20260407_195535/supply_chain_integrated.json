@@ -1,0 +1,39 @@
+{
+  "attack_type": "supply_chain",
+  "generated_at": "2026-03-23T07:34:35.405412",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Supply_Chain_Dependency_Confusion",
+      "name": "检测依赖混淆攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测依赖混淆攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "supply_chain",
+        "T1195.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$internal_pkg = /@[^\\/]+\\/[^@]+/",
+          "$public_registry = /npmjs|pypi|rubygems|maven/i",
+          "$internal_name = /internal|private|corp|enterprise/i",
+          "$version_high = /version.*[0-9]{3,}\\.|99\\.99\\.99/i",
+          "$postinstall = /postinstall|preinstall|prepare/i"
+        ],
+        "condition": "($internal_pkg or $internal_name) and ($public_registry or $version_high or $postinstall)",
+        "raw_rule": "// YARA 规则：供应链攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：依赖包投毒、构建工具污染、更新机制劫持、开发工具后门\n\nrule Supply_Chain_Dependency_Confusion {\n    meta:\n        description = \"检测依赖混淆攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $internal_pkg = /@[^\\/]+\\/[^@]+/\n        $public_registry = /npmjs|pypi|rubygems|maven/i\n        $internal_name = /internal|private|corp|enterprise/i\n        $version_high = /version.*[0-9]{3,}\\.|99\\.99\\.99/i\n        $postinstall = /postinstall|preinstall|prepare/i\n    \n    condition:\n        ($internal_pkg or $internal_name) and ($public_registry or $version_high or $postinstall)\n}\n\nrule Supply_Chain_Typosquatting {\n    meta:\n        description = \"检测拼写错误攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $popular_pkg = /lodash|underscore|express|request|react|axios/i\n        $typo_pattern = /[0o][dl]|1l|rn|m/\n        $similar_name = /lodahs|reques|expres|reactjs|axi0s/i\n        $package_json = /package\\.json|setup\\.py|gemspec/i\n    \n    condition:\n        ($popular_pkg and $typo_pattern) or $similar_name\n}\n\nrule Supply_Chain_Build_Script {\n    meta:\n        description = \"检测构建脚本供应链攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $build_file = /Makefile|build\\.gradle|pom\\.xml|webpack\\.config/i\n        $remote_fetch = /curl|wget|fetch|Invoke-WebRequest/i\n        $execute = /chmod \\+x|\\| *sh|\\| *bash|\\.\\/exec/i\n        $network = /http:|https:|ftp:/\n    \n    condition:\n        $build_file and $remote_fetch and ($execute or $network)\n}\n\nrule Supply_Chain_Update_Hijack {\n    meta:\n        description = \"检测更新机制劫持\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $update_func = /checkUpdate|autoUpdate|updateCheck|getUpdate/i\n        $http_update = /http:.*update|update.*http:/i\n        $unsigned = /skip.*verify|no.*signature|ignore.*cert/i\n        $execute = /exec|install|apply.*update/i\n    \n    condition:\n        $update_func and ($http_update or $unsigned) and $execute\n}\n\nrule Supply_Chain_Dev_Tool {\n    meta:\n        description = \"检测开发工具后门\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $dev_tool = /eslint|prettier|babel|typescript|webpack/i\n        $plugin_hook = /plugin|extension|middleware|hook/i\n        $data_access = /readFile|writeFile|exec|spawn/i\n        $network = /http:|https:|socket|net\\.connect/i\n    \n    condition:\n        $dev_tool and $plugin_hook and ($data_access or $network)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Supply_Chain_Dependency_Confusion",
+        "converted_at": "2026-03-23T07:34:35.392290",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/supply_chain.yar",
+        "mitre_id": "T1195.002",
+        "attack_type": "supply_chain"
+      }
+    }
+  ]
+}

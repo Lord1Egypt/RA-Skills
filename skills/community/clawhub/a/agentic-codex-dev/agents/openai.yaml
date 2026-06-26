@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Codex Dev Reviewer"
+  short_description: "Review scoped Codex/GitHub/ClawHub delivery readiness."
+  default_prompt: "Use $agentic-codex-dev to review this agentic development plan, diff, or release checklist for scope, public surface, verification evidence, and release readiness."

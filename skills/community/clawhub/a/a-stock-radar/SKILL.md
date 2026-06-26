@@ -1,35 +1,157 @@
 ---
-name: "A Stock Radar"
-description: "A股综合监控与分析工具，支持寒鸦框架决策输出。当用户询问「A股今天怎么样」「大盘如何」「哪些板块在动」「今日涨跌」「北向资金」「涨停/跌停」「市场情绪」「现在适合上仓位吗」「分析A股」「A股复盘」「当前主线是什么」「买入/卖出」「加仓/减仓」「仓位建议」时使用。覆盖实时行情监控、宏观快照、寒鸦四维决策框架（宏观定..."
-category: "other"
-source: "ClawHub"
-tags: [a-stock, buffett, china, china-a-shares, hanya, investment, liutong, longhubang, market-radar, sentiment, shanghai, szse]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-radar"
-sourceUrl: "https://clawhub.ai/skills/a-stock-radar"
+name: a-stock-radar
+description: A股综合监控与分析工具，支持寒鸦框架决策输出。当用户询问「A股今天怎么样」「大盘如何」「哪些板块在动」「今日涨跌」「北向资金」「涨停/跌停」「市场情绪」「现在适合上仓位吗」「分析A股」「A股复盘」「当前主线是什么」「买入/卖出」「加仓/减仓」「仓位建议」时使用。覆盖实时行情监控、宏观快照、寒鸦四维决策框架（宏观定调/微观验证/情绪水位/风控矩阵）、核心企业篮子、短线情绪判断。所有操作建议均附免责声明「不构成投资建议」。📢微信公众号：PM熊叔（打造一人公司的投研团队）
 ---
 
-# A Stock Radar
+# A股雷达 (A-Stock Radar) v2.0
 
-> A股综合监控与分析工具，支持寒鸦框架决策输出。当用户询问「A股今天怎么样」「大盘如何」「哪些板块在动」「今日涨跌」「北向资金」「涨停/跌停」「市场情绪」「现在适合上仓位吗」「分析A股」「A股复盘」「当前主线是什么」「买入/卖出」「加仓/减仓」「仓位建议」时使用。覆盖实时行情监控、宏观快照、寒鸦四维决策框架（宏观定...
+> ⚠️ 本工具输出包含寒鸦框架决策建议，但所有建议仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-radar`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-radar](https://clawhub.ai/skills/a-stock-radar)
+## 🆕 v2.0 重大升级：寒鸦决策框架
 
-## Overview
+除原有行情监控外，新增**交易决策矩阵**输出：
 
+### 寒鸦四维框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-radar
-```
+| 维度 | 内容 |
+|------|------|
+| **宏观定调** | LPR周期、SHIBOR流动性、中美利差、政策发令枪指向 |
+| **微观验证** | 机构龙虎榜资金、筹码高低切、ETF异动 |
+| **情绪水位** | 涨停/跌停/炸板率/连板高度 → 冰点/分歧/修复/亢奋 |
+| **风控矩阵** | 仓位建议、买入板块、卖出板块、量化止损阈值 |
+
+### 情绪数据修复（2026-04-29）
+
+⚠️ **已知Bug**：akshare的`stock_zt_pool_em`等函数默认日期为2024年10月，导致涨停数据永远为0。**已在`sentiment_snapshot.py`中修复**——所有API调用现已传入当日日期（YYYYMMDD格式）。
+
+---
+
+`a-stock-radar` 现在是统一的 A 股入口，内部按四层能力组织：
+
+1. `实时行情监控`
+2. `宏观快照与核心企业`
+3. `寒鸦决策框架`（含情绪判断）
+
+`a-stock-radar` 现在是统一的 A 股入口，内部按三层能力组织：
+
+1. `实时行情监控`
+2. `宏观快照与核心企业`
+3. `短线情绪判断`
+4. `深度量化分析`
+
+## 1. 实时行情监控
+
+适用问题：
+
+- A股今天怎么样
+- 哪些板块在动
+- 北向资金如何
+- 涨停跌停情况
+- 某只股票现在多少钱
+
+主要脚本：
+
+- `scripts/index_spot.py`：主要指数
+- `scripts/sector_ranking.py`：板块排行
+- `scripts/stock_quote.py`：个股行情
+- `scripts/zt_pool.py`：涨停池/跌停池
+- `scripts/dashboard.py`：综合看盘入口
+- `scripts/macro_snapshot.py`：SHIBOR、LPR、中美10Y利差、北向、新增人民币贷款
+- `scripts/core_companies.py`：A股核心企业篮子
+
+主要数据源：
+
+- 东方财富：板块/排行
+- 新浪财经：指数与个股实时行情
+- akshare：涨跌停池、北向等扩展数据
+
+## 2. 宏观快照与核心企业
+
+适用问题：
+
+- A股宏观数据怎么看
+- SHIBOR/LPR 现在是什么水平
+- 中美10Y利差如何
+- 北向资金和融资需求怎么样
+- 茅台/宁德时代/比亚迪现在怎么样
+- 给我看A股核心企业篮子
+
+主要脚本：
+
+- `scripts/macro_snapshot.py`
+- `scripts/core_companies.py`
+
+覆盖维度：
+
+- SHIBOR（银行间流动性）
+- LPR（贷款市场报价利率）
+- 中美10Y国债利差
+- 北向资金净流入
+- 新增人民币贷款
+- 贵州茅台、宁德时代、比亚迪、招商银行、工商银行、美的集团、中芯国际、立讯精密
+
+## 3. 短线情绪判断
+
+适用问题：
+
+- 今天市场情绪怎么样
+- 现在是冰点还是亢奋
+- 适不适合上仓位
+- 短线环境强不强
+
+主要脚本：
+
+- `scripts/sentiment_snapshot.py`
+
+核心指标：
+
+- 涨停家数
+- 跌停家数
+- 炸板率
+- 连板高度
+
+输出内容：
+
+- 情绪阶段：`冰点 / 分歧 / 修复 / 亢奋`
+- 仓位建议：`空仓 / 轻仓 / 半仓 / 重仓`
+- 短线打法建议
+
+## 4. 深度量化分析
+
+适用问题：
+
+- 分析A股
+- 做一份A股复盘
+- 当前主线是什么
+- 用量化视角看A股
+
+主要脚本：
+
+- `scripts/quant_analysis.py`
+
+分析框架：
+
+- 宏观流动性
+- 政策主线
+- ETF/龙虎榜/换手结构
+- 情绪与筹码共振
+
+输出内容：
+
+- 主线判断
+- 择时建议
+- 复盘框架
+- 风险提示
+
+## 使用原则
+
+- 只问盘面与行情：优先走 `实时行情监控`
+- 问仓位与短线环境：优先走 `短线情绪判断`
+- 问中高层判断与复盘：优先走 `深度量化分析`
+
+## 迁移说明
+
+以下旧 skill 已并入本 skill：
+
+- `a-stock-market-sentiment`
+- `ashare-quant`

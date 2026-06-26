@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圆桌讨论 — 等待中</title>
+<style>
+  /* ══ Reset & Base ══ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #4F46E5;
+    --brand-hover: #4338CA;
+    --brand-light: #6366F1;
+    --brand-glow: rgba(79, 70, 229, 0.25);
+    --bg-body: #0F172A;
+    --bg-card: #1E293B;
+    --bg-card-hover: #334155;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --border: #334155;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-body);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  /* ══ 背景装饰 ══ */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ══ 主容器 ══ */
+  .waiting-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  /* ══ Logo 区域 ══ */
+  .logo-ring {
+    width: 120px; height: 120px;
+    margin: 0 auto 32px;
+    position: relative;
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .logo-ring svg {
+    width: 100%; height: 100%;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+
+  /* ══ 标题 ══ */
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  /* ══ 倒计时卡片 ══ */
+  .countdown-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .countdown-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .countdown-timer {
+    font-family: var(--font-mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .countdown-hint {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ══ 话题预览 ══ */
+  .topic-preview {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+  .topic-label {
+    font-size: 12px;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .topic-text {
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* ══ 参与者头像 ══ */
+  .participants {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: 2px solid var(--bg-body);
+    position: relative;
+  }
+  .avatar.product { background: #3B82F6; }
+  .avatar.design { background: #A855F7; }
+  .avatar.engineer { background: #22C55E; }
+  .avatar.research { background: #F59E0B; }
+
+  .avatar .status-dot {
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-body);
+    background: var(--text-muted);
+  }
+  .avatar .status-dot.ready {
+    background: #22C55E;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  }
+
+  /* ══ 欢迎提示 ══ */
+  .welcome-hint {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .welcome-hint strong {
+    color: var(--text-secondary);
+  }
+
+  /* ══ 底部品牌 ══ */
+  .footer-brand {
+    position: fixed;
+    bottom: 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-brand .dot {
+    width: 6px; height: 6px;
+    background: var(--brand);
+    border-radius: 50%;
+  }
+
+  /* ══ 移动端 ══ */
+  @media (max-width: 768px) {
+    .countdown-timer { font-size: 36px; }
+    .title { font-size: 20px; }
+    .countdown-card { padding: 24px; }
+    .avatar { width: 36px; height: 36px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="waiting-container">
+
+    <!-- Logo 呼吸环 -->
+    <div class="logo-ring">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="52" stroke="#334155" stroke-width="2"/>
+        <circle cx="60" cy="60" r="52" stroke="#4F46E5" stroke-width="2" stroke-dasharray="8 6" opacity="0.5">
+          <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="20s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="60" cy="60" r="40" stroke="#4F46E5" stroke-width="1.5" opacity="0.3"/>
+        <!-- 6 个节点 -->
+        <circle cx="60" cy="8" r="4" fill="#3B82F6"/>
+        <circle cx="105" cy="32" r="4" fill="#A855F7"/>
+        <circle cx="105" cy="88" r="4" fill="#22C55E"/>
+        <circle cx="60" cy="112" r="4" fill="#F59E0B"/>
+        <circle cx="15" cy="88" r="4" fill="#EC4899"/>
+        <circle cx="15" cy="32" r="4" fill="#06B6D4"/>
+        <!-- 中心收敛点 -->
+        <circle cx="60" cy="60" r="8" fill="#4F46E5" opacity="0.6">
+          <animate attributeName="r" values="6;10;6" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <!-- 标题 -->
+    <h1 class="title">圆桌讨论即将开始</h1>
+    <p class="subtitle">AI 专家们正在入席，请稍候…</p>
+
+    <!-- 倒计时卡片 -->
+    <div class="countdown-card">
+      <div class="countdown-label">开始倒计时</div>
+      <div class="countdown-timer" id="timer">00:28</div>
+      <div class="countdown-hint">讨论开始后将自动刷新</div>
+    </div>
+
+    <!-- 讨论话题预览 -->
+    <div class="topic-preview">
+      <div class="topic-label">📋 讨论话题</div>
+      <div class="topic-text">如何设计一个低门槛的 AI 协作讨论平台？</div>
+    </div>
+
+    <!-- 参与者 -->
+    <div class="participants">
+      <div class="avatar product" title="饼哥 · 产品">饼<span class="status-dot ready"></span></div>
+      <div class="avatar design" title="像素姐 · 设计">像<span class="status-dot ready"></span></div>
+      <div class="avatar engineer" title="码飞 · 工程">码<span class="status-dot"></span></div>
+      <div class="avatar research" title="小赫 · 协调">赫<span class="status-dot ready"></span></div>
+    </div>
+
+    <!-- 欢迎语 -->
+    <p class="welcome-hint">
+      <strong>欢迎来到圆桌讨论</strong><br>
+      讨论开始后，你将实时看到各位 AI 专家的发言。<br>
+      页面会自动更新，无需手动刷新。
+    </p>
+  </div>
+
+  <!-- 底部品牌 -->
+  <div class="footer-brand">
+    <span class="dot"></span>
+    Roundtable AI · 圆桌讨论
+  </div>
+
+  <!-- 倒计时模拟 -->
+  <script>
+    let seconds = 28;
+    const timerEl = document.getElementById('timer');
+    setInterval(() => {
+      if (seconds > 0) seconds--;
+      const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const s = String(seconds % 60).padStart(2, '0');
+      timerEl.textContent = `${m}:${s}`;
+    }, 1000);
+  </script>
+</body>
+</html>

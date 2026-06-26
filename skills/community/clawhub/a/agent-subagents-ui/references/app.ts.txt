@@ -1,0 +1,101 @@
+  @state() whatsappBusy = false;
+  @state() nostrProfileFormState: NostrProfileFormState | null = null;
+  @state() nostrProfileAccountId: string | null = null;
+
+  @state() presenceLoading = false;
+  @state() presenceEntries: PresenceEntry[] = [];
+  @state() presenceError: string | null = null;
+  @state() presenceStatus: string | null = null;
+
+  @state() agentsLoading = false;
+  @state() agentsList: AgentsListResult | null = null;
+  @state() agentsError: string | null = null;
+  @state() agentsSelectedId: string | null = null;
+  @state() agentsAvailableModels: Array<{
+    id: string;
+    name?: string;
+    provider: string;
+    contextWindow?: number;
+  }> = [];
+  @state() toolsCatalogLoading = false;
+  @state() toolsCatalogError: string | null = null;
+  @state() toolsCatalogResult: ToolsCatalogResult | null = null;
+  @state() agentsPanel: "overview" | "files" | "tools" | "skills" | "channels" | "subagents" | "cron" =
+    "overview";
+  @state() agentToolsSubTab: "core" | "pipedream" | "zapier" = "core";
+  @state() agentPipedreamState: import("./views/agents-panel-pipedream.ts").AgentPipedreamState =
+    initialAgentPipedreamState();
+  @state() agentZapierState: import("./views/agents-panel-zapier.ts").AgentZapierState = {
+    loading: false,
+    error: null,
+    configured: false,
+    globalConfigured: false,
+    mcpUrl: "",
+    enabledTools: [],
+    availableTools: [],
+    saving: false,
+    testing: false,
+    testResult: null,
+    editingUrl: false,
+    draftUrl: "",
+    toolsLoading: false,
+  };
+  @state() agentFilesLoading = false;
+  @state() agentFilesError: string | null = null;
+  @state() agentFilesList: AgentsFilesListResult | null = null;
+  @state() agentFileContents: Record<string, string> = {};
+  @state() agentFileDrafts: Record<string, string> = {};
+  @state() agentFileActive: string | null = null;
+  @state() agentFileSaving = false;
+  @state() agentIdentityLoading = false;
+  @state() agentIdentityError: string | null = null;
+  @state() agentIdentityById: Record<string, AgentIdentityResult> = {};
+  @state() agentSkillsLoading = false;
+  @state() agentSkillsError: string | null = null;
+  @state() showCreateForm = false;
+  @state() createMode: "manual" | "wizard" = "manual";
+  @state() createName = "";
+  @state() createWorkspace = "";
+  @state() createEmoji = "";
+  @state() creating = false;
+  @state() createError: string | null = null;
+  @state() wizardDescription = "";
+  @state() wizardLoading = false;
+  @state() wizardResult: { name: string; emoji: string; soul: string } | null = null;
+  @state() editAgentName = "";
+  @state() editAgentWorkspace = "";
+  @state() editAgentEmoji = "";
+  @state() editAgentDirty = false;
+  @state() editAgentSaving = false;
+  @state() editAgentError: string | null = null;
+  @state() agentAvatarTheme = "professional";
+  @state() agentAvatarInstructions = "";
+  @state() agentAvatarBusy = false;
+  @state() agentAvatarStatus: string | null = null;
+  @state() agentAvatarError: string | null = null;
+  @state() agentAvatarPreviewUrl: string | null = null;
+  @state() confirmDeleteAgentId: string | null = null;
+  @state() deleteAgentInProgress = false;
+  @state() deleteAgentError: string | null = null;
+  @state() agentSkillsReport: SkillStatusReport | null = null;
+  @state() agentSkillsAgentId: string | null = null;
+  @state() teamsLoading = false;
+  @state() teamsError: string | null = null;
+  @state() teamsResult: import("./types.ts").TeamsListResult | null = null;
+  @state() teamsSelectedId: string | null = null;
+  @state() teamsEditName = "";
+  @state() teamsEditDescription = "";
+  @state() teamsEditParentId: string | null = null;
+  @state() teamsEditAgentIds: string[] = [];
+  @state() teamsDirty = false;
+  @state() teamsSaving = false;
+  @state() teamsDeleteInProgress = false;
+  @state() teamsDeleteError: string | null = null;
+  @state() teamsCollapsedIds: string[] = [];
+
+  @state() sessionsLoading = false;
+  @state() sessionsResult: SessionsListResult | null = null;
+  @state() sessionsError: string | null = null;
+  @state() sessionsFilterActive = "";
+  @state() sessionsFilterLimit = "120";
+  @state() sessionsIncludeGlobal = true;

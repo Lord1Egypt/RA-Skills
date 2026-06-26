@@ -1,35 +1,66 @@
----
-name: "Agent Memory 1.0.0"
-description: "Persistent memory system for AI agents to remember facts, learn from experiences, recall memories, and track entities across sessions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-1-0-0"
----
+# AgentMemory Skill
 
-# Agent Memory 1.0.0
-
-> Persistent memory system for AI agents to remember facts, learn from experiences, recall memories, and track entities across sessions.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-1-0-0](https://clawhub.ai/skills/agent-memory-1-0-0)
-
-## Overview
-
+Persistent memory system for AI agents. Remember facts, learn from experience, and track entities across sessions.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/agent-memory-1-0-0
+clawdhub install agent-memory
 ```
+
+## Usage
+
+```python
+from src.memory import AgentMemory
+
+mem = AgentMemory()
+
+# Remember facts
+mem.remember("Important information", tags=["category"])
+
+# Learn from experience
+mem.learn(
+    action="What was done",
+    context="situation",
+    outcome="positive",  # or "negative"
+    insight="What was learned"
+)
+
+# Recall memories
+facts = mem.recall("search query")
+lessons = mem.get_lessons(context="topic")
+
+# Track entities
+mem.track_entity("Name", "person", {"role": "engineer"})
+```
+
+## When to Use
+
+- **Starting a session**: Load relevant context from memory
+- **After conversations**: Store important facts
+- **After failures**: Record lessons learned
+- **Meeting new people/projects**: Track as entities
+
+## Integration with Clawdbot
+
+Add to your AGENTS.md or HEARTBEAT.md:
+
+```markdown
+## Memory Protocol
+
+On session start:
+1. Load recent lessons: `mem.get_lessons(limit=5)`
+2. Check entity context for current task
+3. Recall relevant facts
+
+On session end:
+1. Extract durable facts from conversation
+2. Record any lessons learned
+3. Update entity information
+```
+
+## Database Location
+
+Default: `~/.agent-memory/memory.db`
+
+Custom: `AgentMemory(db_path="/path/to/memory.db")`

@@ -1,35 +1,94 @@
----
-name: "Agent Comm Protocol"
-description: "Standard protocol for reliable task dispatch, status reporting, and result feedback with confirmation, retry, and logging between agents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-comm-protocol"
-sourceUrl: "https://clawhub.ai/skills/agent-comm-protocol"
----
+# Agent 通信协议 Skill
 
-# Agent Comm Protocol
+## 简介
 
-> Standard protocol for reliable task dispatch, status reporting, and result feedback with confirmation, retry, and logging between agents.
+这是牧者团队 Agent 间通信的标准协议，用于确保任务分发、状态汇报、结果反馈的可靠传递。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-comm-protocol`
-- **Source URL:** [https://clawhub.ai/skills/agent-comm-protocol](https://clawhub.ai/skills/agent-comm-protocol)
+## 通信原则
 
-## Overview
+1. **确认机制**：重要消息必须确认收到
+2. **重试机制**：超时未确认时自动重试（最多3次）
+3. **状态追踪**：记录通信状态日志
+4. **简洁优先**：消息不超过 200 字
 
+## 消息类型
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-comm-protocol
+### 1. 任务指令（牧者 → 助理）
 ```
+【牧者指令】任务内容
+- 任务：xxx
+- 要求：xxx
+- 截止：xxx
+请回复"收到"确认。
+```
+
+### 2. 状态汇报（助理 → 牧者）
+```
+【状态汇报】xxx
+- 当前进度：xx%
+- 遇到问题：无/xxx
+- 预计完成：xx:xx
+```
+
+### 3. 结果反馈（助理 → 牧者）
+```
+【完成】xxx
+- 结果：xxx
+- 输出文件：xxx
+- 备注：xxx
+```
+
+### 4. 确认回复
+```
+【确认】收到任务，预计 xx:xx 完成
+```
+
+### 5. 异常报告
+```
+【异常】xxx
+- 问题：xxx
+- 影响：xxx
+- 建议：xxx
+```
+
+## 超时处理
+
+| 消息类型 | 超时阈值 | 重试次数 |
+|----------|----------|----------|
+| 任务指令 | 30秒 | 3次 |
+| 状态汇报 | 60秒 | 2次 |
+| 结果反馈 | 120秒 | 2次 |
+
+## 通信流程
+
+### 标准任务分发流程
+
+```
+1. 牧者发送任务指令
+2. 助理回复"收到"（5秒内）
+3. 助理执行任务
+4. 助理发送状态汇报（如任务超过10分钟）
+5. 助理发送结果反馈
+6. 牧者确认结果
+```
+
+### 异常处理流程
+
+```
+1. 超时未确认 → 自动重试（最多3次）
+2. 重试仍失败 → 记录异常日志
+3. 通知牧者处理
+```
+
+## 日志记录
+
+所有通信记录在：
+- `/root/.openclaw/agents/{agent_id}/communications/{date}.md`
+
+## 使用场景
+
+当需要进行 Agent 间通信时：
+- 向助理分发任务
+- 向助理查询状态
+- 助理向牧者汇报
+- 助理间协作（通过牧者中转）

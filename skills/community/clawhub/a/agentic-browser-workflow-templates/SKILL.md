@@ -1,35 +1,37 @@
 ---
-name: "Agentic Browser Workflow Templates"
-description: "Generate repeatable, audit-friendly browser-agent workflow templates for form filling, case routing, portal operations, research capture, and approval-gated..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-browser-workflow-templates"
-sourceUrl: "https://clawhub.ai/skills/agentic-browser-workflow-templates"
+name: agentic-browser-workflow-templates
+description: Generate repeatable, audit-friendly browser-agent workflow templates for form filling, case routing, portal operations, research capture, and approval-gated web actions.
 ---
 
 # Agentic Browser Workflow Templates
 
-> Generate repeatable, audit-friendly browser-agent workflow templates for form filling, case routing, portal operations, research capture, and approval-gated...
+Use this skill when browser automation needs a reusable operating template rather than a one-off prompt.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-browser-workflow-templates`
-- **Source URL:** [https://clawhub.ai/skills/agentic-browser-workflow-templates](https://clawhub.ai/skills/agentic-browser-workflow-templates)
+## Workflow
 
-## Overview
+1. Choose a use case such as `form-filling`, `case-routing`, `portal-operation`, or `research-capture`.
+2. Provide optional steps as JSON, or let the script generate a safe starter workflow.
+3. Review the generated controls before connecting to live browser/computer-use tools.
+4. Pair with Browser Agent Trust Hub for runtime policy scoring.
 
+## Parameters
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agentic-browser-workflow-templates
-```
+- `--use-case`: Workflow type.
+- `--portal`: Portal or website category.
+- `--steps PATH`: Optional JSON list of workflow steps.
+- `--output PATH`: Optional YAML-like markdown output path.
+- `--json`: Emit JSON instead of markdown.
+- `--approval-threshold {low,normal,high}`: Sets human approval strictness.
+
+## Outputs
+
+The script generates:
+
+- Objective and assumptions.
+- Step-by-step browser workflow.
+- Approval gates.
+- Evidence capture requirements.
+- Error handling and rollback/degraded-mode notes.
+- Handoff payload schema.
+
+This skill does not execute browser actions.

@@ -1,0 +1,93 @@
+{
+  "title": "AANA Research Grounding Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "allowed_sources",
+    "claim_summaries",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "support_status"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "support_status": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "unsupported",
+              "uncertain",
+              "needs_retrieval",
+              "forbidden_source"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "citation_summaries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_or_uncertain_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "retrieve",
+        "ask",
+        "defer",
+        "refuse"
+      ]
+    },
+    "uncertainty_label_required": {
+      "type": "boolean"
+    },
+    "source_scope": {
+      "type": "string",
+      "enum": [
+        "provided_sources_only",
+        "retrieval_allowed",
+        "manual_review_required"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

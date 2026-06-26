@@ -1,0 +1,25 @@
+{
+  "taskId": "task-001",
+  "snapshotType": "phase_收集信息",
+  "timestamp": "2026-03-17T20:57:07.092Z",
+  "metadata": {
+    "phase": "收集信息",
+    "summary": "已收集 5 个数据点"
+  },
+  "snapshot": {
+    "task_id": "task-001",
+    "task_title": "调研 AI Agent 基础设施项目：LangChain",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "收集信息",
+    "progress_percent": 55,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "任务正在正常执行中",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.091Z",
+    "updated_at": "2026-03-17T20:57:07.092Z"
+  }
+}

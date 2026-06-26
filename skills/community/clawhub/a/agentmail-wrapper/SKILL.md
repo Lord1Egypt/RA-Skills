@@ -1,35 +1,79 @@
----
-name: "Agentmail Wrapper"
-description: "Send, track, schedule emails with multi-provider support, verified delivery, unsubscribe management, and compliance reporting via SMTP, API, and OAuth."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentmail-wrapper"
-sourceUrl: "https://clawhub.ai/skills/agentmail-wrapper"
----
+# AgentMail Wrapper
 
-# Agentmail Wrapper
+**Version:** 1.0.0  
+**Author:** Midas Skills  
+**License:** MIT
 
-> Send, track, schedule emails with multi-provider support, verified delivery, unsubscribe management, and compliance reporting via SMTP, API, and OAuth.
+## Description
+Verified email delivery integration. Send, track, schedule with multi-provider support (SendGrid, Mailgun, AWS SES, SMTP). GDPR/CAN-SPAM compliant.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentmail-wrapper`
-- **Source URL:** [https://clawhub.ai/skills/agentmail-wrapper](https://clawhub.ai/skills/agentmail-wrapper)
+## Value Proposition
+Verified email agent integration. Send, track, schedule emails with verified delivery & unsubscribe compliance. SMTP, API, OAuth support.
 
-## Overview
+## Category
+email-integration
 
+## Tags
+email, delivery-tracking, multi-provider, compliance, automation
+
+## Skill Type
+integration
+
+## Pricing
+- **Free:** $0
+- **Pro:** $44.99
+
+## Key Features
+- ✅ Multi-provider support (SendGrid, Mailgun, AWS SES, SMTP)
+- ✅ Delivery tracking (open, click, bounce)
+- ✅ Email verification
+- ✅ Template management
+- ✅ Scheduled sends
+- ✅ Batch processing
+- ✅ Unsubscribe management
+- ✅ List hygiene (bounce handling)
+- ✅ Compliance reporting
+- ✅ OAuth support (Gmail)
+- ✅ Reply tracking
+
+## Use Cases
+- Transactional email delivery (signups, resets)
+- Email campaign automation
+- Scheduled email sequences
+- Delivery verification & tracking
+- List management (unsubscribes, bounces)
+- Multi-account SMTP management
+- Email template management
+- Compliance reporting
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agentmail-wrapper
+npm install agentmail-wrapper
+# or
+pip install agentmail-wrapper
 ```
+
+## Quick Start
+```javascript
+const AgentMail = require('agentmail-wrapper');
+
+const mail = new AgentMail({
+  provider: 'sendgrid',  // or 'smtp', 'mailgun', 'aws-ses'
+  apiKey: process.env.SENDGRID_API_KEY
+});
+
+await mail.send({
+  to: 'user@example.com',
+  subject: 'Welcome!',
+  html: '<h1>Hello</h1>',
+  trackClicks: true,
+  trackOpens: true
+});
+```
+
+## Repository
+https://github.com/midas-skills/agentmail-wrapper
+
+## Support
+📧 support@midas-skills.com  
+🔗 Docs: https://docs.midas-skills.com/agentmail-wrapper

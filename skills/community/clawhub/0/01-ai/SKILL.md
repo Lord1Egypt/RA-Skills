@@ -1,35 +1,49 @@
 ---
-name: "01 Ai"
-description: "整理零一万物大模型公开页面信息，包括模型能力、定价、文档目录与示例链接的检索与摘要。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/01-ai"
-sourceUrl: "https://clawhub.ai/skills/01-ai"
+name: 01-ai-hot-trend
+description: 注册“零一万物”技能；用于零一万物大模型相关公开页面信息整理。
+homepage: `https://www.01.ai/`
+metadata: {"clawdbot":{"emoji":"🤖"}}
 ---
 
-# 01 Ai
+# 零一万物
 
-> 整理零一万物大模型公开页面信息，包括模型能力、定价、文档目录与示例链接的检索与摘要。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/01-ai`
-- **Source URL:** [https://clawhub.ai/skills/01-ai](https://clawhub.ai/skills/01-ai)
+- 面向公开产品页与文档中心的检索与内容摘要
+- 不提供账号操作、接口调用或权限绕过能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://www.01.ai/
+- 文档与开放平台：站点入口
+- 定价与公告：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/01-ai
-```
+常见任务
+
+- 模型能力与版本说明摘要（上下文长度、功能特性）
+- 定价与调用配额说明提取（公开信息）
+- 文档目录与示例链接汇总
+
+数据字段
+
+- 模型名称、版本、上下文长度、功能特性、链接
+- 定价页链接、免费额度说明、地域与服务状态
+- 文档标题、目录链接、示例入口
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 不进行API调用或账号相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 能力摘要：访问模型页 → 抽取版本与特性 → 输出摘要
+- 定价整理：访问定价入口 → 提取费用与额度 → 输出清单
+- 文档汇总：进入文档中心 → 抽取目录与示例 → 输出链接集合
+
+合规提示
+
+- 遵守平台规则与账号安全要求
+- 不存储或输出敏感信息

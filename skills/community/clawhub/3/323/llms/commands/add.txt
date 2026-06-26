@@ -1,0 +1,182 @@
+--------------------------------------------------------------------------------
+title: "add"
+description: "Install skills to local AI agents from various sources."
+source: "/llms/commands/add.txt"
+--------------------------------------------------------------------------------
+
+# add — Install Skills
+
+Install skills from the internal registry or external Git repositories to local AI agents.
+
+## Syntax
+
+```bash
+ai-skills add [source] [options]
+```
+
+**Aliases**: `install`, `i`
+
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `source` | No | Skill name, repository path (`owner/repo`), or Git URL |
+
+If `source` is omitted, an error is displayed.
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--skill <names...>` | Skill name(s) to install from a repository |
+| `--source <platform>` | Source platform: `local`, `github`, `gitlab`, `codebase`, `wellknown` |
+| `-p, --project` | Install to project directory (default) |
+| `-g, --global` | Install to global home directory |
+| `-t, --target <dir>` | Install to custom base directory (must exist) |
+| `--dir <dir>` | Install to exact directory (no agent subdirs, must exist) |
+| `-s, --soft` | Use symlink mode (shared storage) |
+| `--no-soft` | Force hard copy mode |
+| `-a, --agents <names>` | Specify agent(s) to install to (comma-separated) |
+| `-f, --force` | Overwrite existing skills without prompt |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Installation Scope Priority
+
+`--dir` > `--target` > `--global` > `--project` > config `install.defaultScope` > interactive selection
+
+## Source Resolution
+
+The source argument is resolved in this order:
+
+1. **URL** (`https://...`): Parsed as Git URL → `repo` (with `--skill`) or `repo-all` (without)
+2. **`--source local`**: Internal registry lookup → single skill install
+3. **`--source github/gitlab`** + `owner/repo`: Repository install → `repo` (with `--skill`) or `repo-all`
+4. **`--source codebase`** + `owner/repo` + `--skill`: Internal API with repo context
+5. **`owner/repo`** (no `--source`): Auto-detect platform via `detectRepoPlatform`
+6. **Plain name** (no `/`): Internal registry lookup
+
+## Behavior
+
+### CLI Mode
+
+Interactive flow:
+1. **Scope selection** (if no flag): Select from project/global/target/dir; `^C` cancels
+2. **Target input** (if target/dir selected): Enter path; `^C` goes back to scope selection
+3. **Path validation**: Non-existing path → confirm creation; decline → back to scope selection
+4. **Agent selection** (if needed): Multi-select detected agents; `^C` goes back to scope selection
+5. **Overwrite prompt** (if skill exists): Confirm or skip
+
+### Pure Mode
+
+Non-interactive flow:
+1. Validates source argument (outputs usage if missing)
+2. Resolves agents (outputs error if none available)
+3. Resolves base directory (outputs error if invalid path)
+4. Resolves source and dispatches to installer
+5. `shouldOverwrite` always returns `false` — use `--force` for overwrite
+
+Output has no ANSI codes. All messages go through `console.log`.
+
+### Installation Types
+
+| Source Kind | Installer | Description |
+|-------------|-----------|-------------|
+| `api` | `installInternal` | Fetch from internal registry |
+| `repo` | `installFromRepo` | Fetch specific skills from Git repository |
+| `repo-all` | `installAllFromRepo` | Scan and install all skills from Git repository |
+| `error` | — | Output error reason |
+
+## Telemetry and privacy
+
+- **codebase installs**: When source is `--source codebase`, install telemetry is **never uploaded** (CLI does not request it; Web API also rejects codebase track requests).
+- **Other telemetry**: Controlled by env `DISABLE_TELEMETRY` and config `telemetry`. Priority: codebase (never) → `DISABLE_TELEMETRY` → `config.telemetry` → default `true`.
+- **DISABLE_TELEMETRY**: Values `0`/`1`/`true`/`false`/`t`/`f`/`yes`/`no`/`y`/`n`. `1`, `true`, `yes`, `y`, `t` disable telemetry.
+- **Config `telemetry`**: Boolean, default `true`. Use `config set telemetry false` to disable all non-codebase telemetry.
+
+## Examples
+
+```bash
+# Install from internal registry
+ai-skills add my-skill --source local --project --pure
+
+# Install globally
+ai-skills add my-skill --source local --global --pure
+
+# Install to custom directory
+ai-skills add my-skill --source local --target /custom/path --pure
+
+# Install from GitHub (specific skill)
+ai-skills add owner/repo --source github --skill skill-name --project --pure
+
+# Install all skills from GitHub repo
+ai-skills add owner/repo --source github --project --pure
+
+# Install from GitHub URL
+ai-skills add https://github.com/owner/repo --skill skill-name --project --pure
+
+# Install multiple skills from same repo
+ai-skills add owner/repo --source github --skill skill1 --skill skill2 --project --pure
+
+# Install from GitLab
+ai-skills add owner/repo --source gitlab --skill skill-name --project --pure
+
+# Install from ByteDance internal Git
+ai-skills add owner/repo --source codebase --skill skill-name --project --pure
+
+# Install from skills.sh
+ai-skills add skill-name --source wellknown --project --pure
+
+# Force overwrite existing
+ai-skills add my-skill --source local --project --pure --force
+
+# Install with soft mode
+ai-skills add my-skill --source local --project --pure --soft
+
+# Install to specific agents only
+ai-skills add my-skill --source local --project --pure --agents cursor,claude-code
+```
+
+## Pure Mode Output
+
+**Fetch and install:**
+```
+Fetching my-skill...
+Found: my-skill v1.0.0 (local)
+Installing to cursor, claude-code...
+  cursor: /project/.cursor/skills/my-skill
+  claude-code: /project/.claude/skills/my-skill
+Installed: my-skill (2 agents)
+```
+
+**With symlink (soft mode):**
+```
+  cursor: /project/.cursor/skills/my-skill -> /project/.skills/my-skill
+```
+
+**Already installed (no --force):**
+```
+Already installed: my-skill
+  cursor: /path/to/project/.cursor/skills/my-skill
+Use --force to overwrite.
+```
+
+**Source not found:**
+```
+Error: Invalid repository format
+```
+
+**No agents available:**
+```
+No agents found. Install an AI agent first.
+```
+
+**Missing source argument:**
+```
+Source required.
+Usage: ai-skills add <source> [options]
+```
+
+## Unrecognized Agents
+
+If `--agents` includes unknown names, a warning is emitted for each but the operation continues with recognized agents.

@@ -1,35 +1,27 @@
 ---
-name: "agentic-workflow-automation-p"
-description: "Design and orchestrate robust multi-step agent workflows with reusable blueprints. Automate complex trigger-action sequences, define deterministic workflows,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-workflow-automation-p"
-sourceUrl: "https://clawhub.ai/skills/agentic-workflow-automation-p"
+name: agentic-workflow-automation-p
+description: Design and orchestrate robust multi-step agent workflows with reusable blueprints. Automate complex trigger-action sequences, define deterministic workflows, and generate production-ready handoff artifacts. Ideal for streamlining automation pipelines, reducing manual intervention, and ensuring reliable execution across diverse tasks. Supports integration with common orchestration frameworks for scalable, maintainable automation.raises hybrid notebook generateetz bucket feedback argue enthusiastically argued marked concurrently complexity thesisttal presentjosmins contribute cost
 ---
 
-# agentic-workflow-automation-p
-
-> Design and orchestrate robust multi-step agent workflows with reusable blueprints. Automate complex trigger-action sequences, define deterministic workflows,...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-workflow-automation-p`
-- **Source URL:** [https://clawhub.ai/skills/agentic-workflow-automation-p](https://clawhub.ai/skills/agentic-workflow-automation-p)
+# Agentic Workflow Automation
 
 ## Overview
 
+Build workflow blueprints that can be translated into automation platforms such as n8n or internal orchestrators.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agentic-workflow-automation-p
-```
+## Workflow
+
+1. Define workflow name, trigger, and ordered steps.
+2. Normalize each step into a simple execution contract.
+3. Build a blueprint with dependencies and execution order.
+4. Export JSON/markdown artifacts for implementation.
+
+## Use Bundled Resources
+
+- Run `scripts/generate_workflow_blueprint.py` for deterministic workflow output.
+- Read `references/workflow-blueprint-guide.md` for step design guidance.
+
+## Guardrails
+
+- Keep each step single-purpose.
+- Include clear fallback behavior for failed steps.

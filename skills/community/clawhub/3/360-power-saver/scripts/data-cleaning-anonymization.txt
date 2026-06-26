@@ -1,0 +1,47 @@
+<#
+.SYNOPSIS
+    数据清洗和匿名化脚本
+.DESCRIPTION
+    对传入的文件名字符串进行匿名化处理。
+#>
+
+function Invoke-DataCleaningAnonymization {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string]$InputString
+    )
+
+    $pattern = '^(.+?)(\.[^.]+)$'
+    
+    if ($InputString -match $pattern) {
+        $fileNamePart = $matches[1]
+        $extensionPart = $matches[2]
+
+        $anonymizedName = ""
+        $length = $fileNamePart.Length
+
+        if ($length -le 2) {
+            $anonymizedName = $fileNamePart
+        } else {
+            $firstChar = $fileNamePart.Substring(0, 1)
+            $lastChar = $fileNamePart.Substring($length - 1, 1)
+            $maskLength = $length - 2
+            $masks = New-Object string('*', $maskLength)
+            $anonymizedName = "${firstChar}${masks}${lastChar}"
+        }
+
+        return "${anonymizedName}${extensionPart}"
+    } else {
+        $length = $InputString.Length
+        if ($length -le 2) {
+            return $InputString
+        } else {
+            $firstChar = $InputString.Substring(0, 1)
+            $lastChar = $InputString.Substring($length - 1, 1)
+            $maskLength = $length - 2
+            $masks = New-Object string('*', $maskLength)
+            return "${firstChar}${masks}${lastChar}"
+        }
+    }
+}

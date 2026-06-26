@@ -1,0 +1,11 @@
+{
+  "version": "1.1.0",
+  "organization": "Community",
+  "date": "April 2026",
+  "abstract": "Drop-in Claude Code hook scripts for agent execution reliability. Ralph persistent execution (Stop hook), doubt gate (speculation detection), tool error escalation (failure tracking + deny), post-edit diagnostics (instant linter). 7 scripts, 42 tests (full repo: 8 scripts across 3 skills), all protocol-verified against official docs.",
+  "references": [
+    "https://code.claude.com/docs/en/hooks",
+    "https://github.com/Yeachan-Heo/oh-my-claudecode",
+    "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents"
+  ]
+}

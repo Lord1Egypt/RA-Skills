@@ -1,0 +1,4 @@
+# Required dependencies
+requests
+python-dotenv
+pyzotero

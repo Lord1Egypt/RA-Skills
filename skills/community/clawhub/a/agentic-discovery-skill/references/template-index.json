@@ -1,0 +1,27 @@
+{
+  "templates": [
+    {"id": "client-intake-questionnaire", "stage": "intake", "type": "questionnaire"},
+    {"id": "workflow-discovery-script", "stage": "discovery", "type": "script"},
+    {"id": "stakeholder-interview-guide", "stage": "discovery", "type": "guide"},
+    {"id": "current-state-workflow-map", "stage": "mapping", "type": "map"},
+    {"id": "future-state-agentic-workflow-map", "stage": "mapping", "type": "map"},
+    {"id": "systems-and-data-access-checklist", "stage": "readiness", "type": "checklist"},
+    {"id": "tool-api-readiness-checklist", "stage": "readiness", "type": "checklist"},
+    {"id": "human-approval-gate-checklist", "stage": "risk", "type": "checklist"},
+    {"id": "risk-and-excluded-use-checklist", "stage": "risk", "type": "checklist"},
+    {"id": "success-criteria-worksheet", "stage": "evaluation", "type": "worksheet"},
+    {"id": "evaluation-example-worksheet", "stage": "evaluation", "type": "worksheet"},
+    {"id": "pilot-readiness-scorecard", "stage": "readiness", "type": "scorecard"},
+    {"id": "discovery-recap-memo", "stage": "handoff", "type": "memo"},
+    {"id": "requirements-brief-for-proposal-sow-handoff", "stage": "handoff", "type": "brief"},
+    {"id": "assumptions-and-unknowns-log", "stage": "tracking", "type": "log"},
+    {"id": "stakeholder-responsibility-matrix", "stage": "planning", "type": "matrix"},
+    {"id": "implementation-dependency-checklist", "stage": "readiness", "type": "checklist"},
+    {"id": "data-sensitivity-and-retention-worksheet", "stage": "risk", "type": "worksheet"},
+    {"id": "workflow-prioritization-matrix", "stage": "qualification", "type": "matrix"},
+    {"id": "quick-qualification-checklist", "stage": "qualification", "type": "checklist"},
+    {"id": "logging-and-monitoring-needs-worksheet", "stage": "operations", "type": "worksheet"},
+    {"id": "support-and-handoff-discovery-worksheet", "stage": "operations", "type": "worksheet"},
+    {"id": "pilot-to-production-readiness-checklist", "stage": "rollout", "type": "checklist"}
+  ]
+}

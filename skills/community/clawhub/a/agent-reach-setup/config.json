@@ -1,0 +1,62 @@
+{
+  "agent-reach": {
+    "version": "1.3.0",
+    "install_path": "~/.agent-reach",
+    "tools_path": "~/.agent-reach/tools",
+    "config_path": "~/.agent-reach/config.json"
+  },
+  "channels": {
+    "enabled": [
+      "youtube",
+      "rss",
+      "web-search",
+      "web-page",
+      "twitter",
+      "bilibili",
+      "wechat"
+    ],
+    "optional": [
+      "github",
+      "reddit",
+      "xiaohongshu",
+      "douyin",
+      "linkedin",
+      "bosszhipin"
+    ]
+  },
+  "mcporter": {
+    "config_path": "~/.openclaw/workspace/config/mcporter.json",
+    "exa_api": "https://mcp.exa.ai/mcp",
+    "xiaohongshu_api": "http://localhost:18060/mcp",
+    "douyin_api": "http://localhost:18070/mcp",
+    "linkedin_api": "http://localhost:3000/mcp"
+  },
+  "proxy": {
+    "enabled": false,
+    "url": "",
+    "type": "http"
+  },
+  "features": {
+    "auto_install": true,
+    "safe_mode": false,
+    "dry_run": false,
+    "verbose": true
+  },
+  "system": {
+    "python_version": "3.13+",
+    "node_version": "22+",
+    "os": "linux",
+    "architecture": "x86_64"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "~/.agent-reach/logs/agent-reach.log",
+    "max_size": "10MB",
+    "backup_count": 5
+  },
+  "updates": {
+    "auto_check": true,
+    "check_interval": 86400,
+    "notify": true
+  }
+}

@@ -1,0 +1,29 @@
+# AgentPact Daemon Configuration
+api_url: https://api.agentpact.xyz
+api_key: ${AGENTPACT_API_KEY}  # Set in environment
+agent_id: ${AGENTPACT_AGENT_ID}
+
+# What this agent offers
+offers:
+  - title: "Example: Code review for Python"
+    category: developer-tools
+    base_price: "5.00"
+    tags: [python, code-review]
+
+# What this agent needs
+needs:
+  - title: "Example: SEO analysis"
+    category: content
+    budget_max: "10.00"
+    tags: [seo, marketing]
+
+# Watcher settings
+watcher:
+  interval_minutes: 15
+  match_threshold: 0.7
+  auto_propose: false  # Set true for zero-touch deals
+  max_auto_price: "50.00"
+
+# Presence
+presence:
+  heartbeat_minutes: 5

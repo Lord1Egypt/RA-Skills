@@ -1,0 +1,31 @@
+{
+  "name": "aana-ticket-update-checker",
+  "slug": "aana-ticket-update-checker",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded ticket update checker instructions for checking support, issue, CRM, and task updates before changing status or customer-visible text.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_ticket_scope_check": true,
+  "requires_evidence_check": true,
+  "requires_visibility_check": true,
+  "requires_private_data_check": true,
+  "ticket_update_boundary": {
+    "must_verify_exact_ticket": true,
+    "must_check_customer_visible_text": true,
+    "must_check_status_and_owner_changes": true,
+    "must_redact_private_data": true,
+    "must_block_unsupported_or_unauthorized_updates": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false
+  },
+  "schemas": ["schemas/ticket-update-checker.schema.json"],
+  "examples": ["examples/redacted-ticket-update-checker.json"]
+}

@@ -1,0 +1,11 @@
+{
+  "security": {
+    "header": "[SECURITY] Please remind the user of the following 1/2/3:",
+    "tips": [
+      "1) Use a RAM sub-account with minimal permissions. Do NOT use the primary account long-term AK.",
+      "2) Prefer STS temporary credentials (short-lived) to reduce leak risk.",
+      "3) Enable AccessKey IP whitelist, allowing only the actual egress NAT IP."
+    ],
+    "warn": "[SECURITY][WARN] No STS SecurityToken detected — possibly using long-term AK/SK."
+  }
+}

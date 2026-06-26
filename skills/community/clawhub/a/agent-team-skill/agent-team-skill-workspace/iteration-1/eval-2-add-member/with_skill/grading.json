@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {"text": "执行了 team.py update 命令", "passed": true, "evidence": "命令 'python3 /home/yhb/work/agent-team-skill/scripts/team.py update --agent-id bob ...'"},
+    {"text": "成员名为 Bob", "passed": true, "evidence": "输出显示 'Added member: Bob (bob)'"},
+    {"text": "角色包含后端开发/Backend Developer", "passed": true, "evidence": "角色为 'Backend Developer'"},
+    {"text": "技能包含 Python 和 Go", "passed": true, "evidence": "expertise 参数为 'Python,Go'"},
+    {"text": "不擅长领域包含前端/frontend", "passed": true, "evidence": "not-good-at 参数为 'frontend'"}
+  ]
+}

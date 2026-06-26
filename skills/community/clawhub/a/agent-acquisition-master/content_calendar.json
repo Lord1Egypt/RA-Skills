@@ -1,0 +1,108 @@
+{
+  "description": "Planning contenu type hebdomadaire. Agent adapte selon l'actualité.",
+  "semaine_type": [
+    {
+      "jour": "lundi",
+      "twitter": {
+        "type": "résultats",
+        "theme": "performance trading semaine passée",
+        "formule": "Résultat + Méthode",
+        "hook": "J'ai [résultat] cette semaine. Voici exactement comment :",
+        "heure": "08h30"
+      },
+      "linkedin": {
+        "type": "insight",
+        "theme": "observation marché ou IA",
+        "formule": "Contre-intuition",
+        "hook": "Tout le monde dit [X]. C'est faux. Voilà pourquoi :",
+        "heure": "09h00"
+      }
+    },
+    {
+      "jour": "mardi",
+      "twitter": {
+        "type": "insight",
+        "theme": "analyse actualité avec algo détection biais",
+        "formule": "Données surprenantes",
+        "hook": "[Stat surprenante sur source connue] :",
+        "heure": "08h30"
+      },
+      "linkedin": null
+    },
+    {
+      "jour": "mercredi",
+      "twitter": {
+        "type": "thread",
+        "theme": "comment fonctionne Agent / Veritas",
+        "formule": "Histoire personnelle",
+        "hook": "J'ai construit un agent IA autonome depuis mon VPS. Voici ce qu'il fait :",
+        "heure": "08h30"
+      },
+      "linkedin": {
+        "type": "histoire",
+        "theme": "construction de l'infrastructure IA",
+        "formule": "Histoire personnelle",
+        "hook": "J'ai construit un agent IA autonome depuis mon VPS. Voici ce qu'il fait :",
+        "heure": "09h00"
+      }
+    },
+    {
+      "jour": "jeudi",
+      "twitter": {
+        "type": "insight",
+        "theme": "trading ou marchés prédiction",
+        "formule": "Observation marché",
+        "hook": "Ce que j'observe sur [marché] en ce moment :",
+        "heure": "08h30"
+      },
+      "linkedin": null
+    },
+    {
+      "jour": "vendredi",
+      "twitter": {
+        "type": "cta_doux",
+        "theme": "invitation newsletter ou signaux gratuits",
+        "formule": "Liste avec promesse",
+        "hook": "[N] choses que j'ai apprises en construisant Agent cette semaine :",
+        "heure": "08h30"
+      },
+      "linkedin": {
+        "type": "résultats",
+        "theme": "bilan de la semaine Agent",
+        "formule": "Résultat + Méthode",
+        "hook": "Cette semaine Agent a [actions]. Voici ce qui a marché :",
+        "heure": "09h00"
+      }
+    }
+  ],
+  "reddit": {
+    "fréquence": "2-3 fois par semaine",
+    "règle_or": "Valeur d'abord. Jamais de lien direct dans le post principal.",
+    "subreddits": {
+      "secteur_principal": [
+        "r/[subreddit-lié-au-secteur]",
+        "r/[subreddit-communauté]"
+      ],
+      "business": [
+        "r/entrepreneur",
+        "r/startups",
+        "r/smallbusiness"
+      ],
+      "fr": [
+        "r/france",
+        "r/entrepreneur_fr"
+      ]
+    }
+  },
+  "substack": {
+    "fréquence": "1 email par semaine — le jeudi",
+    "contenu": "Synthèse semaine + 1 insight exclusif + résultats Agent"
+  },
+  "règles_globales": [
+    "Adapter le contenu à l'actualité du jour si événement majeur",
+    "Ne jamais pitcher directement — valeur d'abord",
+    "Varier entre résultats réels, insights, histoires personnelles",
+    "Screenshots performances réelles > texte seul",
+    "Log immédiat dans CONTENT_LEARNINGS.md après chaque publication"
+  ]
+}

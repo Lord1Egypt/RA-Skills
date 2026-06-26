@@ -1,0 +1,14 @@
+name = "agent-os"
+version = "1.0.0"
+description = "基于三层架构的AI智能体操作系统模板 - 身份层/操作层/知识层分离"
+author = "Claude"
+tags = ["agent", "architecture", "template", "ai-system"]
+
+[entry]
+file = "README.md"
+
+[install]
+command = "chmod +x scripts/*.sh"
+
+[usage]
+command = "./scripts/startup.sh"

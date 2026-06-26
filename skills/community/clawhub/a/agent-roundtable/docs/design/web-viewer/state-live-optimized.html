@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>圆桌讨论 — LIVE</title>
+<link rel="stylesheet" href="./theme.css">
+<style>
+/* ============================================
+   LIVE State — Optimized
+   Single column time-flow, max-width 720px
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Theme fallbacks (in case theme.css not loaded) */
+  --rt-brand: #4F46E5;
+  --rt-bg-body: #0F172A;
+  --rt-bg-card: #1E293B;
+  --rt-bg-card-hover: #334155;
+  --rt-text-primary: #F1F5F9;
+  --rt-text-secondary: #94A3B8;
+  --rt-text-muted: #64748B;
+  --rt-border: #334155;
+  --rt-radius-md: 10px;
+  --rt-radius-lg: 16px;
+  --rt-radius-sm: 6px;
+  --rt-max-width: 720px;
+
+  /* Role colors */
+  --rt-role-product: #3B82F6;
+  --rt-role-product-bg: rgba(59, 130, 246, 0.15);
+  --rt-role-design: #A855F7;
+  --rt-role-design-bg: rgba(168, 85, 247, 0.15);
+  --rt-role-engineer: #22C55E;
+  --rt-role-engineer-bg: rgba(34, 197, 94, 0.15);
+  --rt-role-research: #F59E0B;
+  --rt-role-research-bg: rgba(245, 158, 11, 0.15);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: var(--rt-bg-body);
+  color: var(--rt-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Top Nav Bar --- */
+.top-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.85);
+  /* WeChat fallback */
+  background: var(--rt-bg-body) \9;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rt-border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .top-bar {
+    background: var(--rt-bg-body);
+  }
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: #EF4444;
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.top-bar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rt-text-primary);
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--rt-text-muted);
+}
+
+.top-bar-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-icon {
+  font-size: 13px;
+}
+
+/* --- Share Button --- */
+.share-btn {
+  background: none;
+  border: 1px solid var(--rt-border);
+  color: var(--rt-text-muted);
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: var(--rt-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.share-btn:hover {
+  background: var(--rt-bg-card);
+  color: var(--rt-text-primary);
+  border-color: var(--rt-text-muted);
+}
+
+/* --- Share Popover --- */
+.share-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+
+.share-overlay.active {
+  display: block;
+}
+
+.share-popover {
+  position: absolute;
+  top: 56px;
+  right: 20px;
+  width: 360px;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  padding: 20px;
+  z-index: 201;
+  animation: fadeSlideIn 0.2s ease-out;
+}
+
+.share-popover-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rt-text-primary);
+  margin-bottom: 14px;
+}
+
+.share-link-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.share-link-input {
+  flex: 1;
+  background: var(--rt-bg-body);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-sm);
+  padding: 8px 12px;
+  color: var(--rt-text-secondary);
+  font-size: 13px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  outline: none;
+}
+
+.share-link-input:focus {
+  border-color: var(--rt-brand);
+}
+
+.share-copy-btn {
+  background: var(--rt-brand);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--rt-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  min-width: 64px;
+}
+
+.share-copy-btn:hover {
+  background: #4338CA;
+}
+
+.share-copy-btn.copied {
+  background: #22C55E;
+}
+
+.share-revoke-btn {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+  padding: 8px;
+  border-radius: var(--rt-radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.share-revoke-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #EF4444;
+}
+
+/* --- Content Container --- */
+.content {
+  max-width: var(--rt-max-width);
+  margin: 0 auto;
+  padding: 20px 24px 80px;
+}
+
+/* --- Speech Card --- */
+.speech-card {
+  display: flex;
+  gap: 14px;
+  padding: 20px;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-left: 3px solid transparent;
+  border-radius: var(--rt-radius-md);
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+
+.speech-card:hover {
+  background: var(--rt-bg-card-hover);
+}
+
+.speech-card.highlighted {
+  border-left-color: var(--rt-brand);
+  box-shadow: -4px 0 16px rgba(79, 70, 229, 0.25);
+  animation: highlightFade 2s ease-out forwards;
+}
+
+/* --- Avatar --- */
+.avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.avatar-product    { background: var(--rt-role-product); }
+.avatar-design     { background: var(--rt-role-design); }
+.avatar-engineer   { background: var(--rt-role-engineer); }
+.avatar-research   { background: var(--rt-role-research); }
+
+/* --- Speech Body --- */
+.speech-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.speech-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.speech-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--rt-text-primary);
+}
+
+.role-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+}
+
+.role-badge-product  { background: var(--rt-role-product-bg); color: var(--rt-role-product); }
+.role-badge-design   { background: var(--rt-role-design-bg); color: var(--rt-role-design); }
+.role-badge-engineer { background: var(--rt-role-engineer-bg); color: var(--rt-role-engineer); }
+.role-badge-research { background: var(--rt-role-research-bg); color: var(--rt-role-research); }
+
+.speech-time {
+  font-size: 12px;
+  color: var(--rt-text-muted);
+  margin-left: auto;
+}
+
+.speech-text {
+  font-size: 15px;
+  color: var(--rt-text-secondary);
+  line-height: 1.7;
+}
+
+/* --- Typing Indicator --- */
+.typing-indicator-wrapper {
+  margin-left: 54px;
+  margin-bottom: 12px;
+  padding: 14px 20px;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--rt-text-muted);
+  border-radius: 50%;
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+.typing-label {
+  font-size: 12px;
+  color: var(--rt-text-muted);
+  margin-left: 8px;
+}
+
+/* --- Bottom Bar --- */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: rgba(15, 23, 42, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--rt-border);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--rt-text-muted);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .bottom-bar {
+    background: var(--rt-bg-body);
+  }
+}
+
+/* --- Animations --- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes highlightFade {
+  0% {
+    border-left-color: var(--rt-brand);
+    box-shadow: -4px 0 16px rgba(79, 70, 229, 0.25);
+  }
+  100% {
+    border-left-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeSlideIn 300ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Mobile ≤768px --- */
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 10px 16px;
+  }
+
+  .top-bar-meta,
+  .share-btn {
+    display: none;
+  }
+
+  .content {
+    padding: 16px 16px 80px;
+  }
+
+  .speech-card {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 13px;
+  }
+
+  .speech-text {
+    font-size: 14px;
+  }
+
+  .speech-time {
+    display: none;
+  }
+
+  .typing-indicator-wrapper {
+    margin-left: 46px;
+  }
+
+  /* Mobile share: bottom sheet */
+  .share-popover {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: var(--rt-radius-lg) var(--rt-radius-lg) 0 0;
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bottom-bar {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* --- Confirmation Dialog (for revoke) --- */
+.confirm-dialog-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-dialog-overlay.active {
+  display: flex;
+}
+
+.confirm-dialog {
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  padding: 24px;
+  width: 320px;
+  max-width: 90vw;
+  animation: fadeSlideIn 0.2s ease-out;
+}
+
+.confirm-dialog p {
+  font-size: 15px;
+  color: var(--rt-text-primary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirm-cancel-btn {
+  background: none;
+  border: 1px solid var(--rt-border);
+  color: var(--rt-text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--rt-radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.confirm-revoke-btn {
+  background: #EF4444;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--rt-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-revoke-btn:hover {
+  background: #DC2626;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Top Nav Bar ===== -->
+<header class="top-bar">
+  <div class="top-bar-left">
+    <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+    <span class="top-bar-title">圆桌讨论</span>
+  </div>
+  <div class="top-bar-right">
+    <div class="top-bar-meta">
+      <span class="meta-item"><span class="meta-icon">👥</span> 4 人参与</span>
+      <span class="meta-item"><span class="meta-icon">⏱</span> 12 分钟</span>
+    </div>
+    <button class="share-btn" id="shareBtn" aria-label="分享">
+      <span>🔗</span> 分享
+    </button>
+  </div>
+</header>
+
+<!-- ===== Share Overlay (popover / bottom sheet) ===== -->
+<div class="share-overlay" id="shareOverlay">
+  <div class="share-popover" id="sharePopover" role="dialog" aria-label="分享链接">
+    <div class="share-popover-title">分享此讨论</div>
+    <div class="share-link-row">
+      <input class="share-link-input" id="shareLinkInput" type="text"
+             value="https://roundtable.app/r/abc123" readonly>
+      <button class="share-copy-btn" id="shareCopyBtn">复制</button>
+    </div>
+    <button class="share-revoke-btn" id="shareRevokeBtn">撤销分享链接</button>
+  </div>
+</div>
+
+<!-- ===== Confirmation Dialog ===== -->
+<div class="confirm-dialog-overlay" id="confirmOverlay">
+  <div class="confirm-dialog">
+    <p>确定要撤销分享链接吗？已获得链接的人将无法再访问此讨论。</p>
+    <div class="confirm-dialog-actions">
+      <button class="confirm-cancel-btn" id="confirmCancelBtn">取消</button>
+      <button class="confirm-revoke-btn" id="confirmRevokeBtn">撤销链接</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Main Content ===== -->
+<main class="content" id="content">
+
+  <!-- Speech Card 1: 饼哥 (产品) -->
+  <article class="speech-card fade-in">
+    <div class="avatar avatar-product">饼</div>
+    <div class="speech-body">
+      <div class="speech-meta">
+        <span class="speech-name">饼哥</span>
+        <span class="role-badge role-badge-product">产品</span>
+        <span class="speech-time">10 min ago</span>
+      </div>
+      <p class="speech-text">我觉得这次改版的核心还是降低新用户的上手门槛。现在注册流程有 7 步，如果能砍到 3 步以内，转化率至少能提升 30%。我们可以先做 AB 测试验证一下。</p>
+    </div>
+  </article>
+
+  <!-- Speech Card 2: 像素姐 (设计) -->
+  <article class="speech-card fade-in">
+    <div class="avatar avatar-design">像</div>
+    <div class="speech-body">
+      <div class="speech-meta">
+        <span class="speech-name">像素姐</span>
+        <span class="role-badge role-badge-design">设计</span>
+        <span class="speech-time">6 min ago</span>
+      </div>
+      <p class="speech-text">同意，注册流程确实太重了。我这边有几个方案草图，走社交账号一键登录+渐进式收集信息的路线。另外引导页的视觉风格我也做了新的探索，等下分享给大家看看。</p>
+    </div>
+  </article>
+
+  <!-- Speech Card 3: 码飞 (工程, new/highlighted) -->
+  <article class="speech-card fade-in highlighted">
+    <div class="avatar avatar-engineer">码</div>
+    <div class="speech-body">
+      <div class="speech-meta">
+        <span class="speech-name">码飞</span>
+        <span class="role-badge role-badge-engineer">工程</span>
+        <span class="speech-time">just now</span>
+      </div>
+      <p class="speech-text">技术上没问题，OAuth 登录那套我们已经有现成的 SDK。渐进式信息收集可以用分步表单+后端异步校验来实现，不会阻塞用户操作。不过要注意数据合规，欧盟那边的 GDPR 要求在收集前做明确授权。</p>
+    </div>
+  </article>
+
+  <!-- Typing Indicator -->
+  <div class="typing-indicator-wrapper">
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+    <span class="typing-dot"></span>
+    <span class="typing-label">有人正在输入…</span>
+  </div>
+
+</main>
+
+<!-- ===== Bottom Bar ===== -->
+<footer class="bottom-bar">
+  🔄 实时更新中 · 断线自动重连
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ---- Highlight removal after 2s ---- */
+  document.querySelectorAll('.speech-card.highlighted').forEach(function(card) {
+    setTimeout(function() { card.classList.remove('highlighted'); }, 2000);
+  });
+
+  /* ---- Auto-scroll: if near bottom, scroll new cards into view ---- */
+  function isNearBottom() {
+    var threshold = 100;
+    return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - threshold);
+  }
+
+  // On load, scroll to bottom to show latest
+  window.addEventListener('load', function() {
+    var lastCard = document.querySelector('.typing-indicator-wrapper');
+    if (lastCard && isNearBottom()) {
+      lastCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+    // Always scroll typing indicator into view on load
+    if (lastCard) {
+      setTimeout(function() {
+        lastCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 400);
+    }
+  });
+
+  /* ---- Share Button / Popover ---- */
+  var shareBtn = document.getElementById('shareBtn');
+  var shareOverlay = document.getElementById('shareOverlay');
+  var sharePopover = document.getElementById('sharePopover');
+  var shareCopyBtn = document.getElementById('shareCopyBtn');
+  var shareLinkInput = document.getElementById('shareLinkInput');
+  var shareRevokeBtn = document.getElementById('shareRevokeBtn');
+  var confirmOverlay = document.getElementById('confirmOverlay');
+  var confirmCancelBtn = document.getElementById('confirmCancelBtn');
+  var confirmRevokeBtn = document.getElementById('confirmRevokeBtn');
+
+  function openShare() {
+    shareOverlay.classList.add('active');
+    shareLinkInput.select();
+  }
+
+  function closeShare() {
+    shareOverlay.classList.remove('active');
+  }
+
+  shareBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (shareOverlay.classList.contains('active')) {
+      closeShare();
+    } else {
+      openShare();
+    }
+  });
+
+  // Click outside to close
+  shareOverlay.addEventListener('click', function(e) {
+    if (!sharePopover.contains(e.target)) {
+      closeShare();
+    }
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeShare();
+      closeConfirm();
+    }
+  });
+
+  // Copy link
+  shareCopyBtn.addEventListener('click', function() {
+    var text = shareLinkInput.value;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(copySuccess).catch(copyFallback);
+    } else {
+      copyFallback();
+    }
+  });
+
+  function copyFallback() {
+    shareLinkInput.select();
+    try {
+      document.execCommand('copy');
+      copySuccess();
+    } catch (e) {
+      // silent fail
+    }
+  }
+
+  function copySuccess() {
+    shareCopyBtn.textContent = '✓ 已复制';
+    shareCopyBtn.classList.add('copied');
+    setTimeout(function() {
+      shareCopyBtn.textContent = '复制';
+      shareCopyBtn.classList.remove('copied');
+    }, 2000);
+  }
+
+  // Revoke confirmation
+  shareRevokeBtn.addEventListener('click', function() {
+    closeShare();
+    confirmOverlay.classList.add('active');
+  });
+
+  function closeConfirm() {
+    confirmOverlay.classList.remove('active');
+  }
+
+  confirmCancelBtn.addEventListener('click', closeConfirm);
+
+  confirmOverlay.addEventListener('click', function(e) {
+    if (e.target === confirmOverlay) closeConfirm();
+  });
+
+  confirmRevokeBtn.addEventListener('click', function() {
+    closeConfirm();
+    // In real app, this would call API to revoke link
+    shareLinkInput.value = '链接已撤销';
+    shareLinkInput.disabled = true;
+  });
+
+})();
+</script>
+</body>
+</html>

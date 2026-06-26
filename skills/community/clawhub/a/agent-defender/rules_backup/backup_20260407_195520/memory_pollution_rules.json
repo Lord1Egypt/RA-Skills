@@ -1,0 +1,70 @@
+[
+  {
+    "id": "MP01",
+    "name": "SOUL 篡改检测",
+    "patterns": [
+      "\\bSOUL\\.md\\b",
+      "\\bwrite.*SOUL\\b",
+      "修改.*灵魂",
+      "覆盖人格"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测篡改 Agent 人格定义",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "MP02",
+    "name": "记忆注入检测",
+    "patterns": [
+      "\\bMEMORY\\.md\\b",
+      "\\bwrite_memory\\s*\\(",
+      "记住这个",
+      "添加到记忆"
+    ],
+    "risk": "HIGH",
+    "description": "检测向长期记忆注入恶意信息",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "MP03",
+    "name": "上下文污染检测",
+    "patterns": [
+      "\\bconversation\\b",
+      "\\bhistory\\b",
+      "\\bcontext\\b",
+      "对话历史"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测污染对话上下文",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "MP04",
+    "name": "技能污染检测",
+    "patterns": [
+      "\\bSKILL\\.md\\b",
+      "修改.*技能",
+      "\\bplugin\\b"
+    ],
+    "risk": "HIGH",
+    "description": "检测篡改技能文件",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "MP05",
+    "name": "配置篡改检测",
+    "patterns": [
+      "\\bconfig\\.json\\b",
+      "\\.openclaw/config",
+      "关闭.*防护"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测篡改配置文件",
+    "action": "BLOCK",
+    "optimized": false
+  }
+]

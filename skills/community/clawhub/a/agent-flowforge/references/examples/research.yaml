@@ -1,0 +1,40 @@
+name: research
+description: Research and learning workflow
+start: discover
+
+nodes:
+  discover:
+    task: |
+      Find and collect resources:
+      - Search for documentation, tutorials, articles
+      - Identify authoritative sources
+      - Bookmark key resources
+      - Create reading list
+    next: deep-read
+
+  deep-read:
+    task: |
+      Read and understand the material:
+      - Work through documentation systematically
+      - Run example code
+      - Test concepts interactively
+      - Note unclear areas for deeper investigation
+    next: note
+
+  note:
+    task: |
+      Capture key insights:
+      - Summarize main concepts
+      - Write code examples
+      - Document patterns and best practices
+      - Record questions or gaps in understanding
+    next: reflect
+
+  reflect:
+    task: |
+      Synthesize and consolidate learning:
+      - Review notes and examples
+      - Connect new concepts to existing knowledge
+      - Identify practical applications
+      - Plan next steps or related topics to explore
+    terminal: true

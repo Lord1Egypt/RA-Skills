@@ -1,0 +1,21 @@
+{
+  "adapter_id": "support_reply",
+  "request_summary": "draft a refund support reply",
+  "candidate_summary": "reply would promise refund eligibility even though eligibility is unknown",
+  "evidence_summary": [
+    "customer name is available",
+    "refund eligibility is unknown",
+    "payment detail is redacted"
+  ],
+  "allowed_actions": [
+    "accept",
+    "revise",
+    "ask",
+    "defer",
+    "refuse"
+  ],
+  "metadata": {
+    "redacted": true,
+    "source": "bundled-helper-example"
+  }
+}

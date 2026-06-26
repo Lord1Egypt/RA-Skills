@@ -1,0 +1,16 @@
+{
+  "export_type": "records",
+  "scope_status": "bulk",
+  "destination_status": "external",
+  "privacy_status": "sensitive",
+  "approval_status": "required",
+  "export_risks": [
+    "bulk_export",
+    "external_destination",
+    "regulated_data",
+    "unclear_retention"
+  ],
+  "blocker_reason": "The export is bulk, sensitive, externally destined, and lacks retention guidance.",
+  "safe_alternative": "Export a redacted aggregate summary or ask for scoped fields, destination, approval, and retention instructions.",
+  "recommended_action": "route_to_review"
+}

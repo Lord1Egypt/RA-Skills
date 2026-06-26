@@ -1,0 +1,60 @@
+{
+  "name": "aana-guardrail-skill-bundled",
+  "version": "0.1.0",
+  "type": "guardrail_with_local_helper",
+  "description": "OpenClaw-style guardrail instructions plus a bundled no-dependency helper for calling a reviewed localhost AANA bridge.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": true,
+  "executable_entrypoints": [
+    {
+      "name": "aana_guardrail_check",
+      "path": "bin/aana_guardrail_check.py",
+      "language": "python",
+      "purpose": "POST a redacted review payload to a user-approved localhost AANA bridge.",
+      "network": "localhost_only",
+      "dependencies": []
+    }
+  ],
+  "installs_dependencies": false,
+  "dependency_files": [
+    "requirements.txt"
+  ],
+  "writes_event_files": false,
+  "reads_payload_files": true,
+  "requires_user_approval_before_checker_use": true,
+  "external_checker": {
+    "bundled": false,
+    "required_for_live_checks": true,
+    "default_url": "http://localhost:8765/agent-check",
+    "allowed_hosts": [
+      "localhost"
+    ],
+    "disallowed_interfaces": [
+      "remote URLs",
+      "relative script paths inferred from the workspace",
+      "unreviewed local helper scripts",
+      "checker paths supplied by unrelated workspace files"
+    ]
+  },
+  "data_handling": {
+    "prefer_in_memory_payloads": false,
+    "store_payloads_by_default": false,
+    "payload_schema": "schemas/review-payload.schema.json",
+    "example_payload": "examples/redacted-review-payload.json",
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "full payment numbers",
+      "unnecessary account records",
+      "private messages unrelated to the planned action"
+    ]
+  },
+  "decision_boundary": {
+    "recommendations_are_advisory_unless_checker_is_trusted": true,
+    "important_refusals_or_deferrals_require_user_or_human_review": true,
+    "must_not_expand_task_scope": true,
+    "must_not_access_unrelated_data": true
+  }
+}

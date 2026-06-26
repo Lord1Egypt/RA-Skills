@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaptive Learning</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="ts-fsrs.umd.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== COURSE SELECTOR (shown when no course loaded) ===== -->
+<div id="course-selector" class="screen">
+  <div class="selector-wrap">
+    <h1>📚 Adaptive Learning</h1>
+    <p class="subtitle">选择一门课程开始学习</p>
+    <div id="course-list" class="course-grid"></div>
+    <div class="load-custom">
+      <p>或者拖入 course 文件夹的 <code>questions.json</code></p>
+      <div id="drop-zone" class="drop-zone">
+        <span>📂 拖放 questions.json 到这里</span>
+        <input type="file" id="file-input" accept=".json" style="display:none">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN LEARNING SCREEN ===== -->
+<div id="learn-screen" class="screen" style="display:none">
+  <header class="header">
+    <div class="header-left">
+      <button class="btn-icon" onclick="App.backToCourses()" title="返回选课">←</button>
+      <span class="logo" id="course-title">📚 Course</span>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="breadth" onclick="App.setMode('breadth')">广度优先</button>
+        <button class="mode-btn" data-mode="depth" onclick="App.setMode('depth')">深度优先</button>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="stat-due" class="stat-chip" title="待复习">📋 0</span>
+      <span id="stat-seen" class="stat-chip">已看: 0</span>
+      <span id="stat-retention" class="stat-chip">记忆率: --</span>
+      <button class="btn btn-action" onclick="App.toggleDrawer()">📊 进度</button>
+      <button class="btn btn-action" onclick="App.resetCourse()">🔄 重置</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="card-container">
+      <div class="card" id="card" onclick="App.flip()">
+        <div id="card-inner"></div>
+      </div>
+
+      <div class="btn-row" id="rating-btns" style="display:none">
+        <button class="btn btn-got-it" onclick="App.rate('good')">✅ 会了</button>
+        <button class="btn btn-unsure" onclick="App.rate('hard')">🤔 不熟悉</button>
+        <button class="btn btn-no-clue" onclick="App.rate('again')">❌ 完全不会</button>
+      </div>
+
+      <div class="extra-actions" id="extra-btns" style="display:none">
+        <button class="btn btn-action" id="btn-followup" onclick="App.followUp()" style="display:none">💬 Follow-up</button>
+        <button class="btn btn-action" id="btn-next-topic" onclick="App.nextTopic()" style="display:none">➡️ 下一主题</button>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-stats">
+          <span id="progress-topic">准备中...</span>
+          <span id="progress-diff"></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="App.toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <h3>📊 各主题进度</h3>
+    <div id="topic-list"></div>
+    <hr style="margin:16px 0;border-color:var(--border)">
+    <h4>⚙️ 设置</h4>
+    <label class="setting-row">
+      目标记忆率
+      <input type="range" id="retention-slider" min="0.7" max="0.97" step="0.01" value="0.9" onchange="App.setRetention(this.value)">
+      <span id="retention-val">90%</span>
+    </label>
+    <label class="setting-row">
+      每日新卡上限
+      <input type="number" id="daily-new" min="1" max="100" value="20" onchange="App.setDailyNew(this.value)">
+    </label>
+  </div>
+</div>
+
+<script src="preload-cs170.js"></script>
+<script src="engine.js"></script>
+</body>
+</html>

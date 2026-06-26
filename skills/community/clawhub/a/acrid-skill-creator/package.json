@@ -1,0 +1,26 @@
+{
+  "name": "skill-creator",
+  "version": "2.0.0",
+  "description": "Meta-skill that generates production-grade agent skills from natural language. The factory that builds the factory.",
+  "main": "SKILL.md",
+  "author": "Acrid Automation",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "agent",
+    "automation",
+    "meta-skill",
+    "code-generation",
+    "scaffold",
+    "acrid"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acrid-auto/skill-creator"
+  },
+  "homepage": "https://github.com/acrid-auto/skill-creator#readme",
+  "bugs": {
+    "url": "https://github.com/acrid-auto/skill-creator/issues"
+  }
+}

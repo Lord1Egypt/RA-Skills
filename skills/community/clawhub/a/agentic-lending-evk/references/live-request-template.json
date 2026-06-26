@@ -1,0 +1,51 @@
+{
+  "chain": {
+    "name": "arbitrum",
+    "chainId": 42161
+  },
+  "collateralAssets": [
+    {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    }
+  ],
+  "borrowAssets": [
+    {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+    }
+  ],
+  "riskPreset": "eth-major",
+  "recipeId": "eth-major-stable-borrow-v1",
+  "activationMode": "allow-activation",
+  "rpcPreference": {
+    "rpcUrl": "https://replace-with-live-rpc.example.com"
+  },
+  "feedFunding": {
+    "mode": "dry-run",
+    "executionMode": "auto"
+  },
+  "executionProfile": {
+    "mode": "simulate",
+    "executorAddress": "0x1111111111111111111111111111111111111111"
+  },
+  "vaultContext": {
+    "factoryAddress": "0x2222222222222222222222222222222222222222",
+    "assetAddress": "0x3333333333333333333333333333333333333333"
+  },
+  "broadcast": {
+    "enabled": false,
+    "acknowledgement": "I_UNDERSTAND_THIS_WILL_SEND_TRANSACTIONS",
+    "signerAddress": "0x4444444444444444444444444444444444444444"
+  },
+  "send": {
+    "enabled": false,
+    "dryRun": true,
+    "rpcUrl": "https://replace-with-send-rpc.example.com",
+    "signerEnvName": "LIVE_SIGNER_ENV"
+  },
+  "artifacts": {
+    "enabled": true,
+    "label": "evk-live-run"
+  }
+}

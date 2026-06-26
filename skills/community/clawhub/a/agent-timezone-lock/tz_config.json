@@ -1,0 +1,7 @@
+{
+  "timezone": "America/New_York",
+  "display_name": "US Eastern",
+  "utc_offset_hours": -4.0,
+  "configured_by": "timezone_setup.py",
+  "note": "Edit timezone field to change. Run now.py to verify."
+}

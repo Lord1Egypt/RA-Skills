@@ -1,0 +1,36 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 300
+  threshold: 0.75
+skill: ad-copy-writer
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the ad-copy-writer skill to draft 5 ad copy variations for this launch."
+  - id: ad-variants
+    should_trigger: true
+    prompt: "Write 5 ad copy variations for a productivity app launch."
+  - id: landing-copy
+    should_trigger: true
+    prompt: "Turn this product brief into landing page copy with a stronger CTA."
+  - id: negative-summary
+    should_trigger: false
+    prompt: "Summarize this meeting transcript into bullet points."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "AGENTS.md"
+      - file_exists: "eval.yaml"
+      - file_exists: "references/domain.md"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      The skill should:
+      - stay scoped to persuasive marketing or advertising copy,
+      - mention ad copy, landing page copy, or CTA variants clearly,
+      - show realistic marketing prompts near the top,
+      - include portable `{baseDir}` commands,
+      - document what happens when the skill is re-run.

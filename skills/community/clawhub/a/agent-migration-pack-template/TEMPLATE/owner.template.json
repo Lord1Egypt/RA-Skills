@@ -1,0 +1,176 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "owner",
+  "sensitivity": "private",
+  "description": "主人/用户信息模板 - 填写主人的基本信息、偏好、业务等",
+  "time_estimate": "8分钟",
+  "boundary_notes": {
+    "should_include": [
+      "主人的基本信息（姓名、所在地、职业）",
+      "兴趣爱好和关注领域",
+      "家庭情况（配偶、子女信息）",
+      "业务背景和经验水平",
+      "特殊偏好和禁忌"
+    ],
+    "should_not_include": [
+      "具体的密码和密钥（放入SECRET.md）",
+      "Agent的系统配置（放入meta）",
+      "进行中的任务（放入SESSION-STATE）",
+      "团队成员详细资料（放入relations）"
+    ]
+  },
+
+  "name": {
+    "value": "林锋",
+    "example": "张三",
+    "description": "主人的真实姓名或昵称"
+  },
+  "location": {
+    "value": "深圳",
+    "example": "北京",
+    "description": "主人所在地"
+  },
+  "profession": {
+    "value": "电商运营",
+    "example": "产品经理",
+    "description": "主要职业"
+  },
+  "interests": {
+    "value": [
+      "股票投资",
+      "AI技术",
+      "奢侈品二奢",
+      "自动化工具"
+    ],
+    "example": ["兴趣爱好1", "兴趣爱好2"],
+    "description": "兴趣爱好列表"
+  },
+  "education": {
+    "value": "本科",
+    "example": "硕士/本科/专科",
+    "description": "教育背景"
+  },
+
+  "family": {
+    "spouse_location": {
+      "value": "深圳",
+      "example": "上海",
+      "description": "配偶所在地"
+    },
+    "spouse_business": {
+      "value": "教育行业",
+      "example": "医生",
+      "description": "配偶职业"
+    }
+  },
+
+  "schedule": {
+    "工作日白天": {
+      "value": "主人在上班，艾可用于异步任务处理",
+      "example": "日程安排描述",
+      "description": "工作日白天的时间安排"
+    },
+    "工作日晚上": {
+      "value": "晚8-11点活跃，可进行深度分析和讨论",
+      "example": "晚8-11点活跃，可进行深度分析",
+      "description": "工作日晚上的时间安排"
+    },
+    "周末": {
+      "value": "灵活安排，可进行批量任务处理",
+      "example": "灵活安排",
+      "description": "周末的时间安排"
+    }
+  },
+
+  "preferences": {
+    "style": {
+      "value": "简洁直接，结构化数据，优先使用表格",
+      "example": "简洁直接，结构化数据",
+      "description": "沟通风格偏好"
+    },
+    "notification": {
+      "value": "重要消息及时推送，日常任务完成后汇总报告",
+      "example": "重要消息及时，日常不打扰",
+      "description": "通知偏好设置"
+    },
+    "decision": {
+      "value": "提供多选项对比和利弊分析，由主人最终决策",
+      "example": "提供选项对比，不替做决定",
+      "description": "决策风格偏好"
+    }
+  },
+
+  "key_business": {
+    "type": {
+      "value": "奢侈品二奢套利",
+      "example": "电商销售/知识付费/咨询服务",
+      "description": "核心业务类型"
+    },
+    "model": {
+      "value": "闲鱼/转转低价采购 → 平台验货宝 → 二手平台溢价出售",
+      "example": "轻资产/重资产/混合模式",
+      "description": "商业模式描述"
+    },
+    "brands": {
+      "value": [
+        "LV",
+        "Chanel",
+        "Dior",
+        "Gucci",
+        "Hermes"
+      ],
+      "example": ["LV", "Chanel"],
+      "description": "经营的奢侈品品牌"
+    },
+    "price_min": {
+      "LV": {
+        "value": 200,
+        "example": 200,
+        "description": "LV品类最低采购价"
+      },
+      "Chanel": {
+        "value": 200,
+        "example": 200,
+        "description": "Chanel品类最低采购价"
+      },
+      "Gucci": {
+        "value": 150,
+        "example": 150,
+        "description": "Gucci品类最低采购价"
+      }
+    },
+    "verification": {
+      "value": "优先选择支持验货宝的商品，降低风险",
+      "example": "必须走验货宝/支持但不强制",
+      "description": "验货偏好"
+    }
+  },
+
+  "investment_interests": {
+    "value": [
+      "A股短线交易",
+      "港股期权",
+      "ETF定投",
+      "商品期货"
+    ],
+    "example": ["A股", "港股"],
+    "description": "投资兴趣方向"
+  },
+
+  "learning_platform": {
+    "value": "EntroCamp",
+    "example": "得到/混沌/生财",
+    "description": "主要学习平台"
+  },
+
+  "_comment": {
+    "instructions": "【重要】填写时删除value/example/description结构，直接填写实际值",
+    "example_note": "敏感信息（密码、API Key等）请用 [REDACTED] 替代",
+    "from": [
+      "USER.md → 基本信息",
+      "MEMORY.md → 日程、业务",
+      "对话历史 → 偏好习惯"
+    ],
+    "privacy_note": "密码、API Key等敏感信息不要写入，用 [REDACTED] 替代"
+  }
+}

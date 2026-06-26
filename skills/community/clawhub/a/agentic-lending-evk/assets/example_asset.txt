@@ -1,0 +1,8 @@
+Quick examples this skill should respond to:
+
+- "Deploy an EVK market on Arbitrum for WETH collateral and USDC borrow, using Api3 feeds."
+- "Dry-run the current EVK happy path for an Api3-backed ETH/USD oracle market."
+- "Check whether the feeds are ready for an EVK WETH/USDC market, and if not fund them through the supported Api3 path if possible."
+- "Prepare the exact buySubscription call for ETH/USD and simulate it before continuing the EVK workflow."
+
+The addresses used in the reference docs are illustrative. Replace them with real deployment inputs before live use.

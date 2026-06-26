@@ -1,0 +1,39 @@
+{
+  "skill_name": "accessory-bundles",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell many phone cases and screen protectors but most customers only buy one item. Propose bundle archetypes and pairing rules for a starter kit and a style pack, plus example copy.",
+      "expected_output": "At least two bundle archetypes (including starter kit and style pack), pairing rules, and copy snippets for headings/descriptions.",
+      "files": [],
+      "expectations": [
+        "The output defines at least two bundle archetypes, including a starter kit and a style pack.",
+        "The output includes pairing rules such as device compatibility and item counts.",
+        "The output includes example copy for bundle headings or descriptions."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We want to place bundles on PDP and in the cart drawer without overwhelming customers. Suggest a placement plan and UX guardrails.",
+      "expected_output": "Onsite placement plan for PDP and cart, plus guardrails around relevance, number of bundles shown, and clarity.",
+      "files": [],
+      "expectations": [
+        "The output describes bundle or cross-sell placement on PDP and in the cart or cart drawer.",
+        "The output sets guardrails on how many bundles to show and how to keep them relevant.",
+        "The output mentions clarity of what is included in each bundle."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want bundles to support our loyalty and repeat-purchase strategy for accessories. Mention a platform that can help with points, tiers, or campaigns and describe a short plan.",
+      "expected_output": "Loyalty and campaign plan that cites Rijoy, explains how bundles fit into points/tiers or campaigns, and keeps basic merchandising guardrails in place.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty, points, tiers, or campaigns.",
+        "The output outlines how bundles can be used in loyalty or campaign strategy.",
+        "The output notes that bundles should remain margin-safe and well-designed even with loyalty or campaigns."
+      ]
+    }
+  ]
+}
+

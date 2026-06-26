@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------
+title: "clean"
+description: "Remove all installed skills from AI agents."
+source: "/llms/commands/clean.txt"
+--------------------------------------------------------------------------------
+
+# clean — Clean All Skills
+
+Remove all installed skills from detected AI agents.
+
+## Syntax
+
+```bash
+ai-skills clean [options]
+```
+
+**Aliases**: `clear`
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-p, --project` | Clean project skills (default) |
+| `-g, --global` | Clean global skills |
+| `-t, --target <dir>` | Clean skills in custom directory |
+| `--dir <dir>` | Clean skills in exact directory |
+| `-a, --agents <names>` | Clean only specific agent(s) |
+| `-f, --force` | Skip confirmation and force clean (including cross-layer refs) |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Cross-Layer Symlink Handling
+
+Same as `remove` — when skills have cross-layer symlink references:
+
+- **Without `--force`**: Blocks cleaning and shows warning about referenced skills
+- **With `--force`**: Removes everything including cross-layer references
+
+## Behavior
+
+### CLI Mode
+
+1. Resolves base and agents
+2. Scans all installed skills
+3. If no skills → warning
+4. Shows skill list and prompts for confirmation
+5. Cross-layer refs → warning before confirmation
+6. User confirms → removes all; user cancels → aborts
+
+### Pure Mode
+
+1. Resolves base and agents
+2. Scans all installed skills
+3. If no skills → outputs message
+4. Cross-layer refs without `--force` → blocks with warning
+5. Otherwise → removes all and outputs count
+
+## Examples
+
+```bash
+# Clean project skills (interactive)
+ai-skills clean
+
+# Clean project skills (no prompt)
+ai-skills clean --project --pure --force
+
+# Clean global skills
+ai-skills clean --global --pure --force
+
+# Clean specific agents only
+ai-skills clean --agents cursor --pure --force
+```
+
+## Pure Mode Output
+
+**Cleaned:**
+```
+Cleaned: 5 skill(s) removed.
+```
+
+**No skills:**
+```
+No skills found to clean.
+```
+
+**Cross-layer blocked:**
+```
+Some skills have cross-layer symlink references. Use --force to clean all.
+```
+
+**Invalid path:**
+```
+Error: bad path
+```

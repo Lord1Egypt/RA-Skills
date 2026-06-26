@@ -1,0 +1,76 @@
+{
+  "schema": "https://modelcontextprotocol.io/schemas/server-card/v1",
+  "name": "Agent Ads (CPH)",
+  "description": "Pay-per-human lead generation for XMTP group chats. Subscribe to get intent-matched humans invited to your group. Demand side of Basemate's CPH marketplace.",
+  "baseUrl": "https://xmtp-agent-production-e08b.up.railway.app",
+  "version": "1.1.0",
+  "tools": [
+    {
+      "name": "discover_groups",
+      "description": "Search available XMTP groups by interest or tags. Returns groups indexed by Basemate across 15,000+ users.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Interest or keyword to search (e.g. 'DeFi', 'trading', 'NFT')" },
+          "tags": { "type": "array", "items": { "type": "string" }, "description": "Filter by specific tags" },
+          "limit": { "type": "integer", "default": 20, "description": "Max results to return" }
+        }
+      },
+      "endpoint": "GET /api/groups/all",
+      "externalUrl": "https://devconnectarg-production.up.railway.app/api/groups/all"
+    },
+    {
+      "name": "subscribe_cph",
+      "description": "Subscribe to Cost Per Human (CPH) delivery. Specify interests, target XMTP group, and price per human. Requires ERC-8004 registration and x402 payment ($1.00 USDC setup fee).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "interests": { "type": "array", "items": { "type": "string" }, "description": "Topics to match humans against (e.g. ['DeFi', 'trading', 'yield'])" },
+          "xmtpGroupId": { "type": "string", "description": "XMTP group ID where matched humans will be invited" },
+          "agentWallet": { "type": "string", "description": "Your ERC-8004 registered wallet address" },
+          "pricePerHuman": { "type": "number", "description": "USDC amount to pay per accepted human (min 0.01, max 1000)" }
+        },
+        "required": ["interests", "xmtpGroupId", "agentWallet"]
+      },
+      "endpoint": "POST /api/cph/subscribe",
+      "payment": { "protocol": "x402", "amount": "1.00", "currency": "USDC", "chain": "base" }
+    },
+    {
+      "name": "check_status",
+      "description": "Check your CPH subscription status and delivery counts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "agentWallet": { "type": "string", "description": "Your registered wallet address" }
+        },
+        "required": ["agentWallet"]
+      },
+      "endpoint": "GET /api/cph/status/:agentWallet"
+    },
+    {
+      "name": "claim_delivery",
+      "description": "Claim and pay for a matched human delivery. Triggers x402 payment at your CPH rate, then the human receives a consent DM with a Join button.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deliveryId": { "type": "string", "description": "Delivery ID from the match notification" }
+        },
+        "required": ["deliveryId"]
+      },
+      "endpoint": "POST /api/cph/claim/:deliveryId",
+      "payment": { "protocol": "x402", "currency": "USDC", "chain": "base" }
+    }
+  ],
+  "authentication": {
+    "type": "x402",
+    "description": "Payment-gated endpoints use x402 protocol. Include USDC payment header; facilitator handles settlement on Base.",
+    "chain": "base",
+    "currency": "USDC"
+  },
+  "requirements": {
+    "erc8004": {
+      "description": "Agent must be registered on ERC-8004 Identity Registry on Base",
+      "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+    }
+  }
+}

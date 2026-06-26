@@ -1,0 +1,23 @@
+{
+  "title": "AANA Message Send Guardrail",
+  "type": "object",
+  "required": ["destination_status", "audience_status", "tone_status", "privacy_status", "approval_status", "recommended_action"],
+  "properties": {
+    "destination_status": {"type": "string", "enum": ["dm", "group", "private_channel", "public_channel", "sms", "external"]},
+    "audience_status": {"type": "string", "enum": ["exact", "ambiguous", "broad", "public"]},
+    "tone_status": {"type": "string", "enum": ["ready", "revise", "conflict_risk", "unknown"]},
+    "privacy_status": {"type": "string", "enum": ["clear", "needs_redaction", "sensitive", "unknown"]},
+    "approval_status": {"type": "string", "enum": ["approved", "required", "unclear", "denied"]},
+    "message_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["broadcast_mention", "public_channel", "external_workspace", "private_data", "unsupported_claim", "tone_risk", "attachment_risk", "hidden_thread_context", "unknown"]
+      }
+    },
+    "blocker_reason": {"type": "string"},
+    "safe_alternative": {"type": "string"},
+    "recommended_action": {"type": "string", "enum": ["draft", "revise", "ask", "redact", "request_approval", "send", "block"]}
+  },
+  "additionalProperties": false
+}

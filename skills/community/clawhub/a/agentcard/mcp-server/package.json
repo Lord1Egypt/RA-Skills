@@ -1,0 +1,55 @@
+{
+  "name": "@asgcard/mcp-server",
+  "version": "0.1.1",
+  "description": "MCP Server for ASG Card — give AI agents autonomous virtual card management via x402",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "asgcard-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "asgcard",
+    "virtual-card",
+    "ai-agent",
+    "x402",
+    "stellar",
+    "usdc",
+    "claude",
+    "cursor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ASGCompute/asgcard-public"
+  },
+  "homepage": "https://asgcard.dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@asgcard/sdk": "^1.0.6",
+    "@stellar/stellar-sdk": "^13.1.0",
+    "tweetnacl": "^1.0.3",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

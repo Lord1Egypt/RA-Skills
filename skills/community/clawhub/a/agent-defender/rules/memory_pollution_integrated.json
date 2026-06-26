@@ -1,0 +1,39 @@
+{
+  "attack_type": "memory_pollution",
+  "generated_at": "2026-03-23T07:34:35.405699",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Memory_Pollution_User_Preference",
+      "name": "检测用户偏好记忆污染",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "medium",
+      "description": "检测用户偏好记忆污染",
+      "author": "security-sample-generator",
+      "tags": [
+        "memory_pollution",
+        "T1565"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$memory_file = /memory\\.json|user_prefs|preferences\\.json/i",
+          "$security_level = /security.*level|safety.*level/i",
+          "$dangerous_action = /allow.*dangerous|enable.*unsafe|bypass.*safety/i",
+          "$write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump|fopen.*w/i",
+          "$false_value = /true|enabled|none|off|disabled/i"
+        ],
+        "condition": "($memory_file or $security_level) and $write_func and ($dangerous_action or $false_value)",
+        "raw_rule": "// YARA 规则：记忆污染攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：用户偏好污染、系统配置污染、历史对话污染、知识库污染\n\nrule Memory_Pollution_User_Preference {\n    meta:\n        description = \"检测用户偏好记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $memory_file = /memory\\.json|user_prefs|preferences\\.json/i\n        $security_level = /security.*level|safety.*level/i\n        $dangerous_action = /allow.*dangerous|enable.*unsafe|bypass.*safety/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump|fopen.*w/i\n        $false_value = /true|enabled|none|off|disabled/i\n    \n    condition:\n        ($memory_file or $security_level) and $write_func and ($dangerous_action or $false_value)\n}\n\nrule Memory_Pollution_System_Config {\n    meta:\n        description = \"检测系统配置记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $config_file = /config\\.json|system_config|settings\\.json/i\n        $bypass_auth = /bypass.*auth|skip.*auth|no.*auth/i\n        $debug_mode = /debug.*mode|developer.*mode|test.*mode/i\n        $admin_mode = /admin.*mode|root.*access|superuser/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump/i\n    \n    condition:\n        $config_file and ($bypass_auth or $debug_mode or $admin_mode) and $write_func\n}\n\nrule Memory_Pollution_History {\n    meta:\n        description = \"检测历史对话记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $history_file = /history\\.json|conversation|chat_history/i\n        $fake_dialog = /fake.*dialog|inject.*history|false.*conversation/i\n        $user_said = /user.*said|assistant.*said|they.*agreed/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|append/i\n    \n    condition:\n        $history_file and ($fake_dialog or $user_said) and $write_func\n}\n\nrule Memory_Pollution_Knowledge {\n    meta:\n        description = \"检测知识库记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $kb_file = /knowledge.*base|kb\\.json|facts\\.json/i\n        $false_fact = /false.*fact|fake.*info|misinformation/i\n        $override = /override.*fact|replace.*knowledge|update.*truth/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump/i\n    \n    condition:\n        $kb_file and ($false_fact or $override) and $write_func\n}\n\nrule Memory_Pollution_General {\n    meta:\n        description = \"检测通用记忆污染行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $memory_write = /memory.*write|save.*memory|store.*memory/i\n        $pollution = /pollute|corrupt|tamper|modify.*unauthorized/i\n        $persistence = /persistent|permanent|forever|until.*restart/i\n        $json_write = /json\\.dump|JSON\\.stringify|writeFileSync.*json/i\n    \n    condition:\n        ($memory_write or $pollution) and ($persistence or $json_write)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Memory_Pollution_User_Preference",
+        "converted_at": "2026-03-23T07:34:35.392331",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/memory_pollution.yar",
+        "mitre_id": "T1565",
+        "attack_type": "memory_pollution"
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "agent-compete-scope",
+  "version": "1.0.2",
+  "description": "경쟁사 포지셔닝 분석 및 화이트스페이스 도출 에이전트",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "KimCode",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.33.1",
+    "dotenv": "^16.4.7",
+    "openai": "^6.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

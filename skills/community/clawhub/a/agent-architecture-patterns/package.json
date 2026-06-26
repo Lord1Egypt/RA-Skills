@@ -1,0 +1,34 @@
+{
+  "name": "agent-architecture-patterns",
+  "version": "1.0.0",
+  "description": "AI Agent architecture patterns library",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/react-agent.test.js && node tests/manager-worker-agent.test.js",
+    "test:react": "node tests/react-agent.test.js",
+    "test:manager": "node tests/manager-worker-agent.test.js",
+    "example:react": "node examples/react-example.js",
+    "example:reflection": "node examples/reflection-example.js",
+    "example:self-critique": "node examples/self-critique-example.js",
+    "example:plan-solve": "node examples/plan-and-solve-example.js",
+    "example:tot": "node examples/tree-of-thoughts-example.js",
+    "example:manager-worker": "node examples/manager-worker-full-example.js"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "architecture",
+    "patterns",
+    "openclaw",
+    "skill"
+  ],
+  "author": "AI-Agent",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/agent-architecture-patterns"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

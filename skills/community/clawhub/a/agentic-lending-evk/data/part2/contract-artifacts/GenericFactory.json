@@ -1,0 +1,36 @@
+{
+  "contractName": "GenericFactory",
+  "source": "euler-xyz/euler-vault-kit",
+  "note": "ABI-only: GenericFactory is an existing deployed contract. This planner calls it to create vault proxies; it does not deploy it.",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "desiredImplementation",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "upgradable",
+          "type": "bool"
+        },
+        {
+          "internalType": "bytes",
+          "name": "trailingData",
+          "type": "bytes"
+        }
+      ],
+      "name": "createProxy",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "proxy",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

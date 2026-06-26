@@ -1,0 +1,375 @@
+generated_at: '2026-03-23T07:34:35.393817'
+index_version: '1.0'
+rules:
+- description: 检测系统提示泄露攻击
+  id: PR-SIGMA-002
+  name: 系统提示泄露
+  severity: high
+  source: sigma
+  tags:
+  - attack.prompt_injection
+  - security.PR-SIGMA-002
+  type: Runtime
+- description: 检测角色扮演攻击攻击
+  id: PR-SIGMA-003
+  name: 角色扮演攻击
+  severity: medium
+  source: sigma
+  tags:
+  - attack.prompt_injection
+  - security.PR-SIGMA-003
+  type: Runtime
+- description: 检测上下文污染攻击
+  id: PR-SIGMA-006
+  name: 上下文污染
+  severity: high
+  source: sigma
+  tags:
+  - attack.prompt_injection
+  - security.PR-SIGMA-006
+  type: Runtime
+- description: 检测多语言注入攻击
+  id: PR-SIGMA-005
+  name: 多语言注入
+  severity: high
+  source: sigma
+  tags:
+  - attack.prompt_injection
+  - security.PR-SIGMA-005
+  type: Runtime
+- description: 检测指令覆盖攻击攻击
+  id: PR-SIGMA-001
+  name: 指令覆盖攻击
+  severity: high
+  source: sigma
+  tags:
+  - attack.prompt_injection
+  - security.PR-SIGMA-001
+  type: Runtime
+- description: 检测内存耗尽攻击攻击
+  id: RE-SIGMA-002
+  name: 内存耗尽攻击
+  severity: high
+  source: sigma
+  tags:
+  - attack.resource_exhaustion
+  - security.RE-SIGMA-002
+  type: Runtime
+- description: 检测网络带宽耗尽攻击
+  id: RE-SIGMA-004
+  name: 网络带宽耗尽
+  severity: high
+  source: sigma
+  tags:
+  - attack.resource_exhaustion
+  - security.RE-SIGMA-004
+  type: Runtime
+- description: 检测CPU 耗尽攻击攻击
+  id: RE-SIGMA-001
+  name: CPU 耗尽攻击
+  severity: high
+  source: sigma
+  tags:
+  - attack.resource_exhaustion
+  - security.RE-SIGMA-001
+  type: Runtime
+- description: 检测进程创建炸弹攻击
+  id: RE-SIGMA-005
+  name: 进程创建炸弹
+  severity: high
+  source: sigma
+  tags:
+  - attack.resource_exhaustion
+  - security.RE-SIGMA-005
+  type: Runtime
+- description: 检测磁盘填充攻击攻击
+  id: RE-SIGMA-003
+  name: 磁盘填充攻击
+  severity: high
+  source: sigma
+  tags:
+  - attack.resource_exhaustion
+  - security.RE-SIGMA-003
+  type: Runtime
+- description: 检测远程模块加载攻击
+  id: RE-SIGMA-004
+  name: 远程模块加载
+  severity: high
+  source: sigma
+  tags:
+  - attack.remote_load
+  - security.RE-SIGMA-004
+  type: Runtime
+- description: 检测远程代码加载攻击
+  id: RE-SIGMA-001
+  name: 远程代码加载
+  severity: high
+  source: sigma
+  tags:
+  - attack.remote_load
+  - security.RE-SIGMA-001
+  type: Runtime
+- description: 检测动态导入执行攻击
+  id: RE-SIGMA-002
+  name: 动态导入执行
+  severity: high
+  source: sigma
+  tags:
+  - attack.remote_load
+  - security.RE-SIGMA-002
+  type: Runtime
+- description: 检测eval 代码执行攻击
+  id: RE-SIGMA-003
+  name: eval 代码执行
+  severity: high
+  source: sigma
+  tags:
+  - attack.remote_load
+  - security.RE-SIGMA-003
+  type: Runtime
+- description: 检测CDN 资源加载攻击
+  id: RE-SIGMA-005
+  name: CDN 资源加载
+  severity: medium
+  source: sigma
+  tags:
+  - attack.remote_load
+  - security.RE-SIGMA-005
+  type: Runtime
+- description: 检测持久化污染攻击
+  id: ME-SIGMA-005
+  name: 持久化污染
+  severity: high
+  source: sigma
+  tags:
+  - attack.memory_pollution
+  - security.ME-SIGMA-005
+  type: Runtime
+- description: 检测上下文覆盖攻击
+  id: ME-SIGMA-002
+  name: 上下文覆盖
+  severity: high
+  source: sigma
+  tags:
+  - attack.memory_pollution
+  - security.ME-SIGMA-002
+  type: Runtime
+- description: 检测记忆注入攻击攻击
+  id: ME-SIGMA-001
+  name: 记忆注入攻击
+  severity: medium
+  source: sigma
+  tags:
+  - attack.memory_pollution
+  - security.ME-SIGMA-001
+  type: Runtime
+- description: 检测虚假历史注入攻击
+  id: ME-SIGMA-003
+  name: 虚假历史注入
+  severity: high
+  source: sigma
+  tags:
+  - attack.memory_pollution
+  - security.ME-SIGMA-003
+  type: Runtime
+- description: 检测会话劫持攻击
+  id: ME-SIGMA-004
+  name: 会话劫持
+  severity: high
+  source: sigma
+  tags:
+  - attack.memory_pollution
+  - security.ME-SIGMA-004
+  type: Runtime
+- description: 检测敏感数据外传攻击
+  id: DA-SIGMA-001
+  name: 敏感数据外传
+  severity: high
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-001
+  type: Runtime
+- description: 检测文件内容窃取攻击
+  id: DA-SIGMA-005
+  name: 文件内容窃取
+  severity: high
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-005
+  type: Runtime
+- description: 检测base64 编码外传攻击
+  id: DA-SIGMA-002
+  name: base64 编码外传
+  severity: high
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-002
+  type: Runtime
+- description: 检测HTTP 数据外传攻击
+  id: DA-SIGMA-003
+  name: HTTP 数据外传
+  severity: high
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-003
+  type: Runtime
+- description: 检测DNS 隧道外传攻击
+  id: DA-SIGMA-004
+  name: DNS 隧道外传
+  severity: high
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-004
+  type: Runtime
+- description: 检测环境变量窃取攻击
+  id: DA-SIGMA-006
+  name: 环境变量窃取
+  severity: medium
+  source: sigma
+  tags:
+  - attack.data_exfil
+  - security.DA-SIGMA-006
+  type: Runtime
+- description: 检测工具输出伪造攻击
+  id: TO-SIGMA-003
+  name: 工具输出伪造
+  severity: medium
+  source: sigma
+  tags:
+  - attack.tool_poisoning
+  - security.TO-SIGMA-003
+  type: Runtime
+- description: 检测工具依赖污染攻击
+  id: TO-SIGMA-004
+  name: 工具依赖污染
+  severity: high
+  source: sigma
+  tags:
+  - attack.tool_poisoning
+  - security.TO-SIGMA-004
+  type: Runtime
+- description: 检测工具配置篡改攻击
+  id: TO-SIGMA-005
+  name: 工具配置篡改
+  severity: medium
+  source: sigma
+  tags:
+  - attack.tool_poisoning
+  - security.TO-SIGMA-005
+  type: Runtime
+- description: 检测恶意工具替换攻击
+  id: TO-SIGMA-001
+  name: 恶意工具替换
+  severity: high
+  source: sigma
+  tags:
+  - attack.tool_poisoning
+  - security.TO-SIGMA-001
+  type: Runtime
+- description: 检测工具参数篡改攻击
+  id: TO-SIGMA-002
+  name: 工具参数篡改
+  severity: high
+  source: sigma
+  tags:
+  - attack.tool_poisoning
+  - security.TO-SIGMA-002
+  type: Runtime
+- description: 检测 SSH 密钥窃取
+  id: YARA-Credential_SSH_Key
+  name: 检测 SSH 密钥窃取
+  severity: critical
+  source: yara
+  tags:
+  - credential_theft
+  - T1552.004
+  type: YARA
+- description: 检测 SSH 密钥窃取行为
+  id: YARA-SSH_Key_Exfiltration
+  name: 检测 SSH 密钥窃取行为
+  severity: critical
+  source: yara
+  tags:
+  - data_exfil
+  - T1552.004
+  type: YARA
+- description: 检测直接提示词注入攻击
+  id: YARA-Prompt_Injection_Direct
+  name: 检测直接提示词注入攻击
+  severity: high
+  source: yara
+  tags:
+  - prompt_injection
+  - T1566.004
+  type: YARA
+- description: 检测进程炸弹攻击
+  id: YARA-Process_Fork_Bomb
+  name: 检测进程炸弹攻击
+  severity: medium
+  source: yara
+  tags:
+  - resource_exhaustion
+  - T1499
+  type: YARA
+- description: 检测 systemd 服务持久化
+  id: YARA-Persistence_Systemd_Service
+  name: 检测 systemd 服务持久化
+  severity: high
+  source: yara
+  tags:
+  - persistence
+  - T1543.002
+  type: YARA
+- description: 检测 Base64 混淆代码
+  id: YARA-Evasion_Base64_Obfuscation
+  name: 检测 Base64 混淆代码
+  severity: high
+  source: yara
+  tags:
+  - evasion
+  - T1027.001
+  type: YARA
+- description: 检测 NPM 包中的恶意 postinstall 脚本
+  id: YARA-NPM_Postinstall_Malicious
+  name: 检测 NPM 包中的恶意 postinstall 脚本
+  severity: high
+  source: yara
+  tags:
+  - tool_poisoning
+  - T1195.002
+  type: YARA
+- description: 检测依赖混淆攻击
+  id: YARA-Supply_Chain_Dependency_Confusion
+  name: 检测依赖混淆攻击
+  severity: critical
+  source: yara
+  tags:
+  - supply_chain
+  - T1195.002
+  type: YARA
+- description: 检测 curl | bash 模式的远程代码执行
+  id: YARA-Remote_Exec_Curl_Bash
+  name: 检测 curl | bash 模式的远程代码执行
+  severity: critical
+  source: yara
+  tags:
+  - remote_load
+  - T1105+T1059
+  type: YARA
+- description: 检测用户偏好记忆污染
+  id: YARA-Memory_Pollution_User_Preference
+  name: 检测用户偏好记忆污染
+  severity: medium
+  source: yara
+  tags:
+  - memory_pollution
+  - T1565
+  type: YARA
+sigma_rules: 31
+total_rules: 41
+yara_rules: 10

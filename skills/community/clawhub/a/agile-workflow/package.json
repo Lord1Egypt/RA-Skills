@@ -1,0 +1,40 @@
+{
+  "name": "agile-workflow",
+  "version": "7.18.1",
+  "description": "全自动敏捷协作工作流引擎 v7.18.1 - 细纲串行+正文并行、并发安全架构、零数据污染、智能合并",
+  "main": "core/task-scheduler.js",
+  "scripts": {
+    "start": "node core/task-scheduler.js daemon",
+    "check": "node core/task-scheduler.js check",
+    "status": "node core/task-scheduler.js status",
+    "health": "node scripts/health-check.js",
+    "repair": "node scripts/repair-task-states.js",
+    "cleanup": "node scripts/cleanup-old-versions.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "agile",
+    "workflow",
+    "automation",
+    "monitoring",
+    "novel-writing",
+    "task-scheduling",
+    "dependency-management"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^5.10.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/agile-workflow"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/agile-workflow/issues"
+  },
+  "homepage": "https://clawhub.com/skills/agile-workflow"
+}

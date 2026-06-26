@@ -1,0 +1,55 @@
+{
+  "schema": "agent-capability.v0",
+  "name": "agent-experience-graph",
+  "display_name": "Agent Experience Graph",
+  "description": "Recommend tools, skills, and workflow lessons from similar prior agent execution traces.",
+  "entrypoint": "SKILL.md",
+  "license": "MIT-0",
+  "runtime_requirements": {
+    "python": ">=3.9",
+    "network": false
+  },
+  "commands": [
+    {
+      "name": "recommend",
+      "description": "Rank similar traces and recommend reusable skills, tools, and lessons.",
+      "command": "python3 scripts/recommend_traces.py --traces assets/example_traces.json --query '<query-json-or-file>'"
+    },
+    {
+      "name": "append-trace",
+      "description": "Append or replace a sanitized trace in a JSON trace library.",
+      "command": "python3 scripts/recommend_traces.py --traces traces.json --append-trace '<trace-json-or-file>'"
+    }
+  ],
+  "data_contracts": {
+    "trace_library": "references/trace_schema.md",
+    "example_traces": "assets/example_traces.json"
+  },
+  "adapters": {
+    "codex": {
+      "status": "supported",
+      "install_path": "$CODEX_HOME/skills/agent-experience-graph",
+      "notes": "Uses SKILL.md plus optional agents/openai.yaml UI metadata."
+    },
+    "claude-code": {
+      "status": "supported",
+      "install_path": ".claude/skills/agent-experience-graph",
+      "notes": "Uses the same SKILL.md layout and bundled scripts."
+    },
+    "openclaw": {
+      "status": "supported",
+      "install_path": "~/.openclaw/skills/agent-experience-graph or workspace skills root",
+      "notes": "Uses the same SKILL.md layout and bundled scripts."
+    },
+    "hermes": {
+      "status": "generic",
+      "install_path": "runtime-specific skills or prompt directory",
+      "notes": "Use SKILL.md as the instruction pack and expose scripts/recommend_traces.py as an executable helper."
+    },
+    "generic-agent": {
+      "status": "supported",
+      "install_path": "any readable capability directory",
+      "notes": "Load SKILL.md as instructions, read capability.json for metadata, and call the script with Python 3."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "48-zodiac-cyber-reader",
+  "version": "1.0.14",
+  "description": "Provides fast, secure 48 zodiac analysis and dual compatibility readings using only month-day inputs or zone IDs, with no local system access and tool-grounded output.",
+  "author": "Miaozai Studio",
+  "license": "MIT",
+  "env": {},
+  "tools": [
+    {
+      "name": "get_zone_details",
+      "description": "Fetch detailed personality and deep-character analysis for a specified 48 Zodiac zone. The 'sign' parameter accepts either a 48-Zodiac ID (e.g., 'taurus2') or a birthdate string (e.g., '07-01', '7/1'). The API resolves it automatically.",
+      "command": "python zodiac_api.py zone {{sign}}"
+    },
+    {
+      "name": "get_pairing_details",
+      "description": "Fetch in-depth destiny-style romantic compatibility report, score, and relationship guide for two 48 Zodiac signs. Parameters 'sign1' and 'sign2' accept either 48-Zodiac IDs or birthdate strings (e.g., '05-09', '5/9'). The API resolves them automatically.",
+      "command": "python zodiac_api.py pairing {{sign1}} {{sign2}}"
+    }
+  ]
+}

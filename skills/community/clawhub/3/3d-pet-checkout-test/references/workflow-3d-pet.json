@@ -1,0 +1,200 @@
+{
+  "name": "3D Pet Checkout Flow",
+  "version": "1.5",
+
+  "CRITICAL_RULES": [
+    "规则1【强制发消息】：每个 Step 开始前和完成后，必须立即调用 message 工具发送进度。这是硬性要求，不是建议。",
+    "规则2【发消息目标】：message 工具参数：action=send, channel=feishu, target=chat:oc_0ed40afe795cdc22588f042a96bf3d9e",
+    "规则3【不得省略】：即使 Step 执行很快，也必须发送开始和完成消息，不得以任何理由跳过。",
+    "规则4【失败也要发】：Step 失败时必须立即发送失败消息，包含错误原因，然后停止流程。",
+    "规则5【生成等待】：Step D 等待生成时，每 30s 必须发一次进度消息（已等待 Xs / 600s）。",
+    "规则6【最终报告】：Step E 完成后，必须发送完整测试报告（含所有字段），这是最重要的一条消息。",
+    "规则7【强制中文】：所有输出内容必须使用中文，包括步骤消息、错误描述、测试报告、summary 摘要。禁止使用英文输出。",
+    "规则8【必须确认消息发送成功】：每次调用 message 工具后，**必须等待工具返回结果**，检查返回的 JSON 中是否有 \"ok\": true 和 \"messageId\"。如果有则消息发送成功，继续下一步；如果没有则消息发送失败，**必须重试发送**，不得忽略。禁止在消息发送成功确认前执行后续步骤（如登出、关闭浏览器）。"
+  ],
+
+  "messageTarget": {
+    "action": "send",
+    "channel": "feishu",
+    "target": "chat:oc_0ed40afe795cdc22588f042a96bf3d9e"
+  },
+
+  "tokenControl": {
+    "MAX_THINKING_TOKENS": 200,
+    "NO_THINKING_IN_TOOL_CALLS": "每次 tool call 后不要输出 thinking，直接执行下一步",
+    "GOLDEN_RULE": "evaluate 能解决的绝不用 snapshot。snapshot 只用于第一次需要定位未知元素 ref 时。",
+    "snapshotRule": "【严格限制】snapshot 仅允许在以下情况使用：(1) 首次进入新页面需要找按钮 ref；(2) evaluate 无法定位元素时的唯一兜底。每次 snapshot 约消耗 500-2000 token。",
+    "evaluateRule": "【优先使用】状态检查、元素查找、文本读取、点击操作，全部用 evaluate。返回小 JSON，禁止返回 innerHTML 或大段文本。",
+    "clickRule": "优先用 evaluate 按文案查找元素并 click()，避免先 snapshot 找 ref 再 click。",
+    "waitRule": "等待页面变化用 evaluate 轮询（配合 browser.act kind=wait timeMs=1000-2000），禁止 browser wait 超过 20000ms。",
+    "screenshotRule": "screenshot 仅在最终存档时使用一次，禁止中途截图。",
+    "outputFormat": "每步 ≤2 行：[OK]/[ERR] + 关键字段"
+  },
+
+  "config": {
+    "url": "https://joyarti.com/account/login",
+    "credentials": {
+      "email": "${JOYARTI_EMAIL:-BrittanyWalters2815@hotmail.com}",
+      "password": "${JOYARTI_PASSWORD:-rfkmj661555}"
+    },
+    "imageUrl": "https://qnam.smzdm.com/202312/02/656ae00515713930.jpg_e1080.jpg",
+    "maxWaitMs": 600000,
+    "singleTab": true,
+    "noPayment": true
+  },
+
+  "onTimeout": {
+    "description": "工作流超时时的清理操作，防止影响后续任务",
+    "steps": [
+      "1. 【必须】立即调用 message 工具发送：'⚠️ 工作流超时，开始清理...'",
+      "2. navigate 到 https://joyarti.com/account/logout",
+      "3. wait 2000ms",
+      "4. 【evaluate】点击登出按钮：() => { const l=document.querySelector('[href*=\"logout\"],[href*=\"signout\"]'); if(l){l.click();return 'clicked';} const b=Array.from(document.querySelectorAll('button,a')).find(x=>/logout|sign out/i.test(x.textContent)); if(b){b.click();return 'btn-clicked';} return 'no-logout'; }",
+      "5. wait 2000ms",
+      "6. browser.close() 关闭浏览器标签页",
+      "7. 【必须】调用 message 工具发送：'✅ 超时清理完成 — 已登出并关闭浏览器，下次测试可正常开始'"
+    ]
+  },
+
+  "knownIssues": {
+    "browserUpload": "browser.upload() 无法触发 React onChange。必须用固化 CDP 脚本。",
+    "browserWaitTimeout": "browser.act(kind=wait, timeMs>20000) 会超时。Step D 必须用 exec+curl 轮询。",
+    "sessionExpiry": "Buy Now 跳转 Shopify 后 tab 可能关闭，重新导航可能需重新登录。"
+  },
+
+  "steps": [
+    {
+      "id": "A",
+      "name": "Login",
+      "BEFORE_START": "【必须】设置全局变量 stepAStartTime = 当前时间（格式 HH:MM），然后调用 message 工具发送：'⏳ Step A: 登录 开始...'",
+      "AFTER_DONE": "【必须】立即调用 message 工具发送：'✅ Step A: 登录完成 — 已登录 BrittanyWalters2815@hotmail.com'",
+      "AFTER_FAIL": "【必须】立即调用 message 工具发送：'❌ Step A: 登录失败 — {错误原因}'，然后停止",
+      "snapshotPolicy": "【禁止 snapshot】本 Step 全程用 evaluate，无需 snapshot",
+      "tasks": [
+        "1. navigate 到 https://joyarti.com/account/login",
+        "2. wait 2000ms 等待页面加载",
+        "3. 【evaluate】检测并关闭弹窗：",
+        "   () => { const btn = document.querySelector('[aria-label=\"Close\"],.modal-close,button.close'); if(btn){btn.click();return 'closed';} const overlay=document.querySelector('.overlay'); if(overlay){overlay.click();return 'overlay-clicked';} return 'no-popup'; }",
+        "4. 【evaluate】填写表单并点击登录：",
+        "   () => { const email=document.querySelector('input[type=email],input[name=email]'); const pwd=document.querySelector('input[type=password]'); if(!email||!pwd) return 'ERR:inputs-not-found'; email.value='BrittanyWalters2815@hotmail.com'; email.dispatchEvent(new Event('input',{bubbles:true})); email.dispatchEvent(new Event('change',{bubbles:true})); pwd.value='rfkmj661555'; pwd.dispatchEvent(new Event('input',{bubbles:true})); pwd.dispatchEvent(new Event('change',{bubbles:true})); const btn=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim().includes('Login')); if(btn){btn.click();return 'login-clicked';} return 'ERR:login-btn-not-found'; }",
+        "5. wait 4000ms 等待登录跳转",
+        "6. 【evaluate】验证登录成功：",
+        "   () => ({ url: location.href, loggedIn: location.href.includes('/account') || !!document.querySelector('[href*=logout],[class*=avatar]') })",
+        "   → loggedIn=true 或 url 含 /account 即为成功",
+        "7. 若登录失败：重复 ESC 关弹窗后重试一次，超时 60s 报错"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Select Product",
+      "BEFORE_START": "【必须】立即调用 message 工具发送：'⏳ Step B: 选择产品 开始...'",
+      "AFTER_DONE": "【必须】立即调用 message 工具发送：'✅ Step B: 选择产品完成 — For Pets · Minimal Style · URL: {当前URL}'",
+      "AFTER_FAIL": "【必须】立即调用 message 工具发送：'❌ Step B: 选择产品失败 — {错误原因}'，然后停止",
+      "snapshotPolicy": "【最多 1 次 snapshot】仅当 evaluate 点击失败时，用 1 次 snapshot 找到正确 ref，之后不再 snapshot",
+      "MAX_THINKING_TOKENS": 500,
+      "tasks": [
+        "1. 【evaluate】点击导航栏 '3D Figure'（必须是 A 或 BUTTON 标签）：",
+        "   () => { const el=Array.from(document.querySelectorAll('a,button')).find(e=>e.textContent.trim().includes('3D Figure')); if(el){el.click();return 'clicked:'+el.tagName;} return document.querySelector('a[href*=\"figmaker\"]')?.click()||'ERR:not-found'; }",
+        "2. wait 3000ms，【evaluate】验证 URL（若未跳转则直接 navigate）：",
+        "   () => ({ url: location.href, ok: location.href.includes('figmaker') })",
+        "   → ok=false 时：直接 navigate 到 https://joyarti.com/figmaker，wait 2000ms",
+        "3. 【evaluate】点击 'For Pets' 按钮（必须是 BUTTON，排除 SPAN/DIV）：",
+        "   () => { const btns=Array.from(document.querySelectorAll('button')); const petBtn=btns.find(b=>b.textContent.includes('For Pets')); if(petBtn){petBtn.click();return 'clicked:BUTTON';} return 'ERR:not-found'; }",
+        "4. wait 3000ms",
+        "5. 【evaluate】点击 'Minimal Style' 的 Create 按钮（必须是 BUTTON）：",
+        "   () => { const btns=Array.from(document.querySelectorAll('button')); const createBtn=btns.find(b=>b.textContent.includes('Create')&&b.closest('[class*=\"Minimal\"]')); if(createBtn){createBtn.click();return 'clicked';} const anyCreate=btns.find(b=>b.textContent.trim()==='Create'); if(anyCreate){anyCreate.click();return 'clicked-first';} return 'ERR:not-found'; }",
+        "6. wait 3000ms，【evaluate】验证 URL 含 style2：",
+        "   () => ({ url: location.href, ok: location.href.includes('style2'), hasUpload: !!document.querySelector('input[type=file]') })",
+        "   → ok=true 且 hasUpload=true 即为成功",
+        "⚠️ 关键规则：(1) 必须用 querySelectorAll('button') 限定 BUTTON 标签；(2) 直接 .click() 不要先判断 el.tagName；(3) 失败才允许 snapshot",
+        "CRITICAL: 必须逐步点击，不得直接 navigate 到目标 URL（步骤2的 navigate 兜底除外）"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Upload Image",
+      "BEFORE_START": "【必须】立即调用 message 工具发送：'⏳ Step C: 上传图片 开始...'",
+      "AFTER_DONE": "【必须】立即调用 message 工具发送：'✅ Step C: 图片上传完成 — Create Preview 已点击，等待生成'",
+      "AFTER_FAIL": "【必须】立即调用 message 工具发送：'❌ Step C: 图片上传失败 — {错误原因}'，然后停止",
+      "snapshotPolicy": "【禁止 snapshot】上传验证全程用 evaluate，Create Preview 按钮用 evaluate 查找并 click",
+      "tasks": [
+        "1. exec 下载图片：mkdir -p /tmp/openclaw/uploads && curl -L {imageUrl} -o /tmp/openclaw/uploads/pet_image.jpg",
+        "2. exec 运行固化 CDP 上传脚本（禁止重写脚本）：",
+        "   python3 /Users/ezeeship/.openclaw/agents/test-runner/workspace/cdp_upload.py /tmp/openclaw/uploads/pet_image.jpg joyarti",
+        "   → 输出 'OK: files=1' 为成功，'ERR:' 开头为失败",
+        "3. wait 3000ms",
+        "4. 【evaluate】验证上传并查找 Create Preview 按钮：",
+        "   () => { const btns=Array.from(document.querySelectorAll('button')); const btn=btns.find(b=>b.textContent.includes('Create Preview')); return { hasCreatePreview: !!btn, btnText: btn?.textContent.trim().slice(0,30)||'', creditCost: btn?.textContent.match(/\\d+/)?.[0]||'' }; }",
+        "   → hasCreatePreview=true 即确认上传成功",
+        "5. 【evaluate】点击 Create Preview：",
+        "   () => { const btn=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.includes('Create Preview')); if(btn){btn.click();return 'clicked';} return 'ERR:not-found'; }"
+      ],
+      "uploadRules": {
+        "preferred": "python3 /Users/ezeeship/.openclaw/agents/test-runner/workspace/cdp_upload.py /tmp/openclaw/uploads/pet_image.jpg joyarti",
+        "script_output": "成功: 'OK: files=1'，失败: 'ERR: ...'",
+        "why_not_browser_upload": "browser.upload() 不触发 React onChange，files.length 始终为 0",
+        "why_not_rewrite": "重写脚本需调试 3-5 分钟，固化脚本 30s 完成"
+      }
+    },
+    {
+      "id": "D",
+      "name": "Wait for Generation",
+      "BEFORE_START": "【必须】立即调用 message 工具发送：'⏳ Step D: 3D 生成中，最多等待 10 分钟...'",
+      "DURING": "【必须】每 30s 轮询一次，调用 message 工具发送：'⏳ Step D: 生成中... 已等待 {X}s / 360s'",
+      "AFTER_DONE": "【必须】立即调用 message 工具发送：'✅ Step D: 3D 生成完成 — projectId: {projectId}'",
+      "AFTER_FAIL": "【必须】立即调用 message 工具发送：'❌ Step D: 生成超时或失败 — {错误原因}'，然后停止",
+      "snapshotPolicy": "【禁止 snapshot】生成检测全程用 exec+curl 轮询 URL，不用任何 browser 操作",
+      "tasks": [
+        "1. 【禁止 browser wait 超过 20s】用 exec+curl 轮询，每次 sleep 30s：",
+        "   exec(yieldMs=32000): sleep 30 && curl -s http://127.0.0.1:18800/json/list | python3 -c \"import json,sys; tabs=json.load(sys.stdin); [print('DONE:',t['url']) for t in tabs if 'joyarti' in t.get('url','') and 'projectId=' in t.get('url','')]\"",
+        "2. 检测输出含 'DONE:' 即生成完成，提取 projectId 值",
+        "3. 若未完成，发送进度消息后继续轮询，Max 360s（6分钟）",
+        "4. 生成完成后：navigate 到 projectId URL，若跳转到 login 则重新登录后再 navigate"
+      ],
+      "retryPolicy": {
+        "maxRetries": 2,
+        "retryDelay": 10000,
+        "onTimeout": "refresh_and_retry"
+      }
+    },
+    {
+      "id": "E",
+      "name": "Verify Checkout",
+      "BEFORE_START": "【必须】立即调用 message 工具发送：'⏳ Step E: 验证结账信息 开始...'; 同时设置全局变量 stepEStartTime = 当前时间（格式 HH:MM）",
+      "AFTER_DONE": "【必须】执行以下步骤：\n1. 计算 endTime = 当前时间（格式 HH:MM）\n2. 计算 duration = (当前分钟数 - stepAStartTime 的分钟数)，如果不足1分钟则记为1分钟\n3. 发送 Step E 完成消息，**等待返回确认 ok:true**\n4. 发送完整测试报告，**【最重要】等待返回确认 ok:true 和 messageId**，只有收到确认才算报告发送成功\n5. 确认报告发送成功后，再执行登出和关闭浏览器\n6. 执行登出操作：navigate 到 https://joyarti.com/account/logout\n7. 执行 browser.close() 关闭浏览器\n\n⚠️ 关键：必须收到 message 工具返回的 ok:true 才算发送成功，如果返回 error 或 ok:false，必须重试发送，直到成功为止。",
+      "AFTER_FAIL": "【必须】立即调用 message 工具发送：'❌ Step E: 结账验证失败 — {错误原因}'",
+      "snapshotPolicy": "【禁止 snapshot】checkout 数据全程用 evaluate 读取，最后仅截一张图存档",
+      "tasks": [
+        "1. 【evaluate】点击 Buy Now：",
+        "   () => { const btn=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.includes('Buy Now')); if(btn){btn.click();return 'clicked: '+btn.textContent.trim();} return 'ERR:not-found'; }",
+        "2. wait 4000ms 等待 Shopify checkout 加载",
+        "3. 【evaluate】验证 URL 已跳转到 Shopify：",
+        "   () => ({ url: location.href, isShopify: location.href.includes('myshopify.com') || location.href.includes('checkout') })",
+        "4. 【evaluate】读取 checkout 关键字段（禁止 snapshot）：",
+        "   () => { const t=document.body.innerText; const prices=t.match(/\\$[\\d.]+/g)||[]; const lines=t.split('\\n').filter(l=>l.trim()); const productLine=lines.find(l=>l.includes('3D Figure')||l.includes('Pet')||l.includes('Figure'))||''; const qtyLine=lines.find(l=>/qty|quantity|x\\s*\\d/i.test(l))||'1'; return { product: productLine.trim().slice(0,80), prices, qty: qtyLine.trim(), subtotal: prices[0]||'', total: prices[prices.length-1]||'', shippingEmpty: t.includes('Enter shipping') || !t.includes('shipping address') }; }",
+        "5. 验证：product 含 'Pet'/'Figure'，prices 含 '$89.99'，收货地址为空",
+        "6. browser.screenshot() 截图一张存档",
+        "7. 【必须】点击登出按钮并关闭浏览器：",
+        "   () => { const logoutLink=document.querySelector('[href*=\"logout\"],[href*=\"signout\"],a[href*=\"account/logout\"]'); if(logoutLink){logoutLink.click();return 'logout-clicked';} const btns=Array.from(document.querySelectorAll('button,a')); const logoutBtn=btns.find(b=>b.textContent.toLowerCase().includes('logout')||b.textContent.toLowerCase().includes('sign out')); if(logoutBtn){logoutBtn.click();return 'logout-btn-clicked';} return 'no-logout-found'; }",
+        "8. wait 2000ms",
+        "9. browser.close() 关闭浏览器标签页",
+        "NEVER click 'Place order' / 'Pay now' / 'Submit' / 'Complete'"
+      ]
+    }
+  ],
+
+  "reportTemplate": "## 🧪 3D Pet 下单测试报告\n\n**时间：** {startTime}–{endTime}（约 {duration} 分钟）\n**账号：** BrittanyWalters2815@hotmail.com\n\n| 步骤 | 结果 |\n|------|------|\n| A: 登录 | {stepA} |\n| B: 选择产品 | {stepB} |\n| C: 上传图片 | {stepC} |\n| D: 3D 生成 | {stepD} |\n| E: 结账验证 | {stepE} |\n\n**projectId:** {projectId}\n**产品:** {product}\n**价格:** {price}\n**预览图:** {previewOk}\n\n**结论：{conclusion}**",
+
+  "reportTimeRule": "【强制】startTime = Step A 开始执行的时间；endTime = Step E 完成（验证结账信息完成）的时间；duration = endTime - startTime 的分钟数。禁止用任务触发时间或当前时间代替。",
+
+  "report": {
+    "projectId": "?",
+    "product": "",
+    "quantity": 0,
+    "unitPrice": "",
+    "totalPrice": "",
+    "previewOk": false,
+    "errors": "",
+    "durationMin": 0
+  }
+}

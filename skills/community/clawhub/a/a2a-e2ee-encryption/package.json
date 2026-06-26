@@ -1,0 +1,11 @@
+{
+  "name": "a2a-e2ee-encryption",
+  "version": "1.0.0",
+  "description": "End-to-end encryption utilities for secure A2A communication",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('./index.js'); console.log('Exports:', Object.keys(s));\""
+  },
+  "keywords": ["e2ee", "encryption", "a2a", "security", "cryptography", "rsa", "aes"],
+  "license": "MIT"
+}

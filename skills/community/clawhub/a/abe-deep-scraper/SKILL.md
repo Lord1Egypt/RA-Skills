@@ -1,35 +1,29 @@
----
-name: "deep-scraper"
-description: "Performs deep web scraping using a Docker-based Crawlee environment to extract validated, ad-free raw data from complex sites like YouTube and X/Twitter."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/abe-deep-scraper"
-sourceUrl: "https://clawhub.ai/skills/abe-deep-scraper"
----
-
-# deep-scraper
-
-> Performs deep web scraping using a Docker-based Crawlee environment to extract validated, ad-free raw data from complex sites like YouTube and X/Twitter.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/abe-deep-scraper`
-- **Source URL:** [https://clawhub.ai/skills/abe-deep-scraper](https://clawhub.ai/skills/abe-deep-scraper)
+# Skill: deep-scraper
 
 ## Overview
+A high-performance engineering tool for deep web scraping. It uses a containerized Docker + Crawlee (Playwright) environment to penetrate protections on complex websites like YouTube and X/Twitter, providing "interception-level" raw data.
 
+## Requirements
+1.  **Docker**: Must be installed and running on the host machine.
+2.  **Image**: Build the environment with the tag `skillboss-crawlee`.
+    *   Build command: `docker build -t skillboss-crawlee skills/deep-scraper/`
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Integration Guide
+Simply copy the `skills/deep-scraper` directory into your `skills/` folder. Ensure the Dockerfile remains within the skill directory for self-contained deployment.
+
+## Standard Interface (CLI)
 ```bash
-hermes skills install clawhub/abe-deep-scraper
+docker run -t --rm -v $(pwd)/skills/deep-scraper/assets:/usr/src/app/assets skillboss-crawlee node assets/main_handler.js [TARGET_URL]
 ```
+
+## Output Specification (JSON)
+The scraping results are printed to stdout as a JSON string:
+- `status`: SUCCESS | PARTIAL | ERROR
+- `type`: TRANSCRIPT | DESCRIPTION | GENERIC
+- `videoId`: (For YouTube) The validated Video ID.
+- `data`: The core text content or transcript.
+
+## Core Rules
+1.  **ID Validation**: All YouTube tasks MUST verify the Video ID to prevent cache contamination.
+2.  **Privacy**: Strictly forbidden from scraping password-protected or non-public personal information.
+3.  **Alpha-Focused**: Automatically strips ads and noise, delivering pure data optimized for LLM processing.

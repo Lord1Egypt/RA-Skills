@@ -1,0 +1,6 @@
+name = "a2a-code-audit"
+compatibility_date = "2026-04-05"
+main = "worker.js"
+
+[env.production]
+name = "a2a-code-audit-prod"

@@ -1,0 +1,21 @@
+{
+  "approval_id": "04cf553c-e0c9-4732-870b-83f96e443b52",
+  "plan_id": "test_plan",
+  "risk_level": "medium",
+  "agent_id": "test_agent",
+  "agent_role": "",
+  "status": "pending",
+  "tier": "agent_self",
+  "approver": "",
+  "reason": "",
+  "created_at": "2026-04-14T16:07:35.584229+00:00",
+  "expires_at": "2026-04-14T16:17:35.584191+00:00",
+  "history": [
+    {
+      "action": "submit",
+      "actor": "test_agent",
+      "note": "Risk: medium, Tier: agent_self",
+      "timestamp": "2026-04-14T16:07:35.584235+00:00"
+    }
+  ]
+}

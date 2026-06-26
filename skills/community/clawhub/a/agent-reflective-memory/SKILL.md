@@ -1,35 +1,26 @@
----
-name: "Agent Reflective Memory"
-description: "AI-powered memory system that compresses, reflects on, and retrieves past agent actions to improve long-term autonomous decision-making."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-reflective-memory"
-sourceUrl: "https://clawhub.ai/skills/agent-reflective-memory"
----
-
 # Agent Reflective Memory
 
-> AI-powered memory system that compresses, reflects on, and retrieves past agent actions to improve long-term autonomous decision-making.
+A self-improving memory engine that uses AI to compress, reflect on, and retrieve past agent actions and decisions, enabling smarter long-term autonomy—critical for developers building persistent AI agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-reflective-memory`
-- **Source URL:** [https://clawhub.ai/skills/agent-reflective-memory](https://clawhub.ai/skills/agent-reflective-memory)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-reflective-memory
+# Store an agent's experience
+python agent_reflective_memory.py store \
+  --context "User asked for weekly sales summary" \
+  --action "Queried SQL database and generated markdown report" \
+  --result "Report delivered successfully"
+
+# Generate AI-powered reflections on old experiences
+python agent_reflective_memory.py reflect
+
+# Search for past failures in navigation
+python agent_reflective_memory.py query "navigation failed"
+
+# View memory statistics
+python agent_reflective_memory.py stats
 ```
+
+## Price
+
+$4.99

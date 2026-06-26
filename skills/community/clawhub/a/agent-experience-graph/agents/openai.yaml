@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Experience Graph"
+  short_description: "Recommend skills from prior agent traces"
+  default_prompt: "Use $agent-experience-graph to recommend tools and skills from similar prior agent traces."
+
+policy:
+  allow_implicit_invocation: true

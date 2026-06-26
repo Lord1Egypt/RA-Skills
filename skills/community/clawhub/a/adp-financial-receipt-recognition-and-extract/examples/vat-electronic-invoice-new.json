@@ -1,0 +1,473 @@
+[
+  {
+    "field_key": "vat_electronic_invoice_new",
+    "field_name": "电子发票（普通发票）",
+    "object_values": [
+      {
+        "document_type": "vat_electronic_invoice_new",
+        "pages": [0],
+        "extraction_result": [
+          {
+            "field_key": "vat_invoice_haoma_right_side",
+            "field_name": "发票号码",
+            "field_values": [
+              {
+                "field_value": "254320000000********",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_issue_date_print",
+            "field_name": "开票日期",
+            "field_values": [
+              {
+                "field_value": "2025-04-16",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_cover_tax",
+            "field_name": "价税合计大写",
+            "field_values": [
+              {
+                "field_value": "壹佰陆拾贰圆整",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_cover_tax_digits",
+            "field_name": "价税合计小写",
+            "field_values": [
+              {
+                "field_value": "162.00",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_tax_total",
+            "field_name": "税额合计",
+            "field_values": [
+              {
+                "field_value": "1.60",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total",
+            "field_name": "合计（不含税额）",
+            "field_values": [
+              {
+                "field_value": "160.40",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_payer_name",
+            "field_name": "购买方名称",
+            "field_values": [
+              {
+                "field_value": "××科技有限公司",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_rate_payer_id",
+            "field_name": "购买方纳税人识别号",
+            "field_values": [
+              {
+                "field_value": "914301000771****0K",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_seller_name",
+            "field_name": "销售方名称",
+            "field_values": [
+              {
+                "field_value": "××餐饮店（个体工商户）",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_seller_id",
+            "field_name": "销售方纳税人识别号",
+            "field_values": [
+              {
+                "field_value": "924308**MA4MWF****",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "exist_invoice_seal",
+            "field_name": "发票专用章存在性判断",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_sub_type",
+            "field_name": "发票子类型（左上角行业属性）",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "type",
+            "field_name": "类型",
+            "field_values": [
+              {
+                "field_value": "电子发票普通发票",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_drawer",
+            "field_name": "开票人",
+            "field_values": [
+              {
+                "field_value": "×××",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_goods_type_list",
+            "field_name": "发票消费类型",
+            "field_values": [
+              {
+                "field_value": "餐饮",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_haoma",
+            "field_name": "发票号码（二维码）",
+            "field_values": [
+              {
+                "field_value": "254320000000********",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_print",
+            "field_name": "打印合计",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_issue_date",
+            "field_name": "开票日期（二维码）",
+            "field_values": [
+              {
+                "field_value": "20250416",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_qr_code",
+            "field_name": "二维码",
+            "field_values": [
+              {
+                "field_value": "01,32,,254320000000********,162.00,20250416,,D6FC",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_note",
+            "field_name": "备注",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "exist_invoice_superviser_stamp",
+            "field_name": "发票监制章存在性判断",
+            "field_values": [
+              {
+                "field_value": "发票监制章",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_title",
+            "field_name": "发票抬头",
+            "field_values": [
+              {
+                "field_value": "电子发票(普通发票)",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_tax_total_per_page",
+            "field_name": "小计税额",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_per_page",
+            "field_name": "小计金额",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_current_page",
+            "field_name": "页码（总页数/当前页数）",
+            "field_values": [
+              {
+                "field_value": "1/1",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_format_date",
+            "field_name": "发票日期（YYYY-MM-DD）",
+            "field_values": [
+              {
+                "field_value": "2025-04-16",
+                "field_confidence": 0.99,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "invoice_pdf_page_number",
+            "field_name": "发票所在PDF文件页码（图片默认为1）",
+            "field_values": [
+              {
+                "field_value": "1",
+                "field_confidence": 1.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_total_cover_tax_raw",
+            "field_name": "价税合计（OCR）",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_issue_date_raw",
+            "field_name": "开票日期（OCR）",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "vat_invoice_haoma_raw",
+            "field_name": "发票号码（OCR）",
+            "field_values": [
+              {
+                "field_value": "",
+                "field_confidence": 0.0,
+                "references": []
+              }
+            ]
+          },
+          {
+            "field_key": "goods",
+            "field_name": "项目详情",
+            "table_values": [
+              [
+                {
+                  "field_key": "vat_invoice_goods",
+                  "field_name": "项目名称",
+                  "field_values": [
+                    {
+                      "field_value": "*餐饮服务*餐费",
+                      "field_confidence": 0.99,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_plate_specific",
+                  "field_name": "规格型号",
+                  "field_values": [
+                    {
+                      "field_value": "",
+                      "field_confidence": 0.0,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_electrans_unit",
+                  "field_name": "单位",
+                  "field_values": [
+                    {
+                      "field_value": "",
+                      "field_confidence": 0.0,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_electrans_quantity",
+                  "field_name": "数量",
+                  "field_values": [
+                    {
+                      "field_value": "",
+                      "field_confidence": 0.0,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_electrans_unit_price",
+                  "field_name": "单价",
+                  "field_values": [
+                    {
+                      "field_value": "",
+                      "field_confidence": 0.0,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_price",
+                  "field_name": "金额",
+                  "field_values": [
+                    {
+                      "field_value": "160.40",
+                      "field_confidence": 0.99,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_tax_rate",
+                  "field_name": "税率",
+                  "field_values": [
+                    {
+                      "field_value": "1%",
+                      "field_confidence": 0.99,
+                      "references": []
+                    }
+                  ]
+                },
+                {
+                  "field_key": "vat_invoice_tax",
+                  "field_name": "税额",
+                  "field_values": [
+                    {
+                      "field_value": "1.60",
+                      "field_confidence": 0.99,
+                      "references": []
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "field_key": "fpVerification",
+            "field_name": "查验结果",
+            "field_values": [
+              {
+                "field_value": "查验成功发票一致",
+                "confidence": 1.0
+              }
+            ]
+          },
+          {
+            "field_key": "fpVerificationMsg",
+            "field_name": "查验报错信息",
+            "field_values": [
+              {
+                "field_value": "",
+                "confidence": 1.0
+              }
+            ]
+          },
+          {
+            "field_key": "fpIsVoided",
+            "field_name": "作废标志",
+            "field_values": [
+              {
+                "field_value": "N",
+                "confidence": 1.0
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "confidence": 1.0
+        }
+      }
+    ]
+  }
+]

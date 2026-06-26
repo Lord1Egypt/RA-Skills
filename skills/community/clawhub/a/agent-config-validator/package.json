@@ -1,0 +1,27 @@
+{
+  "name": "agent-config-validator",
+  "version": "1.0.0",
+  "description": "OpenClaw Agent 配置验证器 - 自动检查配置一致性，检测过时引用，支持自动修复",
+  "main": "src/validator.js",
+  "bin": {
+    "agent-config-validator": "./src/validator.js"
+  },
+  "scripts": {
+    "validate": "node src/validator.js",
+    "validate:fix": "node src/validator.js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "config",
+    "validator",
+    "validation",
+    "multi-agent"
+  ],
+  "author": "Star助手",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

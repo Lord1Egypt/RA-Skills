@@ -1,0 +1,127 @@
+--------------------------------------------------------------------------------
+title: "Supported AI Agents"
+description: "Complete list of AI agents supported by @tiktok-fe/skills CLI."
+source: "/llms/guides/agents-list.txt"
+--------------------------------------------------------------------------------
+
+# Supported AI Agents
+
+The @tiktok-fe/skills CLI supports 30+ AI coding assistants. Skills are automatically installed to all detected agents.
+
+## Agent Detection
+
+The CLI detects installed agents by checking for their configuration directories on the local machine. When you install a skill, it's copied (or symlinked in soft mode) to all detected agent directories.
+
+Use `ai-skills agents --pure` to list all agents and their installation status.
+
+## Complete Agent List
+
+| Agent ID | Display Name | Project Directory | Global Directory |
+|----------|--------------|-------------------|------------------|
+| cursor | Cursor | `.cursor/skills` | `~/.cursor/skills` |
+| claude-code | Claude Code | `.claude/skills` | `~/.claude/skills` |
+| github-copilot | GitHub Copilot | `.github/skills` | `~/.copilot/skills` |
+| windsurf | Windsurf | `.windsurf/skills` | `~/.codeium/windsurf/skills` |
+| cline | Cline | `.cline/skills` | `~/.cline/skills` |
+| continue | Continue | `.continue/skills` | `~/.continue/skills` |
+| codex | OpenAI Codex CLI | `.codex/skills` | `~/.codex/skills` |
+| gemini-cli | Gemini CLI | `.gemini/skills` | `~/.gemini/skills` |
+| goose | Goose | `.goose/skills` | `~/.config/goose/skills` |
+| amp | Amp | `.agents/skills` | `~/.config/agents/skills` |
+| junie | Junie | `.junie/skills` | `~/.junie/skills` |
+| kilo | Kilo Code | `.kilocode/skills` | `~/.kilocode/skills` |
+| roo | Roo Code | `.roo/skills` | `~/.roo/skills` |
+| void | Void | `.void/skills` | `~/.void/skills` |
+| pear | PearAI | `.pear/skills` | `~/.pear/skills` |
+| zed | Zed | `.zed/skills` | `~/.config/zed/skills` |
+| trae | Trae | `.trae/skills` | `~/.trae/skills` |
+| melty | Melty | `.melty/skills` | `~/.melty/skills` |
+| aide | Aide | `.aide/skills` | `~/.aide/skills` |
+| codefuse | CodeFuse | `.codefuse/skills` | `~/.codefuse/skills` |
+| cody | Cody | `.cody/skills` | `~/.cody/skills` |
+| tabnine | Tabnine | `.tabnine/skills` | `~/.tabnine/skills` |
+| double | Double | `.double/skills` | `~/.double/skills` |
+| supermaven | Supermaven | `.supermaven/skills` | `~/.supermaven/skills` |
+| codegpt | CodeGPT | `.codegpt/skills` | `~/.codegpt/skills` |
+| bito | Bito | `.bito/skills` | `~/.bito/skills` |
+| codiumai | CodiumAI | `.codiumai/skills` | `~/.codiumai/skills` |
+| blackbox | Blackbox AI | `.blackbox/skills` | `~/.blackbox/skills` |
+| codewhisperer | CodeWhisperer | `.aws/skills` | `~/.aws/codewhisperer/skills` |
+| sourcegraph | Sourcegraph | `.sourcegraph/skills` | `~/.sourcegraph/skills` |
+
+## Installation Scopes
+
+### Project-Level
+
+Skills installed at project level are available only within that project:
+
+```bash
+ai-skills add my-skill --source local --project --pure
+# Installs to: .cursor/skills/my-skill, .claude/skills/my-skill, etc.
+```
+
+### Global-Level
+
+Skills installed globally are available across all projects:
+
+```bash
+ai-skills add my-skill --source local --global --pure
+# Installs to: ~/.cursor/skills/my-skill, ~/.claude/skills/my-skill, etc.
+```
+
+### Custom Directory
+
+Install to a specific base directory:
+
+```bash
+ai-skills add my-skill --source local --target /custom/path --pure
+# Installs to: /custom/path/.cursor/skills/my-skill, etc.
+```
+
+### Direct Directory
+
+Install directly to a specific directory (no agent subdirs):
+
+```bash
+ai-skills add my-skill --source local --dir /exact/path --pure
+# Installs to: /exact/path/my-skill
+```
+
+## Checking Agent Status
+
+```bash
+# All agents with install status
+ai-skills agents --pure
+# Output:
+# [x] cursor (Cursor)
+# [ ] trae (Trae)
+# [x] claude-code (Claude Code)
+# Total: 30, Installed: 2
+
+# Only installed agents
+ai-skills agents --installed --pure
+# Output:
+# Installed: cursor, claude-code
+```
+
+## Agent-Specific Installation
+
+To install to specific agents only, use `--agents`:
+
+```bash
+# Install only to Cursor and Claude Code
+ai-skills add my-skill --source local --project --pure --agents cursor,claude-code
+```
+
+Unrecognized agent names produce a warning but don't block the operation.
+
+## How Agents Use Skills
+
+Each agent reads skills from their designated directory:
+
+1. **Cursor**: Reads `.cursor/skills/*/SKILL.md` and includes in AI context
+2. **Claude Code**: Reads `.claude/skills/*/SKILL.md` as system instructions
+3. **GitHub Copilot**: Reads `.github/skills/*/SKILL.md` for context
+4. **Other agents**: Similar pattern using their respective directories
+
+The agent reads the `SKILL.md` file to understand the skill's instructions and applies them when relevant to the user's task.

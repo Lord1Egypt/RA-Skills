@@ -1,0 +1,55 @@
+{
+  "name": "agent-project-manager",
+  "version": "2.7.1",
+  "description": "项目上下文隔离与状态管理系统 v2.5。按需记录项目进度、决策和待办，支持甘特图、风险扫描和依赖管理。仅在用户明确指示时执行操作，不会主动扫描或修改文件。",
+  "author": "Kris Lu",
+  "license": "MIT",
+  "triggers": [
+    "/project",
+    "新建项目",
+    "回到项目",
+    "记录项目",
+    "继续项目",
+    "项目列表",
+    "甘特图"
+  ],
+  "keywords": [
+    "project-management",
+    "context-isolation",
+    "state-management",
+    "gantt-chart",
+    "risk-detection",
+    "dependency-management",
+    "checkpoint"
+  ],
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "SECURITY.md",
+    "README.md",
+    "README_CN.md",
+    "CHANGELOG.md",
+    "DESIGN.md",
+    "DESIGN_CN.md",
+    "templates/",
+    "references/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krislu1221/project-manager-skill"
+  },
+  "homepage": "https://clawhub.ai/krislu1221/agent-project-manager",
+  "security": {
+    "type": "pure_markdown_skill_no_code",
+    "file_access": "workspace/projects/{name}/STATUS.md, projects/index.md, memory/pm-checkpoint.json",
+    "shell_access": "git rev-parse / git log (read-only, project dir scoped)",
+    "network_access": "none",
+    "third_party_services": "none",
+    "write_safety": "read-merge-write pattern with TOCTOU limitation documented"
+  },
+  "data_privacy": {
+    "data_leaves_device": false,
+    "project_data": "local filesystem only",
+    "note": "No executable code. Pure instruction skill file."
+  }
+}

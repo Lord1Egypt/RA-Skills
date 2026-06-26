@@ -1,0 +1,7 @@
+interface:
+  display_name: "Admin UI Prototype"
+  short_description: "Query Arco patterns and build Vue 3 admin prototypes"
+  default_prompt: "Use $admin-ui-prototype to query project-specific Arco Design patterns or generate a Vue 3 admin page prototype with mock data."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,15 @@
+# Core Dependencies
+python>=3.8
+
+# Optional: LLM Integration
+# requests>=2.28.0
+# openai>=1.0.0
+
+# Development
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0
+# mypy>=0.990
+
+# Monitoring (Optional)
+# requests>=2.28.0  # For Feishu webhook alerts

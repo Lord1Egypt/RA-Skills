@@ -1,35 +1,93 @@
 ---
-name: "a-share-observation-loop"
-description: "把结论落成每日检查清单、观察时点、通过失败动作和场景切换条件。适用于用户要求把观察项落下来、每天去看、或希望把研究结论转成重复执行的盘中与收盘检查框架。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-observation-loop"
-sourceUrl: "https://clawhub.ai/skills/a-share-observation-loop"
+name: a-share-observation-loop
+description: 把结论落成每日检查清单、观察时点、通过失败动作和场景切换条件。适用于用户要求把观察项落下来、每天去看、或希望把研究结论转成重复执行的盘中与收盘检查框架。
 ---
 
-# a-share-observation-loop
-
-> 把结论落成每日检查清单、观察时点、通过失败动作和场景切换条件。适用于用户要求把观察项落下来、每天去看、或希望把研究结论转成重复执行的盘中与收盘检查框架。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-observation-loop`
-- **Source URL:** [https://clawhub.ai/skills/a-share-observation-loop](https://clawhub.ai/skills/a-share-observation-loop)
+# A Share Observation Loop
 
 ## Overview
 
+这个 skill 把研究结论改写成“每天怎么查、查什么、看到什么就做什么”。它每次都基于新数据重建观察表，不依赖前一次会话记忆。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-observation-loop
-```
+## Hard Rules
+
+1. 这是无状态观察框架，不默认继承昨天的观察结果。
+2. 观察项必须能被当天数据验证，不能写成空泛口号。
+3. 每个观察项都要有“通过动作”和“失败动作”。
+4. 必须区分盘前、盘中、尾盘、收盘后四类检查点。
+5. 若盘面已经变了，观察清单也要跟着重排优先级。
+
+## When To Use
+
+- 用户说“把观察项落下来”
+- 用户要每日复核框架
+- 已经有了组合和市场判断，想转成执行清单
+- 用户要知道明天、后天每天应该盯哪些变量
+
+## Workflow
+
+### Step 1: 确认当前主场景
+
+先拿最新盘面确认今天市场处在哪个环境里，再决定观察顺序。不要直接复用上次的清单。
+
+### Step 2: 分层观察
+
+至少拆成五层：
+
+- 宏观或事件触发层
+- 指数与广度层
+- 主线板块层
+- 持仓层
+- 备用候选层
+
+### Step 3: 设定检查时点
+
+默认四个观察窗口：
+
+- 开盘后快速确认
+- 上午中段
+- 午后关键时段
+- 收盘复核
+
+### Step 4: 写动作规则
+
+每个观察项都写成：
+
+- 看什么
+- 看多久
+- 通过时做什么
+- 失败时做什么
+
+模板见 [daily-loop-template.md](references/daily-loop-template.md)。
+
+### Step 5: 输出次日延续条件
+
+告诉用户哪些条件出现时，应重新调用：
+
+- 市场扫描
+- 组合校准
+- 动作路由
+- 假设拆解
+
+## Tool Rules
+
+- 观察项依赖最新数据，优先当日盘面
+- 与持仓相关的观察项要对准用户真实持仓，不做泛化监控
+- 若缺实时数据，可给观察框架，但要明确“需在盘中补数”
+
+## Output Contract
+
+默认输出：
+
+- `今日观察主轴`
+- `检查时点`
+- `逐项观察表`
+- `通过动作`
+- `失败动作`
+- `何时重开分析`
+
+## Practical Notes
+
+- 观察清单宁可少而关键，不要列成无法执行的长表
+- 同一主线内，优先盯龙头、成交、承接，而不是盯所有跟风票
+- 若用户有明确持仓，观察清单里必须单列持仓项

@@ -1,0 +1,23 @@
+{
+  "name": "ad-production-delivery-distribution",
+  "version": "1.0.0",
+  "description": "资源交付分发技能 - 处理素材导出、格式转换和多平台分发",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "delivery",
+    "distribution",
+    "export"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

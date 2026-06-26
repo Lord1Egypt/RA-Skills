@@ -1,0 +1,188 @@
+{
+  "F7T1VBKNLNmwRrU9l8pb": {
+    "productRef": "F7T1VBKNLNmwRrU9l8pb",
+    "name": "Veg Tiffin",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 17,
+    "hardCodedPrice": "16",
+    "description": "Each tiffin includes: \ud83e\udd58 2 \u00d7 280 ml vegetarian curries \ud83c\udf68 1 \u00d7 120 ml complimentary side (raita, salad, etc. \u2013 varies daily) Choose one: \ud83c\udf5e 6 rotis \ud83c\udf5e 3 rotis + 280 ml rice \ud83c\udf5a 2 \u00d7 280 ml rice",
+    "modifier1Name": "Selection",
+    "modification1Option": [
+      {
+        "modificationName": "6 Rotis",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "3 Roti, Rice (280ml)",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "Only Rice (560ml)",
+        "additionalCost": 0
+      }
+    ],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [
+      {
+        "modificationName": "Normal",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "No Side Dish",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "Swap Side Dish for 2 Rotis",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "Swap Side Dish for Extra Rice",
+        "additionalCost": 0
+      },
+      {
+        "modificationName": "Extra 2 Rotis ($2)",
+        "additionalCost": 2
+      },
+      {
+        "modificationName": "Extra Rice ($2)",
+        "additionalCost": 2
+      }
+    ],
+    "cateringDefaultWindowDays": 7,
+    "cateringDiscountMode": "WINDOW_PACKS",
+    "cateringDiscountStack": [
+      {
+        "discount": 0.5,
+        "noOfDaysInWeek": 3,
+        "windowSizeDays": 7
+      },
+      {
+        "discount": 1,
+        "noOfDaysInWeek": 5,
+        "windowSizeDays": 7
+      },
+      {
+        "discount": 1.3,
+        "noOfDaysInWeek": 14,
+        "windowSizeDays": 14
+      },
+      {
+        "discount": 1.5,
+        "noOfDaysInWeek": 28,
+        "windowSizeDays": 28
+      }
+    ],
+    "cateringMinimumDays": 1,
+    "availableRecurrenceDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "cateringTimeWindow": "3pm - 7pm",
+    "noticeRequiredInDays": 0,
+    "aliases": [
+      "veg",
+      "veg tiffin"
+    ]
+  },
+  "nzxq3SZTvjVHYIWr27fY": {
+    "productRef": "nzxq3SZTvjVHYIWr27fY",
+    "name": "Non Veg Tiffin",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 19.0,
+    "modifier1Name": "Selection",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "non veg",
+      "non-veg",
+      "nonveg",
+      "nv",
+      "nonveg tiffin",
+      "non veg tiffin"
+    ]
+  },
+  "OfAWe2uc7VTddom1PAdV": {
+    "productRef": "OfAWe2uc7VTddom1PAdV",
+    "name": "Curry Only Tiffin",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 17.0,
+    "modifier1Name": "Choose your curries",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "curry only tiffin"
+    ]
+  },
+  "bLgIUcrpcvGSstNeRPqS": {
+    "productRef": "bLgIUcrpcvGSstNeRPqS",
+    "name": "Extra Veg Curry of the Day",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 6.0,
+    "modifier1Name": "Size",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "extra veg curry of the day"
+    ]
+  },
+  "TBEkc4shIn4OUMCDXn0Z": {
+    "productRef": "TBEkc4shIn4OUMCDXn0Z",
+    "name": "Extra Rice",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 2.0,
+    "modifier1Name": "Selection",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "extra rice"
+    ]
+  },
+  "wsVYJvN7yO0gftg0b48n": {
+    "productRef": "wsVYJvN7yO0gftg0b48n",
+    "name": "Mix Tiffin",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 19.0,
+    "modifier1Name": "Selection",
+    "modification1Option": [],
+    "modifier2Name": "Common Customisations",
+    "modification2Option": [],
+    "aliases": [
+      "mix tiffin"
+    ]
+  },
+  "FhfjE9QjNlY2H3vshUHL": {
+    "productRef": "FhfjE9QjNlY2H3vshUHL",
+    "name": "Extra Non Veg Curry of the Day",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 8.0,
+    "modifier1Name": "Size",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "extra non veg curry of the day"
+    ]
+  },
+  "CMI0hdkjhahAIFq8jwIe": {
+    "productRef": "CMI0hdkjhahAIFq8jwIe",
+    "name": "Extra Roti",
+    "vendorReference": "qfiDIvUSocQFrVPzM4zQ",
+    "price": 1.0,
+    "modifier1Name": "Selection",
+    "modification1Option": [],
+    "modifier2Name": "Customisations (free unless priced)",
+    "modification2Option": [],
+    "aliases": [
+      "extra roti"
+    ]
+  }
+}

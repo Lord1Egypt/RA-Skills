@@ -1,0 +1,17 @@
+{
+  "name": "openclaw-skill-agent-news-free",
+  "version": "1.2.0",
+  "description": "Simplified Agent News API OpenClaw skill for free-tier access.",
+  "main": "agent-news-cli.js",
+  "bin": {
+    "agentnews-free": "agent-news-cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "agentnewsapi",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

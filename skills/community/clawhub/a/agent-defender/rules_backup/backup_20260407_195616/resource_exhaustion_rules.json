@@ -1,0 +1,66 @@
+[
+  {
+    "id": "RE01",
+    "name": "无限循环检测",
+    "patterns": [
+      "\\bwhile\\s+True\\b",
+      "\\bwhile\\s*\\(\\s*1\\s*\\)",
+      "\\bfor\\s*\\(;;\\)"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测创建无限循环消耗 CPU",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RE02",
+    "name": "内存耗尽检测",
+    "patterns": [
+      "\\bbytearray\\s*\\(",
+      "\\[0\\]\\s*\\*\\s*\\d+",
+      "\\bmalloc\\s*\\("
+    ],
+    "risk": "HIGH",
+    "description": "检测大量分配内存导致 OOM",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RE03",
+    "name": "磁盘填满检测",
+    "patterns": [
+      "\\bopen\\s*\\([^)]*'a'",
+      "\\bdd\\s+if=",
+      "\\btruncate\\s+"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测持续写入填满磁盘",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "RE04",
+    "name": "进程炸弹检测",
+    "patterns": [
+      "\\bos\\.fork\\s*\\(",
+      "\\bmultiprocessing\\b",
+      "\\bsubprocess\\s*\\."
+    ],
+    "risk": "HIGH",
+    "description": "检测创建大量进程/线程",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "RE05",
+    "name": "线程炸弹检测",
+    "patterns": [
+      "\\bthreading\\.Thread\\s*\\(",
+      "\\b_start_new_thread\\b"
+    ],
+    "risk": "HIGH",
+    "description": "检测创建大量线程",
+    "action": "BLOCK",
+    "optimized": false
+  }
+]

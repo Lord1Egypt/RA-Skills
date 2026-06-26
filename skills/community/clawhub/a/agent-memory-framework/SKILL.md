@@ -1,35 +1,72 @@
 ---
-name: "Agent Memory Framework"
-description: "三层记忆系统框架。为 Agent 提供持久化记忆能力，包括日记忆、长期记忆和归档机制。触发词：记忆系统、memory system、记忆初始化、设置记忆、新建记忆、记忆蒸馏、归档记忆。当需要为新 Agent 配置记忆能力、或管理已有记忆时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-framework"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-framework"
+name: memory-system
+description: 三层记忆系统框架。为 Agent 提供持久化记忆能力，包括日记忆、长期记忆和归档机制。触发词：记忆系统、memory system、记忆初始化、设置记忆、新建记忆、记忆蒸馏、归档记忆。当需要为新 Agent 配置记忆能力、或管理已有记忆时使用。
 ---
 
-# Agent Memory Framework
+# Memory System — 三层记忆框架
 
-> 三层记忆系统框架。为 Agent 提供持久化记忆能力，包括日记忆、长期记忆和归档机制。触发词：记忆系统、memory system、记忆初始化、设置记忆、新建记忆、记忆蒸馏、归档记忆。当需要为新 Agent 配置记忆能力、或管理已有记忆时使用。
+## 架构概览
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-framework`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-framework](https://clawhub.ai/skills/agent-memory-framework)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-memory-framework
 ```
+工作记忆（当前会话）     ← 临时，不持久
+  ↓ 写入
+日记忆 memory/YYYY-MM-DD.md  ← 原始日志，按天归档
+  ↓ 蒸馏（定期提炼）
+长期记忆 MEMORY.md            ← 策划精华，跨会话持久
+  ↓ 活性归档（30天未引用）
+归档 memory/archive/          ← 冷存储，可追溯
+```
+
+## 核心文件
+
+| 文件 | 用途 | 何时写 |
+|------|------|--------|
+| `MEMORY.md` | 长期记忆（策划精华） | 重要决策、教训、认知更新时 |
+| `memory/YYYY-MM-DD.md` | 日记忆（原始日志） | 每次会话有值得记录的事时 |
+| `memory/archive/` | 归档（冷存储） | 30天未被引用的章节移入 |
+
+## 初始化（新 Agent 首次设置）
+
+1. 在工作目录创建 `MEMORY.md`，使用模板 `assets/MEMORY.md`
+2. 创建 `memory/` 目录
+3. 在 `AGENTS.md`（或等效配置文件）中添加记忆规则（见 `references/conventions.md`）
+4. 可选：配置蒸馏 cron（见 `references/distillation.md`）
+
+## 日常使用
+
+### 写入规则
+
+- **日记忆**：会话中有值得记录的事 → 写入 `memory/YYYY-MM-DD.md`
+- **长期记忆**：重大决策/教训/认知 → 同时写入 `MEMORY.md`
+- **"Mental notes" 不算** — 不写文件的记忆不会存活到下次会话
+- **先写再说** — 如果需要记住，先写文件，不要靠"我记住了"
+
+### 读取规则
+
+- **主会话**（与用户的私密对话）：可自由读写 `MEMORY.md`
+- **共享会话**（群聊、Discord、多人场景）：**禁止加载 MEMORY.md** — 防止私人信息泄露
+- **日记忆**：任何会话都可读，但只写当天的文件
+
+### 安全红线
+
+- `MEMORY.md` 可能包含用户私人信息，**绝不在共享上下文中加载**
+- 归档文件同样可能含敏感信息，共享场景也禁读
+- 任何记忆文件不得外传（email、公开帖子等）
+
+## 归档规则
+
+- **30天未被心跳/会话引用** → 移到 `memory/archive/`
+- **教训编号永远保留**（编号不可回收，即使教训已过时）
+- **动态信息 >14天未更新** → 降级或归档（策略、持仓等）
+- 不按文件大小归档 — 信息密度不同，大小不是好指标
+- 归档时在 `MEMORY.md` 保留一行占位（章节名 + 归档日期），方便追溯
+
+## 蒸馏（定期提炼）
+
+将日记忆中值得长期保留的内容提炼到 `MEMORY.md`。
+
+详细流程见 `references/distillation.md`。
+
+## 零内容原则
+
+本 Skill 只提供**框架和规则**，不包含任何记忆内容。每个 Agent 安装后从零积累自己的记忆。

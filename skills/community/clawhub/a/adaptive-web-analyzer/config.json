@@ -1,0 +1,30 @@
+{
+  "skill_name": "adaptive-web-analyzer",
+  "version": "1.0.0",
+  "default_config": {
+    "timeout": 30,
+    "max_length": 8000,
+    "respect_robots_txt": true,
+    "default_delay": [1, 3],
+    "retry_times": 3,
+    "output_format": "markdown"
+  },
+  "dependencies": {
+    "required": ["requests", "beautifulsoup4", "html2text"],
+    "optional": {
+      "scrapling": "用于高级反爬和自适应解析",
+      "playwright": "用于JavaScript动态渲染"
+    }
+  },
+  "supported_methods": {
+    "auto": "自动判断最佳获取方式",
+    "api": "直接HTTP请求（适用于API端点）",
+    "static": "静态HTML抓取",
+    "dynamic": "Playwright动态渲染",
+    "stealth": "Scrapling隐身模式（反爬）"
+  },
+  "rate_limits": {
+    "default_requests_per_minute": 20,
+    "concurrent_limit": 3
+  }
+}

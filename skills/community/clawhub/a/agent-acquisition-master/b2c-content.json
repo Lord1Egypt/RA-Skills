@@ -1,0 +1,39 @@
+{
+  "sequence": "b2c-content",
+  "usage": "Tout produit B2C basé sur du contenu — média, newsletter, formation, accès info",
+  "exemples": [
+    "newsletter",
+    "média",
+    "blog premium",
+    "accès base de données",
+    "formation vidéo"
+  ],
+  "canal_principal": "Réseaux sociaux + Substack + email",
+  "funnel_emails_nurturing": [
+    {
+      "jour": 0,
+      "sujet": "Bienvenue — voici comment ça marche",
+      "corps": "Bonjour [Prénom],\n\nBienvenue.\n\n[Explication simple de la valeur en 2-3 lignes].\n\nDemain : un exemple concret de ce que tu vas recevoir."
+    },
+    {
+      "jour": 1,
+      "sujet": "[Analyse/Contenu] — exemple concret",
+      "corps": "Voici un exemple de ce qu'on produit :\n\n[Contenu concret — analyse, insight, données]\n\nAccès complet → abonnement"
+    },
+    {
+      "jour": 3,
+      "sujet": "Les meilleurs de cette semaine",
+      "corps": "Sélection de la semaine :\n1. [Item 1]\n2. [Item 2]\n3. [Item 3]\n\nMéthodologie complète → lien"
+    },
+    {
+      "jour": 5,
+      "sujet": "3 façons d'utiliser [produit]",
+      "corps": "3 façons concrètes d'utiliser [produit] :\n1. [Usage 1]\n2. [Usage 2]\n3. [Usage 3]\n\nDemain : accès complet."
+    },
+    {
+      "jour": 7,
+      "sujet": "Accès complet — [prix]/mois",
+      "corps": "[Bénéfice principal].\n\n[Prix]/mois — [équivalence simple ex: moins d'un café par semaine].\n7 jours satisfait ou remboursé.\n\n[Lien]\n\n[Prénom expéditeur]"
+    }
+  ]
+}

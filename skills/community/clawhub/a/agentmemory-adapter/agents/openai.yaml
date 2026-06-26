@@ -1,0 +1,4 @@
+interface:
+  display_name: "AgentMemory Adapter"
+  short_description: "Install and harden AgentMemory integrations."
+  default_prompt: "Use $agentmemory-adapter to wire AgentMemory into this agent, verify memory capture, and handle edge cases."

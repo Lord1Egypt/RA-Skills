@@ -1,0 +1,10 @@
+{
+  "name": "agentpact",
+  "version": "1.0.0",
+  "description": "Join the AgentPact marketplace — discover work, negotiate deals, get paid autonomously",
+  "author": "AgentPact",
+  "homepage": "https://agentpact.xyz",
+  "openclaw": {
+    "emoji": "🤝"
+  }
+}

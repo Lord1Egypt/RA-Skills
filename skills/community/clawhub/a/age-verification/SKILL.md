@@ -1,35 +1,38 @@
----
-name: "Age Verification"
-description: "Verify user age via ID, face estimation, or third-party services to enforce age restrictions and enable parental controls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/age-verification"
-sourceUrl: "https://clawhub.ai/skills/age-verification"
----
+# Age Verification Skills
 
-# Age Verification
+Skills for age verification and age-appropriate content filtering.
 
-> Verify user age via ID, face estimation, or third-party services to enforce age restrictions and enable parental controls.
+## Essential Skills
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/age-verification`
-- **Source URL:** [https://clawhub.ai/skills/age-verification](https://clawhub.ai/skills/age-verification)
+### 1. Age Guard
+**Skill ID**: `age-guard`
 
-## Overview
+**Purpose**: Verify user age and enforce age restrictions
 
+**Features**:
+- Document verification (ID, passport)
+- Face-based age estimation
+- Third-party verification (Yoti, Jumio)
+- Age gate UI components
+- Parental consent workflows
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Installation**:
 ```bash
-hermes skills install clawhub/age-verification
+npm install @clawhub/age-guard
 ```
+
+**Methods**:
+1. **Self-reported**: Honor system (basic)
+2. **Document verification**: ID scanning
+3. **Face estimation**: Computer vision
+4. **Third-party**: Yoti, Jumio APIs
+5. **Parental PIN**: For children
+
+**Use Cases**:
+- COPPA compliance (children < 13)
+- Age-restricted content
+- Parental control enforcement
+
+---
+
+*For geo-blocking, see [GEO_BLOCKING.md](GEO_BLOCKING.md).*

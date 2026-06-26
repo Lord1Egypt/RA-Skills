@@ -1,0 +1,18 @@
+{
+  "name": "agent-team",
+  "version": "1.0.1",
+  "description": "OpenClaw plugin for injecting team member information into system context",
+  "main": "index.ts",
+  "types": "index.ts",
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json"
+  ],
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "team",
+    "agent"
+  ],
+  "license": "MIT"
+}

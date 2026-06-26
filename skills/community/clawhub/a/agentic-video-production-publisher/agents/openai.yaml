@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Video Production Reviewer"
+  short_description: "Review AI video packages before human-controlled release."
+  default_prompt: "Use $agentic-video-production-publisher to review this AI video package for provenance, metadata, platform policy, public wording, and release readiness without uploading or publishing."

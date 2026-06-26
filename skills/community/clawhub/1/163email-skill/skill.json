@@ -1,0 +1,41 @@
+{
+  "name": "163email-skill",
+  "version": "1.2.0",
+  "description": "163email skill - Send emails via 163 SMTP service with custom recipient, subject, content",
+  "author": "geekbin",
+  "license": "MIT",
+  "keywords": [
+    "163email",
+    "email",
+    "smtp",
+    "notification",
+    "utility"
+  ],
+  "main": "src/send_email.py",
+  "python_version": ">=3.6",
+  "dependencies": [],
+  "env": [
+    "CLAW_EMAIL",
+    "CLAW_EMAIL_AUTH"
+  ],
+  "skills": [
+    {
+      "name": "send_mail",
+      "description": "Send email via 163 SMTP service",
+      "parameters": {
+        "to": {
+          "type": "string",
+          "description": "Recipient email address (multiple recipients separated by comma)"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Email subject"
+        },
+        "content": {
+          "type": "string",
+          "description": "Email body content"
+        }
+      }
+    }
+  ]
+}

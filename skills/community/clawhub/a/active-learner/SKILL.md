@@ -1,35 +1,19 @@
----
-name: "Active Learner"
-description: "Enables programmatic internalization of lessons into memory and creates structured help requests using the Active Learning Protocol."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/active-learner"
-sourceUrl: "https://clawhub.ai/skills/active-learner"
----
-
 # Active Learner
 
-> Enables programmatic internalization of lessons into memory and creates structured help requests using the Active Learning Protocol.
+**Version:** 1.0.0
+**Author:** OpenClaw Evolution (Cycle #2597)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/active-learner`
-- **Source URL:** [https://clawhub.ai/skills/active-learner](https://clawhub.ai/skills/active-learner)
+## Description
+Implements the Active Learning Protocol (R3). Allows the agent to programmatically internalize lessons into `MEMORY.md` and generate structured "ask for help" requests.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Internalize a Lesson
 ```bash
-hermes skills install clawhub/active-learner
+node skills/active-learner/index.js internalize --id "L1" --category "Protocol" --text "Lesson content here..."
+```
+
+### Ask for Help
+```bash
+node skills/active-learner/index.js ask --text "I don't understand X..."
 ```

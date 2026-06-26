@@ -1,0 +1,3 @@
+#!/usr/bin/env python3
+# Requirements for validate_agent_card.py
+# (no external dependencies — uses stdlib only)

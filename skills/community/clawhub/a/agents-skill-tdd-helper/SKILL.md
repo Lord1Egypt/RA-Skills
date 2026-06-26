@@ -1,35 +1,26 @@
 ---
-name: "Tdd Helper"
-description: "Lightweight helper to enforce TDD-style loops for non-deterministic agents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agents-skill-tdd-helper"
-sourceUrl: "https://clawhub.ai/skills/agents-skill-tdd-helper"
+name: tdd-helper
+description: Lightweight helper to enforce TDD-style loops for non-deterministic agents.
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["python3", "pytest"] },
+      "category": "development"
+    }
+  }
 ---
 
-# Tdd Helper
+# tdd-helper
 
-> Lightweight helper to enforce TDD-style loops for non-deterministic agents.
+Lightweight helper to enforce TDD-style loops for non-deterministic agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agents-skill-tdd-helper`
-- **Source URL:** [https://clawhub.ai/skills/agents-skill-tdd-helper](https://clawhub.ai/skills/agents-skill-tdd-helper)
+## Features
+- `tdd.py` wraps a task: fails if tests are absent or failing, refuses to run "prod" code first.
+- Watches for lint/warnings (optional) and blocks on warnings-as-errors.
+- Simple config via env or JSON.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/agents-skill-tdd-helper
+# Define tests in tests/ or specify via --tests
+python tdd.py --tests tests/ --run "python your_script.py"
 ```

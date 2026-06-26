@@ -1,0 +1,4 @@
+dataclasses
+matplotlib
+numpy
+scipy

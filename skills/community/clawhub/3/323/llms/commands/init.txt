@@ -1,0 +1,119 @@
+--------------------------------------------------------------------------------
+title: "init"
+description: "Initialize a new skill project with templates."
+source: "/llms/commands/init.txt"
+--------------------------------------------------------------------------------
+
+# init — Initialize Skill Project
+
+Scaffold a new AI skill project with a SKILL.md file and optional supporting files.
+
+## Syntax
+
+```bash
+ai-skills init [options]
+```
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-n, --name <name>` | Skill name (if omitted, prompts or uses current directory name) |
+| `-d, --description <text>` | Skill description (written to SKILL.md front matter; if omitted, prompts or uses default) |
+| `-t, --template <type>` | Template: `basic` or `advanced` (or a path to existing skill dir) |
+| `-y, --yes` | Skip prompts, use defaults |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Templates
+
+### Basic Template
+
+Creates a minimal `SKILL.md` with front matter and a brief content section:
+
+```markdown
+---
+name: my-skill
+description: A brief description
+tags: []
+---
+
+# my-skill
+
+Your skill instructions here...
+```
+
+### Advanced Template
+
+Creates a more complete `SKILL.md` with structured sections:
+
+```markdown
+---
+name: my-skill
+description: A brief description
+tags: []
+---
+
+# my-skill
+
+## Overview
+
+...
+
+## Instructions
+
+...
+```
+
+### Path Template
+
+When `--template` points to an existing skill directory, the directory is copied and the `SKILL.md` front matter is updated with the new skill name.
+
+## Behavior
+
+### CLI Mode
+
+Interactive wizard that prompts for:
+1. Skill name
+2. Description
+3. Template selection
+4. Confirmation
+
+### Pure Mode
+
+Non-interactive. Requires `--name` and uses `--template` (defaults to `basic`). Outputs the created file path on success.
+
+### Current Directory
+
+If the target directory is the current working directory (`.`), no subdirectory is created — `SKILL.md` is placed directly.
+
+## Examples
+
+```bash
+# Interactive init
+ai-skills init
+
+# Quick init with all options
+ai-skills init --name my-skill --template basic --yes --pure
+
+# With description (CLI or pure)
+ai-skills init --name my-skill -d "My custom description" --template basic --pure
+
+# Init with advanced template
+ai-skills init --name my-skill --template advanced --pure
+
+# Init from existing skill as template
+ai-skills init --name new-skill --template /path/to/existing-skill --pure
+```
+
+## Pure Mode Output
+
+**Success:**
+```
+Created: /projects/my-skill/SKILL.md
+```
+
+**Error:**
+```
+Error: permission denied
+```

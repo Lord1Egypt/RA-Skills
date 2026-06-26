@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Deep Search"
+  short_description: "Search papers and synthesize methods, markers, and figures"
+  default_prompt: "Use $academic-deep-search to find representative papers on a topic and summarize the methods, markers, or figures with citations."

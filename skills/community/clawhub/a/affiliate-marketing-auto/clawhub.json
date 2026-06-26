@@ -1,0 +1,79 @@
+{
+  "name": "affiliate-marketing-pro",
+  "version": "1.0.1",
+  "description": "自动化联盟营销技能 - 高佣金产品发现、内容生成、链接追踪和收入分析",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "affiliate",
+    "marketing",
+    "automation",
+    "commission",
+    "passive-income",
+    "content-generation",
+    "analytics"
+  ],
+  "category": "marketing",
+  "price": {
+    "amount": 79,
+    "currency": "USD",
+    "billing": "monthly"
+  },
+  "main": "src/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": [
+    "axios",
+    "cheerio",
+    "node-fetch"
+  ],
+  "features": [
+    "高佣金产品发现",
+    "自动内容生成",
+    "链接追踪和管理",
+    "收入报告和分析"
+  ],
+  "platforms": [
+    "Amazon Associates",
+    "ShareASale",
+    "CJ Affiliate"
+  ],
+  "socialPlatforms": [
+    "Twitter",
+    "小红书",
+    "微博",
+    "Facebook",
+    "Instagram"
+  ],
+  "documentation": "README.md",
+  "examples": [
+    "examples/quick-start.js"
+  ],
+  "tests": [
+    "tests/test.js"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2024-03-15",
+      "changes": [
+        "初始版本发布",
+        "实现产品发现功能",
+        "实现内容生成功能",
+        "实现链接追踪功能",
+        "实现收入分析功能"
+      ]
+    }
+  },
+  "support": {
+    "email": "support@openclaw.ai",
+    "discord": "https://discord.gg/openclaw",
+    "docs": "https://docs.openclaw.ai/affiliate"
+  },
+  "screenshots": [],
+  "video": null,
+  "rating": null,
+  "downloads": 0,
+  "published": false
+}

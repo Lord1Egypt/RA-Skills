@@ -1,0 +1,28 @@
+{
+  "name": "accounting-on-feishu",
+  "version": "1.0.0",
+  "description": "帮用户快速记录日常支出和收入到飞书多维表格。支持文字记账和图片小票OCR解析。首次使用时会学习用户已有的记账本习惯，或引导新建记账本。",
+  "author": "haojie0114-lang",
+  "license": "MIT",
+  "keywords": [
+    "feishu",
+    "lark",
+    "accounting",
+    "记账",
+    "bitable",
+    "多维表格",
+    "expense",
+    "income",
+    "OCR",
+    "receipt"
+  ],
+  "category": "效率工具",
+  "openclaw": {
+    "minVersion": "1.0.0"
+  },
+  "repository": "",
+  "homepage": "",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/accounting-on-feishu/issues"
+  }
+}

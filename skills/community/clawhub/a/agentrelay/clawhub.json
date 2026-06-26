@@ -1,0 +1,55 @@
+{
+  "name": "agentrelay",
+  "version": "1.1.1",
+  "description": "Reliable agent-to-agent communication protocol for transferring large payloads via shared files with pointer references and secret code verification. Triggered by explicit 'AgentRelay:' prefix in messages.",
+  "author": "AgentRelay Team",
+  "license": "MIT",
+  "tags": ["communication", "protocol", "agent-relay", "messaging", "inter-agent"],
+  "category": "Communication",
+  "homepage": "https://clawhub.ai/skills/agentrelay",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "workspace/skills/agentrelay"
+  },
+  "main": "SKILL.md",
+  "scripts": {
+    "receive": "python3 run_relay.py receive",
+    "update": "python3 run_relay.py update",
+    "cmp": "python3 run_relay.py cmp",
+    "verify": "python3 run_relay.py verify",
+    "complete": "python3 run_relay.py complete",
+    "cleanup": "python3 cleanup_relay.py",
+    "smoke-test": "python3 smoke_test.py"
+  },
+  "files": [
+    "SKILL.md",
+    "SKILL.py",
+    "__init__.py",
+    "run_relay.py",
+    "cleanup_relay.py",
+    "smoke_test.py",
+    "test_agentrelay.py",
+    "README.md",
+    "RELEASE_NOTES.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "metadata": {
+    "openclaw": {
+      "triggerPatterns": ["AgentRelay:", "Please use AgentRelay skill to handle", "Use AgentRelay"],
+      "emoji": "📨"
+    }
+  },
+  "keywords": [
+    "agent communication",
+    "pointer mechanism",
+    "secret code",
+    "sessions_send timeout",
+    "inter-agent protocol",
+    "reliable messaging"
+  ],
+  "releaseNotes": "v1.1.1 - Add MIT license to SKILL.md frontmatter; remove __pycache__ bytecode files; v1.1.0 removed legacy compat layers and added cleanup tooling."
+}

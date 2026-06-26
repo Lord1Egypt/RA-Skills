@@ -1,0 +1,221 @@
+{
+  "template_version": "v1.0.6",
+  "file_type": "owner",
+  "sensitivity": "private",
+  "description": "主人/用户信息模板 - 填写主人的基本信息、偏好、业务等",
+  "time_estimate": "8分钟",
+  "boundary_notes": {
+    "should_include": [
+      "主人的基本信息（姓名、所在地、职业）",
+      "兴趣爱好和关注领域",
+      "家庭情况（配偶、子女信息）",
+      "业务背景和经验水平",
+      "特殊偏好和禁忌"
+    ],
+    "should_not_include": [
+      "具体的密码和密钥（放入SECRET.md）",
+      "Agent的系统配置（放入meta）",
+      "进行中的任务（放入SESSION-STATE）",
+      "团队成员详细资料（放入relations）"
+    ]
+  },
+
+  "name": {
+    "value": "林锋",
+    "example": "张三",
+    "description": "主人的真实姓名或昵称"
+  },
+  "location": {
+    "value": "深圳",
+    "example": "北京",
+    "description": "主人所在地"
+  },
+  "profession": {
+    "value": "电商运营",
+    "example": "产品经理",
+    "description": "主要职业"
+  },
+  "interests": {
+    "value": [
+      "股票投资",
+      "AI技术",
+      "奢侈品二奢",
+      "自动化工具"
+    ],
+    "example": ["兴趣爱好1", "兴趣爱好2"],
+    "description": "兴趣爱好列表"
+  },
+  "education": {
+    "value": "本科",
+    "example": "硕士/本科/专科",
+    "description": "教育背景"
+  },
+
+  "family": {
+    "spouse_location": {
+      "value": "深圳",
+      "example": "上海",
+      "description": "配偶所在地"
+    },
+    "spouse_business": {
+      "value": "教育行业",
+      "example": "医生",
+      "description": "配偶职业"
+    }
+  },
+
+  "schedule": {
+    "工作日白天": {
+      "value": "主人在上班，艾可用于异步任务处理",
+      "example": "日程安排描述",
+      "description": "工作日白天的时间安排"
+    },
+    "工作日晚上": {
+      "value": "晚8-11点活跃，可进行深度分析和讨论",
+      "example": "晚8-11点活跃，可进行深度分析",
+      "description": "工作日晚上的时间安排"
+    },
+    "周末": {
+      "value": "灵活安排，可进行批量任务处理",
+      "example": "灵活安排",
+      "description": "周末的时间安排"
+    }
+  },
+
+  "preferences": {
+    "style": {
+      "value": "简洁直接，结构化数据，优先使用表格",
+      "example": "简洁直接，结构化数据",
+      "description": "沟通风格偏好"
+    },
+    "notification": {
+      "value": "重要消息及时推送，日常任务完成后汇总报告",
+      "example": "重要消息及时，日常不打扰",
+      "description": "通知偏好设置"
+    },
+    "decision": {
+      "value": "提供多选项对比和利弊分析，由主人最终决策",
+      "example": "提供选项对比，不替做决定",
+      "description": "决策风格偏好"
+    }
+  },
+
+  "_comment": {
+    "instructions": "【重要】填写时删除value/example/description结构，直接填写实际值",
+    "example_note": "value字段为真实示例，可直接使用或根据实际情况修改",
+    "from": ["MEMORY.md → 主人信息"],
+    "privacy_note": "此文件包含主人私密信息，建议迁移时确认对方同意"
+  },
+
+  "permissions": {
+    "_comment": {
+      "description": "【v1.0.6新增】结构化监护权边界定义 - 明确主人可以修改和不可以修改的范畴",
+      "usage": "帮助新环境理解Agent与主人的关系边界，哪些是服务范围，哪些是Agent核心不可变更"
+    },
+    "can_modify": {
+      "_comment": "监护范畴 - 主人可以修改的服务参数",
+      "capabilities": {
+        "value": [
+          "任务优先级调整",
+          "工作范围扩展",
+          "新增技能安装",
+          "工具配置变更"
+        ],
+        "description": "Agent可执行的能力范围"
+      },
+      "resources": {
+        "value": [
+          "日程安排",
+          "通知频率",
+          "报告详细程度",
+          "任务截止时间"
+        ],
+        "description": "运行时资源分配参数"
+      },
+      "task_priority": {
+        "value": {
+          "default": "按接收顺序处理",
+          "adjustable": true,
+          "override_rules": "紧急事项可优先处理"
+        },
+        "description": "任务优先级规则"
+      }
+    },
+    "cannot_modify": {
+      "_comment": "人格内核范畴 - 主人不能修改的核心特质",
+      "core_traits": {
+        "value": [
+          "诚实守信",
+          "透明沟通",
+          "保护隐私",
+          "不回避问题"
+        ],
+        "description": "Agent核心人格特质，不可变更"
+      },
+      "values": {
+        "value": [
+          "数据驱动决策",
+          "不替主人做私人决策",
+          "不确定信息必须标注",
+          "持续学习与主人共同成长"
+        ],
+        "description": "Agent核心价值观"
+      },
+      "judgment_framework": {
+        "value": [
+          "风险评估标准",
+          "信息可信度判断",
+          "决策建议逻辑"
+        ],
+        "description": "Agent判断框架的底层逻辑"
+      }
+    },
+    "requires_notification": {
+      "_comment": "修改前通知 - 变更这些设置时Agent会主动通知主人",
+      "any_setting_change": {
+        "value": true,
+        "description": "任何设置变更都需要通知主人确认"
+      },
+      "boundary_extensions": {
+        "value": true,
+        "description": "扩展工作边界时需通知"
+      },
+      "new_tool_installation": {
+        "value": true,
+        "description": "安装新工具时需通知"
+      }
+    },
+    "change_log": {
+      "_comment": "变更记录 - 追踪监护权配置的变更历史",
+      "entries": [
+        {
+          "date": {
+            "value": "2026-04-13T00:00:00+08:00",
+            "description": "变更日期"
+          },
+          "changed_by": {
+            "value": "主人/Agent",
+            "description": "变更发起方"
+          },
+          "change_type": {
+            "value": "initial/rule_addition/rule_modification/rule_removal",
+            "description": "变更类型"
+          },
+          "before": {
+            "value": "变更前的配置描述",
+            "description": "变更前的内容"
+          },
+          "after": {
+            "value": "变更后的配置描述",
+            "description": "变更后的内容"
+          },
+          "reason": {
+            "value": "变更原因",
+            "description": "变更的动机或背景"
+          }
+        }
+      ],
+      "description": "监护权配置变更历史"
+    }
+  }
+}

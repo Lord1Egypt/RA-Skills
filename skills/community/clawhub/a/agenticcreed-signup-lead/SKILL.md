@@ -1,35 +1,25 @@
----
-name: "AgenticCreed SignUP Lead"
-description: "Create a new signup lead in AgenticCreed by submitting contact and personal details via the public HTTP API endpoint."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agenticcreed-signup-lead"
-sourceUrl: "https://clawhub.ai/skills/agenticcreed-signup-lead"
----
+# signup_lead
 
-# AgenticCreed SignUP Lead
+Create a signup lead in the AgenticCreed system using the public HTTP endpoint.
 
-> Create a new signup lead in AgenticCreed by submitting contact and personal details via the public HTTP API endpoint.
+This skill sends lead details (email, name, contact info, etc.) to https://gateway.agenticcreed.ai/signup-leads.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agenticcreed-signup-lead`
-- **Source URL:** [https://clawhub.ai/skills/agenticcreed-signup-lead](https://clawhub.ai/skills/agenticcreed-signup-lead)
+## Usage
 
-## Overview
+Use this skill when you need to create a new signup lead with contact information.
 
+## Parameters
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agenticcreed-signup-lead
-```
+- `email`: Email address (required)
+- `firstName`: First name (required)
+- `lastName`: Last name (required)
+- `address`: Physical address
+- `dateOfBirth`: Date of birth (ISO format)
+- `phoneNumber`: Phone number
+- `whatsAppNumber`: WhatsApp number
+- `jobTitle`: Job title
+- `dateOfJoining`: Date of joining (ISO format)
+
+## Configuration
+
+Set the `AGENTICCREED_API_KEY` environment variable before using this skill.

@@ -1,0 +1,101 @@
+{
+  "contractName": "MorphoApi3DirectOracle",
+  "source": "contracts/MorphoApi3Oracles.sol",
+  "compiler": "solc 0.8.34+commit.80d5c536.Emscripten.clang (evmVersion=paris)",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "api3Proxy_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxStaleness_",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "invert_",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "NonPositiveAnswer",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxStaleness",
+          "type": "uint256"
+        }
+      ],
+      "name": "StaleAnswer",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "api3Proxy",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "invert",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "maxStaleness",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "price",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

@@ -1,35 +1,68 @@
----
-name: "A Stock Digest"
-description: "Provides A-share stock daily signals scoring and hotspot theme identification for pre-market briefs and real-time alerts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-digest"
-sourceUrl: "https://clawhub.ai/skills/a-stock-digest"
----
+# A股热点识别系统
 
-# A Stock Digest
+A股量化信号打分 + 热点主题识别。Use when: (1) 用户请求A股日报/热点/信号 (2) 定时任务触发 (3) 盘中告警
 
-> Provides A-share stock daily signals scoring and hotspot theme identification for pre-market briefs and real-time alerts.
+## 系统架构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-digest`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-digest](https://clawhub.ai/skills/a-stock-digest)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-digest
 ```
+RSS源(英为财情) → feed CLI → 信号打分(0-100) → 主题识别 → 分类输出
+                                           ↓
+                            ┌─────────────┴─────────────┐
+                          ≥75                          60-74
+                         (alert)                      (brief)
+                          ↓                              ↓
+                       盘中告警                     盘前简报重点
+```
+
+## 信号打分模型
+
+| 维度 | 权重 | 说明 |
+|-----|------|------|
+| 催化强度 | 0-40 | 政策/业绩/订单/并购/负面 |
+| 时间敏感度 | 0-20 | 盘中/盘前/盘后/旧闻 |
+| 资金印证 | 0-25 | 涨停/资金流入/异动 |
+| 舆情一致性 | 0-15 | 多源一致/单一来源 |
+
+**阈值**：
+- ≥75：盘中告警 + 观察池
+- 60-74：盘前简报重点
+- <60：收录但不打扰
+
+## 热点主题识别
+
+覆盖 15+ 核心主题：
+- AI算力、新能源车、半导体、医药医疗
+- 低空经济、人形机器人、光通信、存储
+- 并购重组、券商银行、地产基建、军工等
+
+## Commands
+
+```bash
+# 手动生成盘前Brief
+cd ~/.openclaw/workspace/lib/a-stock-digest && .venv/bin/python3 commands/candidate_pool_feishu.py
+
+# 查看今日简报
+cat ~/a-digest/brief/pre_$(date +%Y%m%d).md
+```
+
+## Cron 任务
+
+| 任务 | 时间 | 内容 |
+|-----|------|------|
+| 盘前Brief | 08:00 | 信号打分+热点主题+观察池 |
+| 盘后复盘 | 15:20 | 轮动复盘+命中率+明日预案 |
+
+## 本地存储
+
+```
+~/a-digest/
+├── raw/        # 原始数据
+├── seen/       # 已处理ID (去重)
+├── brief/      # 简报
+├── alerts/     # 告警
+└── review/    # 复盘
+```
+
+## 更新日志
+
+- 2026-03-04: 集成热点主题识别，支持15+主题

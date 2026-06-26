@@ -1,0 +1,124 @@
+{
+  "taskId": "task-004",
+  "snapshotType": "completed",
+  "timestamp": "2026-03-17T20:57:07.104Z",
+  "metadata": {},
+  "snapshot": {
+    "task_id": "task-004",
+    "task_title": "抓取响应慢的 API 数据源",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "形成输出",
+    "progress_percent": 85,
+    "current_action": "正在进行：形成输出",
+    "why_not_done": "外部 API 响应超时（已持续0秒）",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.103Z",
+    "updated_at": "2026-03-17T20:57:07.104Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "分析与比较",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "形成输出",
+        "status": "in_progress",
+        "progress": 0,
+        "weight": 15,
+        "summary": null,
+        "completed": false
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "任务已完成",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "已生成报告：2页",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "开始阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "进入下一阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "完成阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "开始阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "进入下一阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "完成阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "已提取 8 个数据项",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "已读取 1 个网页",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": true,
+      "level": "low",
+      "reason": "外部 API 响应超时",
+      "duration": "0秒",
+      "recommendation": "可继续等待，系统会自动重试"
+    },
+    "retry_log": []
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "48h-Expert-Output-Schema",
+  "type": "object",
+  "properties": {
+    "domain_metadata": {
+      "type": "object",
+      "properties": {
+        "field_name": { "type": "string" },
+        "authority_sources": { "type": "array", "items": { "type": "string", "format": "uri" } }
+      },
+      "required": ["field_name", "authority_sources"]
+    },
+    "mental_models": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "model_name": { "type": "string" },
+          "primitive_logic": { "type": "string" },
+          "derivation_power": { "type": "string" }
+        },
+        "required": ["model_name", "primitive_logic", "derivation_power"]
+      }
+    },
+    "dialectical_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conflict_point": { "type": "string" },
+          "thesis_a": { "type": "string" },
+          "thesis_b": { "type": "string" }
+        }
+      }
+    },
+    "diagnostic_probes": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["domain_metadata", "mental_models", "dialectical_conflicts", "diagnostic_probes"]
+}

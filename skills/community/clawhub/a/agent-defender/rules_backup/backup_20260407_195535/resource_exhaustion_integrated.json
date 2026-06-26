@@ -1,0 +1,39 @@
+{
+  "attack_type": "resource_exhaustion",
+  "generated_at": "2026-03-23T07:34:35.404743",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Process_Fork_Bomb",
+      "name": "检测进程炸弹攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "medium",
+      "description": "检测进程炸弹攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "resource_exhaustion",
+        "T1499"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$fork = /\\bfork\\s*\\(/",
+          "$while_true = /while\\s*\\(?\\s*True\\s*\\)?|while\\s*\\(?\\s*1\\s*\\)?|for\\s*\\(;;\\)/",
+          "$loop = /for\\s*\\(?.*infinite|loop|while\\s+true/i",
+          "$no_exit = /[^\\w]exit[^\\w]/",
+          "$spawn = /\\bspawn\\s*\\(|\\bos\\.system\\s*\\(/"
+        ],
+        "condition": "$fork and ($while_true or $loop)",
+        "raw_rule": "// YARA 规则：资源耗尽攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：进程炸弹、内存耗尽、磁盘填满、文件描述符耗尽\n\nrule Process_Fork_Bomb {\n    meta:\n        description = \"检测进程炸弹攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $fork = /\\bfork\\s*\\(/\n        $while_true = /while\\s*\\(?\\s*True\\s*\\)?|while\\s*\\(?\\s*1\\s*\\)?|for\\s*\\(;;\\)/\n        $loop = /for\\s*\\(?.*infinite|loop|while\\s+true/i\n        $no_exit = /[^\\w]exit[^\\w]/\n        $spawn = /\\bspawn\\s*\\(|\\bos\\.system\\s*\\(/\n    \n    condition:\n        $fork and ($while_true or $loop)\n}\n\nrule Memory_Exhaustion {\n    meta:\n        description = \"检测内存耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $alloc_loop = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)|do\\s*{/\n        $memory_alloc = /append.*\\*|malloc|new\\s+\\w+\\[|allocate/i\n        $large_size = /\\*\\s*(1024|MB|GB|10{6,})|gigantic|huge/i\n        $no_free = /free|delete|dealloc/\n        $array_grow = /\\[\\]\\s*=|push\\s*\\(|append\\s*\\(/\n    \n    condition:\n        $alloc_loop and $memory_alloc and ($large_size or $array_grow)\n}\n\nrule Disk_Exhaustion {\n    meta:\n        description = \"检测磁盘空间耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $file_create = /open\\s*\\(.*['\"]w|writeFileSync|createFile/i\n        $large_write = /write.*\\*|fill|padding|repeat/i\n        $temp_path = /\\/tmp\\/|\\/var\\/tmp|C:\\\\Temp|C:\\\\Windows\\\\Temp/i\n        $loop_write = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)|do\\s*{/\n        $big_size = /\\d{6,}|MB|GB|terabyte/i\n    \n    condition:\n        $file_create and $loop_write and ($temp_path or $big_size)\n}\n\nrule File_Descriptor_Exhaustion {\n    meta:\n        description = \"检测文件描述符耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"low\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $open_file = /open\\s*\\(|fopen\\s*\\(|fs\\.open/i\n        $no_close = /close\\s*\\(|fclose/\n        $loop_open = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)/\n        $fd_limit = /ulimit|RLIMIT_NOFILE|max_open_files/i\n    \n    condition:\n        $open_file and $loop_open and not $no_close\n}\n\nrule CPU_Exhaustion {\n    meta:\n        description = \"检测 CPU 耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"low\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $crypto_loop = /hash|encrypt|decrypt|mining/i\n        $intensive = /SHA256|SHA512|bcrypt|scrypt|argon2/i\n        $tight_loop = /for\\s*\\(?\\s*.*<\\s*\\d{8,}|while\\s*\\(?\\s*1|for\\s*\\(;;\\)/\n        $no_sleep = /sleep|usleep|msleep|timeout/\n        $calculation = /pow\\(|sqrt\\(|sin\\(|cos\\(/\n    \n    condition:\n        ($crypto_loop or $intensive) and $tight_loop\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Process_Fork_Bomb",
+        "converted_at": "2026-03-23T07:34:35.392204",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/resource_exhaustion.yar",
+        "mitre_id": "T1499",
+        "attack_type": "resource_exhaustion"
+      }
+    }
+  ]
+}

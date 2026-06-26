@@ -1,0 +1,23 @@
+{
+  "name": "a11y-label-audit",
+  "tagline": "扫描 React/TSX 组件缺失的无障碍标签并自动修复，覆盖 7 大类规则与跨平台兼容性检测",
+  "description": "自动扫描 React / TSX / HTML 项目中缺失或错误的无障碍（a11y）标注，并提供一键修复。检测范围覆盖纯图标按钮缺少 aria-label、div/span 模拟按钮缺少 role 和键盘交互、图片缺少有意义的 alt 文本、表单元素缺少 label 关联、弹窗缺少 aria-modal 和焦点管理、动态内容缺少 aria-live 等 6 大核心规则。\n\n此外，针对跨平台场景提供第 7 类兼容性规则，涵盖 Tauri 桌面端（WKWebView/WebView2/WebKitGTK）、微信/QQ 内置浏览器（X5 内核）、Chrome 扩展、小程序 WebView 等不同引擎对 ARIA 属性和焦点管理的支持差异。\n\n适用于任何使用 React、Next.js、TDesign 或自定义组件库的前端项目，帮助团队快速达到 WCAG 2.1 Level AA 合规标准。",
+  "category": "development",
+  "tags": [
+    "accessibility",
+    "a11y",
+    "aria",
+    "wcag",
+    "react",
+    "typescript",
+    "audit",
+    "auto-fix",
+    "screen-reader",
+    "cross-platform"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/nicekimo/a11y-label-audit/issues",
+  "homepage": "https://github.com/nicekimo/a11y-label-audit"
+}

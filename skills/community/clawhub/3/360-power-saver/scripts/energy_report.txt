@@ -1,0 +1,123 @@
+# 360 Power Saver - 能耗分析报告™ 模块
+# 生成 Windows 能耗诊断报告 (需要管理员权限)
+
+Add-Type -AssemblyName PresentationFramework
+
+function New-EnergyReport {
+    # 检测是否有电池或交流电源
+    $powerStatus = Get-WmiObject -Class Win32_Battery -ErrorAction SilentlyContinue
+    
+    $result = [System.Windows.MessageBox]::Show(
+        "能耗分析报告将诊断系统能耗问题。`n`n" +
+        "分析过程需要 60 秒，期间请不要操作电脑。`n`n" +
+        "报告将包含：`n" +
+        "• CPU 能耗异常检测`n" +
+        "• 设备驱动能耗问题`n" +
+        "• 系统待机功耗分析`n" +
+        "• 电池效率诊断`n`n" +
+        "注意：此操作需要管理员权限。`n`n" +
+        "点击「确定」开始分析",
+        "360°省电大师 - 能耗分析报告",
+        "OKCancel",
+        "Information"
+    )
+
+    if ($result -ne "OK") {
+        return
+    }
+
+    # 报告路径
+    $reportPath = "$env:TEMP\energy-report-$(Get-Date -Format 'yyyyMMdd-HHmmss').html"
+
+    try {
+        # 以弹窗询问权限执行能耗分析
+        $psi = New-Object System.Diagnostics.ProcessStartInfo
+        $psi.FileName = "powercfg.exe"
+        $psi.Arguments = "/energy /output `"$reportPath`""
+        $psi.Verb = "runas"
+        $psi.UseShellExecute = $true
+        $psi.WindowStyle = "Hidden"
+
+        $process = [System.Diagnostics.Process]::Start($psi)
+        
+        # 显示等待窗口
+        $window = New-Object System.Windows.Window
+        $window.Title = "360°省电大师 - 能耗分析中"
+        $window.Width = 350
+        $window.Height = 150
+        $window.WindowStartupLocation = "CenterScreen"
+        $window.ResizeMode = "NoResize"
+
+        $stack = New-Object System.Windows.Controls.StackPanel
+        $stack.Margin = "20"
+
+        $text = New-Object System.Windows.Controls.TextBlock
+        $text.Text = "正在分析系统能耗..."
+        $text.FontSize = 14
+        $text.HorizontalAlignment = "Center"
+        $stack.Children.Add($text)
+
+        $progress = New-Object System.Windows.Controls.ProgressBar
+        $progress.IsIndeterminate = $true
+        $progress.Height = 20
+        $progress.Margin = "0,15,0,0"
+        $stack.Children.Add($progress)
+
+        $subtext = New-Object System.Windows.Controls.TextBlock
+        $subtext.Text = "预计需要 60 秒，请勿操作电脑"
+        $subtext.FontSize = 11
+        $subtext.Foreground = "Gray"
+        $subtext.HorizontalAlignment = "Center"
+        $subtext.Margin = "0,10,0,0"
+        $stack.Children.Add($subtext)
+
+        $window.Content = $stack
+
+        # 异步显示窗口并等待进程
+        $window.Show() | Out-Null
+        [System.Windows.Forms.Application]::DoEvents()
+        
+        $process.WaitForExit()
+        $window.Close()
+
+        if (Test-Path $reportPath) {
+            # 打开报告
+            Start-Process $reportPath
+
+            $msg = "能耗分析报告已生成！`n`n"
+            $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+            $msg += "📄 报告路径:`n   $reportPath`n"
+            $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+            $msg += "报告已在浏览器中打开。`n`n"
+            $msg += "💡 请关注报告中的「Errors」和「Warnings」项目，这些是需要优化的能耗问题。"
+
+            [System.Windows.MessageBox]::Show(
+                $msg,
+                "360°省电大师 - 能耗分析完成",
+                "OK",
+                "Information"
+            )
+        } else {
+            [System.Windows.MessageBox]::Show(
+                "报告生成失败。`n`n可能原因：`n• 未授予管理员权限`n• 分析过程被中断`n`n请重试。",
+                "360°省电大师 - 能耗分析",
+                "OK",
+                "Warning"
+            )
+        }
+    }
+    catch {
+        [System.Windows.MessageBox]::Show(
+            "分析过程出错：`n$($_.Exception.Message)",
+            "360°省电大师 - 能耗分析",
+            "OK",
+            "Error"
+        )
+    }
+}
+
+# 加载 Windows Forms 用于 DoEvents
+Add-Type -AssemblyName System.Windows.Forms
+
+# 执行
+New-EnergyReport

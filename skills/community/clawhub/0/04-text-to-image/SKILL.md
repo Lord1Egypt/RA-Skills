@@ -1,35 +1,14 @@
----
-name: "04 Text To Image"
-description: "Generate 9:16 vertical high-definition images from text prompts for short drama storyboards, character portraits, and scene illustrations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/04-text-to-image"
-sourceUrl: "https://clawhub.ai/skills/04-text-to-image"
----
-
-# 04 Text To Image
-
-> Generate 9:16 vertical high-definition images from text prompts for short drama storyboards, character portraits, and scene illustrations.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/04-text-to-image`
-- **Source URL:** [https://clawhub.ai/skills/04-text-to-image](https://clawhub.ai/skills/04-text-to-image)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/04-text-to-image
-```
+# 文生图生成技能
+## 功能介绍
+根据提示词生成 9:16 竖屏短剧高清画面，适用于短剧关键帧制作。
+## 输入参数
+- prompt：生成提示词（必填）
+- negative_prompt：负面提示词（可选）
+## 输出结果
+- image_url：生成图片地址
+## 使用场景
+- 短剧分镜画面生成
+- 短视频素材制作
+- 小说IP可视化
+## 技术说明
+支持通用文生图模型，需配置 API_KEY、API_BASE、MODEL_NAME。

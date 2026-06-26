@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Zeno FM (Various)",
+    "url": "https://stream.zeno.fm/0r0xa792kwzuv"
+  },
+  {
+    "name": "BBC Radio 1",
+    "url": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p"
+  },
+  {
+    "name": "Jazz 24 (KNKX)",
+    "url": "https://live.wostreaming.net/playlist/jazz24/jazz24.aac/playlist.m3u8"
+  },
+  {
+    "name": "Classic FM",
+    "url": "https://media-ice.musicradio.com/ClassicFMMP3"
+  },
+  {
+    "name": "DI.FM - Trance",
+    "url": "https://premieradio.streamguys1.com/di_trance"
+  },
+  {
+    "name": "SomaFM - Groove Salad",
+    "url": "https://ice5.somafm.com/groovesalad-128"
+  },
+  {
+    "name": "Radio Paradise",
+    "url": "https://stream.radioparadise.com/mp3-192"
+  },
+  {
+    "name": "KEXP",
+    "url": "https://kexp-mp3-128.streamguys1.com/kexp128.mp3"
+  }
+]

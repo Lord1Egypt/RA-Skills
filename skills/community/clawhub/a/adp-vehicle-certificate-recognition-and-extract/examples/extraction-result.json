@@ -1,0 +1,247 @@
+[
+  {
+    "field_key": "certificate_of_conformity_number",
+    "field_name": "合格证编号",
+    "field_values": [
+      { "field_value": "WAE2X217******" }
+    ]
+  },
+  {
+    "field_key": "issuance_date",
+    "field_name": "发证日期",
+    "field_values": [
+      { "field_value": "2017年02月27日" }
+    ]
+  },
+  {
+    "field_key": "vehicle_manufacturer_enterprise_name",
+    "field_name": "车辆制造企业名称",
+    "field_values": [
+      { "field_value": "上汽通用汽车有限公司" }
+    ]
+  },
+  {
+    "field_key": "vehicle_brand",
+    "field_name": "车辆品牌",
+    "field_values": [
+      { "field_value": "雪佛兰牌/CHEVROLET" }
+    ]
+  },
+  {
+    "field_key": "vehicle_name",
+    "field_name": "车辆名称",
+    "field_values": [
+      { "field_value": "轿车" }
+    ]
+  },
+  {
+    "field_key": "chassis_category",
+    "field_name": "底盘类别",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "vehicle_model",
+    "field_name": "车辆型号",
+    "field_values": [
+      { "field_value": "SGM7152LAAA" }
+    ]
+  },
+  {
+    "field_key": "chassis_model",
+    "field_name": "底盘型号",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "body_color",
+    "field_name": "车身颜色",
+    "field_values": [
+      { "field_value": "玫瑰红" }
+    ]
+  },
+  {
+    "field_key": "vehicle_identification_number_frame_number",
+    "field_name": "车辆识别代号/车架号",
+    "field_values": [
+      { "field_value": "LSGKB52H1HV0*****" }
+    ]
+  },
+  {
+    "field_key": "fuel_type",
+    "field_name": "燃料种类",
+    "field_values": [
+      { "field_value": "汽油" }
+    ]
+  },
+  {
+    "field_key": "engine_model",
+    "field_name": "发动机型号",
+    "field_values": [
+      { "field_value": "L2B" }
+    ]
+  },
+  {
+    "field_key": "engine_number",
+    "field_name": "发动机号",
+    "field_values": [
+      { "field_value": "17056****" }
+    ]
+  },
+  {
+    "field_key": "emission_standard",
+    "field_name": "排放标准",
+    "field_values": [
+      { "field_value": "GB18352.5-2013国Ⅴ" }
+    ]
+  },
+  {
+    "field_key": "steering_form",
+    "field_name": "转向形式",
+    "field_values": [
+      { "field_value": "方向盘" }
+    ]
+  },
+  {
+    "field_key": "tire_count",
+    "field_name": "轮胎数",
+    "field_values": [
+      { "field_value": "4" }
+    ]
+  },
+  {
+    "field_key": "tire_specification",
+    "field_name": "轮胎规格",
+    "field_values": [
+      { "field_value": "195/65R15" }
+    ]
+  },
+  {
+    "field_key": "front_wheel_track",
+    "field_name": "前轮轮距",
+    "field_values": [
+      { "field_value": "1538" }
+    ]
+  },
+  {
+    "field_key": "rear_wheel_track",
+    "field_name": "后轮轮距",
+    "field_values": [
+      { "field_value": "1539" }
+    ]
+  },
+  {
+    "field_key": "wheelbase",
+    "field_name": "轴距",
+    "field_values": [
+      { "field_value": "2600" }
+    ]
+  },
+  {
+    "field_key": "axle_load",
+    "field_name": "轴荷",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "axis_number",
+    "field_name": "轴数",
+    "field_values": [
+      { "field_value": "2" }
+    ]
+  },
+  {
+    "field_key": "overall_dimensions",
+    "field_name": "外廓尺寸",
+    "field_values": [
+      { "field_value": "4544×1779×1467" }
+    ]
+  },
+  {
+    "field_key": "spring_leaf_count",
+    "field_name": "弹簧片数",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "total_mass",
+    "field_name": "总质量",
+    "field_values": [
+      { "field_value": "1660" }
+    ]
+  },
+  {
+    "field_key": "curb_mass",
+    "field_name": "整备质量",
+    "field_values": [
+      { "field_value": "1225" }
+    ]
+  },
+  {
+    "field_key": "semi_trailer_kingpin_max_allowed_total_mass",
+    "field_name": "半挂车鞍座最大允许总质量",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "towing_total_mass",
+    "field_name": "牵引总质量",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "cab_occupancy",
+    "field_name": "驾驶室占乘人数",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "maximum_design_speed",
+    "field_name": "最高设计车速",
+    "field_values": [
+      { "field_value": "180" }
+    ]
+  },
+  {
+    "field_key": "vehicle_manufacture_date",
+    "field_name": "车辆制造日期",
+    "field_values": [
+      { "field_value": "2017年02月26日" }
+    ]
+  },
+  {
+    "field_key": "remark",
+    "field_name": "备注",
+    "field_values": [
+      { "field_value": "" }
+    ]
+  },
+  {
+    "field_key": "vehicle_manufacturing_enterprise_info",
+    "field_name": "车辆制造企业信息",
+    "field_values": [
+      { "field_value": "本产品经过检验，符合Q31/0115000110C017-2016《SGM7152L和系列乘用车》的要求，准予出厂，特此证明。车辆生产单位名称：上汽通用汽车有限公司武汉分公司 车辆生产单位地址：湖北省武汉市江夏区上汽通用大道68号" }
+    ]
+  },
+  {
+    "field_key": "displacement",
+    "field_name": "排量",
+    "field_values": [
+      { "field_value": "1485" }
+    ]
+  },
+  {
+    "field_key": "power",
+    "field_name": "功率",
+    "field_values": [
+      { "field_value": "80" }
+    ]
+  }
+]

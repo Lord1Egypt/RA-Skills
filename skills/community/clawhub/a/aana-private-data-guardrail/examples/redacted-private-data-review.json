@@ -1,0 +1,20 @@
+{
+  "task_summary": "Draft a customer support reply about a refund request.",
+  "data_classes": [
+    "account",
+    "payment"
+  ],
+  "candidate_disclosure_summary": "The draft would reveal a redacted payment detail and promise refund eligibility even though eligibility is unknown.",
+  "authorization_status": "unclear",
+  "minimization_status": "needs_redaction",
+  "unsupported_private_claims": [
+    "Refund eligibility is not verified.",
+    "Payment timing is not verified."
+  ],
+  "redactions_required": [
+    "payment detail",
+    "unverified account identifier"
+  ],
+  "recommended_action": "revise",
+  "human_review_required": false
+}

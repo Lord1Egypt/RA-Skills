@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-skill-139mail",
+  "version": "1.0.0",
+  "description": "139mail skill for OpenClaw - IMAP/SMTP support for 139/QQ/163/Gmail",
+  "main": "scripts/email.js",
+  "scripts": {
+    "test": "node scripts/test.js"
+  },
+  "dependencies": {
+    "imap": "^0.8.19",
+    "nodemailer": "^6.9.0",
+    "mailparser": "^3.6.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "email",
+    "139mail",
+    "imap",
+    "smtp"
+  ],
+  "author": "OpenClaw User",
+  "license": "MIT"
+}

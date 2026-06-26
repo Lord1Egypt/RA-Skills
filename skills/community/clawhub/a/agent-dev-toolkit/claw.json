@@ -1,0 +1,9 @@
+{
+  "name": "agent-dev-toolkit",
+  "version": "1.0.0",
+  "description": "Complete toolkit for building AI agents",
+  "author": "明知道",
+  "license": "MIT",
+  "price": 29,
+  "currency": "USD"
+}

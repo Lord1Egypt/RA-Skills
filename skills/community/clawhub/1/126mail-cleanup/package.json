@@ -1,0 +1,13 @@
+{
+  "name": "126mail-cleanup",
+  "version": "1.0.0",
+  "description": "Clean up, back up, and optimize your NetEase 126.com email account via IMAP.",
+  "license": "MIT",
+  "openclaw": {
+    "skill": "SKILL.md",
+    "commands": ["/126mail"],
+    "requires": {
+      "bins": ["python3"]
+    }
+  }
+}

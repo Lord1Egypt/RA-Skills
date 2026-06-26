@@ -1,35 +1,118 @@
 ---
-name: "Agent Memory Keeper"
-description: "AI Agent记忆修复系统。解决每次会话失忆问题——自动复盘对话、提炼关键信息存入长期记忆、下次会话自动加载。 适用于所有OpenClaw Agent，让Agent记住用户偏好、项目进展、技术决策、重要信息。 触发词：记忆、忘了、之前说过、记录一下、帮我记、你还记得"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, memory, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-keeper"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-keeper"
+name: agent-memory-keeper
+description: >
+  AI Agent记忆修复系统。解决每次会话失忆问题——自动复盘对话、提炼关键信息存入长期记忆、下次会话自动加载。
+  适用于所有OpenClaw Agent，让Agent记住用户偏好、项目进展、技术决策、重要信息。
+  触发词：记忆、忘了、之前说过、记录一下、帮我记、你还记得
 ---
 
-# Agent Memory Keeper
+# Agent Memory Keeper · AI Agent 记忆修复系统
 
-> AI Agent记忆修复系统。解决每次会话失忆问题——自动复盘对话、提炼关键信息存入长期记忆、下次会话自动加载。 适用于所有OpenClaw Agent，让Agent记住用户偏好、项目进展、技术决策、重要信息。 触发词：记忆、忘了、之前说过、记录一下、帮我记、你还记得
+> **为什么需要这个？** 每次新会话AI都是一张白纸。你以为它"应该记得"的事情，它全忘了。
+> 这个Skill让Agent学会——**写下来才算数**。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-keeper`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-keeper](https://clawhub.ai/skills/agent-memory-keeper)
+## 核心功能
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| **自动复盘** | 对话结束时自动分析 → 提炼关键信息 → 写入长期记忆 |
+| **记忆加载** | 新会话启动时自动加载最近记忆 + 检查更新 |
+| **知识检索** | 随时搜索历史记忆，不再说"我不记得了" |
+| **记忆归档** | 定期清理过期记忆，保持知识库精炼 |
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 安装
+
 ```bash
-hermes skills install clawhub/agent-memory-keeper
+cp -r agent-memory-keeper ~/.openclaw/workspace/skills/agent-memory-keeper
 ```
+
+### 初始化记忆结构
+
+告诉你的Agent：
+```
+帮我初始化记忆系统，创建 memory/ 目录和基础结构
+```
+
+### 日常使用
+
+对话结束时，Agent会自动执行复盘。你也可以手动触发：
+```
+复盘一下这次对话，把重要的记下来
+帮我查一下之前关于XXX的记录
+把这件事记下来：...
+```
+
+## 工作流程
+
+### 1. 对话复盘（自动）
+
+每次对话结束时执行：
+
+```markdown
+## 复盘清单
+1. 有没有新的决策/方向变化？ → 记录到MEMORY.md
+2. 有没有新项目/术语？ → 写进对应文件
+3. 用户有没有给反馈/批评？ → 提炼规则，更新规则库
+4. 有哪些信息可以跨领域推导？ → 做知识裂变
+5. 有没有用户偏好/习惯？ → 记录到USER.md
+```
+
+### 2. 记忆结构
+
+```
+workspace/
+├── MEMORY.md              # 长期记忆（手动维护的精华）
+├── USER.md                # 用户信息
+├── memory/
+│   ├── YYYY-MM-DD.md      # 每日原始日志
+│   ├── heartbeat-state.json
+│   └── knowledge/         # 知识节点
+│       ├── rules/
+│       │   └── rules.md   # 行为规则库
+│       └── *.md           # 领域知识
+└── TOOLS.md               # 工具笔记
+```
+
+### 3. 记忆检索
+
+需要回忆时：
+```
+搜索记忆：关键词
+# 或
+查一下之前关于[主题]的记录
+```
+
+### 4. 记忆维护
+
+定期执行：
+```
+检查记忆状态 → 清理过期信息 → 合并重复条目 → 提炼精华到MEMORY.md
+```
+
+## 最佳实践
+
+### ✅ 应该记住的
+- 用户的名字、称呼、偏好
+- 项目的状态、决策、技术选型
+- 错误教训和修复方案
+- 重要的时间和日期
+- 用户的批评和反馈
+
+### ❌ 不需要记的
+- 日常问候
+- 临时性、一次性对话
+- 已经完成的任务细节（记结论就行）
+
+## 适用场景
+
+- **开发者**：让Agent记住项目架构、技术决策、bug修复方案
+- **内容创作者**：记住内容风格、受众偏好、已发布的主题
+- **团队协作**：多Agent共享知识库，信息不掉队
+- **个人助理**：记住日程、偏好、重要信息
+
+## 参考文档
+
+- 记忆规则: `references/memory-rules.md`
+- 复盘模板: `references/review-template.md`

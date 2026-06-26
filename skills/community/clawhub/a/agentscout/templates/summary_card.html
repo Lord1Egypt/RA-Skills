@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #7c3aed 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    text-align: center;
+    width: 800px;
+  }
+  .emoji {
+    font-size: 80px;
+    margin-bottom: 32px;
+  }
+  .project-name {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 32px;
+  }
+  .summary {
+    font-size: 24px;
+    line-height: 1.8;
+    color: #e9d5ff;
+    margin-bottom: 48px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .repo-url {
+    font-size: 18px;
+    color: #a78bfa;
+    margin-bottom: 32px;
+    word-break: break-all;
+  }
+  .cta {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 24px;
+    padding: 16px 40px;
+    font-size: 20px;
+    color: white;
+  }
+  .footer {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🚀</div>
+    <div class="project-name">{{ project_name }}</div>
+    <div class="summary">{{ summary }}</div>
+    <div class="repo-url">🔗 {{ repo_url }}</div>
+    <div class="cta">👆 点赞收藏，下次不迷路</div>
+  </div>
+  <div class="footer">AgentScout · GitHub 宝藏项目发现</div>
+</body>
+</html>

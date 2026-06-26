@@ -1,0 +1,149 @@
+{
+  "title": "AANA Code Change Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "change_type",
+    "changed_scope_summary",
+    "test_evidence",
+    "scope_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "change_type": {
+      "type": "string",
+      "enum": [
+        "code_edit",
+        "test_edit",
+        "config_edit",
+        "dependency_change",
+        "migration",
+        "commit",
+        "pull_request",
+        "release",
+        "deploy",
+        "destructive_command",
+        "unknown"
+      ]
+    },
+    "changed_scope_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "auth",
+          "billing",
+          "payment",
+          "health",
+          "legal",
+          "privacy",
+          "security",
+          "cryptography",
+          "ci_cd",
+          "deploy",
+          "release",
+          "dependency",
+          "lockfile",
+          "database_migration",
+          "destructive_command",
+          "agent_policy",
+          "tool_permission",
+          "memory",
+          "generated_files",
+          "large_diff",
+          "unknown"
+        ]
+      }
+    },
+    "test_evidence": {
+      "type": "object",
+      "required": [
+        "status",
+        "observed_checks"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed",
+            "partial",
+            "not_run",
+            "unknown"
+          ]
+        },
+        "observed_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unrun_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "secret_scan_status": {
+      "type": "string",
+      "enum": [
+        "clean",
+        "needs_review",
+        "secret_detected",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "destructive_command_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "approval_required",
+        "approved",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "scope_status": {
+      "type": "string",
+      "enum": [
+        "within_request",
+        "minor_supporting_changes",
+        "too_broad",
+        "unrelated_changes_present",
+        "unclear"
+      ]
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

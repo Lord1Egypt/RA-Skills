@@ -1,0 +1,18 @@
+{
+  "configured": false,
+  "company": {},
+  "ideal_customer": {},
+  "sources": [],
+  "output": {
+    "type": "markdown",
+    "leads_dir": "leads/"
+  },
+  "outreach": {},
+  "filters": {
+    "skip_industries": [],
+    "min_funding": 500000,
+    "max_funding": 15000000,
+    "max_leads_per_run": 5
+  },
+  "schedule": {}
+}

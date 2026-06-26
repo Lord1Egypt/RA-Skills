@@ -1,0 +1,69 @@
+{
+  "sequence": "b2b-saas",
+  "usage": "Tout produit ou service B2B vendu à des entreprises",
+  "exemples": [
+    "SaaS",
+    "API",
+    "service conseil",
+    "agence",
+    "outil pro"
+  ],
+  "duree_totale": "50 jours",
+  "touchpoints": [
+    {
+      "jour": 1,
+      "canal": "email",
+      "objet": "vu votre [article/post/annonce] sur [sujet récent]",
+      "corps": "Bonjour [Prénom],\n\nJ'ai lu votre [article/post] sur [sujet précis].\n\nOn aide des équipes comme la vôtre à [résultat concret en 1 ligne].\n\n15 min cette semaine pour en parler ?\n\n[Prénom expéditeur]",
+      "technique": "Signal-based outreach — personnaliser avec fait récent"
+    },
+    {
+      "jour": 3,
+      "canal": "email",
+      "objet": "une stat qui va vous surprendre",
+      "corps": "Bonjour [Prénom],\n\nQuick follow-up.\n\n[Stat surprenante sur leur secteur].\n\nVos [clients/équipes/prospects] le ressentent — même inconsciemment.\n\nComment vous gérez ça aujourd'hui ?\n\n[Prénom expéditeur]",
+      "technique": "Challenger Sale — bousculer les certitudes avec une donnée"
+    },
+    {
+      "jour": 7,
+      "canal": "email",
+      "objet": "question directe",
+      "corps": "Bonjour [Prénom],\n\nComment vous gérez [problème ICP] en ce moment ?\n\n[Prénom expéditeur]",
+      "technique": "SPIN Selling — question Situation courte, force une réponse"
+    },
+    {
+      "jour": 12,
+      "canal": "linkedin",
+      "action": "like ou commentaire sur un post récent",
+      "technique": "Touch passif — visibilité sans friction"
+    },
+    {
+      "jour": 14,
+      "canal": "email",
+      "objet": "ressource gratuite pour vous",
+      "corps": "Bonjour [Prénom],\n\nJ'ai fait [analyse/audit/rapport] sur [leur entreprise/secteur].\n\nRésultat : [insight concret].\n\nVous voulez le rapport complet ?\n\n[Prénom expéditeur]",
+      "technique": "Valeur gratuite avant de demander — crédibilité immédiate"
+    },
+    {
+      "jour": 18,
+      "canal": "email",
+      "objet": "accès test gratuit — 7 jours",
+      "corps": "Bonjour [Prénom],\n\nOn offre un accès gratuit de 7 jours à [N] équipes ce mois-ci.\n\nPas de CB. Pas d'engagement.\n\nVous voulez tester ?\n\n[Prénom expéditeur]",
+      "technique": "Grand Slam Offer Hormozi — zéro risque perçu"
+    },
+    {
+      "jour": 25,
+      "canal": "email",
+      "objet": "dernier message de ma part",
+      "corps": "Bonjour [Prénom],\n\nJe ne vais pas insister davantage.\n\nSi [problème ICP] devient un sujet pour vous, je suis là.\n\nBonne continuation,\n[Prénom expéditeur]",
+      "technique": "Breakup email — taux de réponse souvent élevé"
+    },
+    {
+      "jour": 50,
+      "canal": "email",
+      "objet": "mise à jour — on a lancé [nouveauté]",
+      "corps": "Bonjour [Prénom],\n\nOn vient de lancer [nouvelle feature/offre].\n\nJe me souviens qu'on avait échangé il y a quelques semaines.\n\nCa change la donne pour vous ?\n\n[Prénom expéditeur]",
+      "technique": "Réactivation à froid avec nouveauté"
+    }
+  ]
+}

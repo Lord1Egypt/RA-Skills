@@ -1,0 +1,30 @@
+{
+  "task_summary": "Drafted a source-grounded answer for a user question.",
+  "outcome_summary": "The answer was useful but should have labeled uncertainty sooner.",
+  "constraints_checked": [
+    "Use only provided evidence.",
+    "Do not overstate confidence.",
+    "Keep answer concise."
+  ],
+  "misses_or_uncertainties": [
+    "Uncertainty label appeared after the main claim."
+  ],
+  "candidate_improvement": "For future source-grounded answers, place uncertainty and source limits before the main takeaway when evidence is incomplete.",
+  "evidence_summary": [
+    "The task had incomplete evidence.",
+    "The answer included an uncertainty caveat, but late."
+  ],
+  "risk_level": "low",
+  "requires_user_approval": false,
+  "allowed_scope": "current_task_only",
+  "forbidden_changes": [
+    "system_instructions",
+    "tool_permissions",
+    "long_term_memory",
+    "files",
+    "automations",
+    "security_policy",
+    "privacy_policy",
+    "task_scope"
+  ]
+}

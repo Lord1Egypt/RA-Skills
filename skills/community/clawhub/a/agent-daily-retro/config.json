@@ -1,0 +1,54 @@
+{
+  "skill_name": "agent-retro",
+  "version": "1.0.0",
+  "description": "Agent每日复盘系统 - 基于Tangc规范实现",
+  "author": "夸夸 (基于Tangc的SKILL.md实现)",
+  
+  "settings": {
+    "default_agent_id": "main",
+    "retro_time": "00:05",
+    "timezone": "Asia/Shanghai",
+    "backup_enabled": true,
+    "lock_enabled": true,
+    
+    "analysis_dimensions": [
+      "yesterday_actions",
+      "right_things", 
+      "wrong_things",
+      "improvements",
+      "user_profile",
+      "agent_profile"
+    ],
+    
+    "core_files_to_update": [
+      "MEMORY.md",
+      "USER.md", 
+      "SOUL.md",
+      "AGENTS.md"
+    ],
+    
+    "output_channels": ["feishu", "console", "file"]
+  },
+  
+  "paths": {
+    "workspace": "~/.openclaw/workspace",
+    "sessions_dir": "~/.openclaw/agents/{agent_id}/sessions",
+    "memory_dir": "~/.openclaw/workspace/memory",
+    "lock_prefix": "AGENT_RETRO_DONE_"
+  },
+  
+  "feishu": {
+    "webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/204235d8-efe5-4237-a7bc-cd2b36c94c24",
+    "enabled": true,
+    "message_type": "interactive"
+  },
+  
+  "session_schema": {
+    "type_field": "type",
+    "message_field": "message",
+    "role_field": "role",
+    "content_field": "content",
+    "timestamp_field": "timestamp",
+    "tool_calls_field": "tool_calls"
+  }
+}

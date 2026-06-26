@@ -1,0 +1,4 @@
+interface:
+  display_name: "动作导演"
+  short_description: "15秒战斗分镜·0.1秒精度打点·顿帧+震颤+粒子反馈"
+  default_prompt: "请描述你想设计的动作/战斗场景，我会拆解为带打点时间轴的分镜。"

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "memory-route-main",
+    "mode": "query",
+    "query": "记忆检索 主路由",
+    "top_k": 5,
+    "expect_any_file_contains": ["MEMORY.md", "2026-03-10-request-timed-out-before-a-res.md"],
+    "expect_any_text_contains": ["主路由", "memory-retrieval", "记忆检索"]
+  },
+  {
+    "name": "memory-search-why-changed",
+    "mode": "smart-query",
+    "query": "昨天更新后为什么记忆搜索变了",
+    "top_k": 5,
+    "expect_any_text_contains": ["主路由", "默认入口", "路由变化", "memory_search", "memory-retrieval"]
+  },
+  {
+    "name": "feishu-disconnect-root-cause",
+    "mode": "smart-query",
+    "query": "飞书昨天为什么断联了",
+    "top_k": 5,
+    "expect_any_text_contains": ["duplicate plugin id", "gateway timeout", "飞书", "断联"]
+  },
+  {
+    "name": "xhs-image-strategy",
+    "mode": "smart-query",
+    "query": "小红书 配图策略",
+    "top_k": 5,
+    "expect_any_text_contains": ["信息卡", "截图", "配图", "小红书"]
+  },
+  {
+    "name": "sensitive-info-rule",
+    "mode": "query",
+    "query": "敏感信息不落盘",
+    "top_k": 5,
+    "expect_any_text_contains": ["敏感信息", "不写入", "token", "密码"]
+  }
+]

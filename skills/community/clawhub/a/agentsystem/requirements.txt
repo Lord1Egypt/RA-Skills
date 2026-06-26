@@ -1,0 +1,8 @@
+# HerClaw Agent System Dependencies
+# Minimal dependencies for local operation
+
+# No external dependencies required for basic functionality
+# The system uses only Python standard library
+
+# Optional: For advanced features (if needed)
+# typing-extensions>=4.0.0  # For Python 3.7 compatibility

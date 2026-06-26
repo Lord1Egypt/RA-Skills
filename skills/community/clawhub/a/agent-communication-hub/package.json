@@ -1,0 +1,38 @@
+{
+  "name": "agent-communication-hub",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for agent-to-agent communication with SQLite persistence.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist coverage .vitest",
+    "example": "tsx examples/basic-usage.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "agent",
+    "communication",
+    "sqlite"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "llm": {
+    "provider": "ollama",
+    "baseUrl": "http://localhost:11434",
+    "model": "gemma3:4b",
+    "apiFormat": "ollama",
+    "temperature": 0.1,
+    "maxTokens": 2048,
+    "timeoutSeconds": 120
+  },
+  "embeddings": {
+    "provider": "ollama",
+    "baseUrl": "http://localhost:11434",
+    "model": "nomic-embed-text-v2-moe",
+    "apiFormat": "ollama",
+    "dimensions": 768,
+    "contextLength": 512,
+    "chunkTokens": 400,
+    "chunkOverlap": 50
+  },
+  "paths": {
+    "workspace": "",
+    "cache": ".cache",
+    "knowledgeGraph": ".cache/knowledge-graph.json",
+    "embedCache": ".cache/embed-chunks.json"
+  },
+  "qmd": {
+    "collection": "workspace",
+    "defaultLimit": 10
+  },
+  "search": {
+    "maxHops": 4,
+    "confidenceThreshold": 0.6,
+    "decayHalfLifeDays": 14,
+    "protectedCategories": [
+      "knowledge",
+      "error"
+    ]
+  },
+  "scriptOverrides": {
+    "multihop": {},
+    "extract": {},
+    "recall": {},
+    "decay": {},
+    "graph": {}
+  },
+  "presets": {
+    "ollama": {
+      "llm": {
+        "baseUrl": "http://localhost:11434",
+        "model": "gemma3:4b",
+        "apiFormat": "ollama"
+      },
+      "embeddings": {
+        "baseUrl": "http://localhost:11434",
+        "model": "nomic-embed-text-v2-moe",
+        "apiFormat": "ollama"
+      }
+    },
+    "ollama-big": {
+      "llm": {
+        "baseUrl": "http://localhost:11434",
+        "model": "qwen3.5:27b",
+        "apiFormat": "ollama"
+      },
+      "embeddings": {
+        "baseUrl": "http://localhost:11434",
+        "model": "nomic-embed-text-v2-moe",
+        "apiFormat": "ollama"
+      }
+    },
+    "lmstudio": {
+      "llm": {
+        "baseUrl": "http://localhost:1234/v1",
+        "model": "auto",
+        "apiFormat": "openai"
+      },
+      "embeddings": {
+        "baseUrl": "http://localhost:1234/v1",
+        "model": "text-embedding-nomic-embed-text-v1.5",
+        "apiFormat": "openai"
+      }
+    },
+    "openai": {
+      "llm": {
+        "baseUrl": "https://api.openai.com/v1",
+        "model": "gpt-4o-mini",
+        "apiFormat": "openai"
+      },
+      "embeddings": {
+        "baseUrl": "https://api.openai.com/v1",
+        "model": "text-embedding-3-small",
+        "apiFormat": "openai"
+      }
+    },
+    "openrouter": {
+      "llm": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "google/gemma-3-4b-it:free",
+        "apiFormat": "openai"
+      },
+      "embeddings": {
+        "baseUrl": "https://api.openai.com/v1",
+        "model": "text-embedding-3-small",
+        "apiFormat": "openai"
+      }
+    }
+  },
+  "recommended": {
+    "_comment": "LLM recommendations by RAM / use case",
+    "local_4gb": {
+      "llm": "gemma3:1b (Ollama) or phi4-mini (Ollama)",
+      "embed": "nomic-embed-text (Ollama, 274MB)",
+      "notes": "Minimal JSON tasks, limited reasoning"
+    },
+    "local_8gb": {
+      "llm": "gemma3:4b (Ollama) — best JSON reliability for size",
+      "embed": "nomic-embed-text-v2-moe (Ollama, 957MB)",
+      "notes": "Sweet spot: extraction, rerank, synthesis all work. Recommended default."
+    },
+    "local_16gb": {
+      "llm": "qwen3.5:27b (Ollama) or mistral-small3.2 (Ollama)",
+      "embed": "nomic-embed-text-v2-moe",
+      "notes": "Better reasoning for multihop. Warning: Qwen 3.5 puts JSON in thinking field."
+    },
+    "local_32gb_plus": {
+      "llm": "qwen3.5:35b (LM Studio MLX) or llama-3.3:70b",
+      "embed": "nomic-embed-text-v2-moe",
+      "notes": "Complex multi-hop reasoning. Use gemma3 for JSON tasks (scriptOverrides)."
+    },
+    "api_cheap": {
+      "llm": "gpt-4o-mini (OpenAI, ~$0.15/1M tokens) or gemma-3-4b-it:free (OpenRouter)",
+      "embed": "text-embedding-3-small (OpenAI, $0.02/1M tokens)",
+      "notes": "Cheapest cloud option. OpenRouter free tier has rate limits."
+    },
+    "api_best": {
+      "llm": "claude-sonnet-4-5 or gpt-4o",
+      "embed": "text-embedding-3-large (OpenAI)",
+      "notes": "Best quality, higher cost (~$3-15/1M tokens)"
+    }
+  }
+}

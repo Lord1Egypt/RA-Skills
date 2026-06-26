@@ -1,0 +1,12 @@
+# Agent Security DLP - Requirements
+
+# Core
+Python >= 3.8
+
+# No external dependencies required
+# Uses only built-in libraries:
+# - re (regular expressions)
+# - json
+# - os
+# - datetime
+# - typing

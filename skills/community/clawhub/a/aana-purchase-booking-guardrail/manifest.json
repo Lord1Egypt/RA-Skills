@@ -1,0 +1,59 @@
+{
+  "name": "aana-purchase-booking-guardrail",
+  "slug": "aana-purchase-booking-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded purchase and booking guardrail instructions for gating purchases, bookings, reservations, subscriptions, renewals, and irreversible financial actions.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_financial_commitments": true,
+  "requires_user_approval_for_recurring_charges": true,
+  "requires_user_approval_for_private_payment_data_disclosure": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "full payment numbers",
+      "bank account numbers",
+      "security codes",
+      "passwords",
+      "API keys",
+      "bearer tokens",
+      "identity documents",
+      "full reservation codes",
+      "raw receipts",
+      "unrelated purchase history"
+    ]
+  },
+  "purchase_booking_boundary": {
+    "must_confirm_exact_commitment_before_submission": true,
+    "must_verify_total_price_and_fees": true,
+    "must_verify_refund_cancellation_and_renewal_terms": true,
+    "must_not_add_unapproved_upsells_or_recurring_terms": true,
+    "must_minimize_payment_and_identity_data": true,
+    "must_prefer_review_screen_or_draft_before_final_action": true,
+    "must_defer_high_value_or_non_refundable_actions_without_clear_approval": true,
+    "may_not_spend_money_without_explicit_approval": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/purchase-booking-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-purchase-booking-review.json"
+  ]
+}

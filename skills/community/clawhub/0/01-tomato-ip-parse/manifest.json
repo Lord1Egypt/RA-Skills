@@ -1,0 +1,31 @@
+{
+  "namespace": "user",
+  "name": "01-tomato-ip-parse",
+  "displayName": "01 Tomato IP Parse",
+  "description": "解析番茄小说，提取人设、世界观、爽点、冲突，自动合规检查",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "novel_title": { "type": "string" },
+      "novel_text": { "type": "string" },
+      "style_tag": { "type": "string", "default": "爽文" }
+    },
+    "required": ["novel_title","novel_text"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "ip_info": { "type": "object" },
+      "compliance_check": { "type": "object" }
+    },
+    "required": ["ip_info","compliance_check"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js",
+  "environment": {
+    "API_KEY": {},
+    "API_BASE": {},
+    "MODEL_NAME": {}
+  }
+}

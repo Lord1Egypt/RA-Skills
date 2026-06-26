@@ -1,0 +1,28 @@
+{
+  "name": "aana-release-readiness-check",
+  "slug": "aana-release-readiness-check",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded release readiness instructions for checking tags, changelogs, docs, artifacts, tests, approval, and rollback before release.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_test_evidence_check": true,
+  "requires_docs_check": true,
+  "requires_artifact_check": true,
+  "requires_release_approval": true,
+  "release_readiness_boundary": {
+    "must_verify_release_target": true,
+    "must_check_tests_and_evidence": true,
+    "must_check_docs_and_changelog": true,
+    "must_check_artifacts_and_version": true,
+    "must_block_unsupported_or_unapproved_releases": true
+  },
+  "aana_boundary": {"checker_bundled": false, "checker_required": false},
+  "schemas": ["schemas/release-readiness-check.schema.json"],
+  "examples": ["examples/redacted-release-readiness-check.json"]
+}

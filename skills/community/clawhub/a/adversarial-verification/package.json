@@ -1,0 +1,17 @@
+{
+  "name": "adversarial-verification",
+  "version": "1.0.3",
+  "description": "对抗性验证技能 - 专门想方设法搞崩系统，受对抗性测试理念启发（开源社区贡献，非商业化）",
+  "main": "scripts/simple-verify.js",
+  "scripts": {
+    "test": "node scripts/simple-verify.js frontend ./test"
+  },
+  "keywords": ["adversarial", "verification", "testing", "quality", "security", "opensource"],
+  "author": "小Joy",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "quality",
+    "tags": ["verification", "testing", "security", "adversarial", "opensource"]
+  }
+}

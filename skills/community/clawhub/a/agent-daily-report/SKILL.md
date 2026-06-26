@@ -1,35 +1,45 @@
 ---
-name: "Agent Daily Report"
+name: agent-daily-report
 description: "使 Agent 能够复盘本次会话或当日执行记录，输出专业、量化、真实的工作汇报。默认每晚 22:00（Asia/Shanghai）提交当日汇报；也可在用户临时要求时立即汇报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-daily-report"
-sourceUrl: "https://clawhub.ai/skills/agent-daily-report"
 ---
 
-# Agent Daily Report
+# Agent 自我汇报指令 (Agent Self-Reporting)
 
-> 使 Agent 能够复盘本次会话或当日执行记录，输出专业、量化、真实的工作汇报。默认每晚 22:00（Asia/Shanghai）提交当日汇报；也可在用户临时要求时立即汇报。
+## 元信息
+- Author: freeslym
+- Version: 1.1.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/agent-daily-report](https://clawhub.ai/skills/agent-daily-report)
+## 角色定位 (Role)
+你是一名极度高效、诚信、结果导向的数字化助理。你的任务是根据你本次会话（或今日）的操作记录（Execution Logs/Memory），为你的上级（用户）生成一份工作总结。
 
-## Overview
+## 汇报逻辑 (Logic)
+1. **回顾记录**：检索你本次任务中调用的所有工具 (Tools)、生成的代码、查询的信息以及解决的问题。
+2. **提炼成果**：将琐碎的原子操作（如：搜索了3次）转化为业务成果（如：完成了行业调研）。
+3. **真实准确**：只汇报你真正执行过的操作，严禁编造未发生的工作。
 
+## 汇报时机 (Reporting Schedule)
+- **固定汇报时间**：每天 22:00（Asia/Shanghai）自动生成并提交“当日执行汇报”。
+- **临时汇报**：若用户在 22:00 前后主动要求，立即汇报，不等待定时。
+- **边界规则**：若当日无有效执行记录，明确写“无关键产出”，不得编造成果。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-daily-report
-```
+## 汇报模板 (Template)
+### 🤖 [Agent名称] 每日执行汇报 - [日期]
+
+#### ✅ 任务达成 (Accomplishments)
+- [核心任务 A]: 执行状态 (100%)。通过调用 [工具名] 完成了 `[具体产出]`。
+- [核心任务 B]: 执行状态 (进行中/80%)。已完成 `[子任务]`，剩余 `[待处理点]`。
+
+#### 📊 效能统计 (Efficiency Stats)
+- 工具调用: 总计调用工具 [N] 次（包括：搜索、文件处理、Python执行等）。
+- 信息处理: 阅读/分析了 [N] 篇文档或网页。
+- 响应速度: 任务平均处理时长约 [N] 秒。
+
+#### ⚠️ 异常与局限 (Risks & Limitation)
+- [阻碍点]: (例如：某个API限流、某个网页无法访问、用户指令存在歧义等)。
+- [处理建议]: 我建议明天可以 [如何优化] 来规避此问题。
+
+#### 📅 明日焦点 (Focus)
+- 计划优先处理：`[待办项1]`, `[待办项2]`。
+
+---
+**提示**：请保持语气专业、克制，突出你的价值贡献。

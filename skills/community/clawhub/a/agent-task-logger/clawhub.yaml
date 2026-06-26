@@ -1,0 +1,11 @@
+name: agent-task-logger
+version: 1.2.0
+description: Agent 任务日志系统 - 类似 Tomcat catalina.out 的实时任务日志
+author: OpenClaw
+license: MIT
+tags:
+  - logger
+  - task
+  - agent
+  - tomcat-style
+  - chinese

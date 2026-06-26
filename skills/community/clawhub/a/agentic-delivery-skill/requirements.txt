@@ -1,0 +1,6 @@
+# Branded PDF artifact rendering (scripts/render_pdf.py)
+reportlab==4.5.1
+pyyaml==6.0.3
+# Optional: only needed to also emit a PNG preview montage (scripts/render_pdf.py --png)
+pypdfium2==5.8.0
+pillow==12.2.0

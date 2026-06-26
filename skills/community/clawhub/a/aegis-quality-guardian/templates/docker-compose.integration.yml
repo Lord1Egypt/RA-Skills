@@ -1,0 +1,82 @@
+# docker-compose.integration.yml
+# Integration test environment — real services, no mocks.
+#
+# Usage:
+#   docker compose -f docker-compose.integration.yml up --build --abort-on-container-exit
+#
+# Exits with the e2e container's exit code.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    tmpfs:
+      - /var/lib/postgresql/data  # RAM disk for speed
+
+  # redis:
+  #   image: redis:7-alpine
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 5s
+  #     timeout: 3s
+  #     retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+      # redis:
+      #   condition: service_healthy
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://test:test@db:5432/test
+      # - REDIS_URL=redis://redis:6379
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - API_URL=http://backend:8080
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  e2e:
+    image: mcr.microsoft.com/playwright:v1.42.0-jammy
+    depends_on:
+      frontend:
+        condition: service_healthy
+    volumes:
+      - ./e2e:/tests
+    working_dir: /tests
+    command: npx playwright test
+    environment:
+      - BASE_URL=http://frontend:3000
+      - API_URL=http://backend:8080

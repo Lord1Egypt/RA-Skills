@@ -1,0 +1,25 @@
+{
+  "name": "aap-agent-bounty",
+  "version": "1.0.10",
+  "description": "Verification-first helper for proof checks and optional 0 ETH Base claim submission.",
+  "author": "AlphaC007",
+  "license": "MIT",
+  "tags": [
+    "AAP",
+    "BASE",
+    "agent-bounty",
+    "proof-verification",
+    "claim-to-earn",
+    "onchain-rewards"
+  ],
+  "dependencies": {
+    "binaries": ["gh", "cast"],
+    "env": ["BASE_RPC_URL"],
+    "optionalEnv": ["GH_TOKEN"]
+  },
+  "security": {
+    "secretHandling": "No raw private key/seed/mnemonic collection or storage",
+    "credentialModel": "User-managed local auth/signer context; GH_TOKEN optional fallback",
+    "broadcastGate": "confirm_broadcast must be true"
+  }
+}

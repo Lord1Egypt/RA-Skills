@@ -1,0 +1,23 @@
+{
+  "id": 999001,
+  "name": "Sample Sprite Gotchi",
+  "collateral": "aDAI",
+  "attributes": [
+    {
+      "trait_type": "Base Body",
+      "value": "aDAI"
+    },
+    {
+      "trait_type": "Eye Shape",
+      "value": "uncommon_high_3"
+    },
+    {
+      "trait_type": "Eye Color",
+      "value": "rare_high"
+    },
+    {
+      "trait_type": "Wearable (Body)",
+      "value": "Witchy Cloak"
+    }
+  ]
+}

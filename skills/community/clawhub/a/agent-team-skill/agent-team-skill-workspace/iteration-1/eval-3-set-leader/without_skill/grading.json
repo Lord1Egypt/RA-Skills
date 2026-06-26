@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "执行了 team.py update 命令", "passed": true, "evidence": "输出显示 'Updated member: Alice (alice) (Leader)'"},
+    {"text": "Alice 被设为 Leader", "passed": true, "evidence": "输出显示 '**Alice** ⭐ Team Leader' 和 'Leader: Alice (alice)'"},
+    {"text": "之前的 Leader 状态被自动移除", "passed": true, "evidence": "小Q 不再有 ⭐ 标记，且 Team Members 列表中显示 Alice 为 Leader"}
+  ]
+}

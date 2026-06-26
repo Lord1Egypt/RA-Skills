@@ -1,0 +1,160 @@
+# Active Memory for Calculus Teaching - Configuration
+# OpenClaw v2026.4.10+ 专用配置
+
+skill:
+  name: active-memory-calculus
+  version: 1.0.0
+  author: daigxok
+
+  # 依赖的其他 Skills
+  dependencies:
+    - calculus-concept-visualizer
+    - derivation-animator
+    - error-analyzer
+
+  # 所需的系统工具
+  requires:
+    bins: ["python3", "node"]
+
+  # 环境变量配置
+  env:
+    - name: CALCULUS_MEMORY_PATH
+      default: "~/obsidian/calculus-memory"
+      description: "存储记忆数据的目录路径"
+    - name: DREAM_INTERVAL
+      default: "20m"
+      description: "梦境系统心跳间隔"
+
+# Active Memory 配置
+active_memory:
+  enabled: true
+  mode: recent  # message | recent | full
+  persist_transcripts: true
+  verbose: false
+
+  # 高数专用记忆提取规则
+  extraction_rules:
+    - type: concept_mastery
+      pattern: "(正确|错误|掌握|理解|熟练)"
+      weight: 1.0
+    - type: error_pattern
+      pattern: "(错误|错|不对|忘记|遗漏)"
+      weight: 0.9
+    - type: preference
+      pattern: "(喜欢|偏好|想要|需要|习惯)"
+      weight: 0.8
+
+  # 学生画像更新频率
+  profile_update_interval: 5m
+
+# 梦境系统配置
+dreaming:
+  enabled: true
+  interval: 20m
+  rem_backfill: true
+  diary_path: "${CALCULUS_MEMORY_PATH}/dreams"
+
+  # 知识图谱配置
+  knowledge_graph:
+    enabled: true
+    auto_build: true
+    output_path: "${CALCULUS_MEMORY_PATH}/knowledge-graph"
+
+  # 自动事实提取
+  fact_extraction:
+    - concept_mastery
+    - error_patterns
+    - learning_gaps
+    - skill_progression
+
+  # 智能干预配置
+  auto_interventions:
+    weak_point_detected: true
+    knowledge_gap_alert: true
+    mastery_milestone: true
+
+# 高等数学概念映射
+calculus_concepts:
+  chapters:
+    - id: ch1
+      name: "函数与极限"
+      concepts: ["极限定义", "无穷小", "无穷大", "连续性"]
+    - id: ch2
+      name: "导数与微分"
+      concepts: ["导数定义", "求导法则", "微分", "高阶导数"]
+    - id: ch3
+      name: "微分中值定理"
+      concepts: ["罗尔定理", "拉格朗日定理", "柯西定理", "泰勒公式"]
+    - id: ch4
+      name: "不定积分"
+      concepts: ["原函数", "换元法", "分部积分", "有理函数积分"]
+    - id: ch5
+      name: "定积分"
+      concepts: ["定积分定义", "牛顿-莱布尼茨", "换元法", "分部积分"]
+    - id: ch6
+      name: "定积分应用"
+      concepts: ["面积", "体积", "弧长", "物理应用"]
+    - id: ch7
+      name: "微分方程"
+      concepts: ["一阶方程", "高阶方程", "常系数线性", "应用"]
+    - id: ch8
+      name: "向量代数与空间解析几何"
+      concepts: ["向量运算", "平面与直线", "曲面", "曲线"]
+    - id: ch9
+      name: "多元函数微分学"
+      concepts: ["偏导数", "全微分", "链式法则", "极值"]
+    - id: ch10
+      name: "重积分"
+      concepts: ["二重积分", "三重积分", "换元", "应用"]
+    - id: ch11
+      name: "曲线积分与曲面积分"
+      concepts: ["第一类曲线", "第二类曲线", "格林公式", "高斯公式"]
+    - id: ch12
+      name: "无穷级数"
+      concepts: ["数项级数", "幂级数", "傅里叶级数", "展开"]
+
+# 错误模式识别库
+error_patterns:
+  - id: limit_algebra
+    name: "极限代数运算错误"
+    description: "在极限运算中错误地使用代数运算法则"
+    frequency_threshold: 2
+
+  - id: derivative_chain_rule
+    name: "链式法则遗漏"
+    description: "复合函数求导时遗漏内层函数导数"
+    frequency_threshold: 3
+
+  - id: integral_limit_transform
+    name: "积分限变换错误"
+    description: "定积分换元时未同步变换积分限"
+    frequency_threshold: 2
+
+  - id: integration_by_parts_selection
+    name: "分部积分选择错误"
+    description: "未能正确选择u和dv"
+    frequency_threshold: 3
+
+  - id: improper_integral_convergence
+    name: "反常积分收敛判断错误"
+    description: "错误判断反常积分的收敛性"
+    frequency_threshold: 2
+
+  - id: series_convergence_test
+    name: "级数判别法选择错误"
+    description: "未能选择合适的级数收敛判别法"
+    frequency_threshold: 3
+
+# 学习风格识别
+learning_styles:
+  visual:
+    indicators: ["图", "画", "看", "展示", "动画", " visualize", "GeoGebra"]
+    recommended_skills: ["calculus-concept-visualizer"]
+
+  deductive:
+    indicators: ["推导", "证明", "步骤", "为什么", "原理", "定理"]
+    recommended_skills: ["derivation-animator"]
+
+  practice:
+    indicators: ["做题", "练习", "例子", "题目", "算", "计算"]
+    recommended_skills: ["exam-problem-generator"]

@@ -1,0 +1,45 @@
+{
+  "skill_name": "acpx-bridge-troubleshooting-guide",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "acpx 连接 Gateway 一直卡在 initialize 阶段，日志里刷 WebSocket 1005 错误。我看了下 ~/.openclaw 目录，好像没有 gateway.token 文件。这会是根本原因吗？具体该怎么创建和配置？",
+      "expectations": [
+        "确认 gateway.token 文件缺失是 acpx 超时的常见根本原因",
+        "提供创建 token 文件的具体 bash 命令（如 echo \"token\" > ~/.openclaw/gateway.token）",
+        "建议检查 ~/.acpx/config.json 配置是否正确指向 openclaw acp client"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我想配置多个飞书机器人连接到不同 AI 后端。是不是应该在 channels 里新建一个 feishu-claude 的 channel？另外修改 openclaw.json 时直接用 jq 命令方便点吧？",
+      "expectations": [
+        "纠正多账户配置误区，说明应使用 channels.feishu.accounts 结构而非新建 channel",
+        "警告不要直接用 jq 修改 JSON（易导致格式错误），推荐使用 openclaw config set 命令",
+        "提供配置第二个飞书账户的命令示例（openclaw config set 'channels.feishu.accounts.claude' ...）"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "acpx 老报 ACP 协议解析失败，版本是 0.3.0。 ~/.acpx/config.json 里我需要给 openclaw agent 加上 --url 和 --token-file 参数吗？感觉配置一直没生效。",
+      "expectations": [
+        "建议更新 acpx 到最新版本 (npm install -g acpx@latest) 以修复协议错误",
+        "指出 ~/.acpx/config.json 中不需要添加 --url 和 --token-file 参数（会自动读取）",
+        "提醒配置修改后必须执行 openclaw gateway restart 才能生效"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "刚改完配置，openclaw gateway restart 了但还是连不上。之前用 jq 改的 openclaw.json，现在 bindings 路由完全不生效，acpx 也超时。求排查步骤。",
+      "expectations": [
+        "指出 jq 修改可能导致 JSON 格式错误，建议用 openclaw config validate 验证配置",
+        "检查 bindings 路由配置，说明 default account 自动匹配规则（无需手动添加 accountId）",
+        "引导排查 gateway.token 是否存在及 acpx 版本是否过旧"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

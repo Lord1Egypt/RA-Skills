@@ -1,0 +1,48 @@
+{
+  "skill_name": "ibm-ace-copilot",
+  "benchmark_summary": {
+    "with_skill_pass_rate": "100%",
+    "without_skill_pass_rate": "10%",
+    "delta": "+90%"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "esql-transformation",
+      "prompt": "I have an IBM ACE Compute node that receives a JSON payment message. I need to transform it: read the `amount` and `currency` fields from `InputRoot.JSON.Data.payment`, set an output JSON with `status` = 'PROCESSED', `txnId` from the input `id` field, and `formattedAmount` as the amount concatenated with the currency (e.g., '100.00 GBP'). Write the ESQL for this Compute node.",
+      "expected_output": "ESQL module that: (1) copies InputRoot to OutputRoot, (2) reads amount/currency/id from InputRoot.JSON.Data.payment, (3) sets OutputRoot.JSON.Data.status = 'PROCESSED', (4) sets OutputRoot.JSON.Data.txnId from input id, (5) sets OutputRoot.JSON.Data.formattedAmount using CAST and string concatenation with currency",
+      "assertions": [
+        "Response includes CREATE COMPUTE MODULE with Main() RETURNS BOOLEAN",
+        "Response uses SET OutputRoot = InputRoot or equivalent",
+        "Response reads from InputRoot.JSON.Data.payment",
+        "Response sets OutputRoot.JSON.Data.status = 'PROCESSED'",
+        "Response uses CAST or string concatenation for formattedAmount"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "deployment-workflow",
+      "prompt": "I have an ACE application project called `PaymentProcessor` in my workspace at `/opt/ace/workspace`. I need to build a BAR file, apply production overrides from `/config/prod.properties`, and deploy it to integration node `ACE_NODE1`, integration server `PaymentServer`. Give me the exact CLI commands.",
+      "expected_output": "Step-by-step CLI commands: (1) source mqsiprofile, (2) mqsibar command to build BAR, (3) mqsiapplybaroverride to apply overrides, (4) mqsideploy to deploy with node/server/wait flags",
+      "assertions": [
+        "Response includes source /opt/ibm/ace-12.0.x.x/server/bin/mqsiprofile",
+        "Response includes mqsibar -c -a ... -w /opt/ace/workspace -k PaymentProcessor",
+        "Response includes mqsiapplybaroverride -b ... -p /config/prod.properties",
+        "Response includes mqsideploy ACE_NODE1 -e PaymentServer -a ... -w"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "troubleshooting-stuck-message",
+      "prompt": "My ACE message flow `PaymentFlow` in integration server `PaymentServer` on node `ACE_PROD` is not processing messages. The flow shows as running but messages are piling up on the input queue. How do I diagnose this?",
+      "expected_output": "Diagnostic steps: (1) verify flow status with mqsilist, (2) enable user trace with mqsichangetrace, (3) send a test message, (4) read trace with mqsireadlog and mqsiformatlog, (5) common causes (MQ issues, DB connection, ESQL error), (6) disable trace when done",
+      "assertions": [
+        "Response includes mqsichangetrace ACE_PROD -e PaymentServer -l debug -u",
+        "Response includes mqsireadlog to read the trace",
+        "Response includes mqsiformatlog for formatting",
+        "Response mentions disabling trace with -l none when done",
+        "Response mentions common causes like MQ or database connection issues"
+      ]
+    }
+  ]
+}

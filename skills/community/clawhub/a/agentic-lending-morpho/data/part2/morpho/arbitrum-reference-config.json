@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "chain": {
+    "name": "arbitrum",
+    "chainId": 42161,
+    "rpcUrl": "https://arb1.arbitrum.io/rpc"
+  },
+  "morphoCoreAddress": "0x6c247b1f6182318877311737bac0844baa518f5e",
+  "defaultIrmAddress": "0x66f30587fb8d4206918deb78eca7d5ebbafd06da",
+  "defaultLltv": "860000000000000000",
+  "assets": {
+    "WETH": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    },
+    "WBTC": {
+      "symbol": "WBTC",
+      "address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f"
+    },
+    "USDC": {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831"
+    }
+  },
+  "referenceMarkets": {
+    "WETH__USDC": {
+      "oracleAddress": "0x282feb10549fde52bd61a6979424ddf18a4971a2",
+      "oracleType": "ChainlinkOracleV2"
+    },
+    "WBTC__USDC": {
+      "oracleAddress": "0x88193fcb705d29724a40bb818ecaa47dd5f014d9",
+      "oracleType": "ChainlinkOracleV2"
+    }
+  },
+  "source": {
+    "morphoBlueSdk": "@morpho-org/blue-sdk addresses for chain 42161",
+    "morphoApi": "https://api.morpho.org/graphql"
+  },
+  "notes": [
+    "These are chain-real reference markets on Arbitrum captured on 2026-05-01.",
+    "They are intended to prove prepare, deploy-calldata, and verify plumbing against live Morpho deployments.",
+    "Published reference config intentionally omits exact marketId literals to avoid false-positive scanner hits; derive those live when needed.",
+    "They are not Api3-backed oracle adapter targets. For Api3 integration work, replace oracleAddress values with deployed Morpho Api3 adapter addresses once that path exists."
+  ]
+}

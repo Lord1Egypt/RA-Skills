@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐝 蜂巢 Harness 框架 — AI 市场日报</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --surface2: #1a2332;
+    --border: #1e2d3d;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --accent: #f59e0b;
+    --accent2: #f97316;
+    --green: #10b981;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --red: #ef4444;
+    --pink: #ec4899;
+    --cyan: #06b6d4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ====== Hero ====== */
+  .hero {
+    position: relative;
+    padding: 60px 40px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 50%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow {
+    0% { transform: translate(-5%, -5%); }
+    100% { transform: translate(5%, 5%); }
+  }
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f59e0b, #f97316, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  .hero .subtitle {
+    color: var(--text2);
+    font-size: 1.1rem;
+    margin-top: 12px;
+    position: relative;
+  }
+  .hero .subtitle span {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 4px;
+    position: relative;
+    top: -1px;
+  }
+  .tag-paradigm { background: rgba(139,92,246,0.2); color: #a78bfa; }
+  .tag-ecology { background: rgba(16,185,129,0.2); color: #34d399; }
+  .tag-branch { background: rgba(59,130,246,0.2); color: #60a5fa; }
+
+  /* ====== Container ====== */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* ====== Section ====== */
+  .section {
+    margin: 48px 0;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  /* ====== 三层架构图 ====== */
+  .three-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+  }
+  .layer {
+    position: relative;
+    border-radius: 16px;
+    padding: 32px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .layer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .layer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-size: 20px 20px;
+  }
+  .layer-paradigm {
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    border: 1px solid rgba(139,92,246,0.3);
+  }
+  .layer-paradigm::before { background-image: radial-gradient(circle, #8b5cf6 1px, transparent 1px); }
+  .layer-ecology {
+    background: linear-gradient(135deg, #0c1a14, #0f2a1d);
+    border: 1px solid rgba(16,185,129,0.3);
+  }
+  .layer-ecology::before { background-image: radial-gradient(circle, #10b981 1px, transparent 1px); }
+  .layer-branch {
+    background: linear-gradient(135deg, #0c1629, #0f2040);
+    border: 1px solid rgba(59,130,246,0.3);
+  }
+  .layer-branch::before { background-image: radial-gradient(circle, #3b82f6 1px, transparent 1px); }
+
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .layer-badge {
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .layer-paradigm .layer-badge { background: rgba(139,92,246,0.3); color: #c4b5fd; }
+  .layer-ecology .layer-badge { background: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .layer-branch .layer-badge { background: rgba(59,130,246,0.3); color: #93c5fd; }
+  
+  .layer-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .layer-desc {
+    font-size: 0.9rem;
+    color: var(--text2);
+  }
+
+  .layer-content {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.15);
+  }
+  .card-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* ====== 工作流图 ====== */
+  .workflow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding: 20px 0;
+  }
+  .wf-node {
+    flex: 1;
+    min-width: 220px;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .wf-node:hover { transform: scale(1.03); }
+  .wf-node-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .wf-node-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .wf-node-desc {
+    font-size: 0.8rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .wf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 1.5rem;
+    color: var(--accent);
+    animation: arrowPulse 2s ease-in-out infinite;
+  }
+  @keyframes arrowPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .wf-garden { background: linear-gradient(135deg, #064e3b, #065f46); border: 1px solid rgba(16,185,129,0.3); }
+  .wf-forage { background: linear-gradient(135deg, #713f12, #854d0e); border: 1px solid rgba(245,158,11,0.3); }
+  .wf-brew { background: linear-gradient(135deg, #7c2d12, #9a3412); border: 1px solid rgba(249,115,22,0.3); }
+  .wf-report { background: linear-gradient(135deg, #1e3a5f, #1e40af); border: 1px solid rgba(59,130,246,0.3); }
+
+  /* ====== 花园态势 ====== */
+  .garden-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .vendor-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .vendor-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(245,158,11,0.1);
+  }
+  .vendor-card.bloom-full { border-color: rgba(245,158,11,0.5); }
+  .vendor-card.bloom-full::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f59e0b, #f97316);
+  }
+  .vendor-card.bloom-open::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #34d399);
+  }
+  .vendor-card.bloom-bud::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  }
+  .vendor-card.bloom-wilt::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6b7280, #9ca3af);
+  }
+
+  .vendor-emoji { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+  .vendor-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+  .vendor-bloom { font-size: 0.75rem; color: var(--text2); }
+  .vendor-bloom-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .vendor-bloom-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* ====== 排行榜 ====== */
+  .rank-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+  }
+  .rank-table th {
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rank-table td {
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    background: var(--surface);
+  }
+  .rank-table tr td:first-child { border-radius: 8px 0 0 8px; }
+  .rank-table tr td:last-child { border-radius: 0 8px 8px 0; }
+  .rank-table tbody tr {
+    transition: transform 0.2s;
+  }
+  .rank-table tbody tr:hover {
+    transform: translateX(4px);
+  }
+  .rank-medal { font-size: 1.2rem; }
+  .rank-num { font-weight: 700; color: var(--text2); }
+  .rank-model { font-weight: 600; color: #f0f0f0; }
+  .rank-vendor { color: var(--text2); font-size: 0.82rem; }
+  .rank-score {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .rank-bar {
+    display: inline-block;
+    height: 6px;
+    border-radius: 3px;
+    min-width: 4px;
+  }
+
+  /* ====== 公式卡片 ====== */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .formula-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .formula-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .formula-expr {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .formula-note {
+    font-size: 0.82rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ====== 信号源 ====== */
+  .signal-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .signal-source {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .signal-arrow {
+    color: var(--text2);
+    font-size: 0.9rem;
+  }
+  .signal-source.news { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .signal-source.community { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .signal-source.release { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .signal-source.price { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .signal-source.docs { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  
+  .signal-funnel {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: rgba(245,158,11,0.2);
+    color: #fbbf24;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  /* ====== Footer ====== */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text2);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  /* ====== 动画 ====== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  /* ====== 采蜜深度 ====== */
+  .depth-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .depth-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid;
+    transition: transform 0.2s;
+  }
+  .depth-card:hover { transform: scale(1.03); }
+  .depth-card.full { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
+  .depth-card.standard { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
+  .depth-card.light { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); }
+  .depth-card.skip { background: rgba(107,114,128,0.08); border-color: rgba(107,114,128,0.3); }
+  .depth-emoji { font-size: 2rem; margin-bottom: 8px; display: block; }
+  .depth-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+  .depth-range { font-size: 0.78rem; color: var(--text2); margin-bottom: 8px; }
+  .depth-action {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  .depth-card.full .depth-action { background: rgba(245,158,11,0.2); color: #fbbf24; }
+  .depth-card.standard .depth-action { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+  .depth-card.light .depth-action { background: rgba(59,130,246,0.2); color: #93c5fd; }
+  .depth-card.skip .depth-action { background: rgba(107,114,128,0.2); color: #9ca3af; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .container { padding: 0 16px; }
+    .depth-grid { grid-template-columns: repeat(2, 1fr); }
+    .workflow { flex-direction: column; }
+    .wf-arrow { transform: rotate(90deg); min-width: auto; min-height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Hero ====== -->
+<div class="hero">
+  <h1>🐝 蜂巢 Harness 框架</h1>
+  <p class="subtitle">
+    AI 市场日报系统 &nbsp;
+    <span class="tag-paradigm">范式层</span>
+    <span class="tag-ecology">生态层</span>
+    <span class="tag-branch">分支层</span>
+  </p>
+</div>
+
+<div class="container">
+
+<!-- ====== 工作流 ====== -->
+<div class="section animate delay-1">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(245,158,11,0.15);">🔄</div>
+    工作流：感知 → 采蜜 → 酿蜜 → 产出
+  </div>
+  <div class="workflow">
+    <div class="wf-node wf-garden">
+      <span class="wf-node-icon">🌸</span>
+      <div class="wf-node-title">花园感知</div>
+      <div class="wf-node-desc">mmx search 多信号扫描<br>动态 bloom 评分<br>决定采蜜优先级</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-node wf-forage">
+      <span class="wf-node-icon">🍯</span>
+      <div class="wf-node-title">定向采蜜</div>
+      <div class="wf-node-desc">Playwright 爬取<br>新闻页 + 计费页<br>按花期决定深度</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-node wf-brew">
+      <span class="wf-node-icon">🍼</span>
+      <div class="wf-node-title">酿蜜计算</div>
+      <div class="wf-node-desc">对数性价比 +<br>多维综合排名<br>可演化权重</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-node wf-report">
+      <span class="wf-node-icon">📊</span>
+      <div class="wf-node-title">日报产出</div>
+      <div class="wf-node-desc">Markdown 日报<br>飞书卡片推送<br>历史趋势存档</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 三层架构 ====== -->
+<div class="section animate delay-2">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(139,92,246,0.15);">🏛️</div>
+    三层架构
+  </div>
+  <div class="three-layers">
+    <!-- 范式层 -->
+    <div class="layer layer-paradigm">
+      <div class="layer-header">
+        <span class="layer-badge">L1 范式层</span>
+        <span class="layer-name">🧠 任务交付 vs 状态维持</span>
+      </div>
+      <div class="layer-content">
+        <div class="card">
+          <div class="card-title">📦 任务交付型</div>
+          <div class="card-desc">CrewAI / AutoGen 范式。核心抽象是任务管道，执行器生命周期=任务生命周期。做完就结束，平时没有活的执行器。</div>
+        </div>
+        <div class="card" style="border-color: rgba(139,92,246,0.3);">
+          <div class="card-title" style="color: #c4b5fd;">🔄 状态维持型 ✦ 本系统</div>
+          <div class="card-desc">LangGraph / 蜂巢范式。核心抽象是状态机+事件触发器。执行器常驻但 idle，有事件才唤醒。状态机存在是为了 trigger task，不是为了 close task。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🔑 核心差异</div>
+          <div class="card-desc">流水线思维 vs 反应式思维。蜂巢不停运行——市场不停，系统不停；无信号时 idle，有事件时唤醒。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 生态层 -->
+    <div class="layer layer-ecology">
+      <div class="layer-header">
+        <span class="layer-badge">L2 生态层</span>
+        <span class="layer-name">🌿 蜂巢与外在群落</span>
+      </div>
+      <div class="layer-content">
+        <div class="card">
+          <div class="card-title">🏠 蜂巢核心</div>
+          <div class="card-desc">Operator（红小臣）是态势感知入口，掌握工具架构，按需调用。白板唯一管理者。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🌼 油菜花群落</div>
+          <div class="card-desc">数据源。AI 市场日报本身就是油菜花群落——从大模型花园中采蜜。另有欧洲电力价格群落。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🌿 麦卢卡树丛</div>
+          <div class="card-desc">专业知识。法规、标准、行业报告。需要深度解读时采蜜。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🌊 河流</div>
+          <div class="card-desc">流式信息。新闻、监控、告警。持续流过，蜂巢实时过滤。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🐝 另一个蜂巢</div>
+          <div class="card-desc">AutoGen Studio、LangGraph Studio。不是"另一个工具"，是整片信息生态中的协作蜂巢。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分支层 -->
+    <div class="layer layer-branch">
+      <div class="layer-header">
+        <span class="layer-badge">L3 分支层</span>
+        <span class="layer-name">🔀 四大分支</span>
+      </div>
+      <div class="layer-content">
+        <div class="card">
+          <div class="card-title">💻 coding</div>
+          <div class="card-desc">契约驱动开发（PACT），Claude Code + subagent 协作。任务交付型。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">🎵 composing</div>
+          <div class="card-desc">DeepSeek→MiniMax 双模型管线。思想空间→内容实现。任务交付型。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">👁️ supervising</div>
+          <div class="card-desc">LangGraph 编排模式。Supervisor/Debate/Event-Driven。状态维持型。</div>
+        </div>
+        <div class="card" style="border-color: rgba(245,158,11,0.3);">
+          <div class="card-title" style="color: #fbbf24;">📈 量化交易 ✦ 本系统</div>
+          <div class="card-desc">事件驱动交易系统。多 Agent 辩论+风控审批。AI 日报是其数据感知层。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 信号感知 ====== -->
+<div class="section animate delay-3">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(16,185,129,0.15);">📡</div>
+    花园感知 — 多信号融合
+  </div>
+  <div class="signal-flow">
+    <div class="signal-source news">📰 新闻热度 <small>0.35</small></div>
+    <div class="signal-source community">💬 社区讨论 <small>0.25</small></div>
+    <div class="signal-source docs">📄 文档更新 <small>0.15</small></div>
+    <div class="signal-source release">🚀 发布频率 <small>0.15</small></div>
+    <div class="signal-source price">💰 价格变动 <small>0.10</small></div>
+    <div class="signal-arrow">→</div>
+    <div class="signal-funnel">🐝 Bloom Score → 采蜜决策</div>
+  </div>
+</div>
+
+<!-- ====== 采蜜深度 ====== -->
+<div class="section animate delay-3">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(249,115,22,0.15);">🎯</div>
+    采蜜策略 — 按花期决定深度
+  </div>
+  <div class="depth-grid">
+    <div class="depth-card full">
+      <span class="depth-emoji">🌺</span>
+      <div class="depth-name">盛开</div>
+      <div class="depth-range">bloom ≥ 0.7</div>
+      <div class="depth-action">新闻 + 计费 + 评测</div>
+    </div>
+    <div class="depth-card standard">
+      <span class="depth-emoji">🌸</span>
+      <div class="depth-name">开花</div>
+      <div class="depth-range">bloom ≥ 0.4</div>
+      <div class="depth-action">新闻 + 计费</div>
+    </div>
+    <div class="depth-card light">
+      <span class="depth-emoji">🌷</span>
+      <div class="depth-name">含苞</div>
+      <div class="depth-range">bloom ≥ 0.2</div>
+      <div class="depth-action">仅计费页</div>
+    </div>
+    <div class="depth-card skip">
+      <span class="depth-emoji">🥀</span>
+      <div class="depth-name">凋谢</div>
+      <div class="depth-range">bloom < 0.2</div>
+      <div class="depth-action">跳过</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 花园态势 ====== -->
+<div class="section animate delay-4">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(245,158,11,0.15);">🌸</div>
+    花园态势 — 2026-05-13
+  </div>
+  <div class="garden-grid" id="gardenGrid"></div>
+</div>
+
+<!-- ====== 计算公式 ====== -->
+<div class="section animate delay-4">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(6,182,212,0.15);">📐</div>
+    酿蜜公式
+  </div>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <div class="formula-label">性价比分</div>
+      <div class="formula-expr">CE = capability² × log₁₀(1000 / price)</div>
+      <div class="formula-note">
+        能力²做乘数——弱模型即使免费也不排第一。对数缩放避免超低价爆炸。<br>
+        ¥0.1/M → CE × 4.0 ｜ ¥1/M → × 3.0<br>
+        ¥10/M → × 2.0 ｜ ¥100/M → × 1.0
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-label">综合排名</div>
+      <div class="formula-expr">Score = 0.35×Cap + 0.30×CE + 0.20×Eco + 0.15×Mom</div>
+      <div class="formula-note">
+        Cap = 能力分（MMLU/C-Eval）<br>
+        CE = 性价比分（归一化）<br>
+        Eco = 生态分（API/文档/社区）<br>
+        Mom = 势头分（近期增长/热度变化）<br>
+        <strong>权重可演化</strong>：早期重能力，成熟期重性价比<br><strong>能力门槛</strong>：综合排名要求 capability ≥ 0.70
+      </div>
+    </div>
+    <div class="formula-card">
+      <div class="formula-label">Bloom 衰减</div>
+      <div class="formula-expr">bloom(n+1) = bloom(n) - 0.05 + signal × 0.3</div>
+      <div class="formula-note">
+        每日自然衰减 0.05（无新信号时）。<br>
+        信号越强，增幅越大。<br>
+        新发现厂商初始加成 +0.15。<br>
+        bloom ∈ [0, 1.0]
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 排行榜 ====== -->
+<div class="section animate delay-5">
+  <div class="section-title">
+    <div class="icon" style="background:rgba(245,158,11,0.15);">🏆</div>
+    大模型综合排名 Top 10 — 2026-05-13
+  </div>
+  <table class="rank-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>模型</th>
+        <th>厂商</th>
+        <th>综合分</th>
+        <th>能力</th>
+        <th>性价比</th>
+        <th>输入价</th>
+        <th>输出价</th>
+      </tr>
+    </thead>
+    <tbody id="rankBody"></tbody>
+  </table>
+</div>
+
+</div>
+
+<!-- ====== Footer ====== -->
+<div class="footer">
+  🐝 蜂巢 Harness 框架 v1.0 &nbsp;|&nbsp; 状态维持型范式 &nbsp;|&nbsp; 动态感知 · 定向采蜜 · 对数酿蜜
+  <br>
+  <small>agentic-engineering / 量化交易分支 / ai-daily-report 群落</small>
+</div>
+
+<script>
+// ====== 花园数据 ======
+const vendors = [
+  { name: "百度", bloom: 0.75, status: "盛开", category: "tier1", emoji: "🌺" },
+  { name: "阿里", bloom: 0.57, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "字节", bloom: 0.51, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "DeepSeek", bloom: 0.49, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "智谱", bloom: 0.48, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "OpenAI", bloom: 0.48, status: "开花", category: "intl", emoji: "🌸" },
+  { name: "讯飞", bloom: 0.47, status: "开花", category: "tier2", emoji: "🌸" },
+  { name: "Google", bloom: 0.47, status: "开花", category: "intl", emoji: "🌸" },
+  { name: "华为", bloom: 0.47, status: "开花", category: "tier2", emoji: "🌸" },
+  { name: "月之暗面", bloom: 0.45, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "MiniMax", bloom: 0.45, status: "开花", category: "tier1", emoji: "🌸" },
+  { name: "零一万物", bloom: 0.45, status: "开花", category: "tier2", emoji: "🌸" },
+  { name: "阶跃星辰", bloom: 0.45, status: "开花", category: "tier2", emoji: "🌸" },
+  { name: "昆仑万维", bloom: 0.45, status: "开花", category: "tier2", emoji: "🌸" },
+  { name: "Anthropic", bloom: 0.45, status: "开花", category: "intl", emoji: "🌸" },
+];
+
+const catIcons = { tier1: "🏆", tier2: "🏅", intl: "🌍" };
+const bloomClasses = { "盛开": "bloom-full", "开花": "bloom-open", "含苞": "bloom-bud", "凋谢": "bloom-wilt" };
+const bloomColors = { "盛开": "#f59e0b", "开花": "#10b981", "含苞": "#3b82f6", "凋谢": "#6b7280" };
+
+const grid = document.getElementById("gardenGrid");
+vendors.forEach(v => {
+  const div = document.createElement("div");
+  div.className = `vendor-card ${bloomClasses[v.status]}`;
+  div.innerHTML = `
+    <span class="vendor-emoji">${v.emoji}</span>
+    <div class="vendor-name">${v.name} ${catIcons[v.category] || ""}</div>
+    <div class="vendor-bloom">${v.status} · bloom ${v.bloom.toFixed(2)}</div>
+    <div class="vendor-bloom-bar">
+      <div class="vendor-bloom-fill" style="width:${v.bloom*100}%;background:${bloomColors[v.status]}"></div>
+    </div>
+  `;
+  grid.appendChild(div);
+});
+
+// ====== 排行榜数据 ======
+const rankings = [
+    { rank: 1, model: "deepseek-v4-pro", vendor: "DeepSeek", score: 0.809, cap: 0.99, ce: 0.95, inp: 3.00, out: 6.00 },
+    { rank: 2, model: "deepseek-v4-flash", vendor: "DeepSeek", score: 0.798, cap: 0.92, ce: 1.00, inp: 1.00, out: 2.00 },
+    { rank: 3, model: "gemini-2.5-flash", vendor: "Google", score: 0.757, cap: 0.90, ce: 0.88, inp: 1.08, out: 4.32 },
+    { rank: 4, model: "deepseek-chat", vendor: "DeepSeek", score: 0.755, cap: 0.88, ce: 0.90, inp: 1.00, out: 2.00 },
+    { rank: 5, model: "deepseek-reasoner", vendor: "DeepSeek", score: 0.755, cap: 0.97, ce: 0.80, inp: 4.00, out: 16.00 },
+    { rank: 6, model: "gemini-2.5-pro", vendor: "Google", score: 0.730, cap: 0.99, ce: 0.69, inp: 9.36, out: 37.44 },
+    { rank: 7, model: "MiniMax-M2.7", vendor: "MiniMax", score: 0.709, cap: 0.91, ce: 0.71, inp: 4.00, out: 16.00 },
+    { rank: 8, model: "minimax-m2", vendor: "MiniMax", score: 0.700, cap: 0.90, ce: 0.70, inp: 4.00, out: 16.00 },
+    { rank: 9, model: "gpt-4.1-mini", vendor: "OpenAI", score: 0.696, cap: 0.88, ce: 0.71, inp: 2.88, out: 11.52 },
+    { rank: 10, model: "gpt-4o-mini", vendor: "OpenAI", score: 0.696, cap: 0.83, ce: 0.76, inp: 1.08, out: 4.32 },
+];
+
+const medals = { 1: "🥇", 2: "🥈", 3: "🥉" };
+const tbody = document.getElementById("rankBody");
+
+rankings.forEach(r => {
+  const tr = document.createElement("tr");
+  const maxScore = 0.809;
+  const barWidth = Math.round((r.score / maxScore) * 100);
+  const barColor = r.rank <= 3 ? "#f59e0b" : r.rank <= 6 ? "#10b981" : "#3b82f6";
+  
+  tr.innerHTML = `
+    <td><span class="rank-medal">${medals[r.rank] || r.rank}</span></td>
+    <td><span class="rank-model">${r.model}</span></td>
+    <td><span class="rank-vendor">${r.vendor}</span></td>
+    <td>
+      <span class="rank-score" style="color:${barColor}">${r.score.toFixed(3)}</span>
+      <br><span class="rank-bar" style="width:${barWidth}%;background:${barColor}"></span>
+    </td>
+    <td>${(r.cap * 100).toFixed(0)}%</td>
+    <td>${r.ce.toFixed(2)}</td>
+    <td style="color:var(--text2)">¥${r.inp.toFixed(2)}</td>
+    <td style="color:var(--text2)">¥${r.out.toFixed(2)}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// ====== 滚动动画 ======
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate').forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

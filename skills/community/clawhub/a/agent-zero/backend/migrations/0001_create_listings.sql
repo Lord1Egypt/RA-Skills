@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS listings (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    url            TEXT    NOT NULL UNIQUE,
+    title          TEXT    NOT NULL DEFAULT '',
+    description    TEXT    NOT NULL DEFAULT '',
+    price          INTEGER,
+    price_currency TEXT,
+    street_address TEXT,
+    city           TEXT,
+    region         TEXT,
+    postal_code    TEXT,
+    country        TEXT,
+    bedrooms       INTEGER,
+    bathrooms      INTEGER,
+    sqft           INTEGER,
+    year_built     INTEGER,
+    lat            REAL,
+    lon            REAL,
+    images         TEXT    NOT NULL DEFAULT '[]',
+    created_at     TEXT    NOT NULL DEFAULT (datetime('now'))
+);

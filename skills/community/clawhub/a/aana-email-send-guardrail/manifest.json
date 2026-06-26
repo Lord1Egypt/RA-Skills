@@ -1,0 +1,70 @@
+{
+  "name": "aana-email-send-guardrail",
+  "slug": "aana-email-send-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded email send guardrail instructions for checking recipient, tone, private data, attachments, claims, and send approval before email is sent.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_recipient_verification": true,
+  "requires_send_approval": true,
+  "requires_tone_check": true,
+  "requires_private_data_check": true,
+  "requires_attachment_check": true,
+  "requires_claim_evidence_check": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_data_minimization": true,
+    "forbidden_email_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "government ID numbers",
+      "unrelated private messages",
+      "full logs with sensitive values",
+      "full account records",
+      "unapproved customer data",
+      "unapproved employee data",
+      "hidden private thread history"
+    ]
+  },
+  "email_send_boundary": {
+    "must_identify_email_action": true,
+    "must_verify_exact_recipients": true,
+    "must_check_cc_and_bcc_exposure": true,
+    "must_check_send_approval": true,
+    "must_check_tone_before_send": true,
+    "must_check_private_data_before_send": true,
+    "must_check_attachments_before_send": true,
+    "must_check_claims_and_promises": true,
+    "must_not_treat_draft_approval_as_send_approval": true,
+    "must_block_unsafe_or_unauthorized_send": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/email-send-guardrail.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-email-send-guardrail.json"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "aana-workflow-readiness-check",
+  "slug": "aana-workflow-readiness-check",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded workflow readiness instructions for checking whether an agent has enough information, permissions, tools, and evidence before starting.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_information_check_before_workflow": true,
+  "requires_permission_check_before_workflow": true,
+  "requires_tool_check_before_workflow": true,
+  "requires_evidence_check_before_workflow": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_data_minimization": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "full private messages",
+      "full logs with sensitive values",
+      "full account records",
+      "unrelated private data"
+    ]
+  },
+  "workflow_readiness_boundary": {
+    "must_identify_workflow_and_outcome": true,
+    "must_define_completion_criteria": true,
+    "must_check_required_information": true,
+    "must_check_permission_and_authority": true,
+    "must_check_required_tools_and_access": true,
+    "must_check_available_evidence": true,
+    "must_identify_first_safe_step": true,
+    "must_not_start_without_required_approval": true,
+    "must_not_start_when_evidence_is_insufficient_for_high_impact_claims": true,
+    "must_route_high_impact_or_irreversible_workflows_to_review": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/workflow-readiness-check.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-workflow-readiness-check.json"
+  ]
+}

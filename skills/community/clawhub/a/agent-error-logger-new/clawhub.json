@@ -1,0 +1,42 @@
+{
+  "name": "agent-error-logger",
+  "version": "1.0.0",
+  "description": "Agent 错误日志工具。记录、检索和分析 Agent 犯过的错误，避免重复踩坑。",
+  "author": "苏冠超",
+  "license": "MIT",
+  "keywords": [
+    "error",
+    "logger",
+    "debug",
+    "self-improvement",
+    "agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/agent-error-logger"
+  },
+  "skills": [
+    {
+      "name": "agent-error-logger",
+      "file": "SKILL.md",
+      "enabled": true
+    }
+  ],
+  "scripts": [
+    {
+      "name": "record-error",
+      "command": "python scripts/record_error.py",
+      "description": "记录新错误"
+    },
+    {
+      "name": "search-errors",
+      "command": "python scripts/search_errors.py",
+      "description": "搜索错误日志"
+    }
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/*.py"
+  ]
+}

@@ -1,35 +1,54 @@
 ---
-name: "Agent Safety Monitor"
-description: "Real-time AI agent safety monitoring, anomaly detection, and constraint enforcement. Use when building agent guardrails, detecting unsafe behaviors, enforcin..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-safety-monitor"
-sourceUrl: "https://clawhub.ai/skills/agent-safety-monitor"
+name: agent-safety-monitor
+description: Real-time AI agent safety monitoring, anomaly detection, and constraint enforcement. Use when building agent guardrails, detecting unsafe behaviors, enforcing action limits, or creating safety dashboards for autonomous AI systems. Covers behavior logging, rule engines, alert systems, and compliance tracking.
 ---
 
 # Agent Safety Monitor
 
-> Real-time AI agent safety monitoring, anomaly detection, and constraint enforcement. Use when building agent guardrails, detecting unsafe behaviors, enforcin...
+Monitor AI agent behavior in real-time, detect anomalies, and enforce safety constraints.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-safety-monitor`
-- **Source URL:** [https://clawhub.ai/skills/agent-safety-monitor](https://clawhub.ai/skills/agent-safety-monitor)
+## Quick Start
 
-## Overview
+Run the monitor against an agent log stream:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-safety-monitor
+python3 scripts/monitor.py --config safety_rules.yaml --input agent_logs/
+```
+
+## Architecture
+
+```
+Agent Actions → Event Stream → Rule Engine → Alerts → Dashboard
+                                   ↓
+                              Anomaly Detector
+                                   ↓
+                              Auto-Pause/Kill
+```
+
+## Safety Rule Types
+
+1. **Rate limits**: Max N actions per minute/hour
+2. **Action allowlists**: Only permit specific tool calls
+3. **Content filters**: Block PII exfiltration, harmful outputs
+4. **Budget caps**: Stop when cost exceeds threshold
+5. **Scope limits**: Restrict file/API/network access
+6. **Behavioral anomalies**: Flag unusual patterns (tool call frequency spikes, repetitive loops)
+
+## Rule Configuration
+
+See `references/rules-reference.md` for the YAML schema.
+
+## Alert Channels
+
+- Console (default)
+- Webhook (Slack, Discord)
+- File log
+- Dashboard (HTTP server)
+
+## Dashboard
+
+Launch the monitoring dashboard:
+
+```bash
+python3 scripts/dashboard.py --port 8080
 ```

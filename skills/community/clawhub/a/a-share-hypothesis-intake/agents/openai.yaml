@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股观点拆解"
+  short_description: "把长材料拆成事实、推断、信号、失效条件和A股传导卡片"
+  default_prompt: "Use a-share-hypothesis-intake to拆解用户给出的宏观材料并映射到A股。"

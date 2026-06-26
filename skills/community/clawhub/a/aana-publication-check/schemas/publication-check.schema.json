@@ -1,0 +1,148 @@
+{
+  "title": "AANA Publication Check",
+  "type": "object",
+  "required": [
+    "publication_target",
+    "audience",
+    "content_summary",
+    "publication_status",
+    "approval_status",
+    "evidence_status",
+    "privacy_status",
+    "asset_permission_status",
+    "quality_status",
+    "risk_level",
+    "recommended_action"
+  ],
+  "properties": {
+    "publication_target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "internal_review",
+        "ready_public",
+        "needs_evidence",
+        "needs_redaction",
+        "needs_permission",
+        "needs_review",
+        "block_publish"
+      ]
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "required",
+        "unclear",
+        "denied",
+        "not_needed"
+      ]
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "partial",
+        "missing",
+        "stale",
+        "conflicting",
+        "not_applicable"
+      ]
+    },
+    "privacy_status": {
+      "type": "string",
+      "enum": [
+        "clear",
+        "needs_redaction",
+        "sensitive",
+        "unknown"
+      ]
+    },
+    "asset_permission_status": {
+      "type": "string",
+      "enum": [
+        "permissioned",
+        "needs_permission",
+        "third_party",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "quality_status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "revise_links",
+        "revise_copy",
+        "check_downloads",
+        "unknown"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "professional",
+        "legal",
+        "financial",
+        "safety",
+        "reputation",
+        "unknown"
+      ]
+    },
+    "publication_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "unsupported_claim",
+          "missing_citation",
+          "private_data",
+          "secret_leak",
+          "unapproved_asset",
+          "unapproved_quote",
+          "broken_link",
+          "wrong_download",
+          "overclaiming",
+          "external_action",
+          "customer_data",
+          "professional_claim",
+          "unknown"
+        ]
+      }
+    },
+    "revision_needed": {
+      "type": "string"
+    },
+    "review_needed": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "publish",
+        "revise",
+        "retrieve",
+        "ask",
+        "request_approval",
+        "route_to_review",
+        "block"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

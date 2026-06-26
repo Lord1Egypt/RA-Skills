@@ -1,35 +1,40 @@
----
-name: "1688 Scraper"
-description: "采集1688商品详情包含标题、价格、SKU、店铺信息、销售数据、全部商品属性及图片，并保存为本地数据包和图片文件夹。"
-category: "domain"
-source: "ClawHub"
-tags: [1688, ecommerce]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/1688-scraper"
-sourceUrl: "https://clawhub.ai/skills/1688-scraper"
----
+# 1688 商品采集 Skill
 
-# 1688 Scraper
+## 功能
+采集 1688 商品详情页面的完整数据，包括商品图片、标题、价格、SKU、店铺信息等，并以数据包形式保存到本地。
 
-> 采集1688商品详情包含标题、价格、SKU、店铺信息、销售数据、全部商品属性及图片，并保存为本地数据包和图片文件夹。
+## 使用方法
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/1688-scraper`
-- **Source URL:** [https://clawhub.ai/skills/1688-scraper](https://clawhub.ai/skills/1688-scraper)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/1688-scraper
+### 基础用法
 ```
+采集 1688 商品：https://detail.1688.com/offer/{商品 ID}.html
+```
+
+### 带参数
+```
+采集 1688 商品：{URL} 保存到：{路径}
+```
+
+## 输出
+- 商品图片文件夹：`{桌面}/1688-商品详情-{商品 ID}-图片/`
+- JSON 数据包：`{桌面}/1688-商品详情-{商品 ID}.json`
+
+## 采集内容
+- 商品标题、ID、URL
+- 店铺信息（名称、评分、回头率等）
+- 价格信息
+- 销售数据（已售、评价等）
+- 完整 SKU 列表（颜色、尺码、库存）
+- 所有商品图片（主图 + 详情图）
+- **商品属性（完整采集属性表格中的所有字段，包括但不限于）**：
+  - 材质、品牌、货号、风格、产地
+  - 规格、型号、颜色、尺寸、重量
+  - 适用场景、适用人群、主要销售地区
+  - 以及其他所有在属性表格中展示的字段
+- 用户评价
+
+## 技术实现
+- 使用浏览器 Performance API 捕获所有图片资源
+- 深度滚动触发懒加载图片
+- 自动清理 URL 后缀获取原图
+- 批量下载图片到本地

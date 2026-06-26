@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股动作路由"
+  short_description: "把盘面和组合合成为留减清加顺序与次日执行剧本"
+  default_prompt: "Use a-share-action-router to输出留减清加和处理顺序。"

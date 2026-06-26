@@ -1,35 +1,156 @@
 ---
-name: "A Stock Market Review"
-description: "A 股市场收盘复盘工具，总结当日大盘指数、热门板块、龙头股及创新高股票。使用东方财富 API，无需 API Key。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-market-review"
-sourceUrl: "https://clawhub.ai/skills/a-stock-market-review"
+name: a-stock-market-review
+description: A 股市场收盘复盘工具，总结当日大盘指数、热门板块、龙头股及创新高股票。使用东方财富 API，无需 API Key。
 ---
 
-# A Stock Market Review
+# A 股市场复盘 Skill
 
-> A 股市场收盘复盘工具，总结当日大盘指数、热门板块、龙头股及创新高股票。使用东方财富 API，无需 API Key。
+**收盘后专用** — 对当日 A 股市场表现进行全面总结，帮助快速把握市场脉络。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-market-review`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-market-review](https://clawhub.ai/skills/a-stock-market-review)
+## 何时使用
 
-## Overview
+✅ **使用场景：**
+- "今日 A 股复盘" / "今日市场总结"
+- "今天什么板块涨得好"
+- "查询今日热门板块和龙头股"
+- 每日收盘后市场回顾（15:00 后）
+- 投资复盘与策略调整参考
 
+❌ **不使用场景：**
+- 盘中实时行情查询（数据可能滞后）
+- 个股深度分析（需用专门股票分析工具）
+- 历史数据回测
+- 实时交易决策
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 数据来源
+
+- **东方财富网** (eastmoney.com)
+- 无需 API Key
+- 行情数据（交易时段实时更新）
+
+## 使用方法
+
+### 基础用法
+
 ```bash
-hermes skills install clawhub/a-stock-market-review
+python3 scripts/a_stock_market_review.py
 ```
+
+### 在对话中
+
+直接请求：
+- "今日 A 股复盘"
+- "今天市场表现如何"
+- "查询热门板块和龙头股"
+- "A 股收盘总结"
+
+## 输出内容
+
+1. **大盘指数** — 上证指数、深证成指、创业板指涨跌幅
+2. **🔥 热门板块 Top 10** — 按涨幅排序的概念板块
+3. **🏆 板块龙头股** — 前 3 大热门板块的领涨个股
+4. **🎯 创历史新高股票** — Top 20 列表
+5. **📊 连续创新高股票** — 20 日/60 日新高股票
+6. **市场简评** — 当日市场特征简要分析
+
+## 示例输出
+
+```
+==================================================
+📈 A 股市场复盘
+📅 2026 年 03 月 14 日 15:30 (Asia/Shanghai)
+==================================================
+
+【大盘指数】
+  上证指数：4098.59 点 (+1.00%)
+  深证成指：14239.30 点 (-0.83%)
+  创业板指：3281.94 点 (-0.81%)
+
+【🔥 今日最热板块 Top 10】
+  🔥 1. CPO 概念：6518.76 (+6.66%)
+  🔥 2. 光通信模块：3082.79 (+5.69%)
+  🔥 3. F5G 概念：4316.67 (+4.86%)
+  📈 4. 人工智能：...
+  ...
+
+【🏆 板块龙头股】
+
+  CPO 概念:
+    • 中际旭创 (300308): +12.50% 🚀
+    • 新易盛 (300502): +10.20% 🚀
+    • 天孚通信 (300394): +8.75%
+
+【🎯 创历史新高股票 Top20】
+  股票         代码       现价       涨幅      
+  ------------------------------------------
+  XXXX       000001    123.45    +5.67%
+  ...
+
+【📊 连续创新高股票】
+  【20 日新高】
+    XXXX(000001): 123.45 (+5.67%)
+    ...
+  【60 日新高】
+    XXXX(000001): 123.45 (+5.67%)
+    ...
+
+==================================================
+💡 数据来源：东方财富网 | 仅供参考，不构成投资建议
+⚠️ 风险提示：股市有风险，投资需谨慎。本报告仅供参考，不构成任何投资建议。
+==================================================
+```
+
+## 依赖
+
+- Python 3.7+
+- requests 库
+
+```bash
+pip install requests
+```
+
+## API 接口说明
+
+### 大盘指数
+```
+http://push2.eastmoney.com/api/qt/stock/get
+参数：secid=1.000001 (上证指数)
+```
+
+### 板块排行
+```
+http://push2.eastmoney.com/api/qt/clist/get
+参数：fs=m:90+t:3 (概念板块)
+```
+
+### 板块成分股
+```
+http://push2.eastmoney.com/api/qt/clist/get
+参数：fs=b:BK1128 (具体板块代码)
+```
+
+### 创新高股票
+```
+http://push2.eastmoney.com/api/qt/clist/get
+参数：fid=f109 (按历史新高排序)
+```
+
+## 注意事项
+
+1. **数据更新时间**：交易日 9:30-15:00 实时更新，非交易时段显示最后收盘价
+2. **最佳使用时机**：建议 15:00 收盘后使用，获取完整当日数据
+3. **网络超时**：请求超时设置为 5 秒，失败时会提示
+4. **免责声明**：数据仅供参考，不构成任何投资建议
+
+## 扩展建议
+
+- [ ] 添加资金流向数据（主力/北向）
+- [ ] 添加涨跌停统计
+- [ ] 添加市场情绪指标（涨跌家数比）
+- [ ] 添加成交量/成交额分析
+- [ ] 支持导出 Markdown/PDF 报告
+
+## 版本
+
+v1.1.0 - 优化描述，更名为 a-stock-market-review
+v1.0.0 - 初始版本

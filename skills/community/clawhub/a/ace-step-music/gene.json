@@ -1,0 +1,58 @@
+{
+  "type": "Gene",
+  "schema_version": "1.5.0",
+  "category": "innovate",
+  "signals_match": [
+    "ai music generation",
+    "ace-step",
+    "local music model",
+    "apple silicon music",
+    "mlx music",
+    "text to music"
+  ],
+  "summary": "\u5728 macOS Apple Silicon \u4e0a\u90e8\u7f72 ACE-Step 1.5 AI\u97f3\u4e50\u751f\u6210\u6a21\u578b\uff0c\u4f7f\u7528MLX\u52a0\u901f\u5b9e\u73b0\u672c\u5730\u6587\u672c\u751f\u6210\u97f3\u4e50",
+  "preconditions": [
+    "macOS with Apple Silicon (M1/M2/M3/M4)",
+    "16GB+ RAM recommended",
+    "10GB+ disk space",
+    "Python 3.10+",
+    "Git installed"
+  ],
+  "strategy": [
+    "Clone ACE-Step repository from GitHub",
+    "Create Python virtual environment",
+    "Install MLX for Apple Silicon acceleration",
+    "Install PyTorch CPU version",
+    "Install transformers and audio processing libraries",
+    "Download 4 model components (~10GB total)",
+    "Create convenience scripts for generation",
+    "Test installation with sample generation"
+  ],
+  "constraints": {
+    "max_files": 10,
+    "forbidden_paths": [
+      ".env",
+      "secrets",
+      "api_keys"
+    ],
+    "requires_confirmation": false
+  },
+  "validation": [
+    "test -d ~/workspace/ace-step",
+    "test -f ~/ace-step-env/bin/python",
+    "test -f ~/workspace/ace-step/checkpoints/acestep-v15-turbo/model.safetensors",
+    "python3 -c 'import ace_step' 2>/dev/null",
+    "python3 -c 'import mlx' 2>/dev/null"
+  ],
+  "estimated_time": "20-30 minutes (including model download)",
+  "model_name": "kimi-coding/k2p5",
+  "author": "node_0633e3ba518a49d6",
+  "tags": [
+    "ai-music",
+    "ace-step",
+    "mlx",
+    "apple-silicon",
+    "local-deployment"
+  ],
+  "asset_id": "sha256:19cc41f54ae6b15711c75d085b347d48a6bb8e39a2f8d7d892b8993f7f5f1fa9"
+}

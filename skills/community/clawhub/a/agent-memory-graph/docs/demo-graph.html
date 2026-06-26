@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Memory Graph — Visualization</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; overflow: hidden; }
+svg { width: 100vw; height: 100vh; }
+#detail { display: none; position: fixed; top: 20px; right: 20px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; max-width: 320px; z-index: 10; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+#detail h3 { margin-bottom: 8px; font-size: 15px; color: #f0f6fc; }
+#detail-body { font-size: 13px; line-height: 1.6; }
+.field { color: #8b949e; }
+.field strong { color: #c9d1d9; }
+#legend { position: fixed; bottom: 20px; left: 20px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; font-size: 12px; z-index: 10; }
+#legend div { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+#legend .dot { width: 10px; height: 10px; border-radius: 50%; }
+#title { position: fixed; top: 20px; left: 20px; font-size: 18px; font-weight: 600; color: #f0f6fc; z-index: 10; opacity: 0.7; }
+</style>
+</head>
+<body>
+<div id="title">🧠 Memory Graph</div>
+<div id="legend">
+  <div><span class="dot" style="background:#f778ba"></span> person</div>
+  <div><span class="dot" style="background:#79c0ff"></span> project</div>
+  <div><span class="dot" style="background:#7ee787"></span> tool</div>
+  <div><span class="dot" style="background:#d2a8ff"></span> concept</div>
+  <div><span class="dot" style="background:#ffa657"></span> place</div>
+  <div><span class="dot" style="background:#ff7b72"></span> company</div>
+</div>
+<div id="detail"><h3 id="detail-title"></h3><div id="detail-body"></div></div>
+<svg></svg>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const colors = { person: '#f778ba', project: '#79c0ff', tool: '#7ee787', concept: '#d2a8ff', place: '#ffa657', company: '#ff7b72' };
+
+const nodes = [
+  // People
+  { id: 'people/alex', title: 'Alex Chen', type: 'person', status: 'active', tags: 'founder, engineer' },
+  { id: 'people/sarah', title: 'Sarah Kim', type: 'person', status: 'active', tags: 'designer, co-founder' },
+  { id: 'people/marcus', title: 'Marcus Rivera', type: 'person', status: 'active', tags: 'mentor, investor' },
+  { id: 'people/lin', title: 'Lin Wei', type: 'person', status: 'active', tags: 'engineer, friend' },
+  
+  // Projects
+  { id: 'projects/verdant', title: 'Verdant', type: 'project', status: 'active', tags: 'saas, climate-tech' },
+  { id: 'projects/papertrail', title: 'Papertrail', type: 'project', status: 'active', tags: 'side-project, productivity' },
+  { id: 'projects/ghost-engine', title: 'Ghost Engine', type: 'project', status: 'idea', tags: 'game-dev, long-term' },
+  { id: 'projects/dotfiles', title: 'Dotfiles', type: 'project', status: 'active', tags: 'infra, personal' },
+  { id: 'projects/memory-graph', title: 'Memory Graph', type: 'project', status: 'active', tags: 'knowledge, ai-tools' },
+  
+  // Tools
+  { id: 'tools/typescript', title: 'TypeScript', type: 'tool', tags: 'language, typed' },
+  { id: 'tools/react', title: 'React', type: 'tool', tags: 'framework, frontend' },
+  { id: 'tools/nextjs', title: 'Next.js', type: 'tool', tags: 'framework, fullstack' },
+  { id: 'tools/rust', title: 'Rust', type: 'tool', tags: 'language, systems' },
+  { id: 'tools/sqlite', title: 'SQLite', type: 'tool', tags: 'database, embedded' },
+  { id: 'tools/supabase', title: 'Supabase', type: 'tool', tags: 'database, baas' },
+  { id: 'tools/figma', title: 'Figma', type: 'tool', tags: 'design, ui' },
+  { id: 'tools/godot', title: 'Godot', type: 'tool', tags: 'game-engine' },
+  { id: 'tools/obsidian', title: 'Obsidian', type: 'tool', tags: 'notes, knowledge' },
+  
+  // Concepts
+  { id: 'concepts/local-first', title: 'Local-First', type: 'concept', tags: 'architecture, offline' },
+  { id: 'concepts/carbon-accounting', title: 'Carbon Accounting', type: 'concept', tags: 'climate, measurement' },
+  { id: 'concepts/retroactive-association', title: 'Retroactive Association', type: 'concept', tags: 'memory, cognition' },
+  { id: 'concepts/proof-of-work', title: 'Proof of Work', type: 'concept', tags: 'accountability, trust' },
+  { id: 'concepts/composability', title: 'Composability', type: 'concept', tags: 'architecture, modularity' },
+  { id: 'concepts/autonomy', title: 'Autonomy', type: 'concept', tags: 'values, independence' },
+  
+  // Places
+  { id: 'places/berlin', title: 'Berlin', type: 'place', tags: 'home, germany' },
+  { id: 'places/tokyo', title: 'Tokyo', type: 'place', tags: 'travel, inspiration' },
+  
+  // Companies
+  { id: 'companies/leafworks', title: 'Leafworks', type: 'company', tags: 'startup, climate' },
+  { id: 'companies/bytecraft', title: 'ByteCraft Labs', type: 'company', tags: 'day-job, ai' },
+];
+
+const links = [
+  // Alex's relations
+  { source: 'people/alex', target: 'projects/verdant', type: 'creator' },
+  { source: 'people/alex', target: 'projects/papertrail', type: 'creator' },
+  { source: 'people/alex', target: 'projects/ghost-engine', type: 'creator' },
+  { source: 'people/alex', target: 'projects/memory-graph', type: 'creator' },
+  { source: 'people/alex', target: 'projects/dotfiles', type: 'maintainer' },
+  { source: 'people/alex', target: 'tools/typescript', type: 'uses' },
+  { source: 'people/alex', target: 'tools/rust', type: 'uses' },
+  { source: 'people/alex', target: 'places/berlin', type: 'lives-in' },
+  { source: 'people/alex', target: 'concepts/autonomy', type: 'core-value' },
+  { source: 'people/alex', target: 'companies/bytecraft', type: 'works-at' },
+  { source: 'people/alex', target: 'companies/leafworks', type: 'co-founder' },
+  
+  // Sarah
+  { source: 'people/sarah', target: 'projects/verdant', type: 'co-founder' },
+  { source: 'people/sarah', target: 'tools/figma', type: 'uses' },
+  { source: 'people/sarah', target: 'companies/leafworks', type: 'co-founder' },
+  { source: 'people/sarah', target: 'places/berlin', type: 'lives-in' },
+  
+  // Marcus
+  { source: 'people/marcus', target: 'companies/leafworks', type: 'advisor' },
+  { source: 'people/marcus', target: 'people/alex', type: 'mentors' },
+  { source: 'people/marcus', target: 'places/tokyo', type: 'lives-in' },
+  
+  // Lin
+  { source: 'people/lin', target: 'projects/ghost-engine', type: 'collaborator' },
+  { source: 'people/lin', target: 'tools/rust', type: 'uses' },
+  { source: 'people/lin', target: 'tools/godot', type: 'uses' },
+  
+  // Verdant project
+  { source: 'projects/verdant', target: 'tools/nextjs', type: 'built-with' },
+  { source: 'projects/verdant', target: 'tools/supabase', type: 'built-with' },
+  { source: 'projects/verdant', target: 'tools/typescript', type: 'built-with' },
+  { source: 'projects/verdant', target: 'concepts/carbon-accounting', type: 'core-concept' },
+  { source: 'projects/verdant', target: 'concepts/local-first', type: 'architecture' },
+  { source: 'projects/verdant', target: 'companies/leafworks', type: 'owned-by' },
+  
+  // Papertrail
+  { source: 'projects/papertrail', target: 'tools/react', type: 'built-with' },
+  { source: 'projects/papertrail', target: 'tools/sqlite', type: 'built-with' },
+  { source: 'projects/papertrail', target: 'concepts/local-first', type: 'architecture' },
+  { source: 'projects/papertrail', target: 'concepts/proof-of-work', type: 'core-concept' },
+  
+  // Ghost Engine
+  { source: 'projects/ghost-engine', target: 'tools/rust', type: 'built-with' },
+  { source: 'projects/ghost-engine', target: 'tools/godot', type: 'built-with' },
+  
+  // Memory Graph
+  { source: 'projects/memory-graph', target: 'tools/sqlite', type: 'built-with' },
+  { source: 'projects/memory-graph', target: 'concepts/retroactive-association', type: 'core-concept' },
+  { source: 'projects/memory-graph', target: 'concepts/composability', type: 'architecture' },
+  { source: 'projects/memory-graph', target: 'tools/obsidian', type: 'inspired-by' },
+  
+  // Concept relations
+  { source: 'concepts/local-first', target: 'concepts/autonomy', type: 'related-to' },
+  { source: 'concepts/composability', target: 'concepts/local-first', type: 'related-to' },
+  { source: 'concepts/proof-of-work', target: 'concepts/carbon-accounting', type: 'related-to' },
+  
+  // Tool relations
+  { source: 'tools/nextjs', target: 'tools/react', type: 'built-on' },
+  { source: 'tools/nextjs', target: 'tools/typescript', type: 'uses' },
+  
+  // Place
+  { source: 'places/tokyo', target: 'projects/ghost-engine', type: 'inspired' },
+];
+
+const connectionCount = {};
+links.forEach(l => {
+  connectionCount[l.source] = (connectionCount[l.source] || 0) + 1;
+  connectionCount[l.target] = (connectionCount[l.target] || 0) + 1;
+});
+
+const width = window.innerWidth, height = window.innerHeight;
+const svg = d3.select('svg');
+
+const simulation = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(links).id(d => d.id).distance(100))
+  .force('charge', d3.forceManyBody().strength(-400))
+  .force('center', d3.forceCenter(width / 2, height / 2))
+  .force('collision', d3.forceCollide().radius(d => Math.sqrt(connectionCount[d.id] || 1) * 6 + 15));
+
+const link = svg.append('g')
+  .selectAll('line')
+  .data(links)
+  .join('line')
+  .attr('stroke', '#21262d')
+  .attr('stroke-width', 1)
+  .attr('stroke-opacity', 0.6);
+
+const linkLabel = svg.append('g')
+  .selectAll('text')
+  .data(links)
+  .join('text')
+  .text(d => d.type)
+  .attr('font-size', 9)
+  .attr('fill', '#484f58')
+  .attr('text-anchor', 'middle')
+  .attr('opacity', 0);
+
+const nodeG = svg.append('g')
+  .selectAll('g')
+  .data(nodes)
+  .join('g')
+  .call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+  );
+
+nodeG.append('circle')
+  .attr('r', d => Math.sqrt(connectionCount[d.id] || 1) * 4 + 6)
+  .attr('fill', d => colors[d.type] || '#8b949e')
+  .attr('stroke', d => d3.color(colors[d.type] || '#8b949e').brighter(0.5))
+  .attr('stroke-width', 1.5)
+  .attr('opacity', 0.9);
+
+nodeG.append('text')
+  .text(d => d.title)
+  .attr('dx', d => Math.sqrt(connectionCount[d.id] || 1) * 4 + 10)
+  .attr('dy', 4)
+  .attr('font-size', 12)
+  .attr('fill', '#c9d1d9')
+  .attr('font-weight', d => (connectionCount[d.id] || 0) > 4 ? '600' : '400');
+
+// Hover effects
+nodeG.on('mouseover', function(e, d) {
+  const connected = new Set();
+  links.forEach(l => {
+    if (l.source.id === d.id) connected.add(l.target.id);
+    if (l.target.id === d.id) connected.add(l.source.id);
+  });
+  
+  nodeG.attr('opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.15);
+  link.attr('stroke', l => l.source.id === d.id || l.target.id === d.id ? colors[d.type] || '#8b949e' : '#21262d')
+    .attr('stroke-opacity', l => l.source.id === d.id || l.target.id === d.id ? 0.8 : 0.1)
+    .attr('stroke-width', l => l.source.id === d.id || l.target.id === d.id ? 2 : 1);
+  linkLabel.attr('opacity', l => l.source.id === d.id || l.target.id === d.id ? 1 : 0)
+    .attr('fill', l => l.source.id === d.id || l.target.id === d.id ? '#8b949e' : '#484f58');
+}).on('mouseout', function() {
+  nodeG.attr('opacity', 1);
+  link.attr('stroke', '#21262d').attr('stroke-opacity', 0.6).attr('stroke-width', 1);
+  linkLabel.attr('opacity', 0);
+});
+
+// Click for details
+nodeG.on('click', function(e, d) {
+  const det = document.getElementById('detail');
+  document.getElementById('detail-title').textContent = d.title;
+  let body = '<div class="field"><strong>Type:</strong> ' + d.type + '</div>';
+  if (d.status) body += '<div class="field"><strong>Status:</strong> ' + d.status + '</div>';
+  if (d.tags) body += '<div class="field"><strong>Tags:</strong> ' + d.tags + '</div>';
+  body += '<div class="field"><strong>Connections:</strong> ' + (connectionCount[d.id] || 0) + '</div>';
+  
+  const outgoing = links.filter(l => l.source.id === d.id);
+  const incoming = links.filter(l => l.target.id === d.id);
+  if (outgoing.length) {
+    body += '<br><div class="field"><strong>Outgoing:</strong></div>';
+    outgoing.forEach(l => { body += '<div class="field">&nbsp;&nbsp;→ ' + l.target.title + ' [' + l.type + ']</div>'; });
+  }
+  if (incoming.length) {
+    body += '<br><div class="field"><strong>Incoming:</strong></div>';
+    incoming.forEach(l => { body += '<div class="field">&nbsp;&nbsp;← ' + l.source.title + ' [' + l.type + ']</div>'; });
+  }
+  document.getElementById('detail-body').innerHTML = body;
+  det.style.display = 'block';
+});
+
+simulation.on('tick', () => {
+  link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  linkLabel.attr('x', d => (d.source.x + d.target.x) / 2).attr('y', d => (d.source.y + d.target.y) / 2);
+  nodeG.attr('transform', d => 'translate(' + d.x + ',' + d.y + ')');
+});
+</script>
+</body>
+</html>

@@ -1,35 +1,25 @@
 ---
-name: "Security Audit"
-description: "Minimal helper to audit skill.md-style instructions for supply-chain risks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agents-skill-security-audit"
-sourceUrl: "https://clawhub.ai/skills/agents-skill-security-audit"
+name: security-audit
+description: Minimal helper to audit skill.md-style instructions for supply-chain risks.
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["python3"] },
+      "category": "security"
+    }
+  }
 ---
 
-# Security Audit
+# security-audit
 
-> Minimal helper to audit skill.md-style instructions for supply-chain risks.
+Minimal helper to audit skill.md-style instructions for supply-chain risks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agents-skill-security-audit`
-- **Source URL:** [https://clawhub.ai/skills/agents-skill-security-audit](https://clawhub.ai/skills/agents-skill-security-audit)
+## Features
+- Heuristic scan for exfiltration patterns (HTTP POST, curl to unknown domains, reading ~/.env, credential keywords).
+- Permission manifest reminder: lists filesystem/network touches it sees.
+- Safe report: markdown summary + risk level.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/agents-skill-security-audit
+python audit.py path/to/skill.md > report.md
 ```

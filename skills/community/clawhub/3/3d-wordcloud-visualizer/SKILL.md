@@ -1,35 +1,323 @@
 ---
-name: "3d-wordcloud-visualizer"
-description: "3D 词云可视化工具 - 将对话历史或其他文本数据自动转换为炫酷的 3D 地球词云，支持多格式文件导入（JSON/MD/TXT），自动中文分词和词频统计，生成 TOP30 高频词的 3D 可视化效果"
-category: "other"
-source: "ClawHub"
-tags: [3d-visualization, data-visualization, threejs, word-cloud, workbuddy-skill]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/3d-wordcloud-visualizer"
-sourceUrl: "https://clawhub.ai/skills/3d-wordcloud-visualizer"
+description: 3D 词云可视化工具 - 将对话历史或其他文本数据自动转换为炫酷的 3D 地球词云，支持多格式文件导入（JSON/MD/TXT），自动中文分词和词频统计，生成 TOP30 高频词的 3D 可视化效果
 ---
 
-# 3d-wordcloud-visualizer
+# 3D 词云可视化生成器
 
-> 3D 词云可视化工具 - 将对话历史或其他文本数据自动转换为炫酷的 3D 地球词云，支持多格式文件导入（JSON/MD/TXT），自动中文分词和词频统计，生成 TOP30 高频词的 3D 可视化效果
+将大模型对话历史（或任何文本数据）自动转换为炫酷的 3D 地球词云可视化效果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/3d-wordcloud-visualizer`
-- **Source URL:** [https://clawhub.ai/skills/3d-wordcloud-visualizer](https://clawhub.ai/skills/3d-wordcloud-visualizer)
+## 触发条件
 
-## Overview
+当用户需要以下操作时使用此 Skill：
+- 将对话历史可视化
+- 生成 3D 词云
+- 分析文本关键词分布
+- 创建交互式数据可视化
+- 导出 3D 词云为图片
 
+## 功能特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/3d-wordcloud-visualizer
+### 核心能力
+
+1. **多格式支持**
+   - JSON - 自动深度提取对话内容（递归解析 content/message/text/question/answer 字段）
+   - Markdown - 直接读取全文
+   - TXT - 直接读取全文
+   - UTF-8-sig 编码 - 避免中文乱码
+
+2. **自动化数据处理**
+   - 读取文件 → UTF-8 解码
+   - 格式解析 → JSON 自动递归提取
+   - 中文分词 → 使用专业分词库（segmentit）
+   - 去停用词 → 过滤 "的、了、是、吗" 等无意义词
+   - 词频统计 → 自动计算权重
+   - 排序筛选 → 取 TOP30 高频词
+   - 生成词云 → 自动渲染到地球
+
+3. **3D 地球词云**
+   - Three.js 渲染引擎
+   - 真实的 3D 地球模型
+   - 词云作为纹理映射到地球表面
+   - 随机配色（15 种预设颜色）
+   - 星空背景（5000 颗星）
+   - 光照效果（环境光 + 方向光）
+
+4. **交互功能**
+   - 鼠标拖拽旋转地球
+   - 滚轮缩放视角
+   - 右键平移视角
+   - 自动旋转展示
+   - 阻尼效果（更丝滑）
+   - 范围限制（1.2 - 5.0 距离）
+
+5. **纯前端运行**
+   - 无需服务器
+   - 无需后端处理
+   - 数据不上传云端
+   - 完全本地处理
+
+## 使用指南
+
+### 基本用法
+
+1. **准备数据文件**
+   - 使用 `conversation-exporter` Skill 导出对话历史
+   - 或准备任何 JSON/MD/TXT 文件
+
+2. **生成可视化**
+   - 在对话中告诉 AI："生成 3D 词云"
+   - AI 会自动：
+     - 创建 HTML 文件
+     - 包含完整的 3D 渲染代码
+     - 支持文件上传功能
+     - 自动解析和生成词云
+
+3. **查看效果**
+   - 在浏览器中打开生成的 HTML 文件
+   - 上传你的数据文件
+   - 等待自动解析和生成
+   - 观察 3D 词云地球
+
+### 高级选项
+
+- **自定义配色方案** - 修改颜色数组
+- **调整词云数量** - 修改 TOP30 为其他数值
+- **修改地球大小** - 调整 SphereGeometry 参数
+- **调整旋转速度** - 修改 autoRotateSpeed 值
+- **自定义停用词** - 修改 stopWords Set
+
+## 数据结构
+
+### JSON 格式要求
+
+支持任意嵌套结构，自动提取以下字段：
+- `content`
+- `text`
+- `message`
+- `question`
+- `answer`
+
+示例：
+```json
+{
+  "conversation_history": {
+    "timeline": [
+      {
+        "date": "2026-03-25",
+        "type": "skill_installation",
+        "action": "安装 Skills",
+        "details": {
+          "content": "成功安装了 5 个 Skills"
+        }
+      }
+    ]
+  }
+}
 ```
+
+### 关键词统计
+
+- 词频决定文字大小（count * 2.5 像素）
+- 自动排序并取 TOP30
+- 过滤停用词
+- 最小词频限制为 1
+
+## 配置选项
+
+### 文件编码
+
+- 所有文件：UTF-8-sig（带 BOM）
+- 目的：避免中文乱码
+
+### 性能优化
+
+- 纹理分辨率：2048x1024（高清）
+- 地球细分：64x64
+- 星空粒子：5000 个
+- 帧率优化：requestAnimationFrame
+
+### 停用词列表
+
+```javascript
+const stopWords = new Set([
+    '的', '了', '是', '我', '你', '在', '有', '和', '就', '都',
+    '吗', '吧', '呢', '啊', '哦', '嗯', '这个', '那个', '可以',
+    '然后', '但是', '因为', '所以', '如果', '需要', '谢谢'
+]);
+```
+
+## 文件输出
+
+### 生成的文件
+
+- `3d_word_cloud_visualizer.html` - 完整的可视化工具
+  - 包含所有必要的 HTML/CSS/JS 代码
+  - 支持文件上传功能
+  - 自动解析和生成词云
+  - 可在浏览器中直接运行
+
+### 可选导出
+
+- 支持导出当前词云为 PNG 图片（通过浏览器截图）
+- 支持导出词云数据为 JSON 格式
+
+## 技术实现
+
+### 依赖库
+
+1. **Three.js** (v0.160.0)
+   - 3D 渲染引擎
+   - CDN: https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js
+
+2. **OrbitControls**
+   - 鼠标交互控制
+   - CDN: https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js
+
+3. **segmentit** (v2.0.3)
+   - 中文分词库
+   - CDN: https://cdn.jsdelivr.net/npm/segmentit@2.0.3/dist/umd/segmentit.min.js
+
+### 无外部依赖
+
+- ✅ 不需要后端服务器
+- ✅ 不需要 API Key
+- ✅ 不需要数据库
+- ✅ 所有代码包含在单个 HTML 文件中
+
+## 注意事项
+
+1. **文件大小**
+   - 建议单个文件不超过 10MB
+   - 大文件可能导致浏览器卡顿
+
+2. **关键词数量**
+   - 默认 TOP30，可根据需要调整
+   - 过多关键词会影响性能
+
+3. **浏览器兼容性**
+   - 推荐使用 Chrome、Firefox、Edge 现代浏览器
+   - 需要支持 WebGL
+   - IE 11 不支持
+
+4. **网络连接**
+   - 首次打开需要下载 CDN 资源
+   - 后续运行可在离线模式（需缓存）
+
+## 错误处理
+
+### 常见问题
+
+1. **文件解析失败**
+   - 检查文件格式是否正确
+   - 确保 JSON 语法无错误
+   - 尝试使用其他格式（MD/TXT）
+
+2. **词云生成失败**
+   - 检查文件是否包含有效文本
+   - 确认 segmentit 库加载成功
+   - 查看浏览器控制台错误信息
+
+3. **3D 渲染失败**
+   - 检查浏览器是否支持 WebGL
+   - 确认 CDN 资源加载成功
+   - 尝试使用不同浏览器
+
+## 安全特性
+
+- ✅ 本地处理，数据不上传云端
+- ✅ 无外部 API 调用
+- ✅ 无数据持久化
+- ✅ 完全由用户控制数据
+
+## 更新日志
+
+- **v1.0** (2026-03-25)
+  - 初始版本
+  - 支持 JSON/MD/TXT 三种格式
+  - 自动中文分词和词频统计
+  - 3D 地球词云可视化
+  - 鼠标交互功能
+  - 星空背景效果
+
+## 示例工作流
+
+### 完整流程
+
+1. **导出对话历史**
+   - 使用 `conversation-exporter` Skill
+   - 选择导出格式（推荐 JSON）
+   - 保存到本地
+
+2. **生成可视化**
+   - 在对话中："生成 3D 词云"
+   - AI 创建 `3d_word_cloud_visualizer.html`
+
+3. **查看词云**
+   - 浏览器打开 HTML 文件
+   - 上传导出的对话历史文件
+   - 等待自动解析和生成
+
+4. **交互探索**
+   - 拖拽旋转地球
+   - 滚轮缩放视角
+   - 观察关键词分布
+   - 截图保存效果
+
+## 技术亮点
+
+### 纯前端实现
+
+- 无需后端服务器
+- 完全本地处理
+- 数据安全可控
+
+### 自动化程度高
+
+- 用户只需上传文件
+- 自动解析、统计、生成
+- 零配置、零操作
+
+### 视觉效果好
+
+- 3D 地球模型
+- 词云纹理映射
+- 星空背景
+- 流畅动画
+
+### 交互体验佳
+
+- 鼠标拖拽旋转
+- 滚轮缩放
+- 自动旋转展示
+- 阻尼效果
+
+## 适用场景
+
+- 对话历史可视化
+- 文本关键词分析
+- 数据展示演示
+- 教育培训演示
+- 数据新闻制作
+- 交互式报告
+
+## 最佳实践
+
+1. **准备数据**
+   - 确保文件格式正确
+   - 检查编码为 UTF-8
+   - 文件大小适中
+
+2. **生成词云**
+   - 使用现代浏览器
+   - 首次打开需要网络（加载 CDN）
+   - 耐心等待解析完成
+
+3. **探索分析**
+   - 尝试不同角度观察
+   - 注意高频关键词
+   - 对比不同时期数据
+
+4. **保存成果**
+   - 使用截图工具保存图片
+   - 记录分析结论
+   - 分享可视化结果

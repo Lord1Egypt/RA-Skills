@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股观察循环"
+  short_description: "把结论落成每日检查时点、观察指标和通过失败动作规则"
+  default_prompt: "Use a-share-observation-loop to把研究结论改成每日观察清单。"

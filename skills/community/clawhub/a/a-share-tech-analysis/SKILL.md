@@ -1,35 +1,83 @@
 ---
-name: "A股技术分析工具包"
+name: a-share-tech-analysis
 description: "A股技术分析工具包 — K线形态识别、技术指标计算、关键点位分析、资金流向解读。支持MACD/KDJ/RSI/均线系统/布林带，自动标注支撑位与阻力位，适合AI agent辅助操盘决策。"
-category: "domain"
-source: "ClawHub"
-tags: [a-share, china, finance, stock, technical-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-tech-analysis"
-sourceUrl: "https://clawhub.ai/skills/a-share-tech-analysis"
 ---
 
-# A股技术分析工具包
+# A股技术分析工具包 (A-Share Tech Analysis)
 
-> A股技术分析工具包 — K线形态识别、技术指标计算、关键点位分析、资金流向解读。支持MACD/KDJ/RSI/均线系统/布林带，自动标注支撑位与阻力位，适合AI agent辅助操盘决策。
+帮助你进行中国A股市场的技术面分析，包含K线形态识别、技术指标计算、关键点位分析等功能。适合AI agent辅助人类进行股票交易决策。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-tech-analysis`
-- **Source URL:** [https://clawhub.ai/skills/a-share-tech-analysis](https://clawhub.ai/skills/a-share-tech-analysis)
+## 功能
 
-## Overview
+### 1. K线形态识别
+- 锤子线 / 上吊线
+- 吞没形态（看涨/看跌）
+- 十字星
+- 三只乌鸦 / 三白兵
+- 头肩顶 / 头肩底
+- 双底 / 双顶
 
+### 2. 技术指标
+| 指标 | 参数默认值 | 用途 |
+|------|-----------|------|
+| MACD | 12/26/9 | 趋势判断，金叉死叉信号 |
+| KDJ | 9/3/3 | 超买超卖区域识别 |
+| RSI | 6/12/24 | 相对强弱，背离信号 |
+| 均线系统 | MA5/MA10/MA20/MA60/MA120 | 多空排列，支撑阻力 |
+| 布林带 | 20/2 | 波动率与突破信号 |
+| 成交量 | OBV/量比 | 资金活跃度 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 关键点位
+- 自动标注近期支撑位与阻力位
+- 计算止损位与目标位
+- 趋势线识别（上升/下降/横盘）
+
+### 4. 资金流向
+- 主力资金净流入/流出分析
+- 大单/中单/小单分布
+- 北向资金动态
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/a-share-tech-analysis
+# 查询某只股票的技术面
+analyze-stock 600519.SH --indicators macd,kdj,rsi --levels support-resistance
+
+# K线形态扫描
+scan-patterns 000001.SZ --patterns engulfing,doji,hammer
+
+# 每日复盘简报
+daily-review 300750.SZ --brief
 ```
+
+## 技术指标公式
+
+### MACD
+```
+EMA12 = 前一日EMA12 × 11/13 + 今日收盘价 × 2/13
+EMA26 = 前一日EMA26 × 25/27 + 今日收盘价 × 2/27
+DIF = EMA12 - EMA26
+DEA = 前一日DEA × 8/10 + 今日DIF × 2/10
+MACD柱 = (DIF - DEA) × 2
+金叉 = DIF 上穿 DEA
+死叉 = DIF 下穿 DEA
+```
+
+### KDJ
+```
+RSV = (今日收盘价 - 最近9日最低价) / (最近9日最高价 - 最近9日最低价) × 100
+K值 = 前一日K × 2/3 + 今日RSV × 1/3
+D值 = 前一日D × 2/3 + 今日K × 1/3
+J值 = 3 × K - 2 × D
+超买: K > 80
+超卖: K < 20
+```
+
+## 注意事项
+- 技术指标仅为辅助工具，不构成投资建议
+- A股市场受政策面影响较大，需结合基本面分析
+- 建议使用多个指标交叉验证，单一指标信号可靠性有限
+- 注意识别假突破和指标钝化情况
+
+## Tags
+a-share, stock, technical-analysis, trading, china, finance, macd, kdj, rsi

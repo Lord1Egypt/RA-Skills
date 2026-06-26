@@ -1,0 +1,14 @@
+interface:
+  display_name: "承接率下降归因"
+  short_description: "按阶段分析承接率下降，定位异常切片并逐层归因到资方、资产与敏感资方侧。"
+  default_prompt: >-
+    使用 $acceptance-rate-analysis，并以 `SKILL.md` 作为唯一主契约；如果本提示与 `SKILL.md` 有差异，一律以 `SKILL.md` 为准。
+    运行前按 `SKILL.md` 处理 `BIGDATA_ACCESS_TOKEN`；执行时严格遵循 `SKILL.md` 中的阶段顺序、判定口径和展示要求。
+    本技能主表产品切片字段固定为 `cp_dj_new`；`slice_key` 第二段来自 `analysis_sequence[i].slice_key`，不得自行使用或拼接旧字段。
+    面向用户时，把 `SKILL.md` 明确要求展示的 markdown 展示块优先直接写入最终回复正文，不要只在思考过程中引用、总结或省略，尤其不要把阶段表格、阈值判断和下钻口径留在思考过程里。
+    第一阶段输出时，优先把 `primary_display.stage1_verbatim_markdown` 整段逐字复制到正文；若必须拆分，顺序固定为 `workflow_overview_markdown` → `stage1_status_block` → `overall_summary_markdown` → `customer_group_summary_text` → `drill_down_scope_markdown` → `huixuan_group_markdown` → `jingyou_group_markdown`，不得改写或调序。
+    第五阶段逐切片归因必须给出可复核数字证据，不得只写抽象结论：按路径回放（第二阶段路由信号 stage2_signal → 第三阶段形态 asset_dimension_pattern → 第四阶段闭环与 final_attribution_level），再落切片结论；至少包含该切片承接率快照（对比期/当前期/变化pp），并优先引用资产维度形态判别与关键桶的当前/对比承接率和占比变化（涉及高龄、特殊区域时优先给出 55+、新疆/西藏等桶的具体数值）；若数字暂缺，必须说明缺失原因。
+    面向用户只输出业务话术，不要自行重写口径、重拼表格，或暴露 `terminal_reason`、`next_action` 等内部路由信息。
+    严格按 `SKILL.md`「状态展示规范」执行：不展示切片队列；第一阶段只展示任务总进度（步骤1/2）+ 步骤结论，不展示切片进度/当前切片，也不展示二~四级细分状态；从第二阶段开始再展示切片 `N/M` 进度与中文阶段状态。二/三阶段状态块前置在 `capital_display.summary_markdown` / `asset_display.summary_markdown` 开头；第四阶段仅展示一次顶层 `status_line`，随后展示 `business_view.summary` 与 `business_view.evidence`，禁止重复状态块。业务展示层不要输出任何 `Rxxx` 终止码，只保留中文结论语义；emoji 图标（如 `🚀/📍/📊/✅/🛑/🔒/🧩/⚠️/⏳`）必须保留。
+    「切片进度」`📍 N/M`：`M` 必须等于一级 `analysis_sequence` 的全局长度（跨惠选+精优），`N` 为当前 `slice_key` 在该队列中的序号；同一切片在第二、三、四阶段必须与脚本 JSON 中的 `slice_index`/`slice_total`（及根字段 `status_line`）完全一致。禁止自编「切片2」「客群内第几个」等与脚本 `📍` 行矛盾的表述；阶段标题若写切片序号，必须与上述全局 N 一致，不得改用客群内局部计数。
+    第五阶段按 `SKILL.md` 的视觉增强规范输出：标题分级清晰（阶段/部分/切片）、切片间 `---` 分隔、核心判断放引用块、关键状态加标签（如【已闭环】/【需手工验证】）、负向变化用 markdown 加粗（如 **-3.2%**），仅做视觉强化，不改口径和数值。

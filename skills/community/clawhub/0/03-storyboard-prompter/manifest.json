@@ -1,0 +1,23 @@
+{
+  "namespace": "user",
+  "name": "03-storyboard-prompter",
+  "displayName": "03 Storyboard Prompter",
+  "description": "将剧本场景转为AI绘画提示词",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "scenes": { "type": "array" }
+    },
+    "required": ["scenes"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "shot_list": { "type": "array" }
+    },
+    "required": ["shot_list"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js"
+}

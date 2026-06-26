@@ -1,0 +1,30 @@
+[package]
+name = "agent_zero_backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "process"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+reqwest = { version = "0.12", features = ["json", "gzip", "brotli", "deflate", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+scraper = "0.19"
+url = "2"
+regex = "1"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "migrate"] }
+sha2 = "0.10"
+hex = "0.4"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "webp"] }
+object_store = "0.13"
+clap = { version = "4", features = ["derive"] }
+chromiumoxide = "0.9"
+dirs = "5"
+futures = "0.3"
+
+[dev-dependencies]
+insta = { version = "1", features = ["json"] }
+ts-rs = "9"

@@ -1,0 +1,2 @@
+# No third-party dependencies required
+# Uses Python standard library: smtplib, email

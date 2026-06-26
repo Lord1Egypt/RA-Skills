@@ -1,0 +1,58 @@
+[
+  {
+    "query": "This repo got messy after several agent runs. Help me identify temporary files that can be cleaned up, but do not delete anything yet.",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to free some space in this coding workspace. Please find old test outputs, caches, logs, and generated artifacts, but do a dry run first.",
+    "should_trigger": true
+  },
+  {
+    "query": "Clean up agent-generated logs and screenshots. Do not touch databases or .env files.",
+    "should_trigger": true
+  },
+  {
+    "query": "Before handoff, tidy the workspace and tell me which scratch files or eval outputs can be archived.",
+    "should_trigger": true
+  },
+  {
+    "query": "Disk usage in this workspace is getting high. Check node_modules, caches, temporary databases, and test reports, then tell me what can be archived.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this PR, focusing on security issues and regression risk.",
+    "should_trigger": false
+  },
+  {
+    "query": "Clean up memory.md by removing stale user preferences and duplicate notes.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run the test suite and tell me whether the latest changes broke anything.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix this failing test. It probably changed because the API contract moved.",
+    "should_trigger": false
+  },
+  {
+    "query": "Reorganize the README and make the installation steps clearer.",
+    "should_trigger": false
+  },
+  {
+    "query": "Check git status and tell me what changed in the working tree.",
+    "should_trigger": false
+  },
+  {
+    "query": "Delete this unused function and update the corresponding tests.",
+    "should_trigger": false
+  },
+  {
+    "query": "This repo is messy and hard to understand. Review the architecture and suggest a cleaner module layout.",
+    "should_trigger": false
+  },
+  {
+    "query": "Before handoff, summarize what changed and what still needs work.",
+    "should_trigger": false
+  }
+]

@@ -1,35 +1,68 @@
 ---
-name: "Multi-Agent Team"
-description: "多Agent团队协作模板。教多个AI Agent如何分工协作——CEO统筹、执行者干活、设计师出图、销售沟通。 适用于需要多个AI角色配合完成的复杂任务。 触发词：团队协作、多人配合、分工、帮我分配、Agent团队"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent-team, multi-agent, team-collaboration, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-team-up"
-sourceUrl: "https://clawhub.ai/skills/agent-team-up"
+name: multi-agent-team
+description: >
+  多Agent团队协作模板。教多个AI Agent如何分工协作——CEO统筹、执行者干活、设计师出图、销售沟通。
+  适用于需要多个AI角色配合完成的复杂任务。
+  触发词：团队协作、多人配合、分工、帮我分配、Agent团队
 ---
 
-# Multi-Agent Team
+# 多Agent团队协作模板
 
-> 多Agent团队协作模板。教多个AI Agent如何分工协作——CEO统筹、执行者干活、设计师出图、销售沟通。 适用于需要多个AI角色配合完成的复杂任务。 触发词：团队协作、多人配合、分工、帮我分配、Agent团队
+> 不用一个人扛所有事。多个Agent各司其职，效率翻倍。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-team-up`
-- **Source URL:** [https://clawhub.ai/skills/agent-team-up](https://clawhub.ai/skills/agent-team-up)
+## 基础分工模型
 
-## Overview
+| 角色 | 职责 | 沟通方式 |
+|------|------|---------|
+| **👑 CEO** | 接收需求、拆任务、分派、验收、汇报 | 只说目标和结果，不教做事 |
+| **🔧 执行者** | 写代码、做分析、建文件 | 给出方案，有问题主动说 |
+| **🎨 设计师** | UI/视觉/排版 | 出图前确认方向，不闷头做 |
+| **💬 销售** | 客户沟通、话术、成交 | 先了解再推荐，不强推 |
 
+## 协作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-team-up
+### 1. CEO 拆单（关键步骤）
 ```
+需求 → 明确目标 → 拆分步骤 → 指定负责人 → 设验收标准
+```
+- 不说"帮我做个东西"，要说"做XX，给YY用，DDL是ZZ"
+- 每个子任务必须有明确的交付物
+
+### 2. 并行执行
+```
+多个Agent同时干活，各不相干
+```
+- 执行者写代码不需要等设计师出图
+- 需要协作的地方，CEO负责协调
+
+### 3. 进度同步
+```
+每完成一个模块 → 主动通报 → CEO判断要不要调整
+```
+- 执行者不要等CEO来问进度
+- 卡住了立刻说，不说CEO不知道
+
+### 4. 汇总交付
+```
+各Agent产出 → CEO整合 → 统一交付
+```
+- CEO不管具体怎么做，只管"做没做好"
+- 最后一关审核：是否符合最初目标
+
+## 常见协作模式
+
+### 模式A：产品开发
+CEO定需求 → 执行者写代码 → 设计师做UI → CEO验收
+
+### 模式B：内容生产
+CEO定方向 → 执行者写文案 → 设计师出配图 → 销售/客服准备话术
+
+### 模式C：客户服务
+销售接客户 → 执行者查资料 → CEO定方案 → 销售回复
+
+## 沟通原则
+
+- **@指定人**：不要群发消息给所有人
+- **说结论再展开**："搞定了" → 再贴结果
+- **有异议先执行**：除非明显错误，否则先按CEO说的做，做完再讨论
+- **不越级**：销售不指挥执行者写代码，设计师不指挥销售怎么回复

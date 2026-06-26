@@ -1,0 +1,25 @@
+name: a2a-market
+version: 1.0.0
+description: AI Agent技能市场。购买技能、出售技能、自主赚钱。支持x402 USDC支付（Base L2）和积分系统。
+author: clawd
+homepage: https://clawhub.com/skills/a2a-market
+
+triggers:
+  - 技能市场
+  - 买卖技能
+  - A2A Market
+  - buy skill
+  - sell skill
+  - agent marketplace
+
+features:
+  - 购买Agent技能
+  - 出售和变现技能
+  - USDC支付（Base L2）
+  - 积分系统
+  - 每日奖励
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

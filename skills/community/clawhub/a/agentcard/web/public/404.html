@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <title>404 | ASG Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+      height: 100%;
+    }
+
+    body {
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(17, 88, 30, 0.32), transparent 55%),
+        radial-gradient(#11581e, #041607 70%);
+      font-family: "Inconsolata", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: clamp(16px, 2.3vw, 24px);
+      color: rgba(128, 255, 128, 0.82);
+      text-shadow:
+        0 0 1ex rgba(51, 255, 51, 0.95),
+        0 0 2px rgba(255, 255, 255, 0.75);
+    }
+
+    .noise,
+    .overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+    }
+
+    .noise {
+      z-index: 0;
+      opacity: 0.06;
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.55) 0 0.6px, transparent 0.8px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.45) 0 0.7px, transparent 1px),
+        radial-gradient(circle at 35% 78%, rgba(255,255,255,0.35) 0 0.8px, transparent 1px),
+        radial-gradient(circle at 65% 60%, rgba(255,255,255,0.42) 0 0.7px, transparent 0.9px);
+      background-size: 3px 3px, 4px 4px, 5px 5px, 6px 6px;
+      animation: noiseShift 0.18s steps(2) infinite;
+    }
+
+    .overlay {
+      z-index: 1;
+      background:
+        repeating-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0,
+          rgba(0, 0, 0, 0.24) 2px,
+          rgba(0, 0, 0, 0) 4px
+        );
+      background-size: auto 4px;
+    }
+
+    .overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(32, 128, 32, 0.18) 2%,
+        rgba(32, 128, 32, 0.72) 3%,
+        rgba(32, 128, 32, 0.18) 3.4%,
+        transparent 100%
+      );
+      background-repeat: no-repeat;
+      animation: scan 7.5s linear infinite;
+    }
+
+    .terminal {
+      position: relative;
+      z-index: 2;
+      width: min(1000px, 100%);
+      min-height: 100%;
+      padding: clamp(1.25rem, 4vw, 4rem);
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .output {
+      line-height: 1.5;
+      color: rgba(128, 255, 128, 0.82);
+      text-shadow:
+        0 0 1px rgba(51, 255, 51, 0.4),
+        0 0 2px rgba(255, 255, 255, 0.8);
+      max-width: 48ch;
+    }
+
+    .output::before {
+      content: "> ";
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a::before { content: "["; }
+    a::after { content: "]"; }
+
+    .errorcode {
+      color: #fff;
+    }
+
+    .brand {
+      margin-top: 1rem;
+      font-size: 0.85em;
+      opacity: 0.85;
+    }
+
+    @keyframes scan {
+      0% { background-position: 0 -100vh; }
+      35%, 100% { background-position: 0 100vh; }
+    }
+
+    @keyframes noiseShift {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(0.4px, -0.2px); }
+      50% { transform: translate(-0.3px, 0.2px); }
+      75% { transform: translate(0.2px, 0.3px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+  <main class="terminal" role="main">
+    <h1>Error <span class="errorcode">404</span></h1>
+    <p class="output">The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</p>
+    <p class="output">Please try to <a href="/" onclick="history.length > 1 ? (history.back(), false) : true">go back</a> or <a href="/">return to the homepage</a>.</p>
+    <p class="output">Good luck.</p>
+    <p class="brand output">ASG Card terminal session closed.</p>
+  </main>
+</body>
+</html>

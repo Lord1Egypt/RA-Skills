@@ -1,35 +1,49 @@
 ---
-name: "58tongcheng"
-description: "提供58同城官网及商家公开页的入驻、合作、服务、活动及售后规则信息整理与摘要。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/58"
-sourceUrl: "https://clawhub.ai/skills/58"
+name: 58tongcheng
+description: 注册“58同城”技能；用于本地生活平台公开页面、商家规则、服务说明与活动信息整理。
+homepage: `https://www.58.com/`
+metadata: {"clawdbot":{"emoji":"🍜"}}
 ---
 
-# 58tongcheng
+# 58同城
 
-> 提供58同城官网及商家公开页的入驻、合作、服务、活动及售后规则信息整理与摘要。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/58`
-- **Source URL:** [https://clawhub.ai/skills/58](https://clawhub.ai/skills/58)
+- 面向公开官网、商家合作页、帮助中心、活动页与规则页的信息整理
+- 不提供商家后台操作、配送调度、订单代处理、风控规避或账号接管能力
+- 仅处理公开可见的商家合作、服务范围、活动规则与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.58.com/
+- 商家合作：商家入驻、合作、开放平台或服务商入口
+- 活动与帮助：官方活动页、帮助中心、售后与配送说明入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/58
-```
+常见任务
+
+- 商家入驻条件、服务范围与合作流程整理
+- 优惠活动、会员体系、配送规则与履约说明提取
+- 客服与售后规则、退款时效、常见问题汇总
+
+数据字段
+
+- 业务类型、合作入口、服务区域、活动入口、链接
+- 配送说明、售后规则、退款时效、帮助页链接
+- 会员权益、优惠活动、商家能力说明
+
+自动化要点
+
+- 本地服务高度依赖城市和区域，输出时必须标注适用地区
+- 配送规则与费率经常变动，优先引用官方规则页
+- 不接触订单明细、骑手调度、商家后台或用户隐私信息
+
+示例流程
+
+- 合作整理：访问 58 Tongcheng 商家页 → 提取入驻与合作条件 → 输出清单
+- 服务说明：进入帮助中心 → 提取配送、售后、退款规则 → 输出摘要
+- 活动汇总：访问优惠与会员页 → 提取权益与活动周期 → 输出表格
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

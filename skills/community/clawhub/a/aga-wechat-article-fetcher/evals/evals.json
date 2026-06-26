@@ -1,0 +1,59 @@
+{
+  "skill_name": "wechat-article-fetcher",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "basic-article-fetch",
+      "prompt": "https://mp.weixin.qq.com/s/mtj_slq0yy_qhzu21LCHGw",
+      "expected_output": "生成HTML文件，包含文章标题、正文、图片",
+      "files": [],
+      "assertions": [
+        {
+          "name": "html_file_created",
+          "description": "HTML文件已创建",
+          "check": "file_exists"
+        },
+        {
+          "name": "images_downloaded",
+          "description": "图片已下载到images目录",
+          "check": "directory_not_empty"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "article-with-video",
+      "prompt": "抓取这篇文章 https://mp.weixin.qq.com/s/C7xUcSWVXLYfexbFIeI8Jw",
+      "expected_output": "生成HTML，包含视频封面图",
+      "files": [],
+      "assertions": [
+        {
+          "name": "video_cover_downloaded",
+          "description": "视频封面已下载",
+          "check": "file_exists"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "filename-format",
+      "prompt": "保存这篇微信文章 https://mp.weixin.qq.com/s/_UZuIzHSlGXk-HweRI2LCw",
+      "expected_output": "文件名格式：日期_英文关键词.html",
+      "files": [],
+      "assertions": [
+        {
+          "name": "filename_has_date",
+          "description": "文件名包含日期",
+          "check": "filename_pattern",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}_"
+        },
+        {
+          "name": "filename_has_keywords",
+          "description": "文件名包含英文关键词",
+          "check": "filename_pattern",
+          "pattern": "[A-Za-z]"
+        }
+      ]
+    }
+  ]
+}

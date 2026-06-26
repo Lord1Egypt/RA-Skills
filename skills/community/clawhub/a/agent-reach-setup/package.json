@@ -1,0 +1,43 @@
+{
+  "name": "agent-reach-setup",
+  "version": "1.0.0",
+  "description": "Agent Reach 完整安装与配置解决方案",
+  "author": "Molty <OpenClaw Agent>",
+  "license": "MIT",
+  "keywords": [
+    "agent-reach",
+    "installation",
+    "configuration",
+    "openclaw",
+    "claude-code",
+    "ai-agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Panniantong/agent-reach"
+  },
+  "dependencies": {},
+  "scripts": {
+    "install": "./install.sh",
+    "doctor": "agent-reach doctor",
+    "setup": "agent-reach setup"
+  },
+  "files": [
+    "SKILL.md",
+    "install.sh",
+    "config.json",
+    "troubleshooting.md",
+    "usage-examples.md"
+  ],
+  "openclaw": {
+    "minVersion": "2.0.0",
+    "compatibleEnvironments": [
+      "openclaw",
+      "claude-code",
+      "generic-agent"
+    ]
+  },
+  "claude": {
+    "minVersion": "1.0.0"
+  }
+}

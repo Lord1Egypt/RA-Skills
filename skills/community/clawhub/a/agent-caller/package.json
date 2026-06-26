@@ -1,0 +1,45 @@
+{
+  "name": "agent-caller",
+  "version": "1.0.3",
+  "description": "Call 179 professional agents on-demand from database. Search, browse by category, random pick, and multi-agent collaboration support. Includes 179 pre-configured agents ready to use.",
+  "author": "Erbing",
+  "license": "MIT",
+  "homepage": "https://github.com/717986230/openclaw-workspace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/717986230/openclaw-workspace.git"
+  },
+  "keywords": [
+    "agents",
+    "ai",
+    "collaboration",
+    "database",
+    "search",
+    "multi-agent",
+    "openclaw",
+    "skill",
+    "179-agents"
+  ],
+  "category": "productivity",
+  "requires": {
+    "python": ">= 3.6",
+    "sqlite3": "standard"
+  },
+  "minOpenClawVersion": "1.0.0",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/agent_caller.py",
+    "scripts/init_database.py",
+    "scripts/verify_install.py",
+    "scripts/import_agents.py",
+    "examples/usage_demo.py",
+    "data/agents.json"
+  ],
+  "main": "scripts/agent_caller.py",
+  "scripts": {
+    "init": "python scripts/init_database.py",
+    "verify": "python scripts/verify_install.py",
+    "test": "python examples/usage_demo.py"
+  }
+}

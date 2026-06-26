@@ -1,0 +1,70 @@
+{
+  "description": "Profils clients idéaux génériques. Adapter selon le business actif.",
+  "icps": [
+    {
+      "id": "b2b-decision-maker",
+      "type": "B2B",
+      "titre": "Décideur en entreprise (CEO, CTO, Directeur)",
+      "taille_entreprise": "5-200 employés",
+      "signaux_achat": [
+        "a publié du contenu sur le problème que tu résous",
+        "a levé des fonds récemment",
+        "recrute sur un poste lié à ton domaine",
+        "mentionne une frustration liée à ton secteur"
+      ],
+      "canaux": [
+        "linkedin",
+        "cold_email"
+      ],
+      "closing_technique": "SPIN Selling + CLOSER Hormozi",
+      "sequence": "b2b-saas.json",
+      "priorite": 1
+    },
+    {
+      "id": "b2c-early-adopter",
+      "type": "B2C abonnement",
+      "titre": "Individu actif sur le sujet, cherche un avantage",
+      "taille_entreprise": "individuel",
+      "signaux_achat": [
+        "poste activement sur le sujet sur Twitter/Reddit",
+        "suit des comptes similaires",
+        "parle de ses frustrations ou de ce qu'il cherche",
+        "membre de communautés liées au domaine"
+      ],
+      "canaux": [
+        "twitter",
+        "reddit",
+        "telegram_groups"
+      ],
+      "closing_technique": "Grand Slam Offer Hormozi — closing digital sans call",
+      "sequence": "b2c-subscription.json",
+      "priorite": 1
+    },
+    {
+      "id": "b2c-content-reader",
+      "type": "B2C contenu",
+      "titre": "Lecteur / consommateur de contenu sur le sujet",
+      "taille_entreprise": "individuel",
+      "signaux_achat": [
+        "commente ou partage du contenu sur le sujet",
+        "exprime une méfiance ou insatisfaction envers les sources actuelles",
+        "cherche une source plus fiable ou approfondie"
+      ],
+      "canaux": [
+        "twitter",
+        "substack",
+        "reddit"
+      ],
+      "closing_technique": "Lead magnet gratuit → abonnement payant",
+      "sequence": "b2c-content.json",
+      "priorite": 2
+    }
+  ],
+  "qualification_bant": {
+    "Budget": "Le prospect a-t-il un budget pour cette catégorie de solution ?",
+    "Authority": "Est-ce le décideur final ou faut-il valider avec quelqu'un ?",
+    "Need": "A-t-il un problème réel et urgent que notre solution résout ?",
+    "Timing": "Est-il prêt à agir maintenant ou dans 3+ mois ?"
+  },
+  "regle": "Si 3/4 BANT sont NON → pas de call → nurturing long terme"
+}

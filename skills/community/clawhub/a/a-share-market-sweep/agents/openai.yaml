@@ -1,0 +1,4 @@
+interface:
+  display_name: "A股全市场扫描"
+  short_description: "从零抓取盘面、广度、板块、风格和主板可交易主线名单"
+  default_prompt: "Use a-share-market-sweep to重建今天A股盘面和临时全市场库。"

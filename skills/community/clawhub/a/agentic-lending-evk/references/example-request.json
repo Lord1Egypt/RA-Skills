@@ -1,0 +1,32 @@
+{
+  "chain": {
+    "name": "arbitrum",
+    "chainId": 42161
+  },
+  "collateralAssets": [
+    {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    }
+  ],
+  "borrowAssets": [
+    {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+    }
+  ],
+  "riskPreset": "eth-major",
+  "recipeId": "eth-major-stable-borrow-v1",
+  "activationMode": "prepare-only",
+  "publishToRegistry": false,
+  "rpcPreference": {
+    "allowPublicFallback": false
+  },
+  "executionProfile": {
+    "mode": "simulate"
+  },
+  "vaultContext": {
+    "factoryAddress": "0x5555555555555555555555555555555555555555",
+    "assetAddress": "0x7777777777777777777777777777777777777777"
+  }
+}

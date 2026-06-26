@@ -1,0 +1,21 @@
+{
+  "id": "agent-team",
+  "name": "Agent Team",
+  "version": "1.0.1",
+  "description": "Team collaboration and task processing flow with delegation, progress tracking, and multi-agent coordination",
+  "entry": "./index.ts",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "dataFile": {
+        "type": "string",
+        "description": "Path to team data JSON file (default: ~/.agent-team/team.json)"
+      },
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable team context injection"
+      }
+    }
+  }
+}

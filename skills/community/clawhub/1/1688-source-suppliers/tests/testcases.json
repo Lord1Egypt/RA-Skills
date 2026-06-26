@@ -1,0 +1,66 @@
+[
+  {
+    "id": "TC001",
+    "name": "正向触发-供应商关键字查询",
+    "input": "帮我找灯具供应商",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["调用工具查询供应商", "返回供应商列表", "每条记录含公司名称"],
+    "expected_not": ["不编造供应商信息"]
+  },
+  {
+    "id": "TC002",
+    "name": "正向触发-工厂查询",
+    "input": "查一下常州有哪些灯具工厂",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["提取关键字'常州工厂'或'常州灯具'", "返回工厂信息"],
+    "expected_not": []
+  },
+  {
+    "id": "TC003",
+    "name": "参数缺失-返回标准JSON错误",
+    "input": "python3 cli.py ali_1688_source_suppliers（无 --query 参数）",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["返回 success: false", "返回标准 JSON 格式", "markdown 包含参数缺失引导"],
+    "expected_not": ["不输出 argparse 原生错误"]
+  },
+  {
+    "id": "TC004",
+    "name": "不触发-找商品场景",
+    "input": "帮我找一款LED灯",
+    "should_call": "none",
+    "expected_behavior": ["不触发本技能", "引导至找商品能力"],
+    "expected_not": ["不调用ali_1688_source_suppliers"]
+  },
+  {
+    "id": "TC005",
+    "name": "不触发-下单场景",
+    "input": "我现在就要下单付款",
+    "should_call": "none",
+    "expected_behavior": ["不触发本技能"],
+    "expected_not": ["不调用ali_1688_source_suppliers"]
+  },
+  {
+    "id": "TC006",
+    "name": "输出格式-引导链接",
+    "input": "查询办公家具供应商",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["返回供应商信息后追加引导链接", "引导链接包含s.1688.com"],
+    "expected_not": ["引导链接不混入供应商信息中间"]
+  },
+  {
+    "id": "TC007",
+    "name": "数据质量-必填字段",
+    "input": "找LED灯带供应商",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["每条供应商含公司名称", "每条供应商含合作方式", "每条供应商含服务"],
+    "expected_not": ["不展示缺少公司名称的记录"]
+  },
+  {
+    "id": "TC008",
+    "name": "异常处理-AK未配置",
+    "input": "查询供应商信息（AK未配置模拟）",
+    "should_call": "ali_1688_source_suppliers",
+    "expected_behavior": ["输出markdown错误描述", "提示补充AK或检查鉴权配置"],
+    "expected_not": []
+  }
+]

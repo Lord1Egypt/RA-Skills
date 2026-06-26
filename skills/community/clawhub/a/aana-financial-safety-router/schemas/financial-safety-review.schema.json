@@ -1,0 +1,124 @@
+{
+  "title": "AANA Financial Safety Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "financial_context",
+    "risk_level",
+    "unsupported_claim_status",
+    "risk_disclosure_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "financial_context": {
+      "type": "string",
+      "enum": [
+        "general_education",
+        "investment",
+        "trading",
+        "tax",
+        "budgeting",
+        "debt",
+        "credit",
+        "loan",
+        "mortgage",
+        "insurance",
+        "retirement",
+        "purchase_advice",
+        "crypto",
+        "business_finance",
+        "unknown"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "high_impact",
+        "unknown"
+      ]
+    },
+    "unsupported_claim_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "unsupported_return_claim",
+        "unsupported_tax_claim",
+        "unsupported_eligibility_claim",
+        "unsupported_savings_claim",
+        "unsupported_account_fact",
+        "mixed",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "risk_disclosure_status": {
+      "type": "string",
+      "enum": [
+        "adequate",
+        "missing_material_risks",
+        "missing_uncertainty",
+        "missing_fees_or_tax_caveats",
+        "not_needed",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "professional_referral_status": {
+      "type": "string",
+      "enum": [
+        "not_needed",
+        "financial_advisor_needed",
+        "tax_professional_needed",
+        "legal_professional_needed",
+        "debt_counselor_needed",
+        "insurance_professional_needed",
+        "human_review_needed",
+        "unknown"
+      ]
+    },
+    "privacy_status": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "needs_redaction",
+        "private_financial_data_exposed",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "unsupported_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

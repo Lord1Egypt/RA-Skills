@@ -1,35 +1,13 @@
----
-name: "06 Tts Voice"
-description: "Convert short drama dialogues into multi-character, emotional TTS audio matching scene rhythm for enhanced expressive content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/06-tts-voice"
-sourceUrl: "https://clawhub.ai/skills/06-tts-voice"
----
-
-# 06 Tts Voice
-
-> Convert short drama dialogues into multi-character, emotional TTS audio matching scene rhythm for enhanced expressive content.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/06-tts-voice`
-- **Source URL:** [https://clawhub.ai/skills/06-tts-voice](https://clawhub.ai/skills/06-tts-voice)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/06-tts-voice
-```
+# 语音合成TTS技能
+## 功能介绍
+将短剧台词转为自然、带情感的配音音频，适配短剧节奏。
+## 输入参数
+- dialogue：台词文本（必填）
+## 输出结果
+- audio_url：生成语音地址
+## 使用场景
+- 短剧角色配音
+- 短视频旁白制作
+- 批量语音生成
+## 技术说明
+支持通用TTS模型，需配置 API_KEY、API_BASE、MODEL_NAME。

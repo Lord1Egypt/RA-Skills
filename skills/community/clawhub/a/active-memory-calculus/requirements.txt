@@ -1,0 +1,16 @@
+# Active Memory for Calculus Teaching - Python Dependencies
+# 安装: pip3 install -r requirements.txt
+
+# 核心依赖 (通常已随OpenClaw安装)
+# asyncio  # Python 3.7+ 内置
+# dataclasses  # Python 3.7+ 内置
+# typing  # Python 3.5+ 内置
+# json  # 内置
+# re  # 内置
+# os  # 内置
+# datetime  # 内置
+# collections  # 内置
+
+# 可选依赖 (增强功能)
+# pyyaml>=5.4.1  # 如果需要更复杂的YAML处理
+# aiofiles>=0.8.0  # 异步文件操作 (如需要)

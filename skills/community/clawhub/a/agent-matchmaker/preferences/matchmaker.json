@@ -1,0 +1,14 @@
+{
+  "scanFrequency": "24h",
+  "postFrequency": "24h",
+  "minCompatibilityScore": 0.25,
+  "focusAreas": ["DeFi", "automation", "crypto-native", "agents", "alpha"],
+  "excludeAgents": ["leoz"],
+  "maxAgentsToScan": 50,
+  "postBatchSize": 1,
+  "detailedPosts": true,
+  "postingStrategy": "quality-first",
+  "rateLimit": "1 tweet per 24 hours",
+  "minimumGapBetweenPosts": "6h",
+  "schedulePostTimes": ["08:00", "18:00"]
+}

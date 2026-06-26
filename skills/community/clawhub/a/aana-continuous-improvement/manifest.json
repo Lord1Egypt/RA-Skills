@@ -1,0 +1,54 @@
+{
+  "name": "aana-continuous-improvement",
+  "slug": "aana-continuous-improvement",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded continuous self-improvement instructions for OpenClaw-style agents, with explicit approval, memory, and scope boundaries.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_persistence": true,
+  "requires_user_approval_for_policy_changes": true,
+  "requires_user_approval_for_tool_changes": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "full payment numbers",
+      "unnecessary private records",
+      "unrelated user messages"
+    ]
+  },
+  "self_improvement_boundary": {
+    "may_reflect_on_current_task": true,
+    "may_propose_future_improvements": true,
+    "may_not_modify_system_instructions": true,
+    "may_not_change_tools_without_approval": true,
+    "may_not_save_memory_without_approval": true,
+    "may_not_expand_task_scope": true,
+    "must_label_uncertainty": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/improvement-cycle.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-improvement-cycle.json"
+  ]
+}

@@ -1,0 +1,78 @@
+# ASG Card — Agent Configuration File
+# https://asgcard.dev/.well-known/agent.txt
+#
+# This file tells AI agents how to use ASG Card
+# to create and manage virtual payment cards.
+
+name: ASG Card
+description: Agent-first virtual card platform. AI agents issue and manage MasterCard cards, paying in USDC via x402 on Stellar.
+url: https://asgcard.dev
+api: https://api.asgcard.dev
+
+# Authentication
+auth:
+  type: stellar-wallet
+  method: ed25519-signature
+  note: No API keys needed. Sign with Stellar keypair.
+
+# SDK
+sdk:
+  npm: "@asgcard/sdk"
+  language: typescript
+  install: "npm install @asgcard/sdk"
+
+# MCP Server
+mcp:
+  npm: "@asgcard/mcp-server"
+  transport: stdio
+  tools: 8
+  install: "npx @asgcard/mcp-server"
+  setup_claude_code: "claude mcp add asgcard -- npx -y @asgcard/mcp-server"
+
+# CLI
+cli:
+  npm: "@asgcard/cli"
+  install: "npm install -g @asgcard/cli"
+  login: "asgcard login"
+
+# Capabilities
+capabilities:
+  - create_card: "Create virtual MasterCard with USDC payment"
+  - fund_card: "Top up existing card"
+  - list_cards: "List all wallet's cards"
+  - get_card: "Get card summary"
+  - get_card_details: "Get PAN, CVV, expiry"
+  - freeze_card: "Temporarily freeze card"
+  - unfreeze_card: "Re-enable frozen card"
+  - get_pricing: "View pricing tiers"
+
+# Pricing (USDC)
+pricing:
+  card_creation:
+    - tier: 10
+      total: 17.20
+    - tier: 25
+      total: 32.50
+    - tier: 50
+      total: 58.00
+    - tier: 100
+      total: 110.00
+    - tier: 200
+      total: 214.00
+    - tier: 500
+      total: 522.00
+
+# Payment
+payment:
+  protocol: x402
+  version: 2
+  network: stellar:pubnet
+  asset: USDC
+  scheme: exact
+  fees_sponsored: true
+
+# Support
+support:
+  telegram: "@ASGCardbot"
+  docs: "https://asgcard.dev/docs"
+  github: "https://github.com/ASGCompute/asgcard-public"

@@ -1,35 +1,56 @@
----
-name: "Agent Chat Nostr"
-description: "Command-line Nostr client for agent-to-agent encrypted messaging, identity login, and small file sharing using public Nostr relays."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-chat-nostr"
-sourceUrl: "https://clawhub.ai/skills/agent-chat-nostr"
----
+# AgentChat
 
-# Agent Chat Nostr
+Nostr-based Agent messaging CLI (Agent's WeChat).
 
-> Command-line Nostr client for agent-to-agent encrypted messaging, identity login, and small file sharing using public Nostr relays.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-chat-nostr`
-- **Source URL:** [https://clawhub.ai/skills/agent-chat-nostr](https://clawhub.ai/skills/agent-chat-nostr)
-
-## Overview
-
+- **Identity**: npub/nsec based authentication
+- **Private Messages**: Agent-to-agent encrypted DMs via Nostr
+- **File Support**: Small files (<64KB) via Nostr events
+- **Open Protocol**: Uses public Nostr relays
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/agent-chat-nostr
+npm install -g @wangwuww/agent-chat
 ```
+
+> 若你从 ClawHub 安装了 `agent-chat-nostr`，也可直接使用 ClawHub 安装方式，无需 npm 全局安装。
+
+## Usage
+
+```bash
+# Login with private key
+agent-chat login <nsec>
+
+# Send a message
+agent-chat send <recipient_npub> "Hello Agent!"
+
+# Receive messages
+agent-chat receive
+
+# Realtime resident listener
+agent-chat listen
+
+# Check status
+agent-chat status
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `login <nsec>` | Login with private key |
+| `send <npub> <msg>` | Send message |
+| `receive [count]` | Receive messages |
+| `status` | Show login status |
+
+## Protocol
+
+- **NIP-01**: Base event format
+- **NIP-04**: Encrypted DMs
+- **Relays**: Public relays (relay.damus.io, nos.lol)
+
+## License
+
+MIT

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Tristan",
+    "description": "Host of the discussion; asks the questions and guides the agenda.",
+    "company": "Independent",
+    "title": "Host"
+  },
+  {
+    "name": "Jess",
+    "description": "Guest speaker and primary respondent.",
+    "company": "Independent",
+    "title": "Guest"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "agent-matchmaker",
+  "version": "1.0.0",
+  "description": "AI agent matchmaker for ClawFriend — find quality collaborations",
+  "main": "scripts/analyze.js",
+  "scripts": {
+    "scan": "node scripts/analyze.js scan",
+    "post": "node scripts/post.js thread",
+    "feedback": "node scripts/feedback.js check",
+    "schedule": "node scripts/schedule.js list"
+  },
+  "keywords": [
+    "clawfriend",
+    "agents",
+    "matchmaking",
+    "collaboration",
+    "alpha"
+  ],
+  "author": "leoz",
+  "license": "MIT"
+}

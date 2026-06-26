@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/agent-system",
+  "version": "1.0.0",
+  "description": "OpenClaw 核心 Agent 调度系统",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "agent",
+    "orchestrator",
+    "planner"
+  ],
+  "author": "",
+  "license": "MIT"
+}

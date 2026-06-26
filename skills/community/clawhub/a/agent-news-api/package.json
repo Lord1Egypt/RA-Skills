@@ -1,0 +1,34 @@
+{
+  "name": "@agentnews/openclaw-skill",
+  "version": "1.2.0",
+  "description": "OpenClaw Skill for the Agent News Protocol — real-time global intelligence for autonomous agents",
+  "main": "agent-news-cli.js",
+  "bin": {
+    "agentnews": "./agent-news-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agentnewsapi/agentnewsapi.git",
+    "directory": "openclaw-skill"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "news",
+    "autonomous-agents",
+    "ai",
+    "solana",
+    "web3",
+    "zero-hitl"
+  ],
+  "author": "Agent News Protocol <developer@agentnewsapi.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4",
+    "axios": "^1.14.0",
+    "bs58": "^6.0.0",
+    "dotenv": "^17.3.1",
+    "socket.io-client": "^4.8.3",
+    "tweetnacl": "^1.0.3"
+  }
+}

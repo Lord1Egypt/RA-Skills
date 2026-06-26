@@ -1,35 +1,47 @@
----
-name: "Africa"
-description: "提供基于DeepSeek v4的非洲市场政策、法规和投资环境的智能查询与分析，支持多语言和灵活数据源配置。"
-category: "other"
-source: "ClawHub"
-tags: [agent-collaboration, deepseek-v4, efficiency-revolution, global-policy, huimai-agents, market-policy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/africa"
-sourceUrl: "https://clawhub.ai/skills/africa"
----
+# 非洲市场政策查询Skill
 
-# Africa
+## 🚀 概述
+**基于DeepSeek v4的智能政策分析系统**，提供非洲市场政策、法规、投资环境的智能查询和分析。
 
-> 提供基于DeepSeek v4的非洲市场政策、法规和投资环境的智能查询与分析，支持多语言和灵活数据源配置。
+## 🌟 核心亮点
+- **DeepSeek v4驱动**：利用最新AI模型进行智能政策分析和预测
+- **惠迈智能体协作**：基于惠迈三层智能体架构，确保数据准确性和实时性
+- **多语言支持**：支持中文、英文等多种语言
+- **数据源可配置**：灵活配置不同数据源，适应各种业务需求
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/africa`
-- **Source URL:** [https://clawhub.ai/skills/africa](https://clawhub.ai/skills/africa)
+## 🔧 技术特性
+### 多语言支持
+- 中文（简体）
+- 英文（美国）
+- 自动语言检测和切换
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/africa
+### 数据源配置
+```javascript
+{
+  dataSources: {
+    investment: '[请替换为您的非洲投资政策数据源]',
+    trade: '[请替换为您的非洲贸易法规数据源]',
+    // ... 其他数据源
+  }
+}
 ```
+
+## 📦 安装
+```bash
+# 通过ClawHub安装
+clawhub install africa-policy-query
+
+# 或手动安装
+npm install africa-policy-query
+```
+
+## 🔒 安全使用指南
+1. **数据源配置**：使用环境变量管理敏感数据源信息
+2. **API密钥**：不要将真实API密钥写入代码
+3. **权限控制**：为数据源配置最小必要权限
+
+## 支持
+如有问题，请提交Issue或联系维护团队。
+
+---
+**惠迈智能体：让全球业务变得简单**

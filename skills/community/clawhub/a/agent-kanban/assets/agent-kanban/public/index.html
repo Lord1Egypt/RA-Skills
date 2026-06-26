@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Terminal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Bloomberg Terminal 配色 */
+    :root {
+      --bg-primary: #000000;
+      --bg-secondary: #0a0a0a;
+      --bg-panel: #111111;
+      --border-color: #333333;
+      --text-primary: #ffffff;
+      --text-secondary: #aaaaaa;
+      --text-dim: #666666;
+      --accent-orange: #ff9900;
+      --accent-amber: #ffcc00;
+      --accent-green: #00ff00;
+      --accent-red: #ff3333;
+      --accent-blue: #00aaff;
+      --highlight: #1a3a5c;
+      --font-size-base: 13px;
+    }
+    
+    body {
+      font-family: 'Courier New', Consolas, Monaco, monospace;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      font-size: var(--font-size-base);
+      line-height: 1.4;
+    }
+    
+    #root { width: 100%; height: 100vh; }
+    
+    /* Bloomberg 风格顶部栏 */
+    .terminal-header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--accent-orange);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .terminal-header .title {
+      color: var(--accent-orange);
+      font-weight: bold;
+      
+    }
+    
+    .terminal-header .status {
+      color: var(--accent-green);
+      
+    }
+    
+    /* 房间分组 */
+    .room-section {
+      margin-bottom: 2px;
+    }
+    
+    .room-header {
+      background: var(--highlight);
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border-left: 3px solid;
+    }
+    
+    .room-header:hover {
+      background: #1e4570;
+    }
+    
+    .room-header .room-name {
+      color: var(--accent-amber);
+      font-weight: bold;
+      
+    }
+    
+    .room-header .room-stats {
+      color: var(--text-secondary);
+      
+    }
+    
+    .room-header .toggle {
+      color: var(--text-dim);
+      margin-left: 8px;
+      
+    }
+    
+    .room-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border-color);
+    }
+    
+    .room-content.collapsed {
+      display: none;
+    }
+    
+    /* Agent 卡片 */
+    .agent-card {
+      background: var(--bg-secondary);
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.1s;
+      border-left: 2px solid transparent;
+    }
+    
+    .agent-card:hover {
+      background: var(--highlight);
+    }
+    
+    .agent-card.selected {
+      background: var(--highlight);
+      border-left-color: var(--accent-orange);
+    }
+    
+    .agent-card.latest {
+      background: linear-gradient(135deg, rgba(255, 204, 0, 0.15) 0%, rgba(255, 153, 0, 0.1) 100%);
+      border-left-color: var(--accent-amber);
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+      animation: pulse-highlight 1s ease-in-out 3;
+    }
+    
+    @keyframes pulse-highlight {
+      0%, 100% { 
+        background: linear-gradient(135deg, rgba(255, 204, 0, 0.15) 0%, rgba(255, 153, 0, 0.1) 100%);
+        box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+      }
+      50% { 
+        background: linear-gradient(135deg, rgba(255, 204, 0, 0.3) 0%, rgba(255, 153, 0, 0.2) 100%);
+        box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+      }
+    }
+    
+    .agent-card.latest:hover {
+      background: linear-gradient(135deg, rgba(255, 204, 0, 0.2) 0%, rgba(255, 153, 0, 0.1) 100%);
+    }
+    
+    .agent-card .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    
+    .agent-card .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 2px;
+      background: var(--bg-panel);
+      flex-shrink: 0;
+    }
+    
+    .agent-card .name {
+      color: var(--accent-amber);
+      font-weight: bold;
+      
+    }
+    
+    .agent-card .session {
+      color: var(--text-secondary);
+      
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .agent-card .status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      
+    }
+    
+    .agent-card .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .agent-card .status-dot.active { background: var(--accent-green); }
+    .agent-card .status-dot.inactive { background: var(--text-dim); }
+    
+    .agent-card .last-msg {
+      color: var(--text-secondary);
+      
+      margin-top: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .agent-card .time {
+      color: var(--text-dim);
+      
+      margin-top: 4px;
+    }
+    
+    /* 面板样式 */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+    }
+    
+    .panel-header {
+      background: var(--highlight);
+      color: var(--accent-amber);
+      padding: 6px 10px;
+      font-weight: bold;
+      
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .panel-content {
+      overflow: auto;
+    }
+    
+    /* 消息面板 */
+    .message-panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message-list {
+      flex: 1;
+      overflow: auto;
+      padding: 8px;
+    }
+    
+    .message-item {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .message-item .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    
+    .message-item .role {
+      font-weight: bold;
+      
+    }
+    
+    .message-item .role.user { color: var(--accent-blue); }
+    .message-item .role.assistant { color: var(--accent-orange); }
+    
+    .message-item .timestamp {
+      color: var(--text-dim);
+      
+    }
+    
+    .message-item .content {
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+      
+    }
+    
+    /* 按钮样式 */
+    .btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      
+    }
+    
+    .btn:hover {
+      background: var(--highlight);
+      border-color: var(--accent-orange);
+    }
+    
+    .btn-icon {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--accent-orange);
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      font-family: inherit;
+      
+    }
+    
+    .btn-icon:hover {
+      background: var(--highlight);
+    }
+    
+    /* 统计数字 */
+    .stat {
+      display: inline-block;
+      padding: 2px 6px;
+      margin-right: 4px;
+    }
+    
+    .stat-value { color: var(--text-primary); font-weight: bold; }
+    .stat-label { color: var(--text-dim); }
+    .stat-positive { color: var(--accent-green); }
+    .stat-negative { color: var(--accent-red); }
+    
+    /* 滚动条 */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+    
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: var(--accent-orange);
+    }
+    
+    /* 顶部控制栏 */
+    .controls {
+      background: var(--bg-secondary);
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .control-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      cursor: pointer;
+      font-family: inherit;
+      
+    }
+    
+    .control-btn:hover, .control-btn.active {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+    
+    /* 文件尺寸显示样式 */
+    .size-info {
+      
+      color: #888;
+      margin-top: 2px;
+    }
+    
+    .size-low { color: #00aa00; }
+    .size-medium { color: #ffcc00; }
+    .size-high { color: #ff3333; }
+    
+    /* 字号控制 */
+    .font-size-control {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+    }
+    
+    .font-size-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      font-family: inherit;
+      
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+    }
+    
+    .font-size-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+    
+    .font-size-value {
+      color: var(--text-dim);
+      
+      min-width: 28px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading">Loading Terminal...</div>
+  </div>
+  
+  <!-- React -->
+  <script src="https://registry.npmmirror.com/react/18/files/umd/react.production.min.js"></script>
+  <script src="https://registry.npmmirror.com/react-dom/18/files/umd/react-dom.production.min.js"></script>  
+  <script>
+    const { useState, useEffect, useRef } = React;
+    
+    // API 模块
+    const API = {
+      async getSessions() {
+        const res = await fetch('/api/sessions');
+        return res.json();
+      },
+      async getSessionHistory(sessionKey) {
+        const res = await fetch('/api/sessions/' + encodeURIComponent(sessionKey) + '/history');
+        return res.json();
+      },
+      async getAgentFiles(agentId) {
+        const res = await fetch('/api/agents/' + encodeURIComponent(agentId) + '/files');
+        return res.json();
+      }
+    };
+    
+    // 像素风头像 URL
+    function getAvatarUrl(seed) {
+      return `https://api.dicebear.com/7.x/pixel-art/svg?seed=${encodeURIComponent(seed)}`;
+    }
+    
+    // 时间格式化
+    function formatTime(ts) {
+      if (!ts) return '--:--:--';
+      const d = new Date(ts);
+      return d.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    
+    function formatDateTime(ts) {
+      if (!ts) return '--:--';
+      const d = new Date(ts);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const hour = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      return year + '-' + month + '-' + day + ' ' + hour + ':' + min;
+    }
+    
+    function timeAgo(ts) {
+      if (!ts) return '';
+      const diff = Date.now() - ts;
+      const mins = Math.floor(diff / 60000);
+      if (mins < 1) return 'now';
+      if (mins < 60) return mins + 'm';
+      const hours = Math.floor(mins / 60);
+      if (hours < 24) return hours + 'h';
+      return Math.floor(hours / 24) + 'd';
+    }
+    
+    // 不再使用配置文件，直接返回原始 ID
+    function getConfig(agentId, roomColor) {
+      return { 
+        name: agentId, 
+        emoji: '',
+        color: roomColor || '#ffcc00'
+      };
+    }
+    
+    // 根据前缀自动分组
+    function matchRoom(key) {
+      if (!key) return 'other';
+      const agentType = key.split(':')[1] || '';
+      if (!agentType) return 'other';
+      // 取第一个 - 前面的部分作为房间名
+      const prefix = agentType.split('-')[0];
+      return prefix || 'other';
+    }
+    
+    // 根据字符串生成颜色
+    function stringToColor(str) {
+      const colors = ['#e74c3c', '#3498db', '#f39c12', '#2ecc71', '#9b59b6',
+        '#1abc9c', '#e67e22', '#34495e', '#16a085', '#c0392b', '#2980b9', '#8e44ad'];
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash = hash & hash;
+      }
+      return colors[Math.abs(hash) % colors.length];
+    }
+    
+    // 获取房间配置（自动生成）
+    function getRoomConfig(roomId, agentCount) {
+      return {
+        id: roomId,
+        name: roomId.toUpperCase(),
+        color: stringToColor(roomId),
+        agentCount: agentCount
+      };
+    }
+    
+    // 格式化文件尺寸
+    function formatSize(kb) {
+      if (!kb) return '0KB';
+      if (kb >= 1024) {
+        return (kb / 1024).toFixed(1) + 'MB';
+      }
+      return kb + 'KB';
+    }
+    
+    // 获取文件尺寸百分比（基于 1MB = 1024KB 阈值）
+    function getSizePercent(kb, maxKB = 1024) {
+      if (!kb) return 0;
+      return Math.min(100, (kb / maxKB) * 100);
+    }
+    
+    // 获取尺寸颜色类名
+    function getSizeClass(percent) {
+      if (percent < 50) return 'low';
+      if (percent < 80) return 'medium';
+      return 'high';
+    }
+    
+    // 主应用
+    function App() {
+      const [sessions, setSessions] = useState([]);
+      const [selectedAgent, setSelectedAgent] = useState(null);
+      const [showRightPanel, setShowRightPanel] = useState(true);
+      const [history, setHistory] = useState([]);
+      const [agentFiles, setAgentFiles] = useState(null);
+      const [expandedFiles, setExpandedFiles] = useState({ 'OKR.md': true });
+      const [collapsedRooms, setCollapsedRooms] = useState({});
+      const [lastUpdate, setLastUpdate] = useState('');
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+      const [highlightedAgents, setHighlightedAgents] = useState({});
+      const prevSessionsRef = useRef({});
+      
+      // 字号控制
+      const [fontSize, setFontSize] = useState(() => {
+        const saved = localStorage.getItem('agentKanban_fontSize');
+        return saved ? parseInt(saved, 10) : 13;
+      });
+      
+      const changeFontSize = (delta) => {
+        const newSize = Math.max(10, Math.min(24, fontSize + delta));
+        localStorage.setItem('agentKanban_fontSize', newSize);
+        document.documentElement.style.setProperty('--font-size-base', newSize + 'px');
+        setFontSize(newSize);
+      };
+      
+      const resetFontSize = () => {
+        localStorage.setItem('agentKanban_fontSize', 13);
+        document.documentElement.style.setProperty('--font-size-base', '13px');
+        setFontSize(13);
+      };
+      
+      // 初始化字号
+      useEffect(() => {
+        document.documentElement.style.setProperty('--font-size-base', fontSize + 'px');
+      }, []);
+      
+      const loadData = async () => {
+        try {
+          const sessionsData = await API.getSessions();
+          
+          // 检测哪些 agent 有新消息
+          const newHighlights = {};
+          const now = Date.now();
+          (sessionsData.sessions || []).forEach(s => {
+            const prevTime = prevSessionsRef.current[s.key];
+            const currTime = s.lastMessageTime || s.updatedAt || 0;
+            
+            // 如果是第一次加载，高亮最近 60 秒内的消息
+            if (!prevTime && currTime && (now - currTime) < 60000) {
+              newHighlights[s.key] = true;
+            }
+            // 如果时间戳更新了
+            else if (prevTime && currTime > prevTime) {
+              newHighlights[s.key] = true;
+            }
+            
+            prevSessionsRef.current[s.key] = currTime;
+          });
+          
+          // 设置临时高亮
+          if (Object.keys(newHighlights).length > 0) {
+            setHighlightedAgents(prev => ({ ...prev, ...newHighlights }));
+            // 5 秒后清除高亮
+            setTimeout(() => {
+              setHighlightedAgents(prev => {
+                const next = { ...prev };
+                Object.keys(newHighlights).forEach(k => delete next[k]);
+                return next;
+              });
+            }, 5000);
+          }
+          
+          setSessions(sessionsData.sessions || []);
+          setLastUpdate(formatTime(Date.now()));
+          setError(null);
+        } catch (e) {
+          setError(e.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      useEffect(() => {
+        loadData();
+        const interval = setInterval(loadData, 30000);
+        return () => clearInterval(interval);
+      }, []);
+      
+      useEffect(() => {
+        if (selectedAgent) {
+          API.getSessionHistory(selectedAgent.key).then(data => {
+            setHistory(data.messages || []);
+          });
+          API.getAgentFiles(selectedAgent.agentId).then(data => {
+            setAgentFiles(data.files);
+            // 默认展开 OKR.md
+            setExpandedFiles({ 'OKR.md': true });
+          });
+        }
+      }, [selectedAgent]);
+      
+      const toggleFile = (fileName) => {
+        setExpandedFiles(prev => ({
+          ...prev,
+          [fileName]: !prev[fileName]
+        }));
+      };
+      
+      const toggleRoom = (roomId) => {
+        setCollapsedRooms(prev => ({
+          ...prev,
+          [roomId]: !prev[roomId]
+        }));
+      };
+      
+      const expandAll = () => setCollapsedRooms({});
+      const collapseAll = () => {
+        const all = {};
+        groupedAgents && Object.keys(groupedAgents).forEach(id => all[id] = true);
+        setCollapsedRooms(all);
+      };
+      
+      // 过滤掉 cron sessions，按房间分组
+      const groupedAgents = {};
+      sessions.filter(s => !s.key.includes(':cron')).forEach(s => {
+        const room = matchRoom(s.key);
+        if (!groupedAgents[room]) groupedAgents[room] = [];
+        groupedAgents[room].push(s);
+      });
+      
+      // 排序房间（按字母顺序）
+      const sortedRoomIds = Object.keys(groupedAgents).sort();
+      
+      // 过滤掉 cron sessions
+      const nonCronSessions = sessions.filter(s => !s.key.includes(':cron'));
+      
+      // 统计
+      const activeCount = nonCronSessions.filter(s => s.age < 300000).length;
+      const totalCount = nonCronSessions.length;
+      
+      if (loading) {
+        return React.createElement('div', { className: 'loading' }, 'Loading Terminal...');
+      }
+      
+      if (error) {
+        return React.createElement('div', { className: 'loading' }, 
+          'ERROR: ' + error + ' ',
+          React.createElement('button', { className: 'btn', onClick: loadData }, 'RETRY')
+        );
+      }
+      
+      // 头部
+      const header = React.createElement('div', { className: 'terminal-header' }, [
+        React.createElement('div', { key: 'left', className: 'title' }, [
+          '⬡ AGENT TERMINAL',
+          React.createElement('span', { key: 'ver', style: { color: '#666', marginLeft: '8px' } }, 'v1.5')
+        ]),
+        React.createElement('div', { key: 'right', style: { display: 'flex', gap: '12px', alignItems: 'center' } }, [
+          React.createElement('span', { key: 'stats' }, [
+            React.createElement('span', { key: 'active', className: 'stat stat-positive' }, '● ' + activeCount + ' ONLINE'),
+            React.createElement('span', { key: 'total', className: 'stat' }, '| ' + totalCount + ' TOTAL')
+          ]),
+          React.createElement('span', { key: 'time', className: 'status' }, lastUpdate),
+          React.createElement('div', { key: 'font', className: 'font-size-control' }, [
+            React.createElement('button', { key: 'minus', className: 'font-size-btn', onClick: () => changeFontSize(-1), title: '减小字号' }, '-'),
+            React.createElement('span', { key: 'value', className: 'font-size-value' }, fontSize + 'px'),
+            React.createElement('button', { key: 'plus', className: 'font-size-btn', onClick: () => changeFontSize(1), title: '增大字号' }, '+'),
+            React.createElement('button', { key: 'reset', className: 'font-size-btn', onClick: resetFontSize, title: '重置 (13px)' }, 'R')
+          ]),
+          React.createElement('button', { key: 'refresh', className: 'btn-icon', onClick: loadData, title: 'Refresh' }, '↻')
+        ])
+      ]);
+      
+      // 控制栏
+      const controls = React.createElement('div', { className: 'controls' }, [
+        React.createElement('button', { key: 'expand', className: 'control-btn', onClick: expandAll }, '+ Expand All'),
+        React.createElement('button', { key: 'collapse', className: 'control-btn', onClick: collapseAll }, '- Collapse All'),
+        React.createElement('span', { key: 'sep', style: { color: '#333' } }, '|'),
+        React.createElement('span', { key: 'info', style: { color: '#666' } }, 
+          sortedRoomIds.length + ' rooms'
+        )
+      ]);
+      
+      // 房间列表
+      const roomList = React.createElement('div', { 
+        style: { flex: 1, overflow: 'auto' } 
+      }, 
+        sortedRoomIds.map(roomId => {
+          const agents = groupedAgents[roomId];
+          const roomConfig = getRoomConfig(roomId, agents.length);
+          const activeInRoom = agents.filter(a => a.age < 300000).length;
+          const isCollapsed = collapsedRooms[roomId];
+          
+          return React.createElement('div', { key: roomId, className: 'room-section' }, [
+            // 房间头部
+            React.createElement('div', { 
+              key: 'header',
+              className: 'room-header',
+              style: { borderLeftColor: roomConfig.color },
+              onClick: () => toggleRoom(roomId)
+            }, [
+              React.createElement('span', { key: 'left' }, [
+                React.createElement('span', { 
+                  key: 'name', 
+                  className: 'room-name',
+                  style: { color: roomConfig.color }
+                }, roomConfig.name),
+                React.createElement('span', { key: 'toggle', className: 'toggle' }, isCollapsed ? '▶' : '▼')
+              ]),
+              React.createElement('span', { key: 'right', className: 'room-stats' }, [
+                React.createElement('span', { key: 'active', style: { color: '#00ff00' } }, '●' + activeInRoom),
+                ' / ',
+                React.createElement('span', { key: 'total' }, agents.length)
+              ])
+            ]),
+            // Agent 列表
+            React.createElement('div', { 
+              key: 'content',
+              className: 'room-content' + (isCollapsed ? ' collapsed' : '')
+            }, 
+              // 按最近活跃时间排序
+              [...agents].sort((a, b) => {
+                const tA = Math.max(a.lastMessageTime || 0, a.updatedAt || 0);
+                const tB = Math.max(b.lastMessageTime || 0, b.updatedAt || 0);
+                return tB - tA;
+              }).map(agent => {
+                const config = getConfig(agent.agentId, roomConfig.color);
+                const isSelected = selectedAgent?.key === agent.key;
+                const isActive = agent.age < 300000;
+                const isHighlighted = highlightedAgents[agent.key];
+                
+                // 文件尺寸显示
+                const sizePercent = getSizePercent(agent.jsonlSizeKB);
+                const sizeClass = getSizeClass(sizePercent);
+                
+                return React.createElement('div', {
+                  key: agent.key,
+                  className: 'agent-card' + (isSelected ? ' selected' : '') + (isHighlighted ? ' latest' : ''),
+                  onClick: (e) => {
+                    e.stopPropagation();
+                    setSelectedAgent(agent);
+                    setShowRightPanel(true);
+                  }
+                }, [
+                  React.createElement('div', { key: 'header', className: 'header' }, [
+                    React.createElement('img', { 
+                      key: 'avatar', 
+                      className: 'avatar', 
+                      src: getAvatarUrl(agent.key),
+                      style: { border: '1px solid ' + config.color }
+                    }),
+                    React.createElement('div', { key: 'info', style: { flex: 1, minWidth: 0 } }, [
+                      React.createElement('div', { 
+                        key: 'name', 
+                        className: 'name', 
+                        style: { color: config.color } 
+                      }, (config.emoji ? config.emoji + ' ' : '') + config.name),
+                      React.createElement('div', { 
+                        key: 'session', 
+                        className: 'session' 
+                      }, agent.key.split(':')[2] || agent.sessionId?.slice(0,8))
+                    ])
+                  ]),
+                  React.createElement('div', { key: 'status', className: 'status' }, [
+                    React.createElement('span', { 
+                      key: 'dot', 
+                      className: 'status-dot ' + (isActive ? 'active' : 'inactive')
+                    }),
+                    React.createElement('span', { key: 'text', style: { color: isActive ? '#00ff00' : '#666' } }, 
+                      isActive ? 'ONLINE' : 'IDLE'
+                    ),
+                    React.createElement('span', { 
+                      key: 'heartbeat', 
+                      style: { 
+                        marginLeft: '6px', 
+                        color: agent.heartbeat?.enabled ? '#ff9900' : '#444',
+                        
+                      } 
+                    }, agent.heartbeat?.enabled ? '💓' + agent.heartbeat.every : ''),
+                    React.createElement('span', { key: 'ago', style: { marginLeft: 'auto', color: '#666' } }, 
+                      timeAgo(Math.max(agent.lastMessageTime || 0, agent.updatedAt || 0))
+                    )
+                  ]),
+                  // 文件尺寸显示
+                  React.createElement('div', { key: 'size', className: 'size-info' }, 
+                    React.createElement('span', { 
+                      key: 'text',
+                      className: 'size-' + sizeClass
+                    }, '📄 ' + formatSize(agent.jsonlSizeKB))
+                  ),
+                  agent.lastMessage && React.createElement('div', { key: 'msg', className: 'last-msg' }, 
+                    '> ' + agent.lastMessage.slice(0, 35)
+                  )
+                ]);
+              })
+            )
+          ]);
+        })
+      );
+      
+      // Agent 列表面板
+      const agentPanel = React.createElement('div', { 
+        className: 'panel', 
+        style: { flex: '1 1 55%', display: 'flex', flexDirection: 'column' } 
+      }, [
+        React.createElement('div', { key: 'header', className: 'panel-header' }, [
+          React.createElement('span', null, 'AGENTS'),
+          React.createElement('span', { style: { color: '#666' } }, 'click to select')
+        ]),
+        controls,
+        roomList
+      ]);
+      
+      // 文件内容渲染组件
+      const renderFileSection = (fileName, fileData) => {
+        if (!fileData.exists) return null;
+        
+        const isExpanded = expandedFiles[fileName];
+        const isOKR = fileName === 'OKR.md';
+        const fileColors = {
+          'OKR.md': '#ff9900',
+          'SOUL.md': '#00aaff',
+          'HEARTBEAT.md': '#00ff00'
+        };
+        const fileColor = fileColors[fileName] || '#ffcc00';
+        
+        return React.createElement('div', { 
+          key: fileName,
+          style: { 
+            borderBottom: '1px solid #333',
+            background: isExpanded ? '#0a0a0a' : 'transparent'
+          } 
+        }, [
+          // 文件头部（可点击折叠/展开）
+          React.createElement('div', {
+            key: 'header',
+            onClick: () => toggleFile(fileName),
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '8px 12px',
+              cursor: 'pointer',
+              background: isExpanded ? '#1a1a1a' : 'transparent'
+            }
+          }, [
+            React.createElement('span', { key: 'left', style: { display: 'flex', alignItems: 'center', gap: '8px' } }, [
+              React.createElement('span', { key: 'toggle', style: { color: '#666' } }, isExpanded ? '▼' : '▶'),
+              React.createElement('span', { key: 'name', style: { color: fileColor, fontWeight: 'bold' } }, fileName),
+              React.createElement('span', { key: 'stats', style: { color: '#666' } }, 
+                fileData.lines + ' 行 | ' + fileData.size
+              )
+            ]),
+            React.createElement('span', { 
+              key: 'badge',
+              style: { 
+                background: isOKR ? '#ff9900' : '#333',
+                color: isOKR ? '#000' : '#888',
+                padding: '2px 6px',
+                borderRadius: '2px'
+              } 
+            }, isOKR ? 'DEFAULT' : 'CLICK')
+          ]),
+          // 文件内容
+          isExpanded && React.createElement('pre', {
+            key: 'content',
+            style: {
+              margin: 0,
+              padding: '12px',
+              background: '#050505',
+              color: '#ddd',
+              lineHeight: '1.5',
+              overflow: 'auto',
+              maxHeight: '300px',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+              borderTop: '1px solid #222'
+            }
+          }, fileData.content)
+        ]);
+      };
+      
+      // 消息面板（同时显示文件和消息）
+      const messagePanel = React.createElement('div', { 
+        className: 'panel', 
+        style: { flex: '1 1 45%', display: 'flex', flexDirection: 'column' } 
+      }, [
+        React.createElement('div', { key: 'header', className: 'panel-header' }, [
+          React.createElement('span', null, selectedAgent 
+            ? selectedAgent.agentId.toUpperCase() 
+            : 'DETAILS'),
+          selectedAgent && React.createElement('button', { 
+            key: 'close', 
+            className: 'btn-icon', 
+            style: { padding: '0 4px', width: 'auto' },
+            onClick: () => {
+              setSelectedAgent(null);
+              setAgentFiles(null);
+              setHistory([]);
+              setShowRightPanel(false);
+            }
+          }, '✕ CLOSE'),
+          !selectedAgent && showRightPanel && React.createElement('button', { 
+            key: 'hide', 
+            className: 'btn-icon', 
+            style: { padding: '0 4px', width: 'auto' },
+            onClick: () => setShowRightPanel(false)
+          }, '◀ HIDE')
+        ]),
+        // 显示该 agent 的文件尺寸信息
+        selectedAgent && React.createElement('div', { 
+          key: 'size-info',
+          style: { 
+            background: '#0a0a0a', 
+            padding: '8px 12px', 
+            borderBottom: '1px solid #333',
+            
+          } 
+        }, [
+          React.createElement('span', { key: 'label', style: { color: '#888' } }, '📄 Session: '),
+          React.createElement('span', { 
+            key: 'size',
+            className: 'size-' + getSizeClass(getSizePercent(selectedAgent.jsonlSizeKB))
+          }, formatSize(selectedAgent.jsonlSizeKB)),
+          React.createElement('span', { key: 'model', style: { color: '#666', marginLeft: '12px' } }, 
+            'Model: ' + (selectedAgent.model || 'unknown')
+          )
+        ]),
+        React.createElement('div', { 
+          key: 'content', 
+          className: 'panel-content', 
+          style: { flex: 1, overflow: 'auto' } 
+        }, 
+          selectedAgent 
+            ? [
+                // 文件区域
+                React.createElement('div', {
+                  key: 'files-section',
+                  style: { borderBottom: '2px solid #333' }
+                }, [
+                  React.createElement('div', {
+                    key: 'title',
+                    style: {
+                      background: '#111',
+                      padding: '6px 10px',
+                      color: '#ffcc00',
+                      fontWeight: 'bold'
+                    }
+                  }, '📂 FILES'),
+                  agentFiles 
+                    ? [
+                        renderFileSection('OKR.md', agentFiles['OKR.md'] || { exists: false }),
+                        renderFileSection('SOUL.md', agentFiles['SOUL.md'] || { exists: false }),
+                        renderFileSection('HEARTBEAT.md', agentFiles['HEARTBEAT.md'] || { exists: false })
+                      ]
+                    : React.createElement('div', { 
+                        style: { padding: '10px', color: '#666' } 
+                      }, 'Loading files...')
+                ]),
+                // 消息区域
+                React.createElement('div', {
+                  key: 'messages-section',
+                  style: { 
+                    flex: '1 1 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: 0
+                  }
+                }, [
+                  React.createElement('div', {
+                    key: 'title',
+                    style: {
+                      background: '#111',
+                      padding: '6px 10px',
+                      color: '#00aaff',
+                      fontWeight: 'bold'
+                    }
+                  }, '💬 MESSAGES (' + history.length + ')'),
+                  history.length > 0 
+                    ? React.createElement('div', { 
+                        key: 'list',
+                        style: { 
+                          flex: 1,
+                          overflow: 'auto',
+                          minHeight: 0
+                        }
+                      }, 
+                        history.slice(-5).map((msg, i) => 
+                          React.createElement('div', { 
+                            key: i, 
+                            style: {
+                              padding: '10px',
+                              borderBottom: '1px solid #222'
+                            }
+                          }, [
+                            React.createElement('div', { 
+                              key: 'meta', 
+                              style: { 
+                                display: 'flex', 
+                                justifyContent: 'space-between',
+                                marginBottom: '4px'
+                              } 
+                            }, [
+                              React.createElement('span', { 
+                                key: 'role', 
+                                style: { 
+                                  fontWeight: 'bold',
+                                  color: msg.role === 'user' ? '#00aaff' : '#ff9900'
+                                } 
+                              }, msg.role.toUpperCase()),
+                              React.createElement('span', { 
+                                key: 'time', 
+                                style: { color: '#555' } 
+                              }, msg.timestamp ? formatDateTime(new Date(msg.timestamp).getTime()) : '')
+                            ]),
+                            React.createElement('div', { 
+                              key: 'content', 
+                              style: { 
+                                color: '#ccc', 
+                                whiteSpace: 'pre-wrap',
+                                wordBreak: 'break-word',
+                                lineHeight: '1.4'
+                              } 
+                            }, (msg.content || '').slice(0, 500))
+                          ])
+                        )
+                      )
+                    : React.createElement('div', { 
+                        style: { padding: '20px', color: '#444', textAlign: 'center' } 
+                      }, 'No messages')
+                ])
+              ]
+            : React.createElement('div', { 
+                style: { 
+                  color: '#666', 
+                  padding: '40px 20px', 
+                  textAlign: 'center',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  gap: '10px'
+                } 
+              }, [
+                React.createElement('div', { key: 'icon', style: { color: '#333' } }, '⬡'),
+                React.createElement('div', { key: 'text' }, '点击 agent 卡片查看详情')
+              ])
+        )
+      ]);
+      
+      // 主布局
+      return React.createElement('div', { style: { height: '100vh', display: 'flex', flexDirection: 'column' } }, [
+        header,
+        React.createElement('div', { 
+          key: 'main', 
+          style: { flex: 1, display: 'flex', gap: '2px', padding: '2px', overflow: 'hidden' } 
+        }, [
+          agentPanel,
+          showRightPanel && messagePanel
+        ])
+      ]);
+    }
+    
+    ReactDOM.render(React.createElement(App), document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,35 +1,58 @@
----
-name: "Academic Formula Converter"
-description: "Convert LaTeX math formulas in Markdown to styled docx or HTML documents with Unicode symbol support for academic use."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/academic-formula-converter"
-sourceUrl: "https://clawhub.ai/skills/academic-formula-converter"
----
+# academic-formula-converter
 
-# Academic Formula Converter
+学术论文数学公式转换工具 - 将Markdown中的LaTeX公式转换为docx和html格式
 
-> Convert LaTeX math formulas in Markdown to styled docx or HTML documents with Unicode symbol support for academic use.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/academic-formula-converter`
-- **Source URL:** [https://clawhub.ai/skills/academic-formula-converter](https://clawhub.ai/skills/academic-formula-converter)
+1. **LaTeX公式转Unicode** - 将LaTeX格式转换为可读性更好的Unicode符号
+2. **生成Word文档** - 支持图片和公式的docx文件
+3. **生成HTML文档** - 带样式的HTML文件
 
-## Overview
+## 触发关键词
 
+- "公式转换"
+- "数学公式"
+- "LaTeX转docx"
+- "论文公式"
+- "formula converter"
+- "academic formula"
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 命令行
+
 ```bash
-hermes skills install clawhub/academic-formula-converter
+# 基本转换
+python3 /path/to/formula_converter.py input.md output.docx
+
+# 转换为HTML
+python3 /path/to/formula_converter.py input.md output.html
+
+# 指定图片目录
+python3 /path/to/formula_converter.py input.md output.docx --images /path/to/images/
+```
+
+### 支持的公式
+
+- 行内公式: `$formula$`
+- 块公式: `$$formula$$`
+
+### LaTeX到Unicode转换示例
+
+| LaTeX | Unicode |
+|-------|---------|
+| \times | × |
+| \frac{a}{b} | (a)/(b) |
+| \alpha | α |
+| \sigma | σ |
+| \leq | ≤ |
+| \geq | ≥ |
+| \sum | Σ |
+| \sqrt{} | √() |
+| \infty | ∞ |
+
+## 依赖
+
+```bash
+pip install python-docx markdown
 ```

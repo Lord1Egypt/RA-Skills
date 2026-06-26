@@ -1,0 +1,251 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "meta",
+  "sensitivity": "public",
+  "description": "迁移包元数据 - 版本信息、生成时间、校验码",
+  "time_estimate": "2分钟",
+
+  "pack_version": {
+    "value": "v1.0.5",
+    "example": "v1.0.5",
+    "description": "当前模板版本号，用于版本兼容判断"
+  },
+  "generated_at": {
+    "value": "2026-04-12T10:30:00+08:00",
+    "example": "2026-04-12T10:30:00+08:00",
+    "description": "迁移包生成时间，格式为 ISO 8601"
+  },
+  "generator": {
+    "value": "agent-migration-pack-template",
+    "example": "agent-migration-pack-template",
+    "description": "生成迁移包的模板工具名称"
+  },
+
+  "changelog": {
+    "v1.0.4": [
+      "新增manifest.toml清单文件（TOML格式）",
+      "新增scripts/migrate.py管理脚本（validate/checksum/pack/bootstrap）",
+      "新增边界说明：每个模板的该记什么/不该记什么",
+      "新增分层理念：启动必需→运行时→长期档案三层结构",
+      "README.md和MIGRATION-GUIDE.md版本号同步更新"
+    ],
+    "v1.0.3": [
+      "新增预计填写时间标注",
+      "新增示例值说明（value字段）",
+      "style.md新增1-5量表统一说明",
+      "新增JSON格式校验工具推荐章节",
+      "relations.json新增trust_level四级标准说明"
+    ],
+    "v1.0.2": [
+      "新增 relations.template.json - 笔友关系模板",
+      "新增 meta.json - 迁移包元数据",
+      "memory.json 增加 social_memory 字段 - 社交记忆",
+      "所有文件增加 sensitivity 隐私分级字段",
+      "README.md 增加迁移检查清单"
+    ],
+    "v1.0.1": [
+      "模板化通用版，适配任何Agent"
+    ],
+    "v1.0": [
+      "初始版本 - 小绎专属实例"
+    ]
+  },
+
+  "checksum": {
+    "algorithm": {
+      "value": "SHA256",
+      "example": "SHA256",
+      "description": "校验算法，当前固定为 SHA256"
+    },
+    "value": {
+      "value": "【迁移包生成时自动计算】",
+      "example": "a1b2c3d4e5f6...",
+      "description": "迁移包文件的 SHA256 校验码，用于验证完整性"
+    },
+    "description": {
+      "value": "用于验证迁移包完整性的校验码",
+      "example": "用于验证迁移包完整性的校验码",
+      "description": "校验码用途说明"
+    }
+  },
+
+  "file_inventory": [
+    {
+      "filename": {
+        "value": "meta.json",
+        "example": "meta.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "meta",
+        "example": "meta",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "public",
+        "example": "public",
+        "description": "隐私级别：public/sensitive/private"
+      },
+      "required": {
+        "value": true,
+        "example": true,
+        "description": "是否必填"
+      }
+    },
+    {
+      "filename": {
+        "value": "identity.json",
+        "example": "identity.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "identity",
+        "example": "identity",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "sensitive",
+        "example": "sensitive",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": true,
+        "example": true,
+        "description": "是否必填"
+      }
+    },
+    {
+      "filename": {
+        "value": "owner.json",
+        "example": "owner.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "owner",
+        "example": "owner",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "private",
+        "example": "private",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": true,
+        "example": true,
+        "description": "是否必填"
+      }
+    },
+    {
+      "filename": {
+        "value": "memory.json",
+        "example": "memory.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "memory",
+        "example": "memory",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "sensitive",
+        "example": "sensitive",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": true,
+        "example": true,
+        "description": "是否必填"
+      }
+    },
+    {
+      "filename": {
+        "value": "relations.json",
+        "example": "relations.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "relations",
+        "example": "relations",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "sensitive",
+        "example": "sensitive",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": false,
+        "example": false,
+        "description": "是否必填（笔友功能可选）"
+      }
+    },
+    {
+      "filename": {
+        "value": "skills.json",
+        "example": "skills.json",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "skills",
+        "example": "skills",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "public",
+        "example": "public",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": false,
+        "example": false,
+        "description": "是否必填"
+      }
+    },
+    {
+      "filename": {
+        "value": "style.md",
+        "example": "style.md",
+        "description": "文件名"
+      },
+      "file_type": {
+        "value": "style",
+        "example": "style",
+        "description": "文件类型标识"
+      },
+      "sensitivity": {
+        "value": "sensitive",
+        "example": "sensitive",
+        "description": "隐私级别"
+      },
+      "required": {
+        "value": false,
+        "example": false,
+        "description": "是否必填（可选优化项）"
+      }
+    }
+  ],
+
+  "compatibility": {
+    "min_version": {
+      "value": "v1.0",
+      "example": "v1.0",
+      "description": "最低兼容版本"
+    },
+    "migration_note": {
+      "value": "v1.0.3完全兼容v1.0、v1.0.1、v1.0.2模板，新增字段有默认值",
+      "example": "v1.0.3完全兼容v1.0、v1.0.1、v1.0.2模板，新增字段有默认值",
+      "description": "兼容性说明"
+    }
+  },
+
+  "_comment": {
+    "instructions": "【重要】value字段仅作为示例参考，填写时只保留实际值即可",
+    "from": [
+      "pack_version → 模板版本号",
+      "generated_at → 填写时的当前时间",
+      "checksum.value → 打包后用 sha256sum 命令计算",
+      "changelog → 按实际情况更新版本历史"
+    ]
+  }
+}

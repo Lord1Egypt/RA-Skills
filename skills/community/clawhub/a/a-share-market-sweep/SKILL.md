@@ -1,35 +1,117 @@
 ---
-name: "a-share-market-sweep"
-description: "从零抓取 A 股当日盘面，按指数、广度、成交、板块、情绪、领涨股顺序重建临时全市场工作包。适用于今天盘面、盘中复核、收盘总结、找主线和为后续选股做底稿。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-market-sweep"
-sourceUrl: "https://clawhub.ai/skills/a-share-market-sweep"
+name: a-share-market-sweep
+description: 从零抓取 A 股当日盘面，按指数、广度、成交、板块、情绪、领涨股顺序重建临时全市场工作包。适用于今天盘面、盘中复核、收盘总结、找主线和为后续选股做底稿。
 ---
 
-# a-share-market-sweep
-
-> 从零抓取 A 股当日盘面，按指数、广度、成交、板块、情绪、领涨股顺序重建临时全市场工作包。适用于今天盘面、盘中复核、收盘总结、找主线和为后续选股做底稿。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-market-sweep`
-- **Source URL:** [https://clawhub.ai/skills/a-share-market-sweep](https://clawhub.ai/skills/a-share-market-sweep)
+# A Share Market Sweep
 
 ## Overview
 
+这个 skill 负责把“今天市场到底在交易什么”重建出来，并形成当次会话专用的全市场临时库。它不依赖旧状态，不把上次扫描结果直接沿用到这次。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-market-sweep
-```
+## Hard Rules
+
+1. 先看指数，再看广度，再看板块，最后看个股。
+2. 用户说“今天”“现在”“刚刚”时，必须抓当日最新数据。
+3. 任何主线判断都必须至少有三个证据支撑，例如指数结构、板块强度、成交或领涨股联动。
+4. 允许建“临时全市场库”，但仅限当前响应内使用，不写成长期状态依赖。
+5. 若指数与情绪不一致，必须单列说明“指数强弱”和“情绪强弱”是分裂还是共振。
+
+## When To Use
+
+- 用户问“今天 A 股怎么样”
+- 要做盘中复核、收盘复盘、主线扫描
+- 要给选股或调仓建议，但还没完成市场底稿
+- 要判断某个板块是不是主线或只是脉冲
+- 要把宏观或事件观点落到今天盘面上
+
+## Workflow
+
+### Step 1: 时间与市场状态
+
+- 锚定日期、时间、是否午盘前、午盘后或收盘后
+- 明确本次扫描是“盘中结构跟踪”还是“收盘定稿”
+
+### Step 2: 指数层
+
+至少覆盖：
+
+- 上证、深成指、创业板、科创或中证核心宽基
+- 涨跌幅、成交额、分时强弱
+- 指数之间的风格差异
+
+### Step 3: 广度与量能层
+
+至少覆盖：
+
+- 上涨家数、下跌家数、涨停、跌停
+- 成交额与相对前值变化
+- 是放量普涨、缩量轮动、抱团防守还是退潮杀跌
+
+### Step 4: 板块层
+
+输出强弱分层：
+
+- 第一梯队主线
+- 第二梯队轮动方向
+- 明显承压方向
+
+对每个主线至少说明：
+
+- 领涨逻辑
+- 资金承接是否稳定
+- 是趋势主线、事件脉冲还是超跌反抽
+
+### Step 5: 个股层
+
+从板块里抽取：
+
+- 龙头
+- 跟风
+- 分歧转强候选
+- 高位风险样本
+
+### Step 6: 建立临时全市场库
+
+把当前会话内的可交易信息归档成临时表：
+
+- 主线板块
+- 领涨标的
+- 次强板块
+- 观察名单
+- 明显回避名单
+
+顺序模板见 [sweep-order.md](references/sweep-order.md)。
+
+### Step 7: 输出交易框架
+
+给出而不是泛泛评论：
+
+- 今日最该做什么
+- 今日最不该做什么
+- 适合追涨、低吸、等分歧还是等确认
+- 下一步应该衔接哪个 skill
+
+## Tool Rules
+
+- 大盘页、板块资金、东财数据中心：优先网页抓取
+- 个股与板块定向数据：优先 `cn_a_stock` 和 `stock_mcp`
+- 网页信息必须落到具体数字、日期和栏目，不要只复述标题
+- 若工具之间数据冲突，优先标记时间差异，再说明采用哪一个口径
+
+## Output Contract
+
+默认输出：
+
+- `今日结论`
+- `关键证据`
+- `临时全市场库`
+- `交易框架`
+- `风险清单`
+- `观察清单`
+
+## Practical Notes
+
+- 若市场高度混沌，不强行制造单一主线，直接承认“多脉冲、低持续”
+- 若资源、科技、红利同时有表现，要拆成不同风格篮子，不要混写
+- 扫描结束后，若用户要处理持仓，优先交给组合校准或动作路由

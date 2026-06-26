@@ -1,0 +1,13 @@
+{
+  "name": "agentmemory",
+  "version": "1.0.0",
+  "description": "agentmemory plugin for OpenClaw - persistent cross-session memory",
+  "main": "plugin.mjs",
+  "openclaw": {
+    "slots": ["memory"],
+    "version": ">=1.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

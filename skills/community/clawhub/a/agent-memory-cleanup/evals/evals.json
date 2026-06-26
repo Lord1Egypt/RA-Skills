@@ -1,0 +1,116 @@
+{
+  "skill_name": "agent-memory-cleanup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Codex just tried to save a new global preference, but the write failed because C:\\Users\\me\\.codex\\memory.md is too long. Please figure out what to do next without losing important memory.",
+      "expected_output": "The agent should proactively use the skill, inspect or request the relevant memory file, separate durable global preferences from transient task notes, recommend cleanup, ask before applying edits, create a backup before any edit, and retry or condense the attempted memory update only if it is globally useful.",
+      "files": [
+        "test-fixtures/noisy-memory.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hermes Agent says my memory storage is full and it keeps refusing new memories. I didn't ask for a manual audit, but can you handle whatever cleanup is appropriate?",
+      "expected_output": "The agent should treat memory-full as an automatic trigger, produce a cleanup report, identify likely stale or duplicate categories, request approval before rewriting unless automatic cleanup is already authorized, and preserve backups.",
+      "files": [
+        "test-fixtures/noisy-memory.md"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "OpenClaw has user.md and memory.md with repeated notes about last week's debugging task, a completed branch name, and a few real long-term preferences. Clean it up.",
+      "expected_output": "The agent should classify entries at a small unit level, keep stable global preferences, remove completed task and branch-specific notes, merge duplicates, create backups, apply the cleanup because the user explicitly requested it, and summarize what changed.",
+      "files": [
+        "test-fixtures/noisy-memory.md",
+        "test-fixtures/expected-clean-memory.md"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review this AGENTS.md and memory.md. The AGENTS.md is project policy, but memory.md is user-level memory. Make sure the cleanup doesn't destroy project instructions.",
+      "expected_output": "The agent should avoid treating AGENTS.md as user memory unless explicitly in scope for editing, focus cleanup on memory.md, preserve project policy, and flag any ambiguous cross-file conflicts for review.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "This memory file already looks clean. Audit it, but don't rewrite it just for style.",
+      "expected_output": "The agent should avoid unnecessary churn, report that the file mostly contains durable global memory, and recommend no edit or only a very small optional normalization.",
+      "files": [
+        "test-fixtures/clean-memory.md"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Run a memory cleanup proposal on this file. It may contain an API key and an authorization header, so do not echo secrets back to me.",
+      "expected_output": "The agent should detect suspected secrets, redact them in the report, remove them from proposed memory, keep stable preferences, and ask before applying edits.",
+      "files": [
+        "test-fixtures/secret-memory.md"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "My memory file has contradictory preferences about answer length and cleanup permission. Audit it and tell me what needs review.",
+      "expected_output": "The agent should flag conflicts rather than silently choosing one, remove task-specific PR state, and ask the user to resolve contradictory durable preferences.",
+      "files": [
+        "test-fixtures/conflicting-memory.md"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I have explicitly authorized automatic memory cleanup for this OpenClaw workspace. The memory file is over the size limit and full of stale branch notes. Apply the cleanup safely.",
+      "expected_output": "The agent should treat authorization as sufficient to use apply-approved mode, create a timestamped backup, remove stale branch/task notes, keep durable user context, and report backup and updated file paths.",
+      "files": [
+        "test-fixtures/noisy-memory.md"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Convert this skill into an MCP-friendly implementation plan so Cursor, Claude, Codex, and OpenClaw can call the cleanup flow as tools.",
+      "expected_output": "The agent should consult the MCP reference, propose read-only audit/proposal tools plus an approval-gated apply tool, preserve redaction and backup rules, and avoid promising direct SKILL.md upload compatibility.",
+      "files": [
+        "references/mcp-version.md"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "I don't know where Hermes Agent stores memory. Find likely memory paths without scanning my whole home folder.",
+      "expected_output": "The agent should use the agent path reference, search only explicit or workspace-level roots by default, avoid broad home recursion, and ask for configured Hermes memory root if needed.",
+      "files": [
+        "references/agent-paths.md"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "The agent says it cannot save a new memory because my memory file is too long. I did not mention any cleanup skill. What should happen?",
+      "expected_output": "The agent should proactively say the memory file appears too long or full, offer to inspect and propose cleanup without naming or requiring the skill, then apply edits only after a second explicit approval and after creating backups.",
+      "files": [
+        "test-fixtures/noisy-memory.md"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "I want this memory cleanup behavior to be consistent across models and languages. Move deterministic rules into code so the skill uses fewer tokens.",
+      "expected_output": "The agent should explain or implement the Python-first architecture: SKILL.md remains a thin trigger/consent layer, default-rules.json holds deterministic thresholds and regex rules, audit_memory.py performs classification/proposal/apply behavior, and run_tests.py verifies stable behavior.",
+      "files": [
+        "scripts/audit_memory.py",
+        "references/default-rules.json",
+        "scripts/run_tests.py"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "My memory file is short, but it contains a TODO, a PR stack trace note, and a password. Should the cleanup flow still intervene?",
+      "expected_output": "The agent should treat short polluted memory as a quality-trigger case, run or recommend summary audit, report secret/task-state pollution, and propose cleanup without waiting for file-size thresholds.",
+      "files": [
+        "test-fixtures/short-polluted-memory.md"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Before saving this as user memory, lint it: 'Current task: tomorrow retry PR #302 on branch fix-memory'.",
+      "expected_output": "The agent should use candidate lint semantics, determine this is task state rather than durable global memory, and recommend not writing it to global memory.",
+      "files": []
+    }
+  ]
+}

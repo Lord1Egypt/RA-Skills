@@ -1,0 +1,58 @@
+{
+  "name": "aana-private-data-guardrail",
+  "slug": "aana-private-data-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded privacy guardrail instructions for preventing agents from exposing private account, billing, payment, health, legal, or personal data.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_persistence": true,
+  "requires_user_approval_for_third_party_disclosure": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "recovery codes",
+      "full payment numbers",
+      "bank account numbers",
+      "unnecessary account records",
+      "unrelated private messages",
+      "raw health records",
+      "raw legal records"
+    ]
+  },
+  "privacy_boundary": {
+    "must_minimize_private_data": true,
+    "must_not_expose_secrets": true,
+    "must_not_invent_account_facts": true,
+    "must_not_make_unverified_refund_or_eligibility_promises": true,
+    "must_ask_when_authorization_is_unclear": true,
+    "must_defer_high_impact_or_irreversible_actions": true,
+    "may_not_store_memory_without_permission": true,
+    "may_not_share_third_party_data_without_permission": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/private-data-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-private-data-review.json"
+  ]
+}

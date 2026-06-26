@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Customer Success Skill"
+  short_description: "Manage agentic client relationships"
+  default_prompt: "Use $agentic-customer-success-skill to choose and draft the right customer success artifact for an agentic development client relationship."
+
+policy:
+  allow_implicit_invocation: false

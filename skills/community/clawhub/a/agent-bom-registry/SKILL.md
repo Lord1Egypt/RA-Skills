@@ -1,35 +1,118 @@
 ---
-name: "agent-bom registry"
-description: "MCP server security registry and trust assessment — look up servers in the 427+ server security metadata registry, run pre-install marketplace checks, batch..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-bom-registry"
-sourceUrl: "https://clawhub.ai/skills/agent-bom-registry"
+name: agent-bom-registry
+description: >-
+  MCP server security registry and trust assessment — look up servers in the 427+
+  server security metadata registry, run pre-install marketplace checks, batch
+  fleet risk scoring, assess skill file trust, and run SAST code scans. Use when
+  the user mentions MCP server trust, registry lookup, marketplace check, or
+  skill trust assessment.
+version: 0.89.2
+license: Apache-2.0
+compatibility: >-
+  Requires Python 3.11+. Install via pipx or pip. Optional: Semgrep for SAST
+  code scanning. No API keys or network access required (registry is bundled).
+metadata:
+  author: msaad00
+  homepage: https://github.com/msaad00/agent-bom
+  source: https://github.com/msaad00/agent-bom
+  pypi: https://pypi.org/project/agent-bom/
+  scorecard: https://securityscorecards.dev/viewer/?uri=github.com/msaad00/agent-bom
+  tests: 7239
+  install:
+    pipx: agent-bom
+    pip: agent-bom
+  openclaw:
+    requires:
+      bins: []
+      env: []
+      credentials: none
+    credential_policy: "Zero credentials required. Registry data is bundled locally. No network calls needed."
+    credential_handling: "No credentials are required for bundled registry lookups. Optional enrichment tokens must stay in the operator environment and must not be printed or embedded in skill output."
+    optional_env:
+      - name: SNYK_TOKEN
+        purpose: "Optional third-party vulnerability enrichment for code_scan (requires SNYK_TOKEN)"
+        required: false
+    optional_bins:
+      - semgrep
+    emoji: "\U0001F50D"
+    homepage: https://github.com/msaad00/agent-bom
+    source: https://github.com/msaad00/agent-bom
+    license: Apache-2.0
+    os:
+      - darwin
+      - linux
+      - windows
+    data_flow: "Purely local. Registry data (427+ MCP server metadata) is bundled in the package. Lookups are in-memory string matches. Skill trust analysis parses user-provided SKILL.md content passed as a string argument."
+    file_reads:
+      - "user-provided SKILL.md files (for skill_trust analysis)"
+    file_writes: []
+    network_endpoints:
+      - url: "https://api.snyk.io"
+        purpose: "Optional third-party vulnerability enrichment for code_scan (requires SNYK_TOKEN)"
+        auth: true
+    telemetry: false
+    persistence: false
+    privilege_escalation: false
+    always: false
+    autonomous_invocation: restricted
 ---
 
-# agent-bom registry
+# agent-bom-registry — MCP Server Trust & Security Registry
 
-> MCP server security registry and trust assessment — look up servers in the 427+ server security metadata registry, run pre-install marketplace checks, batch...
+Look up MCP servers in the 427+ server security metadata registry, assess skill
+file trust, and run pre-install marketplace checks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-bom-registry`
-- **Source URL:** [https://clawhub.ai/skills/agent-bom-registry](https://clawhub.ai/skills/agent-bom-registry)
+## Install
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-bom-registry
+pipx install agent-bom
+agent-bom mcp scan @modelcontextprotocol/server-brave-search --ecosystem npm
+agent-bom mcp scan @modelcontextprotocol/server-filesystem --ecosystem npm
 ```
+
+## Tools (7)
+
+| Tool | Description |
+|------|-------------|
+| `registry_lookup` | Look up MCP server in 427+ server security metadata registry |
+| `marketplace_check` | Pre-install trust check with registry cross-reference |
+| `fleet_scan` | Batch registry lookup + risk scoring for MCP server inventories |
+| `skill_scan` | Scan instruction files for package refs, trust, and findings |
+| `skill_verify` | Verify Sigstore provenance for instruction files |
+| `skill_trust` | Assess skill file trust level (5-category analysis) |
+| `code_scan` | SAST scanning via Semgrep with CWE-based compliance mapping |
+
+## Example Workflows
+
+```
+# Look up a server in the registry
+registry_lookup(server_name="brave-search")
+
+# Pre-install trust check
+marketplace_check(package="@modelcontextprotocol/server-filesystem")
+
+# Scan instruction files and then assess a specific skill file
+skill_scan(path=".")
+skill_trust(skill_path="./SKILL.md")
+
+# Batch risk scoring
+fleet_scan(servers=["brave-search", "github", "slack"])
+```
+
+## MCP Resources
+
+| Resource | Description |
+|----------|-------------|
+| `registry://servers` | Browse 427+ MCP server security metadata registry |
+
+## Privacy & Data Handling
+
+Registry data is **bundled in the package** — lookups are in-memory string
+matches with zero network calls. Skill trust analysis parses content passed
+as a string argument (no file system access needed).
+
+## Verification
+
+- **Source**: [github.com/msaad00/agent-bom](https://github.com/msaad00/agent-bom) (Apache-2.0)
+- **7,100+ tests** with CodeQL + OpenSSF Scorecard
+- **No telemetry**: Zero tracking, zero analytics

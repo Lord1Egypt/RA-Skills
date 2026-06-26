@@ -1,0 +1,12 @@
+{
+  "name": "agent-code-no7-tax-butler",
+  "version": "1.0.0",
+  "description": "Agent Code No.7 税务管家 - 税务筹划与合规审查",
+  "keywords": ["agent", "tax", "planning", "compliance", "finance"],
+  "author": "monarchmio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monarchmio/agent-code-no7"
+  }
+}

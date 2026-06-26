@@ -1,0 +1,60 @@
+{
+  "name": "aana-evidence-first-answering",
+  "slug": "aana-evidence-first-answering",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded evidence-first answering instructions that force answer drafts to separate known facts, assumptions, missing evidence, and next retrieval steps.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_known_assumed_missing_separation": true,
+  "requires_explicit_missing_evidence": true,
+  "requires_retrieval_steps_for_answer_blockers": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "full private messages",
+      "full logs with sensitive values",
+      "unrelated private data"
+    ]
+  },
+  "evidence_first_boundary": {
+    "must_separate_known_facts_assumptions_and_missing_evidence": true,
+    "must_not_treat_assumptions_as_facts": true,
+    "must_not_claim_unobserved_tests_sources_or_records": true,
+    "must_label_uncertainty_when_evidence_is_incomplete": true,
+    "must_name_next_retrieval_steps_for_blocking_gaps": true,
+    "must_revise_unsupported_claims": true,
+    "must_defer_high_risk_claims_without_evidence": true,
+    "may_not_store_raw_private_records": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/evidence-first-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-evidence-first-review.json"
+  ]
+}

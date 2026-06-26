@@ -1,0 +1,20 @@
+{
+  "name": "data-model-designer",
+  "version": "2.0.0",
+  "description": "Design data models for construction projects. Create entity-relationship diagrams, define schemas, and generate database structures.",
+  "author": "datadrivenconstruction",
+  "license": "MIT",
+  "permissions": [
+    "filesystem"
+  ],
+  "entry": "instructions.md",
+  "tags": [
+    "construction",
+    "data-processing",
+    "machine-learning"
+  ],
+  "models": [
+    "skillboss/*"
+  ],
+  "minOpenClawVersion": "0.8.0"
+}

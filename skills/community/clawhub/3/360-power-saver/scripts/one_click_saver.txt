@@ -1,0 +1,103 @@
+# 360 Power Saver - 一键省电™ 模块
+# 分析当前系统电源状态，提供优化建议
+
+Add-Type -AssemblyName PresentationFramework
+
+function Get-PowerInfo {
+    # 获取当前电源计划
+    $activeScheme = powercfg /getactivescheme 2>$null
+    $schemeName = if ($activeScheme -match '\((.+)\)') { $matches[1] } else { "未知" }
+
+    # 获取电池状态
+    $battery = Get-WmiObject -Class Win32_Battery -ErrorAction SilentlyContinue
+
+    # 获取 CPU 信息
+    $cpu = Get-WmiObject Win32_Processor
+    $cpuUsage = Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select-Object -ExpandProperty Average
+
+    # 获取内存信息
+    $os = Get-CimInstance Win32_OperatingSystem
+    $freeMem = [math]::Round($os.FreePhysicalMemory / 1MB, 2)
+    $totalMem = [math]::Round($os.TotalVisibleMemorySize / 1MB, 2)
+    $usedPercent = [math]::Round((($totalMem - $freeMem) / $totalMem) * 100, 1)
+
+    return @{
+        Scheme = $schemeName
+        Battery = $battery
+        CPUName = $cpu.Name
+        CPUUsage = $cpuUsage
+        MemoryPercent = $usedPercent
+        TotalMemory = $totalMem
+        FreeMemory = $freeMem
+    }
+}
+
+function Show-OneClickSaver {
+    $info = Get-PowerInfo
+
+    # 构建报告
+    $msg = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "      360°省电大师 - 一键省电`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+
+    # 电源计划
+    $msg += "⚡ 电源计划: $($info.Scheme)`n`n"
+
+    # 电池状态
+    if ($info.Battery) {
+        $batteryPercent = $info.Battery.EstimatedChargeRemaining
+        $batteryStatus = switch ($info.Battery.BatteryStatus) {
+            1 { "🔋 放电中" }
+            2 { "⚡ 充电中" }
+            3 { "✅ 满电" }
+            default { "❓ 未知" }
+        }
+        $msg += "🔋 电池电量: $batteryPercent%`n"
+        $msg += "📊 电池状态: $batteryStatus`n`n"
+    } else {
+        $msg += "💻 桌面设备（无电池）`n`n"
+    }
+
+    # CPU 状态
+    $msg += "🖥️ CPU: $([string]$info.CPUName).Trim()`n"
+    $msg += "📈 CPU 占用: $($info.CPUUsage)%`n`n"
+
+    # 内存状态
+    $memBar = "█" * [math]::Round($info.MemoryPercent / 10) + "░" * (10 - [math]::Round($info.MemoryPercent / 10))
+    $msg += "💾 内存占用: [$memBar] $($info.MemoryPercent)%`n"
+    $msg += "   可用: $($info.FreeMemory) GB / $($info.TotalMemory) GB`n`n"
+
+    # 优化建议
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "💡 优化建议:`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+
+    $suggestions = @()
+    
+    if ($info.Scheme -notmatch "省电|节能") {
+        $suggestions += "• 可切换至「节能」电源计划以延长续航"
+    }
+    
+    if ($info.CPUUsage -gt 50) {
+        $suggestions += "• CPU 占用较高，建议关闭不需要的程序"
+    }
+    
+    if ($info.MemoryPercent -gt 80) {
+        $suggestions += "• 内存占用较高，建议重启部分应用"
+    }
+
+    if ($info.Battery -and $info.Battery.BatteryStatus -eq 1 -and $batteryPercent -lt 30) {
+        $suggestions += "• 电量较低，建议尽快充电"
+    }
+
+    if ($suggestions.Count -eq 0) {
+        $suggestions += "• 系统状态良好，无需优化"
+    }
+
+    $msg += $suggestions -join "`n"
+
+    [System.Windows.MessageBox]::Show($msg, "360°省电大师 - 一键省电", "OK", "Information")
+}
+
+# 执行
+Show-OneClickSaver

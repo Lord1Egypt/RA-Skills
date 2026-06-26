@@ -1,0 +1,23 @@
+{
+  "description": "1688-to-ozon 路径配置文件",
+  "version": "1.0.0",
+  "baseDir": "{WORKSPACE}/1688-to-ozon",
+  "dirs": {
+    "root": "{WORKSPACE}/1688-to-ozon",
+    "step1_1688": "{WORKSPACE}/1688-to-ozon/1688-tt",
+    "step2_translator": "{WORKSPACE}/1688-to-ozon/ozon-image-translator",
+    "step3_pricer": "{WORKSPACE}/1688-to-ozon/ozon-pricer",
+    "step4_publisher": "{WORKSPACE}/1688-to-ozon/ozon-publisher"
+  },
+  "files": {
+    "mapping_config": "{WORKSPACE}/1688-to-ozon/scripts/mappings/{category}_mapping.json",
+    "mapping_result": "{WORKSPACE}/1688-to-ozon/mapping_result.json",
+    "upload_request": "{WORKSPACE}/1688-to-ozon/upload-request.json",
+    "upload_result": "{WORKSPACE}/1688-to-ozon/upload_result.json"
+  },
+  "images": {
+    "step1_input": "{WORKSPACE}/1688-to-ozon/1688-tt/images",
+    "step2_output": "{WORKSPACE}/1688-to-ozon/ozon-image-translator/images",
+    "step2_images_json": "{WORKSPACE}/1688-to-ozon/ozon-image-translator/images.json"
+  }
+}

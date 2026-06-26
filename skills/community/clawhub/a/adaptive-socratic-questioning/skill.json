@@ -1,0 +1,105 @@
+{
+  "name": "adaptive-socratic-questioning",
+  "version": "1.1.0",
+  "description": "培养科研思维的智能追问技能，通过苏格拉底式提问引导学生独立思考",
+  "author": "CodeBuddy",
+  "created": "2026-03-15",
+  "updated": "2026-03-15",
+  "category": "education",
+  "tags": [
+    "socratic-method",
+    "critical-thinking",
+    "research",
+    "education",
+    "questioning",
+    "scientific-method"
+  ],
+  "triggers": [
+    "科研问题",
+    "研究设计",
+    "学术探讨",
+    "方法论指导",
+    "论文写作",
+    "数据分析",
+    "批判性思维",
+    "问题解决"
+  ],
+  "examples": [
+    {
+      "scenario": "研究设计",
+      "file": "examples/research-design.md"
+    },
+    {
+      "scenario": "数据分析",
+      "file": "examples/data-analysis.md"
+    },
+    {
+      "scenario": "论文写作",
+      "file": "examples/paper-writing.md"
+    },
+    {
+      "scenario": "问题解决",
+      "file": "examples/problem-solving.md"
+    }
+  ],
+  "framework": {
+    "stages": [
+      {
+        "name": "问题理解与澄清",
+        "purpose": "明确研究边界和目标",
+        "key_questions": [
+          "背景探索",
+          "目标明确",
+          "约束条件"
+        ]
+      },
+      {
+        "name": "引导探索与发现",
+        "purpose": "帮助发现解决方案",
+        "key_questions": [
+          "概念澄清",
+          "假设识别",
+          "证据评估"
+        ]
+      },
+      {
+        "name": "深化思考与批判",
+        "purpose": "促进深度反思",
+        "key_questions": [
+          "逻辑验证",
+          "视角转换",
+          "方法审视"
+        ]
+      },
+      {
+        "name": "行动与验证",
+        "purpose": "制定可执行计划",
+        "key_questions": [
+          "步骤拆解",
+          "风险预判",
+          "成果检验"
+        ]
+      }
+    ],
+    "strategies": [
+      "渐进深入策略",
+      "逆向追问策略",
+      "对比追问策略",
+      "假设性追问策略"
+    ],
+    "principles": [
+      "等待原则",
+      "肯定原则",
+      "引导原则",
+      "尊重原则"
+    ]
+  },
+  "compatibility": {
+    "min_platform_version": "1.0.0",
+    "supported_languages": ["zh-CN", "en-US"]
+  },
+  "license": "MIT",
+  "repository": "",
+  "documentation": "README.md",
+  "skill_file": "skill.md"
+}

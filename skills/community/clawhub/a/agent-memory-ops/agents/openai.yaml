@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Memory Ops"
+  short_description: "Audit, dedupe, and curate long-term agent memory files."
+  default_prompt: "Use this skill to audit memory files, surface durable facts, and draft long-term memory updates."

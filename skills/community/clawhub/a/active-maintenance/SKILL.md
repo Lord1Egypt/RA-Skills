@@ -1,35 +1,43 @@
----
-name: "Active Maintenance"
-description: "Automates system health monitoring, temp file cleanup, memory deduplication and summarization, with detailed logging for OpenClaw maintenance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/active-maintenance"
-sourceUrl: "https://clawhub.ai/skills/active-maintenance"
+# Active Maintenance Skill
+
+**Automated system health and memory metabolism for OpenClaw.**
+
+Inspired by the `ClawIntelligentMemory` project, this skill ensures Kim Assistant's environment stays clean and its memory stays dense.
+
 ---
 
-# Active Maintenance
+## Features
 
-> Automates system health monitoring, temp file cleanup, memory deduplication and summarization, with detailed logging for OpenClaw maintenance.
+1. **System Health Checks**: Monitor disk usage and critical resources.
+2. **Auto-Cleanup**: Remove aged temporary files and artifacts.
+3. **Memory Metabolism (M3)**: 
+   - Exact deduplication of memory fragments.
+   - Resource distillation: Summarizing dense notes into core insights.
+4. **Decision Logging**: Every maintenance cycle is logged to `MEMORY/DECISIONS/` for auditability.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/active-maintenance`
-- **Source URL:** [https://clawhub.ai/skills/active-maintenance](https://clawhub.ai/skills/active-maintenance)
+---
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Run Full Maintenance
 ```bash
-hermes skills install clawhub/active-maintenance
+python3 /root/.openclaw/workspace/scripts/nightly_optimizer.py
 ```
+
+### Log a Decision
+```python
+from decision_logger import log_decision
+log_decision(title="Example", ...)
+```
+
+---
+
+## Configuration
+
+Located in `scripts/nightly_optimizer.py`:
+- `TEMP_DIRS`: List of directories to clean.
+- `threshold`: Disk usage percentage to trigger warnings.
+- `days`: Age of files to cleanup.
+
+---
+*Created: 2026-02-12 | By Kim Assistant*

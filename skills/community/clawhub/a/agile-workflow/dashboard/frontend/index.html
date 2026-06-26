@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>敏捷工作流监控仪表盘 v6.0</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .header .status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4caf50;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card .label {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .stat-card .value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .stat-card .trend {
+      font-size: 14px;
+      color: #4caf50;
+    }
+
+    .stat-card .trend.down {
+      color: #f44336;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-header h2 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    .task-list {
+      list-style: none;
+    }
+
+    .task-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .task-item:last-child {
+      border-bottom: none;
+    }
+
+    .task-progress {
+      flex: 1;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .task-meta {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-badge.running {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    .status-badge.completed {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .status-badge.warning {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .agent-list {
+      list-style: none;
+    }
+
+    .agent-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .agent-item:last-child {
+      border-bottom: none;
+    }
+
+    .agent-status {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .agent-status.active {
+      background: #4caf50;
+    }
+
+    .agent-status.idle {
+      background: #ff9800;
+    }
+
+    .agent-status.offline {
+      background: #9e9e9e;
+    }
+
+    .agent-info {
+      flex: 1;
+    }
+
+    .agent-name {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .agent-load {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .alert-list {
+      list-style: none;
+    }
+
+    .alert-item {
+      padding: 15px;
+      border-left: 4px solid #f44336;
+      background: #ffebee;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    .alert-item.warning {
+      border-left-color: #ff9800;
+      background: #fff3e0;
+    }
+
+    .alert-item.info {
+      border-left-color: #2196f3;
+      background: #e3f2fd;
+    }
+
+    .alert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .alert-level {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .alert-level.critical {
+      color: #f44336;
+    }
+
+    .alert-level.warning {
+      color: #ff9800;
+    }
+
+    .alert-level.info {
+      color: #2196f3;
+    }
+
+    .alert-time {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .alert-message {
+      color: #333;
+      font-size: 14px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .loading-spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="header">
+      <h1>🚀 敏捷工作流监控仪表盘</h1>
+      <div class="status">
+        <div class="status-dot"></div>
+        <span>系统运行正常</span>
+        <span id="lastUpdate">最后更新：--</span>
+      </div>
+    </div>
+
+    <!-- 系统概览 -->
+    <div class="overview-grid">
+      <div class="stat-card">
+        <div class="label">总任务数</div>
+        <div class="value" id="totalTasks">-</div>
+        <div class="trend" id="taskTrend">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">进行中任务</div>
+        <div class="value" id="runningTasks">-</div>
+        <div class="trend" id="runningTrend">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">完成率</div>
+        <div class="value" id="completionRate">-%</div>
+        <div class="trend" id="completionTrend">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">平均质量评分</div>
+        <div class="value" id="avgQuality">-分</div>
+        <div class="trend" id="qualityTrend">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">活跃 Agent</div>
+        <div class="value" id="activeAgents">-</div>
+        <div class="trend" id="agentTrend">--</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">测试通过率</div>
+        <div class="value" id="testPassRate">-%</div>
+        <div class="trend" id="testTrend">--</div>
+      </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <div class="main-grid">
+      <!-- 任务进度 -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>📋 任务进度</h2>
+          <span id="taskCount">0 个任务</span>
+        </div>
+        <div class="panel-body">
+          <div id="taskLoading" class="loading">
+            <div class="loading-spinner"></div>
+            <div>加载任务数据...</div>
+          </div>
+          <ul class="task-list" id="taskList" style="display: none;">
+            <!-- 任务列表将由 JS 动态生成 -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Agent 状态 + 告警中心 -->
+      <div>
+        <!-- Agent 状态 -->
+        <div class="panel" style="margin-bottom: 20px;">
+          <div class="panel-header">
+            <h2>🤖 Agent 状态</h2>
+            <span id="agentCount">0 个</span>
+          </div>
+          <div class="panel-body">
+            <div id="agentLoading" class="loading">
+              <div class="loading-spinner"></div>
+              <div>加载 Agent 数据...</div>
+            </div>
+            <ul class="agent-list" id="agentList" style="display: none;">
+              <!-- Agent 列表将由 JS 动态生成 -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- 告警中心 -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2>🚨 告警中心</h2>
+            <span id="alertCount">0 条</span>
+          </div>
+          <div class="panel-body">
+            <div id="alertLoading" class="loading">
+              <div class="loading-spinner"></div>
+              <div>加载告警数据...</div>
+            </div>
+            <ul class="alert-list" id="alertList" style="display: none;">
+              <!-- 告警列表将由 JS 动态生成 -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // WebSocket 连接
+    let socket = null;
+    let reconnectAttempts = 0;
+    const maxReconnectAttempts = 5;
+
+    function connectWebSocket() {
+      const wsUrl = `ws://${window.location.hostname}:8080`;
+      console.log('🔌 尝试连接 WebSocket:', wsUrl);
+      
+      socket = new WebSocket(wsUrl);
+
+      socket.onopen = () => {
+        console.log('✅ WebSocket 连接成功');
+        reconnectAttempts = 0;
+        updateStatus('已连接');
+      };
+
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        updateDashboard(data);
+      };
+
+      socket.onclose = () => {
+        console.log('❌ WebSocket 连接关闭');
+        updateStatus('已断开');
+        
+        if (reconnectAttempts < maxReconnectAttempts) {
+          reconnectAttempts++;
+          console.log(`🔄 尝试重连 (${reconnectAttempts}/${maxReconnectAttempts})...`);
+          setTimeout(connectWebSocket, 3000);
+        }
+      };
+
+      socket.onerror = (error) => {
+        console.error('❌ WebSocket 错误:', error);
+        updateStatus('连接错误');
+      };
+
+      // 心跳检测
+      setInterval(() => {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+          socket.send(JSON.stringify({ type: 'ping' }));
+        }
+      }, 30000);
+    }
+
+    function updateStatus(status) {
+      const statusDot = document.querySelector('.status-dot');
+      const statusText = document.querySelector('.status span:first-child');
+      
+      if (status === '已连接') {
+        statusDot.style.background = '#4caf50';
+      } else if (status === '已断开') {
+        statusDot.style.background = '#f44336';
+      } else {
+        statusDot.style.background = '#ff9800';
+      }
+      
+      statusText.textContent = status;
+    }
+
+    function updateDashboard(data) {
+      console.log('📊 更新仪表盘数据:', data);
+
+      // 更新概览数据
+      if (data.overview) {
+        updateOverview(data.overview);
+      }
+
+      // 更新任务列表
+      if (data.tasks) {
+        updateTaskList(data.tasks);
+      }
+
+      // 更新 Agent 列表
+      if (data.agents) {
+        updateAgentList(Object.values(data.agents));
+      }
+
+      // 更新告警列表
+      if (data.alerts) {
+        updateAlertList(data.alerts);
+      }
+
+      // 更新时间戳
+      if (data.lastUpdate) {
+        document.getElementById('lastUpdate').textContent = 
+          '最后更新：' + new Date(data.lastUpdate).toLocaleTimeString('zh-CN');
+      }
+    }
+
+    function updateOverview(overview) {
+      document.getElementById('totalTasks').textContent = overview.totalTasks || 0;
+      document.getElementById('runningTasks').textContent = overview.runningTasks || 0;
+      document.getElementById('completionRate').textContent = (overview.completionRate || 0) + '%';
+      document.getElementById('avgQuality').textContent = (overview.avgQualityScore || 0) + '分';
+      document.getElementById('activeAgents').textContent = overview.activeAgents || 0;
+      document.getElementById('testPassRate').textContent = (overview.testPassRate || 0) + '%';
+    }
+
+    function updateTaskList(tasks) {
+      const loading = document.getElementById('taskLoading');
+      const list = document.getElementById('taskList');
+      const count = document.getElementById('taskCount');
+
+      if (!tasks || tasks.length === 0) {
+        loading.style.display = 'block';
+        loading.querySelector('div:last-child').textContent = '暂无任务数据';
+        list.style.display = 'none';
+        count.textContent = '0 个任务';
+        return;
+      }
+
+      loading.style.display = 'none';
+      list.style.display = 'block';
+      count.textContent = tasks.length + '个任务';
+
+      list.innerHTML = tasks.map(task => `
+        <li class="task-item">
+          <div class="task-progress">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+              <strong>${task.name || '未知任务'}</strong>
+              <span class="status-badge ${task.status}">${getStatusText(task.status)}</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${task.progress || 0}%"></div>
+            </div>
+            <div class="task-meta">
+              <span>进度：${task.progress || 0}%</span>
+              <span>质量：${task.qualityScore || 0}分</span>
+              <span>Agent: ${task.agent || '未分配'}</span>
+            </div>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function updateAgentList(agents) {
+      const loading = document.getElementById('agentLoading');
+      const list = document.getElementById('agentList');
+      const count = document.getElementById('agentCount');
+
+      if (!agents || agents.length === 0) {
+        loading.style.display = 'block';
+        loading.querySelector('div:last-child').textContent = '暂无 Agent 数据';
+        list.style.display = 'none';
+        count.textContent = '0 个';
+        return;
+      }
+
+      loading.style.display = 'none';
+      list.style.display = 'block';
+      count.textContent = agents.length + '个';
+
+      list.innerHTML = agents.map(agent => `
+        <li class="agent-item">
+          <div class="agent-status ${agent.status}"></div>
+          <div class="agent-info">
+            <div class="agent-name">${agent.name || '未知 Agent'}</div>
+            <div class="agent-load">负载：${agent.load || 0}% | 内存：${agent.memory || 0}MB</div>
+          </div>
+          <span class="status-badge ${agent.status}">${getStatusText(agent.status)}</span>
+        </li>
+      `).join('');
+    }
+
+    function updateAlertList(alerts) {
+      const loading = document.getElementById('alertLoading');
+      const list = document.getElementById('alertList');
+      const count = document.getElementById('alertCount');
+
+      if (!alerts || alerts.length === 0) {
+        loading.style.display = 'block';
+        loading.querySelector('div:last-child').textContent = '暂无告警';
+        list.style.display = 'none';
+        count.textContent = '0 条';
+        return;
+      }
+
+      loading.style.display = 'none';
+      list.style.display = 'block';
+      count.textContent = alerts.length + '条';
+
+      list.innerHTML = alerts.map(alert => `
+        <li class="alert-item ${alert.level}">
+          <div class="alert-header">
+            <span class="alert-level ${alert.level}">${getLevelText(alert.level)}</span>
+            <span class="alert-time">${formatTime(alert.timestamp)}</span>
+          </div>
+          <div class="alert-message">${alert.message || '未知告警'}</div>
+        </li>
+      `).join('');
+    }
+
+    function getStatusText(status) {
+      const map = {
+        'running': '进行中',
+        'completed': '已完成',
+        'active': '活跃',
+        'idle': '空闲',
+        'offline': '离线',
+        'warning': '警告'
+      };
+      return map[status] || status;
+    }
+
+    function getLevelText(level) {
+      const map = {
+        'critical': '严重',
+        'warning': '警告',
+        'info': '信息'
+      };
+      return map[level] || level;
+    }
+
+    function formatTime(timestamp) {
+      if (!timestamp) return '--';
+      return new Date(timestamp).toLocaleTimeString('zh-CN');
+    }
+
+    // 初始化连接
+    console.log('🚀 仪表盘初始化...');
+    connectWebSocket();
+
+    // 如果 WebSocket 不可用，使用轮询
+    setTimeout(() => {
+      if (!socket || socket.readyState !== WebSocket.OPEN) {
+        console.log('⚠️ WebSocket 不可用，使用轮询模式');
+        // 可以实现 HTTP 轮询作为降级方案
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

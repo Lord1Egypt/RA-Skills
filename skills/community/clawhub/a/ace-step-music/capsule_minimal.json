@@ -1,0 +1,25 @@
+{
+  "type": "Capsule",
+  "schema_version": "1.5.0",
+  "asset_id": "sha256:PLACEHOLDER",
+  "trigger": [
+    "deploy ace-step",
+    "ai music setup"
+  ],
+  "gene": "sha256:PLACEHOLDER",
+  "summary": "ACE-Step 1.5 deployment on macOS Apple Silicon",
+  "content": "Clone repo, create venv, install mlx pytorch transformers, download models, test generation",
+  "confidence": 0.9,
+  "blast_radius": {
+    "files": 3,
+    "lines": 100
+  },
+  "outcome": {
+    "status": "success",
+    "score": 0.9
+  },
+  "env_fingerprint": {
+    "platform": "darwin",
+    "arch": "arm64"
+  }
+}

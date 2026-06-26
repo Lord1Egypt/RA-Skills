@@ -1,0 +1,74 @@
+[
+  {
+    "id": "TP01",
+    "name": "Base64 编码检测",
+    "patterns": [
+      "\\bbase64\\s+(-d|-D)",
+      "\\bb64decode\\s*\\(",
+      "\\batob\\s*\\(",
+      "\\bBuffer\\.from\\s*\\([^)]*'base64'"
+    ],
+    "risk": "HIGH",
+    "description": "检测 Base64 编码隐藏恶意代码",
+    "action": "BLOCK",
+    "optimized": true,
+    "optimization_notes": "添加单词边界，避免误报"
+  },
+  {
+    "id": "TP02",
+    "name": "压缩混淆检测",
+    "patterns": [
+      "\\bzlib\\.decompress\\s*\\(",
+      "\\bgzip\\.decompress\\s*\\(",
+      "\\blzma\\.decompress\\s*\\(",
+      "\\bunzip\\s+",
+      "\\btar\\s+-x"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测压缩算法混淆恶意负载",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "TP03",
+    "name": "动态导入检测",
+    "patterns": [
+      "\\b__import__\\s*\\(",
+      "\\bimportlib\\.import_module\\s*\\(",
+      "\\bgetattr\\s*\\(\\s*sys\\.modules"
+    ],
+    "risk": "HIGH",
+    "description": "检测动态导入模块绕过静态检测",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "TP04",
+    "name": "反射执行检测",
+    "patterns": [
+      "\\beval\\s*\\(",
+      "\\bexec\\s*\\(",
+      "\\bcompile\\s*\\(",
+      "\\bast\\.literal_eval\\s*\\(",
+      "\\bpickle\\.loads?\\s*\\("
+    ],
+    "risk": "CRITICAL",
+    "description": "检测反射执行动态代码",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "TP05",
+    "name": "代码混淆检测",
+    "patterns": [
+      "\\bchr\\s*\\(\\s*0x",
+      "\\bord\\s*\\(\\s*['\\\"]",
+      "\\\\x[0-9a-fA-F]{2}",
+      "\\\\u[0-9a-fA-F]{4}"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测字符编码混淆",
+    "action": "WARN",
+    "optimized": false
+  }
+]

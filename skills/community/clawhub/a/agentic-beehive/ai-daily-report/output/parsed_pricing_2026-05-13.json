@@ -1,0 +1,354 @@
+{
+  "date": "2026-05-13",
+  "total_models": 49,
+  "models": [
+    {
+      "vendor": "DeepSeek",
+      "model": "deepseek-v4-flash",
+      "input_price_per_million": 1.0,
+      "output_price_per_million": 2.0,
+      "cache_hit_price": 0.02,
+      "source": "foraged",
+      "note": "deepseek-chat 别名，对应非思考模式"
+    },
+    {
+      "vendor": "DeepSeek",
+      "model": "deepseek-v4-pro",
+      "input_price_per_million": 3.0,
+      "output_price_per_million": 6.0,
+      "original_input_price": 12.0,
+      "original_output_price": 24.0,
+      "source": "foraged",
+      "note": "2.5折优惠至2026/05/31, 原价12/24, deepseek-reasoner对应思考模式"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-plus",
+      "input_price_per_million": 50,
+      "output_price_per_million": 50,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-0520",
+      "input_price_per_million": 100,
+      "output_price_per_million": 100,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-flash",
+      "input_price_per_million": 0.1,
+      "output_price_per_million": 0.1,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-air",
+      "input_price_per_million": 1,
+      "output_price_per_million": 1,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-airx",
+      "input_price_per_million": 10,
+      "output_price_per_million": 10,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4-long",
+      "input_price_per_million": 1,
+      "output_price_per_million": 1,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4v-plus",
+      "input_price_per_million": 50,
+      "output_price_per_million": 50,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "智谱",
+      "model": "glm-4v",
+      "input_price_per_million": 100,
+      "output_price_per_million": 100,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-max",
+      "input_price_per_million": 40,
+      "output_price_per_million": 120,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-max-latest",
+      "input_price_per_million": 40,
+      "output_price_per_million": 120,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-plus",
+      "input_price_per_million": 4,
+      "output_price_per_million": 12,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-plus-latest",
+      "input_price_per_million": 4,
+      "output_price_per_million": 12,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-turbo",
+      "input_price_per_million": 2,
+      "output_price_per_million": 6,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-turbo-latest",
+      "input_price_per_million": 2,
+      "output_price_per_million": 6,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-long",
+      "input_price_per_million": 4,
+      "output_price_per_million": 4,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-vl-max",
+      "input_price_per_million": 20,
+      "output_price_per_million": 60,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阿里",
+      "model": "qwen-vl-plus",
+      "input_price_per_million": 8,
+      "output_price_per_million": 24,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-pro-32k",
+      "input_price_per_million": 4,
+      "output_price_per_million": 16,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-pro-128k",
+      "input_price_per_million": 5,
+      "output_price_per_million": 16,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-pro-256k",
+      "input_price_per_million": 8,
+      "output_price_per_million": 24,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-lite-32k",
+      "input_price_per_million": 0.3,
+      "output_price_per_million": 0.6,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-lite-128k",
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 0.8,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-1.5-pro-256k",
+      "input_price_per_million": 12,
+      "output_price_per_million": 36,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "字节",
+      "model": "doubao-1.5-pro-32k",
+      "input_price_per_million": 8,
+      "output_price_per_million": 24,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-5.1",
+      "input_price_per_million": 24,
+      "output_price_per_million": 48,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-4.0-8k",
+      "input_price_per_million": 120,
+      "output_price_per_million": 120,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-4.0-turbo-8k",
+      "input_price_per_million": 80,
+      "output_price_per_million": 80,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-3.5-8k",
+      "input_price_per_million": 12,
+      "output_price_per_million": 12,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-speed-8k",
+      "input_price_per_million": 4,
+      "output_price_per_million": 8,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-lite-8k",
+      "input_price_per_million": 2,
+      "output_price_per_million": 6,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "百度",
+      "model": "ernie-tiny",
+      "input_price_per_million": 0.4,
+      "output_price_per_million": 0.8,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "月之暗面",
+      "model": "moonshot-v1-8k",
+      "input_price_per_million": 12,
+      "output_price_per_million": 12,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "月之暗面",
+      "model": "moonshot-v1-32k",
+      "input_price_per_million": 24,
+      "output_price_per_million": 24,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "月之暗面",
+      "model": "moonshot-v1-128k",
+      "input_price_per_million": 60,
+      "output_price_per_million": 60,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "MiniMax",
+      "model": "MiniMax-M2.7",
+      "input_price_per_million": 4,
+      "output_price_per_million": 16,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "MiniMax",
+      "model": "MiniMax-M2.7-highspeed",
+      "input_price_per_million": 1,
+      "output_price_per_million": 4,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "MiniMax",
+      "model": "MiniMax-M1",
+      "input_price_per_million": 2,
+      "output_price_per_million": 8,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "MiniMax",
+      "model": "abab-6.5s",
+      "input_price_per_million": 2,
+      "output_price_per_million": 2,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "MiniMax",
+      "model": "abab-6.5",
+      "input_price_per_million": 10,
+      "output_price_per_million": 10,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "阶跃星辰",
+      "model": "step-2-16k",
+      "input_price_per_million": 30,
+      "output_price_per_million": 30,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阶跃星辰",
+      "model": "step-2-1m",
+      "input_price_per_million": 50,
+      "output_price_per_million": 50,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阶跃星辰",
+      "model": "step-1-8k",
+      "input_price_per_million": 5,
+      "output_price_per_million": 5,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "阶跃星辰",
+      "model": "step-1v-8k",
+      "input_price_per_million": 5,
+      "output_price_per_million": 5,
+      "source": "web_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-4.0-ultra",
+      "input_price_per_million": 50,
+      "output_price_per_million": 50,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-max",
+      "input_price_per_million": 30,
+      "output_price_per_million": 30,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-pro",
+      "input_price_per_million": 4,
+      "output_price_per_million": 4,
+      "source": "foraged_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-lite",
+      "input_price_per_million": 0.5,
+      "output_price_per_million": 0.5,
+      "source": "foraged_verified"
+    }
+  ]
+}

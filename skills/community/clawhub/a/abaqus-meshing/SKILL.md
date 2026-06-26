@@ -1,35 +1,123 @@
----
-name: "Abaqus Meshing"
-description: "Abaqus网格划分完整流程技能。覆盖单元类型选择、网格策略、网格控制、网格质量检查、孤立网格处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/abaqus-meshing"
-sourceUrl: "https://clawhub.ai/skills/abaqus-meshing"
+﻿---
+name: abaqus-meshing
+description: Abaqus网格划分完整流程技能。覆盖单元类型选择、网格策略、网格控制、网格质量检查、孤立网格处理。
+metadata:
+  openclaw:
+    emoji: 🔲
+  version: 1.1.0
+  created: 2026-04-25
+  updated: 2026-04-25
+  domain: 有限元分析/结构工程
 ---
 
-# Abaqus Meshing
+# Abaqus网格划分技能
 
-> Abaqus网格划分完整流程技能。覆盖单元类型选择、网格策略、网格控制、网格质量检查、孤立网格处理。
+> 官方文档: https://help.3ds.com → SIMULIA Established Products → Abaqus
+> 单元库参考: Abaqus Analysis User's Guide → Elements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/abaqus-meshing`
-- **Source URL:** [https://clawhub.ai/skills/abaqus-meshing](https://clawhub.ai/skills/abaqus-meshing)
+## 技能描述
+此技能涵盖了Abaqus中网格划分的完整流程，包括单元类型选择、网格控制、网格质量检查等关键技术。网格质量直接影响分析结果精度和求解收敛性。
 
-## Overview
+## 核心组件
 
+### 1. 单元类型选择 (Element Type Selection)
+- **单元类别**：根据分析类型选择合适的单元类型
+- **自由度考量**：
+  - 实体单元：只有平动自由度，无转动自由度
+  - 壳/梁单元：有平动+转动自由度
+- **单元库**：
+  - **Standard单元库**：线性/二次减缩积分、完全积分、杂交单元等
+  - **Explicit单元库**：一阶减缩积分单元为主（C3D8R, S4R等）
+- **单元类型速查**：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/abaqus-meshing
+| 分析类型 | 推荐单元 | 说明 |
+|----------|---------|------|
+| 实体应力分析（Standard） | C3D8R / C3D20R | 减缩积分，避免体积锁定 |
+| 实体应力分析（Explicit） | C3D8R / C3D10M | 显式首选一阶减缩积分 |
+| 壳单元（Standard） | S4R / S8R | S4R通用，S8R适合弯曲 |
+| 壳单元（Explicit） | S4R / S3R | 避免二阶单元 |
+| 梁单元 | B31 / B32 | 线性/二次 |
+| 桁架单元 | T3D2 | 只承受轴向力 |
+| 膜单元 | M3D4R / M3D3 | 无弯曲刚度 |
+| 压电单元 | 压电耦合单元 | 压电-机械耦合分析 |
+| 孔压单元 | 孔压-应力耦合单元 | 多孔介质分析 |
+| 垫片单元 | 专用垫片单元 | 密封分析 |
+
+### 2. 网格划分策略 (Meshing Strategy)
+- **自由网格划分 (Free Meshing)**：适用于复杂几何体的自动划分
+  - 自动生成，适应性好
+  - 实体通常用四面体单元
+  - 质量可能不如结构化网格
+- **结构化网格划分 (Structured Meshing)**：适用于规则几何体的高质量网格生成
+  - 网格质量高，单元排列有序
+  - 计算效率高
+  - 适用于六面体单元
+- **扫掠网格划分 (Sweep Meshing)**：适用于拉伸或旋转几何体
+  - 从源面扫掠到目标面
+  - 适用于管道、挤出件等
+
+### 3. 网格控制 (Mesh Controls)
+- **种子设置 (Seeding)**：控制网格密度和分布
+  - 按尺寸设置：`seedEdgeBySize`
+  - 按数量设置：`seedEdgeByNumber`（避免局部过密）
+  - 偏差因子：控制网格渐变程度
+- **尺寸控制**：全局和局部网格尺寸定义
+  - 全局种子：统一控制整个部件
+  - 局部种子：关键区域加密
+- **适应性重划分 (Adaptive Remeshing)**：根据分析需要进行网格重构
+  - 适用于大变形问题
+  - Standard中通过ALE自适应网格实现
+
+### 4. 网格质量 (Mesh Quality)
+- **单元形状质量**：确保单元形状符合分析要求
+  - 雅可比比 (Jacobian Ratio)：检查单元变形程度
+  - 长宽比 (Aspect Ratio)：理想值为1，一般要求<10
+  - 内角检查：避免过小或过大角度
+- **网格独立性**：验证网格密度对结果的影响
+  - 至少使用3种不同网格密度进行对比
+  - 当结果变化<5%时可认为网格收敛
+- **沙漏控制**（减缩积分单元）：
+  - 监控 ALLAE/ALLIE < 5%（显式分析）
+  - 使用增强沙漏控制 (Enhanced Hourglass Control)
+
+### 5. 孤立网格处理 (Orphan Mesh)
+- **导入网格**：处理来自其他前处理器的网格
+- **几何重建**：从孤立网格中提取几何信息
+- **兼容性检查**：确保孤立网格与Abaqus分析兼容
+- **限制**：孤立网格不能使用某些网格功能（如重新划分）
+
+## 显式分析网格特殊要求
+
+### 稳定时间步长估算
 ```
+dt ≈ L_min / c
+其中: L_min = 最小单元特征长度
+      c = sqrt(E/rho) = 材料波速（钢约 5000 m/s）
+```
+对钢材，0.02m 网格 ≈ 3μs 稳定步长，0.02s 分析需 ~7000 步。
+
+### 显式网格原则
+- **避免二阶单元**：显式中用一阶减缩积分单元（C3D8R, S4R）
+- **网格均匀**：避免局部过密成为时间步瓶颈
+- **接触区域加密**：接触区域网格尺寸应匹配
+
+## 应用场景
+- 2维平面问题网格划分
+- 3维立体问题网格划分
+- 复杂几何体网格划分
+- 自适应网格划分
+- 复合材料层合板网格划分
+
+## 注意事项
+- 不同分析类型需要选择合适的单元类型
+- 网格质量直接影响分析结果精度
+- 孤立网格不能使用某些网格功能
+- 重划分时需要注意分析步的连续性
+- 显式分析中网格越密，计算量越大（时间步越小）
+
+## 与其它模块的关系
+- 建模模块：基于几何体进行网格划分
+- 材料属性模块：网格与材料属性关联
+- 分析步模块：网格质量影响求解收敛性
+- 求解模块：网格直接影响求解效率和精度
+- 后处理模块：网格密度影响结果的可视化精度

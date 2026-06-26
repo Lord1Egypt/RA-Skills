@@ -1,0 +1,205 @@
+{
+  "upper_types": {
+    "quantity": "counts, scale, traffic, demand, extent",
+    "quality": "robustness, continuity, safety, reliability",
+    "process": "planning, orchestration, deployment, parsing",
+    "artifact": "application, system, framework, architecture, model, ontology",
+    "capability": "generalization, autonomy, interpretability, coordination",
+    "relation": "dependency, conflict, coupling, alignment",
+    "task": "mission, workflow, objective",
+    "constraint": "rule, regulation, budget, resource limit",
+    "metric": "latency, accuracy, success rate, node expansions"
+  },
+  "noun_types": {
+    "application": [
+      "artifact"
+    ],
+    "applications": [
+      "artifact"
+    ],
+    "system": [
+      "artifact"
+    ],
+    "systems": [
+      "artifact"
+    ],
+    "framework": [
+      "artifact"
+    ],
+    "model": [
+      "artifact"
+    ],
+    "ontology": [
+      "artifact"
+    ],
+    "architectures": [
+      "artifact"
+    ],
+    "architecture": [
+      "artifact"
+    ],
+    "service": [
+      "artifact"
+    ],
+    "services": [
+      "artifact"
+    ],
+    "chain": [
+      "artifact"
+    ],
+    "chains": [
+      "artifact"
+    ],
+    "traffic": [
+      "quantity"
+    ],
+    "demand": [
+      "quantity"
+    ],
+    "number": [
+      "quantity"
+    ],
+    "scale": [
+      "quantity"
+    ],
+    "volume": [
+      "quantity"
+    ],
+    "coverage": [
+      "quantity"
+    ],
+    "accuracy": [
+      "metric",
+      "quality"
+    ],
+    "latency": [
+      "metric"
+    ],
+    "robustness": [
+      "quality"
+    ],
+    "continuity": [
+      "quality"
+    ],
+    "safety": [
+      "quality"
+    ],
+    "generalization": [
+      "capability"
+    ],
+    "coordination": [
+      "capability"
+    ],
+    "planning": [
+      "process"
+    ],
+    "orchestration": [
+      "process"
+    ],
+    "deployment": [
+      "process"
+    ],
+    "training": [
+      "process"
+    ],
+    "mission": [
+      "task"
+    ],
+    "workflow": [
+      "task"
+    ],
+    "goal": [
+      "task"
+    ],
+    "constraint": [
+      "constraint"
+    ],
+    "constraints": [
+      "constraint"
+    ],
+    "rule": [
+      "constraint"
+    ],
+    "rules": [
+      "constraint"
+    ],
+    "regulation": [
+      "constraint"
+    ],
+    "regulations": [
+      "constraint"
+    ]
+  },
+  "verb_selection": {
+    "grow": {
+      "allows": [
+        "quantity"
+      ],
+      "disallow_examples": [
+        "application",
+        "applications",
+        "framework",
+        "system",
+        "ontology"
+      ],
+      "preferred_replacements": [
+        "increase",
+        "expand",
+        "develop"
+      ]
+    },
+    "develop": {
+      "allows": [
+        "artifact",
+        "capability",
+        "process"
+      ]
+    },
+    "increase": {
+      "allows": [
+        "quantity",
+        "metric"
+      ]
+    },
+    "improve": {
+      "allows": [
+        "quality",
+        "capability",
+        "metric"
+      ]
+    },
+    "maintain": {
+      "allows": [
+        "quality",
+        "metric"
+      ]
+    },
+    "enable": {
+      "subject_allows": [
+        "artifact",
+        "process"
+      ],
+      "object_allows": [
+        "task",
+        "capability"
+      ]
+    }
+  },
+  "pattern_repairs": [
+    {
+      "pattern": "growth of applications",
+      "repair": "development of applications"
+    },
+    {
+      "pattern": "ontology grows",
+      "repair": "ontology becomes more expressive or enables broader retrieval"
+    }
+  ],
+  "default_repairs": {
+    "application": "develops",
+    "applications": "develop",
+    "ontology": "enables structured retrieval",
+    "system": "evolves",
+    "framework": "expands in scope"
+  }
+}

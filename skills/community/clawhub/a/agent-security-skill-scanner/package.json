@@ -1,0 +1,52 @@
+{
+  "name": "@caidongyun/security-scanner",
+  "version": "6.2.0",
+  "description": "AI Agent Security Scanner - 846 rules, hybrid detection, risk tier classification",
+  "main": "index.js",
+  "bin": {
+    "agent-scanner": "scan"
+  },
+  "scripts": {
+    "scan": "python3 scanner.py",
+    "test": "python3 -m pytest tests/ -v"
+  },
+  "keywords": [
+    "agent-security",
+    "ai-security",
+    "llm-security",
+    "clawhub-scanner",
+    "risk-classification",
+    "credential-theft",
+    "curl-security"
+  ],
+  "author": "Agent Security Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/caidongyun/agent-security-skill-scanner-master.git"
+  },
+  "files": [
+    "scanner.py",
+    "whitelist_filter.py",
+    "config_detector.py",
+    "context_aware_filter.py",
+    "credential_theft_classifier.py",
+    "curl_risk_classifier.py",
+    "risk_tier_classifier.py",
+    "security_tool_detector.py",
+    "scan",
+    "index.js",
+    "index.d.ts",
+    "package.json",
+    "requirements.txt",
+    "README.md",
+    "RELEASE_NOTES.md",
+    "SKILL.md",
+    "rules/dist/all_rules.json",
+    "rules/rule_optimizer.py",
+    "src/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

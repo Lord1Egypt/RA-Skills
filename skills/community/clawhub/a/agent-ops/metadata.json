@@ -1,0 +1,11 @@
+{
+  "version": "1.1.0",
+  "organization": "Community",
+  "date": "April 2026",
+  "abstract": "Runtime monitoring and recovery tools for AI coding agents. Context usage estimation, rate limit detection and safe recovery, stale session daemon, checkpoint/rollback for destructive Bash operations, token budget management, and automatic model fallback. 1 implemented script + 5 design references.",
+  "references": [
+    "https://code.claude.com/docs/en/hooks",
+    "https://github.com/Yeachan-Heo/oh-my-claudecode",
+    "https://github.com/parcadei/Continuous-Claude-v3"
+  ]
+}

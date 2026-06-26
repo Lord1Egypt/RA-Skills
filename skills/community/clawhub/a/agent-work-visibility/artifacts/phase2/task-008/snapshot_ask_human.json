@@ -1,0 +1,132 @@
+{
+  "taskId": "task-008",
+  "snapshotType": "ask_human",
+  "timestamp": "2026-03-17T20:57:07.106Z",
+  "metadata": {
+    "inputType": "scope_confirmation",
+    "question": "发现重要扩展内容：发现 5 个相关子领域，是否深入分析？",
+    "options": [
+      "是，深入分析",
+      "否，保持原范围",
+      "简要浏览即可"
+    ]
+  },
+  "snapshot": {
+    "task_id": "task-008",
+    "task_title": "任务范围扩大需要确认",
+    "task_type": "research",
+    "overall_status": "waiting",
+    "current_phase": "收集信息",
+    "progress_percent": 25,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "等待用户输入",
+    "next_action": null,
+    "needs_user_input": true,
+    "user_question": "发现重要扩展内容：发现 5 个相关子领域，是否深入分析？",
+    "user_options": [
+      "是，深入分析",
+      "否，保持原范围",
+      "简要浏览即可"
+    ],
+    "started_at": "2026-03-17T20:57:07.105Z",
+    "updated_at": "2026-03-17T20:57:07.106Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "in_progress",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "分析与比较",
+        "status": "pending",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "形成输出",
+        "status": "pending",
+        "progress": 0,
+        "weight": 15,
+        "summary": null,
+        "completed": false
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "已读取 1 个网页",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "正在读取网页：example.com/",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "开始阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "进入下一阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "完成阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "开始阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "进入下一阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "完成阶段：理解任务",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "开始阶段：理解任务",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.106Z",
+        "message": "任务已启动：范围确认",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": false
+    },
+    "retry_log": []
+  }
+}

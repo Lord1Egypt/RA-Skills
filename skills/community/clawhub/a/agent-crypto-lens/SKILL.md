@@ -1,35 +1,23 @@
 ---
-name: "Agent Crypto Lens"
-description: "크립토 토큰 시장 동향 및 센티먼트 종합 분석 에이전트"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-crypto-lens"
-sourceUrl: "https://clawhub.ai/skills/agent-crypto-lens"
+name: crypto-lens
+description: 크립토 토큰 시장 동향 및 센티먼트 종합 분석 에이전트
+version: 1.0.0
 ---
 
-# Agent Crypto Lens
+# 🪙 CryptoLens Agent
 
-> 크립토 토큰 시장 동향 및 센티먼트 종합 분석 에이전트
+CoinGecko 시장 데이터와 웹 뉴스를 결합하여 특정 토큰의 시장 상황과 투자 심리(Sentiment)를 분석합니다.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-crypto-lens`
-- **Source URL:** [https://clawhub.ai/skills/agent-crypto-lens](https://clawhub.ai/skills/agent-crypto-lens)
+## Features
+- **시장 데이터:** CoinGecko API를 통한 실시간 가격/변동률 조회
+- **뉴스 분석:** 최신 뉴스 기반 호재/악재 파악
+- **종합 점수:** 모멘텀, 센티먼트, 리스크 점수 산출
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-crypto-lens
+## Usage
+ACP Job Payload:
+```json
+{
+  "token": "Bitcoin",
+  "analysis_type": "full"
+}
 ```

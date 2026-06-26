@@ -1,35 +1,27 @@
 ---
-name: "Agentic Workflow Automation"
-description: "Generate reusable multi-step agent workflow blueprints. Use for trigger/action orchestration, deterministic workflow definitions, and automation handoff arti..."
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-workflow-automation-v2"
-sourceUrl: "https://clawhub.ai/skills/agentic-workflow-automation-v2"
+name: agentic-workflow-automation
+description: Generate reusable multi-step agent workflow blueprints. Use for trigger/action orchestration, deterministic workflow definitions, and automation handoff artifacts.
 ---
 
 # Agentic Workflow Automation
 
-> Generate reusable multi-step agent workflow blueprints. Use for trigger/action orchestration, deterministic workflow definitions, and automation handoff arti...
-
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-workflow-automation-v2`
-- **Source URL:** [https://clawhub.ai/skills/agentic-workflow-automation-v2](https://clawhub.ai/skills/agentic-workflow-automation-v2)
-
 ## Overview
 
+Build workflow blueprints that can be translated into automation platforms such as n8n or internal orchestrators.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agentic-workflow-automation-v2
-```
+## Workflow
+
+1. Define workflow name, trigger, and ordered steps.
+2. Normalize each step into a simple execution contract.
+3. Build a blueprint with dependencies and execution order.
+4. Export JSON/markdown artifacts for implementation.
+
+## Use Bundled Resources
+
+- Run `scripts/generate_workflow_blueprint.py` for deterministic workflow output.
+- Read `references/workflow-blueprint-guide.md` for step design guidance.
+
+## Guardrails
+
+- Keep each step single-purpose.
+- Include clear fallback behavior for failed steps.

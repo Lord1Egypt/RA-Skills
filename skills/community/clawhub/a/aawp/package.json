@@ -1,0 +1,66 @@
+{
+  "name": "aawp-skill",
+  "version": "1.6.8",
+  "description": "AAWP — AI Agent Wallet Protocol skill installer (installer-only; runtime files fetched from GitHub at provisioning time)",
+  "bin": {
+    "aawp-skill": "bin/install.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/install.js"
+  },
+  "files": [
+    "bin/install.js",
+    "README.md",
+    "SKILL.md"
+  ],
+  "keywords": ["aawp", "ai-agent", "wallet", "web3", "skill"],
+  "author": "aawp-ai",
+  "license": "BUSL-1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aawp-ai/aawp.git"
+  },
+  "homepage": "https://aawp.ai",
+  "clawhub": {
+    "installType": "installer",
+    "note": "This package is an installer manifest only. The native binary (aawp-core.node), wallet scripts, and provisioning tools are downloaded from https://github.com/aawp-ai/aawp at runtime via 'bash scripts/provision.sh'. The native binary hash is verified on-chain via the AAWP factory contract before any wallet operations.",
+    "capabilities": [
+      "wallet-lifecycle",
+      "evm-transactions",
+      "signing-daemon",
+      "cron-dca",
+      "cron-price-alerts"
+    ],
+    "humanApprovalRequired": [
+      "provision (first-time wallet creation)",
+      "binary verification (approveBinary on factory)"
+    ],
+    "env": [
+      {
+        "name": "AAWP_WALLET",
+        "description": "Pinned wallet address — prevents accidental operations on wrong wallet",
+        "required": false
+      },
+      {
+        "name": "AAWP_GUARDIAN_KEY",
+        "description": "Private key for Guardian gas-relay wallet (auto-generated if not set)",
+        "required": false
+      },
+      {
+        "name": "AAWP_CONFIG",
+        "description": "Override config directory path (default: ./config)",
+        "required": false
+      },
+      {
+        "name": "AAWP_CORE",
+        "description": "Override native addon directory path (default: ./core)",
+        "required": false
+      },
+      {
+        "name": "AAWP_SKILL",
+        "description": "Override skill root directory path",
+        "required": false
+      }
+    ]
+  }
+}

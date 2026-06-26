@@ -1,0 +1,1611 @@
+{
+  "attribute_id": 4389,
+  "description_category_id": 17028973,
+  "type_id": 970895715,
+  "generated_at": "2026-03-27T11:18:43.032Z",
+  "total_values": 267,
+  "values": [
+    {
+      "id": 90295,
+      "value": "俄罗斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90296,
+      "value": "Китай",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90297,
+      "value": "未指定",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90298,
+      "value": "意大利",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90299,
+      "value": "美国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90300,
+      "value": "德国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90302,
+      "value": "英国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90303,
+      "value": "欧盟",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90304,
+      "value": "法国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90305,
+      "value": "土耳其",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90306,
+      "value": "日本",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90307,
+      "value": "奥地利",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90308,
+      "value": "苏联",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90309,
+      "value": "西班牙",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90310,
+      "value": "波兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90311,
+      "value": "韩国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90312,
+      "value": "印度",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90313,
+      "value": "摩尔多瓦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90314,
+      "value": "加拿大",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90315,
+      "value": "巴西",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90316,
+      "value": "丹麦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90317,
+      "value": "中国（台湾）",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90318,
+      "value": "比利时",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90319,
+      "value": "乌克兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90320,
+      "value": "中国（香港）",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90321,
+      "value": "捷克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90322,
+      "value": "瑞典",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90323,
+      "value": "瑞士",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90324,
+      "value": "白俄罗斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90325,
+      "value": "荷兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90326,
+      "value": "匈牙利",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90327,
+      "value": "芬兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90328,
+      "value": "泰国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90329,
+      "value": "澳大利亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90330,
+      "value": "葡萄牙",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90331,
+      "value": "越南",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90332,
+      "value": "荷兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90333,
+      "value": "韩国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90334,
+      "value": "孟加拉国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90335,
+      "value": "斯洛文尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90336,
+      "value": "挪威",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90337,
+      "value": "印度尼西亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90338,
+      "value": "爱尔兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90339,
+      "value": "马来西亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90340,
+      "value": "以色列",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90341,
+      "value": "罗马尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90342,
+      "value": "保加利亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90343,
+      "value": "塞尔维亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90344,
+      "value": "希腊",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90345,
+      "value": "墨西哥",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90346,
+      "value": "巴基斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90347,
+      "value": "菲律宾",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90348,
+      "value": "阿根廷",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90349,
+      "value": "乌兹别克斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90350,
+      "value": "新西兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90351,
+      "value": "拉托维亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90352,
+      "value": "乍得",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90353,
+      "value": "约旦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90354,
+      "value": "哥伦比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90355,
+      "value": "捷克斯洛伐克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90356,
+      "value": "德意志联邦共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90357,
+      "value": "伊朗",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90358,
+      "value": "科特迪瓦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90359,
+      "value": "马其顿",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90360,
+      "value": "南斯拉夫",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90361,
+      "value": "爱沙尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90362,
+      "value": "斯洛伐克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90363,
+      "value": "马达加斯加",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90364,
+      "value": "哈萨克斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90365,
+      "value": "突尼斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90366,
+      "value": "马里",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90367,
+      "value": "吉布提",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90368,
+      "value": "贝宁",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90369,
+      "value": "柬埔寨",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90370,
+      "value": "立陶宛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90371,
+      "value": "莫桑比克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90372,
+      "value": "冰岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90373,
+      "value": "古巴",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90374,
+      "value": "德意志民主共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90375,
+      "value": "牙买加",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90376,
+      "value": "新加坡",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90377,
+      "value": "南非",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90378,
+      "value": "卢森堡",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90379,
+      "value": "埃及",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90380,
+      "value": "阿联酋",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90381,
+      "value": "格鲁吉亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90382,
+      "value": "几内亚共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90383,
+      "value": "秘鲁",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90384,
+      "value": "科摩罗群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90385,
+      "value": "斯里兰卡",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90386,
+      "value": "塞浦路斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90387,
+      "value": "卢旺达",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90388,
+      "value": "摩洛哥",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90389,
+      "value": "克罗地亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90390,
+      "value": "摩纳哥",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90391,
+      "value": "蒙古",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90392,
+      "value": "加蓬",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90393,
+      "value": "刚果",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90394,
+      "value": "尼泊尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90395,
+      "value": "亚美尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90396,
+      "value": "多哥",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90397,
+      "value": "叙利亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90398,
+      "value": "布隆迪",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90399,
+      "value": "马拉维",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90400,
+      "value": "乌拉圭",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90401,
+      "value": "波斯尼亚和黑塞哥维那",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90402,
+      "value": "津巴布韦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90403,
+      "value": "毛里求斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90404,
+      "value": "阿塞拜疆",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90405,
+      "value": "洪都拉斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90406,
+      "value": "安圭拉",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90407,
+      "value": "智利",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90408,
+      "value": "塔吉克斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90409,
+      "value": "直布罗陀",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90410,
+      "value": "列支敦士登",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90411,
+      "value": "老挝",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90412,
+      "value": "委内瑞拉",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90413,
+      "value": "马耳他",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90414,
+      "value": "赞比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90415,
+      "value": "土库曼斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90416,
+      "value": "圣多美和普林西比",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90417,
+      "value": "伊拉克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90418,
+      "value": "尼日利亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90419,
+      "value": "缅甸",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90420,
+      "value": "留尼汪",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90421,
+      "value": "黎巴嫩",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90422,
+      "value": "梵蒂冈",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90423,
+      "value": "巴拉圭",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90424,
+      "value": "肯尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90425,
+      "value": "波多黎各",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90426,
+      "value": "沙特阿拉伯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90427,
+      "value": "苏里南",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90428,
+      "value": "阿富汗",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90429,
+      "value": "不丹",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90430,
+      "value": "吉尔吉斯斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90431,
+      "value": "圣马力诺",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90432,
+      "value": "海地",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90433,
+      "value": "坦桑尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90434,
+      "value": "阿尔及利亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90435,
+      "value": "乌干达",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90436,
+      "value": "帕劳",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90437,
+      "value": "圭亚那",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90438,
+      "value": "苏丹",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90439,
+      "value": "阿尔巴尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90440,
+      "value": "巴拿马",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90441,
+      "value": "尼维斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90442,
+      "value": "利比里亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90443,
+      "value": "尼加拉瓜",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90444,
+      "value": "库克群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90445,
+      "value": "几内亚比绍",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90446,
+      "value": "索马里",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90447,
+      "value": "赤道几内亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90448,
+      "value": "厄立特里亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90449,
+      "value": "格林纳达",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90450,
+      "value": "多米尼加共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90451,
+      "value": "塞拉利昂",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90452,
+      "value": "卡塔尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90453,
+      "value": "冈比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90454,
+      "value": "玻利维亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90455,
+      "value": "斐济",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90456,
+      "value": "美属萨摩亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90457,
+      "value": "哥斯达黎加",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90458,
+      "value": "也门",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90459,
+      "value": "佛得角",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90460,
+      "value": "危地马拉",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90461,
+      "value": "塞内加尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90462,
+      "value": "特立尼达和多巴哥",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90463,
+      "value": "斯威士兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90466,
+      "value": "蒙特塞拉特",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90467,
+      "value": "根西",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90468,
+      "value": "阿曼",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90469,
+      "value": "加纳",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90470,
+      "value": "福克兰群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90471,
+      "value": "所罗门群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90472,
+      "value": "埃塞俄比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90473,
+      "value": "西萨摩亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90474,
+      "value": "基里巴斯共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90475,
+      "value": "厄瓜多尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90476,
+      "value": "莱索托",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90477,
+      "value": "博茨瓦纳",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90478,
+      "value": "安哥拉",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90479,
+      "value": "巴哈马群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90480,
+      "value": "塞舌尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90481,
+      "value": "巴布亚新几内亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90482,
+      "value": "塞班岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90483,
+      "value": "毛里塔尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90484,
+      "value": "利比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90485,
+      "value": "纳米比亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90486,
+      "value": "巴巴多斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90487,
+      "value": "喀麦隆",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90488,
+      "value": "汤加",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90489,
+      "value": "法罗群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90490,
+      "value": "伯利兹",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90491,
+      "value": "马尔代夫群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90492,
+      "value": "澳门",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90493,
+      "value": "多米尼加",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90494,
+      "value": "尼日尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90495,
+      "value": "圣文森特",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90496,
+      "value": "关岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90497,
+      "value": "英属维尔京群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90498,
+      "value": "瓜德罗普",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90499,
+      "value": "博奈尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90500,
+      "value": "科威特",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90501,
+      "value": "塔希提",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90502,
+      "value": "特克斯和凯科斯群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90503,
+      "value": "格陵兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90504,
+      "value": "圣卢西亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90505,
+      "value": "巴林",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90506,
+      "value": "图瓦卢",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90507,
+      "value": "瓦努阿图",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90508,
+      "value": "阿鲁巴",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90509,
+      "value": "新喀里多尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90510,
+      "value": "泽西",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90511,
+      "value": "文莱",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90512,
+      "value": "布基纳法索",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90513,
+      "value": "安提瓜和巴布达",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90514,
+      "value": "东南亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90515,
+      "value": "安道尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90516,
+      "value": "开曼群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90517,
+      "value": "加那利群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90518,
+      "value": "纽埃",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90519,
+      "value": "瑙鲁",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90520,
+      "value": "刚果民主共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90521,
+      "value": "库拉索",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90522,
+      "value": "马绍尔群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90523,
+      "value": "马提尼克",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90524,
+      "value": "美属维尔京群岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90525,
+      "value": "圣尤斯特歇斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90526,
+      "value": "法属圭亚那",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90527,
+      "value": "百慕大",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90528,
+      "value": "马洛岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90529,
+      "value": "萨尔瓦多",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90530,
+      "value": "圣基茨",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90531,
+      "value": "圣马丁岛",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90532,
+      "value": "阿布哈兹",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90533,
+      "value": "英国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90534,
+      "value": "缅甸",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90535,
+      "value": "扎伊尔",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90536,
+      "value": "西欧",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90539,
+      "value": "朝鲜民主主义人民共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90540,
+      "value": "马拉扎济",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90541,
+      "value": "荷属安的列斯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90542,
+      "value": "德涅斯特河沿岸摩尔达维亚共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90544,
+      "value": "索马里兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90545,
+      "value": "特里斯坦-达库尼亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90546,
+      "value": "中非共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90547,
+      "value": "锡兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90548,
+      "value": "黑山",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90549,
+      "value": "苏格兰",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 90550,
+      "value": "南苏丹",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 970638339,
+      "value": "独联体",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 970638356,
+      "value": "吉尔吉斯共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 970638360,
+      "value": "摩尔多瓦共和国",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 971010186,
+      "value": "吉尔吉斯斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 971284448,
+      "value": "南奥塞梯",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 971306472,
+      "value": "中非共和國",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972060023,
+      "value": "古罗马",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088178,
+      "value": "密克罗尼西亚",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088184,
+      "value": "巴勒斯坦",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088185,
+      "value": "皮特凯恩",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088188,
+      "value": "圣巴泰勒米",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088189,
+      "value": "圣皮埃尔和密克隆",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088191,
+      "value": "瓦利斯和富图纳",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088193,
+      "value": "南非",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088209,
+      "value": "荷兰加勒比区",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088210,
+      "value": "东帝汶",
+      "info": "",
+      "picture": ""
+    },
+    {
+      "id": 972088213,
+      "value": "几内亚",
+      "info": "",
+      "picture": ""
+    }
+  ]
+}

@@ -1,35 +1,50 @@
 ---
-name: "A股量价关系验证"
-description: "通过成交量判断价格走势真实性，避免被"诱多"或"诱空"。用于A股技术分析。"
-category: "blockchain"
-source: "ClawHub"
-tags: [a-stock, trading, volume-price]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-volume-price"
-sourceUrl: "https://clawhub.ai/skills/a-stock-volume-price"
+name: volume-price-analysis
+description: 通过成交量判断价格走势真实性，避免被"诱多"或"诱空"。用于A股技术分析。
 ---
 
-# A股量价关系验证
+# 量价关系验证 Skill
 
-> 通过成交量判断价格走势真实性，避免被"诱多"或"诱空"。用于A股技术分析。
+## 核心能力
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-volume-price`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-volume-price](https://clawhub.ai/skills/a-stock-volume-price)
+通过成交量判断价格走势的真实性，避免被"诱多"或"诱空"。
 
-## Overview
+## 量价规则
 
+### 有效上涨
+- 价格创新高
+- 成交量放大（较前一日放量30%以上）
+- **结论**：有效突破，可跟进
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-volume-price
-```
+### 虚假上涨（诱多）
+- 价格创新高
+- 成交量缩量
+- **结论**：警惕主力出货，不可追
+
+### 底部反转
+- 价格企稳
+- 成交量连续3日温和放大
+- **结论**：资金进场信号，可考虑建仓
+
+### 有效下跌
+- 价格创新低
+- 成交量放大
+- **结论**：可能加速赶底
+
+### 虚假下跌（诱空）
+- 价格创新低
+- 成交量缩量
+- **结论**：空头乏力，可能反转
+
+## 实战规则
+
+- 个股涨停但成交量萎缩 → 说明封单不强，次日大概率低开
+- 涨停伴随放量突破前期压力位 → 有效上涨信号，可果断跟进
+- 缩量上涨至压力位 → 警惕回调
+
+## 触发场景
+
+- "这个涨停有效吗"
+- "这是诱多还是真涨"
+- "能追吗"
+- "缩量上涨可靠吗"

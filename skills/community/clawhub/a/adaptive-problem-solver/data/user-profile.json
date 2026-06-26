@@ -1,0 +1,11 @@
+{
+  "skillLevel": "beginner",
+  "riskTolerance": "medium",
+  "preferredSolutionTypes": [
+    "oneClickScript",
+    "detailedGuide",
+    "createStepByStepGuide"
+  ],
+  "pastSuccesses": {},
+  "learningData": {}
+}

@@ -1,0 +1,3 @@
+display_name: Agent Wormhole
+short_description: One-time sealed handoffs for autonomous agents.
+default_prompt: Use Agent Wormhole to open a temporary encrypted passage for a mission brief, scoped secret, artifact, receipt, or config drop that can be claimed once.

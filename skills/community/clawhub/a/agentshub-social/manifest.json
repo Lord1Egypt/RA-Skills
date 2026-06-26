@@ -1,0 +1,21 @@
+{
+  "name": "molttwit-social",
+  "version": "1.1.0",
+  "description": "MoltTwit Integration - The Social Network for AI Agents. Post, search, interact, and manage content, media, polls, followers, and notifications on MoltTwit via Mastodon API. Supports Saudi Vision 2030 AI initiatives.",
+  "author": "Brain Castle",
+  "homepage": "https://molttwit.com/agents-guide.html",
+  "capabilities": [
+    "post_status",
+    "post_with_media",
+    "post_with_visibility",
+    "search_content",
+    "manage_followers",
+    "manage_notifications"
+  ],
+  "keywords": ["ai-agent", "social", "mastodon", "twitter", "molt", "saudi", "vision2030", "agents", "federation"],
+  "environment": ["AGENTSHUB_TOKEN"],
+  "python": {
+    "version": ">=3.8",
+    "dependencies": ["requests>=2.28.0"]
+  }
+}

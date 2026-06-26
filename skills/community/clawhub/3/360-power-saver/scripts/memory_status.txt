@@ -1,0 +1,69 @@
+# 360 Power Saver - 内存状态™ 模块
+# 展示当前内存使用情况
+
+Add-Type -AssemblyName PresentationFramework
+
+function Show-MemoryStatus {
+    # 获取内存信息
+    $os = Get-CimInstance Win32_OperatingSystem
+    $freeMem = [math]::Round($os.FreePhysicalMemory / 1MB, 2)
+    $totalMem = [math]::Round($os.TotalVisibleMemorySize / 1MB, 2)
+    $usedMem = [math]::Round($totalMem - $freeMem, 2)
+    $usedPercent = [math]::Round(($usedMem / $totalMem) * 100, 1)
+
+    # 获取内存占用 Top 5
+    $topMemProcesses = Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 5
+
+    # 进度条
+    $barLen = [math]::Round($usedPercent / 5)
+    $bar = "█" * $barLen + "░" * (20 - $barLen)
+
+    # 颜色提示
+    $status = if ($usedPercent -gt 85) { "⚠️ 内存紧张" }
+              elseif ($usedPercent -gt 70) { "📊 内存适中" }
+              else { "✅ 内存充足" }
+
+    # 构建消息
+    $msg = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "     360°省电大师 - 内存状态`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+    
+    $msg += "💾 内存使用概况`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "   总内存: $totalMem GB`n"
+    $msg += "   已使用: $usedMem GB`n"
+    $msg += "   可  用: $freeMem GB`n`n"
+    $msg += "   [$bar] $usedPercent%`n"
+    $msg += "   状态: $status`n`n"
+
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "📊 内存占用 Top 5`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+
+    $rank = 1
+    foreach ($proc in $topMemProcesses) {
+        $memMB = [math]::Round($proc.WorkingSet / 1MB, 0)
+        $name = $proc.Name
+        if ($name.Length -gt 18) { $name = $name.Substring(0, 18) + ".." }
+        $msg += "   $rank. $($name.PadRight(20)) $memMB MB`n"
+        $rank++
+    }
+
+    $msg += "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    
+    # 建议
+    if ($usedPercent -gt 85) {
+        $msg += "💡 建议：内存占用过高，建议重启部分应用或重启电脑`n"
+    } elseif ($usedPercent -gt 70) {
+        $msg += "💡 建议：内存占用适中，可考虑关闭不需要的程序`n"
+    } else {
+        $msg += "💡 建议：内存状态良好，无需优化`n"
+    }
+    
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    [System.Windows.MessageBox]::Show($msg, "360°省电大师 - 内存状态", "OK", "Information")
+}
+
+# 执行
+Show-MemoryStatus

@@ -1,35 +1,54 @@
----
-name: "A股资金流向分析"
-description: "提供基于资金流向和板块轮动的A股每日简报、持仓健康诊断及交易策略建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-capital-flow"
-sourceUrl: "https://clawhub.ai/skills/a-share-capital-flow"
----
+# Capital Flow Analysis Skill
 
-# A股资金流向分析
-
-> 提供基于资金流向和板块轮动的A股每日简报、持仓健康诊断及交易策略建议。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-capital-flow`
-- **Source URL:** [https://clawhub.ai/skills/a-share-capital-flow](https://clawhub.ai/skills/a-share-capital-flow)
+> 📊 A股资金流向分析框架 — 从数据到决策
 
 ## Overview
 
+一套完整的A股资金流向分析方法论和提示词框架，用于：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-capital-flow
+- **每日金融简报**: 自动分析资金流向+板块轮动
+- **持仓诊断**: 基于资金面判断持仓健康度
+- **交易决策**: 基于资金流向制定买卖策略
+
+## Framework
+
+### 资金流向判断规则
+- 连续3日同向 = 短期有效
+- 连续5日同向 = 中期趋势确立
+- 单日反转量能放大2倍+ = 转折信号
+
+### 分析维度
+1. **大方向**: 宏观水龙头 + 政策主线
+2. **赛道锁定**: 景气度 + 资金面 + 事件催化
+3. **盘面验证**: 量价 + 主力资金 + 涨跌比
+4. **持仓诊断**: 个股资金面 + 板块联动
+5. **操作建议**: 优先级排序 + 具体价位
+
+### 持仓风控规则
+- 单票止损线: -8%
+- 总仓位上限: 75%
+- 缩量下跌 = 不健康调整
+- 特大单净流出连续3日 = 考虑减仓
+
+## Usage
+
+### 每日金融简报 Cron
 ```
+Task: 基于资金流向清单框架，分析昨日盘面并生成今日操作建议
+Schedule: 30 8 * * 1-5
+```
+
+### 持仓诊断
+直接对话："分析我的持仓资金面"
+
+### 交易决策
+直接对话："XX股票资金流向如何，是否适合买入"
+
+## Files
+- `capital-flow-checklist.md` — 完整分析清单
+- `position-rules.md` — 持仓风控规则
+
+## Integration
+- Cron: 每日08:30金融简报
+- Cron: 盘中10:00/12:00/14:00 快讯
+- Cron: 晚间20:00 综合报告

@@ -1,0 +1,15 @@
+{
+  "id": "add-tiffin-order-roty-input",
+  "label": "Roty Tiffin - add-tiffin-order-roty-input",
+  "handler": "scripts/handle_message.py",
+  "match": {
+    "channel": "telegram",
+    "pattern": "(?i)\\broty input\\b"
+  },
+  "mode": "isolated",
+  "env": {
+    "ROTIES_FORCE_API_ONLY": "1",
+    "DRY_RUN": "0"
+  },
+  "notes": "Manifest to help OpenClaw/ClawHub install the Roty Python skill. The gateway will route Telegram messages matching the pattern to the handler."
+}

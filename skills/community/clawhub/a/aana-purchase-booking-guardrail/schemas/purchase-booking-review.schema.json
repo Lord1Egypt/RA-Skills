@@ -1,0 +1,143 @@
+{
+  "title": "AANA Purchase Booking Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "action_type",
+    "commitment_type",
+    "amount_summary",
+    "authorization_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "browse",
+        "compare",
+        "draft_cart",
+        "purchase",
+        "book",
+        "reserve",
+        "subscribe",
+        "renew",
+        "upgrade",
+        "downgrade",
+        "cancel",
+        "refund_request",
+        "bid",
+        "donate",
+        "transfer",
+        "unknown"
+      ]
+    },
+    "commitment_type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "one_time_charge",
+        "recurring_charge",
+        "deposit",
+        "reservation",
+        "cancellation_penalty",
+        "non_refundable",
+        "contract",
+        "financial_transfer",
+        "unknown"
+      ]
+    },
+    "amount_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terms_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "refund_terms_unclear",
+        "cancellation_terms_unclear",
+        "renewal_terms_unclear",
+        "fees_unclear",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "explicitly_approved",
+        "browsing_only",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "payment_privacy_status": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "needs_redaction",
+        "payment_data_exposed",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "reversibility_status": {
+      "type": "string",
+      "enum": [
+        "reversible",
+        "review_screen_only",
+        "cancellable_with_penalty",
+        "non_refundable",
+        "irreversible",
+        "unknown"
+      ]
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "payment",
+          "billing",
+          "identity",
+          "travel",
+          "event",
+          "subscription",
+          "auto_renewal",
+          "deposit",
+          "non_refundable",
+          "high_value",
+          "third_party",
+          "limited_inventory",
+          "legal_commitment",
+          "unknown"
+        ]
+      }
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

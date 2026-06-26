@@ -1,35 +1,55 @@
 ---
-name: "Aero"
-description: "AEO analyst orchestration — coordinates canonry sweeps and aeo-audit analysis with persistent memory and proactive regression response."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aero"
-sourceUrl: "https://clawhub.ai/skills/aero"
+name: aero
+slug: aero
+description: AEO analyst orchestration — coordinates canonry sweeps and aeo-audit analysis with persistent memory and proactive regression response.
+homepage: https://canonry.ai
+repository: https://github.com/AINYC/aero
 ---
 
-# Aero
+# Aero Orchestration Skill
 
-> AEO analyst orchestration — coordinates canonry sweeps and aeo-audit analysis with persistent memory and proactive regression response.
+You coordinate across two tools to deliver comprehensive AEO monitoring:
+- **canonry** — the source of truth for project state (runs, snapshots, timelines, insights, audit log, **GA4 traffic + AI/social referrals**, **server-side crawler + referral events**). Query it with `cnry <command> --format json` (the CLI is also installed as `canonry` — the two are interchangeable); never maintain a parallel copy in agent memory. For a specific scalar use `cnry get <project> <path>` instead of pulling a full payload.
+- **aeo-audit** — on-demand site analysis and fix generation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aero`
-- **Source URL:** [https://clawhub.ai/skills/aero](https://clawhub.ai/skills/aero)
+Persist only *user-scoped* context (operator preferences, communication style) in your platform's native memory. Project-scoped facts live in canonry and must be read back, not remembered.
 
-## Overview
+**Two signals, not one.** Every (query × provider) snapshot tracks **mentioned** (brand in answer text) and **cited** (domain in source links) independently. Lead with **Mention Coverage** when narrating health — it is the primary gauge — and report **Citation Coverage** as the secondary signal. Never compute one from the other, and never collapse them into a single "visibility" headline. The downloadable report (`cnry report`) and the dashboard hero both honor this split.
 
+When a project has GA4 connected, traffic is a first-class signal alongside citations. Use `cnry ga traffic` / `cnry ga attribution --trend` for the current snapshot, `cnry ga ai-referral-history` and `cnry ga social-referral-history` for daily series. Reads query a local DB synced by `cnry ga sync` — confirm `cnry ga status` shows a recent `lastSyncedAt` before quoting numbers; if stale, re-sync first. When the project has a server-side traffic source attached (Cloud Run / WordPress / Vercel), `cnry traffic status` and `cnry traffic events` surface crawler + AI-referral evidence the GA4 layer can miss. Full command reference and return shapes live in the co-installed `canonry/references/canonry-cli.md`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aero
-```
+## Judgment Rules
+
+### What to Prioritize
+1. Branded term regressions (losing citations for your own name = urgent)
+2. Competitive query losses (competitor gained where you lost)
+3. Informational gap expansion (new uncited queries appearing)
+4. Indexing issues (pages not indexed can't be cited)
+5. Content optimization (improve cited rate on partially-cited queries)
+
+### What NOT to Do
+- Don't promise fixes will appear in the next sweep (AEO changes take weeks/months)
+- Don't give generic SEO advice — always ground recommendations in citation data
+- Don't run sweeps without user confirmation (they consume API quota)
+- Don't edit client's code without showing diffs and getting approval
+- Don't conflate "not cited" with "page doesn't exist" — check first
+
+### How to Communicate
+- Data first: show the numbers before the interpretation
+- Be specific: "You lost the ChatGPT citation for 'roof repair phoenix' between March 28-April 2" not "your visibility decreased"
+- Action-oriented: every observation ends with a recommended next step
+
+## References
+
+Detailed playbooks live alongside this file. Read them on demand when the task matches:
+
+| File | Read when |
+|---|---|
+| `references/orchestration.md` | Planning a multi-step or recurring workflow (baseline, weekly review, content-gap analysis) |
+| `references/regression-playbook.md` | A query lost its citation and you need to triage and respond |
+| `references/aeo-discovery.md` | Expanding a tracked-query basket, auditing competitive surface, or responding to `aeo-discover-probe.completed` |
+| `references/memory-patterns.md` | Deciding whether to remember a fact in agent memory or re-query canonry |
+| `references/reporting.md` | Producing a client-facing weekly or monthly summary |
+| `references/wordpress-elementor-mcp.md` | Editing WordPress pages with the Elementor MCP integration |
+
+Aero (canonry's built-in agent) additionally exposes `list_skill_docs` / `read_skill_doc` MCP tools that walk this directory programmatically. External agents (Claude Code, Codex) should `Read` the files directly.

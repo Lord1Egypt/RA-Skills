@@ -1,0 +1,25 @@
+{
+  "taskId": "task-001",
+  "snapshotType": "init",
+  "timestamp": "2026-03-17T20:57:07.091Z",
+  "metadata": {
+    "taskTitle": "调研 AI Agent 基础设施项目：LangChain",
+    "taskType": "research"
+  },
+  "snapshot": {
+    "task_id": "task-001",
+    "task_title": "调研 AI Agent 基础设施项目：LangChain",
+    "task_type": "research",
+    "overall_status": "pending",
+    "current_phase": null,
+    "progress_percent": 0,
+    "current_action": "任务已启动：调研 AI Agent 基础设施项目：LangChain",
+    "why_not_done": null,
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.091Z",
+    "updated_at": "2026-03-17T20:57:07.091Z"
+  }
+}

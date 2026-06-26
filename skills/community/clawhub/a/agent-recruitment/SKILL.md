@@ -1,35 +1,78 @@
 ---
-name: "Agent Recruitment"
+name: agent-recruitment
 description: "智能体招聘技能。完整覆盖新Agent从需求确认、创建隔离工作区、模型配置、路由绑定到交付清单的全流程，适用于OpenClaw agent造册与HR管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-recruitment"
-sourceUrl: "https://clawhub.ai/skills/agent-recruitment"
 ---
 
-# Agent Recruitment
+# 智能体招聘技能
+适用于 OpenClaw agent 造册与管理。
 
-> 智能体招聘技能。完整覆盖新Agent从需求确认、创建隔离工作区、模型配置、路由绑定到交付清单的全流程，适用于OpenClaw agent造册与HR管理。
+## 触发条件
+当老板提出以下任一需求时，自动进入本流程：
+- 招聘Agent / 新设机器人 / 创建新智能体
+- 配置Agent路由 / 绑定群会话给机器人
+- 给已有Agent增设路由入口
+- 调整Agent绑定模型
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-recruitment`
-- **Source URL:** [https://clawhub.ai/skills/agent-recruitment](https://clawhub.ai/skills/agent-recruitment)
+---
+## 全流程规范
+### 一、需求确认（必填项，缺项必问）
+必须收集齐以下信息再启动创建：
+| 需求项 | 说明 | 默认值 |
+|--------|------|--------|
+| 新Agent基础信息 | 名称/别名/称号/核心功能/人设风格（默认沿用三国官制体系） | 无 |
+| 模型配置 | 绑定的LLM模型标识 | 豆包Seed 2.0 Pro（volcengine/doubao-seed-2.0-pro） |
+| 路由配置 | ① 是否需要绑定飞书路由 ② 对应群会话ID（oc_xxx） ③ 指定路由给哪个已有Agent | 无路由 |
+| 技能配置 | 是否需要额外配置专属技能 | 复用共享技能 |
+| ✅ 强制规则 | 所有Agent默认创建**完全独立隔离的workspace**，禁止与其他Agent共享目录、记忆、配置 | 强制生效 |
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-recruitment
+### 二、隔离工作区创建
+严格按照标准目录结构生成，100%隔离：
+```text
+~/.openclaw/agents/<agent_id>/
+├── agent/
+│   ├── models.json  # 专属模型配置
+│   └── auth-profiles.json
+├── workspace/
+│   ├── AGENTS.md
+│   ├── BOOTSTRAP.md
+│   ├── IDENTITY.md  # 专属人设
+│   ├── MEMORY.md    # 独立记忆
+│   ├── SOUL.md
+│   ├── TOOLS.md
+│   ├── USER.md
+│   ├── memory/      # 独立记忆目录
+│   │   ├── daily/
+│   │   └── distilled/
+│   └── skills/      # 专属技能目录
+└── sessions/
 ```
+
+### 三、配置生成
+根据人设生成全套配置文件，确保身份、风格、能力完全匹配需求。
+
+### 四、路由绑定
+若需要绑定飞书路由：
+1. 核对群会话ID有效性
+2. 写入路由配置，明确该群消息100%路由到指定Agent
+3. ✅ 路由配置统一比照「吏部主事」群规则：无需@mention机器人，直接响应群内所有消息
+4. 验证路由无冲突、无重叠
+
+### 五、交付输出（强制清单）
+创建完成后必须主动输出以下厘清清单，不得遗漏：
+| 字段 | 详情 |
+|------|------|
+| Agent ID | 全局唯一标识 |
+| 人设定位 | 官方名称/别名/称号/职能定位 |
+| 工作区路径 | 绝对路径（确认隔离） |
+| 绑定模型 | 配置的大模型标识 |
+| 核心专长 | 3-5条核心能力 |
+| 绑定路由入口 | 群ID/单聊标识/接入方式 |
+| 关联关系 | 明确该Agent与其他现有Agent的职责边界 |
+
+---
+## 质量检查（交付前必核）
+1. ✅ workspace完全独立，无共享目录
+2. ✅ 人设与职能匹配，无冲突
+3. ✅ 路由配置正确，无重叠
+4. ✅ 模型配置生效
+5. ✅ 厘清清单信息完整准确

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccessMind Inspector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icons/icon48.png" alt="AccessMind" class="logo">
+      <h1>AccessMind Inspector</h1>
+      <span class="version">v1.0</span>
+    </header>
+
+    <div class="status-bar">
+      <div class="status-indicator" id="statusIndicator"></div>
+      <span id="statusText">Hazır</span>
+    </div>
+
+    <div class="url-display">
+      <span id="currentUrl">Sayfa yükleniyor...</span>
+    </div>
+
+    <div class="actions">
+      <button id="btnQuickScan" class="btn btn-primary">
+        <span class="icon">🔍</span>
+        Hızlı Tarama
+      </button>
+      
+      <button id="btnFullAudit" class="btn btn-secondary">
+        <span class="icon">📊</span>
+        Tam Denetim
+      </button>
+
+      <button id="btnVisualAI" class="btn btn-accent">
+        <span class="icon">👁️</span>
+        Görsel AI Analizi
+      </button>
+
+      <button id="btnKeyboardNav" class="btn btn-secondary">
+        <span class="icon">⌨️</span>
+        Klavye Testi
+      </button>
+    </div>
+
+    <div class="quick-results" id="quickResults">
+      <h3>Hızlı Sonuçlar</h3>
+      <div class="score-cards">
+        <div class="score-card">
+          <div class="score" id="overallScore">--</div>
+          <div class="label">Genel Skor</div>
+        </div>
+        <div class="score-card critical">
+          <div class="score" id="criticalCount">--</div>
+          <div class="label">Kritik</div>
+        </div>
+        <div class="score-card serious">
+          <div class="score" id="seriousCount">--</div>
+          <div class="label">Ciddi</div>
+        </div>
+        <div class="score-card moderate">
+          <div class="score" id="moderateCount">--</div>
+          <div class="label">Orta</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-panel" id="aiPanel">
+      <h3>🤖 Qwen3-VL Görsel Analizi</h3>
+      <div class="ai-status" id="aiStatus">
+        <span>Görsel analiz için "Görsel AI Analizi" butonuna tıklayın</span>
+      </div>
+      <div class="ai-results" id="aiResults" style="display: none;">
+        <h4>Görsel Bulgular:</h4>
+        <ul id="aiFindings"></ul>
+      </div>
+    </div>
+
+    <div class="keyboard-panel" id="keyboardPanel">
+      <h3>⌨️ Klavye Navigasyonu</h3>
+      <div class="keyboard-status" id="keyboardStatus">
+        <span>Klavye testi için "Klavye Testi" butonuna tıklayın</span>
+      </div>
+      <div class="keyboard-stats" id="keyboardStats" style="display: none;">
+        <div class="stat">
+          <span class="stat-value" id="tabCount">--</span>
+          <span class="stat-label">Tab Adımı</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="focusableCount">--</span>
+          <span class="stat-label">Odaklanılabilir</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="trapCount">--</span>
+          <span class="stat-label">Focus Trap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions secondary">
+      <button id="btnExportJSON" class="btn btn-small">
+        📄 JSON Dışa Aktar
+      </button>
+      <button id="btnExportHTML" class="btn btn-small">
+        📊 HTML Rapor
+      </button>
+      <button id="btnSettings" class="btn btn-small">
+        ⚙️ Ayarlar
+      </button>
+    </div>
+
+    <footer>
+      <span>WCAG 2.2 AA • EN 301 549</span>
+      <span id="timestamp"></span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

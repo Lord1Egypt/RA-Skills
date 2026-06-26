@@ -1,0 +1,7 @@
+interface:
+  display_name: "Memory Sync"
+  short_description: "Sync memory into per-agent stores and shared context"
+  default_prompt: "Use $memory-sync to sync OpenClaw memory into Obsidian, import distilled candidates, maintain per-agent stores, build shared user profile/context, export Codex/Claude/OpenClaw/OpenCode/hermes-agent context, search the index, or run Git version sync."
+
+policy:
+  allow_implicit_invocation: true

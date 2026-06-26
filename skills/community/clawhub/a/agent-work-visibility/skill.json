@@ -1,0 +1,103 @@
+{
+  "name": "agent-work-visibility",
+  "version": "3.0.5",
+  "description": "🟢 让长任务不再黑箱！自动显示进度条 + 每分钟更新 + 健康度。🚀 安装 + 激活：clawhub install agent-work-visibility && node ~/.openclaw/skills/agent-work-visibility/activate.js",
+  "autoEnable": false,
+  "activationScript": "activate.js",
+  "deactivationScript": "deactivate.js",
+  "author": "OpenClaw Contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/agent-work-visibility#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/agent-work-visibility.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/agent-work-visibility/issues"
+  },
+  "keywords": [
+    "agent",
+    "visibility",
+    "progress",
+    "transparency",
+    "research",
+    "ai",
+    "llm",
+    "task-management",
+    "user-experience"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "main": "lib/index.js",
+  "bin": {
+    "agent-visibility": "./bin/monitor.js"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "README.md",
+    "README_CN.md",
+    "LICENSE",
+    "SKILL.md",
+    "activate.js",
+    "deactivate.js"
+  ],
+  "scripts": {
+    "test": "node tests/basic.test.js",
+    "demo:normal": "node demos/demo1_normal.js",
+    "demo:blocked": "node demos/demo2_blocked.js",
+    "demo:retry": "node demos/demo3_retry.js",
+    "demo:10tasks": "node demos/run_10_tasks.js",
+    "demo:compare": "node demos/v1_vs_v2_comparison.js",
+    "validate": "npm test && node demos/run_10_tasks.js",
+    "prepublishOnly": "npm test && node demos/v1_vs_v2_comparison.js"
+  },
+  "tools": {
+    "create_visibility_task": {
+      "description": "Create a new visibility-tracked task",
+      "parameters": {
+        "task_id": "string (required) - Unique task identifier",
+        "title": "string (required) - Task title",
+        "type": "string (optional) - Task type: research | browser (default: research)"
+      },
+      "returns": "Task state object with initial snapshot"
+    },
+    "update_visibility_phase": {
+      "description": "Update task phase status and progress",
+      "parameters": {
+        "task_id": "string (required) - Task identifier",
+        "phase_name": "string (required) - Phase name",
+        "action": "string (required) - start | update | complete",
+        "progress": "number (optional) - Progress percentage (0-100)",
+        "summary": "string (optional) - Phase completion summary"
+      },
+      "returns": "Updated task state"
+    },
+    "report_visibility_blocker": {
+      "description": "Report a blocker with automatic state debouncing",
+      "parameters": {
+        "task_id": "string (required) - Task identifier",
+        "blocker_type": "string (required) - api_timeout | auth_required | info_conflict | missing_input | scope_expansion | rate_limited | resource_unavailable",
+        "reason": "string (required) - Human-readable reason",
+        "level": "string (optional) - low | medium | high (default: low)"
+      },
+      "returns": "Blocker status with duration tracking"
+    },
+    "request_visibility_input": {
+      "description": "Request user intervention with context",
+      "parameters": {
+        "task_id": "string (required) - Task identifier",
+        "input_type": "string (required) - direction_choice | scope_clarification | auth_required | scope_confirmation | judgement_call | continue_or_stop",
+        "question": "string (required) - Question for user",
+        "options": "array (optional) - Available options",
+        "context": "object (optional) - Context explaining why input is needed"
+      },
+      "returns": "User input request object"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

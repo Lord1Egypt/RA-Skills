@@ -1,0 +1,138 @@
+{
+  "name": "agency-agents-openclaw",
+  "version": "1.0.0",
+  "description": "AI Agent 团队 - 61 个专业 Agent，8 大部门，完整的 AI 代理机构",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai-agents",
+    "automation",
+    "productivity",
+    "enterprise"
+  ],
+  "author": "Jerry (based on agency-agents by @msitarzewski)",
+  "license": "MIT",
+  "homepage": "https://github.com/your-repo/agency-agents-openclaw#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-repo/agency-agents-openclaw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/agency-agents-openclaw/issues"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "agents/",
+    "orchestrator/",
+    "examples/",
+    "docs/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "openclaw": {
+    "type": "skill",
+    "category": "productivity",
+    "version": "1.0.0",
+    "minOpenClawVersion": "2026.1.0",
+    "skills": [
+      {
+        "name": "agency-agents",
+        "path": "SKILL.md",
+        "description": "AI Agent 团队 - 61 个专业 Agent 完整集合"
+      },
+      {
+        "name": "agents-orchestrator",
+        "path": "orchestrator/SKILL.md",
+        "description": "Agent 编排器 - 多 Agent 协作核心引擎"
+      }
+    ],
+    "agents": {
+      "engineering": [
+        "frontend-developer",
+        "backend-architect",
+        "mobile-app-builder",
+        "ai-engineer",
+        "devops-automator",
+        "rapid-prototyper",
+        "senior-developer"
+      ],
+      "design": [
+        "ui-designer",
+        "ux-researcher",
+        "ux-architect",
+        "brand-guardian",
+        "visual-storyteller",
+        "whimsy-injector",
+        "image-prompt-engineer"
+      ],
+      "marketing": [
+        "growth-hacker",
+        "content-creator",
+        "twitter-engager",
+        "tiktok-strategist",
+        "instagram-curator",
+        "reddit-community-builder",
+        "app-store-optimizer",
+        "social-media-strategist"
+      ],
+      "product": [
+        "sprint-prioritizer",
+        "trend-researcher",
+        "feedback-synthesizer"
+      ],
+      "project-management": [
+        "studio-producer",
+        "project-shepherd",
+        "studio-operations",
+        "experiment-tracker",
+        "senior-project-manager"
+      ],
+      "testing": [
+        "evidence-collector",
+        "reality-checker",
+        "test-results-analyzer",
+        "performance-benchmarker",
+        "api-tester",
+        "tool-evaluator",
+        "workflow-optimizer"
+      ],
+      "support": [
+        "support-responder",
+        "analytics-reporter",
+        "finance-tracker",
+        "infrastructure-maintainer",
+        "legal-compliance-checker",
+        "executive-summary-generator"
+      ],
+      "specialized": [
+        "agents-orchestrator",
+        "data-analytics-reporter",
+        "lsp-index-engineer",
+        "sales-data-extraction-agent",
+        "data-consolidation-agent",
+        "report-distribution-agent"
+      ]
+    },
+    "pricing": {
+      "standard": {
+        "price": 1999,
+        "currency": "CNY",
+        "description": "全部 61 个 Agent + 编排器"
+      },
+      "department": {
+        "price": 499,
+        "currency": "CNY",
+        "description": "单个部门全部 Agent"
+      },
+      "subscription": {
+        "price": 299,
+        "currency": "CNY",
+        "period": "month",
+        "description": "全部 Agent + 持续更新 + 优先支持"
+      }
+    }
+  }
+}

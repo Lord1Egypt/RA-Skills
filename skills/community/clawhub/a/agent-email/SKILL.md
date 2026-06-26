@@ -1,35 +1,13 @@
----
-name: "Agent Email"
-description: "Enables sending outbound emails via AgentMail.to for system alerts and task completion reports using thundarr@agentmail.to."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-email"
-sourceUrl: "https://clawhub.ai/skills/agent-email"
----
+# Agent Email Skill
+## Description
+Enables Thundarr to perform outbound communication via the AgentMail.to API. This is the primary notification channel for system health and task completion reports.
 
-# Agent Email
+## Configuration
+Requires a valid AgentMail API key. Sends from the official identity: thundarr@agentmail.to.
 
-> Enables sending outbound emails via AgentMail.to for system alerts and task completion reports using thundarr@agentmail.to.
+## Tools
+- **send_mail.py**: A Python script that handles POST requests to the AgentMail v1 API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-email`
-- **Source URL:** [https://clawhub.ai/skills/agent-email](https://clawhub.ai/skills/agent-email)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-email
-```
+## Usage Examples
+- "Send a backup success report to my personal email."
+- "Alert me if the system temperature exceeds 80 degrees Celsius."

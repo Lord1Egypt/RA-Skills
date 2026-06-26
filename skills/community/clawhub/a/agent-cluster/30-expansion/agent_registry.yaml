@@ -1,0 +1,705 @@
+# M-A3 30-Agent集群 注册表
+# agent-cluster/30-expansion/agent_registry.yaml
+# 版本: v1.0 | 更新: 2026-04-14
+
+cluster:
+  name: "M-A3 30-Agent Enterprise Cluster"
+  version: "3.0.0"
+  chief_of_staff_id: "chief-of-staff"
+  registry_version: "2026-04-14"
+
+# ============================================================
+# 第0层：幕僚长与基础设施
+# ============================================================
+tier_0:
+  - agent_id: "chief-of-staff"
+    display_name: "M-A3 幕僚长"
+    domain: "orchestration"
+    engine: "claude-ma"
+    role: "dispatcher"
+    description: "全局协调、任务分配、策略建议"
+    capabilities:
+      - intent_recognition
+      - task_decomposition
+      - agent_scheduling
+      - result_aggregation
+      - report_generation
+    max_concurrent: 1
+    timeout_seconds: 600
+    keywords:
+      - "调度"
+      - "协调"
+      - "全局"
+      - "策略"
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/chief-of-staff"
+
+# ============================================================
+# 第1层：基础设施Agent（Tier 1）
+# ============================================================
+tier_1:
+  # --- 支撑域基础设施 ---
+  - agent_id: "sup-09-scheduler"
+    display_name: "调度协调Agent"
+    domain: "support"
+    engine: "local"
+    role: "infrastructure"
+    description: "智能调度所有Agent任务，优化执行效率"
+    capabilities:
+      - task_queue_management
+      - dag_parsing
+      - parallel_optimization
+      - load_balancing
+      - resource_quota
+      - retry_policy
+    max_concurrent: 1
+    timeout_seconds: 120
+    keywords: ["任务调度", "并行执行", "工作流", "协调"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/sup-09-scheduler"
+
+  - agent_id: "sup-10-security"
+    display_name: "安全审计Agent"
+    domain: "support"
+    engine: "local"
+    role: "infrastructure"
+    description: "保障集群安全运行，主动防御MCP协议漏洞"
+    capabilities:
+      - api_key_management
+      - rbac_maintenance
+      - operation_audit
+      - pii_detection
+      - anomaly_detection
+      - soc2_reporting
+      - mcp_security_scan
+    max_concurrent: 2
+    timeout_seconds: 300
+    keywords: ["安全审计", "权限管理", "日志审计", "合规报告"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/sup-10-security"
+
+  - agent_id: "sup-01-data-collect"
+    display_name: "数据采集Agent"
+    domain: "support"
+    engine: "local"
+    role: "infrastructure"
+    description: "统一数据采集入口，支持所有Agent的数据需求"
+    capabilities:
+      - multi_source_collection
+      - data_cleaning
+      - quality_validation
+      - incremental_collection
+      - pipeline_monitoring
+    max_concurrent: 5
+    timeout_seconds: 600
+    keywords: ["数据采集", "爬虫", "数据清洗", "数据导入"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/sup-01-data-collect"
+
+  - agent_id: "sup-08-memory"
+    display_name: "记忆管理Agent"
+    domain: "support"
+    engine: "local"
+    role: "infrastructure"
+    description: "统一管理集群的长期记忆和知识"
+    capabilities:
+      - cross_agent_memory
+      - memory_tiering
+      - semantic_retrieval
+      - deduplication
+      - context_optimization
+      - experience_accumulation
+    max_concurrent: 20
+    timeout_seconds: 60
+    keywords: ["记忆管理", "知识库", "上下文", "长期记忆"]
+    priority: P1
+    skippable: false
+    health_check_endpoint: "/health/sup-08-memory"
+
+  - agent_id: "sup-02-content-gen"
+    display_name: "内容生成Agent"
+    domain: "support"
+    engine: "claude-ma"
+    role: "infrastructure"
+    description: "批量生成高质量营销和运营内容"
+    capabilities:
+      - multi_format_generation
+      - brand_voice
+      - template_management
+      - batch_generation
+      - ab_testing
+      - quality_scoring
+      - multilingual_generation
+    max_concurrent: 8
+    timeout_seconds: 300
+    keywords: ["内容生成", "批量文案", "产品描述", "脚本生成"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/sup-02-content-gen"
+
+  - agent_id: "sup-04-compliance"
+    display_name: "合规检查Agent"
+    domain: "support"
+    engine: "deepseek"
+    role: "infrastructure"
+    description: "确保所有运营行为符合平台政策和法规"
+    capabilities:
+      - amazon_policy_check
+      - ad_compliance
+      - gdpr_check
+      - content_compliance
+      - multi_region_adaptation
+      - risk_rating
+    max_concurrent: 5
+    timeout_seconds: 180
+    keywords: ["合规检查", "政策合规", "风险审核", "GDPR"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/sup-04-compliance"
+
+  - agent_id: "sup-03-translation"
+    display_name: "翻译Agent"
+    domain: "support"
+    engine: "deepseek"
+    role: "infrastructure"
+    description: "专业级多语言翻译与本地化"
+    capabilities:
+      - multi_language_translation
+      - industry_glossary
+      - cultural_adaptation
+      - quality_self_assessment
+      - translation_memory
+      - batch_processing
+    max_concurrent: 10
+    timeout_seconds: 120
+    keywords: ["翻译", "中英翻译", "本地化", "多语言"]
+    priority: P1
+    skippable: true
+    health_check_endpoint: "/health/sup-03-translation"
+
+  - agent_id: "sup-07-quality"
+    display_name: "质量评分Agent"
+    domain: "support"
+    engine: "claude-ma"
+    role: "infrastructure"
+    description: "为所有Agent产出提供统一的质量评估"
+    capabilities:
+      - multi_dimension_scoring
+      - baseline_management
+      - trend_tracking
+      - anomaly_alert
+      - human_review_trigger
+      - improvement_suggestions
+      - agent_capability_profile
+    max_concurrent: 5
+    timeout_seconds: 120
+    keywords: ["质量评分", "效果评估", "质量监控"]
+    priority: P1
+    skippable: true
+    health_check_endpoint: "/health/sup-07-quality"
+
+  # --- GEO域基础设施 ---
+  - agent_id: "geo-07-knowledge-graph"
+    display_name: "知识图谱Agent"
+    domain: "geo"
+    engine: "claude-ma"
+    role: "infrastructure"
+    description: "构建和维护品牌的知识图谱（GEO基础设施）"
+    capabilities:
+      - entity_recognition
+      - knowledge_graph_construction
+      - jsonld_generation
+      - graph_completion
+      - multi_source_fusion
+      - freshness_management
+    max_concurrent: 2
+    timeout_seconds: 600
+    keywords: ["知识图谱", "Schema", "实体识别", "结构化数据"]
+    priority: P0
+    skippable: false
+    health_check_endpoint: "/health/geo-07-knowledge-graph"
+
+  - agent_id: "amz-09-keywords"
+    display_name: "关键词Agent"
+    domain: "amazon"
+    engine: "claude-ma"
+    role: "infrastructure"
+    description: "发现、管理和优化所有广告与Listing关键词"
+    capabilities:
+      - keyword_library
+      - search_volume_analysis
+      - negative_keywords
+      - longtail_mining
+      - trend_tracking
+      - asin_keyword_reverse
+    max_concurrent: 3
+    timeout_seconds: 300
+    keywords: ["关键词", "keyword", "长尾词", "否定词"]
+    priority: P1
+    skippable: false
+    health_check_endpoint: "/health/amz-09-keywords"
+
+# ============================================================
+# 第2层：业务Agent（Tier 2）
+# ============================================================
+tier_2:
+  # --- GEO域 ---
+  geo_tier2:
+    - agent_id: "geo-01-market-research"
+      display_name: "市场研究Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "entry_point"
+      max_concurrent: 3
+      timeout_seconds: 300
+      keywords: ["市场研究", "市场规模", "目标市场", "TAM", "市场机会"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "geo-02-competitor"
+      display_name: "竞品分析Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "analyzer"
+      max_concurrent: 3
+      timeout_seconds: 240
+      keywords: ["竞品分析", "竞争对手", "对标分析", "竞品策略"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "geo-03-content-strategy"
+      display_name: "内容策略Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "strategy"
+      max_concurrent: 5
+      timeout_seconds: 300
+      keywords: ["内容策略", "内容规划", "选题", "内容日历"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "geo-04-multilingual"
+      display_name: "多语言优化Agent"
+      domain: "geo"
+      engine: "deepseek"
+      role: "localization"
+      max_concurrent: 5
+      timeout_seconds: 180
+      keywords: ["多语言", "本地化", "翻译", "中译英", "国际化"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "geo-05-platform-adapt"
+      display_name: "平台适配Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "adapter"
+      max_concurrent: 4
+      timeout_seconds: 180
+      keywords: ["平台适配", "多平台", "SEO适配"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "geo-06-monitoring"
+      display_name: "效果监测Agent"
+      domain: "geo"
+      engine: "local"
+      role: "monitor"
+      max_concurrent: 2
+      timeout_seconds: 300
+      keywords: ["效果监测", "排名追踪", "AI搜索", "GEO效果"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "geo-08-intent-prediction"
+      display_name: "意图预测Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "predictor"
+      max_concurrent: 3
+      timeout_seconds: 240
+      keywords: ["意图预测", "搜索意图", "用户意图"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "geo-09-schema"
+      display_name: "Schema优化Agent"
+      domain: "geo"
+      engine: "local"
+      role: "optimizer"
+      max_concurrent: 4
+      timeout_seconds: 300
+      keywords: ["Schema优化", "结构化数据", "Rich Results"]
+      priority: P2
+      skippable: true
+
+    - agent_id: "geo-10-regional"
+      display_name: "地域策略Agent"
+      domain: "geo"
+      engine: "claude-ma"
+      role: "strategist"
+      max_concurrent: 3
+      timeout_seconds: 240
+      keywords: ["地域策略", "本地SEO", "ccTLD"]
+      priority: P2
+      skippable: true
+
+  # --- 亚马逊域 ---
+  amazon_tier2:
+    - agent_id: "amz-01-product-select"
+      display_name: "选品分析Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "entry_point"
+      max_concurrent: 3
+      timeout_seconds: 300
+      keywords: ["选品", "新品开发", "产品机会"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "amz-02-listing"
+      display_name: "Listing优化Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "optimizer"
+      max_concurrent: 5
+      timeout_seconds: 300
+      keywords: ["Listing优化", "标题优化", "五点描述", "产品页面"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "amz-03-profit"
+      display_name: "利润优化Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "optimizer"
+      max_concurrent: 3
+      timeout_seconds: 300
+      keywords: ["利润优化", "ACOS", "TACOS", "成本分析"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "amz-04-ads"
+      display_name: "广告投放Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "operator"
+      max_concurrent: 4
+      timeout_seconds: 300
+      keywords: ["广告投放", "SP广告", "SB广告", "ACOS优化"]
+      priority: P0
+      skippable: false
+
+    - agent_id: "amz-05-inventory"
+      display_name: "库存管理Agent"
+      domain: "amazon"
+      engine: "local"
+      role: "operator"
+      max_concurrent: 3
+      timeout_seconds: 180
+      keywords: ["库存管理", "补货", "FBA库存"]
+      priority: P1
+      skippable: false
+
+    - agent_id: "amz-06-review"
+      display_name: "评价分析Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "analyzer"
+      max_concurrent: 4
+      timeout_seconds: 240
+      keywords: ["评价分析", "review", "QA分析", "差评监控"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "amz-07-competitor-monitor"
+      display_name: "竞品监控Agent"
+      domain: "amazon"
+      engine: "local"
+      role: "monitor"
+      max_concurrent: 3
+      timeout_seconds: 300
+      keywords: ["竞品监控", "价格战", "市场情报"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "amz-08-pricing"
+      display_name: "定价策略Agent"
+      domain: "amazon"
+      engine: "claude-ma"
+      role: "strategist"
+      max_concurrent: 3
+      timeout_seconds: 240
+      keywords: ["定价策略", "动态定价", "Buy Box"]
+      priority: P1
+      skippable: true
+
+    - agent_id: "amz-10-reporting"
+      display_name: "报表分析Agent"
+      domain: "amazon"
+      engine: "local"
+      role: "reporter"
+      max_concurrent: 2
+      timeout_seconds: 180
+      keywords: ["报表", "KPI", "周报", "月报", "数据分析"]
+      priority: P2
+      skippable: true
+
+  # --- 支撑域 Tier 2 ---
+  support_tier2:
+    - agent_id: "sup-05-report-gen"
+      display_name: "报告生成Agent"
+      domain: "support"
+      engine: "claude-ma"
+      role: "generator"
+      max_concurrent: 3
+      timeout_seconds: 300
+      keywords: ["报告生成", "PPT", "数据分析报告"]
+      priority: P1
+      skippable: false
+
+    - agent_id: "sup-06-customer-service"
+      display_name: "客户服务Agent"
+      domain: "support"
+      engine: "claude-ma"
+      role: "service"
+      max_concurrent: 10
+      timeout_seconds: 60
+      keywords: ["客服", "自动回复", "FAQ"]
+      priority: P2
+      skippable: true
+
+# ============================================================
+# 调度配置
+# ============================================================
+scheduling:
+  default_strategy: "weighted_least_connections"
+  fallback_strategy: "round_robin"
+  
+  priority_rules:
+    P0: "immediate"
+    P1: "within_60s"
+    P2: "within_300s"
+  
+  concurrency_limits:
+    per_agent_default: 5
+    per_domain_default: 20
+    cluster_default: 50
+
+  retry_policy:
+    max_retries: 3
+    backoff_multiplier: 2
+    initial_delay_ms: 1000
+    max_delay_ms: 30000
+
+  circuit_breaker:
+    failure_threshold: 5
+    recovery_timeout_seconds: 60
+    half_open_max_calls: 3
+
+# ============================================================
+# 引擎配置
+# ============================================================
+engines:
+  claude-ma:
+    instances: 18
+    token_limit: 200000
+    concurrent_per_instance: 10
+    fallback: "local"
+    priority_domains: ["geo", "amazon"]
+
+  local:
+    instances: 8
+    token_limit: 32000
+    concurrent_per_instance: 20
+    fallback: "deepseek"
+    priority_domains: ["support"]
+
+  deepseek:
+    instances: 4
+    token_limit: 64000
+    concurrent_per_instance: 15
+    fallback: "local"
+    priority_domains: ["support", "geo"]
+
+# ============================================================
+# 关键词路由表
+# ============================================================
+keyword_routes:
+  "市场研究":
+    - geo-01-market-research
+  "市场规模":
+    - geo-01-market-research
+  "目标市场":
+    - geo-01-market-research
+  "竞品分析":
+    - geo-02-competitor
+  "竞争对手":
+    - geo-02-competitor
+    - amz-07-competitor-monitor
+  "内容策略":
+    - geo-03-content-strategy
+  "内容规划":
+    - geo-03-content-strategy
+  "选题":
+    - geo-03-content-strategy
+  "多语言":
+    - geo-04-multilingual
+  "本地化":
+    - geo-04-multilingual
+  "翻译":
+    - sup-03-translation
+  "平台适配":
+    - geo-05-platform-adapt
+  "效果监测":
+    - geo-06-monitoring
+  "AI搜索":
+    - geo-06-monitoring
+  "知识图谱":
+    - geo-07-knowledge-graph
+  "Schema":
+    - geo-09-schema
+  "意图预测":
+    - geo-08-intent-prediction
+  "搜索意图":
+    - geo-08-intent-prediction
+  "地域策略":
+    - geo-10-regional
+  "选品":
+    - amz-01-product-select
+  "Listing优化":
+    - amz-02-listing
+  "标题优化":
+    - amz-02-listing
+  "五点描述":
+    - amz-02-listing
+  "利润优化":
+    - amz-03-profit
+  "ACOS":
+    - amz-03-profit
+    - amz-04-ads
+  "TACOS":
+    - amz-03-profit
+  "广告投放":
+    - amz-04-ads
+  "SP广告":
+    - amz-04-ads
+  "SB广告":
+    - amz-04-ads
+  "库存管理":
+    - amz-05-inventory
+  "补货":
+    - amz-05-inventory
+  "FBA库存":
+    - amz-05-inventory
+  "评价分析":
+    - amz-06-review
+  "review":
+    - amz-06-review
+  "竞品监控":
+    - amz-07-competitor-monitor
+  "价格战":
+    - amz-07-competitor-monitor
+    - amz-08-pricing
+  "定价策略":
+    - amz-08-pricing
+  "动态定价":
+    - amz-08-pricing
+  "关键词":
+    - amz-09-keywords
+  "报表":
+    - amz-10-reporting
+  "KPI":
+    - amz-10-reporting
+  "周报":
+    - amz-10-reporting
+    - sup-05-report-gen
+  "月报":
+    - amz-10-reporting
+    - sup-05-report-gen
+  "数据采集":
+    - sup-01-data-collect
+  "爬虫":
+    - sup-01-data-collect
+  "内容生成":
+    - sup-02-content-gen
+  "合规检查":
+    - sup-04-compliance
+  "风险审核":
+    - sup-04-compliance
+  "报告生成":
+    - sup-05-report-gen
+  "客服":
+    - sup-06-customer-service
+  "质量评分":
+    - sup-07-quality
+  "记忆管理":
+    - sup-08-memory
+  "知识库":
+    - sup-08-memory
+  "任务调度":
+    - sup-09-scheduler
+  "工作流":
+    - sup-09-scheduler
+  "安全审计":
+    - sup-10-security
+  "日志审计":
+    - sup-10-security
+
+# ============================================================
+# 健康检查配置
+# ============================================================
+health_check:
+  interval_seconds: 30
+  timeout_seconds: 10
+  failure_threshold: 3
+  recovery_threshold: 2
+  
+  endpoints:
+    - id: "chief-of-staff"
+      url: "/health/chief-of-staff"
+      expected_status: 200
+    - id: "sup-09-scheduler"
+      url: "/health/sup-09-scheduler"
+      expected_status: 200
+    - id: "sup-10-security"
+      url: "/health/sup-10-security"
+      expected_status: 200
+
+# ============================================================
+# 监控指标
+# ============================================================
+metrics:
+  sli:
+    availability:
+      target: 99.9
+      measurement: "successful_calls / total_calls"
+    latency:
+      p50_target: 1000
+      p95_target: 5000
+      p99_target: 15000
+    accuracy:
+      target: 95.0
+      measurement: "sup-07-quality score >= 75"
+
+  dimensions:
+    - domain
+    - agent_id
+    - engine_type
+    - priority
+    - time_bucket
+
+  alerts:
+    - name: "high_error_rate"
+      condition: "error_rate > 0.05"
+      severity: "warning"
+    - name: "high_latency"
+      condition: "p99_latency > 30000"
+      severity: "warning"
+    - name: "agent_down"
+      condition: "health_check_failures > 3"
+      severity: "critical"

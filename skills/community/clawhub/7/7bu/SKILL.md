@@ -1,35 +1,32 @@
 ---
-name: "7bu uploader"
-description: "去不图床(7bu.top)图片上传工具。需要TOKEN才能使用，需前往https://7bu.top注册用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/7bu"
-sourceUrl: "https://clawhub.ai/skills/7bu"
+name: 7bu
+description: 去不图床(7bu.top)图片上传工具。需要TOKEN才能使用，需前往https://7bu.top注册用户。
 ---
 
-# 7bu uploader
+# 7bu 图床上传工具
 
-> 去不图床(7bu.top)图片上传工具。需要TOKEN才能使用，需前往https://7bu.top注册用户。
+去不图床(7bu.top)图片上传。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/7bu`
-- **Source URL:** [https://clawhub.ai/skills/7bu](https://clawhub.ai/skills/7bu)
+## ⚠️ 需要 TOKEN
 
-## Overview
+请前往 https://7bu.top 注册用户获取 Token。
 
+## 支持格式
+JPEG, JPG, PNG, GIF, BMP, ICO, WEBP
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 上传命令
 ```bash
-hermes skills install clawhub/7bu
+curl --location 'https://7bu.top/api/v1/upload' \
+--header 'Authorization: Bearer TOKEN' \
+--form 'file=@IMAGE'
+```
+
+## 触发方式
+```
+使用7bu技能上传图片：图片路径/URL，TOKEN
+```
+
+## 使用示例
+```
+上传 ~/images/photo.jpg 到7bu图床，TOKEN为xxx
 ```

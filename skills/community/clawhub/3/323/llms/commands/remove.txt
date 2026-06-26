@@ -1,0 +1,106 @@
+--------------------------------------------------------------------------------
+title: "remove"
+description: "Remove an installed skill from AI agents."
+source: "/llms/commands/remove.txt"
+--------------------------------------------------------------------------------
+
+# remove — Remove Skills
+
+Remove an installed skill from all detected AI agents.
+
+## Syntax
+
+```bash
+ai-skills remove <skill> [options]
+```
+
+**Aliases**: `rm`, `uninstall`
+
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `skill` | Yes | Name of the skill to remove |
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-p, --project` | Remove from project directory (default) |
+| `-g, --global` | Remove from global directory |
+| `-t, --target <dir>` | Remove from custom directory |
+| `--dir <dir>` | Remove from exact directory (skips agent resolution) |
+| `-a, --agents <names>` | Remove from specific agent(s) only |
+| `-f, --force` | Force removal, including cross-layer symlink references |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Cross-Layer Symlink Handling
+
+When a skill is installed with soft mode (symlinks), removing the source may leave dangling symlinks in other agents. The CLI detects this:
+
+- **Without `--force`**: Blocks removal and shows which agents have references
+- **With `--force`**: Removes the skill, all cross-layer symlink references, and the orphaned source (3 removal operations)
+
+## Behavior
+
+### CLI Mode
+
+1. Resolves base and agents
+2. Scans for the named skill
+3. If not found → warning
+4. If found → shows locations and prompts for confirmation
+5. Cross-layer symlinks → additional warning with affected agents
+6. User confirms → removes; user cancels → aborts
+
+### Pure Mode
+
+1. Resolves base and agents (error on failure)
+2. Scans for the named skill
+3. If not found → outputs `not found` message
+4. If found with cross-layer refs → blocks (or force-removes with `--force`)
+5. Otherwise → removes and outputs success
+
+### `--dir` Mode
+
+Skips agent resolution entirely, directly scans and removes from the specified directory.
+
+## Examples
+
+```bash
+# Remove from project
+ai-skills remove my-skill --project --pure
+
+# Remove from global
+ai-skills remove my-skill --global --pure
+
+# Force remove (including cross-layer refs)
+ai-skills remove my-skill --project --pure --force
+
+# Remove from specific directory
+ai-skills remove my-skill --dir /custom/path --pure
+```
+
+## Pure Mode Output
+
+**Removed:**
+```
+Removed: my-skill from cursor
+```
+
+**Not found:**
+```
+Skill "nonexistent" not found.
+```
+
+**Cross-layer blocked:**
+```
+Cannot remove: my-skill has symlink references in other scopes:
+  windsurf: /global/.windsurf/skills/my-skill
+Use --force to remove all references.
+```
+
+**Force removed all:**
+```
+Force removed: my-skill and all 1 cross-layer reference(s).
+```

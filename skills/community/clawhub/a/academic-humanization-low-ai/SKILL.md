@@ -1,35 +1,53 @@
 ---
 name: "academic-humanization-low-ai"
 description: "对学术文本进行深度人类化重写以降低AI率。用于AI生成的学术文本需要降低AI检测特征时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/academic-humanization-low-ai"
-sourceUrl: "https://clawhub.ai/skills/academic-humanization-low-ai"
 ---
 
-# academic-humanization-low-ai
+# 学术文本人类化重写
 
-> 对学术文本进行深度人类化重写以降低AI率。用于AI生成的学术文本需要降低AI检测特征时使用。
+对学术文本进行深度人类化重写，目标是在不改变核心语义的前提下，系统性消除AI生成特征。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/academic-humanization-low-ai`
-- **Source URL:** [https://clawhub.ai/skills/academic-humanization-low-ai](https://clawhub.ai/skills/academic-humanization-low-ai)
+## 核心操作
 
-## Overview
+### 一、语言统计特征优化
+- 故意制造句长差异：部分句子偏短（10字以内），部分偏长（50字以上）
+- 提升词汇多样性：同一概念使用不同表达
+- 替换AI高频连接词：
+  - "因此" → "这说明""可见""这一点表明"
+  - "综上所述" → 删除或改为"从以上分析可以看出"
+  - "首先/其次/最后" → "一方面...另一方面..."或数字标注
+  - "此外" → "另外""加之""还有"
 
+### 二、句法结构扰动
+- 打破"总-分-总"结构，删除结尾总结句
+- 引入插入语结构："（这一点尤为重要）""——需要说明的是"
+- 使用后置修饰、定语后置
+- 轻微语序变化，使用倒装或强调结构
+- 模糊指代：使用"这一点""这种情况"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/academic-humanization-low-ai
-```
+### 三、语义层对抗
+- 论证路径重构：改变推理顺序，而非同义替换
+- 增加限定条件："在一定程度上""在特定条件下"
+- 允许"非最优表达"
+- 补充人类思维痕迹："值得注意的是""需要补充说明的是"
+- 拆分过长论述，人为制造逻辑断层
+
+### 四、风格扰动
+- 节奏变化：段落内句子长短交替
+- 避免完美流畅，允许略微跳跃
+- 删除所有模板化总结句："综上所述""总而言之""本文认为"
+- 不同段落允许轻微风格差异
+
+## 约束条件
+- 保持学术语气和专业术语含义不变
+- 不使用口语化或情绪化词汇
+- 不减少信息量，可适当增加解释
+- 字数与原文保持基本一致（±15%以内）
+
+## 输出要求
+- 仅输出重写后的文本
+- 不解释修改过程
+- 不添加任何总结性语句
+
+原文如下：
+{{text}}

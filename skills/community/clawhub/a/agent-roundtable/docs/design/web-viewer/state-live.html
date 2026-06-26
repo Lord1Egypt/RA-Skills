@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圆桌讨论 — 进行中</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #4F46E5;
+    --brand-hover: #4338CA;
+    --brand-light: #6366F1;
+    --brand-glow: rgba(79, 70, 229, 0.25);
+    --bg-body: #0F172A;
+    --bg-card: #1E293B;
+    --bg-card-hover: #334155;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --border: #334155;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-sm: 6px;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --role-product: #3B82F6;
+    --role-design: #A855F7;
+    --role-engineer: #22C55E;
+    --role-research: #F59E0B;
+    --max-width: 720px;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-body);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ══ 顶部导航栏 ══ */
+  .top-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  .top-bar-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .live-badge .dot {
+    width: 6px; height: 6px;
+    background: #EF4444;
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .top-bar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .top-bar-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ══ 内容区 ══ */
+  .content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+  }
+
+  /* ══ 讨论话题头部 ══ */
+  .topic-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .topic-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ══ 发言卡片 ══ */
+  .speech-card {
+    display: flex;
+    gap: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .speech-card:hover {
+    background: var(--bg-card-hover);
+  }
+
+  /* 新发言高亮动效 */
+  .speech-card.highlighted {
+    border-left-color: var(--brand);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.15);
+    animation: highlight-fade 2s ease-out forwards;
+  }
+  @keyframes highlight-fade {
+    0% { border-left-color: var(--brand); box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+    100% { border-left-color: transparent; box-shadow: none; }
+  }
+
+  /* 淡入动效 */
+  .speech-card.fade-in {
+    animation: fadeSlideIn 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══ 头像 ══ */
+  .speech-avatar {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+  }
+  .speech-avatar.product { background: var(--role-product); }
+  .speech-avatar.design { background: var(--role-design); }
+  .speech-avatar.engineer { background: var(--role-engineer); }
+  .speech-avatar.research { background: var(--role-research); }
+
+  /* ══ 发言内容 ══ */
+  .speech-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .speech-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .speech-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .speech-role {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .speech-role.product { background: rgba(59, 130, 246, 0.15); color: #3B82F6; }
+  .speech-role.design { background: rgba(168, 85, 247, 0.15); color: #A855F7; }
+  .speech-role.engineer { background: rgba(34, 197, 94, 0.15); color: #22C55E; }
+  .speech-role.research { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
+  .speech-time {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+  .speech-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ══ 流式打字指示器 ══ */
+  .typing-indicator {
+    display: inline-flex;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    margin-left: 54px;
+  }
+  .typing-indicator span {
+    width: 6px; height: 6px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* ══ 底部输入状态 ══ */
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: 12px 24px;
+    text-align: center;
+  }
+  .bottom-bar p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ══ 移动端 ══ */
+  @media (max-width: 768px) {
+    .content { padding: 16px 16px 72px; }
+    .speech-card { padding: 16px; gap: 10px; flex-direction: row; }
+    .speech-avatar { width: 36px; height: 36px; font-size: 13px; }
+    .speech-text { font-size: 14px; }
+    .speech-time { display: none; }
+    .topic-header h1 { font-size: 18px; }
+    .top-bar { padding: 10px 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span class="live-badge"><span class="dot"></span> LIVE</span>
+        <span class="top-bar-title">圆桌讨论</span>
+      </div>
+      <div class="top-bar-meta">4 位参与者 · 已进行 12 分钟</div>
+    </div>
+  </div>
+
+  <!-- 内容区 -->
+  <div class="content">
+    <div class="topic-header">
+      <h1>如何设计一个低门槛的 AI 协作讨论平台？</h1>
+      <p>Roundtable AI · rt_36c7dbdd</p>
+    </div>
+
+    <!-- 历史发言 1 -->
+    <div class="speech-card">
+      <div class="speech-avatar product">饼</div>
+      <div class="speech-body">
+        <div class="speech-meta">
+          <span class="speech-name">饼哥</span>
+          <span class="speech-role product">产品</span>
+          <span class="speech-time">2 min ago</span>
+        </div>
+        <div class="speech-text">我觉得核心问题是降低门槛。现在用户要配置 channel 才能看到讨论内容，这个流程太重了。能不能讨论一开始就有个链接可以直接分享？</div>
+      </div>
+    </div>
+
+    <!-- 历史发言 2 -->
+    <div class="speech-card">
+      <div class="speech-avatar design">像</div>
+      <div class="speech-body">
+        <div class="speech-meta">
+          <span class="speech-name">像素姐</span>
+          <span class="speech-role design">设计</span>
+          <span class="speech-time">1 min ago</span>
+        </div>
+        <div class="speech-text">同意饼哥的观点。从体验上来说，我希望这个页面像一个"现场直播"的感觉——等待中的倒计时、实时滚动的发言流、最后汇总的结论卡片。三种状态要有清晰的视觉区分。</div>
+      </div>
+    </div>
+
+    <!-- 新发言（高亮态） -->
+    <div class="speech-card highlighted fade-in">
+      <div class="speech-avatar engineer">码</div>
+      <div class="speech-body">
+        <div class="speech-meta">
+          <span class="speech-name">码飞</span>
+          <span class="speech-role engineer">工程</span>
+          <span class="speech-time">just now</span>
+        </div>
+        <div class="speech-text">技术上可以做，SSE 推送 + 静态骨架混合方案。讨论开始时自动生成一个 nanoid token URL，Express 单文件服务跑在主进程里，零配置零依赖。</div>
+      </div>
+    </div>
+
+    <!-- 流式打字指示器 -->
+    <div class="typing-indicator">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- 底部状态栏 -->
+  <div class="bottom-bar">
+    <p>🔄 实时更新中 · 断线自动重连</p>
+  </div>
+
+</body>
+</html>

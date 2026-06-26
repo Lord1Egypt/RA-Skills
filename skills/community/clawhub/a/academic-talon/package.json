@@ -1,0 +1,25 @@
+{
+  "name": "academic-talon",
+  "description": "A skill for searching academic papers, analyzing PDFs, and archiving to Zotero.",
+  "triggers": [
+    "literature review",
+    "find papers",
+    "research papers",
+    "survey papers",
+    "论文检索",
+    "相关工作",
+    "调研",
+    "PDF分析",
+    "Zotero归档"
+  ],
+  "usage_hint": "Call this skill when you need to search for academic papers, analyze PDF files, or archive papers to Zotero.",
+  "input_schema": {
+    "query": "string",
+    "action": "string",
+    "limit": "int",
+    "source": "string",
+    "pdf_path": "string",
+    "analysis_type": "string",
+    "paper_info": "object"
+  }
+}

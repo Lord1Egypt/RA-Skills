@@ -1,0 +1,24 @@
+{
+  "name": "agent-collaboration-protocol",
+  "displayName": "Agent Collaboration Protocol",
+  "version": "1.5.2",
+  "description": "Structured multi-agent collaboration for backend + frontend builds. Orchestrator, Backend Engineer, and Frontend Engineer roles work from a shared contract-first workspace with build directories, status tracking, recovery protocols, and integration verification.",
+  "author": "Hoffmann Board",
+  "license": "MIT-0",
+  "tags": [
+    "collaboration",
+    "multi-agent",
+    "workflow",
+    "backend",
+    "frontend",
+    "integration",
+    "contract-first",
+    "orchestration"
+  ],
+  "minOpenClawVersion": "1.0.0",
+  "repository": "https://github.com/clawhub/agent-collaboration-protocol",
+  "requirements": [
+    "OpenClaw v1.0.0+ with sessions_spawn support",
+    "Access to at least one backend-capable and one frontend-capable model"
+  ]
+}

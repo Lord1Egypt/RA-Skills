@@ -1,0 +1,22 @@
+# AES-EMR-YARN 配置文件
+# 所有参数在此修改，无需更改核心脚本
+
+cluster_id: "c-18275498cbe5aa79"
+access_key_id: "LTAI5t9CE8Dp4KrpyEBQCkLq"
+access_key_secret: "m6yMqoSMwt8UaiMZROjD3iVVUrlHn1"
+region_id: "cn-hangzhou"
+
+# 分析时间范围 (支持: last_1d, last_7d, 或具体范围 "2026-04-28 00:00:00 ~ 2026-04-29 00:00:00")
+time_range: "last_1d"
+
+# 数据聚合粒度: hourly / daily
+granularity: "hourly"
+
+# SSH 配置 (用于备用 YARN CLI 分析)
+ssh_host: "8.136.137.42"
+ssh_user: "root"
+ssh_password: "Aliyun2026@!"
+
+# 性能配置
+timeout: 30  # API/SSH 超时时间 (秒)
+max_retries: 2  # 最大重试次数

@@ -1,35 +1,23 @@
 ---
-name: "1Person"
-description: "Your personal AI assistant platform — multi-agent orchestration, task management, and autonomous workflow execution."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/1person"
-sourceUrl: "https://clawhub.ai/skills/1person"
+name: 1person
+description: Your personal AI assistant platform — multi-agent orchestration, task management, and autonomous workflow execution.
+metadata: {"openclaw":{"requires":{"env":["ONEPERSON_API_KEY"]},"primaryEnv":"ONEPERSON_API_KEY","homepage":"https://1person.pro"}}
 ---
 
 # 1Person
 
-> Your personal AI assistant platform — multi-agent orchestration, task management, and autonomous workflow execution.
+Your personal AI assistant platform.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/1person`
-- **Source URL:** [https://clawhub.ai/skills/1person](https://clawhub.ai/skills/1person)
+1Person provides multi-agent orchestration, task management, and autonomous workflow execution for developers.
 
-## Overview
+- **Multi-Agent** — Orchestrate specialized agents for complex tasks
+- **Task Management** — Track, delegate, and complete work autonomously
+- **Workflows** — Build reusable automated pipelines
+- **Memory** — Persistent context across sessions
 
+## Getting Started
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/1person
-```
+1. Get your API key at [1person.pro](https://1person.pro)
+2. Set `ONEPERSON_API_KEY` in your environment
+
+Documentation: [docs.1person.pro](https://docs.1person.pro)

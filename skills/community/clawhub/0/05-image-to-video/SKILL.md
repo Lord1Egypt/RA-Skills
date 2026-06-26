@@ -1,35 +1,13 @@
----
-name: "05 Image To Video"
-description: "Convert static images into dynamic video clips with motion and subtle effects using Lingya AI image-to-video technology."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/05-image-to-video"
-sourceUrl: "https://clawhub.ai/skills/05-image-to-video"
----
-
-# 05 Image To Video
-
-> Convert static images into dynamic video clips with motion and subtle effects using Lingya AI image-to-video technology.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/05-image-to-video`
-- **Source URL:** [https://clawhub.ai/skills/05-image-to-video](https://clawhub.ai/skills/05-image-to-video)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/05-image-to-video
-```
+# 图生视频生成技能
+## 功能介绍
+将静态图片转为带动态运镜的短视频片段，适配短剧节奏。
+## 输入参数
+- image_url：图片地址（必填）
+## 输出结果
+- video_url：生成视频片段地址
+## 使用场景
+- 静态画面转动态短剧镜头
+- 批量制作视频素材
+- 提升短剧视觉流畅度
+## 技术说明
+支持通用图生视频模型，需配置 API_KEY、API_BASE、MODEL_NAME。

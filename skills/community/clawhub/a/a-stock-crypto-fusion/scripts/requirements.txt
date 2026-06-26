@@ -1,0 +1,5 @@
+# Tested 2026-03-11
+akshare==1.18.38
+ccxt==4.5.42
+pandas==3.0.1
+requests==2.32.5

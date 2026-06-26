@@ -1,0 +1,13 @@
+{
+  "name": "agent-context-memory",
+  "version": "1.0.0",
+  "description": "Agent 上下文管理方法论：五层文件体系 + 启动协议 + 记忆生命周期，让 AI Agent 跨 session 保持记忆。附带自动提炼脚本。",
+  "author": "349840432m-dev",
+  "license": "MIT-0",
+  "permissions": [],
+  "entry": "SKILL.md",
+  "tags": ["agent", "memory", "context", "session", "productivity", "workflow", "automation"],
+  "models": ["*"],
+  "minOpenClawVersion": "0.8.0",
+  "acceptLicenseTerms": true
+}

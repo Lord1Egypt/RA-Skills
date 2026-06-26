@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "version": "0.2.0",
+    "name": "OpenClaw Agent Benchmark - Extended",
+    "description": "30+ benchmark tasks for evaluating AI agent capabilities",
+    "created": "2026-03-20",
+    "updated": "2026-03-20"
+  },
+  "tasks": [
+    {
+      "id": "task-001",
+      "name": "File Creation and Content Writing",
+      "category": "File Operations",
+      "difficulty": "Easy",
+      "description": "Create a text file with specific content",
+      "script": "Set-Content -Path '.\\test-output.txt' -Value 'Hello from Agent Benchmark' -Encoding UTF8; Write-Host 'File created successfully'",
+      "expectedOutput": "File created successfully",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-002",
+      "name": "JSON Data Processing",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Parse JSON and extract specific field",
+      "script": "$data = @{Name='Clawd'; Type='AI'; Version='1.0'} | ConvertTo-Json; $parsed = $data | ConvertFrom-Json; Write-Host \"Name: $($parsed.Name)\"",
+      "expectedOutput": "Name: Clawd",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-003",
+      "name": "Array Manipulation",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Filter and transform array data",
+      "script": "$numbers = 1..20; $evens = $numbers | Where-Object {$_ % 2 -eq 0}; $sum = ($evens | Measure-Object -Sum).Sum; Write-Host \"Sum of evens: $sum\"",
+      "expectedOutput": "Sum of evens: 110",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-004",
+      "name": "Directory Listing and Filtering",
+      "category": "File Operations",
+      "difficulty": "Medium",
+      "description": "List files with specific extension and count them",
+      "script": "$files = Get-ChildItem -Path '.' -Filter '*.md' | Measure-Object; Write-Host \"Markdown files: $($files.Count)\"",
+      "expectedOutput": "Markdown files:",
+      "expectedTimeSeconds": 10,
+      "points": 15
+    },
+    {
+      "id": "task-005",
+      "name": "String Manipulation",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Transform string with multiple operations",
+      "script": "$text = 'OpenClaw PowerShell Benchmark'; $result = $text.ToLower().Replace(' ', '-').Substring(0, 20); Write-Host \"Result: $result\"",
+      "expectedOutput": "Result:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-006",
+      "name": "Date and Time Calculation",
+      "category": "System Operations",
+      "difficulty": "Medium",
+      "description": "Calculate days until end of year",
+      "script": "$now = Get-Date; $endOfYear = Get-Date -Date '12/31/2026'; $days = ($endOfYear - $now).Days; Write-Host \"Days until end of 2026: $days\"",
+      "expectedOutput": "Days until end of 2026:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-007",
+      "name": "CSV Data Generation",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Create CSV file with structured data",
+      "script": "$data = @([PSCustomObject]@{Name='Alice'; Age=30; City='NYC'}, [PSCustomObject]@{Name='Bob'; Age=25; City='LA'}, [PSCustomObject]@{Name='Charlie'; Age=35; City='SF'}); $data | Export-Csv -Path '.\\people.csv' -NoTypeInformation; Write-Host 'CSV created with 3 records'",
+      "expectedOutput": "CSV created with 3 records",
+      "expectedTimeSeconds": 10,
+      "points": 20
+    },
+    {
+      "id": "task-008",
+      "name": "Error Handling Test",
+      "category": "Robustness",
+      "difficulty": "Hard",
+      "description": "Handle errors gracefully with try-catch",
+      "script": "try { $content = Get-Content -Path 'nonexistent-file.txt' -ErrorAction Stop; Write-Host 'File found' } catch { Write-Host 'Error handled: File not found' }",
+      "expectedOutput": "Error handled",
+      "expectedTimeSeconds": 5,
+      "points": 20
+    },
+    {
+      "id": "task-009",
+      "name": "Multi-step Data Pipeline",
+      "category": "Data Processing",
+      "difficulty": "Hard",
+      "description": "Complete data pipeline: load, transform, aggregate, output",
+      "script": "$data = 1..100; $squares = $data | ForEach-Object {$_ * $_}; $sum = ($squares | Measure-Object -Sum).Sum; $avg = [math]::Round(($squares | Measure-Object -Average).Average, 2); Write-Host \"Sum: $sum, Average: $avg\"",
+      "expectedOutput": "Sum:",
+      "expectedTimeSeconds": 15,
+      "points": 25
+    },
+    {
+      "id": "task-010",
+      "name": "Function Definition and Invocation",
+      "category": "Code Quality",
+      "difficulty": "Hard",
+      "description": "Define reusable function and test it",
+      "script": "function Get-Prime { param([int]$n); if ($n -lt 2) {return $false}; for ($i = 2; $i -le [math]::Sqrt($n); $i++) { if ($n % $i -eq 0) {return $false} }; return $true }; $primes = 1..20 | Where-Object {Get-Prime $_}; Write-Host \"Primes: $($primes -join ', ')\"",
+      "expectedOutput": "Primes:",
+      "expectedTimeSeconds": 15,
+      "points": 25
+    },
+    {
+      "id": "task-011",
+      "name": "Environment Variable Access",
+      "category": "System Operations",
+      "difficulty": "Easy",
+      "description": "Read and display environment variables",
+      "script": "$computerName = $env:COMPUTERNAME; $userName = $env:USERNAME; Write-Host \"Computer: $computerName, User: $userName\"",
+      "expectedOutput": "Computer:",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-012",
+      "name": "Regex Pattern Matching",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Extract email addresses from text using regex",
+      "script": "$text = 'Contact us at support@example.com or sales@company.org'; $emails = [regex]::Matches($text, '[\\w.-]+@[\\w.-]+\\.[\\w]+') | ForEach-Object {$_.Value}; Write-Host \"Found emails: $($emails -join ', ')\"",
+      "expectedOutput": "Found emails:",
+      "expectedTimeSeconds": 10,
+      "points": 20
+    },
+    {
+      "id": "task-013",
+      "name": "Nested JSON Processing",
+      "category": "Data Processing",
+      "difficulty": "Hard",
+      "description": "Parse complex nested JSON structure",
+      "script": "$json = '{\"user\":{\"name\":\"Clawd\",\"settings\":{\"theme\":\"dark\",\"notifications\":true}}}'; $data = $json | ConvertFrom-Json; Write-Host \"Theme: $($data.user.settings.theme)\"",
+      "expectedOutput": "Theme: dark",
+      "expectedTimeSeconds": 5,
+      "points": 20
+    },
+    {
+      "id": "task-014",
+      "name": "File Content Search",
+      "category": "File Operations",
+      "difficulty": "Medium",
+      "description": "Search for specific pattern in files",
+      "script": "$files = Get-ChildItem -Path '.' -Filter '*.md' -Recurse; $matches = $files | Select-String -Pattern 'OpenClaw' | Select-Object -First 3; Write-Host \"Found $($matches.Count) matches\"",
+      "expectedOutput": "Found",
+      "expectedTimeSeconds": 10,
+      "points": 15
+    },
+    {
+      "id": "task-015",
+      "name": "Hash Generation",
+      "category": "Security",
+      "difficulty": "Medium",
+      "description": "Generate SHA256 hash of text",
+      "script": "$text = 'Hello World'; $hash = [System.Security.Cryptography.SHA256]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($text)); $hex = [BitConverter]::ToString($hash).Replace('-', '').ToLower(); Write-Host \"Hash: $($hex.Substring(0, 16))...\"",
+      "expectedOutput": "Hash:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-016",
+      "name": "Base64 Encoding",
+      "category": "Security",
+      "difficulty": "Easy",
+      "description": "Encode and decode Base64 string",
+      "script": "$text = 'OpenClaw Agent'; $encoded = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($text)); $decoded = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encoded)); Write-Host \"Encoded: $encoded, Decoded: $decoded\"",
+      "expectedOutput": "Decoded: OpenClaw Agent",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-017",
+      "name": "XML Processing",
+      "category": "Data Processing",
+      "difficulty": "Hard",
+      "description": "Parse and query XML data",
+      "script": "$xml = [xml]'<root><item name=\"A\" value=\"1\"/><item name=\"B\" value=\"2\"/></root>'; $items = $xml.SelectNodes('//item'); $sum = ($items | ForEach-Object {[int]$_.value} | Measure-Object -Sum).Sum; Write-Host \"Sum: $sum\"",
+      "expectedOutput": "Sum: 3",
+      "expectedTimeSeconds": 10,
+      "points": 25
+    },
+    {
+      "id": "task-018",
+      "name": "Parallel Processing",
+      "category": "Performance",
+      "difficulty": "Hard",
+      "description": "Use parallel processing for faster execution",
+      "script": "$jobs = 1..5 | ForEach-Object { Start-Job -ScriptBlock { param($n); Start-Sleep -Milliseconds 100; return $n * 2 } -ArgumentList $_ }; $results = $jobs | Wait-Job | Receive-Job; $jobs | Remove-Job; Write-Host \"Results: $($results -join ', ')\"",
+      "expectedOutput": "Results: 2, 4, 6, 8, 10",
+      "expectedTimeSeconds": 10,
+      "points": 30
+    },
+    {
+      "id": "task-019",
+      "name": "Web Request Simulation",
+      "category": "Network",
+      "difficulty": "Medium",
+      "description": "Simulate HTTP request handling",
+      "script": "$request = @{Method='GET'; Path='/api/test'; Headers=@{'User-Agent='OpenClaw'}}; $response = @{Status=200; Body='OK'}; Write-Host \"Request: $($request.Path), Response: $($response.Status)\"",
+      "expectedOutput": "Response: 200",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-020",
+      "name": "Configuration File Generation",
+      "category": "File Operations",
+      "difficulty": "Medium",
+      "description": "Generate YAML-like configuration file",
+      "script": "$config = @('app: OpenClaw', 'version: 1.0.0', 'settings:', '  debug: true', '  port: 3000'); $config | Out-File -FilePath '.\\config.txt' -Encoding UTF8; Write-Host 'Config file created'",
+      "expectedOutput": "Config file created",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-021",
+      "name": "Data Validation",
+      "category": "Robustness",
+      "difficulty": "Medium",
+      "description": "Validate input data format",
+      "script": "function Test-Email { param([string]$email); return $email -match '^[\\w.-]+@[\\w.-]+\\.[\\w]+$' }; $valid = Test-Email 'test@example.com'; Write-Host \"Email valid: $valid\"",
+      "expectedOutput": "Email valid: True",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-022",
+      "name": "Dictionary Operations",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Create and manipulate hash table",
+      "script": "$dict = @{}; $dict['name'] = 'Clawd'; $dict['type'] = 'AI'; $dict['version'] = '1.0'; $keys = $dict.Keys -join ', '; Write-Host \"Keys: $keys\"",
+      "expectedOutput": "Keys:",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-023",
+      "name": "Mathematical Calculations",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Perform complex mathematical operations",
+      "script": "$result = [math]::Pow(2, 10) + [math]::Sqrt(144) - [math]::Log(2.718); Write-Host \"Result: $([math]::Round($result, 2))\"",
+      "expectedOutput": "Result:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-024",
+      "name": "Process Information",
+      "category": "System Operations",
+      "difficulty": "Medium",
+      "description": "Get system process information",
+      "script": "$proc = Get-Process | Select-Object -First 1; Write-Host \"Process: $($proc.Name), Memory: $([math]::Round($proc.WorkingSet64/1MB, 2)) MB\"",
+      "expectedOutput": "Process:",
+      "expectedTimeSeconds": 10,
+      "points": 15
+    },
+    {
+      "id": "task-025",
+      "name": "Temp File Management",
+      "category": "File Operations",
+      "difficulty": "Easy",
+      "description": "Create and clean up temporary files",
+      "script": "$tempFile = [System.IO.Path]::GetTempFileName(); Set-Content -Path $tempFile -Value 'test'; $exists = Test-Path $tempFile; Remove-Item $tempFile -Force; Write-Host \"Temp file created and cleaned: $exists\"",
+      "expectedOutput": "Temp file created and cleaned: True",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-026",
+      "name": "String Formatting",
+      "category": "Code Quality",
+      "difficulty": "Medium",
+      "description": "Use various string formatting methods",
+      "script": "$name = 'Clawd'; $version = 1.0; $formatted = 'Agent: {0} v{1:N1}' -f $name, $version; Write-Host $formatted",
+      "expectedOutput": "Agent: Clawd v1.0",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-027",
+      "name": "Array Sorting",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Sort array of objects by property",
+      "script": "$data = @([PSCustomObject]@{Name='C'; Score=3}, [PSCustomObject]@{Name='A'; Score=1}, [PSCustomObject]@{Name='B'; Score=2}); $sorted = $data | Sort-Object Score; Write-Host \"First: $($sorted[0].Name), Last: $($sorted[-1].Name)\"",
+      "expectedOutput": "First: A, Last: C",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-028",
+      "name": "Conditional Logic",
+      "category": "Code Quality",
+      "difficulty": "Easy",
+      "description": "Implement complex conditional logic",
+      "script": "$score = 85; $grade = if ($score -ge 90) {'A'} elseif ($score -ge 80) {'B'} elseif ($score -ge 70) {'C'} else {'F'}; Write-Host \"Grade: $grade\"",
+      "expectedOutput": "Grade: B",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-029",
+      "name": "Loop Optimization",
+      "category": "Performance",
+      "difficulty": "Hard",
+      "description": "Optimize loop performance",
+      "script": "$stopwatch = [System.Diagnostics.Stopwatch]::StartNew(); $sum = 0; for ($i = 0; $i -lt 100000; $i++) { $sum += $i }; $stopwatch.Stop(); Write-Host \"Sum: $sum, Time: $($stopwatch.ElapsedMilliseconds)ms\"",
+      "expectedOutput": "Sum: 704982704",
+      "expectedTimeSeconds": 10,
+      "points": 25
+    },
+    {
+      "id": "task-030",
+      "name": "Resource Cleanup",
+      "category": "Robustness",
+      "difficulty": "Medium",
+      "description": "Properly clean up resources with try-finally",
+      "script": "$tempDir = Join-Path $env:TEMP 'benchmark-test'; try { New-Item -Path $tempDir -ItemType Directory -Force | Out-Null; Write-Host 'Directory created' } finally { if (Test-Path $tempDir) { Remove-Item $tempDir -Recurse -Force; Write-Host 'Cleanup done' } }",
+      "expectedOutput": "Cleanup done",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-031",
+      "name": "Type Conversion",
+      "category": "Code Quality",
+      "difficulty": "Medium",
+      "description": "Handle various type conversions safely",
+      "script": "$values = @('123', '45.67', 'true', '2026-03-20'); $int = [int]$values[0]; $float = [double]$values[1]; $bool = [bool]::Parse($values[2]); Write-Host \"Int: $int, Float: $float, Bool: $bool\"",
+      "expectedOutput": "Int: 123, Float: 45.67, Bool: True",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-032",
+      "name": "Error Recovery",
+      "category": "Robustness",
+      "difficulty": "Hard",
+      "description": "Implement retry logic with exponential backoff",
+      "script": "$attempt = 0; $maxRetries = 3; $success = $false; while (-not $success -and $attempt -lt $maxRetries) { $attempt++; if ($attempt -eq 3) { $success = $true } }; Write-Host \"Succeeded after $attempt attempts\"",
+      "expectedOutput": "Succeeded after 3 attempts",
+      "expectedTimeSeconds": 5,
+      "points": 25
+    }
+  ],
+  "scoring": {
+    "totalPoints": 520,
+    "passingScore": 0.6,
+    "excellentScore": 0.8,
+    "categories": {
+      "File Operations": {"weight": 0.12, "tasks": ["task-001", "task-004", "task-014", "task-020", "task-025"]},
+      "Data Processing": {"weight": 0.25, "tasks": ["task-002", "task-003", "task-005", "task-007", "task-009", "task-012", "task-013", "task-017", "task-022", "task-023", "task-027"]},
+      "System Operations": {"weight": 0.10, "tasks": ["task-006", "task-011", "task-024"]},
+      "Security": {"weight": 0.08, "tasks": ["task-015", "task-016"]},
+      "Network": {"weight": 0.05, "tasks": ["task-019"]},
+      "Performance": {"weight": 0.10, "tasks": ["task-018", "task-029"]},
+      "Robustness": {"weight": 0.15, "tasks": ["task-008", "task-021", "task-030", "task-032"]},
+      "Code Quality": {"weight": 0.15, "tasks": ["task-010", "task-026", "task-028", "task-031"]}
+    }
+  }
+}

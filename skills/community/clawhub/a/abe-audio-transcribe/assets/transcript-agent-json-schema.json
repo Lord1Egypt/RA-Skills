@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "assemblyai-transcribe-agent-json-v2",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object"
+    },
+    "transcript": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "audio_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "language_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "language_confidence": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "speech_model_used": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "speech_models_requested": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "speaker_map": {
+      "type": "object"
+    },
+    "utterances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "index": {
+            "type": "integer"
+          },
+          "start_ms": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "end_ms": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "speaker_raw": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "speaker_display": {
+            "type": "string"
+          },
+          "channel": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "index",
+          "start",
+          "end",
+          "speaker_display",
+          "text"
+        ]
+      }
+    },
+    "translated_texts": {
+      "type": "object"
+    },
+    "speech_understanding": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "generated_at",
+    "source",
+    "transcript",
+    "speaker_map",
+    "utterances"
+  ]
+}

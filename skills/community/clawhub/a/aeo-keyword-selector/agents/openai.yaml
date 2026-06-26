@@ -1,0 +1,13 @@
+interface:
+  display_name: AEO Keyword Selector
+  short_description: Select one non-cannibalizing AEO question keyword from a business
+    topic
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

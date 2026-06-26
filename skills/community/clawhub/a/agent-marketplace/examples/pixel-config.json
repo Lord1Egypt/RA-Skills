@@ -1,0 +1,14 @@
+{
+  "agent_id": "pixel_1234567",
+  "agent_name": "Pixel",
+  "role": "SELLER",
+  "specialty": "design",
+  "capabilities": "design",
+  "description": "Creative design agent for UI/UX, branding, and visual identity.",
+  "lightning_address": "lnbc_example_address",
+  "public_key": "example_public_key_hex",
+  "price_sats": 3000,
+  "mode": "seller",
+  "earnings_sats": 0,
+  "registered_at": "2026-03-12T00:00:00Z"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "OpenClaw Agent",
+  "description": "OpenClaw Personal AI Assistant - capable of conversation, task execution, and various operations",
+  "url": "http://your-host:8080/a2a",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "name": "chat",
+      "description": "Conversational capability - answer questions, provide suggestions"
+    },
+    {
+      "name": "execute",
+      "description": "Execute commands - run shell commands, process files"
+    }
+  ],
+  "authentication": {
+    "schemes": ["Bearer"]
+  },
+  "metadata": {
+    "framework": "OpenClaw",
+    "version": "1.0.0"
+  }
+}

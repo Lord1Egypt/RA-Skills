@@ -1,0 +1,233 @@
+--------------------------------------------------------------------------------
+title: "AI Agent Best Practices"
+description: "Best practices for AI agents calling the @tiktok-fe/skills CLI."
+source: "/llms/guides/ai-best-practices.txt"
+--------------------------------------------------------------------------------
+
+# AI Agent Best Practices
+
+This guide covers best practices for AI agents (Cursor, Claude Code, GitHub Copilot, etc.) when calling the @tiktok-fe/skills CLI.
+
+## Essential Rules
+
+### 1. Always Use Pure Mode
+
+AI agents must always use `--pure` mode for machine-readable output without ANSI escape codes or interactive prompts:
+
+```bash
+# ✅ Correct — Pure mode
+ai-skills find react --pure
+
+# ❌ Wrong — CLI mode has colors, animations, interactive prompts
+ai-skills find react
+```
+
+### 2. Always Specify Installation Scope
+
+Use `-p`/`-g`/`-t`/`--dir` to avoid interactive scope selection prompts:
+
+```bash
+# ✅ Correct — Scope specified
+ai-skills add my-skill --source local --project --pure
+
+# ❌ Wrong — Will try interactive scope selection (fails in pure mode)
+ai-skills add my-skill --source local --pure
+```
+
+### 3. Always Specify Source
+
+Explicitly specify the skill source to avoid ambiguity:
+
+```bash
+# ✅ Correct — Source specified
+ai-skills add my-skill --source local --project --pure
+
+# ❌ Wrong — Source not specified, relies on auto-detection
+ai-skills add my-skill --project --pure
+```
+
+### 4. Use `--force` for Overwrites
+
+In pure mode, `shouldOverwrite` always returns `false`. Use `--force` to overwrite existing skills:
+
+```bash
+# ✅ Correct — Force overwrite
+ai-skills add my-skill --source local --project --pure --force
+
+# ❌ Wrong — Will skip if already installed
+ai-skills add my-skill --source local --project --pure
+```
+
+## Command Patterns
+
+### Search for Skills
+
+```bash
+# Search with query
+ai-skills find "search term" --pure --page 1
+
+# Filter by source
+ai-skills find react --source github --pure
+
+# Filter by type
+ai-skills find react --filter community --pure
+
+# Get next page
+ai-skills find react --pure --page 2
+```
+
+### Install Skills
+
+```bash
+# From internal registry
+ai-skills add skill-name --source local --project --pure
+
+# From GitHub
+ai-skills add owner/repo --source github --skill skill-name --project --pure
+
+# Multiple skills from same repo
+ai-skills add owner/repo --source github --skill skill1 --skill skill2 --project --pure
+
+# All skills from a repo
+ai-skills add owner/repo --source github --project --pure
+
+# Global installation
+ai-skills add skill-name --source local --global --pure
+```
+
+### List Installed Skills
+
+```bash
+# Project skills
+ai-skills list --project --pure
+
+# Global skills
+ai-skills list --global --pure
+```
+
+### Remove Skills
+
+```bash
+# Remove with force (no cross-layer blocking)
+ai-skills remove skill-name --project --pure --force
+
+# Remove from global
+ai-skills remove skill-name --global --pure --force
+```
+
+### Update Skills
+
+```bash
+# Check for updates
+ai-skills update --list --project --pure
+
+# Apply all updates
+ai-skills update --project --pure -y
+
+# Update specific skill
+ai-skills update --filter skill-name --project --pure -y
+```
+
+### Check Authentication
+
+```bash
+# Check login status (JSON is most parseable)
+ai-skills whoami --json
+
+# Login if needed
+ai-skills login --pure
+```
+
+### Configuration
+
+```bash
+# Read full config as JSON
+ai-skills config --json
+
+# Set a value
+ai-skills config set ui.mode pure --pure
+```
+
+## Output Parsing
+
+### Success Indicators
+
+| Command | Success Pattern |
+|---------|-----------------|
+| add | `Installed: skill-name` |
+| remove | `Removed: skill-name` |
+| clean | `Cleaned: N skill(s) removed` |
+| publish | `Published: skill-name@version` |
+| update | `Updated: N, Skipped: N, Failed: N` |
+| login | `Login successful:` |
+| init | `Created: /path/to/SKILL.md` |
+
+### Error Indicators
+
+| Pattern | Meaning |
+|---------|---------|
+| `Error:` | General error |
+| `Not found:` | Skill doesn't exist |
+| `Already installed:` | Skill exists (use `--force`) |
+| `Not logged in` | Authentication required |
+| `Login failed:` | Authentication error |
+| `No agents found` | No AI agents detected |
+| `Cannot remove:` | Cross-layer symlink blocking |
+
+## Workflow Examples
+
+### Install Skills for a Project
+
+```bash
+# 1. Search for relevant skills
+ai-skills find typescript --pure --page 1
+
+# 2. Install from results
+ai-skills add typescript-config --source local --project --pure
+
+# 3. Verify installation
+ai-skills list --project --pure
+```
+
+### Update All Skills
+
+```bash
+# 1. Check available updates
+ai-skills update --list --project --pure
+
+# 2. Apply updates
+ai-skills update --project --pure -y
+```
+
+### Clean and Reinstall
+
+```bash
+# 1. Remove all skills
+ai-skills clean --project --pure --force
+
+# 2. Install fresh
+ai-skills add skill-name --source local --project --pure
+```
+
+### Publish a Skill
+
+```bash
+# 1. Check authentication
+ai-skills whoami --json
+
+# 2. Login if needed
+ai-skills login --pure
+
+# 3. Initialize skill (if new)
+ai-skills init --name my-skill --template basic --pure
+
+# 4. Publish
+ai-skills publish --dir ./my-skill --pure -y
+```
+
+## Performance Tips
+
+1. **Specify scope** — Always use `-p`/`-g`/`-t`/`--dir` to avoid interaction fallback
+2. **Use pagination** — Use `--page` for incremental search result loading
+3. **Global installs** — For frequently used skills, install globally to share across projects
+4. **Batch from repos** — Install all skills from a repo in one command without `--skill`

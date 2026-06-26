@@ -1,0 +1,16 @@
+{
+  "name": "aavegotchi-svg-custom-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Custom OG Aavegotchi SVG renderer using the official Base diamond preview/view functions.",
+  "type": "module",
+  "scripts": {
+    "render": "node scripts/render-svg-custom.mjs",
+    "build:wearables": "node scripts/build-wearables-reference.mjs"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "json5": "^2.2.3",
+    "viem": "^2.38.2"
+  }
+}

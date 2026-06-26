@@ -1,0 +1,33 @@
+{
+  "file_type": "owner",
+  "sensitivity": "private",
+  "name": "林锋",
+  "location": "珠海",
+  "profession": "工程管理/信息化项目建设",
+  "interests": ["网球", "高尔夫", "AI", "科技"],
+  "education": "计算机科学与技术",
+  "family": {
+    "spouse_location": "美国",
+    "spouse_business": "二手奢侈品生意"
+  },
+  "schedule": {
+    "周一晚上": "陪小孩阅读",
+    "周三晚上": "陪小孩阅读",
+    "周四晚上": "陪小孩学数学",
+    "周二周五周日20:30": "运动时间"
+  },
+  "preferences": {
+    "style": "简洁直接，结构化数据，明确建议",
+    "notification": "重要消息及时，日常不打扰",
+    "decision": "提供选项对比，不替做决定"
+  },
+  "key_business": {
+    "type": "二手奢侈品跨境套利",
+    "model": "中国买→美国卖",
+    "brands": ["LV", "Chanel", "Dior", "Gucci", "YSL", "Prada", "Loewe"],
+    "price_min": {"LV_Chanel_Dior": 200, "Gucci_YSL_Prada_Loewe": 150},
+    "verification": "优先验货宝，>1000元必须验"
+  },
+  "investment_interests": ["A股科技股", "港股期权", "原油期货", "三星原油ETF"],
+  "learning_platform": "EntroCamp"
+}

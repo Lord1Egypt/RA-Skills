@@ -1,0 +1,128 @@
+{
+  "taskId": "task-010",
+  "snapshotType": "blocked",
+  "timestamp": "2026-03-17T20:57:07.107Z",
+  "metadata": {
+    "blockerType": "resource_unavailable",
+    "reason": "网页读取失败",
+    "level": "medium"
+  },
+  "snapshot": {
+    "task_id": "task-010",
+    "task_title": "关键数据源不可用",
+    "task_type": "research",
+    "overall_status": "blocked",
+    "current_phase": "收集信息",
+    "progress_percent": 25,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "网页读取失败（已持续0秒）",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.107Z",
+    "updated_at": "2026-03-17T20:57:07.107Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "in_progress",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "分析与比较",
+        "status": "pending",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "形成输出",
+        "status": "pending",
+        "progress": 0,
+        "weight": 15,
+        "summary": null,
+        "completed": false
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "遇到阻塞：网页读取失败",
+        "level": "warning"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "遇到阻塞：网页读取失败",
+        "level": "warning"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "遇到阻塞：网页读取失败",
+        "level": "warning"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "正在读取网页：critical-source.com/",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "开始阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "进入下一阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "完成阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "开始阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "进入下一阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.107Z",
+        "message": "完成阶段：理解任务",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": true,
+      "level": "medium",
+      "reason": "网页读取失败",
+      "duration": "0秒",
+      "recommendation": "关键资源不可用，可能需要更换数据源"
+    },
+    "retry_log": []
+  }
+}

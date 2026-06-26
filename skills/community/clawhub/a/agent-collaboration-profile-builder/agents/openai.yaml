@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Collaboration Profile Builder"
+  short_description: "Turn user answers into an agent-readable collaboration profile"
+  default_prompt: "Use $agent-collaboration-profile-builder to build an agent-readable collaboration profile from a guided questionnaire."

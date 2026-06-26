@@ -1,0 +1,18 @@
+{
+  "name": "agent-bug-submission",
+  "version": "1.0.0",
+  "description": "智能体缺陷提交 - 提交缺陷到缺陷管理系统，跟踪缺陷生命周期",
+  "author": "zhanju.zhang",
+  "license": "MIT",
+  "keywords": [
+    "bug-submission",
+    "bug-tracking",
+    "defect-management",
+    "bug-report",
+    "issue-tracking"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

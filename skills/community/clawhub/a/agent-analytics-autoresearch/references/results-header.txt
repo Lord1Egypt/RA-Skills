@@ -1,0 +1,1 @@
+round	candidate_a	candidate_b	candidate_ab	winner	borda_a	borda_b	borda_ab	status	rationale

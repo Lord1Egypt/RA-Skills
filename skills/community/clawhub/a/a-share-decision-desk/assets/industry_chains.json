@@ -1,0 +1,88 @@
+{
+  "themes": [
+    {
+      "id": "optical_module_chain",
+      "label": "光模块产业链",
+      "query": "A股 光模块产业链股票",
+      "categories": ["huge_future", "huge_name_release"],
+      "triggers": ["光模块", "cpo", "光通信", "光芯片", "铜缆", "光器件", "datacenter", "data center"],
+      "preferred_groups": ["tech_repair", "cross_cycle_ai_hardware", "cross_cycle_anchor12"],
+      "strong_signal": "产业链核心票同步转强，说明最强科技主线正在扩散。",
+      "weak_signal": "只有单一龙头强，链条中军和二线不跟，说明产业链扩散不足。"
+    },
+    {
+      "id": "compute_power_chain",
+      "label": "算力产业链",
+      "query": "A股 算力产业链股票",
+      "categories": ["huge_future", "huge_name_release"],
+      "triggers": ["算力", "服务器", "液冷", "数据中心", "idc", "server", "compute", "cooling"],
+      "preferred_groups": ["tech_repair", "cross_cycle_ai_hardware", "war_headwind_compute_power"],
+      "strong_signal": "服务器、液冷、IDC 同步改善，说明算力链从点状修复转向面状修复。",
+      "weak_signal": "只有少数硬件股强，平台链和IDC仍弱，说明算力修复不完整。"
+    },
+    {
+      "id": "semiconductor_chain",
+      "label": "半导体产业链",
+      "query": "A股 半导体产业链股票",
+      "categories": ["huge_future", "huge_name_release"],
+      "triggers": ["芯片", "半导体", "gpu", "gpus", "存储", "semiconductor", "chip", "chips"],
+      "preferred_groups": ["cross_cycle_semis", "cross_cycle_anchor12", "tech_repair"],
+      "strong_signal": "芯片、设备、封测同步企稳，说明科技修复有深度。",
+      "weak_signal": "高弹性芯片继续被压制，说明半导体只是跟随反弹。"
+    },
+    {
+      "id": "robotics_chain",
+      "label": "机器人与低空链",
+      "query": "A股 机器人产业链股票",
+      "categories": ["huge_future", "huge_name_release"],
+      "triggers": ["机器人", "humanoid", "robot", "drone", "无人机", "商业航天", "低空"],
+      "preferred_groups": ["cross_cycle_defense_industrial", "cross_cycle_anchor12"],
+      "strong_signal": "机器人与控制零部件同步走强，说明未来叙事开始向制造端扩散。",
+      "weak_signal": "题材热但中军不跟，说明仍停留在消息脉冲。"
+    },
+    {
+      "id": "oil_gas_chain",
+      "label": "油气受益链",
+      "query": "A股 石油天然气概念股",
+      "categories": ["huge_conflict"],
+      "triggers": ["oil", "crude", "brent", "wti", "lng", "gas", "shipping", "hormuz", "gulf", "iran", "israel"],
+      "preferred_groups": ["war_benefit_oil_coal", "war_shock_core12", "defensive_gauge"],
+      "strong_signal": "上游油气和综合能源央企共振走强，说明战争溢价仍在强化。",
+      "weak_signal": "只有最纯上游强，综合能源和煤炭不跟，说明受益扩散不足。"
+    },
+    {
+      "id": "coal_chain",
+      "label": "煤炭防御链",
+      "query": "A股 煤炭概念股",
+      "categories": ["huge_conflict"],
+      "triggers": ["coal", "energy", "动力煤", "煤炭", "神华", "coal mine"],
+      "preferred_groups": ["war_benefit_oil_coal", "defensive_gauge", "war_shock_core12"],
+      "strong_signal": "神华与弹性煤企一起走强，说明防御抱团正在向煤链扩散。",
+      "weak_signal": "只有红利煤强，弹性煤企不跟，说明只是稳健避险。"
+    },
+    {
+      "id": "idc_power_chain",
+      "label": "IDC与电力成本链",
+      "query": "A股 数据中心概念股",
+      "categories": ["huge_conflict", "huge_future"],
+      "triggers": ["electricity", "power", "data center", "datacenter", "idc", "电力", "电价"],
+      "preferred_groups": ["war_headwind_compute_power", "cross_cycle_ai_hardware"],
+      "strong_signal": "IDC 与温控链稳住，说明市场未继续惩罚高电耗资产。",
+      "weak_signal": "IDC 和火电同步走弱，说明成本冲击仍在压制估值。"
+    }
+  ],
+  "group_theme_hints": {
+    "core10": ["optical_module_chain", "compute_power_chain", "oil_gas_chain"],
+    "tech_repair": ["optical_module_chain", "compute_power_chain", "semiconductor_chain"],
+    "policy_beta": ["compute_power_chain"],
+    "defensive_gauge": ["oil_gas_chain", "coal_chain"],
+    "cross_cycle_anchor12": ["optical_module_chain", "compute_power_chain", "semiconductor_chain"],
+    "cross_cycle_ai_hardware": ["optical_module_chain", "compute_power_chain"],
+    "cross_cycle_semis": ["semiconductor_chain"],
+    "cross_cycle_software_platforms": ["compute_power_chain"],
+    "cross_cycle_defense_industrial": ["robotics_chain"],
+    "war_benefit_oil_coal": ["oil_gas_chain", "coal_chain"],
+    "war_headwind_compute_power": ["compute_power_chain", "idc_power_chain"],
+    "war_shock_core12": ["oil_gas_chain", "coal_chain", "idc_power_chain"]
+  }
+}

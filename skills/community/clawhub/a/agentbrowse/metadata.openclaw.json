@@ -1,0 +1,15 @@
+{
+  "homepage": "https://github.com/MercuryoAI/skills/blob/main/docs/agentbrowse/openclaw/marketplace/README.md",
+  "requires": {
+    "bins": ["agentbrowse"]
+  },
+  "install": [
+    {
+      "id": "npm",
+      "kind": "node",
+      "package": "@mercuryo-ai/agentbrowse-cli",
+      "bins": ["agentbrowse"],
+      "label": "Install AgentBrowse CLI (npm)"
+    }
+  ]
+}

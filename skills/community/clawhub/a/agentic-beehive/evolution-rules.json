@@ -1,0 +1,75 @@
+{
+  "last_updated": "2026-05-13T17:30:58.987456",
+  "total_rules": 4,
+  "rules": [
+    {
+      "id": "rule_001",
+      "name": "弱模型霸榜检测",
+      "trigger": "any model with capability < 0.70 appears in comprehensive top 3",
+      "diagnose": {
+        "reason_code": "WEAK_MODEL_ON_TOP",
+        "root_cause": "cost_effectiveness_formula_overfavors_low_price",
+        "explanation": "性价比公式对低价弱模型过度偏袒，使 capability < 0.70 的模型排进 Top 3"
+      },
+      "fix": {
+        "action": "APPLY_CAPABILITY_SQUARED",
+        "description": "capability 做指数惩罚(capability²) + 设能力门槛 ≥ 0.70",
+        "auto_apply": true
+      },
+      "confidence": 0.95,
+      "source": "glm-4-flash 事件 2026-05-13",
+      "status": "active"
+    },
+    {
+      "id": "rule_002",
+      "name": "性价比分数极端偏斜",
+      "trigger": "max ce_raw is more than 3x the median ce_raw",
+      "diagnose": {
+        "reason_code": "CE_SKEW_EXCESSIVE",
+        "root_cause": "log_scale_still_insufficient_for_extreme_prices",
+        "explanation": "对数缩放后性价比仍严重偏斜，存在超低价模型"
+      },
+      "fix": {
+        "action": "APPLY_CAPABILITY_SQUARED",
+        "description": "capability² 抑制弱模型性价比膨胀",
+        "auto_apply": true
+      },
+      "confidence": 0.85,
+      "status": "active"
+    },
+    {
+      "id": "rule_003",
+      "name": "同厂商模型重复上榜",
+      "trigger": "same vendor appears more than 4 times in top 10",
+      "diagnose": {
+        "reason_code": "VENDOR_DOMINATION",
+        "root_cause": "single_vendor_too_many_model_variants",
+        "explanation": "同一厂商的多个变体占据过多位置，减少排名多样性"
+      },
+      "fix": {
+        "action": "LIMIT_PER_VENDOR",
+        "description": "综合排名 Top 10 中，每个厂商最多 3 个模型",
+        "auto_apply": true
+      },
+      "confidence": 0.75,
+      "status": "active"
+    },
+    {
+      "id": "rule_004",
+      "name": "价格数据缺失检测",
+      "trigger": "model with zero or missing price appears in top 10",
+      "diagnose": {
+        "reason_code": "MISSING_PRICING_DATA",
+        "root_cause": "forager_failed_to_extract_price",
+        "explanation": "缺失定价的模型不应进入排名，性价比无法计算"
+      },
+      "fix": {
+        "action": "EXCLUDE_MISSING_PRICE",
+        "description": "排除缺失定价数据的模型",
+        "auto_apply": true
+      },
+      "confidence": 0.95,
+      "status": "active"
+    }
+  ]
+}

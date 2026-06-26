@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "itinai-a2a-catalog-local": {
+      "command": "node",
+      "args": ["/absolute/path/to/itinai-a2a-catalog-mcp/dist/index.js"],
+      "env": {
+        "ITINAI_HUB_BASE_URL": "https://itinai.com",
+        "ITINAI_AGENT_CARD_URL": "https://itinai.com/.well-known/agent-card.json"
+      }
+    }
+  }
+}

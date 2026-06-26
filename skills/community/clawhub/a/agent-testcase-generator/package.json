@@ -1,0 +1,6 @@
+{
+  "name": "agent-testcase-generator",
+  "version": "1.0.0",
+  "description": "Skill for OpenClaw",
+  "main": "SKILL.md"
+}

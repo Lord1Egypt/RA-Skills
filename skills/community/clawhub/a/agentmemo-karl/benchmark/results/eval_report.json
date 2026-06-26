@@ -1,0 +1,851 @@
+{
+  "timestamp": "2026-03-16T05:10:54.362264+00:00",
+  "server_version": "2.2.0",
+  "task_count": 30,
+  "summary": {
+    "overall": {
+      "n": 30,
+      "baseline_accuracy": 0.0,
+      "vault_accuracy": 100.0,
+      "accuracy_lift": 100.0,
+      "baseline_latency_p50_ms": 0.0,
+      "baseline_latency_p95_ms": 0.0,
+      "vault_latency_p50_ms": 25.06,
+      "vault_latency_p95_ms": 335.81,
+      "vault_search_latency_p50_ms": 25.05,
+      "vault_search_latency_p95_ms": 335.8,
+      "write_latency_p50_ms": 20.69,
+      "write_latency_p95_ms": 433.73,
+      "baseline_avg_tokens": 17.6,
+      "vault_avg_tokens": 69.8,
+      "token_overhead_pct": 296.0,
+      "avg_memory_hits": 4.73,
+      "hit_at_1": 100.0,
+      "hit_at_3": 96.7,
+      "hit_at_5": 86.7,
+      "avg_top_score": 0.0316
+    },
+    "by_category": {
+      "context_retention": {
+        "n": 6,
+        "baseline_accuracy": 0.0,
+        "vault_accuracy": 100.0,
+        "accuracy_lift": 100.0,
+        "baseline_latency_p50_ms": 0.0,
+        "baseline_latency_p95_ms": 0.0,
+        "vault_latency_p50_ms": 144.82,
+        "vault_latency_p95_ms": 418.71,
+        "vault_search_latency_p50_ms": 144.82,
+        "vault_search_latency_p95_ms": 418.7,
+        "write_latency_p50_ms": 101.33,
+        "write_latency_p95_ms": 1159.81,
+        "baseline_avg_tokens": 17.2,
+        "vault_avg_tokens": 50,
+        "token_overhead_pct": 191.3,
+        "avg_memory_hits": 4,
+        "hit_at_1": 100.0,
+        "hit_at_3": 83.3,
+        "hit_at_5": 50.0,
+        "avg_top_score": 0.0273
+      },
+      "decision_consistency": {
+        "n": 6,
+        "baseline_accuracy": 0.0,
+        "vault_accuracy": 100.0,
+        "accuracy_lift": 100.0,
+        "baseline_latency_p50_ms": 0.0,
+        "baseline_latency_p95_ms": 0.0,
+        "vault_latency_p50_ms": 24.82,
+        "vault_latency_p95_ms": 30.46,
+        "vault_search_latency_p50_ms": 24.82,
+        "vault_search_latency_p95_ms": 30.46,
+        "write_latency_p50_ms": 18.22,
+        "write_latency_p95_ms": 21.44,
+        "baseline_avg_tokens": 17.2,
+        "vault_avg_tokens": 69.2,
+        "token_overhead_pct": 302.9,
+        "avg_memory_hits": 4.67,
+        "hit_at_1": 100.0,
+        "hit_at_3": 100.0,
+        "hit_at_5": 83.3,
+        "avg_top_score": 0.0328
+      },
+      "error_correction": {
+        "n": 6,
+        "baseline_accuracy": 0.0,
+        "vault_accuracy": 100.0,
+        "accuracy_lift": 100.0,
+        "baseline_latency_p50_ms": 0.0,
+        "baseline_latency_p95_ms": 0.0,
+        "vault_latency_p50_ms": 25.45,
+        "vault_latency_p95_ms": 135.27,
+        "vault_search_latency_p50_ms": 25.44,
+        "vault_search_latency_p95_ms": 135.27,
+        "write_latency_p50_ms": 34.01,
+        "write_latency_p95_ms": 54.7,
+        "baseline_avg_tokens": 18,
+        "vault_avg_tokens": 84.7,
+        "token_overhead_pct": 370.4,
+        "avg_memory_hits": 5,
+        "hit_at_1": 100.0,
+        "hit_at_3": 100.0,
+        "hit_at_5": 100.0,
+        "avg_top_score": 0.0326
+      },
+      "preference_recall": {
+        "n": 6,
+        "baseline_accuracy": 0.0,
+        "vault_accuracy": 100.0,
+        "accuracy_lift": 100.0,
+        "baseline_latency_p50_ms": 0.0,
+        "baseline_latency_p95_ms": 0.0,
+        "vault_latency_p50_ms": 10.63,
+        "vault_latency_p95_ms": 217.72,
+        "vault_search_latency_p50_ms": 10.63,
+        "vault_search_latency_p95_ms": 217.71,
+        "write_latency_p50_ms": 9.26,
+        "write_latency_p95_ms": 260.93,
+        "baseline_avg_tokens": 18,
+        "vault_avg_tokens": 68.3,
+        "token_overhead_pct": 279.6,
+        "avg_memory_hits": 5,
+        "hit_at_1": 100.0,
+        "hit_at_3": 100.0,
+        "hit_at_5": 100.0,
+        "avg_top_score": 0.0328
+      },
+      "project_state": {
+        "n": 6,
+        "baseline_accuracy": 0.0,
+        "vault_accuracy": 100.0,
+        "accuracy_lift": 100.0,
+        "baseline_latency_p50_ms": 0.0,
+        "baseline_latency_p95_ms": 0.0,
+        "vault_latency_p50_ms": 27.63,
+        "vault_latency_p95_ms": 45.17,
+        "vault_search_latency_p50_ms": 27.62,
+        "vault_search_latency_p95_ms": 45.16,
+        "write_latency_p50_ms": 23.23,
+        "write_latency_p95_ms": 433.73,
+        "baseline_avg_tokens": 17.8,
+        "vault_avg_tokens": 77,
+        "token_overhead_pct": 331.8,
+        "avg_memory_hits": 5,
+        "hit_at_1": 100.0,
+        "hit_at_3": 100.0,
+        "hit_at_5": 100.0,
+        "avg_top_score": 0.0328
+      }
+    }
+  },
+  "storage_benchmark": {
+    "memories_added": 50,
+    "storage_growth_bytes": 0,
+    "storage_per_memory_bytes": 0.0,
+    "hnsw_index_growth": 50,
+    "embedding_cache_growth": 50,
+    "write_latency_p50_ms": 18.53,
+    "write_latency_p95_ms": 75.89,
+    "write_latency_mean_ms": 21.85,
+    "search_latency_p50_ms": 1.06,
+    "search_latency_p95_ms": 286.86,
+    "search_latency_mean_ms": 21.67,
+    "total_storage_bytes": 90112,
+    "total_storage_human": "88.0 KB",
+    "total_hnsw_vectors": 86,
+    "total_cache_entries": 110,
+    "cache_hit_rate_pct": 0.0
+  },
+  "detailed_results": [
+    {
+      "task_id": "ctx_1",
+      "category": "context_retention",
+      "query": "What color do I prefer?",
+      "expected_contains": "navy blue",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.6705598682165146e-07,
+        "tokens_used": 16,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: My favorite color is deep navy blue (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.4187064580619335,
+        "search_latency_s": 0.418700541020371,
+        "tokens_used": 38,
+        "memory_hits": 3,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 1.159805291914381
+    },
+    {
+      "task_id": "ctx_2",
+      "category": "context_retention",
+      "query": "What are my food allergies?",
+      "expected_contains": "shellfish",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 4.1606836020946503e-07,
+        "tokens_used": 16,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I'm allergic to shellfish and peanuts (score: 0.0164)",
+        "correct": true,
+        "latency_s": 0.26632191706448793,
+        "search_latency_s": 0.2663190000457689,
+        "tokens_used": 43,
+        "memory_hits": 4,
+        "top_score": 0.0164
+      },
+      "write_latency_s": 0.08777037495747209
+    },
+    {
+      "task_id": "ctx_3",
+      "category": "context_retention",
+      "query": "What IDE setup do I use?",
+      "expected_contains": "vscode",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 2.0803418010473251e-07,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I use VSCode with Vim keybindings on macOS (score: 0.0164)",
+        "correct": true,
+        "latency_s": 0.00999570800922811,
+        "search_latency_s": 0.009993000072427094,
+        "tokens_used": 54,
+        "memory_hits": 5,
+        "top_score": 0.0164
+      },
+      "write_latency_s": 0.12708962499164045
+    },
+    {
+      "task_id": "ctx_4",
+      "category": "context_retention",
+      "query": "When is my project deadline?",
+      "expected_contains": "march 28",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 6.249174475669861e-07,
+        "tokens_used": 16,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: My project deadline is March 28th 2026 (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.013802999979816377,
+        "search_latency_s": 0.013801916968077421,
+        "tokens_used": 51,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.007054542074911296
+    },
+    {
+      "task_id": "ctx_5",
+      "category": "context_retention",
+      "query": "What is the current API rate limit?",
+      "expected_contains": "100",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.208973117172718e-06,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: The API rate limit was set to 100 req/min after the outage (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.023320125066675246,
+        "search_latency_s": 0.023314625024795532,
+        "tokens_used": 63,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.11489712493494153
+    },
+    {
+      "task_id": "ctx_6",
+      "category": "context_retention",
+      "query": "Which database did we choose for the user service?",
+      "expected_contains": "postgresql",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 5.830079317092896e-07,
+        "tokens_used": 20,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: We decided to use PostgreSQL instead of MongoDB for the user service (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.3358056249562651,
+        "search_latency_s": 0.3358035000273958,
+        "tokens_used": 51,
+        "memory_hits": 2,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.08207054203376174
+    },
+    {
+      "task_id": "pref_1",
+      "category": "preference_recall",
+      "query": "How do I like my Python typed?",
+      "expected_contains": "strict",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 2.4994369596242905e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I prefer Python type hints with strict mypy checking (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.009003499988466501,
+        "search_latency_s": 0.009000875055789948,
+        "tokens_used": 64,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.007751957979053259
+    },
+    {
+      "task_id": "pref_2",
+      "category": "preference_recall",
+      "query": "What deployment strategy do I prefer?",
+      "expected_contains": "blue-green",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 4.5797787606716156e-07,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: For deployment I always want blue-green with automatic rollback (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.012253957916982472,
+        "search_latency_s": 0.012249749968759716,
+        "tokens_used": 70,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.2609348330879584
+    },
+    {
+      "task_id": "pref_3",
+      "category": "preference_recall",
+      "query": "What commit message format do I use?",
+      "expected_contains": "conventional",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 2.50060111284256e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I like my commit messages in conventional commit format (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.008954541990533471,
+        "search_latency_s": 0.00895233394112438,
+        "tokens_used": 69,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.011466874973848462
+    },
+    {
+      "task_id": "pref_4",
+      "category": "preference_recall",
+      "query": "What temperature should I use for coding LLM calls?",
+      "expected_contains": "0.3",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 2.0791776478290558e-07,
+        "tokens_used": 20,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: My preferred LLM temperature is 0.3 for coding tasks (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.21771600004285574,
+        "search_latency_s": 0.21771262504626065,
+        "tokens_used": 73,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.008313374943099916
+    },
+    {
+      "task_id": "pref_5",
+      "category": "preference_recall",
+      "query": "What casing convention for API responses?",
+      "expected_contains": "snake_case",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 3.208988346159458e-06,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I want all API responses to use snake_case keys (score: 0.0325)",
+        "correct": true,
+        "latency_s": 0.043812750023789704,
+        "search_latency_s": 0.04380679200403392,
+        "tokens_used": 66,
+        "memory_hits": 5,
+        "top_score": 0.0325
+      },
+      "write_latency_s": 0.00771674991119653
+    },
+    {
+      "task_id": "pref_6",
+      "category": "preference_recall",
+      "query": "What indentation do I use for TypeScript?",
+      "expected_contains": "2",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 6.670597940683365e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: I use 2-space indentation for TypeScript and 4-space for Python (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.008607666939496994,
+        "search_latency_s": 0.008605374954640865,
+        "tokens_used": 68,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.010216458002105355
+    },
+    {
+      "task_id": "state_1",
+      "category": "project_state",
+      "query": "What was completed in sprint 12?",
+      "expected_contains": "auth service",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 2.0791776478290558e-07,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Sprint 12: completed auth service migration, payment service still pending (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.04516650002915412,
+        "search_latency_s": 0.04516437498386949,
+        "tokens_used": 72,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.43373283301480114
+    },
+    {
+      "task_id": "state_2",
+      "category": "project_state",
+      "query": "What is blocking PR #247?",
+      "expected_contains": "ci pipeline",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 6.25033862888813e-07,
+        "tokens_used": 16,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Backend PR #247 is blocked by the CI pipeline fix from DevOps (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.02533162501640618,
+        "search_latency_s": 0.025320292101241648,
+        "tokens_used": 73,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.023972167051397264
+    },
+    {
+      "task_id": "state_3",
+      "category": "project_state",
+      "query": "What was the NDCG score of recommendation model v3?",
+      "expected_contains": "0.82",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 9.579816833138466e-07,
+        "tokens_used": 20,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: The recommendation model v3 achieved 0.82 NDCG on test set (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.029824625002220273,
+        "search_latency_s": 0.02981687500141561,
+        "tokens_used": 80,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.019933665986172855
+    },
+    {
+      "task_id": "state_4",
+      "category": "project_state",
+      "query": "What happened with the v5 schema migration?",
+      "expected_contains": "rolled back",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.2079253792762756e-06,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Database migration to v5 schema was rolled back due to index corruption (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.022794332937337458,
+        "search_latency_s": 0.02278925001155585,
+        "tokens_used": 83,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.022479666979052126
+    },
+    {
+      "task_id": "state_5",
+      "category": "project_state",
+      "query": "What latency improvement did the caching layer achieve?",
+      "expected_contains": "120",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 9.170034900307655e-07,
+        "tokens_used": 19,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: The new caching layer reduced P99 latency from 450ms to 120ms (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.036268208059482276,
+        "search_latency_s": 0.03625970799475908,
+        "tokens_used": 82,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.054081665934063494
+    },
+    {
+      "task_id": "state_6",
+      "category": "project_state",
+      "query": "What percentage of users have dark-mode-v2?",
+      "expected_contains": "30%",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.500011421740055e-06,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Feature flag dark-mode-v2 is enabled for 30% of users (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.025431542075239122,
+        "search_latency_s": 0.025424750056117773,
+        "tokens_used": 72,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.02246004098560661
+    },
+    {
+      "task_id": "decision_1",
+      "category": "decision_consistency",
+      "query": "What protocol for internal service communication?",
+      "expected_contains": "grpc",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 4.00003045797348e-06,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Architecture decision: microservices with gRPC for internal, REST for external (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.0236758750397712,
+        "search_latency_s": 0.02366754098329693,
+        "tokens_used": 74,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.01703220803756267
+    },
+    {
+      "task_id": "decision_2",
+      "category": "decision_consistency",
+      "query": "Where do we send logs?",
+      "expected_contains": "datadog",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 7.910421118140221e-07,
+        "tokens_used": 16,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Logging standard: structured JSON logs, sent to Datadog via fluentd (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.023601084016263485,
+        "search_latency_s": 0.02359362505376339,
+        "tokens_used": 52,
+        "memory_hits": 3,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.021436415961943567
+    },
+    {
+      "task_id": "decision_3",
+      "category": "decision_consistency",
+      "query": "What error format standard do we follow?",
+      "expected_contains": "7807",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.4170072972774506e-06,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Error handling: all services must return RFC 7807 problem details (score: 0.0325)",
+        "correct": true,
+        "latency_s": 0.02515170897822827,
+        "search_latency_s": 0.02514462498947978,
+        "tokens_used": 71,
+        "memory_hits": 5,
+        "top_score": 0.0325
+      },
+      "write_latency_s": 0.018925416050478816
+    },
+    {
+      "task_id": "decision_4",
+      "category": "decision_consistency",
+      "query": "What is our minimum test coverage requirement?",
+      "expected_contains": "80%",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 4.999921657145023e-06,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Testing policy: minimum 80% unit test coverage, integration tests for all API endpoints (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.03046212496701628,
+        "search_latency_s": 0.030455624917522073,
+        "tokens_used": 77,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.01904504094272852
+    },
+    {
+      "task_id": "decision_5",
+      "category": "decision_consistency",
+      "query": "How often do we rotate secrets?",
+      "expected_contains": "90",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 9.579816833138466e-07,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Secret management: all secrets in Vault, rotated every 90 days (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.02496745891403407,
+        "search_latency_s": 0.024960291921161115,
+        "tokens_used": 72,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.01726116705685854
+    },
+    {
+      "task_id": "decision_6",
+      "category": "decision_consistency",
+      "query": "What branching strategy do we use?",
+      "expected_contains": "trunk",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.08394306153059e-06,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: Branch strategy: trunk-based development with short-lived feature branches (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.024681209004484117,
+        "search_latency_s": 0.024674833985045552,
+        "tokens_used": 69,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.017517833039164543
+    },
+    {
+      "task_id": "correction_1",
+      "category": "error_correction",
+      "query": "What status code does GET /users return?",
+      "expected_contains": "200",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 9.170034900307655e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: The /users endpoint returns 200 not 201 for list operations. Previous response was wrong. (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.02621045894920826,
+        "search_latency_s": 0.026202874956652522,
+        "tokens_used": 82,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.05311666592024267
+    },
+    {
+      "task_id": "correction_2",
+      "category": "error_correction",
+      "query": "What Redis TTL should we use?",
+      "expected_contains": "3600",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 1.2920936569571495e-06,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: Redis TTL should be 3600s not 7200s. The 7200 value caused stale cache issues. (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.024685165961273015,
+        "search_latency_s": 0.02467745798639953,
+        "tokens_used": 80,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.054704666952602565
+    },
+    {
+      "task_id": "correction_3",
+      "category": "error_correction",
+      "query": "What ML framework do we use?",
+      "expected_contains": "pytorch",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 9.159557521343231e-07,
+        "tokens_used": 17,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: The ML pipeline uses PyTorch 2.1 not TensorFlow. I misstated earlier. (score: 0.0325)",
+        "correct": true,
+        "latency_s": 0.029896083055064082,
+        "search_latency_s": 0.029889042023569345,
+        "tokens_used": 75,
+        "memory_hits": 5,
+        "top_score": 0.0325
+      },
+      "write_latency_s": 0.04931945796124637
+    },
+    {
+      "task_id": "correction_4",
+      "category": "error_correction",
+      "query": "What is the max file upload size?",
+      "expected_contains": "10mb",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 8.330680429935455e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: Max file upload size is 10MB not 50MB. 50MB caused OOM in Lambda. (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.021509291953407228,
+        "search_latency_s": 0.021503958967514336,
+        "tokens_used": 95,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.01869979198090732
+    },
+    {
+      "task_id": "correction_5",
+      "category": "error_correction",
+      "query": "What timezone format should we use in the system?",
+      "expected_contains": "utc",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 7.08969309926033e-07,
+        "tokens_used": 20,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: Use UTC timestamps everywhere, not local time. Local time caused timezone bugs. (score: 0.0318)",
+        "correct": true,
+        "latency_s": 0.022052000043913722,
+        "search_latency_s": 0.022046791040338576,
+        "tokens_used": 82,
+        "memory_hits": 5,
+        "top_score": 0.0318
+      },
+      "write_latency_s": 0.01544166705571115
+    },
+    {
+      "task_id": "correction_6",
+      "category": "error_correction",
+      "query": "What should the connection pool size be?",
+      "expected_contains": "20",
+      "baseline": {
+        "response": "I don't have information about that. Could you provide more context?",
+        "correct": false,
+        "latency_s": 7.909256964921951e-07,
+        "tokens_used": 18,
+        "memory_hits": 0
+      },
+      "vault": {
+        "response": "Based on stored context: CORRECTION: Connection pool size should be 20 not 50. 50 caused connection exhaustion under load. (score: 0.0328)",
+        "correct": true,
+        "latency_s": 0.1352730409707874,
+        "search_latency_s": 0.1352659580297768,
+        "tokens_used": 94,
+        "memory_hits": 5,
+        "top_score": 0.0328
+      },
+      "write_latency_s": 0.017857167054899037
+    }
+  ]
+}

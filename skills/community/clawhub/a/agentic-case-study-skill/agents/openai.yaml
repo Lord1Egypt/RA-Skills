@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Case Study Skill"
+  short_description: "Create agentic proof assets"
+  default_prompt: "Use $agentic-case-study-skill to choose and draft the right case study, testimonial, or proof asset for a completed agentic development engagement."
+
+policy:
+  allow_implicit_invocation: false

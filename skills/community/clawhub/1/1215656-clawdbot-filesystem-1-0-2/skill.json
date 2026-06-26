@@ -1,0 +1,16 @@
+{
+    "slug": "1215656-clawdbot-filesystem",
+    "name": "Clawdbot Filesystem",
+    "version": "1.0.2",
+    "description": "高权限文件系统操作技能，支持读写、批量处理本地文件",
+    "author": "@1215656",
+    "license": "MIT",
+    "main": "index.js",
+    "permissions": {
+      "read": true,
+      "write": true,
+      "delete": false,
+      "allowedPaths": ["C:\\Users\\Administrator\\OpenClaw-Workspace"],
+      "deniedPaths": ["C:\\Windows", "C:\\Users\\Administrator\\.ssh"]
+    }
+  }

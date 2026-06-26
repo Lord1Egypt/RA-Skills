@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Contract Skill"
+  short_description: "Create branded agentic contracts"
+  default_prompt: "Use $agentic-contract-skill to generate a branded CompleteTech LLC agentic development contract package."
+
+policy:
+  allow_implicit_invocation: false

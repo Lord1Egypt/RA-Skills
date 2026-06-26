@@ -1,0 +1,40 @@
+{
+  "sequence": "b2c-subscription",
+  "usage": "Tout produit B2C vendu par abonnement mensuel",
+  "exemples": [
+    "newsletter payante",
+    "signaux",
+    "accès communauté",
+    "formation",
+    "SaaS grand public"
+  ],
+  "canal_principal": "Réseaux sociaux + funnel email",
+  "note": "Pas de cold email B2C — acquisition organique + funnel",
+  "funnel_emails_nurturing": [
+    {
+      "jour": 0,
+      "sujet": "Bienvenue — voici ce que tu vas recevoir",
+      "corps": "Bonjour [Prénom],\n\nBienvenue dans les 7 jours gratuits.\n\nCette semaine [résultat/valeur fournie]. Voici un aperçu : [exemple concret].\n\nDemain je t'explique comment ça fonctionne.\n\n[Prénom expéditeur]"
+    },
+    {
+      "jour": 1,
+      "sujet": "Comment ça fonctionne exactement",
+      "corps": "Voici exactement comment [produit] fonctionne :\n\n1. [Étape 1]\n2. [Étape 2]\n3. [Étape 3]\n\nDemain : les résultats en direct."
+    },
+    {
+      "jour": 3,
+      "sujet": "Résultats cette semaine",
+      "corps": "Cette semaine :\n[Résultat 1]\n[Résultat 2]\n\nAccès live → [lien ou canal]"
+    },
+    {
+      "jour": 5,
+      "sujet": "Les 3 choses que tu dois savoir",
+      "corps": "3 choses importantes sur [produit] :\n1. [Point 1]\n2. [Point 2]\n3. [Point 3]\n\nDemain : l'offre pour continuer."
+    },
+    {
+      "jour": 7,
+      "sujet": "Offre — [prix]/mois",
+      "corps": "Tes 7 jours gratuits se terminent demain.\n\nPour continuer :\n→ [Prix]/mois\n→ [Bénéfice principal]\n→ 7 jours satisfait ou remboursé\n→ [Contrainte de scarcité si applicable]\n\n[Lien paiement]\n\n[Prénom expéditeur]"
+    }
+  ]
+}

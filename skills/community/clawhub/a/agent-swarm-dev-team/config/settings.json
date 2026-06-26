@@ -1,0 +1,41 @@
+{
+  "agents": {
+    "codex": {
+      "enabled": true,
+      "model": "gpt-5.3-codex",
+      "defaultArgs": "--dangerously-bypass-approvals-and-sandbox"
+    },
+    "claude": {
+      "enabled": true,
+      "model": "claude-opus-4.5",
+      "defaultArgs": "--dangerously-skip-permissions"
+    }
+  },
+  "worktrees": {
+    "baseDir": ".clawdbot/worktrees",
+    "autoCleanup": true
+  },
+  "monitoring": {
+    "interval": 600000,
+    "maxRetries": 3,
+    "notifyOnComplete": true
+  },
+  "codeReview": {
+    "codex": true,
+    "claude": true,
+    "gemini": true
+  },
+  "notification": {
+    "channel": "discord",
+    "to": "channel:1478698808631361647",
+    "onlyOnComplete": true
+  },
+  "definitionOfDone": {
+    "prCreated": true,
+    "ciPassed": true,
+    "codexReview": true,
+    "claudeReview": true,
+    "geminiReview": true,
+    "uiScreenshots": true
+  }
+}

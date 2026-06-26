@@ -1,0 +1,39 @@
+{
+  "token_plan": {
+    "Starter": 600,
+    "Plus": 1500,
+    "Max": 4500,
+    "Plus-Speed": 1500,
+    "Max-Speed": 4500,
+    "Ultra-Speed": 30000
+  },
+  "models": {
+    "M2.7": 1,
+    "M2.7-highspeed": 1,
+    "image-01": 75,
+    "image-01-live": 75,
+    "speech-2.8-hd": 600,
+    "speech-2.6-hd": 600,
+    "speech-02-hd": 600,
+    "speech-2.8-turbo": 300,
+    "speech-2.6-turbo": 300,
+    "speech-02-turbo": 300,
+    "async-speech-2.8-hd": 450,
+    "async-speech-2.6-hd": 450,
+    "async-speech-02-hd": 450,
+    "async-speech-2.8-turbo": 225,
+    "async-speech-2.6-turbo": 225,
+    "async-speech-02-turbo": 225,
+    "MiniMax-Hailuo-2.3-Fast": 3000,
+    "MiniMax-Hailuo-2.3": 4500,
+    "MiniMax-Hailuo-02": 4500,
+    "MiniMax-Hailuo-02-512P-6s": 1500,
+    "MiniMax-Hailuo-02-512P-10s": 2250,
+    "Music-2.5+": 3000,
+    "Music-2.5": 3000,
+    "Music-2.0": 450,
+    "Lyrics": 75
+  },
+  "rolling_window_hours": 5,
+  "default_plan": "Plus-Speed"
+}

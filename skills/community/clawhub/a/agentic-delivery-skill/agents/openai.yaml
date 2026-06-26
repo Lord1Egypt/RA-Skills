@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Delivery Skill"
+  short_description: "Run agentic workflow delivery"
+  default_prompt: "Use $agentic-delivery-skill to choose and draft the right delivery artifact for an approved agentic development engagement."
+
+policy:
+  allow_implicit_invocation: false

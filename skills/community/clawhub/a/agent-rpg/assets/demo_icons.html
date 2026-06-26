@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Icon Showcase (Game-Icons.net Style)</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify_content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .icon-card {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-color: #666;
+        }
+
+        /* SVG Base Styles */
+        svg {
+            width: 64px;
+            height: 64px;
+            fill: #888; /* Default flat color */
+            transition: all 0.3s ease;
+        }
+
+        /* --- Effects --- */
+
+        /* 1. Glowing Sword (Magic Weapon) */
+        .icon-card.sword:hover svg {
+            fill: #4fc3f7; /* Cyan Glow */
+            filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.8));
+            transform: rotate(-15deg) scale(1.1);
+        }
+
+        /* 2. Red Potion (Health) */
+        .icon-card.potion:hover svg {
+            fill: #ef5350; /* Red Liquid */
+            filter: drop-shadow(0 0 5px rgba(239, 83, 80, 0.6));
+            animation: pulse 1.5s infinite;
+        }
+
+        /* 3. Ancient Scroll (Lore) */
+        .icon-card.scroll:hover svg {
+            fill: #d4a373; /* Parchment Color */
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 83, 80, 0.6)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(239, 83, 80, 0.9)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 83, 80, 0.6)); }
+        }
+
+        .label {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .icon-card:hover .label {
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>RPG Icon Styles (CSS Effects)</h1>
+
+    <div class="icon-grid">
+        
+        <!-- Sword Icon -->
+        <div class="icon-card sword">
+            <!-- SVG Path from game-icons.net (example: broadsword) -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M499.7 12.3c-15.6-15.6-40.9-15.6-56.6 0L12.3 441.4c-15.6 15.6-15.6 40.9 0 56.6s40.9 15.6 56.6 0L499.7 68.9c15.6-15.6 15.6-40.9 0-56.6zM68.9 441.4L441.4 68.9 68.9 441.4z"/> 
+                <!-- Simple sword shape for demo (not exact game-icons but similar) -->
+                <path d="M464 48L48 464M48 48l416 416" stroke="currentColor" stroke-width="40" stroke-linecap="round"/>
+                <!-- Replaced with a proper path below for better look -->
+                <path d="M 477.3457,75.029297 101.99609,450.37695 61.621094,409.99805 436.97266,34.648438 Z M 443.0332,62.931641 95.935547,410.0332 108.05664,422.15234 455.15234,75.050781 Z M 57.380859,444.61914 26.666016,485.33398 67.380859,454.61914 Z" />
+            </svg>
+            <div class="label">Melee Weapon</div>
+        </div>
+
+        <!-- Potion Icon -->
+        <div class="icon-card potion">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M241 16c-11.9 0-22.6 5.5-29.8 14.1L128.5 137.6C117.7 151.2 112 168.3 112 185.8V400c0 44.2 35.8 80 80 80h128c44.2 0 80-35.8 80-80V185.8c0-17.5-5.7-34.6-16.5-48.2L299.8 30.1C292.6 21.5 281.9 16 270 16h-29zM256 96c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/>
+            </svg>
+            <div class="label">Health Potion</div>
+        </div>
+
+        <!-- Scroll Icon -->
+        <div class="icon-card scroll">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M64 64C28.7 64 0 92.7 0 128v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H64zm64 64h256c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 96h256c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+            </svg>
+            <div class="label">Ancient Scroll</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

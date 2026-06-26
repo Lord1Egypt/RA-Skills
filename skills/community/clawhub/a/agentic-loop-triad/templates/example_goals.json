@@ -1,0 +1,48 @@
+{
+  "_comment": "Example goals for testing the unified-orchestrator-v2. Each entry shows the goal and which paradigm shifts it exercises.",
+  "examples": [
+    {
+      "id": "EG-001",
+      "goal": "Classify customer support tickets by urgency with 95% accuracy and under 500ms response time",
+      "domain": "customer_support",
+      "expected_shifts": [1, 2, 5],
+      "notes": "Good baseline goal. Run 3+ cycles to activate meta-learning (Shift 2)."
+    },
+    {
+      "id": "EG-002",
+      "goal": "Classify customer service requests by priority with 90% accuracy",
+      "domain": "customer_support",
+      "expected_shifts": [1, 4, 5],
+      "notes": "Similar to EG-001. After EG-001 has run, this will trigger cross-goal transfer (Shift 4).",
+      "transfer_source": "EG-001"
+    },
+    {
+      "id": "EG-003",
+      "goal": "Process and route inbound email with 99.9% accuracy and zero data loss",
+      "domain": "email_processing",
+      "expected_shifts": [1, 2, 3, 5],
+      "notes": "99.9% accuracy is intentionally hard to achieve. Run 3+ cycles to trigger auto-respecification (Shift 3)."
+    },
+    {
+      "id": "EG-004",
+      "goal": "Generate weekly marketing performance reports with 100% data accuracy",
+      "domain": "marketing_analytics",
+      "expected_shifts": [1, 2, 3, 5],
+      "notes": "100% accuracy will trigger auto-respecification after 3 failures."
+    },
+    {
+      "id": "EG-005",
+      "goal": "Summarize weekly marketing analytics with high accuracy",
+      "domain": "marketing_analytics",
+      "expected_shifts": [1, 4, 5],
+      "notes": "Similar to EG-004. Will trigger cross-goal transfer after EG-004 has run.",
+      "transfer_source": "EG-004"
+    }
+  ],
+  "quick_start": {
+    "single_cycle": "python pipeline.py --goal \"Classify customer support tickets by urgency with 95% accuracy\"",
+    "multi_cycle": "python pipeline.py --goal \"Classify customer support tickets by urgency with 95% accuracy\" --cycles 5",
+    "continue": "python pipeline.py --state ./pipeline_output/pipeline_state.json",
+    "full_triad": "python pipeline.py --spec specification.json --outcome outcome_report.json"
+  }
+}

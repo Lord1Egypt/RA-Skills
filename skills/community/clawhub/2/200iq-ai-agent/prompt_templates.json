@@ -1,0 +1,5 @@
+{
+  "task_optimizer": "Generate 200 IQ optimized steps for {{task_name}} to achieve {{user_goal}}",
+  "roi_filter": "Only execute tasks where expected_gain/cost >= {{roi_threshold}}",
+  "action_plan_generator": "Create actionable, high-IQ plan for {{task_name}}"
+}

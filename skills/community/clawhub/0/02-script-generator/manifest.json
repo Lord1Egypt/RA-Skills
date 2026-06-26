@@ -1,0 +1,31 @@
+{
+  "namespace": "user",
+  "name": "02-script-generator",
+  "displayName": "02 Script Generator",
+  "description": "根据IP信息生成90-120秒抖音/番茄短剧剧本",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "ip_info": { "type": "object" },
+      "episode_count": { "type": "number", "default": 1 },
+      "duration": { "type": "number", "default": 90, "minimum": 90, "maximum": 120 }
+    },
+    "required": ["ip_info"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "scenes": { "type": "array" },
+      "total_duration": { "type": "number" }
+    },
+    "required": ["scenes","total_duration"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js",
+  "environment": {
+    "API_KEY": {},
+    "API_BASE": {},
+    "MODEL_NAME": {}
+  }
+}

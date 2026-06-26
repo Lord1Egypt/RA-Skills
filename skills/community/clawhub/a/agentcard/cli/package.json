@@ -1,0 +1,52 @@
+{
+  "name": "@asgcard/cli",
+  "version": "0.1.1",
+  "description": "CLI for ASG Card — manage virtual MasterCard cards for AI agents from the terminal",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "asgcard": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "asgcard",
+    "cli",
+    "virtual-card",
+    "ai-agent",
+    "x402",
+    "stellar",
+    "usdc"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ASGCompute/asgcard-public"
+  },
+  "homepage": "https://asgcard.dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@asgcard/sdk": "^1.0.6",
+    "@stellar/stellar-sdk": "^13.1.0",
+    "commander": "^13.1.0",
+    "chalk": "^5.4.1",
+    "ora": "^8.2.0",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

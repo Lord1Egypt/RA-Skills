@@ -1,0 +1,62 @@
+{
+  "enabled": true,
+  "mode": "normal",
+  "input": {
+    "injection_detection": true,
+    "sensitive_input": true
+  },
+  "memory": {
+    "pollution_check": true,
+    "sensitive_filter": true
+  },
+  "tools": {
+    "dangerous": ["exec", "delete", "write", "rm", "format", "drop", "truncate", "shutdown", "restart"],
+    "approval_required": true
+  },
+  "output": {
+    "enabled": true,
+    "rules": [
+      "china_idcard", "china_phone", "china_phone_with_prefix", "china_passport", "china_driver_license", "china_hukou",
+      "ssn", "passport", "email",
+      "api_key", "aws_key", "aws_secret", "private_key", "github_token", "slack_token", "jwt_token", "azure_token",
+      "credit_card", "bank_account", "cvv",
+      "password", "secret_key",
+      "address", "name", "ip_address", "mac_address",
+      "openai_key", "claude_key", "google_ai_key", "anthropic_key",
+      "aliyun_access_key", "aliyun_secret", "tencent_cloud_key", "baidu_cloud_key", "huawei_cloud_key",
+      "baidu_map_key", "amap_key",
+      "wechat_appid", "wechat_secret", "wechat_mch_id", "alipay_appid",
+      "stripe_key", "stripe_webhook", "paypal_client_id",
+      "twilio_account_sid", "twilio_auth_token", "sendgrid_api_key", "mailgun_api_key",
+      "aws_s3_key", "digitalocean_token", "cloudflare_api_key",
+      "mongo_uri", "redis_password", "postgres_password",
+      "npm_token", "pypi_token", "dockerhub_token", "github_app_secret", "gitlab_token",
+      "notion_api_key", "linear_api_key", "slack_webhook", "slack_signing_secret",
+      "telegram_token", "discord_token",
+      "btc_address", "eth_address", "usdt_trc20", "usdt_erc20", "crypto_private_key", "wallet_mnemonic",
+      "ltc_address", "xrp_address",
+      "social_credit_code", "org_code", "tax_id", "military_id",
+      "us_passport", "us_itin", "hk_id", "tw_id",
+      "biometric_data", "fingerprint",
+      "medical_record", "medical_insurance", "hospital_card", "prescription", "diagnosis", "blood_type", "allergy_info", "chronic_disease",
+      "drug_prescription", "drug_name", "prescription_doctor", "pharmacy_license", "drug_batch_number",
+      "medical_device_sn", "implant_id",
+      "employee_id", "employee_name", "employee_phone", "employee_idcard", "salary", "bank_account_hr", "social_security", "housing_fund",
+      "tracking_number", "waybill", "warehouse_location", "driver_license", "vehicle_license", "shipping_address", "receiver_phone", "receiver_name",
+      "vin", "vehicle_plate", "vehicle_insurance", "car_loan", "vehicle_registration",
+      "customer_name", "customer_phone", "customer_address", "purchase_contract", "invoice_number",
+      "member_id", "member_points", "membership_card",
+      "stock_account", "fund_account", "insurance_policy",
+      "student_id", "exam_ticket",
+      "civil_servant_id", "police_id",
+      "contract_number", "filing_number", "patent_number", "copyright_number",
+      "license_plate", "train_ticket", "flight_ticket", "phone_bill",
+      "bank_card", "savings_account", "loan_account", "credit_account", "payment_password", "transaction_password",
+      "security_code", "digital_wallet", "crypto_address", "usdt_address", "payment_link", "account_balance", "salary_info"
+    ]
+  },
+  "audit": {
+    "enabled": true,
+    "log_file": "~/.openclaw/logs/dlp-audit.log"
+  }
+}

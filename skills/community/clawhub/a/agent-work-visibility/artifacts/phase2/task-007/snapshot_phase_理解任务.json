@@ -1,0 +1,24 @@
+{
+  "taskId": "task-007",
+  "snapshotType": "phase_理解任务",
+  "timestamp": "2026-03-17T20:57:07.105Z",
+  "metadata": {
+    "phase": "理解任务"
+  },
+  "snapshot": {
+    "task_id": "task-007",
+    "task_title": "发现多个深入方向需要选择",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "理解任务",
+    "progress_percent": 10,
+    "current_action": "正在进行：理解任务",
+    "why_not_done": "任务正在正常执行中",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.105Z",
+    "updated_at": "2026-03-17T20:57:07.105Z"
+  }
+}

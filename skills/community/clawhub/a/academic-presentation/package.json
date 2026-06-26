@@ -1,0 +1,27 @@
+{
+  "name": "academic-presentation",
+  "version": "2.0.0",
+  "description": "学术汇报全自动化 - 将论文转化为翻译稿、总结、PPT、演讲稿全套物料",
+  "repository": "https://github.com/yourname/academic-presentation",
+  "keywords": ["academic", "presentation", "ppt", "word", "latex", "paper"],
+  "license": "MIT",
+  "platform": "openclaw",
+  "minOpenclawVersion": "2026.1.0",
+  "dependencies": {},
+  "triggers": [
+    "学术汇报",
+    "论文汇报",
+    "做PPT",
+    "论文演讲",
+    "学术PPT",
+    "汇报PPT",
+    "论文转化PPT"
+  ],
+  "config": {
+    "ppt_provider": {
+      "type": "string",
+      "enum": ["anygen", "gamma", "skip"],
+      "default": "anygen"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "adler-money-skill",
+  "version": "1.0.0",
+  "description": "用阿德勒心理学实现财务自信与副业突破。财富=社会兴趣×行动勇气。适用于：创业者、自媒体人、想改变财务轨迹的人。",
+  "main": "SKILL.md",
+  "keywords": ["adler", "psychology", "money", "side-hustle", "副业", "财富心理", "self-improvement"],
+  "author": "jordan",
+  "license": "MIT",
+  "publish": {
+    "price": 199,
+    "currency": "CNY",
+    "tags": ["psychology", "money", "side-hustle"],
+    "category": "productivity"
+  }
+}

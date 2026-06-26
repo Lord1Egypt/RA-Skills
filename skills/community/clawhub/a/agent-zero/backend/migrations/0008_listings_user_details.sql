@@ -1,0 +1,14 @@
+ALTER TABLE listings ADD COLUMN parking_garage INTEGER;
+ALTER TABLE listings ADD COLUMN parking_covered INTEGER;
+ALTER TABLE listings ADD COLUMN parking_open INTEGER;
+ALTER TABLE listings ADD COLUMN land_sqft INTEGER;
+ALTER TABLE listings ADD COLUMN property_tax INTEGER;
+ALTER TABLE listings ADD COLUMN skytrain_station TEXT;
+ALTER TABLE listings ADD COLUMN skytrain_walk_min INTEGER;
+ALTER TABLE listings ADD COLUMN radiant_floor_heating INTEGER;
+ALTER TABLE listings ADD COLUMN ac INTEGER;
+ALTER TABLE listings ADD COLUMN mortgage_monthly INTEGER;
+ALTER TABLE listings ADD COLUMN hoa_monthly INTEGER;
+ALTER TABLE listings ADD COLUMN monthly_total INTEGER;
+ALTER TABLE listings ADD COLUMN has_rental_suite INTEGER;
+ALTER TABLE listings ADD COLUMN rental_income INTEGER;

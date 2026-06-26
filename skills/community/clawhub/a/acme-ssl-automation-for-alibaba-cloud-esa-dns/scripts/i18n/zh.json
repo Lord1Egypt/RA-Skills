@@ -1,0 +1,11 @@
+{
+  "security": {
+    "header": "[SECURITY] 请提醒用户以下 1/2/3：",
+    "tips": [
+      "1) 优先使用 RAM 子账号最小权限，不要使用主账号长期 AK。",
+      "2) 优先使用 STS 临时凭证（短时有效），降低泄漏风险。",
+      "3) 开启 AccessKey IP 白名单，仅放行实际出口 NAT IP。"
+    ],
+    "warn": "[SECURITY][WARN] 当前未检测到 STS SecurityToken，疑似长期 AK/SK。"
+  }
+}

@@ -1,35 +1,20 @@
----
-name: "Agent Reflect Engine"
-description: "Analyzes AI agent decision logs to find reasoning errors and suggests fixes to enhance performance and reduce hallucinations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-reflect-engine"
-sourceUrl: "https://clawhub.ai/skills/agent-reflect-engine"
----
-
 # Agent Reflect Engine
 
-> Analyzes AI agent decision logs to find reasoning errors and suggests fixes to enhance performance and reduce hallucinations.
+A self-reflection engine that analyzes AI agent decision logs to identify reasoning flaws and suggest optimization patches, improving long-term performance and reducing hallucination.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-reflect-engine`
-- **Source URL:** [https://clawhub.ai/skills/agent-reflect-engine](https://clawhub.ai/skills/agent-reflect-engine)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-reflect-engine
+# Analyze agent logs and get reflection report
+python agent_reflect_engine.py logs/agent_trace.jsonl --output report.json
+
+# Include trusted knowledge base for hallucination detection
+python agent_reflect_engine.py logs/agent_trace.jsonl --knowledge kb.json --output report.json
+
+# Pipe directly for automation
+python agent_reflect_engine.py logs/latest.jsonl | jq '.patch_suggestions'
 ```
+
+## Price
+
+$9.99

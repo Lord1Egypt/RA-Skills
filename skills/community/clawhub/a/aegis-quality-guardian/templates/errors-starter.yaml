@@ -1,0 +1,50 @@
+# errors.yaml — Unified Error Code Registry
+#
+# All error codes used in the project MUST be defined here.
+# Format: {DOMAIN}_{ERROR_NAME}
+#
+# ⚠️ Do not modify without going through Contract Change Protocol.
+
+errors:
+  # === System Errors ===
+  SYSTEM_INTERNAL:
+    status: 500
+    message: "Internal server error"
+    description: "Unexpected server error. Check logs with requestId."
+
+  SYSTEM_NOT_FOUND:
+    status: 404
+    message: "Resource not found"
+
+  SYSTEM_BAD_REQUEST:
+    status: 400
+    message: "Bad request"
+
+  SYSTEM_UNAUTHORIZED:
+    status: 401
+    message: "Authentication required"
+
+  SYSTEM_FORBIDDEN:
+    status: 403
+    message: "Insufficient permissions"
+
+  SYSTEM_RATE_LIMITED:
+    status: 429
+    message: "Too many requests"
+
+  SYSTEM_VALIDATION:
+    status: 422
+    message: "Validation error"
+    description: "Request body failed validation. Check error.details for specifics."
+
+  # === Domain Errors ===
+  # Add project-specific error codes below.
+  #
+  # Example:
+  # USER_DUPLICATE_EMAIL:
+  #   status: 409
+  #   message: "Email already registered"
+  #
+  # AUTH_TOKEN_EXPIRED:
+  #   status: 401
+  #   message: "Authentication token has expired"

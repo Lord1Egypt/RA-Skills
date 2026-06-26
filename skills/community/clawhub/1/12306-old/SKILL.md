@@ -1,35 +1,43 @@
----
-name: "12306 Old"
-description: "Provides tools related to 12306 including client access and login script functionality for ticket booking automation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/12306-old"
-sourceUrl: "https://clawhub.ai/skills/12306-old"
----
+# 12306
 
-# 12306 Old
+> 自动生成的技能文档 - 2026-03-08
 
-> Provides tools related to 12306 including client access and login script functionality for ticket booking automation.
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/12306-old`
-- **Source URL:** [https://clawhub.ai/skills/12306-old](https://clawhub.ai/skills/12306-old)
+12306 技能包 - general 类工具
 
-## Overview
+## 功能
 
+- 
+12306_client.py- scripts/login.py
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/12306-old
+## 使用方法
+
+```python
+# 示例用法
+# 待补充
 ```
+
+## 配置
+
+查看 `.env.example` 文件了解所需环境变量。
+
+## 脚本
+
+- 
+12306_client.py- scripts/login.py
+
+## 测试
+
+```bash
+# 运行测试
+# 待补充
+```
+
+## 备注
+
+此文档由脚本自动生成，请根据实际情况补充完善。
+
+---
+
+*最后更新：2026-03-08T20:15:05.855845

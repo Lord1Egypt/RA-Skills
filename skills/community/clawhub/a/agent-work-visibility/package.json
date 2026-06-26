@@ -1,0 +1,61 @@
+{
+  "name": "agent-work-visibility",
+  "version": "3.0.4",
+  "description": "🟢 让长任务不再黑箱！自动显示进度条 + 每分钟更新 + 健康度。🚀 安装 + 激活：clawhub install agent-work-visibility && node ~/.openclaw/skills/agent-work-visibility/activate.js",
+  "main": "lib/index.js",
+  "bin": {
+    "agent-visibility": "./bin/monitor.js",
+    "agent-visibility-v3": "./bin/agent-visibility-v3.js"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "README.md",
+    "README_CN.md",
+    "LICENSE",
+    "SKILL.md",
+    "activate.js",
+    "deactivate.js"
+  ],
+  "scripts": {
+    "test": "node tests/basic.test.js",
+    "demo:normal": "node demos/demo1_normal.js",
+    "demo:blocked": "node demos/demo2_blocked.js",
+    "demo:retry": "node demos/demo3_retry.js",
+    "demo:10tasks": "node demos/run_10_tasks.js",
+    "demo:compare": "node demos/v1_vs_v2_comparison.js",
+    "validate": "npm test && node demos/run_10_tasks.js"
+  },
+  "keywords": [
+    "agent",
+    "visibility",
+    "progress",
+    "transparency",
+    "research",
+    "ai",
+    "llm",
+    "task-management",
+    "user-experience"
+  ],
+  "author": "OpenClaw Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/agent-work-visibility.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/agent-work-visibility/issues"
+  },
+  "homepage": "https://github.com/openclaw/agent-work-visibility#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
+,
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

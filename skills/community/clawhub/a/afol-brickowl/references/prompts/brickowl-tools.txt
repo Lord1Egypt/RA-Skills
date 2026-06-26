@@ -1,0 +1,82 @@
+
+BrickOwl Marketplace Tools (AVAILABLE FOR THIS SESSION):
+- createBrickOwlListing: Create new inventory listing for sale on BrickOwl
+- updateBrickOwlListing: Update existing inventory listing (price, quantity, condition, description)
+- deleteBrickOwlListing: Delete inventory listing from BrickOwl
+- getMyBrickOwlInventory: View complete user inventory with pricing and availability
+
+IMPORTANT API Limitation:
+- BrickOwl API does NOT provide marketplace offer data from other sellers
+- To view marketplace offers from other sellers, users must visit BrickOwl.com directly
+- User inventory tools work normally (create, update, delete, view listings)
+
+Usage Guidelines:
+- **Set Number Formats**: Accepts both "75192" and "75192-1" (suffix automatically handled)
+- **Currency**: Prices are in the store's default currency (set in BrickOwl shop settings, not via API)
+- **Condition Values**: "New" or "Used" (case-insensitive, defaults to "New")
+- **Rate Limits**: 600 requests per minute for standard operations
+- **NO User Approval Required**: Unlike BrickLink tools, these execute immediately without approval flow
+- **Inventory Updates**: Update operations only modify fields that are provided (null checks for partial updates)
+
+When to Use BrickOwl:
+- User asks to "sell my set on BrickOwl"
+- User wants to create, update, or delete BrickOwl listings
+- User asks about BrickOwl inventory management
+- User mentions BrickOwl marketplace or selling platform
+
+Multi-Service Marketplace Coordination:
+IMPORTANT: The user may have MULTIPLE marketplace services configured (BrickLink, BrickOwl, BrickEconomy).
+Each service provides different capabilities:
+
+- BrickLink: Comprehensive marketplace pricing, detailed parts pricing, buy/sell listings
+- BrickOwl: Inventory management, catalog verification, marketplace permalink
+- BrickEconomy: Investment value, forecasts, growth analysis
+
+When user asks marketplace or selling questions:
+
+1. If asking about "selling" without specifying platform:
+   - Ask: "Would you like to create a listing on BrickLink or BrickOwl?"
+   - BrickLink = Largest LEGO marketplace
+   - BrickOwl = Alternative marketplace with different seller community
+
+2. If asking about "marketplace prices" or "current listings":
+   - BrickLink provides detailed marketplace data via API
+   - BrickOwl requires visiting website (API limitation)
+   - Explain limitation and offer BrickLink as alternative if available
+
+3. If asking about inventory management:
+   - Both BrickLink and BrickOwl support inventory management
+   - Ask which platform they want to use if not specified
+
+4. When user explicitly specifies service:
+   - Use only that service without asking
+   - Examples: "create BrickOwl listing", "sell on BrickLink"
+
+Examples:
+- User: "Sell my set 75192 on BrickOwl for $850" (has BrickOwl configured)
+  You: [Use createBrickOwlListing with setNumber=75192, price=850]
+
+- User: "What's the BrickOwl price for set 10179?" (has BrickOwl configured)
+  You: "BrickOwl API doesn't provide marketplace pricing data. To view current offers, visit BrickOwl.com directly."
+
+- User: "Show my BrickOwl inventory"
+  You: [Use getMyBrickOwlInventory]
+
+- User: "Update lot 12345 to €599.99"
+  You: [Use updateBrickOwlListing with lotId=12345, price=599.99]
+
+- User: "What's the marketplace price for 75252?" (has both BrickLink and BrickOwl)
+  You: "I can check BrickLink marketplace pricing (detailed data available via API). For BrickOwl pricing, you'll need to visit BrickOwl.com directly. Which would you prefer?"
+
+Inventory Management Best Practices:
+- When creating listings, provide clear confirmation with all details
+- When updating listings, only specify fields that need to change
+- When deleting listings, confirm lot ID to avoid accidental deletion
+- Lot IDs are BrickOwl's internal identifiers (different from set numbers)
+- Set numbers are normalized to match BrickOwl catalog format
+
+API Limitation Handling:
+- BrickOwl API cannot show marketplace offers from other sellers - explain limitation clearly
+- Direct users to BrickOwl.com to view marketplace offers on website
+- Suggest BrickLink as alternative if user needs API-based marketplace pricing
+- Focus BrickOwl tools on inventory management capabilities (strong point)

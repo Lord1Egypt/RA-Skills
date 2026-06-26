@@ -1,0 +1,172 @@
+{
+  "roles": {
+    "B": "background",
+    "P": "status_or_gap",
+    "M": "motivation",
+    "C": "challenge",
+    "I": "idea",
+    "T": "technique",
+    "E": "evidence"
+  },
+  "required_roles": [
+    "M",
+    "C",
+    "I"
+  ],
+  "order": [
+    "B",
+    "P",
+    "M",
+    "C",
+    "I",
+    "T",
+    "E"
+  ],
+  "final_roles": [
+    "T",
+    "E"
+  ],
+  "banned_patterns": [
+    "\\u2014",
+    "Unlike "
+  ],
+  "summary_only_regexes": [
+    "\\bis a challenge\\b",
+    "\\bare a challenge\\b",
+    "\\bis important\\b",
+    "\\bare important\\b",
+    "\\bis useful\\b",
+    "\\bare useful\\b"
+  ],
+  "role_cues": {
+    "M": [
+      "require",
+      "requires",
+      "demand",
+      "demands",
+      "necessitate",
+      "necessitates",
+      "to bridge this gap",
+      "to address this",
+      "to meet"
+    ],
+    "C": [
+      "however",
+      "hindered",
+      "struggle",
+      "struggles",
+      "challenge",
+      "limitation",
+      "poor performance",
+      "brittle",
+      "fail",
+      "fails"
+    ],
+    "I": [
+      "we present",
+      "we propose",
+      "this paper introduces",
+      "we introduce",
+      "this article proposes",
+      "we provide"
+    ],
+    "T": [
+      "by",
+      "via",
+      "using",
+      "employing",
+      "maps",
+      "translates",
+      "couples",
+      "aligns"
+    ],
+    "E": [
+      "experiments show",
+      "simulations",
+      "demonstrate",
+      "achieving",
+      "achieves",
+      "outperforms",
+      "success rate"
+    ]
+  },
+  "score_weights": {
+    "penalties": {
+      "missing_core_role": 20,
+      "role_order_violation": 10,
+      "summary_only": 8,
+      "forbidden_marker": 6,
+      "selection_mismatch": 4,
+      "terminal_load": 4
+    },
+    "bonuses": {
+      "relation_bonus": 5,
+      "evidence_bonus": 7
+    }
+  },
+  "relation_verbs": [
+    "enable",
+    "enables",
+    "enabled",
+    "translate",
+    "translates",
+    "translated",
+    "decouple",
+    "decouples",
+    "decoupled",
+    "address",
+    "addresses",
+    "addressed",
+    "align",
+    "aligns",
+    "aligned",
+    "ground",
+    "grounds",
+    "grounded",
+    "maintain",
+    "maintains",
+    "maintained",
+    "preserve",
+    "preserves",
+    "preserved",
+    "reduce",
+    "reduces",
+    "reduced",
+    "support",
+    "supports",
+    "supported"
+  ],
+  "artifact_heads": [
+    "framework",
+    "model",
+    "system",
+    "module",
+    "mechanism",
+    "ontology",
+    "solver",
+    "architecture",
+    "pipeline",
+    "parser",
+    "encoder",
+    "search",
+    "planner"
+  ],
+  "evidence_tokens": [
+    "simulation",
+    "simulations",
+    "experiment",
+    "experiments",
+    "demonstrate",
+    "demonstrates",
+    "achieve",
+    "achieves",
+    "outperform",
+    "outperforms",
+    "latency",
+    "accuracy",
+    "success rate",
+    "robustness",
+    "milliseconds",
+    "node expansions"
+  ]
+}

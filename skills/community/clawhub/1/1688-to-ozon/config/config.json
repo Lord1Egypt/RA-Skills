@@ -1,0 +1,53 @@
+{
+  "ozon": {
+    "clientId": "2129141",
+    "apiKey": "c4581d38-1b1e-4884-8f3d-f068b1975ceb",
+    "apiHost": "api-seller.ozon.ru",
+    "defaultCategoryId": 17030819,
+    "defaultVat": "0.2",
+    "warehouseId": "1020002303736000",
+    "defaultStock": 500,
+    "defaultPriceMultiplier": 3.0
+  },
+  "1688": {
+    "timeout": 300000,
+    "retry": 1
+  },
+  "translator": {
+    "api": "xiangji",
+    "userKey": "2091731255",
+    "imgTransKey": "1780831594",
+    "imgbbApiKey": "d5cd783ef73e0667a8d70eb6377c0103",
+    "skipNoText": true,
+    "minTextLength": 10
+  },
+  "ocr": {
+    "service": "baidu",
+    "apiKey": "sO2cB2TFL6nKA2lxdHyosHXj",
+    "secretKey": "F0NswHweJSy85PvfoSxl4LchQGSAUJUJ"
+  },
+  "llm": {
+    "service": "dashscope",
+    "apiKey": "sk-sp-2fe17126617744908ad7e6ea2e37b714",
+    "model": "qwen3.5-plus"
+  },
+  "imageHost": {
+    "service": "imgbb",
+    "apiKey": "d5cd783ef73e0667a8d70eb6377c0103",
+    "expire": 86400
+  },
+  "pricing": {
+    "defaultProfit": 0.2,
+    "defaultWeight": null
+  },
+  "common": {
+    "debug": false,
+    "pauseBeforeUpload": false
+  },
+  "feishu": {
+    "chatId": "oc_57bd4ab12e061043ec6d4f3805332b83",
+    "webhookUrl": null,
+    "appId": "",
+    "appSecret": ""
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-03-16T05:11:02.410172+00:00",
+  "server_version": "2.2.0",
+  "config": {
+    "n": 150,
+    "workers": 8,
+    "batch_size": 10,
+    "concurrent_ops": 80
+  },
+  "sequential_writes": {
+    "n": 150,
+    "p50_ms": 5.76,
+    "p95_ms": 7.48,
+    "p99_ms": 12.17,
+    "mean_ms": 7.04,
+    "throughput_ops": 142.1,
+    "total_s": 1.056
+  },
+  "batch_writes": {
+    "total_memories": 100,
+    "n_batches": 10,
+    "batch_size": 10,
+    "p50_ms": 11.14,
+    "p95_ms": 549.58,
+    "mean_ms": 65.16,
+    "throughput_ops": 153.5,
+    "total_s": 0.652
+  },
+  "search_at_scale": {
+    "semantic": {
+      "p50_ms": 1.35,
+      "p95_ms": 314.92,
+      "mean_ms": 26.1,
+      "n": 30
+    },
+    "keyword": {
+      "p50_ms": 1.41,
+      "p95_ms": 2.3,
+      "mean_ms": 1.7,
+      "n": 30
+    },
+    "hybrid": {
+      "p50_ms": 1.5,
+      "p95_ms": 1.92,
+      "mean_ms": 1.51,
+      "n": 30
+    }
+  },
+  "concurrent_mixed": {
+    "n_ops": 80,
+    "n_workers": 8,
+    "n_writes": 27,
+    "n_reads": 53,
+    "errors": 0,
+    "error_rate_pct": 0.0,
+    "overall_throughput_ops": 160.0,
+    "total_s": 0.5,
+    "write_p50_ms": 14.09,
+    "write_p95_ms": 257.97,
+    "read_p50_ms": 10.66,
+    "read_p95_ms": 40.86
+  },
+  "server_delta": {
+    "memories_added": 277,
+    "hnsw_vectors_added": 277,
+    "cache_hit_rate_pct": 20.1,
+    "storage_size_human": "768.0 KB"
+  }
+}

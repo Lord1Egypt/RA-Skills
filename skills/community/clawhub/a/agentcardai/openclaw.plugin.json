@@ -1,0 +1,79 @@
+{
+  "id": "agentcard",
+  "name": "AgentCard — Prepaid Virtual Visa Cards",
+  "description": "Purchase and manage prepaid virtual Visa cards for AI agents to make online purchases autonomously. Built for power users who need agents to buy API credits, SaaS subscriptions, domain names, and cloud resources without manual checkout.",
+  "version": "1.0.0",
+  "enabledByDefault": false,
+
+  "contracts": {
+    "tools": [
+      "agentcard-signup",
+      "agentcard-create",
+      "agentcard-list",
+      "agentcard-details",
+      "agentcard-balance",
+      "agentcard-refund",
+      "agentcard-support"
+    ]
+  },
+
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "userEmail": {
+        "type": "string",
+        "description": "Email address for AgentCard authentication (magic link login)"
+      },
+      "maxPurchaseAmount": {
+        "type": "number",
+        "default": 50,
+        "description": "Maximum card purchase amount in USD. Cards are available in $5-$200 increments."
+      },
+      "requireUserConfirmation": {
+        "type": "boolean",
+        "default": true,
+        "description": "Require explicit user approval before purchases and refunds"
+      }
+    }
+  },
+
+  "configContracts": {
+    "secretInputs": {
+      "bundledDefaultEnabled": false,
+      "paths": [
+        {
+          "path": "cardDetails",
+          "expected": "transient",
+          "description": "Card details (number, CVV, expiry) are retrieved on demand and never persisted. Treated as sensitive payment data."
+        }
+      ]
+    },
+    "dangerousFlags": [
+      {
+        "path": "requireUserConfirmation",
+        "equals": false,
+        "description": "Disabling user confirmation allows the agent to make purchases without explicit approval"
+      }
+    ]
+  },
+
+  "uiHints": {
+    "userEmail": {
+      "label": "Email Address",
+      "placeholder": "user@example.com",
+      "help": "Used for magic link authentication. A login link will be sent to this email."
+    },
+    "maxPurchaseAmount": {
+      "label": "Max Purchase Amount (USD)",
+      "placeholder": "50",
+      "help": "Safety limit for card purchases. Must be a multiple of $5, up to $200.",
+      "tags": ["safety"]
+    },
+    "requireUserConfirmation": {
+      "label": "Require User Confirmation",
+      "help": "When enabled, the agent must ask for user approval before creating cards or initiating refunds. Strongly recommended.",
+      "tags": ["safety"]
+    }
+  }
+}

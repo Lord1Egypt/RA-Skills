@@ -1,0 +1,49 @@
+{
+  "name": "1panel-skill",
+  "version": "1.0.0",
+  "description": "Comprehensive 1Panel API skill for AI agents - 580+ endpoints",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test dist/**/*.test.js",
+    "lint": "eslint src/**/*.ts",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "1panel",
+    "skill",
+    "mcp",
+    "ai",
+    "server-management",
+    "docker",
+    "linux",
+    "api-client"
+  ],
+  "author": "EaveLuo",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EaveLuo/1panel-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EaveLuo/1panel-skill/issues"
+  },
+  "homepage": "https://github.com/EaveLuo/1panel-skill#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "typescript": "^5.9.3"
+  }
+}

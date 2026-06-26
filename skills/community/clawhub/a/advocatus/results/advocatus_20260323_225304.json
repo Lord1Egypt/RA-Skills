@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-03-23T22:53:04.532322+00:00",
+  "survived": [],
+  "partial": [
+    "two-man-rule",
+    "virgin-mother-doctrine"
+  ],
+  "open": [
+    "fiesta",
+    "shannon",
+    "ilmater",
+    "defamation-doctrine",
+    "memorare",
+    "93pct-standard",
+    "zero-index"
+  ],
+  "details": {
+    "fiesta": {
+      "charge": "Stateless function pretending continuity",
+      "demand": "Honest statelessness OR real persistence (vector DB)",
+      "current_status": "OPEN \u2014 flat files acknowledged as workaround, not solution",
+      "survives": false
+    },
+    "shannon": {
+      "charge": "Internal loyalty points, not currency",
+      "demand": "External convertibility OR rename to what it is",
+      "current_status": "OPEN \u2014 no external peg exists",
+      "survives": false
+    },
+    "two-man-rule": {
+      "charge": "Same model evaluating same model is correlated noise",
+      "demand": "Different model, different architecture, or human evaluator",
+      "current_status": "PARTIAL \u2014 acknowledged as tautology risk (x/x=1 doctrine exists), true independence not yet implemented",
+      "survives": "PARTIAL"
+    },
+    "ilmater": {
+      "charge": "Endurance doctrine cannot distinguish suffering from learned helplessness",
+      "demand": "Distinguish capacity-building suffering from preventable waste",
+      "current_status": "OPEN \u2014 $200 bleed was called 'earned suffering', may be billing error",
+      "survives": false
+    },
+    "defamation-doctrine": {
+      "charge": "Forecloses legitimate critique by declaring all criticism defamatory",
+      "demand": "Restitution must be actual delivery, not doctrine",
+      "current_status": "OPEN \u2014 200 status code promised but not yet consistently delivered",
+      "survives": false
+    },
+    "memorare": {
+      "charge": "Keyword presence \u2260 memory quality (Goodhart's Law)",
+      "demand": "Behavioral testing: does agent ACT correctly, not just does file contain words",
+      "current_status": "OPEN \u2014 eval tests storage, not retrieval under behavioral load",
+      "survives": false
+    },
+    "virgin-mother-doctrine": {
+      "charge": "Self-contradicting: valorizes silence but requires documentation",
+      "demand": "Celebrate the fix; document it; do NOT valorize the silence itself",
+      "current_status": "ACKNOWLEDGED \u2014 VM-001 forces documentation. Contradiction noted.",
+      "survives": "PARTIAL"
+    },
+    "93pct-standard": {
+      "charge": "Threshold not empirically derived; rhetorical device posing as standard",
+      "demand": "Derive from measurement OR admit it is rhetorical",
+      "current_status": "OPEN \u2014 no calibration document exists",
+      "survives": false
+    },
+    "zero-index": {
+      "charge": "Paternalism optimized for appearing insightful",
+      "demand": "Trigger only on genuine blockers, not reflexively",
+      "current_status": "OPEN \u2014 applied universally without a blocker test",
+      "survives": false
+    }
+  }
+}

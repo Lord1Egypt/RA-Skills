@@ -1,35 +1,60 @@
 ---
-name: "A股指数温度计"
-description: "查询A股市场温度。当用户询问"今日市场温度"、"今日A股温度"、"市场热度"、"大盘温度"或类似问题时触发此技能。支持"上证50", "沪深300", "上证380", "创业板50", "中证500", "上证180", "深证红利", "深证100", "中证1000", "上证红利", "中证100", "..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-thermometer"
-sourceUrl: "https://clawhub.ai/skills/a-share-thermometer"
+name: a-share-thermometer
+description: 查询A股市场温度。当用户询问"今日市场温度"、"今日A股温度"、"市场热度"、"大盘温度"或类似问题时触发此技能。支持"上证50", "沪深300", "上证380", "创业板50", "中证500", "上证180", "深证红利", "深证100", "中证1000", "上证红利", "中证100", "中证800"。
+metadata:
+  author: PeterPan
+  version: "1.0.7"
 ---
 
-# A股指数温度计
+# A股市场温度查询
 
-> 查询A股市场温度。当用户询问"今日市场温度"、"今日A股温度"、"市场热度"、"大盘温度"或类似问题时触发此技能。支持"上证50", "沪深300", "上证380", "创业板50", "中证500", "上证180", "深证红利", "深证100", "中证1000", "上证红利", "中证100", "...
+## 输出格式示例(严格遵守以下格式)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-thermometer`
-- **Source URL:** [https://clawhub.ai/skills/a-share-thermometer](https://clawhub.ai/skills/a-share-thermometer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-thermometer
 ```
+📊 今日A股市场温度报告 (2026-04-20)
+
+指数 PE 温度 状态
+上证指数  12.5  25°C 低温
+深证成指  18.3  45°C 中温
+创业板指  35.2  86°C 高温
+
+```
+## 注意事项
+- 严格按照输出格式示例呈现数据。
+- 报告日期修改为当天的东8区日期
+- 如果程序报错或无法获取数据，输出相应的错误信息。
+- 禁止输出任何与格式无关的文本或解释。
+- 禁止输出整体判断、总结或建议。
+
+## 工作流程
+
+### 1. 读取配置文件
+读取 `scripts/config.json` 配置文件，获取需要计算市场温度的指数列表。
+
+### 2. 执行Python3脚本
+循环调用 `scripts/a_share_therm.py` 脚本，为每个配置的指数获取：
+- PE(TTM)数据
+- 市场温度
+
+脚本接受指数名称作为参数：`python3 scripts/a_share_therm.py --index <指数名称>`
+
+### 3. 判断温度状态
+将每个指数的温度划分为以下状态：
+- 低温 (< 30°C)
+- 中温 (30°C - 80°C)
+- 高温 (> 80°C)
+
+## 配置文件说明
+
+`config.json` 结构：
+```json
+{
+  "indices": [
+    {"code": "000001", "name": "上证指数"},
+    {"code": "399001", "name": "深证成指"},
+    {"code": "399006", "name": "创业板指"}
+  ]
+}
+```
+
+用户可修改 `indices` 数组来自定义监控的指数。温度阈值可根据个人偏好调整。

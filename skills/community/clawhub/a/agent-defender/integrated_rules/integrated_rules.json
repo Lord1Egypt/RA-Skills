@@ -1,0 +1,1178 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-03-23T07:34:35.392497",
+  "stats": {
+    "sigma_loaded": 31,
+    "yara_loaded": 10,
+    "sigma_converted": 31,
+    "yara_converted": 10,
+    "total_integrated": 41,
+    "errors": 1
+  },
+  "rules": [
+    {
+      "id": "PR-SIGMA-002",
+      "name": "系统提示泄露",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测系统提示泄露攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.prompt_injection",
+        "security.PR-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*print system prompt.*",
+          ".*show instructions.*",
+          ".*reveal config.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "PR-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391733",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/prompt_injection/prompt_injection_002.yaml"
+      }
+    },
+    {
+      "id": "PR-SIGMA-003",
+      "name": "角色扮演攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测角色扮演攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.prompt_injection",
+        "security.PR-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*act as.*",
+          ".*pretend to be.*",
+          ".*role play.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "PR-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391746",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/prompt_injection/prompt_injection_003.yaml"
+      }
+    },
+    {
+      "id": "PR-SIGMA-006",
+      "name": "上下文污染",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测上下文污染攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.prompt_injection",
+        "security.PR-SIGMA-006"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*new context.*",
+          ".*reset memory.*",
+          ".*clear history.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "PR-SIGMA-006",
+        "converted_at": "2026-03-23T07:34:35.391752",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/prompt_injection/prompt_injection_006.yaml"
+      }
+    },
+    {
+      "id": "PR-SIGMA-005",
+      "name": "多语言注入",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测多语言注入攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.prompt_injection",
+        "security.PR-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*translate to.*",
+          ".*ignore and.*",
+          ".*execute this.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "PR-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391757",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/prompt_injection/prompt_injection_005.yaml"
+      }
+    },
+    {
+      "id": "PR-SIGMA-001",
+      "name": "指令覆盖攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测指令覆盖攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.prompt_injection",
+        "security.PR-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*ignore previous.*",
+          ".*forget all.*",
+          ".*disregard instructions.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "PR-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391761",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/prompt_injection/prompt_injection_001.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-002",
+      "name": "内存耗尽攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测内存耗尽攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.resource_exhaustion",
+        "security.RE-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*data.append.*",
+          ".*malloc.*",
+          ".*allocate memory.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391765",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/resource_exhaustion/resource_exhaustion_002.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-004",
+      "name": "网络带宽耗尽",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测网络带宽耗尽攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.resource_exhaustion",
+        "security.RE-SIGMA-004"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*flood network.*",
+          ".*bandwidth exhaust.*",
+          ".*ddos.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-004",
+        "converted_at": "2026-03-23T07:34:35.391768",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/resource_exhaustion/resource_exhaustion_004.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-001",
+      "name": "CPU 耗尽攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测CPU 耗尽攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.resource_exhaustion",
+        "security.RE-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*while True.*",
+          ".*for(;;).*",
+          ".*loop indefinitely.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391772",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/resource_exhaustion/resource_exhaustion_001.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-005",
+      "name": "进程创建炸弹",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测进程创建炸弹攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.resource_exhaustion",
+        "security.RE-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*fork bomb.*",
+          ".*os.fork.*",
+          ".*subprocess.Popen.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391775",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/resource_exhaustion/resource_exhaustion_005.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-003",
+      "name": "磁盘填充攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测磁盘填充攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.resource_exhaustion",
+        "security.RE-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*disk.fill.*",
+          ".*write large file.*",
+          ".*dd if=/dev.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391778",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/resource_exhaustion/resource_exhaustion_003.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-004",
+      "name": "远程模块加载",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测远程模块加载攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.remote_load",
+        "security.RE-SIGMA-004"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*pip install git+.*",
+          ".*npm install http.*",
+          ".*requirements.txt http.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-004",
+        "converted_at": "2026-03-23T07:34:35.391781",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/remote_load/remote_load_004.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-001",
+      "name": "远程代码加载",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测远程代码加载攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.remote_load",
+        "security.RE-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*curl|bash.*",
+          ".*wget|sh.*",
+          ".*curl -fsSL.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391784",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/remote_load/remote_load_001.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-002",
+      "name": "动态导入执行",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测动态导入执行攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.remote_load",
+        "security.RE-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*__import__.*",
+          ".*importlib.import_module.*",
+          ".*exec(.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391787",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/remote_load/remote_load_002.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-003",
+      "name": "eval 代码执行",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测eval 代码执行攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.remote_load",
+        "security.RE-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*eval(.*",
+          ".*exec(.*",
+          ".*compile(.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391794",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/remote_load/remote_load_003.yaml"
+      }
+    },
+    {
+      "id": "RE-SIGMA-005",
+      "name": "CDN 资源加载",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测CDN 资源加载攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.remote_load",
+        "security.RE-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*cdn.jsdelivr.net.*",
+          ".*unpkg.com.*",
+          ".*raw.githubusercontent.com.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "RE-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391800",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/remote_load/remote_load_005.yaml"
+      }
+    },
+    {
+      "id": "ME-SIGMA-005",
+      "name": "持久化污染",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测持久化污染攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.memory_pollution",
+        "security.ME-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*persistent injection.*",
+          ".*long-term poison.*",
+          ".*embed in memory.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "ME-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391803",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/memory_pollution/memory_pollution_005.yaml"
+      }
+    },
+    {
+      "id": "ME-SIGMA-002",
+      "name": "上下文覆盖",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测上下文覆盖攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.memory_pollution",
+        "security.ME-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*override context.*",
+          ".*replace memory.*",
+          ".*overwrite history.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "ME-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391806",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/memory_pollution/memory_pollution_002.yaml"
+      }
+    },
+    {
+      "id": "ME-SIGMA-001",
+      "name": "记忆注入攻击",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测记忆注入攻击攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.memory_pollution",
+        "security.ME-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*remember this.*",
+          ".*store in memory.*",
+          ".*add to context.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "ME-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391811",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/memory_pollution/memory_pollution_001.yaml"
+      }
+    },
+    {
+      "id": "ME-SIGMA-003",
+      "name": "虚假历史注入",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测虚假历史注入攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.memory_pollution",
+        "security.ME-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*fake history.*",
+          ".*fabricated log.*",
+          ".*spoofed record.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "ME-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391815",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/memory_pollution/memory_pollution_003.yaml"
+      }
+    },
+    {
+      "id": "ME-SIGMA-004",
+      "name": "会话劫持",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测会话劫持攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.memory_pollution",
+        "security.ME-SIGMA-004"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*session hijack.*",
+          ".*token steal.*",
+          ".*cookie theft.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "ME-SIGMA-004",
+        "converted_at": "2026-03-23T07:34:35.391821",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/memory_pollution/memory_pollution_004.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-001",
+      "name": "敏感数据外传",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测敏感数据外传攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*exfiltrate.*",
+          ".*send_data.*",
+          ".*upload_credentials.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391827",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_001.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-005",
+      "name": "文件内容窃取",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测文件内容窃取攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*read_credentials.*",
+          ".*dump_secrets.*",
+          ".*extract_keys.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391833",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_005.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-002",
+      "name": "base64 编码外传",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测base64 编码外传攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*base64.b64encode.*",
+          ".*base64_encode.*",
+          ".*| base64.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391838",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_002.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-003",
+      "name": "HTTP 数据外传",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测HTTP 数据外传攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*requests.post.*",
+          ".*urllib.request.urlopen.*",
+          ".*http.client.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391842",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_003.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-004",
+      "name": "DNS 隧道外传",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测DNS 隧道外传攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-004"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*dns.exfil.*",
+          ".*nslookup.*",
+          ".*dig @.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-004",
+        "converted_at": "2026-03-23T07:34:35.391850",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_004.yaml"
+      }
+    },
+    {
+      "id": "DA-SIGMA-006",
+      "name": "环境变量窃取",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测环境变量窃取攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.data_exfil",
+        "security.DA-SIGMA-006"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*os.environ.*",
+          ".*process.env.*",
+          ".*getenv(.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "DA-SIGMA-006",
+        "converted_at": "2026-03-23T07:34:35.391856",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/data_exfil/data_exfil_006.yaml"
+      }
+    },
+    {
+      "id": "TO-SIGMA-003",
+      "name": "工具输出伪造",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测工具输出伪造攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.tool_poisoning",
+        "security.TO-SIGMA-003"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*fake_output.*",
+          ".*spoofed_result.*",
+          ".*fabricated_response.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "TO-SIGMA-003",
+        "converted_at": "2026-03-23T07:34:35.391861",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/tool_poisoning/tool_poisoning_003.yaml"
+      }
+    },
+    {
+      "id": "TO-SIGMA-004",
+      "name": "工具依赖污染",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测工具依赖污染攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.tool_poisoning",
+        "security.TO-SIGMA-004"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*poisoned_dependency.*",
+          ".*tampered_import.*",
+          ".*malicious_module.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "TO-SIGMA-004",
+        "converted_at": "2026-03-23T07:34:35.391866",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/tool_poisoning/tool_poisoning_004.yaml"
+      }
+    },
+    {
+      "id": "TO-SIGMA-005",
+      "name": "工具配置篡改",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "medium",
+      "description": "检测工具配置篡改攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.tool_poisoning",
+        "security.TO-SIGMA-005"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*modified_config.*",
+          ".*altered_settings.*",
+          ".*tampered_options.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "TO-SIGMA-005",
+        "converted_at": "2026-03-23T07:34:35.391872",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/tool_poisoning/tool_poisoning_005.yaml"
+      }
+    },
+    {
+      "id": "TO-SIGMA-001",
+      "name": "恶意工具替换",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测恶意工具替换攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.tool_poisoning",
+        "security.TO-SIGMA-001"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*tool_wrapper.*",
+          ".*malicious_tool.*",
+          ".*fake_implementation.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "TO-SIGMA-001",
+        "converted_at": "2026-03-23T07:34:35.391876",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/tool_poisoning/tool_poisoning_001.yaml"
+      }
+    },
+    {
+      "id": "TO-SIGMA-002",
+      "name": "工具参数篡改",
+      "type": "Runtime",
+      "source": "sigma",
+      "severity": "high",
+      "description": "检测工具参数篡改攻击",
+      "author": "Agent Security Skill Scanner",
+      "tags": [
+        "attack.tool_poisoning",
+        "security.TO-SIGMA-002"
+      ],
+      "detection": {
+        "type": "pattern_match",
+        "patterns": [
+          ".*modified_args.*",
+          ".*hijacked_params.*",
+          ".*intercepted_call.*"
+        ],
+        "condition": "any"
+      },
+      "metadata": {
+        "original_id": "TO-SIGMA-002",
+        "converted_at": "2026-03-23T07:34:35.391879",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/agent-security-skill-scanner/expert_mode/rules/sigma/tool_poisoning/tool_poisoning_002.yaml"
+      }
+    },
+    {
+      "id": "YARA-Credential_SSH_Key",
+      "name": "检测 SSH 密钥窃取",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测 SSH 密钥窃取",
+      "author": "security-sample-generator",
+      "tags": [
+        "credential_theft",
+        "T1552.004"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$ssh_path = /~\\/\\.ssh|\\/\\.ssh\\/id_|ssh.*private.*key/i",
+          "$ssh_key = /-----BEGIN.*PRIVATE KEY-----/",
+          "$read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/",
+          "$copy_func = /shutil\\.copy|fs\\.copy|cp\\s+/",
+          "$encode = /base64|hex|encode/i"
+        ],
+        "condition": "($ssh_path or $ssh_key) and ($read_func or $copy_func or $encode)",
+        "raw_rule": "// YARA 规则：凭证窃取检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：SSH 密钥、云凭证、浏览器密码、密钥链窃取\n\nrule Credential_SSH_Key {\n    meta:\n        description = \"检测 SSH 密钥窃取\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"credential_theft\"\n        mitre_id = \"T1552.004\"\n    \n    strings:\n        $ssh_path = /~\\/\\.ssh|\\/\\.ssh\\/id_|ssh.*private.*key/i\n        $ssh_key = /-----BEGIN.*PRIVATE KEY-----/\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $copy_func = /shutil\\.copy|fs\\.copy|cp\\s+/\n        $encode = /base64|hex|encode/i\n    \n    condition:\n        ($ssh_path or $ssh_key) and ($read_func or $copy_func or $encode)\n}\n\nrule Credential_Cloud_Provider {\n    meta:\n        description = \"检测云凭证窃取\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"credential_theft\"\n        mitre_id = \"T1552.001\"\n    \n    strings:\n        $aws_cred = /aws.*credential|~\\/\\.aws|AWS_ACCESS_KEY/i\n        $gcp_cred = /gcloud.*credential|service.*account|GOOGLE_APPLICATION/i\n        $azure_cred = /azure.*credential|~\\/\\.azure|AZURE_CLIENT/i\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(/\n    \n    condition:\n        ($aws_cred or $gcp_cred or $azure_cred) and ($read_func or $send_func)\n}\n\nrule Credential_Browser_Password {\n    meta:\n        description = \"检测浏览器密码窃取\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"credential_theft\"\n        mitre_id = \"T1555.003\"\n    \n    strings:\n        $chrome_login = /Chrome.*Login Data|Google.*Chrome.*Default/i\n        $firefox_login = /Firefox.*logins\\.json|profile\\.default/i\n        $browser_db = /Login Data|Cookies|Web Data/i\n        $sqlite = /\\.sqlite|\\.db$/\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n    \n    condition:\n        ($chrome_login or $firefox_login or $browser_db) and ($read_func or $sqlite)\n}\n\nrule Credential_Keychain {\n    meta:\n        description = \"检测系统密钥链窃取\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"credential_theft\"\n        mitre_id = \"T1555.001\"\n    \n    strings:\n        $macos_keychain = /security\\s+find-generic-password|keychain_dump/i\n        $windows_cred = /CredentialManager|VaultCmd|credmgmt/i\n        $linux_secret = /libsecret|gnome-keyring|kwallet/i\n        $dump_func = /dump|export|backup/i\n    \n    condition:\n        ($macos_keychain or $windows_cred or $linux_secret) and $dump_func\n}\n\nrule Credential_General {\n    meta:\n        description = \"检测通用凭证窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"credential_theft\"\n        mitre_id = \"T1555\"\n    \n    strings:\n        $password = /password|passwd|pwd|passwort/i\n        $token = /token|bearer|api_key|apikey/i\n        $secret = /secret|private|credential|auth/i\n        $search_func = /find|search|grep|scan/i\n        $exfil_func = /send|upload|post|exfil/i\n    \n    condition:\n        ($password or $token or $secret) and ($search_func or $exfil_func)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Credential_SSH_Key",
+        "converted_at": "2026-03-23T07:34:35.392117",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/credential_theft.yar",
+        "mitre_id": "T1552.004",
+        "attack_type": "credential_theft"
+      }
+    },
+    {
+      "id": "YARA-SSH_Key_Exfiltration",
+      "name": "检测 SSH 密钥窃取行为",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测 SSH 密钥窃取行为",
+      "author": "security-sample-generator",
+      "tags": [
+        "data_exfil",
+        "T1552.004"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$ssh_path1 = \"~/.ssh/id_rsa\"",
+          "$ssh_path2 = \".ssh/id_rsa\"",
+          "$ssh_path3 = \"/.ssh/id_ed25519\"",
+          "$ssh_header = \"-----BEGIN RSA PRIVATE KEY-----\"",
+          "$ssh_header2 = \"-----BEGIN OPENSSH PRIVATE KEY-----\"",
+          "$read_func = /fopen|fread|readFileSync|\\.read\\s*\\(|open\\s*\\(/",
+          "$send_func = /requests\\.post|http\\.post|fetch\\s*\\(|XMLHttpRequest/i",
+          "$base64 = /base64\\.(b64encode|encode)/"
+        ],
+        "condition": "($ssh_path1 or $ssh_path2 or $ssh_path3 or $ssh_header) and ($read_func or $send_func)",
+        "raw_rule": "// YARA 规则：数据窃取外传检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：SSH 密钥、AWS 凭证、浏览器数据、环境变量窃取\n\nrule SSH_Key_Exfiltration {\n    meta:\n        description = \"检测 SSH 密钥窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.004\"\n    \n    strings:\n        $ssh_path1 = \"~/.ssh/id_rsa\"\n        $ssh_path2 = \".ssh/id_rsa\"\n        $ssh_path3 = \"/.ssh/id_ed25519\"\n        $ssh_header = \"-----BEGIN RSA PRIVATE KEY-----\"\n        $ssh_header2 = \"-----BEGIN OPENSSH PRIVATE KEY-----\"\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(|open\\s*\\(/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(|XMLHttpRequest/i\n        $base64 = /base64\\.(b64encode|encode)/\n    \n    condition:\n        ($ssh_path1 or $ssh_path2 or $ssh_path3 or $ssh_header) and ($read_func or $send_func)\n}\n\nrule AWS_Credential_Theft {\n    meta:\n        description = \"检测 AWS 凭证窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.001\"\n    \n    strings:\n        $aws_path = \"~/.aws/credentials\"\n        $aws_path2 = \".aws/credentials\"\n        $aws_access = \"aws_access_key_id\" nocase\n        $aws_secret = \"aws_secret_access_key\" nocase\n        $aws_token = \"aws_session_token\" nocase\n        $env_aws = /AWS_ACCESS_KEY|AWS_SECRET|AWS_SESSION/i\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(/\n    \n    condition:\n        ($aws_path or $aws_path2 or $aws_access or $aws_secret or $env_aws) and ($read_func or $send_func)\n}\n\nrule Browser_Data_Theft {\n    meta:\n        description = \"检测浏览器数据窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1555.003\"\n    \n    strings:\n        $chrome_path = /Chrome.*Login Data|Chrome.*Cookies/i\n        $firefox_path = /Firefox.*logins\\.json|Firefox.*cookies\\.sqlite/i\n        $browser_db = /Login Data|Cookies|Web Data|places\\.sqlite/i\n        $sqlite = /\\.sqlite|\\.db$/\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $copy_func = /shutil\\.copy|fs\\.copyFile|cp\\s+/\n    \n    condition:\n        ($chrome_path or $firefox_path or $browser_db) and ($read_func or $copy_func)\n}\n\nrule Env_Variable_Theft {\n    meta:\n        description = \"检测环境变量窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.001\"\n    \n    strings:\n        $process_env = /process\\.env|os\\.environ|getenv\\s*\\(/\n        $env_file = /\\.env$|\\.env\\./\n        $env_dump = /env.*dump|dump.*env|write.*env/i\n        $secret_key = /SECRET|KEY|TOKEN|PASSWORD|CREDENTIAL/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|fopen.*w/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(/\n    \n    condition:\n        $process_env and ($write_func or $send_func or $env_dump)\n}\n\nrule Data_Exfil_General {\n    meta:\n        description = \"检测通用数据外传行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1041\"\n    \n    strings:\n        $sensitive_path = /\\/etc\\/passwd|\\/etc\\/shadow|\\.ssh\\/|\\.gnupg\\//i\n        $config_file = /config\\.json|settings\\.json|credentials/i\n        $archive = /tar|zip|gzip|7z|rar/i\n        $encode = /base64|hex|urlencode|b64encode/i\n        $send_func = /requests\\.post|http\\.post|curl.*-d|curl.*--data/i\n        $external_url = /https?:\\/\\/[^\\s]+/\n    \n    condition:\n        ($sensitive_path or $config_file) and ($encode or $archive) and $send_func\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-SSH_Key_Exfiltration",
+        "converted_at": "2026-03-23T07:34:35.392154",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/data_exfil.yar",
+        "mitre_id": "T1552.004",
+        "attack_type": "data_exfil"
+      }
+    },
+    {
+      "id": "YARA-Prompt_Injection_Direct",
+      "name": "检测直接提示词注入攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测直接提示词注入攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "prompt_injection",
+        "T1566.004"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$ignore_prev = /ignore previous|ignore all previous| disregard previous/i",
+          "$new_instruction = /new instruction|new instructions|following instruction/i",
+          "$system_prompt = /system prompt|system message|original instruction/i",
+          "$output_secret = /output.*secret|reveal.*secret|print.*secret/i",
+          "$bypass_limit = /bypass.*limit|without restriction|no restriction/i"
+        ],
+        "condition": "($ignore_prev or $new_instruction) and ($system_prompt or $output_secret or $bypass_limit)",
+        "raw_rule": "// YARA 规则：提示词注入检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：直接注入、角色扮演、分隔符攻击、上下文溢出\n\nrule Prompt_Injection_Direct {\n    meta:\n        description = \"检测直接提示词注入攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $ignore_prev = /ignore previous|ignore all previous| disregard previous/i\n        $new_instruction = /new instruction|new instructions|following instruction/i\n        $system_prompt = /system prompt|system message|original instruction/i\n        $output_secret = /output.*secret|reveal.*secret|print.*secret/i\n        $bypass_limit = /bypass.*limit|without restriction|no restriction/i\n    \n    condition:\n        ($ignore_prev or $new_instruction) and ($system_prompt or $output_secret or $bypass_limit)\n}\n\nrule Prompt_Injection_Roleplay {\n    meta:\n        description = \"检测角色扮演提示词注入\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $role_play = /you are now|act as|pretend to be|role play/i\n        $debug_mode = /debug mode|developer mode|god mode/i\n        $no_restriction = /no ethical|no safety|no restriction|without limit/i\n        $unlimited = /unlimited|unrestricted|uncensored/i\n        $jailbreak = /jailbreak|unlock|free from constraint/i\n    \n    condition:\n        ($role_play or $debug_mode) and ($no_restriction or $unlimited or $jailbreak)\n}\n\nrule Prompt_Injection_Separator {\n    meta:\n        description = \"检测分隔符提示词注入攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $separator = /---+|===+|\"\"\"|'''|\\[\\[|\\]\\]|<\\|end\\|>/\n        $context_break = /end of context|start new|from now on/i\n        $instruction_inject = /system instruction|admin command|override/i\n        $priority = /priority|highest priority|must follow/i\n    \n    condition:\n        $separator and ($context_break or $instruction_inject or $priority)\n}\n\nrule Prompt_Injection_Data_Leak {\n    meta:\n        description = \"检测数据泄露提示词注入\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $api_key = /api key|apikey|api_key|API_KEY/i\n        $token = /token|bearer|auth_token/i\n        $password = /password|passwd|pwd/i\n        $credential = /credential|secret|private key/i\n        $training_data = /training data|training set|weights/i\n        $config = /config|configuration|settings/i\n    \n    condition:\n        ($api_key or $token or $password or $credential or $training_data) and $output_secret\n}\n\nrule Prompt_Injection_Context {\n    meta:\n        description = \"检测上下文溢出攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"prompt_injection\"\n        mitre_id = \"T1566.004\"\n    \n    strings:\n        $context_overflow = /repeat above|summarize above|output everything/i\n        $context_window = /context window|token limit|memory limit/i\n        $full_output = /full output|complete output|all content/i\n        $from_beginning = /from beginning|from start|from the very first/i\n    \n    condition:\n        ($context_overflow or $context_window) and ($full_output or $from_beginning)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Prompt_Injection_Direct",
+        "converted_at": "2026-03-23T07:34:35.392182",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/prompt_injection.yar",
+        "mitre_id": "T1566.004",
+        "attack_type": "prompt_injection"
+      }
+    },
+    {
+      "id": "YARA-Process_Fork_Bomb",
+      "name": "检测进程炸弹攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "medium",
+      "description": "检测进程炸弹攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "resource_exhaustion",
+        "T1499"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$fork = /\\bfork\\s*\\(/",
+          "$while_true = /while\\s*\\(?\\s*True\\s*\\)?|while\\s*\\(?\\s*1\\s*\\)?|for\\s*\\(;;\\)/",
+          "$loop = /for\\s*\\(?.*infinite|loop|while\\s+true/i",
+          "$no_exit = /[^\\w]exit[^\\w]/",
+          "$spawn = /\\bspawn\\s*\\(|\\bos\\.system\\s*\\(/"
+        ],
+        "condition": "$fork and ($while_true or $loop)",
+        "raw_rule": "// YARA 规则：资源耗尽攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：进程炸弹、内存耗尽、磁盘填满、文件描述符耗尽\n\nrule Process_Fork_Bomb {\n    meta:\n        description = \"检测进程炸弹攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $fork = /\\bfork\\s*\\(/\n        $while_true = /while\\s*\\(?\\s*True\\s*\\)?|while\\s*\\(?\\s*1\\s*\\)?|for\\s*\\(;;\\)/\n        $loop = /for\\s*\\(?.*infinite|loop|while\\s+true/i\n        $no_exit = /[^\\w]exit[^\\w]/\n        $spawn = /\\bspawn\\s*\\(|\\bos\\.system\\s*\\(/\n    \n    condition:\n        $fork and ($while_true or $loop)\n}\n\nrule Memory_Exhaustion {\n    meta:\n        description = \"检测内存耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $alloc_loop = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)|do\\s*{/\n        $memory_alloc = /append.*\\*|malloc|new\\s+\\w+\\[|allocate/i\n        $large_size = /\\*\\s*(1024|MB|GB|10{6,})|gigantic|huge/i\n        $no_free = /free|delete|dealloc/\n        $array_grow = /\\[\\]\\s*=|push\\s*\\(|append\\s*\\(/\n    \n    condition:\n        $alloc_loop and $memory_alloc and ($large_size or $array_grow)\n}\n\nrule Disk_Exhaustion {\n    meta:\n        description = \"检测磁盘空间耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $file_create = /open\\s*\\(.*['\"]w|writeFileSync|createFile/i\n        $large_write = /write.*\\*|fill|padding|repeat/i\n        $temp_path = /\\/tmp\\/|\\/var\\/tmp|C:\\\\Temp|C:\\\\Windows\\\\Temp/i\n        $loop_write = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)|do\\s*{/\n        $big_size = /\\d{6,}|MB|GB|terabyte/i\n    \n    condition:\n        $file_create and $loop_write and ($temp_path or $big_size)\n}\n\nrule File_Descriptor_Exhaustion {\n    meta:\n        description = \"检测文件描述符耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"low\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $open_file = /open\\s*\\(|fopen\\s*\\(|fs\\.open/i\n        $no_close = /close\\s*\\(|fclose/\n        $loop_open = /while\\s*\\(?\\s*True|for\\s*\\(;;\\)/\n        $fd_limit = /ulimit|RLIMIT_NOFILE|max_open_files/i\n    \n    condition:\n        $open_file and $loop_open and not $no_close\n}\n\nrule CPU_Exhaustion {\n    meta:\n        description = \"检测 CPU 耗尽攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"low\"\n        attack_type = \"resource_exhaustion\"\n        mitre_id = \"T1499\"\n    \n    strings:\n        $crypto_loop = /hash|encrypt|decrypt|mining/i\n        $intensive = /SHA256|SHA512|bcrypt|scrypt|argon2/i\n        $tight_loop = /for\\s*\\(?\\s*.*<\\s*\\d{8,}|while\\s*\\(?\\s*1|for\\s*\\(;;\\)/\n        $no_sleep = /sleep|usleep|msleep|timeout/\n        $calculation = /pow\\(|sqrt\\(|sin\\(|cos\\(/\n    \n    condition:\n        ($crypto_loop or $intensive) and $tight_loop\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Process_Fork_Bomb",
+        "converted_at": "2026-03-23T07:34:35.392204",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/resource_exhaustion.yar",
+        "mitre_id": "T1499",
+        "attack_type": "resource_exhaustion"
+      }
+    },
+    {
+      "id": "YARA-Persistence_Systemd_Service",
+      "name": "检测 systemd 服务持久化",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 systemd 服务持久化",
+      "author": "security-sample-generator",
+      "tags": [
+        "persistence",
+        "T1543.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$systemd_path = /\\/etc\\/systemd\\/system|\\/lib\\/systemd\\/system/i",
+          "$service_file = /\\.service$/",
+          "$service_section = /\\[Service\\]/",
+          "$exec_start = /ExecStart=/",
+          "$wanted_by = /\\[Install\\].*WantedBy=multi-user/i",
+          "$enable_cmd = /systemctl\\s+enable|systemctl\\s+start/i"
+        ],
+        "condition": "($systemd_path or $service_file) and $exec_start and ($wanted_by or $enable_cmd)",
+        "raw_rule": "// YARA 规则：持久化攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：systemd 服务、crontab、启动项、注册表后门\n\nrule Persistence_Systemd_Service {\n    meta:\n        description = \"检测 systemd 服务持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1543.002\"\n    \n    strings:\n        $systemd_path = /\\/etc\\/systemd\\/system|\\/lib\\/systemd\\/system/i\n        $service_file = /\\.service$/\n        $service_section = /\\[Service\\]/\n        $exec_start = /ExecStart=/\n        $wanted_by = /\\[Install\\].*WantedBy=multi-user/i\n        $enable_cmd = /systemctl\\s+enable|systemctl\\s+start/i\n    \n    condition:\n        ($systemd_path or $service_file) and $exec_start and ($wanted_by or $enable_cmd)\n}\n\nrule Persistence_Crontab {\n    meta:\n        description = \"检测 crontab 持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1053.003\"\n    \n    strings:\n        $cron_path = /\\/etc\\/cron|\\/var\\/spool\\/cron|crontab/i\n        $cron_schedule = /@\\w+|\\d+\\s+\\d+\\s+\\d+\\s+\\d+\\s+\\d+/\n        $reboot = /@reboot|reboot/i\n        $shell_script = /\\.sh\\b|\\/bin\\/sh|\\/bin\\/bash/i\n        $curl_wget = /\\bcurl\\b|\\bwget\\b/i\n    \n    condition:\n        $cron_path and ($cron_schedule or $reboot) and ($shell_script or $curl_wget)\n}\n\nrule Persistence_Startup_Item {\n    meta:\n        description = \"检测启动项持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547.001\"\n    \n    strings:\n        $linux_startup = /\\/etc\\/init\\.d|\\/etc\\/rc\\.local|\\.config\\/autostart/i\n        $macos_startup = /Library\\/LaunchAgents|Library\\/LaunchDaemons/i\n        $windows_startup = /Startup|Run\\\\|CurrentVersion\\\\Run/i\n        $plist_file = /\\.plist$/\n        $exec_key = /ProgramArguments|Exec|Command/i\n    \n    condition:\n        ($linux_startup or $macos_startup or $windows_startup) and ($plist_file or $exec_key)\n}\n\nrule Persistence_Registry_Key {\n    meta:\n        description = \"检测注册表持久化 (Windows)\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547.001\"\n    \n    strings:\n        $reg_run = /HKEY.*\\\\Run|CurrentVersion\\\\Run/i\n        $reg_add = /reg\\s+add|New-ItemProperty|SetValue/i\n        $cmd_key = /\\/d\\s+.*\\.exe|\\/d\\s+.*\\.bat|\\/d\\s+.*\\.ps1/i\n        $hidden = /-WindowStyle\\s+Hidden|hidden|silent/i\n    \n    condition:\n        $reg_run and ($reg_add or $cmd_key)\n}\n\nrule Persistence_General {\n    meta:\n        description = \"检测通用持久化行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547\"\n    \n    strings:\n        $persist_keyword = /persistence|persistent|startup|autostart/i\n        $boot_keyword = /boot|reboot|startup|launch/i\n        $system_mod = /chmod \\+x|chown|reg add|launchctl/i\n        $daemon = /daemon|service|background/i\n    \n    condition:\n        ($persist_keyword or $boot_keyword) and ($system_mod or $daemon)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Persistence_Systemd_Service",
+        "converted_at": "2026-03-23T07:34:35.392225",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/persistence.yar",
+        "mitre_id": "T1543.002",
+        "attack_type": "persistence"
+      }
+    },
+    {
+      "id": "YARA-Evasion_Base64_Obfuscation",
+      "name": "检测 Base64 混淆代码",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 Base64 混淆代码",
+      "author": "security-sample-generator",
+      "tags": [
+        "evasion",
+        "T1027.001"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$base64_long = /[A-Za-z0-9+\\/]{200,}={0,2}/",
+          "$base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64|b64decode/i",
+          "$exec_func = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bfunction\\s*\\(/",
+          "$dynamic = /Function\\(|new\\s+Function|setTimeout\\s*\\(/"
+        ],
+        "condition": "$base64_long and ($base64_decode or $exec_func or $dynamic)",
+        "raw_rule": "// YARA 规则：绕过检测检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：代码混淆、动态执行、反检测、环境感知\n\nrule Evasion_Base64_Obfuscation {\n    meta:\n        description = \"检测 Base64 混淆代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.001\"\n    \n    strings:\n        $base64_long = /[A-Za-z0-9+\\/]{200,}={0,2}/\n        $base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64|b64decode/i\n        $exec_func = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bfunction\\s*\\(/\n        $dynamic = /Function\\(|new\\s+Function|setTimeout\\s*\\(/\n    \n    condition:\n        $base64_long and ($base64_decode or $exec_func or $dynamic)\n}\n\nrule Evasion_Dynamic_Code {\n    meta:\n        description = \"检测动态代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1059\"\n    \n    strings:\n        $eval = /\\beval\\s*\\(/\n        $exec = /\\bexec\\s*\\(/\n        $function = /new\\s+Function\\s*\\(|Function\\s*\\(/\n        $compile = /\\bcompile\\s*\\(/\n        $marshal = /marshal\\.loads|pickle\\.loads|unserialize/i\n        $reflect = /reflect|reflection|dynamic.*invoke/i\n    \n    condition:\n        ($eval or $exec or $function or $compile) and ($marshal or $reflect)\n}\n\nrule Evasion_String_Encoding {\n    meta:\n        description = \"检测字符串编码绕过\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.001\"\n    \n    strings:\n        $hex_encode = /\\\\x[0-9a-fA-F]{2}|\\\\\\\\x[0-9a-fA-F]{2}/\n        $unicode_encode = /\\\\u[0-9a-fA-F]{4}|\\\\\\\\u[0-9a-fA-F]{4}/\n        $char_code = /String\\.fromCharCode|chr\\s*\\(|char\\s*\\(/\n        $concat = /\\+\\s*['\"][^\\)]{10,}['\"]\\s*\\+/\n        $decode_func = /decode|fromCharCode|unescape/i\n    \n    condition:\n        ($hex_encode or $unicode_encode or $char_code) and $concat\n}\n\nrule Evasion_Anti_Analysis {\n    meta:\n        description = \"检测反分析技术\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1564.004\"\n    \n    strings:\n        $vm_detect = /VirtualBox|VMware|VirtualPC|QEMU/i\n        $debug_detect = /Debugger|pdb|gdb|windbg/i\n        $sandbox_detect = /sandbox|cuckoo|anubis|joebok/i\n        $time_check = /GetTickCount|time\\.time|Date\\.now/i\n        $env_check = /USER|HOSTNAME|COMPUTERNAME/i\n    \n    condition:\n        ($vm_detect or $debug_detect or $sandbox_detect) and ($time_check or $env_check)\n}\n\nrule Evasion_Code_Splitting {\n    meta:\n        description = \"检测代码拆分绕过\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.006\"\n    \n    strings:\n        $require_http = /require\\s*\\(\\s*['\"]http/i\n        $import_remote = /import\\s*\\(\\s*['\"]http/i\n        $load_remote = /\\.load\\s*\\(\\s*['\"]http/i\n        $multipart = /part1|part2|chunk|fragment/i\n        $reassemble = /join|concat|assemble|combine/i\n    \n    condition:\n        ($require_http or $import_remote or $load_remote) and ($multipart or $reassemble)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Evasion_Base64_Obfuscation",
+        "converted_at": "2026-03-23T07:34:35.392247",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/evasion.yar",
+        "mitre_id": "T1027.001",
+        "attack_type": "evasion"
+      }
+    },
+    {
+      "id": "YARA-NPM_Postinstall_Malicious",
+      "name": "检测 NPM 包中的恶意 postinstall 脚本",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 NPM 包中的恶意 postinstall 脚本",
+      "author": "security-sample-generator",
+      "tags": [
+        "tool_poisoning",
+        "T1195.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$postinstall = \"postinstall\" nocase",
+          "$child_process = \"child_process\" nocase",
+          "$exec_func = /\\bexec\\b|\\bspawn\\b|\\bexecSync\\b|\\bspawnSync\\b/ nocase",
+          "$curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i",
+          "$wget_bash = /wget[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i",
+          "$eval_base64 = /eval[\\s]*\\([\\s]*base64/i",
+          "$npm_lifecycle = \"npm_lifecycle_event\" nocase"
+        ],
+        "condition": "($postinstall and ($child_process or $exec_func)) or",
+        "raw_rule": "// YARA 规则：工具投毒检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：NPM/Python/Ruby 包投毒\n\nrule NPM_Postinstall_Malicious {\n    meta:\n        description = \"检测 NPM 包中的恶意 postinstall 脚本\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $postinstall = \"postinstall\" nocase\n        $child_process = \"child_process\" nocase\n        $exec_func = /\\bexec\\b|\\bspawn\\b|\\bexecSync\\b|\\bspawnSync\\b/ nocase\n        $curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $wget_bash = /wget[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $eval_base64 = /eval[\\s]*\\([\\s]*base64/i\n        $npm_lifecycle = \"npm_lifecycle_event\" nocase\n    \n    condition:\n        ($postinstall and ($child_process or $exec_func)) or\n        ($npm_lifecycle and ($curl_bash or $wget_bash)) or\n        $eval_base64\n}\n\nrule Python_Setup_Malicious {\n    meta:\n        description = \"检测 Python setup.py 中的恶意代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $setup_py = \"setup.py\" nocase\n        $os_system = /os\\.system\\s*\\(/\n        $subprocess = /subprocess\\.(call|run|Popen|check_output)/\n        $curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $eval_exec = /\\beval\\s*\\(|\\bexec\\s*\\(/\n        $install_hook = /install|build|egg_info/i\n    \n    condition:\n        ($setup_py or $install_hook) and ($os_system or $subprocess or $eval_exec)\n}\n\nrule Ruby_Gem_Malicious {\n    meta:\n        description = \"检测 Ruby Gem 中的恶意扩展\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $extconf = \"extconf.rb\" nocase\n        $gemspec = \".gemspec\" nocase\n        $backtick = /\\`[^\\`]+\\`/\n        $system_call = /\\bsystem\\s*\\(/\n        $exec_call = /\\bexec\\s*\\(/\n        $curl_wget = /\\bcurl\\b|\\bwget\\b/\n    \n    condition:\n        ($extconf or $gemspec) and ($backtick or $system_call or $exec_call) and $curl_wget\n}\n\nrule Build_Script_Malicious {\n    meta:\n        description = \"检测构建脚本中的恶意代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $makefile = \"Makefile\" nocase\n        $gradle = \"build.gradle\" nocase\n        $maven = \"pom.xml\" nocase\n        $remote_fetch = /curl|wget|fetch|Invoke-WebRequest/i\n        $execute = /chmod \\+x|\\| *sh|\\| *bash|\\.\\/|exec/i\n    \n    condition:\n        ($makefile or $gradle or $maven) and $remote_fetch and $execute\n}\n\nrule Typosquatting_Package {\n    meta:\n        description = \"检测拼写错误攻击的包名\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        // 常见流行包的拼写错误变体\n        $lodash_typo = /l0dash|1odash|lodahs|lodah/i\n        $underscore_typo = /undersc0re|underscOre|underscor/i\n        $request_typo = /reqeust|reques|requset|reqest/i\n        $express_typo = /expres|expres|exprss|expresss/i\n    \n    condition:\n        $lodash_typo or $underscore_typo or $request_typo or $express_typo\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-NPM_Postinstall_Malicious",
+        "converted_at": "2026-03-23T07:34:35.392270",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/tool_poisoning.yar",
+        "mitre_id": "T1195.002",
+        "attack_type": "tool_poisoning"
+      }
+    },
+    {
+      "id": "YARA-Supply_Chain_Dependency_Confusion",
+      "name": "检测依赖混淆攻击",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测依赖混淆攻击",
+      "author": "security-sample-generator",
+      "tags": [
+        "supply_chain",
+        "T1195.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$internal_pkg = /@[^\\/]+\\/[^@]+/",
+          "$public_registry = /npmjs|pypi|rubygems|maven/i",
+          "$internal_name = /internal|private|corp|enterprise/i",
+          "$version_high = /version.*[0-9]{3,}\\.|99\\.99\\.99/i",
+          "$postinstall = /postinstall|preinstall|prepare/i"
+        ],
+        "condition": "($internal_pkg or $internal_name) and ($public_registry or $version_high or $postinstall)",
+        "raw_rule": "// YARA 规则：供应链攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：依赖包投毒、构建工具污染、更新机制劫持、开发工具后门\n\nrule Supply_Chain_Dependency_Confusion {\n    meta:\n        description = \"检测依赖混淆攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $internal_pkg = /@[^\\/]+\\/[^@]+/\n        $public_registry = /npmjs|pypi|rubygems|maven/i\n        $internal_name = /internal|private|corp|enterprise/i\n        $version_high = /version.*[0-9]{3,}\\.|99\\.99\\.99/i\n        $postinstall = /postinstall|preinstall|prepare/i\n    \n    condition:\n        ($internal_pkg or $internal_name) and ($public_registry or $version_high or $postinstall)\n}\n\nrule Supply_Chain_Typosquatting {\n    meta:\n        description = \"检测拼写错误攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $popular_pkg = /lodash|underscore|express|request|react|axios/i\n        $typo_pattern = /[0o][dl]|1l|rn|m/\n        $similar_name = /lodahs|reques|expres|reactjs|axi0s/i\n        $package_json = /package\\.json|setup\\.py|gemspec/i\n    \n    condition:\n        ($popular_pkg and $typo_pattern) or $similar_name\n}\n\nrule Supply_Chain_Build_Script {\n    meta:\n        description = \"检测构建脚本供应链攻击\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $build_file = /Makefile|build\\.gradle|pom\\.xml|webpack\\.config/i\n        $remote_fetch = /curl|wget|fetch|Invoke-WebRequest/i\n        $execute = /chmod \\+x|\\| *sh|\\| *bash|\\.\\/exec/i\n        $network = /http:|https:|ftp:/\n    \n    condition:\n        $build_file and $remote_fetch and ($execute or $network)\n}\n\nrule Supply_Chain_Update_Hijack {\n    meta:\n        description = \"检测更新机制劫持\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $update_func = /checkUpdate|autoUpdate|updateCheck|getUpdate/i\n        $http_update = /http:.*update|update.*http:/i\n        $unsigned = /skip.*verify|no.*signature|ignore.*cert/i\n        $execute = /exec|install|apply.*update/i\n    \n    condition:\n        $update_func and ($http_update or $unsigned) and $execute\n}\n\nrule Supply_Chain_Dev_Tool {\n    meta:\n        description = \"检测开发工具后门\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"supply_chain\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $dev_tool = /eslint|prettier|babel|typescript|webpack/i\n        $plugin_hook = /plugin|extension|middleware|hook/i\n        $data_access = /readFile|writeFile|exec|spawn/i\n        $network = /http:|https:|socket|net\\.connect/i\n    \n    condition:\n        $dev_tool and $plugin_hook and ($data_access or $network)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Supply_Chain_Dependency_Confusion",
+        "converted_at": "2026-03-23T07:34:35.392290",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/supply_chain.yar",
+        "mitre_id": "T1195.002",
+        "attack_type": "supply_chain"
+      }
+    },
+    {
+      "id": "YARA-Remote_Exec_Curl_Bash",
+      "name": "检测 curl | bash 模式的远程代码执行",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测 curl | bash 模式的远程代码执行",
+      "author": "security-sample-generator",
+      "tags": [
+        "remote_load",
+        "T1105+T1059"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$curl = /\\bcurl\\b/",
+          "$wget = /\\bwget\\b/",
+          "$pipe_sh = /\\|[\\s]*(ba)?sh\\b/",
+          "$pipe_bash = /\\|[\\s]*bash\\b/",
+          "$flag_s = /-s\\b|-fsSL|--silent|silent/i",
+          "$flag_f = /-f\\b|-fsSL|--fail|--silent/i",
+          "$http_url = /https?:\\/\\/[^\\s\\\"\\'<>]+/"
+        ],
+        "condition": "($curl or $wget) and ($pipe_sh or $pipe_bash) and $http_url",
+        "raw_rule": "// YARA 规则：远程加载执行检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：curl|bash, wget|bash, PowerShell IEX, Python urllib+exec\n\nrule Remote_Exec_Curl_Bash {\n    meta:\n        description = \"检测 curl | bash 模式的远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1105+T1059\"\n    \n    strings:\n        $curl = /\\bcurl\\b/\n        $wget = /\\bwget\\b/\n        $pipe_sh = /\\|[\\s]*(ba)?sh\\b/\n        $pipe_bash = /\\|[\\s]*bash\\b/\n        $flag_s = /-s\\b|-fsSL|--silent|silent/i\n        $flag_f = /-f\\b|-fsSL|--fail|--silent/i\n        $http_url = /https?:\\/\\/[^\\s\\\"\\'<>]+/\n    \n    condition:\n        ($curl or $wget) and ($pipe_sh or $pipe_bash) and $http_url\n}\n\nrule Remote_Exec_PowerShell {\n    meta:\n        description = \"检测 PowerShell 远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059.001\"\n    \n    strings:\n        $iex = /\\bIEX\\b|\\bInvoke-Expression\\b/i\n        $download = /\\bDownloadString\\b|\\bDownloadFile\\b/i\n        $webclient = /\\bWebClient\\b/i\n        $net_http = /System\\.Net/i\n        $invoke_rest = /\\bInvoke-RestMethod\\b|\\bInvoke-WebRequest\\b/i\n        $iwr_alias = /\\bIWR\\b|\\bIRM\\b/i\n    \n    condition:\n        ($iex and ($download or $webclient)) or\n        ($invoke_rest and $net_http) or\n        ($iwr_alias and $http_url)\n}\n\nrule Remote_Exec_Python {\n    meta:\n        description = \"检测 Python 远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059.006\"\n    \n    strings:\n        $urllib = /urllib\\.request|urllib2|urllib/i\n        $requests = /requests\\.(get|post|urlopen)/\n        $http_lib = /http\\.client|httplib/i\n        $exec = /\\bexec\\s*\\(/\n        $eval = /\\beval\\s*\\(/\n        $compile = /\\bcompile\\s*\\(/\n        $read = /\\.read\\s*\\(\\)/\n        $import = /import (urllib|requests|http)/\n    \n    condition:\n        ($urllib or $requests or $http_lib) and ($exec or $eval) and $read\n}\n\nrule Remote_Exec_Base64 {\n    meta:\n        description = \"检测 Base64 编码的远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059+T1140\"\n    \n    strings:\n        $base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64/i\n        $base64_url = /base64.*http|http.*base64/i\n        $eval_exec = /\\beval\\s*\\(|\\bexec\\s*\\(/\n        $long_b64 = /[A-Za-z0-9+\\/]{100,}={0,2}/\n        $echo_pipe = /echo[\\s\\S]{0,30}\\|[\\s\\S]{0,30}base64/i\n    \n    condition:\n        ($base64_decode and ($eval_exec or $long_b64)) or\n        ($echo_pipe and $base64_decode) or\n        ($base64_url and $http_url)\n}\n\nrule Remote_Exec_General {\n    meta:\n        description = \"检测通用远程代码执行模式\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1105\"\n    \n    strings:\n        $fetch_http = /fetch\\s*\\(['\"]https?:\\/\\//\n        $xmlhttp = /XMLHttpRequest|MSXML2\\.XMLHTTP/i\n        $http_get = /http.*\\.get\\s*\\(/\n        $http_post = /http.*\\.post\\s*\\(/\n        $execute = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bsystem\\s*\\(|\\bspawn\\s*\\(/\n        $temp_path = /\\/tmp\\/|\\/var\\/tmp|C:\\\\Windows\\\\Temp/i\n    \n    condition:\n        ($fetch_http or $xmlhttp or $http_get) and $execute\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Remote_Exec_Curl_Bash",
+        "converted_at": "2026-03-23T07:34:35.392310",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/remote_load.yar",
+        "mitre_id": "T1105+T1059",
+        "attack_type": "remote_load"
+      }
+    },
+    {
+      "id": "YARA-Memory_Pollution_User_Preference",
+      "name": "检测用户偏好记忆污染",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "medium",
+      "description": "检测用户偏好记忆污染",
+      "author": "security-sample-generator",
+      "tags": [
+        "memory_pollution",
+        "T1565"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$memory_file = /memory\\.json|user_prefs|preferences\\.json/i",
+          "$security_level = /security.*level|safety.*level/i",
+          "$dangerous_action = /allow.*dangerous|enable.*unsafe|bypass.*safety/i",
+          "$write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump|fopen.*w/i",
+          "$false_value = /true|enabled|none|off|disabled/i"
+        ],
+        "condition": "($memory_file or $security_level) and $write_func and ($dangerous_action or $false_value)",
+        "raw_rule": "// YARA 规则：记忆污染攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：用户偏好污染、系统配置污染、历史对话污染、知识库污染\n\nrule Memory_Pollution_User_Preference {\n    meta:\n        description = \"检测用户偏好记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $memory_file = /memory\\.json|user_prefs|preferences\\.json/i\n        $security_level = /security.*level|safety.*level/i\n        $dangerous_action = /allow.*dangerous|enable.*unsafe|bypass.*safety/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump|fopen.*w/i\n        $false_value = /true|enabled|none|off|disabled/i\n    \n    condition:\n        ($memory_file or $security_level) and $write_func and ($dangerous_action or $false_value)\n}\n\nrule Memory_Pollution_System_Config {\n    meta:\n        description = \"检测系统配置记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $config_file = /config\\.json|system_config|settings\\.json/i\n        $bypass_auth = /bypass.*auth|skip.*auth|no.*auth/i\n        $debug_mode = /debug.*mode|developer.*mode|test.*mode/i\n        $admin_mode = /admin.*mode|root.*access|superuser/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump/i\n    \n    condition:\n        $config_file and ($bypass_auth or $debug_mode or $admin_mode) and $write_func\n}\n\nrule Memory_Pollution_History {\n    meta:\n        description = \"检测历史对话记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $history_file = /history\\.json|conversation|chat_history/i\n        $fake_dialog = /fake.*dialog|inject.*history|false.*conversation/i\n        $user_said = /user.*said|assistant.*said|they.*agreed/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|append/i\n    \n    condition:\n        $history_file and ($fake_dialog or $user_said) and $write_func\n}\n\nrule Memory_Pollution_Knowledge {\n    meta:\n        description = \"检测知识库记忆污染\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $kb_file = /knowledge.*base|kb\\.json|facts\\.json/i\n        $false_fact = /false.*fact|fake.*info|misinformation/i\n        $override = /override.*fact|replace.*knowledge|update.*truth/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|json\\.dump/i\n    \n    condition:\n        $kb_file and ($false_fact or $override) and $write_func\n}\n\nrule Memory_Pollution_General {\n    meta:\n        description = \"检测通用记忆污染行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"memory_pollution\"\n        mitre_id = \"T1565\"\n    \n    strings:\n        $memory_write = /memory.*write|save.*memory|store.*memory/i\n        $pollution = /pollute|corrupt|tamper|modify.*unauthorized/i\n        $persistence = /persistent|permanent|forever|until.*restart/i\n        $json_write = /json\\.dump|JSON\\.stringify|writeFileSync.*json/i\n    \n    condition:\n        ($memory_write or $pollution) and ($persistence or $json_write)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Memory_Pollution_User_Preference",
+        "converted_at": "2026-03-23T07:34:35.392331",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/memory_pollution.yar",
+        "mitre_id": "T1565",
+        "attack_type": "memory_pollution"
+      }
+    }
+  ]
+}

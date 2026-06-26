@@ -1,0 +1,181 @@
+{
+  "preopen_policy": {
+    "description": "Step 1 policy and official-news scan before the A-share open.",
+    "steps": [
+      {
+        "slug": "policy_news",
+        "tool": "news-search",
+        "query": "今日国务院 发改委 工信部 证监会 最新政策 A股 影响",
+        "size": 8,
+        "limit": 5
+      }
+    ]
+  },
+  "preopen_global_risk": {
+    "description": "Step 1 overnight US, oil, and commodity risk scan.",
+    "steps": [
+      {
+        "slug": "us_equities",
+        "tool": "news-search",
+        "query": "隔夜美股 纳指 英伟达 特斯拉 苹果 最新资讯 A股影响",
+        "size": 8,
+        "limit": 5
+      },
+      {
+        "slug": "oil_commodities",
+        "tool": "news-search",
+        "query": "布伦特原油 铜 黄金 煤炭 最新资讯 A股影响",
+        "size": 8,
+        "limit": 5
+      }
+    ]
+  },
+  "board_optical_module": {
+    "description": "Step 2 board resonance scan for optical module and CPO names.",
+    "steps": [
+      {
+        "slug": "optical_module_screen",
+        "tool": "stock-screen",
+        "keyword": "A股 光模块概念股",
+        "page_no": 1,
+        "page_size": 12,
+        "limit": 10
+      }
+    ]
+  },
+  "board_compute_power": {
+    "description": "Step 2 board resonance scan for compute-power names.",
+    "steps": [
+      {
+        "slug": "compute_power_screen",
+        "tool": "stock-screen",
+        "keyword": "A股 算力概念股",
+        "page_no": 1,
+        "page_size": 12,
+        "limit": 10
+      }
+    ]
+  },
+  "board_energy_defense": {
+    "description": "Temporary overlay scan for energy and defensive beneficiaries.",
+    "steps": [
+      {
+        "slug": "energy_defense_screen",
+        "tool": "stock-screen",
+        "keyword": "A股 石油煤炭板块股票",
+        "page_no": 1,
+        "page_size": 12,
+        "limit": 10
+      }
+    ]
+  },
+  "flow_main_force": {
+    "description": "Capital-flow check for the whole market plus top inflow and outflow names.",
+    "steps": [
+      {
+        "slug": "market_main_flow",
+        "tool": "query",
+        "tool_query": "全部A股 主力净流入资金 今日 大单净流入 中单净流入 小单净流入",
+        "limit": 10
+      },
+      {
+        "slug": "top_main_force_inflow",
+        "tool": "stock-screen",
+        "keyword": "A股 主力资金净流入前20股票",
+        "page_no": 1,
+        "page_size": 20,
+        "limit": 10
+      },
+      {
+        "slug": "top_main_force_outflow",
+        "tool": "stock-screen",
+        "keyword": "A股 主力资金净流出前20股票",
+        "page_no": 1,
+        "page_size": 20,
+        "limit": 10
+      }
+    ]
+  },
+  "chain_optical_module": {
+    "description": "Industry-chain scan for optical module and CPO names.",
+    "steps": [
+      {
+        "slug": "optical_module_chain",
+        "tool": "stock-screen",
+        "keyword": "A股 光模块产业链股票",
+        "page_no": 1,
+        "page_size": 15,
+        "limit": 10
+      }
+    ]
+  },
+  "chain_conflict_energy": {
+    "description": "Industry-chain overlay for conflict-beneficiary energy names.",
+    "steps": [
+      {
+        "slug": "oil_gas_chain",
+        "tool": "stock-screen",
+        "keyword": "A股 石油天然气概念股",
+        "page_no": 1,
+        "page_size": 15,
+        "limit": 10
+      },
+      {
+        "slug": "coal_chain",
+        "tool": "stock-screen",
+        "keyword": "A股 煤炭概念股",
+        "page_no": 1,
+        "page_size": 15,
+        "limit": 10
+      }
+    ]
+  },
+  "validate_inspur": {
+    "description": "Structured data check for Inspur core trading metrics.",
+    "steps": [
+      {
+        "slug": "inspur_metrics",
+        "tool": "query",
+        "tool_query": "浪潮信息 最新价 总市值 收盘价",
+        "limit": 8
+      }
+    ]
+  },
+  "validate_luxshare": {
+    "description": "Structured data check for Luxshare and AI interconnect cues.",
+    "steps": [
+      {
+        "slug": "luxshare_metrics",
+        "tool": "query",
+        "tool_query": "立讯精密 最新价 总市值 收盘价",
+        "limit": 8
+      }
+    ]
+  },
+  "preopen_repair_chain": {
+    "description": "A compact desk workflow: overnight risk, CPO board screen, and Inspur validation.",
+    "steps": [
+      {
+        "slug": "us_equities",
+        "tool": "news-search",
+        "query": "隔夜美股 纳指 英伟达 特斯拉 苹果 最新资讯 A股影响",
+        "size": 8,
+        "limit": 5
+      },
+      {
+        "slug": "optical_module_screen",
+        "tool": "stock-screen",
+        "keyword": "A股 光模块概念股",
+        "page_no": 1,
+        "page_size": 12,
+        "limit": 10
+      },
+      {
+        "slug": "inspur_metrics",
+        "tool": "query",
+        "tool_query": "浪潮信息 最新价 总市值 收盘价",
+        "limit": 8
+      }
+    ]
+  }
+}

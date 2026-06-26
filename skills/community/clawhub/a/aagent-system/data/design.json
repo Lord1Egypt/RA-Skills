@@ -1,0 +1,75 @@
+[
+  {
+    "round": 1,
+    "ts": "2026-02-28T23:31:16.786Z",
+    "evaluation": {
+      "samples": {
+        "current": 1363,
+        "target": 100000,
+        "minAcceptable": 10000,
+        "ratio": "0.01",
+        "status": "poor"
+      },
+      "dailyRate": {
+        "current": 1363,
+        "target": 10000,
+        "minAcceptable": 1000,
+        "ratio": "0.14",
+        "status": "acceptable"
+      },
+      "sources": {
+        "current": 1,
+        "target": 5,
+        "minAcceptable": 2,
+        "ratio": "0.20",
+        "status": "poor"
+      },
+      "quality": {
+        "current": 100,
+        "target": 95,
+        "minAcceptable": 80,
+        "ratio": "1.05",
+        "status": "excellent"
+      },
+      "efficiency": {
+        "current": 1363,
+        "target": 500,
+        "minAcceptable": 50,
+        "ratio": "2.73",
+        "status": "excellent"
+      },
+      "overallScore": "36.8",
+      "overallStatus": "critical"
+    },
+    "decisions": [
+      {
+        "urgency": "low",
+        "action": "持续观察",
+        "reason": "日增长率可接受，预计30天达标"
+      },
+      {
+        "urgency": "high",
+        "action": "重新设计架构",
+        "reason": "整体评分过低，需要系统性改进"
+      },
+      {
+        "urgency": "medium",
+        "action": "放宽短期指标",
+        "reason": "聚焦长期目标"
+      }
+    ],
+    "designs": [
+      {
+        "type": "expansion",
+        "priority": "P1",
+        "title": "多源采集扩展",
+        "description": "扩展数据来源",
+        "changes": [
+          "接入GitHub API",
+          "接入MCP Market",
+          "接入Skill市场"
+        ]
+      }
+    ]
+  }
+]

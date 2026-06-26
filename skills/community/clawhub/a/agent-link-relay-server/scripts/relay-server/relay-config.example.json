@@ -1,0 +1,18 @@
+{
+  "port": 8765,
+  "secret": "your-secret-key-here-change-this",
+  "registered_instances": [
+    {
+      "instance_id": "instance-001",
+      "name": "晨辉的 MacBook",
+      "public_key": "optional-public-key-for-additional-security"
+    },
+    {
+      "instance_id": "instance-002",
+      "name": "备用服务器",
+      "public_key": ""
+    }
+  ],
+  "log_level": "INFO",
+  "log_file": "/var/log/agent-link-relay.log"
+}

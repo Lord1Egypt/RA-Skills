@@ -1,0 +1,156 @@
+{
+  "id": "academic-writing",
+  "name": "Academic Writing",
+  "description": "学术写作辅助技能，提供论文段落写作、语言润色、语法检查、学术风格优化、引用格式检查等功能。支持心理学、医学、工程等多学科写作规范。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "润色",
+      "写作",
+      "段落",
+      "polish",
+      "write",
+      "academic writing",
+      "论文写作"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_style": "APA",
+    "supported_styles": ["APA", "AMA", "Vancouver", "IEEE", "Chicago"],
+    "max_paragraph_length": 300,
+    "min_sentence_length": 10,
+    "max_sentence_length": 40
+  },
+
+  "capabilities": [
+    {
+      "name": "段落写作",
+      "description": "生成学术论文段落",
+      "features": [
+        "主题句生成",
+        "论证展开",
+        "过渡句写作",
+        "结论句写作"
+      ]
+    },
+    {
+      "name": "语言润色",
+      "description": "优化语言表达",
+      "features": [
+        "语法检查",
+        "句式优化",
+        "词汇升级",
+        "学术风格优化"
+      ]
+    },
+    {
+      "name": "格式检查",
+      "description": "检查学术格式",
+      "features": [
+        "引用格式检查",
+        "段落格式检查",
+        "图表格式检查",
+        "参考文献格式检查"
+      ]
+    },
+    {
+      "name": "引用管理",
+      "description": "管理文献引用",
+      "features": [
+        "文内引用格式化",
+        "参考文献列表生成",
+        "引用完整性检查",
+        "DOI 验证"
+      ]
+    }
+  ],
+
+  "writing_styles": {
+    "APA": {
+      "discipline": "心理学、教育学",
+      "edition": "7th",
+      "in_text_citation": "(Author, Year)",
+      "reference_format": "Author, A. A. (Year). Title. Journal, Volume(Issue), Pages. DOI"
+    },
+    "AMA": {
+      "discipline": "医学",
+      "edition": "11th",
+      "in_text_citation": "Superscript number",
+      "reference_format": "Author AA. Title. Journal. Year;Volume(Issue):Pages. DOI"
+    },
+    "Vancouver": {
+      "discipline": "生物医学",
+      "in_text_citation": "Number in brackets",
+      "reference_format": "Author AA. Title. Journal. Year;Volume(Issue):Pages."
+    },
+    "IEEE": {
+      "discipline": "工程、计算机",
+      "in_text_citation": "[Number]",
+      "reference_format": "[N] Author AA. Title. Journal. Year;Volume(Issue):Pages."
+    },
+    "Chicago": {
+      "discipline": "人文社科",
+      "edition": "17th",
+      "in_text_citation": "Footnote/Endnote",
+      "reference_format": "Author, First Name. Title. Publisher, Year."
+    }
+  },
+
+  "quality_checks": {
+    "grammar": {
+      "enabled": true,
+      "check_items": [
+        "主谓一致",
+        "时态一致",
+        "冠词使用",
+        "介词使用",
+        "句子完整性"
+      ]
+    },
+    "style": {
+      "enabled": true,
+      "check_items": [
+        "学术语气",
+        "避免口语化",
+        "避免第一人称",
+        "被动语态使用",
+        "术语准确性"
+      ]
+    },
+    "clarity": {
+      "enabled": true,
+      "check_items": [
+        "句子长度",
+        "段落长度",
+        "逻辑连贯性",
+        "过渡词使用",
+        "重复内容"
+      ]
+    },
+    "citation": {
+      "enabled": true,
+      "check_items": [
+        "引用格式",
+        "引用完整性",
+        "参考文献匹配",
+        "DOI 包含",
+        "引用时效性"
+      ]
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "润色后文本",
+      "修改建议",
+      "格式检查报告",
+      "引用列表"
+    ]
+  }
+}

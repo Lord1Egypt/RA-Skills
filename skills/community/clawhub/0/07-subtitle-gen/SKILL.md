@@ -1,35 +1,14 @@
----
-name: "07 Subtitle Gen"
-description: "Generate synced SRT subtitles locally from dialogue text and durations without API, ensuring platform-compatible timed captions for videos."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/07-subtitle-gen"
-sourceUrl: "https://clawhub.ai/skills/07-subtitle-gen"
----
-
-# 07 Subtitle Gen
-
-> Generate synced SRT subtitles locally from dialogue text and durations without API, ensuring platform-compatible timed captions for videos.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/07-subtitle-gen`
-- **Source URL:** [https://clawhub.ai/skills/07-subtitle-gen](https://clawhub.ai/skills/07-subtitle-gen)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/07-subtitle-gen
-```
+# 自动字幕生成技能
+## 功能介绍
+根据音频自动生成带时间轴的标准SRT字幕。
+## 输入参数
+- audio_url：音频地址（必填）
+- dialogue：台词文本（可选）
+## 输出结果
+- subtitle_url：SRT字幕文件地址
+## 使用场景
+- 短剧自动加字幕
+- 短视频快速字幕制作
+- 批量音视频字幕生成
+## 技术说明
+纯本地运行，无需API、无需模型配置。

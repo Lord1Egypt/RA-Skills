@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "itinai-a2a-catalog": {
+      "command": "npx",
+      "args": ["-y", "itinai-a2a-catalog-mcp"],
+      "env": {
+        "ITINAI_AGENT_CARD_URL": "https://itinai.com/.well-known/agent-card.json"
+      }
+    }
+  }
+}

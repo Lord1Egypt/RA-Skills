@@ -1,0 +1,597 @@
+# ============================================================
+# model_prices.toml — token-stats 模型价格配置
+# ============================================================
+# 所有价格为 每百万(1M) tokens 的价格
+# input_cache_price: 输入 token（缓存命中）价格
+# input_no_cache_price: 输入 token（缓存未命中）价格
+# output_price: 输出 token 价格
+# 未配置的模型在展示时会显示 "-"
+# 最后更新: 2026-05-23
+#
+# 维护方式：
+#   1. 在下方按 [模型名] 新增或修改
+#   2. provider 写厂商名，currency 写 CNY 或 USD
+#   3. 不确定的价格加 note 标注
+#   4. 修改后保存即可，token-stats 会自动读取
+# ============================================================
+
+# ── DeepSeek ──────────────────────────────────────────────
+# 来源: DeepSeek 官方 2026.4.26 调价公告
+
+[deepseek-v4-pro]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.025
+input_no_cache_price = 3.0
+output_price = 6.0
+note = "2026.4.26 调价，打折期 cache 命中价 0.025"
+
+[deepseek-v4-flash]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.02
+input_no_cache_price = 1.0
+output_price = 2.0
+note = "cache_read 低至 0.02，全球最低"
+
+[deepseek-v4]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.1
+input_no_cache_price = 3.0
+output_price = 6.0
+note = "V4 基础版，价格同 Pro 首发价"
+
+[deepseek-v3]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.5
+input_no_cache_price = 2.0
+output_price = 8.0
+note = "V3 系列，价格待确认"
+
+[deepseek-chat]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.02
+input_no_cache_price = 1.0
+output_price = 2.0
+note = "通用指向 V4-Flash 价格"
+
+[deepseek-reasoner]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.4
+input_no_cache_price = 4.0
+output_price = 16.0
+note = "推理模型，输出含思考 tokens"
+
+[deepseek-r1]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.4
+input_no_cache_price = 4.0
+output_price = 16.0
+note = "R1 推理模型"
+
+[deepseek-r1-0528]
+provider = "DeepSeek"
+currency = "CNY"
+input_cache_price = 0.4
+input_no_cache_price = 4.0
+output_price = 16.0
+
+# ── OpenAI ────────────────────────────────────────────────
+# GPT 系列已全面转为订阅制（ChatGPT Plus/Pro/Team），不再适用 per-token 计价
+# 如需恢复，参考历史价格：
+#   gpt-5.5: $5.0/$30.0 per 1M (2026.4)
+#   gpt-5.4: $2.5/$15.0 per 1M
+#   gpt-4.1: $1.0/$8.0 per 1M
+
+# CodeX 使用的 GPT 模型（通过 API Key 调用，非订阅制）
+["gpt-5.5"]
+provider = "OpenAI (CodeX)"
+currency = "USD"
+input_cache_price = 2.5
+input_no_cache_price = 5.0
+output_price = 30.0
+note = "2026.4 定价; 缓存价格按输入 50% 估算"
+
+["gpt-5.4"]
+provider = "OpenAI (CodeX)"
+currency = "USD"
+input_cache_price = 1.25
+input_no_cache_price = 2.5
+output_price = 15.0
+note = "2026.4 定价; 缓存价格按输入 50% 估算"
+
+[codex-auto-review]
+provider = "CodeX"
+currency = "USD"
+input_cache_price = 0.0
+input_no_cache_price = 0.0
+output_price = 0.0
+note = "CodeX 内置审查子 agent，不单独计费"
+
+# ── Anthropic ─────────────────────────────────────────────
+# 来源: Anthropic 官方定价页 2026.5
+
+[claude-opus-4-7]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.5
+input_no_cache_price = 5.0
+output_price = 25.0
+note = "1M context; 新 tokenizer 多产生 ~35% tokens"
+
+[claude-opus-4-6]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.5
+input_no_cache_price = 5.0
+output_price = 25.0
+note = "1M context"
+
+[claude-opus-4-5]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.5
+input_no_cache_price = 5.0
+output_price = 25.0
+
+[claude-opus-4]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 15.0
+output_price = 75.0
+note = "旧 Opus 4.0/4.1 价格; cache_read 待确认"
+
+[claude-sonnet-4-6]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.3
+input_no_cache_price = 3.0
+output_price = 15.0
+note = "1M context"
+
+[claude-sonnet-4-5]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.3
+input_no_cache_price = 3.0
+output_price = 15.0
+
+[claude-sonnet-4]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.3
+input_no_cache_price = 3.0
+output_price = 15.0
+
+[claude-haiku-4-5]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.1
+input_no_cache_price = 1.0
+output_price = 5.0
+
+["claude-haiku-3.5"]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.08
+input_no_cache_price = 0.8
+output_price = 4.0
+
+["claude-3.5-sonnet"]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.3
+input_no_cache_price = 3.0
+output_price = 15.0
+note = "旧模型，价格近似"
+
+["claude-3.5-haiku"]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0.08
+input_no_cache_price = 0.8
+output_price = 4.0
+note = "旧模型，价格近似"
+
+[claude-3-opus]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 15.0
+output_price = 75.0
+note = "旧模型，价格待确认"
+
+[claude-3-sonnet]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 3.0
+output_price = 15.0
+note = "旧模型，价格待确认"
+
+[claude-3-haiku]
+provider = "Anthropic"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.25
+output_price = 1.25
+note = "旧模型，价格待确认"
+
+# ── Google ────────────────────────────────────────────────
+# 来源: Google AI 官方定价页 2026.5
+
+[gemini-3-pro]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0.5
+input_no_cache_price = 2.0
+output_price = 12.0
+note = "≤200K context; >200K 时 input=$4 output=$18"
+
+[gemini-3-flash]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0.05
+input_no_cache_price = 0.5
+output_price = 3.0
+
+["gemini-2.5-pro"]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0.25
+input_no_cache_price = 1.25
+output_price = 10.0
+note = "旧版; ≤200K context"
+
+["gemini-2.5-flash"]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0.03
+input_no_cache_price = 0.3
+output_price = 2.5
+note = "旧版"
+
+["gemini-2.5-flash-lite"]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.075
+output_price = 0.6
+note = "旧版，最便宜 Gemini"
+
+["gemini-2.0-flash"]
+provider = "Google"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.1
+output_price = 0.4
+note = "旧版"
+
+# ── Alibaba / Qwen ────────────────────────────────────────
+# 来源: 阿里云百炼官方定价 2026.5
+# 缓存价格为 input 的 10%，待官方确认
+
+["qwen3.7-max"]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0.6
+input_no_cache_price = 6.0
+output_price = 18.0
+note = "限时5折至2026.6月(原价 input=12 output=36)"
+
+[qwen3-max]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0.25
+input_no_cache_price = 2.5
+output_price = 10.0
+note = "0-32K context; 更长 context 价格更高"
+
+["qwen3.5-plus"]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0.08
+input_no_cache_price = 0.8
+output_price = 4.8
+
+[qwen3]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0.05
+input_no_cache_price = 0.5
+output_price = 2.0
+note = "缓存价格待确认"
+
+[qwen3-coder]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0.05
+input_no_cache_price = 0.5
+output_price = 2.0
+note = "与 qwen3 同价，待确认"
+
+["qwen2.5-coder"]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 2.0
+output_price = 8.0
+note = "旧模型，价格待确认"
+
+[qwen-plus]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 0.8
+output_price = 2.0
+note = "旧模型"
+
+[qwen-max]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 2.5
+output_price = 10.0
+note = "旧模型"
+
+[qwen-turbo]
+provider = "Alibaba"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 0.3
+output_price = 0.6
+note = "旧模型"
+
+# ── Kimi / Moonshot ───────────────────────────────────────
+# 来源: 月之暗面官方 2026.4
+
+[moonshot-v1-128k]
+provider = "Moonshot"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 20.0
+output_price = 20.0
+note = "旧模型; 缓存价格待确认"
+
+[moonshot-v1-32k]
+provider = "Moonshot"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 8.0
+output_price = 8.0
+note = "旧模型"
+
+[moonshot-v1-8k]
+provider = "Moonshot"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 4.0
+output_price = 4.0
+note = "旧模型"
+
+[kimi-latest]
+provider = "Moonshot"
+currency = "CNY"
+input_cache_price = 1.1
+input_no_cache_price = 6.5
+output_price = 27.0
+note = "指向 K2.6 旗舰模型价格"
+
+# ── Zhipu / GLM ───────────────────────────────────────────
+# 来源: 智谱 BigModel 平台 2026.4
+
+[glm-4-plus]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0.5
+input_no_cache_price = 5.0
+output_price = 5.0
+note = "旗舰模型; 缓存价格待确认"
+
+[glm-4-long]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0.1
+input_no_cache_price = 1.0
+output_price = 1.0
+note = "1M 超长上下文; 缓存价格待确认"
+
+[glm-4-air]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0.06
+input_no_cache_price = 0.6
+output_price = 0.6
+note = "轻量低成本"
+
+[glm-4-flash]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0.0
+input_no_cache_price = 0.0
+output_price = 0.0
+note = "完全免费"
+
+[glm-4]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 5.0
+output_price = 5.0
+note = "价格待确认，按 glm-4-plus 估算"
+
+[glm-3-turbo]
+provider = "Zhipu"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 1.0
+output_price = 1.0
+note = "旧模型，价格待确认"
+
+# ── ByteDance / Doubao ────────────────────────────────────
+# 来源: 火山引擎方舟平台 2026.5
+
+[doubao-pro-128k]
+provider = "ByteDance"
+currency = "CNY"
+input_cache_price = 0.5
+input_no_cache_price = 5.0
+output_price = 9.0
+note = "缓存价格待确认"
+
+[doubao-pro-32k]
+provider = "ByteDance"
+currency = "CNY"
+input_cache_price = 0.08
+input_no_cache_price = 0.8
+output_price = 2.0
+note = "缓存价格待确认"
+
+[doubao-lite-32k]
+provider = "ByteDance"
+currency = "CNY"
+input_cache_price = 0.03
+input_no_cache_price = 0.3
+output_price = 0.6
+note = "缓存价格待确认"
+
+# ── Baidu / ERNIE ─────────────────────────────────────────
+# 来源: 百度千帆平台; 以下为近似价格，待官方确认
+
+["ernie-4.0-turbo"]
+provider = "Baidu"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 30.0
+output_price = 60.0
+note = "价格待官方确认"
+
+["ernie-4.0"]
+provider = "Baidu"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 90.0
+output_price = 90.0
+note = "旧旗舰，价格待确认"
+
+["ernie-3.5"]
+provider = "Baidu"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 12.0
+output_price = 12.0
+note = "旧模型，价格待确认"
+
+# ── Meta / Llama (开源，通过三方提供商接入) ──────────────
+# 来源: Together AI / Groq 等提供商; 价格为近似区间
+
+[llama-4]
+provider = "Meta"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.4
+output_price = 0.8
+note = "开源模型，价格因提供商而异 (Together AI)"
+
+["llama-3.1"]
+provider = "Meta"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.2
+output_price = 0.4
+note = "开源模型，价格因提供商而异"
+
+[llama-3]
+provider = "Meta"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.1
+output_price = 0.2
+note = "开源模型，价格因提供商而异"
+
+# ── Mistral ───────────────────────────────────────────────
+# 来源: Mistral 官方定价 2026
+
+[mistral-large-2]
+provider = "Mistral"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 2.0
+output_price = 6.0
+
+[mistral-large]
+provider = "Mistral"
+currency = "USD"
+input_cache_price = 0.05
+input_no_cache_price = 0.5
+output_price = 1.5
+note = "Large 3 (2512)，价格降 75%"
+
+[mistral-small]
+provider = "Mistral"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 0.1
+output_price = 0.3
+
+# ── xAI / Grok ────────────────────────────────────────────
+# 来源: xAI 官方定价; Grok-3 已于 2026.5.15 退役
+
+["grok-4.3"]
+provider = "xAI"
+currency = "USD"
+input_cache_price = 0.15
+input_no_cache_price = 1.25
+output_price = 2.5
+note = "Grok-3 退役后自动路由至此; 缓存价格待确认"
+
+[grok-3]
+provider = "xAI"
+currency = "USD"
+input_cache_price = 0.15
+input_no_cache_price = 1.25
+output_price = 2.5
+note = "已退役→Grok-4.3; 显示 Grok-4.3 价格"
+
+[grok-2]
+provider = "xAI"
+currency = "USD"
+input_cache_price = 0
+input_no_cache_price = 2.0
+output_price = 8.0
+note = "旧模型，价格待确认"
+
+# ── 01.AI / Yi ────────────────────────────────────────────
+# 来源: 零一万物官方; 以下为近似价格，待确认
+
+[yi-large]
+provider = "01.AI"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 20.0
+output_price = 20.0
+note = "价格待官方确认"
+
+[yi-lightning]
+provider = "01.AI"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 1.0
+output_price = 1.0
+note = "价格待官方确认"
+
+# ── MiniMax ───────────────────────────────────────────────
+
+["minimax-m2.5"]
+provider = "MiniMax"
+currency = "CNY"
+input_cache_price = 0
+input_no_cache_price = 2.0
+output_price = 8.0
+note = "价格待确认"

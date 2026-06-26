@@ -1,0 +1,44 @@
+{
+  "name": "stock-monitor-pro",
+  "version": "3.1.0",
+  "description": "全功能智能股票监控预警系统。支持7大预警规则、AI深度分析、交易信号生成。符合中国投资者习惯（红涨绿跌）。",
+  "author": "xiaobai",
+  "license": "MIT",
+  "keywords": [
+    "stock",
+    "monitor",
+    "alert",
+    "A股",
+    "投资",
+    "预警",
+    "AI分析"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaobai-ai/stock-monitor-pro"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "skills": {
+    "stock-monitor": {
+      "description": "全功能智能股票监控预警系统",
+      "entry": "SKILL.md"
+    }
+  },
+  "pricing": {
+    "free": {
+      "price": 0,
+      "features": ["3个预警规则", "基础监控"]
+    },
+    "pro": {
+      "price": 19.9,
+      "period": "month",
+      "features": ["7个预警规则", "AI深度分析", "交易信号", "优先支持"]
+    },
+    "lifetime": {
+      "price": 99,
+      "features": ["全部功能", "永久更新", "优先支持"]
+    }
+  }
+}

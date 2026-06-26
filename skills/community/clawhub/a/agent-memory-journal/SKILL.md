@@ -1,35 +1,37 @@
----
-name: "Agent Memory Journal"
-description: "Durable episodic memory for agents — file-based, inspectable, and easy to review. Use when an agent needs to keep a working journal of what happened, what ma..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-journal"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-journal"
----
+# Skill: Agent Memory Journal
 
-# Agent Memory Journal
+Manage and retrieve long-term memory using a 3-tier structure (Hot, Warm, Cold).
 
-> Durable episodic memory for agents — file-based, inspectable, and easy to review. Use when an agent needs to keep a working journal of what happened, what ma...
+Primary integration surface: the Python `Journal` API.
+The CLI is a convenience layer for shell and cron workflows.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-journal`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-journal](https://clawhub.ai/skills/agent-memory-journal)
+## Tools
 
-## Overview
+- `agent-memory-journal note <text>`: Add episodic note.
+- `agent-memory-journal remember <text> --category <cat>`: Add core memory.
+- `agent-memory-journal search --query <q>`: Search memory.
+- `agent-memory-journal forget <id>`: Supersede a memory.
+- `agent-memory-journal ingest`: Run promotion and rebuild cycle.
 
+## Core Categories
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-memory-journal
-```
+- `decision`: Strategic choices.
+- `constraint`: Hard rules or limitations.
+- `gotcha`: Lessons learned or bugs.
+- `preference`: User or agent preferences.
+- `capability`: New skills or tools.
+
+## Guidelines
+
+1.  **Episodic first**: Use `note` for observations.
+2.  **Explicit curation**: Use `remember` for facts that must persist.
+3.  **Atomic pinning**: Use `--pinned` for items that MUST be in the configured hot file.
+4.  **Verification**: Run `doctor` periodically to ensure integrity.
+
+## Agent installation
+
+See `docs/agent_install.md` for:
+- workspace installation
+- CLI symlink setup
+- startup contract for agents
+- hot promotion target override via `.memory/config.json`

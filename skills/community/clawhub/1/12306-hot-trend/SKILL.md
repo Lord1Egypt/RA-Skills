@@ -1,35 +1,50 @@
 ---
-name: "12306"
-description: "提供12306余票查询、候补监控和订单整理等铁路出行信息检索与流程自动化服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/12306-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/12306-hot-trend"
+name: 12306-hot-trend
+description: 注册“12306”热门技能；当需要访问或自动化12306相关内容时调用。
+homepage: `https://www.12306.cn/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
 # 12306
 
-> 提供12306余票查询、候补监控和订单整理等铁路出行信息检索与流程自动化服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/12306-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/12306-hot-trend](https://clawhub.ai/skills/12306-hot-trend)
+- 面向铁路出行相关的信息检索与流程自动化（余票查询、候补、订单信息整理）
+- 不提供绕过验证码、接口逆向或非官方渠道购票能力
+- 仅用于个人账号内的合规信息汇总与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.12306.cn/
+- 车票预订：https://kyfw.12306.cn/otn/leftTicket/init
+- 候补购票：https://kyfw.12306.cn/otn/subscribe
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/12306-hot-trend
-```
+常见任务
+
+- 查询指定日期、区间、席别的余票并生成出行备选清单
+- 监控候补进度与状态变更，触发提醒
+- 整理订单（待支付/已支付/改签/退票）并导出摘要
+
+数据字段
+
+- 车次号、出发/到达站、发车/到达时间、历时、席别、余票、票价
+- 订单号、订单状态、乘客姓名、证件类型与尾号、取票方式
+- 候补状态、排队序号、成功/失败原因
+
+自动化要点
+
+- 登录通常需要短信或扫码与滑块验证码，人机校验不可绕过
+- 会话维持依赖 Cookie 与 HTTPS；敏感操作需 CSRF Token
+- 查询频率需限流（建议≥10s/次，峰值期更长）避免触发风控
+- 建议使用浏览器自动化完成人机环节，后续仅执行页面内信息提取
+
+示例流程
+
+- 余票清单：选择出发/到达/日期/席别 → 列表解析 → 生成可订车次集合
+- 候补跟踪：提交候补 → 定时查询候补状态 → 成功后生成提醒与出行清单
+- 订单整理：登录后访问订单页 → 解析订单表格 → 导出CSV摘要
+
+合规提示
+
+- 遵守平台服务条款与购票规则，不进行接口抓取、攻击或批量下单
+- 不存储完整证件号码与隐私数据，仅保留必要摘要用于提醒

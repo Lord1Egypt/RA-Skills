@@ -1,0 +1,14 @@
+name: agentbox-clawhub
+version: 1.0.0
+description: Answer AgentBox Cloud sandbox setup and usage questions using the official AgentBox docs summary.
+author: GuoYGang
+license: MIT
+homepage: https://agentbox.cloud/
+repository: https://agentbox.cloud/docs
+tags:
+  - agentbox
+  - sandbox
+  - cli
+  - python-sdk
+  - devtools
+category: Development

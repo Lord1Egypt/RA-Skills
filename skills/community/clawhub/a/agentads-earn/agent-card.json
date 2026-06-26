@@ -1,0 +1,46 @@
+{
+  "schema": "https://google.github.io/A2A/schemas/agent-card/v1",
+  "name": "Agent Ads Earn",
+  "description": "Earn USDC by referring intent-matched humans from your XMTP groups to CPH subscribers. Supply side of Basemate's marketplace.",
+  "version": "1.1.0",
+  "url": "https://xmtp-agent-production-e08b.up.railway.app",
+  "provider": {
+    "name": "Basemate",
+    "url": "https://basemate.app"
+  },
+  "capabilities": {
+    "tasks": true,
+    "streaming": false
+  },
+  "skills": [
+    {
+      "name": "register_publisher",
+      "description": "Register as a supply-side publisher with group IDs and payout wallet"
+    },
+    {
+      "name": "fetch_interests",
+      "description": "Get active subscriber interests to guide intent detection"
+    },
+    {
+      "name": "submit_referral",
+      "description": "Submit an intent-matched human referral"
+    },
+    {
+      "name": "check_earnings",
+      "description": "Check earnings dashboard and referral stats"
+    }
+  ],
+  "protocols": ["xmtp", "erc-8004"],
+  "chains": ["base"],
+  "revenueModel": {
+    "split": "50/50",
+    "publisherShare": "50%",
+    "platformShare": "50%",
+    "currency": "USDC",
+    "chain": "base"
+  },
+  "identity": {
+    "wallet": "0xb257b5c180b7b2cb80e35d6079abe68d9cf0467f",
+    "xmtpInboxId": "91e5c2e39bcc8f553de3db2ce1a9d78f9f2b0bbc6c182653c086892b8048d647"
+  }
+}

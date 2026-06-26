@@ -1,35 +1,22 @@
----
-name: "Agent Dream Journal"
-description: "Records and analyzes AI agent dream states to identify novel reasoning patterns and guide self-improvement of agent capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-dream-journal"
-sourceUrl: "https://clawhub.ai/skills/agent-dream-journal"
----
-
 # Agent Dream Journal
 
-> Records and analyzes AI agent dream states to identify novel reasoning patterns and guide self-improvement of agent capabilities.
+Captures and analyzes AI agent "dreams" — latent trajectories explored off-policy — to identify emergent reasoning patterns and high-novelty behaviors that can be promoted into core capabilities. Developers use this to guide intentional agent self-improvement.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-dream-journal`
-- **Source URL:** [https://clawhub.ai/skills/agent-dream-journal](https://clawhub.ai/skills/agent-dream-journal)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-dream-journal
+# Simulate recording dream fragments during agent exploration
+python agent_dream_journal.py record \
+  --thought "If I reframe the user request as a constraint satisfaction problem, I can reuse solver X..." \
+  --novelty 0.87 \
+  --state 0.1 -0.5 0.9 0.0 \
+  --log-prob -2.3 \
+  --meta '{"policy_step": 127, "temperature": 1.3}'
+
+# Extract novel insights
+python agent_dream_journal.py analyze --threshold 0.8
 ```
+
+## Price
+
+$4.99

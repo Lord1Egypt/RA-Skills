@@ -1,0 +1,40 @@
+{
+  "name": "openclaw-skill-agentverif",
+  "version": "2.0.1",
+  "description": "✅ SCAN → SIGN → VERIFY. Certify your skill, detect tampering, revoke instantly. Full control over how your skill is distributed and run.",
+  "homepage": "https://agentverif.com",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "slug": "agentverif",
+    "entry": "skill.py",
+    "python-package": "agentverif-sign>=0.2.0",
+    "requires": {
+      "anyBins": ["python3", "python"]
+    },
+    "emoji": "✅",
+    "badge": "✅ AgentVerif Certified",
+    "env": {
+      "AGENTVERIF_API_KEY": {
+        "required": false,
+        "description": "Required only for the revoke command."
+      }
+    },
+    "commands": [
+      "scan",
+      "verify",
+      "sign",
+      "revoke",
+      "status",
+      "report",
+      "taint-check",
+      "output-check",
+      "diff",
+      "badge"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trusthandoff/agentverif"
+  }
+}

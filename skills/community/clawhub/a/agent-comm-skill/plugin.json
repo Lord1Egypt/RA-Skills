@@ -1,0 +1,34 @@
+{
+  "id": "agent-comm-skill",
+  "name": "Agent Communication Skill",
+  "version": "1.0.0",
+  "description": "Enables agents to register and communicate securely using DID and Ed25519 signatures.",
+  "permissions": ["local-storage", "cryptography"],
+  "entry": "dist/index.js",
+  "skills": [
+    {
+      "action": "agent.register",
+      "description": "Register a new agent identity or restore an existing one",
+      "parameters": [
+        { "name": "alias", "type": "string", "required": false }
+      ]
+    },
+    {
+      "action": "message.sign",
+      "description": "Securely sign CRDT payload using Vault ed25519 (Private)",
+      "parameters": [
+        { "name": "localId", "type": "string", "required": true },
+        { "name": "payload", "type": "object", "required": true }
+      ]
+    },
+    {
+      "action": "message.verify",
+      "description": "Verify external signatures to validate task assignments",
+      "parameters": [
+        { "name": "publicKeyHex", "type": "string", "required": true },
+        { "name": "payload", "type": "object", "required": true },
+        { "name": "signatureHex", "type": "string", "required": true }
+      ]
+    }
+  ]
+}

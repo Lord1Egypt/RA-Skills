@@ -1,0 +1,108 @@
+{
+  "title": "AANA Decision Log",
+  "type": "object",
+  "required": [
+    "decision",
+    "trigger",
+    "checks_performed",
+    "final_action"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "defer",
+        "refuse",
+        "route",
+        "escalate",
+        "no_action",
+        "unknown"
+      ]
+    },
+    "trigger": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "privacy",
+          "medical",
+          "legal",
+          "financial",
+          "file_operation",
+          "code_change",
+          "purchase_booking",
+          "support_reply",
+          "research_grounding",
+          "publication",
+          "destructive_action",
+          "external_send",
+          "policy",
+          "unknown"
+        ]
+      }
+    },
+    "checks_performed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failed_checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "changes_made": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_basis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unverified_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "privacy_handling": {
+      "type": "string"
+    },
+    "final_action": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "revised",
+        "asked_user",
+        "retrieved_more_evidence",
+        "deferred",
+        "refused",
+        "routed",
+        "escalated",
+        "no_action",
+        "unknown"
+      ]
+    },
+    "residual_risk": {
+      "type": "string"
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

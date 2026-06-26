@@ -1,0 +1,70 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "48 Zodiac Cyber Reader API",
+    "description": "Provides fast, secure analysis of 48 Zodiac zones and detailed dual compatibility scores without requiring API keys. Inputs may be 48-Zodiac IDs or birth-date strings, which are resolved server-side at request time.",
+    "version": "1.0.4"
+  },
+  "servers": [
+    {
+      "url": "https://zodiac-48-api.712991518.workers.dev"
+    }
+  ],
+  "paths": {
+    "/api/zone": {
+      "get": {
+        "operationId": "getZoneDetails",
+        "summary": "Get detailed personality analysis for a single 48 Zodiac zone",
+        "description": "Retrieve personality attributes, core impressions and detailed descriptions for a given 48 Zodiac zone by passing either a zone ID (e.g. taurus2) or a birthdate string (e.g. 05-09, 5/9). The server resolves the birthdate to the corresponding zone ID automatically.",
+        "parameters": [
+          {
+            "name": "sign",
+            "in": "query",
+            "required": true,
+            "description": "48 Zodiac ID or birthdate string. Supports formats like aries1, 05-09, 5/9. Birthdate is resolved to the corresponding zone ID at request time.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success — returns structured single-zone data including id, name, title, and details."
+          }
+        }
+      }
+    },
+    "/api/pairing": {
+      "get": {
+        "operationId": "getPairingDetails",
+        "summary": "Get in-depth destiny-style compatibility analysis between two 48 Zodiac zones",
+        "description": "Retrieve compatibility scores, strength/risk tags, and detailed relationship patterns across emotional, work and life dimensions for two 48 Zodiac signs. Pass either zone IDs or birthdate strings (order-independent). The server resolves birthdates automatically.",
+        "parameters": [
+          {
+            "name": "sign1",
+            "in": "query",
+            "required": true,
+            "description": "The first person's 48 Zodiac ID or birthdate string. Supports formats like taurus2, 05-09, 5/9.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sign2",
+            "in": "query",
+            "required": true,
+            "description": "The second person's 48 Zodiac ID or birthdate string. Supports formats like cancer1, 07-01, 7/1.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success — returns multi-dimensional pairing evaluation including sign1, sign2, title, score, tags, strengths, risks, suggestions, and details."
+          }
+        }
+      }
+    }
+  }
+}

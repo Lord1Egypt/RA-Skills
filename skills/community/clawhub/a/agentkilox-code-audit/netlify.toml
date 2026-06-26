@@ -1,0 +1,15 @@
+[build]
+  command = "npm install"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/index.js"
+  status = 200
+
+[[functions]]
+  path = "/.netlify/functions/*"
+  runtime = "nodejs18

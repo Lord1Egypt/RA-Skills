@@ -1,0 +1,120 @@
+{
+  "taskId": "task-003",
+  "snapshotType": "completed",
+  "timestamp": "2026-03-17T20:57:07.103Z",
+  "metadata": {},
+  "snapshot": {
+    "task_id": "task-003",
+    "task_title": "搜索并整理最近 3 个月 AI Agent 行业新闻",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "形成输出",
+    "progress_percent": 85,
+    "current_action": "正在进行：形成输出",
+    "why_not_done": "任务正在正常执行中",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.103Z",
+    "updated_at": "2026-03-17T20:57:07.103Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": "已筛选 10 条新闻",
+        "completed": true
+      },
+      {
+        "name": "分析与比较",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "形成输出",
+        "status": "in_progress",
+        "progress": 0,
+        "weight": 15,
+        "summary": null,
+        "completed": false
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "任务已完成",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "已生成报告：4页",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "开始阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "进入下一阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "完成阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "正在比较 10 个项目",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "开始阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "进入下一阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "完成阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "已提取 20 个数据项",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": false
+    },
+    "retry_log": []
+  }
+}

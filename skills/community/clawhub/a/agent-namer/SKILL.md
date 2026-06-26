@@ -1,35 +1,107 @@
 ---
-name: "agent-namer"
-description: "为内部agent生成"货xx"格式的名字，并检查是否已被使用。用于给新agent起名时避免重复。功能：给新agent起名、检查agent名字是否可用、查看已使用的agent名字列表、添加/复活agent名字、弃用/阵亡agent名字。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-namer"
-sourceUrl: "https://clawhub.ai/skills/agent-namer"
+name: agent-namer
+description: 为内部agent生成"货xx"格式的名字，并检查是否已被使用。用于给新agent起名时避免重复。功能：给新agent起名、检查agent名字是否可用、查看已使用的agent名字列表、添加/复活agent名字、弃用/阵亡agent名字。
 ---
 
-# agent-namer
+# Agent Namer
 
-> 为内部agent生成"货xx"格式的名字，并检查是否已被使用。用于给新agent起名时避免重复。功能：给新agent起名、检查agent名字是否可用、查看已使用的agent名字列表、添加/复活agent名字、弃用/阵亡agent名字。
+内部agent命名工具，统一使用"货xx"格式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-namer`
-- **Source URL:** [https://clawhub.ai/skills/agent-namer](https://clawhub.ai/skills/agent-namer)
+## 已使用的名字
 
-## Overview
+| 名字 | 状态 | 角色 |
+|------|------|------|
+| 货又星 | 活跃 | 用户 |
+| 货小星 | 活跃 | 首席大管家 |
+| 货十三 | 活跃 | 小说写作者 |
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-namer
+### 生成名字
+
+根据以下prompt生成名字：
+
 ```
+你是一个起名大师，专门为内部agent生成符合"货xx"格式的名字。请遵循以下规则：
+
+起名规则
+格式要求：名字必须为"货"字开头，后面跟1-3个字符（可以是汉字、数字或字母），总长度2-4个字符
+例如：货小星、货十三、货又星、货A1、货小七、货无双、货小机灵、货A100、货零零发
+
+核心原则：名字需紧密结合agent的角色功能和特点或具有一定的趣味性
+例如：数据分析师 → 货小数、货算盘、货精算
+例如：内容审核员 → 货火眼、货金睛、货把关
+例如：货小星、货十三、货又星
+
+命名风格参考（结合角色特点）：
+功能映射型：直接体现核心能力（货搜索、货翻译、货摘要）
+特质映射型：体现角色特质（货细心、货耐心、货快速）
+趣味映射型：幽默有趣地体现功能（货百科、货活字典、货算无遗）
+形象映射型：拟人化角色形象（货小秘、货管家、货助手）
+
+创意要求：
+名字要让人一看就能联想到角色的功能
+名字要有特色，容易记忆
+避免生僻字和拗口的组合
+每次生成3-5个候选名字，并附上简要的命名思路说明
+
+特别提醒：
+不要生成已经在"已使用的名字"列表中活跃状态不可用的名字，可以使用python3 scripts/manage_name.py list查看活跃的名字列表，或者python3 scripts/manage_name.py check <名字>检查名字是否可用
+根据用户提供的角色描述，量身定制名字方案
+```
+
+### 检查名字是否可用
+
+检查名字状态：
+- 不在字典中 → ✅ 可用（全新）
+- 在字典中且状态为"活跃" → ❌ 已被使用
+- 在字典中且状态为"已阵亡" → ✅ 可用（可复活）
+
+```bash
+python3 scripts/manage_name.py check <名字>
+```
+
+示例：
+```bash
+python3 scripts/manage_name.py check 货小七
+```
+
+### 添加/复活名字
+
+- 不在字典中 → 添加为新名字
+- 在字典中且状态为"已阵亡" → 复活为活跃（role为空则不修改原role）
+- 在字典中且状态为"活跃" → 报错
+
+```bash
+python3 scripts/manage_name.py add <名字> [角色]
+```
+
+示例：
+```bash
+python3 scripts/manage_name.py add 货小七 "数据分析师"
+```
+
+### 将名字设为阵亡
+
+```bash
+python3 scripts/manage_name.py kill <名字>
+```
+
+示例：
+```bash
+python3 scripts/manage_name.py kill 货小七
+```
+
+### 查看活跃的名字列表
+
+```bash
+python3 scripts/manage_name.py list
+```
+
+## 工作流程
+
+1. 用户提供agent的角色功能描述
+2. 生成3-5个候选名字附带简短的起名解释，提供给用户查看判断选择，用户选择或提出修改意见，重新打磨名字，直到敲定名字
+3. 运行 `python3 scripts/manage_name.py check <名字>` 检查是否可用，不可用则回到流程2重新生成名字
+4. 如果可用，确定使用后运行 `python3 scripts/manage_name.py add <名字> [角色]` 记录该名字
+5. 如果agent弃用阵亡，运行 `python3 scripts/manage_name.py kill <名字>` 将其状态改为已阵亡

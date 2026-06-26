@@ -1,0 +1,34 @@
+{
+  "sessions": [
+    {
+      "id": "session_001",
+      "timestamp": "2026-04-12T14:00:00",
+      "transcript": "学生: 我喜欢先看GeoGebra动画理解概念\\nAI: 好的，我会记住你的偏好\\n学生: 求极限 lim(x->0) sinx/x",
+      "extracted_facts": [
+        {
+          "timestamp": "2026-04-12T14:00:05",
+          "extract_type": "preference",
+          "content": {
+            "category": "learning_style",
+            "type": "visual",
+            "preference": "geogebra_animation"
+          },
+          "confidence": 0.9,
+          "context": "learning_style_recognition"
+        },
+        {
+          "timestamp": "2026-04-12T14:05:00",
+          "extract_type": "mastery",
+          "content": {
+            "concept": "极限",
+            "level": "proficient",
+            "confidence": 0.85,
+            "evidence": "正确解答基础极限题"
+          },
+          "confidence": 0.85,
+          "context": "mastery_assessment"
+        }
+      ]
+    }
+  ]
+}

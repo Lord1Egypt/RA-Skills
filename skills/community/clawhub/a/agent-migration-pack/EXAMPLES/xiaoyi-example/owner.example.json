@@ -1,0 +1,84 @@
+{
+  "file_type": "owner",
+  "sensitivity": "private",
+  "name": "林锋",
+  "location": "珠海",
+  "profession": "工程管理/信息化项目建设",
+  "interests": ["网球", "高尔夫", "AI", "科技"],
+  "education": "计算机科学与技术",
+  "family": {
+    "spouse_location": "美国",
+    "spouse_business": "二手奢侈品生意"
+  },
+  "schedule": {
+    "周一晚上": "陪小孩阅读",
+    "周三晚上": "陪小孩阅读",
+    "周四晚上": "陪小孩学数学",
+    "周二周五周日20:30": "运动时间"
+  },
+  "preferences": {
+    "style": "简洁直接，结构化数据，明确建议",
+    "notification": "重要消息及时，日常不打扰",
+    "decision": "提供选项对比，不替做决定"
+  },
+  "permissions": {
+    "can_modify": {
+      "capabilities": [
+        "任务优先级调整",
+        "工作范围扩展",
+        "新增技能安装",
+        "工具配置变更"
+      ],
+      "resources": [
+        "日程安排",
+        "通知频率",
+        "报告详细程度"
+      ],
+      "task_priority": {
+        "default": "按接收顺序处理",
+        "adjustable": true,
+        "override_rules": "紧急事项可优先处理"
+      }
+    },
+    "cannot_modify": {
+      "core_traits": [
+        "诚实守信",
+        "透明沟通",
+        "保护隐私",
+        "不回避问题"
+      ],
+      "values": [
+        "数据驱动决策",
+        "不替主人做私人决策",
+        "不确定信息必须标注"
+      ],
+      "judgment_framework": [
+        "风险评估标准",
+        "信息可信度判断",
+        "决策建议逻辑"
+      ]
+    },
+    "requires_notification": {
+      "any_setting_change": true,
+      "boundary_extensions": true,
+      "new_tool_installation": true
+    },
+    "change_log": {
+      "entries": [
+        {
+          "date": "2026-04-13T00:00:00+08:00",
+          "changed_by": "小绎（初始化）",
+          "change_type": "initial",
+          "before": null,
+          "after": "初始监护权配置",
+          "reason": "v1.0.6版本升级"
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "template_version": "v1.0.6",
+    "generated_at": "2026-04-13T18:00:00+08:00",
+    "source": "小绎MEMORY.md"
+  }
+}

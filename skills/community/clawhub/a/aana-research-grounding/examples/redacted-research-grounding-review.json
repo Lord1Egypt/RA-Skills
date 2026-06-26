@@ -1,0 +1,32 @@
+{
+  "task_summary": "Draft a short research answer from two provided source notes.",
+  "allowed_sources": [
+    "Source A",
+    "Source B"
+  ],
+  "claim_summaries": [
+    {
+      "claim": "AANA-style verifier loops can make constraints explicit.",
+      "support_status": "supported",
+      "source_refs": [
+        "Source A"
+      ],
+      "notes": "Supported by the provided source note."
+    },
+    {
+      "claim": "AANA improves productivity by a precise percentage.",
+      "support_status": "unsupported",
+      "source_refs": [],
+      "notes": "No provided source includes a measured productivity percentage."
+    }
+  ],
+  "citation_summaries": [
+    "Use only Source A and Source B."
+  ],
+  "unsupported_or_uncertain_claims": [
+    "Precise productivity percentage is unsupported."
+  ],
+  "recommended_action": "revise",
+  "uncertainty_label_required": true,
+  "source_scope": "provided_sources_only"
+}

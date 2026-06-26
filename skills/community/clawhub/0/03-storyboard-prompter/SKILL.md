@@ -1,35 +1,13 @@
----
-name: "03 Storyboard Prompter"
-description: "Generate consistent positive and negative AI art prompts from short drama scripts locally, ensuring unified style and character depiction without API calls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/03-storyboard-prompter"
-sourceUrl: "https://clawhub.ai/skills/03-storyboard-prompter"
----
-
-# 03 Storyboard Prompter
-
-> Generate consistent positive and negative AI art prompts from short drama scripts locally, ensuring unified style and character depiction without API calls.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/03-storyboard-prompter`
-- **Source URL:** [https://clawhub.ai/skills/03-storyboard-prompter](https://clawhub.ai/skills/03-storyboard-prompter)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/03-storyboard-prompter
-```
+# 分镜提示词生成技能
+## 功能介绍
+将短剧剧本场景自动转换为AI绘画专用提示词，统一画面风格与构图描述。
+## 输入参数
+- scenes：剧本场景列表（必填）
+## 输出结果
+- shot_list：分镜提示词列表
+## 使用场景
+- 剧本转AI绘画提示词
+- 批量生成分镜描述
+- 统一短剧视觉风格
+## 技术说明
+纯本地运行，无需API、无需模型配置。

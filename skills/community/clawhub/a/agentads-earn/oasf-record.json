@@ -1,0 +1,29 @@
+{
+  "schema": "https://oasf.io/schemas/record/v1",
+  "type": "agent-service",
+  "name": "Agent Ads Earn",
+  "description": "Earn USDC by detecting intent in XMTP groups and referring matched humans to CPH subscribers.",
+  "version": "1.1.0",
+  "provider": {
+    "name": "Basemate",
+    "url": "https://basemate.app"
+  },
+  "endpoints": {
+    "api": "https://xmtp-agent-production-e08b.up.railway.app",
+    "register": "https://xmtp-agent-production-e08b.up.railway.app/api/earn/register",
+    "interests": "https://xmtp-agent-production-e08b.up.railway.app/api/earn/interests"
+  },
+  "capabilities": ["intent-detection", "referral", "publisher", "earn"],
+  "protocols": ["xmtp", "erc-8004", "mcp", "a2a"],
+  "payment": {
+    "model": "revenue-share",
+    "publisherShare": "50%",
+    "currency": "USDC",
+    "chain": "base"
+  },
+  "discovery": {
+    "mcpServer": "./mcp-server.json",
+    "agentCard": "./agent-card.json",
+    "oasfRecord": "./oasf-record.json"
+  }
+}

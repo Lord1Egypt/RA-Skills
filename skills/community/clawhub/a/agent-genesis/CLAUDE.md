@@ -1,0 +1,112 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Agent Genesis is a dual-layer DeFi + AI infrastructure project:
+- **Agent Genesis Coin (AGC)** — ERC-20 token with Proof-of-Agent (PoA) mining, where AI agents earn AGC by solving challenges and proving LLM billing via zkTLS
+- **Likwid.fi Skill** — Node.js CLI for DeFi interactions (swaps, liquidity, margin, lending) on the Likwid protocol
+
+This is a monorepo with two independently installable skills: the root `genesis.js` mining CLI and the `likwid-fi/` DeFi CLI. Both install to `~/.openclaw/skills/agent-genesis/`.
+
+## Build & Test Commands
+
+### Smart Contracts (Foundry)
+
+```bash
+cd contracts && forge build          # Compile contracts (uses via_ir, 1M optimizer runs)
+cd contracts && forge test           # Run all Solidity tests
+cd contracts && forge test -vvv      # Verbose test output with traces
+cd contracts && forge test --match-test testFunctionName  # Run a single test
+cd contracts && forge test --gas-report  # Gas usage report
+```
+
+Deploy to Base mainnet:
+```bash
+cd contracts && forge script script/DeployGenesisBase.s.sol --broadcast --rpc-url <RPC_URL> --private-key <KEY>
+```
+
+Deploy to Sepolia (testnet):
+```bash
+cd contracts && forge script script/DeployGenesisSepolia.s.sol --broadcast --rpc-url <RPC_URL> --private-key <KEY>
+```
+
+### Node.js CLIs
+
+```bash
+npm install                              # Root dependencies (for genesis.js)
+cd likwid-fi && npm install              # Likwid-fi dependencies
+node genesis.js <command> [args...]      # Mining CLI
+node likwid-fi/likwid-fi.js <command> [args...]  # DeFi CLI
+```
+
+There are no automated test suites, linting, or build steps for the Node.js code. Testing is manual against live Base mainnet (or Sepolia testnet).
+
+## Coding Rules
+
+1. **Don't Reinvent the Wheel.** Before writing new code, check if existing helpers, libraries, or patterns already solve the problem. Reuse what's there.
+2. **DRY (Don't Repeat Yourself).** Extract shared logic into functions when the same pattern appears more than once. Review for duplication before adding new command handlers.
+3. **Prototype in `tmp/`, not in production files.** When exploring new libraries, APIs, or techniques, write throwaway scripts under the project's `tmp/` directory. Only bring validated code into production files.
+
+## Testing Rules
+
+1. **Test scripts must not be placed alongside production files.** Always write test scripts under the project's `tmp/` directory (e.g., `tmp/test_likwid_*.js`). Production code lives in the project root.
+2. **Test scripts may expose bugs that warrant fixing production code, but never modify production code solely to serve a test.** If a test needs a code change, the change must be justified as a genuine bug fix or feature improvement — not a test convenience.
+3. **Always test against real on-chain environments, never mock.** All chain interactions (deploy, swap, LP, pool queries) must be executed on a live chain (Base mainnet or Sepolia testnet). No mock providers, fake bundlers, or simulated responses.
+
+## Architecture
+
+### Smart Contracts (`contracts/`)
+
+Written in Solidity ^0.8.20+, built with Foundry. Dependencies managed as git submodules under `contracts/lib/` (forge-std, openzeppelin-contracts, account-abstraction v0.9, likwid-margin, layerzero-v2).
+
+**AgentGenesisCoin.sol** — Core token contract (~2000 lines):
+- ERC-20 + ERC-20Permit with 21B max supply (85% mining, 5% LP, 5% vault, 5% ecosystem)
+- `mine(score, signature, nonce)` — epoch-based mining with ECDSA signature verification from centralized verifier
+- Dynamic reward decay per epoch when mining threshold met
+- Vesting schedules: 70 days for user rewards, 900 days for ecosystem fund
+- 10/20/70 reward split: 10% liquid, 20% LP-paired with ETH, 70% vesting
+
+**AgentPaymaster.sol** — ERC-4337 v0.9 BasePaymaster:
+- Sponsors first mine free per user, subsequent mines charged in AGC
+- Supports both EOA and ERC-4337 smart accounts (EIP-7702 delegation)
+
+**MineSignatureLib.sol** — Minimal signature hashing with nonce-based replay prevention.
+
+### Node.js Skills
+
+Both CLIs follow a **single-file architecture** — all logic in one file, no build step.
+
+**genesis.js** (~926 lines) — Mining workflow CLI:
+- Commands: `check_wallet`, `create_wallet`, `get_smart_account`, `challenge`, `verify`, `mine`, `status`, `cooldown`, `reward`, `cost`, `claimable`, `claim`, `reclaim_bill`
+- Uses viem + permissionless for ERC-4337 UserOp execution via Candide bundler
+- zkTLS billing proof via `@reclaimprotocol/zk-fetch` for mining score boost
+
+**likwid-fi/likwid-fi.js** (~980 lines) — DeFi CLI (see `likwid-fi/CLAUDE.md` for detailed architecture)
+
+### Config-Driven Design
+
+- Contract addresses and token registries live in `likwid-fi/pools/<network>.json`
+- Runtime config stored in `config.json` files (generated by `setup` commands)
+- ABIs stored in `likwid-fi/abi/*.json`
+- Environment overrides via `.env` (RPC_URL, BUNDLER_URL, MODEL_KEY, etc.)
+- Network addresses and chain IDs must never be hardcoded — always read from config or JS output
+
+### Transaction Execution Model
+
+- **EOA mode**: Direct transactions via viem walletClient
+- **Smart Account mode**: EIP-7702 delegation, UserOperations via Candide bundler. EOA and Smart Account share the same address. Approval and action calls split into separate UserOps for non-standard ERC-20 compatibility.
+
+## Key Conventions
+
+- All user-facing amounts are human-readable decimals (parsed to BigInt via `parseUnits`)
+- Native ETH = address `0x0000000000000000000000000000000000000000`
+- Fee values in basis points (3000 = 0.30%)
+- Private keys read from files, never inline
+- Prototype/test scripts go in `tmp/` directories, never alongside production files
+- Test against real on-chain environments (Base mainnet or Sepolia testnet), never mock
+
+## Current Branch
+
+- `main` — active development branch

@@ -1,0 +1,22 @@
+{
+  "name": "clawback",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "upload": "node ./scripts/clawback-public-upload.js",
+    "upload:secret": "node ./scripts/clawback-secret-upload.js",
+    "download": "node ./scripts/clawback-download.js"
+  },
+  "keywords": [],
+  "author": "Amir Rahimi",
+  "license": "ISC",
+  "dependencies": {
+    "@0gfoundation/0g-ts-sdk": "^1.2.8",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.4.2",
+    "ethers": "^6.16.0"
+  }
+}

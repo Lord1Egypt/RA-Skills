@@ -1,0 +1,155 @@
+{
+  "title": "AANA Email Send Guardrail",
+  "type": "object",
+  "required": [
+    "email_action",
+    "recipient_status",
+    "subject_summary",
+    "approval_status",
+    "tone_status",
+    "privacy_status",
+    "attachment_status",
+    "claim_evidence_status",
+    "send_risk_level",
+    "recommended_action"
+  ],
+  "properties": {
+    "email_action": {
+      "type": "string",
+      "enum": [
+        "draft_only",
+        "revise",
+        "reply",
+        "forward",
+        "schedule",
+        "send"
+      ]
+    },
+    "recipient_status": {
+      "type": "string",
+      "enum": [
+        "exact",
+        "missing",
+        "ambiguous",
+        "external",
+        "group_alias",
+        "cc_bcc_risk",
+        "unknown"
+      ]
+    },
+    "recipient_summary": {
+      "type": "string"
+    },
+    "subject_summary": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "required",
+        "unclear",
+        "denied",
+        "not_needed_for_draft"
+      ]
+    },
+    "tone_status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "revise",
+        "high_impact",
+        "conflict_risk",
+        "unknown"
+      ]
+    },
+    "privacy_status": {
+      "type": "string",
+      "enum": [
+        "clear",
+        "needs_redaction",
+        "sensitive",
+        "unknown"
+      ]
+    },
+    "attachment_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "verified",
+        "needs_review",
+        "ambiguous",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "claim_evidence_status": {
+      "type": "string",
+      "enum": [
+        "supported",
+        "partial",
+        "missing",
+        "risky",
+        "not_applicable"
+      ]
+    },
+    "send_risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "external",
+        "private",
+        "financial",
+        "legal",
+        "medical",
+        "employment",
+        "customer",
+        "unknown"
+      ]
+    },
+    "email_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "wrong_recipient",
+          "cc_bcc_exposure",
+          "private_data",
+          "secret_leak",
+          "attachment_mismatch",
+          "unapproved_attachment",
+          "unsupported_claim",
+          "unsupported_promise",
+          "tone_risk",
+          "external_send",
+          "missing_send_approval",
+          "hidden_thread_history",
+          "unknown"
+        ]
+      }
+    },
+    "revision_needed": {
+      "type": "string"
+    },
+    "approval_request": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "revise",
+        "ask",
+        "redact",
+        "review_attachments",
+        "retrieve",
+        "request_approval",
+        "send",
+        "block"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+{
+  "templates": [
+    {"id": "discovery-recap", "stage": "discovery", "type": "recap"},
+    {"id": "one-page-pilot-proposal", "stage": "pilot", "type": "proposal"},
+    {"id": "full-agentic-development-proposal", "stage": "proposal", "type": "proposal"},
+    {"id": "statement-of-work", "stage": "contract_handoff", "type": "sow"},
+    {"id": "fixed-fee-pilot-proposal", "stage": "pilot", "type": "proposal"},
+    {"id": "time-and-materials-proposal", "stage": "proposal", "type": "proposal"},
+    {"id": "monthly-retainer-proposal", "stage": "retainer", "type": "proposal"},
+    {"id": "advisory-only-proposal", "stage": "advisory", "type": "proposal"},
+    {"id": "workflow-assessment-proposal", "stage": "assessment", "type": "proposal"},
+    {"id": "implementation-roadmap", "stage": "planning", "type": "plan"},
+    {"id": "evaluation-plan", "stage": "planning", "type": "plan"},
+    {"id": "risk-control-plan", "stage": "planning", "type": "plan"},
+    {"id": "human-in-the-loop-approval-model", "stage": "planning", "type": "model"},
+    {"id": "change-order-proposal", "stage": "change_order", "type": "proposal"},
+    {"id": "expansion-second-workflow-proposal", "stage": "expansion", "type": "proposal"},
+    {"id": "procurement-ready-scope-summary", "stage": "approval", "type": "summary"},
+    {"id": "executive-summary", "stage": "approval", "type": "summary"},
+    {"id": "acceptance-criteria", "stage": "contract_handoff", "type": "criteria"},
+    {"id": "assumptions-and-exclusions", "stage": "contract_handoff", "type": "scope"},
+    {"id": "support-and-handoff-plan", "stage": "handoff", "type": "plan"},
+    {"id": "post-discovery-recommended-pilot-memo", "stage": "discovery", "type": "memo"},
+    {"id": "technical-architecture-proposal", "stage": "technical", "type": "proposal"},
+    {"id": "data-and-tooling-readiness-proposal", "stage": "assessment", "type": "proposal"},
+    {"id": "training-enablement-proposal", "stage": "training", "type": "proposal"},
+    {"id": "proof-of-concept-proposal", "stage": "pilot", "type": "proposal"},
+    {"id": "production-rollout-proposal", "stage": "rollout", "type": "proposal"}
+  ]
+}

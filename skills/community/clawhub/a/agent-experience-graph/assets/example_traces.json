@@ -1,0 +1,81 @@
+[
+  {
+    "id": "trace-api-doc-ingestion",
+    "task": "Build a structured ingestion pipeline for markdown API documentation",
+    "outcome": "success",
+    "subtasks": [
+      {
+        "description": "Parse markdown documents into normalized sections",
+        "skills": ["structured-ingestion"],
+        "tools": ["python"],
+        "outcome": "success",
+        "lessons": ["Preserve headings, code blocks, auth hints, and endpoint metadata before chunking."]
+      },
+      {
+        "description": "Chunk normalized content for coding-agent retrieval",
+        "skills": ["retrieval-design"],
+        "tools": ["python"],
+        "outcome": "success",
+        "lessons": ["Attach section metadata to chunks so downstream search can explain results."]
+      },
+      {
+        "description": "Evaluate extracted endpoint schema quality",
+        "skills": ["evaluation-harness"],
+        "tools": ["python"],
+        "outcome": "success",
+        "lessons": ["Small fixture-based checks catch parser regressions earlier than manual inspection."]
+      }
+    ],
+    "skills": ["structured-ingestion", "retrieval-design", "evaluation-harness"],
+    "tools": ["python", "ripgrep"],
+    "lessons": ["Incremental ingestion needs both content hashes and pipeline versioning."]
+  },
+  {
+    "id": "trace-pr-ci-fix",
+    "task": "Debug a failing pull request check and patch the test failure",
+    "outcome": "success",
+    "subtasks": [
+      {
+        "description": "Inspect failing GitHub Actions logs",
+        "skills": ["github:gh-fix-ci"],
+        "tools": ["gh"],
+        "outcome": "success",
+        "lessons": ["Start from the failed job log before changing code."]
+      },
+      {
+        "description": "Reproduce the failing test locally",
+        "skills": ["test-debugging"],
+        "tools": ["pytest"],
+        "outcome": "success",
+        "lessons": ["Use the narrowest failing test command first."]
+      }
+    ],
+    "skills": ["github:gh-fix-ci", "test-debugging"],
+    "tools": ["gh", "pytest"],
+    "lessons": ["CI traces are reusable when they preserve exact failing commands and error summaries."]
+  },
+  {
+    "id": "trace-ui-tooling",
+    "task": "Build a usable frontend tool with responsive controls",
+    "outcome": "partial",
+    "subtasks": [
+      {
+        "description": "Design compact controls for repeated workflows",
+        "skills": ["frontend-ux"],
+        "tools": ["lucide-react"],
+        "outcome": "success",
+        "lessons": ["Use icon buttons and stable dimensions for dense tool surfaces."]
+      },
+      {
+        "description": "Verify layout across desktop and mobile",
+        "skills": ["browser-use:browser"],
+        "tools": ["playwright"],
+        "outcome": "partial",
+        "lessons": ["Screenshots revealed text overflow that code review alone missed."]
+      }
+    ],
+    "skills": ["frontend-ux", "browser-use:browser"],
+    "tools": ["lucide-react", "playwright"],
+    "lessons": ["Frontend traces should include viewport sizes and visible layout risks."]
+  }
+]

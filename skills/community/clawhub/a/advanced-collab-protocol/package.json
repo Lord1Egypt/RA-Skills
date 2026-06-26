@@ -1,0 +1,10 @@
+{
+  "name": "advanced-collab-protocol",
+  "version": "1.4.1",
+  "description": "Advanced multi-agent collaborative protocol for OpenClaw. Solves infinite conversational loops, cross-agent file sharing, and platform bot isolation via strict ACK rules and sessions_send.",
+  "openclaw": {
+    "skill": true,
+    "eligible": true,
+    "permissions": []
+  }
+}

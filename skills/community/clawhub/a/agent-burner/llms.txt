@@ -1,0 +1,25 @@
+# Agent Burner
+
+> Disposable email API. No signup, no API key.
+
+Temporary email inboxes via REST API. Create an inbox, receive emails, read contents, extract URLs.
+
+## Instructions
+
+- POST /inbox to create a disposable email address. No auth needed.
+- The inbox key (UUID) is the only credential.
+- URLs are pre-extracted in the urls[] array.
+- Inboxes auto-expire (1 hour default, 6 hours max).
+- Rate limit: 10 inbox creations per minute per IP.
+
+## Documentation
+
+- [Skill File](https://agentburner.com/skill.md): Full API reference
+- [API Base](https://api.agentburner.com): REST API endpoint
+
+## API
+
+- POST /inbox -> create inbox (returns address, key, ttl)
+- GET /inbox/:key -> list emails (returns entries with id, from, subject)
+- GET /inbox/:key/:emailId -> full email (returns body, html, urls[])
+- DELETE /inbox/:key -> delete inbox

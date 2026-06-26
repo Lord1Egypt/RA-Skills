@@ -1,0 +1,44 @@
+https://doc.weixin.qq.com/sheet/e3_AZYAVAb5ALMCN8L3GOmwMRACLsz0F?scode=ANYAuwcbABEhYSZDMlAZYAVAb5ALM&tab=BB08J2
+
+
+【后端】智能体编排优化：选择 MCP 工具时支持自定义添加其子项选择功能 , 这个延后，改动点很多，数据要做修改
+【后端】生产环境智能体 API 调用修复：history 字段无法承接历史内容对话
+【后端】图像生成插件修复：调试时 
+base64 格式图像无法渲染
+-- LLM智能体配置中，记忆模块展示调整
+
+
+    1. 生产环境智能体api调用，给history字段输入历史记录，无法承接历史内容进行对话
+        curl -X POST http://10.73.171.38:30110/largemodel/api/v2/completions -H "Content-Type: application/json" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjhmNTkwN2QxYTk0ODM3MTM1ZmY2OTI0IiwiZXhwIjoxNzYzNjYxNDM4LCJ0aW1lc3RhbXAiOjE3NjM2MDE0Mzh9.GEFQg_eux0esIH7HHfCIfFktokE4aY6MnWfrKSRB1b4" -d '{"prompt": "北京还有什么其它景点","history":[["北京的景点","圆明园和故宫"]],"appId":"691d8e2264c4ec7578636236","stream":false }'
+
+    2. -- 图像生成的插件，插件返回base64格式图像时，调试的时候无法渲染
+
+    3. LLM智能体运行，结果输出“客户端错误”问题修复
+
+    4. -- 智能体》API》调用示例里面增加History - ok
+
+    5. -- 智能体》API》多图多文档参数示例需要展示。并且API可以调用。提示：去帮助文档【API调用】》智能体引用》增加一个 filePaths 变量
+        https
+
+    6. 智能体》多图多文档参数不应该显示在对话设置中
+
+
+
+发布分支：
+    
+llm-playground-service -> feat/fix_1127_cgm
+
+llm-scheduler-service -> feat/fix_1127_cgm ，修改history
+
+llm-api-service -> feat/fix_1127_cgm , 修改history
+
+
+
+
+测试分支：
+    feat/cgm_local_test
+
+
+
+context-path
+-Dmanagement.server.port=8084

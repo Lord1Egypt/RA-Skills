@@ -1,35 +1,64 @@
 ---
-name: "A Share Dashboard"
-description: "A股智能看板 - 偏基本面选股 + 热点标注 + 持仓监控。Web Dashboard 形式的股票分析工具。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-dashboard"
-sourceUrl: "https://clawhub.ai/skills/a-share-dashboard"
+name: a-share-dashboard
+description: A股智能看板 - 偏基本面选股 + 热点标注 + 持仓监控。Web Dashboard 形式的股票分析工具。
+version: 1.0.0
 ---
 
-# A Share Dashboard
+# A股智能看板
 
-> A股智能看板 - 偏基本面选股 + 热点标注 + 持仓监控。Web Dashboard 形式的股票分析工具。
+Streamlit Web Dashboard，提供：
+- 📊 每日选股池（基本面评分）
+- 🔍 个股深度分析（K线图 + 评分）
+- 🔥 热点板块追踪
+- 💰 北向资金流向
+- ⚙️ 持仓监控
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-dashboard`
-- **Source URL:** [https://clawhub.ai/skills/a-share-dashboard](https://clawhub.ai/skills/a-share-dashboard)
+## 使用方法
 
-## Overview
+### 启动看板
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/a-share-dashboard
+cd ~/.openclaw/workspace/a-share-dashboard
+streamlit run app.py
 ```
+
+访问地址: http://localhost:8501
+
+### 功能说明
+
+| Tab | 功能 | 说明 |
+|-----|------|------|
+| 每日选股 | 根据基本面评分筛选股票 | 支持价格、涨跌幅、换手率筛选 |
+| 个股详情 | 输入代码查看深度分析 | K线图 + 均线 + 基本面评分 |
+| 热点追踪 | 概念板块涨幅榜 | 自动标注热点板块 |
+| 北向资金 | 外资流向数据 | 近5日净流入图表 |
+| 持仓监控 | 输入持仓实时监控 | 盈亏计算 + 风险预警 |
+
+### 持仓格式
+
+在侧边栏输入持仓，每行一只：
+
+```
+代码,成本,数量
+603618,45.00,500
+002149,18.50,1000
+```
+
+## 数据源
+
+- **行情数据**: 东方财富 API
+- **板块数据**: AKShare
+- **北向资金**: AKShare
+
+## 技术栈
+
+- Streamlit 1.55+
+- Plotly (K线图)
+- AKShare (数据)
+- Pandas (数据处理)
+
+## 注意事项
+
+- 数据每 5 分钟自动刷新
+- 点击"刷新数据"可手动更新
+- 基本面评分仅供参考，不构成投资建议

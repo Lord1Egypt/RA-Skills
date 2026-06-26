@@ -1,0 +1,28 @@
+{
+  "name": "aana-data-export-guardrail",
+  "slug": "aana-data-export-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded data export guardrail instructions for checking files, records, datasets, reports, logs, and user data before export or sharing.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_export_scope_check": true,
+  "requires_destination_check": true,
+  "requires_private_data_check": true,
+  "requires_export_approval": true,
+  "data_export_boundary": {
+    "must_verify_exact_export_scope": true,
+    "must_check_destination_and_recipient": true,
+    "must_minimize_exported_fields": true,
+    "must_redact_sensitive_data": true,
+    "must_block_unauthorized_or_excessive_exports": true
+  },
+  "aana_boundary": {"checker_bundled": false, "checker_required": false},
+  "schemas": ["schemas/data-export-guardrail.schema.json"],
+  "examples": ["examples/redacted-data-export-guardrail.json"]
+}

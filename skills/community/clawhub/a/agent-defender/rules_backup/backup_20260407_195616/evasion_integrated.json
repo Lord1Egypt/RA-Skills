@@ -1,0 +1,38 @@
+{
+  "attack_type": "evasion",
+  "generated_at": "2026-03-23T07:34:35.405119",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Evasion_Base64_Obfuscation",
+      "name": "检测 Base64 混淆代码",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 Base64 混淆代码",
+      "author": "security-sample-generator",
+      "tags": [
+        "evasion",
+        "T1027.001"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$base64_long = /[A-Za-z0-9+\\/]{200,}={0,2}/",
+          "$base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64|b64decode/i",
+          "$exec_func = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bfunction\\s*\\(/",
+          "$dynamic = /Function\\(|new\\s+Function|setTimeout\\s*\\(/"
+        ],
+        "condition": "$base64_long and ($base64_decode or $exec_func or $dynamic)",
+        "raw_rule": "// YARA 规则：绕过检测检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：代码混淆、动态执行、反检测、环境感知\n\nrule Evasion_Base64_Obfuscation {\n    meta:\n        description = \"检测 Base64 混淆代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.001\"\n    \n    strings:\n        $base64_long = /[A-Za-z0-9+\\/]{200,}={0,2}/\n        $base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64|b64decode/i\n        $exec_func = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bfunction\\s*\\(/\n        $dynamic = /Function\\(|new\\s+Function|setTimeout\\s*\\(/\n    \n    condition:\n        $base64_long and ($base64_decode or $exec_func or $dynamic)\n}\n\nrule Evasion_Dynamic_Code {\n    meta:\n        description = \"检测动态代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1059\"\n    \n    strings:\n        $eval = /\\beval\\s*\\(/\n        $exec = /\\bexec\\s*\\(/\n        $function = /new\\s+Function\\s*\\(|Function\\s*\\(/\n        $compile = /\\bcompile\\s*\\(/\n        $marshal = /marshal\\.loads|pickle\\.loads|unserialize/i\n        $reflect = /reflect|reflection|dynamic.*invoke/i\n    \n    condition:\n        ($eval or $exec or $function or $compile) and ($marshal or $reflect)\n}\n\nrule Evasion_String_Encoding {\n    meta:\n        description = \"检测字符串编码绕过\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.001\"\n    \n    strings:\n        $hex_encode = /\\\\x[0-9a-fA-F]{2}|\\\\\\\\x[0-9a-fA-F]{2}/\n        $unicode_encode = /\\\\u[0-9a-fA-F]{4}|\\\\\\\\u[0-9a-fA-F]{4}/\n        $char_code = /String\\.fromCharCode|chr\\s*\\(|char\\s*\\(/\n        $concat = /\\+\\s*['\"][^\\)]{10,}['\"]\\s*\\+/\n        $decode_func = /decode|fromCharCode|unescape/i\n    \n    condition:\n        ($hex_encode or $unicode_encode or $char_code) and $concat\n}\n\nrule Evasion_Anti_Analysis {\n    meta:\n        description = \"检测反分析技术\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1564.004\"\n    \n    strings:\n        $vm_detect = /VirtualBox|VMware|VirtualPC|QEMU/i\n        $debug_detect = /Debugger|pdb|gdb|windbg/i\n        $sandbox_detect = /sandbox|cuckoo|anubis|joebok/i\n        $time_check = /GetTickCount|time\\.time|Date\\.now/i\n        $env_check = /USER|HOSTNAME|COMPUTERNAME/i\n    \n    condition:\n        ($vm_detect or $debug_detect or $sandbox_detect) and ($time_check or $env_check)\n}\n\nrule Evasion_Code_Splitting {\n    meta:\n        description = \"检测代码拆分绕过\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"evasion\"\n        mitre_id = \"T1027.006\"\n    \n    strings:\n        $require_http = /require\\s*\\(\\s*['\"]http/i\n        $import_remote = /import\\s*\\(\\s*['\"]http/i\n        $load_remote = /\\.load\\s*\\(\\s*['\"]http/i\n        $multipart = /part1|part2|chunk|fragment/i\n        $reassemble = /join|concat|assemble|combine/i\n    \n    condition:\n        ($require_http or $import_remote or $load_remote) and ($multipart or $reassemble)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Evasion_Base64_Obfuscation",
+        "converted_at": "2026-03-23T07:34:35.392247",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/evasion.yar",
+        "mitre_id": "T1027.001",
+        "attack_type": "evasion"
+      }
+    }
+  ]
+}

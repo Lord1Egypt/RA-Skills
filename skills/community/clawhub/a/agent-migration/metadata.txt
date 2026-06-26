@@ -1,0 +1,7 @@
+Suggested ClawHub summary:
+A high-permission skill for safely renaming or migrating OpenClaw agents. It updates config and workspace naming, migrates prior session content, rewrites session display metadata, restarts, verifies, and only deletes the old agent after an extra confirmation.
+
+Suggested notes:
+- Typical owner: master
+- Permission level: high / local persistent changes
+- Safe default: migrate content automatically, ask separately before delete

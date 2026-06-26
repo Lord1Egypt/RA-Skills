@@ -1,0 +1,69 @@
+{
+  "mem_before_mb": 25.5,
+  "create": {
+    "mean_ms": 11.9,
+    "p50_ms": 6.4,
+    "p95_ms": 14.7,
+    "rate_ops": 84.2,
+    "total_s": 1.19
+  },
+  "batch_create": {
+    "mean_ms": 158.1,
+    "p50_ms": 80.3,
+    "p95_ms": 488.7,
+    "rate_ops": 6.3,
+    "total_s": 0.79
+  },
+  "search_semantic": {
+    "mean_ms": 3.1,
+    "p50_ms": 1.7,
+    "p95_ms": 7.6,
+    "rate_ops": 325.6,
+    "total_s": 0.09
+  },
+  "search_keyword": {
+    "mean_ms": 1.7,
+    "p50_ms": 1.7,
+    "p95_ms": 1.7,
+    "rate_ops": 602.5,
+    "total_s": 0.05
+  },
+  "search_hybrid": {
+    "mean_ms": 1.8,
+    "p50_ms": 1.8,
+    "p95_ms": 1.8,
+    "rate_ops": 563.3,
+    "total_s": 0.05
+  },
+  "get": {
+    "mean_ms": 0.6,
+    "p50_ms": 0.6,
+    "p95_ms": 0.8,
+    "rate_ops": 1680.7,
+    "total_s": 0.03
+  },
+  "update": {
+    "mean_ms": 6.3,
+    "p50_ms": 6.0,
+    "p95_ms": 8.0,
+    "rate_ops": 159.3,
+    "total_s": 0.13
+  },
+  "concurrent": {
+    "mean_ms": 61.2,
+    "p50_ms": 61.0,
+    "p95_ms": 69.5,
+    "rate_ops": 16.4,
+    "total_s": 4.89,
+    "throughput": 130.1,
+    "errors": 0
+  },
+  "server": {
+    "total_requests": 1234,
+    "embedding_cache_size": 664,
+    "embedding_cache_hits": 256,
+    "hnsw_index_size": 206
+  },
+  "timestamp": "2026-03-15T22:11:09",
+  "version": "2.2.0"
+}

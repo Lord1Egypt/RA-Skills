@@ -1,35 +1,118 @@
 ---
-name: "08 Growth Record"
-description: "Miki成长档案 · 记录0-3岁发育数据，生成长期曲线，与同龄基准对比，生成可分享的家庭成长报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/08-growth-record"
-sourceUrl: "https://clawhub.ai/skills/08-growth-record"
+name: miki-08-growth-record
+description: Miki成长档案 · 记录0-3岁发育数据，生成长期曲线，与同龄基准对比，生成可分享的家庭成长报告
+version: 1.0.0
+author: Miki育儿
+tags:
+  - 育儿
+  - 成长档案
+  - 数据壁垒
+  - 0-3岁
 ---
 
-# 08 Growth Record
+# Miki 成长档案
 
-> Miki成长档案 · 记录0-3岁发育数据，生成长期曲线，与同龄基准对比，生成可分享的家庭成长报告
+**核心价值：** 记录3年，形成数据壁垒
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/08-growth-record`
-- **Source URL:** [https://clawhub.ai/skills/08-growth-record](https://clawhub.ai/skills/08-growth-record)
+---
 
-## Overview
+## 档案数据类型
 
+### 发育记录
+每次发育评估后记录：
+- 月龄
+- 各能区发育状态（达标/边缘/迟缓）
+- 关键里程碑达成时间
+- 与上次的对比
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/08-growth-record
+### 生长记录
+- 体重（kg）
+- 身长/身高（cm）
+- 头围
+- 生长曲线（WHO标准百分位）
+
+### 里程碑记录
+- 第一次翻身：X月X天
+- 第一次独坐：X月X天
+- 第一次走路：X月X天
+- 第一个词：X月X天
+- 第一次叫妈妈/爸爸：X月X天
+- 其他"第一次"...
+
+### 就医记录
+- 体检日期
+- 重要检查结果
+- 疫苗接种情况
+- 医生建议
+
+---
+
+## 输出报告类型
+
+### 成长月报
+每月自动生成：
+- 本月发育总结
+- 下月重点关注
+- 与上月的对比
+
+### 里程碑达成报告
+每次新里程碑达成时生成：
+- 时间线展示
+- 与同龄孩子对比
+- 可分享的图片（家庭群/朋友圈）
+
+### 发育曲线报告
+每季度生成：
+- 生长曲线图（体重/身高/头围）
+- 各能区发育曲线
+- 与WHO标准的对照
+
+### 年度总结
+每年生成：
+- 全年发育回顾
+- 各维度成长总结
+- 下一年的重点
+
+---
+
+## 分享功能
+
+### 家庭分享
+一键生成家庭成长报告，发送给不在身边的家人：
+- 爷爷奶奶/姥姥姥爷
+- 亲戚群
+- 爸爸（如果主要照顾者是妈妈）
+
+### 朋友圈分享
+生成适合发朋友圈的图文：
+- 里程碑达成海报
+- 成长曲线图
+- 发育状态报告
+
+---
+
+## 数据价值
+
+**为什么3年档案不可替代：**
+
+1. **纵向对比**：看到孩子独有的发育节奏
+2. **趋势预判**：提前发现发育偏离
+3. **回忆价值**：每个"第一次"的时间戳
+4. **入园准备**：入园时可直接导出评估报告
+
+---
+
+## 输入模板
+
+```
+【Miki成长档案】
+
+记录类型：
+□ 月度发育评估
+□ 里程碑达成
+□ 生长数据
+□ 就医记录
+□ 其他
+
+具体内容：（根据记录类型填写）
 ```

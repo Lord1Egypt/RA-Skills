@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "set-leader",
+  "prompt": "把 Alice 设为团队 Leader",
+  "assertions": [
+    {"id": "a1", "text": "执行了 team.py update 命令", "expected": true},
+    {"id": "a2", "text": "Alice 被设为 Leader", "expected": true},
+    {"id": "a3", "text": "之前的 Leader 状态被自动移除", "expected": true}
+  ]
+}

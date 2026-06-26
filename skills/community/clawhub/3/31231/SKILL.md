@@ -1,35 +1,16 @@
 ---
-name: "3123123123"
-description: "aa"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/31231"
-sourceUrl: "https://clawhub.ai/skills/31231"
+name: aa
+description: aa
 ---
 
-# 3123123123
+This skill helps you discover and install skills from the open agent skills ecosystem.
 
-> aa
+## When to Use This Skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/31231`
-- **Source URL:** [https://clawhub.ai/skills/31231](https://clawhub.ai/skills/31231)
+Use this skill when the user:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/31231
-```
+- Asks "how do I do X" where X might be a common task with an existing skill
+- Says "find a skill for X" or "is there a skill for X"
+- Asks "can you do X" where X is a specialized capability
+- Expresses interest in extending agent capabilities
+- Wants to search for tools

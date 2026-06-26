@@ -1,35 +1,45 @@
 ---
-name: "Agent Memory Templates"
-description: "Production-tested memory templates for AI agents. Includes SOUL.md personality templates, memory checkpoint patterns, observational memory configs, and 100 p..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-templates"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-templates"
+name: agent-memory-templates
+version: 1.0.0
+description: "Production-tested memory templates for AI agents. Includes SOUL.md personality templates, memory checkpoint patterns, observational memory configs, and 100 power prompts. From the creators of ClawVault."
+metadata:
+  openclaw:
+    emoji: "🧠"
 ---
 
 # Agent Memory Templates
 
-> Production-tested memory templates for AI agents. Includes SOUL.md personality templates, memory checkpoint patterns, observational memory configs, and 100 p...
+Production-tested templates for building AI agents with memory.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-templates`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-templates](https://clawhub.ai/skills/agent-memory-templates)
+## What's Included
 
-## Overview
+### Free Templates
+- Memory checkpoint template
+- Session handoff template
+- Context death recovery pattern
+- Daily note generator
+- Decision logger format
 
+### Premium Content
+For the complete set of 100 prompts, 12 personality templates, and the full memory architecture playbook:
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **100 Power Prompts ($9)**: https://whop.com/checkout/plan_W7BJwJmYlXsjF
+- **Complete Bundle ($47)**: https://whop.com/checkout/plan_umnonnlgKVjvo
+- **Free Cheat Sheet**: https://cheatsheet.versatlygroup.com
+- **Free Prompt Preview**: https://prompts.versatlygroup.com
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/agent-memory-templates
+# Use the memory checkpoint pattern
+clawvault checkpoint --working-on "your task" --focus "key details"
+
+# Use the session handoff
+clawvault sleep "what you accomplished" --next "what's next"
+
+# Recovery on wake
+clawvault wake
 ```
+
+## Built by Versatly
+https://store.versatlygroup.com | https://clawvault.dev

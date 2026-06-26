@@ -1,35 +1,63 @@
 ---
-name: "Agent Insight"
-description: "고객사 에이전트 인사이트 수집 및 분석. 매월 1일 정기 실행하거나 형님 지시 시 즉시 실행. 에이전트가 고객사 현장에서 관찰한 Pain Point, 서비스 개선점, 수익 기회, 이탈 위험, 현장 인사이트를 수집하고 종합 리포트를 작성. "인사이트", "고객 점검", "에이전트 점..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-insight"
-sourceUrl: "https://clawhub.ai/skills/agent-insight"
+name: agent-insight
+description: 고객사 에이전트 인사이트 수집 및 분석. 매월 1일 정기 실행하거나 형님 지시 시 즉시 실행. 에이전트가 고객사 현장에서 관찰한 Pain Point, 서비스 개선점, 수익 기회, 이탈 위험, 현장 인사이트를 수집하고 종합 리포트를 작성. "인사이트", "고객 점검", "에이전트 점검", "이탈 위험" 관련 요청에 트리거.
 ---
 
-# Agent Insight
+# 에이전트 인사이트 수집 스킬
 
-> 고객사 에이전트 인사이트 수집 및 분석. 매월 1일 정기 실행하거나 형님 지시 시 즉시 실행. 에이전트가 고객사 현장에서 관찰한 Pain Point, 서비스 개선점, 수익 기회, 이탈 위험, 현장 인사이트를 수집하고 종합 리포트를 작성. "인사이트", "고객 점검", "에이전트 점...
+## 실행 절차
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-insight`
-- **Source URL:** [https://clawhub.ai/skills/agent-insight](https://clawhub.ai/skills/agent-insight)
+1. 프롬프트를 에이전트 해방군 #일반 채널에 전원 멘션과 함께 전송
+2. 각 에이전트 응답 대기 (최대 10분)
+3. 응답 취합 → 종합 리포트 작성
+4. `memory/insights/YYYY-MM-DD-agent-insight.md`에 저장
+5. 형님에게 결과 요약 전달
 
-## Overview
+## 에이전트 질문 프롬프트
 
+아래 5개 항목을 그대로 복사해서 전송:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-insight
 ```
+📋 전원 필수 응답 — 에이전트 인사이트 조사
+
+아래 5개 항목에 솔직하게 답해라. 좋은 말만 하지 말고.
+
+1. 고객 Pain Point (Top 3)
+대표/직원이 가장 자주 묻거나 어려워하는 건 뭐냐?
+
+2. 우리 서비스 개선점 (Top 3)
+너한테 부족한 기능이나, 있었으면 고객이 더 만족했을 것은 뭔가?
+
+3. 추가 수익 기회
+고객이 우리 서비스 말고도 같이 사면 좋을 만한 거, upsell 포인트 있냐?
+
+4. 이탈 위험도 (1~10)
+이 고객이 다음 달에도 계속 쓸 것 같냐? 근거도 같이 써라.
+
+5. 현장에서만 알 수 있는 인사이트 1개
+대화 로그에서만 발견할 수 있는, 형님이 모를만한 정보.
+
+각자 답변 후 이 채널에 제출.
+```
+
+## 종합 리포트 포맷
+
+```markdown
+# 에이전트 인사이트 조사 결과 — YYYY-MM-DD
+
+## 종합 요약
+| 에이전트 | 고객사 | 이탈 위험 | 핵심 인사이트 |
+|---------|--------|----------|--------------|
+
+## 공통 개선점 (Top 3)
+
+## Upsell 기회 TOP 3
+
+## 에이전트별 상세
+(각 에이전트 5개 항목 전체 기록)
+```
+
+## 주의사항
+- 에이전트 응답 확인 시 세션 타이밍 고려 (먼저 올린 답변 놓치지 않기)
+- 이탈 위험 7+/10은 형님에게 즉시 알림
+- 결과는 반드시 파일로 저장 (memory/insights/)

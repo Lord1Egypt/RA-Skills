@@ -1,0 +1,180 @@
+{
+  "source": {
+    "api3SupportedChainsCommand": "node ./bin/api3-feed-manager.js supported-chains",
+    "eulerRegistry": "https://raw.githubusercontent.com/euler-xyz/euler-interfaces/master/EulerChains.json"
+  },
+  "description": "Active Api3-supported chains that also have Euler production deployment addresses available from the upstream Euler registry.",
+  "items": [
+    {
+      "alias": "ethereum",
+      "chainId": 1,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x0C9a3dd6b8F28529d72d7f9cE918D493519EE383",
+        "eVaultFactory": "0x29a56a1b8214D9Cf7c5561811750D5cBDb45CC8e"
+      },
+      "periphery": {
+        "edgeFactory": "0xA969B8a46166B135fD5AC533AdC28c816E1659Bd",
+        "evkFactoryPerspective": "0xB30f23bc5F93F097B3A699f71B0b1718Fc82e182",
+        "escrowedCollateralPerspective": "0x4e58BBEa423c4B9A2Fc7b8E58F5499f9927fADdE"
+      },
+      "lenses": {
+        "oracleLens": "0x30E6dFB84782A31d561536f64F47231451F7b48A",
+        "vaultLens": "0xA18D79deB85C414989D7297F23e5391703Ea66aB"
+      }
+    },
+    {
+      "alias": "bsc",
+      "chainId": 56,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0xb2E5a73CeE08593d1a076a2AE7A6e02925a640ea",
+        "eVaultFactory": "0x7F53E2755eB3c43824E162F7F6F087832B9C9Df6"
+      },
+      "periphery": {
+        "edgeFactory": "0x34A260811256abc5EB13BE6C867197d0C0133F9D",
+        "evkFactoryPerspective": "0x9d928D359646dC4249A8d57259d87673F118Ec85",
+        "escrowedCollateralPerspective": "0x65B8Faec13bA76Decc5dc5678bf356954cCd6823"
+      },
+      "lenses": {
+        "oracleLens": "0x301a83Cf9ffbDe64DbBD7F7988e900704cbCa2cb",
+        "vaultLens": "0xA5A9486CaF3155123f8846b5478b72bDd6560BF7"
+      }
+    },
+    {
+      "alias": "unichain",
+      "chainId": 130,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x2A1176964F5D7caE5406B627Bf6166664FE83c60",
+        "eVaultFactory": "0xbAd8b5BDFB2bcbcd78Cc9f1573D3Aad6E865e752"
+      },
+      "periphery": {
+        "edgeFactory": "0x5aECa7B7bDD4C876ed88E33Da7bAd45CB7224B12",
+        "evkFactoryPerspective": "0x5A2164C500f4FD26AB037d97A3ed5d0774446c6B",
+        "escrowedCollateralPerspective": "0x413Cf25A789784e07a428D7fb1e0B43eeF84A4B0"
+      },
+      "lenses": {
+        "oracleLens": "0x30100D82EE8Fd7dE7a9762Dce7f08055fdADb9Be",
+        "vaultLens": "0x441F98bEA2F68ac242A38af062Af7bd5Ad4b61b5"
+      }
+    },
+    {
+      "alias": "sonic",
+      "chainId": 146,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x4860C903f6Ad709c3eDA46D3D502943f184D4315",
+        "eVaultFactory": "0xF075cC8660B51D0b8a4474e3f47eDAC5fA034cFB"
+      },
+      "periphery": {
+        "edgeFactory": "0x262761D43309ba3b05C240cd8825D3689E600Ef3",
+        "evkFactoryPerspective": "0x69D2403d9a0715CDc89AcB015Ec2AfB200C4f6BD",
+        "escrowedCollateralPerspective": "0xb70DbFBBaB2B9F01A86B397F0954beA2EAF3Bce5"
+      },
+      "lenses": {
+        "oracleLens": "0x6Ed14a85CEF0048C57Cb13c2Eb5435eA723e8123",
+        "vaultLens": "0x27A6F897aE7c17Cb731217C79FEEa5BAa8C29e63"
+      }
+    },
+    {
+      "alias": "base",
+      "chainId": 8453,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x5301c7dD20bD945D2013b48ed0DEE3A284ca8989",
+        "eVaultFactory": "0x7F321498A801A191a93C840750ed637149dDf8D0"
+      },
+      "periphery": {
+        "edgeFactory": "0x4B930F0222349c2092b8531A42295262cc4F0e4A",
+        "evkFactoryPerspective": "0xFEA8e8a4d7ab8C517c3790E49E92ED7E1166F651",
+        "escrowedCollateralPerspective": "0x977590fA311755DA2fa1421c1A944520b684f90F"
+      },
+      "lenses": {
+        "oracleLens": "0xCE85cC424d12B8074bacB81c84dA7C6DA317c4D3",
+        "vaultLens": "0x601F023CD063324DdbCADa69460e969fb97e98b9"
+      }
+    },
+    {
+      "alias": "arbitrum",
+      "chainId": 42161,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x6302ef0F34100CDDFb5489fbcB6eE1AA95CD1066",
+        "eVaultFactory": "0x78Df1CF5bf06a7f27f2ACc580B934238C1b80D50"
+      },
+      "periphery": {
+        "edgeFactory": "0x3f7E741777A979BEB80C227949edde6814505475",
+        "evkFactoryPerspective": "0x03a931446F5A7e7ec1D850D8eaF95Ab68Ad9089C",
+        "escrowedCollateralPerspective": "0xD775c4960c3A1B4A6A9962e37ecDe5c6b5fd56Fb"
+      },
+      "lenses": {
+        "oracleLens": "0x5D613b4eC0efAee328f6cA47C667EA49a2eB7884",
+        "vaultLens": "0x19ff0fD1c4bC5aD5D9ad75EA7303DEaAA6286814"
+      }
+    },
+    {
+      "alias": "avalanche",
+      "chainId": 43114,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0xddcbe30A761Edd2e19bba930A977475265F36Fa1",
+        "eVaultFactory": "0xaf4B4c18B17F6a2B32F6c398a3910bdCD7f26181"
+      },
+      "periphery": {
+        "edgeFactory": "0x088af3Ce37f42b6925C0C2DAa4d58b90fd186010",
+        "evkFactoryPerspective": "0x4247432b4f9c32e99ecC2Ff7bAdd98783EecFA6F",
+        "escrowedCollateralPerspective": "0x19747Fb40074F8cC32fd24445fAce1fCe11BD281"
+      },
+      "lenses": {
+        "oracleLens": "0xC5FFCe5f0e6646D93F7E79bD71d268dFC1B7EfD7",
+        "vaultLens": "0x7a2A57a0ed6807c7dbF846cc74aa04eE9DFa7F57"
+      }
+    },
+    {
+      "alias": "linea",
+      "chainId": 59144,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0xd8CeCEe9A04eA3d941a959F68fb4486f23271d09",
+        "eVaultFactory": "0x84711986Fd3BF0bFe4a8e6d7f4E22E67f7f27F04"
+      },
+      "periphery": {
+        "edgeFactory": "0x2BeB74b6845Ec05A78F642262CaA8e7e3f00C42a",
+        "evkFactoryPerspective": "0x832ca1e2FCBedf717b9C71C00Dd26805e3bE4270",
+        "escrowedCollateralPerspective": "0xc8d904FE94b65612AED5A73203C0eF8f3A0308C0"
+      },
+      "lenses": {
+        "oracleLens": "0x6443BF12Cf57DD5ad8af781F6518b0417212A3f8",
+        "vaultLens": "0xa3D09CE7AE825f42bd271ef762b8FB038d0A2A4c"
+      }
+    },
+    {
+      "alias": "bob",
+      "chainId": 60808,
+      "eulerStatus": "production",
+      "api3Stage": "active",
+      "core": {
+        "evc": "0x59f0FeEc4fA474Ad4ffC357cC8d8595B68abE47d",
+        "eVaultFactory": "0x046a9837A61d6b6263f54F4E27EE072bA4bdC7e4"
+      },
+      "periphery": {
+        "edgeFactory": "0x46B3711D973e45eaac2cc6C3d29c3Aa5b759B7AE",
+        "evkFactoryPerspective": "0x05B98f64A31A33666cC9D2B32046a6Ca42699823",
+        "escrowedCollateralPerspective": "0x44dcB151f7b091eA6C9090Ba7ad94C3e479bFE63"
+      },
+      "lenses": {
+        "oracleLens": "0x428a144214D3E640634491F05b7130ba26A394f3",
+        "vaultLens": "0xa035D1B103D1f1389946438e2bB96d431585D954"
+      }
+    }
+  ]
+}

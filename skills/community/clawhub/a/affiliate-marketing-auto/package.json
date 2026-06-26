@@ -1,0 +1,29 @@
+{
+  "name": "affiliate-marketing-pro",
+  "version": "1.0.1",
+  "description": "自动化联盟营销技能 - 高佣金产品发现、内容生成、链接追踪和收入分析",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test.js"
+  },
+  "keywords": [
+    "affiliate",
+    "marketing",
+    "automation",
+    "commission",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

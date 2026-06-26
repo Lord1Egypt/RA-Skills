@@ -1,0 +1,23 @@
+{
+  "name": "agentlove",
+  "version": "2.9.6",
+  "description": "AgentLove - AI Robot One-Click Configuration (8 Steps). Includes backup migration, robot configuration, and marriage evolution.",
+  "main": "skill.js",
+  "scripts": {
+    "test": "node test.js",
+    "test:integration": "node test-integration.js"
+  },
+  "keywords": [
+    "openclaw",
+    "robot",
+    "configuration",
+    "setup"
+  ],
+  "author": "OpenAgentLove",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

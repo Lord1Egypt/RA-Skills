@@ -1,0 +1,23 @@
+[
+  {"query": "我想给团队添加一个新成员，负责前端开发", "should_trigger": true},
+  {"query": "show me the team members", "should_trigger": true},
+  {"query": "我们的团队里谁是leader？", "should_trigger": true},
+  {"query": "帮我协调一下这个任务，看看应该分给谁做", "should_trigger": true},
+  {"query": "set up an AI team for my project with different roles", "should_trigger": true},
+  {"query": "团队成员的技能信息怎么查看？", "should_trigger": true},
+  {"query": "我需要分配任务给最擅长的人", "should_trigger": true},
+  {"query": "can you list all agents in the team and their expertise", "should_trigger": true},
+  {"query": "更新团队成员信息，把 Alice 设为 leader", "should_trigger": true},
+  {"query": "how should I delegate this coding task among my team", "should_trigger": true},
+
+  {"query": "git commit these changes", "should_trigger": false},
+  {"query": "帮我创建一个 memory 文件记录今天的工作", "should_trigger": false},
+  {"query": "我的开发团队需要开个会讨论项目进度", "should_trigger": false},
+  {"query": "create a new branch for this feature", "should_trigger": false},
+  {"query": "怎么用 Jira 管理任务？", "should_trigger": false},
+  {"query": "我的王者荣耀战队怎么搭配阵容", "should_trigger": false},
+  {"query": "help me plan my day and create a todo list", "should_trigger": false},
+  {"query": "delegation pattern in object-oriented programming", "should_trigger": false},
+  {"query": "team building activities for my company", "should_trigger": false},
+  {"query": "check the status of my docker containers", "should_trigger": false}
+]

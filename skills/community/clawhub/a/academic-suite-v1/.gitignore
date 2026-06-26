@@ -1,0 +1,46 @@
+# Academic Suite — .gitignore
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 测试文件
+test-output/
+coverage/
+
+# 构建产物
+dist/
+build/
+
+# 依赖（技能包不包含依赖本身）
+# dependencies/
+
+# 配置文件（含敏感信息）
+*.env
+.env.local
+config.local.json
+
+# 大型文件
+*.pdf
+*.docx
+*.zip
+*.tar.gz
+
+# 本地测试数据
+test-data/
+samples/

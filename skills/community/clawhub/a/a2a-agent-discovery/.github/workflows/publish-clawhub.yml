@@ -1,0 +1,33 @@
+name: Publish ClawHub Skill
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install ClawHub CLI
+        run: npm install -g clawhub
+
+      - name: Authenticate ClawHub
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+        run: clawhub login --token "$CLAWHUB_TOKEN" --no-browser
+
+      - name: Publish skill
+        run: >
+          clawhub skill publish .
+          --slug a2a-agent-discovery
+          --name "A2A Agent Discovery"
+          --version 1.0.2
+          --tags latest,agent-discovery,a2a,find-agents,agent-registry,multi-agent,delegation,itinai,agent-card
+          --changelog "Tighten instructions, source boundaries, confirmation gates, and endpoint validation"

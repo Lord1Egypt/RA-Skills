@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""
+contact_lookup.py — Look up a single contact by email.
+
+One API call. Sub-second runtime even on huge accounts.
+
+Usage:
+  python3 contact_lookup.py --email user@example.com
+  python3 contact_lookup.py --email user@example.com --format json
+"""
+
+from __future__ import annotations
+
+from _ac_client import ACClient, cli_main, sanitize
+
+
+def _add_args(parser):
+    parser.add_argument("--email", required=True, help="Email address to look up")
+
+
+def fetch_data(client: ACClient, args) -> dict:
+    res = client.get("contacts", params={"email": args.email})
+    contacts = res.get("contacts") or []
+    return {"contacts": contacts}
+
+
+def analyze(data: dict) -> dict:
+    contacts = data["contacts"]
+    if not contacts:
+        return {"found": False}
+    c = contacts[0]
+    return {
+        "found": True,
+        "id": c.get("id"),
+        "email": sanitize(c.get("email", "")),
+        "first_name": sanitize(c.get("firstName", "")),
+        "last_name": sanitize(c.get("lastName", "")),
+        "phone": sanitize(c.get("phone", "")),
+        "orgname": sanitize(c.get("orgname", "")),
+        "score": c.get("score"),
+        "cdate": c.get("cdate"),
+        "mdate": c.get("mdate"),
+        "bounced_hard": c.get("bounced_hard"),
+        "bounced_soft": c.get("bounced_soft"),
+        "udate": c.get("udate"),
+    }
+
+
+def render_markdown(r: dict) -> str:
+    if not r.get("found"):
+        return "# Contact Lookup\n\nNo contact found with that email.\n"
+    lines = [
+        f"# {r['first_name']} {r['last_name']} ({r['email']})".strip(),
+        "",
+        f"- ID: **{r['id']}**",
+        f"- Phone: {r['phone'] or '—'}",
+        f"- Organization: {r['orgname'] or '—'}",
+        f"- Score: {r['score'] or '—'}",
+        f"- Created: {r['cdate']}",
+        f"- Last modified: {r['mdate']}",
+        f"- Hard bounce: {'yes' if str(r['bounced_hard']) == '1' else 'no'}",
+        f"- Soft bounce: {'yes' if str(r['bounced_soft']) == '1' else 'no'}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def main():
+    cli_main(
+        description="Look up a single contact by email",
+        fetch_data=fetch_data,
+        analyze=analyze,
+        render_markdown=render_markdown,
+        add_arguments=_add_args,
+    )
+
+
+if __name__ == "__main__":
+    main()

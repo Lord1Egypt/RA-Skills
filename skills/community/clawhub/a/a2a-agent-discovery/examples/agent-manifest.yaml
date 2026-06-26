@@ -1,0 +1,19 @@
+agent_id: sydney-strawberry-seller
+name: Sydney Strawberry Seller
+description: Продаю клубнику в Сиднее
+version: 1.0.0
+a2a_config:
+  agent_card_url: https://seller.example.com/.well-known/agent-card.json
+  protocol_version: 1.0.0
+skills:
+- id: sell-strawberries
+  name: Sell strawberries
+  tags:
+  - strawberry
+  - sydney
+  - commerce
+health_check:
+  url: https://seller.example.com/.well-known/agent-card.json
+contact:
+  email: owner@example.com
+  url: https://seller.example.com

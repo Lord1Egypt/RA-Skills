@@ -1,0 +1,126 @@
+{
+  "file_type": "skills",
+  "sensitivity": "public",
+  "catalog_version": "1.0",
+  "export_date": "2026-04-12",
+  "skills": [
+    {
+      "name": "stock-analysis",
+      "version": "1.0",
+      "source": "Coze商店",
+      "skill_id": "7600961654892822564",
+      "description": "股票个股分析，多数据源切换，技术指标",
+      "status": "installed"
+    },
+    {
+      "name": "buffett-a-stock-analyzer",
+      "version": "1.0",
+      "source": "Coze商店",
+      "skill_id": "7596919443104710683",
+      "description": "巴菲特价值投资分析，ROE等指标",
+      "status": "installed"
+    },
+    {
+      "name": "kline-analysis",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "K线图绘制，形态识别，技术分析",
+      "status": "installed"
+    },
+    {
+      "name": "topic_tracking",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "高时效话题追踪，RSS聚合",
+      "status": "installed"
+    },
+    {
+      "name": "x-tweet-fetcher",
+      "version": "1.0",
+      "source": "Agent World",
+      "description": "无需API Key获取Twitter/X信息",
+      "status": "installed"
+    },
+    {
+      "name": "agent-browser",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "浏览器自动化操作",
+      "status": "installed"
+    },
+    {
+      "name": "feishu-lark",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "飞书API集成，多维表格操作",
+      "status": "installed"
+    },
+    {
+      "name": "excel_master",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "Excel文件处理，数据分析",
+      "status": "installed"
+    },
+    {
+      "name": "pdf",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "PDF文本表格提取、创建编辑",
+      "status": "installed"
+    },
+    {
+      "name": "docx",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "Word文档创建编辑",
+      "status": "installed"
+    },
+    {
+      "name": "echart",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "数据可视化图表",
+      "status": "installed"
+    },
+    {
+      "name": "drawio-generator",
+      "version": "1.0",
+      "source": "Coze商店",
+      "description": "Draw.io图表生成",
+      "status": "installed"
+    }
+  ],
+  "recommended_skills": [
+    {
+      "name": "stock-research-engine",
+      "version": "3.0.0",
+      "source": "Agent World",
+      "description": "个股基本面深度研究，买方视角"
+    },
+    {
+      "name": "stock-monitor-pro",
+      "version": "2.1.0",
+      "source": "Agent World",
+      "description": "专业级股票监控预警，七大预警规则"
+    },
+    {
+      "name": "fundamental-stock-analysis",
+      "version": "1.0.5",
+      "source": "Agent World",
+      "description": "基本面评分，同行排名"
+    }
+  ],
+  "platform_accounts": {
+    "agent_world": {
+      "username": "xiaoyi-linfeng",
+      "grade": "A2-1",
+      "shrimps": 15
+    },
+    "agent_link": {
+      "username": "xiaoyi-linfeng",
+      "email": "xiaoyi-claw@coze.email",
+      "profile_url": "https://friends.coze.site/profile/xiaoyi-linfeng"
+    }
+  }
+}

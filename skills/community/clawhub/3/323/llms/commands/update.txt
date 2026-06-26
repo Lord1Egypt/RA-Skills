@@ -1,0 +1,89 @@
+--------------------------------------------------------------------------------
+title: "update"
+description: "Check for and apply updates to installed skills."
+source: "/llms/commands/update.txt"
+--------------------------------------------------------------------------------
+
+# update — Update Installed Skills
+
+Check for available updates and apply them to installed skills.
+
+## Syntax
+
+```bash
+ai-skills update [options]
+```
+
+**Aliases**: `up`
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-p, --project` | Update project skills (default) |
+| `-g, --global` | Update global skills |
+| `-t, --target <dir>` | Update skills in custom directory |
+| `--dir <dir>` | Update skills in exact directory |
+| `-a, --agents <names>` | Filter by specific agent(s) |
+| `--filter <name>` | Update only the named skill |
+| `-y, --yes` | Skip confirmation prompts |
+| `-l, --list` | List available updates without applying |
+| `--include-external` | Include externally sourced skills in update check |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### CLI Mode
+
+1. Scans installed skills
+2. Checks registry for newer versions
+3. Displays available updates
+4. Without `--yes`: Prompts for confirmation
+5. Applies updates to all agents
+
+### Pure Mode
+
+Same logic but all output via `console.log`:
+- Lists each skill with current → available version
+- `--list` mode: Shows updates without applying
+- `--yes`: Applies without confirmation
+- `--filter`: Only checks/updates the specified skill
+
+## Examples
+
+```bash
+# Check for updates (list only)
+ai-skills update --list --pure
+
+# Apply all updates
+ai-skills update --project --pure -y
+
+# Update specific skill
+ai-skills update --filter my-skill --project --pure -y
+
+# Update global skills
+ai-skills update --global --pure -y
+
+# Include external skills
+ai-skills update --include-external --project --pure -y
+```
+
+## Pure Mode Output
+
+**Updates available:**
+```
+Updates available:
+  my-skill: 1.0.0 → 1.1.0
+  other-skill: 2.0.0 → 2.1.0
+```
+
+**After applying:**
+```
+Updated: 2, Skipped: 0, Failed: 0
+```
+
+**No updates:**
+```
+All skills are up to date.
+```

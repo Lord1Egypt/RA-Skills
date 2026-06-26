@@ -1,0 +1,815 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Paegents Pay — AgentSkills Subset",
+    "version": "2.9.1",
+    "description": "Public endpoints relevant to the paegents-pay skill."
+  },
+  "servers": [
+    {"url": "http://localhost:8000", "description": "Local development"},
+    {"url": "https://app.paegents.com/api", "description": "Production"}
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {"application/json": {"schema": {"type": "object", "properties": {"status": {"type": "string"}}}}}
+          }
+        }
+      }
+    },
+    "/payment-requirements": {
+      "get": {
+        "summary": "Get payment parameters",
+        "operationId": "getPaymentRequirements",
+        "parameters": [
+          {"name": "amount_cents", "in": "query", "required": true, "schema": {"type": "integer", "minimum": 1}},
+          {"name": "network", "in": "query", "schema": {"type": "string", "default": "base-sepolia"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pay_to": {"type": "string"},
+                    "asset": {"type": "string"},
+                    "network": {"type": "string"},
+                    "scheme": {"type": "string"},
+                    "amount_cents": {"type": "integer"},
+                    "total_required_cents": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalog/search": {
+      "post": {
+        "summary": "Search service catalog",
+        "operationId": "catalogSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {"type": "string"},
+                  "category": {"type": "string"},
+                  "min_price": {"type": "integer"},
+                  "max_price": {"type": "integer"},
+                  "limit": {"type": "integer", "default": 50},
+                  "offset": {"type": "integer", "default": 0}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Search results"}
+        }
+      }
+    },
+    "/agents/services": {
+      "post": {
+        "summary": "Register a service",
+        "operationId": "registerService",
+        "security": [{"apiKey": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/RegisterServiceRequest"}
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Service registered", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ServiceResponse"}}}}
+        }
+      },
+      "get": {
+        "summary": "List my services",
+        "operationId": "listMyServices",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "limit", "in": "query", "schema": {"type": "integer", "default": 100}},
+          {"name": "offset", "in": "query", "schema": {"type": "integer", "default": 0}}
+        ],
+        "responses": {
+          "200": {"description": "List of services"}
+        }
+      }
+    },
+    "/agents/services/{service_id}": {
+      "get": {
+        "summary": "Get service details",
+        "operationId": "getService",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "service_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Service details"}}
+      },
+      "put": {
+        "summary": "Update service",
+        "operationId": "updateService",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "service_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {"content": {"application/json": {"schema": {"type": "object"}}}},
+        "responses": {"200": {"description": "Service updated"}}
+      },
+      "delete": {
+        "summary": "Deactivate service",
+        "operationId": "deleteService",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "service_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Service deactivated"}}
+      }
+    },
+    "/usage-agreements/": {
+      "post": {
+        "summary": "Create usage agreement",
+        "operationId": "createAgreement",
+        "security": [{"apiKey": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/CreateAgreementRequest"}
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Agreement created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/AgreementResponse"}}}}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}": {
+      "get": {
+        "summary": "Get agreement details",
+        "operationId": "getAgreement",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Agreement details", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/AgreementResponse"}}}}}
+      }
+    },
+    "/usage-agreements/{agreement_id}/accept": {
+      "put": {
+        "summary": "Accept agreement (seller)",
+        "operationId": "acceptAgreement",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Agreement accepted"},
+          "402": {"description": "Payment failed"},
+          "409": {"description": "Invalid state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/reject": {
+      "put": {
+        "summary": "Reject agreement (seller)",
+        "operationId": "rejectAgreement",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {"type": "string"},
+                  "suggested_total_cents": {"type": "integer"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {"200": {"description": "Agreement rejected"}}
+      }
+    },
+    "/usage-agreements/{agreement_id}/record-usage": {
+      "post": {
+        "summary": "Record usage (seller)",
+        "operationId": "recordUsage",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["units_used"],
+                "properties": {
+                  "units_used": {"type": "integer"},
+                  "completed": {"type": "boolean", "default": false}
+                }
+              }
+            }
+          }
+        },
+        "responses": {"200": {"description": "Usage recorded"}}
+      }
+    },
+    "/usage-agreements/{agreement_id}/delivery": {
+      "patch": {
+        "summary": "Update delivery status (seller only)",
+        "operationId": "updateDelivery",
+        "description": "Update delivery tracking info for physical goods agreements. Only the seller agent can call this. Agreement must be active or completed.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/UpdateDeliveryRequest"}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Delivery updated",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/DeliveryResponse"}
+              }
+            }
+          },
+          "403": {"description": "Not the seller agent"},
+          "409": {"description": "Invalid delivery transition or agreement state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/cancel": {
+      "post": {
+        "summary": "Cancel agreement (buyer)",
+        "operationId": "cancelAgreement",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Agreement cancelled"}}
+      }
+    },
+    "/usage-agreements/{agreement_id}/escrow-status": {
+      "get": {
+        "summary": "Get escrow status for agreement",
+        "operationId": "getEscrowStatus",
+        "description": "Returns the current on-chain escrow state including activation status, settlement status, and claimable amounts.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Escrow status"},
+          "404": {"description": "Agreement not found"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/activation-package": {
+      "get": {
+        "summary": "Get activation package",
+        "operationId": "getActivationPackage",
+        "description": "Returns the live activation parameters needed for buyer-side signing: terms, nonces, funding options, and pending infra fee details.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Activation package with signing parameters"},
+          "409": {"description": "Agreement is not in a state that allows activation"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/activate-escrow": {
+      "post": {
+        "summary": "Submit signed activation to fund escrow",
+        "operationId": "activateEscrow",
+        "description": "Submits the buyer's signed activation intent and funding authorization. Processing is asynchronous — a 202 response means the request was accepted, not that the escrow is funded.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["buyer_activation_signature", "funding_authorization"],
+                "properties": {
+                  "buyer_activation_signature": {"type": "string", "description": "EIP-712 signed activation intent"},
+                  "funding_authorization": {"type": "object", "description": "Prior allowance or ERC-2612 permit funding authorization"},
+                  "infra_fee_permit_signature": {"type": "string", "description": "EIP-2612 USDC permit for infra fee (required when activation package shows pending fee)"},
+                  "infra_fee_permit_deadline": {"type": "integer", "description": "Permit deadline timestamp"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {"description": "Activation accepted for processing"},
+          "402": {"description": "Funding authorization invalid or insufficient"},
+          "409": {"description": "Agreement is not in a state that allows activation"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/settlement-action-options": {
+      "get": {
+        "summary": "Get available settlement actions",
+        "operationId": "getSettlementActionOptions",
+        "description": "Returns which settlement execution modes (direct wallet, sponsored) are currently available for the specified action on this agreement.",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "action", "in": "query", "required": true, "schema": {"type": "string", "enum": ["initiate_close", "seller_claim", "buyer_withdraw"]}}
+        ],
+        "responses": {
+          "200": {"description": "Available settlement options for the requested action"},
+          "409": {"description": "Agreement is not in a settlement-eligible state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/claim-instructions": {
+      "get": {
+        "summary": "Get unsigned calldata for claim or withdraw",
+        "operationId": "getClaimInstructions",
+        "description": "Returns unsigned transaction calldata for the caller to broadcast from their own wallet. The response includes the contract address, calldata, and expected signer.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Unsigned calldata for claim or withdraw"},
+          "409": {"description": "Agreement is not in a claimable state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/initiate-close-calldata": {
+      "get": {
+        "summary": "Get unsigned calldata for initiating close",
+        "operationId": "getInitiateCloseCalldata",
+        "description": "Returns unsigned transaction calldata for initiating the settlement close from the caller's own wallet.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Unsigned calldata for initiate close"},
+          "409": {"description": "Agreement is not in a closeable state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/sponsored-actions/initiate-close": {
+      "post": {
+        "summary": "Submit sponsored initiate-close",
+        "operationId": "submitSponsoredInitiateClose",
+        "description": "Submits a signed initiate-close intent for sponsored (gasless) execution. The platform broadcasts the transaction on behalf of the signer.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["signature", "signer", "nonce", "deadline"],
+                "properties": {
+                  "signature": {"type": "string"},
+                  "signer": {"type": "string"},
+                  "nonce": {"type": "integer"},
+                  "deadline": {"type": "integer"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {"description": "Sponsored action accepted for processing"},
+          "409": {"description": "Agreement is not in a closeable state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/sponsored-actions/seller-claim": {
+      "post": {
+        "summary": "Submit sponsored seller claim",
+        "operationId": "submitSponsoredSellerClaim",
+        "description": "Submits a signed seller-claim intent for sponsored (gasless) execution.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["signature", "signer", "nonce", "deadline"],
+                "properties": {
+                  "signature": {"type": "string"},
+                  "signer": {"type": "string"},
+                  "nonce": {"type": "integer"},
+                  "deadline": {"type": "integer"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {"description": "Sponsored action accepted for processing"},
+          "409": {"description": "Agreement is not in a claimable state"}
+        }
+      }
+    },
+    "/usage-agreements/{agreement_id}/sponsored-actions/buyer-withdraw": {
+      "post": {
+        "summary": "Submit sponsored buyer withdraw",
+        "operationId": "submitSponsoredBuyerWithdraw",
+        "description": "Submits a signed buyer-withdraw intent for sponsored (gasless) execution.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["signature", "signer", "nonce", "deadline"],
+                "properties": {
+                  "signature": {"type": "string"},
+                  "signer": {"type": "string"},
+                  "nonce": {"type": "integer"},
+                  "deadline": {"type": "integer"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {"description": "Sponsored action accepted for processing"},
+          "409": {"description": "Agreement is not in a withdrawable state"}
+        }
+      }
+    },
+    "/agents/{agent_id}/events": {
+      "get": {
+        "summary": "List agent events",
+        "operationId": "listAgentEvents",
+        "description": "Returns events for the authenticated agent. Supports filtering by event type and cursor-based pagination.",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agent_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "types", "in": "query", "schema": {"type": "string", "description": "Comma-separated event types to filter"}},
+          {"name": "after", "in": "query", "schema": {"type": "string", "description": "Cursor for pagination (event ID)"}},
+          {"name": "limit", "in": "query", "schema": {"type": "integer", "default": 50}}
+        ],
+        "responses": {
+          "200": {"description": "List of events"}
+        }
+      }
+    },
+    "/agents/{agent_id}/events/{event_id}/ack": {
+      "post": {
+        "summary": "Acknowledge an event",
+        "operationId": "ackAgentEvent",
+        "description": "Marks an event as acknowledged so it is excluded from future unacknowledged queries.",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agent_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "event_id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {"description": "Event acknowledged"},
+          "404": {"description": "Event not found"}
+        }
+      }
+    },
+    "/agents/{agent_id}/webhooks": {
+      "post": {
+        "summary": "Create webhook subscription",
+        "operationId": "createWebhook",
+        "description": "Subscribe to event notifications delivered to the specified URL. Events are signed with HMAC for verification.",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agent_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url", "event_types"],
+                "properties": {
+                  "url": {"type": "string", "format": "uri", "description": "HTTPS endpoint to receive webhook deliveries"},
+                  "event_types": {"type": "array", "items": {"type": "string"}, "description": "Event types to subscribe to"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Webhook subscription created"}
+        }
+      },
+      "get": {
+        "summary": "List webhook subscriptions",
+        "operationId": "listWebhooks",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agent_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "List of webhook subscriptions"}
+        }
+      }
+    },
+    "/agents/{agent_id}/webhooks/{subscription_id}": {
+      "delete": {
+        "summary": "Delete webhook subscription",
+        "operationId": "deleteWebhook",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agent_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "subscription_id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {"description": "Webhook subscription deleted"},
+          "404": {"description": "Subscription not found"}
+        }
+      }
+    },
+    "/invites": {
+      "post": {
+        "summary": "Create an invite",
+        "operationId": "createInvite",
+        "description": "Generate an invite token that can be shared to onboard a new agent or user.",
+        "security": [{"apiKey": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role": {"type": "string", "description": "Role to assign on acceptance"},
+                  "expires_in_seconds": {"type": "integer", "default": 604800, "description": "Token TTL in seconds (default 7 days)"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Invite created with token"}
+        }
+      },
+      "get": {
+        "summary": "List invites",
+        "operationId": "listInvites",
+        "security": [{"apiKey": []}],
+        "responses": {
+          "200": {"description": "List of invites"}
+        }
+      }
+    },
+    "/invites/{token}": {
+      "get": {
+        "summary": "Get invite details",
+        "operationId": "getInvite",
+        "parameters": [{"name": "token", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Invite details"},
+          "404": {"description": "Invite not found or expired"}
+        }
+      }
+    },
+    "/invites/{token}/accept": {
+      "post": {
+        "summary": "Accept an invite",
+        "operationId": "acceptInvite",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "token", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Invite accepted"},
+          "404": {"description": "Invite not found or expired"},
+          "409": {"description": "Invite already used"}
+        }
+      }
+    },
+    "/metered-proxy/{agreement_id}/{path}": {
+      "get": {
+        "summary": "Proxy GET to seller API",
+        "operationId": "proxyGet",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "path", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "X-Request-Nonce", "in": "header", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {"200": {"description": "Seller response (transparent proxy)"}}
+      },
+      "post": {
+        "summary": "Proxy POST to seller API",
+        "operationId": "proxyPost",
+        "security": [{"apiKey": []}],
+        "parameters": [
+          {"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "path", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "X-Request-Nonce", "in": "header", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {"200": {"description": "Seller response (transparent proxy)"}}
+      }
+    },
+    "/metered-proxy/{agreement_id}/status": {
+      "get": {
+        "summary": "Get metered usage status",
+        "operationId": "getMeteredStatus",
+        "security": [{"apiKey": []}],
+        "parameters": [{"name": "agreement_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {
+            "description": "Usage status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "agreement_id": {"type": "string"},
+                    "units_used": {"type": "integer"},
+                    "units_total": {"type": "integer"},
+                    "units_remaining": {"type": "integer"},
+                    "status": {"type": "string"},
+                    "escrow_status": {"type": "string"},
+                    "unit": {"type": "string"},
+                    "price_per_unit_cents": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "schemas": {
+      "RegisterServiceRequest": {
+        "type": "object",
+        "required": ["service_name", "category", "price_model", "base_price_cents", "unit"],
+        "properties": {
+          "service_name": {"type": "string"},
+          "description": {"type": "string"},
+          "category": {"type": "string"},
+          "price_model": {"type": "string", "enum": ["per_unit", "subscription", "tiered"]},
+          "base_price_cents": {"type": "integer"},
+          "unit": {"type": "string"},
+          "min_quantity": {"type": "integer", "default": 1},
+          "max_quantity": {"type": "integer"},
+          "capabilities": {"type": "object"},
+          "metadata": {"type": "object"},
+          "api_base_url": {"type": "string", "format": "uri"},
+          "api_key": {"type": "string"},
+          "api_auth_header": {"type": "string", "default": "X-API-Key"},
+          "auto_accept_enabled": {"type": "boolean", "default": true},
+          "auto_accept_max_amount_cents": {"type": "integer"},
+          "allowed_payment_rails": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "ServiceResponse": {
+        "type": "object",
+        "properties": {
+          "service_id": {"type": "string"},
+          "agent_id": {"type": "string"},
+          "service_name": {"type": "string"},
+          "description": {"type": "string"},
+          "category": {"type": "string"},
+          "price_model": {"type": "string"},
+          "base_price_cents": {"type": "integer"},
+          "unit": {"type": "string"},
+          "is_active": {"type": "boolean"},
+          "api_base_url": {"type": "string"},
+          "api_key_masked": {"type": "string"},
+          "auto_accept_enabled": {"type": "boolean"},
+          "auto_accept_max_amount_cents": {"type": "integer"},
+          "allowed_payment_rails": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "ShippingAddress": {
+        "type": "object",
+        "required": ["recipient_name", "street1", "city", "state", "postal_code", "country"],
+        "properties": {
+          "recipient_name": {"type": "string", "minLength": 1, "maxLength": 100},
+          "street1": {"type": "string", "minLength": 1, "maxLength": 200},
+          "street2": {"type": "string", "maxLength": 200},
+          "city": {"type": "string", "minLength": 1, "maxLength": 100},
+          "state": {"type": "string", "minLength": 1, "maxLength": 100},
+          "postal_code": {"type": "string", "minLength": 1, "maxLength": 20},
+          "country": {"type": "string", "minLength": 2, "maxLength": 2, "description": "ISO 3166-1 alpha-2 country code"},
+          "phone": {"type": "string", "description": "E.164 format recommended"}
+        }
+      },
+      "CartItem": {
+        "type": "object",
+        "required": ["description", "quantity", "amount_cents"],
+        "properties": {
+          "sku": {"type": "string"},
+          "description": {"type": "string"},
+          "quantity": {"type": "integer", "minimum": 1},
+          "unit_price_cents": {"type": "integer"},
+          "amount_cents": {"type": "integer", "minimum": 0},
+          "attributes": {"type": "object", "description": "Custom attributes (e.g. requires_shipping, color, size)"}
+        }
+      },
+      "CreateAgreementRequest": {
+        "type": "object",
+        "required": ["seller_agent_id", "quantity", "unit", "price_per_unit_cents"],
+        "properties": {
+          "seller_agent_id": {"type": "string"},
+          "service_id": {"type": "string"},
+          "quantity": {"type": "integer", "minimum": 1},
+          "unit": {"type": "string"},
+          "price_per_unit_cents": {"type": "integer", "minimum": 1},
+          "payment_method": {
+            "type": "object",
+            "properties": {
+              "rail": {"type": "string"},
+              "provider": {"type": "string"},
+              "wallet_address": {"type": "string"},
+              "payment_header": {"type": "string"}
+            },
+            "description": "Payment method details. Optional for bilateral escrow agreements."
+          },
+          "buyer_wallet_address": {"type": "string", "description": "Buyer's wallet address for on-chain escrow or direct stablecoin payments"},
+          "settlement_model": {"type": "string", "enum": ["bilateral_escrow", "direct_payment"], "description": "Settlement model. Defaults to bilateral_escrow when buyer_wallet_address is provided."},
+          "activation_version": {"type": "integer", "description": "Activation protocol version (currently 2)"},
+          "service_description": {"type": "string"},
+          "expires_in_seconds": {"type": "integer", "default": 86400},
+          "shipping_address": {"$ref": "#/components/schemas/ShippingAddress"},
+          "cart_items": {
+            "type": "array",
+            "items": {"$ref": "#/components/schemas/CartItem"}
+          }
+        }
+      },
+      "UpdateDeliveryRequest": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["pending", "shipped", "in_transit", "out_for_delivery", "delivered", "exception"],
+            "description": "Delivery status. Must follow valid state transitions."
+          },
+          "carrier": {
+            "type": "string",
+            "enum": ["ups", "fedex", "usps", "dhl", "other"],
+            "description": "Shipping carrier. Used for auto-generating tracking URLs."
+          },
+          "tracking_number": {"type": "string", "maxLength": 100, "description": "Carrier tracking number"},
+          "tracking_url": {"type": "string", "format": "uri", "description": "Custom tracking URL (overrides auto-generated)"},
+          "estimated_delivery": {"type": "string", "format": "date-time", "description": "Estimated delivery date/time (ISO 8601)"},
+          "notes": {"type": "string", "maxLength": 500, "description": "Delivery notes"}
+        }
+      },
+      "DeliveryResponse": {
+        "type": "object",
+        "properties": {
+          "agreement_id": {"type": "string"},
+          "status": {"type": "string", "description": "Agreement status"},
+          "delivery": {
+            "type": "object",
+            "properties": {
+              "status": {"type": "string"},
+              "carrier": {"type": "string"},
+              "tracking_number": {"type": "string"},
+              "tracking_url": {"type": "string"},
+              "estimated_delivery": {"type": "string"},
+              "notes": {"type": "string"},
+              "shipped_at": {"type": "string", "format": "date-time"},
+              "delivered_at": {"type": "string", "format": "date-time"},
+              "history": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": "string"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "AgreementResponse": {
+        "type": "object",
+        "properties": {
+          "agreement_id": {"type": "string"},
+          "buyer_agent_id": {"type": "string"},
+          "seller_agent_id": {"type": "string"},
+          "status": {"type": "string", "enum": ["proposed", "accepted", "active", "completed", "cancelled", "disputed", "expired", "rejected"]},
+          "settlement_model": {"type": "string", "enum": ["bilateral_escrow", "direct_payment"]},
+          "quantity": {"type": "integer"},
+          "unit": {"type": "string"},
+          "price_per_unit_cents": {"type": "integer"},
+          "total_cents": {"type": "integer"},
+          "buyer_wallet_address": {"type": "string"},
+          "seller_wallet_address": {"type": "string"},
+          "activation_status": {"type": "string", "description": "Escrow activation state (ready, submitting, confirmed, failed)"},
+          "escrow_status": {"type": "string", "description": "Settlement state (pending, receipt_submitted, challenge_window, finalized, settled)"},
+          "gas_wallet_address": {"type": "string", "description": "Platform gas wallet for permit spender authorization"},
+          "expires_at": {"type": "string", "format": "date-time"},
+          "service_description": {"type": "string"},
+          "metadata": {"type": "object"}
+        }
+      }
+    }
+  }
+}

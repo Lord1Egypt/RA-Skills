@@ -1,0 +1,31 @@
+{
+  "name": "agentic-lending-evk",
+  "version": "0.1.16",
+  "description": "Execution-capable OpenClaw EVK skill bundle for Api3-backed market planning, deployment preparation, and live borrow proof execution.",
+  "type": "commonjs",
+  "bin": {
+    "agentic-lending-evk": "scripts/bin/agentic-lending-evk.js",
+    "api3-feed-manager": "scripts/bin/api3-feed-manager.js",
+    "part2-planner": "scripts/bin/part2-planner.js"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "references",
+    "assets",
+    "scripts",
+    "data"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check scripts/bin/agentic-lending-evk.js && node --check scripts/bin/api3-feed-manager.js && node --check scripts/bin/part2-planner.js && node --check scripts/evk_live_borrow_proof.js && node --check scripts/lib/api3-feed-manager.js && node --check scripts/lib/part2-chain-bootstrap.js && node --check scripts/lib/part2-planner.js && node --check scripts/lib/part2-recipes.js"
+  },
+  "dependencies": {
+    "@api3/contracts": "^37.0.0",
+    "@api3/dapi-management": "^4.15.0",
+    "ethers": "^6.15.0"
+  }
+}

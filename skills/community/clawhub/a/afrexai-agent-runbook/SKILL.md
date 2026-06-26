@@ -1,35 +1,34 @@
----
-name: "Agent Ops Runbook"
-description: "Generate a detailed operations runbook for deploying AI agents, including rollout stages, monitoring, rollback plans, cost estimates, and incident response t..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, business, agents, deployment, devops, monitoring, operations]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/afrexai-agent-runbook"
-sourceUrl: "https://clawhub.ai/skills/afrexai-agent-runbook"
----
-
 # Agent Ops Runbook
 
-> Generate a detailed operations runbook for deploying AI agents, including rollout stages, monitoring, rollback plans, cost estimates, and incident response t...
+Generate a production-ready operations runbook for deploying AI agents. Covers pre-deployment checklists, shadow mode → supervised → autonomous rollout stages, monitoring dashboards, rollback procedures, cost management, and incident response templates.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/afrexai-agent-runbook`
-- **Source URL:** [https://clawhub.ai/skills/afrexai-agent-runbook](https://clawhub.ai/skills/afrexai-agent-runbook)
+## When to Use
+- Deploying an AI agent to production
+- Building monitoring and alerting for agent systems
+- Creating rollback procedures for autonomous workflows
+- Estimating and controlling agent operational costs
 
-## Overview
+## Instructions
 
+When the user asks for an agent ops runbook or deployment plan:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/afrexai-agent-runbook
-```
+1. Ask which agent function they're deploying (support, sales, document processing, etc.)
+2. Ask about their risk tolerance (conservative, moderate, aggressive rollout)
+3. Generate a complete runbook with:
+   - Pre-deployment checklist specific to their function
+   - 3-stage rollout plan with metrics and gates
+   - Monitoring alerts (critical + warning thresholds)
+   - Rollback procedures (3 levels: prompt, feature, full)
+   - Cost estimates based on their expected volume
+   - 90-day implementation timeline
+   - Incident response template
+
+4. Include specific metric targets:
+   - Accuracy vs human baseline: >90%
+   - Error rate: <2%
+   - Cost per task benchmarks by function
+   - Human escalation rate: 5-15%
+
+5. Flag risks specific to their industry (compliance, PII, financial accuracy)
+
+Output format: Markdown document ready to share with engineering and ops teams.

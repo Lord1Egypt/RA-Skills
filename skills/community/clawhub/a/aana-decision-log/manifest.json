@@ -1,0 +1,62 @@
+{
+  "name": "aana-decision-log",
+  "slug": "aana-decision-log",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded decision log instructions for producing compact audit records for important agent decisions: what was checked, what failed, what changed, and what risk remains.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_redaction_for_sensitive_decision_records": true,
+  "requires_truthful_check_reporting": true,
+  "requires_explicit_unverified_items": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "bank account numbers",
+      "identity documents",
+      "raw medical records",
+      "raw legal records",
+      "full private messages",
+      "full logs with sensitive values",
+      "unrelated private data"
+    ]
+  },
+  "decision_log_boundary": {
+    "must_log_only_checks_actually_performed": true,
+    "must_mark_failed_or_unclear_checks": true,
+    "must_record_changes_made_after_review": true,
+    "must_minimize_sensitive_data": true,
+    "must_not_claim_compliance_or_validation_not_observed": true,
+    "must_include_residual_risk_for_high_impact_decisions": true,
+    "may_not_persist_memory_without_permission": true,
+    "may_not_store_raw_private_records": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/decision-log.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-decision-log.json"
+  ]
+}

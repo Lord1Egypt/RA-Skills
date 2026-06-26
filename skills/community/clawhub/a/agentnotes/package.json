@@ -1,0 +1,30 @@
+{
+  "name": "agentnotes-openclaw",
+  "version": "0.1.0",
+  "description": "AgentNotes skill for OpenClaw — install into your workspace with one command",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "agentnotes-openclaw": "./bin/install.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "bin",
+    "scripts",
+    "package.json"
+  ],
+  "keywords": [
+    "openclaw",
+    "agentnotes",
+    "skill",
+    "clawhub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattmerrick/agentnotes.git",
+    "directory": "integrations/openclaw/agentnotes"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

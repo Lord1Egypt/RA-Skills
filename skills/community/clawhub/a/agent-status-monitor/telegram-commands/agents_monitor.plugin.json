@@ -1,0 +1,21 @@
+{
+  "id": "agents-monitor-telegram",
+  "name": "Agents Monitor Telegram Commands",
+  "version": "1.0.0",
+  "description": "Add /agents_monitor command to Telegram bot for checking local AI agent status",
+  "author": "Willin Wang",
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "triggers": {
+    "commands": [
+      {
+        "command": "agents_monitor",
+        "description": "检查本地开发 Agent（Claude Code、OpenCode 等）的运行状态",
+        "scope": "all"
+      }
+    ]
+  }
+}

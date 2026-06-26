@@ -1,0 +1,27 @@
+{
+  "name": "3daistudio",
+  "version": "1.0.0",
+  "description": "Convert images and text prompts to 3D models using 3D AI Studio API",
+  "homepage": "https://www.3daistudio.com",
+  "owner": "Whale Professor",
+  "repository": "https://github.com/whale-professor/3daistudio-skill",
+  "required_env": [
+    "THREE_D_AI_STUDIO_API_KEY"
+  ],
+  "credentials": {
+    "primary": "THREE_D_AI_STUDIO_API_KEY",
+    "type": "api_key",
+    "help": "Get your API key from https://www.3daistudio.com/Platform/API"
+  },
+  "runtime": {
+    "type": "python",
+    "entry": "3daistudio.py"
+  },
+  "tags": [
+    "3d",
+    "ai",
+    "image-to-3d",
+    "text-to-3d",
+    "model-generation"
+  ]
+}

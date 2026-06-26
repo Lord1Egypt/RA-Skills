@@ -1,0 +1,281 @@
+# macOS Platform
+
+macOS-specific details for agent-desktop. Covers permissions, accessibility API behavior, troubleshooting, and platform quirks.
+
+## Prerequisites
+
+### Permission Report (TCC)
+
+macOS requires explicit Accessibility permission for any process that reads or controls UI elements across applications.
+
+```bash
+# Check permission status
+agent-desktop permissions
+
+# Trigger the system dialog
+agent-desktop permissions --request
+```
+
+The report contains:
+
+| Field | Meaning |
+|-------|---------|
+| `accessibility` | Required for accessibility tree reads and most commands |
+| `screen_recording` | Required for screenshots |
+| `automation` | Reserved for future Apple Event automation paths; `{ "state": "not_required" }` for the current macOS command set |
+
+Each field is an object: `{ "state": "granted" }`, `{ "state": "denied", "suggestion": "..." }`, `{ "state": "not_required" }`, or `{ "state": "unknown" }`. The current macOS adapter reports concrete `granted` or `denied` states for Accessibility and Screen Recording, and `not_required` for Automation.
+
+**To grant manually:**
+1. Open System Settings > Privacy & Security > Accessibility
+2. Click the lock to make changes
+3. Add the app that launches agent-desktop (Terminal.app, iTerm2, Warp, VS Code, Codex, etc.)
+4. Toggle it ON
+
+**Important:** The permission is granted to the launching app. If macOS lists the built `agent-desktop` binary separately, grant that binary too. If you run agent-desktop from a different launcher, grant that launcher as well.
+
+After granting, restart the terminal for the permission to take effect.
+
+### Supported macOS Versions
+
+- macOS 12 (Monterey) and later
+- Both Intel (x86_64) and Apple Silicon (ARM64)
+
+## macOS Accessibility API (AX)
+
+agent-desktop uses the macOS Accessibility API (`AXUIElement`) to read and manipulate UI elements.
+
+### How It Works
+
+1. `AXUIElementCreateApplication(pid)` creates a handle to an app's accessibility tree
+2. Tree traversal reads `kAXChildrenAttribute` recursively
+3. Attributes like `kAXRoleAttribute`, `kAXNameAttribute`, `kAXValueAttribute` provide element details
+4. Actions like `kAXPressAction`, `kAXConfirmAction` trigger element behavior
+
+### Smart Activation Chain
+
+When you run `click @ref`, agent-desktop doesn't just do a simple click. It runs a multi-step activation chain:
+
+1. **AXScrollToVisible** — ensure element is on screen
+2. **AXPress** — standard press action
+3. **AXConfirm** — confirmation action
+4. **AXOpen** — open action (for links, files)
+5. **AXPick** — picker action
+6. **AXShowAlternateUI** — reveal hidden UI, then press child
+7. **Child activation** — try pressing child elements
+8. **AXSelected** — set selected attribute
+9. **Select via parent** — set parent's selected rows (for tables/lists)
+10. **Custom actions** — AXPerformCustomAction
+11. **Ancestor activation** — try pressing ancestor elements
+12. **Explicit physical path** — coordinate click only when the caller selected a policy that allows focus stealing and cursor movement
+
+For `right-click`, AXShowMenu and related semantic menu paths include a `menu` tree only after a real menu surface appears. If the action succeeds but the menu probe cannot verify a surface, the command still returns success with `menu_probe.ok: false`; callers should inspect that field instead of retrying blindly. Combo boxes and menu buttons use the same AX menu mechanism for their primary dropdown; use `select` for those controls. Coordinate right-click is blocked by the default headless policy.
+
+Menu verification intentionally requires a closed-to-open transition. If a menu is already open for the target app, `right-click` and `select` refuse to treat that existing menu as proof of success; dismiss the old menu and retry. This avoids acting on a stale sibling menu opened by a prior command.
+
+The default activation-chain deadline is 10 seconds. Set `AGENT_DESKTOP_CHAIN_TIMEOUT_MS` to a positive millisecond value when diagnosing unusually slow AX targets; values are capped at 300000 ms. Menu verification waits use `AGENT_DESKTOP_MENU_TIMEOUT_MS` with a default of 750 ms and a 10000 ms cap. Toggle verification uses `AGENT_DESKTOP_TOGGLE_TIMEOUT_MS` with a default of 600 ms and a 10000 ms cap; changed toggle values must remain stable for `AGENT_DESKTOP_TOGGLE_STABLE_MS`, default 200 ms and cap 2000 ms.
+
+### Headless Interaction Policy
+
+Ref commands use `ActionRequest { action, policy }`. The default policy forbids focus stealing, cursor movement, keyboard synthesis, and pasteboard insertion. macOS actions split semantic AX steps from explicit physical/headed paths:
+
+- `click`, `right-click`, `scroll`, `set-value`, `clear`, `select`, `toggle`, `check`, `uncheck`, `expand`, `collapse`, and `scroll-to` try AX-first semantics and fail clearly when the headless path is unavailable.
+- `type` uses focus fallback in the CLI/ref-action path. It may focus the target field, never moves the cursor, and can use the pasteboard for non-ASCII insertion. Use `set-value` for pure headless value mutation when supported.
+- `focus`, `press`, `hover`, `drag`, and `mouse-*` are explicit physical/focus/cursor commands.
+- FFI ref-action callers should use focus fallback for `type` to match CLI behavior; direct-handle `ad_execute_action` is lower-level and defaults to headless.
+- Explicit focus/physical policy can use the clipboard briefly for non-ASCII text insertion. Use `set-value` for sensitive text when possible.
+- If a command would need a forbidden physical path, it returns a structured error with a recovery hint.
+
+### Surfaces
+
+macOS apps can have multiple accessibility surfaces:
+
+| Surface | Description | When to use |
+|---------|-------------|-------------|
+| `window` | Main application window (default) | General UI interaction |
+| `focused` | Currently focused element's context | Inspecting active element |
+| `menu` | Open dropdown or context menu | After `select`, verified `right-click`, or explicit menu trigger |
+| `menubar` | Application menu bar | Navigating File/Edit/View menus |
+| `sheet` | Modal sheet (Save dialog, etc.) | After triggering sheet dialogs |
+| `popover` | Popover/popup content | Inspecting tooltips, popovers |
+| `alert` | System or app alert | Handling alert dialogs |
+
+```bash
+# List available surfaces
+agent-desktop list-surfaces --app "Finder"
+
+# Snapshot a specific surface
+agent-desktop snapshot --app "Finder" --surface menu -i
+```
+
+### Surface-First Snapshot Rule
+
+**When a snapshot shows a sheet, alert, popover, or menu is open, ALWAYS re-snapshot with the matching `--surface` flag.** The full app tree includes refs for the entire window behind the overlay — those refs are irrelevant and waste tokens. The surface snapshot returns only the overlay's refs, which are the only ones you can meaningfully interact with.
+
+| Snapshot shows... | Next command |
+|-------------------|-------------|
+| A sheet is open (Save, Export, Print dialog) | `snapshot --app "App" --surface sheet -i` |
+| An alert is visible (confirmation, error) | `snapshot --app "App" --surface alert -i` |
+| A menu is open (dropdown, context menu) | `snapshot --app "App" --surface menu -i` |
+| A popover appeared (tooltip, picker) | `snapshot --app "App" --surface popover -i` |
+
+**Do not interact with refs from the full window snapshot while an overlay is open.** The overlay captures focus — clicks on background refs will either fail or dismiss the overlay unexpectedly. Snapshot the surface, interact with it, then snapshot the window again after the overlay closes.
+
+## Notification Center
+
+agent-desktop interacts with macOS Notification Center via the accessibility API.
+
+### How It Works
+
+1. **NcSession** opens Notification Center by clicking the clock in ControlCenter (if not already open)
+2. Notifications are read from the AX tree under the NotificationCenter process
+3. After operations, NcSession closes NC and restores the previously focused app
+4. The `Drop` impl ensures cleanup even on errors
+
+### Dismiss Strategy
+
+Headless approach (no cursor movement from the default ref command path):
+
+1. **AXDismiss** / **AXRemoveFromParent** — native accessibility actions
+2. **Close button** — find and press AXButton named "close", "clear", or "dismiss"
+3. **Hover + close button** — move cursor to reveal hidden close button, then press it
+4. If all fail, returns `ACTION_FAILED`
+
+**Important:** `AXPress` is intentionally excluded from dismiss — it "clicks" the notification body (opening the source app) without actually dismissing it.
+
+### Stacked Notifications
+
+macOS groups notifications from the same app into stacks. Dismissing the top notification may reveal more underneath. `dismiss-all-notifications` iterates in reverse order but may need multiple rounds for deeply stacked groups.
+
+### Notification Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| Script Editor opens during dismiss | Notification owned by osascript | Fixed — NcSession restores previous app focus |
+| `dismiss-notification` reports success but notification stays | AXPress was firing instead of AXDismiss | Fixed — AXPress removed from dismiss chain |
+| Calendar widget can't be dismissed | It's a system widget, not a notification | Expected behavior — not a real notification |
+| Notifications disappear before listing | Banner-style notifications are transient | Use `wait --notification` to detect them |
+
+## Troubleshooting
+
+### PERM_DENIED
+
+```
+"code": "PERM_DENIED",
+"message": "Accessibility permission not granted"
+```
+
+**Fix:**
+1. `agent-desktop permissions --request` to trigger dialog
+2. System Settings > Privacy & Security > Accessibility
+3. Add and enable your terminal
+4. Restart terminal
+
+### Empty or Sparse Tree
+
+Some apps don't expose full accessibility trees:
+- **Electron apps** (VS Code, Slack): Generally good accessibility support
+- **Custom-rendered UIs** (games, some creative tools): May have no accessibility tree
+- **Web views**: Content inside WebViews may be limited
+
+**Try:**
+- Remove `-i` flag to see all elements including non-interactive ones
+- Increase `--max-depth` to explore deeper
+- Use `screenshot` as a visual fallback
+
+### STALE_REF / SNAPSHOT_NOT_FOUND
+
+```
+"code": "STALE_REF",
+"message": "Element not found: role=..., name=..."
+```
+
+The UI changed between your snapshot and action, or the element could not be re-identified. Run `snapshot` again and use the new refs. If the requested `snapshot_id` does not exist, the command returns `SNAPSHOT_NOT_FOUND`.
+
+### POLICY_DENIED
+
+```
+"code": "POLICY_DENIED"
+```
+
+The semantic AX path could not complete and a physical/headed path was blocked by policy. Use `--headed` only when physical interaction is intended, for example `agent-desktop --headed hover @ref`, `agent-desktop --headed drag ...`, or `agent-desktop --headed mouse-click --xy x,y`.
+
+### ACTION_FAILED
+
+```
+"code": "ACTION_FAILED"
+```
+
+The accessibility action was rejected. This can happen when:
+- The element is disabled
+- The app is busy or unresponsive
+- The element doesn't support the requested action
+
+**Try:**
+1. Check `is @ref --property enabled` first
+2. If physical interaction is intended, get bounds with `get @ref --property bounds`, then use `agent-desktop --headed mouse-click --xy x,y`
+3. Use keyboard explicitly: `focus @ref` then `press return`
+
+### APP_NOT_FOUND
+
+The application isn't running. Launch it first:
+```bash
+agent-desktop launch "App Name"
+```
+
+### Slow Snapshots
+
+Large apps (Xcode, Safari with many tabs) can have deep trees.
+
+**Optimize:**
+- Use `-i` to filter to interactive elements only
+- Use `--max-depth 5` to limit depth
+- Use `--compact` to remove empty structural nodes
+- Use `--skeleton` for dense apps, then `snapshot --root @ref --snapshot <snapshot_id>` to drill down
+- Target a specific window with `--window-id`
+- Use `find` instead of full snapshot when you know what you're looking for
+
+### Context Menu Doesn't Appear
+
+After `right-click @ref`, inspect `menu` first. If it is absent and `menu_probe.ok` is `false`:
+1. The element may not support context menus
+2. If the target is a combo box or menu button, use `select @ref "Option"` instead
+3. Run `list-surfaces --app "App"` to confirm whether a menu surface exists
+4. If physical interaction is intended, try `agent-desktop --headed mouse-click --xy x,y --button right` with coordinates from `get @ref --property bounds`
+
+## macOS-Specific Behavior
+
+### App Identification
+
+Apps can be referenced by:
+- **Display name:** `"System Settings"`, `"Finder"`, `"TextEdit"`
+- **Bundle ID:** `"com.apple.systempreferences"`, `"com.apple.finder"`
+
+`launch` accepts both. Other commands use the display name with `--app`.
+
+### Window IDs
+
+Window IDs (like `w-4521`) are assigned by macOS and are stable for the lifetime of the window. Use `list-windows` to discover them.
+
+### Keyboard Shortcuts
+
+macOS uses `cmd` (Command) as the primary modifier:
+```bash
+agent-desktop press cmd+c   # Copy
+agent-desktop press cmd+v   # Paste
+agent-desktop press cmd+z   # Undo
+agent-desktop press cmd+s   # Save
+agent-desktop press cmd+w   # Close window
+agent-desktop press cmd+q   # Quit app (use with caution!)
+```
+
+### Full-Screen Apps
+
+Apps in full-screen mode are accessible but may behave differently:
+- `list-windows` still shows them
+- Bounds may report full screen dimensions
+- Some animations may delay UI state updates (use `wait`)
+
+### Menu Bar Apps
+
+Menu bar apps (status bar items) can be accessed via `--surface menubar`. The menu bar is a separate surface from the application window.

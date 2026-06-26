@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "name": "agentmemory",
+  "version": "1.0.0",
+  "description": "Persistent cross-session memory with semantic search",
+  "slots": ["memory"],
+  "config": {
+    "base_url": {
+      "type": "string",
+      "default": "http://localhost:3111",
+      "description": "agentmemory server URL"
+    },
+    "token_budget": {
+      "type": "number",
+      "default": 2000,
+      "description": "Max tokens per recall injection"
+    },
+    "min_confidence": {
+      "type": "number",
+      "default": 0.5,
+      "description": "Minimum confidence threshold for recall"
+    },
+    "fallback_on_error": {
+      "type": "boolean",
+      "default": true,
+      "description": "Continue without memory if server unavailable"
+    },
+    "timeout_ms": {
+      "type": "number",
+      "default": 5000,
+      "description": "Request timeout in milliseconds"
+    }
+  },
+  "hooks": {
+    "beforeAgent": "onBeforeAgent",
+    "afterAgent": "onAfterAgent"
+  },
+  "requirements": {
+    "server": "agentmemory",
+    "min_openclaw_version": "1.0.0"
+  }
+}

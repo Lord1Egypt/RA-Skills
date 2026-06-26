@@ -1,0 +1,24 @@
+# Default code owners for the repository
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owner
+* @ParsifalC
+
+# Python source code
+src/ @ParsifalC @MoyuFamily/devs
+
+# Tests
+tests/ @ParsifalC @MoyuFamily/devs
+
+# Documentation
+docs/ @ParsifalC
+*.md @ParsifalC
+
+# CI/CD
+.github/ @ParsifalC
+
+# Landing page
+landing/ @ParsifalC
+
+# Package config
+pyproject.toml @ParsifalC

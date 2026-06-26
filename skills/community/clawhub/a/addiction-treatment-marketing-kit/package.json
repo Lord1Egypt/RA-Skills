@@ -1,0 +1,43 @@
+{
+  "name": "addiction-treatment-marketing-kit",
+  "version": "1.0.0",
+  "description": "Compliance-safe marketing for addiction treatment and behavioral health — LegitScript gate, 42 CFR Part 2, FTC patient brokering, Nevada NRS 449 DPBH licensing, SAMHSA/NAATP standards",
+  "keywords": [
+    "addiction treatment",
+    "behavioral health",
+    "rehab marketing",
+    "LegitScript",
+    "42 CFR Part 2",
+    "substance use disorder",
+    "SAMHSA",
+    "NAATP",
+    "CARF accreditation",
+    "Nevada DPBH",
+    "MAT marketing",
+    "opioid treatment",
+    "FTC compliance",
+    "healthcare marketing"
+  ],
+  "category": "healthcare-marketing",
+  "bundle": "healthcare-bundle",
+  "skillId": 236,
+  "pricing": {
+    "free": "prompt-01-patient-acquisition-campaigns",
+    "paid": 29,
+    "dfy": 197
+  },
+  "compliance": [
+    "LegitScript Addiction Treatment Certification (Google/Meta platform requirement)",
+    "42 CFR Part 2 — SUD Patient Record Confidentiality",
+    "FTC Act Section 5 — Outcome Claims and Patient Brokering",
+    "Anti-Kickback Statute (42 U.S.C. 1320a-7b)",
+    "Nevada NRS 449 / DPBH Facility Licensing",
+    "Nevada NRS 641C — CADC/LADC Counselor Credentialing",
+    "SAMHSA NAATP Code of Ethics",
+    "HIPAA 45 CFR 164.508 — Marketing Authorization",
+    "DEA MATE Act 2023 — Buprenorphine Registration",
+    "42 CFR Part 8 — OTP Methadone Certification"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0"
+}

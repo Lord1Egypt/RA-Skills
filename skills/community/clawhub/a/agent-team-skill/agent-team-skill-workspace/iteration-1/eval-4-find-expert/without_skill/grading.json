@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "分析了团队成员的技能", "passed": true, "evidence": "分析了所有 6 个团队成员的 tags 和 expertise"},
+    {"text": "推荐了具有数据库相关技能的成员", "passed": true, "evidence": "推荐了 Bob，因为他的 tags 包含 'database'"},
+    {"text": "推荐理由合理（基于 tags/expertise）", "passed": true, "evidence": "明确指出 Bob 有 'database' tag，且作为 Backend Developer 数据库优化是其核心职责"}
+  ]
+}

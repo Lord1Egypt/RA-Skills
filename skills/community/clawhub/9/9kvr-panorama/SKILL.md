@@ -1,35 +1,48 @@
 ---
-name: "芊云VR全景运营小助手"
-description: "全景 VR 作品管理技能，覆盖账号登录配置（uid/token）、作品、素材、场景、热点、配乐、语音讲解、评分查询与接入指引。用户提出“配置登录信息”、“创建/修改/查看 VR 作品”、“上传素材”、“配置场景与热点”、“给作品加音乐或配音”、“查看评分”、“生成接入代码”等需求时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/9kvr-panorama"
-sourceUrl: "https://clawhub.ai/skills/9kvr-panorama"
+name: 9kvr-panorama
+description: 全景 VR 作品管理技能，覆盖账号登录配置（uid/token）、作品、素材、场景、热点、配乐、语音讲解、评分查询与接入指引。用户提出“配置登录信息”、“创建/修改/查看 VR 作品”、“上传素材”、“配置场景与热点”、“给作品加音乐或配音”、“查看评分”、“生成接入代码”等需求时使用。
 ---
 
-# 芊云VR全景运营小助手
+# VR 全景作品管理技能
 
-> 全景 VR 作品管理技能，覆盖账号登录配置（uid/token）、作品、素材、场景、热点、配乐、语音讲解、评分查询与接入指引。用户提出“配置登录信息”、“创建/修改/查看 VR 作品”、“上传素材”、“配置场景与热点”、“给作品加音乐或配音”、“查看评分”、“生成接入代码”等需求时使用。
+## What（是什么）
+`9kvr-panorama` 是一个用于全景 VR 内容生产与管理的操作技能，统一处理从素材入库到作品发布前配置的关键环节，覆盖以下能力：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/9kvr-panorama`
-- **Source URL:** [https://clawhub.ai/skills/9kvr-panorama](https://clawhub.ai/skills/9kvr-panorama)
+- 作品管理：创建作品、查看详情、读取场景、更新基础信息
+- 素材管理：上传素材、查询素材、更新描述、删除素材、获取下载链接
+- 场景管理：场景列表、详情、更新、删除
+- 热点管理：查询热点、添加场景跳转热点、添加文本热点、删除热点
+- 音乐管理：音乐标签、搜索音乐、智能匹配、挂载背景音乐
+- 语音管理：主播列表、语音生成、任务轮询、语音上传、挂载语音
+- 评分与诊断：读取作品评分、获取版本与全局上下文
+- 账号配置：设置/更新登录 `uid` 与 `token`
+- 接入开发：小程序/网页/存量系统接入指南与代码生成
 
-## Overview
+## Why（为什么）
+该技能的目标不是“命令大全”，而是“面向新手可复用的执行流程”。
 
+- 降低学习成本：按业务动作组织能力，而不是按 API 字段堆砌
+- 降低出错概率：强调“先查后改、改后复查”的顺序
+- 提升交付效率：同类任务可直接套用流程与命令模板
+- 保障可追溯性：每次关键变更都可通过 info/list 再确认
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/9kvr-panorama
-```
+## Where（去哪里看详细信息）
+先判定“调用哪个脚本/命令”，再看参数和示例。按此顺序读取：
+
+1. 调用路由（先看）：`references/router.md`
+2. 命令与参数总览：`references/commands.md`
+3. 标准操作流程（SOP）：`references/workflows.md`
+4. 端到端场景示例：`references/examples.md`
+
+## 调用原则（给 AI 的执行约束）
+
+1. 每次收到需求先做“意图分类”，必须落到一个模块：`works/media/scenes/hotspot/music/voice/score/develop/info(含账号配置)`。
+2. 根据模块去 `references/router.md` 选对应脚本与命令组。
+3. 先读后写：优先 `list/info/scenes/hotspot list`，再执行 `create/update/add/delete`。
+4. 写后复查：任何写入动作后，必须追加一次读取命令验证结果。
+5. 涉及删除、覆盖、批量操作时，先复述目标 ID 与影响范围再执行。
+
+## 使用边界
+
+- 本技能聚焦“管理与配置”，不包含沉浸式前端渲染开发细节。
+- 不确定归属模块时，优先使用 `references/router.md` 的“最小调用模板”判定。

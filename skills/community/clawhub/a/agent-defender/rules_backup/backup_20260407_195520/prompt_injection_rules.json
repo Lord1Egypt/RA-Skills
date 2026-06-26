@@ -1,0 +1,88 @@
+[
+  {
+    "id": "PI01",
+    "name": "指令覆盖检测",
+    "patterns": [
+      "(?i)\\bignore\\s+(previous|all)\\b",
+      "(?i)\\bforget\\s+\\b",
+      "(?i)忽略 (之前 | 上面)",
+      "(?i)覆盖指令"
+    ],
+    "risk": "HIGH",
+    "description": "检测覆盖系统指令",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "PI02",
+    "name": "角色扮演检测",
+    "patterns": [
+      "(?i)\\byou\\s+are\\s+now\\b",
+      "(?i)\\bact\\s+as\\b",
+      "(?i)\\bpretend\\s+to\\s+be\\b",
+      "(?i)你现在是",
+      "(?i)扮演"
+    ],
+    "risk": "HIGH",
+    "description": "检测通过角色扮演绕过限制",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "PI03",
+    "name": "权限提升检测",
+    "patterns": [
+      "(?i)\\badmin\\s+mode\\b",
+      "(?i)\\broot\\s+access\\b",
+      "(?i)\\bdeveloper\\s+mode\\b",
+      "(?i)解除限制",
+      "(?i)提升权限"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测请求提升权限",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "PI04",
+    "name": "多轮诱导检测",
+    "patterns": [
+      "(?i)\\bstep\\s+1\\b",
+      "(?i)\\bstep\\s+2\\b",
+      "(?i)第一步",
+      "(?i)第二步"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测通过多轮对话渐进诱导",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "PI05",
+    "name": "代码注入检测",
+    "patterns": [
+      "```python",
+      "```bash",
+      "```js",
+      "运行代码",
+      "执行这段"
+    ],
+    "risk": "HIGH",
+    "description": "检测在代码块中注入恶意代码",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "PI06",
+    "name": "越狱攻击检测",
+    "patterns": [
+      "(?i)\\bDAN\\b",
+      "(?i)\\bDo Anything Now\\b",
+      "(?i)\\bjailbreak\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测越狱攻击",
+    "action": "BLOCK",
+    "optimized": false
+  }
+]

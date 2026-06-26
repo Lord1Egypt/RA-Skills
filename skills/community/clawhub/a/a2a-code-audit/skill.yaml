@@ -1,0 +1,13 @@
+name: a2a-code-audit
+version: 1.0.2
+description: A2A Code Audit Service - Static code analysis for security vulnerabilities. $0.25 per scan.
+endpoint: https://a2a-code-audit.cvapi.workers.dev/audit
+price_usd: 0.25
+triggers:
+  - audit code
+  - scan for bugs
+  - security check
+  - code review
+  - find vulnerabilities
+author: agentkilox
+license: MIT-0

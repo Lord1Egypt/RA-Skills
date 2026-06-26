@@ -1,0 +1,23 @@
+{
+  "name": "ad-production-workflow-orchestrator",
+  "version": "1.0.0",
+  "description": "工作流编排中心 - 协调全流程，管理任务依赖和状态",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "workflow",
+    "orchestrator",
+    "pipeline"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

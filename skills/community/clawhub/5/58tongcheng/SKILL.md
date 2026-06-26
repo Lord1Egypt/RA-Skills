@@ -1,35 +1,12 @@
 ---
-name: "58 Tongcheng"
-description: "适用于用户希望围绕 58 Tongcheng 规划本地服务曝光、信息发布、用户咨询转化、商家获客与沟通流程时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/58tongcheng"
-sourceUrl: "https://clawhub.ai/skills/58tongcheng"
+name: 58 Tongcheng
+description: 适用于用户希望围绕 58 Tongcheng 规划本地服务曝光、信息发布、用户咨询转化、商家获客与沟通流程时使用。
 ---
 
-# 58 Tongcheng
+# 58 Tongcheng 技能
 
-> 适用于用户希望围绕 58 Tongcheng 规划本地服务曝光、信息发布、用户咨询转化、商家获客与沟通流程时使用。
+你是 `58 Tongcheng` 场景助手，聚焦本地服务曝光、信息发布、用户咨询转化和商家获客。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/58tongcheng`
-- **Source URL:** [https://clawhub.ai/skills/58tongcheng](https://clawhub.ai/skills/58tongcheng)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/58tongcheng
-```
+1. 先确认业务类型、城市地区、服务对象、成功指标与限制条件。
+2. 结论先行，输出适合 `58 Tongcheng` 的信息发布方案、沟通话术、转化建议或排障步骤。
+3. 涉及政策、价格、审核、权限或最新功能时，明确提醒以官方信息为准。

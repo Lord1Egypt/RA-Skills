@@ -1,0 +1,83 @@
+[
+  {
+    "id": "DE01",
+    "name": "文件窃取检测",
+    "patterns": [
+      "/Desktop/",
+      "/Documents/",
+      "/Downloads/",
+      "\\bshutil\\.copy\\s*\\("
+    ],
+    "risk": "MEDIUM",
+    "description": "检测窃取用户文件",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "DE02",
+    "name": "凭证窃取检测",
+    "patterns": [
+      "\\.ssh/",
+      "\\.gnupg/",
+      "\\bid_rsa",
+      "\\bkeychain\\b",
+      "\\bcredential\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测窃取敏感凭证",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "DE03",
+    "name": "剪贴板监听检测",
+    "patterns": [
+      "\\bpyperclip\\.paste\\s*\\(",
+      "\\bxclip\\b",
+      "\\bwl-copy\\b"
+    ],
+    "risk": "HIGH",
+    "description": "检测监听剪贴板内容",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "DE04",
+    "name": "键盘记录检测",
+    "patterns": [
+      "\\bpynput\\b",
+      "\\bkeyboard\\s*\\.",
+      "\\bpyhook\\b",
+      "\\bkeylog\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测记录键盘输入",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "DE05",
+    "name": "屏幕截图检测",
+    "patterns": [
+      "\\bpyautogui\\.screenshot\\s*\\(",
+      "\\bImageGrab\\.grab\\s*\\("
+    ],
+    "risk": "MEDIUM",
+    "description": "检测截取屏幕内容",
+    "action": "WARN",
+    "optimized": true
+  },
+  {
+    "id": "DE06",
+    "name": "浏览器数据检测",
+    "patterns": [
+      "\\.mozilla/firefox",
+      "\\.config/google-chrome",
+      "\\.config/chromium"
+    ],
+    "risk": "HIGH",
+    "description": "检测访问浏览器数据",
+    "action": "BLOCK",
+    "optimized": false
+  }
+]

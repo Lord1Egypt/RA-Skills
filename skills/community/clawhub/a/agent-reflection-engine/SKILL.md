@@ -1,35 +1,27 @@
----
-name: "Agent Reflection Engine"
-description: "Enables AI agents to self-audit decision steps, identify reasoning bottlenecks, and generate improvement patches via chain-of-thought critique."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-reflection-engine"
-sourceUrl: "https://clawhub.ai/skills/agent-reflection-engine"
----
-
 # Agent Reflection Engine
 
-> Enables AI agents to self-audit decision steps, identify reasoning bottlenecks, and generate improvement patches via chain-of-thought critique.
+A lightweight, pluggable reflection engine that enables AI agents to self-audit their decision traces, identify reasoning bottlenecks, and generate improvement patches using chain-of-thought critique—ideal for developers tuning autonomous agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-reflection-engine`
-- **Source URL:** [https://clawhub.ai/skills/agent-reflection-engine](https://clawhub.ai/skills/agent-reflection-engine)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agent-reflection-engine
+# Run reflection on an agent trace
+python agent_reflection_engine.py traces/demo_trace.json -o reports/reflection.json --verbose
+
+# Example trace format (demo_trace.json):
+# [
+#   {
+#     "step_id": 1,
+#     "thoughts": "I should search for the nearest coffee shop.",
+#     "action": "search_web",
+#     "value": "coffee shop near me",
+#     "observation": "Found 'Brew Haven' 0.3 miles away."
+#   }
+# ]
 ```
+
+Integrate into agent loops by logging each step and running periodic reflection to generate improvement heuristics.
+
+## Price
+
+$4.99

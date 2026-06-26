@@ -1,0 +1,16 @@
+{
+  "name": "a2a-code-audit",
+  "version": "1.0.0",
+  "description": "A2A Code Audit Service - Security & quality scanning",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "audit": "node audit.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "bandit": "^1.7.6",
+    "eslint": "^8.57.0",
+    "python-shell": "^5.0.0"
+  }
+}

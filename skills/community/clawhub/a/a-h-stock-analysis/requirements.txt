@@ -1,0 +1,4 @@
+tushare>=1.2.73
+akshare>=1.14.0
+pandas>=1.3.0
+numpy>=1.21.0

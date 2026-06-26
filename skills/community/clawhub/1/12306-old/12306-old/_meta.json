@@ -1,0 +1,19 @@
+{
+  "name": "12306",
+  "version": "1.0.0",
+  "category": "general",
+  "created": "2026-03-08T20:15:05.855845",
+  "updated": "2026-03-08T20:15:05.855845",
+  "author": "auto-generated",
+  "description": "12306 skill package",
+  "scripts": [
+    "12306_client.py",
+    "scripts/login.py"
+  ],
+  "tags": [
+    "general",
+    "auto-generated"
+  ],
+  "status": "active",
+  "ownerId": "kn77ajmmqw3cgnc3ay1x3e0ccd805hsw"
+}

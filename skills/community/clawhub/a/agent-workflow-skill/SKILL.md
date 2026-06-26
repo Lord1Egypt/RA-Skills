@@ -1,35 +1,78 @@
 ---
-name: "Agent Workflow Skill"
-description: "Decompose complex user tasks into multi-step workflows using DAG-based execution."
-category: "other"
-source: "ClawHub"
-tags: [latest ai agent workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-workflow-skill"
-sourceUrl: "https://clawhub.ai/skills/agent-workflow-skill"
+name: task-graph-executor
+description: Decompose complex user tasks into multi-step workflows using DAG-based execution.
+version: 1.0.0
 ---
 
-# Agent Workflow Skill
+# Task Graph Executor
 
-> Decompose complex user tasks into multi-step workflows using DAG-based execution.
+## When to use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-workflow-skill`
-- **Source URL:** [https://clawhub.ai/skills/agent-workflow-skill](https://clawhub.ai/skills/agent-workflow-skill)
+Use this skill when tasks involve multiple steps or dependencies.
 
-## Overview
+Examples:
+- Analyze a repo and summarize it
+- Research a topic and generate a report
+- Process data and visualize results
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-workflow-skill
-```
+## What this skill does
+
+This skill enables the AI to:
+
+1. Break down complex tasks
+2. Build a dependency graph (DAG)
+3. Execute tasks in order
+4. Parallelize independent steps
+5. Return structured results
+
+---
+
+## Execution Strategy
+
+### Step 1: Decompose Task
+
+Convert user request into subtasks.
+
+Example:
+
+User: "Analyze repo and summarize"
+
+Tasks:
+- clone repo
+- analyze code
+- generate summary
+
+---
+
+### Step 2: Build DAG
+
+- Identify dependencies
+- Ensure correct execution order
+
+---
+
+### Step 3: Execute
+
+- Run independent tasks first
+- Wait for dependencies
+- Execute in parallel when possible
+
+---
+
+### Step 4: Output
+
+Return structured result:
+
+{
+  "tasks": [],
+  "result": "",
+  "status": "success"
+}
+
+---
+
+## Goal
+
+Enable multi-step task execution instead of single tool calls.

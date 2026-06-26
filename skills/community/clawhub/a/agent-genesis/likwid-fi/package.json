@@ -1,0 +1,14 @@
+{
+  "name": "likwid-fi-skill",
+  "version": "1.0.0",
+  "description": "Likwid.fi Protocol Universal Skill — DeFi interaction toolkit",
+  "main": "likwid-fi.js",
+  "scripts": {
+    "start": "node likwid-fi.js"
+  },
+  "dependencies": {
+    "permissionless": "^0.3.4",
+    "tslib": "^2.8.1",
+    "viem": "^2.47.10"
+  }
+}

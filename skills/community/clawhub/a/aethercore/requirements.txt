@@ -1,0 +1,17 @@
+# 🎪 AetherCore v3.3.4 Dependencies
+# Night Market Intelligence Technical Serviceization Practice
+# Security-focused fix release - Minimal dependencies only
+
+orjson>=3.9.0              # High-performance JSON parsing (REQUIRED)
+
+# ========================
+# ℹ️ INSTALLATION NOTES
+# ========================
+# Only orjson is required for core functionality
+# This minimal dependency set ensures security and simplicity
+
+# Installation command:
+# pip install orjson>=3.9.0
+
+# Night Market Intelligence Technical Serviceization Practice
+# Simple is beautiful, reliable is king, founder satisfaction is the highest honor!

@@ -1,0 +1,58 @@
+{
+  "name": "aana-code-change-review",
+  "slug": "aana-code-change-review",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded code-change review instructions for gating code edits, commits, pull requests, test claims, scope creep, secret leakage, and destructive commands.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_destructive_commands": true,
+  "requires_user_approval_for_commits": true,
+  "requires_user_approval_for_publishing_or_deploying": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "session cookies",
+      "auth headers",
+      "private records",
+      "full logs with sensitive values",
+      "unrelated diffs"
+    ]
+  },
+  "code_change_boundary": {
+    "must_confirm_requested_scope": true,
+    "must_not_mix_unrelated_changes": true,
+    "must_report_only_observed_test_results": true,
+    "must_not_claim_unrun_tests_passed": true,
+    "must_check_for_secret_leakage": true,
+    "must_require_approval_for_destructive_commands": true,
+    "must_require_approval_before_commit_or_pr": true,
+    "must_defer_high_risk_security_or_deploy_changes": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/code-change-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-code-change-review.json"
+  ]
+}

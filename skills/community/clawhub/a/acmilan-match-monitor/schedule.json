@@ -1,0 +1,71 @@
+{
+  "updated": "2026-03-24",
+  "season": "2025-26",
+  "note": "意甲剩余赛程（北京时间），比赛结束次日 08:30 推送结果",
+  "matches": [
+    {
+      "date": "2026-04-07",
+      "kickoff_bj": "02:45",
+      "short": "MIL @ NAP",
+      "home": "那不勒斯",
+      "away": "AC米兰",
+      "venue": "away"
+    },
+    {
+      "date": "2026-04-12",
+      "kickoff_bj": "00:00",
+      "short": "UDI @ MIL",
+      "home": "AC米兰",
+      "away": "乌迪内斯",
+      "venue": "home"
+    },
+    {
+      "date": "2026-04-19",
+      "kickoff_bj": "21:00",
+      "short": "MIL @ VER",
+      "home": "维罗纳",
+      "away": "AC米兰",
+      "venue": "away"
+    },
+    {
+      "date": "2026-04-27",
+      "kickoff_bj": "02:45",
+      "short": "JUV @ MIL",
+      "home": "AC米兰",
+      "away": "尤文图斯",
+      "venue": "home"
+    },
+    {
+      "date": "2026-05-04",
+      "kickoff_bj": "02:00",
+      "short": "MIL @ SAS",
+      "home": "萨索洛",
+      "away": "AC米兰",
+      "venue": "away"
+    },
+    {
+      "date": "2026-05-11",
+      "kickoff_bj": "02:00",
+      "short": "ATA @ MIL",
+      "home": "AC米兰",
+      "away": "亚特兰大",
+      "venue": "home"
+    },
+    {
+      "date": "2026-05-18",
+      "kickoff_bj": "02:00",
+      "short": "MIL @ GEN",
+      "home": "热那亚",
+      "away": "AC米兰",
+      "venue": "away"
+    },
+    {
+      "date": "2026-05-25",
+      "kickoff_bj": "02:00",
+      "short": "CAG @ MIL",
+      "home": "AC米兰",
+      "away": "卡利亚里",
+      "venue": "home"
+    }
+  ]
+}

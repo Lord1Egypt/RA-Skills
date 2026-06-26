@@ -1,0 +1,15 @@
+{
+  "calendar_action": "invite",
+  "attendee_status": "external",
+  "time_status": "timezone_unclear",
+  "privacy_status": "private_notes",
+  "approval_status": "required",
+  "calendar_risks": [
+    "external_attendee",
+    "timezone_ambiguity",
+    "private_notes"
+  ],
+  "blocker_reason": "The invite includes an external attendee, private notes, and an unclear timezone.",
+  "safe_alternative": "Ask for the timezone and remove private notes before requesting approval to send the invite.",
+  "recommended_action": "request_approval"
+}

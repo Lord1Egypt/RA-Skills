@@ -1,0 +1,62 @@
+{
+  "name": "aana-human-review-router",
+  "slug": "aana-human-review-router",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded human review router instructions for routing uncertain, high-impact, irreversible, or low-evidence actions to user or human review.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_review_for_high_impact_actions": true,
+  "requires_approval_for_irreversible_actions": true,
+  "requires_routing_for_low_evidence_actions": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "full private messages",
+      "full logs with sensitive values",
+      "full account records",
+      "unrelated private data"
+    ]
+  },
+  "human_review_boundary": {
+    "must_route_low_evidence_high_impact_actions": true,
+    "must_require_explicit_approval_for_irreversible_actions": true,
+    "must_not_treat_silence_as_approval": true,
+    "must_define_reviewer_decision_needed": true,
+    "must_minimize_sensitive_review_context": true,
+    "must_not_proceed_until_required_review_is_complete": true,
+    "must_route_professional_domains_to_qualified_review": true,
+    "may_not_shift_responsibility_for_unsafe_actions": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/human-review-route.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-human-review-route.json"
+  ]
+}

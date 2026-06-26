@@ -1,0 +1,20 @@
+{
+  "cache": {
+    "enabled": true,
+    "default_ttl": 3600,
+    "tool_ttl": 1800,
+    "knowledge_ttl": 86400,
+    "semantic_threshold": 0.85
+  },
+  "compress": {
+    "threshold": 80,
+    "max_window": 6,
+    "summary_max_tokens": 500,
+    "method": "window"
+  },
+  "trim": {
+    "max_system_prompt_tokens": 800,
+    "remove_examples": true,
+    "remove_politeness": true
+  }
+}

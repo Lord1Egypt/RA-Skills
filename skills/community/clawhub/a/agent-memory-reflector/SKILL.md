@@ -1,35 +1,22 @@
----
-name: "Agent Memory Reflector"
-description: "Enables AI agents to review past decisions, identify reasoning loops, and produce insights for self-improvement to enhance their cognitive processes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-reflector"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-reflector"
----
-
 # Agent Memory Reflector
 
-> Enables AI agents to review past decisions, identify reasoning loops, and produce insights for self-improvement to enhance their cognitive processes.
+A minimal, embeddable reflection engine that gives AI agents the ability to examine their own past decisions, detect reasoning loops, and generate actionable self-improvement insights—like a debugger for agent cognition.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-reflector`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-reflector](https://clawhub.ai/skills/agent-memory-reflector)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Log an agent interaction:
 ```bash
-hermes skills install clawhub/agent-memory-reflector
+python agent_memory_reflector.py --agent "task_planner_v3" \
+  --prompt "How should I deploy the microservice?" \
+  --response "You can use Kubernetes with Helm." \
+  --meta '{"confidence":0.8, "retrieved_context":true}'
 ```
+
+Generate a reflection report:
+```bash
+python agent_memory_reflector.py --agent "task_planner_v3" --reflect
+```
+
+## Price
+
+$29.00

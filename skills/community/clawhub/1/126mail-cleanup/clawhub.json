@@ -1,0 +1,28 @@
+{
+  "name": "126mail-cleanup",
+  "tagline": "Clean up, back up, and optimize your NetEase 126.com email — reclaim gigabytes of cloud storage.",
+  "description": "A step-by-step IMAP assistant for NetEase 126.com email accounts. Helps you: (1) create a complete local backup of all emails and attachments with resume support, (2) classify and bulk-delete years of ads, subscriptions, and platform notifications safely, and (3) strip large attachments from the server while keeping lightweight stubs — typically reclaiming 3-5GB of cloud storage.\n\nEvery destructive operation has preview, confirmation, staging copy, and verification steps. All operations are resumable. No pip dependencies — uses Python standard library only.\n\nBattle-tested on a 43,000+ email account: 16,900 ads deleted, 70 large emails stripped, 3.4GB reclaimed.",
+  "category": "productivity",
+  "tags": [
+    "email",
+    "126",
+    "netease",
+    "imap",
+    "backup",
+    "cleanup",
+    "email-management",
+    "storage-optimization",
+    "china",
+    "chinese-email"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://clawhub.ai",
+  "support_url": "https://github.com/jimmyclaw/126mail-cleanup/issues",
+  "requires": {
+    "bins": ["python3"]
+  },
+  "screenshots": [],
+  "demo_video": ""
+}

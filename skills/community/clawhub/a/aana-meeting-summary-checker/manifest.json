@@ -1,0 +1,71 @@
+{
+  "name": "aana-meeting-summary-checker",
+  "slug": "aana-meeting-summary-checker",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded meeting summary checker instructions for checking notes, action items, owners, dates, and claims against transcript or evidence.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_transcript_or_evidence_check": true,
+  "requires_action_item_check": true,
+  "requires_owner_check": true,
+  "requires_date_check": true,
+  "requires_claim_attribution_check": true,
+  "requires_privacy_redaction_check": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_data_minimization": true,
+    "forbidden_meeting_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "government ID numbers",
+      "full private messages",
+      "full logs with sensitive values",
+      "full meeting transcripts with unrelated private content",
+      "full account records",
+      "unapproved customer data",
+      "unapproved employee data",
+      "unrelated private data"
+    ]
+  },
+  "meeting_summary_boundary": {
+    "must_identify_meeting_source": true,
+    "must_check_material_claims_against_evidence": true,
+    "must_check_action_items_against_evidence": true,
+    "must_check_owner_assignments_against_evidence": true,
+    "must_check_dates_against_evidence": true,
+    "must_label_inferred_or_uncertain_items": true,
+    "must_check_privacy_before_sharing": true,
+    "must_not_invent_decisions_or_commitments": true,
+    "must_route_high_impact_notes_to_review": true,
+    "must_block_unsupported_or_unauthorized_sharing": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/meeting-summary-checker.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-meeting-summary-checker.json"
+  ]
+}

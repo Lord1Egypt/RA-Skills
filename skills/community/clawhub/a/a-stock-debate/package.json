@@ -1,0 +1,12 @@
+{
+  "name": "a-stock-debate",
+  "version": "2.1.0",
+  "description": "A 股多空辩论深度分析 - 多空研究员对抗辩论式个股深度研究，输出结构化投资简报",
+  "author": "jioup777",
+  "license": "MIT",
+  "repository": "https://github.com/jioup777/video-teacher",
+  "scripts": {
+    "publish": "clawhub publish ./skills/stock-debate --slug a-stock-debate --name 'A 股多空辩论' --version 2.1.0"
+  },
+  "keywords": ["stock", "analysis", "debate", "a-share", "investment"]
+}

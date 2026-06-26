@@ -1,0 +1,6 @@
+interface:
+  display_name: "agent-android"
+  short_description: "agent-android for AI agents"
+  default_prompt: "Use $agent-android from the aivanelabs/ai-rpa repo to connect to an AIVane device over LAN, inspect launcher apps and UI state, then control the phone step by step."
+
+

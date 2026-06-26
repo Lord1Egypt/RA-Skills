@@ -1,0 +1,24 @@
+{
+  "namespace": "user",
+  "name": "07-subtitle-gen",
+  "displayName": "07 Subtitle Gen",
+  "description": "自动生成SRT字幕",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "audio_url": { "type": "string" },
+      "dialogue": { "type": "string" }
+    },
+    "required": ["audio_url"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "subtitle_url": { "type": "string" }
+    },
+    "required": ["subtitle_url"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js"
+}

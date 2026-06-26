@@ -1,0 +1,6 @@
+{
+  "openclawGateway": "http://127.0.0.1:18789",
+  "openclawToken": "ZZitPPb3LZmDH2c_jYl9Xbub2NO1CrqntpGgF-LBEGM",
+  "port": 3000,
+  "agentsDir": "~/.openclaw/agents"
+}

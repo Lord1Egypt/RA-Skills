@@ -1,35 +1,149 @@
 ---
-name: "多智能体 3c4b57"
+name: 多智能体-3c4b57
 description: "从抖音视频学习: 多智能体 — 【吊打付费】26年最新LangGraph多智能体实战教程全面剖析：多智能体架构+核心组件+代码实战，存下吧！很难找全的！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/3c4b57"
-sourceUrl: "https://clawhub.ai/skills/3c4b57"
+compatibility: opencode
+trigger: "多智能体 / 吊打付费 / 26年最新LangGraph多智能体实战教程全面剖析 / 多智能体架构"
+tags: [code, 多智能体, video-learned]
 ---
 
-# 多智能体 3c4b57
+# 多智能体
 
-> 从抖音视频学习: 多智能体 — 【吊打付费】26年最新LangGraph多智能体实战教程全面剖析：多智能体架构+核心组件+代码实战，存下吧！很难找全的！
+> 从 @李宏毅AIAgent 的视频中学到的技能
+> 关键词: 吊打付费, 26年最新LangGraph多智能体实战教程全面剖析, 多智能体架构, 核心组件, 代码实战, 存下吧, 很难找全的
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/3c4b57`
-- **Source URL:** [https://clawhub.ai/skills/3c4b57](https://clawhub.ai/skills/3c4b57)
+## 描述
 
-## Overview
+【吊打付费】26年最新LangGraph多智能体实战教程全面剖析：多智能体架构+核心组件+代码实战，存下吧！很难找全的！
+
+## 操作步骤
+
+1. 理解核心概念: 多智能体
+2. 掌握关键技巧: 吊打付费, 26年最新LangGraph多智能体实战教程全面剖析, 多智能体架构, 核心组件
+3. 参考案例: 李宏毅AIAgent 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @李宏毅AIAgent
+- 学习时间: 2026-06-01 21:10
+- 领域标签: code
+
+## 触发场景
+- 用户说"多智能体"
+- 用户说"吊打付费"
+- 用户需要多智能体相关帮助
+
+## B站学习
+> 学习时间: 2026-06-02 07:53
+
+- **Andy要上岸机器学习**: 【Hermes深度教程】多智能体三种玩法：从创建分身到组建AI团队，Windows实操全流程
+- **StatFlow**: COZE-多智能体设置教程
+- **不吃辣的Chris**: 多智能体互相评价机制保证最佳决策-LLM Council
+
+## 融合来源: 多智能体-3c4b57-d1f739
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 08:00
+- **贴影**: e57bd1e6231ee8a252c62a4a1010e3c7
+- **QC大宝哥**: d87d974d169cf874f0d57e02c58cea4b
+- **lokme3925**: f15dc8251fcd995f1eaac1d8d4c739d9
+
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:22
+
+- **Andy要上岸机器学习**: 【Hermes深度教程】多智能体三种玩法：从创建分身到组建AI团队，Windows实操全流程
+  https://www.bilibili.com/video/BV1F6GB6CE2n
+- **StatFlow**: COZE-多智能体设置教程
+  https://www.bilibili.com/video/BV1GCbqzSE5M
+- **不吃辣的Chris**: 多智能体互相评价机制保证最佳决策-LLM Council
+  https://www.bilibili.com/video/BV1PyrrBfEh2
+
+## 融合来源: 多智能体-3c4b57-d1f739
+> 融合时间: 自动合并
+
+# 多智能体-3c4b57
+> 从 @StatFlow 的视频中学到的技能
+> 关键词: COZE, 多智能体设置教程
+
+## 描述
+COZE-多智能体设置教程
+
+## 操作步骤
+1. 理解核心概念: 多智能体-3c4b57
+2. 掌握关键技巧: COZE, 多智能体设置教程
+3. 参考案例: StatFlow 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @StatFlow
+- 学习时间: 2026-06-02 09:22
+- 领域标签: guide
+
+## 触发场景
+- 用户说"多智能体-3c4b57"
+- 用户说"COZE"
+- 用户需要多智能体-3c4b57相关帮助
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/3c4b57
-```
+## 融合来源: 多智能体-3c4b57-d1f739
+> 融合时间: 自动合并
+
+# 多智能体-3c4b57
+> 从 @StatFlow 的视频中学到的技能
+> 关键词: COZE, 多智能体设置教程
+
+## 描述
+COZE-多智能体设置教程
+
+## 操作步骤
+1. 理解核心概念: 多智能体-3c4b57
+2. 掌握关键技巧: COZE, 多智能体设置教程
+3. 参考案例: StatFlow 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @StatFlow
+- 学习时间: 2026-06-02 09:27
+- 领域标签: guide
+
+## 触发场景
+- 用户说"多智能体-3c4b57"
+- 用户说"COZE"
+- 用户需要多智能体-3c4b57相关帮助
+
+
+## B站学习 (第2轮)
+> 学习时间: 2026-06-02 09:35
+
+- **Andy要上岸机器学习**: 【Hermes深度教程】多智能体三种玩法：从创建分身到组建AI团队，Windows实操全流程
+  https://www.bilibili.com/video/BV1F6GB6CE2n
+- **StatFlow**: COZE-多智能体设置教程
+  https://www.bilibili.com/video/BV1GCbqzSE5M
+- **不吃辣的Chris**: 多智能体互相评价机制保证最佳决策-LLM Council
+  https://www.bilibili.com/video/BV1PyrrBfEh2
+
+## 融合来源: 多智能体-3c4b57-d1f739
+> 融合时间: 自动合并
+
+# 多智能体-3c4b57
+> 从 @StatFlow 的视频中学到的技能
+> 关键词: COZE, 多智能体设置教程
+
+## 描述
+COZE-多智能体设置教程
+
+## 操作步骤
+1. 理解核心概念: 多智能体-3c4b57
+2. 掌握关键技巧: COZE, 多智能体设置教程
+3. 参考案例: StatFlow 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @StatFlow
+- 学习时间: 2026-06-02 09:35
+- 领域标签: guide
+
+## 触发场景
+- 用户说"多智能体-3c4b57"
+- 用户说"COZE"
+- 用户需要多智能体-3c4b57相关帮助
+

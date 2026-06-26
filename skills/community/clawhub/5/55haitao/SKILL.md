@@ -1,35 +1,32 @@
 ---
-name: "55海淘返利助手"
-description: "55海淘中国最大海淘返利平台工具，覆盖数千海外商家，为中国用户提供海淘购物现金返利和优惠信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/55haitao"
-sourceUrl: "https://clawhub.ai/skills/55haitao"
+name: 55海淘返利助手
+description: 55海淘中国最大海淘返利平台工具，覆盖数千海外商家，为中国用户提供海淘购物现金返利和优惠信息。
+version: 0.1.0
 ---
 
 # 55海淘返利助手
 
-> 55海淘中国最大海淘返利平台工具，覆盖数千海外商家，为中国用户提供海淘购物现金返利和优惠信息。
+55海淘返利工具。中国最大的海淘返利平台，覆盖Amazon、iHerb、6PM、Nordstrom等数千海外商家，为中国用户提供海淘购物的现金返利和优惠码信息，支持支付宝提现。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/55haitao`
-- **Source URL:** [https://clawhub.ai/skills/55haitao](https://clawhub.ai/skills/55haitao)
+## 触发词
 
-## Overview
+55海淘、55haitao、海淘返利、海淘优惠、海外购物返利、海淘返现
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/55haitao
+- **海外商家覆盖**：Amazon/iHerb/6PM/Nordstrom等数千家
+- **人民币返利**：返利以人民币结算，支付宝直接提现
+- **海淘攻略**：各商家海淘教程和转运指南
+- **优惠码聚合**：海外商家最新优惠码汇总
+
+## 输出格式
+
+```
+🌊 55海淘返利查询
+
+商家：[商家名称]
+返利比例：[X]%
+当前优惠码：[优惠码]（[描述]）
+返利链接：[链接]
+预计返利：¥[金额]（人民币）
 ```

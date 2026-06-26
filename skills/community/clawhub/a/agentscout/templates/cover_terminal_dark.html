@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: #0c0c0c;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    color: #a6e3a1;
+  }
+  .terminal {
+    width: 960px;
+    background: #1e1e2e;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .titlebar {
+    height: 44px;
+    background: #181825;
+    display: flex; align-items: center;
+    padding: 0 16px; gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #f38ba8; }
+  .dot-yellow { background: #f9e2af; }
+  .dot-green { background: #a6e3a1; }
+  .title-text {
+    color: #a6adc8; font-size: 14px;
+    margin-left: 8px;
+  }
+  .content {
+    padding: 32px;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  .prompt { color: #89b4fa; }
+  .command { color: #cdd6f4; }
+  .output { color: #a6adc8; }
+  .highlight { color: #f9e2af; }
+  .success { color: #a6e3a1; }
+  .project-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: #cba6f7;
+    margin: 16px 0;
+  }
+  .desc {
+    color: #a6adc8;
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  .stars-line {
+    color: #f9e2af;
+    font-size: 20px;
+    margin-top: 16px;
+  }
+  .footer {
+    padding: 16px 32px;
+    background: #181825;
+    color: #585b70;
+    font-size: 13px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="titlebar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <span class="title-text">agentscout — bash</span>
+    </div>
+    <div class="content">
+      <div><span class="prompt">$</span> <span class="command">agentscout discover</span></div>
+      <div class="output">🔍 Searching GitHub for AI Agent projects...</div>
+      <div class="output">✓ Found interesting project:</div>
+      <div class="project-name">{{ project_name }}</div>
+      <div class="desc">{{ description }}</div>
+      <div class="stars-line">⭐ {{ stars }} stars</div>
+      {% if highlight %}
+      <div style="margin-top: 16px;"><span class="success">💡 {{ highlight }}</span></div>
+      {% endif %}
+    </div>
+    <div class="footer">AgentScout · GitHub 宝藏项目发现</div>
+  </div>
+</body>
+</html>

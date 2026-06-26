@@ -1,0 +1,51 @@
+name: llm-wiki
+description: Karpathy 的 llm-wiki 模式实现 —— 累积式知识管理
+version: 1.1.0
+
+commands:
+  - name: wiki-ingest
+    description: 摄取资料到 wiki
+    usage: /wiki-ingest <path> [--dry-run]
+    examples:
+      - /wiki-ingest sources/paper.pdf
+      - /wiki-ingest sources/notes.md --dry-run
+
+  - name: wiki-query
+    description: 查询 wiki 知识库
+    usage: /wiki-query <question> [--save]
+    examples:
+      - /wiki-query "Transformer 的工作原理"
+      - /wiki-query "我们讨论过哪些优化方法？" --save
+
+  - name: wiki-index
+    description: 建立或更新 wiki 的 embedding 索引
+    usage: /wiki-index [--force] [--provider <name>]
+    examples:
+      - /wiki-index
+      - /wiki-index --force
+
+  - name: wiki-lint
+    description: 检查 wiki 健康状况
+    usage: /wiki-lint [--fix]
+    examples:
+      - /wiki-lint
+      - /wiki-lint --fix
+
+  - name: wiki-status
+    description: 查看 wiki 状态概览
+    usage: /wiki-status
+
+triggers:
+  - pattern: "请摄入.*到.*wiki"
+    action: ingest
+  - pattern: "查询.*wiki.*"
+    action: query
+  - pattern: "检查.*wiki.*健康"
+    action: lint
+
+context:
+  files:
+    - "CLAUDE.md"
+    - "wiki/index.md"
+    - "log.md"
+  priority: high

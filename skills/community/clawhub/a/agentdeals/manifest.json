@@ -1,0 +1,62 @@
+{
+  "manifest_version": "0.3",
+  "name": "agentdeals",
+  "display_name": "AgentDeals",
+  "version": "0.2.0",
+  "description": "Search 1,500+ developer tool deals, compare vendors, check pricing stability, and estimate costs. Free tiers, startup credits, and promotional offers across 54 categories.",
+  "long_description": "AgentDeals indexes real, verified pricing data from 1,500+ developer infrastructure vendors across 54 categories. Search deals by keyword, category, or eligibility. Compare vendors side-by-side, check pricing stability and risk, estimate infrastructure costs, get full stack recommendations, and monitor pricing changes — all from within Claude Desktop.\n\nData is fetched from a hosted API (no local data needed). Tools cover the full lifecycle: discovery, comparison, risk assessment, cost estimation, and ongoing monitoring.",
+  "author": {
+    "name": "Rob Hunter",
+    "url": "https://github.com/robhunter"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robhunter/agentdeals"
+  },
+  "homepage": "https://agentdeals.dev",
+  "icon": "assets/logo-400.png",
+  "keywords": [
+    "mcp",
+    "developer-tools",
+    "deals",
+    "free-tier",
+    "startup-programs",
+    "pricing",
+    "infrastructure",
+    "cost-estimation"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"]
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "tools": [
+    {
+      "name": "search_deals",
+      "description": "Find free tiers, credits, and discounts for 1,500+ developer tools. Search by keyword, browse categories, or get full vendor details with alternatives."
+    },
+    {
+      "name": "plan_stack",
+      "description": "Get stack recommendations, cost estimates, or a full infrastructure audit for your project."
+    },
+    {
+      "name": "compare_vendors",
+      "description": "Compare 2 vendors side-by-side or check a single vendor's pricing risk. Returns free tier limits, risk levels, and alternatives."
+    },
+    {
+      "name": "track_changes",
+      "description": "Track developer tool pricing changes, upcoming expirations, and new deals. Weekly digest with no params."
+    }
+  ],
+  "prompts_generated": true
+}

@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+title: "manage"
+description: "Interactive skill management UI."
+source: "/llms/commands/manage.txt"
+--------------------------------------------------------------------------------
+
+# manage — Interactive Skill Management
+
+Open an interactive terminal UI for managing installed skills.
+
+## Syntax
+
+```bash
+ai-skills manage [options]
+```
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-p, --project` | Manage project skills (default) |
+| `-g, --global` | Manage global skills |
+| `-t, --target <dir>` | Manage skills in custom directory |
+| `--dir <dir>` | Manage skills in exact directory |
+| `-a, --agents <names>` | Filter by specific agent(s) |
+| `--page <n>` | Initial page number |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text mode (falls back to `list` behavior) |
+
+## Behavior
+
+### CLI Mode
+
+Opens an Ink-based (React terminal UI) interactive management interface where you can:
+- Browse installed skills with pagination
+- Select skills to remove or update
+- Navigate with keyboard shortcuts
+
+### Pure Mode
+
+In pure mode, `manage` behaves similarly to `list` as there is no interactive UI available.
+
+## Examples
+
+```bash
+# Interactive management
+ai-skills manage
+
+# Manage global skills
+ai-skills manage --global
+
+# Manage with specific agents
+ai-skills manage --agents cursor,windsurf
+
+# Start on page 2
+ai-skills manage --page 2
+```

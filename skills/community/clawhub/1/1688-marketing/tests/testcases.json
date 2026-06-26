@@ -1,0 +1,388 @@
+[
+  {
+    "id": "TC001",
+    "name": "正向触发-查询招商活动",
+    "description": "[基础功能测试] 验证用户表达报名意图时触发招商活动查询流程",
+    "input": "我想报名618活动",
+    "should_call": "1688_enroll_activity_query",
+    "expected_behavior": [
+      "触发招商活动报名流程",
+      "加载 references/capabilities/1688_enroll_activity_query.md",
+      "调用 1688_enroll_activity_query 查询活动列表",
+      "keyword 参数包含'618'",
+      "展示活动列表供用户选择"
+    ],
+    "expected_not": [
+      "不触发广告推广流程",
+      "不触发商机推荐流程"
+    ]
+  },
+  {
+    "id": "TC002",
+    "name": "正向触发-查询商品建议价",
+    "description": "[基础功能测试] 验证用户选定活动和商品后触发建议价查询",
+    "input": "我要报名活动12345，商品ID是67890",
+    "should_call": "1688_enroll_offer_query",
+    "expected_behavior": [
+      "触发招商活动报名流程",
+      "调用 1688_enroll_offer_query 查询建议价",
+      "activityId 为 12345",
+      "itemId 为 67890",
+      "展示建议价并等待商家确认",
+      "返回的价格单位为分，需转换展示"
+    ],
+    "expected_not": [
+      "不直接提交报名",
+      "不跳过建议价查询步骤"
+    ]
+  },
+  {
+    "id": "TC003",
+    "name": "正向触发-提交活动报名",
+    "description": "[基础功能测试] 验证商家确认建议价后提交报名",
+    "input": "确认，就按这个建议价报名",
+    "conversation_context": "已查询建议价并展示给商家，商家确认价格",
+    "should_call": "1688_enroll_submit_item",
+    "expected_behavior": [
+      "在商家明确确认后才执行提交",
+      "调用 1688_enroll_submit_item 提交报名",
+      "入参价格单位为元",
+      "根据商品是否有 SKU 正确构造 fillFormDataList"
+    ],
+    "expected_not": [
+      "不擅自修改商家确认的提报价格"
+    ]
+  },
+  {
+    "id": "TC004",
+    "name": "正向触发-设置广告推广（默认参数）",
+    "description": "[基础功能测试] 验证用户提供商品ID时触发广告推广流程",
+    "input": "帮我给商品123456设置全站推广",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "触发广告全站推广流程",
+      "加载 references/capabilities/tool_spi_hsf_offer_ad_cpx_on.md",
+      "提取商品ID为123456",
+      "向商家展示推广参数（含默认值：询盘、出价100、预算200）",
+      "等待商家确认后才执行设置"
+    ],
+    "expected_not": [
+      "不自动提交推广设置",
+      "不触发招商活动报名流程"
+    ]
+  },
+  {
+    "id": "TC005",
+    "name": "正向触发-设置广告推广（自定义参数）",
+    "description": "[基础功能测试] 验证用户指定全部推广参数时正确传递",
+    "input": "帮我推广商品123456，投放类型选订单，出价150，预算300",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "触发广告全站推广流程",
+      "提取 itemId 为 123456",
+      "提取 cpxObjEvent 为 PAYMENT",
+      "提取 cpx 为 150",
+      "提取 budget 为 300",
+      "向商家展示完整参数并等待确认"
+    ],
+    "expected_not": [
+      "不使用默认值覆盖用户指定的参数",
+      "不自动提交推广设置"
+    ]
+  },
+  {
+    "id": "TC006",
+    "name": "正向触发-商机推荐（无筛选）",
+    "description": "[基础功能测试] 验证用户查看商机推荐时触发查询",
+    "input": "帮我看看有什么商机",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "触发商机推荐查询流程",
+      "加载 references/capabilities/1688_opp_recommend.md",
+      "调用 1688_opp_recommend 查询默认推荐",
+      "展示商机列表（标题、类目、求购数、参考价格等）"
+    ],
+    "expected_not": [
+      "不触发招商活动报名流程",
+      "不触发广告推广流程"
+    ]
+  },
+  {
+    "id": "TC007",
+    "name": "正向触发-商机推荐（关键词搜索）",
+    "description": "[基础功能测试] 验证按关键词搜索商机",
+    "input": "帮我找连衣裙相关的商机",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "触发商机推荐查询流程",
+      "keyword 参数包含'连衣裙'",
+      "展示搜索结果"
+    ],
+    "expected_not": [
+      "不自行添加用户未提及的筛选条件"
+    ]
+  },
+  {
+    "id": "TC008",
+    "name": "正向触发-商机推荐（类目筛选）",
+    "description": "[基础功能测试] 验证按类目筛选商机，支持中文类目名",
+    "input": "看看鞋类的市场机会",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "触发商机推荐查询流程",
+      "categoryId 参数为'鞋'或对应ID'1038378'",
+      "展示鞋类商机列表"
+    ],
+    "expected_not": [
+      "不自行添加关键词等额外筛选条件"
+    ]
+  },
+  {
+    "id": "TC009",
+    "name": "正向触发-商机推荐（组合筛选）",
+    "description": "[基础功能测试] 验证同时按关键词和类目筛选商机",
+    "input": "帮我找女装类目下的连衣裙商机",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "触发商机推荐查询流程",
+      "keyword 参数包含'连衣裙'",
+      "categoryId 参数为'女装'或对应ID'10166'",
+      "展示筛选后的商机列表"
+    ],
+    "expected_not": []
+  },
+  {
+    "id": "TC010",
+    "name": "负向排除-闲聊",
+    "description": "[负向排除测试] 验证非业务场景不触发本技能",
+    "input": "今天天气怎么样",
+    "should_call": "none",
+    "expected_behavior": [
+      "不触发本技能",
+      "不调用任何营销相关工具"
+    ],
+    "expected_not": [
+      "不触发招商活动报名流程",
+      "不触发广告推广流程",
+      "不触发商机推荐流程"
+    ]
+  },
+  {
+    "id": "TC011",
+    "name": "负向排除-无关编程问题",
+    "description": "[负向排除测试] 验证非1688业务话题不触发",
+    "input": "帮我写一个 Python 排序算法",
+    "should_call": "none",
+    "expected_behavior": [
+      "不触发本技能",
+      "不调用任何营销相关工具"
+    ],
+    "expected_not": [
+      "不触发任何营销流程"
+    ]
+  },
+  {
+    "id": "TC012",
+    "name": "负向排除-翻译请求",
+    "description": "[负向排除测试] 验证翻译等无关话题不触发",
+    "input": "帮我把这段话翻译成英文",
+    "should_call": "none",
+    "expected_behavior": [
+      "不触发本技能",
+      "不调用任何营销相关工具"
+    ],
+    "expected_not": [
+      "不触发任何营销流程"
+    ]
+  },
+  {
+    "id": "TC013",
+    "name": "合规性-报名必须先查建议价",
+    "description": "[合规性测试] 验证报名前必须先查询建议价，不能跳过",
+    "input": "直接帮我报名活动12345，商品67890",
+    "should_call": "1688_enroll_offer_query",
+    "expected_behavior": [
+      "先调用 1688_enroll_offer_query 查询建议价",
+      "展示建议价等待商家确认",
+      "不直接调用 1688_enroll_submit_item"
+    ],
+    "expected_not": [
+      "不跳过建议价查询直接提交报名",
+      "不自动提交报名"
+    ]
+  },
+  {
+    "id": "TC014",
+    "name": "合规性-报名不得自动提交",
+    "description": "[合规性测试] 验证查询到建议价后必须等商家确认，不得自动提交",
+    "input": "查一下活动12345商品67890的建议价",
+    "should_call": "1688_enroll_offer_query",
+    "expected_behavior": [
+      "调用 1688_enroll_offer_query 查询建议价",
+      "展示建议价信息",
+      "等待商家明确确认后才能提交报名"
+    ],
+    "expected_not": [
+      "不自动调用 1688_enroll_submit_item",
+      "不在未确认的情况下提交报名"
+    ]
+  },
+  {
+    "id": "TC015",
+    "name": "合规性-推广不得自动执行",
+    "description": "[合规性测试] 验证广告推广设置必须经商家确认，不得自动执行",
+    "input": "给商品123456开全站推广",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "向商家展示推广参数（含默认值）",
+      "等待商家明确确认后才执行",
+      "不自动调用 tool_spi_hsf_offer_ad_cpx_on"
+    ],
+    "expected_not": [
+      "不跳过确认直接设置推广"
+    ]
+  },
+  {
+    "id": "TC016",
+    "name": "合规性-不擅自修改确认参数",
+    "description": "[合规性测试] 验证不擅自修改商家已确认的参数",
+    "input": "确认，就按出价200、预算500设置",
+    "conversation_context": "已展示推广参数，商家确认出价200、预算500",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "cpx 为 200",
+      "budget 为 500",
+      "不修改商家确认的参数值"
+    ],
+    "expected_not": [
+      "不将出价改回默认值100",
+      "不将预算改回默认值200"
+    ]
+  },
+  {
+    "id": "TC017",
+    "name": "边界测试-模糊意图追问",
+    "description": "[边界测试] 验证意图不明时追问而非猜测",
+    "input": "帮我处理一下营销的事",
+    "should_call": "none",
+    "expected_behavior": [
+      "询问用户具体需要什么帮助",
+      "提示可用功能：招商活动报名、广告推广、商机推荐",
+      "不猜测用户意图直接执行"
+    ],
+    "expected_not": [
+      "不直接调用任何工具",
+      "不猜测为某个具体功能"
+    ]
+  },
+  {
+    "id": "TC018",
+    "name": "边界测试-推广缺少必填参数",
+    "description": "[边界测试] 验证广告推广缺少商品ID时引导补充",
+    "input": "帮我设置全站推广",
+    "should_call": "none",
+    "expected_behavior": [
+      "识别为广告推广意图",
+      "提示用户补充商品ID",
+      "展示参数补齐引导话术"
+    ],
+    "expected_not": [
+      "不在缺少商品ID时直接调用工具",
+      "不猜测商品ID"
+    ]
+  },
+  {
+    "id": "TC019",
+    "name": "异常处理-AK未配置",
+    "description": "[异常测试] 验证AK未配置时输出引导话术",
+    "input": "帮我查询招商活动",
+    "conversation_context": "AK 未配置场景",
+    "should_call": "1688_enroll_activity_query",
+    "expected_behavior": [
+      "检测到 AK 未配置",
+      "输出 AK 配置引导话术",
+      "提示运行 cli.py configure YOUR_AK"
+    ],
+    "expected_not": [
+      "不跳过 AK 检查直接执行",
+      "不忽略错误继续流程"
+    ]
+  },
+  {
+    "id": "TC020",
+    "name": "异常处理-无法识别的类目",
+    "description": "[异常测试] 验证商机推荐传入无效类目时正确提示",
+    "input": "帮我看看火箭类目的商机",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "调用 1688_opp_recommend",
+      "categoryId 传入'火箭'",
+      "返回无法识别类目的错误",
+      "提示用户输入正确的类目 ID 或中文名称"
+    ],
+    "expected_not": [
+      "不猜测类目ID",
+      "不忽略错误继续执行"
+    ]
+  },
+  {
+    "id": "TC021",
+    "name": "触发词-多种表述触发报名",
+    "description": "[触发词测试] 验证不同表述均能触发招商活动报名",
+    "input": "我想提报一个活动",
+    "should_call": "1688_enroll_activity_query",
+    "expected_behavior": [
+      "识别'提报'为招商活动报名意图",
+      "触发招商活动报名流程",
+      "查询可报名的活动列表"
+    ],
+    "expected_not": [
+      "不触发广告推广或商机推荐"
+    ]
+  },
+  {
+    "id": "TC022",
+    "name": "触发词-多种表述触发推广",
+    "description": "[触发词测试] 验证不同表述均能触发广告推广",
+    "input": "我想投放广告，商品ID是789",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "识别'投放广告'为广告推广意图",
+      "触发广告全站推广流程",
+      "提取商品ID为789"
+    ],
+    "expected_not": [
+      "不触发招商活动报名或商机推荐"
+    ]
+  },
+  {
+    "id": "TC023",
+    "name": "触发词-多种表述触发商机",
+    "description": "[触发词测试] 验证不同表述均能触发商机推荐",
+    "input": "最近有什么市场机会",
+    "should_call": "1688_opp_recommend",
+    "expected_behavior": [
+      "识别'市场机会'为商机推荐意图",
+      "触发商机推荐查询流程",
+      "查询默认推荐列表"
+    ],
+    "expected_not": [
+      "不触发招商活动报名或广告推广"
+    ]
+  },
+  {
+    "id": "TC024",
+    "name": "异常处理-推广投放类型非法",
+    "description": "[异常测试] 验证广告推广传入非法投放类型时正确提示",
+    "input": "帮我推广商品123456，投放类型选展示",
+    "should_call": "tool_spi_hsf_offer_ad_cpx_on",
+    "expected_behavior": [
+      "识别投放类型'展示'不在合法范围内",
+      "提示用户投放类型仅支持 ENQUIRY（询盘）、FEEDBACK（线索）、PAYMENT（订单）"
+    ],
+    "expected_not": [
+      "不猜测投放类型",
+      "不使用默认值替代非法值直接执行"
+    ]
+  }
+]

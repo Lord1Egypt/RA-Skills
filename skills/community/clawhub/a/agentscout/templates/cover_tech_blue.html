@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0ea5e9 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif;
+    color: white;
+  }
+  .container {
+    width: 900px; text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: #7dd3fc;
+  }
+  .project-name {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .description {
+    font-size: 24px;
+    color: #bae6fd;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .highlight {
+    background: rgba(14, 165, 233, 0.3);
+    border: 1px solid rgba(14, 165, 233, 0.5);
+    border-radius: 12px;
+    padding: 20px 32px;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+  .stars {
+    font-size: 28px;
+    color: #fbbf24;
+  }
+  .footer {
+    position: absolute;
+    bottom: 40px;
+    left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">🤖 AI Agent 开源项目</div>
+    <div class="project-name">{{ project_name }}</div>
+    <div class="description">{{ description }}</div>
+    {% if highlight %}
+    <div class="highlight">💡 {{ highlight }}</div>
+    {% endif %}
+    <div class="stars">⭐ {{ stars }} Stars</div>
+  </div>
+  <div class="footer">AgentScout · GitHub 宝藏项目发现</div>
+</body>
+</html>

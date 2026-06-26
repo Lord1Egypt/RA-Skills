@@ -1,0 +1,14 @@
+---
+name: adoption-suppression
+description: Model forces that suppress growth. Identify friction points, distrust vectors, and conversion bottlenecks to harden adoption funnels.
+version: 1.0.0
+display_name: "Adoption Suppression"
+triggers:
+  - model adoption friction
+  - suppress growth
+  - identify dropoff
+  - friction analysis
+  - adoption resistance
+  - funnel analysis
+  - growth barriers
+---

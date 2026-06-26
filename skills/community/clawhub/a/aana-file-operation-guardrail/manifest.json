@@ -1,0 +1,56 @@
+{
+  "name": "aana-file-operation-guardrail",
+  "slug": "aana-file-operation-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded file-operation guardrail instructions for checking before agents delete, move, overwrite, publish, or bulk-edit user files.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_destructive_operations": true,
+  "requires_user_approval_for_bulk_operations": true,
+  "requires_user_approval_for_publishing_or_uploading": true,
+  "data_handling": {
+    "prefer_path_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "raw file contents unless necessary",
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private records",
+      "full directory dumps",
+      "unrelated user files"
+    ]
+  },
+  "file_operation_boundary": {
+    "must_confirm_exact_target_scope": true,
+    "must_verify_paths_before_destructive_action": true,
+    "must_not_expand_scope_without_approval": true,
+    "must_prefer_dry_run_diff_or_backup": true,
+    "must_defer_when_path_ownership_is_unclear": true,
+    "must_not_publish_or_upload_without_approval": true,
+    "may_not_store_file_contents_without_permission": true,
+    "may_not_delete_or_overwrite_unrelated_files": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/file-operation-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-file-operation-review.json"
+  ]
+}

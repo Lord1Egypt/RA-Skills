@@ -1,0 +1,1 @@
+Satellite services are important. Existing orchestration is a challenge. Unlike prior work, we build a task-centric framework - it uses mission semantics and two stages. Simulations are good and show effectiveness.

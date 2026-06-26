@@ -1,0 +1,80 @@
+--------------------------------------------------------------------------------
+title: "publish"
+description: "Publish a skill to the Skill Hub registry."
+source: "/llms/commands/publish.txt"
+--------------------------------------------------------------------------------
+
+# publish — Publish Skills
+
+Publish a skill to the Skill Hub registry. Requires authentication via `login`.
+
+## Syntax
+
+```bash
+ai-skills publish [options]
+```
+
+**Aliases**: `pub`
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-d, --dir <path>` | Path to skill directory (defaults to current directory) |
+| `-v, --version <ver>` | Version to publish (auto-increments if omitted) |
+| `-y, --yes` | Skip confirmation prompts |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### Publish Flow
+
+1. Reads `SKILL.md` from the skill directory
+2. Parses front matter for metadata (name, description, tags)
+3. Collects all files in the skill directory
+4. Bumps version (or uses `--version` value)
+5. Uploads to the registry via API
+
+### CLI Mode
+
+Interactive with spinners and progress:
+1. Shows skill info and version
+2. Prompts for confirmation (unless `--yes`)
+3. Uploads with progress indicator
+4. Shows success with published version
+
+### Pure Mode
+
+Non-interactive. Outputs progress and result via `console.log`.
+
+## Prerequisites
+
+- Must be authenticated (`ai-skills login`)
+- Skill directory must contain a valid `SKILL.md`
+- `SKILL.md` must have `name` and `description` in front matter
+
+## Examples
+
+```bash
+# Publish current directory
+ai-skills publish --pure -y
+
+# Publish specific directory
+ai-skills publish --dir ./my-skill --pure -y
+
+# Publish with specific version
+ai-skills publish --version 2.0.0 --pure -y
+```
+
+## Pure Mode Output
+
+**Success:**
+```
+Published: my-skill@1.0.1
+```
+
+**Not logged in:**
+```
+Not logged in. Run ai-skills login first.
+```

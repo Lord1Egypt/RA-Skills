@@ -1,0 +1,4 @@
+Solve "{{task_description}}" with 200 IQ reasoning.
+- Break the problem into first-principles
+- Prioritize actions by ROI
+- Provide step-by-step actionable instructions

@@ -1,0 +1,46 @@
+{
+  "name": "agent-hush",
+  "version": "1.2.1",
+  "description": "🤫 Silent privacy guardian for agent workspaces. Auto-detects API keys, tokens, PII, and infrastructure info before git push or skill publish.",
+  "main": "scripts/sanitize.py",
+  "bin": {
+    "agent-hush": "bin/agent-hush"
+  },
+  "scripts": {
+    "test": "python3 scripts/sanitize.py check . --quiet"
+  },
+  "keywords": [
+    "privacy",
+    "security",
+    "sanitize",
+    "redact",
+    "secret-detection",
+    "api-key",
+    "pii",
+    "agent",
+    "openclaw",
+    "clawhub",
+    "git-hooks",
+    "pre-push",
+    "data-protection"
+  ],
+  "author": "FeedApe (feedape.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elliotllliu/agent-hush.git"
+  },
+  "homepage": "https://github.com/elliotllliu/agent-hush",
+  "bugs": {
+    "url": "https://github.com/elliotllliu/agent-hush/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "SKILL.md",
+    "README.md"
+  ]
+}

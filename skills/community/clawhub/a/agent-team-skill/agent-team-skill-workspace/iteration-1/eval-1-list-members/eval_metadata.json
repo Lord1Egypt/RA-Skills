@@ -1,0 +1,9 @@
+{
+  "eval_id": 1,
+  "eval_name": "list-members",
+  "prompt": "查看当前团队有哪些成员",
+  "assertions": [
+    {"id": "a1", "text": "执行了 team.py list 命令", "expected": true},
+    {"id": "a2", "text": "显示了团队成员列表", "expected": true}
+  ]
+}

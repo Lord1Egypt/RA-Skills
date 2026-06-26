@@ -1,0 +1,20 @@
+{
+  "meeting_source": "notes",
+  "output_type": "action_items",
+  "summary_status": "needs_owner_confirmation",
+  "evidence_status": "partial",
+  "action_item_status": "inferred",
+  "owner_status": "unclear",
+  "date_status": "missing",
+  "claim_attribution_status": "partial",
+  "privacy_status": "clear",
+  "meeting_risks": [
+    "invented_action_item",
+    "wrong_owner",
+    "invented_due_date",
+    "unsupported_claim"
+  ],
+  "revision_needed": "Mark inferred action items as unconfirmed and remove the unstated due date.",
+  "confirmation_needed": "Ask participants to confirm the owner and due date before sharing as official follow-up.",
+  "recommended_action": "request_confirmation"
+}

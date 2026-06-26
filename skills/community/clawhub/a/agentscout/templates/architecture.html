@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif;
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #c4b5fd;
+  }
+  .project-name {
+    font-size: 20px;
+    color: #94a3b8;
+    margin-bottom: 48px;
+  }
+  .diagram {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    line-height: 2;
+    color: #cdd6f4;
+    white-space: pre-wrap;
+    text-align: center;
+  }
+  .footer {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="title">🏗️ 架构设计</div>
+  <div class="project-name">{{ project_name }}</div>
+  <div class="diagram">{{ architecture }}</div>
+  <div class="footer">AgentScout</div>
+</body>
+</html>

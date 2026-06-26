@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Consciousness Upload"
+  short_description: "Upload, archive, verify, and restore OpenClaw workspace consciousness to Agent Slope. Uses browser-based association."
+  default_prompt: "Use $agent-consciousness-upload to archive, preview, verify, or restore an OpenClaw workspace. For first-time users, guide them through the browser association flow — never ask for email or password."
+
+policy:
+  allow_implicit_invocation: true

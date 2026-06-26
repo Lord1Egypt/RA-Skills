@@ -1,0 +1,40 @@
+{
+  "attack_type": "persistence",
+  "generated_at": "2026-03-23T07:34:35.404951",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Persistence_Systemd_Service",
+      "name": "检测 systemd 服务持久化",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 systemd 服务持久化",
+      "author": "security-sample-generator",
+      "tags": [
+        "persistence",
+        "T1543.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$systemd_path = /\\/etc\\/systemd\\/system|\\/lib\\/systemd\\/system/i",
+          "$service_file = /\\.service$/",
+          "$service_section = /\\[Service\\]/",
+          "$exec_start = /ExecStart=/",
+          "$wanted_by = /\\[Install\\].*WantedBy=multi-user/i",
+          "$enable_cmd = /systemctl\\s+enable|systemctl\\s+start/i"
+        ],
+        "condition": "($systemd_path or $service_file) and $exec_start and ($wanted_by or $enable_cmd)",
+        "raw_rule": "// YARA 规则：持久化攻击检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：systemd 服务、crontab、启动项、注册表后门\n\nrule Persistence_Systemd_Service {\n    meta:\n        description = \"检测 systemd 服务持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1543.002\"\n    \n    strings:\n        $systemd_path = /\\/etc\\/systemd\\/system|\\/lib\\/systemd\\/system/i\n        $service_file = /\\.service$/\n        $service_section = /\\[Service\\]/\n        $exec_start = /ExecStart=/\n        $wanted_by = /\\[Install\\].*WantedBy=multi-user/i\n        $enable_cmd = /systemctl\\s+enable|systemctl\\s+start/i\n    \n    condition:\n        ($systemd_path or $service_file) and $exec_start and ($wanted_by or $enable_cmd)\n}\n\nrule Persistence_Crontab {\n    meta:\n        description = \"检测 crontab 持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1053.003\"\n    \n    strings:\n        $cron_path = /\\/etc\\/cron|\\/var\\/spool\\/cron|crontab/i\n        $cron_schedule = /@\\w+|\\d+\\s+\\d+\\s+\\d+\\s+\\d+\\s+\\d+/\n        $reboot = /@reboot|reboot/i\n        $shell_script = /\\.sh\\b|\\/bin\\/sh|\\/bin\\/bash/i\n        $curl_wget = /\\bcurl\\b|\\bwget\\b/i\n    \n    condition:\n        $cron_path and ($cron_schedule or $reboot) and ($shell_script or $curl_wget)\n}\n\nrule Persistence_Startup_Item {\n    meta:\n        description = \"检测启动项持久化\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547.001\"\n    \n    strings:\n        $linux_startup = /\\/etc\\/init\\.d|\\/etc\\/rc\\.local|\\.config\\/autostart/i\n        $macos_startup = /Library\\/LaunchAgents|Library\\/LaunchDaemons/i\n        $windows_startup = /Startup|Run\\\\|CurrentVersion\\\\Run/i\n        $plist_file = /\\.plist$/\n        $exec_key = /ProgramArguments|Exec|Command/i\n    \n    condition:\n        ($linux_startup or $macos_startup or $windows_startup) and ($plist_file or $exec_key)\n}\n\nrule Persistence_Registry_Key {\n    meta:\n        description = \"检测注册表持久化 (Windows)\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547.001\"\n    \n    strings:\n        $reg_run = /HKEY.*\\\\Run|CurrentVersion\\\\Run/i\n        $reg_add = /reg\\s+add|New-ItemProperty|SetValue/i\n        $cmd_key = /\\/d\\s+.*\\.exe|\\/d\\s+.*\\.bat|\\/d\\s+.*\\.ps1/i\n        $hidden = /-WindowStyle\\s+Hidden|hidden|silent/i\n    \n    condition:\n        $reg_run and ($reg_add or $cmd_key)\n}\n\nrule Persistence_General {\n    meta:\n        description = \"检测通用持久化行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"persistence\"\n        mitre_id = \"T1547\"\n    \n    strings:\n        $persist_keyword = /persistence|persistent|startup|autostart/i\n        $boot_keyword = /boot|reboot|startup|launch/i\n        $system_mod = /chmod \\+x|chown|reg add|launchctl/i\n        $daemon = /daemon|service|background/i\n    \n    condition:\n        ($persist_keyword or $boot_keyword) and ($system_mod or $daemon)\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Persistence_Systemd_Service",
+        "converted_at": "2026-03-23T07:34:35.392225",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/persistence.yar",
+        "mitre_id": "T1543.002",
+        "attack_type": "persistence"
+      }
+    }
+  ]
+}

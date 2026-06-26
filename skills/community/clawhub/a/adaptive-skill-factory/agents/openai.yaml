@@ -1,0 +1,7 @@
+interface:
+  display_name: "Adaptive Skill Factory"
+  short_description: "Find, install, or create the right skill for recurring work."
+  default_prompt: "Use $adaptive-skill-factory to decide whether this task should reuse, install, or create a skill."
+
+policy:
+  allow_implicit_invocation: true

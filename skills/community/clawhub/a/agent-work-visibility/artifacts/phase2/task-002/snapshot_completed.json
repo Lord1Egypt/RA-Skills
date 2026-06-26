@@ -1,0 +1,120 @@
+{
+  "taskId": "task-002",
+  "snapshotType": "completed",
+  "timestamp": "2026-03-17T20:57:07.103Z",
+  "metadata": {},
+  "snapshot": {
+    "task_id": "task-002",
+    "task_title": "比较 3 个 AI Agent 框架（LangChain vs LlamaIndex vs AutoGen）",
+    "task_type": "research",
+    "overall_status": "completed",
+    "current_phase": "形成输出",
+    "progress_percent": 100,
+    "current_action": "正在进行：形成输出",
+    "why_not_done": null,
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.102Z",
+    "updated_at": "2026-03-17T20:57:07.103Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": "已明确对比维度",
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": "已收集 12 个数据点",
+        "completed": true
+      },
+      {
+        "name": "分析与比较",
+        "status": "completed",
+        "progress": 100,
+        "weight": 30,
+        "summary": "已完成对比分析",
+        "completed": true
+      },
+      {
+        "name": "形成输出",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "任务已完成",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "任务已完成",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "完成阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "已生成报告：5页",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "开始阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.102Z",
+        "message": "进入下一阶段：形成输出",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.102Z",
+        "message": "完成阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.102Z",
+        "message": "正在比较 3 个项目",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.102Z",
+        "message": "开始阶段：分析与比较",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.102Z",
+        "message": "进入下一阶段：分析与比较",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": false
+    },
+    "retry_log": []
+  }
+}

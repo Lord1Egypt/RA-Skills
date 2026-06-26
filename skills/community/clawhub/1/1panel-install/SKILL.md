@@ -1,35 +1,111 @@
 ---
-name: "1panel-install"
-description: "1Panel 服务器管理面板一键安装。当用户提到安装、部署、配置 1Panel 时激活。自动检测是否已安装，已安装则返回访问信息，未安装则自动完成安装流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/1panel-install"
-sourceUrl: "https://clawhub.ai/skills/1panel-install"
+name: 1panel-install
+description: 1Panel 服务器管理面板一键安装。当用户提到安装、部署、配置 1Panel 时激活。自动检测是否已安装，已安装则返回访问信息，未安装则自动完成安装流程。
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🖥️",
+      "always": false,
+      "requires": {
+        "bins": ["bash", "curl", "tar", "systemctl"],
+      },
+      "install": null,
+    },
+  }
 ---
 
-# 1panel-install
+# 1Panel 一键安装技能
 
-> 1Panel 服务器管理面板一键安装。当用户提到安装、部署、配置 1Panel 时激活。自动检测是否已安装，已安装则返回访问信息，未安装则自动完成安装流程。
+通过调用官方安装脚本，自动完成 1Panel 的安装并返回访问信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/1panel-install`
-- **Source URL:** [https://clawhub.ai/skills/1panel-install](https://clawhub.ai/skills/1panel-install)
+## 意图处理
 
-## Overview
+当用户说"安装 1Panel"、"部署 1Panel"、"配置 1Panel"等请求时，自动执行安装流程。
 
+## 前置检查
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/1panel-install
+### 1. 检查系统依赖
+
+确保以下命令可用：
+- `bash` - shell 环境
+- `curl` - 下载安装包
+- `tar` - 解压
+- `systemctl` - 管理系统服务
+
+如果缺少依赖，提示用户安装。
+
+### 2. 检查 root 权限
+
+此脚本需要 root 权限安装系统服务。如果当前用户不是 root，提示用户使用 sudo 执行。
+
+## 安装流程
+
+### 场景 A：1Panel 已安装
+
+1. 检测 `1pctl` 命令是否存在
+2. 如果存在，执行 `1pctl user-info`
+3. 返回现有的面板访问信息
+
+### 场景 B：1Panel 未安装
+
+1. 下载 1Panel v2.1.4 安装包到 `/root/.openclaw/workspace/`
+2. 解压到当前工作区
+3. 运行官方安装脚本 `install.sh`
+   - 自动选择中文语言
+   - 使用默认安装路径 `/opt`
+   - 选择不安装 Docker
+4. 等待服务启动（最长 30 秒）
+5. 执行 `1pctl user-info` 获取访问信息
+6. 返回完整结果
+
+## 返回值
+
+自然语言文本，包含：
+
 ```
+✅ 1Panel 安装成功！
+
+外部地址：http://<公网IP>:<随机端口>/<随机路径>
+内部地址：http://<内网IP>:<随机端口>/<随机路径>
+面板用户：<随机生成的用户名>
+面板密码：<随机生成的密码>
+
+⚠️ 安全提醒：
+1. 请立即修改面板密码：1pctl update password
+2. 如果使用云服务器，请在安全组中打开对应端口
+3. 建议定期更新系统和 1Panel
+```
+
+**注意**：每次安装 1Panel 时，端口、访问路径（Security Entry）、用户名和密码都是**随机生成**的，不是固定值。请以实际安装输出为准。
+
+## 错误处理
+
+- **下载失败**：重试 3 次，提示检查网络
+- **安装失败**：输出安装日志的最后部分，建议查看 `/opt/1panel/install.log`
+- **权限不足**：提示需要使用 sudo
+- **服务启动失败**：提示检查 systemctl 状态
+
+## 示例对话
+
+**用户**：安装 1Panel
+**助手**：（执行安装，返回上述格式的结果）
+
+**用户**：1Panel 装好了吗？
+**助手**：（如果已装，直接返回信息）
+
+## 注意事项
+
+- 需要服务器有外网访问权限（下载安装包）
+- 安装过程会自动配置 systemd 服务
+- 面板的端口、访问路径、用户名和密码均为随机生成（每次安装都不同）
+- 此 skill 不包含卸载功能
+
+## 访问提示
+
+如果安装后地址无法访问，或者服务器没有公网 IP，推荐使用 **Cloudflare Tunnel** 功能配置域名访问，实现安全的内网穿透，无需开放公网端口。
+
+## 版本
+
+- 1Panel 版本：v2.1.4（固定，可在脚本中升级）
+- Skill 版本：1.0.0
+- 最后更新：2025-03-13

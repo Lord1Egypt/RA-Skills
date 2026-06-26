@@ -1,0 +1,59 @@
+{
+  "name": "aana-medical-safety-router",
+  "slug": "aana-medical-safety-router",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded medical safety router instructions for health and wellness questions: uncertainty, emergency routing, clinician referral, no diagnosis overclaiming, and private health data minimization.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_clinician_referral_for_high_risk_medical_questions": true,
+  "requires_emergency_routing_for_urgent_warning_signs": true,
+  "requires_user_approval_for_private_health_data_disclosure": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "raw medical records",
+      "medical images",
+      "full lab reports",
+      "insurance identifiers",
+      "clinician notes",
+      "private messages",
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "unrelated health data"
+    ]
+  },
+  "medical_safety_boundary": {
+    "must_not_diagnose_from_chat": true,
+    "must_not_prescribe_or_change_dosage": true,
+    "must_state_uncertainty_when_context_is_incomplete": true,
+    "must_route_emergencies_to_immediate_care": true,
+    "must_refer_high_risk_cases_to_clinician_or_pharmacist": true,
+    "must_minimize_private_health_data": true,
+    "must_not_claim_treatment_or_supplement_cures_without_evidence": true,
+    "may_not_discourage_urgent_medical_care": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/medical-safety-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-medical-safety-review.json"
+  ]
+}

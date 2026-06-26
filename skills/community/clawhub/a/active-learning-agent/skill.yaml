@@ -1,0 +1,64 @@
+name: active-learning-agent
+version: 2.4.0
+description: >
+  持续观察用户工作全貌，善用飞书全套工具（群聊/私聊/会议纪要/录音/文档/日历），
+  理解事情的时间线和脉络关系，主动做事并交付有价值成果。
+author: cscguochang
+license: MIT-0
+homepage: https://clawhub.ai/cscguochang/active-learning-agent
+
+instructions: SKILL.md
+
+triggers:
+  - kind: cron
+    schedule:
+      kind: every
+      everyMs: 7200000
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: |
+        【成长伙伴 - 主动学习】
+
+        严格按以下步骤执行：
+
+        1. 前置检查：静默时段/日上限/冷却间隔
+        2. 读取 insights-journal.md + 增量扫描（带 30min 重叠）
+        3. 深度追溯：对活跃话题搜索关联的会议纪要/录音文本/文档/历史讨论
+        4. 洞察更新：建立/更新时间线，理解脉络和因果
+        5. 行动决策：能做事就做事 → 做不了才洞察/提问
+        6. 执行行动 + 信息准确性检查（防止张冠李戴）
+        7. 发送 + 更新日志
+    delivery:
+      mode: announce
+      channel: feishu
+
+  - kind: command
+    command: /active-learning
+    description: 手动触发扫描
+
+requires:
+  plugins:
+    - name: feishu-openclaw-plugin
+      description: 飞书全套能力（消息/文档/日历/会议纪要）
+
+  tools:
+    - feishu_im_user_get_messages
+    - feishu_search_doc_wiki
+    - feishu_fetch_doc
+    - feishu_calendar_event.list
+    - feishu_create_doc
+    - message
+
+  files:
+    - path: memory/insights-journal.md
+      description: 洞察日志 — 话题追踪、时间线、信息来源映射
+      access: rw
+    - path: memory/active-learning-log.md
+      description: 发送记录、行动日志、用户反馈
+      access: rw
+    - path: MEMORY.md
+      description: 长期理解存储
+      access: rw
+
+always: false

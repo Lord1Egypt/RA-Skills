@@ -1,0 +1,32 @@
+{
+  "chain": "base",
+  "chain_id": 8453,
+  "rpc_url": "https://mainnet.base.org",
+  "aavegotchi_diamond": "0xa99c4b08201f2913db8d28e71d020c4298f29dbf",
+  "wearable_diamond": "0x052e6c114a166B0e91C2340370d72D4C33752B4b",
+  "collateral_aliases": {
+    "DAI": "0xE0b22E0037B130A9F56bBb537684E6fA18192341",
+    "ADAI": "0xE0b22E0037B130A9F56bBb537684E6fA18192341",
+    "ETH": "0x20D3922b4a1A8560E1aC99FBA4faDe0c849e2142",
+    "WETH": "0x20D3922b4a1A8560E1aC99FBA4faDe0c849e2142",
+    "AAVE": "0x823CD4264C1b951C9209aD0DeAea9988fE8429bF",
+    "AAAVE": "0x823CD4264C1b951C9209aD0DeAea9988fE8429bF",
+    "LINK": "0x98ea609569bD25119707451eF982b90E3eb719cD",
+    "ALINK": "0x98ea609569bD25119707451eF982b90E3eb719cD",
+    "USDT": "0xDAE5F1590db13E3B40423B5b5c5fbf175515910b",
+    "AUSDT": "0xDAE5F1590db13E3B40423B5b5c5fbf175515910b",
+    "USDC": "0x9719d867A500Ef117cC201206B8ab51e794d3F82",
+    "AUSDC": "0x9719d867A500Ef117cC201206B8ab51e794d3F82",
+    "TUSD": "0xF4b8888427b00d7caf21654408B7CBA2eCf4EbD9",
+    "ATUSD": "0xF4b8888427b00d7caf21654408B7CBA2eCf4EbD9",
+    "UNI": "0x8c8bdBe9CeE455732525086264a4Bf9Cf821C498",
+    "AUNI": "0x8c8bdBe9CeE455732525086264a4Bf9Cf821C498",
+    "YFI": "0xe20f7d1f0eC39C4d5DB01f53554F2EF54c71f613",
+    "AYFI": "0xe20f7d1f0eC39C4d5DB01f53554F2EF54c71f613"
+  },
+  "abi_source": "https://github.com/aavegotchi/aavegotchi-contracts/blob/master/diamondABI/diamond.json",
+  "notes": [
+    "Official Polygon contracts repo is deprecated for live deployment targets, but the official deployed-contract-addresses repo still points to the diamond ABI there.",
+    "Use Base as the default network for current Aavegotchi SVG work."
+  ]
+}

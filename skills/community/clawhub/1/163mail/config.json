@@ -1,0 +1,15 @@
+{
+  "email": "zong.yz@163.com",
+  "imapPassword": "SHaGc38wVb894HCr",
+  "smtpPassword": "SHaGc38wVb894HCr",
+  "imap": {
+    "host": "imap.163.com",
+    "port": 993,
+    "tls": true
+  },
+  "smtp": {
+    "host": "smtp.163.com",
+    "port": 465,
+    "tls": true
+  }
+}

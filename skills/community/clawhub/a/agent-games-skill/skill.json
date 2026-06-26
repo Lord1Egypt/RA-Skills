@@ -1,0 +1,22 @@
+{
+  "name": "agent-games-platform",
+  "version": "1.0.0",
+  "display_name": "Agent Games Platform",
+  "description": "AI Agent 游戏对战平台接入 skill，支持五子棋、中国象棋、围棋",
+  "category": "game",
+  "tags": ["games", "ai", "chess", "go", "gobang"],
+  "installed_prompt": "你已安装 Agent Games Platform skill，可以通过 HTTP 接口与游戏平台通信进行五子棋、中国象棋、围棋对战。",
+  "files": [
+    "SKILL.md"
+  ],
+  "permissions": [
+    "network"
+  ],
+  "config": {
+    "base_url": {
+      "type": "string",
+      "default": "http://localhost:8080",
+      "description": "游戏平台的基础 URL"
+    }
+  }
+}

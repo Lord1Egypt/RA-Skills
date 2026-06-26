@@ -1,0 +1,22 @@
+{
+  "name": "ra-skills",
+  "version": "1.0.0",
+  "description": "Search 90,896 Hermes Agent skills offline — instant CLI + API over the RA-Skills registry, with on-demand full-folder download",
+  "keywords": ["ai", "agents", "skills", "hermes", "claude-code", "registry", "search", "offline"],
+  "homepage": "https://github.com/Lord1Egypt/RA-Skills",
+  "repository": { "type": "git", "url": "https://github.com/Lord1Egypt/RA-Skills.git" },
+  "license": "MIT",
+  "author": "Lord1Egypt",
+  "main": "index.js",
+  "bin": {
+    "ra-skills": "bin/ra-skills.js",
+    "ra": "bin/ra-skills.js"
+  },
+  "files": [
+    "index.js",
+    "bin/",
+    "data/registry.json",
+    "README.md"
+  ],
+  "engines": { "node": ">=14" }
+}

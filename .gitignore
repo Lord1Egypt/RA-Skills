@@ -4,3 +4,12 @@
 # python cache
 tools/__pycache__/
 __pycache__/
+
+# bundled registry copies (synced from root registry.json at build time)
+python/ra_skills/_data/registry.json
+js/data/registry.json
+# build artifacts
+python/dist/
+python/build/
+python/*.egg-info/
+js/*.tgz
